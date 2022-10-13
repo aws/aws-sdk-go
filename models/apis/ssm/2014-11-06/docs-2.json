@@ -2421,7 +2421,7 @@
       }
     },
     "DocumentPermissionLimit": {
-      "base": "<p>The document can't be shared with more Amazon Web Services user accounts. You can share a document with a maximum of 20 accounts. You can publicly share up to five documents. If you need to increase this limit, contact Amazon Web Services Support.</p>",
+      "base": "<p>The document can't be shared with more Amazon Web Services user accounts. You can specify a maximum of 20 accounts per API operation to share a private document.</p> <p>By default, you can share a private document with a maximum of 1,000 accounts and publicly share up to five documents.</p> <p>If you need to increase the quota for privately or publicly shared Systems Manager documents, contact Amazon Web Services Support.</p>",
       "refs": {
       }
     },
@@ -3194,7 +3194,7 @@
     "InstanceInformationStringFilterKey": {
       "base": null,
       "refs": {
-        "InstanceInformationStringFilter$Key": "<p>The filter key name to describe your managed nodes. For example:</p> <p>\"InstanceIds\" | \"AgentVersion\" | \"PingStatus\" | \"PlatformTypes\" | \"ActivationIds\" | \"IamRole\" | \"ResourceType\" | \"AssociationStatus\" | \"tag-key\" | \"tag:<code>{keyname}</code> </p> <important> <p> <code>Tag Key</code> isn't a valid filter. You must specify either <code>tag-key</code> or <code>tag:{keyname}</code> and a string. Here are some valid examples: <code>tag-key</code>, <code>tag:123</code>, <code>tag:al!</code>, <code>tag:Windows</code>. Here are some <i>invalid</i> examples: <code>tag-keys</code>, <code>Tag Key</code>, <code>tag:</code>, <code>tagKey</code>, <code>abc:keyname</code>.</p> </important>"
+        "InstanceInformationStringFilter$Key": "<p>The filter key name to describe your managed nodes.</p> <p>Valid filter key values: ActivationIds | AgentVersion | AssociationStatus | IamRole | InstanceIds | PingStatus | PlatformTypes | ResourceType | SourceIds | SourceTypes | \"tag-key\" | \"tag:<code>{keyname}</code> </p> <ul> <li> <p>Valid values for the <code>AssociationStatus</code> filter key: Success | Pending | Failed</p> </li> <li> <p>Valid values for the <code>PingStatus</code> filter key: Online | ConnectionLost | Inactive (deprecated)</p> </li> <li> <p>Valid values for the <code>PlatformType</code> filter key: Windows | Linux | MacOS</p> </li> <li> <p>Valid values for the <code>ResourceType</code> filter key: EC2Instance | ManagedInstance</p> </li> <li> <p>Valid values for the <code>SourceType</code> filter key: AWS::EC2::Instance | AWS::SSM::ManagedInstance | AWS::IoT::Thing</p> </li> <li> <p>Valid tag examples: <code>Key=tag-key,Values=Purpose</code> | <code>Key=tag:Purpose,Values=Test</code>.</p> </li> </ul>"
       }
     },
     "InstanceInformationStringFilterList": {
@@ -3519,7 +3519,7 @@
       }
     },
     "InvalidTag": {
-      "base": "<p>The tag key or value isn't valid.</p>",
+      "base": "<p>The specified tag key or value isn't valid.</p>",
       "refs": {
       }
     },
@@ -6050,7 +6050,7 @@
     "PatchCriticalNonCompliantCount": {
       "base": null,
       "refs": {
-        "InstancePatchState$CriticalNonCompliantCount": "<p>The number of managed nodes where patches that are specified as <code>Critical</code> for compliance reporting in the patch baseline aren't installed. These patches might be missing, have failed installation, were rejected, or were installed but awaiting a required managed node reboot. The status of these managed nodes is <code>NON_COMPLIANT</code>.</p>"
+        "InstancePatchState$CriticalNonCompliantCount": "<p>The number of patches per node that are specified as <code>Critical</code> for compliance reporting in the patch baseline aren't installed. These patches might be missing, have failed installation, were rejected, or were installed but awaiting a required managed node reboot. The status of these managed nodes is <code>NON_COMPLIANT</code>.</p>"
       }
     },
     "PatchDeploymentStatus": {
@@ -6290,7 +6290,7 @@
     "PatchOtherNonCompliantCount": {
       "base": null,
       "refs": {
-        "InstancePatchState$OtherNonCompliantCount": "<p>The number of managed nodes with patches installed that are specified as other than <code>Critical</code> or <code>Security</code> but aren't compliant with the patch baseline. The status of these managed nodes is <code>NON_COMPLIANT</code>.</p>"
+        "InstancePatchState$OtherNonCompliantCount": "<p>The number of patches per node that are specified as other than <code>Critical</code> or <code>Security</code> but aren't compliant with the patch baseline. The status of these managed nodes is <code>NON_COMPLIANT</code>.</p>"
       }
     },
     "PatchProduct": {
@@ -6360,7 +6360,7 @@
     "PatchSecurityNonCompliantCount": {
       "base": null,
       "refs": {
-        "InstancePatchState$SecurityNonCompliantCount": "<p>The number of managed nodes where patches that are specified as <code>Security</code> in a patch advisory aren't installed. These patches might be missing, have failed installation, were rejected, or were installed but awaiting a required managed node reboot. The status of these managed nodes is <code>NON_COMPLIANT</code>.</p>"
+        "InstancePatchState$SecurityNonCompliantCount": "<p>The number of patches per node that are specified as <code>Security</code> in a patch advisory aren't installed. These patches might be missing, have failed installation, were rejected, or were installed but awaiting a required managed node reboot. The status of these managed nodes is <code>NON_COMPLIANT</code>.</p>"
       }
     },
     "PatchSet": {
@@ -7008,7 +7008,7 @@
       "refs": {
         "Command$OutputS3BucketName": "<p>The S3 bucket where the responses to the command executions should be stored. This was requested when issuing the command.</p>",
         "CommandPlugin$OutputS3BucketName": "<p>The S3 bucket where the responses to the command executions should be stored. This was requested when issuing the command. For example, in the following response:</p> <p> <code>doc-example-bucket/ab19cb99-a030-46dd-9dfc-8eSAMPLEPre-Fix/i-02573cafcfEXAMPLE/awsrunShellScript</code> </p> <p> <code>doc-example-bucket</code> is the name of the S3 bucket;</p> <p> <code>ab19cb99-a030-46dd-9dfc-8eSAMPLEPre-Fix</code> is the name of the S3 prefix;</p> <p> <code>i-02573cafcfEXAMPLE</code> is the managed node ID;</p> <p> <code>awsrunShellScript</code> is the name of the plugin.</p>",
-        "LoggingInfo$S3BucketName": "<p>The name of an S3 bucket where execution logs are stored .</p>",
+        "LoggingInfo$S3BucketName": "<p>The name of an S3 bucket where execution logs are stored.</p>",
         "MaintenanceWindowRunCommandParameters$OutputS3BucketName": "<p>The name of the Amazon Simple Storage Service (Amazon S3) bucket.</p>",
         "S3OutputLocation$OutputS3BucketName": "<p>The name of the S3 bucket.</p>",
         "SendCommandRequest$OutputS3BucketName": "<p>The name of the S3 bucket where command execution responses should be stored.</p>"
@@ -7703,7 +7703,7 @@
         "Activation$Tags": "<p>Tags assigned to the activation.</p>",
         "AddTagsToResourceRequest$Tags": "<p>One or more tags. The value parameter is required.</p> <important> <p>Don't enter personally identifiable information in this field.</p> </important>",
         "CreateActivationRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an activation to identify which servers or virtual machines (VMs) in your on-premises environment you intend to activate. In this case, you could specify the following key-value pairs:</p> <ul> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> <li> <p> <code>Key=Environment,Value=Production</code> </p> </li> </ul> <important> <p>When you install SSM Agent on your on-premises servers and VMs, you specify an activation ID and code. When you specify the activation ID and code, tags assigned to the activation are automatically applied to the on-premises servers or VMs.</p> </important> <p>You can't add tags to or delete tags from an existing activation. You can tag your on-premises servers, edge devices, and VMs after they connect to Systems Manager for the first time and are assigned a managed node ID. This means they are listed in the Amazon Web Services Systems Manager console with an ID that is prefixed with \"mi-\". For information about how to add tags to your managed nodes, see <a>AddTagsToResource</a>. For information about how to remove tags from your managed nodes, see <a>RemoveTagsFromResource</a>.</p>",
-        "CreateAssociationRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an association to identify the type of resource to which it applies, the environment, or the purpose of the association.</p>",
+        "CreateAssociationRequest$Tags": "<p>Adds or overwrites one or more tags for a State Manager association. <i>Tags</i> are metadata that you can assign to your Amazon Web Services resources. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. </p>",
         "CreateDocumentRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an SSM document to identify the types of targets or the environment where it will run. In this case, you could specify the following key-value pairs:</p> <ul> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> <li> <p> <code>Key=Environment,Value=Production</code> </p> </li> </ul> <note> <p>To add tags to an existing SSM document, use the <a>AddTagsToResource</a> operation.</p> </note>",
         "CreateMaintenanceWindowRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a maintenance window to identify the type of tasks it will run, the types of targets, and the environment it will run in. In this case, you could specify the following key-value pairs:</p> <ul> <li> <p> <code>Key=TaskType,Value=AgentUpdate</code> </p> </li> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> <li> <p> <code>Key=Environment,Value=Production</code> </p> </li> </ul> <note> <p>To add tags to an existing maintenance window, use the <a>AddTagsToResource</a> operation.</p> </note>",
         "CreateOpsItemRequest$Tags": "<p>Optional metadata that you assign to a resource. You can restrict access to OpsItems by using an inline IAM policy that specifies tags. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html#OpsCenter-getting-started-user-permissions\">Getting started with OpsCenter</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> <p>Tags use a key-value pair. For example:</p> <p> <code>Key=Department,Value=Finance</code> </p> <important> <p>To add tags to a new OpsItem, a user must have IAM permissions for both the <code>ssm:CreateOpsItems</code> operation and the <code>ssm:AddTagsToResource</code> operation. To add tags to an existing OpsItem, use the <a>AddTagsToResource</a> operation.</p> </important>",

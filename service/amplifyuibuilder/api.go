@@ -5355,6 +5355,10 @@ type FieldInputConfig struct {
 	// The text to display to describe the field.
 	DescriptiveText *string `locationName:"descriptiveText" type:"string"`
 
+	// Specifies whether to render the field as an array. This property is ignored
+	// if the dataSourceType for the form is a Data Store.
+	IsArray *bool `locationName:"isArray" type:"boolean"`
+
 	// The maximum value to display for the field.
 	MaxValue *float64 `locationName:"maxValue" type:"float"`
 
@@ -5445,6 +5449,12 @@ func (s *FieldInputConfig) SetDefaultValue(v string) *FieldInputConfig {
 // SetDescriptiveText sets the DescriptiveText field's value.
 func (s *FieldInputConfig) SetDescriptiveText(v string) *FieldInputConfig {
 	s.DescriptiveText = &v
+	return s
+}
+
+// SetIsArray sets the IsArray field's value.
+func (s *FieldInputConfig) SetIsArray(v bool) *FieldInputConfig {
+	s.IsArray = &v
 	return s
 }
 
@@ -5897,7 +5907,7 @@ func (s *FormButton) SetPosition(v *FieldPosition) *FormButton {
 	return s
 }
 
-// Describes the call to action button configuration for the form..
+// Describes the call to action button configuration for the form.
 type FormCTA struct {
 	_ struct{} `type:"structure"`
 

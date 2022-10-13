@@ -3,17 +3,6 @@
 // Package iotfleetwise provides the client and types for making API
 // requests to AWS IoT FleetWise.
 //
-// Amazon Web Services IoT FleetWise is in preview release and is subject to
-// change. We recommend that you use the service only with test data, and not
-// in production environments.
-//
-// While Amazon Web Services IoT FleetWise is in preview, you must download
-// the preview Amazon Web Services SDK and CLI to use the API operations for
-// this service. These API operations aren't available in the public Amazon
-// Web Services SDK or CLI. For more information, see Preview Amazon Web Services
-// SDK and CLI (https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/preview-sdk-cli.html)
-// in the Amazon Web Services IoT FleetWise Developer Guide.
-//
 // Amazon Web Services IoT FleetWise is a fully managed service that you can
 // use to collect, model, and transfer vehicle data to the Amazon Web Services
 // cloud at scale. With Amazon Web Services IoT FleetWise, you can standardize

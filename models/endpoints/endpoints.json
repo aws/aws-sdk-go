@@ -8038,6 +8038,13 @@
             "deprecated" : true,
             "hostname" : "kms-fips.eu-south-1.amazonaws.com"
           },
+          "eu-south-2-fips" : {
+            "credentialScope" : {
+              "region" : "eu-south-2"
+            },
+            "deprecated" : true,
+            "hostname" : "kms-fips.eu-south-2.amazonaws.com"
+          },
           "eu-west-1" : {
             "variants" : [ {
               "hostname" : "kms-fips.eu-west-1.amazonaws.com",

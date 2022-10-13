@@ -38,6 +38,7 @@
         "ComponentProperty$configured": "<p>Specifies whether the user configured the property in Amplify Studio after importing it.</p>",
         "FieldConfig$excluded": "<p>Specifies whether to hide a field.</p>",
         "FieldInputConfig$defaultChecked": "<p>Specifies whether a field has a default value.</p>",
+        "FieldInputConfig$isArray": "<p>Specifies whether to render the field as an array. This property is ignored if the <code>dataSourceType</code> for the form is a Data Store.</p>",
         "FieldInputConfig$readOnly": "<p>Specifies a read only field.</p>",
         "FieldInputConfig$required": "<p>Specifies a field that requires input.</p>",
         "FormButton$excluded": "<p>Specifies whether the button is visible on the form.</p>"
@@ -440,7 +441,7 @@
       }
     },
     "FormCTA": {
-      "base": "<p>Describes the call to action button configuration for the form..</p>",
+      "base": "<p>Describes the call to action button configuration for the form.</p>",
       "refs": {
         "CreateFormData$cta": "<p>The <code>FormCTA</code> object that stores the call to action configuration for the form.</p>",
         "Form$cta": "<p>Stores the call to action configuration for the form.</p>",

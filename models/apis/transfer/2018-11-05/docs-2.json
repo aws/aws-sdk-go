@@ -4,8 +4,8 @@
   "operations": {
     "CreateAccess": "<p>Used by administrators to choose which groups in the directory should have access to upload and download files over the enabled protocols using Transfer Family. For example, a Microsoft Active Directory might contain 50,000 users, but only a small fraction might need the ability to transfer files to the server. An administrator can use <code>CreateAccess</code> to limit the access to the correct set of users who need this ability.</p>",
     "CreateAgreement": "<p>Creates an agreement. An agreement is a bilateral trading partner agreement, or partnership, between an Transfer Family server and an AS2 process. The agreement defines the file and message transfer relationship between the server and the AS2 process. To define an agreement, Transfer Family combines a server, local profile, partner profile, certificate, and other attributes.</p> <p>The partner is identified with the <code>PartnerProfileId</code>, and the AS2 process is identified with the <code>LocalProfileId</code>.</p>",
-    "CreateConnector": "<p>Creates the connector, which captures the parameters for an outbound connection for the AS2 protocol. The connector is required for sending files from a customer's non Amazon Web Services server. </p>",
-    "CreateProfile": "<p>Creates the profile for the AS2 process. The agreement is between the partner and the AS2 process.</p>",
+    "CreateConnector": "<p>Creates the connector, which captures the parameters for an outbound connection for the AS2 protocol. The connector is required for sending files to an externally hosted AS2 server. For more details about connectors, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html#configure-as2-connector\">Create AS2 connectors</a>.</p>",
+    "CreateProfile": "<p>Creates the local or partner profile to use for AS2 transfers.</p>",
     "CreateServer": "<p>Instantiates an auto-scaling virtual server based on the selected file transfer protocol in Amazon Web Services. When you make updates to your file transfer protocol-enabled server or when you work with users, use the service-generated <code>ServerId</code> property that is assigned to the newly created server.</p>",
     "CreateUser": "<p>Creates a user and associates them with an existing file transfer protocol-enabled server. You can only create and associate users with servers that have the <code>IdentityProviderType</code> set to <code>SERVICE_MANAGED</code>. Using parameters for <code>CreateUser</code>, you can specify the user name, set the home directory, store the user's public key, and assign the user's Identity and Access Management (IAM) role. You can also optionally add a session policy, and assign metadata with tags that can be used to group and search for users.</p>",
     "CreateWorkflow": "<p> Allows you to create a workflow with specified steps and step details the workflow invokes after file transfer completes. After creating a workflow, you can associate the workflow created with any transfer servers by specifying the <code>workflow-details</code> field in <code>CreateServer</code> and <code>UpdateServer</code> operations. </p>",
@@ -31,14 +31,14 @@
     "DescribeUser": "<p>Describes the user assigned to the specific file transfer protocol-enabled server, as identified by its <code>ServerId</code> property.</p> <p>The response from this call returns the properties of the user associated with the <code>ServerId</code> value that was specified.</p>",
     "DescribeWorkflow": "<p>Describes the specified workflow.</p>",
     "ImportCertificate": "<p>Imports the signing and encryption certificates that you need to create local (AS2) profiles and partner profiles.</p>",
-    "ImportHostKey": "<p>Adds a host key to the server specified by the <code>ServerId</code> parameter.</p>",
+    "ImportHostKey": "<p>Adds a host key to the server that's specified by the <code>ServerId</code> parameter.</p>",
     "ImportSshPublicKey": "<p>Adds a Secure Shell (SSH) public key to a user account identified by a <code>UserName</code> value assigned to the specific file transfer protocol-enabled server, identified by <code>ServerId</code>.</p> <p>The response returns the <code>UserName</code> value, the <code>ServerId</code> value, and the name of the <code>SshPublicKeyId</code>.</p>",
     "ListAccesses": "<p>Lists the details for all the accesses you have on your server.</p>",
     "ListAgreements": "<p>Returns a list of the agreements for the server that's identified by the <code>ServerId</code> that you supply. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for <code>NextToken</code>, you can supply that value to continue listing agreements from where you left off.</p>",
     "ListCertificates": "<p>Returns a list of the current certificates that have been imported into Transfer Family. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for the <code>NextToken</code> parameter, you can supply that value to continue listing certificates from where you left off.</p>",
     "ListConnectors": "<p>Lists the connectors for the specified Region.</p>",
     "ListExecutions": "<p>Lists all executions for the specified workflow.</p>",
-    "ListHostKeys": "<p>Returns a list of host keys for the server specified by the <code>ServerId</code> paramter.</p>",
+    "ListHostKeys": "<p>Returns a list of host keys for the server that's specified by the <code>ServerId</code> parameter.</p>",
     "ListProfiles": "<p>Returns a list of the profiles for your system. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for <code>NextToken</code>, you can supply that value to continue listing profiles from where you left off.</p>",
     "ListSecurityPolicies": "<p>Lists the security policies that are attached to your file transfer protocol-enabled servers.</p>",
     "ListServers": "<p>Lists the file transfer protocol-enabled servers that are associated with your Amazon Web Services account.</p>",
@@ -46,7 +46,7 @@
     "ListUsers": "<p>Lists the users for a file transfer protocol-enabled server that you specify by passing the <code>ServerId</code> parameter.</p>",
     "ListWorkflows": "<p>Lists all of your workflows.</p>",
     "SendWorkflowStepState": "<p>Sends a callback for asynchronous custom steps.</p> <p> The <code>ExecutionId</code>, <code>WorkflowId</code>, and <code>Token</code> are passed to the target resource during execution of a custom step of a workflow. You must include those with their callback as well as providing a status. </p>",
-    "StartFileTransfer": "<p>Begins an outbound file transfer. You specify the <code>ConnectorId</code> and the file paths for where to send the files. </p>",
+    "StartFileTransfer": "<p>Begins an outbound file transfer to a remote AS2 server. You specify the <code>ConnectorId</code> and the file paths for where to send the files. </p>",
     "StartServer": "<p>Changes the state of a file transfer protocol-enabled server from <code>OFFLINE</code> to <code>ONLINE</code>. It has no impact on a server that is already <code>ONLINE</code>. An <code>ONLINE</code> server can accept and process file transfer jobs.</p> <p>The state of <code>STARTING</code> indicates that the server is in an intermediate state, either not fully able to respond, or not fully online. The values of <code>START_FAILED</code> can indicate an error condition.</p> <p>No response is returned from this call.</p>",
     "StopServer": "<p>Changes the state of a file transfer protocol-enabled server from <code>ONLINE</code> to <code>OFFLINE</code>. An <code>OFFLINE</code> server cannot accept and process file transfer jobs. Information tied to your server, such as server and user properties, are not affected by stopping your server.</p> <note> <p>Stopping the server does not reduce or impact your file transfer protocol endpoint billing; you must delete the server to stop being billed.</p> </note> <p>The state of <code>STOPPING</code> indicates that the server is in an intermediate state, either not fully able to respond, or not fully offline. The values of <code>STOP_FAILED</code> can indicate an error condition.</p> <p>No response is returned from this call.</p>",
     "TagResource": "<p>Attaches a key-value pair to a resource, as identified by its Amazon Resource Name (ARN). Resources are users, servers, roles, and other entities.</p> <p>There is no response returned from this call.</p>",
@@ -56,7 +56,7 @@
     "UpdateAgreement": "<p>Updates some of the parameters for an existing agreement. Provide the <code>AgreementId</code> and the <code>ServerId</code> for the agreement that you want to update, along with the new values for the parameters to update.</p>",
     "UpdateCertificate": "<p>Updates the active and inactive dates for a certificate.</p>",
     "UpdateConnector": "<p>Updates some of the parameters for an existing connector. Provide the <code>ConnectorId</code> for the connector that you want to update, along with the new values for the parameters to update.</p>",
-    "UpdateHostKey": "<p>Updates the description for the host key specified by the specified by the <code>ServerId</code> and <code>HostKeyId</code> parameters.</p>",
+    "UpdateHostKey": "<p>Updates the description for the host key that's specified by the <code>ServerId</code> and <code>HostKeyId</code> parameters.</p>",
     "UpdateProfile": "<p>Updates some of the parameters for an existing profile. Provide the <code>ProfileId</code> for the profile that you want to update, along with the new values for the parameters to update.</p>",
     "UpdateServer": "<p>Updates the file transfer protocol-enabled server's properties after that server has been created.</p> <p>The <code>UpdateServer</code> call returns the <code>ServerId</code> of the server you updated.</p>",
     "UpdateUser": "<p>Assigns new properties to a user. Parameters you pass modify any or all of the following: the home directory, role, and policy for the <code>UserName</code> and <code>ServerId</code> you specify.</p> <p>The response returns the <code>ServerId</code> and the <code>UserName</code> for the updated user.</p>"
@@ -116,7 +116,7 @@
         "ListedAgreement$Arn": "<p>The Amazon Resource Name (ARN) of the specified agreement.</p>",
         "ListedCertificate$Arn": "<p>The Amazon Resource Name (ARN) of the specified certificate.</p>",
         "ListedConnector$Arn": "<p>The Amazon Resource Name (ARN) of the specified connector.</p>",
-        "ListedHostKey$Arn": "<p>Specifies the unique Amazon Resource Name (ARN) of the host key.</p>",
+        "ListedHostKey$Arn": "<p>The unique Amazon Resource Name (ARN) of the host key.</p>",
         "ListedProfile$Arn": "<p>The Amazon Resource Name (ARN) of the specified profile.</p>",
         "ListedServer$Arn": "<p>Specifies the unique Amazon Resource Name (ARN) for a server to be listed.</p>",
         "ListedUser$Arn": "<p>Provides the unique Amazon Resource Name (ARN) for the user that you want to learn about.</p>",
@@ -206,7 +206,7 @@
       "base": null,
       "refs": {
         "CertificateIds$member": null,
-        "DeleteCertificateRequest$CertificateId": "<p>The ID of the certificate object that you are deleting.</p>",
+        "DeleteCertificateRequest$CertificateId": "<p>The identifier of the certificate object that you are deleting.</p>",
         "DescribeCertificateRequest$CertificateId": "<p>An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.</p>",
         "DescribedCertificate$CertificateId": "<p>An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.</p>",
         "ImportCertificateResponse$CertificateId": "<p>An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.</p>",
@@ -546,7 +546,7 @@
     "DescribedAccess": {
       "base": "<p>Describes the properties of the access that was specified.</p>",
       "refs": {
-        "DescribeAccessResponse$Access": "<p>The external ID of the server that the access is attached to.</p>"
+        "DescribeAccessResponse$Access": "<p>The external identifier of the server that the access is attached to.</p>"
       }
     },
     "DescribedAgreement": {
@@ -580,7 +580,7 @@
       }
     },
     "DescribedProfile": {
-      "base": "<p>The details for a local or partner AS2 profile. profile.</p>",
+      "base": "<p>The details for a local or partner AS2 profile. </p>",
       "refs": {
         "DescribeProfileResponse$Profile": "<p>The details of the specified profile, returned as an object.</p>"
       }
@@ -639,14 +639,14 @@
     "EfsFileLocation": {
       "base": "<p>Reserved for future use.</p> <p> </p>",
       "refs": {
-        "FileLocation$EfsFileLocation": "<p>Specifies the Amazon EFS ID and the path for the file being used.</p>",
+        "FileLocation$EfsFileLocation": "<p>Specifies the Amazon EFS identifier and the path for the file being used.</p>",
         "InputFileLocation$EfsFileLocation": "<p>Reserved for future use.</p>"
       }
     },
     "EfsFileSystemId": {
       "base": null,
       "refs": {
-        "EfsFileLocation$FileSystemId": "<p>The ID of the file system, assigned by Amazon EFS.</p>"
+        "EfsFileLocation$FileSystemId": "<p>The identifier of the file system, assigned by Amazon EFS.</p>"
       }
     },
     "EfsPath": {
@@ -735,13 +735,13 @@
       "base": null,
       "refs": {
         "CreateAccessRequest$ExternalId": "<p>A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.</p> <p> <code>Get-ADGroup -Filter {samAccountName -like \"<i>YourGroupName</i>*\"} -Properties * | Select SamAccountName,ObjectSid</code> </p> <p>In that command, replace <i>YourGroupName</i> with the name of your Active Directory group.</p> <p>The regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-</p>",
-        "CreateAccessResponse$ExternalId": "<p>The external ID of the group whose users have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family.</p>",
+        "CreateAccessResponse$ExternalId": "<p>The external identifier of the group whose users have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family.</p>",
         "DeleteAccessRequest$ExternalId": "<p>A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.</p> <p> <code>Get-ADGroup -Filter {samAccountName -like \"<i>YourGroupName</i>*\"} -Properties * | Select SamAccountName,ObjectSid</code> </p> <p>In that command, replace <i>YourGroupName</i> with the name of your Active Directory group.</p> <p>The regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-</p>",
         "DescribeAccessRequest$ExternalId": "<p>A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.</p> <p> <code>Get-ADGroup -Filter {samAccountName -like \"<i>YourGroupName</i>*\"} -Properties * | Select SamAccountName,ObjectSid</code> </p> <p>In that command, replace <i>YourGroupName</i> with the name of your Active Directory group.</p> <p>The regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-</p>",
         "DescribedAccess$ExternalId": "<p>A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.</p> <p> <code>Get-ADGroup -Filter {samAccountName -like \"<i>YourGroupName</i>*\"} -Properties * | Select SamAccountName,ObjectSid</code> </p> <p>In that command, replace <i>YourGroupName</i> with the name of your Active Directory group.</p> <p>The regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-</p>",
         "ListedAccess$ExternalId": "<p>A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.</p> <p> <code>Get-ADGroup -Filter {samAccountName -like \"<i>YourGroupName</i>*\"} -Properties * | Select SamAccountName,ObjectSid</code> </p> <p>In that command, replace <i>YourGroupName</i> with the name of your Active Directory group.</p> <p>The regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-</p>",
         "UpdateAccessRequest$ExternalId": "<p>A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.</p> <p> <code>Get-ADGroup -Filter {samAccountName -like \"<i>YourGroupName</i>*\"} -Properties * | Select SamAccountName,ObjectSid</code> </p> <p>In that command, replace <i>YourGroupName</i> with the name of your Active Directory group.</p> <p>The regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-</p>",
-        "UpdateAccessResponse$ExternalId": "<p>The external ID of the group whose users have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon Web ServicesTransfer Family.</p>"
+        "UpdateAccessResponse$ExternalId": "<p>The external identifier of the group whose users have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon Web ServicesTransfer Family.</p>"
       }
     },
     "FileLocation": {
@@ -779,7 +779,7 @@
       "base": null,
       "refs": {
         "CreateAccessRequest$HomeDirectory": "<p>The landing directory (folder) for a user when they log in to the server using the client.</p> <p>A <code>HomeDirectory</code> example is <code>/bucket_name/home/mydirectory</code>.</p>",
-        "CreateAgreementRequest$BaseDirectory": "<p>The landing directory (folder) for files transferred by using the AS2 protocol.</p> <p>A <code>BaseDirectory</code> example is <code>/<i>DOC-EXAMPLE-BUCKET</i>/<i>home</i>/<i>mydirectory</i> </code>.</p>",
+        "CreateAgreementRequest$BaseDirectory": "<p>The landing directory (folder) for files transferred by using the AS2 protocol.</p> <p>A <code>BaseDirectory</code> example is <i>DOC-EXAMPLE-BUCKET</i>/<i>home</i>/<i>mydirectory</i>.</p>",
         "CreateUserRequest$HomeDirectory": "<p>The landing directory (folder) for a user when they log in to the server using the client.</p> <p>A <code>HomeDirectory</code> example is <code>/bucket_name/home/mydirectory</code>.</p>",
         "DescribedAccess$HomeDirectory": "<p>The landing directory (folder) for a user when they log in to the server using the client.</p> <p>A <code>HomeDirectory</code> example is <code>/bucket_name/home/mydirectory</code>.</p>",
         "DescribedAgreement$BaseDirectory": "<p>The landing directory (folder) for files that are transferred by using the AS2 protocol.</p>",
@@ -824,18 +824,18 @@
     "HostKey": {
       "base": null,
       "refs": {
-        "CreateServerRequest$HostKey": "<p>The RSA, ECDSA, or ED25519 private key to use for your server.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Change the host key for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>",
+        "CreateServerRequest$HostKey": "<p>The RSA, ECDSA, or ED25519 private key to use for your SFTP-enabled server. You can add multiple host keys, in case you want to rotate keys, or have a set of active keys that use different algorithms.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Update host keys for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>",
         "ImportHostKeyRequest$HostKeyBody": "<p>The public key portion of an SSH key pair.</p> <p>Transfer Family accepts RSA, ECDSA, and ED25519 keys.</p>",
-        "UpdateServerRequest$HostKey": "<p>The RSA, ECDSA, or ED25519 private key to use for your server.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Change the host key for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>"
+        "UpdateServerRequest$HostKey": "<p>The RSA, ECDSA, or ED25519 private key to use for your SFTP-enabled server. You can add multiple host keys, in case you want to rotate keys, or have a set of active keys that use different algorithms.</p> <p>Use the following command to generate an RSA 2048 bit key with no passphrase:</p> <p> <code>ssh-keygen -t rsa -b 2048 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Use a minimum value of 2048 for the <code>-b</code> option. You can create a stronger key by using 3072 or 4096.</p> <p>Use the following command to generate an ECDSA 256 bit key with no passphrase:</p> <p> <code>ssh-keygen -t ecdsa -b 256 -N \"\" -m PEM -f my-new-server-key</code>.</p> <p>Valid values for the <code>-b</code> option for ECDSA are 256, 384, and 521.</p> <p>Use the following command to generate an ED25519 key with no passphrase:</p> <p> <code>ssh-keygen -t ed25519 -N \"\" -f my-new-server-key</code>.</p> <p>For all of these commands, you can replace <i>my-new-server-key</i> with a string of your choice.</p> <important> <p>If you aren't planning to migrate existing users from an existing SFTP-enabled server to a new server, don't update the host key. Accidentally changing a server's host key can be disruptive.</p> </important> <p>For more information, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key\">Update host keys for your SFTP-enabled server</a> in the <i>Transfer Family User Guide</i>.</p>"
       }
     },
     "HostKeyDescription": {
       "base": null,
       "refs": {
         "DescribedHostKey$Description": "<p>The text description for this host key.</p>",
-        "ImportHostKeyRequest$Description": "<p>Enter a text description to identify this host key.</p>",
+        "ImportHostKeyRequest$Description": "<p>The text description that identifies this host key.</p>",
         "ListedHostKey$Description": "<p>The current description for the host key. You can change it by calling the <code>UpdateHostKey</code> operation and providing a new description.</p>",
-        "UpdateHostKeyRequest$Description": "<p>Provide an updated description for the host key.</p>"
+        "UpdateHostKeyRequest$Description": "<p>An updated description for the host key.</p>"
       }
     },
     "HostKeyFingerprint": {
@@ -849,20 +849,20 @@
     "HostKeyId": {
       "base": null,
       "refs": {
-        "DeleteHostKeyRequest$HostKeyId": "<p>The ID of the host key that you are deleting.</p>",
-        "DescribeHostKeyRequest$HostKeyId": "<p>Provide the ID of the host key that you want described.</p>",
+        "DeleteHostKeyRequest$HostKeyId": "<p>The identifier of the host key that you are deleting.</p>",
+        "DescribeHostKeyRequest$HostKeyId": "<p>The identifier of the host key that you want described.</p>",
         "DescribedHostKey$HostKeyId": "<p>A unique identifier for the host key.</p>",
-        "ImportHostKeyResponse$HostKeyId": "<p>Returns the host key ID for the imported key.</p>",
-        "ListedHostKey$HostKeyId": "<p/>",
-        "UpdateHostKeyRequest$HostKeyId": "<p>Provide the ID of the host key that you are updating.</p>",
-        "UpdateHostKeyResponse$HostKeyId": "<p>Returns the host key ID for the updated host key.</p>"
+        "ImportHostKeyResponse$HostKeyId": "<p>Returns the host key identifier for the imported key.</p>",
+        "ListedHostKey$HostKeyId": "<p>A unique identifier for the host key.</p>",
+        "UpdateHostKeyRequest$HostKeyId": "<p>The identifier of the host key that you are updating.</p>",
+        "UpdateHostKeyResponse$HostKeyId": "<p>Returns the host key identifier for the updated host key.</p>"
       }
     },
     "HostKeyType": {
       "base": null,
       "refs": {
-        "DescribedHostKey$Type": "<p>The encryption algorithm used for the host key. The <code>Type</code> is one of the following values:</p> <ul> <li> <p>ssh-rsa</p> </li> <li> <p>ssh-ed25519</p> </li> <li> <p>ecdsa-sha2-nistp256 </p> </li> <li> <p>ecdsa-sha2-nistp384</p> </li> <li> <p>ecdsa-sha2-nistp521</p> </li> </ul>",
-        "ListedHostKey$Type": "<p>The encryption algorithm used for the host key. The <code>Type</code> is one of the following values:</p> <ul> <li> <p>ssh-rsa</p> </li> <li> <p>ssh-ed25519</p> </li> <li> <p>ecdsa-sha2-nistp256 </p> </li> <li> <p>ecdsa-sha2-nistp384</p> </li> <li> <p>ecdsa-sha2-nistp521</p> </li> </ul>"
+        "DescribedHostKey$Type": "<p>The encryption algorithm that is used for the host key. The <code>Type</code> parameter is specified by using one of the following values:</p> <ul> <li> <p> <code>ssh-rsa</code> </p> </li> <li> <p> <code>ssh-ed25519</code> </p> </li> <li> <p> <code>ecdsa-sha2-nistp256</code> </p> </li> <li> <p> <code>ecdsa-sha2-nistp384</code> </p> </li> <li> <p> <code>ecdsa-sha2-nistp521</code> </p> </li> </ul>",
+        "ListedHostKey$Type": "<p>The encryption algorithm that is used for the host key. The <code>Type</code> parameter is specified by using one of the following values:</p> <ul> <li> <p> <code>ssh-rsa</code> </p> </li> <li> <p> <code>ssh-ed25519</code> </p> </li> <li> <p> <code>ecdsa-sha2-nistp256</code> </p> </li> <li> <p> <code>ecdsa-sha2-nistp384</code> </p> </li> <li> <p> <code>ecdsa-sha2-nistp521</code> </p> </li> </ul>"
       }
     },
     "IdentityProviderDetails": {
@@ -1113,7 +1113,7 @@
       }
     },
     "ListedHostKey": {
-      "base": "<p>Returns properties of the host key that is specified.</p>",
+      "base": "<p>Returns properties of the host key that's specified.</p>",
       "refs": {
         "ListedHostKeys$member": null
       }
@@ -1161,7 +1161,7 @@
       }
     },
     "ListedWorkflow": {
-      "base": "<p>Contains the ID, text description, and Amazon Resource Name (ARN) for the workflow.</p>",
+      "base": "<p>Contains the identifier, text description, and Amazon Resource Name (ARN) for the workflow.</p>",
       "refs": {
         "ListedWorkflows$member": null
       }
@@ -1278,6 +1278,12 @@
         "UpdateServerRequest$LoggingRole": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch logging for Amazon S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch logs.</p>"
       }
     },
+    "OnPartialUploadWorkflowDetails": {
+      "base": null,
+      "refs": {
+        "WorkflowDetails$OnPartialUpload": "<p>A trigger that starts a workflow if a file is only partially uploaded. You can attach a workflow to a server that executes whenever there is a partial upload.</p> <p>A <i>partial upload</i> occurs when a file is open when the session disconnects.</p>"
+      }
+    },
     "OnUploadWorkflowDetails": {
       "base": null,
       "refs": {
@@ -1293,7 +1299,7 @@
     "PassiveIp": {
       "base": null,
       "refs": {
-        "ProtocolDetails$PassiveIp": "<p> Indicates passive mode, for FTP and FTPS protocols. Enter a single IPv4 address, such as the public IP address of a firewall, router, or load balancer. For example: </p> <p> <code> aws transfer update-server --protocol-details PassiveIp=<i>0.0.0.0</i> </code> </p> <p>Replace <code> <i>0.0.0.0</i> </code> in the example above with the actual IP address you want to use.</p> <note> <p> If you change the <code>PassiveIp</code> value, you must stop and then restart your Transfer Family server for the change to take effect. For details on using passive mode (PASV) in a NAT environment, see <a href=\"http://aws.amazon.com/blogs/storage/configuring-your-ftps-server-behind-a-firewall-or-nat-with-aws-transfer-family/\">Configuring your FTPS server behind a firewall or NAT with Transfer Family</a>. </p> </note>"
+        "ProtocolDetails$PassiveIp": "<p> Indicates passive mode, for FTP and FTPS protocols. Enter a single IPv4 address, such as the public IP address of a firewall, router, or load balancer. For example: </p> <p> <code>aws transfer update-server --protocol-details PassiveIp=0.0.0.0</code> </p> <p>Replace <code>0.0.0.0</code> in the example above with the actual IP address you want to use.</p> <note> <p> If you change the <code>PassiveIp</code> value, you must stop and then restart your Transfer Family server for the change to take effect. For details on using passive mode (PASV) in a NAT environment, see <a href=\"http://aws.amazon.com/blogs/storage/configuring-your-ftps-server-behind-a-firewall-or-nat-with-aws-transfer-family/\">Configuring your FTPS server behind a firewall or NAT with Transfer Family</a>. </p> </note> <p> <i>Special values</i> </p> <p>The <code>AUTO</code> and <code>0.0.0.0</code> are special values for the <code>PassiveIp</code> parameter. The value <code>PassiveIp=AUTO</code> is assigned by default to FTP and FTPS type servers. In this case, the server automatically responds with one of the endpoint IPs within the PASV response. <code>PassiveIp=0.0.0.0</code> has a more unique application for its usage. For example, if you have a High Availability (HA) Network Load Balancer (NLB) environment, where you have 3 subnets, you can only specify a single IP address using the <code>PassiveIp</code> parameter. This reduces the effectiveness of having High Availability. In this case, you can specify <code>PassiveIp=0.0.0.0</code>. This tells the client to use the same IP address as the Control connection and utilize all AZs for their connections. Note, however, that not all FTP clients support the <code>PassiveIp=0.0.0.0</code> response. FileZilla and WinSCP do support it. If you are using other clients, check to see if your client supports the <code>PassiveIp=0.0.0.0</code> response.</p>"
       }
     },
     "Policy": {
@@ -1357,7 +1363,7 @@
         "CreateAgreementRequest$LocalProfileId": "<p>A unique identifier for the AS2 local profile.</p>",
         "CreateAgreementRequest$PartnerProfileId": "<p>A unique identifier for the partner profile used in the agreement.</p>",
         "CreateProfileResponse$ProfileId": "<p>The unique identifier for the AS2 profile, returned after the API call succeeds.</p>",
-        "DeleteProfileRequest$ProfileId": "<p>The ID of the profile that you are deleting.</p>",
+        "DeleteProfileRequest$ProfileId": "<p>The identifier of the profile that you are deleting.</p>",
         "DescribeProfileRequest$ProfileId": "<p>The identifier of the profile that you want described.</p>",
         "DescribedAgreement$LocalProfileId": "<p>A unique identifier for the AS2 local profile.</p>",
         "DescribedAgreement$PartnerProfileId": "<p>A unique identifier for the partner profile used in the agreement.</p>",
@@ -1374,7 +1380,7 @@
     "ProfileType": {
       "base": null,
       "refs": {
-        "CreateProfileRequest$ProfileType": "<p>Indicates whether to list only <code>LOCAL</code> type profiles or only <code>PARTNER</code> type profiles. If not supplied in the request, the command lists all types of profiles.</p>",
+        "CreateProfileRequest$ProfileType": "<p>Determines the type of profile to create:</p> <ul> <li> <p>Specify <code>LOCAL</code> to create a local profile. A local profile represents the AS2-enabled Transfer Family server organization or party.</p> </li> <li> <p>Specify <code>PARTNER</code> to create a partner profile. A partner profile represents a remote organization, external to Transfer Family.</p> </li> </ul>",
         "DescribedProfile$ProfileType": "<p>Indicates whether to list only <code>LOCAL</code> type profiles or only <code>PARTNER</code> type profiles. If not supplied in the request, the command lists all types of profiles.</p>",
         "ListProfilesRequest$ProfileType": "<p>Indicates whether to list only <code>LOCAL</code> type profiles or only <code>PARTNER</code> type profiles. If not supplied in the request, the command lists all types of profiles.</p>",
         "ListedProfile$ProfileType": "<p>Indicates whether to list only <code>LOCAL</code> type profiles or only <code>PARTNER</code> type profiles. If not supplied in the request, the command lists all types of profiles.</p>"
@@ -1594,35 +1600,35 @@
       "base": null,
       "refs": {
         "CreateAccessRequest$ServerId": "<p>A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.</p>",
-        "CreateAccessResponse$ServerId": "<p>The ID of the server that the user is attached to.</p>",
+        "CreateAccessResponse$ServerId": "<p>The identifier of the server that the user is attached to.</p>",
         "CreateAgreementRequest$ServerId": "<p>A system-assigned unique identifier for a server instance. This is the specific server that the agreement uses.</p>",
-        "CreateServerResponse$ServerId": "<p>The service-assigned ID of the server that is created.</p>",
+        "CreateServerResponse$ServerId": "<p>The service-assigned identifier of the server that is created.</p>",
         "CreateUserRequest$ServerId": "<p>A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.</p>",
-        "CreateUserResponse$ServerId": "<p>The ID of the server that the user is attached to.</p>",
+        "CreateUserResponse$ServerId": "<p>The identifier of the server that the user is attached to.</p>",
         "DeleteAccessRequest$ServerId": "<p>A system-assigned unique identifier for a server that has this user assigned.</p>",
-        "DeleteAgreementRequest$ServerId": "<p>The server ID associated with the agreement that you are deleting.</p>",
-        "DeleteHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you are deleting.</p>",
+        "DeleteAgreementRequest$ServerId": "<p>The server identifier associated with the agreement that you are deleting.</p>",
+        "DeleteHostKeyRequest$ServerId": "<p>The identifier of the server that contains the host key that you are deleting.</p>",
         "DeleteServerRequest$ServerId": "<p>A unique system-assigned identifier for a server instance.</p>",
         "DeleteSshPublicKeyRequest$ServerId": "<p>A system-assigned unique identifier for a file transfer protocol-enabled server instance that has the user assigned to it.</p>",
         "DeleteUserRequest$ServerId": "<p>A system-assigned unique identifier for a server instance that has the user assigned to it.</p>",
         "DescribeAccessRequest$ServerId": "<p>A system-assigned unique identifier for a server that has this access assigned.</p>",
         "DescribeAccessResponse$ServerId": "<p>A system-assigned unique identifier for a server that has this access assigned.</p>",
-        "DescribeAgreementRequest$ServerId": "<p>The server ID that's associated with the agreement.</p>",
-        "DescribeHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you want described.</p>",
+        "DescribeAgreementRequest$ServerId": "<p>The server identifier that's associated with the agreement.</p>",
+        "DescribeHostKeyRequest$ServerId": "<p>The identifier of the server that contains the host key that you want described.</p>",
         "DescribeServerRequest$ServerId": "<p>A system-assigned unique identifier for a server.</p>",
         "DescribeUserRequest$ServerId": "<p>A system-assigned unique identifier for a server that has this user assigned.</p>",
         "DescribeUserResponse$ServerId": "<p>A system-assigned unique identifier for a server that has this user assigned.</p>",
         "DescribedAgreement$ServerId": "<p>A system-assigned unique identifier for a server instance. This identifier indicates the specific server that the agreement uses.</p>",
         "DescribedServer$ServerId": "<p>Specifies the unique system-assigned identifier for a server that you instantiate.</p>",
-        "ImportHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you are importing.</p>",
-        "ImportHostKeyResponse$ServerId": "<p>Returns the server ID that contains the imported key.</p>",
+        "ImportHostKeyRequest$ServerId": "<p>The identifier of the server that contains the host key that you are importing.</p>",
+        "ImportHostKeyResponse$ServerId": "<p>Returns the server identifier that contains the imported key.</p>",
         "ImportSshPublicKeyRequest$ServerId": "<p>A system-assigned unique identifier for a server.</p>",
         "ImportSshPublicKeyResponse$ServerId": "<p>A system-assigned unique identifier for a server.</p>",
         "ListAccessesRequest$ServerId": "<p>A system-assigned unique identifier for a server that has users assigned to it.</p>",
         "ListAccessesResponse$ServerId": "<p>A system-assigned unique identifier for a server that has users assigned to it.</p>",
         "ListAgreementsRequest$ServerId": "<p>The identifier of the server for which you want a list of agreements.</p>",
-        "ListHostKeysRequest$ServerId": "<p>Provide the ID of the server that contains the host keys that you want to view.</p>",
-        "ListHostKeysResponse$ServerId": "<p>Returns the server ID that contains the listed host keys.</p>",
+        "ListHostKeysRequest$ServerId": "<p>The identifier of the server that contains the host keys that you want to view.</p>",
+        "ListHostKeysResponse$ServerId": "<p>Returns the server identifier that contains the listed host keys.</p>",
         "ListUsersRequest$ServerId": "<p>A system-assigned unique identifier for a server that has users assigned to it.</p>",
         "ListUsersResponse$ServerId": "<p>A system-assigned unique identifier for a server that the users are assigned to.</p>",
         "ListedAgreement$ServerId": "<p>The unique identifier for the agreement.</p>",
@@ -1631,10 +1637,10 @@
         "StopServerRequest$ServerId": "<p>A system-assigned unique identifier for a server that you stopped.</p>",
         "TestIdentityProviderRequest$ServerId": "<p>A system-assigned identifier for a specific server. That server's user authentication method is tested with a user name and password.</p>",
         "UpdateAccessRequest$ServerId": "<p>A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.</p>",
-        "UpdateAccessResponse$ServerId": "<p>The ID of the server that the user is attached to.</p>",
+        "UpdateAccessResponse$ServerId": "<p>The identifier of the server that the user is attached to.</p>",
         "UpdateAgreementRequest$ServerId": "<p>A system-assigned unique identifier for a server instance. This is the specific server that the agreement uses.</p>",
-        "UpdateHostKeyRequest$ServerId": "<p>Provide the ID of the server that contains the host key that you are updating.</p>",
-        "UpdateHostKeyResponse$ServerId": "<p>Returns the server ID for the server that contains the updated host key.</p>",
+        "UpdateHostKeyRequest$ServerId": "<p>The identifier of the server that contains the host key that you are updating.</p>",
+        "UpdateHostKeyResponse$ServerId": "<p>Returns the server identifier for the server that contains the updated host key.</p>",
         "UpdateServerRequest$ServerId": "<p>A system-assigned unique identifier for a server instance that the user account is assigned to.</p>",
         "UpdateServerResponse$ServerId": "<p>A system-assigned unique identifier for a server that the user account is assigned to.</p>",
         "UpdateUserRequest$ServerId": "<p>A system-assigned unique identifier for a server instance that the user account is assigned to.</p>",
@@ -2001,13 +2007,13 @@
     "VpcEndpointId": {
       "base": null,
       "refs": {
-        "EndpointDetails$VpcEndpointId": "<p>The ID of the VPC endpoint.</p> <note> <p>This property can only be set when <code>EndpointType</code> is set to <code>VPC_ENDPOINT</code>.</p> <p>For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.</p> </note>"
+        "EndpointDetails$VpcEndpointId": "<p>The identifier of the VPC endpoint.</p> <note> <p>This property can only be set when <code>EndpointType</code> is set to <code>VPC_ENDPOINT</code>.</p> <p>For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.</p> </note>"
       }
     },
     "VpcId": {
       "base": null,
       "refs": {
-        "EndpointDetails$VpcId": "<p>The VPC ID of the VPC in which a server's endpoint will be hosted.</p> <note> <p>This property can only be set when <code>EndpointType</code> is set to <code>VPC</code>.</p> </note>"
+        "EndpointDetails$VpcId": "<p>The VPC identifier of the VPC in which a server's endpoint will be hosted.</p> <note> <p>This property can only be set when <code>EndpointType</code> is set to <code>VPC</code>.</p> </note>"
       }
     },
     "WorkflowDescription": {
@@ -2019,17 +2025,18 @@
       }
     },
     "WorkflowDetail": {
-      "base": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p>",
+      "base": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
       "refs": {
+        "OnPartialUploadWorkflowDetails$member": null,
         "OnUploadWorkflowDetails$member": null
       }
     },
     "WorkflowDetails": {
       "base": "<p>Container for the <code>WorkflowDetail</code> data type. It is used by actions that trigger a workflow to begin execution.</p>",
       "refs": {
-        "CreateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p>",
-        "DescribedServer$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p>",
-        "UpdateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>To remove an associated workflow from a server, you can provide an empty <code>OnUpload</code> object, as in the following example.</p> <p> <code>aws transfer update-server --server-id s-01234567890abcdef --workflow-details '{\"OnUpload\":[]}'</code> </p>"
+        "CreateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
+        "DescribedServer$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
+        "UpdateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p> <p>To remove an associated workflow from a server, you can provide an empty <code>OnUpload</code> object, as in the following example.</p> <p> <code>aws transfer update-server --server-id s-01234567890abcdef --workflow-details '{\"OnUpload\":[]}'</code> </p>"
       }
     },
     "WorkflowId": {

@@ -87,6 +87,7 @@ func (c *Translate) CreateParallelDataRequest(input *CreateParallelDataInput) (r
 //     short time and then try your request again.
 //
 //   - TooManyTagsException
+//     You have added too many tags to this resource. The maximum is 50 tags.
 //
 //   - ConflictException
 //     There was a conflict processing the request. Try your request again.
@@ -654,6 +655,7 @@ func (c *Translate) ImportTerminologyRequest(input *ImportTerminologyInput) (req
 //     short time and then try your request again.
 //
 //   - TooManyTagsException
+//     You have added too many tags to this resource. The maximum is 50 tags.
 //
 //   - ConcurrentModificationException
 //     Another modification is being made. That modification must complete before
@@ -1018,6 +1020,9 @@ func (c *Translate) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 }
 
 // ListTagsForResource API operation for Amazon Translate.
+//
+// Lists all tags associated with a given Amazon Translate resource. For more
+// information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1397,9 +1402,12 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 
 // StartTextTranslationJob API operation for Amazon Translate.
 //
-// Starts an asynchronous batch translation job. Batch translation jobs can
-// be used to translate large volumes of text across multiple documents at once.
-// For more information, see async.
+// Starts an asynchronous batch translation job. Use batch translation jobs
+// to translate large volumes of text across multiple documents at once. For
+// batch translation, the input documents must share the same source language.
+// You can specify one or more target languages. Batch translation translates
+// each input document into each of the target languages. For more information,
+// see Asynchronous batch processing (https://docs.aws.amazon.com/translate/latest/dg/async.html)
 //
 // Batch translation jobs can be described with the DescribeTextTranslationJob
 // operation, listed with the ListTextTranslationJobs operation, and stopped
@@ -1423,7 +1431,8 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 //
 //   - UnsupportedLanguagePairException
 //     Amazon Translate does not support translation from the language of the source
-//     text into the requested target language. For more information, see how-to-error-msg.
+//     text into the requested target language. For more information, see Error
+//     messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
 //
 //   - InvalidRequestException
 //     The request that you made is not valid. Check your request to determine why
@@ -1604,6 +1613,10 @@ func (c *Translate) TagResourceRequest(input *TagResourceInput) (req *request.Re
 
 // TagResource API operation for Amazon Translate.
 //
+// Associates a specific tag with a resource. A tag is a key-value pair that
+// adds as a metadata to a resource. For more information, see Tagging your
+// resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1627,6 +1640,7 @@ func (c *Translate) TagResourceRequest(input *TagResourceInput) (req *request.Re
 //     before retrying the revised request.
 //
 //   - TooManyTagsException
+//     You have added too many tags to this resource. The maximum is 50 tags.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -1697,7 +1711,8 @@ func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output 
 // Text API operation for Amazon Translate.
 //
 // Translates input text from the source language to the target language. For
-// a list of available languages and language codes, see what-is-languages.
+// a list of available languages and language codes, see Supported languages
+// (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1722,7 +1737,8 @@ func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output 
 //
 //   - UnsupportedLanguagePairException
 //     Amazon Translate does not support translation from the language of the source
-//     text into the requested target language. For more information, see how-to-error-msg.
+//     text into the requested target language. For more information, see Error
+//     messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
 //
 //   - DetectedLanguageLowConfidenceException
 //     The confidence that Amazon Comprehend accurately detected the source language
@@ -1808,6 +1824,9 @@ func (c *Translate) UntagResourceRequest(input *UntagResourceInput) (req *reques
 }
 
 // UntagResource API operation for Amazon Translate.
+//
+// Removes a specific tag associated with an Amazon Translate resource. For
+// more information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2165,6 +2184,9 @@ type CreateParallelDataInput struct {
 	// ParallelDataConfig is a required field
 	ParallelDataConfig *ParallelDataConfig `type:"structure" required:"true"`
 
+	// Tags to be associated with this resource. A tag is a key-value pair that
+	// adds metadata to a resource. Each tag key for the resource must be unique.
+	// For more information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -2960,6 +2982,9 @@ type ImportTerminologyInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Tags to be associated with this resource. A tag is a key-value pair that
+	// adds metadata to a resource. Each tag key for the resource must be unique.
+	// For more information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
 	Tags []*Tag `type:"list"`
 
 	// The terminology data for the custom terminology being imported.
@@ -3835,6 +3860,9 @@ func (s *ListParallelDataOutput) SetParallelDataPropertiesList(v []*ParallelData
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the given Amazon Translate resource you
+	// are querying.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
 }
@@ -3882,6 +3910,10 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Tags associated with the Amazon Translate resource being queried. A tag is
+	// a key-value pair that adds as a metadata to a resource used by Amazon Translate.
+	// For example, a tag with "Sales" as the key might be added to a resource to
+	// indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
 }
 
@@ -4623,7 +4655,7 @@ type StartTextTranslationJobInput struct {
 
 	// The Amazon Resource Name (ARN) of an AWS Identity Access and Management (IAM)
 	// role that grants Amazon Translate read access to your input data. For more
-	// information, see identity-and-access-management.
+	// information, see Identity and access management (https://docs.aws.amazon.com/translate/latest/dg/identity-and-access-management.html).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -4644,8 +4676,11 @@ type StartTextTranslationJobInput struct {
 
 	// The name of a parallel data resource to add to the translation job. This
 	// resource consists of examples that show how you want segments of text to
-	// be translated. When you add parallel data to a translation job, you create
-	// an Active Custom Translation job.
+	// be translated. If you specify multiple target languages for the job, the
+	// parallel data file must include translations for all the target languages.
+	//
+	// When you add parallel data to a translation job, you create an Active Custom
+	// Translation job.
 	//
 	// This parameter accepts only one parallel data resource.
 	//
@@ -4656,16 +4691,17 @@ type StartTextTranslationJobInput struct {
 	// For a list of available parallel data resources, use the ListParallelData
 	// operation.
 	//
-	// For more information, see customizing-translations-parallel-data.
+	// For more information, see Customizing your translations with parallel data
+	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-parallel-data.html).
 	ParallelDataNames []*string `type:"list"`
 
-	// Settings to configure your translation output, including the option to mask
-	// profane words and phrases. StartTextTranslationJob does not support the formality
-	// setting.
+	// Settings to configure your translation output, including the option to set
+	// the formality level of the output text and the option to mask profane words
+	// and phrases.
 	Settings *TranslationSettings `type:"structure"`
 
 	// The language code of the input language. For a list of language codes, see
-	// what-is-languages.
+	// Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// Amazon Translate does not automatically detect a source language during batch
 	// translation jobs.
@@ -4673,7 +4709,11 @@ type StartTextTranslationJobInput struct {
 	// SourceLanguageCode is a required field
 	SourceLanguageCode *string `min:"2" type:"string" required:"true"`
 
-	// The language code of the output language.
+	// The target languages of the translation job. Enter up to 10 language codes.
+	// Each input file is translated into each target language.
+	//
+	// Each language code is two or five characters long. For a list of language
+	// codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// TargetLanguageCodes is a required field
 	TargetLanguageCodes []*string `min:"1" type:"list" required:"true"`
@@ -4684,10 +4724,14 @@ type StartTextTranslationJobInput struct {
 	//
 	// This parameter accepts only one custom terminology resource.
 	//
+	// If you specify multiple target languages for the job, translate uses the
+	// designated terminology for each requested target language that has an entry
+	// for the source term in the terminology file.
+	//
 	// For a list of available custom terminology resources, use the ListTerminologies
 	// operation.
 	//
-	// For more information, see how-custom-terminology.
+	// For more information, see Custom terminology (https://docs.aws.amazon.com/translate/latest/dg/how-custom-terminology.html).
 	TerminologyNames []*string `type:"list"`
 }
 
@@ -4967,12 +5011,19 @@ func (s *StopTextTranslationJobOutput) SetJobStatus(v string) *StopTextTranslati
 	return s
 }
 
+// A key-value pair that adds as a metadata to a resource used by Amazon Translate.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
+	// The initial part of a key-value pair that forms a tag associated with a given
+	// resource.
+	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
+	// The second part of a key-value pair that forms a tag associated with a given
+	// resource.
+	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
@@ -5029,9 +5080,16 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the given Amazon Translate resource to
+	// which you want to associate the tags.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
 
+	// Tags being associated with a specific Amazon Translate resource. There can
+	// be a maximum of 50 tags (both existing and pending) associated with a specific
+	// resource.
+	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
@@ -5485,7 +5543,7 @@ type TextInput struct {
 
 	// The language code for the language of the source text. The language must
 	// be a language supported by Amazon Translate. For a list of language codes,
-	// see what-is-languages.
+	// see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// To have Amazon Translate determine the source language of your text, you
 	// can specify auto in the SourceLanguageCode field. If you specify auto, Amazon
@@ -6041,6 +6099,7 @@ func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// You have added too many tags to this resource. The maximum is 50 tags.
 type TooManyTagsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6106,23 +6165,24 @@ func (s *TooManyTagsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Settings that configure the translation output.
+// Optional settings that configure the translation output. Use these settings
+// for real time translations and asynchronous translation jobs.
 type TranslationSettings struct {
 	_ struct{} `type:"structure"`
 
-	// You can optionally specify the desired level of formality for real-time translations
+	// You can optionally specify the desired level of formality for translations
 	// to supported target languages. The formality setting controls the level of
 	// formal language usage (also known as register (https://en.wikipedia.org/wiki/Register_(sociolinguistics)))
 	// in the translation output. You can set the value to informal or formal. If
 	// you don't specify a value for formality, or if the target language doesn't
 	// support formality, the translation will ignore the formality setting.
 	//
-	// Note that asynchronous translation jobs don't support formality. If you provide
-	// a value for formality, the StartTextTranslationJob API throws an exception
-	// (InvalidRequestException).
+	// If you specify multiple target languages for the job, translate ignores the
+	// formality setting for any unsupported target language.
 	//
-	// For target languages that support formality, see Supported Languages and
-	// Language Codes in the Amazon Translate Developer Guide (https://docs.aws.amazon.com/translate/latest/dg/what-is.html).
+	// For a list of target languages that support formality, see Setting Formality
+	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html)
+	// in the Amazon Translate Developer Guide.
 	Formality *string `type:"string" enum:"Formality"`
 
 	// Enable the profanity setting if you want Amazon Translate to mask profane
@@ -6133,8 +6193,13 @@ type TranslationSettings struct {
 	// word or phrase, regardless of the length or number of words.
 	//
 	// Amazon Translate doesn't detect profanity in all of its supported languages.
-	// For languages that support profanity detection, see Supported Languages and
-	// Language Codes in the Amazon Translate Developer Guide (https://docs.aws.amazon.com/translate/latest/dg/what-is.html).
+	// For languages that support profanity detection, see Masking profanity (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-profanity.html)
+	// in the Amazon Translate Developer Guide.
+	//
+	// If you specify multiple target languages for the job, all the target languages
+	// must support profanity masking. If any of the target languages don't support
+	// profanity masking, the translation job won't mask profanity for any target
+	// language.
 	Profanity *string `type:"string" enum:"Profanity"`
 }
 
@@ -6236,7 +6301,8 @@ func (s *UnsupportedDisplayLanguageCodeException) RequestID() string {
 }
 
 // Amazon Translate does not support translation from the language of the source
-// text into the requested target language. For more information, see how-to-error-msg.
+// text into the requested target language. For more information, see Error
+// messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
 type UnsupportedLanguagePairException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6309,9 +6375,16 @@ func (s *UnsupportedLanguagePairException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the given Amazon Translate resource from
+	// which you want to remove the tags.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
 
+	// The initial part of a key-value pair that forms a tag being removed from
+	// a given resource. Keys must be unique and cannot be duplicated for a particular
+	// resource.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }

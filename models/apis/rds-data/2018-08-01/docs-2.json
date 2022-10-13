@@ -159,7 +159,7 @@
       "base": null,
       "refs": {
         "BatchExecuteStatementRequest$database": "<p>The name of the database.</p>",
-        "BatchExecuteStatementRequest$schema": "<p>The name of the database schema.</p>",
+        "BatchExecuteStatementRequest$schema": "<p>The name of the database schema.</p> <note> <p>Currently, the <code>schema</code> parameter isn't supported.</p> </note>",
         "BeginTransactionRequest$database": "<p>The name of the database.</p>",
         "BeginTransactionRequest$schema": "<p>The name of the database schema.</p>",
         "ExecuteSqlRequest$database": "<p>The name of the database.</p>",

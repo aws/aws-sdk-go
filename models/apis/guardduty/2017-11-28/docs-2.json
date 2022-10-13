@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon GuardDuty is a continuous security monitoring service that analyzes and processes the following data sources: VPC Flow Logs, AWS CloudTrail management event logs, CloudTrail S3 data event logs, EKS audit logs, and DNS logs. It uses threat intelligence feeds (such as lists of malicious IPs and domains) and machine learning to identify unexpected, potentially unauthorized, and malicious activity within your Amazon Web Services environment. This can include issues like escalations of privileges, uses of exposed credentials, or communication with malicious IPs, URLs, or domains. For example, GuardDuty can detect compromised EC2 instances that serve malware or mine bitcoin. </p> <p>GuardDuty also monitors Amazon Web Services account access behavior for signs of compromise. Some examples of this are unauthorized infrastructure deployments such as EC2 instances deployed in a Region that has never been used, or unusual API calls like a password policy change to reduce password strength. </p> <p>GuardDuty informs you of the status of your Amazon Web Services environment by producing security findings that you can view in the GuardDuty console or through Amazon CloudWatch events. For more information, see the <i> <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\">Amazon GuardDuty User Guide</a> </i>. </p>",
+  "service": "<p>Amazon GuardDuty is a continuous security monitoring service that analyzes and processes the following data sources: VPC flow logs, Amazon Web Services CloudTrail management event logs, CloudTrail S3 data event logs, EKS audit logs, and DNS logs. It uses threat intelligence feeds (such as lists of malicious IPs and domains) and machine learning to identify unexpected, potentially unauthorized, and malicious activity within your Amazon Web Services environment. This can include issues like escalations of privileges, uses of exposed credentials, or communication with malicious IPs, URLs, or domains. For example, GuardDuty can detect compromised EC2 instances that serve malware or mine bitcoin. </p> <p>GuardDuty also monitors Amazon Web Services account access behavior for signs of compromise. Some examples of this are unauthorized infrastructure deployments such as EC2 instances deployed in a Region that has never been used, or unusual API calls like a password policy change to reduce password strength. </p> <p>GuardDuty informs you of the status of your Amazon Web Services environment by producing security findings that you can view in the GuardDuty console or through Amazon CloudWatch events. For more information, see the <i> <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html\">Amazon GuardDuty User Guide</a> </i>. </p>",
   "operations": {
     "AcceptAdministratorInvitation": "<p>Accepts the invitation to be a member account and get monitored by a GuardDuty administrator account that sent the invitation.</p>",
     "AcceptInvitation": "<p>Accepts the invitation to be monitored by a GuardDuty administrator account.</p>",
@@ -20,13 +20,13 @@
     "DeleteMembers": "<p>Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p>",
     "DeletePublishingDestination": "<p>Deletes the publishing definition with the specified <code>destinationId</code>.</p>",
     "DeleteThreatIntelSet": "<p>Deletes the ThreatIntelSet specified by the ThreatIntelSet ID.</p>",
-    "DescribeMalwareScans": "<p>Returns a list of malware scans.</p>",
+    "DescribeMalwareScans": "<p>Returns a list of malware scans. Each member account can view the malware scans for their own accounts. An administrator can view the malware scans for all the member accounts.</p>",
     "DescribeOrganizationConfiguration": "<p>Returns information about the account selected as the delegated administrator for GuardDuty.</p>",
     "DescribePublishingDestination": "<p>Returns information about the publishing destination specified by the provided <code>destinationId</code>.</p>",
     "DisableOrganizationAdminAccount": "<p>Disables an Amazon Web Services account within the Organization as the GuardDuty delegated administrator.</p>",
     "DisassociateFromAdministratorAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p>",
     "DisassociateFromMasterAccount": "<p>Disassociates the current GuardDuty member account from its administrator account.</p>",
-    "DisassociateMembers": "<p>Disassociates GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.</p>",
+    "DisassociateMembers": "<p>Disassociates GuardDuty member accounts (to the current administrator account) specified by the account IDs.</p>",
     "EnableOrganizationAdminAccount": "<p>Enables an Amazon Web Services account within the organization as the GuardDuty delegated administrator.</p>",
     "GetAdministratorAccount": "<p>Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.</p>",
     "GetDetector": "<p>Retrieves an Amazon GuardDuty detector specified by the detectorId.</p>",
@@ -446,7 +446,7 @@
     "DataSourceFreeTrial": {
       "base": "<p>Contains information about which data sources are enabled for the GuardDuty member account.</p>",
       "refs": {
-        "DataSourcesFreeTrial$CloudTrail": "<p>Describes whether any AWS CloudTrail management event logs are enabled as data sources.</p>",
+        "DataSourcesFreeTrial$CloudTrail": "<p>Describes whether any Amazon Web Services CloudTrail management event logs are enabled as data sources.</p>",
         "DataSourcesFreeTrial$DnsLogs": "<p>Describes whether any DNS logs are enabled as data sources.</p>",
         "DataSourcesFreeTrial$FlowLogs": "<p>Describes whether any VPC Flow logs are enabled as data sources.</p>",
         "DataSourcesFreeTrial$S3Logs": "<p>Describes whether any S3 data event logs are enabled as data sources.</p>",
@@ -761,8 +761,8 @@
     "EbsSnapshotPreservation": {
       "base": null,
       "refs": {
-        "GetMalwareScanSettingsResponse$EbsSnapshotPreservation": "<p>An enum value representing possible snapshot preservations.</p>",
-        "UpdateMalwareScanSettingsRequest$EbsSnapshotPreservation": "<p>An enum value representing possible snapshot preservations.</p>"
+        "GetMalwareScanSettingsResponse$EbsSnapshotPreservation": "<p>An enum value representing possible snapshot preservation settings.</p>",
+        "UpdateMalwareScanSettingsRequest$EbsSnapshotPreservation": "<p>An enum value representing possible snapshot preservation settings.</p>"
       }
     },
     "EbsVolumeDetails": {
@@ -869,7 +869,7 @@
       }
     },
     "FilterCriterion": {
-      "base": "<p>Represents a condition that when matched will be added to the response of the operation.</p>",
+      "base": "<p>Represents a condition that when matched will be added to the response of the operation. Irrespective of using any filter criteria, an administrator account can view the scan entries for all of its member accounts. However, each member account can view the scan entries only for their own account.</p>",
       "refs": {
         "FilterCriterionList$member": null
       }
@@ -1476,7 +1476,8 @@
     "MalwareProtectionConfigurationResult": {
       "base": "<p>An object that contains information on the status of all Malware Protection data sources.</p>",
       "refs": {
-        "DataSourceConfigurationsResult$MalwareProtection": "<p>Describes the configuration of Malware Protection data sources.</p>"
+        "DataSourceConfigurationsResult$MalwareProtection": "<p>Describes the configuration of Malware Protection data sources.</p>",
+        "UnprocessedDataSourcesResult$MalwareProtection": null
       }
     },
     "MalwareProtectionDataSourceFreeTrial": {
@@ -2053,6 +2054,7 @@
         "DomainDetails$Domain": "<p>The domain information for the Amazon Web Services API call.</p>",
         "EbsVolumeScanDetails$ScanId": "<p>Unique Id of the malware scan that generated the finding.</p>",
         "EbsVolumeScanDetails$TriggerFindingId": "<p>GuardDuty finding ID that triggered a malware scan.</p>",
+        "EbsVolumesResult$Reason": "<p>Specifies the reason why scanning EBS volumes (Malware Protection) was not enabled as a data source.</p>",
         "EcsClusterDetails$Name": "<p>The name of the ECS Cluster.</p>",
         "EcsClusterDetails$Arn": "<p>The Amazon Resource Name (ARN) that identifies the cluster.</p>",
         "EcsClusterDetails$Status": "<p>The status of the ECS cluster.</p>",
@@ -2131,7 +2133,7 @@
         "ListInvitationsRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
         "ListInvitationsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "ListMembersRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
-        "ListMembersRequest$OnlyAssociated": "<p>Specifies whether to only return associated members or to return all members (including members who haven't been invited yet or have been disassociated).</p>",
+        "ListMembersRequest$OnlyAssociated": "<p>Specifies whether to only return associated members or to return all members (including members who haven't been invited yet or have been disassociated). Member accounts must have been previously associated with the GuardDuty administrator account using <a href=\"https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateMembers.html\"> <code>Create Members</code> </a>. </p>",
         "ListMembersResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "ListOrganizationAdminAccountsRequest$NextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListOrganizationAdminAccountsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
@@ -2392,6 +2394,12 @@
         "StartMonitoringMembersResponse$UnprocessedAccounts": "<p>A list of objects that contain the unprocessed account and a result string that explains why it was unprocessed.</p>",
         "StopMonitoringMembersResponse$UnprocessedAccounts": "<p>A list of objects that contain an accountId for each account that could not be processed, and a result string that indicates why the account was not processed. </p>",
         "UpdateMemberDetectorsResponse$UnprocessedAccounts": "<p>A list of member account IDs that were unable to be processed along with an explanation for why they were not processed.</p>"
+      }
+    },
+    "UnprocessedDataSourcesResult": {
+      "base": "<p>Specifies the names of the data sources that couldn't be enabled.</p>",
+      "refs": {
+        "CreateDetectorResponse$UnprocessedDataSources": "<p>Specifies the data sources that couldn't be enabled when GuardDuty was enabled for the first time.</p>"
       }
     },
     "UntagResourceRequest": {

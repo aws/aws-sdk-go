@@ -1,3 +1,32 @@
+Release v1.44.115 (2022-10-13)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API and documentation
+* `service/appflow`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/ds`: Updates service API, documentation, and paginators
+  * This release adds support for describing and updating AWS Managed Microsoft AD set up.
+* `service/ecs`: Updates service documentation
+  * Documentation update to address tickets.
+* `service/guardduty`: Updates service API and documentation
+  * Add UnprocessedDataSources to CreateDetectorResponse which specifies the data sources that couldn't be enabled during the CreateDetector request. In addition, update documentations.
+* `service/iam`: Updates service documentation
+  * Documentation updates for the AWS Identity and Access Management API Reference.
+* `service/iotfleetwise`: Updates service documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports forwarding SCTE-35 messages through the Event Signaling and Management (ESAM) API, and can read those SCTE-35 messages from an inactive source.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/panorama`: Updates service API and documentation
+* `service/rds-data`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * Support of AmazonLinux2022 by Patch Manager
+* `service/ssm-incidents`: Updates service API
+* `service/transfer`: Updates service API and documentation
+  * This release adds an option for customers to configure workflows that are triggered when files are only partially received from a client due to premature session disconnect.
+* `service/translate`: Updates service documentation
+* `service/wisdom`: Updates service API and documentation
+
 Release v1.44.114 (2022-10-07)
 ===
 
