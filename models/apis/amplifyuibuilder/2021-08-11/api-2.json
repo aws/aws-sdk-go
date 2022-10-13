@@ -354,7 +354,10 @@
         "url":{"shape":"ComponentProperty"}
       }
     },
-    "Boolean":{"type":"boolean"},
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
     "Component":{
       "type":"structure",
       "required":[
@@ -508,10 +511,7 @@
         "componentName":{"shape":"String"},
         "concat":{"shape":"ComponentPropertyList"},
         "condition":{"shape":"ComponentConditionProperty"},
-        "configured":{
-          "shape":"Boolean",
-          "box":true
-        },
+        "configured":{"shape":"Boolean"},
         "defaultValue":{"shape":"String"},
         "event":{"shape":"String"},
         "importedValue":{"shape":"String"},
@@ -853,10 +853,7 @@
       ],
       "members":{
         "accessToken":{"shape":"SensitiveString"},
-        "expiresIn":{
-          "shape":"Integer",
-          "box":true
-        },
+        "expiresIn":{"shape":"Integer"},
         "refreshToken":{"shape":"SensitiveString"}
       }
     },
@@ -964,10 +961,7 @@
     "FieldConfig":{
       "type":"structure",
       "members":{
-        "excluded":{
-          "shape":"Boolean",
-          "box":true
-        },
+        "excluded":{"shape":"Boolean"},
         "inputType":{"shape":"FieldInputConfig"},
         "label":{"shape":"String"},
         "position":{"shape":"FieldPosition"},
@@ -978,35 +972,18 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "defaultChecked":{
-          "shape":"Boolean",
-          "box":true
-        },
+        "defaultChecked":{"shape":"Boolean"},
         "defaultCountryCode":{"shape":"String"},
         "defaultValue":{"shape":"String"},
         "descriptiveText":{"shape":"String"},
-        "maxValue":{
-          "shape":"Float",
-          "box":true
-        },
-        "minValue":{
-          "shape":"Float",
-          "box":true
-        },
+        "isArray":{"shape":"Boolean"},
+        "maxValue":{"shape":"Float"},
+        "minValue":{"shape":"Float"},
         "name":{"shape":"String"},
         "placeholder":{"shape":"String"},
-        "readOnly":{
-          "shape":"Boolean",
-          "box":true
-        },
-        "required":{
-          "shape":"Boolean",
-          "box":true
-        },
-        "step":{
-          "shape":"Float",
-          "box":true
-        },
+        "readOnly":{"shape":"Boolean"},
+        "required":{"shape":"Boolean"},
+        "step":{"shape":"Float"},
         "type":{"shape":"String"},
         "value":{"shape":"String"},
         "valueMappings":{"shape":"ValueMappings"}
@@ -1040,7 +1017,10 @@
       "type":"string",
       "enum":["first"]
     },
-    "Float":{"type":"float"},
+    "Float":{
+      "type":"float",
+      "box":true
+    },
     "Form":{
       "type":"structure",
       "required":[
@@ -1097,10 +1077,7 @@
       "type":"structure",
       "members":{
         "children":{"shape":"String"},
-        "excluded":{
-          "shape":"Boolean",
-          "box":true
-        },
+        "excluded":{"shape":"Boolean"},
         "position":{"shape":"FieldPosition"}
       }
     },
@@ -1319,7 +1296,10 @@
       "type":"list",
       "member":{"shape":"String"}
     },
-    "Integer":{"type":"integer"},
+    "Integer":{
+      "type":"integer",
+      "box":true
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -1364,7 +1344,6 @@
         },
         "maxResults":{
           "shape":"ListComponentsLimit",
-          "box":true,
           "location":"querystring",
           "locationName":"maxResults"
         },
@@ -1407,7 +1386,6 @@
         },
         "maxResults":{
           "shape":"ListFormsLimit",
-          "box":true,
           "location":"querystring",
           "locationName":"maxResults"
         },
@@ -1450,7 +1428,6 @@
         },
         "maxResults":{
           "shape":"ListThemesLimit",
-          "box":true,
           "location":"querystring",
           "locationName":"maxResults"
         },
@@ -1566,10 +1543,7 @@
       ],
       "members":{
         "accessToken":{"shape":"SensitiveString"},
-        "expiresIn":{
-          "shape":"Integer",
-          "box":true
-        }
+        "expiresIn":{"shape":"Integer"}
       }
     },
     "ResourceConflictException":{
@@ -1598,10 +1572,7 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "level":{
-          "shape":"Integer",
-          "box":true
-        },
+        "level":{"shape":"Integer"},
         "orientation":{"shape":"String"},
         "position":{"shape":"FieldPosition"},
         "text":{"shape":"String"},

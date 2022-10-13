@@ -851,6 +851,8 @@ type BatchExecuteStatementInput struct {
 	ResourceArn *string `locationName:"resourceArn" min:"11" type:"string" required:"true"`
 
 	// The name of the database schema.
+	//
+	// Currently, the schema parameter isn't supported.
 	Schema *string `locationName:"schema" type:"string"`
 
 	// The ARN of the secret that enables access to the DB cluster. Enter the database

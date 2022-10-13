@@ -1512,7 +1512,8 @@
     "Email": {
       "base": null,
       "refs": {
-        "UserIdentityInfo$Email": "<p>The email address. If you are using SAML for identity management and include this parameter, an error is returned.</p>"
+        "UserIdentityInfo$Email": "<p>The email address. If you are using SAML for identity management and include this parameter, an error is returned.</p>",
+        "UserIdentityInfo$SecondaryEmail": "<p>The user's secondary email address. If you provide a secondary email, the user receives email notifications -- other than password reset notifications -- to this email address instead of to their primary email address.</p>"
       }
     },
     "EmailReference": {
@@ -2900,6 +2901,7 @@
         "PhoneNumberSummary$PhoneNumber": "<p>The phone number.</p>",
         "StartOutboundVoiceContactRequest$DestinationPhoneNumber": "<p>The phone number of the customer, in E.164 format.</p>",
         "StartOutboundVoiceContactRequest$SourcePhoneNumber": "<p>The phone number associated with the Amazon Connect instance, in E.164 format. If you do not specify a source phone number, you must specify a queue.</p>",
+        "UserIdentityInfo$Mobile": "<p>The user's mobile number.</p>",
         "UserPhoneConfig$DeskPhoneNumber": "<p>The phone number for the user's desk phone.</p>"
       }
     },

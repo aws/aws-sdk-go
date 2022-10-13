@@ -8703,6 +8703,9 @@ const (
 
 	// ItemTypeInvolvedResource is a ItemType enum value
 	ItemTypeInvolvedResource = "INVOLVED_RESOURCE"
+
+	// ItemTypeTask is a ItemType enum value
+	ItemTypeTask = "TASK"
 )
 
 // ItemType_Values returns all elements of the ItemType enum
@@ -8716,6 +8719,7 @@ func ItemType_Values() []string {
 		ItemTypeOther,
 		ItemTypeAutomation,
 		ItemTypeInvolvedResource,
+		ItemTypeTask,
 	}
 }
 

@@ -1274,6 +1274,23 @@
       },
       "type": "structure"
     },
+    "EncryptionContractConfiguration": {
+      "members": {
+        "PresetSpeke20Audio": {
+          "locationName": "presetSpeke20Audio",
+          "shape": "PresetSpeke20Audio"
+        },
+        "PresetSpeke20Video": {
+          "locationName": "presetSpeke20Video",
+          "shape": "PresetSpeke20Video"
+        }
+      },
+      "required": [
+        "PresetSpeke20Audio",
+        "PresetSpeke20Video"
+      ],
+      "type": "structure"
+    },
     "EncryptionMethod": {
       "enum": [
         "AES_128",
@@ -1732,6 +1749,31 @@
       },
       "type": "structure"
     },
+    "PresetSpeke20Audio": {
+      "enum": [
+        "PRESET-AUDIO-1",
+        "PRESET-AUDIO-2",
+        "PRESET-AUDIO-3",
+        "SHARED",
+        "UNENCRYPTED"
+      ],
+      "type": "string"
+    },
+    "PresetSpeke20Video": {
+      "enum": [
+        "PRESET-VIDEO-1",
+        "PRESET-VIDEO-2",
+        "PRESET-VIDEO-3",
+        "PRESET-VIDEO-4",
+        "PRESET-VIDEO-5",
+        "PRESET-VIDEO-6",
+        "PRESET-VIDEO-7",
+        "PRESET-VIDEO-8",
+        "SHARED",
+        "UNENCRYPTED"
+      ],
+      "type": "string"
+    },
     "Profile": {
       "enum": [
         "NONE",
@@ -1769,6 +1811,10 @@
     },
     "SpekeKeyProvider": {
       "members": {
+        "EncryptionContractConfiguration": {
+          "locationName": "encryptionContractConfiguration",
+          "shape": "EncryptionContractConfiguration"
+        },
         "RoleArn": {
           "locationName": "roleArn",
           "shape": "__string"

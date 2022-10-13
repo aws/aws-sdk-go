@@ -43751,6 +43751,14 @@ type UserIdentityInfo struct {
 	// The last name. This is required if you are using Amazon Connect or SAML for
 	// identity management.
 	LastName *string `min:"1" type:"string"`
+
+	// The user's mobile number.
+	Mobile *string `type:"string"`
+
+	// The user's secondary email address. If you provide a secondary email, the
+	// user receives email notifications -- other than password reset notifications
+	// -- to this email address instead of to their primary email address.
+	SecondaryEmail *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -43802,6 +43810,18 @@ func (s *UserIdentityInfo) SetFirstName(v string) *UserIdentityInfo {
 // SetLastName sets the LastName field's value.
 func (s *UserIdentityInfo) SetLastName(v string) *UserIdentityInfo {
 	s.LastName = &v
+	return s
+}
+
+// SetMobile sets the Mobile field's value.
+func (s *UserIdentityInfo) SetMobile(v string) *UserIdentityInfo {
+	s.Mobile = &v
+	return s
+}
+
+// SetSecondaryEmail sets the SecondaryEmail field's value.
+func (s *UserIdentityInfo) SetSecondaryEmail(v string) *UserIdentityInfo {
+	s.SecondaryEmail = &v
 	return s
 }
 

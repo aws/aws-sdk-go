@@ -7848,6 +7848,9 @@ func (s *AvailConfiguration) SetAvailSettings(v *AvailSettings) *AvailConfigurat
 type AvailSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Esam
+	Esam *Esam `locationName:"esam" type:"structure"`
+
 	// Scte35 Splice Insert
 	Scte35SpliceInsert *Scte35SpliceInsert `locationName:"scte35SpliceInsert" type:"structure"`
 
@@ -7876,6 +7879,11 @@ func (s AvailSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AvailSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AvailSettings"}
+	if s.Esam != nil {
+		if err := s.Esam.Validate(); err != nil {
+			invalidParams.AddNested("Esam", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Scte35SpliceInsert != nil {
 		if err := s.Scte35SpliceInsert.Validate(); err != nil {
 			invalidParams.AddNested("Scte35SpliceInsert", err.(request.ErrInvalidParams))
@@ -7891,6 +7899,12 @@ func (s *AvailSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEsam sets the Esam field's value.
+func (s *AvailSettings) SetEsam(v *Esam) *AvailSettings {
+	s.Esam = v
+	return s
 }
 
 // SetScte35SpliceInsert sets the Scte35SpliceInsert field's value.
@@ -15059,6 +15073,114 @@ func (s *EncoderSettings) SetTimecodeConfig(v *TimecodeConfig) *EncoderSettings 
 // SetVideoDescriptions sets the VideoDescriptions field's value.
 func (s *EncoderSettings) SetVideoDescriptions(v []*VideoDescription) *EncoderSettings {
 	s.VideoDescriptions = v
+	return s
+}
+
+// Esam
+type Esam struct {
+	_ struct{} `type:"structure"`
+
+	// Sent as acquisitionPointIdentity to identify the MediaLive channel to the
+	// POIS.
+	//
+	// AcquisitionPointId is a required field
+	AcquisitionPointId *string `locationName:"acquisitionPointId" type:"string" required:"true"`
+
+	// When specified, this offset (in milliseconds) is added to the input Ad Avail
+	// PTS time. This only applies to embedded SCTE 104/35 messages and does not
+	// apply to OOB messages.
+	AdAvailOffset *int64 `locationName:"adAvailOffset" type:"integer"`
+
+	Password *string `locationName:"password" type:"string"`
+
+	// The URL of the signal conditioner endpoint on the Placement Opportunity Information
+	// System (POIS). MediaLive sends SignalProcessingEvents here when SCTE-35 messages
+	// are read.
+	//
+	// PoisEndpoint is a required field
+	PoisEndpoint *string `locationName:"poisEndpoint" type:"string" required:"true"`
+
+	// Username if credentials are required to access the POIS endpoint. This can
+	// be either a plaintext username, or a reference to an AWS parameter store
+	// name from which the username can be retrieved. AWS Parameter store format:
+	// "ssm://"
+	Username *string `locationName:"username" type:"string"`
+
+	// Optional data sent as zoneIdentity to identify the MediaLive channel to the
+	// POIS.
+	ZoneIdentity *string `locationName:"zoneIdentity" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Esam) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Esam) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Esam) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Esam"}
+	if s.AcquisitionPointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcquisitionPointId"))
+	}
+	if s.AdAvailOffset != nil && *s.AdAvailOffset < -1000 {
+		invalidParams.Add(request.NewErrParamMinValue("AdAvailOffset", -1000))
+	}
+	if s.PoisEndpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoisEndpoint"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcquisitionPointId sets the AcquisitionPointId field's value.
+func (s *Esam) SetAcquisitionPointId(v string) *Esam {
+	s.AcquisitionPointId = &v
+	return s
+}
+
+// SetAdAvailOffset sets the AdAvailOffset field's value.
+func (s *Esam) SetAdAvailOffset(v int64) *Esam {
+	s.AdAvailOffset = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *Esam) SetPassword(v string) *Esam {
+	s.Password = &v
+	return s
+}
+
+// SetPoisEndpoint sets the PoisEndpoint field's value.
+func (s *Esam) SetPoisEndpoint(v string) *Esam {
+	s.PoisEndpoint = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *Esam) SetUsername(v string) *Esam {
+	s.Username = &v
+	return s
+}
+
+// SetZoneIdentity sets the ZoneIdentity field's value.
+func (s *Esam) SetZoneIdentity(v string) *Esam {
+	s.ZoneIdentity = &v
 	return s
 }
 
@@ -26829,6 +26951,9 @@ type ScheduleActionSettings struct {
 	// Action to pause or unpause one or both channel pipelines
 	PauseStateSettings *PauseStateScheduleActionSettings `locationName:"pauseStateSettings" type:"structure"`
 
+	// Action to get scte35 input
+	Scte35InputSettings *Scte35InputScheduleActionSettings `locationName:"scte35InputSettings" type:"structure"`
+
 	// Action to insert SCTE-35 return_to_network message
 	Scte35ReturnToNetworkSettings *Scte35ReturnToNetworkScheduleActionSettings `locationName:"scte35ReturnToNetworkSettings" type:"structure"`
 
@@ -26889,6 +27014,11 @@ func (s *ScheduleActionSettings) Validate() error {
 	if s.PauseStateSettings != nil {
 		if err := s.PauseStateSettings.Validate(); err != nil {
 			invalidParams.AddNested("PauseStateSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Scte35InputSettings != nil {
+		if err := s.Scte35InputSettings.Validate(); err != nil {
+			invalidParams.AddNested("Scte35InputSettings", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Scte35ReturnToNetworkSettings != nil {
@@ -26957,6 +27087,12 @@ func (s *ScheduleActionSettings) SetMotionGraphicsImageDeactivateSettings(v *Mot
 // SetPauseStateSettings sets the PauseStateSettings field's value.
 func (s *ScheduleActionSettings) SetPauseStateSettings(v *PauseStateScheduleActionSettings) *ScheduleActionSettings {
 	s.PauseStateSettings = v
+	return s
+}
+
+// SetScte35InputSettings sets the Scte35InputSettings field's value.
+func (s *ScheduleActionSettings) SetScte35InputSettings(v *Scte35InputScheduleActionSettings) *ScheduleActionSettings {
+	s.Scte35InputSettings = v
 	return s
 }
 
@@ -27418,6 +27554,63 @@ func (s *Scte35DescriptorSettings) Validate() error {
 // SetSegmentationDescriptorScte35DescriptorSettings sets the SegmentationDescriptorScte35DescriptorSettings field's value.
 func (s *Scte35DescriptorSettings) SetSegmentationDescriptorScte35DescriptorSettings(v *Scte35SegmentationDescriptor) *Scte35DescriptorSettings {
 	s.SegmentationDescriptorScte35DescriptorSettings = v
+	return s
+}
+
+// Settings for the "scte35 input" action
+type Scte35InputScheduleActionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// In fixed mode, enter the name of the input attachment that you want to use
+	// as a SCTE-35 input. (Don't enter the ID of the input.)"
+	InputAttachmentNameReference *string `locationName:"inputAttachmentNameReference" type:"string"`
+
+	// Whether the SCTE-35 input should be the active input or a fixed input.
+	//
+	// Mode is a required field
+	Mode *string `locationName:"mode" type:"string" required:"true" enum:"Scte35InputMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Scte35InputScheduleActionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Scte35InputScheduleActionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Scte35InputScheduleActionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Scte35InputScheduleActionSettings"}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputAttachmentNameReference sets the InputAttachmentNameReference field's value.
+func (s *Scte35InputScheduleActionSettings) SetInputAttachmentNameReference(v string) *Scte35InputScheduleActionSettings {
+	s.InputAttachmentNameReference = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *Scte35InputScheduleActionSettings) SetMode(v string) *Scte35InputScheduleActionSettings {
+	s.Mode = &v
 	return s
 }
 
@@ -36418,6 +36611,24 @@ func Scte35DeviceRestrictions_Values() []string {
 		Scte35DeviceRestrictionsRestrictGroup0,
 		Scte35DeviceRestrictionsRestrictGroup1,
 		Scte35DeviceRestrictionsRestrictGroup2,
+	}
+}
+
+// Settings to let you create a clip of the file input, in order to set up the
+// input to ingest only a portion of the file.
+const (
+	// Scte35InputModeFixed is a Scte35InputMode enum value
+	Scte35InputModeFixed = "FIXED"
+
+	// Scte35InputModeFollowActive is a Scte35InputMode enum value
+	Scte35InputModeFollowActive = "FOLLOW_ACTIVE"
+)
+
+// Scte35InputMode_Values returns all elements of the Scte35InputMode enum
+func Scte35InputMode_Values() []string {
+	return []string{
+		Scte35InputModeFixed,
+		Scte35InputModeFollowActive,
 	}
 }
 

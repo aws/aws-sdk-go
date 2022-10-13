@@ -24,7 +24,6 @@
     "ListKnowledgeBases": "<p>Lists the knowledge bases.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "NotifyRecommendationsReceived": "<p>Removes the specified recommendations from the specified assistant's queue of newly available recommendations. You can use this API in conjunction with <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_GetRecommendations.html\">GetRecommendations</a> and a <code>waitTimeSeconds</code> input for long-polling behavior and avoiding duplicate recommendations.</p>",
-    "PutFeedback": "<p>Submits feedback to Wisdom. The feedback is used to improve future recommendations from <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_GetRecommendations.html\">GetRecommendations</a> or results from <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_QueryAssistant.html\">QueryAssistant</a>. Feedback can be resubmitted up to 6 hours after submission. </p>",
     "QueryAssistant": "<p>Performs a manual search against the specified assistant. To retrieve recommendations for an assistant, use <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_GetRecommendations.html\">GetRecommendations</a>. </p>",
     "RemoveKnowledgeBaseTemplateUri": "<p>Removes a URI template from a knowledge base.</p>",
     "SearchContent": "<p>Searches for content in a specified knowledge base. Can be used to get a specific content resource by its name.</p>",
@@ -342,13 +341,6 @@
       "refs": {
         "Document$excerpt": "<p>The excerpt from the document.</p>",
         "Document$title": "<p>The title of the document.</p>"
-      }
-    },
-    "FeedbackData": {
-      "base": "<p>The feedback to submit to Wisdom.</p>",
-      "refs": {
-        "PutFeedbackRequest$feedback": "<p>The feedback.</p>",
-        "PutFeedbackResponse$feedback": "<p>The feedback.</p>"
       }
     },
     "Filter": {
@@ -674,16 +666,6 @@
       "refs": {
       }
     },
-    "PutFeedbackRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "PutFeedbackResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
     "QueryAssistantRequest": {
       "base": null,
       "refs": {
@@ -767,12 +749,6 @@
       "base": null,
       "refs": {
         "RecommendationData$type": "<p>The type of recommendation.</p>"
-      }
-    },
-    "Relevance": {
-      "base": null,
-      "refs": {
-        "FeedbackData$relevance": "<p>The relevance of the target this feedback is for.</p>"
       }
     },
     "RelevanceLevel": {
@@ -910,7 +886,6 @@
         "ConflictException$message": null,
         "NotifyRecommendationsReceivedError$recommendationId": "<p>The identifier of the recommendation that is in error.</p>",
         "PreconditionFailedException$message": null,
-        "PutFeedbackRequest$targetId": "<p>The identifier of a recommendation. or The identifier of the result data.</p>",
         "RecommendationData$recommendationId": "<p>The identifier of the recommendation.</p>",
         "RecommendationIdList$member": null,
         "ResourceNotFoundException$message": null,
@@ -977,13 +952,6 @@
         "ListTagsForResourceResponse$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "SessionData$tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "TagResourceRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>"
-      }
-    },
-    "TargetType": {
-      "base": null,
-      "refs": {
-        "PutFeedbackRequest$targetType": "<p>The type of the targetId for which The feedback. is targeted.</p>",
-        "PutFeedbackResponse$targetType": "<p>The type of the targetId for which The feedback. is targeted.</p>"
       }
     },
     "TooManyTagsException": {
@@ -1057,8 +1025,6 @@
         "KnowledgeBaseAssociationData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "KnowledgeBaseData$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
         "KnowledgeBaseSummary$knowledgeBaseId": "<p>The identifier of the knowledge base.</p>",
-        "PutFeedbackResponse$assistantId": "<p>The identifier of the Wisdom assistant.</p>",
-        "PutFeedbackResponse$targetId": "<p>The identifier of a recommendation. or The identifier of the result data.</p>",
         "RecommendationTrigger$id": "<p>The identifier of the recommendation trigger.</p>",
         "ResultData$resultId": "<p>The identifier of the result data.</p>",
         "SessionData$sessionId": "<p>The identifier of the session.</p>",
@@ -1094,8 +1060,6 @@
         "ListContentsRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "NotifyRecommendationsReceivedRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "NotifyRecommendationsReceivedRequest$sessionId": "<p>The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "PutFeedbackRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
-        "PutFeedbackResponse$assistantArn": "<p>The Amazon Resource Name (ARN) of the Wisdom assistant.</p>",
         "QueryAssistantRequest$assistantId": "<p>The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "RemoveKnowledgeBaseTemplateUriRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "SearchContentRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",

@@ -1589,7 +1589,9 @@ func (c *GuardDuty) DescribeMalwareScansRequest(input *DescribeMalwareScansInput
 
 // DescribeMalwareScans API operation for Amazon GuardDuty.
 //
-// Returns a list of malware scans.
+// Returns a list of malware scans. Each member account can view the malware
+// scans for their own accounts. An administrator can view the malware scans
+// for all the member accounts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2149,8 +2151,8 @@ func (c *GuardDuty) DisassociateMembersRequest(input *DisassociateMembersInput) 
 
 // DisassociateMembers API operation for Amazon GuardDuty.
 //
-// Disassociates GuardDuty member accounts (to the current GuardDuty administrator
-// account) specified by the account IDs.
+// Disassociates GuardDuty member accounts (to the current administrator account)
+// specified by the account IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7572,6 +7574,10 @@ type CreateDetectorOutput struct {
 
 	// The unique ID of the created detector.
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
+
+	// Specifies the data sources that couldn't be enabled when GuardDuty was enabled
+	// for the first time.
+	UnprocessedDataSources *UnprocessedDataSourcesResult `locationName:"unprocessedDataSources" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7595,6 +7601,12 @@ func (s CreateDetectorOutput) GoString() string {
 // SetDetectorId sets the DetectorId field's value.
 func (s *CreateDetectorOutput) SetDetectorId(v string) *CreateDetectorOutput {
 	s.DetectorId = &v
+	return s
+}
+
+// SetUnprocessedDataSources sets the UnprocessedDataSources field's value.
+func (s *CreateDetectorOutput) SetUnprocessedDataSources(v *UnprocessedDataSourcesResult) *CreateDetectorOutput {
+	s.UnprocessedDataSources = v
 	return s
 }
 
@@ -8780,8 +8792,8 @@ func (s *DataSourceFreeTrial) SetFreeTrialDaysRemaining(v int64) *DataSourceFree
 type DataSourcesFreeTrial struct {
 	_ struct{} `type:"structure"`
 
-	// Describes whether any AWS CloudTrail management event logs are enabled as
-	// data sources.
+	// Describes whether any Amazon Web Services CloudTrail management event logs
+	// are enabled as data sources.
 	CloudTrail *DataSourceFreeTrial `locationName:"cloudTrail" type:"structure"`
 
 	// Describes whether any DNS logs are enabled as data sources.
@@ -10604,6 +10616,10 @@ func (s *EbsVolumeScanDetails) SetTriggerFindingId(v string) *EbsVolumeScanDetai
 type EbsVolumesResult struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the reason why scanning EBS volumes (Malware Protection) was not
+	// enabled as a data source.
+	Reason *string `locationName:"reason" type:"string"`
+
 	// Describes whether scanning EBS volumes is enabled as a data source.
 	Status *string `locationName:"status" min:"1" type:"string" enum:"DataSourceStatus"`
 }
@@ -10624,6 +10640,12 @@ func (s EbsVolumesResult) String() string {
 // value will be replaced with "sensitive".
 func (s EbsVolumesResult) GoString() string {
 	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *EbsVolumesResult) SetReason(v string) *EbsVolumesResult {
+	s.Reason = &v
+	return s
 }
 
 // SetStatus sets the Status field's value.
@@ -11138,7 +11160,9 @@ func (s *FilterCriteria) SetFilterCriterion(v []*FilterCriterion) *FilterCriteri
 }
 
 // Represents a condition that when matched will be added to the response of
-// the operation.
+// the operation. Irrespective of using any filter criteria, an administrator
+// account can view the scan entries for all of its member accounts. However,
+// each member account can view the scan entries only for their own account.
 type FilterCriterion struct {
 	_ struct{} `type:"structure"`
 
@@ -12343,7 +12367,7 @@ func (s *GetMalwareScanSettingsInput) SetDetectorId(v string) *GetMalwareScanSet
 type GetMalwareScanSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An enum value representing possible snapshot preservations.
+	// An enum value representing possible snapshot preservation settings.
 	EbsSnapshotPreservation *string `locationName:"ebsSnapshotPreservation" type:"string" enum:"EbsSnapshotPreservation"`
 
 	// Represents the criteria to be used in the filter for scanning resources.
@@ -14760,6 +14784,8 @@ type ListMembersInput struct {
 
 	// Specifies whether to only return associated members or to return all members
 	// (including members who haven't been invited yet or have been disassociated).
+	// Member accounts must have been previously associated with the GuardDuty administrator
+	// account using Create Members (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateMembers.html).
 	OnlyAssociated *string `location:"querystring" locationName:"onlyAssociated" type:"string"`
 }
 
@@ -18922,6 +18948,39 @@ func (s *UnprocessedAccount) SetResult(v string) *UnprocessedAccount {
 	return s
 }
 
+// Specifies the names of the data sources that couldn't be enabled.
+type UnprocessedDataSourcesResult struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information on the status of all Malware Protection
+	// data sources.
+	MalwareProtection *MalwareProtectionConfigurationResult `locationName:"malwareProtection" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedDataSourcesResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedDataSourcesResult) GoString() string {
+	return s.String()
+}
+
+// SetMalwareProtection sets the MalwareProtection field's value.
+func (s *UnprocessedDataSourcesResult) SetMalwareProtection(v *MalwareProtectionConfigurationResult) *UnprocessedDataSourcesResult {
+	s.MalwareProtection = v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -19497,7 +19556,7 @@ type UpdateMalwareScanSettingsInput struct {
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
 
-	// An enum value representing possible snapshot preservations.
+	// An enum value representing possible snapshot preservation settings.
 	EbsSnapshotPreservation *string `locationName:"ebsSnapshotPreservation" type:"string" enum:"EbsSnapshotPreservation"`
 
 	// Represents the criteria to be used in the filter for selecting resources

@@ -8997,7 +8997,9 @@
       "members":{
         "FirstName":{"shape":"AgentFirstName"},
         "LastName":{"shape":"AgentLastName"},
-        "Email":{"shape":"Email"}
+        "Email":{"shape":"Email"},
+        "SecondaryEmail":{"shape":"Email"},
+        "Mobile":{"shape":"PhoneNumber"}
       }
     },
     "UserIdentityInfoLite":{

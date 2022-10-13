@@ -3569,6 +3569,74 @@ func (s *EgressEndpoint) SetUrl(v string) *EgressEndpoint {
 	return s
 }
 
+// Use encryptionContractConfiguration to configure one or more content encryption
+// keys for your endpoints that use SPEKE 2.0. The encryption contract defines
+// which content keys are used to encrypt the audio and video tracks in your
+// stream. To configure the encryption contract, specify which audio and video
+// encryption presets to use.Note the following considerations when using encryptionContractConfiguration:encryptionContractConfiguration
+// can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the
+// CPIX 2.3 specification.You must disable key rotation for this endpoint by
+// setting keyRotationIntervalSeconds to 0.
+type EncryptionContractConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of audio encryption presets.
+	//
+	// PresetSpeke20Audio is a required field
+	PresetSpeke20Audio *string `locationName:"presetSpeke20Audio" type:"string" required:"true" enum:"PresetSpeke20Audio"`
+
+	// A collection of video encryption presets.
+	//
+	// PresetSpeke20Video is a required field
+	PresetSpeke20Video *string `locationName:"presetSpeke20Video" type:"string" required:"true" enum:"PresetSpeke20Video"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionContractConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionContractConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionContractConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionContractConfiguration"}
+	if s.PresetSpeke20Audio == nil {
+		invalidParams.Add(request.NewErrParamRequired("PresetSpeke20Audio"))
+	}
+	if s.PresetSpeke20Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("PresetSpeke20Video"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPresetSpeke20Audio sets the PresetSpeke20Audio field's value.
+func (s *EncryptionContractConfiguration) SetPresetSpeke20Audio(v string) *EncryptionContractConfiguration {
+	s.PresetSpeke20Audio = &v
+	return s
+}
+
+// SetPresetSpeke20Video sets the PresetSpeke20Video field's value.
+func (s *EncryptionContractConfiguration) SetPresetSpeke20Video(v string) *EncryptionContractConfiguration {
+	s.PresetSpeke20Video = &v
+	return s
+}
+
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4772,6 +4840,16 @@ func (s *ServiceUnavailableException) RequestID() string {
 type SpekeKeyProvider struct {
 	_ struct{} `type:"structure"`
 
+	// Use encryptionContractConfiguration to configure one or more content encryption
+	// keys for your endpoints that use SPEKE 2.0. The encryption contract defines
+	// which content keys are used to encrypt the audio and video tracks in your
+	// stream. To configure the encryption contract, specify which audio and video
+	// encryption presets to use.Note the following considerations when using encryptionContractConfiguration:encryptionContractConfiguration
+	// can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the
+	// CPIX 2.3 specification.You must disable key rotation for this endpoint by
+	// setting keyRotationIntervalSeconds to 0.
+	EncryptionContractConfiguration *EncryptionContractConfiguration `locationName:"encryptionContractConfiguration" type:"structure"`
+
 	// An Amazon Resource Name (ARN) of an IAM role that AWS ElementalMediaPackage
 	// will assume when accessing the key provider service.
 	//
@@ -4819,11 +4897,22 @@ func (s *SpekeKeyProvider) Validate() error {
 	if s.Url == nil {
 		invalidParams.Add(request.NewErrParamRequired("Url"))
 	}
+	if s.EncryptionContractConfiguration != nil {
+		if err := s.EncryptionContractConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionContractConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEncryptionContractConfiguration sets the EncryptionContractConfiguration field's value.
+func (s *SpekeKeyProvider) SetEncryptionContractConfiguration(v *EncryptionContractConfiguration) *SpekeKeyProvider {
+	s.EncryptionContractConfiguration = v
+	return s
 }
 
 // SetRoleArn sets the RoleArn field's value.
@@ -5377,6 +5466,82 @@ const (
 func PeriodTriggersElement_Values() []string {
 	return []string{
 		PeriodTriggersElementAds,
+	}
+}
+
+const (
+	// PresetSpeke20AudioPresetAudio1 is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioPresetAudio1 = "PRESET-AUDIO-1"
+
+	// PresetSpeke20AudioPresetAudio2 is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioPresetAudio2 = "PRESET-AUDIO-2"
+
+	// PresetSpeke20AudioPresetAudio3 is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioPresetAudio3 = "PRESET-AUDIO-3"
+
+	// PresetSpeke20AudioShared is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioShared = "SHARED"
+
+	// PresetSpeke20AudioUnencrypted is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioUnencrypted = "UNENCRYPTED"
+)
+
+// PresetSpeke20Audio_Values returns all elements of the PresetSpeke20Audio enum
+func PresetSpeke20Audio_Values() []string {
+	return []string{
+		PresetSpeke20AudioPresetAudio1,
+		PresetSpeke20AudioPresetAudio2,
+		PresetSpeke20AudioPresetAudio3,
+		PresetSpeke20AudioShared,
+		PresetSpeke20AudioUnencrypted,
+	}
+}
+
+const (
+	// PresetSpeke20VideoPresetVideo1 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo1 = "PRESET-VIDEO-1"
+
+	// PresetSpeke20VideoPresetVideo2 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo2 = "PRESET-VIDEO-2"
+
+	// PresetSpeke20VideoPresetVideo3 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo3 = "PRESET-VIDEO-3"
+
+	// PresetSpeke20VideoPresetVideo4 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo4 = "PRESET-VIDEO-4"
+
+	// PresetSpeke20VideoPresetVideo5 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo5 = "PRESET-VIDEO-5"
+
+	// PresetSpeke20VideoPresetVideo6 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo6 = "PRESET-VIDEO-6"
+
+	// PresetSpeke20VideoPresetVideo7 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo7 = "PRESET-VIDEO-7"
+
+	// PresetSpeke20VideoPresetVideo8 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo8 = "PRESET-VIDEO-8"
+
+	// PresetSpeke20VideoShared is a PresetSpeke20Video enum value
+	PresetSpeke20VideoShared = "SHARED"
+
+	// PresetSpeke20VideoUnencrypted is a PresetSpeke20Video enum value
+	PresetSpeke20VideoUnencrypted = "UNENCRYPTED"
+)
+
+// PresetSpeke20Video_Values returns all elements of the PresetSpeke20Video enum
+func PresetSpeke20Video_Values() []string {
+	return []string{
+		PresetSpeke20VideoPresetVideo1,
+		PresetSpeke20VideoPresetVideo2,
+		PresetSpeke20VideoPresetVideo3,
+		PresetSpeke20VideoPresetVideo4,
+		PresetSpeke20VideoPresetVideo5,
+		PresetSpeke20VideoPresetVideo6,
+		PresetSpeke20VideoPresetVideo7,
+		PresetSpeke20VideoPresetVideo8,
+		PresetSpeke20VideoShared,
+		PresetSpeke20VideoUnencrypted,
 	}
 }
 
