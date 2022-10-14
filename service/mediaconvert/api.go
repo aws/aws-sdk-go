@@ -11992,6 +11992,12 @@ type H264Settings struct {
 	// in the related setting GOP size (GopSize).
 	GopSizeUnits *string `locationName:"gopSizeUnits" type:"string" enum:"H264GopSizeUnits"`
 
+	// If your downstream systems have strict buffer requirements: Specify the minimum
+	// percentage of the HRD buffer that's available at the end of each encoded
+	// video segment. For the best video quality: Set to 0 or leave blank to automatically
+	// determine the final buffer fill percentage.
+	HrdBufferFinalFillPercentage *int64 `locationName:"hrdBufferFinalFillPercentage" type:"integer"`
+
 	// Percentage of the buffer that should initially be filled (HRD buffer model).
 	HrdBufferInitialFillPercentage *int64 `locationName:"hrdBufferInitialFillPercentage" type:"integer"`
 
@@ -12356,6 +12362,12 @@ func (s *H264Settings) SetGopSizeUnits(v string) *H264Settings {
 	return s
 }
 
+// SetHrdBufferFinalFillPercentage sets the HrdBufferFinalFillPercentage field's value.
+func (s *H264Settings) SetHrdBufferFinalFillPercentage(v int64) *H264Settings {
+	s.HrdBufferFinalFillPercentage = &v
+	return s
+}
+
 // SetHrdBufferInitialFillPercentage sets the HrdBufferInitialFillPercentage field's value.
 func (s *H264Settings) SetHrdBufferInitialFillPercentage(v int64) *H264Settings {
 	s.HrdBufferInitialFillPercentage = &v
@@ -12715,6 +12727,12 @@ type H265Settings struct {
 	// in the related setting GOP size (GopSize).
 	GopSizeUnits *string `locationName:"gopSizeUnits" type:"string" enum:"H265GopSizeUnits"`
 
+	// If your downstream systems have strict buffer requirements: Specify the minimum
+	// percentage of the HRD buffer that's available at the end of each encoded
+	// video segment. For the best video quality: Set to 0 or leave blank to automatically
+	// determine the final buffer fill percentage.
+	HrdBufferFinalFillPercentage *int64 `locationName:"hrdBufferFinalFillPercentage" type:"integer"`
+
 	// Percentage of the buffer that should initially be filled (HRD buffer model).
 	HrdBufferInitialFillPercentage *int64 `locationName:"hrdBufferInitialFillPercentage" type:"integer"`
 
@@ -13062,6 +13080,12 @@ func (s *H265Settings) SetGopSize(v float64) *H265Settings {
 // SetGopSizeUnits sets the GopSizeUnits field's value.
 func (s *H265Settings) SetGopSizeUnits(v string) *H265Settings {
 	s.GopSizeUnits = &v
+	return s
+}
+
+// SetHrdBufferFinalFillPercentage sets the HrdBufferFinalFillPercentage field's value.
+func (s *H265Settings) SetHrdBufferFinalFillPercentage(v int64) *H265Settings {
+	s.HrdBufferFinalFillPercentage = &v
 	return s
 }
 
@@ -19215,6 +19239,12 @@ type Mpeg2Settings struct {
 	// by default the encoder measures GOP size in frames.
 	GopSizeUnits *string `locationName:"gopSizeUnits" type:"string" enum:"Mpeg2GopSizeUnits"`
 
+	// If your downstream systems have strict buffer requirements: Specify the minimum
+	// percentage of the HRD buffer that's available at the end of each encoded
+	// video segment. For the best video quality: Set to 0 or leave blank to automatically
+	// determine the final buffer fill percentage.
+	HrdBufferFinalFillPercentage *int64 `locationName:"hrdBufferFinalFillPercentage" type:"integer"`
+
 	// Percentage of the buffer that should initially be filled (HRD buffer model).
 	HrdBufferInitialFillPercentage *int64 `locationName:"hrdBufferInitialFillPercentage" type:"integer"`
 
@@ -19502,6 +19532,12 @@ func (s *Mpeg2Settings) SetGopSize(v float64) *Mpeg2Settings {
 // SetGopSizeUnits sets the GopSizeUnits field's value.
 func (s *Mpeg2Settings) SetGopSizeUnits(v string) *Mpeg2Settings {
 	s.GopSizeUnits = &v
+	return s
+}
+
+// SetHrdBufferFinalFillPercentage sets the HrdBufferFinalFillPercentage field's value.
+func (s *Mpeg2Settings) SetHrdBufferFinalFillPercentage(v int64) *Mpeg2Settings {
+	s.HrdBufferFinalFillPercentage = &v
 	return s
 }
 
@@ -31809,6 +31845,7 @@ func H265WriteMp4PackagingType_Values() []string {
 	}
 }
 
+// Ad marker for Apple HLS manifest.
 const (
 	// HlsAdMarkersElemental is a HlsAdMarkers enum value
 	HlsAdMarkersElemental = "ELEMENTAL"

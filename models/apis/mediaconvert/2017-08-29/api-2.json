@@ -4740,6 +4740,10 @@
           "shape": "H264GopSizeUnits",
           "locationName": "gopSizeUnits"
         },
+        "HrdBufferFinalFillPercentage": {
+          "shape": "__integerMin0Max100",
+          "locationName": "hrdBufferFinalFillPercentage"
+        },
         "HrdBufferInitialFillPercentage": {
           "shape": "__integerMin0Max100",
           "locationName": "hrdBufferInitialFillPercentage"
@@ -5111,6 +5115,10 @@
         "GopSizeUnits": {
           "shape": "H265GopSizeUnits",
           "locationName": "gopSizeUnits"
+        },
+        "HrdBufferFinalFillPercentage": {
+          "shape": "__integerMin0Max100",
+          "locationName": "hrdBufferFinalFillPercentage"
         },
         "HrdBufferInitialFillPercentage": {
           "shape": "__integerMin0Max100",
@@ -7859,6 +7867,10 @@
         "GopSizeUnits": {
           "shape": "Mpeg2GopSizeUnits",
           "locationName": "gopSizeUnits"
+        },
+        "HrdBufferFinalFillPercentage": {
+          "shape": "__integerMin0Max100",
+          "locationName": "hrdBufferFinalFillPercentage"
         },
         "HrdBufferInitialFillPercentage": {
           "shape": "__integerMin0Max100",
