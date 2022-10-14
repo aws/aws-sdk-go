@@ -1,3 +1,10 @@
+Release v1.44.116 (2022-10-14)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * MediaConvert now supports specifying the minimum percentage of the HRD buffer available at the end of each encoded video segment.
+
 Release v1.44.115 (2022-10-13)
 ===
 

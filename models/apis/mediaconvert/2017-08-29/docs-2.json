@@ -1855,7 +1855,7 @@
       }
     },
     "HlsAdMarkers": {
-      "base": null,
+      "base": "Ad marker for Apple HLS manifest.",
       "refs": {
         "__listOfHlsAdMarkers$member": null
       }
@@ -3916,9 +3916,12 @@
       "base": null,
       "refs": {
         "Eac3AtmosSettings$SpeechThreshold": "Specify the percentage of audio content, from 0% to 100%, that must be speech in order for the encoder to use the measured speech loudness as the overall program loudness. Default value: 15%",
+        "H264Settings$HrdBufferFinalFillPercentage": "If your downstream systems have strict buffer requirements: Specify the minimum percentage of the HRD buffer that's available at the end of each encoded video segment. For the best video quality: Set to 0 or leave blank to automatically determine the final buffer fill percentage.",
         "H264Settings$HrdBufferInitialFillPercentage": "Percentage of the buffer that should initially be filled (HRD buffer model).",
+        "H265Settings$HrdBufferFinalFillPercentage": "If your downstream systems have strict buffer requirements: Specify the minimum percentage of the HRD buffer that's available at the end of each encoded video segment. For the best video quality: Set to 0 or leave blank to automatically determine the final buffer fill percentage.",
         "H265Settings$HrdBufferInitialFillPercentage": "Percentage of the buffer that should initially be filled (HRD buffer model).",
         "InsertableImage$Opacity": "Use Opacity (Opacity) to specify how much of the underlying video shows through the inserted image. 0 is transparent and 100 is fully opaque. Default is 50.",
+        "Mpeg2Settings$HrdBufferFinalFillPercentage": "If your downstream systems have strict buffer requirements: Specify the minimum percentage of the HRD buffer that's available at the end of each encoded video segment. For the best video quality: Set to 0 or leave blank to automatically determine the final buffer fill percentage.",
         "Mpeg2Settings$HrdBufferInitialFillPercentage": "Percentage of the buffer that should initially be filled (HRD buffer model).",
         "VideoDescription$Sharpness": "Use Sharpness (Sharpness) setting to specify the strength of anti-aliasing. This setting changes the width of the anti-alias filter kernel used for scaling. Sharpness only applies if your output resolution is different from your input resolution. 0 is the softest setting, 100 the sharpest, and 50 recommended for most content."
       }
