@@ -847,6 +847,7 @@
         "Function$Id" : "A descriptive or arbitrary ID for the function. This value must be unique within the function definition version. Max length is 128 characters with pattern ''[a-zA-Z0-9:_-]+''.",
         "FunctionConfiguration$ExecArgs" : "The execution arguments.",
         "FunctionConfiguration$Executable" : "The name of the function executable.",
+        "FunctionConfiguration$FunctionRuntimeOverride" : "The Lambda runtime supported by Greengrass which is to be used instead of the one specified in the Lambda function.",
         "GeneralError$Message" : "A message containing information about the error.",
         "GetAssociatedRoleResponse$AssociatedAt" : "The time when the role was associated with the group.",
         "GetAssociatedRoleResponse$RoleArn" : "The ARN of the role that is associated with the group.",

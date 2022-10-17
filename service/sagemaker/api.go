@@ -2311,6 +2311,16 @@ func (c *SageMaker) CreateHyperParameterTuningJobRequest(input *CreateHyperParam
 // you specify. It then chooses the hyperparameter values that result in a model
 // that performs the best, as measured by an objective metric that you choose.
 //
+// A hyperparameter tuning job automatically creates Amazon SageMaker experiments,
+// trials, and trial components for each training job that it runs. You can
+// view these entities in Amazon SageMaker Studio. For more information, see
+// View Experiments, Trials, and Trial Components (https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-view-compare.html#experiments-view).
+//
+// Do not include any security-sensitive information including account access
+// IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive
+// credentials are detected, SageMaker will reject your training job request
+// and return an exception error.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4134,10 +4144,10 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //     the estimation of model parameters during training. Hyperparameters can
 //     be tuned to optimize this learning process. For a list of hyperparameters
 //     for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
-//     You must not include any security-sensitive information, such as account
-//     access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters.
-//     SageMaker rejects the training job request and returns an exception error
-//     for detected credentials, if such user input is found.
+//     Do not include any security-sensitive information including account access
+//     IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive
+//     credentials are detected, SageMaker will reject your training job request
+//     and return an exception error.
 //
 //   - InputDataConfig - Describes the training dataset and the Amazon S3,
 //     EFS, or FSx location where it is stored.
@@ -30230,7 +30240,7 @@ type ClarifyExplainerConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A JMESPath boolean expression used to filter which records to explain. Explanations
-	// are activated by default. See EnableExplanations (https://docs.aws.amazon.com/sagemaker-dg/src/AWSIronmanApiDoc/build/server-root/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable)for
+	// are activated by default. See EnableExplanations (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable)for
 	// additional information.
 	EnableExplanations *string `min:"1" type:"string"`
 
@@ -30332,7 +30342,7 @@ type ClarifyInferenceConfig struct {
 	// Provides the JMESPath expression to extract the features from a model container
 	// input in JSON Lines format. For example, if FeaturesAttribute is the JMESPath
 	// expression 'myfeatures', it extracts a list of features [1,2,3] from request
-	// data '{"myfeatures":[1,2,3}'.
+	// data '{"myfeatures":[1,2,3]}'.
 	FeaturesAttribute *string `min:"1" type:"string"`
 
 	// A JMESPath expression used to locate the list of label headers in the model
@@ -39321,10 +39331,10 @@ type CreateTrainingJobInput struct {
 	// a key-value pair. Each key and value is limited to 256 characters, as specified
 	// by the Length Constraint.
 	//
-	// You must not include any security-sensitive information, such as account
-	// access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters.
-	// SageMaker rejects the training job request and returns an exception error
-	// for detected credentials, if such user input is found.
+	// Do not include any security-sensitive information including account access
+	// IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive
+	// credentials are detected, SageMaker will reject your training job request
+	// and return an exception error.
 	HyperParameters map[string]*string `type:"map"`
 
 	// An array of Channel objects. Each channel is a named input source. InputDataConfig
@@ -64435,7 +64445,7 @@ type InputConfig struct {
 	Framework *string `type:"string" required:"true" enum:"Framework"`
 
 	// Specifies the framework version to use. This API field is only supported
-	// for the PyTorch and TensorFlow frameworks.
+	// for the MXNet, PyTorch, TensorFlow and TensorFlow Lite frameworks.
 	//
 	// For information about framework versions supported for cloud targets and
 	// edge devices, see Cloud Supported Instance Types and Frameworks (https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html)
@@ -103254,6 +103264,174 @@ const (
 
 	// ProductionVariantInstanceTypeMlP4d24xlarge is a ProductionVariantInstanceType enum value
 	ProductionVariantInstanceTypeMlP4d24xlarge = "ml.p4d.24xlarge"
+
+	// ProductionVariantInstanceTypeMlC7gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7gLarge = "ml.c7g.large"
+
+	// ProductionVariantInstanceTypeMlC7gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7gXlarge = "ml.c7g.xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g2xlarge = "ml.c7g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g4xlarge = "ml.c7g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g8xlarge = "ml.c7g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g12xlarge = "ml.c7g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g16xlarge = "ml.c7g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gLarge = "ml.m6g.large"
+
+	// ProductionVariantInstanceTypeMlM6gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gXlarge = "ml.m6g.xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g2xlarge = "ml.m6g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g4xlarge = "ml.m6g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g8xlarge = "ml.m6g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g12xlarge = "ml.m6g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g16xlarge = "ml.m6g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gdLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gdLarge = "ml.m6gd.large"
+
+	// ProductionVariantInstanceTypeMlM6gdXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gdXlarge = "ml.m6gd.xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd2xlarge = "ml.m6gd.2xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd4xlarge = "ml.m6gd.4xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd8xlarge = "ml.m6gd.8xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd12xlarge = "ml.m6gd.12xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd16xlarge = "ml.m6gd.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gLarge = "ml.c6g.large"
+
+	// ProductionVariantInstanceTypeMlC6gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gXlarge = "ml.c6g.xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g2xlarge = "ml.c6g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g4xlarge = "ml.c6g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g8xlarge = "ml.c6g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g12xlarge = "ml.c6g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g16xlarge = "ml.c6g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gdLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gdLarge = "ml.c6gd.large"
+
+	// ProductionVariantInstanceTypeMlC6gdXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gdXlarge = "ml.c6gd.xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd2xlarge = "ml.c6gd.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd4xlarge = "ml.c6gd.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd8xlarge = "ml.c6gd.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd12xlarge = "ml.c6gd.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd16xlarge = "ml.c6gd.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gnLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gnLarge = "ml.c6gn.large"
+
+	// ProductionVariantInstanceTypeMlC6gnXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gnXlarge = "ml.c6gn.xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn2xlarge = "ml.c6gn.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn4xlarge = "ml.c6gn.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn8xlarge = "ml.c6gn.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn12xlarge = "ml.c6gn.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn16xlarge = "ml.c6gn.16xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gLarge = "ml.r6g.large"
+
+	// ProductionVariantInstanceTypeMlR6gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gXlarge = "ml.r6g.xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g2xlarge = "ml.r6g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g4xlarge = "ml.r6g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g8xlarge = "ml.r6g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g12xlarge = "ml.r6g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g16xlarge = "ml.r6g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gdLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gdLarge = "ml.r6gd.large"
+
+	// ProductionVariantInstanceTypeMlR6gdXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gdXlarge = "ml.r6gd.xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd2xlarge = "ml.r6gd.2xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd4xlarge = "ml.r6gd.4xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd8xlarge = "ml.r6gd.8xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd12xlarge = "ml.r6gd.12xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd16xlarge = "ml.r6gd.16xlarge"
 )
 
 // ProductionVariantInstanceType_Values returns all elements of the ProductionVariantInstanceType enum
@@ -103343,6 +103521,62 @@ func ProductionVariantInstanceType_Values() []string {
 		ProductionVariantInstanceTypeMlG524xlarge,
 		ProductionVariantInstanceTypeMlG548xlarge,
 		ProductionVariantInstanceTypeMlP4d24xlarge,
+		ProductionVariantInstanceTypeMlC7gLarge,
+		ProductionVariantInstanceTypeMlC7gXlarge,
+		ProductionVariantInstanceTypeMlC7g2xlarge,
+		ProductionVariantInstanceTypeMlC7g4xlarge,
+		ProductionVariantInstanceTypeMlC7g8xlarge,
+		ProductionVariantInstanceTypeMlC7g12xlarge,
+		ProductionVariantInstanceTypeMlC7g16xlarge,
+		ProductionVariantInstanceTypeMlM6gLarge,
+		ProductionVariantInstanceTypeMlM6gXlarge,
+		ProductionVariantInstanceTypeMlM6g2xlarge,
+		ProductionVariantInstanceTypeMlM6g4xlarge,
+		ProductionVariantInstanceTypeMlM6g8xlarge,
+		ProductionVariantInstanceTypeMlM6g12xlarge,
+		ProductionVariantInstanceTypeMlM6g16xlarge,
+		ProductionVariantInstanceTypeMlM6gdLarge,
+		ProductionVariantInstanceTypeMlM6gdXlarge,
+		ProductionVariantInstanceTypeMlM6gd2xlarge,
+		ProductionVariantInstanceTypeMlM6gd4xlarge,
+		ProductionVariantInstanceTypeMlM6gd8xlarge,
+		ProductionVariantInstanceTypeMlM6gd12xlarge,
+		ProductionVariantInstanceTypeMlM6gd16xlarge,
+		ProductionVariantInstanceTypeMlC6gLarge,
+		ProductionVariantInstanceTypeMlC6gXlarge,
+		ProductionVariantInstanceTypeMlC6g2xlarge,
+		ProductionVariantInstanceTypeMlC6g4xlarge,
+		ProductionVariantInstanceTypeMlC6g8xlarge,
+		ProductionVariantInstanceTypeMlC6g12xlarge,
+		ProductionVariantInstanceTypeMlC6g16xlarge,
+		ProductionVariantInstanceTypeMlC6gdLarge,
+		ProductionVariantInstanceTypeMlC6gdXlarge,
+		ProductionVariantInstanceTypeMlC6gd2xlarge,
+		ProductionVariantInstanceTypeMlC6gd4xlarge,
+		ProductionVariantInstanceTypeMlC6gd8xlarge,
+		ProductionVariantInstanceTypeMlC6gd12xlarge,
+		ProductionVariantInstanceTypeMlC6gd16xlarge,
+		ProductionVariantInstanceTypeMlC6gnLarge,
+		ProductionVariantInstanceTypeMlC6gnXlarge,
+		ProductionVariantInstanceTypeMlC6gn2xlarge,
+		ProductionVariantInstanceTypeMlC6gn4xlarge,
+		ProductionVariantInstanceTypeMlC6gn8xlarge,
+		ProductionVariantInstanceTypeMlC6gn12xlarge,
+		ProductionVariantInstanceTypeMlC6gn16xlarge,
+		ProductionVariantInstanceTypeMlR6gLarge,
+		ProductionVariantInstanceTypeMlR6gXlarge,
+		ProductionVariantInstanceTypeMlR6g2xlarge,
+		ProductionVariantInstanceTypeMlR6g4xlarge,
+		ProductionVariantInstanceTypeMlR6g8xlarge,
+		ProductionVariantInstanceTypeMlR6g12xlarge,
+		ProductionVariantInstanceTypeMlR6g16xlarge,
+		ProductionVariantInstanceTypeMlR6gdLarge,
+		ProductionVariantInstanceTypeMlR6gdXlarge,
+		ProductionVariantInstanceTypeMlR6gd2xlarge,
+		ProductionVariantInstanceTypeMlR6gd4xlarge,
+		ProductionVariantInstanceTypeMlR6gd8xlarge,
+		ProductionVariantInstanceTypeMlR6gd12xlarge,
+		ProductionVariantInstanceTypeMlR6gd16xlarge,
 	}
 }
 
