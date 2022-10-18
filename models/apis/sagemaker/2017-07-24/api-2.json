@@ -3911,6 +3911,15 @@
         "AWS/Textract/AnalyzeDocument/Forms/V1"
       ]
     },
+    "BatchDataCaptureConfig":{
+      "type":"structure",
+      "required":["DestinationS3Uri"],
+      "members":{
+        "DestinationS3Uri":{"shape":"S3Uri"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "GenerateInferenceId":{"shape":"Boolean"}
+      }
+    },
     "BatchDescribeModelPackageError":{
       "type":"structure",
       "required":[
@@ -3967,6 +3976,27 @@
         "MultiRecord",
         "SingleRecord"
       ]
+    },
+    "BatchTransformInput":{
+      "type":"structure",
+      "required":[
+        "DataCapturedDestinationS3Uri",
+        "DatasetFormat",
+        "LocalPath"
+      ],
+      "members":{
+        "DataCapturedDestinationS3Uri":{"shape":"DestinationS3Uri"},
+        "DatasetFormat":{"shape":"MonitoringDatasetFormat"},
+        "LocalPath":{"shape":"ProcessingLocalPath"},
+        "S3InputMode":{"shape":"ProcessingS3InputMode"},
+        "S3DataDistributionType":{"shape":"ProcessingS3DataDistributionType"},
+        "FeaturesAttribute":{"shape":"String"},
+        "InferenceAttribute":{"shape":"String"},
+        "ProbabilityAttribute":{"shape":"String"},
+        "ProbabilityThresholdAttribute":{"shape":"ProbabilityThresholdAttribute"},
+        "StartTimeOffset":{"shape":"MonitoringTimeOffsetString"},
+        "EndTimeOffset":{"shape":"MonitoringTimeOffsetString"}
+      }
     },
     "Bias":{
       "type":"structure",
@@ -5898,6 +5928,7 @@
         "Environment":{"shape":"TransformEnvironmentMap"},
         "TransformInput":{"shape":"TransformInput"},
         "TransformOutput":{"shape":"TransformOutput"},
+        "DataCaptureConfig":{"shape":"BatchDataCaptureConfig"},
         "TransformResources":{"shape":"TransformResources"},
         "DataProcessing":{"shape":"DataProcessing"},
         "Tags":{"shape":"TagList"},
@@ -6164,9 +6195,9 @@
     },
     "DataQualityJobInput":{
       "type":"structure",
-      "required":["EndpointInput"],
       "members":{
-        "EndpointInput":{"shape":"EndpointInput"}
+        "EndpointInput":{"shape":"EndpointInput"},
+        "BatchTransformInput":{"shape":"BatchTransformInput"}
       }
     },
     "DataSource":{
@@ -8095,6 +8126,7 @@
         "Environment":{"shape":"TransformEnvironmentMap"},
         "TransformInput":{"shape":"TransformInput"},
         "TransformOutput":{"shape":"TransformOutput"},
+        "DataCaptureConfig":{"shape":"BatchDataCaptureConfig"},
         "TransformResources":{"shape":"TransformResources"},
         "CreationTime":{"shape":"Timestamp"},
         "TransformStartTime":{"shape":"Timestamp"},
@@ -12514,12 +12546,10 @@
     },
     "ModelBiasJobInput":{
       "type":"structure",
-      "required":[
-        "EndpointInput",
-        "GroundTruthS3Input"
-      ],
+      "required":["GroundTruthS3Input"],
       "members":{
         "EndpointInput":{"shape":"EndpointInput"},
+        "BatchTransformInput":{"shape":"BatchTransformInput"},
         "GroundTruthS3Input":{"shape":"MonitoringGroundTruthS3Input"}
       }
     },
@@ -12591,9 +12621,9 @@
     },
     "ModelExplainabilityJobInput":{
       "type":"structure",
-      "required":["EndpointInput"],
       "members":{
-        "EndpointInput":{"shape":"EndpointInput"}
+        "EndpointInput":{"shape":"EndpointInput"},
+        "BatchTransformInput":{"shape":"BatchTransformInput"}
       }
     },
     "ModelInput":{
@@ -12951,12 +12981,10 @@
     },
     "ModelQualityJobInput":{
       "type":"structure",
-      "required":[
-        "EndpointInput",
-        "GroundTruthS3Input"
-      ],
+      "required":["GroundTruthS3Input"],
       "members":{
         "EndpointInput":{"shape":"EndpointInput"},
+        "BatchTransformInput":{"shape":"BatchTransformInput"},
         "GroundTruthS3Input":{"shape":"MonitoringGroundTruthS3Input"}
       }
     },
@@ -13035,6 +13063,20 @@
       "max":50,
       "min":1
     },
+    "MonitoringCsvDatasetFormat":{
+      "type":"structure",
+      "members":{
+        "Header":{"shape":"Boolean"}
+      }
+    },
+    "MonitoringDatasetFormat":{
+      "type":"structure",
+      "members":{
+        "Csv":{"shape":"MonitoringCsvDatasetFormat"},
+        "Json":{"shape":"MonitoringJsonDatasetFormat"},
+        "Parquet":{"shape":"MonitoringParquetDatasetFormat"}
+      }
+    },
     "MonitoringEnvironmentMap":{
       "type":"map",
       "key":{"shape":"ProcessingEnvironmentKey"},
@@ -13083,9 +13125,9 @@
     },
     "MonitoringInput":{
       "type":"structure",
-      "required":["EndpointInput"],
       "members":{
-        "EndpointInput":{"shape":"EndpointInput"}
+        "EndpointInput":{"shape":"EndpointInput"},
+        "BatchTransformInput":{"shape":"BatchTransformInput"}
       }
     },
     "MonitoringInputs":{
@@ -13152,6 +13194,12 @@
       "type":"list",
       "member":{"shape":"MonitoringJobDefinitionSummary"}
     },
+    "MonitoringJsonDatasetFormat":{
+      "type":"structure",
+      "members":{
+        "Line":{"shape":"Boolean"}
+      }
+    },
     "MonitoringMaxRuntimeInSeconds":{
       "type":"integer",
       "max":86400,
@@ -13185,6 +13233,11 @@
       "member":{"shape":"MonitoringOutput"},
       "max":1,
       "min":1
+    },
+    "MonitoringParquetDatasetFormat":{
+      "type":"structure",
+      "members":{
+      }
     },
     "MonitoringProblemType":{
       "type":"string",

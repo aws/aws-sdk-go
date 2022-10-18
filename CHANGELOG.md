@@ -1,3 +1,13 @@
+Release v1.44.118 (2022-10-18)
+===
+
+### Service Client Updates
+* `service/frauddetector`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This change allows customers to enable data capturing while running a batch transform job, and configure monitoring schedule to monitoring the captured data.
+* `service/servicediscovery`: Updates service API, documentation, and examples
+* `service/sesv2`: Updates service API and documentation
+
 Release v1.44.117 (2022-10-17)
 ===
 

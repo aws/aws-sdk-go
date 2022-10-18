@@ -28843,6 +28843,84 @@ func (s *AutoRollbackConfig) SetAlarms(v []*Alarm) *AutoRollbackConfig {
 	return s
 }
 
+// Configuration to control how SageMaker captures inference data for batch
+// transform jobs.
+type BatchDataCaptureConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location being used to capture the data.
+	//
+	// DestinationS3Uri is a required field
+	DestinationS3Uri *string `type:"string" required:"true"`
+
+	// Flag that indicates whether to append inference id to the output.
+	GenerateInferenceId *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
+	// key that SageMaker uses to encrypt data on the storage volume attached to
+	// the ML compute instance that hosts the batch transform job.
+	//
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Alias name: alias/ExampleAlias
+	//
+	//    * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
+	KmsKeyId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDataCaptureConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDataCaptureConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDataCaptureConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDataCaptureConfig"}
+	if s.DestinationS3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationS3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationS3Uri sets the DestinationS3Uri field's value.
+func (s *BatchDataCaptureConfig) SetDestinationS3Uri(v string) *BatchDataCaptureConfig {
+	s.DestinationS3Uri = &v
+	return s
+}
+
+// SetGenerateInferenceId sets the GenerateInferenceId field's value.
+func (s *BatchDataCaptureConfig) SetGenerateInferenceId(v bool) *BatchDataCaptureConfig {
+	s.GenerateInferenceId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *BatchDataCaptureConfig) SetKmsKeyId(v string) *BatchDataCaptureConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
 // The error code and error description associated with the resource.
 type BatchDescribeModelPackageError struct {
 	_ struct{} `type:"structure"`
@@ -29076,6 +29154,167 @@ func (s *BatchDescribeModelPackageSummary) SetModelPackageStatus(v string) *Batc
 // SetModelPackageVersion sets the ModelPackageVersion field's value.
 func (s *BatchDescribeModelPackageSummary) SetModelPackageVersion(v int64) *BatchDescribeModelPackageSummary {
 	s.ModelPackageVersion = &v
+	return s
+}
+
+// Input object for the batch transform job.
+type BatchTransformInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location being used to capture the data.
+	//
+	// DataCapturedDestinationS3Uri is a required field
+	DataCapturedDestinationS3Uri *string `type:"string" required:"true"`
+
+	// The dataset format for your batch transform job.
+	//
+	// DatasetFormat is a required field
+	DatasetFormat *MonitoringDatasetFormat `type:"structure" required:"true"`
+
+	// If specified, monitoring jobs substract this time from the end time. For
+	// information about using offsets for scheduling monitoring jobs, see Schedule
+	// Model Quality Monitoring Jobs (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html).
+	EndTimeOffset *string `min:"1" type:"string"`
+
+	// The attributes of the input data that are the input features.
+	FeaturesAttribute *string `type:"string"`
+
+	// The attribute of the input data that represents the ground truth label.
+	InferenceAttribute *string `type:"string"`
+
+	// Path to the filesystem where the batch transform data is available to the
+	// container.
+	//
+	// LocalPath is a required field
+	LocalPath *string `type:"string" required:"true"`
+
+	// In a classification problem, the attribute that represents the class probability.
+	ProbabilityAttribute *string `type:"string"`
+
+	// The threshold for the class probability to be evaluated as a positive result.
+	ProbabilityThresholdAttribute *float64 `type:"double"`
+
+	// Whether input data distributed in Amazon S3 is fully replicated or sharded
+	// by an S3 key. Defaults to FullyReplicated
+	S3DataDistributionType *string `type:"string" enum:"ProcessingS3DataDistributionType"`
+
+	// Whether the Pipe or File is used as the input mode for transferring data
+	// for the monitoring job. Pipe mode is recommended for large datasets. File
+	// mode is useful for small files that fit in memory. Defaults to File.
+	S3InputMode *string `type:"string" enum:"ProcessingS3InputMode"`
+
+	// If specified, monitoring jobs substract this time from the start time. For
+	// information about using offsets for scheduling monitoring jobs, see Schedule
+	// Model Quality Monitoring Jobs (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html).
+	StartTimeOffset *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchTransformInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchTransformInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchTransformInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchTransformInput_"}
+	if s.DataCapturedDestinationS3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataCapturedDestinationS3Uri"))
+	}
+	if s.DatasetFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetFormat"))
+	}
+	if s.EndTimeOffset != nil && len(*s.EndTimeOffset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndTimeOffset", 1))
+	}
+	if s.LocalPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocalPath"))
+	}
+	if s.StartTimeOffset != nil && len(*s.StartTimeOffset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartTimeOffset", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataCapturedDestinationS3Uri sets the DataCapturedDestinationS3Uri field's value.
+func (s *BatchTransformInput_) SetDataCapturedDestinationS3Uri(v string) *BatchTransformInput_ {
+	s.DataCapturedDestinationS3Uri = &v
+	return s
+}
+
+// SetDatasetFormat sets the DatasetFormat field's value.
+func (s *BatchTransformInput_) SetDatasetFormat(v *MonitoringDatasetFormat) *BatchTransformInput_ {
+	s.DatasetFormat = v
+	return s
+}
+
+// SetEndTimeOffset sets the EndTimeOffset field's value.
+func (s *BatchTransformInput_) SetEndTimeOffset(v string) *BatchTransformInput_ {
+	s.EndTimeOffset = &v
+	return s
+}
+
+// SetFeaturesAttribute sets the FeaturesAttribute field's value.
+func (s *BatchTransformInput_) SetFeaturesAttribute(v string) *BatchTransformInput_ {
+	s.FeaturesAttribute = &v
+	return s
+}
+
+// SetInferenceAttribute sets the InferenceAttribute field's value.
+func (s *BatchTransformInput_) SetInferenceAttribute(v string) *BatchTransformInput_ {
+	s.InferenceAttribute = &v
+	return s
+}
+
+// SetLocalPath sets the LocalPath field's value.
+func (s *BatchTransformInput_) SetLocalPath(v string) *BatchTransformInput_ {
+	s.LocalPath = &v
+	return s
+}
+
+// SetProbabilityAttribute sets the ProbabilityAttribute field's value.
+func (s *BatchTransformInput_) SetProbabilityAttribute(v string) *BatchTransformInput_ {
+	s.ProbabilityAttribute = &v
+	return s
+}
+
+// SetProbabilityThresholdAttribute sets the ProbabilityThresholdAttribute field's value.
+func (s *BatchTransformInput_) SetProbabilityThresholdAttribute(v float64) *BatchTransformInput_ {
+	s.ProbabilityThresholdAttribute = &v
+	return s
+}
+
+// SetS3DataDistributionType sets the S3DataDistributionType field's value.
+func (s *BatchTransformInput_) SetS3DataDistributionType(v string) *BatchTransformInput_ {
+	s.S3DataDistributionType = &v
+	return s
+}
+
+// SetS3InputMode sets the S3InputMode field's value.
+func (s *BatchTransformInput_) SetS3InputMode(v string) *BatchTransformInput_ {
+	s.S3InputMode = &v
+	return s
+}
+
+// SetStartTimeOffset sets the StartTimeOffset field's value.
+func (s *BatchTransformInput_) SetStartTimeOffset(v string) *BatchTransformInput_ {
+	s.StartTimeOffset = &v
 	return s
 }
 
@@ -39764,6 +40003,9 @@ type CreateTransformJobInput struct {
 	// limit, set BatchStrategy to MultiRecord and SplitType to Line.
 	BatchStrategy *string `type:"string" enum:"BatchStrategy"`
 
+	// Configuration to control how SageMaker captures inference data.
+	DataCaptureConfig *BatchDataCaptureConfig `type:"structure"`
+
 	// The data structure used to specify the data to be used for inference in a
 	// batch transform job and to associate the data that is relevant to the prediction
 	// results in the output. The input filter provided allows you to exclude input
@@ -39891,6 +40133,11 @@ func (s *CreateTransformJobInput) Validate() error {
 	if s.TransformResources == nil {
 		invalidParams.Add(request.NewErrParamRequired("TransformResources"))
 	}
+	if s.DataCaptureConfig != nil {
+		if err := s.DataCaptureConfig.Validate(); err != nil {
+			invalidParams.AddNested("DataCaptureConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExperimentConfig != nil {
 		if err := s.ExperimentConfig.Validate(); err != nil {
 			invalidParams.AddNested("ExperimentConfig", err.(request.ErrInvalidParams))
@@ -39936,6 +40183,12 @@ func (s *CreateTransformJobInput) Validate() error {
 // SetBatchStrategy sets the BatchStrategy field's value.
 func (s *CreateTransformJobInput) SetBatchStrategy(v string) *CreateTransformJobInput {
 	s.BatchStrategy = &v
+	return s
+}
+
+// SetDataCaptureConfig sets the DataCaptureConfig field's value.
+func (s *CreateTransformJobInput) SetDataCaptureConfig(v *BatchDataCaptureConfig) *CreateTransformJobInput {
+	s.DataCaptureConfig = v
 	return s
 }
 
@@ -41530,10 +41783,11 @@ func (s *DataQualityBaselineConfig) SetStatisticsResource(v *MonitoringStatistic
 type DataQualityJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 }
 
 // String returns the string representation.
@@ -41557,8 +41811,10 @@ func (s DataQualityJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataQualityJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataQualityJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -41570,6 +41826,12 @@ func (s *DataQualityJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *DataQualityJobInput) SetBatchTransformInput(v *BatchTransformInput_) *DataQualityJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -54420,6 +54682,9 @@ type DescribeTransformJobOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// Configuration to control how SageMaker captures inference data.
+	DataCaptureConfig *BatchDataCaptureConfig `type:"structure"`
+
 	// The data structure used to specify the data to be used for inference in a
 	// batch transform job and to associate the data that is relevant to the prediction
 	// results in the output. The input filter provided allows you to exclude input
@@ -54543,6 +54808,12 @@ func (s *DescribeTransformJobOutput) SetBatchStrategy(v string) *DescribeTransfo
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeTransformJobOutput) SetCreationTime(v time.Time) *DescribeTransformJobOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDataCaptureConfig sets the DataCaptureConfig field's value.
+func (s *DescribeTransformJobOutput) SetDataCaptureConfig(v *BatchDataCaptureConfig) *DescribeTransformJobOutput {
+	s.DataCaptureConfig = v
 	return s
 }
 
@@ -75849,10 +76120,11 @@ func (s *ModelBiasBaselineConfig) SetConstraintsResource(v *MonitoringConstraint
 type ModelBiasJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 
 	// Location of ground truth labels to use in model bias job.
 	//
@@ -75881,11 +76153,13 @@ func (s ModelBiasJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelBiasJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelBiasJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
-	}
 	if s.GroundTruthS3Input == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroundTruthS3Input"))
+	}
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -75897,6 +76171,12 @@ func (s *ModelBiasJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *ModelBiasJobInput) SetBatchTransformInput(v *BatchTransformInput_) *ModelBiasJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -76318,10 +76598,11 @@ func (s *ModelExplainabilityBaselineConfig) SetConstraintsResource(v *Monitoring
 type ModelExplainabilityJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 }
 
 // String returns the string representation.
@@ -76345,8 +76626,10 @@ func (s ModelExplainabilityJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelExplainabilityJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelExplainabilityJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -76358,6 +76641,12 @@ func (s *ModelExplainabilityJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *ModelExplainabilityJobInput) SetBatchTransformInput(v *BatchTransformInput_) *ModelExplainabilityJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -77951,10 +78240,11 @@ func (s *ModelQualityBaselineConfig) SetConstraintsResource(v *MonitoringConstra
 type ModelQualityJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 
 	// The ground truth label provided for the model.
 	//
@@ -77983,11 +78273,13 @@ func (s ModelQualityJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelQualityJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelQualityJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
-	}
 	if s.GroundTruthS3Input == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroundTruthS3Input"))
+	}
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -77999,6 +78291,12 @@ func (s *ModelQualityJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *ModelQualityJobInput) SetBatchTransformInput(v *BatchTransformInput_) *ModelQualityJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -78388,6 +78686,88 @@ func (s *MonitoringConstraintsResource) SetS3Uri(v string) *MonitoringConstraint
 	return s
 }
 
+// Represents the CSV dataset format used when running a monitoring job.
+type MonitoringCsvDatasetFormat struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates if the CSV data has a header.
+	Header *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringCsvDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringCsvDatasetFormat) GoString() string {
+	return s.String()
+}
+
+// SetHeader sets the Header field's value.
+func (s *MonitoringCsvDatasetFormat) SetHeader(v bool) *MonitoringCsvDatasetFormat {
+	s.Header = &v
+	return s
+}
+
+// Represents the dataset format used when running a monitoring job.
+type MonitoringDatasetFormat struct {
+	_ struct{} `type:"structure"`
+
+	// The CSV dataset used in the monitoring job.
+	Csv *MonitoringCsvDatasetFormat `type:"structure"`
+
+	// The JSON dataset used in the monitoring job
+	Json *MonitoringJsonDatasetFormat `type:"structure"`
+
+	// The Parquet dataset used in the monitoring job
+	Parquet *MonitoringParquetDatasetFormat `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringDatasetFormat) GoString() string {
+	return s.String()
+}
+
+// SetCsv sets the Csv field's value.
+func (s *MonitoringDatasetFormat) SetCsv(v *MonitoringCsvDatasetFormat) *MonitoringDatasetFormat {
+	s.Csv = v
+	return s
+}
+
+// SetJson sets the Json field's value.
+func (s *MonitoringDatasetFormat) SetJson(v *MonitoringJsonDatasetFormat) *MonitoringDatasetFormat {
+	s.Json = v
+	return s
+}
+
+// SetParquet sets the Parquet field's value.
+func (s *MonitoringDatasetFormat) SetParquet(v *MonitoringParquetDatasetFormat) *MonitoringDatasetFormat {
+	s.Parquet = v
+	return s
+}
+
 // Summary of information about the last monitoring job to run.
 type MonitoringExecutionSummary struct {
 	_ struct{} `type:"structure"`
@@ -78547,10 +78927,11 @@ func (s *MonitoringGroundTruthS3Input) SetS3Uri(v string) *MonitoringGroundTruth
 type MonitoringInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// The endpoint for a monitoring job.
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 }
 
 // String returns the string representation.
@@ -78574,8 +78955,10 @@ func (s MonitoringInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MonitoringInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MonitoringInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -78587,6 +78970,12 @@ func (s *MonitoringInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *MonitoringInput) SetBatchTransformInput(v *BatchTransformInput_) *MonitoringInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -78853,6 +79242,38 @@ func (s *MonitoringJobDefinitionSummary) SetMonitoringJobDefinitionName(v string
 	return s
 }
 
+// Represents the JSON dataset format used when running a monitoring job.
+type MonitoringJsonDatasetFormat struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates if the file should be read as a json object per line.
+	Line *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringJsonDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringJsonDatasetFormat) GoString() string {
+	return s.String()
+}
+
+// SetLine sets the Line field's value.
+func (s *MonitoringJsonDatasetFormat) SetLine(v bool) *MonitoringJsonDatasetFormat {
+	s.Line = &v
+	return s
+}
+
 // The networking configuration for the monitoring job.
 type MonitoringNetworkConfig struct {
 	_ struct{} `type:"structure"`
@@ -79048,6 +79469,29 @@ func (s *MonitoringOutputConfig) SetKmsKeyId(v string) *MonitoringOutputConfig {
 func (s *MonitoringOutputConfig) SetMonitoringOutputs(v []*MonitoringOutput) *MonitoringOutputConfig {
 	s.MonitoringOutputs = v
 	return s
+}
+
+// Represents the Parquet dataset format used when running a monitoring job.
+type MonitoringParquetDatasetFormat struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringParquetDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringParquetDatasetFormat) GoString() string {
+	return s.String()
 }
 
 // Identifies the resources to deploy for a monitoring job.

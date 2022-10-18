@@ -437,7 +437,7 @@ func (c *SESV2) CreateCustomVerificationEmailTemplateRequest(input *CreateCustom
 // Creates a new custom verification email template.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -1510,7 +1510,7 @@ func (c *SESV2) DeleteCustomVerificationEmailTemplateRequest(input *DeleteCustom
 // Deletes an existing custom verification email template.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -2577,7 +2577,7 @@ func (c *SESV2) GetCustomVerificationEmailTemplateRequest(input *GetCustomVerifi
 // specify.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -2704,6 +2704,91 @@ func (c *SESV2) GetDedicatedIp(input *GetDedicatedIpInput) (*GetDedicatedIpOutpu
 // for more information on using Contexts.
 func (c *SESV2) GetDedicatedIpWithContext(ctx aws.Context, input *GetDedicatedIpInput, opts ...request.Option) (*GetDedicatedIpOutput, error) {
 	req, out := c.GetDedicatedIpRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDedicatedIpPool = "GetDedicatedIpPool"
+
+// GetDedicatedIpPoolRequest generates a "aws/request.Request" representing the
+// client's request for the GetDedicatedIpPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDedicatedIpPool for more information on using the GetDedicatedIpPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDedicatedIpPoolRequest method.
+//	req, resp := client.GetDedicatedIpPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDedicatedIpPool
+func (c *SESV2) GetDedicatedIpPoolRequest(input *GetDedicatedIpPoolInput) (req *request.Request, output *GetDedicatedIpPoolOutput) {
+	op := &request.Operation{
+		Name:       opGetDedicatedIpPool,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/dedicated-ip-pools/{PoolName}",
+	}
+
+	if input == nil {
+		input = &GetDedicatedIpPoolInput{}
+	}
+
+	output = &GetDedicatedIpPoolOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDedicatedIpPool API operation for Amazon Simple Email Service.
+//
+// Retrieve information about the dedicated pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetDedicatedIpPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDedicatedIpPool
+func (c *SESV2) GetDedicatedIpPool(input *GetDedicatedIpPoolInput) (*GetDedicatedIpPoolOutput, error) {
+	req, out := c.GetDedicatedIpPoolRequest(input)
+	return out, req.Send()
+}
+
+// GetDedicatedIpPoolWithContext is the same as GetDedicatedIpPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDedicatedIpPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetDedicatedIpPoolWithContext(ctx aws.Context, input *GetDedicatedIpPoolInput, opts ...request.Option) (*GetDedicatedIpPoolOutput, error) {
+	req, out := c.GetDedicatedIpPoolRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4128,7 +4213,7 @@ func (c *SESV2) ListCustomVerificationEmailTemplatesRequest(input *ListCustomVer
 // the current Amazon Web Services Region.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -7044,7 +7129,7 @@ func (c *SESV2) SendCustomVerificationEmailRequest(input *SendCustomVerification
 //
 // To use this operation, you must first create a custom verification email
 // template. For more information about creating and using custom verification
-// email templates, see Using Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// email templates, see Using custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -7812,7 +7897,7 @@ func (c *SESV2) UpdateCustomVerificationEmailTemplateRequest(input *UpdateCustom
 // Updates an existing custom verification email template.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -8345,7 +8430,7 @@ type BlacklistEntry struct {
 	// maintainer.
 	Description *string `type:"string"`
 
-	// The time when the blacklisting event occurred, shown in Unix time format.
+	// The time when the blacklisting event occurred.
 	ListingTime *time.Time `type:"timestamp"`
 
 	// The name of the blacklist that the IP address appears on.
@@ -8751,8 +8836,8 @@ type CloudWatchDimensionConfiguration struct {
 	// if you don't provide the value of the dimension when you send an email. This
 	// value has to meet the following criteria:
 	//
-	//    * It can only contain ASCII letters (a–z, A–Z), numbers (0–9), underscores
-	//    (_), or dashes (-).
+	//    * Can only contain ASCII letters (a–z, A–Z), numbers (0–9), underscores
+	//    (_), or dashes (-), at signs (@), and periods (.).
 	//
 	//    * It can contain no more than 256 characters.
 	//
@@ -9717,8 +9802,8 @@ type CreateCustomVerificationEmailTemplateInput struct {
 
 	// The content of the custom verification email. The total size of the email
 	// must be less than 10 MB. The message body may contain HTML, with some limitations.
-	// For more information, see Custom Verification Email Frequently Asked Questions
-	// (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html#custom-verification-emails-faq)
+	// For more information, see Custom verification email frequently asked questions
+	// (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom-faq)
 	// in the Amazon SES Developer Guide.
 	//
 	// TemplateContent is a required field
@@ -9853,6 +9938,9 @@ type CreateDedicatedIpPoolInput struct {
 	// PoolName is a required field
 	PoolName *string `type:"string" required:"true"`
 
+	// The type of scaling mode.
+	ScalingMode *string `type:"string" enum:"ScalingMode"`
+
 	// An object that defines the tags (keys and values) that you want to associate
 	// with the pool.
 	Tags []*Tag `type:"list"`
@@ -9902,6 +9990,12 @@ func (s *CreateDedicatedIpPoolInput) Validate() error {
 // SetPoolName sets the PoolName field's value.
 func (s *CreateDedicatedIpPoolInput) SetPoolName(v string) *CreateDedicatedIpPoolInput {
 	s.PoolName = &v
+	return s
+}
+
+// SetScalingMode sets the ScalingMode field's value.
+func (s *CreateDedicatedIpPoolInput) SetScalingMode(v string) *CreateDedicatedIpPoolInput {
+	s.ScalingMode = &v
 	return s
 }
 
@@ -10760,6 +10854,57 @@ func (s *DedicatedIp) SetWarmupStatus(v string) *DedicatedIp {
 	return s
 }
 
+// Contains information about a dedicated IP pool.
+type DedicatedIpPool struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dedicated IP pool.
+	//
+	// PoolName is a required field
+	PoolName *string `type:"string" required:"true"`
+
+	// The type of the dedicated IP pool.
+	//
+	//    * STANDARD – A dedicated IP pool where the customer can control which
+	//    IPs are part of the pool.
+	//
+	//    * MANAGED – A dedicated IP pool where the reputation and number of IPs
+	//    is automatically managed by Amazon SES.
+	//
+	// ScalingMode is a required field
+	ScalingMode *string `type:"string" required:"true" enum:"ScalingMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DedicatedIpPool) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DedicatedIpPool) GoString() string {
+	return s.String()
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *DedicatedIpPool) SetPoolName(v string) *DedicatedIpPool {
+	s.PoolName = &v
+	return s
+}
+
+// SetScalingMode sets the ScalingMode field's value.
+func (s *DedicatedIpPool) SetScalingMode(v string) *DedicatedIpPool {
+	s.ScalingMode = &v
+	return s
+}
+
 // A request to delete an event destination from a configuration set.
 type DeleteConfigurationSetEventDestinationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -11561,8 +11706,7 @@ func (s DeleteSuppressedDestinationOutput) GoString() string {
 type DeliverabilityTestReport struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time when the predictive inbox placement test was created, in
-	// Unix time format.
+	// The date and time when the predictive inbox placement test was created.
 	CreateDate *time.Time `type:"timestamp"`
 
 	// The status of the predictive inbox placement test. If the status is IN_PROGRESS,
@@ -11977,9 +12121,9 @@ type DomainDeliverabilityCampaign struct {
 	// The major email providers who handled the email message.
 	Esps []*string `type:"list"`
 
-	// The first time, in Unix time format, when the email message was delivered
-	// to any recipient's inbox. This value can help you determine how long it took
-	// for a campaign to deliver an email message.
+	// The first time when the email message was delivered to any recipient's inbox.
+	// This value can help you determine how long it took for a campaign to deliver
+	// an email message.
 	FirstSeenDateTime *time.Time `type:"timestamp"`
 
 	// The verified email address that the email message was sent from.
@@ -11992,9 +12136,9 @@ type DomainDeliverabilityCampaign struct {
 	// The number of email messages that were delivered to recipients’ inboxes.
 	InboxCount *int64 `type:"long"`
 
-	// The last time, in Unix time format, when the email message was delivered
-	// to any recipient's inbox. This value can help you determine how long it took
-	// for a campaign to deliver an email message.
+	// The last time when the email message was delivered to any recipient's inbox.
+	// This value can help you determine how long it took for a campaign to deliver
+	// an email message.
 	LastSeenDateTime *time.Time `type:"timestamp"`
 
 	// The projected number of recipients that the email message was sent to.
@@ -12139,8 +12283,7 @@ type DomainDeliverabilityTrackingOption struct {
 	// for the domain.
 	InboxPlacementTrackingOption *InboxPlacementTrackingOption `type:"structure"`
 
-	// The date, in Unix time format, when you enabled the Deliverability dashboard
-	// for the domain.
+	// The date when you enabled the Deliverability dashboard for the domain.
 	SubscriptionStartDate *time.Time `type:"timestamp"`
 }
 
@@ -13665,6 +13808,88 @@ func (s *GetDedicatedIpOutput) SetDedicatedIp(v *DedicatedIp) *GetDedicatedIpOut
 	return s
 }
 
+// A request to obtain more information about a dedicated IP pool.
+type GetDedicatedIpPoolInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the dedicated IP pool to retrieve.
+	//
+	// PoolName is a required field
+	PoolName *string `location:"uri" locationName:"PoolName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDedicatedIpPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDedicatedIpPoolInput"}
+	if s.PoolName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolName"))
+	}
+	if s.PoolName != nil && len(*s.PoolName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PoolName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *GetDedicatedIpPoolInput) SetPoolName(v string) *GetDedicatedIpPoolInput {
+	s.PoolName = &v
+	return s
+}
+
+// The following element is returned by the service.
+type GetDedicatedIpPoolOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information about a dedicated IP pool.
+	DedicatedIpPool *DedicatedIpPool `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolOutput) GoString() string {
+	return s.String()
+}
+
+// SetDedicatedIpPool sets the DedicatedIpPool field's value.
+func (s *GetDedicatedIpPoolOutput) SetDedicatedIpPool(v *DedicatedIpPool) *GetDedicatedIpPoolOutput {
+	s.DedicatedIpPool = v
+	return s
+}
+
 // A request to obtain more information about dedicated IP pools.
 type GetDedicatedIpsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -13822,10 +14047,10 @@ type GetDeliverabilityDashboardOptionsOutput struct {
 	// scheduled to expire at the end of the current calendar month.
 	PendingExpirationSubscribedDomains []*DomainDeliverabilityTrackingOption `type:"list"`
 
-	// The date, in Unix time format, when your current subscription to the Deliverability
-	// dashboard is scheduled to expire, if your subscription is scheduled to expire
-	// at the end of the current calendar month. This value is null if you have
-	// an active subscription that isn’t due to expire at the end of the month.
+	// The date when your current subscription to the Deliverability dashboard is
+	// scheduled to expire, if your subscription is scheduled to expire at the end
+	// of the current calendar month. This value is null if you have an active subscription
+	// that isn’t due to expire at the end of the month.
 	SubscriptionExpiryDate *time.Time `type:"timestamp"`
 }
 
@@ -14313,6 +14538,22 @@ type GetEmailIdentityOutput struct {
 	// with the email identity.
 	Tags []*Tag `type:"list"`
 
+	// The verification status of the identity. The status can be one of the following:
+	//
+	//    * PENDING – The verification process was initiated, but Amazon SES hasn't
+	//    yet been able to verify the identity.
+	//
+	//    * SUCCESS – The verification process completed successfully.
+	//
+	//    * FAILED – The verification process failed.
+	//
+	//    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon SES from
+	//    determining the verification status of the identity.
+	//
+	//    * NOT_STARTED – The verification process hasn't been initiated for the
+	//    identity.
+	VerificationStatus *string `type:"string" enum:"VerificationStatus"`
+
 	// Specifies whether or not the identity is verified. You can only send email
 	// from verified email addresses or domains. For more information about verifying
 	// identities, see the Amazon Pinpoint User Guide (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html).
@@ -14376,6 +14617,12 @@ func (s *GetEmailIdentityOutput) SetPolicies(v map[string]*string) *GetEmailIden
 // SetTags sets the Tags field's value.
 func (s *GetEmailIdentityOutput) SetTags(v []*Tag) *GetEmailIdentityOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVerificationStatus sets the VerificationStatus field's value.
+func (s *GetEmailIdentityOutput) SetVerificationStatus(v string) *GetEmailIdentityOutput {
+	s.VerificationStatus = &v
 	return s
 }
 
@@ -14823,6 +15070,22 @@ type IdentityInfo struct {
 	// you can send email from an identity, you have to demostrate that you own
 	// the identity, and that you authorize Amazon SES to send email from that identity.
 	SendingEnabled *bool `type:"boolean"`
+
+	// The verification status of the identity. The status can be one of the following:
+	//
+	//    * PENDING – The verification process was initiated, but Amazon SES hasn't
+	//    yet been able to verify the identity.
+	//
+	//    * SUCCESS – The verification process completed successfully.
+	//
+	//    * FAILED – The verification process failed.
+	//
+	//    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon SES from
+	//    determining the verification status of the identity.
+	//
+	//    * NOT_STARTED – The verification process hasn't been initiated for the
+	//    identity.
+	VerificationStatus *string `type:"string" enum:"VerificationStatus"`
 }
 
 // String returns the string representation.
@@ -14858,6 +15121,12 @@ func (s *IdentityInfo) SetIdentityType(v string) *IdentityInfo {
 // SetSendingEnabled sets the SendingEnabled field's value.
 func (s *IdentityInfo) SetSendingEnabled(v bool) *IdentityInfo {
 	s.SendingEnabled = &v
+	return s
+}
+
+// SetVerificationStatus sets the VerificationStatus field's value.
+func (s *IdentityInfo) SetVerificationStatus(v string) *IdentityInfo {
+	s.VerificationStatus = &v
 	return s
 }
 
@@ -14992,6 +15261,10 @@ type ImportJobSummary struct {
 	// The date and time when the import job was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
+	// The number of records that failed processing because of invalid input or
+	// other reasons.
+	FailedRecordsCount *int64 `type:"integer"`
+
 	// An object that contains details about the resource destination the import
 	// job is going to target.
 	ImportDestination *ImportDestination `type:"structure"`
@@ -15001,6 +15274,9 @@ type ImportJobSummary struct {
 
 	// The status of the import job.
 	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The current number of records processed.
+	ProcessedRecordsCount *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -15027,6 +15303,12 @@ func (s *ImportJobSummary) SetCreatedTimestamp(v time.Time) *ImportJobSummary {
 	return s
 }
 
+// SetFailedRecordsCount sets the FailedRecordsCount field's value.
+func (s *ImportJobSummary) SetFailedRecordsCount(v int64) *ImportJobSummary {
+	s.FailedRecordsCount = &v
+	return s
+}
+
 // SetImportDestination sets the ImportDestination field's value.
 func (s *ImportJobSummary) SetImportDestination(v *ImportDestination) *ImportJobSummary {
 	s.ImportDestination = v
@@ -15042,6 +15324,12 @@ func (s *ImportJobSummary) SetJobId(v string) *ImportJobSummary {
 // SetJobStatus sets the JobStatus field's value.
 func (s *ImportJobSummary) SetJobStatus(v string) *ImportJobSummary {
 	s.JobStatus = &v
+	return s
+}
+
+// SetProcessedRecordsCount sets the ProcessedRecordsCount field's value.
+func (s *ImportJobSummary) SetProcessedRecordsCount(v int64) *ImportJobSummary {
+	s.ProcessedRecordsCount = &v
 	return s
 }
 
@@ -15952,9 +16240,9 @@ func (s *ListDeliverabilityTestReportsOutput) SetNextToken(v string) *ListDelive
 type ListDomainDeliverabilityCampaignsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The last day, in Unix time format, that you want to obtain deliverability
-	// data for. This value has to be less than or equal to 30 days after the value
-	// of the StartDate parameter.
+	// The last day that you want to obtain deliverability data for. This value
+	// has to be less than or equal to 30 days after the value of the StartDate
+	// parameter.
 	//
 	// EndDate is a required field
 	EndDate *time.Time `location:"querystring" locationName:"EndDate" type:"timestamp" required:"true"`
@@ -15970,8 +16258,7 @@ type ListDomainDeliverabilityCampaignsInput struct {
 	// includes a NextToken element, which you can use to obtain additional results.
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 
-	// The first day, in Unix time format, that you want to obtain deliverability
-	// data for.
+	// The first day that you want to obtain deliverability data for.
 	//
 	// StartDate is a required field
 	StartDate *time.Time `location:"querystring" locationName:"StartDate" type:"timestamp" required:"true"`
@@ -16453,8 +16740,7 @@ type ListSuppressedDestinationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Used to filter the list of suppressed email destinations so that it only
-	// includes addresses that were added to the list before a specific date. The
-	// date that you specify should be in Unix time format.
+	// includes addresses that were added to the list before a specific date.
 	EndDate *time.Time `location:"querystring" locationName:"EndDate" type:"timestamp"`
 
 	// A token returned from a previous call to ListSuppressedDestinations to indicate
@@ -16471,8 +16757,7 @@ type ListSuppressedDestinationsInput struct {
 	Reasons []*string `location:"querystring" locationName:"Reason" type:"list" enum:"SuppressionListReason"`
 
 	// Used to filter the list of suppressed email destinations so that it only
-	// includes addresses that were added to the list after a specific date. The
-	// date that you specify should be in Unix time format.
+	// includes addresses that were added to the list after a specific date.
 	StartDate *time.Time `location:"querystring" locationName:"StartDate" type:"timestamp"`
 }
 
@@ -16654,8 +16939,8 @@ type MailFromAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// The action to take if the required MX record can't be found when you send
-	// an email. When you set this value to UseDefaultValue, the mail is sent using
-	// amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage,
+	// an email. When you set this value to USE_DEFAULT_VALUE, the mail is sent
+	// using amazonses.com as the MAIL FROM domain. When you set this value to REJECT_MESSAGE,
 	// the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't
 	// attempt to deliver the email.
 	//
@@ -19691,8 +19976,8 @@ type SendQuota struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of emails that you can send in the current Amazon Web
-	// Services Region over a 24-hour period. This value is also called your sending
-	// quota.
+	// Services Region over a 24-hour period. A value of -1 signifies an unlimited
+	// quota. (This value is also referred to as your sending quota.)
 	Max24HourSend *float64 `type:"double"`
 
 	// The maximum number of emails that you can send per second in the current
@@ -21315,8 +21600,8 @@ type UpdateCustomVerificationEmailTemplateInput struct {
 
 	// The content of the custom verification email. The total size of the email
 	// must be less than 10 MB. The message body may contain HTML, with some limitations.
-	// For more information, see Custom Verification Email Frequently Asked Questions
-	// (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html#custom-verification-emails-faq)
+	// For more information, see Custom verification email frequently asked questions
+	// (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom-faq)
 	// in the Amazon SES Developer Guide.
 	//
 	// TemplateContent is a required field
@@ -22185,6 +22470,22 @@ func ReviewStatus_Values() []string {
 }
 
 const (
+	// ScalingModeStandard is a ScalingMode enum value
+	ScalingModeStandard = "STANDARD"
+
+	// ScalingModeManaged is a ScalingMode enum value
+	ScalingModeManaged = "MANAGED"
+)
+
+// ScalingMode_Values returns all elements of the ScalingMode enum
+func ScalingMode_Values() []string {
+	return []string{
+		ScalingModeStandard,
+		ScalingModeManaged,
+	}
+}
+
+const (
 	// SubscriptionStatusOptIn is a SubscriptionStatus enum value
 	SubscriptionStatusOptIn = "OPT_IN"
 
@@ -22264,6 +22565,34 @@ func TlsPolicy_Values() []string {
 	return []string{
 		TlsPolicyRequire,
 		TlsPolicyOptional,
+	}
+}
+
+const (
+	// VerificationStatusPending is a VerificationStatus enum value
+	VerificationStatusPending = "PENDING"
+
+	// VerificationStatusSuccess is a VerificationStatus enum value
+	VerificationStatusSuccess = "SUCCESS"
+
+	// VerificationStatusFailed is a VerificationStatus enum value
+	VerificationStatusFailed = "FAILED"
+
+	// VerificationStatusTemporaryFailure is a VerificationStatus enum value
+	VerificationStatusTemporaryFailure = "TEMPORARY_FAILURE"
+
+	// VerificationStatusNotStarted is a VerificationStatus enum value
+	VerificationStatusNotStarted = "NOT_STARTED"
+)
+
+// VerificationStatus_Values returns all elements of the VerificationStatus enum
+func VerificationStatus_Values() []string {
+	return []string{
+		VerificationStatusPending,
+		VerificationStatusSuccess,
+		VerificationStatusFailed,
+		VerificationStatusTemporaryFailure,
+		VerificationStatusNotStarted,
 	}
 }
 

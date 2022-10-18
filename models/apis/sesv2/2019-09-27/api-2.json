@@ -445,6 +445,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetDedicatedIpPool":{
+      "name":"GetDedicatedIpPool",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/dedicated-ip-pools/{PoolName}"
+      },
+      "input":{"shape":"GetDedicatedIpPoolRequest"},
+      "output":{"shape":"GetDedicatedIpPoolResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetDedicatedIps":{
       "name":"GetDedicatedIps",
       "http":{
@@ -1524,7 +1538,8 @@
       "required":["PoolName"],
       "members":{
         "PoolName":{"shape":"PoolName"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ScalingMode":{"shape":"ScalingMode"}
       }
     },
     "CreateDedicatedIpPoolResponse":{
@@ -1684,6 +1699,17 @@
     "DedicatedIpList":{
       "type":"list",
       "member":{"shape":"DedicatedIp"}
+    },
+    "DedicatedIpPool":{
+      "type":"structure",
+      "required":[
+        "PoolName",
+        "ScalingMode"
+      ],
+      "members":{
+        "PoolName":{"shape":"PoolName"},
+        "ScalingMode":{"shape":"ScalingMode"}
+      }
     },
     "DefaultDimensionValue":{"type":"string"},
     "DeleteConfigurationSetEventDestinationRequest":{
@@ -2291,6 +2317,23 @@
         "FailureRedirectionURL":{"shape":"FailureRedirectionURL"}
       }
     },
+    "GetDedicatedIpPoolRequest":{
+      "type":"structure",
+      "required":["PoolName"],
+      "members":{
+        "PoolName":{
+          "shape":"PoolName",
+          "location":"uri",
+          "locationName":"PoolName"
+        }
+      }
+    },
+    "GetDedicatedIpPoolResponse":{
+      "type":"structure",
+      "members":{
+        "DedicatedIpPool":{"shape":"DedicatedIpPool"}
+      }
+    },
     "GetDedicatedIpRequest":{
       "type":"structure",
       "required":["Ip"],
@@ -2469,7 +2512,8 @@
         "MailFromAttributes":{"shape":"MailFromAttributes"},
         "Policies":{"shape":"PolicyMap"},
         "Tags":{"shape":"TagList"},
-        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"},
+        "VerificationStatus":{"shape":"VerificationStatus"}
       }
     },
     "GetEmailTemplateRequest":{
@@ -2546,7 +2590,8 @@
       "members":{
         "IdentityType":{"shape":"IdentityType"},
         "IdentityName":{"shape":"Identity"},
-        "SendingEnabled":{"shape":"Enabled"}
+        "SendingEnabled":{"shape":"Enabled"},
+        "VerificationStatus":{"shape":"VerificationStatus"}
       }
     },
     "IdentityInfoList":{
@@ -2593,7 +2638,9 @@
         "JobId":{"shape":"JobId"},
         "ImportDestination":{"shape":"ImportDestination"},
         "JobStatus":{"shape":"JobStatus"},
-        "CreatedTimestamp":{"shape":"Timestamp"}
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "ProcessedRecordsCount":{"shape":"ProcessedRecordsCount"},
+        "FailedRecordsCount":{"shape":"FailedRecordsCount"}
       }
     },
     "ImportJobSummaryList":{
@@ -3486,6 +3533,13 @@
       "type":"string",
       "pattern":"^s3:\\/\\/([^\\/]+)\\/(.*?([^\\/]+)\\/?)$"
     },
+    "ScalingMode":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "MANAGED"
+      ]
+    },
     "Selector":{
       "type":"string",
       "max":63,
@@ -3979,6 +4033,16 @@
       "sensitive":true
     },
     "UseDefaultIfPreferenceUnavailable":{"type":"boolean"},
+    "VerificationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "SUCCESS",
+        "FAILED",
+        "TEMPORARY_FAILURE",
+        "NOT_STARTED"
+      ]
+    },
     "Volume":{"type":"long"},
     "VolumeStatistics":{
       "type":"structure",

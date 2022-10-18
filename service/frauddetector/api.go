@@ -8531,8 +8531,12 @@ type CreateBatchImportJobInput struct {
 	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
 
 	// The ARN of the IAM role created for Amazon S3 bucket that holds your data
-	// file. The IAM role must have read and write permissions to both input and
-	// output S3 buckets.
+	// file.
+	//
+	// The IAM role must have read permissions to your input S3 bucket and write
+	// permissions to your output S3 bucket. For more information about bucket permissions,
+	// see User policy examples (https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-policies-s3.html)
+	// in the Amazon S3 User Guide.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `locationName:"iamRoleArn" min:"1" type:"string" required:"true"`
@@ -8700,6 +8704,11 @@ type CreateBatchPredictionJobInput struct {
 	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
 
 	// The ARN of the IAM role to use for this job request.
+	//
+	// The IAM Role must have read permissions to your input S3 bucket and write
+	// permissions to your output S3 bucket. For more information about bucket permissions,
+	// see User policy examples (https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-policies-s3.html)
+	// in the Amazon S3 User Guide.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `locationName:"iamRoleArn" min:"1" type:"string" required:"true"`
@@ -17109,6 +17118,9 @@ type PutKMSEncryptionKeyInput struct {
 
 	// The KMS encryption key ARN.
 	//
+	// The KMS key must be single-Region key. Amazon Fraud Detector does not support
+	// multi-Region KMS key.
+	//
 	// KmsEncryptionKeyArn is a required field
 	KmsEncryptionKeyArn *string `locationName:"kmsEncryptionKeyArn" min:"7" type:"string" required:"true"`
 }
@@ -18930,6 +18942,8 @@ type UpdateDetectorVersionStatusInput struct {
 	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
 
 	// The new status.
+	//
+	// The only supported values are ACTIVE and INACTIVE
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"DetectorVersionStatus"`

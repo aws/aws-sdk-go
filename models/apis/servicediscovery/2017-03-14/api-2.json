@@ -640,7 +640,8 @@
       "enum":[
         "EQ",
         "IN",
-        "BETWEEN"
+        "BETWEEN",
+        "BEGINS_WITH"
       ]
     },
     "FilterValue":{
@@ -962,7 +963,11 @@
     },
     "NamespaceFilterName":{
       "type":"string",
-      "enum":["TYPE"]
+      "enum":[
+        "TYPE",
+        "NAME",
+        "HTTP_NAME"
+      ]
     },
     "NamespaceFilters":{
       "type":"list",
@@ -979,12 +984,12 @@
     },
     "NamespaceNamePrivate":{
       "type":"string",
-      "max":1024,
-      "pattern":"^[!-~]{1,1024}$"
+      "max":253,
+      "pattern":"^[!-~]{1,253}$"
     },
     "NamespaceNamePublic":{
       "type":"string",
-      "max":1024,
+      "max":253,
       "pattern":"^([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?$"
     },
     "NamespaceNotFound":{

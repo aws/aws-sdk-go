@@ -260,7 +260,7 @@
         },
         "output": {
           "Namespace": {
-            "Arn": "arn:aws:servicediscovery:us-west-2: 123456789120:namespace/ns-e1tpmexample0001",
+            "Arn": "arn:aws:servicediscovery:us-west-2:123456789012:namespace/ns-e1tpmexample0001",
             "CreateDate": "20181118T211712Z",
             "CreatorRequestId": "example-creator-request-id-0001",
             "Description": "Example.com AWS Cloud Map HTTP Namespace",
@@ -322,7 +322,7 @@
         },
         "output": {
           "Service": {
-            "Arn": "arn:aws:servicediscovery:us-west-2:123456789120:service/srv-e4anhexample0004",
+            "Arn": "arn:aws:servicediscovery:us-west-2:123456789012:service/srv-e4anhexample0004",
             "CreateDate": "20181118T211707Z",
             "CreatorRequestId": "example-creator-request-id-0004",
             "Description": "Example.com AWS Cloud Map HTTP Service",
