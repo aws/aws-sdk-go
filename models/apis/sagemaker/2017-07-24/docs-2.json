@@ -1102,6 +1102,13 @@
         "HumanLoopRequestSource$AwsManagedHumanLoopRequestSource": "<p>Specifies whether Amazon Rekognition or Amazon Textract are used as the integration source. The default field settings and JSON parsing rules are different based on the integration source. Valid values:</p>"
       }
     },
+    "BatchDataCaptureConfig": {
+      "base": "<p>Configuration to control how SageMaker captures inference data for batch transform jobs.</p>",
+      "refs": {
+        "CreateTransformJobRequest$DataCaptureConfig": "<p>Configuration to control how SageMaker captures inference data.</p>",
+        "DescribeTransformJobResponse$DataCaptureConfig": "<p>Configuration to control how SageMaker captures inference data.</p>"
+      }
+    },
     "BatchDescribeModelPackageError": {
       "base": "<p>The error code and error description associated with the resource.</p>",
       "refs": {
@@ -1139,6 +1146,16 @@
         "TransformJobDefinition$BatchStrategy": "<p>A string that determines the number of records included in a single mini-batch.</p> <p> <code>SingleRecord</code> means only one record is used per mini-batch. <code>MultiRecord</code> means a mini-batch is set to contain as many records that can fit within the <code>MaxPayloadInMB</code> limit.</p>"
       }
     },
+    "BatchTransformInput": {
+      "base": "<p>Input object for the batch transform job.</p>",
+      "refs": {
+        "DataQualityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "ModelBiasJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "ModelExplainabilityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "ModelQualityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "MonitoringInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>"
+      }
+    },
     "Bias": {
       "base": "<p>Contains bias metrics for a model.</p>",
       "refs": {
@@ -1169,6 +1186,7 @@
       "refs": {
         "AlgorithmSpecification$EnableSageMakerMetricsTimeSeries": "<p>To generate and save time-series metrics during training, set to <code>true</code>. The default is <code>false</code> and time-series metrics aren't generated except in the following cases:</p> <ul> <li> <p>You use one of the SageMaker built-in algorithms</p> </li> <li> <p>You use one of the following <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pre-built-containers-frameworks-deep-learning.html\">Prebuilt SageMaker Docker Images</a>:</p> <ul> <li> <p>Tensorflow (version &gt;= 1.15)</p> </li> <li> <p>MXNet (version &gt;= 1.6)</p> </li> <li> <p>PyTorch (version &gt;= 1.3)</p> </li> </ul> </li> <li> <p>You specify at least one <a>MetricDefinition</a> </p> </li> </ul>",
         "AutoMLSecurityConfig$EnableInterContainerTrafficEncryption": "<p>Whether to use traffic encryption between the container layers.</p>",
+        "BatchDataCaptureConfig$GenerateInferenceId": "<p>Flag that indicates whether to append inference id to the output.</p>",
         "ChannelSpecification$IsRequired": "<p>Indicates whether the channel is required by the algorithm.</p>",
         "ClarifyCheckStepMetadata$SkipCheck": "<p>This flag indicates if the drift check against the previous baseline will be skipped or not. If it is set to <code>False</code>, the previous baseline of the configured check type must be available.</p>",
         "ClarifyCheckStepMetadata$RegisterNewBaseline": "<p>This flag indicates if a newly calculated baseline can be accessed through step properties <code>BaselineUsedForDriftCheckConstraints</code> and <code>BaselineUsedForDriftCheckStatistics</code>. If it is set to <code>False</code>, the previous baseline of the configured check type must also be available. These can be accessed through the <code>BaselineUsedForDriftCheckConstraints</code> property. </p>",
@@ -1186,6 +1204,8 @@
         "HyperParameterTrainingJobDefinition$EnableInterContainerTrafficEncryption": "<p>To encrypt all communications between ML compute instances in distributed training, choose <code>True</code>. Encryption provides greater security for distributed training, but training might take longer. How long it takes depends on the amount of communication between compute instances, especially if you use a deep learning algorithm in distributed training.</p>",
         "HyperParameterTrainingJobDefinition$EnableManagedSpotTraining": "<p>A Boolean indicating whether managed spot training is enabled (<code>True</code>) or not (<code>False</code>).</p>",
         "ListStageDevicesRequest$ExcludeDevicesDeployedInOtherStage": "<p>Toggle for excluding devices deployed in other stages.</p>",
+        "MonitoringCsvDatasetFormat$Header": "<p>Indicates if the CSV data has a header.</p>",
+        "MonitoringJsonDatasetFormat$Line": "<p>Indicates if the file should be read as a json object per line. </p>",
         "MonitoringNetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between the instances used for the monitoring jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed jobs, but the processing might take longer.</p>",
         "MonitoringNetworkConfig$EnableNetworkIsolation": "<p>Whether to allow inbound and outbound network calls to and from the containers used for the monitoring job.</p>",
         "NetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between distributed processing jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.</p>",
@@ -3559,6 +3579,7 @@
       "base": null,
       "refs": {
         "AsyncInferenceOutputConfig$S3OutputPath": "<p>The Amazon S3 location to upload inference responses to.</p>",
+        "BatchTransformInput$DataCapturedDestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
         "DataCaptureConfig$DestinationS3Uri": "<p>The Amazon S3 location used to capture the data.</p>",
         "DataCaptureConfigSummary$DestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
         "ProductionVariantCoreDumpConfig$DestinationS3Uri": "<p>The Amazon S3 bucket to send the core dump to.</p>"
@@ -5980,6 +6001,7 @@
         "AthenaDatasetDefinition$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data generated from an Athena query execution.</p>",
         "AutoMLOutputDataConfig$KmsKeyId": "<p>The Amazon Web Services KMS encryption key ID.</p>",
         "AutoMLSecurityConfig$VolumeKmsKeyId": "<p>The key used to encrypt stored data.</p>",
+        "BatchDataCaptureConfig$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the batch transform job.</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
         "CreateDomainRequest$HomeEfsFileSystemKmsKeyId": "<p>Use <code>KmsKeyId</code>.</p>",
         "CreateDomainRequest$KmsKeyId": "<p>SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.</p>",
         "CreateEdgePackagingJobRequest$ResourceKey": "<p>The Amazon Web Services KMS key to use when encrypting the EBS volume the edge packaging job runs on.</p>",
@@ -7744,6 +7766,18 @@
         "MonitoringAppSpecification$ContainerArguments": "<p>An array of arguments for the container used to run the monitoring job.</p>"
       }
     },
+    "MonitoringCsvDatasetFormat": {
+      "base": "<p>Represents the CSV dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "MonitoringDatasetFormat$Csv": "<p>The CSV dataset used in the monitoring job.</p>"
+      }
+    },
+    "MonitoringDatasetFormat": {
+      "base": "<p>Represents the dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "BatchTransformInput$DatasetFormat": "<p>The dataset format for your batch transform job.</p>"
+      }
+    },
     "MonitoringEnvironmentMap": {
       "base": null,
       "refs": {
@@ -7864,6 +7898,12 @@
         "ListModelQualityJobDefinitionsResponse$JobDefinitionSummaries": "<p>A list of summaries of model quality monitoring job definitions.</p>"
       }
     },
+    "MonitoringJsonDatasetFormat": {
+      "base": "<p>Represents the JSON dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "MonitoringDatasetFormat$Json": "<p>The JSON dataset used in the monitoring job</p>"
+      }
+    },
     "MonitoringMaxRuntimeInSeconds": {
       "base": null,
       "refs": {
@@ -7907,6 +7947,12 @@
       "base": null,
       "refs": {
         "MonitoringOutputConfig$MonitoringOutputs": "<p>Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.</p>"
+      }
+    },
+    "MonitoringParquetDatasetFormat": {
+      "base": "<p>Represents the Parquet dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "MonitoringDatasetFormat$Parquet": "<p>The Parquet dataset used in the monitoring job</p>"
       }
     },
     "MonitoringProblemType": {
@@ -8033,6 +8079,8 @@
     "MonitoringTimeOffsetString": {
       "base": null,
       "refs": {
+        "BatchTransformInput$StartTimeOffset": "<p>If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
+        "BatchTransformInput$EndTimeOffset": "<p>If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
         "EndpointInput$StartTimeOffset": "<p>If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
         "EndpointInput$EndTimeOffset": "<p>If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>"
       }
@@ -8999,6 +9047,7 @@
     "ProbabilityThresholdAttribute": {
       "base": null,
       "refs": {
+        "BatchTransformInput$ProbabilityThresholdAttribute": "<p>The threshold for the class probability to be evaluated as a positive result.</p>",
         "EndpointInput$ProbabilityThresholdAttribute": "<p>The threshold for the class probability to be evaluated as a positive result.</p>"
       }
     },
@@ -9139,6 +9188,7 @@
     "ProcessingLocalPath": {
       "base": null,
       "refs": {
+        "BatchTransformInput$LocalPath": "<p>Path to the filesystem where the batch transform data is available to the container.</p>",
         "DatasetDefinition$LocalPath": "<p>The local path where you want Amazon SageMaker to download the Dataset Definition inputs to run a processing job. <code>LocalPath</code> is an absolute path to the input data. This is a required parameter when <code>AppManaged</code> is <code>False</code> (default).</p>",
         "EndpointInput$LocalPath": "<p>Path to the filesystem where the endpoint data is available to the container.</p>",
         "MonitoringS3Output$LocalPath": "<p>The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.</p>",
@@ -9189,6 +9239,7 @@
     "ProcessingS3DataDistributionType": {
       "base": null,
       "refs": {
+        "BatchTransformInput$S3DataDistributionType": "<p>Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defaults to <code>FullyReplicated</code> </p>",
         "EndpointInput$S3DataDistributionType": "<p>Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defaults to <code>FullyReplicated</code> </p>",
         "ProcessingS3Input$S3DataDistributionType": "<p>Whether to distribute the data from Amazon S3 to all processing instances with <code>FullyReplicated</code>, or whether the data from Amazon S3 is shared by Amazon S3 key, downloading one shard of data to each processing instance.</p>"
       }
@@ -9208,6 +9259,7 @@
     "ProcessingS3InputMode": {
       "base": null,
       "refs": {
+        "BatchTransformInput$S3InputMode": "<p>Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transferring data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.</p>",
         "EndpointInput$S3InputMode": "<p>Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transferring data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.</p>",
         "ProcessingS3Input$S3InputMode": "<p>Whether to use <code>File</code> or <code>Pipe</code> input mode. In File mode, Amazon SageMaker copies the data from the input source onto the local ML storage volume before starting your processing container. This is the most commonly used input mode. In <code>Pipe</code> mode, Amazon SageMaker streams input data from the source directly to your processing container into named pipes without using the ML storage volume.</p>"
       }
@@ -10121,6 +10173,7 @@
         "AutoMLCandidateGenerationConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing selected features from the input data source to run an Autopilot job. You can input <code>FeatureAttributeNames</code> (optional) in JSON format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>You can also specify the data type of the feature (optional) in the format shown below:</p> <p> <code>{ \"FeatureDataTypes\":{\"col1\":\"numeric\", \"col2\":\"categorical\" ... } }</code> </p> <note> <p>These column keys may not include the target column.</p> </note> <p>In ensembling mode, Autopilot will only support the following data types: <code>numeric</code>, <code>categorical</code>, <code>text</code> and <code>datetime</code>. In HPO mode, Autopilot can support <code>numeric</code>, <code>categorical</code>, <code>text</code>, <code>datetime</code> and <code>sequence</code>.</p> <p>If only <code>FeatureDataTypes</code> is provided, the column keys (<code>col1</code>, <code>col2</code>,..) should be a subset of the column names in the input data. </p> <p>If both <code>FeatureDataTypes</code> and <code>FeatureAttributeNames</code> are provided, then the column keys should be a subset of the column names provided in <code>FeatureAttributeNames</code>. </p> <p>The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>[\"col1\", \"col2\", ...]</code> is case sensitive and should be a list of strings containing unique values that are a subset of the column names in the input data. The list of columns provided must not include the target column.</p>",
         "AutoMLOutputDataConfig$S3OutputPath": "<p>The Amazon S3 output path. Must be 128 characters or less.</p>",
         "AutoMLS3DataSource$S3Uri": "<p>The URL to the Amazon S3 data source.</p>",
+        "BatchDataCaptureConfig$DestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
         "CheckpointConfig$S3Uri": "<p>Identifies the S3 path where you want SageMaker to store checkpoints. For example, <code>s3://bucket-name/key-name-prefix</code>.</p>",
         "CreateLabelingJobRequest$LabelCategoryConfigS3Uri": "<p>The S3 URI of the file, referred to as a <i>label category configuration file</i>, that defines the categories used to label the data objects.</p> <p>For 3D point cloud and video frame task types, you can add label category attributes and frame attributes to your label category configuration file. To learn how, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-label-category-config.html\">Create a Labeling Category Configuration File for 3D Point Cloud Labeling Jobs</a>. </p> <p>For named entity recognition jobs, in addition to <code>\"labels\"</code>, you must provide worker instructions in the label category configuration file using the <code>\"instructions\"</code> parameter: <code>\"instructions\": {\"shortInstruction\":\"&lt;h1&gt;Add header&lt;/h1&gt;&lt;p&gt;Add Instructions&lt;/p&gt;\", \"fullInstruction\":\"&lt;p&gt;Add additional instructions.&lt;/p&gt;\"}</code>. For details and an example, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-named-entity-recg.html#sms-creating-ner-api\">Create a Named Entity Recognition Labeling Job (API) </a>.</p> <p>For all other <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html\">built-in task types</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates.html\">custom tasks</a>, your label category configuration file must be a JSON file in the following format. Identify the labels you want to use by replacing <code>label_1</code>, <code>label_2</code>,<code>...</code>,<code>label_n</code> with your label categories.</p> <p> <code>{ </code> </p> <p> <code>\"document-version\": \"2018-11-28\",</code> </p> <p> <code>\"labels\": [{\"label\": \"label_1\"},{\"label\": \"label_2\"},...{\"label\": \"label_n\"}]</code> </p> <p> <code>}</code> </p> <p>Note the following about the label category configuration file:</p> <ul> <li> <p>For image classification and text classification (single and multi-label) you must specify at least two label categories. For all other task types, the minimum number of label categories required is one. </p> </li> <li> <p>Each label category must be unique, you cannot specify duplicate label categories.</p> </li> <li> <p>If you create a 3D point cloud or video frame adjustment or verification labeling job, you must include <code>auditLabelAttributeName</code> in the label category configuration. Use this parameter to enter the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html#sagemaker-CreateLabelingJob-request-LabelAttributeName\"> <code>LabelAttributeName</code> </a> of the labeling job you want to adjust or verify annotations of.</p> </li> </ul>",
         "CreateModelPackageInput$SamplePayloadUrl": "<p>The Amazon Simple Storage Service (Amazon S3) path where the sample payload are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p>",
@@ -10716,6 +10769,9 @@
         "AlgorithmStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
         "BatchDescribeModelPackageError$ErrorCode": "<p/>",
         "BatchDescribeModelPackageError$ErrorResponse": "<p/>",
+        "BatchTransformInput$FeaturesAttribute": "<p>The attributes of the input data that are the input features.</p>",
+        "BatchTransformInput$InferenceAttribute": "<p>The attribute of the input data that represents the ground truth label.</p>",
+        "BatchTransformInput$ProbabilityAttribute": "<p>In a classification problem, the attribute that represents the class probability.</p>",
         "CreateModelPackageInput$Domain": "<p>The machine learning domain of your model package and its components. Common machine learning domains include computer vision and natural language processing.</p>",
         "CreateModelPackageInput$Task": "<p>The machine learning task your model package accomplishes. Common machine learning tasks include object detection and image classification. The following tasks are supported by Inference Recommender: <code>\"IMAGE_CLASSIFICATION\"</code> | <code>\"OBJECT_DETECTION\"</code> | <code>\"TEXT_GENERATION\"</code> |<code>\"IMAGE_SEGMENTATION\"</code> | <code>\"FILL_MASK\"</code> | <code>\"CLASSIFICATION\"</code> | <code>\"REGRESSION\"</code> | <code>\"OTHER\"</code>.</p> <p>Specify \"OTHER\" if none of the tasks listed fit your use case.</p>",
         "DescribeEdgePackagingJobResponse$EdgePackagingJobStatusMessage": "<p>Returns a message describing the job status and error messages.</p>",

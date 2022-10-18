@@ -61,7 +61,7 @@ func (c *ServiceDiscovery) CreateHttpNamespaceRequest(input *CreateHttpNamespace
 // using DNS.
 //
 // For the current quota on the number of namespaces that you can create using
-// the same account, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// the same Amazon Web Services account, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
 // in the Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -163,8 +163,8 @@ func (c *ServiceDiscovery) CreatePrivateDnsNamespaceRequest(input *CreatePrivate
 // the resulting DNS name for the service is backend.example.com. Service instances
 // that are registered using a private DNS namespace can be discovered using
 // either a DiscoverInstances request or using DNS. For the current quota on
-// the number of namespaces that you can create using the same account, see
-// Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// the number of namespaces that you can create using the same Amazon Web Services
+// account, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
 // in the Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -266,8 +266,12 @@ func (c *ServiceDiscovery) CreatePublicDnsNamespaceRequest(input *CreatePublicDn
 // name for the service is backend.example.com. You can discover instances that
 // were registered with a public DNS namespace by using either a DiscoverInstances
 // request or using DNS. For the current quota on the number of namespaces that
-// you can create using the same account, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// you can create using the same Amazon Web Services account, see Cloud Map
+// quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
 // in the Cloud Map Developer Guide.
+//
+// The CreatePublicDnsNamespace API operation is not supported in the Amazon
+// Web Services GovCloud (US) Regions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1490,7 +1494,7 @@ func (c *ServiceDiscovery) ListNamespacesRequest(input *ListNamespacesInput) (re
 // ListNamespaces API operation for AWS Cloud Map.
 //
 // Lists summary information about the namespaces that were created by the current
-// account.
+// Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2998,6 +3002,9 @@ type CreatePublicDnsNamespaceInput struct {
 
 	// The name that you want to assign to this namespace.
 	//
+	// Do not include sensitive information in the name. The name is publicly available
+	// using DNS queries.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
@@ -3156,6 +3163,9 @@ type CreateServiceInput struct {
 	HealthCheckCustomConfig *HealthCheckCustomConfig `type:"structure"`
 
 	// The name that you want to assign to the service.
+	//
+	// Do not include sensitive information in the name if the namespace is discoverable
+	// by public DNS queries.
 	//
 	// If you want Cloud Map to create an SRV record when you register an instance
 	// and you're using a system that requires a specific SRV format, such as HAProxy
@@ -3802,6 +3812,9 @@ func (s *DiscoverInstancesOutput) SetInstances(v []*HttpInstanceSummary) *Discov
 
 // A complex type that contains information about the Amazon Route 53 DNS records
 // that you want Cloud Map to create when you register an instance.
+//
+// The record types of a service can only be changed by deleting the service
+// and recreating it with a new Dnsconfig.
 type DnsConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -3811,6 +3824,9 @@ type DnsConfig struct {
 	// DnsRecords is a required field
 	DnsRecords []*DnsRecord `type:"list" required:"true"`
 
+	// Use NamespaceId in Service (https://docs.aws.amazon.com/cloud-map/latest/api/API_Service.html)
+	// instead.
+	//
 	// The ID of the namespace to use for DNS configuration.
 	//
 	// Deprecated: Top level attribute in request should be used to reference namespace-id
@@ -5122,6 +5138,9 @@ type Instance struct {
 	//
 	//    * For each attribute, the applicable value.
 	//
+	// Do not include sensitive information in the attributes if the namespace is
+	// discoverable by public DNS queries.
+	//
 	// Supported attribute keys include the following:
 	//
 	// AWS_ALIAS_DNS_NAME
@@ -6287,34 +6306,37 @@ func (s *NamespaceAlreadyExists) RequestID() string {
 type NamespaceFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The operator that you want to use to determine whether ListNamespaces returns
-	// a namespace. Valid values for condition include:
+	// Specify the operator that you want to use to determine whether a namespace
+	// matches the specified value. Valid values for Condition are one of the following.
 	//
-	// EQ
+	//    * EQ: When you specify EQ for Condition, you can specify only one value.
+	//    EQ is supported for TYPE, NAME, and HTTP_NAME. EQ is the default condition
+	//    and can be omitted.
 	//
-	// When you specify EQ for the condition, you can choose to list only public
-	// namespaces or private namespaces, but not both. EQ is the default condition
-	// and can be omitted.
-	//
-	// IN
-	//
-	// When you specify IN for the condition, you can choose to list public namespaces,
-	// private namespaces, or both.
-	//
-	// BETWEEN
-	//
-	// Not applicable
+	//    * BEGINS_WITH: When you specify BEGINS_WITH for Condition, you can specify
+	//    only one value. BEGINS_WITH is supported for TYPE, NAME, and HTTP_NAME.
 	Condition *string `type:"string" enum:"FilterCondition"`
 
-	// Specify TYPE.
+	// Specify the namespaces that you want to get using one of the following.
+	//
+	//    * TYPE: Gets the namespaces of the specified type.
+	//
+	//    * NAME: Gets the namespaces with the specified name.
+	//
+	//    * HTTP_NAME: Gets the namespaces with the specified HTTP name.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"NamespaceFilterName"`
 
-	// If you specify EQ for Condition, specify either DNS_PUBLIC or DNS_PRIVATE.
+	// Specify the values that are applicable to the value that you specify for
+	// Name.
 	//
-	// If you specify IN for Condition, you can specify DNS_PUBLIC, DNS_PRIVATE,
-	// or both.
+	//    * TYPE: Specify HTTP, DNS_PUBLIC, or DNS_PRIVATE.
+	//
+	//    * NAME: Specify the name of the namespace, which is found in Namespace.Name.
+	//
+	//    * HTTP_NAME: Specify the HTTP name of the namespace, which is found in
+	//    Namespace.Properties.HttpProperties.HttpName.
 	//
 	// Values is a required field
 	Values []*string `type:"list" required:"true"`
@@ -7485,6 +7507,9 @@ type RegisterInstanceInput struct {
 	//
 	//    * For each attribute, the applicable value.
 	//
+	// Do not include sensitive information in the attributes if the namespace is
+	// discoverable by public DNS queries.
+	//
 	// Supported attribute keys include the following:
 	//
 	// AWS_ALIAS_DNS_NAME
@@ -7601,6 +7626,10 @@ type RegisterInstanceInput struct {
 	//    Cloud Map deletes the old health check and creates a new one. The health
 	//    check isn't deleted immediately, so it will still appear for a while if
 	//    you submit a ListHealthChecks request, for example.
+	//
+	// Do not include sensitive information in InstanceId if the namespace is discoverable
+	// by public DNS queries and any Type member of DnsRecord for the service contains
+	// SRV because the InstanceId is discoverable by public DNS queries.
 	//
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
@@ -8083,6 +8112,9 @@ type Service struct {
 
 	// A complex type that contains information about the Route 53 DNS records that
 	// you want Cloud Map to create when you register an instance.
+	//
+	// The record types of a service can only be changed by deleting the service
+	// and recreating it with a new Dnsconfig.
 	DnsConfig *DnsConfig `type:"structure"`
 
 	// Public DNS and HTTP namespaces only. A complex type that contains settings
@@ -8378,11 +8410,6 @@ type ServiceFilter struct {
 	//
 	//    * EQ: When you specify EQ, specify one namespace ID for Values. EQ is
 	//    the default condition and can be omitted.
-	//
-	//    * IN: When you specify IN, specify a list of the IDs for the namespaces
-	//    that you want ListServices to return a list of services for.
-	//
-	//    * BETWEEN: Not applicable.
 	Condition *string `type:"string" enum:"FilterCondition"`
 
 	// Specify NAMESPACE_ID.
@@ -9522,6 +9549,9 @@ const (
 
 	// FilterConditionBetween is a FilterCondition enum value
 	FilterConditionBetween = "BETWEEN"
+
+	// FilterConditionBeginsWith is a FilterCondition enum value
+	FilterConditionBeginsWith = "BEGINS_WITH"
 )
 
 // FilterCondition_Values returns all elements of the FilterCondition enum
@@ -9530,6 +9560,7 @@ func FilterCondition_Values() []string {
 		FilterConditionEq,
 		FilterConditionIn,
 		FilterConditionBetween,
+		FilterConditionBeginsWith,
 	}
 }
 
@@ -9600,12 +9631,20 @@ func HealthStatusFilter_Values() []string {
 const (
 	// NamespaceFilterNameType is a NamespaceFilterName enum value
 	NamespaceFilterNameType = "TYPE"
+
+	// NamespaceFilterNameName is a NamespaceFilterName enum value
+	NamespaceFilterNameName = "NAME"
+
+	// NamespaceFilterNameHttpName is a NamespaceFilterName enum value
+	NamespaceFilterNameHttpName = "HTTP_NAME"
 )
 
 // NamespaceFilterName_Values returns all elements of the NamespaceFilterName enum
 func NamespaceFilterName_Values() []string {
 	return []string{
 		NamespaceFilterNameType,
+		NamespaceFilterNameName,
+		NamespaceFilterNameHttpName,
 	}
 }
 

@@ -176,6 +176,10 @@ type SESV2API interface {
 	GetDedicatedIpWithContext(aws.Context, *sesv2.GetDedicatedIpInput, ...request.Option) (*sesv2.GetDedicatedIpOutput, error)
 	GetDedicatedIpRequest(*sesv2.GetDedicatedIpInput) (*request.Request, *sesv2.GetDedicatedIpOutput)
 
+	GetDedicatedIpPool(*sesv2.GetDedicatedIpPoolInput) (*sesv2.GetDedicatedIpPoolOutput, error)
+	GetDedicatedIpPoolWithContext(aws.Context, *sesv2.GetDedicatedIpPoolInput, ...request.Option) (*sesv2.GetDedicatedIpPoolOutput, error)
+	GetDedicatedIpPoolRequest(*sesv2.GetDedicatedIpPoolInput) (*request.Request, *sesv2.GetDedicatedIpPoolOutput)
+
 	GetDedicatedIps(*sesv2.GetDedicatedIpsInput) (*sesv2.GetDedicatedIpsOutput, error)
 	GetDedicatedIpsWithContext(aws.Context, *sesv2.GetDedicatedIpsInput, ...request.Option) (*sesv2.GetDedicatedIpsOutput, error)
 	GetDedicatedIpsRequest(*sesv2.GetDedicatedIpsInput) (*request.Request, *sesv2.GetDedicatedIpsOutput)
