@@ -1,6 +1,7 @@
 package shareddefaults
 
 import (
+	"os/user"
 	"path/filepath"
 )
 
@@ -29,5 +30,17 @@ func SharedConfigFilename() string {
 // UserHomeDir returns the home directory for the user the process is
 // running under.
 func UserHomeDir() string {
-	return userHomeDir()
+	var home string
+
+	home = userHomeDir()
+	if len(home) > 0 {
+		return home
+	}
+
+	currUser, _ := user.Current()
+	if currUser != nil {
+		home = currUser.HomeDir
+	}
+
+	return home
 }
