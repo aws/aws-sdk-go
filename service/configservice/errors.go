@@ -11,7 +11,7 @@ const (
 	// ErrCodeConformancePackTemplateValidationException for service response error code
 	// "ConformancePackTemplateValidationException".
 	//
-	// You have specified a template that is not valid or supported.
+	// You have specified a template that is invalid or supported.
 	ErrCodeConformancePackTemplateValidationException = "ConformancePackTemplateValidationException"
 
 	// ErrCodeInsufficientDeliveryPolicyException for service response error code
@@ -36,9 +36,9 @@ const (
 	//    a service-linked role.
 	//
 	//    * For PutConformancePack and PutOrganizationConformancePack, a conformance
-	//    pack cannot be created because you do not have permissions: To call IAM
-	//    GetRole action or create a service-linked role. To read Amazon S3 bucket
-	//    or call SSM:GetDocument.
+	//    pack cannot be created because you do not have the following permissions:
+	//    You do not have permission to call IAM GetRole action or create a service-linked
+	//    role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 	ErrCodeInsufficientPermissionsException = "InsufficientPermissionsException"
 
 	// ErrCodeInvalidConfigurationRecorderNameException for service response error code
@@ -50,7 +50,7 @@ const (
 	// ErrCodeInvalidDeliveryChannelNameException for service response error code
 	// "InvalidDeliveryChannelNameException".
 	//
-	// The specified delivery channel name is not valid.
+	// The specified delivery channel name is invalid.
 	ErrCodeInvalidDeliveryChannelNameException = "InvalidDeliveryChannelNameException"
 
 	// ErrCodeInvalidExpressionException for service response error code
@@ -101,13 +101,13 @@ const (
 	// ErrCodeInvalidS3KeyPrefixException for service response error code
 	// "InvalidS3KeyPrefixException".
 	//
-	// The specified Amazon S3 key prefix is not valid.
+	// The specified Amazon S3 key prefix is invalid.
 	ErrCodeInvalidS3KeyPrefixException = "InvalidS3KeyPrefixException"
 
 	// ErrCodeInvalidS3KmsKeyArnException for service response error code
 	// "InvalidS3KmsKeyArnException".
 	//
-	// The specified Amazon KMS Key ARN is not valid.
+	// The specified Amazon KMS Key ARN is invalid.
 	ErrCodeInvalidS3KmsKeyArnException = "InvalidS3KmsKeyArnException"
 
 	// ErrCodeInvalidSNSTopicARNException for service response error code
@@ -119,7 +119,7 @@ const (
 	// ErrCodeInvalidTimeRangeException for service response error code
 	// "InvalidTimeRangeException".
 	//
-	// The specified time range is not valid. The earlier time is not chronologically
+	// The specified time range is invalid. The earlier time is not chronologically
 	// before the later time.
 	ErrCodeInvalidTimeRangeException = "InvalidTimeRangeException"
 
@@ -144,8 +144,9 @@ const (
 	// ErrCodeMaxActiveResourcesExceededException for service response error code
 	// "MaxActiveResourcesExceededException".
 	//
-	// You have reached the limit (100,000) of active custom resource types in your
-	// account. Delete unused resources using DeleteResourceConfig.
+	// You have reached the limit of active custom resource types in your account.
+	// There is a limit of 100,000. Delete unused resources using DeleteResourceConfig
+	// (https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteResourceConfig.html) .
 	ErrCodeMaxActiveResourcesExceededException = "MaxActiveResourcesExceededException"
 
 	// ErrCodeMaxNumberOfConfigRulesExceededException for service response error code
@@ -165,8 +166,9 @@ const (
 	// ErrCodeMaxNumberOfConformancePacksExceededException for service response error code
 	// "MaxNumberOfConformancePacksExceededException".
 	//
-	// You have reached the limit (6) of the number of conformance packs in an account
-	// (6 conformance pack with 25 Config rules per pack).
+	// You have reached the limit of the number of conformance packs you can create
+	// in an account. For more information, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+	// in the Config Developer Guide.
 	ErrCodeMaxNumberOfConformancePacksExceededException = "MaxNumberOfConformancePacksExceededException"
 
 	// ErrCodeMaxNumberOfDeliveryChannelsExceededException for service response error code
@@ -179,15 +181,16 @@ const (
 	// "MaxNumberOfOrganizationConfigRulesExceededException".
 	//
 	// You have reached the limit of the number of organization Config rules you
-	// can create.
+	// can create. For more information, see see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+	// in the Config Developer Guide.
 	ErrCodeMaxNumberOfOrganizationConfigRulesExceededException = "MaxNumberOfOrganizationConfigRulesExceededException"
 
 	// ErrCodeMaxNumberOfOrganizationConformancePacksExceededException for service response error code
 	// "MaxNumberOfOrganizationConformancePacksExceededException".
 	//
-	// You have reached the limit (6) of the number of organization conformance
-	// packs in an account (6 conformance pack with 25 Config rules per pack per
-	// account).
+	// You have reached the limit of the number of organization conformance packs
+	// you can create in an account. For more information, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+	// in the Config Developer Guide.
 	ErrCodeMaxNumberOfOrganizationConformancePacksExceededException = "MaxNumberOfOrganizationConformancePacksExceededException"
 
 	// ErrCodeMaxNumberOfRetentionConfigurationsExceededException for service response error code
@@ -231,7 +234,7 @@ const (
 	// ErrCodeNoSuchConfigRuleException for service response error code
 	// "NoSuchConfigRuleException".
 	//
-	// The Config rule in the request is not valid. Verify that the rule is an Config
+	// The Config rule in the request is invalid. Verify that the rule is an Config
 	// Custom Policy rule, that the rule name is correct, and that valid Amazon
 	// Resouce Names (ARNs) are used before trying again.
 	ErrCodeNoSuchConfigRuleException = "NoSuchConfigRuleException"
@@ -269,7 +272,7 @@ const (
 	// ErrCodeNoSuchOrganizationConfigRuleException for service response error code
 	// "NoSuchOrganizationConfigRuleException".
 	//
-	// The Config rule in the request is not valid. Verify that the rule is an organization
+	// The Config rule in the request is invalid. Verify that the rule is an organization
 	// Config Custom Policy rule, that the rule name is correct, and that valid
 	// Amazon Resouce Names (ARNs) are used before trying again.
 	ErrCodeNoSuchOrganizationConfigRuleException = "NoSuchOrganizationConfigRuleException"
@@ -327,7 +330,7 @@ const (
 	//
 	// For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 	// throws an exception if APIs are called from member accounts. All APIs must
-	// be called from organization master account.
+	// be called from organization management account.
 	ErrCodeOrganizationAccessDeniedException = "OrganizationAccessDeniedException"
 
 	// ErrCodeOrganizationAllFeaturesNotEnabledException for service response error code
@@ -340,7 +343,7 @@ const (
 	// ErrCodeOrganizationConformancePackTemplateValidationException for service response error code
 	// "OrganizationConformancePackTemplateValidationException".
 	//
-	// You have specified a template that is not valid or supported.
+	// You have specified a template that is invalid or supported.
 	ErrCodeOrganizationConformancePackTemplateValidationException = "OrganizationConformancePackTemplateValidationException"
 
 	// ErrCodeOversizedConfigurationItemException for service response error code
@@ -407,14 +410,15 @@ const (
 	// ErrCodeTooManyTagsException for service response error code
 	// "TooManyTagsException".
 	//
-	// You have reached the limit of the number of tags you can use. You have more
-	// than 50 tags.
+	// You have reached the limit of the number of tags you can use. For more information,
+	// see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+	// in the Config Developer Guide.
 	ErrCodeTooManyTagsException = "TooManyTagsException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The requested action is not valid.
+	// The requested action is invalid.
 	//
 	// For PutStoredQuery, you will see this exception if there are missing required
 	// fields or if the input value fails the validation, or if you are trying to

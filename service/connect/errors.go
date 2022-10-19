@@ -110,6 +110,12 @@ const (
 	// The specified resource was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeResourceNotReadyException for service response error code
+	// "ResourceNotReadyException".
+	//
+	// The resource is not ready.
+	ErrCodeResourceNotReadyException = "ResourceNotReadyException"
+
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
@@ -147,6 +153,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceConflictException":            newErrorResourceConflictException,
 	"ResourceInUseException":               newErrorResourceInUseException,
 	"ResourceNotFoundException":            newErrorResourceNotFoundException,
+	"ResourceNotReadyException":            newErrorResourceNotReadyException,
 	"ServiceQuotaExceededException":        newErrorServiceQuotaExceededException,
 	"ThrottlingException":                  newErrorThrottlingException,
 	"UserNotFoundException":                newErrorUserNotFoundException,

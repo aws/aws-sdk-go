@@ -1,3 +1,25 @@
+Release v1.44.119 (2022-10-19)
+===
+
+### Service Client Updates
+* `service/chime-sdk-messaging`: Updates service documentation
+* `service/cloudtrail`: Updates service API and documentation
+  * This release includes support for exporting CloudTrail Lake query results to an Amazon S3 bucket.
+* `service/config`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/eventbridge`: Updates service API
+* `service/managedblockchain`: Updates service API, documentation, and paginators
+* `service/s3`: Updates service API and examples
+  * Updates internal logic for constructing API endpoints. We have added rule-based endpoints and internal model parameters.
+* `service/s3control`: Updates service API
+  * Updates internal logic for constructing API endpoints. We have added rule-based endpoints and internal model parameters.
+* `service/support-app`: Updates service API and documentation
+* `service/workspaces-web`: Updates service API, documentation, and paginators
+
+### SDK Enhancements
+* `aws/session`: Modified config resolution strategy when `$HOME` or `%USERPROFILE%` environment variables are not set.
+  * When the environment variables are not set, the SDK will attempt to determine the home directory using `user.Current()`.
+
 Release v1.44.118 (2022-10-18)
 ===
 

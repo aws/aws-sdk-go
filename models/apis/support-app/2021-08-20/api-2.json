@@ -135,6 +135,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "RegisterSlackWorkspaceForOrganization":{
+      "name":"RegisterSlackWorkspaceForOrganization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/control/register-slack-workspace-for-organization",
+        "responseCode":200
+      },
+      "input":{"shape":"RegisterSlackWorkspaceForOrganizationRequest"},
+      "output":{"shape":"RegisterSlackWorkspaceForOrganizationResult"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateSlackChannelConfiguration":{
       "name":"UpdateSlackChannelConfiguration",
       "http":{
@@ -164,6 +181,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "AccountType":{
+      "type":"string",
+      "enum":[
+        "management",
+        "member"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -305,6 +329,21 @@
       "members":{
       }
     },
+    "RegisterSlackWorkspaceForOrganizationRequest":{
+      "type":"structure",
+      "required":["teamId"],
+      "members":{
+        "teamId":{"shape":"teamId"}
+      }
+    },
+    "RegisterSlackWorkspaceForOrganizationResult":{
+      "type":"structure",
+      "members":{
+        "accountType":{"shape":"AccountType"},
+        "teamId":{"shape":"teamId"},
+        "teamName":{"shape":"teamName"}
+      }
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -348,7 +387,9 @@
       "type":"structure",
       "required":["teamId"],
       "members":{
-        "teamId":{"shape":"teamId"}
+        "allowOrganizationMemberAccount":{"shape":"booleanValue"},
+        "teamId":{"shape":"teamId"},
+        "teamName":{"shape":"teamName"}
       }
     },
     "SlackWorkspaceConfigurationList":{
@@ -440,6 +481,12 @@
       "max":256,
       "min":1,
       "pattern":"^\\S+$"
+    },
+    "teamName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^.+$"
     }
   }
 }

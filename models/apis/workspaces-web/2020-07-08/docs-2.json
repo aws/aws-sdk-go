@@ -5,22 +5,26 @@
     "AssociateBrowserSettings": "<p>Associates a browser settings resource with a web portal.</p>",
     "AssociateNetworkSettings": "<p>Associates a network settings resource with a web portal.</p>",
     "AssociateTrustStore": "<p>Associates a trust store with a web portal.</p>",
+    "AssociateUserAccessLoggingSettings": "<p>Associates a user access logging settings resource with a web portal.</p>",
     "AssociateUserSettings": "<p>Associates a user settings resource with a web portal.</p>",
     "CreateBrowserSettings": "<p>Creates a browser settings resource that can be associated with a web portal. Once associated with a web portal, browser settings control how the browser will behave once a user starts a streaming session for the web portal. </p>",
     "CreateIdentityProvider": "<p>Creates an identity provider resource that is then associated with a web portal.</p>",
     "CreateNetworkSettings": "<p>Creates a network settings resource that can be associated with a web portal. Once associated with a web portal, network settings define how streaming instances will connect with your specified VPC. </p>",
     "CreatePortal": "<p>Creates a web portal.</p>",
     "CreateTrustStore": "<p>Creates a trust store that can be associated with a web portal. A trust store contains certificate authority (CA) certificates. Once associated with a web portal, the browser in a streaming session will recognize certificates that have been issued using any of the CAs in the trust store. If your organization has internal websites that use certificates issued by private CAs, you should add the private CA certificate to the trust store. </p>",
+    "CreateUserAccessLoggingSettings": "<p>Creates a user access logging settings resource that can be associated with a web portal.</p>",
     "CreateUserSettings": "<p>Creates a user settings resource that can be associated with a web portal. Once associated with a web portal, user settings control how users can transfer data between a streaming session and the their local devices. </p>",
     "DeleteBrowserSettings": "<p>Deletes browser settings.</p>",
     "DeleteIdentityProvider": "<p>Deletes the identity provider.</p>",
     "DeleteNetworkSettings": "<p>Deletes network settings.</p>",
     "DeletePortal": "<p>Deletes a web portal.</p>",
     "DeleteTrustStore": "<p>Deletes the trust store.</p>",
+    "DeleteUserAccessLoggingSettings": "<p>Deletes user access logging settings.</p>",
     "DeleteUserSettings": "<p>Deletes user settings.</p>",
     "DisassociateBrowserSettings": "<p>Disassociates browser settings from a web portal.</p>",
     "DisassociateNetworkSettings": "<p>Disassociates network settings from a web portal.</p>",
     "DisassociateTrustStore": "<p>Disassociates a trust store from a web portal.</p>",
+    "DisassociateUserAccessLoggingSettings": "<p>Disassociates user access logging settings from a web portal.</p>",
     "DisassociateUserSettings": "<p>Disassociates user settings from a web portal.</p>",
     "GetBrowserSettings": "<p>Gets browser settings.</p>",
     "GetIdentityProvider": "<p>Gets the identity provider.</p>",
@@ -29,6 +33,7 @@
     "GetPortalServiceProviderMetadata": "<p>Gets the service provider metadata.</p>",
     "GetTrustStore": "<p>Gets the trust store.</p>",
     "GetTrustStoreCertificate": "<p>Gets the trust store certificate.</p>",
+    "GetUserAccessLoggingSettings": "<p>Gets user access logging settings.</p>",
     "GetUserSettings": "<p>Gets user settings.</p>",
     "ListBrowserSettings": "<p>Retrieves a list of browser settings.</p>",
     "ListIdentityProviders": "<p>Retrieves a list of identity providers for a specific web portal.</p>",
@@ -37,6 +42,7 @@
     "ListTagsForResource": "<p>Retrieves a list of tags for a resource.</p>",
     "ListTrustStoreCertificates": "<p>Retrieves a list of trust store certificates.</p>",
     "ListTrustStores": "<p>Retrieves a list of trust stores.</p>",
+    "ListUserAccessLoggingSettings": "<p>Retrieves a list of user access logging settings.</p>",
     "ListUserSettings": "<p>Retrieves a list of user settings.</p>",
     "TagResource": "<p>Adds or overwrites one or more tags for the specified resource.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified resource.</p>",
@@ -45,6 +51,7 @@
     "UpdateNetworkSettings": "<p>Updates network settings.</p>",
     "UpdatePortal": "<p>Updates a web portal.</p>",
     "UpdateTrustStore": "<p>Updates the trust store.</p>",
+    "UpdateUserAccessLoggingSettings": "<p>Updates the user access logging settings.</p>",
     "UpdateUserSettings": "<p>Updates the user settings.</p>"
   },
   "shapes": {
@@ -64,6 +71,10 @@
         "AssociateTrustStoreRequest$trustStoreArn": "<p>The ARN of the trust store.</p>",
         "AssociateTrustStoreResponse$portalArn": "<p>The ARN of the web portal.</p>",
         "AssociateTrustStoreResponse$trustStoreArn": "<p>The ARN of the trust store.</p>",
+        "AssociateUserAccessLoggingSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
+        "AssociateUserAccessLoggingSettingsRequest$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
+        "AssociateUserAccessLoggingSettingsResponse$portalArn": "<p>The ARN of the web portal.</p>",
+        "AssociateUserAccessLoggingSettingsResponse$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
         "AssociateUserSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "AssociateUserSettingsRequest$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "AssociateUserSettingsResponse$portalArn": "<p>The ARN of the web portal.</p>",
@@ -76,16 +87,19 @@
         "CreateNetworkSettingsResponse$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "CreatePortalResponse$portalArn": "<p>The ARN of the web portal.</p>",
         "CreateTrustStoreResponse$trustStoreArn": "<p>The ARN of the trust store.</p>",
+        "CreateUserAccessLoggingSettingsResponse$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
         "CreateUserSettingsResponse$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "DeleteBrowserSettingsRequest$browserSettingsArn": "<p>The ARN of the browser settings.</p>",
         "DeleteIdentityProviderRequest$identityProviderArn": "<p>The ARN of the identity provider.</p>",
         "DeleteNetworkSettingsRequest$networkSettingsArn": "<p>The ARN of the network settings.</p>",
         "DeletePortalRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DeleteTrustStoreRequest$trustStoreArn": "<p>The ARN of the trust store.</p>",
+        "DeleteUserAccessLoggingSettingsRequest$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
         "DeleteUserSettingsRequest$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "DisassociateBrowserSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DisassociateNetworkSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DisassociateTrustStoreRequest$portalArn": "<p>The ARN of the web portal.</p>",
+        "DisassociateUserAccessLoggingSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "DisassociateUserSettingsRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "GetBrowserSettingsRequest$browserSettingsArn": "<p>The ARN of the browser settings.</p>",
         "GetIdentityProviderRequest$identityProviderArn": "<p>The ARN of the identity provider.</p>",
@@ -96,6 +110,7 @@
         "GetTrustStoreCertificateRequest$trustStoreArn": "<p>The ARN of the trust store certificate.</p>",
         "GetTrustStoreCertificateResponse$trustStoreArn": "<p>The ARN of the trust store certificate.</p>",
         "GetTrustStoreRequest$trustStoreArn": "<p>The ARN of the trust store.</p>",
+        "GetUserAccessLoggingSettingsRequest$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
         "GetUserSettingsRequest$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "IdentityProvider$identityProviderArn": "<p>The ARN of the identity provider.</p>",
         "IdentityProviderSummary$identityProviderArn": "<p>The ARN of the identity provider.</p>",
@@ -109,11 +124,13 @@
         "Portal$networkSettingsArn": "<p>The ARN of the network settings that is associated with the web portal.</p>",
         "Portal$portalArn": "<p>The ARN of the web portal.</p>",
         "Portal$trustStoreArn": "<p>The ARN of the trust store that is associated with the web portal.</p>",
-        "Portal$userSettingsArn": "<p>The ARN of the trust store that is associated with the web portal.</p>",
+        "Portal$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings that is associated with the web portal.</p>",
+        "Portal$userSettingsArn": "<p>The ARN of the user settings that is associated with the web portal.</p>",
         "PortalSummary$browserSettingsArn": "<p>The ARN of the browser settings that is associated with the web portal.</p>",
         "PortalSummary$networkSettingsArn": "<p>The ARN of the network settings that is associated with the web portal.</p>",
         "PortalSummary$portalArn": "<p>The ARN of the web portal.</p>",
         "PortalSummary$trustStoreArn": "<p>The ARN of the trust that is associated with this web portal.</p>",
+        "PortalSummary$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings that is associated with the web portal.</p>",
         "PortalSummary$userSettingsArn": "<p>The ARN of the user settings that is associated with the web portal.</p>",
         "TagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "TooManyTagsException$resourceName": "<p>Name of the resource affected.</p>",
@@ -126,7 +143,10 @@
         "UpdatePortalRequest$portalArn": "<p>The ARN of the web portal.</p>",
         "UpdateTrustStoreRequest$trustStoreArn": "<p>The ARN of the trust store.</p>",
         "UpdateTrustStoreResponse$trustStoreArn": "<p>The ARN of the trust store.</p>",
+        "UpdateUserAccessLoggingSettingsRequest$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
         "UpdateUserSettingsRequest$userSettingsArn": "<p>The ARN of the user settings.</p>",
+        "UserAccessLoggingSettings$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
+        "UserAccessLoggingSettingsSummary$userAccessLoggingSettingsArn": "<p>The ARN of the user access logging settings.</p>",
         "UserSettings$userSettingsArn": "<p>The ARN of the user settings.</p>",
         "UserSettingsSummary$userSettingsArn": "<p>The ARN of the user settings.</p>"
       }
@@ -142,6 +162,7 @@
         "BrowserSettings$associatedPortalArns": "<p>A list of web portal ARNs that this browser settings is associated with.</p>",
         "NetworkSettings$associatedPortalArns": "<p>A list of web portal ARNs that this network settings is associated with.</p>",
         "TrustStore$associatedPortalArns": "<p>A list of web portal ARNs that this trust store is associated with.</p>",
+        "UserAccessLoggingSettings$associatedPortalArns": "<p>A list of web portal ARNs that this user access logging settings is associated with.</p>",
         "UserSettings$associatedPortalArns": "<p>A list of web portal ARNs that this user settings is associated with.</p>"
       }
     },
@@ -171,6 +192,16 @@
       }
     },
     "AssociateTrustStoreResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateUserAccessLoggingSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateUserAccessLoggingSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -283,12 +314,14 @@
         "CreateNetworkSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "CreatePortalRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "CreateTrustStoreRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
+        "CreateUserAccessLoggingSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "CreateUserSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "TagResourceRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token returns the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateBrowserSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateIdentityProviderRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateNetworkSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateTrustStoreRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
+        "UpdateUserAccessLoggingSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>",
         "UpdateUserSettingsRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, subsequent retries with the same client token return the result from the original successful request. </p> <p>If you do not specify a client token, one is automatically generated by the AWS SDK.</p>"
       }
     },
@@ -343,6 +376,16 @@
       }
     },
     "CreateTrustStoreResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUserAccessLoggingSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUserAccessLoggingSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -407,6 +450,16 @@
       "refs": {
       }
     },
+    "DeleteUserAccessLoggingSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteUserAccessLoggingSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteUserSettingsRequest": {
       "base": null,
       "refs": {
@@ -443,6 +496,16 @@
       }
     },
     "DisassociateTrustStoreResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateUserAccessLoggingSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateUserAccessLoggingSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -596,6 +659,16 @@
       "refs": {
       }
     },
+    "GetUserAccessLoggingSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetUserAccessLoggingSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetUserSettingsRequest": {
       "base": null,
       "refs": {
@@ -663,6 +736,15 @@
     "InternalServerException": {
       "base": "<p>There is an internal server error.</p>",
       "refs": {
+      }
+    },
+    "KinesisStreamArn": {
+      "base": "<p>Kinesis stream ARN to which log events are published.</p>",
+      "refs": {
+        "CreateUserAccessLoggingSettingsRequest$kinesisStreamArn": "<p>The ARN of the Kinesis stream.</p>",
+        "UpdateUserAccessLoggingSettingsRequest$kinesisStreamArn": "<p>The ARN of the Kinesis stream.</p>",
+        "UserAccessLoggingSettings$kinesisStreamArn": "<p>The ARN of the Kinesis stream.</p>",
+        "UserAccessLoggingSettingsSummary$kinesisStreamArn": "<p>The ARN of the Kinesis stream.</p>"
       }
     },
     "ListBrowserSettingsRequest": {
@@ -735,6 +817,16 @@
       "refs": {
       }
     },
+    "ListUserAccessLoggingSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListUserAccessLoggingSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListUserSettingsRequest": {
       "base": null,
       "refs": {
@@ -754,6 +846,7 @@
         "ListPortalsRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListTrustStoreCertificatesRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListTrustStoresRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
+        "ListUserAccessLoggingSettingsRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>",
         "ListUserSettingsRequest$maxResults": "<p>The maximum number of results to be included in the next page.</p>"
       }
     },
@@ -791,6 +884,8 @@
         "ListTrustStoreCertificatesResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.&gt;</p>",
         "ListTrustStoresRequest$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "ListTrustStoresResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
+        "ListUserAccessLoggingSettingsRequest$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
+        "ListUserAccessLoggingSettingsResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation.</p>",
         "ListUserSettingsRequest$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation. </p>",
         "ListUserSettingsResponse$nextToken": "<p>The pagination token used to retrieve the next page of results for this operation. </p>"
       }
@@ -964,6 +1059,7 @@
         "CreateNetworkSettingsRequest$tags": "<p>The tags to add to the network settings resource. A tag is a key-value pair.</p>",
         "CreatePortalRequest$tags": "<p>The tags to add to the web portal. A tag is a key-value pair.</p>",
         "CreateTrustStoreRequest$tags": "<p>The tags to add to the trust store. A tag is a key-value pair.</p>",
+        "CreateUserAccessLoggingSettingsRequest$tags": "<p>The tags to add to the user settings resource. A tag is a key-value pair.</p>",
         "CreateUserSettingsRequest$tags": "<p>The tags to add to the user settings resource. A tag is a key-value pair.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags of the resource.</p>",
         "TagResourceRequest$tags": "<p>The tags of the resource.</p>"
@@ -1084,6 +1180,16 @@
       "refs": {
       }
     },
+    "UpdateUserAccessLoggingSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateUserAccessLoggingSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateUserSettingsRequest": {
       "base": null,
       "refs": {
@@ -1092,6 +1198,25 @@
     "UpdateUserSettingsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UserAccessLoggingSettings": {
+      "base": "<p>A user access logging settings resource that can be associated with a web portal.</p>",
+      "refs": {
+        "GetUserAccessLoggingSettingsResponse$userAccessLoggingSettings": "<p>The user access logging settings.</p>",
+        "UpdateUserAccessLoggingSettingsResponse$userAccessLoggingSettings": "<p>The user access logging settings.</p>"
+      }
+    },
+    "UserAccessLoggingSettingsList": {
+      "base": null,
+      "refs": {
+        "ListUserAccessLoggingSettingsResponse$userAccessLoggingSettings": "<p>The user access logging settings.</p>"
+      }
+    },
+    "UserAccessLoggingSettingsSummary": {
+      "base": "<p>The summary of user access logging settings.</p>",
+      "refs": {
+        "UserAccessLoggingSettingsList$member": null
       }
     },
     "UserSettings": {

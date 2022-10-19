@@ -471,8 +471,8 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //     This exception is thrown when the policy on the Amazon SNS topic is not sufficient.
 //
 //   - InsufficientEncryptionPolicyException
-//     This exception is thrown when the policy on the S3 bucket or KMS key is not
-//     sufficient.
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
 //
 //   - InvalidS3BucketNameException
 //     This exception is thrown when the provided S3 bucket name is not valid.
@@ -1094,8 +1094,10 @@ func (c *CloudTrail) GetChannelRequest(input *GetChannelInput) (req *request.Req
 
 // GetChannel API operation for AWS CloudTrail.
 //
-// Returns the specified CloudTrail service-linked channel. Amazon Web Services
-// services create service-linked channels to view CloudTrail events.
+// Returns information about a specific channel. Amazon Web Services services
+// create service-linked channels to get information about CloudTrail events
+// on your behalf. For more information about service-linked channels, see Viewing
+// service-linked channels for CloudTrail by using the CLI. (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/viewing-service-linked-channels.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1107,8 +1109,7 @@ func (c *CloudTrail) GetChannelRequest(input *GetChannelInput) (req *request.Req
 // Returned Error Types:
 //
 //   - ChannelARNInvalidException
-//     The specified channel ARN is not valid or does not map to a channel in your
-//     account.
+//     This exception is thrown when the specified value of ChannelARN is not valid.
 //
 //   - ChannelNotFoundException
 //     The specified channel was not found.
@@ -1394,7 +1395,7 @@ func (c *CloudTrail) GetImportRequest(input *GetImportInput) (req *request.Reque
 
 // GetImport API operation for AWS CloudTrail.
 //
-// Returns information for the specified import.
+// Returns information about a specific import.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1969,7 +1970,11 @@ func (c *CloudTrail) ListChannelsRequest(input *ListChannelsInput) (req *request
 
 // ListChannels API operation for AWS CloudTrail.
 //
-// Returns all CloudTrail channels.
+// Lists the channels in the current account, and their source names. Amazon
+// Web Services services create service-linked channels get information about
+// CloudTrail events on your behalf. For more information about service-linked
+// channels, see Viewing service-linked channels for CloudTrail by using the
+// CLI (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/viewing-service-linked-channels.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3613,8 +3618,8 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 //     This exception is thrown when the policy on the S3 bucket is not sufficient.
 //
 //   - InsufficientEncryptionPolicyException
-//     This exception is thrown when the policy on the S3 bucket or KMS key is not
-//     sufficient.
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
 //
 //   - S3BucketDoesNotExistException
 //     This exception is thrown when the specified S3 bucket does not exist.
@@ -3960,7 +3965,12 @@ func (c *CloudTrail) StartImportRequest(input *StartImportInput) (req *request.R
 // StartImport API operation for AWS CloudTrail.
 //
 // Starts an import of logged trail events from a source S3 bucket to a destination
-// event data store.
+// event data store. By default, CloudTrail only imports events contained in
+// the S3 bucket's CloudTrail prefix and the prefixes inside the CloudTrail
+// prefix, and does not check prefixes for other Amazon Web Services services.
+// If you want to import CloudTrail events contained in another prefix, you
+// must include the prefix in the S3LocationUri. For more considerations about
+// importing trail events, see Considerations (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-copy-trail-to-lake.html#cloudtrail-trail-copy-considerations).
 //
 // When you start a new import, the Destinations and ImportSource parameters
 // are required. Before starting a new import, disable any access control lists
@@ -3994,8 +4004,8 @@ func (c *CloudTrail) StartImportRequest(input *StartImportInput) (req *request.R
 //     The event data store is not in a status that supports the operation.
 //
 //   - InvalidEventDataStoreCategoryException
-//     This exception is thrown when the event data store category is not valid
-//     for the import.
+//     This exception is thrown when event categories of specified event data stores
+//     are not valid.
 //
 //   - InactiveEventDataStoreException
 //     The event data store is inactive.
@@ -4210,7 +4220,8 @@ func (c *CloudTrail) StartQueryRequest(input *StartQueryInput) (req *request.Req
 // StartQuery API operation for AWS CloudTrail.
 //
 // Starts a CloudTrail Lake query. The required QueryStatement parameter provides
-// your SQL query, enclosed in single quotation marks.
+// your SQL query, enclosed in single quotation marks. Use the optional DeliveryS3Uri
+// parameter to deliver the query results to an S3 bucket.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4243,6 +4254,18 @@ func (c *CloudTrail) StartQueryRequest(input *StartQueryInput) (req *request.Req
 //   - MaxConcurrentQueriesException
 //     You are already running the maximum number of concurrent queries. Wait a
 //     minute for some queries to finish, and then run the query again.
+//
+//   - InvalidS3PrefixException
+//     This exception is thrown when the provided S3 prefix is not valid.
+//
+//   - InvalidS3BucketNameException
+//     This exception is thrown when the provided S3 bucket name is not valid.
+//
+//   - InsufficientS3BucketPolicyException
+//     This exception is thrown when the policy on the S3 bucket is not sufficient.
+//
+//   - S3BucketDoesNotExistException
+//     This exception is thrown when the specified S3 bucket does not exist.
 //
 //   - OperationNotPermittedException
 //     This exception is thrown when the requested operation is not permitted.
@@ -4688,8 +4711,8 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //     This exception is thrown when the policy on the Amazon SNS topic is not sufficient.
 //
 //   - InsufficientEncryptionPolicyException
-//     This exception is thrown when the policy on the S3 bucket or KMS key is not
-//     sufficient.
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
 //
 //   - TrailNotFoundException
 //     This exception is thrown when the trail with the given name is not found.
@@ -5533,7 +5556,7 @@ func (s *CancelQueryOutput) SetQueryStatus(v string) *CancelQueryOutput {
 type Channel struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the channel.
+	// The Amazon Resource Name (ARN) of a channel.
 	ChannelArn *string `min:"3" type:"string"`
 
 	// The name of the CloudTrail channel. For service-linked channels, the name
@@ -5573,8 +5596,7 @@ func (s *Channel) SetName(v string) *Channel {
 	return s
 }
 
-// The specified channel ARN is not valid or does not map to a channel in your
-// account.
+// This exception is thrown when the specified value of ChannelARN is not valid.
 type ChannelARNInvalidException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6204,7 +6226,7 @@ type CreateTrailInput struct {
 	IsOrganizationTrail *bool `type:"boolean"`
 
 	// Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.
-	// The value can be an alias name prefixed by "alias/", a fully specified ARN
+	// The value can be an alias name prefixed by alias/, a fully specified ARN
 	// to an alias, a fully specified ARN to a key, or a globally unique identifier.
 	//
 	// CloudTrail also supports KMS multi-Region keys. For more information about
@@ -6398,7 +6420,7 @@ type CreateTrailOutput struct {
 	// Specifies whether the trail is an organization trail.
 	IsOrganizationTrail *bool `type:"boolean"`
 
-	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
+	// Specifies the KMS key ID that encrypts the events delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the following format.
 	//
 	// arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012
@@ -6593,7 +6615,7 @@ type DataResource struct {
 	//
 	//    * AWS::DynamoDB::Table
 	//
-	// The following resource types are also availble through advanced event selectors.
+	// The following resource types are also available through advanced event selectors.
 	// Basic event selector resource types are valid in advanced event selectors,
 	// but advanced event selector resource types are not valid in basic event selectors.
 	// For more information, see AdvancedFieldSelector$Field.
@@ -6890,6 +6912,12 @@ func (s *DescribeQueryInput) SetQueryId(v string) *DescribeQueryInput {
 type DescribeQueryOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The URI for the S3 bucket where CloudTrail delivered query results, if applicable.
+	DeliveryS3Uri *string `type:"string"`
+
+	// The delivery status.
+	DeliveryStatus *string `type:"string" enum:"DeliveryStatus"`
+
 	// The error message returned if a query failed.
 	ErrorMessage *string `min:"4" type:"string"`
 
@@ -6925,6 +6953,18 @@ func (s DescribeQueryOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeQueryOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeliveryS3Uri sets the DeliveryS3Uri field's value.
+func (s *DescribeQueryOutput) SetDeliveryS3Uri(v string) *DescribeQueryOutput {
+	s.DeliveryS3Uri = &v
+	return s
+}
+
+// SetDeliveryStatus sets the DeliveryStatus field's value.
+func (s *DescribeQueryOutput) SetDeliveryStatus(v string) *DescribeQueryOutput {
+	s.DeliveryStatus = &v
+	return s
 }
 
 // SetErrorMessage sets the ErrorMessage field's value.
@@ -7062,13 +7102,14 @@ func (s *DescribeTrailsOutput) SetTrailList(v []*Trail) *DescribeTrailsOutput {
 type Destination struct {
 	_ struct{} `type:"structure"`
 
-	// The location of the service. For service-linked channels, this is the name
-	// of the Amazon Web Services service.
+	// For service-linked channels, the value is the name of the Amazon Web Services
+	// service.
 	//
 	// Location is a required field
 	Location *string `min:"3" type:"string" required:"true"`
 
-	// The type of service. For service-linked channels, the value is AWS_SERVICE.
+	// The type of destination for events arriving from a channel. For service-linked
+	// channels, the value is AWS_SERVICE.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DestinationType"`
@@ -7840,7 +7881,7 @@ func (s *EventSelector) SetReadWriteType(v string) *EventSelector {
 type GetChannelInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the CloudTrail service-linked channel.
+	// The ARN or UUID of a channel.
 	//
 	// Channel is a required field
 	Channel *string `min:"3" type:"string" required:"true"`
@@ -7889,26 +7930,24 @@ func (s *GetChannelInput) SetChannel(v string) *GetChannelInput {
 type GetChannelOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the CloudTrail service-linked channel.
+	// The ARN of an channel returned by a GetChannel request.
 	ChannelArn *string `min:"3" type:"string"`
 
-	// The Amazon Web Services service that created the CloudTrail service-linked
-	// channel.
+	// The Amazon Web Services service that created the service-linked channel.
 	Destinations []*Destination `min:"1" type:"list"`
 
-	// The name of the CloudTrail service-linked channel. For service-linked channels,
-	// the value is aws-service-channel/service-name/custom-suffix where service-name
-	// represents the name of the Amazon Web Services service that created the channel
-	// and custom-suffix represents the suffix generated by the Amazon Web Services
+	// The name of the CloudTrail channel. For service-linked channels, the value
+	// is aws-service-channel/service-name/custom-suffix where service-name represents
+	// the name of the Amazon Web Services service that created the channel and
+	// custom-suffix represents the suffix generated by the Amazon Web Services
 	// service.
 	Name *string `min:"3" type:"string"`
 
-	// The trail or event data store for the CloudTrail service-linked channel.
+	// The event source for the CloudTrail channel.
 	Source *string `min:"1" type:"string"`
 
 	// Provides information about the advanced event selectors configured for the
-	// service-linked channel, and whether the service-linked channel applies to
-	// all regions or one region.
+	// channel, and whether the channel applies to all regions or a single region.
 	SourceConfig *SourceConfig `type:"structure"`
 }
 
@@ -8292,7 +8331,7 @@ type GetImportOutput struct {
 	// The timestamp of the import's creation.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The destination event data store.
+	// The ARN of the destination event data store.
 	Destinations []*string `min:"1" type:"list"`
 
 	// Used with StartEventTime to bound a StartImport request, and limit imported
@@ -8305,7 +8344,10 @@ type GetImportOutput struct {
 	// The source S3 bucket.
 	ImportSource *ImportSource `type:"structure"`
 
-	// Provides statistics for the import.
+	// Provides statistics for the import. CloudTrail does not update import statistics
+	// in real-time. Returned values for parameters such as EventsCompleted may
+	// be lower than the actual value, because CloudTrail updates statistics incrementally
+	// over the course of the import.
 	ImportStatistics *ImportStatistics `type:"structure"`
 
 	// The status of the import.
@@ -9173,17 +9215,20 @@ func (s *ImportSource) SetS3(v *S3ImportSource) *ImportSource {
 	return s
 }
 
-// Provides statistics for the specified ImportID.
+// Provides statistics for the specified ImportID. CloudTrail does not update
+// import statistics in real-time. Returned values for parameters such as EventsCompleted
+// may be lower than the actual value, because CloudTrail updates statistics
+// incrementally over the course of the import.
 type ImportStatistics struct {
 	_ struct{} `type:"structure"`
 
-	// The number of trail events imported.
+	// The number of trail events imported into the event data store.
 	EventsCompleted *int64 `type:"long"`
 
 	// The number of failed entries.
 	FailedEntries *int64 `type:"long"`
 
-	// The number of files that completed import.
+	// The number of log files that completed import.
 	FilesCompleted *int64 `type:"long"`
 
 	// The number of S3 prefixes that completed import.
@@ -9248,7 +9293,7 @@ type ImportsListItem struct {
 	// The timestamp of the import's creation.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The destination event data store.
+	// The ARN of the destination event data store.
 	Destinations []*string `min:"1" type:"list"`
 
 	// The ID of the import.
@@ -9603,8 +9648,8 @@ func (s *InsufficientDependencyServiceAccessPermissionException) RequestID() str
 	return s.RespMetadata.RequestID
 }
 
-// This exception is thrown when the policy on the S3 bucket or KMS key is not
-// sufficient.
+// This exception is thrown when the policy on the S3 bucket or KMS key does
+// not have sufficient permissions for the operation.
 type InsufficientEncryptionPolicyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10057,8 +10102,8 @@ func (s *InvalidEventCategoryException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This exception is thrown when the event data store category is not valid
-// for the import.
+// This exception is thrown when event categories of specified event data stores
+// are not valid.
 type InvalidEventDataStoreCategoryException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11652,7 +11697,11 @@ type ListChannelsInput struct {
 	// The maximum number of CloudTrail channels to display on a single page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// A token you can use to get the next page of results.
+	// The token to use to get the next page of results after a previous API call.
+	// This token must be passed in with the same parameters that were specified
+	// in the original call. For example, if the original call specified an AttributeKey
+	// of 'Username' with a value of 'root', the call with NextToken should include
+	// those same parameters.
 	NextToken *string `min:"4" type:"string"`
 }
 
@@ -11705,10 +11754,10 @@ func (s *ListChannelsInput) SetNextToken(v string) *ListChannelsInput {
 type ListChannelsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of CloudTrail channels.
+	// The list of channels in the account.
 	Channels []*Channel `type:"list"`
 
-	// A token used to get the next page of results.
+	// The token to use to get the next page of results after a previous API call.
 	NextToken *string `min:"4" type:"string"`
 }
 
@@ -11955,7 +12004,7 @@ func (s *ListImportFailuresOutput) SetNextToken(v string) *ListImportFailuresOut
 type ListImportsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The destination event data store.
+	// The ARN of the destination event data store.
 	Destination *string `min:"3" type:"string"`
 
 	// The status of the import.
@@ -14286,15 +14335,14 @@ func (s *S3ImportSource) SetS3LocationUri(v string) *S3ImportSource {
 	return s
 }
 
-// Contains configuration information about the service-linked channel.
+// Contains configuration information about the channel.
 type SourceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The advanced event selectors configured for the service-linked channel.
+	// The advanced event selectors that are configured for the channel.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
-	// Specifies whether the service-linked channel applies to one region or all
-	// regions.
+	// Specifies whether the channel applies to a single region or to all regions.
 	ApplyToAllRegions *bool `type:"boolean"`
 }
 
@@ -14331,11 +14379,15 @@ func (s *SourceConfig) SetApplyToAllRegions(v bool) *SourceConfig {
 type StartImportInput struct {
 	_ struct{} `type:"structure"`
 
-	// The destination event data store. Use this parameter for a new import.
+	// The ARN of the destination event data store. Use this parameter for a new
+	// import.
 	Destinations []*string `min:"1" type:"list"`
 
 	// Use with StartEventTime to bound a StartImport request, and limit imported
 	// trail events to only those events logged within a specified time period.
+	// When you specify a time range, CloudTrail checks the prefix and log file
+	// names to verify the names contain a date between the specified StartEventTime
+	// and EndEventTime before attempting to import events.
 	EndEventTime *time.Time `type:"timestamp"`
 
 	// The ID of the import. Use this parameter when you are retrying an import.
@@ -14346,6 +14398,9 @@ type StartImportInput struct {
 
 	// Use with EndEventTime to bound a StartImport request, and limit imported
 	// trail events to only those events logged within a specified time period.
+	// When you specify a time range, CloudTrail checks the prefix and log file
+	// names to verify the names contain a date between the specified StartEventTime
+	// and EndEventTime before attempting to import events.
 	StartEventTime *time.Time `type:"timestamp"`
 }
 
@@ -14424,7 +14479,7 @@ type StartImportOutput struct {
 	// The timestamp for the import's creation.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The destination event data store.
+	// The ARN of the destination event data store.
 	Destinations []*string `min:"1" type:"list"`
 
 	// Used with StartEventTime to bound a StartImport request, and limit imported
@@ -14434,7 +14489,7 @@ type StartImportOutput struct {
 	// The ID of the import.
 	ImportId *string `min:"36" type:"string"`
 
-	// The source S3 bucket.
+	// The source S3 bucket for the import.
 	ImportSource *ImportSource `type:"structure"`
 
 	// Shows the status of the import after a StartImport request. An import finishes
@@ -14595,6 +14650,9 @@ func (s StartLoggingOutput) GoString() string {
 type StartQueryInput struct {
 	_ struct{} `type:"structure"`
 
+	// The URI for the S3 bucket where CloudTrail delivers the query results.
+	DeliveryS3Uri *string `type:"string"`
+
 	// The SQL code of your query.
 	//
 	// QueryStatement is a required field
@@ -14633,6 +14691,12 @@ func (s *StartQueryInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeliveryS3Uri sets the DeliveryS3Uri field's value.
+func (s *StartQueryInput) SetDeliveryS3Uri(v string) *StartQueryInput {
+	s.DeliveryS3Uri = &v
+	return s
 }
 
 // SetQueryStatement sets the QueryStatement field's value.
@@ -14727,7 +14791,7 @@ type StopImportOutput struct {
 	// The timestamp of the import's creation.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The destination event data store.
+	// The ARN of the destination event data store.
 	Destinations []*string `min:"1" type:"list"`
 
 	// Used with StartEventTime to bound a StartImport request, and limit imported
@@ -14737,7 +14801,7 @@ type StopImportOutput struct {
 	// The ID for the import.
 	ImportId *string `min:"36" type:"string"`
 
-	// The source S3 bucket.
+	// The source S3 bucket for the import.
 	ImportSource *ImportSource `type:"structure"`
 
 	// Returns information on the stopped import.
@@ -16121,6 +16185,50 @@ func (s *UpdateTrailOutput) SetSnsTopicName(v string) *UpdateTrailOutput {
 func (s *UpdateTrailOutput) SetTrailARN(v string) *UpdateTrailOutput {
 	s.TrailARN = &v
 	return s
+}
+
+const (
+	// DeliveryStatusSuccess is a DeliveryStatus enum value
+	DeliveryStatusSuccess = "SUCCESS"
+
+	// DeliveryStatusFailed is a DeliveryStatus enum value
+	DeliveryStatusFailed = "FAILED"
+
+	// DeliveryStatusFailedSigningFile is a DeliveryStatus enum value
+	DeliveryStatusFailedSigningFile = "FAILED_SIGNING_FILE"
+
+	// DeliveryStatusPending is a DeliveryStatus enum value
+	DeliveryStatusPending = "PENDING"
+
+	// DeliveryStatusResourceNotFound is a DeliveryStatus enum value
+	DeliveryStatusResourceNotFound = "RESOURCE_NOT_FOUND"
+
+	// DeliveryStatusAccessDenied is a DeliveryStatus enum value
+	DeliveryStatusAccessDenied = "ACCESS_DENIED"
+
+	// DeliveryStatusAccessDeniedSigningFile is a DeliveryStatus enum value
+	DeliveryStatusAccessDeniedSigningFile = "ACCESS_DENIED_SIGNING_FILE"
+
+	// DeliveryStatusCancelled is a DeliveryStatus enum value
+	DeliveryStatusCancelled = "CANCELLED"
+
+	// DeliveryStatusUnknown is a DeliveryStatus enum value
+	DeliveryStatusUnknown = "UNKNOWN"
+)
+
+// DeliveryStatus_Values returns all elements of the DeliveryStatus enum
+func DeliveryStatus_Values() []string {
+	return []string{
+		DeliveryStatusSuccess,
+		DeliveryStatusFailed,
+		DeliveryStatusFailedSigningFile,
+		DeliveryStatusPending,
+		DeliveryStatusResourceNotFound,
+		DeliveryStatusAccessDenied,
+		DeliveryStatusAccessDeniedSigningFile,
+		DeliveryStatusCancelled,
+		DeliveryStatusUnknown,
+	}
 }
 
 const (
