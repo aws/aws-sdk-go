@@ -36,8 +36,7 @@ const (
 	// ErrCodeChannelARNInvalidException for service response error code
 	// "ChannelARNInvalidException".
 	//
-	// The specified channel ARN is not valid or does not map to a channel in your
-	// account.
+	// This exception is thrown when the specified value of ChannelARN is not valid.
 	ErrCodeChannelARNInvalidException = "ChannelARNInvalidException"
 
 	// ErrCodeChannelNotFoundException for service response error code
@@ -146,8 +145,8 @@ const (
 	// ErrCodeInsufficientEncryptionPolicyException for service response error code
 	// "InsufficientEncryptionPolicyException".
 	//
-	// This exception is thrown when the policy on the S3 bucket or KMS key is not
-	// sufficient.
+	// This exception is thrown when the policy on the S3 bucket or KMS key does
+	// not have sufficient permissions for the operation.
 	ErrCodeInsufficientEncryptionPolicyException = "InsufficientEncryptionPolicyException"
 
 	// ErrCodeInsufficientS3BucketPolicyException for service response error code
@@ -194,8 +193,8 @@ const (
 	// ErrCodeInvalidEventDataStoreCategoryException for service response error code
 	// "InvalidEventDataStoreCategoryException".
 	//
-	// This exception is thrown when the event data store category is not valid
-	// for the import.
+	// This exception is thrown when event categories of specified event data stores
+	// are not valid.
 	ErrCodeInvalidEventDataStoreCategoryException = "InvalidEventDataStoreCategoryException"
 
 	// ErrCodeInvalidEventDataStoreStatusException for service response error code

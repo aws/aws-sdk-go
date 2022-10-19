@@ -64,7 +64,10 @@
         {"shape":"BucketAlreadyOwnedByYou"}
       ],
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUT.html",
-      "alias":"PutBucket"
+      "alias":"PutBucket",
+      "staticContextParams":{
+        "DisableAccessPoints":{"value":true}
+      }
     },
     "CreateMultipartUpload":{
       "name":"CreateMultipartUpload",
@@ -1076,6 +1079,9 @@
       "authtype":"v4-unsigned-body",
       "endpoint":{
         "hostPrefix":"{RequestRoute}."
+      },
+      "staticContextParams":{
+        "UseObjectLambdaEndpoint":{"value":true}
       }
     }
   },
@@ -1107,6 +1113,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -1304,6 +1311,7 @@
         "ap-south-1",
         "ap-southeast-1",
         "ap-southeast-2",
+        "ap-southeast-3",
         "ca-central-1",
         "cn-north-1",
         "cn-northwest-1",
@@ -1536,6 +1544,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -1728,6 +1737,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -1993,6 +2003,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2114,6 +2125,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2294,6 +2306,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2315,6 +2328,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2331,6 +2345,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2350,6 +2365,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2369,6 +2385,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2390,6 +2407,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2409,6 +2427,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2430,6 +2449,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2446,6 +2466,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2462,6 +2483,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2478,6 +2500,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2494,6 +2517,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2510,6 +2534,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2579,6 +2604,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2633,6 +2659,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2677,6 +2704,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2719,6 +2747,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2930,6 +2959,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2956,6 +2986,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -2982,6 +3013,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3012,6 +3044,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3035,6 +3068,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3061,6 +3095,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3087,6 +3122,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3117,6 +3153,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3142,6 +3179,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3164,6 +3202,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3186,6 +3225,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3212,6 +3252,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3233,6 +3274,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3256,6 +3298,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3279,6 +3322,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3302,6 +3346,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3325,6 +3370,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3347,6 +3393,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3370,6 +3417,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3396,6 +3444,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3421,6 +3470,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3455,6 +3505,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3537,6 +3588,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3608,6 +3660,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3646,6 +3699,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3850,6 +3904,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -3972,6 +4027,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4018,6 +4074,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4067,6 +4124,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4100,6 +4158,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4161,6 +4220,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4355,6 +4415,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4788,6 +4849,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4821,6 +4883,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4849,6 +4912,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4882,6 +4946,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -4930,6 +4995,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5000,6 +5066,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5061,6 +5128,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5124,6 +5192,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5219,6 +5288,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5825,6 +5895,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5862,6 +5933,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5918,6 +5990,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5948,6 +6021,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -5983,6 +6057,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6019,6 +6094,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6045,6 +6121,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6072,6 +6149,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6099,6 +6177,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6134,6 +6213,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6170,6 +6250,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6200,6 +6281,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6230,6 +6312,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6265,6 +6348,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6295,6 +6379,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6331,6 +6416,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6371,6 +6457,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6406,6 +6493,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6441,6 +6529,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6481,6 +6570,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6536,6 +6626,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6616,6 +6707,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6673,6 +6765,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6802,6 +6895,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -6997,6 +7091,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -7063,6 +7158,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -7113,6 +7209,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -7392,6 +7489,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -7575,6 +7673,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -7946,6 +8045,7 @@
       "members":{
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -8116,6 +8216,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"Bucket"
         },
@@ -8438,5 +8539,23 @@
       "payload":"Body"
     },
     "Years":{"type":"integer"}
+  },
+  "clientContextParams":{
+    "Accelerate":{
+      "documentation":"Enables this client to use S3 Transfer Acceleration endpoints.",
+      "type":"boolean"
+    },
+    "DisableMultiRegionAccessPoints":{
+      "documentation":"Disables this client's usage of Multi-Region Access Points.",
+      "type":"boolean"
+    },
+    "ForcePathStyle":{
+      "documentation":"Forces this client to use path-style addressing for buckets.",
+      "type":"boolean"
+    },
+    "UseArnRegion":{
+      "documentation":"Enables this client to use an ARN's region when constructing an endpoint instead of the client's configured region.",
+      "type":"boolean"
+    }
   }
 }

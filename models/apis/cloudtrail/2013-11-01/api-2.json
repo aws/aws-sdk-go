@@ -630,6 +630,10 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidQueryStatementException"},
         {"shape":"MaxConcurrentQueriesException"},
+        {"shape":"InvalidS3PrefixException"},
+        {"shape":"InvalidS3BucketNameException"},
+        {"shape":"InsufficientS3BucketPolicyException"},
+        {"shape":"S3BucketDoesNotExistException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"UnsupportedOperationException"}
       ],
@@ -987,6 +991,25 @@
       "members":{
       }
     },
+    "DeliveryS3Uri":{
+      "type":"string",
+      "max":1024,
+      "pattern":"s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?"
+    },
+    "DeliveryStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "FAILED",
+        "FAILED_SIGNING_FILE",
+        "PENDING",
+        "RESOURCE_NOT_FOUND",
+        "ACCESS_DENIED",
+        "ACCESS_DENIED_SIGNING_FILE",
+        "CANCELLED",
+        "UNKNOWN"
+      ]
+    },
     "DescribeQueryRequest":{
       "type":"structure",
       "required":[
@@ -1005,7 +1028,9 @@
         "QueryString":{"shape":"QueryStatement"},
         "QueryStatus":{"shape":"QueryStatus"},
         "QueryStatistics":{"shape":"QueryStatisticsForDescribeQuery"},
-        "ErrorMessage":{"shape":"ErrorMessage"}
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "DeliveryS3Uri":{"shape":"DeliveryS3Uri"},
+        "DeliveryStatus":{"shape":"DeliveryStatus"}
       }
     },
     "DescribeTrailsRequest":{
@@ -2207,7 +2232,8 @@
       "type":"structure",
       "required":["QueryStatement"],
       "members":{
-        "QueryStatement":{"shape":"QueryStatement"}
+        "QueryStatement":{"shape":"QueryStatement"},
+        "DeliveryS3Uri":{"shape":"DeliveryS3Uri"}
       }
     },
     "StartQueryResponse":{

@@ -4610,9 +4610,9 @@ func (c *ChimeSDKMessaging) SearchChannelsRequest(input *SearchChannelsInput) (r
 
 // SearchChannels API operation for Amazon Chime SDK Messaging.
 //
-// Allows an AppInstanceUser to search the channels that they belong to. The
-// AppInstanceUser can search by membership or external ID. An AppInstanceAdmin
-// can search across all channels within the AppInstance.
+// Allows ChimeBearer to search channels by channel members. AppInstanceUsers
+// can search across the channels that they belong to. AppInstanceAdmins can
+// search across all channels.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7238,7 +7238,7 @@ type ChannelSummary struct {
 	// The ARN of the channel.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The time at which the last message in a channel was sent.
+	// The time at which the last persistent message in a channel was sent.
 	LastMessageTimestamp *time.Time `type:"timestamp"`
 
 	// The metadata of the channel.

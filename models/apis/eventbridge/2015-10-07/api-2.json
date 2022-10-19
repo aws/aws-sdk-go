@@ -2397,7 +2397,10 @@
       "required":["Entries"],
       "members":{
         "Entries":{"shape":"PutEventsRequestEntryList"},
-        "EndpointId":{"shape":"EndpointId"}
+        "EndpointId":{
+          "shape":"EndpointId",
+          "contextParam":{"name":"EndpointId"}
+        }
       }
     },
     "PutEventsRequestEntry":{
