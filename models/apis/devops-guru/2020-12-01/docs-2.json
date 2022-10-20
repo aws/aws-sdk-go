@@ -27,7 +27,7 @@
     "ListRecommendations": "<p> Returns a list of a specified insight's recommendations. Each recommendation includes a list of related metrics and a list of related events. </p>",
     "PutFeedback": "<p> Collects customer feedback about the specified insight. </p>",
     "RemoveNotificationChannel": "<p> Removes a notification channel from DevOps Guru. A notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations. </p>",
-    "SearchInsights": "<p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
+    "SearchInsights": "<p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code> or <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
     "SearchOrganizationInsights": "<p> Returns a list of insights in your organization. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
     "StartCostEstimation": "<p>Starts the creation of an estimate of the monthly cost to analyze your Amazon Web Services resources.</p>",
     "UpdateEventSourcesConfig": "<p>Enables or disables integration with a service that can be integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive recommendations which can be stored and viewed in DevOps Guru.</p>",
@@ -80,6 +80,15 @@
       "base": "<p>Information about your account's integration with Amazon CodeGuru Profiler. This returns whether DevOps Guru is configured to consume recommendations generated from Amazon CodeGuru Profiler.</p>",
       "refs": {
         "EventSourcesConfig$AmazonCodeGuruProfiler": "<p>Information about whether DevOps Guru is configured to consume recommendations which are generated from AWS CodeGuru Profiler.</p>"
+      }
+    },
+    "AnalyzedResourceCount": {
+      "base": null,
+      "refs": {
+        "CloudFormationHealth$AnalyzedResourceCount": "<p> Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services CloudFormation stack. </p>",
+        "DescribeAccountHealthResponse$AnalyzedResourceCount": "<p> Number of resources that DevOps Guru is monitoring in your Amazon Web Services account. </p>",
+        "ServiceHealth$AnalyzedResourceCount": "<p> Number of resources that DevOps Guru is monitoring in an analyzed Amazon Web Services service. </p>",
+        "TagHealth$AnalyzedResourceCount": "<p> Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services tag. </p>"
       }
     },
     "AnomalousLogGroup": {
@@ -1671,6 +1680,7 @@
       "refs": {
         "Event$ResourceCollection": null,
         "ListEventsFilters$ResourceCollection": null,
+        "MonitoredResourceIdentifier$ResourceCollection": null,
         "ProactiveAnomaly$ResourceCollection": null,
         "ProactiveAnomalySummary$ResourceCollection": null,
         "ProactiveInsight$ResourceCollection": null,
@@ -2023,6 +2033,7 @@
         "InsightTimeRange$StartTime": "<p> The time when the behavior described in an insight started. </p>",
         "InsightTimeRange$EndTime": "<p> The time when the behavior described in an insight ended. </p>",
         "LogAnomalyClass$LogEventTimestamp": "<p> The time of the first occurrence of the anomalous log event. </p>",
+        "MonitoredResourceIdentifier$LastUpdated": "<p> The time at which DevOps Guru last updated this resource. </p>",
         "PredictionTimeRange$StartTime": "<p> The time range during which a metric limit is expected to be exceeded. This applies to proactive insights only. </p>",
         "PredictionTimeRange$EndTime": "<p> The time when the behavior in a proactive insight is expected to end. </p>",
         "ProactiveAnomaly$UpdateTime": "<p> The time of the anomaly's most recent update. </p>",

@@ -586,6 +586,7 @@
         "Status":{"shape":"EventSourceOptInStatus"}
       }
     },
+    "AnalyzedResourceCount":{"type":"long"},
     "AnomalousLogGroup":{
       "type":"structure",
       "members":{
@@ -725,7 +726,8 @@
       "type":"structure",
       "members":{
         "StackName":{"shape":"StackName"},
-        "Insight":{"shape":"InsightHealth"}
+        "Insight":{"shape":"InsightHealth"},
+        "AnalyzedResourceCount":{"shape":"AnalyzedResourceCount"}
       }
     },
     "CloudFormationHealths":{
@@ -883,7 +885,8 @@
         "OpenReactiveInsights":{"shape":"NumOpenReactiveInsights"},
         "OpenProactiveInsights":{"shape":"NumOpenProactiveInsights"},
         "MetricsAnalyzed":{"shape":"NumMetricsAnalyzed"},
-        "ResourceHours":{"shape":"ResourceHours"}
+        "ResourceHours":{"shape":"ResourceHours"},
+        "AnalyzedResourceCount":{"shape":"AnalyzedResourceCount"}
       }
     },
     "DescribeAccountOverviewRequest":{
@@ -1508,7 +1511,6 @@
     },
     "ListMonitoredResourcesRequest":{
       "type":"structure",
-      "required":["Filters"],
       "members":{
         "Filters":{"shape":"ListMonitoredResourcesFilters"},
         "MaxResults":{"shape":"ListMonitoredResourcesMaxResults"},
@@ -1670,7 +1672,9 @@
       "members":{
         "MonitoredResourceName":{"shape":"MonitoredResourceName"},
         "Type":{"shape":"ResourceType"},
-        "ResourcePermission":{"shape":"ResourcePermission"}
+        "ResourcePermission":{"shape":"ResourcePermission"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "ResourceCollection":{"shape":"ResourceCollection"}
       }
     },
     "MonitoredResourceIdentifiers":{
@@ -2249,7 +2253,35 @@
     },
     "ResourceTypeFilter":{
       "type":"string",
-      "enum":["LOG_GROUPS"]
+      "enum":[
+        "LOG_GROUPS",
+        "CLOUDFRONT_DISTRIBUTION",
+        "DYNAMODB_TABLE",
+        "EC2_NAT_GATEWAY",
+        "ECS_CLUSTER",
+        "ECS_SERVICE",
+        "EKS_CLUSTER",
+        "ELASTIC_BEANSTALK_ENVIRONMENT",
+        "ELASTIC_LOAD_BALANCER_LOAD_BALANCER",
+        "ELASTIC_LOAD_BALANCING_V2_LOAD_BALANCER",
+        "ELASTIC_LOAD_BALANCING_V2_TARGET_GROUP",
+        "ELASTICACHE_CACHE_CLUSTER",
+        "ELASTICSEARCH_DOMAIN",
+        "KINESIS_STREAM",
+        "LAMBDA_FUNCTION",
+        "OPEN_SEARCH_SERVICE_DOMAIN",
+        "RDS_DB_INSTANCE",
+        "RDS_DB_CLUSTER",
+        "REDSHIFT_CLUSTER",
+        "ROUTE53_HOSTED_ZONE",
+        "ROUTE53_HEALTH_CHECK",
+        "S3_BUCKET",
+        "SAGEMAKER_ENDPOINT",
+        "SNS_TOPIC",
+        "SQS_QUEUE",
+        "STEP_FUNCTIONS_ACTIVITY",
+        "STEP_FUNCTIONS_STATE_MACHINE"
+      ]
     },
     "ResourceTypeFilters":{
       "type":"list",
@@ -2346,7 +2378,8 @@
       "type":"structure",
       "members":{
         "ServiceName":{"shape":"ServiceName"},
-        "Insight":{"shape":"ServiceInsightHealth"}
+        "Insight":{"shape":"ServiceInsightHealth"},
+        "AnalyzedResourceCount":{"shape":"AnalyzedResourceCount"}
       }
     },
     "ServiceHealths":{
@@ -2518,7 +2551,8 @@
       "members":{
         "AppBoundaryKey":{"shape":"AppBoundaryKey"},
         "TagValue":{"shape":"TagValue"},
-        "Insight":{"shape":"InsightHealth"}
+        "Insight":{"shape":"InsightHealth"},
+        "AnalyzedResourceCount":{"shape":"AnalyzedResourceCount"}
       }
     },
     "TagHealths":{

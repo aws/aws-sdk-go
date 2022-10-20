@@ -7924,6 +7924,13 @@
       },
       "kms" : {
         "endpoints" : {
+          "ProdFips" : {
+            "credentialScope" : {
+              "region" : "eu-central-2"
+            },
+            "deprecated" : true,
+            "hostname" : "kms-fips.eu-central-2.amazonaws.com"
+          },
           "af-south-1" : {
             "variants" : [ {
               "hostname" : "kms-fips.af-south-1.amazonaws.com",
@@ -8066,6 +8073,13 @@
             },
             "deprecated" : true,
             "hostname" : "kms-fips.eu-central-1.amazonaws.com"
+          },
+          "eu-central-2-fips" : {
+            "credentialScope" : {
+              "region" : "eu-central-2"
+            },
+            "deprecated" : true,
+            "hostname" : "kms-fips.eu-central-2.amazonaws.com"
           },
           "eu-north-1" : {
             "variants" : [ {
@@ -20620,7 +20634,8 @@
       },
       "ssm" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "states" : {

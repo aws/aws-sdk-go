@@ -12,6 +12,61 @@
     "uid":"rum-2018-05-10"
   },
   "operations":{
+    "BatchCreateRumMetricDefinitions":{
+      "name":"BatchCreateRumMetricDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/rummetrics/{AppMonitorName}/metrics",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchCreateRumMetricDefinitionsRequest"},
+      "output":{"shape":"BatchCreateRumMetricDefinitionsResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
+    "BatchDeleteRumMetricDefinitions":{
+      "name":"BatchDeleteRumMetricDefinitions",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/rummetrics/{AppMonitorName}/metrics",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchDeleteRumMetricDefinitionsRequest"},
+      "output":{"shape":"BatchDeleteRumMetricDefinitionsResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
+    "BatchGetRumMetricDefinitions":{
+      "name":"BatchGetRumMetricDefinitions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/rummetrics/{AppMonitorName}/metrics",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetRumMetricDefinitionsRequest"},
+      "output":{"shape":"BatchGetRumMetricDefinitionsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateAppMonitor":{
       "name":"CreateAppMonitor",
       "http":{
@@ -24,6 +79,7 @@
       "errors":[
         {"shape":"ConflictException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
@@ -40,6 +96,25 @@
       },
       "input":{"shape":"DeleteAppMonitorRequest"},
       "output":{"shape":"DeleteAppMonitorResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteRumMetricsDestination":{
+      "name":"DeleteRumMetricsDestination",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/rummetrics/{AppMonitorName}/metricsdestination",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteRumMetricsDestinationRequest"},
+      "output":{"shape":"DeleteRumMetricsDestinationResponse"},
       "errors":[
         {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
@@ -100,6 +175,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "ListRumMetricsDestinations":{
+      "name":"ListRumMetricsDestinations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/rummetrics/{AppMonitorName}/metricsdestination",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRumMetricsDestinationsRequest"},
+      "output":{"shape":"ListRumMetricsDestinationsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -132,6 +223,25 @@
         {"shape":"AccessDeniedException"}
       ],
       "endpoint":{"hostPrefix":"dataplane."}
+    },
+    "PutRumMetricsDestination":{
+      "name":"PutRumMetricsDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/rummetrics/{AppMonitorName}/metricsdestination",
+        "responseCode":200
+      },
+      "input":{"shape":"PutRumMetricsDestinationRequest"},
+      "output":{"shape":"PutRumMetricsDestinationResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
     },
     "TagResource":{
       "name":"TagResource",
@@ -182,6 +292,26 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
       ]
+    },
+    "UpdateRumMetricDefinition":{
+      "name":"UpdateRumMetricDefinition",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/rummetrics/{AppMonitorName}/metrics",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateRumMetricDefinitionRequest"},
+      "output":{"shape":"UpdateRumMetricDefinitionResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -269,6 +399,145 @@
       "type":"string",
       "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
     },
+    "BatchCreateRumMetricDefinitionsError":{
+      "type":"structure",
+      "required":[
+        "ErrorCode",
+        "ErrorMessage",
+        "MetricDefinition"
+      ],
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"},
+        "MetricDefinition":{"shape":"MetricDefinitionRequest"}
+      }
+    },
+    "BatchCreateRumMetricDefinitionsErrors":{
+      "type":"list",
+      "member":{"shape":"BatchCreateRumMetricDefinitionsError"}
+    },
+    "BatchCreateRumMetricDefinitionsRequest":{
+      "type":"structure",
+      "required":[
+        "AppMonitorName",
+        "Destination",
+        "MetricDefinitions"
+      ],
+      "members":{
+        "AppMonitorName":{
+          "shape":"AppMonitorName",
+          "location":"uri",
+          "locationName":"AppMonitorName"
+        },
+        "Destination":{"shape":"MetricDestination"},
+        "DestinationArn":{"shape":"DestinationArn"},
+        "MetricDefinitions":{"shape":"MetricDefinitionsRequest"}
+      }
+    },
+    "BatchCreateRumMetricDefinitionsResponse":{
+      "type":"structure",
+      "required":["Errors"],
+      "members":{
+        "Errors":{"shape":"BatchCreateRumMetricDefinitionsErrors"},
+        "MetricDefinitions":{"shape":"MetricDefinitions"}
+      }
+    },
+    "BatchDeleteRumMetricDefinitionsError":{
+      "type":"structure",
+      "required":[
+        "ErrorCode",
+        "ErrorMessage",
+        "MetricDefinitionId"
+      ],
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"},
+        "MetricDefinitionId":{"shape":"MetricDefinitionId"}
+      }
+    },
+    "BatchDeleteRumMetricDefinitionsErrors":{
+      "type":"list",
+      "member":{"shape":"BatchDeleteRumMetricDefinitionsError"}
+    },
+    "BatchDeleteRumMetricDefinitionsRequest":{
+      "type":"structure",
+      "required":[
+        "AppMonitorName",
+        "Destination",
+        "MetricDefinitionIds"
+      ],
+      "members":{
+        "AppMonitorName":{
+          "shape":"AppMonitorName",
+          "location":"uri",
+          "locationName":"AppMonitorName"
+        },
+        "Destination":{
+          "shape":"MetricDestination",
+          "location":"querystring",
+          "locationName":"destination"
+        },
+        "DestinationArn":{
+          "shape":"DestinationArn",
+          "location":"querystring",
+          "locationName":"destinationArn"
+        },
+        "MetricDefinitionIds":{
+          "shape":"MetricDefinitionIds",
+          "location":"querystring",
+          "locationName":"metricDefinitionIds"
+        }
+      }
+    },
+    "BatchDeleteRumMetricDefinitionsResponse":{
+      "type":"structure",
+      "required":["Errors"],
+      "members":{
+        "Errors":{"shape":"BatchDeleteRumMetricDefinitionsErrors"},
+        "MetricDefinitionIds":{"shape":"MetricDefinitionIds"}
+      }
+    },
+    "BatchGetRumMetricDefinitionsRequest":{
+      "type":"structure",
+      "required":[
+        "AppMonitorName",
+        "Destination"
+      ],
+      "members":{
+        "AppMonitorName":{
+          "shape":"AppMonitorName",
+          "location":"uri",
+          "locationName":"AppMonitorName"
+        },
+        "Destination":{
+          "shape":"MetricDestination",
+          "location":"querystring",
+          "locationName":"destination"
+        },
+        "DestinationArn":{
+          "shape":"DestinationArn",
+          "location":"querystring",
+          "locationName":"destinationArn"
+        },
+        "MaxResults":{
+          "shape":"MaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "BatchGetRumMetricDefinitionsResponse":{
+      "type":"structure",
+      "members":{
+        "MetricDefinitions":{"shape":"MetricDefinitions"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
@@ -339,10 +608,66 @@
       "members":{
       }
     },
+    "DeleteRumMetricsDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "AppMonitorName",
+        "Destination"
+      ],
+      "members":{
+        "AppMonitorName":{
+          "shape":"AppMonitorName",
+          "location":"uri",
+          "locationName":"AppMonitorName"
+        },
+        "Destination":{
+          "shape":"MetricDestination",
+          "location":"querystring",
+          "locationName":"destination"
+        },
+        "DestinationArn":{
+          "shape":"DestinationArn",
+          "location":"querystring",
+          "locationName":"destinationArn"
+        }
+      }
+    },
+    "DeleteRumMetricsDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DestinationArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
+    },
+    "DimensionKey":{
+      "type":"string",
+      "max":280,
+      "min":1
+    },
+    "DimensionKeysMap":{
+      "type":"map",
+      "key":{"shape":"DimensionKey"},
+      "value":{"shape":"DimensionName"}
+    },
+    "DimensionName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(?!:).*[^\\s].*"
+    },
     "EventData":{"type":"string"},
     "EventDataList":{
       "type":"list",
       "member":{"shape":"EventData"}
+    },
+    "EventPattern":{
+      "type":"string",
+      "max":4000,
+      "min":0
     },
     "FavoritePages":{
       "type":"list",
@@ -395,8 +720,11 @@
     "ISOTimestampString":{
       "type":"string",
       "max":19,
-      "min":19,
-      "pattern":"/d{4}-[01]/d-[0-3]/dT[0-2]/d:[0-5]/d:[0-5]/d/./d+([+-][0-2]/d:[0-5]/d|Z)"
+      "min":19
+    },
+    "IamRoleArn":{
+      "type":"string",
+      "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
     },
     "IdentityPoolId":{
       "type":"string",
@@ -429,7 +757,7 @@
       "type":"structure",
       "members":{
         "MaxResults":{
-          "shape":"Integer",
+          "shape":"MaxResultsInteger",
           "location":"querystring",
           "locationName":"maxResults"
         },
@@ -444,6 +772,34 @@
       "type":"structure",
       "members":{
         "AppMonitorSummaries":{"shape":"AppMonitorSummaryList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListRumMetricsDestinationsRequest":{
+      "type":"structure",
+      "required":["AppMonitorName"],
+      "members":{
+        "AppMonitorName":{
+          "shape":"AppMonitorName",
+          "location":"uri",
+          "locationName":"AppMonitorName"
+        },
+        "MaxResults":{
+          "shape":"MaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListRumMetricsDestinationsResponse":{
+      "type":"structure",
+      "members":{
+        "Destinations":{"shape":"MetricDestinationSummaryList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -474,6 +830,79 @@
       "max":100,
       "min":0
     },
+    "MaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "MetricDefinition":{
+      "type":"structure",
+      "required":[
+        "MetricDefinitionId",
+        "Name"
+      ],
+      "members":{
+        "DimensionKeys":{"shape":"DimensionKeysMap"},
+        "EventPattern":{"shape":"EventPattern"},
+        "MetricDefinitionId":{"shape":"MetricDefinitionId"},
+        "Name":{"shape":"MetricName"},
+        "UnitLabel":{"shape":"UnitLabel"},
+        "ValueKey":{"shape":"ValueKey"}
+      }
+    },
+    "MetricDefinitionId":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "MetricDefinitionIds":{
+      "type":"list",
+      "member":{"shape":"MetricDefinitionId"}
+    },
+    "MetricDefinitionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "DimensionKeys":{"shape":"DimensionKeysMap"},
+        "EventPattern":{"shape":"EventPattern"},
+        "Name":{"shape":"MetricName"},
+        "UnitLabel":{"shape":"UnitLabel"},
+        "ValueKey":{"shape":"ValueKey"}
+      }
+    },
+    "MetricDefinitions":{
+      "type":"list",
+      "member":{"shape":"MetricDefinition"}
+    },
+    "MetricDefinitionsRequest":{
+      "type":"list",
+      "member":{"shape":"MetricDefinitionRequest"}
+    },
+    "MetricDestination":{
+      "type":"string",
+      "enum":[
+        "CloudWatch",
+        "Evidently"
+      ]
+    },
+    "MetricDestinationSummary":{
+      "type":"structure",
+      "members":{
+        "Destination":{"shape":"MetricDestination"},
+        "DestinationArn":{"shape":"DestinationArn"},
+        "IamRoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "MetricDestinationSummaryList":{
+      "type":"list",
+      "member":{"shape":"MetricDestinationSummary"}
+    },
+    "MetricName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "Pages":{
       "type":"list",
       "member":{"shape":"Url"},
@@ -502,6 +931,28 @@
       }
     },
     "PutRumEventsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutRumMetricsDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "AppMonitorName",
+        "Destination"
+      ],
+      "members":{
+        "AppMonitorName":{
+          "shape":"AppMonitorName",
+          "location":"uri",
+          "locationName":"AppMonitorName"
+        },
+        "Destination":{"shape":"MetricDestination"},
+        "DestinationArn":{"shape":"DestinationArn"},
+        "IamRoleArn":{"shape":"IamRoleArn"}
+      }
+    },
+    "PutRumMetricsDestinationResponse":{
       "type":"structure",
       "members":{
       }
@@ -677,6 +1128,11 @@
     },
     "Timestamp":{"type":"timestamp"},
     "Token":{"type":"string"},
+    "UnitLabel":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -720,11 +1176,36 @@
       "members":{
       }
     },
+    "UpdateRumMetricDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "AppMonitorName",
+        "Destination",
+        "MetricDefinition",
+        "MetricDefinitionId"
+      ],
+      "members":{
+        "AppMonitorName":{
+          "shape":"AppMonitorName",
+          "location":"uri",
+          "locationName":"AppMonitorName"
+        },
+        "Destination":{"shape":"MetricDestination"},
+        "DestinationArn":{"shape":"DestinationArn"},
+        "MetricDefinition":{"shape":"MetricDefinitionRequest"},
+        "MetricDefinitionId":{"shape":"MetricDefinitionId"}
+      }
+    },
+    "UpdateRumMetricDefinitionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Url":{
       "type":"string",
       "max":1260,
       "min":1,
-      "pattern":"https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)"
+      "pattern":"https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&*//=]*)"
     },
     "UserDetails":{
       "type":"structure",
@@ -744,6 +1225,11 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ValueKey":{
+      "type":"string",
+      "max":280,
+      "min":1
     }
   }
 }

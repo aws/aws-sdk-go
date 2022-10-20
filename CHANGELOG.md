@@ -1,3 +1,12 @@
+Release v1.44.120 (2022-10-20)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API and documentation
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/resiliencehub`: Updates service API and documentation
+* `service/rum`: Updates service API, documentation, and paginators
+
 Release v1.44.119 (2022-10-19)
 ===
 

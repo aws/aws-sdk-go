@@ -4970,7 +4970,7 @@ type App struct {
 	// The current resiliency score for the application.
 	ResiliencyScore *float64 `locationName:"resiliencyScore" type:"double"`
 
-	// The status of the action.
+	// The status of the application.
 	Status *string `locationName:"status" type:"string" enum:"AppStatusType"`
 
 	// The tags assigned to the resource. A tag is a label that you assign to an
@@ -5554,6 +5554,9 @@ type AppSummary struct {
 
 	// The current resiliency score for the application.
 	ResiliencyScore *float64 `locationName:"resiliencyScore" type:"double"`
+
+	// The status of the application.
+	Status *string `locationName:"status" type:"string" enum:"AppStatusType"`
 }
 
 // String returns the string representation.
@@ -5613,6 +5616,12 @@ func (s *AppSummary) SetName(v string) *AppSummary {
 // SetResiliencyScore sets the ResiliencyScore field's value.
 func (s *AppSummary) SetResiliencyScore(v float64) *AppSummary {
 	s.ResiliencyScore = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AppSummary) SetStatus(v string) *AppSummary {
+	s.Status = &v
 	return s
 }
 
@@ -12210,9 +12219,6 @@ type UpdateResiliencyPolicyInput struct {
 
 	// The type of resiliency policy to be created, including the recovery time
 	// objective (RTO) and recovery point objective (RPO) in seconds.
-	//
-	// If you do not want to specify regional targets for a regional policy, you
-	// must set the values of rpoInSecs and rtoInSecs to -1.
 	Policy map[string]*FailurePolicy `locationName:"policy" type:"map"`
 
 	// The Amazon Resource Name (ARN) of the resiliency policy. The format for this
@@ -12564,6 +12570,9 @@ const (
 
 	// ConfigRecommendationOptimizationTypeBestAttainable is a ConfigRecommendationOptimizationType enum value
 	ConfigRecommendationOptimizationTypeBestAttainable = "BestAttainable"
+
+	// ConfigRecommendationOptimizationTypeBestRegionRecovery is a ConfigRecommendationOptimizationType enum value
+	ConfigRecommendationOptimizationTypeBestRegionRecovery = "BestRegionRecovery"
 )
 
 // ConfigRecommendationOptimizationType_Values returns all elements of the ConfigRecommendationOptimizationType enum
@@ -12574,6 +12583,7 @@ func ConfigRecommendationOptimizationType_Values() []string {
 		ConfigRecommendationOptimizationTypeBestAzrecovery,
 		ConfigRecommendationOptimizationTypeLeastErrors,
 		ConfigRecommendationOptimizationTypeBestAttainable,
+		ConfigRecommendationOptimizationTypeBestRegionRecovery,
 	}
 }
 
