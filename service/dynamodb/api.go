@@ -7526,27 +7526,27 @@ type AttributeValue struct {
 	//
 	// "B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"
 	// B is automatically base64 encoded/decoded by the SDK.
-	B []byte `type:"blob"`
+	B []byte `type:"blob" json:",omitempty"`
 
 	// An attribute of type Boolean. For example:
 	//
 	// "BOOL": true
-	BOOL *bool `type:"boolean"`
+	BOOL *bool `type:"boolean" json:",omitempty"`
 
 	// An attribute of type Binary Set. For example:
 	//
 	// "BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]
-	BS [][]byte `type:"list"`
+	BS [][]byte `type:"list" json:",omitempty"`
 
 	// An attribute of type List. For example:
 	//
 	// "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N": "3.14159"}]
-	L []*AttributeValue `type:"list"`
+	L []*AttributeValue `type:"list" json:",omitempty"`
 
 	// An attribute of type Map. For example:
 	//
 	// "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}
-	M map[string]*AttributeValue `type:"map"`
+	M map[string]*AttributeValue `type:"map" json:",omitempty"`
 
 	// An attribute of type Number. For example:
 	//
@@ -7555,7 +7555,7 @@ type AttributeValue struct {
 	// Numbers are sent across the network to DynamoDB as strings, to maximize compatibility
 	// across languages and libraries. However, DynamoDB treats them as number type
 	// attributes for mathematical operations.
-	N *string `type:"string"`
+	N *string `type:"string" json:",omitempty"`
 
 	// An attribute of type Number Set. For example:
 	//
@@ -7564,22 +7564,22 @@ type AttributeValue struct {
 	// Numbers are sent across the network to DynamoDB as strings, to maximize compatibility
 	// across languages and libraries. However, DynamoDB treats them as number type
 	// attributes for mathematical operations.
-	NS []*string `type:"list"`
+	NS []*string `type:"list" json:",omitempty"`
 
 	// An attribute of type Null. For example:
 	//
 	// "NULL": true
-	NULL *bool `type:"boolean"`
+	NULL *bool `type:"boolean" json:",omitempty"`
 
 	// An attribute of type String. For example:
 	//
 	// "S": "Hello"
-	S *string `type:"string"`
+	S *string `type:"string" json:",omitempty"`
 
 	// An attribute of type String Set. For example:
 	//
 	// "SS": ["Giraffe", "Hippo" ,"Zebra"]
-	SS []*string `type:"list"`
+	SS []*string `type:"list" json:",omitempty"`
 }
 
 // String returns the string representation.
