@@ -64,6 +64,10 @@ type GlobalAcceleratorAPI interface {
 	AddCustomRoutingEndpointsWithContext(aws.Context, *globalaccelerator.AddCustomRoutingEndpointsInput, ...request.Option) (*globalaccelerator.AddCustomRoutingEndpointsOutput, error)
 	AddCustomRoutingEndpointsRequest(*globalaccelerator.AddCustomRoutingEndpointsInput) (*request.Request, *globalaccelerator.AddCustomRoutingEndpointsOutput)
 
+	AddEndpoints(*globalaccelerator.AddEndpointsInput) (*globalaccelerator.AddEndpointsOutput, error)
+	AddEndpointsWithContext(aws.Context, *globalaccelerator.AddEndpointsInput, ...request.Option) (*globalaccelerator.AddEndpointsOutput, error)
+	AddEndpointsRequest(*globalaccelerator.AddEndpointsInput) (*request.Request, *globalaccelerator.AddEndpointsOutput)
+
 	AdvertiseByoipCidr(*globalaccelerator.AdvertiseByoipCidrInput) (*globalaccelerator.AdvertiseByoipCidrOutput, error)
 	AdvertiseByoipCidrWithContext(aws.Context, *globalaccelerator.AdvertiseByoipCidrInput, ...request.Option) (*globalaccelerator.AdvertiseByoipCidrOutput, error)
 	AdvertiseByoipCidrRequest(*globalaccelerator.AdvertiseByoipCidrInput) (*request.Request, *globalaccelerator.AdvertiseByoipCidrOutput)
@@ -234,6 +238,10 @@ type GlobalAcceleratorAPI interface {
 	RemoveCustomRoutingEndpoints(*globalaccelerator.RemoveCustomRoutingEndpointsInput) (*globalaccelerator.RemoveCustomRoutingEndpointsOutput, error)
 	RemoveCustomRoutingEndpointsWithContext(aws.Context, *globalaccelerator.RemoveCustomRoutingEndpointsInput, ...request.Option) (*globalaccelerator.RemoveCustomRoutingEndpointsOutput, error)
 	RemoveCustomRoutingEndpointsRequest(*globalaccelerator.RemoveCustomRoutingEndpointsInput) (*request.Request, *globalaccelerator.RemoveCustomRoutingEndpointsOutput)
+
+	RemoveEndpoints(*globalaccelerator.RemoveEndpointsInput) (*globalaccelerator.RemoveEndpointsOutput, error)
+	RemoveEndpointsWithContext(aws.Context, *globalaccelerator.RemoveEndpointsInput, ...request.Option) (*globalaccelerator.RemoveEndpointsOutput, error)
+	RemoveEndpointsRequest(*globalaccelerator.RemoveEndpointsInput) (*request.Request, *globalaccelerator.RemoveEndpointsOutput)
 
 	TagResource(*globalaccelerator.TagResourceInput) (*globalaccelerator.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *globalaccelerator.TagResourceInput, ...request.Option) (*globalaccelerator.TagResourceOutput, error)
