@@ -798,6 +798,7 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"UnsupportedIdentityProviderException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
@@ -888,6 +889,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -1771,6 +1773,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"UnsupportedIdentityProviderException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalErrorException"}
@@ -3064,6 +3067,7 @@
       "members":{
         "PoolName":{"shape":"UserPoolNameType"},
         "Policies":{"shape":"UserPoolPolicyType"},
+        "DeletionProtection":{"shape":"DeletionProtectionType"},
         "LambdaConfig":{"shape":"LambdaConfigType"},
         "AutoVerifiedAttributes":{"shape":"VerifiedAttributesListType"},
         "AliasAttributes":{"shape":"AliasAttributesListType"},
@@ -3238,6 +3242,13 @@
       "members":{
         "AccessToken":{"shape":"TokenModelType"}
       }
+    },
+    "DeletionProtectionType":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
     },
     "DeliveryMediumListType":{
       "type":"list",
@@ -5236,6 +5247,7 @@
       "members":{
         "UserPoolId":{"shape":"UserPoolIdType"},
         "Policies":{"shape":"UserPoolPolicyType"},
+        "DeletionProtection":{"shape":"DeletionProtectionType"},
         "LambdaConfig":{"shape":"LambdaConfigType"},
         "AutoVerifiedAttributes":{"shape":"VerifiedAttributesListType"},
         "SmsVerificationMessage":{"shape":"SmsVerificationMessageType"},
@@ -5479,6 +5491,7 @@
         "Id":{"shape":"UserPoolIdType"},
         "Name":{"shape":"UserPoolNameType"},
         "Policies":{"shape":"UserPoolPolicyType"},
+        "DeletionProtection":{"shape":"DeletionProtectionType"},
         "LambdaConfig":{"shape":"LambdaConfigType"},
         "Status":{"shape":"StatusType"},
         "LastModifiedDate":{"shape":"DateType"},

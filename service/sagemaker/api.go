@@ -50510,6 +50510,10 @@ type DescribeInferenceRecommendationsJobOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// The performance results from running an Inference Recommender job on an existing
+	// endpoint.
+	EndpointPerformances []*EndpointPerformance `type:"list"`
+
 	// If the job fails, provides information why the job failed.
 	FailureReason *string `type:"string"`
 
@@ -50589,6 +50593,12 @@ func (s *DescribeInferenceRecommendationsJobOutput) SetCompletionTime(v time.Tim
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeInferenceRecommendationsJobOutput) SetCreationTime(v time.Time) *DescribeInferenceRecommendationsJobOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetEndpointPerformances sets the EndpointPerformances field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetEndpointPerformances(v []*EndpointPerformance) *DescribeInferenceRecommendationsJobOutput {
+	s.EndpointPerformances = v
 	return s
 }
 
@@ -58067,6 +58077,54 @@ func (s *EndpointConfigSummary) SetEndpointConfigName(v string) *EndpointConfigS
 	return s
 }
 
+// Details about a customer endpoint that was compared in an Inference Recommender
+// job.
+type EndpointInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a customer's endpoint.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EndpointInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EndpointInfo"}
+	if s.EndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *EndpointInfo) SetEndpointName(v string) *EndpointInfo {
+	s.EndpointName = &v
+	return s
+}
+
 // Input object for the endpoint
 type EndpointInput struct {
 	_ struct{} `type:"structure"`
@@ -58352,6 +58410,53 @@ func (s *EndpointOutputConfiguration) SetInstanceType(v string) *EndpointOutputC
 // SetVariantName sets the VariantName field's value.
 func (s *EndpointOutputConfiguration) SetVariantName(v string) *EndpointOutputConfiguration {
 	s.VariantName = &v
+	return s
+}
+
+// The performance results from running an Inference Recommender job on an existing
+// endpoint.
+type EndpointPerformance struct {
+	_ struct{} `type:"structure"`
+
+	// Details about a customer endpoint that was compared in an Inference Recommender
+	// job.
+	//
+	// EndpointInfo is a required field
+	EndpointInfo *EndpointInfo `type:"structure" required:"true"`
+
+	// The metrics for an existing endpoint.
+	//
+	// Metrics is a required field
+	Metrics *InferenceMetrics `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointPerformance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointPerformance) GoString() string {
+	return s.String()
+}
+
+// SetEndpointInfo sets the EndpointInfo field's value.
+func (s *EndpointPerformance) SetEndpointInfo(v *EndpointInfo) *EndpointPerformance {
+	s.EndpointInfo = v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *EndpointPerformance) SetMetrics(v *InferenceMetrics) *EndpointPerformance {
+	s.Metrics = v
 	return s
 }
 
@@ -64290,6 +64395,52 @@ func (s *InferenceExecutionConfig) Validate() error {
 // SetMode sets the Mode field's value.
 func (s *InferenceExecutionConfig) SetMode(v string) *InferenceExecutionConfig {
 	s.Mode = &v
+	return s
+}
+
+// The metrics for an existing endpoint compared in an Inference Recommender
+// job.
+type InferenceMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The expected maximum number of requests per minute for the instance.
+	//
+	// MaxInvocations is a required field
+	MaxInvocations *int64 `type:"integer" required:"true"`
+
+	// The expected model latency at maximum invocations per minute for the instance.
+	//
+	// ModelLatency is a required field
+	ModelLatency *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceMetrics) GoString() string {
+	return s.String()
+}
+
+// SetMaxInvocations sets the MaxInvocations field's value.
+func (s *InferenceMetrics) SetMaxInvocations(v int64) *InferenceMetrics {
+	s.MaxInvocations = &v
+	return s
+}
+
+// SetModelLatency sets the ModelLatency field's value.
+func (s *InferenceMetrics) SetModelLatency(v int64) *InferenceMetrics {
+	s.ModelLatency = &v
 	return s
 }
 
@@ -86425,6 +86576,9 @@ type RecommendationJobInputConfig struct {
 	// Specifies the endpoint configuration to use for a job.
 	EndpointConfigurations []*EndpointInputConfiguration `min:"1" type:"list"`
 
+	// Existing customer endpoints on which to run an Inference Recommender job.
+	Endpoints []*EndpointInfo `type:"list"`
+
 	// Specifies the maximum duration of the job, in seconds.>
 	JobDurationInSeconds *int64 `min:"1" type:"integer"`
 
@@ -86509,6 +86663,16 @@ func (s *RecommendationJobInputConfig) Validate() error {
 			}
 		}
 	}
+	if s.Endpoints != nil {
+		for i, v := range s.Endpoints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Endpoints", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.ResourceLimit != nil {
 		if err := s.ResourceLimit.Validate(); err != nil {
 			invalidParams.AddNested("ResourceLimit", err.(request.ErrInvalidParams))
@@ -86535,6 +86699,12 @@ func (s *RecommendationJobInputConfig) SetContainerConfig(v *RecommendationJobCo
 // SetEndpointConfigurations sets the EndpointConfigurations field's value.
 func (s *RecommendationJobInputConfig) SetEndpointConfigurations(v []*EndpointInputConfiguration) *RecommendationJobInputConfig {
 	s.EndpointConfigurations = v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *RecommendationJobInputConfig) SetEndpoints(v []*EndpointInfo) *RecommendationJobInputConfig {
+	s.Endpoints = v
 	return s
 }
 
@@ -93776,8 +93946,9 @@ func (s *TransformOutput) SetS3OutputPath(v string) *TransformOutput {
 type TransformResources struct {
 	_ struct{} `type:"structure"`
 
-	// The number of ML compute instances to use in the transform job. For distributed
-	// transform jobs, specify a value greater than 1. The default value is 1.
+	// The number of ML compute instances to use in the transform job. The default
+	// value is 1, and the maximum is 100. For distributed transform jobs, specify
+	// a value greater than 1.
 	//
 	// InstanceCount is a required field
 	InstanceCount *int64 `min:"1" type:"integer" required:"true"`
