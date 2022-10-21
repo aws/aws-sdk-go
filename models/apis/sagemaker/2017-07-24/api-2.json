@@ -7521,7 +7521,8 @@
         "FailureReason":{"shape":"FailureReason"},
         "InputConfig":{"shape":"RecommendationJobInputConfig"},
         "StoppingConditions":{"shape":"RecommendationJobStoppingConditions"},
-        "InferenceRecommendations":{"shape":"InferenceRecommendations"}
+        "InferenceRecommendations":{"shape":"InferenceRecommendations"},
+        "EndpointPerformances":{"shape":"EndpointPerformances"}
       }
     },
     "DescribeLabelingJobRequest":{
@@ -8908,6 +8909,13 @@
       "type":"list",
       "member":{"shape":"EndpointConfigSummary"}
     },
+    "EndpointInfo":{
+      "type":"structure",
+      "required":["EndpointName"],
+      "members":{
+        "EndpointName":{"shape":"EndpointName"}
+      }
+    },
     "EndpointInput":{
       "type":"structure",
       "required":[
@@ -8967,6 +8975,22 @@
         "InitialInstanceCount":{"shape":"Integer"}
       }
     },
+    "EndpointPerformance":{
+      "type":"structure",
+      "required":[
+        "Metrics",
+        "EndpointInfo"
+      ],
+      "members":{
+        "Metrics":{"shape":"InferenceMetrics"},
+        "EndpointInfo":{"shape":"EndpointInfo"}
+      }
+    },
+    "EndpointPerformances":{
+      "type":"list",
+      "member":{"shape":"EndpointPerformance"},
+      "max":1
+    },
     "EndpointSortKey":{
       "type":"string",
       "enum":[
@@ -9008,6 +9032,11 @@
     "EndpointSummaryList":{
       "type":"list",
       "member":{"shape":"EndpointSummary"}
+    },
+    "Endpoints":{
+      "type":"list",
+      "member":{"shape":"EndpointInfo"},
+      "max":1
     },
     "EntityDescription":{
       "type":"string",
@@ -10342,6 +10371,17 @@
     "InferenceImage":{
       "type":"string",
       "max":256
+    },
+    "InferenceMetrics":{
+      "type":"structure",
+      "required":[
+        "MaxInvocations",
+        "ModelLatency"
+      ],
+      "members":{
+        "MaxInvocations":{"shape":"Integer"},
+        "ModelLatency":{"shape":"Integer"}
+      }
     },
     "InferenceRecommendation":{
       "type":"structure",
@@ -15107,7 +15147,8 @@
         "ResourceLimit":{"shape":"RecommendationJobResourceLimit"},
         "EndpointConfigurations":{"shape":"EndpointInputConfigurations"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "ContainerConfig":{"shape":"RecommendationJobContainerConfig"}
+        "ContainerConfig":{"shape":"RecommendationJobContainerConfig"},
+        "Endpoints":{"shape":"Endpoints"}
       }
     },
     "RecommendationJobName":{

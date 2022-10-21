@@ -1,3 +1,13 @@
+Release v1.44.121 (2022-10-21)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/s3`: Updates service examples
+  * S3 on Outposts launches support for automatic bucket-style alias. You can use the automatic access point alias instead of an access point ARN for any object-level operation in an Outposts bucket.
+* `service/sagemaker`: Updates service API and documentation
+  * CreateInferenceRecommenderjob API now supports passing endpoint details directly, that will help customers to identify the max invocation and max latency they can achieve for their model and the associated endpoint along with getting recommendations on other instances.
+
 Release v1.44.120 (2022-10-20)
 ===
 

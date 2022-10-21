@@ -4190,6 +4190,13 @@
         "ListEndpointConfigsOutput$EndpointConfigs": "<p>An array of endpoint configurations.</p>"
       }
     },
+    "EndpointInfo": {
+      "base": "<p>Details about a customer endpoint that was compared in an Inference Recommender job.</p>",
+      "refs": {
+        "EndpointPerformance$EndpointInfo": null,
+        "Endpoints$member": null
+      }
+    },
     "EndpointInput": {
       "base": "<p>Input object for the endpoint</p>",
       "refs": {
@@ -4221,6 +4228,7 @@
         "DescribeEndpointOutput$EndpointName": "<p>Name of the endpoint.</p>",
         "DescribeMonitoringScheduleResponse$EndpointName": "<p> The name of the endpoint for the monitoring job.</p>",
         "Endpoint$EndpointName": "<p>The name of the endpoint.</p>",
+        "EndpointInfo$EndpointName": "<p>The name of a customer's endpoint.</p>",
         "EndpointInput$EndpointName": "<p>An endpoint in customer's account which has enabled <code>DataCaptureConfig</code> enabled.</p>",
         "EndpointSummary$EndpointName": "<p>The name of the endpoint.</p>",
         "ListDataQualityJobDefinitionsRequest$EndpointName": "<p>A filter that lists the data quality job definitions associated with the specified endpoint.</p>",
@@ -4251,6 +4259,18 @@
         "InferenceRecommendation$EndpointConfiguration": "<p>Defines the endpoint configuration parameters.</p>"
       }
     },
+    "EndpointPerformance": {
+      "base": "<p>The performance results from running an Inference Recommender job on an existing endpoint.</p>",
+      "refs": {
+        "EndpointPerformances$member": null
+      }
+    },
+    "EndpointPerformances": {
+      "base": null,
+      "refs": {
+        "DescribeInferenceRecommendationsJobResponse$EndpointPerformances": "<p>The performance results from running an Inference Recommender job on an existing endpoint.</p>"
+      }
+    },
     "EndpointSortKey": {
       "base": null,
       "refs": {
@@ -4276,6 +4296,12 @@
       "base": null,
       "refs": {
         "ListEndpointsOutput$Endpoints": "<p> An array or endpoint objects. </p>"
+      }
+    },
+    "Endpoints": {
+      "base": null,
+      "refs": {
+        "RecommendationJobInputConfig$Endpoints": "<p>Existing customer endpoints on which to run an Inference Recommender job.</p>"
       }
     },
     "EntityDescription": {
@@ -5704,6 +5730,12 @@
         "DescribeCompilationJobResponse$InferenceImage": "<p>The inference image to use when compiling a model. Specify an image only if the target device is a cloud instance.</p>"
       }
     },
+    "InferenceMetrics": {
+      "base": "<p>The metrics for an existing endpoint compared in an Inference Recommender job.</p>",
+      "refs": {
+        "EndpointPerformance$Metrics": "<p>The metrics for an existing endpoint.</p>"
+      }
+    },
     "InferenceRecommendation": {
       "base": "<p>A list of recommendations made by Amazon SageMaker Inference Recommender.</p>",
       "refs": {
@@ -5844,6 +5876,8 @@
         "EdgeDeploymentStatus$EdgeDeploymentPendingInStage": "<p>The number of edge devices yet to pick up the deployment in current stage, or in progress.</p>",
         "EdgeDeploymentStatus$EdgeDeploymentFailedInStage": "<p>The number of edge devices that failed the deployment in current stage.</p>",
         "EndpointOutputConfiguration$InitialInstanceCount": "<p>The number of instances recommended to launch initially.</p>",
+        "InferenceMetrics$MaxInvocations": "<p>The expected maximum number of requests per minute for the instance.</p>",
+        "InferenceMetrics$ModelLatency": "<p>The expected model latency at maximum invocations per minute for the instance.</p>",
         "ModelLatencyThreshold$ValueInMilliseconds": "<p>The model latency percentile value in milliseconds.</p>",
         "RecommendationJobStoppingConditions$MaxInvocations": "<p>The maximum number of requests per minute expected for the endpoint.</p>",
         "RecommendationMetrics$MaxInvocations": "<p>The expected maximum number of requests per minute for the instance.</p>",
@@ -11877,7 +11911,7 @@
     "TransformInstanceCount": {
       "base": null,
       "refs": {
-        "TransformResources$InstanceCount": "<p>The number of ML compute instances to use in the transform job. For distributed transform jobs, specify a value greater than 1. The default value is <code>1</code>.</p>"
+        "TransformResources$InstanceCount": "<p>The number of ML compute instances to use in the transform job. The default value is <code>1</code>, and the maximum is <code>100</code>. For distributed transform jobs, specify a value greater than <code>1</code>.</p>"
       }
     },
     "TransformInstanceType": {

@@ -6260,6 +6260,197 @@
                 "UseDualStack": false,
                 "UseFIPS": false
             }
+        },
+        {
+            "documentation": "S3 Outposts Abba Real Outpost Prod us-west-1",
+            "expect": {
+                "endpoint": {
+                    "properties": {
+                        "authSchemes": [
+                            {
+                                "name": "sigv4",
+                                "signingName": "s3-outposts",
+                                "signingRegion": "us-west-1",
+                                "disableDoubleEncoding": true
+                            }
+                        ]
+                    },
+                    "url": "https://test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.op-0b1d075431d83bebd.s3-outposts.us-west-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-west-1",
+                "Bucket": "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba Real Outpost Prod ap-east-1",
+            "expect": {
+                "endpoint": {
+                    "properties": {
+                        "authSchemes": [
+                            {
+                                "name": "sigv4",
+                                "signingName": "s3-outposts",
+                                "signingRegion": "ap-east-1",
+                                "disableDoubleEncoding": true
+                            }
+                        ]
+                    },
+                    "url": "https://test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.op-0b1d075431d83bebd.s3-outposts.ap-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "ap-east-1",
+                "Bucket": "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba Ec2 Outpost Prod us-east-1",
+            "expect": {
+                "endpoint": {
+                    "properties": {
+                        "authSchemes": [
+                            {
+                                "name": "sigv4",
+                                "signingName": "s3-outposts",
+                                "signingRegion": "us-east-1",
+                                "disableDoubleEncoding": true
+                            }
+                        ]
+                    },
+                    "url": "https://test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.ec2.s3-outposts.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "Bucket": "test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba Ec2 Outpost Prod me-south-1",
+            "expect": {
+                "endpoint": {
+                    "properties": {
+                        "authSchemes": [
+                            {
+                                "name": "sigv4",
+                                "signingName": "s3-outposts",
+                                "signingRegion": "me-south-1",
+                                "disableDoubleEncoding": true
+                            }
+                        ]
+                    },
+                    "url": "https://test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3.ec2.s3-outposts.me-south-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "me-south-1",
+                "Bucket": "test-accessp-e0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba Real Outpost Beta",
+            "expect": {
+                "endpoint": {
+                    "properties": {
+                        "authSchemes": [
+                            {
+                                "name": "sigv4",
+                                "signingName": "s3-outposts",
+                                "signingRegion": "us-east-1",
+                                "disableDoubleEncoding": true
+                            }
+                        ]
+                    },
+                    "url": "https://test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kbeta0--op-s3.op-0b1d075431d83bebd.example.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "Bucket": "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kbeta0--op-s3",
+                "Endpoint": "https://example.amazonaws.com",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba Ec2 Outpost Beta",
+            "expect": {
+                "endpoint": {
+                    "properties": {
+                        "authSchemes": [
+                            {
+                                "name": "sigv4",
+                                "signingName": "s3-outposts",
+                                "signingRegion": "us-east-1",
+                                "disableDoubleEncoding": true
+                            }
+                        ]
+                    },
+                    "url": "https://161743052723-e00000136899934034jeahy1t8gpzpbwjj8kb7beta0--op-s3.ec2.example.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-east-1",
+                "Bucket": "161743052723-e00000136899934034jeahy1t8gpzpbwjj8kb7beta0--op-s3",
+                "Endpoint": "https://example.amazonaws.com",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba - No endpoint set for beta",
+            "expect": {
+                "error": "Expected a endpoint to be specified but no endpoint was found"
+            },
+            "params": {
+                "Region": "us-east-1",
+                "Bucket": "test-accessp-o0b1d075431d83bebde8xz5w8ijx1qzlbp3i3kbeta0--op-s3",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba Invalid hardware type",
+            "expect": {
+                "error": "Unrecognized hardware type: \"Expected hardware type o or e but got h\""
+            },
+            "params": {
+                "Region": "us-east-1",
+                "Bucket": "test-accessp-h0000075431d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
+        },
+        {
+            "documentation": "S3 Outposts Abba Special character in Outpost Arn",
+            "expect": {
+                "error": "Invalid ARN: The outpost Id must only contain a-z, A-Z, 0-9 and `-`."
+            },
+            "params": {
+                "Region": "us-east-1",
+                "Bucket": "test-accessp-o00000754%1d83bebde8xz5w8ijx1qzlbp3i3kuse10--op-s3",
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Accelerate": false
+            }
         }
     ],
     "version": "1.0"
