@@ -21,6 +21,7 @@ const (
 // for both typed and untyped errors.
 type UnmarshalTypedError struct {
 	exceptions map[string]func(protocol.ResponseMetadata) error
+	parseQueryError bool
 }
 
 // NewUnmarshalTypedError returns an UnmarshalTypedError initialized for the
@@ -28,6 +29,21 @@ type UnmarshalTypedError struct {
 func NewUnmarshalTypedError(exceptions map[string]func(protocol.ResponseMetadata) error) *UnmarshalTypedError {
 	return &UnmarshalTypedError{
 		exceptions: exceptions,
+		parseQueryError: false,
+	}
+}
+
+func NewUnmarshalTypedErrorWithOptions(exceptions map[string]func(protocol.ResponseMetadata) error, optFns ...func(*UnmarshalTypedError)) *UnmarshalTypedError {
+	err := NewUnmarshalTypedError(exceptions)
+	if len(optFns) == 1 {
+		optFns[0](err)
+	}
+	return err
+}
+
+func WithQueryCompatibility() func(*UnmarshalTypedError) {
+	return func(typedError *UnmarshalTypedError) {
+		typedError.parseQueryError = true
 	}
 }
 
@@ -55,7 +71,7 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	msg := jsonErr.Message
 
 	queryCodeHeader := resp.Header.Get(awsQueryError)
-	if queryCodeHeader != "" {
+	if queryCodeHeader != "" && u.parseQueryError {
 		queryCodeParts := strings.Split(queryCodeHeader, ";")
 		if queryCodeParts != nil && len(queryCodeParts) == 2 {
 			return awserr.NewRequestFailure(

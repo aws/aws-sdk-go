@@ -3,6 +3,9 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2012-11-05",
+    "awsQueryCompatible": {
+
+    },
     "endpointPrefix":"awsquerycompatible",
     "jsonVersion":"1.1",
     "protocol":"json",
