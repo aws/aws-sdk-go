@@ -13,6 +13,10 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/json/jsonutil"
 )
 
+const (
+	awsQueryError = "x-amzn-query-error"
+)
+
 // UnmarshalTypedError provides unmarshaling errors API response errors
 // for both typed and untyped errors.
 type UnmarshalTypedError struct {
@@ -49,6 +53,20 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	codeParts := strings.SplitN(jsonErr.Code, "#", 2)
 	code := codeParts[len(codeParts)-1]
 	msg := jsonErr.Message
+
+	if (resp.Header != nil) {
+		queryCodeHeader := resp.Header[awsQueryError]
+		if len(queryCodeHeader) > 0 {
+			queryCodeParts := strings.Split(queryCodeHeader[0], ";")
+			if queryCodeParts != nil && len(queryCodeParts) == 2 {
+				return awserr.NewRequestFailure(
+					awserr.New(queryCodeParts[0], msg, nil),
+					respMeta.StatusCode,
+					respMeta.RequestID,
+				), nil
+			}
+		}
+}
 
 	if fn, ok := u.exceptions[code]; ok {
 		// If exception code is know, use associated constructor to get a value
