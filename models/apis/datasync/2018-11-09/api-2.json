@@ -837,7 +837,8 @@
         "AccessKey":{"shape":"ObjectStorageAccessKey"},
         "SecretKey":{"shape":"ObjectStorageSecretKey"},
         "AgentArns":{"shape":"AgentArnList"},
-        "Tags":{"shape":"InputTagList"}
+        "Tags":{"shape":"InputTagList"},
+        "ServerCertificate":{"shape":"ObjectStorageCertificate"}
       }
     },
     "CreateLocationObjectStorageResponse":{
@@ -1118,7 +1119,8 @@
         "ServerPort":{"shape":"ObjectStorageServerPort"},
         "ServerProtocol":{"shape":"ObjectStorageServerProtocol"},
         "AgentArns":{"shape":"AgentArnList"},
-        "CreationTime":{"shape":"Time"}
+        "CreationTime":{"shape":"Time"},
+        "ServerCertificate":{"shape":"ObjectStorageCertificate"}
       }
     },
     "DescribeLocationS3Request":{
@@ -1179,7 +1181,8 @@
         "FilesTransferred":{"shape":"long"},
         "BytesWritten":{"shape":"long"},
         "BytesTransferred":{"shape":"long"},
-        "Result":{"shape":"TaskExecutionResultDetail"}
+        "Result":{"shape":"TaskExecutionResultDetail"},
+        "BytesCompressed":{"shape":"long"}
       }
     },
     "DescribeTaskRequest":{
@@ -1688,6 +1691,10 @@
       "min":3,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
     },
+    "ObjectStorageCertificate":{
+      "type":"blob",
+      "max":32768
+    },
     "ObjectStorageSecretKey":{
       "type":"string",
       "max":200,
@@ -2183,7 +2190,8 @@
         "Subdirectory":{"shape":"S3Subdirectory"},
         "AccessKey":{"shape":"ObjectStorageAccessKey"},
         "SecretKey":{"shape":"ObjectStorageSecretKey"},
-        "AgentArns":{"shape":"AgentArnList"}
+        "AgentArns":{"shape":"AgentArnList"},
+        "ServerCertificate":{"shape":"ObjectStorageCertificate"}
       }
     },
     "UpdateLocationObjectStorageResponse":{

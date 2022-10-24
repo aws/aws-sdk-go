@@ -8009,6 +8009,13 @@
             "deprecated" : true,
             "hostname" : "kms-fips.ap-south-1.amazonaws.com"
           },
+          "ap-south-2-fips" : {
+            "credentialScope" : {
+              "region" : "ap-south-2"
+            },
+            "deprecated" : true,
+            "hostname" : "kms-fips.ap-south-2.amazonaws.com"
+          },
           "ap-southeast-1" : {
             "variants" : [ {
               "hostname" : "kms-fips.ap-southeast-1.amazonaws.com",

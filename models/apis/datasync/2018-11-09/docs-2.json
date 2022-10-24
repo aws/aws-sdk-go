@@ -1,18 +1,18 @@
 {
   "version": "2.0",
-  "service": "<fullname>DataSync</fullname> <p>DataSync is a managed data transfer service that makes it simpler for you to automate moving data between on-premises storage and Amazon Simple Storage Service (Amazon S3) or Amazon Elastic File System (Amazon EFS). </p> <p>This API interface reference for DataSync contains documentation for a programming interface that you can use to manage DataSync.</p>",
+  "service": "<fullname>DataSync</fullname> <p>DataSync is a managed data transfer service that makes it simpler for you to automate moving data between on-premises storage and Amazon Web Services storage services. You also can use DataSync to transfer data between other cloud providers and Amazon Web Services storage services.</p> <p>This API interface reference includes documentation for using DataSync programmatically. For complete information, see the <i> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html\">DataSync User Guide</a> </i>.</p>",
   "operations": {
-    "CancelTaskExecution": "<p>Cancels execution of a task. </p> <p>When you cancel a task execution, the transfer of some files is abruptly interrupted. The contents of files that are transferred to the destination might be incomplete or inconsistent with the source files. However, if you start a new task execution on the same task and you allow the task execution to complete, file content on the destination is complete and consistent. This applies to other unexpected failures that interrupt a task execution. In all of these cases, DataSync successfully complete the transfer when you start the next task execution.</p>",
-    "CreateAgent": "<p>Activates an DataSync agent that you have deployed on your host. The activation process associates your agent with your account. In the activation process, you specify information such as the Amazon Web Services Region that you want to activate the agent in. You activate the agent in the Amazon Web Services Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this Amazon Web Services Region.</p> <p>You can activate the agent in a VPC (virtual private cloud) or provide the agent access to a VPC endpoint so you can run tasks without going over the public internet.</p> <p>You can use an agent for more than one location. If a task uses multiple agents, all of them need to have status AVAILABLE for the task to run. If you use multiple agents for a source location, the status of all the agents must be AVAILABLE for the task to run. </p> <p>Agents are automatically updated by Amazon Web Services on a regular basis, using a mechanism that ensures minimal interruption to your tasks.</p> <p/>",
+    "CancelTaskExecution": "<p>Stops an DataSync task execution that's in progress. The transfer of some files are abruptly interrupted. File contents that're transferred to the destination might be incomplete or inconsistent with the source files.</p> <p>However, if you start a new task execution using the same task and allow it to finish, file content on the destination will be complete and consistent. This applies to other unexpected failures that interrupt a task execution. In all of these cases, DataSync successfully completes the transfer when you start the next task execution.</p>",
+    "CreateAgent": "<p>Activates an DataSync agent that you have deployed in your storage environment. The activation process associates your agent with your account. In the activation process, you specify information such as the Amazon Web Services Region that you want to activate the agent in. You activate the agent in the Amazon Web Services Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this Amazon Web Services Region.</p> <p>You can activate the agent in a VPC (virtual private cloud) or provide the agent access to a VPC endpoint so you can run tasks without going over the public internet.</p> <p>You can use an agent for more than one location. If a task uses multiple agents, all of them need to have status AVAILABLE for the task to run. If you use multiple agents for a source location, the status of all the agents must be AVAILABLE for the task to run. </p> <p>Agents are automatically updated by Amazon Web Services on a regular basis, using a mechanism that ensures minimal interruption to your tasks.</p>",
     "CreateLocationEfs": "<p>Creates an endpoint for an Amazon EFS file system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-efs-location.html\">Creating a location for Amazon EFS</a>.</p>",
     "CreateLocationFsxLustre": "<p>Creates an endpoint for an Amazon FSx for Lustre file system.</p>",
     "CreateLocationFsxOntap": "<p>Creates an endpoint for an Amazon FSx for NetApp ONTAP file system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html\">Creating a location for FSx for ONTAP</a>.</p>",
-    "CreateLocationFsxOpenZfs": "<p>Creates an endpoint for an Amazon FSx for OpenZFS file system.</p>",
+    "CreateLocationFsxOpenZfs": "<p>Creates an endpoint for an Amazon FSx for OpenZFS file system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html\">Creating a location for FSx for OpenZFS</a>.</p> <note> <p>Request parameters related to <code>SMB</code> aren't supported with the <code>CreateLocationFsxOpenZfs</code> operation.</p> </note>",
     "CreateLocationFsxWindows": "<p>Creates an endpoint for an Amazon FSx for Windows File Server file system.</p>",
     "CreateLocationHdfs": "<p>Creates an endpoint for a Hadoop Distributed File System (HDFS). </p>",
     "CreateLocationNfs": "<p>Defines a file system on a Network File System (NFS) server that can be read from or written to.</p>",
     "CreateLocationObjectStorage": "<p>Creates an endpoint for an object storage system that DataSync can access for a transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
-    "CreateLocationS3": "<p>Creates an endpoint for an Amazon S3 bucket.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli\">Create an Amazon S3 location</a> in the <i>DataSync User Guide</i>.</p>",
+    "CreateLocationS3": "<p>Creates an endpoint for an Amazon S3 bucket that DataSync can access for a transfer.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli\">Create an Amazon S3 location</a> in the <i>DataSync User Guide</i>.</p>",
     "CreateLocationSmb": "<p>Defines a file system on a Server Message Block (SMB) server that can be read from or written to.</p>",
     "CreateTask": "<p>Configures a task, which defines where and how DataSync transfers your data.</p> <p>A task includes a source location, a destination location, and the preferences for how and when you want to transfer your data (such as bandwidth limits, scheduling, among other options).</p> <p>When you create a task that transfers data between Amazon Web Services services in different Amazon Web Services Regions, one of your locations must reside in the Region where you're using DataSync.</p> <p>For more information, see the following topics:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html\">Working with DataSync locations</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html\">Configure DataSync task settings</a> </p> </li> </ul>",
     "DeleteAgent": "<p>Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN) of the agent in your request. The operation disassociates the agent from your Amazon Web Services account. However, it doesn't delete the agent virtual machine (VM) from your on-premises environment.</p>",
@@ -20,9 +20,9 @@
     "DeleteTask": "<p>Deletes a task.</p>",
     "DescribeAgent": "<p>Returns metadata such as the name, the network interfaces, and the status (that is, whether the agent is running or not) for an agent. To specify which agent to describe, use the Amazon Resource Name (ARN) of the agent in your request. </p>",
     "DescribeLocationEfs": "<p>Returns metadata about your DataSync location for an Amazon EFS file system.</p>",
-    "DescribeLocationFsxLustre": "<p>Returns metadata about an Amazon FSx for Lustre location, such as information about its path.</p>",
-    "DescribeLocationFsxOntap": "<p>Provides details about how an DataSync location for an Amazon FSx for NetApp ONTAP file system is configured.</p>",
-    "DescribeLocationFsxOpenZfs": "<p>Returns metadata about an Amazon FSx for OpenZFS location, such as information about its path.</p>",
+    "DescribeLocationFsxLustre": "<p>Provides details about how an DataSync location for an Amazon FSx for Lustre file system is configured.</p>",
+    "DescribeLocationFsxOntap": "<p>Provides details about how an DataSync location for an Amazon FSx for NetApp ONTAP file system is configured.</p> <note> <p>If your location uses SMB, the <code>DescribeLocationFsxOntap</code> operation doesn't actually return a <code>Password</code>.</p> </note>",
+    "DescribeLocationFsxOpenZfs": "<p>Provides details about how an DataSync location for an Amazon FSx for OpenZFS file system is configured.</p> <note> <p>Response elements related to <code>SMB</code> aren't supported with the <code>DescribeLocationFsxOpenZfs</code> operation.</p> </note>",
     "DescribeLocationFsxWindows": "<p>Returns metadata about an Amazon FSx for Windows File Server location, such as information about its path.</p>",
     "DescribeLocationHdfs": "<p>Returns metadata, such as the authentication information about the Hadoop Distributed File System (HDFS) location. </p>",
     "DescribeLocationNfs": "<p>Returns metadata, such as the path information, about an NFS location.</p>",
@@ -42,7 +42,7 @@
     "UpdateAgent": "<p>Updates the name of an agent.</p>",
     "UpdateLocationHdfs": "<p>Updates some parameters of a previously created location for a Hadoop Distributed File System cluster.</p>",
     "UpdateLocationNfs": "<p>Updates some of the parameters of a previously created location for Network File System (NFS) access. For information about creating an NFS location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html\">Creating a location for NFS</a>.</p>",
-    "UpdateLocationObjectStorage": "<p>Updates some of the parameters of a previously created location for self-managed object storage server access. For information about creating a self-managed object storage location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
+    "UpdateLocationObjectStorage": "<p>Updates some parameters of an existing object storage location that DataSync accesses for a transfer. For information about creating a self-managed object storage location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "UpdateLocationSmb": "<p>Updates some of the parameters of a previously created location for Server Message Block (SMB) file system access. For information about creating an SMB location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html\">Creating a location for SMB</a>.</p>",
     "UpdateTask": "<p>Updates the metadata associated with a task.</p>",
     "UpdateTaskExecution": "<p>Updates execution of a task.</p> <p>You can modify bandwidth throttling for a task execution that is running or queued. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#adjust-bandwidth-throttling\">Adjusting Bandwidth Throttling for a Task Execution</a>.</p> <note> <p>The only <code>Option</code> that can be modified by <code>UpdateTaskExecution</code> is <code> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond\">BytesPerSecond</a> </code>.</p> </note>"
@@ -79,7 +79,7 @@
         "DescribeLocationSmbResponse$AgentArns": "<p>The Amazon Resource Name (ARN) of the source SMB file system location that is created.</p>",
         "OnPremConfig$AgentArns": "<p>ARNs of the agents to use for an NFS location.</p>",
         "UpdateLocationHdfsRequest$AgentArns": "<p>The ARNs of the agents that are used to connect to the HDFS cluster. </p>",
-        "UpdateLocationObjectStorageRequest$AgentArns": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
+        "UpdateLocationObjectStorageRequest$AgentArns": "<p>Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location.</p>",
         "UpdateLocationSmbRequest$AgentArns": "<p>The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location.</p>"
       }
     },
@@ -503,8 +503,8 @@
       "refs": {
         "CreateTaskRequest$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p> <p> </p>",
         "CreateTaskRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern contains a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>.</p>",
-        "DescribeTaskExecutionResponse$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p> <p> </p>",
-        "DescribeTaskExecutionResponse$Includes": "<p>A list of filter rules that determines which files to include when running a task. The list should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p> <p> </p>",
+        "DescribeTaskExecutionResponse$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p>",
+        "DescribeTaskExecutionResponse$Includes": "<p>A list of filter rules that determines which files to include when running a task. The list should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p>",
         "DescribeTaskResponse$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p> <p> </p>",
         "DescribeTaskResponse$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern contains a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2</code>\".</p>",
         "StartTaskExecutionRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p> <p> </p>",
@@ -832,7 +832,7 @@
         "LocationListEntry$LocationArn": "<p>The Amazon Resource Name (ARN) of the location. For Network File System (NFS) or Amazon EFS, the location is the export path. For Amazon S3, the location is the prefix path that you want to mount and use as the root of the location.</p>",
         "UpdateLocationHdfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the source HDFS cluster location.</p>",
         "UpdateLocationNfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location to update.</p>",
-        "UpdateLocationObjectStorageRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the self-managed object storage server location to be updated.</p>",
+        "UpdateLocationObjectStorageRequest$LocationArn": "<p>Specifies the ARN of the object storage system location that you're updating.</p>",
         "UpdateLocationSmbRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the SMB location to update.</p>"
       }
     },
@@ -960,8 +960,8 @@
       "base": null,
       "refs": {
         "CreateLocationObjectStorageRequest$AccessKey": "<p>Specifies the access key (for example, a user name) if credentials are required to authenticate with the object storage server.</p>",
-        "DescribeLocationObjectStorageResponse$AccessKey": "<p>The access key (for example, a user name) required to authenticate with the object storage server.</p>",
-        "UpdateLocationObjectStorageRequest$AccessKey": "<p>Optional. The access key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use <code>AccessKey</code> and <code>SecretKey</code> to provide the user name and password, respectively.</p>"
+        "DescribeLocationObjectStorageResponse$AccessKey": "<p>The access key (for example, a user name) required to authenticate with the object storage system.</p>",
+        "UpdateLocationObjectStorageRequest$AccessKey": "<p>Specifies the access key (for example, a user name) if credentials are required to authenticate with the object storage server.</p>"
       }
     },
     "ObjectStorageBucketName": {
@@ -970,11 +970,19 @@
         "CreateLocationObjectStorageRequest$BucketName": "<p>Specifies the name of the object storage bucket involved in the transfer.</p>"
       }
     },
+    "ObjectStorageCertificate": {
+      "base": null,
+      "refs": {
+        "CreateLocationObjectStorageRequest$ServerCertificate": "<p>Specifies a certificate to authenticate with an object storage system that uses a private or self-signed certificate authority (CA). You must specify a Base64-encoded <code>.pem</code> file (for example, <code>file:///home/user/.ssh/storage_sys_certificate.pem</code>). The certificate can be up to 32768 bytes (before Base64 encoding).</p> <p>To use this parameter, configure <code>ServerProtocol</code> to <code>HTTPS</code>.</p>",
+        "DescribeLocationObjectStorageResponse$ServerCertificate": "<p>The self-signed certificate that DataSync uses to securely authenticate with your object storage system.</p>",
+        "UpdateLocationObjectStorageRequest$ServerCertificate": "<p>Specifies a certificate to authenticate with an object storage system that uses a private or self-signed certificate authority (CA). You must specify a Base64-encoded <code>.pem</code> file (for example, <code>file:///home/user/.ssh/storage_sys_certificate.pem</code>). The certificate can be up to 32768 bytes (before Base64 encoding).</p> <p>To use this parameter, configure <code>ServerProtocol</code> to <code>HTTPS</code>.</p> <p>Updating the certificate doesn't interfere with tasks that you have in progress.</p>"
+      }
+    },
     "ObjectStorageSecretKey": {
       "base": null,
       "refs": {
         "CreateLocationObjectStorageRequest$SecretKey": "<p>Specifies the secret key (for example, a password) if credentials are required to authenticate with the object storage server.</p>",
-        "UpdateLocationObjectStorageRequest$SecretKey": "<p>Optional. The secret key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use <code>AccessKey</code> and <code>SecretKey</code> to provide the user name and password, respectively.</p>"
+        "UpdateLocationObjectStorageRequest$SecretKey": "<p>Specifies the secret key (for example, a password) if credentials are required to authenticate with the object storage server.</p>"
       }
     },
     "ObjectStorageServerPort": {
@@ -982,15 +990,15 @@
       "refs": {
         "CreateLocationObjectStorageRequest$ServerPort": "<p>Specifies the port that your object storage server accepts inbound network traffic on (for example, port 443).</p>",
         "DescribeLocationObjectStorageResponse$ServerPort": "<p>The port that your object storage server accepts inbound network traffic on (for example, port 443).</p>",
-        "UpdateLocationObjectStorageRequest$ServerPort": "<p>The port that your self-managed object storage server accepts inbound network traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443 (HTTPS). You can specify a custom port if your self-managed object storage server requires one.</p>"
+        "UpdateLocationObjectStorageRequest$ServerPort": "<p>Specifies the port that your object storage server accepts inbound network traffic on (for example, port 443).</p>"
       }
     },
     "ObjectStorageServerProtocol": {
       "base": null,
       "refs": {
         "CreateLocationObjectStorageRequest$ServerProtocol": "<p>Specifies the protocol that your object storage server uses to communicate.</p>",
-        "DescribeLocationObjectStorageResponse$ServerProtocol": "<p>The protocol that your object storage server uses to communicate.</p>",
-        "UpdateLocationObjectStorageRequest$ServerProtocol": "<p>The protocol that the object storage server uses to communicate. Valid values are <code>HTTP</code> or <code>HTTPS</code>.</p>"
+        "DescribeLocationObjectStorageResponse$ServerProtocol": "<p>The protocol that your object storage system uses to communicate.</p>",
+        "UpdateLocationObjectStorageRequest$ServerProtocol": "<p>Specifies the protocol that your object storage server uses to communicate.</p>"
       }
     },
     "ObjectTags": {
@@ -1116,7 +1124,7 @@
       "refs": {
         "CreateLocationObjectStorageRequest$Subdirectory": "<p>Specifies the object prefix for your object storage server. If this is a source location, DataSync only copies objects with this prefix. If this is a destination location, DataSync writes all objects with this prefix. </p>",
         "CreateLocationS3Request$Subdirectory": "<p>A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is used to read data from the S3 source location or write data to the S3 destination.</p>",
-        "UpdateLocationObjectStorageRequest$Subdirectory": "<p>The subdirectory in the self-managed object storage server that is used to read data from.</p>"
+        "UpdateLocationObjectStorageRequest$Subdirectory": "<p>Specifies the object prefix for your object storage server. If this is a source location, DataSync only copies objects with this prefix. If this is a destination location, DataSync writes all objects with this prefix.</p>"
       }
     },
     "ScheduleExpressionCron": {
@@ -1283,7 +1291,7 @@
     "TaskExecutionArn": {
       "base": null,
       "refs": {
-        "CancelTaskExecutionRequest$TaskExecutionArn": "<p>The Amazon Resource Name (ARN) of the task execution to cancel.</p>",
+        "CancelTaskExecutionRequest$TaskExecutionArn": "<p>The Amazon Resource Name (ARN) of the task execution to stop.</p>",
         "DescribeTaskExecutionRequest$TaskExecutionArn": "<p>The Amazon Resource Name (ARN) of the task that is being executed.</p>",
         "DescribeTaskExecutionResponse$TaskExecutionArn": "<p>The Amazon Resource Name (ARN) of the task execution that was described. <code>TaskExecutionArn</code> is hierarchical and includes <code>TaskArn</code> for the task that was executed. </p> <p>For example, a <code>TaskExecution</code> value with the ARN <code>arn:aws:datasync:us-east-1:111222333444:task/task-0208075f79cedf4a2/execution/exec-08ef1e88ec491019b</code> executed the task with the ARN <code>arn:aws:datasync:us-east-1:111222333444:task/task-0208075f79cedf4a2</code>. </p>",
         "DescribeTaskResponse$CurrentTaskExecutionArn": "<p>The Amazon Resource Name (ARN) of the task execution that is syncing files.</p>",
@@ -1499,7 +1507,8 @@
         "DescribeTaskExecutionResponse$EstimatedBytesToTransfer": "<p>The estimated physical number of bytes that is to be transferred over the network.</p>",
         "DescribeTaskExecutionResponse$FilesTransferred": "<p>The actual number of files that was transferred over the network. This value is calculated and updated on an ongoing basis during the TRANSFERRING phase. It's updated periodically when each file is read from the source and sent over the network. </p> <p>If failures occur during a transfer, this value can be less than <code>EstimatedFilesToTransfer</code>. This value can also be greater than <code>EstimatedFilesTransferred</code> in some cases. This element is implementation-specific for some location types, so don't use it as an indicator for a correct file number or to monitor your task execution.</p>",
         "DescribeTaskExecutionResponse$BytesWritten": "<p>The number of logical bytes written to the destination Amazon Web Services storage resource.</p>",
-        "DescribeTaskExecutionResponse$BytesTransferred": "<p>The physical number of bytes transferred over the network.</p>"
+        "DescribeTaskExecutionResponse$BytesTransferred": "<p>The physical number of bytes transferred over the network.</p>",
+        "DescribeTaskExecutionResponse$BytesCompressed": "<p>The physical number of bytes transferred over the network after compression was applied. In most cases, this number is less than <code>BytesTransferred</code>.</p>"
       }
     },
     "string": {

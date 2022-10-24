@@ -156,6 +156,12 @@
       "limit_key": "MaxResults",
       "result_key": "Images"
     },
+    "ListInferenceRecommendationsJobSteps": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Steps"
+    },
     "ListInferenceRecommendationsJobs": {
       "input_token": "NextToken",
       "output_token": "NextToken",

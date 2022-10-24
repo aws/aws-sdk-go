@@ -3,10 +3,10 @@
 // Package acmpca provides the client and types for making API
 // requests to AWS Certificate Manager Private Certificate Authority.
 //
-// This is the Certificate Manager Private Certificate Authority (PCA) API Reference.
-// It provides descriptions, syntax, and usage examples for each of the actions
-// and data types involved in creating and managing a private certificate authority
-// (CA) for your organization.
+// This is the Private Certificate Authority (PCA) API Reference. It provides
+// descriptions, syntax, and usage examples for each of the actions and data
+// types involved in creating and managing a private certificate authority (CA)
+// for your organization.
 //
 // The documentation for each action shows the API request parameters and the
 // JSON response. Alternatively, you can use one of the Amazon Web Services

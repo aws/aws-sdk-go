@@ -514,7 +514,8 @@
         "CertificateAuthorityConfiguration":{"shape":"CertificateAuthorityConfiguration"},
         "RevocationConfiguration":{"shape":"RevocationConfiguration"},
         "RestorableUntil":{"shape":"TStamp"},
-        "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"}
+        "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"},
+        "UsageMode":{"shape":"CertificateAuthorityUsageMode"}
       }
     },
     "CertificateAuthorityConfiguration":{
@@ -548,6 +549,13 @@
       "enum":[
         "ROOT",
         "SUBORDINATE"
+      ]
+    },
+    "CertificateAuthorityUsageMode":{
+      "type":"string",
+      "enum":[
+        "GENERAL_PURPOSE",
+        "SHORT_LIVED_CERTIFICATE"
       ]
     },
     "CertificateBody":{"type":"string"},
@@ -620,7 +628,8 @@
         "CertificateAuthorityType":{"shape":"CertificateAuthorityType"},
         "IdempotencyToken":{"shape":"IdempotencyToken"},
         "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "UsageMode":{"shape":"CertificateAuthorityUsageMode"}
       }
     },
     "CreateCertificateAuthorityResponse":{

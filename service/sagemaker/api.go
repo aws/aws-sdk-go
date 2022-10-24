@@ -16055,6 +16055,139 @@ func (c *SageMaker) ListImagesPagesWithContext(ctx aws.Context, input *ListImage
 	return p.Err()
 }
 
+const opListInferenceRecommendationsJobSteps = "ListInferenceRecommendationsJobSteps"
+
+// ListInferenceRecommendationsJobStepsRequest generates a "aws/request.Request" representing the
+// client's request for the ListInferenceRecommendationsJobSteps operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInferenceRecommendationsJobSteps for more information on using the ListInferenceRecommendationsJobSteps
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListInferenceRecommendationsJobStepsRequest method.
+//	req, resp := client.ListInferenceRecommendationsJobStepsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceRecommendationsJobSteps
+func (c *SageMaker) ListInferenceRecommendationsJobStepsRequest(input *ListInferenceRecommendationsJobStepsInput) (req *request.Request, output *ListInferenceRecommendationsJobStepsOutput) {
+	op := &request.Operation{
+		Name:       opListInferenceRecommendationsJobSteps,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInferenceRecommendationsJobStepsInput{}
+	}
+
+	output = &ListInferenceRecommendationsJobStepsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInferenceRecommendationsJobSteps API operation for Amazon SageMaker Service.
+//
+// Returns a list of the subtasks for an Inference Recommender job.
+//
+// The supported subtasks are benchmarks, which evaluate the performance of
+// your model on different instance types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListInferenceRecommendationsJobSteps for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceRecommendationsJobSteps
+func (c *SageMaker) ListInferenceRecommendationsJobSteps(input *ListInferenceRecommendationsJobStepsInput) (*ListInferenceRecommendationsJobStepsOutput, error) {
+	req, out := c.ListInferenceRecommendationsJobStepsRequest(input)
+	return out, req.Send()
+}
+
+// ListInferenceRecommendationsJobStepsWithContext is the same as ListInferenceRecommendationsJobSteps with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInferenceRecommendationsJobSteps for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListInferenceRecommendationsJobStepsWithContext(ctx aws.Context, input *ListInferenceRecommendationsJobStepsInput, opts ...request.Option) (*ListInferenceRecommendationsJobStepsOutput, error) {
+	req, out := c.ListInferenceRecommendationsJobStepsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInferenceRecommendationsJobStepsPages iterates over the pages of a ListInferenceRecommendationsJobSteps operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInferenceRecommendationsJobSteps method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListInferenceRecommendationsJobSteps operation.
+//	pageNum := 0
+//	err := client.ListInferenceRecommendationsJobStepsPages(params,
+//	    func(page *sagemaker.ListInferenceRecommendationsJobStepsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SageMaker) ListInferenceRecommendationsJobStepsPages(input *ListInferenceRecommendationsJobStepsInput, fn func(*ListInferenceRecommendationsJobStepsOutput, bool) bool) error {
+	return c.ListInferenceRecommendationsJobStepsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInferenceRecommendationsJobStepsPagesWithContext same as ListInferenceRecommendationsJobStepsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListInferenceRecommendationsJobStepsPagesWithContext(ctx aws.Context, input *ListInferenceRecommendationsJobStepsInput, fn func(*ListInferenceRecommendationsJobStepsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInferenceRecommendationsJobStepsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInferenceRecommendationsJobStepsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInferenceRecommendationsJobStepsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListInferenceRecommendationsJobs = "ListInferenceRecommendationsJobs"
 
 // ListInferenceRecommendationsJobsRequest generates a "aws/request.Request" representing the
@@ -64630,6 +64763,75 @@ func (s *InferenceRecommendationsJob) SetStatus(v string) *InferenceRecommendati
 	return s
 }
 
+// A returned array object for the Steps response field in the ListInferenceRecommendationsJobSteps
+// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InferenceRecommendationsJobStep.html)
+// API command.
+type InferenceRecommendationsJobStep struct {
+	_ struct{} `type:"structure"`
+
+	// The details for a specific benchmark.
+	InferenceBenchmark *RecommendationJobInferenceBenchmark `type:"structure"`
+
+	// The name of the Inference Recommender job.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The current status of the benchmark.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"RecommendationJobStatus"`
+
+	// The type of the subtask.
+	//
+	// BENCHMARK: Evaluate the performance of your model on different instance types.
+	//
+	// StepType is a required field
+	StepType *string `type:"string" required:"true" enum:"RecommendationStepType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendationsJobStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendationsJobStep) GoString() string {
+	return s.String()
+}
+
+// SetInferenceBenchmark sets the InferenceBenchmark field's value.
+func (s *InferenceRecommendationsJobStep) SetInferenceBenchmark(v *RecommendationJobInferenceBenchmark) *InferenceRecommendationsJobStep {
+	s.InferenceBenchmark = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *InferenceRecommendationsJobStep) SetJobName(v string) *InferenceRecommendationsJobStep {
+	s.JobName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InferenceRecommendationsJobStep) SetStatus(v string) *InferenceRecommendationsJobStep {
+	s.Status = &v
+	return s
+}
+
+// SetStepType sets the StepType field's value.
+func (s *InferenceRecommendationsJobStep) SetStepType(v string) *InferenceRecommendationsJobStep {
+	s.StepType = &v
+	return s
+}
+
 // Defines how to perform inference generation after a training job is run.
 type InferenceSpecification struct {
 	_ struct{} `type:"structure"`
@@ -70609,6 +70811,139 @@ func (s *ListImagesOutput) SetImages(v []*Image) *ListImagesOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListImagesOutput) SetNextToken(v string) *ListImagesOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListInferenceRecommendationsJobStepsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name for the Inference Recommender job.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token that you can specify to return more results from the list. Specify
+	// this field if you have a token that was returned from a previous request.
+	NextToken *string `type:"string"`
+
+	// A filter to return benchmarks of a specified status. If this field is left
+	// empty, then all benchmarks are returned.
+	Status *string `type:"string" enum:"RecommendationJobStatus"`
+
+	// A filter to return details about the specified type of subtask.
+	//
+	// BENCHMARK: Evaluate the performance of your model on different instance types.
+	StepType *string `type:"string" enum:"RecommendationStepType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInferenceRecommendationsJobStepsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInferenceRecommendationsJobStepsInput"}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetJobName(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.JobName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetMaxResults(v int64) *ListInferenceRecommendationsJobStepsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetNextToken(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetStatus(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.Status = &v
+	return s
+}
+
+// SetStepType sets the StepType field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetStepType(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.StepType = &v
+	return s
+}
+
+type ListInferenceRecommendationsJobStepsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that you can specify in your next request to return more results
+	// from the list.
+	NextToken *string `type:"string"`
+
+	// A list of all subtask details in Inference Recommender.
+	Steps []*InferenceRecommendationsJobStep `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceRecommendationsJobStepsOutput) SetNextToken(v string) *ListInferenceRecommendationsJobStepsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *ListInferenceRecommendationsJobStepsOutput) SetSteps(v []*InferenceRecommendationsJobStep) *ListInferenceRecommendationsJobStepsOutput {
+	s.Steps = v
 	return s
 }
 
@@ -86564,6 +86899,69 @@ func (s *RecommendationJobContainerConfig) SetTask(v string) *RecommendationJobC
 	return s
 }
 
+// The details for a specific benchmark from an Inference Recommender job.
+type RecommendationJobInferenceBenchmark struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint configuration made by Inference Recommender during a recommendation
+	// job.
+	EndpointConfiguration *EndpointOutputConfiguration `type:"structure"`
+
+	// The reason why a benchmark failed.
+	FailureReason *string `type:"string"`
+
+	// The metrics of recommendations.
+	Metrics *RecommendationMetrics `type:"structure"`
+
+	// Defines the model configuration. Includes the specification name and environment
+	// parameters.
+	//
+	// ModelConfiguration is a required field
+	ModelConfiguration *ModelConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobInferenceBenchmark) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobInferenceBenchmark) GoString() string {
+	return s.String()
+}
+
+// SetEndpointConfiguration sets the EndpointConfiguration field's value.
+func (s *RecommendationJobInferenceBenchmark) SetEndpointConfiguration(v *EndpointOutputConfiguration) *RecommendationJobInferenceBenchmark {
+	s.EndpointConfiguration = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *RecommendationJobInferenceBenchmark) SetFailureReason(v string) *RecommendationJobInferenceBenchmark {
+	s.FailureReason = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *RecommendationJobInferenceBenchmark) SetMetrics(v *RecommendationMetrics) *RecommendationJobInferenceBenchmark {
+	s.Metrics = v
+	return s
+}
+
+// SetModelConfiguration sets the ModelConfiguration field's value.
+func (s *RecommendationJobInferenceBenchmark) SetModelConfiguration(v *ModelConfiguration) *RecommendationJobInferenceBenchmark {
+	s.ModelConfiguration = v
+	return s
+}
+
 // The input configuration of the recommendation job.
 type RecommendationJobInputConfig struct {
 	_ struct{} `type:"structure"`
@@ -100523,6 +100921,9 @@ const (
 
 	// AutoMLMetricExtendedEnumLogLoss is a AutoMLMetricExtendedEnum enum value
 	AutoMLMetricExtendedEnumLogLoss = "LogLoss"
+
+	// AutoMLMetricExtendedEnumInferenceLatency is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumInferenceLatency = "InferenceLatency"
 )
 
 // AutoMLMetricExtendedEnum_Values returns all elements of the AutoMLMetricExtendedEnum enum
@@ -100542,6 +100943,7 @@ func AutoMLMetricExtendedEnum_Values() []string {
 		AutoMLMetricExtendedEnumRecall,
 		AutoMLMetricExtendedEnumRecallMacro,
 		AutoMLMetricExtendedEnumLogLoss,
+		AutoMLMetricExtendedEnumInferenceLatency,
 	}
 }
 
@@ -104368,6 +104770,18 @@ func RecommendationJobType_Values() []string {
 	return []string{
 		RecommendationJobTypeDefault,
 		RecommendationJobTypeAdvanced,
+	}
+}
+
+const (
+	// RecommendationStepTypeBenchmark is a RecommendationStepType enum value
+	RecommendationStepTypeBenchmark = "BENCHMARK"
+)
+
+// RecommendationStepType_Values returns all elements of the RecommendationStepType enum
+func RecommendationStepType_Values() []string {
+	return []string{
+		RecommendationStepTypeBenchmark,
 	}
 }
 
