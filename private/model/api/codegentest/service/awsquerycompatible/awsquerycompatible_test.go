@@ -55,7 +55,7 @@ func TestAWSQuery(t *testing.T) {
 		"when header is malformed": {
 			statusCode:      500,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
-			expectErrorCode: "AWS.SimpleQueueService.QueueDeletedRecently",
+			expectErrorCode: "QueueDeletedRecently",
 			headers: http.Header{"x-amzn-query-error": []string{"AWS.SimpleQueueService.QueueDeletedRecently-Sender"}},
 		},
 	}
