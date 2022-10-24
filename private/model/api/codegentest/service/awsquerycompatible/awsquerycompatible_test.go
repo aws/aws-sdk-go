@@ -25,26 +25,26 @@ func TestAWSQuery(t *testing.T) {
 			io.Reader
 			Len() int
 		}
-		headers         http.Header
+		headers map[string]string
 		expectErrorCode string
 	}{
 		"when header is present": {
 			statusCode:      500,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
 			expectErrorCode: "AWS.SimpleQueueService.QueueDeletedRecently",
-			headers: http.Header{"x-amzn-query-error": []string{"AWS.SimpleQueueService.QueueDeletedRecently;Sender"}},
+			headers: map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently;Sender"},
 		},
 		"for unmodlled error code": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#AccessDeniedException", "message":"Some user-visible message"}`),
 			expectErrorCode: "AccessDenied",
-			headers: http.Header{"x-amzn-query-error": []string{"AccessDenied;Sender"}},
+			headers: map[string]string{"x-amzn-query-error": "AccessDenied;Sender"},
 		},
 		"when header is not present": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#AccessDeniedException", "message":"Some user-visible message"}`),
 			expectErrorCode: "AccessDeniedException",
-			headers: http.Header{},
+			headers: map[string]string{},
 		},
 		"when header is nil": {
 			statusCode:      400,
@@ -56,7 +56,7 @@ func TestAWSQuery(t *testing.T) {
 			statusCode:      500,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
 			expectErrorCode: "QueueDeletedRecently",
-			headers: http.Header{"x-amzn-query-error": []string{"AWS.SimpleQueueService.QueueDeletedRecently-Sender"}},
+			headers: map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently-Sender"},
 		},
 	}
 
@@ -77,7 +77,15 @@ func TestAWSQuery(t *testing.T) {
 							}
 							return int64(c.responseBody.Len())
 						}(),
-						Header: c.headers,
+						Header: func() http.Header {
+							h := http.Header{}
+							if c.headers != nil {
+								for key, value := range c.headers {
+									h.Set(key, value)
+								}
+							}
+							return h
+						}(),
 						Body: ioutil.NopCloser(c.responseBody),
 					}
 				},

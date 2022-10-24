@@ -54,18 +54,16 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	code := codeParts[len(codeParts)-1]
 	msg := jsonErr.Message
 
-	if (resp.Header != nil) {
-		queryCodeHeader := resp.Header[awsQueryError]
-		if len(queryCodeHeader) > 0 {
-			queryCodeParts := strings.Split(queryCodeHeader[0], ";")
-			if queryCodeParts != nil && len(queryCodeParts) == 2 {
-				return awserr.NewRequestFailure(
-					awserr.New(queryCodeParts[0], msg, nil),
-					respMeta.StatusCode,
-					respMeta.RequestID,
-					), nil
-				}
-			}
+	queryCodeHeader := resp.Header.Get(awsQueryError)
+	if queryCodeHeader != "" {
+		queryCodeParts := strings.Split(queryCodeHeader, ";")
+		if queryCodeParts != nil && len(queryCodeParts) == 2 {
+			return awserr.NewRequestFailure(
+				awserr.New(queryCodeParts[0], msg, nil),
+				respMeta.StatusCode,
+				respMeta.RequestID,
+				), nil
+		}
 	}
 
 	if fn, ok := u.exceptions[code]; ok {
