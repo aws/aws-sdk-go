@@ -1992,6 +1992,15 @@
       "input":{"shape":"ListImagesRequest"},
       "output":{"shape":"ListImagesResponse"}
     },
+    "ListInferenceRecommendationsJobSteps":{
+      "name":"ListInferenceRecommendationsJobSteps",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListInferenceRecommendationsJobStepsRequest"},
+      "output":{"shape":"ListInferenceRecommendationsJobStepsResponse"}
+    },
     "ListInferenceRecommendationsJobs":{
       "name":"ListInferenceRecommendationsJobs",
       "http":{
@@ -3821,7 +3830,8 @@
         "PrecisionMacro",
         "Recall",
         "RecallMacro",
-        "LogLoss"
+        "LogLoss",
+        "InferenceLatency"
       ]
     },
     "AutoMLMode":{
@@ -10427,6 +10437,24 @@
         "FailureReason":{"shape":"FailureReason"}
       }
     },
+    "InferenceRecommendationsJobStep":{
+      "type":"structure",
+      "required":[
+        "StepType",
+        "JobName",
+        "Status"
+      ],
+      "members":{
+        "StepType":{"shape":"RecommendationStepType"},
+        "JobName":{"shape":"RecommendationJobName"},
+        "Status":{"shape":"RecommendationJobStatus"},
+        "InferenceBenchmark":{"shape":"RecommendationJobInferenceBenchmark"}
+      }
+    },
+    "InferenceRecommendationsJobSteps":{
+      "type":"list",
+      "member":{"shape":"InferenceRecommendationsJobStep"}
+    },
     "InferenceRecommendationsJobs":{
       "type":"list",
       "member":{"shape":"InferenceRecommendationsJob"}
@@ -11606,6 +11634,24 @@
       "type":"structure",
       "members":{
         "Images":{"shape":"Images"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInferenceRecommendationsJobStepsRequest":{
+      "type":"structure",
+      "required":["JobName"],
+      "members":{
+        "JobName":{"shape":"RecommendationJobName"},
+        "Status":{"shape":"RecommendationJobStatus"},
+        "StepType":{"shape":"RecommendationStepType"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInferenceRecommendationsJobStepsResponse":{
+      "type":"structure",
+      "members":{
+        "Steps":{"shape":"InferenceRecommendationsJobSteps"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -15110,6 +15156,7 @@
       "type":"list",
       "member":{"shape":"ProductionVariantInstanceType"}
     },
+    "RecommendationFailureReason":{"type":"string"},
     "RecommendationJobArn":{
       "type":"string",
       "max":256,
@@ -15136,6 +15183,16 @@
     "RecommendationJobDescription":{
       "type":"string",
       "max":128
+    },
+    "RecommendationJobInferenceBenchmark":{
+      "type":"structure",
+      "required":["ModelConfiguration"],
+      "members":{
+        "Metrics":{"shape":"RecommendationMetrics"},
+        "EndpointConfiguration":{"shape":"EndpointOutputConfiguration"},
+        "ModelConfiguration":{"shape":"ModelConfiguration"},
+        "FailureReason":{"shape":"RecommendationFailureReason"}
+      }
     },
     "RecommendationJobInputConfig":{
       "type":"structure",
@@ -15225,6 +15282,10 @@
         "MaxInvocations":{"shape":"Integer"},
         "ModelLatency":{"shape":"Integer"}
       }
+    },
+    "RecommendationStepType":{
+      "type":"string",
+      "enum":["BENCHMARK"]
     },
     "RecordWrapper":{
       "type":"string",

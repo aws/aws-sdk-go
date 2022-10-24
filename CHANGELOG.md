@@ -1,3 +1,14 @@
+Release v1.44.122 (2022-10-24)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/batch`: Updates service API and documentation
+  * This release adds support for AWS Batch on Amazon EKS.
+* `service/datasync`: Updates service API and documentation
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * SageMaker Inference Recommender now supports a new API ListInferenceRecommendationJobSteps to return the details of all the benchmark we create for an inference recommendation job.
+
 Release v1.44.121 (2022-10-21)
 ===
 

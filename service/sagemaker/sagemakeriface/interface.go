@@ -850,6 +850,13 @@ type SageMakerAPI interface {
 	ListImagesPages(*sagemaker.ListImagesInput, func(*sagemaker.ListImagesOutput, bool) bool) error
 	ListImagesPagesWithContext(aws.Context, *sagemaker.ListImagesInput, func(*sagemaker.ListImagesOutput, bool) bool, ...request.Option) error
 
+	ListInferenceRecommendationsJobSteps(*sagemaker.ListInferenceRecommendationsJobStepsInput) (*sagemaker.ListInferenceRecommendationsJobStepsOutput, error)
+	ListInferenceRecommendationsJobStepsWithContext(aws.Context, *sagemaker.ListInferenceRecommendationsJobStepsInput, ...request.Option) (*sagemaker.ListInferenceRecommendationsJobStepsOutput, error)
+	ListInferenceRecommendationsJobStepsRequest(*sagemaker.ListInferenceRecommendationsJobStepsInput) (*request.Request, *sagemaker.ListInferenceRecommendationsJobStepsOutput)
+
+	ListInferenceRecommendationsJobStepsPages(*sagemaker.ListInferenceRecommendationsJobStepsInput, func(*sagemaker.ListInferenceRecommendationsJobStepsOutput, bool) bool) error
+	ListInferenceRecommendationsJobStepsPagesWithContext(aws.Context, *sagemaker.ListInferenceRecommendationsJobStepsInput, func(*sagemaker.ListInferenceRecommendationsJobStepsOutput, bool) bool, ...request.Option) error
+
 	ListInferenceRecommendationsJobs(*sagemaker.ListInferenceRecommendationsJobsInput) (*sagemaker.ListInferenceRecommendationsJobsOutput, error)
 	ListInferenceRecommendationsJobsWithContext(aws.Context, *sagemaker.ListInferenceRecommendationsJobsInput, ...request.Option) (*sagemaker.ListInferenceRecommendationsJobsOutput, error)
 	ListInferenceRecommendationsJobsRequest(*sagemaker.ListInferenceRecommendationsJobsInput) (*request.Request, *sagemaker.ListInferenceRecommendationsJobsOutput)

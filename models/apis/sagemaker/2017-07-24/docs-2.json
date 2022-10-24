@@ -180,6 +180,7 @@
     "ListHyperParameterTuningJobs": "<p>Gets a list of <a>HyperParameterTuningJobSummary</a> objects that describe the hyperparameter tuning jobs launched in your account.</p>",
     "ListImageVersions": "<p>Lists the versions of a specified image and their properties. The list can be filtered by creation time or modified time.</p>",
     "ListImages": "<p>Lists the images in your account and their properties. The list can be filtered by creation time or modified time, and whether the image name contains a specified string.</p>",
+    "ListInferenceRecommendationsJobSteps": "<p>Returns a list of the subtasks for an Inference Recommender job.</p> <p>The supported subtasks are benchmarks, which evaluate the performance of your model on different instance types.</p>",
     "ListInferenceRecommendationsJobs": "<p>Lists recommendation jobs that satisfy various filters.</p>",
     "ListLabelingJobs": "<p>Gets a list of labeling jobs.</p>",
     "ListLabelingJobsForWorkteam": "<p>Gets a list of labeling jobs assigned to a specified work team.</p>",
@@ -4256,7 +4257,8 @@
     "EndpointOutputConfiguration": {
       "base": "<p>The endpoint configuration made by Inference Recommender during a recommendation job.</p>",
       "refs": {
-        "InferenceRecommendation$EndpointConfiguration": "<p>Defines the endpoint configuration parameters.</p>"
+        "InferenceRecommendation$EndpointConfiguration": "<p>Defines the endpoint configuration parameters.</p>",
+        "RecommendationJobInferenceBenchmark$EndpointConfiguration": null
       }
     },
     "EndpointPerformance": {
@@ -5754,6 +5756,18 @@
         "InferenceRecommendationsJobs$member": null
       }
     },
+    "InferenceRecommendationsJobStep": {
+      "base": "<p>A returned array object for the <code>Steps</code> response field in the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InferenceRecommendationsJobStep.html\">ListInferenceRecommendationsJobSteps</a> API command.</p>",
+      "refs": {
+        "InferenceRecommendationsJobSteps$member": null
+      }
+    },
+    "InferenceRecommendationsJobSteps": {
+      "base": null,
+      "refs": {
+        "ListInferenceRecommendationsJobStepsResponse$Steps": "<p>A list of all subtask details in Inference Recommender.</p>"
+      }
+    },
     "InferenceRecommendationsJobs": {
       "base": null,
       "refs": {
@@ -6633,6 +6647,16 @@
       "refs": {
       }
     },
+    "ListInferenceRecommendationsJobStepsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInferenceRecommendationsJobStepsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListInferenceRecommendationsJobsRequest": {
       "base": null,
       "refs": {
@@ -7137,6 +7161,7 @@
         "ListHyperParameterTuningJobsRequest$MaxResults": "<p>The maximum number of tuning jobs to return. The default value is 10.</p>",
         "ListImageVersionsRequest$MaxResults": "<p>The maximum number of versions to return in the response. The default value is 10. </p>",
         "ListImagesRequest$MaxResults": "<p>The maximum number of images to return in the response. The default value is 10. </p>",
+        "ListInferenceRecommendationsJobStepsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListInferenceRecommendationsJobsRequest$MaxResults": "<p>The maximum number of recommendations to return in the response.</p>",
         "ListLabelingJobsForWorkteamRequest$MaxResults": "<p>The maximum number of labeling jobs to return in each page of the response.</p>",
         "ListLabelingJobsRequest$MaxResults": "<p>The maximum number of labeling jobs to return in each page of the response.</p>",
@@ -7403,7 +7428,8 @@
     "ModelConfiguration": {
       "base": "<p>Defines the model configuration. Includes the specification name and environment parameters.</p>",
       "refs": {
-        "InferenceRecommendation$ModelConfiguration": "<p>Defines the model configuration.</p>"
+        "InferenceRecommendation$ModelConfiguration": "<p>Defines the model configuration.</p>",
+        "RecommendationJobInferenceBenchmark$ModelConfiguration": null
       }
     },
     "ModelDataQuality": {
@@ -8282,6 +8308,8 @@
         "ListImageVersionsResponse$NextToken": "<p>A token for getting the next set of versions, if there are any.</p>",
         "ListImagesRequest$NextToken": "<p>If the previous call to <code>ListImages</code> didn't return the full set of images, the call returns a token for getting the next set of images.</p>",
         "ListImagesResponse$NextToken": "<p>A token for getting the next set of images, if there are any.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$NextToken": "<p>A token that you can specify to return more results from the list. Specify this field if you have a token that was returned from a previous request.</p>",
+        "ListInferenceRecommendationsJobStepsResponse$NextToken": "<p>A token that you can specify in your next request to return more results from the list.</p>",
         "ListInferenceRecommendationsJobsRequest$NextToken": "<p>If the response to a previous <code>ListInferenceRecommendationsJobsRequest</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of recommendations, use the token in the next request.</p>",
         "ListInferenceRecommendationsJobsResponse$NextToken": "<p>A token for getting the next set of recommendations, if there are any.</p>",
         "ListLabelingJobsForWorkteamRequest$NextToken": "<p>If the result of the previous <code>ListLabelingJobsForWorkteam</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of labeling jobs, use the token in the next request.</p>",
@@ -9731,6 +9759,12 @@
         "InferenceSpecification$SupportedRealtimeInferenceInstanceTypes": "<p>A list of the instance types that are used to generate inferences in real-time.</p> <p>This parameter is required for unversioned models, and optional for versioned models.</p>"
       }
     },
+    "RecommendationFailureReason": {
+      "base": null,
+      "refs": {
+        "RecommendationJobInferenceBenchmark$FailureReason": "<p>The reason why a benchmark failed.</p>"
+      }
+    },
     "RecommendationJobArn": {
       "base": null,
       "refs": {
@@ -9759,6 +9793,12 @@
         "InferenceRecommendationsJob$JobDescription": "<p>The job description.</p>"
       }
     },
+    "RecommendationJobInferenceBenchmark": {
+      "base": "<p>The details for a specific benchmark from an Inference Recommender job.</p>",
+      "refs": {
+        "InferenceRecommendationsJobStep$InferenceBenchmark": "<p>The details for a specific benchmark.</p>"
+      }
+    },
     "RecommendationJobInputConfig": {
       "base": "<p>The input configuration of the recommendation job.</p>",
       "refs": {
@@ -9773,6 +9813,8 @@
         "DescribeInferenceRecommendationsJobRequest$JobName": "<p>The name of the job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.</p>",
         "DescribeInferenceRecommendationsJobResponse$JobName": "<p>The name of the job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.</p>",
         "InferenceRecommendationsJob$JobName": "<p>The name of the job.</p>",
+        "InferenceRecommendationsJobStep$JobName": "<p>The name of the Inference Recommender job.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$JobName": "<p>The name for the Inference Recommender job.</p>",
         "StopInferenceRecommendationsJobRequest$JobName": "<p>The name of the job you want to stop.</p>"
       }
     },
@@ -9799,6 +9841,8 @@
       "refs": {
         "DescribeInferenceRecommendationsJobResponse$Status": "<p>The status of the job.</p>",
         "InferenceRecommendationsJob$Status": "<p>The status of the job.</p>",
+        "InferenceRecommendationsJobStep$Status": "<p>The current status of the benchmark.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$Status": "<p>A filter to return benchmarks of a specified status. If this field is left empty, then all benchmarks are returned.</p>",
         "ListInferenceRecommendationsJobsRequest$StatusEquals": "<p>A filter that retrieves only inference recommendations jobs with a specific status.</p>"
       }
     },
@@ -9832,7 +9876,15 @@
     "RecommendationMetrics": {
       "base": "<p>The metrics of recommendations.</p>",
       "refs": {
-        "InferenceRecommendation$Metrics": "<p>The metrics used to decide what recommendation to make.</p>"
+        "InferenceRecommendation$Metrics": "<p>The metrics used to decide what recommendation to make.</p>",
+        "RecommendationJobInferenceBenchmark$Metrics": null
+      }
+    },
+    "RecommendationStepType": {
+      "base": null,
+      "refs": {
+        "InferenceRecommendationsJobStep$StepType": "<p>The type of the subtask.</p> <p> <code>BENCHMARK</code>: Evaluate the performance of your model on different instance types.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$StepType": "<p>A filter to return details about the specified type of subtask.</p> <p> <code>BENCHMARK</code>: Evaluate the performance of your model on different instance types.</p>"
       }
     },
     "RecordWrapper": {
