@@ -63,10 +63,10 @@ func (u *UnmarshalTypedError) UnmarshalError(
 					awserr.New(queryCodeParts[0], msg, nil),
 					respMeta.StatusCode,
 					respMeta.RequestID,
-				), nil
+					), nil
+				}
 			}
-		}
-}
+	}
 
 	if fn, ok := u.exceptions[code]; ok {
 		// If exception code is know, use associated constructor to get a value
