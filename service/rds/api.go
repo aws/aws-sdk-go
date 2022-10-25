@@ -14599,6 +14599,9 @@ func (c *RDS) StartExportTaskRequest(input *StartExportTaskInput) (req *request.
 //   - ErrCodeDBClusterSnapshotNotFoundFault "DBClusterSnapshotNotFoundFault"
 //     DBClusterSnapshotIdentifier doesn't refer to an existing DB cluster snapshot.
 //
+//   - ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//     DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
 //   - ErrCodeExportTaskAlreadyExistsFault "ExportTaskAlreadyExists"
 //     You can't start an export task that's already running.
 //
@@ -16260,6 +16263,9 @@ type CancelExportTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
 
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
+
 	// The progress status of the export task.
 	Status *string `type:"string"`
 
@@ -16351,6 +16357,12 @@ func (s *CancelExportTaskOutput) SetSnapshotTime(v time.Time) *CancelExportTaskO
 // SetSourceArn sets the SourceArn field's value.
 func (s *CancelExportTaskOutput) SetSourceArn(v string) *CancelExportTaskOutput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *CancelExportTaskOutput) SetSourceType(v string) *CancelExportTaskOutput {
+	s.SourceType = &v
 	return s
 }
 
@@ -16673,6 +16685,9 @@ type ConnectionPoolConfiguration struct {
 	// The value is expressed as a percentage of the max_connections setting for
 	// the RDS DB instance or Aurora DB cluster used by the target group.
 	//
+	// If you specify MaxIdleConnectionsPercent, then you must also include a value
+	// for this parameter.
+	//
 	// Default: 10 for RDS for Microsoft SQL Server, and 100 for all other engines
 	//
 	// Constraints: Must be between 1 and 100.
@@ -16684,6 +16699,8 @@ type ConnectionPoolConfiguration struct {
 	// a high value, the proxy leaves a high percentage of idle database connections
 	// open. A low value causes the proxy to close more idle connections and return
 	// them to the database.
+	//
+	// If you specify this parameter, then you must also include a value for MaxConnectionsPercent.
 	//
 	// Default: The default value is half of the value of MaxConnectionsPercent.
 	// For example, if MaxConnectionsPercent is 80, then the default value of MaxIdleConnectionsPercent
@@ -33338,6 +33355,10 @@ type DescribeEngineDefaultParametersInput struct {
 	//
 	//    * aurora-postgresql13
 	//
+	//    * aurora-postgresql14
+	//
+	//    * custom-oracle-ee-19
+	//
 	//    * mariadb10.2
 	//
 	//    * mariadb10.3
@@ -33351,6 +33372,18 @@ type DescribeEngineDefaultParametersInput struct {
 	//    * mysql5.7
 	//
 	//    * mysql8.0
+	//
+	//    * oracle-ee-19
+	//
+	//    * oracle-ee-cdb-19
+	//
+	//    * oracle-ee-cdb-21
+	//
+	//    * oracle-se2-19
+	//
+	//    * oracle-se2-cdb-19
+	//
+	//    * oracle-se2-cdb-21
 	//
 	//    * postgres10
 	//
@@ -33998,6 +34031,9 @@ type DescribeExportTasksInput struct {
 
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
+
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
 }
 
 // String returns the string representation.
@@ -34068,6 +34104,12 @@ func (s *DescribeExportTasksInput) SetMaxRecords(v int64) *DescribeExportTasksIn
 // SetSourceArn sets the SourceArn field's value.
 func (s *DescribeExportTasksInput) SetSourceArn(v string) *DescribeExportTasksInput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *DescribeExportTasksInput) SetSourceType(v string) *DescribeExportTasksInput {
+	s.SourceType = &v
 	return s
 }
 
@@ -36307,6 +36349,9 @@ type ExportTask struct {
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
 
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
+
 	// The progress status of the export task.
 	Status *string `type:"string"`
 
@@ -36398,6 +36443,12 @@ func (s *ExportTask) SetSnapshotTime(v time.Time) *ExportTask {
 // SetSourceArn sets the SourceArn field's value.
 func (s *ExportTask) SetSourceArn(v string) *ExportTask {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *ExportTask) SetSourceType(v string) *ExportTask {
+	s.SourceType = &v
 	return s
 }
 
@@ -49776,6 +49827,9 @@ type StartExportTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
 
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
+
 	// The progress status of the export task.
 	Status *string `type:"string"`
 
@@ -49867,6 +49921,12 @@ func (s *StartExportTaskOutput) SetSnapshotTime(v time.Time) *StartExportTaskOut
 // SetSourceArn sets the SourceArn field's value.
 func (s *StartExportTaskOutput) SetSourceArn(v string) *StartExportTaskOutput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *StartExportTaskOutput) SetSourceType(v string) *StartExportTaskOutput {
+	s.SourceType = &v
 	return s
 }
 
@@ -51240,6 +51300,22 @@ func EngineFamily_Values() []string {
 		EngineFamilyMysql,
 		EngineFamilyPostgresql,
 		EngineFamilySqlserver,
+	}
+}
+
+const (
+	// ExportSourceTypeSnapshot is a ExportSourceType enum value
+	ExportSourceTypeSnapshot = "SNAPSHOT"
+
+	// ExportSourceTypeCluster is a ExportSourceType enum value
+	ExportSourceTypeCluster = "CLUSTER"
+)
+
+// ExportSourceType_Values returns all elements of the ExportSourceType enum
+func ExportSourceType_Values() []string {
+	return []string{
+		ExportSourceTypeSnapshot,
+		ExportSourceTypeCluster,
 	}
 }
 

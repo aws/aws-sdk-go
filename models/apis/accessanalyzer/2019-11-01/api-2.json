@@ -807,10 +807,16 @@
     "Configuration":{
       "type":"structure",
       "members":{
+        "ebsSnapshot":{"shape":"EbsSnapshotConfiguration"},
+        "ecrRepository":{"shape":"EcrRepositoryConfiguration"},
         "iamRole":{"shape":"IamRoleConfiguration"},
+        "efsFileSystem":{"shape":"EfsFileSystemConfiguration"},
         "kmsKey":{"shape":"KmsKeyConfiguration"},
+        "rdsDbClusterSnapshot":{"shape":"RdsDbClusterSnapshotConfiguration"},
+        "rdsDbSnapshot":{"shape":"RdsDbSnapshotConfiguration"},
         "secretsManagerSecret":{"shape":"SecretsManagerSecretConfiguration"},
         "s3Bucket":{"shape":"S3BucketConfiguration"},
+        "snsTopic":{"shape":"SnsTopicConfiguration"},
         "sqsQueue":{"shape":"SqsQueueConfiguration"}
       },
       "union":true
@@ -956,6 +962,39 @@
         }
       }
     },
+    "EbsGroup":{"type":"string"},
+    "EbsGroupList":{
+      "type":"list",
+      "member":{"shape":"EbsGroup"}
+    },
+    "EbsSnapshotConfiguration":{
+      "type":"structure",
+      "members":{
+        "userIds":{"shape":"EbsUserIdList"},
+        "groups":{"shape":"EbsGroupList"},
+        "kmsKeyId":{"shape":"EbsSnapshotDataEncryptionKeyId"}
+      }
+    },
+    "EbsSnapshotDataEncryptionKeyId":{"type":"string"},
+    "EbsUserId":{"type":"string"},
+    "EbsUserIdList":{
+      "type":"list",
+      "member":{"shape":"EbsUserId"}
+    },
+    "EcrRepositoryConfiguration":{
+      "type":"structure",
+      "members":{
+        "repositoryPolicy":{"shape":"EcrRepositoryPolicy"}
+      }
+    },
+    "EcrRepositoryPolicy":{"type":"string"},
+    "EfsFileSystemConfiguration":{
+      "type":"structure",
+      "members":{
+        "fileSystemPolicy":{"shape":"EfsFileSystemPolicy"}
+      }
+    },
+    "EfsFileSystemPolicy":{"type":"string"},
     "FilterCriteriaMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -1675,7 +1714,10 @@
     "PathElement":{
       "type":"structure",
       "members":{
-        "index":{"shape":"Integer"},
+        "index":{
+          "shape":"Integer",
+          "box":true
+        },
         "key":{"shape":"String"},
         "substring":{"shape":"Substring"},
         "value":{"shape":"String"}
@@ -1745,6 +1787,58 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "RdsDbClusterSnapshotAccountId":{"type":"string"},
+    "RdsDbClusterSnapshotAccountIdsList":{
+      "type":"list",
+      "member":{"shape":"RdsDbClusterSnapshotAccountId"}
+    },
+    "RdsDbClusterSnapshotAttributeName":{"type":"string"},
+    "RdsDbClusterSnapshotAttributeValue":{
+      "type":"structure",
+      "members":{
+        "accountIds":{"shape":"RdsDbClusterSnapshotAccountIdsList"}
+      },
+      "union":true
+    },
+    "RdsDbClusterSnapshotAttributesMap":{
+      "type":"map",
+      "key":{"shape":"RdsDbClusterSnapshotAttributeName"},
+      "value":{"shape":"RdsDbClusterSnapshotAttributeValue"}
+    },
+    "RdsDbClusterSnapshotConfiguration":{
+      "type":"structure",
+      "members":{
+        "attributes":{"shape":"RdsDbClusterSnapshotAttributesMap"},
+        "kmsKeyId":{"shape":"RdsDbClusterSnapshotKmsKeyId"}
+      }
+    },
+    "RdsDbClusterSnapshotKmsKeyId":{"type":"string"},
+    "RdsDbSnapshotAccountId":{"type":"string"},
+    "RdsDbSnapshotAccountIdsList":{
+      "type":"list",
+      "member":{"shape":"RdsDbSnapshotAccountId"}
+    },
+    "RdsDbSnapshotAttributeName":{"type":"string"},
+    "RdsDbSnapshotAttributeValue":{
+      "type":"structure",
+      "members":{
+        "accountIds":{"shape":"RdsDbSnapshotAccountIdsList"}
+      },
+      "union":true
+    },
+    "RdsDbSnapshotAttributesMap":{
+      "type":"map",
+      "key":{"shape":"RdsDbSnapshotAttributeName"},
+      "value":{"shape":"RdsDbSnapshotAttributeValue"}
+    },
+    "RdsDbSnapshotConfiguration":{
+      "type":"structure",
+      "members":{
+        "attributes":{"shape":"RdsDbSnapshotAttributesMap"},
+        "kmsKeyId":{"shape":"RdsDbSnapshotKmsKeyId"}
+      }
+    },
+    "RdsDbSnapshotKmsKeyId":{"type":"string"},
     "ReasonCode":{
       "type":"string",
       "enum":[
@@ -1789,7 +1883,13 @@
         "AWS::Lambda::Function",
         "AWS::Lambda::LayerVersion",
         "AWS::KMS::Key",
-        "AWS::SecretsManager::Secret"
+        "AWS::SecretsManager::Secret",
+        "AWS::EFS::FileSystem",
+        "AWS::EC2::Snapshot",
+        "AWS::ECR::Repository",
+        "AWS::RDS::DBSnapshot",
+        "AWS::RDS::DBClusterSnapshot",
+        "AWS::SNS::Topic"
       ]
     },
     "RetiringPrincipal":{"type":"string"},
@@ -1877,6 +1977,17 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "SnsTopicConfiguration":{
+      "type":"structure",
+      "members":{
+        "topicPolicy":{"shape":"SnsTopicPolicy"}
+      }
+    },
+    "SnsTopicPolicy":{
+      "type":"string",
+      "max":30720,
+      "min":0
+    },
     "SortCriteria":{
       "type":"structure",
       "members":{
@@ -1929,7 +2040,8 @@
       ],
       "members":{
         "analyzerArn":{"shape":"AnalyzerArn"},
-        "resourceArn":{"shape":"ResourceArn"}
+        "resourceArn":{"shape":"ResourceArn"},
+        "resourceOwnerAccount":{"shape":"String"}
       }
     },
     "StatusReason":{

@@ -1143,6 +1143,10 @@ func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req 
 //
 // This operation is asynchronous and returns before the WorkSpaces are created.
 //
+// The MANUAL running mode value is only supported by Amazon WorkSpaces Core.
+// Contact your account team to be allow-listed to use this value. For more
+// information, see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3757,11 +3761,11 @@ func (c *WorkSpaces) ImportWorkspaceImageRequest(input *ImportWorkspaceImageInpu
 
 // ImportWorkspaceImage API operation for Amazon WorkSpaces.
 //
-// Imports the specified Windows 10 Bring Your Own License (BYOL) image into
-// Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image
-// that is in your Amazon Web Services account, and you must own the image.
-// For more information about creating BYOL images, see Bring Your Own Windows
-// Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
+// Imports the specified Windows 10 Bring Your Own License (BYOL) or Windows
+// Server 2016 BYOL image into Amazon WorkSpaces. The image must be an already
+// licensed Amazon EC2 image that is in your Amazon Web Services account, and
+// you must own the image. For more information about creating BYOL images,
+// see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4589,6 +4593,10 @@ func (c *WorkSpaces) ModifyWorkspacePropertiesRequest(input *ModifyWorkspaceProp
 // Modifies the specified WorkSpace properties. For important information about
 // how to modify the size of the root and user volumes, see Modify a WorkSpace
 // (https://docs.aws.amazon.com/workspaces/latest/adminguide/modify-workspaces.html).
+//
+// The MANUAL running mode value is only supported by Amazon WorkSpaces Core.
+// Contact your account team to be allow-listed to use this value. For more
+// information, see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7742,7 +7750,7 @@ type CreateWorkspaceImageOutput struct {
 
 	// Specifies whether the image is running on dedicated hardware. When Bring
 	// Your Own License (BYOL) is enabled, this value is set to DEDICATED. For more
-	// information, see Bring Your Own Windows Desktop Images. (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.htm)
+	// information, see Bring Your Own Windows Desktop Images. (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.htm).
 	RequiredTenancy *string `type:"string" enum:"WorkspaceImageRequiredTenancy"`
 
 	// The availability status of the image.
@@ -11056,12 +11064,18 @@ type ImportWorkspaceImageInput struct {
 	ImageName *string `min:"1" type:"string" required:"true"`
 
 	// The ingestion process to be used when importing the image, depending on which
-	// protocol you want to use for your BYOL Workspace image, either PCoIP or WorkSpaces
-	// Streaming Protocol (WSP). To use WSP, specify a value that ends in _WSP.
-	// To use PCoIP, specify a value that does not end in _WSP.
+	// protocol you want to use for your BYOL Workspace image, either PCoIP, WorkSpaces
+	// Streaming Protocol (WSP), or bring your own protocol (BYOP). To use WSP,
+	// specify a value that ends in _WSP. To use PCoIP, specify a value that does
+	// not end in _WSP. To use BYOP, specify a value that ends in _BYOP.
 	//
 	// For non-GPU-enabled bundles (bundles other than Graphics or GraphicsPro),
-	// specify BYOL_REGULAR or BYOL_REGULAR_WSP, depending on the protocol.
+	// specify BYOL_REGULAR, BYOL_REGULAR_WSP, or BYOL_REGULAR_BYOP, depending on
+	// the protocol.
+	//
+	// The BYOL_REGULAR_BYOP and BYOL_GRAPHICS_G4DN_BYOP values are only supported
+	// by Amazon WorkSpaces Core. Contact your account team to be allow-listed to
+	// use these values. For more information, see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
 	//
 	// IngestionProcess is a required field
 	IngestionProcess *string `type:"string" required:"true" enum:"WorkspaceImageIngestionProcess"`
@@ -15977,6 +15991,10 @@ type WorkspaceProperties struct {
 
 	// The running mode. For more information, see Manage the WorkSpace Running
 	// Mode (https://docs.aws.amazon.com/workspaces/latest/adminguide/running-mode.html).
+	//
+	// The MANUAL value is only supported by Amazon WorkSpaces Core. Contact your
+	// account team to be allow-listed to use this value. For more information,
+	// see Amazon WorkSpaces Core (http://aws.amazon.com/workspaces/core/).
 	RunningMode *string `type:"string" enum:"RunningMode"`
 
 	// The time after a user logs off when WorkSpaces are automatically stopped.
@@ -16589,6 +16607,9 @@ const (
 
 	// RunningModeAlwaysOn is a RunningMode enum value
 	RunningModeAlwaysOn = "ALWAYS_ON"
+
+	// RunningModeManual is a RunningMode enum value
+	RunningModeManual = "MANUAL"
 )
 
 // RunningMode_Values returns all elements of the RunningMode enum
@@ -16596,6 +16617,7 @@ func RunningMode_Values() []string {
 	return []string{
 		RunningModeAutoStop,
 		RunningModeAlwaysOn,
+		RunningModeManual,
 	}
 }
 
@@ -16710,6 +16732,12 @@ const (
 
 	// WorkspaceImageIngestionProcessByolRegularWsp is a WorkspaceImageIngestionProcess enum value
 	WorkspaceImageIngestionProcessByolRegularWsp = "BYOL_REGULAR_WSP"
+
+	// WorkspaceImageIngestionProcessByolRegularByop is a WorkspaceImageIngestionProcess enum value
+	WorkspaceImageIngestionProcessByolRegularByop = "BYOL_REGULAR_BYOP"
+
+	// WorkspaceImageIngestionProcessByolGraphicsG4dnByop is a WorkspaceImageIngestionProcess enum value
+	WorkspaceImageIngestionProcessByolGraphicsG4dnByop = "BYOL_GRAPHICS_G4DN_BYOP"
 )
 
 // WorkspaceImageIngestionProcess_Values returns all elements of the WorkspaceImageIngestionProcess enum
@@ -16720,6 +16748,8 @@ func WorkspaceImageIngestionProcess_Values() []string {
 		WorkspaceImageIngestionProcessByolGraphicspro,
 		WorkspaceImageIngestionProcessByolGraphicsG4dn,
 		WorkspaceImageIngestionProcessByolRegularWsp,
+		WorkspaceImageIngestionProcessByolRegularByop,
+		WorkspaceImageIngestionProcessByolGraphicsG4dnByop,
 	}
 }
 
