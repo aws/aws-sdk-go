@@ -56,7 +56,7 @@ func (c *MediaTailor) ConfigureLogsForPlaybackConfigurationRequest(input *Config
 
 // ConfigureLogsForPlaybackConfiguration API operation for AWS MediaTailor.
 //
-// Configures Amazon CloudWatch log settings for a playback configuration.
+// Amazon CloudWatch log settings for a playback configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -115,7 +115,7 @@ func (c *MediaTailor) CreateChannelRequest(input *CreateChannelInput) (req *requ
 	op := &request.Operation{
 		Name:       opCreateChannel,
 		HTTPMethod: "POST",
-		HTTPPath:   "/channel/{channelName}",
+		HTTPPath:   "/channel/{ChannelName}",
 	}
 
 	if input == nil {
@@ -129,7 +129,9 @@ func (c *MediaTailor) CreateChannelRequest(input *CreateChannelInput) (req *requ
 
 // CreateChannel API operation for AWS MediaTailor.
 //
-// Creates a channel.
+// Creates a channel. For information about MediaTailor channels, see Working
+// with channels (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -188,7 +190,7 @@ func (c *MediaTailor) CreateLiveSourceRequest(input *CreateLiveSourceInput) (req
 	op := &request.Operation{
 		Name:       opCreateLiveSource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
 	}
 
 	if input == nil {
@@ -202,7 +204,7 @@ func (c *MediaTailor) CreateLiveSourceRequest(input *CreateLiveSourceInput) (req
 
 // CreateLiveSource API operation for AWS MediaTailor.
 //
-// Creates name for a specific live source in a source location.
+// The live source configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -275,7 +277,11 @@ func (c *MediaTailor) CreatePrefetchScheduleRequest(input *CreatePrefetchSchedul
 
 // CreatePrefetchSchedule API operation for AWS MediaTailor.
 //
-// Creates a new prefetch schedule for the specified playback configuration.
+// Creates a prefetch schedule for a playback configuration. A prefetch schedule
+// allows you to tell MediaTailor to fetch and prepare certain ads before an
+// ad break happens. For more information about ad prefetching, see Using ad
+// prefetching (https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -334,7 +340,7 @@ func (c *MediaTailor) CreateProgramRequest(input *CreateProgramInput) (req *requ
 	op := &request.Operation{
 		Name:       opCreateProgram,
 		HTTPMethod: "POST",
-		HTTPPath:   "/channel/{channelName}/program/{programName}",
+		HTTPPath:   "/channel/{ChannelName}/program/{ProgramName}",
 	}
 
 	if input == nil {
@@ -348,7 +354,9 @@ func (c *MediaTailor) CreateProgramRequest(input *CreateProgramInput) (req *requ
 
 // CreateProgram API operation for AWS MediaTailor.
 //
-// Creates a program.
+// Creates a program within a channel. For information about programs, see Working
+// with programs (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-programs.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -407,7 +415,7 @@ func (c *MediaTailor) CreateSourceLocationRequest(input *CreateSourceLocationInp
 	op := &request.Operation{
 		Name:       opCreateSourceLocation,
 		HTTPMethod: "POST",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}",
 	}
 
 	if input == nil {
@@ -421,7 +429,10 @@ func (c *MediaTailor) CreateSourceLocationRequest(input *CreateSourceLocationInp
 
 // CreateSourceLocation API operation for AWS MediaTailor.
 //
-// Creates a source location on a specific channel.
+// Creates a source location. A source location is a container for sources.
+// For more information about source locations, see Working with source locations
+// (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-source-locations.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -480,7 +491,7 @@ func (c *MediaTailor) CreateVodSourceRequest(input *CreateVodSourceInput) (req *
 	op := &request.Operation{
 		Name:       opCreateVodSource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
 	}
 
 	if input == nil {
@@ -494,7 +505,7 @@ func (c *MediaTailor) CreateVodSourceRequest(input *CreateVodSourceInput) (req *
 
 // CreateVodSource API operation for AWS MediaTailor.
 //
-// Creates name for a specific VOD source in a source location.
+// The VOD source configuration parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -553,7 +564,7 @@ func (c *MediaTailor) DeleteChannelRequest(input *DeleteChannelInput) (req *requ
 	op := &request.Operation{
 		Name:       opDeleteChannel,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/channel/{channelName}",
+		HTTPPath:   "/channel/{ChannelName}",
 	}
 
 	if input == nil {
@@ -568,7 +579,9 @@ func (c *MediaTailor) DeleteChannelRequest(input *DeleteChannelInput) (req *requ
 
 // DeleteChannel API operation for AWS MediaTailor.
 //
-// Deletes a channel. You must stop the channel before it can be deleted.
+// Deletes a channel. For information about MediaTailor channels, see Working
+// with channels (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -627,7 +640,7 @@ func (c *MediaTailor) DeleteChannelPolicyRequest(input *DeleteChannelPolicyInput
 	op := &request.Operation{
 		Name:       opDeleteChannelPolicy,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/channel/{channelName}/policy",
+		HTTPPath:   "/channel/{ChannelName}/policy",
 	}
 
 	if input == nil {
@@ -642,7 +655,7 @@ func (c *MediaTailor) DeleteChannelPolicyRequest(input *DeleteChannelPolicyInput
 
 // DeleteChannelPolicy API operation for AWS MediaTailor.
 //
-// Deletes a channel's IAM policy.
+// The channel policy to delete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -701,7 +714,7 @@ func (c *MediaTailor) DeleteLiveSourceRequest(input *DeleteLiveSourceInput) (req
 	op := &request.Operation{
 		Name:       opDeleteLiveSource,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
 	}
 
 	if input == nil {
@@ -716,7 +729,7 @@ func (c *MediaTailor) DeleteLiveSourceRequest(input *DeleteLiveSourceInput) (req
 
 // DeleteLiveSource API operation for AWS MediaTailor.
 //
-// Deletes a specific live source in a specific source location.
+// The live source to delete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -790,7 +803,8 @@ func (c *MediaTailor) DeletePlaybackConfigurationRequest(input *DeletePlaybackCo
 
 // DeletePlaybackConfiguration API operation for AWS MediaTailor.
 //
-// Deletes the playback configuration for the specified name.
+// Deletes a playback configuration. For information about MediaTailor configurations,
+// see Working with configurations in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -866,7 +880,9 @@ func (c *MediaTailor) DeletePrefetchScheduleRequest(input *DeletePrefetchSchedul
 //
 // Deletes a prefetch schedule for a specific playback configuration. If you
 // call DeletePrefetchSchedule on an expired prefetch schedule, MediaTailor
-// returns an HTTP 404 status code.
+// returns an HTTP 404 status code. For more information about ad prefetching,
+// see Using ad prefetching (https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -925,7 +941,7 @@ func (c *MediaTailor) DeleteProgramRequest(input *DeleteProgramInput) (req *requ
 	op := &request.Operation{
 		Name:       opDeleteProgram,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/channel/{channelName}/program/{programName}",
+		HTTPPath:   "/channel/{ChannelName}/program/{ProgramName}",
 	}
 
 	if input == nil {
@@ -940,7 +956,9 @@ func (c *MediaTailor) DeleteProgramRequest(input *DeleteProgramInput) (req *requ
 
 // DeleteProgram API operation for AWS MediaTailor.
 //
-// Deletes a specific program on a specific channel.
+// Deletes a program within a channel. For information about programs, see Working
+// with programs (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-programs.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -999,7 +1017,7 @@ func (c *MediaTailor) DeleteSourceLocationRequest(input *DeleteSourceLocationInp
 	op := &request.Operation{
 		Name:       opDeleteSourceLocation,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}",
 	}
 
 	if input == nil {
@@ -1014,7 +1032,10 @@ func (c *MediaTailor) DeleteSourceLocationRequest(input *DeleteSourceLocationInp
 
 // DeleteSourceLocation API operation for AWS MediaTailor.
 //
-// Deletes a source location on a specific channel.
+// Deletes a source location. A source location is a container for sources.
+// For more information about source locations, see Working with source locations
+// (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-source-locations.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1073,7 +1094,7 @@ func (c *MediaTailor) DeleteVodSourceRequest(input *DeleteVodSourceInput) (req *
 	op := &request.Operation{
 		Name:       opDeleteVodSource,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
 	}
 
 	if input == nil {
@@ -1088,7 +1109,7 @@ func (c *MediaTailor) DeleteVodSourceRequest(input *DeleteVodSourceInput) (req *
 
 // DeleteVodSource API operation for AWS MediaTailor.
 //
-// Deletes a specific VOD source in a specific source location.
+// The video on demand (VOD) source to delete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1147,7 +1168,7 @@ func (c *MediaTailor) DescribeChannelRequest(input *DescribeChannelInput) (req *
 	op := &request.Operation{
 		Name:       opDescribeChannel,
 		HTTPMethod: "GET",
-		HTTPPath:   "/channel/{channelName}",
+		HTTPPath:   "/channel/{ChannelName}",
 	}
 
 	if input == nil {
@@ -1161,7 +1182,9 @@ func (c *MediaTailor) DescribeChannelRequest(input *DescribeChannelInput) (req *
 
 // DescribeChannel API operation for AWS MediaTailor.
 //
-// Describes the properties of a specific channel.
+// Describes a channel. For information about MediaTailor channels, see Working
+// with channels (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1220,7 +1243,7 @@ func (c *MediaTailor) DescribeLiveSourceRequest(input *DescribeLiveSourceInput) 
 	op := &request.Operation{
 		Name:       opDescribeLiveSource,
 		HTTPMethod: "GET",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
 	}
 
 	if input == nil {
@@ -1234,7 +1257,7 @@ func (c *MediaTailor) DescribeLiveSourceRequest(input *DescribeLiveSourceInput) 
 
 // DescribeLiveSource API operation for AWS MediaTailor.
 //
-// Provides details about a specific live source in a specific source location.
+// The live source to describe.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1293,7 +1316,7 @@ func (c *MediaTailor) DescribeProgramRequest(input *DescribeProgramInput) (req *
 	op := &request.Operation{
 		Name:       opDescribeProgram,
 		HTTPMethod: "GET",
-		HTTPPath:   "/channel/{channelName}/program/{programName}",
+		HTTPPath:   "/channel/{ChannelName}/program/{ProgramName}",
 	}
 
 	if input == nil {
@@ -1307,7 +1330,9 @@ func (c *MediaTailor) DescribeProgramRequest(input *DescribeProgramInput) (req *
 
 // DescribeProgram API operation for AWS MediaTailor.
 //
-// Retrieves the properties of the requested program.
+// Describes a program within a channel. For information about programs, see
+// Working with programs (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-programs.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1366,7 +1391,7 @@ func (c *MediaTailor) DescribeSourceLocationRequest(input *DescribeSourceLocatio
 	op := &request.Operation{
 		Name:       opDescribeSourceLocation,
 		HTTPMethod: "GET",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}",
 	}
 
 	if input == nil {
@@ -1380,7 +1405,10 @@ func (c *MediaTailor) DescribeSourceLocationRequest(input *DescribeSourceLocatio
 
 // DescribeSourceLocation API operation for AWS MediaTailor.
 //
-// Retrieves the properties of the requested source location.
+// Describes a source location. A source location is a container for sources.
+// For more information about source locations, see Working with source locations
+// (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-source-locations.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1439,7 +1467,7 @@ func (c *MediaTailor) DescribeVodSourceRequest(input *DescribeVodSourceInput) (r
 	op := &request.Operation{
 		Name:       opDescribeVodSource,
 		HTTPMethod: "GET",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
 	}
 
 	if input == nil {
@@ -1453,7 +1481,8 @@ func (c *MediaTailor) DescribeVodSourceRequest(input *DescribeVodSourceInput) (r
 
 // DescribeVodSource API operation for AWS MediaTailor.
 //
-// Provides details about a specific VOD source in a specific source location.
+// Provides details about a specific video on demand (VOD) source in a specific
+// source location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1512,7 +1541,7 @@ func (c *MediaTailor) GetChannelPolicyRequest(input *GetChannelPolicyInput) (req
 	op := &request.Operation{
 		Name:       opGetChannelPolicy,
 		HTTPMethod: "GET",
-		HTTPPath:   "/channel/{channelName}/policy",
+		HTTPPath:   "/channel/{ChannelName}/policy",
 	}
 
 	if input == nil {
@@ -1526,7 +1555,8 @@ func (c *MediaTailor) GetChannelPolicyRequest(input *GetChannelPolicyInput) (req
 
 // GetChannelPolicy API operation for AWS MediaTailor.
 //
-// Retrieves information about a channel's IAM policy.
+// Returns the channel's IAM policy. IAM policies are used to control access
+// to your channel.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1585,7 +1615,7 @@ func (c *MediaTailor) GetChannelScheduleRequest(input *GetChannelScheduleInput) 
 	op := &request.Operation{
 		Name:       opGetChannelSchedule,
 		HTTPMethod: "GET",
-		HTTPPath:   "/channel/{channelName}/schedule",
+		HTTPPath:   "/channel/{ChannelName}/schedule",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -1729,7 +1759,8 @@ func (c *MediaTailor) GetPlaybackConfigurationRequest(input *GetPlaybackConfigur
 
 // GetPlaybackConfiguration API operation for AWS MediaTailor.
 //
-// Returns the playback configuration for the specified name.
+// Retrieves a playback configuration. For information about MediaTailor configurations,
+// see Working with configurations in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1802,9 +1833,11 @@ func (c *MediaTailor) GetPrefetchScheduleRequest(input *GetPrefetchScheduleInput
 
 // GetPrefetchSchedule API operation for AWS MediaTailor.
 //
-// Returns information about the prefetch schedule for a specific playback configuration.
-// If you call GetPrefetchSchedule on an expired prefetch schedule, MediaTailor
-// returns an HTTP 404 status code.
+// Retrieves a prefetch schedule for a playback configuration. A prefetch schedule
+// allows you to tell MediaTailor to fetch and prepare certain ads before an
+// ad break happens. For more information about ad prefetching, see Using ad
+// prefetching (https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1883,7 +1916,8 @@ func (c *MediaTailor) ListAlertsRequest(input *ListAlertsInput) (req *request.Re
 
 // ListAlerts API operation for AWS MediaTailor.
 //
-// Returns a list of alerts for the given resource.
+// Lists the alerts that are associated with a MediaTailor channel assembly
+// resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2013,7 +2047,8 @@ func (c *MediaTailor) ListChannelsRequest(input *ListChannelsInput) (req *reques
 
 // ListChannels API operation for AWS MediaTailor.
 //
-// Retrieves a list of channels that are associated with this account.
+// Retrieves information about the channels that are associated with the current
+// AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2123,7 +2158,7 @@ func (c *MediaTailor) ListLiveSourcesRequest(input *ListLiveSourcesInput) (req *
 	op := &request.Operation{
 		Name:       opListLiveSources,
 		HTTPMethod: "GET",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/liveSources",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/liveSources",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -2143,7 +2178,8 @@ func (c *MediaTailor) ListLiveSourcesRequest(input *ListLiveSourcesInput) (req *
 
 // ListLiveSources API operation for AWS MediaTailor.
 //
-// lists all the live sources in a source location.
+// Lists the live sources contained in a source location. A source represents
+// a piece of content.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2273,11 +2309,9 @@ func (c *MediaTailor) ListPlaybackConfigurationsRequest(input *ListPlaybackConfi
 
 // ListPlaybackConfigurations API operation for AWS MediaTailor.
 //
-// Returns a list of the playback configurations defined in AWS Elemental MediaTailor.
-// You can specify a maximum number of configurations to return at a time. The
-// default maximum is 50. Results are returned in pagefuls. If MediaTailor has
-// more configurations than the specified maximum, it provides parameters in
-// the response that you can use to retrieve the next pageful.
+// Retrieves existing playback configurations. For information about MediaTailor
+// configurations, see Working with Configurations in AWS Elemental MediaTailor
+// (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2407,7 +2441,7 @@ func (c *MediaTailor) ListPrefetchSchedulesRequest(input *ListPrefetchSchedulesI
 
 // ListPrefetchSchedules API operation for AWS MediaTailor.
 //
-// Creates a new prefetch schedule.
+// Lists the prefetch schedules for a playback configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2537,7 +2571,8 @@ func (c *MediaTailor) ListSourceLocationsRequest(input *ListSourceLocationsInput
 
 // ListSourceLocations API operation for AWS MediaTailor.
 //
-// Retrieves a list of source locations.
+// Lists the source locations for a channel. A source location defines the host
+// server URL, and contains a list of sources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2661,8 +2696,10 @@ func (c *MediaTailor) ListTagsForResourceRequest(input *ListTagsForResourceInput
 
 // ListTagsForResource API operation for AWS MediaTailor.
 //
-// Returns a list of the tags assigned to the specified playback configuration
-// resource.
+// A list of tags that are associated with this resource. Tags are key-value
+// pairs that you can associate with Amazon resources to help with organization,
+// access control, and cost tracking. For more information, see Tagging AWS
+// Elemental MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2726,7 +2763,7 @@ func (c *MediaTailor) ListVodSourcesRequest(input *ListVodSourcesInput) (req *re
 	op := &request.Operation{
 		Name:       opListVodSources,
 		HTTPMethod: "GET",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSources",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/vodSources",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -2746,7 +2783,8 @@ func (c *MediaTailor) ListVodSourcesRequest(input *ListVodSourcesInput) (req *re
 
 // ListVodSources API operation for AWS MediaTailor.
 //
-// Lists all the VOD sources in a source location.
+// Lists the VOD sources contained in a source location. A source represents
+// a piece of content.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2856,7 +2894,7 @@ func (c *MediaTailor) PutChannelPolicyRequest(input *PutChannelPolicyInput) (req
 	op := &request.Operation{
 		Name:       opPutChannelPolicy,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/channel/{channelName}/policy",
+		HTTPPath:   "/channel/{ChannelName}/policy",
 	}
 
 	if input == nil {
@@ -2871,7 +2909,8 @@ func (c *MediaTailor) PutChannelPolicyRequest(input *PutChannelPolicyInput) (req
 
 // PutChannelPolicy API operation for AWS MediaTailor.
 //
-// Creates an IAM policy for the channel.
+// Creates an IAM policy for the channel. IAM policies are used to control access
+// to your channel.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2944,7 +2983,8 @@ func (c *MediaTailor) PutPlaybackConfigurationRequest(input *PutPlaybackConfigur
 
 // PutPlaybackConfiguration API operation for AWS MediaTailor.
 //
-// Adds a new playback configuration to AWS Elemental MediaTailor.
+// Creates a playback configuration. For information about MediaTailor configurations,
+// see Working with configurations in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3003,7 +3043,7 @@ func (c *MediaTailor) StartChannelRequest(input *StartChannelInput) (req *reques
 	op := &request.Operation{
 		Name:       opStartChannel,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/channel/{channelName}/start",
+		HTTPPath:   "/channel/{ChannelName}/start",
 	}
 
 	if input == nil {
@@ -3018,7 +3058,9 @@ func (c *MediaTailor) StartChannelRequest(input *StartChannelInput) (req *reques
 
 // StartChannel API operation for AWS MediaTailor.
 //
-// Starts a specific channel.
+// Starts a channel. For information about MediaTailor channels, see Working
+// with channels (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3077,7 +3119,7 @@ func (c *MediaTailor) StopChannelRequest(input *StopChannelInput) (req *request.
 	op := &request.Operation{
 		Name:       opStopChannel,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/channel/{channelName}/stop",
+		HTTPPath:   "/channel/{ChannelName}/stop",
 	}
 
 	if input == nil {
@@ -3092,7 +3134,9 @@ func (c *MediaTailor) StopChannelRequest(input *StopChannelInput) (req *request.
 
 // StopChannel API operation for AWS MediaTailor.
 //
-// Stops a specific channel.
+// Stops a channel. For information about MediaTailor channels, see Working
+// with channels (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3166,8 +3210,9 @@ func (c *MediaTailor) TagResourceRequest(input *TagResourceInput) (req *request.
 
 // TagResource API operation for AWS MediaTailor.
 //
-// Adds tags to the specified playback configuration resource. You can specify
-// one or more tags to add.
+// The resource to tag. Tags are key-value pairs that you can associate with
+// Amazon resources to help with organization, access control, and cost tracking.
+// For more information, see Tagging AWS Elemental MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3246,8 +3291,7 @@ func (c *MediaTailor) UntagResourceRequest(input *UntagResourceInput) (req *requ
 
 // UntagResource API operation for AWS MediaTailor.
 //
-// Removes tags from the specified playback configuration resource. You can
-// specify one or more tags to remove.
+// The resource to untag.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3311,7 +3355,7 @@ func (c *MediaTailor) UpdateChannelRequest(input *UpdateChannelInput) (req *requ
 	op := &request.Operation{
 		Name:       opUpdateChannel,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/channel/{channelName}",
+		HTTPPath:   "/channel/{ChannelName}",
 	}
 
 	if input == nil {
@@ -3325,7 +3369,9 @@ func (c *MediaTailor) UpdateChannelRequest(input *UpdateChannelInput) (req *requ
 
 // UpdateChannel API operation for AWS MediaTailor.
 //
-// Updates an existing channel.
+// Updates a channel. For information about MediaTailor channels, see Working
+// with channels (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3384,7 +3430,7 @@ func (c *MediaTailor) UpdateLiveSourceRequest(input *UpdateLiveSourceInput) (req
 	op := &request.Operation{
 		Name:       opUpdateLiveSource,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/liveSource/{liveSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
 	}
 
 	if input == nil {
@@ -3398,7 +3444,7 @@ func (c *MediaTailor) UpdateLiveSourceRequest(input *UpdateLiveSourceInput) (req
 
 // UpdateLiveSource API operation for AWS MediaTailor.
 //
-// Updates a specific live source in a specific source location.
+// Updates a live source's configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3457,7 +3503,7 @@ func (c *MediaTailor) UpdateSourceLocationRequest(input *UpdateSourceLocationInp
 	op := &request.Operation{
 		Name:       opUpdateSourceLocation,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}",
 	}
 
 	if input == nil {
@@ -3471,7 +3517,10 @@ func (c *MediaTailor) UpdateSourceLocationRequest(input *UpdateSourceLocationInp
 
 // UpdateSourceLocation API operation for AWS MediaTailor.
 //
-// Updates a source location on a specific channel.
+// Updates a source location. A source location is a container for sources.
+// For more information about source locations, see Working with source locations
+// (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-source-locations.html)
+// in the MediaTailor User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3530,7 +3579,7 @@ func (c *MediaTailor) UpdateVodSourceRequest(input *UpdateVodSourceInput) (req *
 	op := &request.Operation{
 		Name:       opUpdateVodSource,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+		HTTPPath:   "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
 	}
 
 	if input == nil {
@@ -3544,7 +3593,7 @@ func (c *MediaTailor) UpdateVodSourceRequest(input *UpdateVodSourceInput) (req *
 
 // UpdateVodSource API operation for AWS MediaTailor.
 //
-// Updates a specific VOD source in a specific source location.
+// Updates a VOD source's configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3640,7 +3689,7 @@ func (s *AccessConfiguration) SetSecretsManagerAccessTokenConfiguration(v *Secre
 type AdBreak struct {
 	_ struct{} `type:"structure"`
 
-	// The SCTE-35 ad insertion type. Accepted value: SPLICE_INSERT.
+	// The SCTE-35 ad insertion type. Accepted value: SPLICE_INSERT, TIME_SIGNAL.
 	MessageType *string `type:"string" enum:"MessageType"`
 
 	// How long (in milliseconds) after the beginning of the program that an ad
@@ -3955,7 +4004,6 @@ type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Constructs a new BadRequestException with the specified error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -4109,7 +4157,9 @@ func (s *CdnConfiguration) SetContentSegmentUrlPrefix(v string) *CdnConfiguratio
 	return s
 }
 
-// The configuration parameters for a channel.
+// The configuration parameters for a channel. For information about MediaTailor
+// channels, see Working with channels (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html)
+// in the MediaTailor User Guide.
 type Channel struct {
 	_ struct{} `type:"structure"`
 
@@ -4154,7 +4204,10 @@ type Channel struct {
 	// PlaybackMode is a required field
 	PlaybackMode *string `type:"string" required:"true"`
 
-	// The tags to assign to the channel.
+	// The tags to assign to the channel. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The tier for this channel. STANDARD tier channels can contain live programs.
@@ -4241,8 +4294,7 @@ func (s *Channel) SetTier(v string) *Channel {
 	return s
 }
 
-// Configures Amazon CloudWatch log settings for an existing MediaTailor playback
-// configuration.
+// Configures Amazon CloudWatch log settings for a playback configuration.
 type ConfigureLogsForPlaybackConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4310,13 +4362,14 @@ func (s *ConfigureLogsForPlaybackConfigurationInput) SetPlaybackConfigurationNam
 	return s
 }
 
-// Amazon CloudWatch log settings for a playback configuration.
 type ConfigureLogsForPlaybackConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The percentage of session logs that MediaTailor sends to your Cloudwatch
 	// Logs account.
-	PercentEnabled *int64 `type:"integer"`
+	//
+	// PercentEnabled is a required field
+	PercentEnabled *int64 `type:"integer" required:"true"`
 
 	// The name of the playback configuration.
 	PlaybackConfigurationName *string `type:"string"`
@@ -4352,12 +4405,13 @@ func (s *ConfigureLogsForPlaybackConfigurationOutput) SetPlaybackConfigurationNa
 	return s
 }
 
-// The configuration for this channel.
 type CreateChannelInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the channel.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 
 	// The slate used to fill gaps between programs in the schedule. You must configure
 	// filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't
@@ -4380,7 +4434,10 @@ type CreateChannelInput struct {
 	// PlaybackMode is a required field
 	PlaybackMode *string `type:"string" required:"true" enum:"PlaybackMode"`
 
-	// The tags to assign to the channel.
+	// The tags to assign to the channel. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The tier of the channel.
@@ -4476,25 +4533,38 @@ func (s *CreateChannelInput) SetTier(v string) *CreateChannelInput {
 type CreateChannelOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) to assign to the channel.
 	Arn *string `type:"string"`
 
+	// The name to assign to the channel.
 	ChannelName *string `type:"string"`
 
+	// Indicates whether the channel is in a running state or not.
 	ChannelState *string `type:"string" enum:"ChannelState"`
 
+	// The timestamp of when the channel was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// Slate VOD source configuration.
+	// Contains information about the slate used to fill gaps between programs in
+	// the schedule.
 	FillerSlate *SlateSource `type:"structure"`
 
+	// The timestamp of when the channel was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The output properties to assign to the channel.
 	Outputs []*ResponseOutputItem `type:"list"`
 
+	// The playback mode to assign to the channel.
 	PlaybackMode *string `type:"string"`
 
+	// The tags to assign to the channel. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The tier of the channel.
 	Tier *string `type:"string"`
 }
 
@@ -4576,7 +4646,6 @@ func (s *CreateChannelOutput) SetTier(v string) *CreateChannelOutput {
 	return s
 }
 
-// The live source configuration parameters.
 type CreateLiveSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4585,13 +4654,20 @@ type CreateLiveSourceInput struct {
 	// HttpPackageConfigurations is a required field
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list" required:"true"`
 
+	// The name of the live source.
+	//
 	// LiveSourceName is a required field
-	LiveSourceName *string `location:"uri" locationName:"liveSourceName" type:"string" required:"true"`
+	LiveSourceName *string `location:"uri" locationName:"LiveSourceName" type:"string" required:"true"`
 
+	// The name of the source location.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 
-	// The tags to assign to the live source.
+	// The tags to assign to the live source. Tags are key-value pairs that you
+	// can associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4675,19 +4751,28 @@ func (s *CreateLiveSourceInput) SetTags(v map[string]*string) *CreateLiveSourceI
 type CreateLiveSourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN to assign to the live source.
 	Arn *string `type:"string"`
 
+	// The time the live source was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// The VOD source's HTTP package configuration settings.
+	// A list of HTTP package configuration parameters for this live source.
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list"`
 
+	// The time the live source was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The name to assign to the live source.
 	LiveSourceName *string `type:"string"`
 
+	// The name to assign to the source location of the live source.
 	SourceLocationName *string `type:"string"`
 
+	// The tags to assign to the live source. Tags are key-value pairs that you
+	// can associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4751,8 +4836,6 @@ func (s *CreateLiveSourceOutput) SetTags(v map[string]*string) *CreateLiveSource
 	return s
 }
 
-// A complex type that contains configuration settings for retrieval, consumption,
-// and an optional stream ID.
 type CreatePrefetchScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4765,9 +4848,13 @@ type CreatePrefetchScheduleInput struct {
 	// Consumption is a required field
 	Consumption *PrefetchConsumption `type:"structure" required:"true"`
 
+	// The name to assign to the schedule request.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
 
+	// The name to assign to the playback configuration.
+	//
 	// PlaybackConfigurationName is a required field
 	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
 
@@ -4875,21 +4962,32 @@ func (s *CreatePrefetchScheduleInput) SetStreamId(v string) *CreatePrefetchSched
 type CreatePrefetchScheduleOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN to assign to the prefetch schedule.
 	Arn *string `type:"string"`
 
-	// A complex type that contains settings that determine how and when that MediaTailor
-	// places prefetched ads into upcoming ad breaks.
+	// The configuration settings for MediaTailor's consumption of the prefetched
+	// ads from the ad decision server. Each consumption configuration contains
+	// an end time and an optional start time that define the consumption window.
+	// Prefetch schedules automatically expire no earlier than seven days after
+	// the end time.
 	Consumption *PrefetchConsumption `type:"structure"`
 
+	// The name to assign to the prefetch schedule.
 	Name *string `type:"string"`
 
+	// The name to assign to the playback configuration.
 	PlaybackConfigurationName *string `type:"string"`
 
-	// A complex type that contains settings governing when MediaTailor prefetches
-	// ads, and which dynamic variables that MediaTailor includes in the request
-	// to the ad decision server.
+	// The configuration settings for retrieval of prefetched ads from the ad decision
+	// server. Only one set of prefetched ads will be retrieved and subsequently
+	// consumed for each ad break.
 	Retrieval *PrefetchRetrieval `type:"structure"`
 
+	// An optional stream identifier that MediaTailor uses to prefetch ads for multiple
+	// streams that use the same playback configuration. If StreamId is specified,
+	// MediaTailor returns all of the prefetch schedules with an exact match on
+	// StreamId. If not specified, MediaTailor returns all of the prefetch schedules
+	// for the playback configuration, regardless of StreamId.
 	StreamId *string `type:"string"`
 }
 
@@ -4947,21 +5045,24 @@ func (s *CreatePrefetchScheduleOutput) SetStreamId(v string) *CreatePrefetchSche
 	return s
 }
 
-// Program configuration parameters.
 type CreateProgramInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ad break configuration settings.
 	AdBreaks []*AdBreak `type:"list"`
 
+	// The name of the channel for this Program.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 
 	// The name of the LiveSource for this Program.
 	LiveSourceName *string `type:"string"`
 
+	// The name of the Program.
+	//
 	// ProgramName is a required field
-	ProgramName *string `location:"uri" locationName:"programName" type:"string" required:"true"`
+	ProgramName *string `location:"uri" locationName:"ProgramName" type:"string" required:"true"`
 
 	// The schedule configuration settings.
 	//
@@ -5073,22 +5174,31 @@ func (s *CreateProgramInput) SetVodSourceName(v string) *CreateProgramInput {
 type CreateProgramOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ad break configuration settings.
 	AdBreaks []*AdBreak `type:"list"`
 
+	// The ARN to assign to the program.
 	Arn *string `type:"string"`
 
+	// The name to assign to the channel for this program.
 	ChannelName *string `type:"string"`
 
+	// The time the program was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The name of the LiveSource for this Program.
 	LiveSourceName *string `type:"string"`
 
+	// The name to assign to this program.
 	ProgramName *string `type:"string"`
 
+	// The scheduled start time for this Program.
 	ScheduledStartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The name to assign to the source location for this program.
 	SourceLocationName *string `type:"string"`
 
+	// The name that's used to refer to a VOD source.
 	VodSourceName *string `type:"string"`
 }
 
@@ -5164,7 +5274,6 @@ func (s *CreateProgramOutput) SetVodSourceName(v string) *CreateProgramOutput {
 	return s
 }
 
-// Source location configuration parameters.
 type CreateSourceLocationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5183,10 +5292,15 @@ type CreateSourceLocationInput struct {
 	// A list of the segment delivery configurations associated with this resource.
 	SegmentDeliveryConfigurations []*SegmentDeliveryConfiguration `type:"list"`
 
+	// The name associated with the source location.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 
-	// The tags to assign to the source location.
+	// The tags to assign to the source location. Tags are key-value pairs that
+	// you can associate with Amazon resources to help with organization, access
+	// control, and cost tracking. For more information, see Tagging AWS Elemental
+	// MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5271,30 +5385,37 @@ func (s *CreateSourceLocationInput) SetTags(v map[string]*string) *CreateSourceL
 type CreateSourceLocationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Access configuration parameters.
+	// Access configuration parameters. Configures the type of authentication used
+	// to access content from your source location.
 	AccessConfiguration *AccessConfiguration `type:"structure"`
 
+	// The ARN to assign to the source location.
 	Arn *string `type:"string"`
 
+	// The time the source location was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// The optional configuration for a server that serves segments. Use this if
-	// you want the segment delivery server to be different from the source location
-	// server. For example, you can configure your source location server to be
-	// an origination server, such as MediaPackage, and the segment delivery server
-	// to be a content delivery network (CDN), such as CloudFront. If you don't
-	// specify a segment delivery server, then the source location server is used.
+	// The optional configuration for the server that serves segments.
 	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
 
-	// The HTTP configuration for the source location.
+	// The source's HTTP package configurations.
 	HttpConfiguration *HttpConfiguration `type:"structure"`
 
+	// The time the source location was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The segment delivery configurations for the source location. For information
+	// about MediaTailor configurations, see Working with configurations in AWS
+	// Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 	SegmentDeliveryConfigurations []*SegmentDeliveryConfiguration `type:"list"`
 
+	// The name to assign to the source location.
 	SourceLocationName *string `type:"string"`
 
+	// The tags to assign to the source location. Tags are key-value pairs that
+	// you can associate with Amazon resources to help with organization, access
+	// control, and cost tracking. For more information, see Tagging AWS Elemental
+	// MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5370,7 +5491,6 @@ func (s *CreateSourceLocationOutput) SetTags(v map[string]*string) *CreateSource
 	return s
 }
 
-// The VOD source configuration parameters.
 type CreateVodSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5379,14 +5499,21 @@ type CreateVodSourceInput struct {
 	// HttpPackageConfigurations is a required field
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list" required:"true"`
 
+	// The name of the source location for this VOD source.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 
-	// The tags to assign to the VOD source.
+	// The tags to assign to the VOD source. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The name associated with the VOD source.>
+	//
 	// VodSourceName is a required field
-	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+	VodSourceName *string `location:"uri" locationName:"VodSourceName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5469,19 +5596,28 @@ func (s *CreateVodSourceInput) SetVodSourceName(v string) *CreateVodSourceInput 
 type CreateVodSourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN to assign to this VOD source.
 	Arn *string `type:"string"`
 
+	// The time the VOD source was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// The VOD source's HTTP package configuration settings.
+	// A list of HTTP package configuration parameters for this VOD source.
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list"`
 
+	// The time the VOD source was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The name to assign to the source location for this VOD source.
 	SourceLocationName *string `type:"string"`
 
+	// The tags to assign to the VOD source. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The name to assign to the VOD source.
 	VodSourceName *string `type:"string"`
 }
 
@@ -5763,8 +5899,10 @@ func (s *DefaultSegmentDeliveryConfiguration) SetBaseUrl(v string) *DefaultSegme
 type DeleteChannelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5807,7 +5945,6 @@ func (s *DeleteChannelInput) SetChannelName(v string) *DeleteChannelInput {
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DeleteChannelOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5830,12 +5967,13 @@ func (s DeleteChannelOutput) GoString() string {
 	return s.String()
 }
 
-// This response includes only the "type" : "object" property.
 type DeleteChannelPolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel associated with this channel policy.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5878,7 +6016,6 @@ func (s *DeleteChannelPolicyInput) SetChannelName(v string) *DeleteChannelPolicy
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DeleteChannelPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5904,11 +6041,15 @@ func (s DeleteChannelPolicyOutput) GoString() string {
 type DeleteLiveSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the live source.
+	//
 	// LiveSourceName is a required field
-	LiveSourceName *string `location:"uri" locationName:"liveSourceName" type:"string" required:"true"`
+	LiveSourceName *string `location:"uri" locationName:"LiveSourceName" type:"string" required:"true"`
 
+	// The name of the source location associated with this Live Source.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5963,7 +6104,6 @@ func (s *DeleteLiveSourceInput) SetSourceLocationName(v string) *DeleteLiveSourc
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DeleteLiveSourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5989,6 +6129,8 @@ func (s DeleteLiveSourceOutput) GoString() string {
 type DeletePlaybackConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the playback configuration.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
 }
@@ -6058,9 +6200,14 @@ func (s DeletePlaybackConfigurationOutput) GoString() string {
 type DeletePrefetchScheduleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the prefetch schedule. If the action is successful, the service
+	// sends back an HTTP 204 response with an empty HTTP body.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
 
+	// The name of the playback configuration for this prefetch schedule.
+	//
 	// PlaybackConfigurationName is a required field
 	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
 }
@@ -6117,8 +6264,6 @@ func (s *DeletePrefetchScheduleInput) SetPlaybackConfigurationName(v string) *De
 	return s
 }
 
-// If the action is successful, the service sends back an HTTP 204 response
-// with an empty HTTP body.
 type DeletePrefetchScheduleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6144,11 +6289,15 @@ func (s DeletePrefetchScheduleOutput) GoString() string {
 type DeleteProgramInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 
+	// The name of the program.
+	//
 	// ProgramName is a required field
-	ProgramName *string `location:"uri" locationName:"programName" type:"string" required:"true"`
+	ProgramName *string `location:"uri" locationName:"ProgramName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6203,7 +6352,6 @@ func (s *DeleteProgramInput) SetProgramName(v string) *DeleteProgramInput {
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DeleteProgramOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6229,8 +6377,10 @@ func (s DeleteProgramOutput) GoString() string {
 type DeleteSourceLocationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the source location.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6273,7 +6423,6 @@ func (s *DeleteSourceLocationInput) SetSourceLocationName(v string) *DeleteSourc
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DeleteSourceLocationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6299,11 +6448,15 @@ func (s DeleteSourceLocationOutput) GoString() string {
 type DeleteVodSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the source location associated with this VOD Source.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 
+	// The name of the VOD source.
+	//
 	// VodSourceName is a required field
-	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+	VodSourceName *string `location:"uri" locationName:"VodSourceName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6358,7 +6511,6 @@ func (s *DeleteVodSourceInput) SetVodSourceName(v string) *DeleteVodSourceInput 
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DeleteVodSourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6384,8 +6536,10 @@ func (s DeleteVodSourceOutput) GoString() string {
 type DescribeChannelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6428,7 +6582,6 @@ func (s *DescribeChannelInput) SetChannelName(v string) *DescribeChannelInput {
 	return s
 }
 
-// Returns a channel's properties.
 type DescribeChannelOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6457,7 +6610,10 @@ type DescribeChannelOutput struct {
 	// The channel's playback mode.
 	PlaybackMode *string `type:"string"`
 
-	// The tags assigned to the channel.
+	// The tags assigned to the channel. Tags are key-value pairs that you can associate
+	// with Amazon resources to help with organization, access control, and cost
+	// tracking. For more information, see Tagging AWS Elemental MediaTailor Resources
+	// (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The channel's tier.
@@ -6545,11 +6701,15 @@ func (s *DescribeChannelOutput) SetTier(v string) *DescribeChannelOutput {
 type DescribeLiveSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the live source.
+	//
 	// LiveSourceName is a required field
-	LiveSourceName *string `location:"uri" locationName:"liveSourceName" type:"string" required:"true"`
+	LiveSourceName *string `location:"uri" locationName:"LiveSourceName" type:"string" required:"true"`
 
+	// The name of the source location associated with this Live Source.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6604,7 +6764,6 @@ func (s *DescribeLiveSourceInput) SetSourceLocationName(v string) *DescribeLiveS
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DescribeLiveSourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6623,10 +6782,13 @@ type DescribeLiveSourceOutput struct {
 	// The name of the live source.
 	LiveSourceName *string `type:"string"`
 
-	// The name of the source location associated with the VOD source.
+	// The name of the source location associated with the live source.
 	SourceLocationName *string `type:"string"`
 
-	// The tags assigned to the live source.
+	// The tags assigned to the live source. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6693,11 +6855,15 @@ func (s *DescribeLiveSourceOutput) SetTags(v map[string]*string) *DescribeLiveSo
 type DescribeProgramInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel associated with this Program.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 
+	// The name of the program.
+	//
 	// ProgramName is a required field
-	ProgramName *string `location:"uri" locationName:"programName" type:"string" required:"true"`
+	ProgramName *string `location:"uri" locationName:"ProgramName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6752,7 +6918,6 @@ func (s *DescribeProgramInput) SetProgramName(v string) *DescribeProgramInput {
 	return s
 }
 
-// This program's configuration parameters.
 type DescribeProgramOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6861,8 +7026,10 @@ func (s *DescribeProgramOutput) SetVodSourceName(v string) *DescribeProgramOutpu
 type DescribeSourceLocationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the source location.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -6905,7 +7072,6 @@ func (s *DescribeSourceLocationInput) SetSourceLocationName(v string) *DescribeS
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DescribeSourceLocationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6933,7 +7099,10 @@ type DescribeSourceLocationOutput struct {
 	// The name of the source location.
 	SourceLocationName *string `type:"string"`
 
-	// The tags assigned to the source location.
+	// The tags assigned to the source location. Tags are key-value pairs that you
+	// can associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -7012,11 +7181,15 @@ func (s *DescribeSourceLocationOutput) SetTags(v map[string]*string) *DescribeSo
 type DescribeVodSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the source location associated with this VOD Source.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 
+	// The name of the VOD Source.
+	//
 	// VodSourceName is a required field
-	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+	VodSourceName *string `location:"uri" locationName:"VodSourceName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -7071,7 +7244,6 @@ func (s *DescribeVodSourceInput) SetVodSourceName(v string) *DescribeVodSourceIn
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type DescribeVodSourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7090,7 +7262,10 @@ type DescribeVodSourceOutput struct {
 	// The name of the source location associated with the VOD source.
 	SourceLocationName *string `type:"string"`
 
-	// The tags assigned to the VOD source.
+	// The tags assigned to the VOD source. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The name of the VOD source.
@@ -7160,8 +7335,10 @@ func (s *DescribeVodSourceOutput) SetVodSourceName(v string) *DescribeVodSourceO
 type GetChannelPolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel associated with this Channel Policy.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -7204,11 +7381,11 @@ func (s *GetChannelPolicyInput) SetChannelName(v string) *GetChannelPolicyInput 
 	return s
 }
 
-// Returns the channel's IAM policy.
 type GetChannelPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The IAM policy for the channel.
+	// The IAM policy for the channel. IAM policies are used to control access to
+	// your channel.
 	Policy *string `type:"string"`
 }
 
@@ -7239,13 +7416,30 @@ func (s *GetChannelPolicyOutput) SetPolicy(v string) *GetChannelPolicyOutput {
 type GetChannelScheduleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel associated with this Channel Schedule.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 
+	// The duration in minutes of the channel schedule.
 	DurationMinutes *string `location:"querystring" locationName:"durationMinutes" type:"string"`
 
+	// The maximum number of channel schedules that you want MediaTailor to return
+	// in response to the current request. If there are more than MaxResults channel
+	// schedules, use the value of NextToken in the response to get the next page
+	// of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// (Optional) If the playback configuration has more than MaxResults channel
+	// schedules, use NextToken to get the second and subsequent pages of results.
+	//
+	// For the first GetChannelScheduleRequest request, omit this value.
+	//
+	// For the second and subsequent requests, get the value of NextToken from the
+	// previous response and specify that value for NextToken in the request.
+	//
+	// If the previous response didn't include a NextToken element, there are no
+	// more channel schedules to get.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -7310,15 +7504,14 @@ func (s *GetChannelScheduleInput) SetNextToken(v string) *GetChannelScheduleInpu
 	return s
 }
 
-// Returns the schedule entries for the channel.
 type GetChannelScheduleOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of schedule entries for the channel.
 	Items []*ScheduleEntry `type:"list"`
 
-	// Pagination token from the GET list request. Use the token to fetch the next
-	// page of results.
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -7355,6 +7548,8 @@ func (s *GetChannelScheduleOutput) SetNextToken(v string) *GetChannelScheduleOut
 type GetPlaybackConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The identifier for the playback configuration.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
 }
@@ -7399,7 +7594,6 @@ func (s *GetPlaybackConfigurationInput) SetName(v string) *GetPlaybackConfigurat
 	return s
 }
 
-// Returns the playback configuration for the specified name.
 type GetPlaybackConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7474,7 +7668,10 @@ type GetPlaybackConfigurationOutput struct {
 	// be a high-quality asset that contains both audio and video.
 	SlateAdUrl *string `type:"string"`
 
-	// The tags assigned to the playback configuration.
+	// The tags assigned to the playback configuration. Tags are key-value pairs
+	// that you can associate with Amazon resources to help with organization, access
+	// control, and cost tracking. For more information, see Tagging AWS Elemental
+	// MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The name that is used to associate this playback configuration with a custom
@@ -7623,9 +7820,16 @@ func (s *GetPlaybackConfigurationOutput) SetVideoContentSourceUrl(v string) *Get
 type GetPrefetchScheduleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the prefetch schedule. The name must be unique among all prefetch
+	// schedules that are associated with the specified playback configuration.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
 
+	// Returns information about the prefetch schedule for a specific playback configuration.
+	// If you call GetPrefetchSchedule on an expired prefetch schedule, MediaTailor
+	// returns an HTTP 404 status code.
+	//
 	// PlaybackConfigurationName is a required field
 	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
 }
@@ -7685,21 +7889,28 @@ func (s *GetPrefetchScheduleInput) SetPlaybackConfigurationName(v string) *GetPr
 type GetPrefetchScheduleOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the prefetch schedule.
 	Arn *string `type:"string"`
 
-	// A complex type that contains settings that determine how and when that MediaTailor
-	// places prefetched ads into upcoming ad breaks.
+	// Consumption settings determine how, and when, MediaTailor places the prefetched
+	// ads into ad breaks. Ad consumption occurs within a span of time that you
+	// define, called a consumption window. You can designate which ad breaks that
+	// MediaTailor fills with prefetch ads by setting avail matching criteria.
 	Consumption *PrefetchConsumption `type:"structure"`
 
+	// The name of the prefetch schedule. The name must be unique among all prefetch
+	// schedules that are associated with the specified playback configuration.
 	Name *string `type:"string"`
 
+	// The name of the playback configuration to create the prefetch schedule for.
 	PlaybackConfigurationName *string `type:"string"`
 
-	// A complex type that contains settings governing when MediaTailor prefetches
-	// ads, and which dynamic variables that MediaTailor includes in the request
-	// to the ad decision server.
+	// A complex type that contains settings for prefetch retrieval from the ad
+	// decision server (ADS).
 	Retrieval *PrefetchRetrieval `type:"structure"`
 
+	// An optional stream identifier that you can specify in order to prefetch for
+	// multiple streams that use the same playback configuration.
 	StreamId *string `type:"string"`
 }
 
@@ -7951,10 +8162,17 @@ func (s *HttpPackageConfiguration) SetType(v string) *HttpPackageConfiguration {
 type ListAlertsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of alerts that you want MediaTailor to return in response
+	// to the current request. If there are more than MaxResults alerts, use the
+	// value of NextToken in the response to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
 }
@@ -8011,15 +8229,14 @@ func (s *ListAlertsInput) SetResourceArn(v string) *ListAlertsInput {
 	return s
 }
 
-// Lists the alerts for a given resource.
 type ListAlertsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of alerts that are associated with this resource.
 	Items []*Alert `type:"list"`
 
-	// Pagination token from the list request. Use the token to fetch the next page
-	// of results.
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -8056,8 +8273,13 @@ func (s *ListAlertsOutput) SetNextToken(v string) *ListAlertsOutput {
 type ListChannelsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of channels that you want MediaTailor to return in response
+	// to the current request. If there are more than MaxResults channels, use the
+	// value of NextToken in the response to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -8104,7 +8326,6 @@ func (s *ListChannelsInput) SetNextToken(v string) *ListChannelsInput {
 	return s
 }
 
-// Returns a list of channels.
 type ListChannelsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8149,12 +8370,19 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 type ListLiveSourcesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of live sources that you want MediaTailor to return in
+	// response to the current request. If there are more than MaxResults live sources,
+	// use the value of NextToken in the response to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The name of the source location associated with this Live Sources list.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -8212,15 +8440,14 @@ func (s *ListLiveSourcesInput) SetSourceLocationName(v string) *ListLiveSourcesI
 	return s
 }
 
-// A list of your live sources.
 type ListLiveSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Lists the live sources.
 	Items []*LiveSource `type:"list"`
 
-	// Pagination token from the list request. Use the token to fetch the next page
-	// of results.
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -8257,8 +8484,14 @@ func (s *ListLiveSourcesOutput) SetNextToken(v string) *ListLiveSourcesOutput {
 type ListPlaybackConfigurationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of playback configurations that you want MediaTailor to
+	// return in response to the current request. If there are more than MaxResults
+	// playback configurations, use the value of NextToken in the response to get
+	// the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
@@ -8305,7 +8538,6 @@ func (s *ListPlaybackConfigurationsInput) SetNextToken(v string) *ListPlaybackCo
 	return s
 }
 
-// Returns a list of playback configurations.
 type ListPlaybackConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8349,14 +8581,13 @@ func (s *ListPlaybackConfigurationsOutput) SetNextToken(v string) *ListPlaybackC
 	return s
 }
 
-// Retrieves the prefetch schedule(s) for a specific playback configuration.
 type ListPrefetchSchedulesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of prefetch schedules that you want MediaTailor to return
-	// in response to the current request. If the playback configuration has more
-	// than MaxResults prefetch schedules, use the value of NextToken in the response
-	// to get the next page of results.
+	// in response to the current request. If there are more than MaxResults prefetch
+	// schedules, use the value of NextToken in the response to get the next page
+	// of results.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// (Optional) If the playback configuration has more than MaxResults prefetch
@@ -8371,6 +8602,8 @@ type ListPrefetchSchedulesInput struct {
 	// more prefetch schedules to get.
 	NextToken *string `type:"string"`
 
+	// Retrieves the prefetch schedule(s) for a specific playback configuration.
+	//
 	// PlaybackConfigurationName is a required field
 	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
 
@@ -8440,7 +8673,6 @@ func (s *ListPrefetchSchedulesInput) SetStreamId(v string) *ListPrefetchSchedule
 	return s
 }
 
-// The list of prefetch schedules.
 type ListPrefetchSchedulesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8448,8 +8680,8 @@ type ListPrefetchSchedulesOutput struct {
 	// more items to fetch, just that that page was empty.
 	Items []*PrefetchSchedule `type:"list"`
 
-	// The value that you will use forNextToken in the next ListPrefetchSchedulesRequest
-	// request.
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -8486,8 +8718,14 @@ func (s *ListPrefetchSchedulesOutput) SetNextToken(v string) *ListPrefetchSchedu
 type ListSourceLocationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of source locations that you want MediaTailor to return
+	// in response to the current request. If there are more than MaxResults source
+	// locations, use the value of NextToken in the response to get the next page
+	// of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -8534,15 +8772,14 @@ func (s *ListSourceLocationsInput) SetNextToken(v string) *ListSourceLocationsIn
 	return s
 }
 
-// Lists the source locations.
 type ListSourceLocationsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of source locations.
 	Items []*SourceLocation `type:"list"`
 
-	// Pagination token from the list request. Use the token to fetch the next page
-	// of results.
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -8579,6 +8816,8 @@ func (s *ListSourceLocationsOutput) SetNextToken(v string) *ListSourceLocationsO
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Amazon Resource Name (ARN) associated with this resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 }
@@ -8626,6 +8865,10 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The tags associated with this resource. Tags are key-value pairs that you
+	// can associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8656,12 +8899,19 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListVodSourcesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The maximum number of VOD sources that you want MediaTailor to return in
+	// response to the current request. If there are more than MaxResults VOD sources,
+	// use the value of NextToken in the response to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The name of the source location associated with this VOD Source list.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -8719,15 +8969,14 @@ func (s *ListVodSourcesInput) SetSourceLocationName(v string) *ListVodSourcesInp
 	return s
 }
 
-// A list of VOD sources.
 type ListVodSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Lists the VOD sources.
 	Items []*VodSource `type:"list"`
 
-	// Pagination token from the list request. Use the token to fetch the next page
-	// of results.
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -8838,7 +9087,10 @@ type LiveSource struct {
 	// SourceLocationName is a required field
 	SourceLocationName *string `type:"string" required:"true"`
 
-	// The tags assigned to the live source.
+	// The tags assigned to the live source. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8982,7 +9234,7 @@ func (s *ManifestProcessingRules) SetAdMarkerPassthrough(v *AdMarkerPassthrough)
 	return s
 }
 
-// Creates a playback configuration. For information about MediaTailor configurations,
+// A playback configuration. For information about MediaTailor configurations,
 // see Working with configurations in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 type PlaybackConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -9057,7 +9309,10 @@ type PlaybackConfiguration struct {
 	// that contains both audio and video.
 	SlateAdUrl *string `type:"string"`
 
-	// The tags to assign to the playback configuration.
+	// The tags to assign to the playback configuration. Tags are key-value pairs
+	// that you can associate with Amazon resources to help with organization, access
+	// control, and cost tracking. For more information, see Tagging AWS Elemental
+	// MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The name that is used to associate this playback configuration with a custom
@@ -9295,7 +9550,7 @@ type PrefetchRetrieval struct {
 	// The dynamic variables to use for substitution during prefetch requests to
 	// the ad decision server (ADS).
 	//
-	// You intially configure dynamic variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables.html)
+	// You initially configure dynamic variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables.html)
 	// for the ADS URL when you set up your playback configuration. When you specify
 	// DynamicVariables for prefetch retrieval, MediaTailor includes the dynamic
 	// variables in the request to the ADS.
@@ -9363,7 +9618,10 @@ func (s *PrefetchRetrieval) SetStartTime(v time.Time) *PrefetchRetrieval {
 	return s
 }
 
-// A complex type that contains prefetch schedule information.
+// A prefetch schedule allows you to tell MediaTailor to fetch and prepare certain
+// ads before an ad break happens. For more information about ad prefetching,
+// see Using ad prefetching (https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html)
+// in the MediaTailor User Guide.
 type PrefetchSchedule struct {
 	_ struct{} `type:"structure"`
 
@@ -9456,12 +9714,13 @@ func (s *PrefetchSchedule) SetStreamId(v string) *PrefetchSchedule {
 	return s
 }
 
-// Adds an IAM policy for the channel.
 type PutChannelPolicyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The channel name associated with this Channel Policy.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 
 	// Adds an IAM role that determines the permissions of your channel.
 	//
@@ -9518,7 +9777,6 @@ func (s *PutChannelPolicyInput) SetPolicy(v string) *PutChannelPolicyInput {
 	return s
 }
 
-// This response includes only the "type" : "object" property.
 type PutChannelPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9541,7 +9799,6 @@ func (s PutChannelPolicyOutput) GoString() string {
 	return s.String()
 }
 
-// The configuration for creating a playback configuration.
 type PutPlaybackConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9580,7 +9837,9 @@ type PutPlaybackConfigurationInput struct {
 	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
 
 	// The identifier for the playback configuration.
-	Name *string `type:"string"`
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
 
 	// Defines the maximum duration of underfilled ad time (in seconds) allowed
 	// in an ad break. If the duration of underfilled ad time exceeds the personalization
@@ -9599,7 +9858,10 @@ type PutPlaybackConfigurationInput struct {
 	// be a high-quality asset that contains both audio and video.
 	SlateAdUrl *string `type:"string"`
 
-	// The tags to assign to the playback configuration.
+	// The tags to assign to the playback configuration. Tags are key-value pairs
+	// that you can associate with Amazon resources to help with organization, access
+	// control, and cost tracking. For more information, see Tagging AWS Elemental
+	// MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The name that is used to associate this playback configuration with a custom
@@ -9634,6 +9896,9 @@ func (s PutPlaybackConfigurationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutPlaybackConfigurationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutPlaybackConfigurationInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
 	if s.PersonalizationThresholdSeconds != nil && *s.PersonalizationThresholdSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("PersonalizationThresholdSeconds", 1))
 	}
@@ -9731,6 +9996,11 @@ func (s *PutPlaybackConfigurationInput) SetVideoContentSourceUrl(v string) *PutP
 type PutPlaybackConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The URL for the ad decision server (ADS). This includes the specification
+	// of static parameters and placeholders for dynamic parameters. AWS Elemental
+	// MediaTailor substitutes player-specific and session-specific parameters as
+	// needed when calling the ADS. Alternately, for testing you can provide a static
+	// VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
 
 	// The configuration for avail suppression, also known as ad suppression. For
@@ -9746,7 +10016,8 @@ type PutPlaybackConfigurationOutput struct {
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
-	// The predefined aliases for dynamic variables.
+	// The player parameters and aliases used as dynamic variables during session
+	// initialization. For more information, see Domain Variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html).
 	ConfigurationAliases map[string]map[string]*string `type:"map"`
 
 	// The configuration for DASH content.
@@ -9758,29 +10029,56 @@ type PutPlaybackConfigurationOutput struct {
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
-	// Returns Amazon CloudWatch log settings for a playback configuration.
+	// The Amazon CloudWatch log settings for a playback configuration.
 	LogConfiguration *LogConfiguration `type:"structure"`
 
 	// The configuration for manifest processing rules. Manifest processing rules
 	// enable customization of the personalized manifests created by MediaTailor.
 	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
 
+	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
+	// Defines the maximum duration of underfilled ad time (in seconds) allowed
+	// in an ad break. If the duration of underfilled ad time exceeds the personalization
+	// threshold, then the personalization of the ad break is abandoned and the
+	// underlying content is shown. This feature applies to ad replacement in live
+	// and VOD streams, rather than ad insertion, because it relies on an underlying
+	// content stream. For more information about ad break behavior, including ad
+	// replacement and insertion, see Ad Behavior in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
+	// The Amazon Resource Name (ARN) associated with the playback configuration.
 	PlaybackConfigurationArn *string `type:"string"`
 
+	// The playback endpoint prefix associated with the playback configuration.
 	PlaybackEndpointPrefix *string `type:"string"`
 
+	// The session initialization endpoint prefix associated with the playback configuration.
 	SessionInitializationEndpointPrefix *string `type:"string"`
 
+	// The URL for a high-quality video asset to transcode and use to fill in time
+	// that's not used by ads. AWS Elemental MediaTailor shows the slate to fill
+	// in gaps in media content. Configuring the slate is optional for non-VPAID
+	// configurations. For VPAID, the slate is required because MediaTailor provides
+	// it in the slots that are designated for dynamic ad content. The slate must
+	// be a high-quality asset that contains both audio and video.
 	SlateAdUrl *string `type:"string"`
 
+	// The tags to assign to the playback configuration. Tags are key-value pairs
+	// that you can associate with Amazon resources to help with organization, access
+	// control, and cost tracking. For more information, see Tagging AWS Elemental
+	// MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The name that is used to associate this playback configuration with a custom
+	// transcode profile. This overrides the dynamic transcoding defaults of MediaTailor.
+	// Use this only if you have already set up custom profiles with the help of
+	// AWS Support.
 	TranscodeProfileName *string `type:"string"`
 
+	// The URL prefix for the parent manifest for the stream, minus the asset ID.
+	// The maximum length is 512 characters.
 	VideoContentSourceUrl *string `type:"string"`
 }
 
@@ -9995,7 +10293,7 @@ func (s *RequestOutputItem) SetSourceGroup(v string) *RequestOutputItem {
 	return s
 }
 
-// This response includes only the "property" : "type" property.
+// The output item response.
 type ResponseOutputItem struct {
 	_ struct{} `type:"structure"`
 
@@ -10216,8 +10514,6 @@ type ScheduleEntry struct {
 	ScheduleAdBreaks []*ScheduleAdBreak `type:"list"`
 
 	// The type of schedule entry.
-	//
-	// Valid values: PROGRAM or FILLER_SLATE.
 	ScheduleEntryType *string `type:"string" enum:"ScheduleEntryType"`
 
 	// The name of the source location.
@@ -10363,11 +10659,7 @@ func (s *SecretsManagerAccessTokenConfiguration) SetSecretStringKey(v string) *S
 	return s
 }
 
-// The base URL of the host or path of the segment delivery server that you're
-// using to serve segments. This is typically a content delivery network (CDN).
-// The URL can be absolute or relative. To use an absolute URL include the protocol,
-// such as https://example.com/some/path. To use a relative URL specify the
-// relative path, such as /some/path*.
+// The segment delivery configuration settings.
 type SegmentDeliveryConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10455,7 +10747,9 @@ func (s *SlateSource) SetVodSourceName(v string) *SlateSource {
 	return s
 }
 
-// This response includes only the "type" : "object" property.
+// A source location is a container for sources. For more information about
+// source locations, see Working with source locations (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-source-locations.html)
+// in the MediaTailor User Guide.
 type SourceLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -10489,7 +10783,10 @@ type SourceLocation struct {
 	// SourceLocationName is a required field
 	SourceLocationName *string `type:"string" required:"true"`
 
-	// The tags assigned to the source location.
+	// The tags assigned to the source location. Tags are key-value pairs that you
+	// can associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -10634,8 +10931,10 @@ func (s *SpliceInsertMessage) SetUniqueProgramId(v int64) *SpliceInsertMessage {
 type StartChannelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -10703,8 +11002,10 @@ func (s StartChannelOutput) GoString() string {
 type StopChannelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The name of the channel.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -10772,9 +11073,16 @@ func (s StopChannelOutput) GoString() string {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) associated with the resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
+	// The tags to assign to the resource. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
+	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
@@ -10958,9 +11266,13 @@ func (s *Transition) SetType(v string) *Transition {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Amazon Resource Name (ARN) of the resource to untag.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
+	// The tag keys associated with the resource.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
@@ -11036,12 +11348,13 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Updates a channel's Outputs.
 type UpdateChannelInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the channel.
+	//
 	// ChannelName is a required field
-	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+	ChannelName *string `location:"uri" locationName:"ChannelName" type:"string" required:"true"`
 
 	// The slate used to fill gaps between programs in the schedule. You must configure
 	// filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't
@@ -11122,25 +11435,44 @@ func (s *UpdateChannelInput) SetOutputs(v []*RequestOutputItem) *UpdateChannelIn
 type UpdateChannelOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) associated with the channel.
 	Arn *string `type:"string"`
 
+	// The name of the channel.
 	ChannelName *string `type:"string"`
 
+	// Returns the state whether the channel is running or not.
 	ChannelState *string `type:"string" enum:"ChannelState"`
 
+	// The timestamp of when the channel was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// Slate VOD source configuration.
+	// The slate used to fill gaps between programs in the schedule. You must configure
+	// filler slate if your channel uses the LINEAR PlaybackMode. MediaTailor doesn't
+	// support filler slate for channels using the LOOP PlaybackMode.
 	FillerSlate *SlateSource `type:"structure"`
 
+	// The timestamp that indicates when the channel was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The channel's output properties.
 	Outputs []*ResponseOutputItem `type:"list"`
 
+	// The type of playback mode for this channel.
+	//
+	// LINEAR - Programs play back-to-back only once.
+	//
+	// LOOP - Programs play back-to-back in an endless loop. When the last program
+	// in the schedule plays, playback loops back to the first program in the schedule.
 	PlaybackMode *string `type:"string"`
 
+	// The tags to assign to the channel. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The tier associated with this Channel.
 	Tier *string `type:"string"`
 }
 
@@ -11222,7 +11554,6 @@ func (s *UpdateChannelOutput) SetTier(v string) *UpdateChannelOutput {
 	return s
 }
 
-// Updates a live source's configuration.
 type UpdateLiveSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11231,11 +11562,15 @@ type UpdateLiveSourceInput struct {
 	// HttpPackageConfigurations is a required field
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list" required:"true"`
 
+	// The name of the live source.
+	//
 	// LiveSourceName is a required field
-	LiveSourceName *string `location:"uri" locationName:"liveSourceName" type:"string" required:"true"`
+	LiveSourceName *string `location:"uri" locationName:"LiveSourceName" type:"string" required:"true"`
 
+	// The name of the source location associated with this Live Source.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11312,19 +11647,28 @@ func (s *UpdateLiveSourceInput) SetSourceLocationName(v string) *UpdateLiveSourc
 type UpdateLiveSourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) associated with this live source.
 	Arn *string `type:"string"`
 
+	// The timestamp that indicates when the live source was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// The VOD source's HTTP package configuration settings.
+	// A list of HTTP package configurations for the live source on this account.
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list"`
 
+	// The timestamp that indicates when the live source was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The name of the live source.
 	LiveSourceName *string `type:"string"`
 
+	// The name of the source location associated with the live source.
 	SourceLocationName *string `type:"string"`
 
+	// The tags to assign to the live source. Tags are key-value pairs that you
+	// can associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11388,7 +11732,6 @@ func (s *UpdateLiveSourceOutput) SetTags(v map[string]*string) *UpdateLiveSource
 	return s
 }
 
-// Source location configuration parameters.
 type UpdateSourceLocationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11407,8 +11750,10 @@ type UpdateSourceLocationInput struct {
 	// A list of the segment delivery configurations associated with this resource.
 	SegmentDeliveryConfigurations []*SegmentDeliveryConfiguration `type:"list"`
 
+	// The name of the source location.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11486,30 +11831,37 @@ func (s *UpdateSourceLocationInput) SetSourceLocationName(v string) *UpdateSourc
 type UpdateSourceLocationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Access configuration parameters.
+	// Access configuration parameters. Configures the type of authentication used
+	// to access content from your source location.
 	AccessConfiguration *AccessConfiguration `type:"structure"`
 
+	// The Amazon Resource Name (ARN) associated with the source location.
 	Arn *string `type:"string"`
 
+	// The timestamp that indicates when the source location was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// The optional configuration for a server that serves segments. Use this if
-	// you want the segment delivery server to be different from the source location
-	// server. For example, you can configure your source location server to be
-	// an origination server, such as MediaPackage, and the segment delivery server
-	// to be a content delivery network (CDN), such as CloudFront. If you don't
-	// specify a segment delivery server, then the source location server is used.
+	// The optional configuration for the host server that serves segments.
 	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
 
 	// The HTTP configuration for the source location.
 	HttpConfiguration *HttpConfiguration `type:"structure"`
 
+	// The timestamp that indicates when the source location was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The segment delivery configurations for the source location. For information
+	// about MediaTailor configurations, see Working with configurations in AWS
+	// Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 	SegmentDeliveryConfigurations []*SegmentDeliveryConfiguration `type:"list"`
 
+	// The name of the source location.
 	SourceLocationName *string `type:"string"`
 
+	// The tags to assign to the source location. Tags are key-value pairs that
+	// you can associate with Amazon resources to help with organization, access
+	// control, and cost tracking. For more information, see Tagging AWS Elemental
+	// MediaTailor Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11585,7 +11937,6 @@ func (s *UpdateSourceLocationOutput) SetTags(v map[string]*string) *UpdateSource
 	return s
 }
 
-// Updates a VOD source's configuration.
 type UpdateVodSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11594,11 +11945,15 @@ type UpdateVodSourceInput struct {
 	// HttpPackageConfigurations is a required field
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list" required:"true"`
 
+	// The name of the source location associated with this VOD Source.
+	//
 	// SourceLocationName is a required field
-	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+	SourceLocationName *string `location:"uri" locationName:"SourceLocationName" type:"string" required:"true"`
 
+	// The name of the VOD source.
+	//
 	// VodSourceName is a required field
-	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+	VodSourceName *string `location:"uri" locationName:"VodSourceName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11675,19 +12030,28 @@ func (s *UpdateVodSourceInput) SetVodSourceName(v string) *UpdateVodSourceInput 
 type UpdateVodSourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) associated with the VOD source.
 	Arn *string `type:"string"`
 
+	// The timestamp that indicates when the VOD source was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
-	// The VOD source's HTTP package configuration settings.
+	// A list of HTTP package configurations for the VOD source on this account.
 	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list"`
 
+	// The timestamp that indicates when the VOD source was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// The name of the source location associated with the VOD source.
 	SourceLocationName *string `type:"string"`
 
+	// The tags to assign to the VOD source. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The name of the VOD source.
 	VodSourceName *string `type:"string"`
 }
 
@@ -11776,7 +12140,10 @@ type VodSource struct {
 	// SourceLocationName is a required field
 	SourceLocationName *string `type:"string" required:"true"`
 
-	// The tags assigned to the VOD source.
+	// The tags assigned to the VOD source. Tags are key-value pairs that you can
+	// associate with Amazon resources to help with organization, access control,
+	// and cost tracking. For more information, see Tagging AWS Elemental MediaTailor
+	// Resources (https://docs.aws.amazon.com/mediatailor/latest/ug/tagging.html).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The name of the VOD source.

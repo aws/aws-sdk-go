@@ -1,3 +1,15 @@
+Release v1.44.123 (2022-10-25)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/location`: Updates service documentation
+* `service/mediatailor`: Updates service API, documentation, paginators, and examples
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Relational Database Service - This release adds support for exporting DB cluster data to Amazon S3.
+* `service/workspaces`: Updates service API and documentation
+  * This release adds new enums for supporting Workspaces Core features, including creating Manual running mode workspaces, importing regular Workspaces Core images and importing g4dn Workspaces Core images.
+
 Release v1.44.122 (2022-10-24)
 ===
 

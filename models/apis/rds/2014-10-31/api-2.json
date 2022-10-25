@@ -2316,6 +2316,7 @@
       "errors":[
         {"shape":"DBSnapshotNotFoundFault"},
         {"shape":"DBClusterSnapshotNotFoundFault"},
+        {"shape":"DBClusterNotFoundFault"},
         {"shape":"ExportTaskAlreadyExistsFault"},
         {"shape":"InvalidS3BucketFault"},
         {"shape":"IamRoleNotFoundFault"},
@@ -5311,7 +5312,8 @@
         "SourceArn":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "Marker":{"shape":"String"},
-        "MaxRecords":{"shape":"MaxRecords"}
+        "MaxRecords":{"shape":"MaxRecords"},
+        "SourceType":{"shape":"ExportSourceType"}
       }
     },
     "DescribeGlobalClustersMessage":{
@@ -5630,6 +5632,13 @@
         "Events":{"shape":"EventList"}
       }
     },
+    "ExportSourceType":{
+      "type":"string",
+      "enum":[
+        "SNAPSHOT",
+        "CLUSTER"
+      ]
+    },
     "ExportTask":{
       "type":"structure",
       "members":{
@@ -5647,7 +5656,8 @@
         "PercentProgress":{"shape":"Integer"},
         "TotalExtractedDataInGB":{"shape":"Integer"},
         "FailureCause":{"shape":"String"},
-        "WarningMessage":{"shape":"String"}
+        "WarningMessage":{"shape":"String"},
+        "SourceType":{"shape":"ExportSourceType"}
       }
     },
     "ExportTaskAlreadyExistsFault":{
