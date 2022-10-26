@@ -1097,6 +1097,35 @@
       }, {
         "shape" : "TooManyRequestsException"
       } ]
+    },
+    "UpdateStorage" : {
+      "name" : "UpdateStorage",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/v1/clusters/{clusterArn}/storage",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateStorageRequest"
+      },
+      "output" : {
+        "shape" : "UpdateStorageResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "UnauthorizedException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "ServiceUnavailableException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
     }
   },
   "shapes": {
@@ -1380,6 +1409,10 @@
         "ZookeeperConnectStringTls" : {
           "shape" : "__string",
           "locationName" : "zookeeperConnectStringTls"
+        },
+        "StorageMode" : {
+          "shape" : "StorageMode",
+          "locationName" : "storageMode"
         }
       }
     },
@@ -1640,6 +1673,10 @@
         "Tags": {
           "shape": "__mapOf__string",
           "locationName": "tags"
+        },
+        "StorageMode" : {
+          "shape" : "StorageMode",
+          "locationName" : "storageMode"
         }
       },
       "required": [
@@ -2428,6 +2465,11 @@
           "shape": "__integerMin1Max15",
           "locationName": "numberOfBrokerNodes",
           "documentation": "\n            <p>The number of brokers in the cluster.</p>\n         "
+        },
+        "StorageMode" : {
+          "shape" : "StorageMode",
+          "locationName" : "storageMode",
+          "documentation": "\n            <p>This controls storage mode for supported storage tiers.</p>\n         "
         }
       },
       "required": [
@@ -2489,6 +2531,11 @@
           "shape" : "__string",
           "locationName" : "zookeeperConnectStringTls",
           "documentation" : "\n            <p>The connection string to use to connect to the Apache ZooKeeper cluster on a TLS port.</p>\n         "
+        },
+        "StorageMode" : {
+          "shape" : "StorageMode",
+          "locationName" : "storageMode",
+          "documentation": "\n            <p>This controls storage mode for supported storage tiers.</p>\n         "
         }
       },
       "required": [
@@ -2850,9 +2897,13 @@
           "shape" : "EncryptionInfo",
           "locationName" : "encryptionInfo"
         },
-        "ConnectivityInfo":{
-          "shape":"ConnectivityInfo",
-          "locationName":"connectivityInfo"
+        "ConnectivityInfo": {
+          "shape": "ConnectivityInfo",
+          "locationName": "connectivityInfo"
+        },
+        "StorageMode" : {
+          "shape" : "StorageMode",
+          "locationName" : "storageMode"
         }
       }
     },
@@ -2977,6 +3028,10 @@
           "locationName": "ebsStorageInfo"
         }
       }
+    },
+    "StorageMode" : {
+      "type" : "string",
+      "enum" : [ "LOCAL", "TIERED" ]
     },
     "TagResourceRequest": {
       "type": "structure",
@@ -3403,6 +3458,46 @@
       "required" : [ "ClusterArn", "CurrentVersion" ]
     },
     "UpdateSecurityResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterArn"
+        },
+        "ClusterOperationArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterOperationArn"
+        }
+      }
+    },
+    "UpdateStorageRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterArn"
+        },
+        "CurrentVersion" : {
+          "shape" : "__string",
+          "locationName" : "currentVersion"
+        },
+        "ProvisionedThroughput" : {
+          "shape" : "ProvisionedThroughput",
+          "locationName" : "provisionedThroughput"
+        },
+        "StorageMode" : {
+          "shape" : "StorageMode",
+          "locationName" : "storageMode"
+        },
+        "VolumeSizeGB" : {
+          "shape" : "__integer",
+          "locationName" : "volumeSizeGB"
+        }
+      },
+      "required" : [ "ClusterArn", "CurrentVersion" ]
+    },
+    "UpdateStorageResponse" : {
       "type" : "structure",
       "members" : {
         "ClusterArn" : {

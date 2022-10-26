@@ -78,6 +78,12 @@
       "output_token": "Marker",
       "result_key": "Events"
     },
+    "DescribeGlobalClusters": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "GlobalClusters"
+    },
     "DescribeOrderableDBInstanceOptions": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",

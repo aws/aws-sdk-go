@@ -3714,6 +3714,103 @@ func (c *Kafka) UpdateSecurityWithContext(ctx aws.Context, input *UpdateSecurity
 	return out, req.Send()
 }
 
+const opUpdateStorage = "UpdateStorage"
+
+// UpdateStorageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStorage for more information on using the UpdateStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateStorageRequest method.
+//	req, resp := client.UpdateStorageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateStorage
+func (c *Kafka) UpdateStorageRequest(input *UpdateStorageInput) (req *request.Request, output *UpdateStorageOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStorage,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/clusters/{clusterArn}/storage",
+	}
+
+	if input == nil {
+		input = &UpdateStorageInput{}
+	}
+
+	output = &UpdateStorageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateStorage API operation for Managed Streaming for Kafka.
+//
+// Updates cluster broker volume size (or) sets cluster storage mode to TIERED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation UpdateStorage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Returns information about an error.
+//
+//   - UnauthorizedException
+//     Returns information about an error.
+//
+//   - InternalServerErrorException
+//     Returns information about an error.
+//
+//   - ForbiddenException
+//     Returns information about an error.
+//
+//   - NotFoundException
+//     Returns information about an error.
+//
+//   - ServiceUnavailableException
+//     Returns information about an error.
+//
+//   - TooManyRequestsException
+//     Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateStorage
+func (c *Kafka) UpdateStorage(input *UpdateStorageInput) (*UpdateStorageOutput, error) {
+	req, out := c.UpdateStorageRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStorageWithContext is the same as UpdateStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) UpdateStorageWithContext(ctx aws.Context, input *UpdateStorageInput, opts ...request.Option) (*UpdateStorageOutput, error) {
+	req, out := c.UpdateStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Returns information about an error.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
@@ -4651,6 +4748,9 @@ type ClusterInfo struct {
 	// Contains information about the state of the Amazon MSK cluster.
 	StateInfo *StateInfo `locationName:"stateInfo" type:"structure"`
 
+	// This controls storage mode for supported storage tiers.
+	StorageMode *string `locationName:"storageMode" type:"string" enum:"StorageMode"`
+
 	// Tags attached to the cluster.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
@@ -4766,6 +4866,12 @@ func (s *ClusterInfo) SetState(v string) *ClusterInfo {
 // SetStateInfo sets the StateInfo field's value.
 func (s *ClusterInfo) SetStateInfo(v *StateInfo) *ClusterInfo {
 	s.StateInfo = v
+	return s
+}
+
+// SetStorageMode sets the StorageMode field's value.
+func (s *ClusterInfo) SetStorageMode(v string) *ClusterInfo {
+	s.StorageMode = &v
 	return s
 }
 
@@ -5379,6 +5485,9 @@ type CreateClusterInput struct {
 	// The settings for open monitoring.
 	OpenMonitoring *OpenMonitoringInfo `locationName:"openMonitoring" type:"structure"`
 
+	// This controls storage mode for supported storage tiers.
+	StorageMode *string `locationName:"storageMode" type:"string" enum:"StorageMode"`
+
 	// Create tags when creating the cluster.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
@@ -5514,6 +5623,12 @@ func (s *CreateClusterInput) SetNumberOfBrokerNodes(v int64) *CreateClusterInput
 // SetOpenMonitoring sets the OpenMonitoring field's value.
 func (s *CreateClusterInput) SetOpenMonitoring(v *OpenMonitoringInfo) *CreateClusterInput {
 	s.OpenMonitoring = v
+	return s
+}
+
+// SetStorageMode sets the StorageMode field's value.
+func (s *CreateClusterInput) SetStorageMode(v string) *CreateClusterInput {
+	s.StorageMode = &v
 	return s
 }
 
@@ -8363,6 +8478,9 @@ type MutableClusterInfo struct {
 
 	// Settings for open monitoring using Prometheus.
 	OpenMonitoring *OpenMonitoring `locationName:"openMonitoring" type:"structure"`
+
+	// This controls storage mode for supported storage tiers.
+	StorageMode *string `locationName:"storageMode" type:"string" enum:"StorageMode"`
 }
 
 // String returns the string representation.
@@ -8446,6 +8564,12 @@ func (s *MutableClusterInfo) SetNumberOfBrokerNodes(v int64) *MutableClusterInfo
 // SetOpenMonitoring sets the OpenMonitoring field's value.
 func (s *MutableClusterInfo) SetOpenMonitoring(v *OpenMonitoring) *MutableClusterInfo {
 	s.OpenMonitoring = v
+	return s
+}
+
+// SetStorageMode sets the StorageMode field's value.
+func (s *MutableClusterInfo) SetStorageMode(v string) *MutableClusterInfo {
+	s.StorageMode = &v
 	return s
 }
 
@@ -8897,6 +9021,9 @@ type Provisioned struct {
 	// JMX and Node monitoring for the MSK cluster.
 	OpenMonitoring *OpenMonitoringInfo `locationName:"openMonitoring" type:"structure"`
 
+	// This controls storage mode for supported storage tiers.
+	StorageMode *string `locationName:"storageMode" type:"string" enum:"StorageMode"`
+
 	ZookeeperConnectString *string `locationName:"zookeeperConnectString" type:"string"`
 
 	ZookeeperConnectStringTls *string `locationName:"zookeeperConnectStringTls" type:"string"`
@@ -8968,6 +9095,12 @@ func (s *Provisioned) SetOpenMonitoring(v *OpenMonitoringInfo) *Provisioned {
 	return s
 }
 
+// SetStorageMode sets the StorageMode field's value.
+func (s *Provisioned) SetStorageMode(v string) *Provisioned {
+	s.StorageMode = &v
+	return s
+}
+
 // SetZookeeperConnectString sets the ZookeeperConnectString field's value.
 func (s *Provisioned) SetZookeeperConnectString(v string) *Provisioned {
 	s.ZookeeperConnectString = &v
@@ -9013,6 +9146,9 @@ type ProvisionedRequest struct {
 
 	// The settings for open monitoring.
 	OpenMonitoring *OpenMonitoringInfo `locationName:"openMonitoring" type:"structure"`
+
+	// This controls storage mode for supported storage tiers.
+	StorageMode *string `locationName:"storageMode" type:"string" enum:"StorageMode"`
 }
 
 // String returns the string representation.
@@ -9134,6 +9270,12 @@ func (s *ProvisionedRequest) SetNumberOfBrokerNodes(v int64) *ProvisionedRequest
 // SetOpenMonitoring sets the OpenMonitoring field's value.
 func (s *ProvisionedRequest) SetOpenMonitoring(v *OpenMonitoringInfo) *ProvisionedRequest {
 	s.OpenMonitoring = v
+	return s
+}
+
+// SetStorageMode sets the StorageMode field's value.
+func (s *ProvisionedRequest) SetStorageMode(v string) *ProvisionedRequest {
+	s.StorageMode = &v
 	return s
 }
 
@@ -11322,6 +11464,137 @@ func (s *UpdateSecurityOutput) SetClusterOperationArn(v string) *UpdateSecurityO
 	return s
 }
 
+// Request object for UpdateStorageApi.
+type UpdateStorageInput struct {
+	_ struct{} `type:"structure"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	// The version of cluster to update from. A successful operation will then generate
+	// a new version.
+	//
+	// CurrentVersion is a required field
+	CurrentVersion *string `locationName:"currentVersion" type:"string" required:"true"`
+
+	// EBS volume provisioned throughput information.
+	ProvisionedThroughput *ProvisionedThroughput `locationName:"provisionedThroughput" type:"structure"`
+
+	// Controls storage mode for supported storage tiers.
+	StorageMode *string `locationName:"storageMode" type:"string" enum:"StorageMode"`
+
+	// size of the EBS volume to update.
+	VolumeSizeGB *int64 `locationName:"volumeSizeGB" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStorageInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+	if s.CurrentVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("CurrentVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *UpdateStorageInput) SetClusterArn(v string) *UpdateStorageInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *UpdateStorageInput) SetCurrentVersion(v string) *UpdateStorageInput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *UpdateStorageInput) SetProvisionedThroughput(v *ProvisionedThroughput) *UpdateStorageInput {
+	s.ProvisionedThroughput = v
+	return s
+}
+
+// SetStorageMode sets the StorageMode field's value.
+func (s *UpdateStorageInput) SetStorageMode(v string) *UpdateStorageInput {
+	s.StorageMode = &v
+	return s
+}
+
+// SetVolumeSizeGB sets the VolumeSizeGB field's value.
+func (s *UpdateStorageInput) SetVolumeSizeGB(v int64) *UpdateStorageInput {
+	s.VolumeSizeGB = &v
+	return s
+}
+
+// Response body for UpdateStorageResponse Api.
+type UpdateStorageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the cluster.
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the cluster operation.
+	ClusterOperationArn *string `locationName:"clusterOperationArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateStorageOutput) GoString() string {
+	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *UpdateStorageOutput) SetClusterArn(v string) *UpdateStorageOutput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterOperationArn sets the ClusterOperationArn field's value.
+func (s *UpdateStorageOutput) SetClusterOperationArn(v string) *UpdateStorageOutput {
+	s.ClusterOperationArn = &v
+	return s
+}
+
 // The configuration of the Amazon VPCs for the cluster.
 type VpcConfig struct {
 	_ struct{} `type:"structure"`
@@ -11613,5 +11886,22 @@ const (
 func NodeType_Values() []string {
 	return []string{
 		NodeTypeBroker,
+	}
+}
+
+// Controls storage mode for various supported storage tiers.
+const (
+	// StorageModeLocal is a StorageMode enum value
+	StorageModeLocal = "LOCAL"
+
+	// StorageModeTiered is a StorageMode enum value
+	StorageModeTiered = "TIERED"
+)
+
+// StorageMode_Values returns all elements of the StorageMode enum
+func StorageMode_Values() []string {
+	return []string{
+		StorageModeLocal,
+		StorageModeTiered,
 	}
 }

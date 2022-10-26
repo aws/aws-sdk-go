@@ -88416,9 +88416,7 @@ type ResourceLimits struct {
 
 	// The maximum number of training jobs that a hyperparameter tuning job can
 	// launch.
-	//
-	// MaxNumberOfTrainingJobs is a required field
-	MaxNumberOfTrainingJobs *int64 `min:"1" type:"integer" required:"true"`
+	MaxNumberOfTrainingJobs *int64 `min:"1" type:"integer"`
 
 	// The maximum number of concurrent training jobs that a hyperparameter tuning
 	// job can launch.
@@ -88448,9 +88446,6 @@ func (s ResourceLimits) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResourceLimits) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResourceLimits"}
-	if s.MaxNumberOfTrainingJobs == nil {
-		invalidParams.Add(request.NewErrParamRequired("MaxNumberOfTrainingJobs"))
-	}
 	if s.MaxNumberOfTrainingJobs != nil && *s.MaxNumberOfTrainingJobs < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxNumberOfTrainingJobs", 1))
 	}
@@ -102326,6 +102321,9 @@ const (
 
 	// HyperParameterTuningJobStrategyTypeHyperband is a HyperParameterTuningJobStrategyType enum value
 	HyperParameterTuningJobStrategyTypeHyperband = "Hyperband"
+
+	// HyperParameterTuningJobStrategyTypeGrid is a HyperParameterTuningJobStrategyType enum value
+	HyperParameterTuningJobStrategyTypeGrid = "Grid"
 )
 
 // HyperParameterTuningJobStrategyType_Values returns all elements of the HyperParameterTuningJobStrategyType enum
@@ -102334,6 +102332,7 @@ func HyperParameterTuningJobStrategyType_Values() []string {
 		HyperParameterTuningJobStrategyTypeBayesian,
 		HyperParameterTuningJobStrategyTypeRandom,
 		HyperParameterTuningJobStrategyTypeHyperband,
+		HyperParameterTuningJobStrategyTypeGrid,
 	}
 }
 
