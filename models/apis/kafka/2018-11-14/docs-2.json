@@ -36,7 +36,8 @@
     "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
     "UpdateClusterKafkaVersion" : "<p>Updates the Apache Kafka version for the cluster.</p>",
     "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>",
-    "UpdateSecurity" : "<p>You can use this operation to update the encrypting and authentication settings for an existing cluster.</p>"
+    "UpdateSecurity" : "<p>You can use this operation to update the encrypting and authentication settings for an existing cluster.</p>",
+    "UpdateStorage" : "<p>Updates cluster broker volume size (or) sets cluster storage mode to TIERED.</p>"
   },
   "shapes" : {
     "BatchAssociateScramSecretRequest" : {
@@ -516,10 +517,11 @@
       }
     },
     "ProvisionedThroughput" : {
-      "base" : "Contains information about provisioned throughput for EBS storage volumes attached to kafka broker nodes.",
+      "base" : "<p>Contains information about provisioned throughput for EBS storage volumes attached to kafka broker nodes.</p>",
       "refs" : {
-        "BrokerEBSVolumeInfo$ProvisionedThroughput" : "EBS volume provisioned throughput information.",
-        "EBSStorageInfo$ProvisionedThroughput" : "EBS volume provisioned throughput information."
+        "BrokerEBSVolumeInfo$ProvisionedThroughput" : "<p>EBS volume provisioned throughput information.</p>",
+        "EBSStorageInfo$ProvisionedThroughput" : "<p>EBS volume provisioned throughput information.</p>",
+        "UpdateStorageRequest$ProvisionedThroughput" : "<p>EBS volume provisioned throughput information.</p>"
       }
     },
     "PublicAccess" : {
@@ -556,6 +558,17 @@
       "base" : "<p>Contains information about storage volumes attached to MSK broker nodes.</p>",
       "refs" : {
         "BrokerNodeGroupInfo$StorageInfo" : "<p>Contains information about storage volumes attached to MSK broker nodes.</p>"
+      }
+    },
+    "StorageMode" : {
+      "base" : "<p>Controls storage mode for various supported storage tiers.</p>",
+      "refs" : {
+        "Provisioned$StorageMode" : "<p>This controls storage mode for supported storage tiers.</p>",
+        "ProvisionedRequest$StorageMode" : "<p>This controls storage mode for supported storage tiers.</p>",
+        "ClusterInfo$StorageMode" : "<p>This controls storage mode for supported storage tiers.</p>",
+        "CreateClusterRequest$StorageMode" : "<p>This controls storage mode for supported storage tiers.</p>",
+        "MutableClusterInfo$StorageMode" : "<p>This controls storage mode for supported storage tiers.</p>",
+        "UpdateStorageRequest$StorageMode" : "<p>Controls storage mode for supported storage tiers.</p>"
       }
     },
     "TagResourceRequest" : {
@@ -654,6 +667,14 @@
       "base" : "<p>Response body for UpdateSecurity.</p>",
       "refs" : { }
     },
+    "UpdateStorageRequest" : {
+      "base" : "<p>Request object for UpdateStorageApi.</p>",
+      "refs" : { }
+    },
+    "UpdateStorageResponse" : {
+      "base" : "<p>Response body for UpdateStorageResponse Api.</p>",
+      "refs" : { }
+    },
     "ZookeeperNodeInfo" : {
       "base" : "<p>Zookeeper node information.</p>",
       "refs" : {
@@ -675,7 +696,7 @@
         "JmxExporterInfo$EnabledInBroker" : "<p>JMX Exporter being enabled in broker.</p>",
         "NodeExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
         "NodeExporterInfo$EnabledInBroker" : "<p>Node Exporter being enabled in broker.</p>",
-        "ProvisionedThroughput$Enabled" : "Provisioned throughput is enabled or not.",
+        "ProvisionedThroughput$Enabled" : "<p>Provisioned throughput is enabled or not.</p>",
         "S3$Enabled" : "<p>Specifies whether broker logs get sent to the specified Amazon S3 destination.</p>",
         "Scram$Enabled" : "<p>SASL/SCRAM authentication is enabled or not.</p>",
         "Tls$Enabled" : "<p>TLS authentication is enabled or not.</p>",
@@ -696,7 +717,8 @@
         "ClusterInfo$NumberOfBrokerNodes" : "\n            <p>The number of broker nodes in the cluster.</p>\n         ",
         "CreateClusterRequest$NumberOfBrokerNodes" : "\n            <p>The number of broker nodes in the cluster.</p>\n         ",
         "MutableClusterInfo$NumberOfBrokerNodes" : "\n            <p>The number of broker nodes in the cluster.</p>\n         ",
-        "ProvisionedThroughput$VolumeThroughput" : "Throughput value of the EBS volumes for the data drive on each kafka broker node in MiB per second."
+        "ProvisionedThroughput$VolumeThroughput" : "\n            <p>Throughput value of the EBS volumes for the data drive on each kafka broker node in MiB per second.</p>\n         ",
+        "UpdateStorageRequest$VolumeSizeGB" : "\n            <p>size of the EBS volume to update.</p>\n         "
       }
     },
     "__integerMin1Max15" : {
@@ -926,6 +948,9 @@
         "UpdateSecurityRequest$CurrentVersion" : "<p>You can use the DescribeCluster operation to get the current version of the cluster. After the security update is complete, the cluster will have a new version.</p>",
         "UpdateSecurityResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateSecurityResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateStorageRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
+        "UpdateStorageResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateStorageResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
         "ZookeeperNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) IP address of the client.</p>",
         "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",

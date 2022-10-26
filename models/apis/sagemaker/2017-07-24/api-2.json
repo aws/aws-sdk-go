@@ -10095,7 +10095,8 @@
       "enum":[
         "Bayesian",
         "Random",
-        "Hyperband"
+        "Hyperband",
+        "Grid"
       ]
     },
     "HyperParameterTuningJobSummaries":{
@@ -15494,10 +15495,7 @@
     },
     "ResourceLimits":{
       "type":"structure",
-      "required":[
-        "MaxNumberOfTrainingJobs",
-        "MaxParallelTrainingJobs"
-      ],
+      "required":["MaxParallelTrainingJobs"],
       "members":{
         "MaxNumberOfTrainingJobs":{"shape":"MaxNumberOfTrainingJobs"},
         "MaxParallelTrainingJobs":{"shape":"MaxParallelTrainingJobs"}

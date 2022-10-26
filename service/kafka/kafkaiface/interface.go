@@ -223,6 +223,10 @@ type KafkaAPI interface {
 	UpdateSecurity(*kafka.UpdateSecurityInput) (*kafka.UpdateSecurityOutput, error)
 	UpdateSecurityWithContext(aws.Context, *kafka.UpdateSecurityInput, ...request.Option) (*kafka.UpdateSecurityOutput, error)
 	UpdateSecurityRequest(*kafka.UpdateSecurityInput) (*request.Request, *kafka.UpdateSecurityOutput)
+
+	UpdateStorage(*kafka.UpdateStorageInput) (*kafka.UpdateStorageOutput, error)
+	UpdateStorageWithContext(aws.Context, *kafka.UpdateStorageInput, ...request.Option) (*kafka.UpdateStorageOutput, error)
+	UpdateStorageRequest(*kafka.UpdateStorageInput) (*request.Request, *kafka.UpdateStorageOutput)
 }
 
 var _ KafkaAPI = (*kafka.Kafka)(nil)

@@ -1,3 +1,15 @@
+Release v1.44.124 (2022-10-26)
+===
+
+### Service Client Updates
+* `service/iam`: Updates service documentation
+  * Doc only update that corrects instances of CLI not using an entity.
+* `service/kafka`: Updates service API and documentation
+* `service/neptune`: Updates service API, documentation, and paginators
+  * Added a new cluster-level attribute to set the capacity range for Neptune Serverless instances.
+* `service/sagemaker`: Updates service API
+  * Amazon SageMaker Automatic Model Tuning now supports specifying Grid Search strategy for tuning jobs, which evaluates all hyperparameter combinations exhaustively based on the categorical hyperparameters provided.
+
 Release v1.44.123 (2022-10-25)
 ===
 
