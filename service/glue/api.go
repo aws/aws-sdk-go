@@ -26950,6 +26950,12 @@ type CreateCsvClassifierRequest struct {
 	// Indicates whether the CSV file contains a header.
 	ContainsHeader *string `type:"string" enum:"CsvHeaderOption"`
 
+	// Enables the configuration of custom datatypes.
+	CustomDatatypeConfigured *bool `type:"boolean"`
+
+	// Creates a list of supported custom datatypes.
+	CustomDatatypes []*string `type:"list"`
+
 	// A custom symbol to denote what separates each column entry in the row.
 	Delimiter *string `min:"1" type:"string"`
 
@@ -27019,6 +27025,18 @@ func (s *CreateCsvClassifierRequest) SetAllowSingleColumn(v bool) *CreateCsvClas
 // SetContainsHeader sets the ContainsHeader field's value.
 func (s *CreateCsvClassifierRequest) SetContainsHeader(v string) *CreateCsvClassifierRequest {
 	s.ContainsHeader = &v
+	return s
+}
+
+// SetCustomDatatypeConfigured sets the CustomDatatypeConfigured field's value.
+func (s *CreateCsvClassifierRequest) SetCustomDatatypeConfigured(v bool) *CreateCsvClassifierRequest {
+	s.CustomDatatypeConfigured = &v
+	return s
+}
+
+// SetCustomDatatypes sets the CustomDatatypes field's value.
+func (s *CreateCsvClassifierRequest) SetCustomDatatypes(v []*string) *CreateCsvClassifierRequest {
+	s.CustomDatatypes = v
 	return s
 }
 
@@ -30381,6 +30399,13 @@ type CsvClassifier struct {
 	// The time that this classifier was registered.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// Enables the custom datatype to be configured.
+	CustomDatatypeConfigured *bool `type:"boolean"`
+
+	// A list of custom datatypes including "BINARY", "BOOLEAN", "DATE", "DECIMAL",
+	// "DOUBLE", "FLOAT", "INT", "LONG", "SHORT", "STRING", "TIMESTAMP".
+	CustomDatatypes []*string `type:"list"`
+
 	// A custom symbol to denote what separates each column entry in the row.
 	Delimiter *string `min:"1" type:"string"`
 
@@ -30440,6 +30465,18 @@ func (s *CsvClassifier) SetContainsHeader(v string) *CsvClassifier {
 // SetCreationTime sets the CreationTime field's value.
 func (s *CsvClassifier) SetCreationTime(v time.Time) *CsvClassifier {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCustomDatatypeConfigured sets the CustomDatatypeConfigured field's value.
+func (s *CsvClassifier) SetCustomDatatypeConfigured(v bool) *CsvClassifier {
+	s.CustomDatatypeConfigured = &v
+	return s
+}
+
+// SetCustomDatatypes sets the CustomDatatypes field's value.
+func (s *CsvClassifier) SetCustomDatatypes(v []*string) *CsvClassifier {
+	s.CustomDatatypes = v
 	return s
 }
 
@@ -61747,6 +61784,12 @@ type UpdateCsvClassifierRequest struct {
 	// Indicates whether the CSV file contains a header.
 	ContainsHeader *string `type:"string" enum:"CsvHeaderOption"`
 
+	// Specifies the configuration of custom datatypes.
+	CustomDatatypeConfigured *bool `type:"boolean"`
+
+	// Specifies a list of supported custom datatypes.
+	CustomDatatypes []*string `type:"list"`
+
 	// A custom symbol to denote what separates each column entry in the row.
 	Delimiter *string `min:"1" type:"string"`
 
@@ -61816,6 +61859,18 @@ func (s *UpdateCsvClassifierRequest) SetAllowSingleColumn(v bool) *UpdateCsvClas
 // SetContainsHeader sets the ContainsHeader field's value.
 func (s *UpdateCsvClassifierRequest) SetContainsHeader(v string) *UpdateCsvClassifierRequest {
 	s.ContainsHeader = &v
+	return s
+}
+
+// SetCustomDatatypeConfigured sets the CustomDatatypeConfigured field's value.
+func (s *UpdateCsvClassifierRequest) SetCustomDatatypeConfigured(v bool) *UpdateCsvClassifierRequest {
+	s.CustomDatatypeConfigured = &v
+	return s
+}
+
+// SetCustomDatatypes sets the CustomDatatypes field's value.
+func (s *UpdateCsvClassifierRequest) SetCustomDatatypes(v []*string) *UpdateCsvClassifierRequest {
+	s.CustomDatatypes = v
 	return s
 }
 

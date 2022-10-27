@@ -8193,6 +8193,40 @@ func (s *NetworkFirewallPolicyModifiedViolation) SetViolationTarget(v string) *N
 	return s
 }
 
+// The setting that allows the policy owner to change the behavior of the rule
+// group within a policy.
+type NetworkFirewallStatefulRuleGroupOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The action that changes the rule group from DROP to ALERT. This only applies
+	// to managed rule groups.
+	Action *string `type:"string" enum:"NetworkFirewallOverrideAction"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkFirewallStatefulRuleGroupOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkFirewallStatefulRuleGroupOverride) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *NetworkFirewallStatefulRuleGroupOverride) SetAction(v string) *NetworkFirewallStatefulRuleGroupOverride {
+	s.Action = &v
+	return s
+}
+
 // Violation detail for an unexpected route that's present in a route table.
 type NetworkFirewallUnexpectedFirewallRoutesViolation struct {
 	_ struct{} `type:"structure"`
@@ -10553,34 +10587,6 @@ type SecurityServicePolicyData struct {
 	//    "endpointLocation":{ "availabilityZoneConfigList":[ { "availabilityZoneName":"${AvailabilityZone}"
 	//    } ] } }, "allowedIPV4CidrList":[ ] } } } }"
 	//
-	//    * Specification for SHIELD_ADVANCED for Amazon CloudFront distributions
-	//    "{\"type\":\"SHIELD_ADVANCED\",\"automaticResponseConfiguration\": {\"automaticResponseStatus\":\"ENABLED|IGNORED|DISABLED\",
-	//    \"automaticResponseAction\":\"BLOCK|COUNT\"}, \"overrideCustomerWebaclClassic\":true|false}"
-	//    For example: "{\"type\":\"SHIELD_ADVANCED\",\"automaticResponseConfiguration\":
-	//    {\"automaticResponseStatus\":\"ENABLED\", \"automaticResponseAction\":\"COUNT\"}}"
-	//    The default value for automaticResponseStatus is IGNORED. The value for
-	//    automaticResponseAction is only required when automaticResponseStatus
-	//    is set to ENABLED. The default value for overrideCustomerWebaclClassic
-	//    is false. For other resource types that you can protect with a Shield
-	//    Advanced policy, this ManagedServiceData configuration is an empty string.
-	//
-	//    * Example: WAFV2 "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAmazonIpReputationList\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
-	//    In the loggingConfiguration, you can specify one logDestinationConfigs,
-	//    you can optionally provide up to 20 redactedFields, and the RedactedFieldType
-	//    must be one of URI, QUERY_STRING, HEADER, or METHOD.
-	//
-	//    * Example: WAF Classic "{\"type\": \"WAF\", \"ruleGroups\": [{\"id\":\"12345678-1bcd-9012-efga-0987654321ab\",
-	//    \"overrideAction\" : {\"type\": \"COUNT\"}}], \"defaultAction\": {\"type\":
-	//    \"BLOCK\"}}"
-	//
-	//    * Example: WAFV2 - Firewall Manager support for WAF managed rule group
-	//    versioning "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"versionEnabled\":true,\"version\":\"Version_2.0\",\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesCommonRuleSet\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
-	//    To use a specific version of a WAF managed rule group in your Firewall
-	//    Manager policy, you must set versionEnabled to true, and set version to
-	//    the version you'd like to use. If you don't set versionEnabled to true,
-	//    or if you omit versionEnabled, then Firewall Manager uses the default
-	//    version of the WAF managed rule group.
-	//
 	//    * Example: SECURITY_GROUPS_COMMON "{\"type\":\"SECURITY_GROUPS_COMMON\",\"revertManualSecurityGroupChanges\":false,\"exclusiveResourceSecurityGroupManagement\":false,
 	//    \"applyToAllEC2InstanceENIs\":false,\"securityGroups\":[{\"id\":\" sg-000e55995d61a06bd\"}]}"
 	//
@@ -10608,6 +10614,34 @@ type SecurityServicePolicyData struct {
 	//    or range in the policy security group.
 	//
 	//    * Example: SECURITY_GROUPS_USAGE_AUDIT "{\"type\":\"SECURITY_GROUPS_USAGE_AUDIT\",\"deleteUnusedSecurityGroups\":true,\"coalesceRedundantSecurityGroups\":true}"
+	//
+	//    * Specification for SHIELD_ADVANCED for Amazon CloudFront distributions
+	//    "{\"type\":\"SHIELD_ADVANCED\",\"automaticResponseConfiguration\": {\"automaticResponseStatus\":\"ENABLED|IGNORED|DISABLED\",
+	//    \"automaticResponseAction\":\"BLOCK|COUNT\"}, \"overrideCustomerWebaclClassic\":true|false}"
+	//    For example: "{\"type\":\"SHIELD_ADVANCED\",\"automaticResponseConfiguration\":
+	//    {\"automaticResponseStatus\":\"ENABLED\", \"automaticResponseAction\":\"COUNT\"}}"
+	//    The default value for automaticResponseStatus is IGNORED. The value for
+	//    automaticResponseAction is only required when automaticResponseStatus
+	//    is set to ENABLED. The default value for overrideCustomerWebaclClassic
+	//    is false. For other resource types that you can protect with a Shield
+	//    Advanced policy, this ManagedServiceData configuration is an empty string.
+	//
+	//    * Example: WAFV2 "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAmazonIpReputationList\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
+	//    In the loggingConfiguration, you can specify one logDestinationConfigs,
+	//    you can optionally provide up to 20 redactedFields, and the RedactedFieldType
+	//    must be one of URI, QUERY_STRING, HEADER, or METHOD.
+	//
+	//    * Example: WAFV2 - Firewall Manager support for WAF managed rule group
+	//    versioning "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"versionEnabled\":true,\"version\":\"Version_2.0\",\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesCommonRuleSet\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
+	//    To use a specific version of a WAF managed rule group in your Firewall
+	//    Manager policy, you must set versionEnabled to true, and set version to
+	//    the version you'd like to use. If you don't set versionEnabled to true,
+	//    or if you omit versionEnabled, then Firewall Manager uses the default
+	//    version of the WAF managed rule group.
+	//
+	//    * Example: WAF Classic "{\"type\": \"WAF\", \"ruleGroups\": [{\"id\":\"12345678-1bcd-9012-efga-0987654321ab\",
+	//    \"overrideAction\" : {\"type\": \"COUNT\"}}], \"defaultAction\": {\"type\":
+	//    \"BLOCK\"}}"
 	ManagedServiceData *string `min:"1" type:"string"`
 
 	// Contains the Network Firewall firewall policy options to configure a centralized
@@ -10719,6 +10753,10 @@ func (s *StatefulEngineOptions) SetRuleOrder(v string) *StatefulEngineOptions {
 type StatefulRuleGroup struct {
 	_ struct{} `type:"structure"`
 
+	// The action that allows the policy owner to override the behavior of the rule
+	// group within a policy.
+	Override *NetworkFirewallStatefulRuleGroupOverride `type:"structure"`
+
 	// An integer setting that indicates the order in which to run the stateful
 	// rule groups in a single Network Firewall firewall policy. This setting only
 	// applies to firewall policies that specify the STRICT_ORDER rule order in
@@ -10756,6 +10794,12 @@ func (s StatefulRuleGroup) String() string {
 // value will be replaced with "sensitive".
 func (s StatefulRuleGroup) GoString() string {
 	return s.String()
+}
+
+// SetOverride sets the Override field's value.
+func (s *StatefulRuleGroup) SetOverride(v *NetworkFirewallStatefulRuleGroupOverride) *StatefulRuleGroup {
+	s.Override = v
+	return s
 }
 
 // SetPriority sets the Priority field's value.
@@ -11566,6 +11610,18 @@ func MarketplaceSubscriptionOnboardingStatus_Values() []string {
 		MarketplaceSubscriptionOnboardingStatusNoSubscription,
 		MarketplaceSubscriptionOnboardingStatusNotComplete,
 		MarketplaceSubscriptionOnboardingStatusComplete,
+	}
+}
+
+const (
+	// NetworkFirewallOverrideActionDropToAlert is a NetworkFirewallOverrideAction enum value
+	NetworkFirewallOverrideActionDropToAlert = "DROP_TO_ALERT"
+)
+
+// NetworkFirewallOverrideAction_Values returns all elements of the NetworkFirewallOverrideAction enum
+func NetworkFirewallOverrideAction_Values() []string {
+	return []string{
+		NetworkFirewallOverrideActionDropToAlert,
 	}
 }
 

@@ -4149,8 +4149,8 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //     credentials are detected, SageMaker will reject your training job request
 //     and return an exception error.
 //
-//   - InputDataConfig - Describes the training dataset and the Amazon S3,
-//     EFS, or FSx location where it is stored.
+//   - InputDataConfig - Describes the input required by the training job and
+//     the Amazon S3, EFS, or FSx location where it is stored.
 //
 //   - OutputDataConfig - Identifies the Amazon S3 bucket where you want SageMaker
 //     to save the results of model training.
@@ -25561,6 +25561,18 @@ type AlgorithmSpecification struct {
 	// raise a null error.
 	AlgorithmName *string `min:"1" type:"string"`
 
+	// The arguments for a container used to run a training job. See How Amazon
+	// SageMaker Runs Your Training Image (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html)
+	// for additional information.
+	ContainerArguments []*string `min:"1" type:"list"`
+
+	// The entrypoint script for a Docker container (https://docs.docker.com/engine/reference/builder/)
+	// used to run a training job. This script takes precedence over the default
+	// train processing instructions. See How Amazon SageMaker Runs Your Training
+	// Image (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html)
+	// for more information.
+	ContainerEntrypoint []*string `min:"1" type:"list"`
+
 	// To generate and save time-series metrics during training, set to true. The
 	// default is false and time-series metrics aren't generated except in the following
 	// cases:
@@ -25658,6 +25670,12 @@ func (s *AlgorithmSpecification) Validate() error {
 	if s.AlgorithmName != nil && len(*s.AlgorithmName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AlgorithmName", 1))
 	}
+	if s.ContainerArguments != nil && len(s.ContainerArguments) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerArguments", 1))
+	}
+	if s.ContainerEntrypoint != nil && len(s.ContainerEntrypoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerEntrypoint", 1))
+	}
 	if s.TrainingInputMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrainingInputMode"))
 	}
@@ -25681,6 +25699,18 @@ func (s *AlgorithmSpecification) Validate() error {
 // SetAlgorithmName sets the AlgorithmName field's value.
 func (s *AlgorithmSpecification) SetAlgorithmName(v string) *AlgorithmSpecification {
 	s.AlgorithmName = &v
+	return s
+}
+
+// SetContainerArguments sets the ContainerArguments field's value.
+func (s *AlgorithmSpecification) SetContainerArguments(v []*string) *AlgorithmSpecification {
+	s.ContainerArguments = v
+	return s
+}
+
+// SetContainerEntrypoint sets the ContainerEntrypoint field's value.
+func (s *AlgorithmSpecification) SetContainerEntrypoint(v []*string) *AlgorithmSpecification {
+	s.ContainerEntrypoint = v
 	return s
 }
 

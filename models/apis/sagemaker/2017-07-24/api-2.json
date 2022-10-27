@@ -3088,7 +3088,9 @@
         "AlgorithmName":{"shape":"ArnOrName"},
         "TrainingInputMode":{"shape":"TrainingInputMode"},
         "MetricDefinitions":{"shape":"MetricDefinitionList"},
-        "EnableSageMakerMetricsTimeSeries":{"shape":"Boolean"}
+        "EnableSageMakerMetricsTimeSeries":{"shape":"Boolean"},
+        "ContainerEntrypoint":{"shape":"TrainingContainerEntrypoint"},
+        "ContainerArguments":{"shape":"TrainingContainerArguments"}
       }
     },
     "AlgorithmStatus":{
@@ -16658,6 +16660,28 @@
     "TrafficType":{
       "type":"string",
       "enum":["PHASES"]
+    },
+    "TrainingContainerArgument":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
+    "TrainingContainerArguments":{
+      "type":"list",
+      "member":{"shape":"TrainingContainerArgument"},
+      "max":100,
+      "min":1
+    },
+    "TrainingContainerEntrypoint":{
+      "type":"list",
+      "member":{"shape":"TrainingContainerEntrypointString"},
+      "max":10,
+      "min":1
+    },
+    "TrainingContainerEntrypointString":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
     },
     "TrainingEnvironmentKey":{
       "type":"string",

@@ -1,3 +1,18 @@
+Release v1.44.125 (2022-10-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Feature supports the replacement of instance root volume using an updated AMI without requiring customers to stop their instance.
+* `service/fms`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Added support for custom datatypes when using custom csv classifier.
+* `service/redshift`: Updates service documentation
+  * This release clarifies use for the ElasticIp parameter of the CreateCluster and RestoreFromClusterSnapshot APIs.
+* `service/sagemaker`: Updates service API and documentation
+  * This change allows customers to provide a custom entrypoint script for the docker container to be run while executing training jobs, and provide custom arguments to the entrypoint script.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.44.124 (2022-10-26)
 ===
 
