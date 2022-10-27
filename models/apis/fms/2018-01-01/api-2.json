@@ -1293,6 +1293,10 @@
         "TargetViolationReason":{"shape":"TargetViolationReason"}
       }
     },
+    "NetworkFirewallOverrideAction":{
+      "type":"string",
+      "enum":["DROP_TO_ALERT"]
+    },
     "NetworkFirewallPolicy":{
       "type":"structure",
       "members":{
@@ -1324,6 +1328,12 @@
       "max":128,
       "min":1,
       "pattern":"^[a-zA-Z0-9-]+$"
+    },
+    "NetworkFirewallStatefulRuleGroupOverride":{
+      "type":"structure",
+      "members":{
+        "Action":{"shape":"NetworkFirewallOverrideAction"}
+      }
     },
     "NetworkFirewallUnexpectedFirewallRoutesViolation":{
       "type":"structure",
@@ -1827,7 +1837,8 @@
       "members":{
         "RuleGroupName":{"shape":"NetworkFirewallResourceName"},
         "ResourceId":{"shape":"ResourceId"},
-        "Priority":{"shape":"PriorityNumber"}
+        "Priority":{"shape":"PriorityNumber"},
+        "Override":{"shape":"NetworkFirewallStatefulRuleGroupOverride"}
       }
     },
     "StatefulRuleGroupList":{

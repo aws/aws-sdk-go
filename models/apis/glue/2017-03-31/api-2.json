@@ -4509,7 +4509,9 @@
         "ContainsHeader":{"shape":"CsvHeaderOption"},
         "Header":{"shape":"CsvHeader"},
         "DisableValueTrimming":{"shape":"NullableBoolean"},
-        "AllowSingleColumn":{"shape":"NullableBoolean"}
+        "AllowSingleColumn":{"shape":"NullableBoolean"},
+        "CustomDatatypeConfigured":{"shape":"NullableBoolean"},
+        "CustomDatatypes":{"shape":"CustomDatatypes"}
       }
     },
     "CreateCustomEntityTypeRequest":{
@@ -4950,7 +4952,9 @@
         "ContainsHeader":{"shape":"CsvHeaderOption"},
         "Header":{"shape":"CsvHeader"},
         "DisableValueTrimming":{"shape":"NullableBoolean"},
-        "AllowSingleColumn":{"shape":"NullableBoolean"}
+        "AllowSingleColumn":{"shape":"NullableBoolean"},
+        "CustomDatatypeConfigured":{"shape":"NullableBoolean"},
+        "CustomDatatypes":{"shape":"CustomDatatypes"}
       }
     },
     "CsvColumnDelimiter":{
@@ -4992,6 +4996,10 @@
         "ClassName":{"shape":"EnclosedInStringProperty"},
         "OutputSchemas":{"shape":"GlueSchemas"}
       }
+    },
+    "CustomDatatypes":{
+      "type":"list",
+      "member":{"shape":"NameString"}
     },
     "CustomEntityType":{
       "type":"structure",
@@ -10826,7 +10834,9 @@
         "ContainsHeader":{"shape":"CsvHeaderOption"},
         "Header":{"shape":"CsvHeader"},
         "DisableValueTrimming":{"shape":"NullableBoolean"},
-        "AllowSingleColumn":{"shape":"NullableBoolean"}
+        "AllowSingleColumn":{"shape":"NullableBoolean"},
+        "CustomDatatypeConfigured":{"shape":"NullableBoolean"},
+        "CustomDatatypes":{"shape":"CustomDatatypes"}
       }
     },
     "UpdateDatabaseRequest":{

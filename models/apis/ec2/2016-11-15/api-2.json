@@ -10255,7 +10255,9 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "ImageId":{"shape":"ImageId"},
+        "DeleteReplacedRootVolume":{"shape":"Boolean"}
       }
     },
     "CreateReplaceRootVolumeTaskResult":{
@@ -32656,6 +32658,18 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "ImageId":{
+          "shape":"ImageId",
+          "locationName":"imageId"
+        },
+        "SnapshotId":{
+          "shape":"SnapshotId",
+          "locationName":"snapshotId"
+        },
+        "DeleteReplacedRootVolume":{
+          "shape":"Boolean",
+          "locationName":"deleteReplacedRootVolume"
         }
       }
     },
