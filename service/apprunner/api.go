@@ -9501,6 +9501,18 @@ const (
 
 	// RuntimeNodejs16 is a Runtime enum value
 	RuntimeNodejs16 = "NODEJS_16"
+
+	// RuntimeGo1 is a Runtime enum value
+	RuntimeGo1 = "GO_1"
+
+	// RuntimeDotnet6 is a Runtime enum value
+	RuntimeDotnet6 = "DOTNET_6"
+
+	// RuntimePhp81 is a Runtime enum value
+	RuntimePhp81 = "PHP_81"
+
+	// RuntimeRuby31 is a Runtime enum value
+	RuntimeRuby31 = "RUBY_31"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -9512,6 +9524,10 @@ func Runtime_Values() []string {
 		RuntimeCorretto8,
 		RuntimeCorretto11,
 		RuntimeNodejs16,
+		RuntimeGo1,
+		RuntimeDotnet6,
+		RuntimePhp81,
+		RuntimeRuby31,
 	}
 }
 

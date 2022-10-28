@@ -1594,11 +1594,27 @@ var awsPartition = partition{
 					},
 				},
 				endpointKey{
+					Region: "eu-central-1",
+				}: endpoint{
+					Hostname: "api.iotwireless.eu-central-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-central-1",
+					},
+				},
+				endpointKey{
 					Region: "eu-west-1",
 				}: endpoint{
 					Hostname: "api.iotwireless.eu-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "eu-west-1",
+					},
+				},
+				endpointKey{
+					Region: "sa-east-1",
+				}: endpoint{
+					Hostname: "api.iotwireless.sa-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "sa-east-1",
 					},
 				},
 				endpointKey{

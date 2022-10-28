@@ -1158,7 +1158,8 @@
       "enum":[
         "API",
         "SAML",
-        "USERPOOL"
+        "USERPOOL",
+        "AWS_AD"
       ]
     },
     "AwsAccountId":{
@@ -1199,6 +1200,21 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanObject":{"type":"boolean"},
+    "CertificateBasedAuthProperties":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"CertificateBasedAuthStatus"},
+        "CertificateAuthorityArn":{"shape":"Arn"}
+      }
+    },
+    "CertificateBasedAuthStatus":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "ENABLED",
+        "ENABLED_NO_DIRECTORY_LOGIN_FALLBACK"
+      ]
+    },
     "ComputeCapacity":{
       "type":"structure",
       "required":["DesiredInstances"],
@@ -1304,7 +1320,8 @@
       "members":{
         "DirectoryName":{"shape":"DirectoryName"},
         "OrganizationalUnitDistinguishedNames":{"shape":"OrganizationalUnitDistinguishedNamesList"},
-        "ServiceAccountCredentials":{"shape":"ServiceAccountCredentials"}
+        "ServiceAccountCredentials":{"shape":"ServiceAccountCredentials"},
+        "CertificateBasedAuthProperties":{"shape":"CertificateBasedAuthProperties"}
       }
     },
     "CreateDirectoryConfigResult":{
@@ -1900,7 +1917,8 @@
         "DirectoryName":{"shape":"DirectoryName"},
         "OrganizationalUnitDistinguishedNames":{"shape":"OrganizationalUnitDistinguishedNamesList"},
         "ServiceAccountCredentials":{"shape":"ServiceAccountCredentials"},
-        "CreatedTime":{"shape":"Timestamp"}
+        "CreatedTime":{"shape":"Timestamp"},
+        "CertificateBasedAuthProperties":{"shape":"CertificateBasedAuthProperties"}
       }
     },
     "DirectoryConfigList":{
@@ -2950,7 +2968,8 @@
       "members":{
         "DirectoryName":{"shape":"DirectoryName"},
         "OrganizationalUnitDistinguishedNames":{"shape":"OrganizationalUnitDistinguishedNamesList"},
-        "ServiceAccountCredentials":{"shape":"ServiceAccountCredentials"}
+        "ServiceAccountCredentials":{"shape":"ServiceAccountCredentials"},
+        "CertificateBasedAuthProperties":{"shape":"CertificateBasedAuthProperties"}
       }
     },
     "UpdateDirectoryConfigResult":{

@@ -4,7 +4,7 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp-fips.us-west-2.api.aws"
+                    "url": "https://private-networks-fips.us-west-2.api.aws"
                 }
             },
             "params": {
@@ -17,7 +17,7 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp-fips.us-west-2.amazonaws.com"
+                    "url": "https://private-networks-fips.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +30,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp.us-west-2.api.aws"
+                    "url": "https://private-networks.us-west-2.api.aws"
                 }
             },
             "params": {
@@ -43,7 +43,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp.us-west-2.amazonaws.com"
+                    "url": "https://private-networks.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -53,62 +53,10 @@
             }
         },
         {
-            "documentation": "For region eu-west-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://supportapp-fips.eu-west-1.api.aws"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "UseDualStack": true,
-                "Region": "eu-west-1"
-            }
-        },
-        {
-            "documentation": "For region eu-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://supportapp-fips.eu-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "UseDualStack": false,
-                "Region": "eu-west-1"
-            }
-        },
-        {
-            "documentation": "For region eu-west-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://supportapp.eu-west-1.api.aws"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "UseDualStack": true,
-                "Region": "eu-west-1"
-            }
-        },
-        {
-            "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://supportapp.eu-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "UseDualStack": false,
-                "Region": "eu-west-1"
-            }
-        },
-        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp-fips.us-east-1.api.aws"
+                    "url": "https://private-networks-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -121,7 +69,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp-fips.us-east-1.amazonaws.com"
+                    "url": "https://private-networks-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -134,7 +82,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp.us-east-1.api.aws"
+                    "url": "https://private-networks.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -147,13 +95,65 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://supportapp.us-east-1.amazonaws.com"
+                    "url": "https://private-networks.us-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "UseFIPS": false,
                 "UseDualStack": false,
                 "Region": "us-east-1"
+            }
+        },
+        {
+            "documentation": "For region us-east-2 with FIPS enabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://private-networks-fips.us-east-2.api.aws"
+                }
+            },
+            "params": {
+                "UseFIPS": true,
+                "UseDualStack": true,
+                "Region": "us-east-2"
+            }
+        },
+        {
+            "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://private-networks-fips.us-east-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseFIPS": true,
+                "UseDualStack": false,
+                "Region": "us-east-2"
+            }
+        },
+        {
+            "documentation": "For region us-east-2 with FIPS disabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://private-networks.us-east-2.api.aws"
+                }
+            },
+            "params": {
+                "UseFIPS": false,
+                "UseDualStack": true,
+                "Region": "us-east-2"
+            }
+        },
+        {
+            "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://private-networks.us-east-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseFIPS": false,
+                "UseDualStack": false,
+                "Region": "us-east-2"
             }
         },
         {
