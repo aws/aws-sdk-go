@@ -175,7 +175,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://supportapp-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://appstream2-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -226,12 +226,18 @@
                             "rules": [
                                 {
                                     "conditions": [],
-                                    "endpoint": {
-                                        "url": "https://supportapp-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                        "properties": {},
-                                        "headers": {}
-                                    },
-                                    "type": "endpoint"
+                                    "type": "tree",
+                                    "rules": [
+                                        {
+                                            "conditions": [],
+                                            "endpoint": {
+                                                "url": "https://appstream2-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -279,7 +285,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://supportapp.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://appstream2.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -297,7 +303,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://supportapp.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://appstream2.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

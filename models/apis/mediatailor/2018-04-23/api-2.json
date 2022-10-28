@@ -486,7 +486,8 @@
         "MessageType":{"shape":"MessageType"},
         "OffsetMillis":{"shape":"__long"},
         "Slate":{"shape":"SlateSource"},
-        "SpliceInsertMessage":{"shape":"SpliceInsertMessage"}
+        "SpliceInsertMessage":{"shape":"SpliceInsertMessage"},
+        "TimeSignalMessage":{"shape":"TimeSignalMessage"}
       }
     },
     "AdMarkerPassthrough":{
@@ -1354,6 +1355,10 @@
       "type":"list",
       "member":{"shape":"HttpPackageConfiguration"}
     },
+    "Integer":{
+      "type":"integer",
+      "box":true
+    },
     "ListAlertsRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -1593,7 +1598,10 @@
     },
     "MessageType":{
       "type":"string",
-      "enum":["SPLICE_INSERT"]
+      "enum":[
+        "SPLICE_INSERT",
+        "TIME_SIGNAL"
+      ]
     },
     "Mode":{
       "type":"string",
@@ -1855,6 +1863,23 @@
         "Name":{"shape":"__string"}
       }
     },
+    "SegmentationDescriptor":{
+      "type":"structure",
+      "members":{
+        "SegmentNum":{"shape":"Integer"},
+        "SegmentationEventId":{"shape":"Integer"},
+        "SegmentationTypeId":{"shape":"Integer"},
+        "SegmentationUpid":{"shape":"String"},
+        "SegmentationUpidType":{"shape":"Integer"},
+        "SegmentsExpected":{"shape":"Integer"},
+        "SubSegmentNum":{"shape":"Integer"},
+        "SubSegmentsExpected":{"shape":"Integer"}
+      }
+    },
+    "SegmentationDescriptorList":{
+      "type":"list",
+      "member":{"shape":"SegmentationDescriptor"}
+    },
     "SlateSource":{
       "type":"structure",
       "members":{
@@ -1925,6 +1950,7 @@
       "members":{
       }
     },
+    "String":{"type":"string"},
     "TagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1949,6 +1975,12 @@
         "BASIC",
         "STANDARD"
       ]
+    },
+    "TimeSignalMessage":{
+      "type":"structure",
+      "members":{
+        "SegmentationDescriptors":{"shape":"SegmentationDescriptorList"}
+      }
     },
     "Transition":{
       "type":"structure",

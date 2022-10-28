@@ -3704,6 +3704,15 @@ type AdBreak struct {
 	// For information about using splice_insert(), see the SCTE-35 specficiaiton,
 	// section 9.7.3.1.
 	SpliceInsertMessage *SpliceInsertMessage `type:"structure"`
+
+	// Defines the SCTE-35 time_signal message inserted around the ad.
+	//
+	// Programs on a channel's schedule can be configured with one or more ad breaks.
+	// You can attach a splice_insert SCTE-35 message to the ad break. This message
+	// provides basic metadata about the ad break.
+	//
+	// See section 9.7.4 of the 2022 SCTE-35 specification for more information.
+	TimeSignalMessage *TimeSignalMessage `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3745,6 +3754,12 @@ func (s *AdBreak) SetSlate(v *SlateSource) *AdBreak {
 // SetSpliceInsertMessage sets the SpliceInsertMessage field's value.
 func (s *AdBreak) SetSpliceInsertMessage(v *SpliceInsertMessage) *AdBreak {
 	s.SpliceInsertMessage = v
+	return s
+}
+
+// SetTimeSignalMessage sets the TimeSignalMessage field's value.
+func (s *AdBreak) SetTimeSignalMessage(v *TimeSignalMessage) *AdBreak {
+	s.TimeSignalMessage = v
 	return s
 }
 
@@ -10705,6 +10720,127 @@ func (s *SegmentDeliveryConfiguration) SetName(v string) *SegmentDeliveryConfigu
 	return s
 }
 
+// The segmentation_descriptor message can contain advanced metadata fields,
+// like content identifiers, to convey a wide range of information about the
+// ad break. MediaTailor writes the ad metadata in the egress manifest as part
+// of the EXT-X-DATERANGE or EventStream ad marker's SCTE-35 data.
+//
+// segmentation_descriptor messages must be sent with the time_signal message
+// type.
+//
+// See the segmentation_descriptor() table of the 2022 SCTE-35 specification
+// for more information.
+type SegmentationDescriptor struct {
+	_ struct{} `type:"structure"`
+
+	// The segment number to assign to the segmentation_descriptor.segment_num message,
+	// as defined in section 10.3.3.1 of the 2022 SCTE-35 specification Values must
+	// be between 0 and 256, inclusive. The default value is 0.
+	SegmentNum *int64 `type:"integer"`
+
+	// The Event Identifier to assign to the segmentation_descriptor.segmentation_event_id
+	// message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification.
+	// The default value is 1.
+	SegmentationEventId *int64 `type:"integer"`
+
+	// The Type Identifier to assign to the segmentation_descriptor.segmentation_type_id
+	// message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification.
+	// Values must be between 0 and 256, inclusive. The default value is 48.
+	SegmentationTypeId *int64 `type:"integer"`
+
+	// The Upid to assign to the segmentation_descriptor.segmentation_upid message,
+	// as defined in section 10.3.3.1 of the 2022 SCTE-35 specification. The value
+	// must be a hexadecimal string containing only the characters 0 though 9 and
+	// A through F. The default value is "" (an empty string).
+	SegmentationUpid *string `type:"string"`
+
+	// The Upid Type to assign to the segmentation_descriptor.segmentation_upid_type
+	// message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification.
+	// Values must be between 0 and 256, inclusive. The default value is 14.
+	SegmentationUpidType *int64 `type:"integer"`
+
+	// The number of segments expected, which is assigned to the segmentation_descriptor.segments_expectedS
+	// message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification
+	// Values must be between 0 and 256, inclusive. The default value is 0.
+	SegmentsExpected *int64 `type:"integer"`
+
+	// The sub-segment number to assign to the segmentation_descriptor.sub_segment_num
+	// message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification.
+	// Values must be between 0 and 256, inclusive. The defualt value is null.
+	SubSegmentNum *int64 `type:"integer"`
+
+	// The number of sub-segments expected, which is assigned to the segmentation_descriptor.sub_segments_expected
+	// message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification.
+	// Values must be between 0 and 256, inclusive. The default value is null.
+	SubSegmentsExpected *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SegmentationDescriptor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SegmentationDescriptor) GoString() string {
+	return s.String()
+}
+
+// SetSegmentNum sets the SegmentNum field's value.
+func (s *SegmentationDescriptor) SetSegmentNum(v int64) *SegmentationDescriptor {
+	s.SegmentNum = &v
+	return s
+}
+
+// SetSegmentationEventId sets the SegmentationEventId field's value.
+func (s *SegmentationDescriptor) SetSegmentationEventId(v int64) *SegmentationDescriptor {
+	s.SegmentationEventId = &v
+	return s
+}
+
+// SetSegmentationTypeId sets the SegmentationTypeId field's value.
+func (s *SegmentationDescriptor) SetSegmentationTypeId(v int64) *SegmentationDescriptor {
+	s.SegmentationTypeId = &v
+	return s
+}
+
+// SetSegmentationUpid sets the SegmentationUpid field's value.
+func (s *SegmentationDescriptor) SetSegmentationUpid(v string) *SegmentationDescriptor {
+	s.SegmentationUpid = &v
+	return s
+}
+
+// SetSegmentationUpidType sets the SegmentationUpidType field's value.
+func (s *SegmentationDescriptor) SetSegmentationUpidType(v int64) *SegmentationDescriptor {
+	s.SegmentationUpidType = &v
+	return s
+}
+
+// SetSegmentsExpected sets the SegmentsExpected field's value.
+func (s *SegmentationDescriptor) SetSegmentsExpected(v int64) *SegmentationDescriptor {
+	s.SegmentsExpected = &v
+	return s
+}
+
+// SetSubSegmentNum sets the SubSegmentNum field's value.
+func (s *SegmentationDescriptor) SetSubSegmentNum(v int64) *SegmentationDescriptor {
+	s.SubSegmentNum = &v
+	return s
+}
+
+// SetSubSegmentsExpected sets the SubSegmentsExpected field's value.
+func (s *SegmentationDescriptor) SetSubSegmentsExpected(v int64) *SegmentationDescriptor {
+	s.SubSegmentsExpected = &v
+	return s
+}
+
 // Slate VOD source configuration.
 type SlateSource struct {
 	_ struct{} `type:"structure"`
@@ -11156,6 +11292,48 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// The SCTE-35 time_signal message can be sent with one or more segmentation_descriptor
+// messages. A time_signal message can be sent only if a single segmentation_descriptor
+// message is sent.
+//
+// The time_signal message contains only the splice_time field which is constructed
+// using a given presentation timestamp. When sending a time_signal message,
+// the splice_command_type field in the splice_info_section message is set to
+// 6 (0x06).
+//
+// See the time_signal() table of the 2022 SCTE-35 specification for more information.
+type TimeSignalMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The configurations for the SCTE-35 segmentation_descriptor message(s) sent
+	// with the time_signal message.
+	SegmentationDescriptors []*SegmentationDescriptor `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSignalMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSignalMessage) GoString() string {
+	return s.String()
+}
+
+// SetSegmentationDescriptors sets the SegmentationDescriptors field's value.
+func (s *TimeSignalMessage) SetSegmentationDescriptors(v []*SegmentationDescriptor) *TimeSignalMessage {
+	s.SegmentationDescriptors = v
+	return s
 }
 
 // Program transition configuration.
@@ -12247,12 +12425,16 @@ func ChannelState_Values() []string {
 const (
 	// MessageTypeSpliceInsert is a MessageType enum value
 	MessageTypeSpliceInsert = "SPLICE_INSERT"
+
+	// MessageTypeTimeSignal is a MessageType enum value
+	MessageTypeTimeSignal = "TIME_SIGNAL"
 )
 
 // MessageType_Values returns all elements of the MessageType enum
 func MessageType_Values() []string {
 	return []string{
 		MessageTypeSpliceInsert,
+		MessageTypeTimeSignal,
 	}
 }
 

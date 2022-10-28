@@ -351,7 +351,7 @@ func (c *Cloud9) DeleteEnvironmentMembershipRequest(input *DeleteEnvironmentMemb
 
 // DeleteEnvironmentMembership API operation for AWS Cloud9.
 //
-// Deletes an environment member from an Cloud9 development environment.
+// Deletes an environment member from a development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1601,10 +1601,13 @@ type CreateEnvironmentEC2Input struct {
 	// EC2 instance. To choose an AMI for the instance, you must specify a valid
 	// AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.
 	//
-	// The default AMI is used if the parameter isn't explicitly assigned a value
-	// in the request. Because Amazon Linux AMI has ended standard support as of
-	// December 31, 2020, we recommend you choose Amazon Linux 2, which includes
-	// long term support through 2023.
+	// The default Amazon Linux AMI is currently used if the parameter isn't explicitly
+	// assigned a value in the request.
+	//
+	// In the future the parameter for Amazon Linux will no longer be available
+	// when you specify an AMI for your instance. Amazon Linux 2 will then become
+	// the default AMI, which is used to launch your instance if no parameter is
+	// explicitly defined.
 	//
 	// AMI aliases
 	//

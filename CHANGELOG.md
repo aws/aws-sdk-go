@@ -1,3 +1,19 @@
+Release v1.44.126 (2022-10-28)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API
+* `service/appstream`: Updates service API and documentation
+  * This release includes CertificateBasedAuthProperties in CreateDirectoryConfig and UpdateDirectoryConfig.
+* `service/cloud9`: Updates service documentation
+  * Update to the documentation section of the Cloud9 API Reference guide.
+* `service/cloudformation`: Updates service API and documentation
+  * This release adds more fields to improves visibility of AWS CloudFormation StackSets information in following APIs: ListStackInstances, DescribeStackInstance, ListStackSetOperationResults, ListStackSetOperations, DescribeStackSetOperation.
+* `service/gamesparks`: Updates service API
+* `service/mediatailor`: Updates service API and documentation
+* `service/privatenetworks`: Adds new service
+* `service/support-app`: Adds new service
+
 Release v1.44.125 (2022-10-27)
 ===
 

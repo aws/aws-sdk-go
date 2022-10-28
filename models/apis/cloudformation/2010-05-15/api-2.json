@@ -2387,7 +2387,8 @@
         "OperationId":{"shape":"ClientRequestToken"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"},
-        "CallAs":{"shape":"CallAs"}
+        "CallAs":{"shape":"CallAs"},
+        "Filters":{"shape":"OperationResultFilters"}
       }
     },
     "ListStackSetOperationResultsOutput":{
@@ -2627,6 +2628,28 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "OperationResultFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"OperationResultFilterName"},
+        "Values":{"shape":"OperationResultFilterValues"}
+      }
+    },
+    "OperationResultFilterName":{
+      "type":"string",
+      "enum":["OPERATION_RESULT_STATUS"]
+    },
+    "OperationResultFilterValues":{
+      "type":"string",
+      "max":9,
+      "min":6,
+      "pattern":"^\\S{6,9}$"
+    },
+    "OperationResultFilters":{
+      "type":"list",
+      "member":{"shape":"OperationResultFilter"},
+      "max":1
     },
     "OperationStatus":{
       "type":"string",
@@ -3360,7 +3383,8 @@
         "StatusReason":{"shape":"Reason"},
         "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
         "DriftStatus":{"shape":"StackDriftStatus"},
-        "LastDriftCheckTimestamp":{"shape":"Timestamp"}
+        "LastDriftCheckTimestamp":{"shape":"Timestamp"},
+        "LastOperationId":{"shape":"ClientRequestToken"}
       }
     },
     "StackInstanceComprehensiveStatus":{
@@ -3389,17 +3413,21 @@
     },
     "StackInstanceFilterName":{
       "type":"string",
-      "enum":["DETAILED_STATUS"]
+      "enum":[
+        "DETAILED_STATUS",
+        "LAST_OPERATION_ID"
+      ]
     },
     "StackInstanceFilterValues":{
       "type":"string",
-      "max":10,
-      "min":6
+      "max":128,
+      "min":1,
+      "pattern":"^\\S{1,128}$"
     },
     "StackInstanceFilters":{
       "type":"list",
       "member":{"shape":"StackInstanceFilter"},
-      "max":1
+      "max":2
     },
     "StackInstanceNotFoundException":{
       "type":"structure",
@@ -3436,7 +3464,8 @@
         "StackInstanceStatus":{"shape":"StackInstanceComprehensiveStatus"},
         "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
         "DriftStatus":{"shape":"StackDriftStatus"},
-        "LastDriftCheckTimestamp":{"shape":"Timestamp"}
+        "LastDriftCheckTimestamp":{"shape":"Timestamp"},
+        "LastOperationId":{"shape":"ClientRequestToken"}
       }
     },
     "StackName":{"type":"string"},
@@ -3702,7 +3731,8 @@
         "EndTimestamp":{"shape":"Timestamp"},
         "DeploymentTargets":{"shape":"DeploymentTargets"},
         "StackSetDriftDetectionDetails":{"shape":"StackSetDriftDetectionDetails"},
-        "StatusReason":{"shape":"StackSetOperationStatusReason"}
+        "StatusReason":{"shape":"StackSetOperationStatusReason"},
+        "StatusDetails":{"shape":"StackSetOperationStatusDetails"}
       }
     },
     "StackSetOperationAction":{
@@ -3761,6 +3791,12 @@
         "QUEUED"
       ]
     },
+    "StackSetOperationStatusDetails":{
+      "type":"structure",
+      "members":{
+        "FailedStackInstancesCount":{"shape":"FailedStackInstancesCount"}
+      }
+    },
     "StackSetOperationStatusReason":{"type":"string"},
     "StackSetOperationSummaries":{
       "type":"list",
@@ -3774,7 +3810,9 @@
         "Status":{"shape":"StackSetOperationStatus"},
         "CreationTimestamp":{"shape":"Timestamp"},
         "EndTimestamp":{"shape":"Timestamp"},
-        "StatusReason":{"shape":"StackSetOperationStatusReason"}
+        "StatusReason":{"shape":"StackSetOperationStatusReason"},
+        "StatusDetails":{"shape":"StackSetOperationStatusDetails"},
+        "OperationPreferences":{"shape":"StackSetOperationPreferences"}
       }
     },
     "StackSetStatus":{

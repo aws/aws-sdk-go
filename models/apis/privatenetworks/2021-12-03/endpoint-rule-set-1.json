@@ -175,7 +175,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://supportapp-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://private-networks-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -227,7 +227,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://supportapp-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                        "url": "https://private-networks-fips.{Region}.{PartitionResult#dnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -279,7 +279,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://supportapp.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://private-networks.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -297,7 +297,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://supportapp.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://private-networks.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

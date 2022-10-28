@@ -62,7 +62,7 @@
     "SetTypeDefaultVersion": "<p>Specify the default version of an extension. The default version of an extension will be used in CloudFormation operations.</p>",
     "SignalResource": "<p>Sends a signal to the specified resource with a success or failure status. You can use the <code>SignalResource</code> operation in conjunction with a creation policy or update policy. CloudFormation doesn't proceed with a stack creation or update until resources receive the required number of signals or the timeout period is exceeded. The <code>SignalResource</code> operation is useful in cases where you want to send signals from anywhere other than an Amazon EC2 instance.</p>",
     "StopStackSetOperation": "<p>Stops an in-progress operation on a stack set and its associated stack instances. StackSets will cancel all the unstarted stack instance deployments and wait for those are in-progress to complete.</p>",
-    "TestType": "<p>Tests a registered extension to make sure it meets all necessary requirements for being published in the CloudFormation registry.</p> <ul> <li> <p>For resource types, this includes passing all contracts tests defined for the type.</p> </li> <li> <p>For modules, this includes determining if the module's model meets all necessary requirements.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-testing\">Testing your public extension prior to publishing</a> in the <i>CloudFormation CLI User Guide</i>.</p> <p>If you don't specify a version, CloudFormation uses the default version of the extension in your account and region for testing.</p> <p>To perform testing, CloudFormation assumes the execution role specified when the type was registered. For more information, see <a href=\"AWSCloudFormation/latest/APIReference/API_RegisterType.html\">RegisterType</a>.</p> <p>Once you've initiated testing on an extension using <code>TestType</code>, you can use <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html\">DescribeType</a> to monitor the current test status and test status description for the extension.</p> <p>An extension must have a test status of <code>PASSED</code> before it can be published. For more information, see <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-publish.html\">Publishing extensions to make them available for public use</a> in the <i>CloudFormation CLI User Guide</i>.</p>",
+    "TestType": "<p>Tests a registered extension to make sure it meets all necessary requirements for being published in the CloudFormation registry.</p> <ul> <li> <p>For resource types, this includes passing all contracts tests defined for the type.</p> </li> <li> <p>For modules, this includes determining if the module's model meets all necessary requirements.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-testing\">Testing your public extension prior to publishing</a> in the <i>CloudFormation CLI User Guide</i>.</p> <p>If you don't specify a version, CloudFormation uses the default version of the extension in your account and region for testing.</p> <p>To perform testing, CloudFormation assumes the execution role specified when the type was registered. For more information, see <a href=\"AWSCloudFormation/latest/APIReference/API_RegisterType.html\">RegisterType</a>.</p> <p>Once you've initiated testing on an extension using <code>TestType</code>, you can pass the returned <code>TypeVersionArn</code> into <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html\">DescribeType</a> to monitor the current test status and test status description for the extension.</p> <p>An extension must have a test status of <code>PASSED</code> before it can be published. For more information, see <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-publish.html\">Publishing extensions to make them available for public use</a> in the <i>CloudFormation CLI User Guide</i>.</p>",
     "UpdateStack": "<p>Updates a stack as specified in the template. After the call completes successfully, the stack update starts. You can check the status of the stack through the <a>DescribeStacks</a> action.</p> <p>To get a copy of the template for an existing stack, you can use the <a>GetTemplate</a> action.</p> <p>For more information about creating an update template, updating a stack, and monitoring the progress of the update, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks.html\">Updating a Stack</a>.</p>",
     "UpdateStackInstances": "<p>Updates the parameter values for stack instances for the specified accounts, within the specified Amazon Web Services Regions. A stack instance refers to a stack in a specific account and Region.</p> <p>You can only update stack instances in Amazon Web Services Regions and accounts where they already exist; to create additional stack instances, use <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_CreateStackInstances.html\">CreateStackInstances</a>.</p> <p>During stack set updates, any parameters overridden for a stack instance aren't updated, but retain their overridden value.</p> <p>You can only update the parameter <i>values</i> that are specified in the stack set; to add or delete a parameter itself, use <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_UpdateStackSet.html\">UpdateStackSet</a> to update the stack set template. If you add a parameter to a template, before you can override the parameter value specified in the stack set you must first use <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_UpdateStackSet.html\">UpdateStackSet</a> to update all stack instances with the updated template and parameter value specified in the stack set. Once a stack instance has been updated with the new parameter, you can then override the parameter value using <code>UpdateStackInstances</code>.</p>",
     "UpdateStackSet": "<p>Updates the stack set, and associated stack instances in the specified accounts and Amazon Web Services Regions.</p> <p>Even if the stack set operation created by updating the stack set fails (completely or partially, below or above a specified failure tolerance), the stack set is updated with your changes. Subsequent <a>CreateStackInstances</a> calls on the specified stack set use the updated stack set.</p>",
@@ -90,7 +90,7 @@
     "AccountFilterType": {
       "base": null,
       "refs": {
-        "DeploymentTargets$AccountFilterType": "<p>Limit deployment targets to individual accounts or include additional accounts with provided OUs.</p> <p>The following is a list of possible values for the <code>AccountFilterType</code> operation.</p> <ul> <li> <p> <code>INTERSECTION</code>: StackSets deploys to the accounts specified in <code>Accounts</code> parameter. </p> </li> <li> <p> <code>DIFFERENCE</code>: StackSets excludes the accounts specified in <code>Accounts</code> parameter. This enables user to avoid certain accounts within an OU such as suspended accounts.</p> </li> <li> <p> <code>UNION</code>: (default value) StackSets includes additional accounts deployment targets. </p> <p>This is the default value if <code>AccountFilterType</code> is not provided. This enables user to update an entire OU and individual accounts from a different OU in one request, which used to be two separate requests.</p> </li> <li> <p> <code>NONE</code>: Deploys to all the accounts in specified organizational units (OU).</p> </li> </ul>"
+        "DeploymentTargets$AccountFilterType": "<p>Limit deployment targets to individual accounts or include additional accounts with provided OUs.</p> <p>The following is a list of possible values for the <code>AccountFilterType</code> operation.</p> <ul> <li> <p> <code>INTERSECTION</code>: StackSets deploys to the accounts specified in <code>Accounts</code> parameter. </p> </li> <li> <p> <code>DIFFERENCE</code>: StackSets excludes the accounts specified in <code>Accounts</code> parameter. This enables user to avoid certain accounts within an OU such as suspended accounts.</p> </li> <li> <p> <code>UNION</code>: StackSets includes additional accounts deployment targets. </p> <p>This is the default value if <code>AccountFilterType</code> is not provided. This enables user to update an entire OU and individual accounts from a different OU in one request, which used to be two separate requests.</p> </li> <li> <p> <code>NONE</code>: Deploys to all the accounts in specified organizational units (OU).</p> </li> </ul>"
       }
     },
     "AccountGateResult": {
@@ -454,6 +454,8 @@
         "RecordHandlerProgressInput$ClientRequestToken": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>",
         "RollbackStackInput$ClientRequestToken": "<p>A unique identifier for this <code>RollbackStack</code> request.</p>",
         "StackEvent$ClientRequestToken": "<p>The token passed to the operation that generated this event.</p> <p>All events triggered by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a <code>CreateStack</code> operation with the token <code>token1</code>, then all the <code>StackEvents</code> generated by that operation will have <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format <i>Console-StackOperation-ID</i>, which helps you easily identify the stack operation . For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>.</p>",
+        "StackInstance$LastOperationId": "<p>The last unique ID of a StackSet operation performed on a stack instance.</p>",
+        "StackInstanceSummary$LastOperationId": "<p>The last unique ID of a StackSet operation performed on a stack instance.</p>",
         "StackSetOperation$OperationId": "<p>The unique ID of a stack set operation.</p>",
         "StackSetOperationSummary$OperationId": "<p>The unique ID of the stack set operation.</p>",
         "StopStackSetOperationInput$OperationId": "<p>The ID of the stack operation.</p>",
@@ -950,7 +952,8 @@
     "FailedStackInstancesCount": {
       "base": null,
       "refs": {
-        "StackSetDriftDetectionDetails$FailedStackInstancesCount": "<p>The number of stack instances for which the drift detection operation failed.</p>"
+        "StackSetDriftDetectionDetails$FailedStackInstancesCount": "<p>The number of stack instances for which the drift detection operation failed.</p>",
+        "StackSetOperationStatusDetails$FailedStackInstancesCount": "<p>The number of stack instances for which the StackSet operation failed.</p>"
       }
     },
     "FailureToleranceCount": {
@@ -1505,6 +1508,30 @@
     "OperationNotFoundException": {
       "base": "<p>The specified ID refers to an operation that doesn't exist.</p>",
       "refs": {
+      }
+    },
+    "OperationResultFilter": {
+      "base": "<p>The status that operation results are filtered by.</p>",
+      "refs": {
+        "OperationResultFilters$member": null
+      }
+    },
+    "OperationResultFilterName": {
+      "base": null,
+      "refs": {
+        "OperationResultFilter$Name": "<p>The type of filter to apply.</p>"
+      }
+    },
+    "OperationResultFilterValues": {
+      "base": null,
+      "refs": {
+        "OperationResultFilter$Values": "<p>The value to filter by.</p>"
+      }
+    },
+    "OperationResultFilters": {
+      "base": null,
+      "refs": {
+        "ListStackSetOperationResultsInput$Filters": "<p>The filter to apply to operation results.</p>"
       }
     },
     "OperationStatus": {
@@ -2313,7 +2340,7 @@
       }
     },
     "StackInstanceFilter": {
-      "base": "<p>The status that stack instances are filtered by.</p>",
+      "base": "<p>The filter to apply to stack instances</p>",
       "refs": {
         "StackInstanceFilters$member": null
       }
@@ -2333,7 +2360,7 @@
     "StackInstanceFilters": {
       "base": null,
       "refs": {
-        "ListStackInstancesInput$Filters": "<p>The status that stack instances are filtered by.</p>"
+        "ListStackInstancesInput$Filters": "<p>The filter to apply to stack instances</p>"
       }
     },
     "StackInstanceNotFoundException": {
@@ -2611,6 +2638,7 @@
         "DetectStackSetDriftInput$OperationPreferences": null,
         "ImportStacksToStackSetInput$OperationPreferences": null,
         "StackSetOperation$OperationPreferences": "<p>The preferences for how CloudFormation performs this stack set operation.</p>",
+        "StackSetOperationSummary$OperationPreferences": null,
         "UpdateStackInstancesInput$OperationPreferences": "<p>Preferences for how CloudFormation performs this stack set operation.</p>",
         "UpdateStackSetInput$OperationPreferences": "<p>Preferences for how CloudFormation performs this stack set operation.</p>"
       }
@@ -2638,6 +2666,13 @@
       "refs": {
         "StackSetOperation$Status": "<p>The status of the operation.</p> <ul> <li> <p> <code>FAILED</code>: The operation exceeded the specified failure tolerance. The failure tolerance value that you've set for an operation is applied for each Region during stack create and update operations. If the number of failed stacks within a Region exceeds the failure tolerance, the status of the operation in the Region is set to <code>FAILED</code>. This in turn sets the status of the operation as a whole to <code>FAILED</code>, and CloudFormation cancels the operation in any remaining Regions.</p> </li> <li> <p> <code>QUEUED</code>: [Service-managed permissions] For automatic deployments that require a sequence of operations, the operation is queued to be performed. For more information, see the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-status-codes\">stack set operation status codes</a> in the CloudFormation User Guide.</p> </li> <li> <p> <code>RUNNING</code>: The operation is currently being performed.</p> </li> <li> <p> <code>STOPPED</code>: The user has canceled the operation.</p> </li> <li> <p> <code>STOPPING</code>: The operation is in the process of stopping, at user request.</p> </li> <li> <p> <code>SUCCEEDED</code>: The operation completed creating or updating all the specified stacks without exceeding the failure tolerance for the operation.</p> </li> </ul>",
         "StackSetOperationSummary$Status": "<p>The overall status of the operation.</p> <ul> <li> <p> <code>FAILED</code>: The operation exceeded the specified failure tolerance. The failure tolerance value that you've set for an operation is applied for each Region during stack create and update operations. If the number of failed stacks within a Region exceeds the failure tolerance, the status of the operation in the Region is set to <code>FAILED</code>. This in turn sets the status of the operation as a whole to <code>FAILED</code>, and CloudFormation cancels the operation in any remaining Regions.</p> </li> <li> <p> <code>QUEUED</code>: [Service-managed permissions] For automatic deployments that require a sequence of operations, the operation is queued to be performed. For more information, see the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-status-codes\">stack set operation status codes</a> in the CloudFormation User Guide.</p> </li> <li> <p> <code>RUNNING</code>: The operation is currently being performed.</p> </li> <li> <p> <code>STOPPED</code>: The user has canceled the operation.</p> </li> <li> <p> <code>STOPPING</code>: The operation is in the process of stopping, at user request.</p> </li> <li> <p> <code>SUCCEEDED</code>: The operation completed creating or updating all the specified stacks without exceeding the failure tolerance for the operation.</p> </li> </ul>"
+      }
+    },
+    "StackSetOperationStatusDetails": {
+      "base": "<p>Detailed information about the StackSet operation.</p>",
+      "refs": {
+        "StackSetOperation$StatusDetails": "<p>Detailed information about the StackSet operation.</p>",
+        "StackSetOperationSummary$StatusDetails": "<p>Detailed information about the stack set operation.</p>"
       }
     },
     "StackSetOperationStatusReason": {

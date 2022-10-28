@@ -1481,7 +1481,7 @@
     "GameSdkVersion": {
       "max": 10,
       "min": 5,
-      "pattern": "^(\\d|[1-9]\\d*)\\.(\\d|[0-9]\\d*)\\.(\\d|[0-9]\\d*)$",
+      "pattern": "^((\\d|[1-9]\\d*)\\.(\\d|[0-9]\\d*)\\.(\\d|[0-9]\\d*)|LATEST)$",
       "type": "string"
     },
     "GameState": {
