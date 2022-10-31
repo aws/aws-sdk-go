@@ -2,6 +2,7 @@ package jsonutil_test
 
 import (
 	"encoding/json"
+	"math"
 	"strings"
 	"testing"
 	"time"
@@ -41,41 +42,48 @@ var jsonTests = []struct {
 	err string
 }{
 	{
-		J{},
-		`{}`,
-		``,
+		in:  J{},
+		out: `{}`,
 	},
 	{
-		J{
+		in: J{
 			S:  S("str"),
 			SS: []string{"A", "B", "C"},
 			D:  D(123),
 			F:  F(4.56),
 			T:  T(time.Unix(987, 0)),
 		},
-		`{"S":"str","SS":["A","B","C"],"D":123,"F":4.56,"T":987}`,
-		``,
+		out: `{"S":"str","SS":["A","B","C"],"D":123,"F":4.56,"T":987}`,
 	},
 	{
-		J{
+		in: J{
 			S: S(`"''"`),
 		},
-		`{"S":"\"''\""}`,
-		``,
+		out: `{"S":"\"''\""}`,
 	},
 	{
-		J{
+		in: J{
 			S: S("\x00føø\u00FF\n\\\"\r\t\b\f"),
 		},
-		`{"S":"\u0000føøÿ\n\\\"\r\t\b\f"}`,
-		``,
+		out: `{"S":"\u0000føøÿ\n\\\"\r\t\b\f"}`,
 	},
 	{
-		J{
-			F: F(4.56 / zero),
+		in: J{
+			F: F(math.NaN()),
 		},
-		"",
-		`json: unsupported value: +Inf`,
+		out: `{"F":"NaN"}`,
+	},
+	{
+		in: J{
+			F: F(math.Inf(1)),
+		},
+		out: `{"F":"Infinity"}`,
+	},
+	{
+		in: J{
+			F: F(math.Inf(-1)),
+		},
+		out: `{"F":"-Infinity"}`,
 	},
 }
 
