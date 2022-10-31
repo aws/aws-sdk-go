@@ -1031,6 +1031,7 @@
         "IotSiteWiseAction$roleArn": "<p>The ARN of the role that grants IoT permission to send an asset property value to IoT SiteWise. (<code>\"Action\": \"iotsitewise:BatchPutAssetPropertyValue\"</code>). The trust policy can restrict access to specific asset hierarchy paths.</p>",
         "KafkaAction$destinationArn": "<p>The ARN of Kafka action's VPC <code>TopicRuleDestination</code>.</p>",
         "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access to the Amazon Kinesis stream.</p>",
+        "LocationAction$roleArn": "<p>The IAM role that grants permission to write to the Amazon Location resource.</p>",
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "OpenSearchAction$roleArn": "<p>The IAM role ARN that has access to OpenSearch.</p>",
         "RepublishAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
@@ -4926,6 +4927,18 @@
       "refs": {
       }
     },
+    "LocationAction": {
+      "base": "<p>The Amazon Location rule action sends device location updates from an MQTT message to an Amazon Location tracker resource.</p>",
+      "refs": {
+        "Action$location": "<p>The Amazon Location Service rule action sends device location updates from an MQTT message to an Amazon Location tracker resource.</p>"
+      }
+    },
+    "LocationTimestamp": {
+      "base": "<p>Describes how to interpret an application-defined timestamp value from an MQTT message payload and the precision of that value.</p>",
+      "refs": {
+        "LocationAction$timestamp": "<p>The time that the location data was sampled. The default value is the time the MQTT message was processed.</p>"
+      }
+    },
     "LogGroupName": {
       "base": null,
       "refs": {
@@ -5981,9 +5994,9 @@
     "ProvisioningHook": {
       "base": "<p>Structure that contains <code>payloadVersion</code> and <code>targetArn</code>.</p>",
       "refs": {
-        "CreateProvisioningTemplateRequest$preProvisioningHook": "<p>Creates a pre-provisioning hook template.</p>",
+        "CreateProvisioningTemplateRequest$preProvisioningHook": "<p>Creates a pre-provisioning hook template. Only supports template of type <code>FLEET_PROVISIONING</code>. For more information about provisioning template types, see <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type\">type</a>.</p>",
         "DescribeProvisioningTemplateResponse$preProvisioningHook": "<p>Gets information about a pre-provisioned hook.</p>",
-        "UpdateProvisioningTemplateRequest$preProvisioningHook": "<p>Updates the pre-provisioning hook template.</p>"
+        "UpdateProvisioningTemplateRequest$preProvisioningHook": "<p>Updates the pre-provisioning hook template. Only supports template of type <code>FLEET_PROVISIONING</code>. For more information about provisioning template types, see <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type\">type</a>.</p>"
       }
     },
     "ProvisioningTemplateListing": {
@@ -7190,6 +7203,12 @@
         "KafkaAction$topic": "<p>The Kafka topic for messages to be sent to the Kafka broker.</p>",
         "KafkaAction$key": "<p>The Kafka message key.</p>",
         "KafkaAction$partition": "<p>The Kafka message partition.</p>",
+        "LocationAction$trackerName": "<p>The name of the tracker resource in Amazon Location in which the location is updated.</p>",
+        "LocationAction$deviceId": "<p>The unique ID of the device providing the location data.</p>",
+        "LocationAction$latitude": "<p>A string that evaluates to a double value that represents the latitude of the device's location.</p>",
+        "LocationAction$longitude": "<p>A string that evaluates to a double value that represents the longitude of the device's location.</p>",
+        "LocationTimestamp$value": "<p>An expression that returns a long epoch time value.</p>",
+        "LocationTimestamp$unit": "<p>The precision of the timestamp value that results from the expression described in <code>value</code>.</p> <p>Valid values: <code>SECONDS</code> | <code>MILLISECONDS</code> | <code>MICROSECONDS</code> | <code>NANOSECONDS</code>. The default is <code>MILLISECONDS</code>.</p>",
         "StringMap$key": null,
         "StringMap$value": null,
         "TopicRuleDestination$statusReason": "<p>Additional details or reason why the topic rule destination is in the current status.</p>",
@@ -7486,7 +7505,7 @@
         "DescribeProvisioningTemplateResponse$defaultVersionId": "<p>The default fleet template version ID.</p>",
         "DescribeProvisioningTemplateVersionRequest$versionId": "<p>The provisioning template version ID.</p>",
         "DescribeProvisioningTemplateVersionResponse$versionId": "<p>The provisioning template version ID.</p>",
-        "ProvisioningTemplateVersionSummary$versionId": "<p>The ID of the fleet privisioning template version.</p>",
+        "ProvisioningTemplateVersionSummary$versionId": "<p>The ID of the fleet provisioning template version.</p>",
         "UpdateProvisioningTemplateRequest$defaultVersionId": "<p>The ID of the default provisioning template version.</p>"
       }
     },
@@ -7958,7 +7977,7 @@
     "TinyMaxResults": {
       "base": null,
       "refs": {
-        "GetBehaviorModelTrainingSummariesRequest$maxResults": "<p> The maximum number of results to return at one time. The default is 25. </p>"
+        "GetBehaviorModelTrainingSummariesRequest$maxResults": "<p> The maximum number of results to return at one time. The default is 10. </p>"
       }
     },
     "TlsContext": {

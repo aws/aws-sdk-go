@@ -69,6 +69,7 @@
     "DisassociateQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Disassociates a set of quick connects from a queue.</p>",
     "DisassociateRoutingProfileQueues": "<p>Disassociates a set of queues from a routing profile.</p>",
     "DisassociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the specified security key.</p>",
+    "DismissUserContact": "<p>Dismisses contacts from an agent’s CCP and returns the agent to an available state, which allows the agent to receive a new routed contact. Contacts can only be dismissed if they are in a <code>MISSED</code>, <code>ERROR</code>, <code>ENDED</code>, or <code>REJECTED</code> state in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html\">Agent Event Stream</a>.</p>",
     "GetContactAttributes": "<p>Retrieves the contact attributes for the specified contact.</p>",
     "GetCurrentMetricData": "<p>Gets the real-time metric data from the specified Amazon Connect instance.</p> <p>For a description of each metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html\">Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "GetCurrentUserData": "<p>Gets the real-time active user data from the specified Amazon Connect instance. </p>",
@@ -155,7 +156,7 @@
     "UpdateRoutingProfileQueues": "<p>Updates the properties associated with a set of queues for a routing profile.</p>",
     "UpdateSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates a security profile.</p>",
     "UpdateTaskTemplate": "<p>Updates details about a specific task template in the specified Amazon Connect instance. This operation does not support partial updates. Instead it does a full update of template content.</p>",
-    "UpdateTrafficDistribution": "<p>Updates the traffic distribution for a given traffic distribution group. For more information about updating a traffic distribution group see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html\">Update telephony traffic distribution across Amazon Web Services Regions </a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
+    "UpdateTrafficDistribution": "<p>Updates the traffic distribution for a given traffic distribution group. </p> <p>For more information about updating a traffic distribution group, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html\">Update telephony traffic distribution across Amazon Web Services Regions </a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
     "UpdateUserHierarchy": "<p>Assigns the specified hierarchy group to the specified user.</p>",
     "UpdateUserHierarchyGroupName": "<p>Updates the name of the user hierarchy group. </p>",
     "UpdateUserHierarchyStructure": "<p>Updates the user hierarchy structure: add, remove, and rename user hierarchy levels.</p>",
@@ -886,6 +887,7 @@
         "Contact$InitialContactId": "<p>If this contact is related to other contacts, this is the ID of the initial contact.</p>",
         "Contact$PreviousContactId": "<p>If this contact is not the first contact, this is the ID of the previous contact.</p>",
         "DescribeContactRequest$ContactId": "<p>The identifier of the contact.</p>",
+        "DismissUserContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "GetContactAttributesRequest$InitialContactId": "<p>The identifier of the initial contact.</p>",
         "ListContactReferencesRequest$ContactId": "<p>The identifier of the initial contact.</p>",
         "ResumeContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
@@ -1553,6 +1555,16 @@
       "refs": {
       }
     },
+    "DismissUserContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DismissUserContactResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisplayName": {
       "base": null,
       "refs": {
@@ -2069,6 +2081,7 @@
         "DisassociateQueueQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DisassociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DisassociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "DismissUserContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "GetContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "GetCurrentMetricDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "GetCurrentUserDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -4737,6 +4750,7 @@
         "CreateUserResponse$UserId": "<p>The identifier of the user account.</p>",
         "DeleteUserRequest$UserId": "<p>The identifier of the user.</p>",
         "DescribeUserRequest$UserId": "<p>The identifier of the user account.</p>",
+        "DismissUserContactRequest$UserId": "<p>The identifier of the user account.</p>",
         "PutUserStatusRequest$UserId": "<p>The identifier of the user.</p>",
         "UpdateUserHierarchyRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserIdentityInfoRequest$UserId": "<p>The identifier of the user account.</p>",

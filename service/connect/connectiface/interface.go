@@ -328,6 +328,10 @@ type ConnectAPI interface {
 	DisassociateSecurityKeyWithContext(aws.Context, *connect.DisassociateSecurityKeyInput, ...request.Option) (*connect.DisassociateSecurityKeyOutput, error)
 	DisassociateSecurityKeyRequest(*connect.DisassociateSecurityKeyInput) (*request.Request, *connect.DisassociateSecurityKeyOutput)
 
+	DismissUserContact(*connect.DismissUserContactInput) (*connect.DismissUserContactOutput, error)
+	DismissUserContactWithContext(aws.Context, *connect.DismissUserContactInput, ...request.Option) (*connect.DismissUserContactOutput, error)
+	DismissUserContactRequest(*connect.DismissUserContactInput) (*request.Request, *connect.DismissUserContactOutput)
+
 	GetContactAttributes(*connect.GetContactAttributesInput) (*connect.GetContactAttributesOutput, error)
 	GetContactAttributesWithContext(aws.Context, *connect.GetContactAttributesInput, ...request.Option) (*connect.GetContactAttributesOutput, error)
 	GetContactAttributesRequest(*connect.GetContactAttributesInput) (*request.Request, *connect.GetContactAttributesOutput)

@@ -13,6 +13,21 @@
     "uid":"sesv2-2019-09-27"
   },
   "operations":{
+    "BatchGetMetricData":{
+      "name":"BatchGetMetricData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/metrics/batch"
+      },
+      "input":{"shape":"BatchGetMetricDataRequest"},
+      "output":{"shape":"BatchGetMetricDataResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "CreateConfigurationSet":{
       "name":"CreateConfigurationSet",
       "http":{
@@ -732,6 +747,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "ListRecommendations":{
+      "name":"ListRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/vdm/recommendations"
+      },
+      "input":{"shape":"ListRecommendationsRequest"},
+      "output":{"shape":"ListRecommendationsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "ListSuppressedDestinations":{
       "name":"ListSuppressedDestinations",
       "http":{
@@ -813,6 +842,19 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "PutAccountVdmAttributes":{
+      "name":"PutAccountVdmAttributes",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/account/vdm"
+      },
+      "input":{"shape":"PutAccountVdmAttributesRequest"},
+      "output":{"shape":"PutAccountVdmAttributesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "PutConfigurationSetDeliveryOptions":{
       "name":"PutConfigurationSetDeliveryOptions",
       "http":{
@@ -877,6 +919,20 @@
       },
       "input":{"shape":"PutConfigurationSetTrackingOptionsRequest"},
       "output":{"shape":"PutConfigurationSetTrackingOptionsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "PutConfigurationSetVdmOptions":{
+      "name":"PutConfigurationSetVdmOptions",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/configuration-sets/{ConfigurationSetName}/vdm-options"
+      },
+      "input":{"shape":"PutConfigurationSetVdmOptionsRequest"},
+      "output":{"shape":"PutConfigurationSetVdmOptionsResponse"},
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
@@ -1246,6 +1302,44 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "BatchGetMetricDataQueries":{
+      "type":"list",
+      "member":{"shape":"BatchGetMetricDataQuery"},
+      "max":10,
+      "min":1
+    },
+    "BatchGetMetricDataQuery":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Namespace",
+        "Metric",
+        "StartDate",
+        "EndDate"
+      ],
+      "members":{
+        "Id":{"shape":"QueryIdentifier"},
+        "Namespace":{"shape":"MetricNamespace"},
+        "Metric":{"shape":"Metric"},
+        "Dimensions":{"shape":"Dimensions"},
+        "StartDate":{"shape":"Timestamp"},
+        "EndDate":{"shape":"Timestamp"}
+      }
+    },
+    "BatchGetMetricDataRequest":{
+      "type":"structure",
+      "required":["Queries"],
+      "members":{
+        "Queries":{"shape":"BatchGetMetricDataQueries"}
+      }
+    },
+    "BatchGetMetricDataResponse":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"MetricDataResultList"},
+        "Errors":{"shape":"MetricDataErrorList"}
+      }
+    },
     "BehaviorOnMxFailure":{
       "type":"string",
       "enum":[
@@ -1431,6 +1525,7 @@
         "Charset":{"shape":"Charset"}
       }
     },
+    "Counter":{"type":"long"},
     "CreateConfigurationSetEventDestinationRequest":{
       "type":"structure",
       "required":[
@@ -1463,7 +1558,8 @@
         "ReputationOptions":{"shape":"ReputationOptions"},
         "SendingOptions":{"shape":"SendingOptions"},
         "Tags":{"shape":"TagList"},
-        "SuppressionOptions":{"shape":"SuppressionOptions"}
+        "SuppressionOptions":{"shape":"SuppressionOptions"},
+        "VdmOptions":{"shape":"VdmOptions"}
       }
     },
     "CreateConfigurationSetResponse":{
@@ -1674,6 +1770,18 @@
     "DailyVolumes":{
       "type":"list",
       "member":{"shape":"DailyVolume"}
+    },
+    "DashboardAttributes":{
+      "type":"structure",
+      "members":{
+        "EngagementMetrics":{"shape":"FeatureStatus"}
+      }
+    },
+    "DashboardOptions":{
+      "type":"structure",
+      "members":{
+        "EngagementMetrics":{"shape":"FeatureStatus"}
+      }
     },
     "DataFormat":{
       "type":"string",
@@ -1952,6 +2060,13 @@
         "LINK_TAG"
       ]
     },
+    "Dimensions":{
+      "type":"map",
+      "key":{"shape":"MetricDimensionName"},
+      "value":{"shape":"MetricDimensionValue"},
+      "max":3,
+      "min":1
+    },
     "DisplayName":{"type":"string"},
     "DkimAttributes":{
       "type":"structure",
@@ -2164,6 +2279,13 @@
       }
     },
     "FailureRedirectionURL":{"type":"string"},
+    "FeatureStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "FeedbackId":{"type":"string"},
     "GeneralEnforcementStatus":{"type":"string"},
     "GetAccountRequest":{
@@ -2180,7 +2302,8 @@
         "SendQuota":{"shape":"SendQuota"},
         "SendingEnabled":{"shape":"Enabled"},
         "SuppressionAttributes":{"shape":"SuppressionAttributes"},
-        "Details":{"shape":"AccountDetails"}
+        "Details":{"shape":"AccountDetails"},
+        "VdmAttributes":{"shape":"VdmAttributes"}
       }
     },
     "GetBlacklistReportsRequest":{
@@ -2238,7 +2361,8 @@
         "ReputationOptions":{"shape":"ReputationOptions"},
         "SendingOptions":{"shape":"SendingOptions"},
         "Tags":{"shape":"TagList"},
-        "SuppressionOptions":{"shape":"SuppressionOptions"}
+        "SuppressionOptions":{"shape":"SuppressionOptions"},
+        "VdmOptions":{"shape":"VdmOptions"}
       }
     },
     "GetContactListRequest":{
@@ -2581,6 +2705,18 @@
         "SuppressedDestination":{"shape":"SuppressedDestination"}
       }
     },
+    "GuardianAttributes":{
+      "type":"structure",
+      "members":{
+        "OptimizedSharedDelivery":{"shape":"FeatureStatus"}
+      }
+    },
+    "GuardianOptions":{
+      "type":"structure",
+      "members":{
+        "OptimizedSharedDelivery":{"shape":"FeatureStatus"}
+      }
+    },
     "Identity":{
       "type":"string",
       "min":1
@@ -2653,6 +2789,14 @@
         "Global":{"shape":"Enabled"},
         "TrackedIsps":{"shape":"IspNameList"}
       }
+    },
+    "InternalServiceErrorException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true,
+      "fault":true
     },
     "InvalidNextTokenException":{
       "type":"structure",
@@ -2991,6 +3135,42 @@
       "type":"list",
       "member":{"shape":"PoolName"}
     },
+    "ListRecommendationFilterValue":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
+    "ListRecommendationsFilter":{
+      "type":"map",
+      "key":{"shape":"ListRecommendationsFilterKey"},
+      "value":{"shape":"ListRecommendationFilterValue"},
+      "max":2,
+      "min":1
+    },
+    "ListRecommendationsFilterKey":{
+      "type":"string",
+      "enum":[
+        "TYPE",
+        "IMPACT",
+        "STATUS",
+        "RESOURCE_ARN"
+      ]
+    },
+    "ListRecommendationsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"ListRecommendationsFilter"},
+        "NextToken":{"shape":"NextToken"},
+        "PageSize":{"shape":"MaxItems"}
+      }
+    },
+    "ListRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "Recommendations":{"shape":"RecommendationsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListSuppressedDestinationsRequest":{
       "type":"structure",
       "members":{
@@ -3123,6 +3303,62 @@
     },
     "MessageTagName":{"type":"string"},
     "MessageTagValue":{"type":"string"},
+    "Metric":{
+      "type":"string",
+      "enum":[
+        "SEND",
+        "COMPLAINT",
+        "PERMANENT_BOUNCE",
+        "TRANSIENT_BOUNCE",
+        "OPEN",
+        "CLICK",
+        "DELIVERY",
+        "DELIVERY_OPEN",
+        "DELIVERY_CLICK",
+        "DELIVERY_COMPLAINT"
+      ]
+    },
+    "MetricDataError":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QueryIdentifier"},
+        "Code":{"shape":"QueryErrorCode"},
+        "Message":{"shape":"QueryErrorMessage"}
+      }
+    },
+    "MetricDataErrorList":{
+      "type":"list",
+      "member":{"shape":"MetricDataError"}
+    },
+    "MetricDataResult":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QueryIdentifier"},
+        "Timestamps":{"shape":"TimestampList"},
+        "Values":{"shape":"MetricValueList"}
+      }
+    },
+    "MetricDataResultList":{
+      "type":"list",
+      "member":{"shape":"MetricDataResult"}
+    },
+    "MetricDimensionName":{
+      "type":"string",
+      "enum":[
+        "EMAIL_IDENTITY",
+        "CONFIGURATION_SET",
+        "ISP"
+      ]
+    },
+    "MetricDimensionValue":{"type":"string"},
+    "MetricNamespace":{
+      "type":"string",
+      "enum":["VDM"]
+    },
+    "MetricValueList":{
+      "type":"list",
+      "member":{"shape":"Counter"}
+    },
     "NextToken":{"type":"string"},
     "NotFoundException":{
       "type":"structure",
@@ -3235,6 +3471,18 @@
       "members":{
       }
     },
+    "PutAccountVdmAttributesRequest":{
+      "type":"structure",
+      "required":["VdmAttributes"],
+      "members":{
+        "VdmAttributes":{"shape":"VdmAttributes"}
+      }
+    },
+    "PutAccountVdmAttributesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutConfigurationSetDeliveryOptionsRequest":{
       "type":"structure",
       "required":["ConfigurationSetName"],
@@ -3317,6 +3565,23 @@
       }
     },
     "PutConfigurationSetTrackingOptionsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutConfigurationSetVdmOptionsRequest":{
+      "type":"structure",
+      "required":["ConfigurationSetName"],
+      "members":{
+        "ConfigurationSetName":{
+          "shape":"ConfigurationSetName",
+          "location":"uri",
+          "locationName":"ConfigurationSetName"
+        },
+        "VdmOptions":{"shape":"VdmOptions"}
+      }
+    },
+    "PutConfigurationSetVdmOptionsResponse":{
       "type":"structure",
       "members":{
       }
@@ -3482,6 +3747,19 @@
       "members":{
       }
     },
+    "QueryErrorCode":{
+      "type":"string",
+      "enum":[
+        "INTERNAL_FAILURE",
+        "ACCESS_DENIED"
+      ]
+    },
+    "QueryErrorMessage":{"type":"string"},
+    "QueryIdentifier":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "RawMessage":{
       "type":"structure",
       "required":["Data"],
@@ -3491,6 +3769,45 @@
     },
     "RawMessageData":{"type":"blob"},
     "RblName":{"type":"string"},
+    "Recommendation":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"AmazonResourceName"},
+        "Type":{"shape":"RecommendationType"},
+        "Description":{"shape":"RecommendationDescription"},
+        "Status":{"shape":"RecommendationStatus"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"},
+        "Impact":{"shape":"RecommendationImpact"}
+      }
+    },
+    "RecommendationDescription":{"type":"string"},
+    "RecommendationImpact":{
+      "type":"string",
+      "enum":[
+        "LOW",
+        "HIGH"
+      ]
+    },
+    "RecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "OPEN",
+        "FIXED"
+      ]
+    },
+    "RecommendationType":{
+      "type":"string",
+      "enum":[
+        "DKIM",
+        "DMARC",
+        "SPF"
+      ]
+    },
+    "RecommendationsList":{
+      "type":"list",
+      "member":{"shape":"Recommendation"}
+    },
     "RenderedEmailTemplate":{"type":"string"},
     "ReplacementEmailContent":{
       "type":"structure",
@@ -3794,6 +4111,10 @@
       }
     },
     "Timestamp":{"type":"timestamp"},
+    "TimestampList":{
+      "type":"list",
+      "member":{"shape":"Timestamp"}
+    },
     "TlsPolicy":{
       "type":"string",
       "enum":[
@@ -4033,6 +4354,22 @@
       "sensitive":true
     },
     "UseDefaultIfPreferenceUnavailable":{"type":"boolean"},
+    "VdmAttributes":{
+      "type":"structure",
+      "required":["VdmEnabled"],
+      "members":{
+        "VdmEnabled":{"shape":"FeatureStatus"},
+        "DashboardAttributes":{"shape":"DashboardAttributes"},
+        "GuardianAttributes":{"shape":"GuardianAttributes"}
+      }
+    },
+    "VdmOptions":{
+      "type":"structure",
+      "members":{
+        "DashboardOptions":{"shape":"DashboardOptions"},
+        "GuardianOptions":{"shape":"GuardianOptions"}
+      }
+    },
     "VerificationStatus":{
       "type":"string",
       "enum":[

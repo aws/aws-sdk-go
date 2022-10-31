@@ -1104,6 +1104,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DismissUserContact":{
+      "name":"DismissUserContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/users/{InstanceId}/{UserId}/contact"
+      },
+      "input":{"shape":"DismissUserContactRequest"},
+      "output":{"shape":"DismissUserContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "GetContactAttributes":{
       "name":"GetContactAttributes",
       "http":{
@@ -4789,6 +4806,32 @@
           "location":"uri",
           "locationName":"AssociationId"
         }
+      }
+    },
+    "DismissUserContactRequest":{
+      "type":"structure",
+      "required":[
+        "UserId",
+        "InstanceId",
+        "ContactId"
+      ],
+      "members":{
+        "UserId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"UserId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{"shape":"ContactId"}
+      }
+    },
+    "DismissUserContactResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DisplayName":{

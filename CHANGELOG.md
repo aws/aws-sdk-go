@@ -1,3 +1,18 @@
+Release v1.44.127 (2022-10-31)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API, documentation, and paginators
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Elastic IP transfer is a new Amazon VPC feature that allows you to transfer your Elastic IP addresses from one AWS Account to another.
+* `service/iot`: Updates service API and documentation
+  * This release adds the Amazon Location action to IoT Rules Engine.
+* `service/logs`: Updates service API and documentation
+  * SDK release to support tagging for destinations and log groups with TagResource. Also supports tag on create with PutDestination.
+* `service/sesv2`: Updates service API, documentation, and paginators
+* `service/textract`: Updates service API and documentation
+
 Release v1.44.126 (2022-10-28)
 ===
 

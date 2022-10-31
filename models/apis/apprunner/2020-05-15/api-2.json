@@ -97,6 +97,21 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateVpcIngressConnection":{
+      "name":"CreateVpcIngressConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateVpcIngressConnectionRequest"},
+      "output":{"shape":"CreateVpcIngressConnectionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteAutoScalingConfiguration":{
       "name":"DeleteAutoScalingConfiguration",
       "http":{
@@ -168,6 +183,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteVpcIngressConnection":{
+      "name":"DeleteVpcIngressConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteVpcIngressConnectionRequest"},
+      "output":{"shape":"DeleteVpcIngressConnectionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidStateException"}
+      ]
+    },
     "DescribeAutoScalingConfiguration":{
       "name":"DescribeAutoScalingConfiguration",
       "http":{
@@ -232,6 +262,20 @@
       },
       "input":{"shape":"DescribeVpcConnectorRequest"},
       "output":{"shape":"DescribeVpcConnectorResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeVpcIngressConnection":{
+      "name":"DescribeVpcIngressConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeVpcIngressConnectionRequest"},
+      "output":{"shape":"DescribeVpcIngressConnectionResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceErrorException"},
@@ -347,6 +391,19 @@
         {"shape":"InternalServiceErrorException"}
       ]
     },
+    "ListVpcIngressConnections":{
+      "name":"ListVpcIngressConnections",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListVpcIngressConnectionsRequest"},
+      "output":{"shape":"ListVpcIngressConnectionsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
     "PauseService":{
       "name":"PauseService",
       "http":{
@@ -435,6 +492,21 @@
         {"shape":"InvalidStateException"},
         {"shape":"InternalServiceErrorException"}
       ]
+    },
+    "UpdateVpcIngressConnection":{
+      "name":"UpdateVpcIngressConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateVpcIngressConnectionRequest"},
+      "output":{"shape":"UpdateVpcIngressConnectionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
     }
   },
   "shapes":{
@@ -476,12 +548,14 @@
       "required":[
         "DNSTarget",
         "ServiceArn",
-        "CustomDomain"
+        "CustomDomain",
+        "VpcDNSTargets"
       ],
       "members":{
         "DNSTarget":{"shape":"String"},
         "ServiceArn":{"shape":"AppRunnerResourceArn"},
-        "CustomDomain":{"shape":"CustomDomain"}
+        "CustomDomain":{"shape":"CustomDomain"},
+        "VpcDNSTargets":{"shape":"VpcDNSTargetList"}
       }
     },
     "AuthenticationConfiguration":{
@@ -743,6 +817,27 @@
         "VpcConnector":{"shape":"VpcConnector"}
       }
     },
+    "CreateVpcIngressConnectionRequest":{
+      "type":"structure",
+      "required":[
+        "ServiceArn",
+        "VpcIngressConnectionName",
+        "IngressVpcConfiguration"
+      ],
+      "members":{
+        "ServiceArn":{"shape":"AppRunnerResourceArn"},
+        "VpcIngressConnectionName":{"shape":"VpcIngressConnectionName"},
+        "IngressVpcConfiguration":{"shape":"IngressVpcConfiguration"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateVpcIngressConnectionResponse":{
+      "type":"structure",
+      "required":["VpcIngressConnection"],
+      "members":{
+        "VpcIngressConnection":{"shape":"VpcIngressConnection"}
+      }
+    },
     "CustomDomain":{
       "type":"structure",
       "required":[
@@ -772,6 +867,12 @@
     "CustomDomainList":{
       "type":"list",
       "member":{"shape":"CustomDomain"}
+    },
+    "CustomerAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"[0-9]{12}"
     },
     "DeleteAutoScalingConfigurationRequest":{
       "type":"structure",
@@ -846,6 +947,20 @@
         "VpcConnector":{"shape":"VpcConnector"}
       }
     },
+    "DeleteVpcIngressConnectionRequest":{
+      "type":"structure",
+      "required":["VpcIngressConnectionArn"],
+      "members":{
+        "VpcIngressConnectionArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "DeleteVpcIngressConnectionResponse":{
+      "type":"structure",
+      "required":["VpcIngressConnection"],
+      "members":{
+        "VpcIngressConnection":{"shape":"VpcIngressConnection"}
+      }
+    },
     "DescribeAutoScalingConfigurationRequest":{
       "type":"structure",
       "required":["AutoScalingConfigurationArn"],
@@ -879,12 +994,14 @@
       "required":[
         "DNSTarget",
         "ServiceArn",
-        "CustomDomains"
+        "CustomDomains",
+        "VpcDNSTargets"
       ],
       "members":{
         "DNSTarget":{"shape":"String"},
         "ServiceArn":{"shape":"AppRunnerResourceArn"},
         "CustomDomains":{"shape":"CustomDomainList"},
+        "VpcDNSTargets":{"shape":"VpcDNSTargetList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -930,6 +1047,20 @@
         "VpcConnector":{"shape":"VpcConnector"}
       }
     },
+    "DescribeVpcIngressConnectionRequest":{
+      "type":"structure",
+      "required":["VpcIngressConnectionArn"],
+      "members":{
+        "VpcIngressConnectionArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "DescribeVpcIngressConnectionResponse":{
+      "type":"structure",
+      "required":["VpcIngressConnection"],
+      "members":{
+        "VpcIngressConnection":{"shape":"VpcIngressConnection"}
+      }
+    },
     "DisassociateCustomDomainRequest":{
       "type":"structure",
       "required":[
@@ -946,12 +1077,14 @@
       "required":[
         "DNSTarget",
         "ServiceArn",
-        "CustomDomain"
+        "CustomDomain",
+        "VpcDNSTargets"
       ],
       "members":{
         "DNSTarget":{"shape":"String"},
         "ServiceArn":{"shape":"AppRunnerResourceArn"},
-        "CustomDomain":{"shape":"CustomDomain"}
+        "CustomDomain":{"shape":"CustomDomain"},
+        "VpcDNSTargets":{"shape":"VpcDNSTargetList"}
       }
     },
     "DomainName":{
@@ -1059,6 +1192,19 @@
         "ECR",
         "ECR_PUBLIC"
       ]
+    },
+    "IngressConfiguration":{
+      "type":"structure",
+      "members":{
+        "IsPubliclyAccessible":{"shape":"Boolean"}
+      }
+    },
+    "IngressVpcConfiguration":{
+      "type":"structure",
+      "members":{
+        "VpcId":{"shape":"String"},
+        "VpcEndpointId":{"shape":"String"}
+      }
     },
     "InstanceConfiguration":{
       "type":"structure",
@@ -1211,6 +1357,29 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListVpcIngressConnectionsFilter":{
+      "type":"structure",
+      "members":{
+        "ServiceArn":{"shape":"AppRunnerResourceArn"},
+        "VpcEndpointId":{"shape":"String"}
+      }
+    },
+    "ListVpcIngressConnectionsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"ListVpcIngressConnectionsFilter"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListVpcIngressConnectionsResponse":{
+      "type":"structure",
+      "required":["VpcIngressConnectionSummaryList"],
+      "members":{
+        "VpcIngressConnectionSummaryList":{"shape":"VpcIngressConnectionSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
@@ -1225,7 +1394,8 @@
     "NetworkConfiguration":{
       "type":"structure",
       "members":{
-        "EgressConfiguration":{"shape":"EgressConfiguration"}
+        "EgressConfiguration":{"shape":"EgressConfiguration"},
+        "IngressConfiguration":{"shape":"IngressConfiguration"}
       }
     },
     "NextToken":{
@@ -1398,7 +1568,6 @@
         "ServiceName",
         "ServiceId",
         "ServiceArn",
-        "ServiceUrl",
         "CreatedAt",
         "UpdatedAt",
         "Status",
@@ -1638,6 +1807,24 @@
         "OperationId":{"shape":"UUID"}
       }
     },
+    "UpdateVpcIngressConnectionRequest":{
+      "type":"structure",
+      "required":[
+        "VpcIngressConnectionArn",
+        "IngressVpcConfiguration"
+      ],
+      "members":{
+        "VpcIngressConnectionArn":{"shape":"AppRunnerResourceArn"},
+        "IngressVpcConfiguration":{"shape":"IngressVpcConfiguration"}
+      }
+    },
+    "UpdateVpcIngressConnectionResponse":{
+      "type":"structure",
+      "required":["VpcIngressConnection"],
+      "members":{
+        "VpcIngressConnection":{"shape":"VpcIngressConnection"}
+      }
+    },
     "VpcConnector":{
       "type":"structure",
       "members":{
@@ -1667,6 +1854,62 @@
     "VpcConnectors":{
       "type":"list",
       "member":{"shape":"VpcConnector"}
+    },
+    "VpcDNSTarget":{
+      "type":"structure",
+      "members":{
+        "VpcIngressConnectionArn":{"shape":"AppRunnerResourceArn"},
+        "VpcId":{"shape":"String"},
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "VpcDNSTargetList":{
+      "type":"list",
+      "member":{"shape":"VpcDNSTarget"}
+    },
+    "VpcIngressConnection":{
+      "type":"structure",
+      "members":{
+        "VpcIngressConnectionArn":{"shape":"AppRunnerResourceArn"},
+        "VpcIngressConnectionName":{"shape":"VpcIngressConnectionName"},
+        "ServiceArn":{"shape":"AppRunnerResourceArn"},
+        "Status":{"shape":"VpcIngressConnectionStatus"},
+        "AccountId":{"shape":"CustomerAccountId"},
+        "DomainName":{"shape":"DomainName"},
+        "IngressVpcConfiguration":{"shape":"IngressVpcConfiguration"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "DeletedAt":{"shape":"Timestamp"}
+      }
+    },
+    "VpcIngressConnectionName":{
+      "type":"string",
+      "max":40,
+      "min":4,
+      "pattern":"[A-Za-z0-9][A-Za-z0-9\\-_]{3,39}"
+    },
+    "VpcIngressConnectionStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "PENDING_CREATION",
+        "PENDING_UPDATE",
+        "PENDING_DELETION",
+        "FAILED_CREATION",
+        "FAILED_UPDATE",
+        "FAILED_DELETION",
+        "DELETED"
+      ]
+    },
+    "VpcIngressConnectionSummary":{
+      "type":"structure",
+      "members":{
+        "VpcIngressConnectionArn":{"shape":"AppRunnerResourceArn"},
+        "ServiceArn":{"shape":"AppRunnerResourceArn"}
+      }
+    },
+    "VpcIngressConnectionSummaryList":{
+      "type":"list",
+      "member":{"shape":"VpcIngressConnectionSummary"}
     }
   }
 }

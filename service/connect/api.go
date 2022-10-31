@@ -6451,6 +6451,104 @@ func (c *Connect) DisassociateSecurityKeyWithContext(ctx aws.Context, input *Dis
 	return out, req.Send()
 }
 
+const opDismissUserContact = "DismissUserContact"
+
+// DismissUserContactRequest generates a "aws/request.Request" representing the
+// client's request for the DismissUserContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DismissUserContact for more information on using the DismissUserContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DismissUserContactRequest method.
+//	req, resp := client.DismissUserContactRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DismissUserContact
+func (c *Connect) DismissUserContactRequest(input *DismissUserContactInput) (req *request.Request, output *DismissUserContactOutput) {
+	op := &request.Operation{
+		Name:       opDismissUserContact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/users/{InstanceId}/{UserId}/contact",
+	}
+
+	if input == nil {
+		input = &DismissUserContactInput{}
+	}
+
+	output = &DismissUserContactOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DismissUserContact API operation for Amazon Connect Service.
+//
+// Dismisses contacts from an agent’s CCP and returns the agent to an available
+// state, which allows the agent to receive a new routed contact. Contacts can
+// only be dismissed if they are in a MISSED, ERROR, ENDED, or REJECTED state
+// in the Agent Event Stream (https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DismissUserContact for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DismissUserContact
+func (c *Connect) DismissUserContact(input *DismissUserContactInput) (*DismissUserContactOutput, error) {
+	req, out := c.DismissUserContactRequest(input)
+	return out, req.Send()
+}
+
+// DismissUserContactWithContext is the same as DismissUserContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DismissUserContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DismissUserContactWithContext(ctx aws.Context, input *DismissUserContactInput, opts ...request.Option) (*DismissUserContactOutput, error) {
+	req, out := c.DismissUserContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetContactAttributes = "GetContactAttributes"
 
 // GetContactAttributesRequest generates a "aws/request.Request" representing the
@@ -16931,7 +17029,8 @@ func (c *Connect) UpdateTrafficDistributionRequest(input *UpdateTrafficDistribut
 // UpdateTrafficDistribution API operation for Amazon Connect Service.
 //
 // Updates the traffic distribution for a given traffic distribution group.
-// For more information about updating a traffic distribution group see Update
+//
+// For more information about updating a traffic distribution group, see Update
 // telephony traffic distribution across Amazon Web Services Regions (https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html)
 // in the Amazon Connect Administrator Guide.
 //
@@ -27130,6 +27229,112 @@ func (s DisassociateSecurityKeyOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DisassociateSecurityKeyOutput) GoString() string {
+	return s.String()
+}
+
+type DismissUserContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the user account.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DismissUserContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DismissUserContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DismissUserContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DismissUserContactInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *DismissUserContactInput) SetContactId(v string) *DismissUserContactInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DismissUserContactInput) SetInstanceId(v string) *DismissUserContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DismissUserContactInput) SetUserId(v string) *DismissUserContactInput {
+	s.UserId = &v
+	return s
+}
+
+type DismissUserContactOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DismissUserContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DismissUserContactOutput) GoString() string {
 	return s.String()
 }
 

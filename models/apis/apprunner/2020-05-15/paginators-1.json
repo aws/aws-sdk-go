@@ -34,6 +34,11 @@
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"
+    },
+    "ListVpcIngressConnections": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
     }
   }
 }
