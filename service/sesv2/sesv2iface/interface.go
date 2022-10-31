@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Simple Email Service.
 //	func myFunc(svc sesv2iface.SESV2API) bool {
-//	    // Make svc.CreateConfigurationSet request
+//	    // Make svc.BatchGetMetricData request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockSESV2Client struct {
 //	    sesv2iface.SESV2API
 //	}
-//	func (m *mockSESV2Client) CreateConfigurationSet(input *sesv2.CreateConfigurationSetInput) (*sesv2.CreateConfigurationSetOutput, error) {
+//	func (m *mockSESV2Client) BatchGetMetricData(input *sesv2.BatchGetMetricDataInput) (*sesv2.BatchGetMetricDataOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type SESV2API interface {
+	BatchGetMetricData(*sesv2.BatchGetMetricDataInput) (*sesv2.BatchGetMetricDataOutput, error)
+	BatchGetMetricDataWithContext(aws.Context, *sesv2.BatchGetMetricDataInput, ...request.Option) (*sesv2.BatchGetMetricDataOutput, error)
+	BatchGetMetricDataRequest(*sesv2.BatchGetMetricDataInput) (*request.Request, *sesv2.BatchGetMetricDataOutput)
+
 	CreateConfigurationSet(*sesv2.CreateConfigurationSetInput) (*sesv2.CreateConfigurationSetOutput, error)
 	CreateConfigurationSetWithContext(aws.Context, *sesv2.CreateConfigurationSetInput, ...request.Option) (*sesv2.CreateConfigurationSetOutput, error)
 	CreateConfigurationSetRequest(*sesv2.CreateConfigurationSetInput) (*request.Request, *sesv2.CreateConfigurationSetOutput)
@@ -293,6 +297,13 @@ type SESV2API interface {
 	ListImportJobsPages(*sesv2.ListImportJobsInput, func(*sesv2.ListImportJobsOutput, bool) bool) error
 	ListImportJobsPagesWithContext(aws.Context, *sesv2.ListImportJobsInput, func(*sesv2.ListImportJobsOutput, bool) bool, ...request.Option) error
 
+	ListRecommendations(*sesv2.ListRecommendationsInput) (*sesv2.ListRecommendationsOutput, error)
+	ListRecommendationsWithContext(aws.Context, *sesv2.ListRecommendationsInput, ...request.Option) (*sesv2.ListRecommendationsOutput, error)
+	ListRecommendationsRequest(*sesv2.ListRecommendationsInput) (*request.Request, *sesv2.ListRecommendationsOutput)
+
+	ListRecommendationsPages(*sesv2.ListRecommendationsInput, func(*sesv2.ListRecommendationsOutput, bool) bool) error
+	ListRecommendationsPagesWithContext(aws.Context, *sesv2.ListRecommendationsInput, func(*sesv2.ListRecommendationsOutput, bool) bool, ...request.Option) error
+
 	ListSuppressedDestinations(*sesv2.ListSuppressedDestinationsInput) (*sesv2.ListSuppressedDestinationsOutput, error)
 	ListSuppressedDestinationsWithContext(aws.Context, *sesv2.ListSuppressedDestinationsInput, ...request.Option) (*sesv2.ListSuppressedDestinationsOutput, error)
 	ListSuppressedDestinationsRequest(*sesv2.ListSuppressedDestinationsInput) (*request.Request, *sesv2.ListSuppressedDestinationsOutput)
@@ -320,6 +331,10 @@ type SESV2API interface {
 	PutAccountSuppressionAttributesWithContext(aws.Context, *sesv2.PutAccountSuppressionAttributesInput, ...request.Option) (*sesv2.PutAccountSuppressionAttributesOutput, error)
 	PutAccountSuppressionAttributesRequest(*sesv2.PutAccountSuppressionAttributesInput) (*request.Request, *sesv2.PutAccountSuppressionAttributesOutput)
 
+	PutAccountVdmAttributes(*sesv2.PutAccountVdmAttributesInput) (*sesv2.PutAccountVdmAttributesOutput, error)
+	PutAccountVdmAttributesWithContext(aws.Context, *sesv2.PutAccountVdmAttributesInput, ...request.Option) (*sesv2.PutAccountVdmAttributesOutput, error)
+	PutAccountVdmAttributesRequest(*sesv2.PutAccountVdmAttributesInput) (*request.Request, *sesv2.PutAccountVdmAttributesOutput)
+
 	PutConfigurationSetDeliveryOptions(*sesv2.PutConfigurationSetDeliveryOptionsInput) (*sesv2.PutConfigurationSetDeliveryOptionsOutput, error)
 	PutConfigurationSetDeliveryOptionsWithContext(aws.Context, *sesv2.PutConfigurationSetDeliveryOptionsInput, ...request.Option) (*sesv2.PutConfigurationSetDeliveryOptionsOutput, error)
 	PutConfigurationSetDeliveryOptionsRequest(*sesv2.PutConfigurationSetDeliveryOptionsInput) (*request.Request, *sesv2.PutConfigurationSetDeliveryOptionsOutput)
@@ -339,6 +354,10 @@ type SESV2API interface {
 	PutConfigurationSetTrackingOptions(*sesv2.PutConfigurationSetTrackingOptionsInput) (*sesv2.PutConfigurationSetTrackingOptionsOutput, error)
 	PutConfigurationSetTrackingOptionsWithContext(aws.Context, *sesv2.PutConfigurationSetTrackingOptionsInput, ...request.Option) (*sesv2.PutConfigurationSetTrackingOptionsOutput, error)
 	PutConfigurationSetTrackingOptionsRequest(*sesv2.PutConfigurationSetTrackingOptionsInput) (*request.Request, *sesv2.PutConfigurationSetTrackingOptionsOutput)
+
+	PutConfigurationSetVdmOptions(*sesv2.PutConfigurationSetVdmOptionsInput) (*sesv2.PutConfigurationSetVdmOptionsOutput, error)
+	PutConfigurationSetVdmOptionsWithContext(aws.Context, *sesv2.PutConfigurationSetVdmOptionsInput, ...request.Option) (*sesv2.PutConfigurationSetVdmOptionsOutput, error)
+	PutConfigurationSetVdmOptionsRequest(*sesv2.PutConfigurationSetVdmOptionsInput) (*request.Request, *sesv2.PutConfigurationSetVdmOptionsOutput)
 
 	PutDedicatedIpInPool(*sesv2.PutDedicatedIpInPoolInput) (*sesv2.PutDedicatedIpInPoolOutput, error)
 	PutDedicatedIpInPoolWithContext(aws.Context, *sesv2.PutDedicatedIpInPoolInput, ...request.Option) (*sesv2.PutDedicatedIpInPoolOutput, error)

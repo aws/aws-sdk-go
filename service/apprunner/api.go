@@ -605,6 +605,101 @@ func (c *AppRunner) CreateVpcConnectorWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateVpcIngressConnection = "CreateVpcIngressConnection"
+
+// CreateVpcIngressConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVpcIngressConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVpcIngressConnection for more information on using the CreateVpcIngressConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVpcIngressConnectionRequest method.
+//	req, resp := client.CreateVpcIngressConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateVpcIngressConnection
+func (c *AppRunner) CreateVpcIngressConnectionRequest(input *CreateVpcIngressConnectionInput) (req *request.Request, output *CreateVpcIngressConnectionOutput) {
+	op := &request.Operation{
+		Name:       opCreateVpcIngressConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateVpcIngressConnectionInput{}
+	}
+
+	output = &CreateVpcIngressConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVpcIngressConnection API operation for AWS App Runner.
+//
+// Create an App Runner VPC Ingress Connection resource. App Runner requires
+// this resource when you want to associate your App Runner service with an
+// Amazon VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation CreateVpcIngressConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     One or more input parameters aren't valid. Refer to the API action's document
+//     page, correct the input parameters, and try the action again.
+//
+//   - InvalidStateException
+//     You can't perform this action when the resource is in its current state.
+//
+//   - InternalServiceErrorException
+//     An unexpected service exception occurred.
+//
+//   - ServiceQuotaExceededException
+//     App Runner can't create this resource. You've reached your account quota
+//     for this resource type.
+//
+//     For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//     in the Amazon Web Services General Reference.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateVpcIngressConnection
+func (c *AppRunner) CreateVpcIngressConnection(input *CreateVpcIngressConnectionInput) (*CreateVpcIngressConnectionOutput, error) {
+	req, out := c.CreateVpcIngressConnectionRequest(input)
+	return out, req.Send()
+}
+
+// CreateVpcIngressConnectionWithContext is the same as CreateVpcIngressConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVpcIngressConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) CreateVpcIngressConnectionWithContext(ctx aws.Context, input *CreateVpcIngressConnectionInput, opts ...request.Option) (*CreateVpcIngressConnectionOutput, error) {
+	req, out := c.CreateVpcIngressConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAutoScalingConfiguration = "DeleteAutoScalingConfiguration"
 
 // DeleteAutoScalingConfigurationRequest generates a "aws/request.Request" representing the
@@ -921,6 +1016,9 @@ func (c *AppRunner) DeleteServiceRequest(input *DeleteServiceInput) (req *reques
 // returned OperationId and the ListOperations call to track the operation's
 // progress.
 //
+// Make sure that you don't have any active VPCIngressConnections associated
+// with the service you want to delete.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1049,6 +1147,106 @@ func (c *AppRunner) DeleteVpcConnector(input *DeleteVpcConnectorInput) (*DeleteV
 // for more information on using Contexts.
 func (c *AppRunner) DeleteVpcConnectorWithContext(ctx aws.Context, input *DeleteVpcConnectorInput, opts ...request.Option) (*DeleteVpcConnectorOutput, error) {
 	req, out := c.DeleteVpcConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVpcIngressConnection = "DeleteVpcIngressConnection"
+
+// DeleteVpcIngressConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVpcIngressConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVpcIngressConnection for more information on using the DeleteVpcIngressConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteVpcIngressConnectionRequest method.
+//	req, resp := client.DeleteVpcIngressConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DeleteVpcIngressConnection
+func (c *AppRunner) DeleteVpcIngressConnectionRequest(input *DeleteVpcIngressConnectionInput) (req *request.Request, output *DeleteVpcIngressConnectionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVpcIngressConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteVpcIngressConnectionInput{}
+	}
+
+	output = &DeleteVpcIngressConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVpcIngressConnection API operation for AWS App Runner.
+//
+// Delete an App Runner VPC Ingress Connection resource that's associated with
+// an App Runner service. The VPC Ingress Connection must be in one of the following
+// states to be deleted:
+//
+//   - AVAILABLE
+//
+//   - FAILED_CREATION
+//
+//   - FAILED_UPDATE
+//
+//   - FAILED_DELETION
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation DeleteVpcIngressConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     One or more input parameters aren't valid. Refer to the API action's document
+//     page, correct the input parameters, and try the action again.
+//
+//   - InternalServiceErrorException
+//     An unexpected service exception occurred.
+//
+//   - ResourceNotFoundException
+//     A resource doesn't exist for the specified Amazon Resource Name (ARN) in
+//     your Amazon Web Services account.
+//
+//   - InvalidStateException
+//     You can't perform this action when the resource is in its current state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DeleteVpcIngressConnection
+func (c *AppRunner) DeleteVpcIngressConnection(input *DeleteVpcIngressConnectionInput) (*DeleteVpcIngressConnectionOutput, error) {
+	req, out := c.DeleteVpcIngressConnectionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVpcIngressConnectionWithContext is the same as DeleteVpcIngressConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVpcIngressConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) DeleteVpcIngressConnectionWithContext(ctx aws.Context, input *DeleteVpcIngressConnectionInput, opts ...request.Option) (*DeleteVpcIngressConnectionOutput, error) {
+	req, out := c.DeleteVpcIngressConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1543,6 +1741,93 @@ func (c *AppRunner) DescribeVpcConnector(input *DescribeVpcConnectorInput) (*Des
 // for more information on using Contexts.
 func (c *AppRunner) DescribeVpcConnectorWithContext(ctx aws.Context, input *DescribeVpcConnectorInput, opts ...request.Option) (*DescribeVpcConnectorOutput, error) {
 	req, out := c.DescribeVpcConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeVpcIngressConnection = "DescribeVpcIngressConnection"
+
+// DescribeVpcIngressConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVpcIngressConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVpcIngressConnection for more information on using the DescribeVpcIngressConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeVpcIngressConnectionRequest method.
+//	req, resp := client.DescribeVpcIngressConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeVpcIngressConnection
+func (c *AppRunner) DescribeVpcIngressConnectionRequest(input *DescribeVpcIngressConnectionInput) (req *request.Request, output *DescribeVpcIngressConnectionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVpcIngressConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeVpcIngressConnectionInput{}
+	}
+
+	output = &DescribeVpcIngressConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVpcIngressConnection API operation for AWS App Runner.
+//
+// Return a full description of an App Runner VPC Ingress Connection resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation DescribeVpcIngressConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     One or more input parameters aren't valid. Refer to the API action's document
+//     page, correct the input parameters, and try the action again.
+//
+//   - InternalServiceErrorException
+//     An unexpected service exception occurred.
+//
+//   - ResourceNotFoundException
+//     A resource doesn't exist for the specified Amazon Resource Name (ARN) in
+//     your Amazon Web Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeVpcIngressConnection
+func (c *AppRunner) DescribeVpcIngressConnection(input *DescribeVpcIngressConnectionInput) (*DescribeVpcIngressConnectionOutput, error) {
+	req, out := c.DescribeVpcIngressConnectionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVpcIngressConnectionWithContext is the same as DescribeVpcIngressConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVpcIngressConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) DescribeVpcIngressConnectionWithContext(ctx aws.Context, input *DescribeVpcIngressConnectionInput, opts ...request.Option) (*DescribeVpcIngressConnectionOutput, error) {
+	req, out := c.DescribeVpcIngressConnectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2596,6 +2881,147 @@ func (c *AppRunner) ListVpcConnectorsPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListVpcIngressConnections = "ListVpcIngressConnections"
+
+// ListVpcIngressConnectionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVpcIngressConnections operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVpcIngressConnections for more information on using the ListVpcIngressConnections
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVpcIngressConnectionsRequest method.
+//	req, resp := client.ListVpcIngressConnectionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListVpcIngressConnections
+func (c *AppRunner) ListVpcIngressConnectionsRequest(input *ListVpcIngressConnectionsInput) (req *request.Request, output *ListVpcIngressConnectionsOutput) {
+	op := &request.Operation{
+		Name:       opListVpcIngressConnections,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVpcIngressConnectionsInput{}
+	}
+
+	output = &ListVpcIngressConnectionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVpcIngressConnections API operation for AWS App Runner.
+//
+// Return a list of App Runner VPC Ingress Connections in your Amazon Web Services
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation ListVpcIngressConnections for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     One or more input parameters aren't valid. Refer to the API action's document
+//     page, correct the input parameters, and try the action again.
+//
+//   - InternalServiceErrorException
+//     An unexpected service exception occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListVpcIngressConnections
+func (c *AppRunner) ListVpcIngressConnections(input *ListVpcIngressConnectionsInput) (*ListVpcIngressConnectionsOutput, error) {
+	req, out := c.ListVpcIngressConnectionsRequest(input)
+	return out, req.Send()
+}
+
+// ListVpcIngressConnectionsWithContext is the same as ListVpcIngressConnections with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVpcIngressConnections for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) ListVpcIngressConnectionsWithContext(ctx aws.Context, input *ListVpcIngressConnectionsInput, opts ...request.Option) (*ListVpcIngressConnectionsOutput, error) {
+	req, out := c.ListVpcIngressConnectionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVpcIngressConnectionsPages iterates over the pages of a ListVpcIngressConnections operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVpcIngressConnections method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListVpcIngressConnections operation.
+//	pageNum := 0
+//	err := client.ListVpcIngressConnectionsPages(params,
+//	    func(page *apprunner.ListVpcIngressConnectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppRunner) ListVpcIngressConnectionsPages(input *ListVpcIngressConnectionsInput, fn func(*ListVpcIngressConnectionsOutput, bool) bool) error {
+	return c.ListVpcIngressConnectionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVpcIngressConnectionsPagesWithContext same as ListVpcIngressConnectionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) ListVpcIngressConnectionsPagesWithContext(ctx aws.Context, input *ListVpcIngressConnectionsInput, fn func(*ListVpcIngressConnectionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVpcIngressConnectionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVpcIngressConnectionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVpcIngressConnectionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opPauseService = "PauseService"
 
 // PauseServiceRequest generates a "aws/request.Request" representing the
@@ -3167,6 +3593,103 @@ func (c *AppRunner) UpdateServiceWithContext(ctx aws.Context, input *UpdateServi
 	return out, req.Send()
 }
 
+const opUpdateVpcIngressConnection = "UpdateVpcIngressConnection"
+
+// UpdateVpcIngressConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVpcIngressConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVpcIngressConnection for more information on using the UpdateVpcIngressConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateVpcIngressConnectionRequest method.
+//	req, resp := client.UpdateVpcIngressConnectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/UpdateVpcIngressConnection
+func (c *AppRunner) UpdateVpcIngressConnectionRequest(input *UpdateVpcIngressConnectionInput) (req *request.Request, output *UpdateVpcIngressConnectionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVpcIngressConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateVpcIngressConnectionInput{}
+	}
+
+	output = &UpdateVpcIngressConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVpcIngressConnection API operation for AWS App Runner.
+//
+// Update an existing App Runner VPC Ingress Connection resource. The VPC Ingress
+// Connection must be in one of the following states to be updated:
+//
+//   - AVAILABLE
+//
+//   - FAILED_CREATION
+//
+//   - FAILED_UPDATE
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation UpdateVpcIngressConnection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     One or more input parameters aren't valid. Refer to the API action's document
+//     page, correct the input parameters, and try the action again.
+//
+//   - ResourceNotFoundException
+//     A resource doesn't exist for the specified Amazon Resource Name (ARN) in
+//     your Amazon Web Services account.
+//
+//   - InvalidStateException
+//     You can't perform this action when the resource is in its current state.
+//
+//   - InternalServiceErrorException
+//     An unexpected service exception occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/UpdateVpcIngressConnection
+func (c *AppRunner) UpdateVpcIngressConnection(input *UpdateVpcIngressConnectionInput) (*UpdateVpcIngressConnectionOutput, error) {
+	req, out := c.UpdateVpcIngressConnectionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVpcIngressConnectionWithContext is the same as UpdateVpcIngressConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVpcIngressConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) UpdateVpcIngressConnectionWithContext(ctx aws.Context, input *UpdateVpcIngressConnectionInput, opts ...request.Option) (*UpdateVpcIngressConnectionOutput, error) {
+	req, out := c.UpdateVpcIngressConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AssociateCustomDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3267,6 +3790,11 @@ type AssociateCustomDomainOutput struct {
 	//
 	// ServiceArn is a required field
 	ServiceArn *string `min:"1" type:"string" required:"true"`
+
+	// DNS Target records for the custom domains of this Amazon VPC.
+	//
+	// VpcDNSTargets is a required field
+	VpcDNSTargets []*VpcDNSTarget `type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -3302,6 +3830,12 @@ func (s *AssociateCustomDomainOutput) SetDNSTarget(v string) *AssociateCustomDom
 // SetServiceArn sets the ServiceArn field's value.
 func (s *AssociateCustomDomainOutput) SetServiceArn(v string) *AssociateCustomDomainOutput {
 	s.ServiceArn = &v
+	return s
+}
+
+// SetVpcDNSTargets sets the VpcDNSTargets field's value.
+func (s *AssociateCustomDomainOutput) SetVpcDNSTargets(v []*VpcDNSTarget) *AssociateCustomDomainOutput {
+	s.VpcDNSTargets = v
 	return s
 }
 
@@ -4793,6 +5327,145 @@ func (s *CreateVpcConnectorOutput) SetVpcConnector(v *VpcConnector) *CreateVpcCo
 	return s
 }
 
+type CreateVpcIngressConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifications for the customer’s Amazon VPC and the related Amazon Web
+	// Services PrivateLink VPC endpoint that are used to create the VPC Ingress
+	// Connection resource.
+	//
+	// IngressVpcConfiguration is a required field
+	IngressVpcConfiguration *IngressVpcConfiguration `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) for this App Runner service that is used to
+	// create the VPC Ingress Connection resource.
+	//
+	// ServiceArn is a required field
+	ServiceArn *string `min:"1" type:"string" required:"true"`
+
+	// An optional list of metadata items that you can associate with the VPC Ingress
+	// Connection resource. A tag is a key-value pair.
+	Tags []*Tag `type:"list"`
+
+	// A name for the VPC Ingress Connection resource. It must be unique across
+	// all the active VPC Ingress Connections in your Amazon Web Services account
+	// in the Amazon Web Services Region.
+	//
+	// VpcIngressConnectionName is a required field
+	VpcIngressConnectionName *string `min:"4" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcIngressConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcIngressConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVpcIngressConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVpcIngressConnectionInput"}
+	if s.IngressVpcConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("IngressVpcConfiguration"))
+	}
+	if s.ServiceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceArn"))
+	}
+	if s.ServiceArn != nil && len(*s.ServiceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceArn", 1))
+	}
+	if s.VpcIngressConnectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcIngressConnectionName"))
+	}
+	if s.VpcIngressConnectionName != nil && len(*s.VpcIngressConnectionName) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcIngressConnectionName", 4))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIngressVpcConfiguration sets the IngressVpcConfiguration field's value.
+func (s *CreateVpcIngressConnectionInput) SetIngressVpcConfiguration(v *IngressVpcConfiguration) *CreateVpcIngressConnectionInput {
+	s.IngressVpcConfiguration = v
+	return s
+}
+
+// SetServiceArn sets the ServiceArn field's value.
+func (s *CreateVpcIngressConnectionInput) SetServiceArn(v string) *CreateVpcIngressConnectionInput {
+	s.ServiceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVpcIngressConnectionInput) SetTags(v []*Tag) *CreateVpcIngressConnectionInput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcIngressConnectionName sets the VpcIngressConnectionName field's value.
+func (s *CreateVpcIngressConnectionInput) SetVpcIngressConnectionName(v string) *CreateVpcIngressConnectionInput {
+	s.VpcIngressConnectionName = &v
+	return s
+}
+
+type CreateVpcIngressConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner VPC Ingress Connection resource that's created
+	// by this request.
+	//
+	// VpcIngressConnection is a required field
+	VpcIngressConnection *VpcIngressConnection `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcIngressConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcIngressConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcIngressConnection sets the VpcIngressConnection field's value.
+func (s *CreateVpcIngressConnectionOutput) SetVpcIngressConnection(v *VpcIngressConnection) *CreateVpcIngressConnectionOutput {
+	s.VpcIngressConnection = v
+	return s
+}
+
 // Describes a custom domain that's associated with an App Runner service.
 type CustomDomain struct {
 	_ struct{} `type:"structure"`
@@ -5299,6 +5972,90 @@ func (s *DeleteVpcConnectorOutput) SetVpcConnector(v *VpcConnector) *DeleteVpcCo
 	return s
 }
 
+type DeleteVpcIngressConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the App Runner VPC Ingress Connection that
+	// you want to delete.
+	//
+	// VpcIngressConnectionArn is a required field
+	VpcIngressConnectionArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcIngressConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcIngressConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVpcIngressConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVpcIngressConnectionInput"}
+	if s.VpcIngressConnectionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcIngressConnectionArn"))
+	}
+	if s.VpcIngressConnectionArn != nil && len(*s.VpcIngressConnectionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcIngressConnectionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcIngressConnectionArn sets the VpcIngressConnectionArn field's value.
+func (s *DeleteVpcIngressConnectionInput) SetVpcIngressConnectionArn(v string) *DeleteVpcIngressConnectionInput {
+	s.VpcIngressConnectionArn = &v
+	return s
+}
+
+type DeleteVpcIngressConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner VPC Ingress Connection that this request
+	// just deleted.
+	//
+	// VpcIngressConnection is a required field
+	VpcIngressConnection *VpcIngressConnection `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcIngressConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcIngressConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcIngressConnection sets the VpcIngressConnection field's value.
+func (s *DeleteVpcIngressConnectionOutput) SetVpcIngressConnection(v *VpcIngressConnection) *DeleteVpcIngressConnectionOutput {
+	s.VpcIngressConnection = v
+	return s
+}
+
 type DescribeAutoScalingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5491,6 +6248,11 @@ type DescribeCustomDomainsOutput struct {
 	//
 	// ServiceArn is a required field
 	ServiceArn *string `min:"1" type:"string" required:"true"`
+
+	// DNS Target records for the custom domains of this Amazon VPC.
+	//
+	// VpcDNSTargets is a required field
+	VpcDNSTargets []*VpcDNSTarget `type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -5532,6 +6294,12 @@ func (s *DescribeCustomDomainsOutput) SetNextToken(v string) *DescribeCustomDoma
 // SetServiceArn sets the ServiceArn field's value.
 func (s *DescribeCustomDomainsOutput) SetServiceArn(v string) *DescribeCustomDomainsOutput {
 	s.ServiceArn = &v
+	return s
+}
+
+// SetVpcDNSTargets sets the VpcDNSTargets field's value.
+func (s *DescribeCustomDomainsOutput) SetVpcDNSTargets(v []*VpcDNSTarget) *DescribeCustomDomainsOutput {
+	s.VpcDNSTargets = v
 	return s
 }
 
@@ -5792,6 +6560,90 @@ func (s *DescribeVpcConnectorOutput) SetVpcConnector(v *VpcConnector) *DescribeV
 	return s
 }
 
+type DescribeVpcIngressConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the App Runner VPC Ingress Connection that
+	// you want a description for.
+	//
+	// VpcIngressConnectionArn is a required field
+	VpcIngressConnectionArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcIngressConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcIngressConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVpcIngressConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVpcIngressConnectionInput"}
+	if s.VpcIngressConnectionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcIngressConnectionArn"))
+	}
+	if s.VpcIngressConnectionArn != nil && len(*s.VpcIngressConnectionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcIngressConnectionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcIngressConnectionArn sets the VpcIngressConnectionArn field's value.
+func (s *DescribeVpcIngressConnectionInput) SetVpcIngressConnectionArn(v string) *DescribeVpcIngressConnectionInput {
+	s.VpcIngressConnectionArn = &v
+	return s
+}
+
+type DescribeVpcIngressConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner VPC Ingress Connection that you specified
+	// in this request.
+	//
+	// VpcIngressConnection is a required field
+	VpcIngressConnection *VpcIngressConnection `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcIngressConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcIngressConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcIngressConnection sets the VpcIngressConnection field's value.
+func (s *DescribeVpcIngressConnectionOutput) SetVpcIngressConnection(v *VpcIngressConnection) *DescribeVpcIngressConnectionOutput {
+	s.VpcIngressConnection = v
+	return s
+}
+
 type DisassociateCustomDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5878,6 +6730,11 @@ type DisassociateCustomDomainOutput struct {
 	//
 	// ServiceArn is a required field
 	ServiceArn *string `min:"1" type:"string" required:"true"`
+
+	// DNS Target records for the custom domains of this Amazon VPC.
+	//
+	// VpcDNSTargets is a required field
+	VpcDNSTargets []*VpcDNSTarget `type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -5913,6 +6770,12 @@ func (s *DisassociateCustomDomainOutput) SetDNSTarget(v string) *DisassociateCus
 // SetServiceArn sets the ServiceArn field's value.
 func (s *DisassociateCustomDomainOutput) SetServiceArn(v string) *DisassociateCustomDomainOutput {
 	s.ServiceArn = &v
+	return s
+}
+
+// SetVpcDNSTargets sets the VpcDNSTargets field's value.
+func (s *DisassociateCustomDomainOutput) SetVpcDNSTargets(v []*VpcDNSTarget) *DisassociateCustomDomainOutput {
+	s.VpcDNSTargets = v
 	return s
 }
 
@@ -6283,6 +7146,83 @@ func (s *ImageRepository) SetImageIdentifier(v string) *ImageRepository {
 // SetImageRepositoryType sets the ImageRepositoryType field's value.
 func (s *ImageRepository) SetImageRepositoryType(v string) *ImageRepository {
 	s.ImageRepositoryType = &v
+	return s
+}
+
+// Network configuration settings for inbound network traffic.
+type IngressConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether your App Runner service is publicly accessible. To make
+	// the service publicly accessible set it to True. To make the service privately
+	// accessible, from only within an Amazon VPC set it to False.
+	IsPubliclyAccessible *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngressConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngressConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetIsPubliclyAccessible sets the IsPubliclyAccessible field's value.
+func (s *IngressConfiguration) SetIsPubliclyAccessible(v bool) *IngressConfiguration {
+	s.IsPubliclyAccessible = &v
+	return s
+}
+
+// The configuration of your VPC and the associated VPC endpoint. The VPC endpoint
+// is an Amazon Web Services PrivateLink resource that allows access to your
+// App Runner services from within an Amazon VPC.
+type IngressVpcConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the VPC endpoint that your App Runner service connects to.
+	VpcEndpointId *string `type:"string"`
+
+	// The ID of the VPC that is used for the VPC endpoint.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngressVpcConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngressVpcConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *IngressVpcConfiguration) SetVpcEndpointId(v string) *IngressVpcConfiguration {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *IngressVpcConfiguration) SetVpcId(v string) *IngressVpcConfiguration {
+	s.VpcId = &v
 	return s
 }
 
@@ -7368,6 +8308,184 @@ func (s *ListVpcConnectorsOutput) SetVpcConnectors(v []*VpcConnector) *ListVpcCo
 	return s
 }
 
+// Returns a list of VPC Ingress Connections based on the filter provided. It
+// can return either ServiceArn or VpcEndpointId, or both.
+type ListVpcIngressConnectionsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a service to filter by.
+	ServiceArn *string `min:"1" type:"string"`
+
+	// The ID of a VPC Endpoint to filter by.
+	VpcEndpointId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcIngressConnectionsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcIngressConnectionsFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVpcIngressConnectionsFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVpcIngressConnectionsFilter"}
+	if s.ServiceArn != nil && len(*s.ServiceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceArn sets the ServiceArn field's value.
+func (s *ListVpcIngressConnectionsFilter) SetServiceArn(v string) *ListVpcIngressConnectionsFilter {
+	s.ServiceArn = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *ListVpcIngressConnectionsFilter) SetVpcEndpointId(v string) *ListVpcIngressConnectionsFilter {
+	s.VpcEndpointId = &v
+	return s
+}
+
+type ListVpcIngressConnectionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The VPC Ingress Connections to be listed based on either the Service Arn
+	// or Vpc Endpoint Id, or both.
+	Filter *ListVpcIngressConnectionsFilter `type:"structure"`
+
+	// The maximum number of results to include in each response (result page).
+	// It's used for a paginated request.
+	//
+	// If you don't specify MaxResults, the request retrieves all available results
+	// in a single response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token from a previous result page. It's used for a paginated request. The
+	// request retrieves the next result page. All other parameter values must be
+	// identical to the ones that are specified in the initial request.
+	//
+	// If you don't specify NextToken, the request retrieves the first result page.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcIngressConnectionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcIngressConnectionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVpcIngressConnectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVpcIngressConnectionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListVpcIngressConnectionsInput) SetFilter(v *ListVpcIngressConnectionsFilter) *ListVpcIngressConnectionsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVpcIngressConnectionsInput) SetMaxResults(v int64) *ListVpcIngressConnectionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcIngressConnectionsInput) SetNextToken(v string) *ListVpcIngressConnectionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVpcIngressConnectionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token that you can pass in a subsequent request to get the next result
+	// page. It's returned in a paginated request.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of summary information records for VPC Ingress Connections. In a paginated
+	// request, the request returns up to MaxResults records for each call.
+	//
+	// VpcIngressConnectionSummaryList is a required field
+	VpcIngressConnectionSummaryList []*VpcIngressConnectionSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcIngressConnectionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcIngressConnectionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcIngressConnectionsOutput) SetNextToken(v string) *ListVpcIngressConnectionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcIngressConnectionSummaryList sets the VpcIngressConnectionSummaryList field's value.
+func (s *ListVpcIngressConnectionsOutput) SetVpcIngressConnectionSummaryList(v []*VpcIngressConnectionSummary) *ListVpcIngressConnectionsOutput {
+	s.VpcIngressConnectionSummaryList = v
+	return s
+}
+
 // Describes configuration settings related to network traffic of an App Runner
 // service. Consists of embedded objects for each configurable network feature.
 type NetworkConfiguration struct {
@@ -7375,6 +8493,9 @@ type NetworkConfiguration struct {
 
 	// Network configuration settings for outbound message traffic.
 	EgressConfiguration *EgressConfiguration `type:"structure"`
+
+	// Network configuration settings for inbound message traffic.
+	IngressConfiguration *IngressConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7413,6 +8534,12 @@ func (s *NetworkConfiguration) Validate() error {
 // SetEgressConfiguration sets the EgressConfiguration field's value.
 func (s *NetworkConfiguration) SetEgressConfiguration(v *EgressConfiguration) *NetworkConfiguration {
 	s.EgressConfiguration = v
+	return s
+}
+
+// SetIngressConfiguration sets the IngressConfiguration field's value.
+func (s *NetworkConfiguration) SetIngressConfiguration(v *IngressConfiguration) *NetworkConfiguration {
+	s.IngressConfiguration = v
 	return s
 }
 
@@ -8002,9 +9129,7 @@ type Service struct {
 
 	// A subdomain URL that App Runner generated for this service. You can use this
 	// URL to access your service web application.
-	//
-	// ServiceUrl is a required field
-	ServiceUrl *string `type:"string" required:"true"`
+	ServiceUrl *string `type:"string"`
 
 	// The source deployed to the App Runner service. It can be a code or an image
 	// repository.
@@ -9120,6 +10245,106 @@ func (s *UpdateServiceOutput) SetService(v *Service) *UpdateServiceOutput {
 	return s
 }
 
+type UpdateVpcIngressConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifications for the customer’s Amazon VPC and the related Amazon Web
+	// Services PrivateLink VPC endpoint that are used to update the VPC Ingress
+	// Connection resource.
+	//
+	// IngressVpcConfiguration is a required field
+	IngressVpcConfiguration *IngressVpcConfiguration `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (Arn) for the App Runner VPC Ingress Connection
+	// resource that you want to update.
+	//
+	// VpcIngressConnectionArn is a required field
+	VpcIngressConnectionArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcIngressConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcIngressConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVpcIngressConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVpcIngressConnectionInput"}
+	if s.IngressVpcConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("IngressVpcConfiguration"))
+	}
+	if s.VpcIngressConnectionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcIngressConnectionArn"))
+	}
+	if s.VpcIngressConnectionArn != nil && len(*s.VpcIngressConnectionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcIngressConnectionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIngressVpcConfiguration sets the IngressVpcConfiguration field's value.
+func (s *UpdateVpcIngressConnectionInput) SetIngressVpcConfiguration(v *IngressVpcConfiguration) *UpdateVpcIngressConnectionInput {
+	s.IngressVpcConfiguration = v
+	return s
+}
+
+// SetVpcIngressConnectionArn sets the VpcIngressConnectionArn field's value.
+func (s *UpdateVpcIngressConnectionInput) SetVpcIngressConnectionArn(v string) *UpdateVpcIngressConnectionInput {
+	s.VpcIngressConnectionArn = &v
+	return s
+}
+
+type UpdateVpcIngressConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner VPC Ingress Connection resource that's updated
+	// by this request.
+	//
+	// VpcIngressConnection is a required field
+	VpcIngressConnection *VpcIngressConnection `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcIngressConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcIngressConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcIngressConnection sets the VpcIngressConnection field's value.
+func (s *UpdateVpcIngressConnectionOutput) SetVpcIngressConnection(v *VpcIngressConnection) *UpdateVpcIngressConnectionOutput {
+	s.VpcIngressConnection = v
+	return s
+}
+
 // Describes an App Runner VPC connector resource. A VPC connector describes
 // the Amazon Virtual Private Cloud (Amazon VPC) that an App Runner service
 // is associated with, and the subnets and security group that are used.
@@ -9228,6 +10453,222 @@ func (s *VpcConnector) SetVpcConnectorName(v string) *VpcConnector {
 // SetVpcConnectorRevision sets the VpcConnectorRevision field's value.
 func (s *VpcConnector) SetVpcConnectorRevision(v int64) *VpcConnector {
 	s.VpcConnectorRevision = &v
+	return s
+}
+
+// DNS Target record for a custom domain of this Amazon VPC.
+type VpcDNSTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The domain name of your target DNS that is associated with the Amazon VPC.
+	DomainName *string `min:"1" type:"string"`
+
+	// The ID of the Amazon VPC that is associated with the custom domain name of
+	// the target DNS.
+	VpcId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the VPC Ingress Connection that is associated
+	// with your service.
+	VpcIngressConnectionArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcDNSTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcDNSTarget) GoString() string {
+	return s.String()
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *VpcDNSTarget) SetDomainName(v string) *VpcDNSTarget {
+	s.DomainName = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcDNSTarget) SetVpcId(v string) *VpcDNSTarget {
+	s.VpcId = &v
+	return s
+}
+
+// SetVpcIngressConnectionArn sets the VpcIngressConnectionArn field's value.
+func (s *VpcDNSTarget) SetVpcIngressConnectionArn(v string) *VpcDNSTarget {
+	s.VpcIngressConnectionArn = &v
+	return s
+}
+
+// The App Runner resource that specifies an App Runner endpoint for incoming
+// traffic. It establishes a connection between a VPC interface endpoint and
+// a App Runner service, to make your App Runner service accessible from only
+// within an Amazon VPC.
+type VpcIngressConnection struct {
+	_ struct{} `type:"structure"`
+
+	// The Account Id you use to create the VPC Ingress Connection resource.
+	AccountId *string `min:"12" type:"string"`
+
+	// The time when the VPC Ingress Connection was created. It's in the Unix time
+	// stamp format.
+	//
+	//    * Type: Timestamp
+	//
+	//    * Required: Yes
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The time when the App Runner service was deleted. It's in the Unix time stamp
+	// format.
+	//
+	//    * Type: Timestamp
+	//
+	//    * Required: No
+	DeletedAt *time.Time `type:"timestamp"`
+
+	// The domain name associated with the VPC Ingress Connection resource.
+	DomainName *string `min:"1" type:"string"`
+
+	// Specifications for the customer’s VPC and related PrivateLink VPC endpoint
+	// that are used to associate with the VPC Ingress Connection resource.
+	IngressVpcConfiguration *IngressVpcConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the service associated with the VPC Ingress
+	// Connection.
+	ServiceArn *string `min:"1" type:"string"`
+
+	// The current status of the VPC Ingress Connection. The VPC Ingress Connection
+	// displays one of the following statuses: AVAILABLE, PENDING_CREATION, PENDING_UPDATE,
+	// PENDING_DELETION,FAILED_CREATION, FAILED_UPDATE, FAILED_DELETION, and DELETED..
+	Status *string `type:"string" enum:"VpcIngressConnectionStatus"`
+
+	// The Amazon Resource Name (ARN) of the VPC Ingress Connection.
+	VpcIngressConnectionArn *string `min:"1" type:"string"`
+
+	// The customer-provided VPC Ingress Connection name.
+	VpcIngressConnectionName *string `min:"4" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcIngressConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcIngressConnection) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *VpcIngressConnection) SetAccountId(v string) *VpcIngressConnection {
+	s.AccountId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *VpcIngressConnection) SetCreatedAt(v time.Time) *VpcIngressConnection {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDeletedAt sets the DeletedAt field's value.
+func (s *VpcIngressConnection) SetDeletedAt(v time.Time) *VpcIngressConnection {
+	s.DeletedAt = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *VpcIngressConnection) SetDomainName(v string) *VpcIngressConnection {
+	s.DomainName = &v
+	return s
+}
+
+// SetIngressVpcConfiguration sets the IngressVpcConfiguration field's value.
+func (s *VpcIngressConnection) SetIngressVpcConfiguration(v *IngressVpcConfiguration) *VpcIngressConnection {
+	s.IngressVpcConfiguration = v
+	return s
+}
+
+// SetServiceArn sets the ServiceArn field's value.
+func (s *VpcIngressConnection) SetServiceArn(v string) *VpcIngressConnection {
+	s.ServiceArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VpcIngressConnection) SetStatus(v string) *VpcIngressConnection {
+	s.Status = &v
+	return s
+}
+
+// SetVpcIngressConnectionArn sets the VpcIngressConnectionArn field's value.
+func (s *VpcIngressConnection) SetVpcIngressConnectionArn(v string) *VpcIngressConnection {
+	s.VpcIngressConnectionArn = &v
+	return s
+}
+
+// SetVpcIngressConnectionName sets the VpcIngressConnectionName field's value.
+func (s *VpcIngressConnection) SetVpcIngressConnectionName(v string) *VpcIngressConnection {
+	s.VpcIngressConnectionName = &v
+	return s
+}
+
+// Provides summary information about an VPC Ingress Connection, which includes
+// its VPC Ingress Connection ARN and its associated Service ARN.
+type VpcIngressConnectionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the service associated with the VPC Ingress
+	// Connection.
+	ServiceArn *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the VPC Ingress Connection.
+	VpcIngressConnectionArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcIngressConnectionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcIngressConnectionSummary) GoString() string {
+	return s.String()
+}
+
+// SetServiceArn sets the ServiceArn field's value.
+func (s *VpcIngressConnectionSummary) SetServiceArn(v string) *VpcIngressConnectionSummary {
+	s.ServiceArn = &v
+	return s
+}
+
+// SetVpcIngressConnectionArn sets the VpcIngressConnectionArn field's value.
+func (s *VpcIngressConnectionSummary) SetVpcIngressConnectionArn(v string) *VpcIngressConnectionSummary {
+	s.VpcIngressConnectionArn = &v
 	return s
 }
 
@@ -9600,5 +11041,45 @@ func VpcConnectorStatus_Values() []string {
 	return []string{
 		VpcConnectorStatusActive,
 		VpcConnectorStatusInactive,
+	}
+}
+
+const (
+	// VpcIngressConnectionStatusAvailable is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusAvailable = "AVAILABLE"
+
+	// VpcIngressConnectionStatusPendingCreation is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusPendingCreation = "PENDING_CREATION"
+
+	// VpcIngressConnectionStatusPendingUpdate is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusPendingUpdate = "PENDING_UPDATE"
+
+	// VpcIngressConnectionStatusPendingDeletion is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusPendingDeletion = "PENDING_DELETION"
+
+	// VpcIngressConnectionStatusFailedCreation is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusFailedCreation = "FAILED_CREATION"
+
+	// VpcIngressConnectionStatusFailedUpdate is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusFailedUpdate = "FAILED_UPDATE"
+
+	// VpcIngressConnectionStatusFailedDeletion is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusFailedDeletion = "FAILED_DELETION"
+
+	// VpcIngressConnectionStatusDeleted is a VpcIngressConnectionStatus enum value
+	VpcIngressConnectionStatusDeleted = "DELETED"
+)
+
+// VpcIngressConnectionStatus_Values returns all elements of the VpcIngressConnectionStatus enum
+func VpcIngressConnectionStatus_Values() []string {
+	return []string{
+		VpcIngressConnectionStatusAvailable,
+		VpcIngressConnectionStatusPendingCreation,
+		VpcIngressConnectionStatusPendingUpdate,
+		VpcIngressConnectionStatusPendingDeletion,
+		VpcIngressConnectionStatusFailedCreation,
+		VpcIngressConnectionStatusFailedUpdate,
+		VpcIngressConnectionStatusFailedDeletion,
+		VpcIngressConnectionStatusDeleted,
 	}
 }

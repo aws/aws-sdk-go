@@ -3,6 +3,12 @@
     "DescribeAccountAttributes": {
       "result_key": "AccountAttributes"
     },
+    "DescribeAddressTransfers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AddressTransfers"
+    },
     "DescribeAddresses": {
       "result_key": "Addresses"
     },

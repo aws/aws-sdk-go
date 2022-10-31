@@ -8,16 +8,19 @@
     "CreateObservabilityConfiguration": "<p>Create an App Runner observability configuration resource. App Runner requires this resource when you create or update App Runner services and you want to enable non-default observability features. You can share an observability configuration across multiple services.</p> <p>Create multiple revisions of a configuration by calling this action multiple times using the same <code>ObservabilityConfigurationName</code>. The call returns incremental <code>ObservabilityConfigurationRevision</code> values. When you create a service and configure an observability configuration resource, the service uses the latest active revision of the observability configuration by default. You can optionally configure the service to use a specific revision.</p> <p>The observability configuration resource is designed to configure multiple features (currently one feature, tracing). This action takes optional parameters that describe the configuration of these features (currently one parameter, <code>TraceConfiguration</code>). If you don't specify a feature parameter, App Runner doesn't enable the feature.</p>",
     "CreateService": "<p>Create an App Runner service. After the service is created, the action also automatically starts a deployment.</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a href=\"https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html\">ListOperations</a> call to track the operation's progress.</p>",
     "CreateVpcConnector": "<p>Create an App Runner VPC connector resource. App Runner requires this resource when you want to associate your App Runner service to a custom Amazon Virtual Private Cloud (Amazon VPC).</p>",
+    "CreateVpcIngressConnection": "<p>Create an App Runner VPC Ingress Connection resource. App Runner requires this resource when you want to associate your App Runner service with an Amazon VPC endpoint.</p>",
     "DeleteAutoScalingConfiguration": "<p>Delete an App Runner automatic scaling configuration resource. You can delete a specific revision or the latest active revision. You can't delete a configuration that's used by one or more App Runner services.</p>",
     "DeleteConnection": "<p>Delete an App Runner connection. You must first ensure that there are no running App Runner services that use this connection. If there are any, the <code>DeleteConnection</code> action fails.</p>",
     "DeleteObservabilityConfiguration": "<p>Delete an App Runner observability configuration resource. You can delete a specific revision or the latest active revision. You can't delete a configuration that's used by one or more App Runner services.</p>",
-    "DeleteService": "<p>Delete an App Runner service.</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's progress.</p>",
+    "DeleteService": "<p>Delete an App Runner service.</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's progress.</p> <note> <p>Make sure that you don't have any active VPCIngressConnections associated with the service you want to delete. </p> </note>",
     "DeleteVpcConnector": "<p>Delete an App Runner VPC connector resource. You can't delete a connector that's used by one or more App Runner services.</p>",
+    "DeleteVpcIngressConnection": "<p>Delete an App Runner VPC Ingress Connection resource that's associated with an App Runner service. The VPC Ingress Connection must be in one of the following states to be deleted: </p> <ul> <li> <p> <code>AVAILABLE</code> </p> </li> <li> <p> <code>FAILED_CREATION</code> </p> </li> <li> <p> <code>FAILED_UPDATE</code> </p> </li> <li> <p> <code>FAILED_DELETION</code> </p> </li> </ul>",
     "DescribeAutoScalingConfiguration": "<p>Return a full description of an App Runner automatic scaling configuration resource.</p>",
     "DescribeCustomDomains": "<p>Return a description of custom domain names that are associated with an App Runner service.</p>",
     "DescribeObservabilityConfiguration": "<p>Return a full description of an App Runner observability configuration resource.</p>",
     "DescribeService": "<p>Return a full description of an App Runner service.</p>",
     "DescribeVpcConnector": "<p>Return a description of an App Runner VPC connector resource.</p>",
+    "DescribeVpcIngressConnection": "<p>Return a full description of an App Runner VPC Ingress Connection resource.</p>",
     "DisassociateCustomDomain": "<p>Disassociate a custom domain name from an App Runner service.</p> <p>Certificates tracking domain validity are associated with a custom domain and are stored in <a href=\"https://docs.aws.amazon.com/acm/latest/userguide\">AWS Certificate Manager (ACM)</a>. These certificates aren't deleted as part of this action. App Runner delays certificate deletion for 30 days after a domain is disassociated from your service.</p>",
     "ListAutoScalingConfigurations": "<p>Returns a list of active App Runner automatic scaling configurations in your Amazon Web Services account. You can query the revisions for a specific configuration name or the revisions for all active configurations in your account. You can optionally query only the latest revision of each requested name.</p> <p>To retrieve a full description of a particular configuration revision, call and provide one of the ARNs returned by <code>ListAutoScalingConfigurations</code>.</p>",
     "ListConnections": "<p>Returns a list of App Runner connections that are associated with your Amazon Web Services account.</p>",
@@ -26,12 +29,14 @@
     "ListServices": "<p>Returns a list of running App Runner services in your Amazon Web Services account.</p>",
     "ListTagsForResource": "<p>List tags that are associated with for an App Runner resource. The response contains a list of tag key-value pairs.</p>",
     "ListVpcConnectors": "<p>Returns a list of App Runner VPC connectors in your Amazon Web Services account.</p>",
+    "ListVpcIngressConnections": "<p>Return a list of App Runner VPC Ingress Connections in your Amazon Web Services account.</p>",
     "PauseService": "<p>Pause an active App Runner service. App Runner reduces compute capacity for the service to zero and loses state (for example, ephemeral storage is removed).</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's progress.</p>",
     "ResumeService": "<p>Resume an active App Runner service. App Runner provisions compute capacity for the service.</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's progress.</p>",
     "StartDeployment": "<p>Initiate a manual deployment of the latest commit in a source code repository or the latest image in a source image repository to an App Runner service.</p> <p>For a source code repository, App Runner retrieves the commit and builds a Docker image. For a source image repository, App Runner retrieves the latest Docker image. In both cases, App Runner then deploys the new image to your service and starts a new container instance.</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's progress.</p>",
     "TagResource": "<p>Add tags to, or update the tag values of, an App Runner resource. A tag is a key-value pair.</p>",
     "UntagResource": "<p>Remove tags from an App Runner resource.</p>",
-    "UpdateService": "<p>Update an App Runner service. You can update the source configuration and instance configuration of the service. You can also update the ARN of the auto scaling configuration resource that's associated with the service. However, you can't change the name or the encryption configuration of the service. These can be set only when you create the service.</p> <p>To update the tags applied to your service, use the separate actions <a>TagResource</a> and <a>UntagResource</a>.</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's progress.</p>"
+    "UpdateService": "<p>Update an App Runner service. You can update the source configuration and instance configuration of the service. You can also update the ARN of the auto scaling configuration resource that's associated with the service. However, you can't change the name or the encryption configuration of the service. These can be set only when you create the service.</p> <p>To update the tags applied to your service, use the separate actions <a>TagResource</a> and <a>UntagResource</a>.</p> <p>This is an asynchronous operation. On a successful call, you can use the returned <code>OperationId</code> and the <a>ListOperations</a> call to track the operation's progress.</p>",
+    "UpdateVpcIngressConnection": "<p>Update an existing App Runner VPC Ingress Connection resource. The VPC Ingress Connection must be in one of the following states to be updated:</p> <ul> <li> <p> AVAILABLE </p> </li> <li> <p> FAILED_CREATION </p> </li> <li> <p> FAILED_UPDATE </p> </li> </ul>"
   },
   "shapes": {
     "ASConfigMaxConcurrency": {
@@ -63,22 +68,26 @@
         "Connection$ConnectionArn": "<p>The Amazon Resource Name (ARN) of this connection.</p>",
         "ConnectionSummary$ConnectionArn": "<p>The Amazon Resource Name (ARN) of this connection.</p>",
         "CreateServiceRequest$AutoScalingConfigurationArn": "<p>The Amazon Resource Name (ARN) of an App Runner automatic scaling configuration resource that you want to associate with your service. If not provided, App Runner associates the latest revision of a default auto scaling configuration.</p> <p>Specify an ARN with a name and a revision number to associate that revision. For example: <code>arn:aws:apprunner:us-east-1:123456789012:autoscalingconfiguration/high-availability/3</code> </p> <p>Specify just the name to associate the latest revision. For example: <code>arn:aws:apprunner:us-east-1:123456789012:autoscalingconfiguration/high-availability</code> </p>",
+        "CreateVpcIngressConnectionRequest$ServiceArn": "<p>The Amazon Resource Name (ARN) for this App Runner service that is used to create the VPC Ingress Connection resource.</p>",
         "DeleteAutoScalingConfigurationRequest$AutoScalingConfigurationArn": "<p>The Amazon Resource Name (ARN) of the App Runner auto scaling configuration that you want to delete.</p> <p>The ARN can be a full auto scaling configuration ARN, or a partial ARN ending with either <code>.../<i>name</i> </code> or <code>.../<i>name</i>/<i>revision</i> </code>. If a revision isn't specified, the latest active revision is deleted.</p>",
         "DeleteConnectionRequest$ConnectionArn": "<p>The Amazon Resource Name (ARN) of the App Runner connection that you want to delete.</p>",
         "DeleteObservabilityConfigurationRequest$ObservabilityConfigurationArn": "<p>The Amazon Resource Name (ARN) of the App Runner observability configuration that you want to delete.</p> <p>The ARN can be a full observability configuration ARN, or a partial ARN ending with either <code>.../<i>name</i> </code> or <code>.../<i>name</i>/<i>revision</i> </code>. If a revision isn't specified, the latest active revision is deleted.</p>",
         "DeleteServiceRequest$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service that you want to delete.</p>",
         "DeleteVpcConnectorRequest$VpcConnectorArn": "<p>The Amazon Resource Name (ARN) of the App Runner VPC connector that you want to delete.</p> <p>The ARN must be a full VPC connector ARN.</p>",
+        "DeleteVpcIngressConnectionRequest$VpcIngressConnectionArn": "<p>The Amazon Resource Name (ARN) of the App Runner VPC Ingress Connection that you want to delete.</p>",
         "DescribeAutoScalingConfigurationRequest$AutoScalingConfigurationArn": "<p>The Amazon Resource Name (ARN) of the App Runner auto scaling configuration that you want a description for.</p> <p>The ARN can be a full auto scaling configuration ARN, or a partial ARN ending with either <code>.../<i>name</i> </code> or <code>.../<i>name</i>/<i>revision</i> </code>. If a revision isn't specified, the latest active revision is described.</p>",
         "DescribeCustomDomainsRequest$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service that you want associated custom domain names to be described for.</p>",
         "DescribeCustomDomainsResponse$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service whose associated custom domain names you want to describe.</p>",
         "DescribeObservabilityConfigurationRequest$ObservabilityConfigurationArn": "<p>The Amazon Resource Name (ARN) of the App Runner observability configuration that you want a description for.</p> <p>The ARN can be a full observability configuration ARN, or a partial ARN ending with either <code>.../<i>name</i> </code> or <code>.../<i>name</i>/<i>revision</i> </code>. If a revision isn't specified, the latest active revision is described.</p>",
         "DescribeServiceRequest$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service that you want a description for.</p>",
         "DescribeVpcConnectorRequest$VpcConnectorArn": "<p>The Amazon Resource Name (ARN) of the App Runner VPC connector that you want a description for.</p> <p>The ARN must be a full VPC connector ARN.</p>",
+        "DescribeVpcIngressConnectionRequest$VpcIngressConnectionArn": "<p>The Amazon Resource Name (ARN) of the App Runner VPC Ingress Connection that you want a description for.</p>",
         "DisassociateCustomDomainRequest$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service that you want to disassociate a custom domain name from.</p>",
         "DisassociateCustomDomainResponse$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service that a custom domain name is disassociated from.</p>",
         "EgressConfiguration$VpcConnectorArn": "<p>The Amazon Resource Name (ARN) of the App Runner VPC connector that you want to associate with your App Runner service. Only valid when <code>EgressType = VPC</code>.</p>",
         "ListOperationsRequest$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service that you want a list of operations for.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that a tag list is requested for.</p> <p>It must be the ARN of an App Runner resource.</p>",
+        "ListVpcIngressConnectionsFilter$ServiceArn": "<p>The Amazon Resource Name (ARN) of a service to filter by. </p>",
         "ObservabilityConfiguration$ObservabilityConfigurationArn": "<p>The Amazon Resource Name (ARN) of this observability configuration.</p>",
         "ObservabilityConfigurationSummary$ObservabilityConfigurationArn": "<p>The Amazon Resource Name (ARN) of this observability configuration.</p>",
         "OperationSummary$TargetArn": "<p>The Amazon Resource Name (ARN) of the resource that the operation acted on (for example, an App Runner service).</p>",
@@ -92,7 +101,13 @@
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to remove tags from.</p> <p>It must be the ARN of an App Runner resource.</p>",
         "UpdateServiceRequest$ServiceArn": "<p>The Amazon Resource Name (ARN) of the App Runner service that you want to update.</p>",
         "UpdateServiceRequest$AutoScalingConfigurationArn": "<p>The Amazon Resource Name (ARN) of an App Runner automatic scaling configuration resource that you want to associate with the App Runner service.</p>",
-        "VpcConnector$VpcConnectorArn": "<p>The Amazon Resource Name (ARN) of this VPC connector.</p>"
+        "UpdateVpcIngressConnectionRequest$VpcIngressConnectionArn": "<p>The Amazon Resource Name (Arn) for the App Runner VPC Ingress Connection resource that you want to update.</p>",
+        "VpcConnector$VpcConnectorArn": "<p>The Amazon Resource Name (ARN) of this VPC connector.</p>",
+        "VpcDNSTarget$VpcIngressConnectionArn": "<p>The Amazon Resource Name (ARN) of the VPC Ingress Connection that is associated with your service.</p>",
+        "VpcIngressConnection$VpcIngressConnectionArn": "<p>The Amazon Resource Name (ARN) of the VPC Ingress Connection. </p>",
+        "VpcIngressConnection$ServiceArn": "<p>The Amazon Resource Name (ARN) of the service associated with the VPC Ingress Connection. </p>",
+        "VpcIngressConnectionSummary$VpcIngressConnectionArn": "<p>The Amazon Resource Name (ARN) of the VPC Ingress Connection. </p>",
+        "VpcIngressConnectionSummary$ServiceArn": "<p>The Amazon Resource Name (ARN) of the service associated with the VPC Ingress Connection. </p>"
       }
     },
     "AssociateCustomDomainRequest": {
@@ -151,6 +166,7 @@
       "base": null,
       "refs": {
         "AutoScalingConfiguration$Latest": "<p>It's set to <code>true</code> for the configuration with the highest <code>Revision</code> among all configurations that share the same <code>AutoScalingConfigurationName</code>. It's set to <code>false</code> otherwise.</p>",
+        "IngressConfiguration$IsPubliclyAccessible": "<p>Specifies whether your App Runner service is publicly accessible. To make the service publicly accessible set it to <code>True</code>. To make the service privately accessible, from only within an Amazon VPC set it to <code>False</code>. </p>",
         "ListAutoScalingConfigurationsRequest$LatestOnly": "<p>Set to <code>true</code> to list only the latest revision for each requested configuration name.</p> <p>Set to <code>false</code> to list all revisions for each requested configuration name.</p> <p>Default: <code>true</code> </p>",
         "ListObservabilityConfigurationsRequest$LatestOnly": "<p>Set to <code>true</code> to list only the latest revision for each requested configuration name.</p> <p>Set to <code>false</code> to list all revisions for each requested configuration name.</p> <p>Default: <code>true</code> </p>",
         "ObservabilityConfiguration$Latest": "<p>It's set to <code>true</code> for the configuration with the highest <code>Revision</code> among all configurations that share the same <code>ObservabilityConfigurationName</code>. It's set to <code>false</code> otherwise.</p>",
@@ -296,6 +312,16 @@
       "refs": {
       }
     },
+    "CreateVpcIngressConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVpcIngressConnectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CustomDomain": {
       "base": "<p>Describes a custom domain that's associated with an App Runner service.</p>",
       "refs": {
@@ -314,6 +340,12 @@
       "base": null,
       "refs": {
         "DescribeCustomDomainsResponse$CustomDomains": "<p>A list of descriptions of custom domain names that are associated with the service. In a paginated request, the request returns up to <code>MaxResults</code> records per call.</p>"
+      }
+    },
+    "CustomerAccountId": {
+      "base": null,
+      "refs": {
+        "VpcIngressConnection$AccountId": "<p>The Account Id you use to create the VPC Ingress Connection resource.</p>"
       }
     },
     "DeleteAutoScalingConfigurationRequest": {
@@ -362,6 +394,16 @@
       }
     },
     "DeleteVpcConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVpcIngressConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVpcIngressConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -422,6 +464,16 @@
       "refs": {
       }
     },
+    "DescribeVpcIngressConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeVpcIngressConnectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateCustomDomainRequest": {
       "base": null,
       "refs": {
@@ -437,7 +489,9 @@
       "refs": {
         "AssociateCustomDomainRequest$DomainName": "<p>A custom domain endpoint to associate. Specify a root domain (for example, <code>example.com</code>), a subdomain (for example, <code>login.example.com</code> or <code>admin.login.example.com</code>), or a wildcard (for example, <code>*.example.com</code>).</p>",
         "CustomDomain$DomainName": "<p>An associated custom domain endpoint. It can be a root domain (for example, <code>example.com</code>), a subdomain (for example, <code>login.example.com</code> or <code>admin.login.example.com</code>), or a wildcard (for example, <code>*.example.com</code>).</p>",
-        "DisassociateCustomDomainRequest$DomainName": "<p>The domain name that you want to disassociate from the App Runner service.</p>"
+        "DisassociateCustomDomainRequest$DomainName": "<p>The domain name that you want to disassociate from the App Runner service.</p>",
+        "VpcDNSTarget$DomainName": "<p>The domain name of your target DNS that is associated with the Amazon VPC.</p>",
+        "VpcIngressConnection$DomainName": "<p>The domain name associated with the VPC Ingress Connection resource.</p>"
       }
     },
     "EgressConfiguration": {
@@ -535,6 +589,20 @@
       "base": null,
       "refs": {
         "ImageRepository$ImageRepositoryType": "<p>The type of the image repository. This reflects the repository provider and whether the repository is private or public.</p>"
+      }
+    },
+    "IngressConfiguration": {
+      "base": "<p>Network configuration settings for inbound network traffic.</p>",
+      "refs": {
+        "NetworkConfiguration$IngressConfiguration": "<p>Network configuration settings for inbound message traffic.</p>"
+      }
+    },
+    "IngressVpcConfiguration": {
+      "base": "<p>The configuration of your VPC and the associated VPC endpoint. The VPC endpoint is an Amazon Web Services PrivateLink resource that allows access to your App Runner services from within an Amazon VPC.</p>",
+      "refs": {
+        "CreateVpcIngressConnectionRequest$IngressVpcConfiguration": "<p>Specifications for the customer’s Amazon VPC and the related Amazon Web Services PrivateLink VPC endpoint that are used to create the VPC Ingress Connection resource.</p>",
+        "UpdateVpcIngressConnectionRequest$IngressVpcConfiguration": "<p>Specifications for the customer’s Amazon VPC and the related Amazon Web Services PrivateLink VPC endpoint that are used to update the VPC Ingress Connection resource.</p>",
+        "VpcIngressConnection$IngressVpcConfiguration": "<p>Specifications for the customer’s VPC and related PrivateLink VPC endpoint that are used to associate with the VPC Ingress Connection resource.</p>"
       }
     },
     "InstanceConfiguration": {
@@ -655,13 +723,30 @@
       "refs": {
       }
     },
+    "ListVpcIngressConnectionsFilter": {
+      "base": "<p>Returns a list of VPC Ingress Connections based on the filter provided. It can return either <code>ServiceArn</code> or <code>VpcEndpointId</code>, or both.</p>",
+      "refs": {
+        "ListVpcIngressConnectionsRequest$Filter": "<p>The VPC Ingress Connections to be listed based on either the Service Arn or Vpc Endpoint Id, or both.</p>"
+      }
+    },
+    "ListVpcIngressConnectionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVpcIngressConnectionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
         "ListAutoScalingConfigurationsRequest$MaxResults": "<p>The maximum number of results to include in each response (result page). It's used for a paginated request.</p> <p>If you don't specify <code>MaxResults</code>, the request retrieves all available results in a single response.</p>",
         "ListConnectionsRequest$MaxResults": "<p>The maximum number of results to include in each response (result page). Used for a paginated request.</p> <p>If you don't specify <code>MaxResults</code>, the request retrieves all available results in a single response.</p>",
         "ListObservabilityConfigurationsRequest$MaxResults": "<p>The maximum number of results to include in each response (result page). It's used for a paginated request.</p> <p>If you don't specify <code>MaxResults</code>, the request retrieves all available results in a single response.</p>",
-        "ListVpcConnectorsRequest$MaxResults": "<p>The maximum number of results to include in each response (result page). It's used for a paginated request.</p> <p>If you don't specify <code>MaxResults</code>, the request retrieves all available results in a single response.</p>"
+        "ListVpcConnectorsRequest$MaxResults": "<p>The maximum number of results to include in each response (result page). It's used for a paginated request.</p> <p>If you don't specify <code>MaxResults</code>, the request retrieves all available results in a single response.</p>",
+        "ListVpcIngressConnectionsRequest$MaxResults": "<p>The maximum number of results to include in each response (result page). It's used for a paginated request.</p> <p>If you don't specify <code>MaxResults</code>, the request retrieves all available results in a single response.</p>"
       }
     },
     "Memory": {
@@ -688,7 +773,9 @@
         "ListObservabilityConfigurationsRequest$NextToken": "<p>A token from a previous result page. It's used for a paginated request. The request retrieves the next result page. All other parameter values must be identical to the ones that are specified in the initial request.</p> <p>If you don't specify <code>NextToken</code>, the request retrieves the first result page.</p>",
         "ListObservabilityConfigurationsResponse$NextToken": "<p>The token that you can pass in a subsequent request to get the next result page. It's returned in a paginated request.</p>",
         "ListVpcConnectorsRequest$NextToken": "<p>A token from a previous result page. It's used for a paginated request. The request retrieves the next result page. All other parameter values must be identical to the ones that are specified in the initial request.</p> <p>If you don't specify <code>NextToken</code>, the request retrieves the first result page.</p>",
-        "ListVpcConnectorsResponse$NextToken": "<p>The token that you can pass in a subsequent request to get the next result page. It's returned in a paginated request.</p>"
+        "ListVpcConnectorsResponse$NextToken": "<p>The token that you can pass in a subsequent request to get the next result page. It's returned in a paginated request.</p>",
+        "ListVpcIngressConnectionsRequest$NextToken": "<p>A token from a previous result page. It's used for a paginated request. The request retrieves the next result page. All other parameter values must be identical to the ones that are specified in the initial request.</p> <p>If you don't specify <code>NextToken</code>, the request retrieves the first result page.</p>",
+        "ListVpcIngressConnectionsResponse$NextToken": "<p>The token that you can pass in a subsequent request to get the next result page. It's returned in a paginated request.</p>"
       }
     },
     "NullableBoolean": {
@@ -938,14 +1025,18 @@
         "DescribeCustomDomainsResponse$NextToken": "<p>The token that you can pass in a subsequent request to get the next result page. It's returned in a paginated request.</p>",
         "DisassociateCustomDomainResponse$DNSTarget": "<p>The App Runner subdomain of the App Runner service. The disassociated custom domain name was mapped to this target name.</p>",
         "ImageConfiguration$Port": "<p>The port that your application listens to in the container.</p> <p>Default: <code>8080</code> </p>",
+        "IngressVpcConfiguration$VpcId": "<p>The ID of the VPC that is used for the VPC endpoint.</p>",
+        "IngressVpcConfiguration$VpcEndpointId": "<p>The ID of the VPC endpoint that your App Runner service connects to. </p>",
         "ListOperationsRequest$NextToken": "<p>A token from a previous result page. It's used for a paginated request. The request retrieves the next result page. All other parameter values must be identical to the ones specified in the initial request.</p> <p>If you don't specify <code>NextToken</code>, the request retrieves the first result page.</p>",
         "ListOperationsResponse$NextToken": "<p>The token that you can pass in a subsequent request to get the next result page. It's returned in a paginated request.</p>",
         "ListServicesRequest$NextToken": "<p>A token from a previous result page. Used for a paginated request. The request retrieves the next result page. All other parameter values must be identical to the ones specified in the initial request.</p> <p>If you don't specify <code>NextToken</code>, the request retrieves the first result page.</p>",
         "ListServicesResponse$NextToken": "<p>The token that you can pass in a subsequent request to get the next result page. It's returned in a paginated request.</p>",
+        "ListVpcIngressConnectionsFilter$VpcEndpointId": "<p>The ID of a VPC Endpoint to filter by. </p>",
         "Service$ServiceUrl": "<p>A subdomain URL that App Runner generated for this service. You can use this URL to access your service web application.</p>",
         "ServiceSummary$ServiceUrl": "<p>A subdomain URL that App Runner generated for this service. You can use this URL to access your service web application.</p>",
         "SourceCodeVersion$Value": "<p>A source code version.</p> <p>For a git-based repository, a branch name maps to a specific version. App Runner uses the most recent commit to the branch.</p>",
-        "StringList$member": null
+        "StringList$member": null,
+        "VpcDNSTarget$VpcId": "<p>The ID of the Amazon VPC that is associated with the custom domain name of the target DNS.</p>"
       }
     },
     "StringList": {
@@ -984,6 +1075,7 @@
         "CreateObservabilityConfigurationRequest$Tags": "<p>A list of metadata items that you can associate with your observability configuration resource. A tag is a key-value pair.</p>",
         "CreateServiceRequest$Tags": "<p>An optional list of metadata items that you can associate with the App Runner service resource. A tag is a key-value pair.</p>",
         "CreateVpcConnectorRequest$Tags": "<p>A list of metadata items that you can associate with your VPC connector resource. A tag is a key-value pair.</p>",
+        "CreateVpcIngressConnectionRequest$Tags": "<p>An optional list of metadata items that you can associate with the VPC Ingress Connection resource. A tag is a key-value pair.</p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of the tag key-value pairs that are associated with the resource.</p>",
         "TagResourceRequest$Tags": "<p>A list of tag key-value pairs to add or update. If a key is new to the resource, the tag is added with the provided value. If a key is already associated with the resource, the value of the tag is updated.</p>"
       }
@@ -1022,7 +1114,9 @@
         "ServiceSummary$CreatedAt": "<p>The time when the App Runner service was created. It's in the Unix time stamp format.</p>",
         "ServiceSummary$UpdatedAt": "<p>The time when the App Runner service was last updated. It's in theUnix time stamp format.</p>",
         "VpcConnector$CreatedAt": "<p>The time when the VPC connector was created. It's in Unix time stamp format.</p>",
-        "VpcConnector$DeletedAt": "<p>The time when the VPC connector was deleted. It's in Unix time stamp format.</p>"
+        "VpcConnector$DeletedAt": "<p>The time when the VPC connector was deleted. It's in Unix time stamp format.</p>",
+        "VpcIngressConnection$CreatedAt": "<p>The time when the VPC Ingress Connection was created. It's in the Unix time stamp format.</p> <ul> <li> <p> Type: Timestamp </p> </li> <li> <p> Required: Yes </p> </li> </ul>",
+        "VpcIngressConnection$DeletedAt": "<p>The time when the App Runner service was deleted. It's in the Unix time stamp format.</p> <ul> <li> <p> Type: Timestamp </p> </li> <li> <p> Required: No </p> </li> </ul>"
       }
     },
     "TraceConfiguration": {
@@ -1070,6 +1164,16 @@
       "refs": {
       }
     },
+    "UpdateVpcIngressConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVpcIngressConnectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "VpcConnector": {
       "base": "<p>Describes an App Runner VPC connector resource. A VPC connector describes the Amazon Virtual Private Cloud (Amazon VPC) that an App Runner service is associated with, and the subnets and security group that are used.</p> <p>Multiple revisions of a connector might have the same <code>Name</code> and different <code>Revision</code> values.</p> <note> <p>At this time, App Runner supports only one revision per name.</p> </note>",
       "refs": {
@@ -1096,6 +1200,54 @@
       "base": null,
       "refs": {
         "ListVpcConnectorsResponse$VpcConnectors": "<p>A list of information records for VPC connectors. In a paginated request, the request returns up to <code>MaxResults</code> records for each call.</p>"
+      }
+    },
+    "VpcDNSTarget": {
+      "base": "<p>DNS Target record for a custom domain of this Amazon VPC.</p>",
+      "refs": {
+        "VpcDNSTargetList$member": null
+      }
+    },
+    "VpcDNSTargetList": {
+      "base": null,
+      "refs": {
+        "AssociateCustomDomainResponse$VpcDNSTargets": "<p>DNS Target records for the custom domains of this Amazon VPC. </p>",
+        "DescribeCustomDomainsResponse$VpcDNSTargets": "<p>DNS Target records for the custom domains of this Amazon VPC. </p>",
+        "DisassociateCustomDomainResponse$VpcDNSTargets": "<p>DNS Target records for the custom domains of this Amazon VPC. </p>"
+      }
+    },
+    "VpcIngressConnection": {
+      "base": "<p>The App Runner resource that specifies an App Runner endpoint for incoming traffic. It establishes a connection between a VPC interface endpoint and a App Runner service, to make your App Runner service accessible from only within an Amazon VPC.</p>",
+      "refs": {
+        "CreateVpcIngressConnectionResponse$VpcIngressConnection": "<p>A description of the App Runner VPC Ingress Connection resource that's created by this request. </p>",
+        "DeleteVpcIngressConnectionResponse$VpcIngressConnection": "<p>A description of the App Runner VPC Ingress Connection that this request just deleted.</p>",
+        "DescribeVpcIngressConnectionResponse$VpcIngressConnection": "<p>A description of the App Runner VPC Ingress Connection that you specified in this request.</p>",
+        "UpdateVpcIngressConnectionResponse$VpcIngressConnection": "<p>A description of the App Runner VPC Ingress Connection resource that's updated by this request.</p>"
+      }
+    },
+    "VpcIngressConnectionName": {
+      "base": null,
+      "refs": {
+        "CreateVpcIngressConnectionRequest$VpcIngressConnectionName": "<p>A name for the VPC Ingress Connection resource. It must be unique across all the active VPC Ingress Connections in your Amazon Web Services account in the Amazon Web Services Region. </p>",
+        "VpcIngressConnection$VpcIngressConnectionName": "<p>The customer-provided VPC Ingress Connection name.</p>"
+      }
+    },
+    "VpcIngressConnectionStatus": {
+      "base": null,
+      "refs": {
+        "VpcIngressConnection$Status": "<p>The current status of the VPC Ingress Connection. The VPC Ingress Connection displays one of the following statuses: <code>AVAILABLE</code>, <code>PENDING_CREATION</code>, <code>PENDING_UPDATE</code>, <code>PENDING_DELETION</code>,<code>FAILED_CREATION</code>, <code>FAILED_UPDATE</code>, <code>FAILED_DELETION</code>, and <code>DELETED</code>.. </p>"
+      }
+    },
+    "VpcIngressConnectionSummary": {
+      "base": "<p>Provides summary information about an VPC Ingress Connection, which includes its VPC Ingress Connection ARN and its associated Service ARN.</p>",
+      "refs": {
+        "VpcIngressConnectionSummaryList$member": null
+      }
+    },
+    "VpcIngressConnectionSummaryList": {
+      "base": null,
+      "refs": {
+        "ListVpcIngressConnectionsResponse$VpcIngressConnectionSummaryList": "<p>A list of summary information records for VPC Ingress Connections. In a paginated request, the request returns up to <code>MaxResults</code> records for each call.</p>"
       }
     }
   }

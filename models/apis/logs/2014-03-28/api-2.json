@@ -404,6 +404,20 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListTagsLogGroup":{
       "name":"ListTagsLogGroup",
       "http":{
@@ -415,7 +429,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Please use the generic tagging API ListTagsForResource"
     },
     "PutDestination":{
       "name":"PutDestination",
@@ -574,6 +590,22 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"}
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Please use the generic tagging API TagResource"
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "TestMetricFilter":{
@@ -598,6 +630,21 @@
       "input":{"shape":"UntagLogGroupRequest"},
       "errors":[
         {"shape":"ResourceNotFoundException"}
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Please use the generic tagging API UntagResource"
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     }
   },
@@ -605,6 +652,12 @@
     "AccessPolicy":{
       "type":"string",
       "min":1
+    },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"[\\w+=/:,.@-]*"
     },
     "Arn":{"type":"string"},
     "AssociateKmsKeyRequest":{
@@ -1209,18 +1262,35 @@
       },
       "exception":true
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"Tags"}
+      }
+    },
     "ListTagsLogGroupRequest":{
       "type":"structure",
       "required":["logGroupName"],
       "members":{
         "logGroupName":{"shape":"LogGroupName"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Please use the generic tagging API model ListTagsForResourceRequest and ListTagsForResourceResponse"
     },
     "ListTagsLogGroupResponse":{
       "type":"structure",
       "members":{
         "tags":{"shape":"Tags"}
-      }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Please use the generic tagging API model ListTagsForResourceRequest and ListTagsForResourceResponse"
     },
     "LogEventIndex":{"type":"integer"},
     "LogGroup":{
@@ -1426,7 +1496,8 @@
       "members":{
         "destinationName":{"shape":"DestinationName"},
         "targetArn":{"shape":"TargetArn"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"Tags"}
       }
     },
     "PutDestinationResponse":{
@@ -1789,6 +1860,12 @@
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+)$"
     },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":0
+    },
     "TagList":{
       "type":"list",
       "member":{"shape":"TagKey"},
@@ -1802,6 +1879,19 @@
       ],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
+        "tags":{"shape":"Tags"}
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Please use the generic tagging API model TagResourceRequest"
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -1849,6 +1939,14 @@
       "min":0
     },
     "Token":{"type":"string"},
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"},
+        "resourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
     "UnrecognizedClientException":{
       "type":"structure",
       "members":{
@@ -1864,6 +1962,19 @@
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
         "tags":{"shape":"TagList"}
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Please use the generic tagging API model UntagResourceRequest"
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
+        "tagKeys":{"shape":"TagKeyList"}
       }
     },
     "Value":{"type":"string"}

@@ -72,9 +72,12 @@ func (c *Textract) AnalyzeDocumentRequest(input *AnalyzeDocumentInput) (req *req
 //     returned (including text that doesn't have a relationship with the value
 //     of FeatureTypes).
 //
-//   - Queries.A QUERIES_RESULT Block object contains the answer to the query,
-//     the alias associated and an ID that connect it to the query asked. This
-//     Block also contains a location and attached confidence score.
+//   - Query. A QUERY Block object contains the query text, alias and link
+//     to the associated Query results block object.
+//
+//   - Query Result. A QUERY_RESULT Block object contains the answer to the
+//     query and an ID that connects it to the query asked. This Block also contains
+//     a confidence score.
 //
 // Selection elements such as check boxes and option buttons (radio buttons)
 // can be detected in form data and in tables. A SELECTION_ELEMENT Block object
@@ -210,7 +213,7 @@ func (c *Textract) AnalyzeExpenseRequest(input *AnalyzeExpenseInput) (req *reque
 // AnalyzeExpense synchronously analyzes an input document for financially related
 // relationships between text.
 //
-// Information is returned as ExpenseDocuments and seperated as follows.
+// Information is returned as ExpenseDocuments and seperated as follows:
 //
 //   - LineItemGroups- A data set containing LineItems which store information
 //     about the lines of text, such as an item purchased and its price on a
@@ -451,9 +454,9 @@ func (c *Textract) DetectDocumentTextRequest(input *DetectDocumentTextInput) (re
 // DetectDocumentText API operation for Amazon Textract.
 //
 // Detects text in the input document. Amazon Textract can detect lines of text
-// and the words that make up a line of text. The input document must be an
-// image in JPEG, PNG, PDF, or TIFF format. DetectDocumentText returns the detected
-// text in an array of Block objects.
+// and the words that make up a line of text. The input document must be in
+// one of the following image formats: JPEG, PNG, PDF, or TIFF. DetectDocumentText
+// returns the detected text in an array of Block objects.
 //
 // Each document page has as an associated Block of type PAGE. Each PAGE Block
 // object is the parent of LINE Block objects that represent the lines of detected
@@ -607,9 +610,17 @@ func (c *Textract) GetDocumentAnalysisRequest(input *GetDocumentAnalysisInput) (
 //     returned (including text that doesn't have a relationship with the value
 //     of the StartDocumentAnalysis FeatureTypes input parameter).
 //
-//   - Queries. A QUERIES_RESULT Block object contains the answer to the query,
-//     the alias associated and an ID that connect it to the query asked. This
-//     Block also contains a location and attached confidence score
+//   - Query. A QUERY Block object contains the query text, alias and link
+//     to the associated Query results block object.
+//
+//   - Query Results. A QUERY_RESULT Block object contains the answer to the
+//     query and an ID that connects it to the query asked. This Block also contains
+//     a confidence score.
+//
+// While processing a document with queries, look out for INVALID_REQUEST_PARAMETERS
+// output. This indicates that either the per page query limit has been exceeded
+// or that the operation is trying to query a page in the document which doesn’t
+// exist.
 //
 // Selection elements such as check boxes and option buttons (radio buttons)
 // can be detected in form data and in tables. A SELECTION_ELEMENT Block object
@@ -2014,7 +2025,7 @@ type Block struct {
 	//    of SelectionStatus to determine the status of the selection element.
 	//
 	//    * QUERY - A question asked during the call of AnalyzeDocument. Contains
-	//    an alias and an ID that attachs it to its answer.
+	//    an alias and an ID that attaches it to its answer.
 	//
 	//    * QUERY_RESULT - A response to a question asked during the call of analyze
 	//    document. Comes with an alias and ID for ease of locating in a response.
@@ -2052,12 +2063,14 @@ type Block struct {
 	// a single operation.
 	Id *string `type:"string"`
 
-	// The page on which a block was detected. Page is returned by asynchronous
-	// operations. Page values greater than 1 are only returned for multipage documents
-	// that are in PDF or TIFF format. A scanned image (JPEG/PNG), even if it contains
-	// multiple document pages, is considered to be a single-page document. The
-	// value of Page is always 1. Synchronous operations don't return Page because
-	// every input document is considered to be a single-page document.
+	// The page on which a block was detected. Page is returned by synchronous and
+	// asynchronous operations. Page values greater than 1 are only returned for
+	// multipage documents that are in PDF or TIFF format. A scanned image (JPEG/PNG)
+	// provided to an asynchronous operation, even if it contains multiple document
+	// pages, is considered a single-page document. This means that for scanned
+	// images the value of Page is always 1. Synchronous operations operations will
+	// also return a Page value of 1 because every input document is considered
+	// to be a single-page document.
 	Page *int64 `type:"integer"`
 
 	// Each query contains the question you want to ask in the Text and the alias
@@ -2619,6 +2632,47 @@ func (s *DocumentTooLargeException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Returns the kind of currency detected.
+type ExpenseCurrency struct {
+	_ struct{} `type:"structure"`
+
+	// Currency code for detected currency.
+	Code *string `type:"string"`
+
+	// Percentage confideence in the detected currency.
+	Confidence *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpenseCurrency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpenseCurrency) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ExpenseCurrency) SetCode(v string) *ExpenseCurrency {
+	s.Code = &v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *ExpenseCurrency) SetConfidence(v float64) *ExpenseCurrency {
+	s.Confidence = &v
+	return s
+}
+
 // An object used to store information about the Value or Label detected by
 // Amazon Textract.
 type ExpenseDetection struct {
@@ -2676,6 +2730,10 @@ func (s *ExpenseDetection) SetText(v string) *ExpenseDetection {
 type ExpenseDocument struct {
 	_ struct{} `type:"structure"`
 
+	// This is a block object, the same as reported when DetectDocumentText is run
+	// on a document. It provides word level recognition of text.
+	Blocks []*Block `type:"list"`
+
 	// Denotes which invoice or receipt in the document the information is coming
 	// from. First document will be 1, the second 2, and so on.
 	ExpenseIndex *int64 `type:"integer"`
@@ -2705,6 +2763,12 @@ func (s ExpenseDocument) GoString() string {
 	return s.String()
 }
 
+// SetBlocks sets the Blocks field's value.
+func (s *ExpenseDocument) SetBlocks(v []*Block) *ExpenseDocument {
+	s.Blocks = v
+	return s
+}
+
 // SetExpenseIndex sets the ExpenseIndex field's value.
 func (s *ExpenseDocument) SetExpenseIndex(v int64) *ExpenseDocument {
 	s.ExpenseIndex = &v
@@ -2727,6 +2791,14 @@ func (s *ExpenseDocument) SetSummaryFields(v []*ExpenseField) *ExpenseDocument {
 // and ValueDetection
 type ExpenseField struct {
 	_ struct{} `type:"structure"`
+
+	// Shows the kind of currency, both the code and confidence associated with
+	// any monatary value detected.
+	Currency *ExpenseCurrency `type:"structure"`
+
+	// Shows which group a response object belongs to, such as whether an address
+	// line belongs to the vendor's address or the recipent's address.
+	GroupProperties []*ExpenseGroupProperty `type:"list"`
 
 	// The explicitly stated label of a detected element.
 	LabelDetection *ExpenseDetection `type:"structure"`
@@ -2760,6 +2832,18 @@ func (s ExpenseField) GoString() string {
 	return s.String()
 }
 
+// SetCurrency sets the Currency field's value.
+func (s *ExpenseField) SetCurrency(v *ExpenseCurrency) *ExpenseField {
+	s.Currency = v
+	return s
+}
+
+// SetGroupProperties sets the GroupProperties field's value.
+func (s *ExpenseField) SetGroupProperties(v []*ExpenseGroupProperty) *ExpenseField {
+	s.GroupProperties = v
+	return s
+}
+
 // SetLabelDetection sets the LabelDetection field's value.
 func (s *ExpenseField) SetLabelDetection(v *ExpenseDetection) *ExpenseField {
 	s.LabelDetection = v
@@ -2781,6 +2865,48 @@ func (s *ExpenseField) SetType(v *ExpenseType) *ExpenseField {
 // SetValueDetection sets the ValueDetection field's value.
 func (s *ExpenseField) SetValueDetection(v *ExpenseDetection) *ExpenseField {
 	s.ValueDetection = v
+	return s
+}
+
+// Shows the group that a certain key belongs to. This helps differentiate responses
+// like addresses that can appear similar in response JSON.
+type ExpenseGroupProperty struct {
+	_ struct{} `type:"structure"`
+
+	// Provides a group Id number, which will be the same for each in the group.
+	Id *string `type:"string"`
+
+	// Informs you on the kind of label associated with the group
+	Types []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpenseGroupProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpenseGroupProperty) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ExpenseGroupProperty) SetId(v string) *ExpenseGroupProperty {
+	s.Id = &v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *ExpenseGroupProperty) SetTypes(v []*string) *ExpenseGroupProperty {
+	s.Types = v
 	return s
 }
 
@@ -4602,8 +4728,8 @@ type Query struct {
 	// Alias attached to the query, for ease of location.
 	Alias *string `min:"1" type:"string"`
 
-	// List of pages associated with the query. The following is a list of rules
-	// for using this parameter.
+	// Pages is a parameter that the user inputs to specify which pages to apply
+	// a query to. The following is a list of rules for using this parameter.
 	//
 	//    * If a page is not specified, it is set to ["1"] by default.
 	//
@@ -4611,7 +4737,7 @@ type Query struct {
 	//    2 3 4 5 6 7 8 9 - *. No whitespace is allowed.
 	//
 	//    * When using * to indicate all pages, it must be the only element in the
-	//    string.
+	//    list.
 	//
 	//    * You can use page intervals, such as [“1-3”, “1-1”, “4-*”].
 	//    Where * indicates last page of document.
