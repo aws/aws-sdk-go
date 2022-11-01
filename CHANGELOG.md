@@ -1,3 +1,11 @@
+Release v1.44.128 (2022-11-01)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Relational Database Service - This release adds support for configuring Storage Throughput on RDS database instances.
+* `service/textract`: Updates service API and documentation
+
 Release v1.44.127 (2022-10-31)
 ===
 

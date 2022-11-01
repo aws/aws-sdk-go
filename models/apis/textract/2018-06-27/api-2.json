@@ -639,7 +639,8 @@
       "type":"structure",
       "members":{
         "DocumentIndex":{"shape":"UInteger"},
-        "IdentityDocumentFields":{"shape":"IdentityDocumentFieldList"}
+        "IdentityDocumentFields":{"shape":"IdentityDocumentFieldList"},
+        "Blocks":{"shape":"BlockList"}
       }
     },
     "IdentityDocumentField":{
