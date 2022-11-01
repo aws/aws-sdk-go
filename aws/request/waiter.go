@@ -176,6 +176,9 @@ func (w Waiter) WaitWithContext(ctx aws.Context) error {
 		}
 		req.Handlers.Build.PushBack(MakeAddToUserAgentFreeFormHandler("Waiter"))
 		err = req.Send()
+		if err != nil {
+			return err
+		}
 
 		// See if any of the acceptors match the request's response, or error
 		for _, a := range w.Acceptors {

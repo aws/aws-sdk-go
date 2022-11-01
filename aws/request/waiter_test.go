@@ -276,6 +276,43 @@ func TestWaiterFailure(t *testing.T) {
 	if e, a := 3, reqNum; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
+
+	// test coverage for handling config errors.
+
+	svcWithoutRegion := &mockClient{Client: awstesting.NewClient(&aws.Config{
+		Region: nil,
+	})}
+	svcWithoutRegion.Handlers.Send.Clear() // mock sending
+	svcWithoutRegion.Handlers.Unmarshal.Clear()
+	svcWithoutRegion.Handlers.UnmarshalMeta.Clear()
+	svcWithoutRegion.Handlers.ValidateResponse.Clear()
+
+	w = request.Waiter{
+		MaxAttempts:      10,
+		Delay:            request.ConstantWaiterDelay(0),
+		SleepWithContext: aws.SleepWithContext,
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.PathAllWaiterMatch,
+				Argument: "States[].State",
+				Expected: "running",
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.PathAnyWaiterMatch,
+				Argument: "States[].State",
+				Expected: "stopping",
+			},
+		},
+		NewRequest: BuildNewMockRequest(svcWithoutRegion, &MockInput{}),
+	}
+
+	err = w.WaitWithContext(aws.BackgroundContext()).(awserr.Error)
+
+	if e, a := "MissingRegion", err.Code(); e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
 }
 
 func TestWaiterError(t *testing.T) {
