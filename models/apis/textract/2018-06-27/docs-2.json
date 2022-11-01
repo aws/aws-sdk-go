@@ -74,7 +74,8 @@
         "DetectDocumentTextResponse$Blocks": "<p>An array of <code>Block</code> objects that contain the text that's detected in the document.</p>",
         "ExpenseDocument$Blocks": "<p>This is a block object, the same as reported when DetectDocumentText is run on a document. It provides word level recognition of text.</p>",
         "GetDocumentAnalysisResponse$Blocks": "<p>The results of the text-analysis operation.</p>",
-        "GetDocumentTextDetectionResponse$Blocks": "<p>The results of the text-detection operation.</p>"
+        "GetDocumentTextDetectionResponse$Blocks": "<p>The results of the text-detection operation.</p>",
+        "IdentityDocument$Blocks": "<p>Individual word recognition, as returned by document detection.</p>"
       }
     },
     "BlockType": {
@@ -217,7 +218,7 @@
       }
     },
     "ExpenseGroupProperty": {
-      "base": "<p>Shows the group that a certain key belongs to. This helps differentiate responses like addresses that can appear similar in response JSON.</p>",
+      "base": "<p>Shows the group that a certain key belongs to. This helps differentiate between names and addresses for different organizations, that can be hard to determine via JSON response.</p>",
       "refs": {
         "ExpenseGroupPropertyList$member": null
       }
@@ -713,7 +714,7 @@
         "AnalyzeIDResponse$AnalyzeIDModelVersion": "<p>The version of the AnalyzeIdentity API being used to process documents.</p>",
         "Block$Text": "<p>The word or line of text that's recognized by Amazon Textract. </p>",
         "DetectDocumentTextResponse$DetectDocumentTextModelVersion": "<p/>",
-        "ExpenseCurrency$Code": "<p>Currency code for detected currency.</p>",
+        "ExpenseCurrency$Code": "<p>Currency code for detected currency. the current supported codes are:</p> <ul> <li> <p>USD</p> </li> <li> <p>EUR</p> </li> <li> <p>GBP</p> </li> <li> <p>CAD</p> </li> <li> <p>INR</p> </li> <li> <p>JPY</p> </li> <li> <p>CHF</p> </li> <li> <p>AUD</p> </li> <li> <p>CNY</p> </li> <li> <p>BZR</p> </li> <li> <p>SEK</p> </li> <li> <p>HKD</p> </li> </ul>",
         "ExpenseDetection$Text": "<p>The word or line of text recognized by Amazon Textract</p>",
         "ExpenseGroupProperty$Id": "<p>Provides a group Id number, which will be the same for each in the group.</p>",
         "ExpenseType$Text": "<p>The word or line of text detected by Amazon Textract.</p>",
@@ -730,7 +731,7 @@
     "StringList": {
       "base": null,
       "refs": {
-        "ExpenseGroupProperty$Types": "<p>Informs you on the kind of label associated with the group</p>"
+        "ExpenseGroupProperty$Types": "<p>Informs you on whether the expense group is a name or an address.</p>"
       }
     },
     "TextType": {

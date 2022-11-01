@@ -2636,7 +2636,31 @@ func (s *DocumentTooLargeException) RequestID() string {
 type ExpenseCurrency struct {
 	_ struct{} `type:"structure"`
 
-	// Currency code for detected currency.
+	// Currency code for detected currency. the current supported codes are:
+	//
+	//    * USD
+	//
+	//    * EUR
+	//
+	//    * GBP
+	//
+	//    * CAD
+	//
+	//    * INR
+	//
+	//    * JPY
+	//
+	//    * CHF
+	//
+	//    * AUD
+	//
+	//    * CNY
+	//
+	//    * BZR
+	//
+	//    * SEK
+	//
+	//    * HKD
 	Code *string `type:"string"`
 
 	// Percentage confideence in the detected currency.
@@ -2868,15 +2892,16 @@ func (s *ExpenseField) SetValueDetection(v *ExpenseDetection) *ExpenseField {
 	return s
 }
 
-// Shows the group that a certain key belongs to. This helps differentiate responses
-// like addresses that can appear similar in response JSON.
+// Shows the group that a certain key belongs to. This helps differentiate between
+// names and addresses for different organizations, that can be hard to determine
+// via JSON response.
 type ExpenseGroupProperty struct {
 	_ struct{} `type:"structure"`
 
 	// Provides a group Id number, which will be the same for each in the group.
 	Id *string `type:"string"`
 
-	// Informs you on the kind of label associated with the group
+	// Informs you on whether the expense group is a name or an address.
 	Types []*string `type:"list"`
 }
 
@@ -3805,6 +3830,9 @@ func (s *IdempotentParameterMismatchException) RequestID() string {
 type IdentityDocument struct {
 	_ struct{} `type:"structure"`
 
+	// Individual word recognition, as returned by document detection.
+	Blocks []*Block `type:"list"`
+
 	// Denotes the placement of a document in the IdentityDocument list. The first
 	// document is marked 1, the second 2 and so on.
 	DocumentIndex *int64 `type:"integer"`
@@ -3830,6 +3858,12 @@ func (s IdentityDocument) String() string {
 // value will be replaced with "sensitive".
 func (s IdentityDocument) GoString() string {
 	return s.String()
+}
+
+// SetBlocks sets the Blocks field's value.
+func (s *IdentityDocument) SetBlocks(v []*Block) *IdentityDocument {
+	s.Blocks = v
+	return s
 }
 
 // SetDocumentIndex sets the DocumentIndex field's value.
