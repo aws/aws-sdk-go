@@ -2808,7 +2808,15 @@
       "type":"structure",
       "members":{
         "Prefix":{"shape":"Prefix"},
-        "Tags":{"shape":"S3TagSet"}
+        "Tags":{"shape":"S3TagSet"},
+        "ObjectSizeGreaterThan":{
+          "shape":"ObjectSizeGreaterThanBytes",
+          "box":true
+        },
+        "ObjectSizeLessThan":{
+          "shape":"ObjectSizeLessThanBytes",
+          "box":true
+        }
       }
     },
     "LifecycleRuleFilter":{
@@ -2816,7 +2824,15 @@
       "members":{
         "Prefix":{"shape":"Prefix"},
         "Tag":{"shape":"S3Tag"},
-        "And":{"shape":"LifecycleRuleAndOperator"}
+        "And":{"shape":"LifecycleRuleAndOperator"},
+        "ObjectSizeGreaterThan":{
+          "shape":"ObjectSizeGreaterThanBytes",
+          "box":true
+        },
+        "ObjectSizeLessThan":{
+          "shape":"ObjectSizeLessThanBytes",
+          "box":true
+        }
       }
     },
     "LifecycleRules":{
@@ -3175,10 +3191,15 @@
       "max":64,
       "min":1
     },
+    "NoncurrentVersionCount":{"type":"integer"},
     "NoncurrentVersionExpiration":{
       "type":"structure",
       "members":{
-        "NoncurrentDays":{"shape":"Days"}
+        "NoncurrentDays":{"shape":"Days"},
+        "NewerNoncurrentVersions":{
+          "shape":"NoncurrentVersionCount",
+          "box":true
+        }
       }
     },
     "NoncurrentVersionTransition":{
@@ -3308,6 +3329,8 @@
       }
     },
     "ObjectLockEnabledForBucket":{"type":"boolean"},
+    "ObjectSizeGreaterThanBytes":{"type":"long"},
+    "ObjectSizeLessThanBytes":{"type":"long"},
     "OperationName":{
       "type":"string",
       "enum":[

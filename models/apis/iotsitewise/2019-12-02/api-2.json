@@ -779,6 +779,22 @@
       ],
       "endpoint":{"hostPrefix":"monitor."}
     },
+    "ListAssetModelProperties":{
+      "name":"ListAssetModelProperties",
+      "http":{
+        "method":"GET",
+        "requestUri":"/asset-models/{assetModelId}/properties"
+      },
+      "input":{"shape":"ListAssetModelPropertiesRequest"},
+      "output":{"shape":"ListAssetModelPropertiesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
     "ListAssetModels":{
       "name":"ListAssetModels",
       "http":{
@@ -790,6 +806,22 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"api."}
+    },
+    "ListAssetProperties":{
+      "name":"ListAssetProperties",
+      "http":{
+        "method":"GET",
+        "requestUri":"/assets/{assetId}/properties"
+      },
+      "input":{"shape":"ListAssetPropertiesRequest"},
+      "output":{"shape":"ListAssetPropertiesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"api."}
@@ -1320,7 +1352,8 @@
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
         "type":{"shape":"Name"},
-        "properties":{"shape":"AssetProperties"}
+        "properties":{"shape":"AssetProperties"},
+        "id":{"shape":"ID"}
       }
     },
     "AssetCompositeModels":{
@@ -1378,7 +1411,8 @@
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
         "type":{"shape":"Name"},
-        "properties":{"shape":"AssetModelProperties"}
+        "properties":{"shape":"AssetModelProperties"},
+        "id":{"shape":"ID"}
       }
     },
     "AssetModelCompositeModelDefinition":{
@@ -1472,6 +1506,27 @@
       "type":"list",
       "member":{"shape":"AssetModelPropertyDefinition"}
     },
+    "AssetModelPropertySummaries":{
+      "type":"list",
+      "member":{"shape":"AssetModelPropertySummary"}
+    },
+    "AssetModelPropertySummary":{
+      "type":"structure",
+      "required":[
+        "name",
+        "dataType",
+        "type"
+      ],
+      "members":{
+        "id":{"shape":"ID"},
+        "name":{"shape":"Name"},
+        "dataType":{"shape":"PropertyDataType"},
+        "dataTypeSpec":{"shape":"Name"},
+        "unit":{"shape":"PropertyUnit"},
+        "type":{"shape":"PropertyType"},
+        "assetModelCompositeModelId":{"shape":"ID"}
+      }
+    },
     "AssetModelState":{
       "type":"string",
       "enum":[
@@ -1542,6 +1597,20 @@
       "max":2048,
       "min":1,
       "pattern":"[^\\u0000-\\u001F\\u007F]+"
+    },
+    "AssetPropertySummaries":{
+      "type":"list",
+      "member":{"shape":"AssetPropertySummary"}
+    },
+    "AssetPropertySummary":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ID"},
+        "alias":{"shape":"PropertyAlias"},
+        "unit":{"shape":"PropertyUnit"},
+        "notification":{"shape":"PropertyNotification"},
+        "assetCompositeModelId":{"shape":"ID"}
+      }
     },
     "AssetPropertyValue":{
       "type":"structure",
@@ -2231,7 +2300,8 @@
       "members":{
         "name":{"shape":"Name"},
         "type":{"shape":"Name"},
-        "assetProperty":{"shape":"Property"}
+        "assetProperty":{"shape":"Property"},
+        "id":{"shape":"ID"}
       }
     },
     "ComputeLocation":{
@@ -2787,6 +2857,11 @@
           "shape":"ID",
           "location":"uri",
           "locationName":"assetModelId"
+        },
+        "excludeProperties":{
+          "shape":"ExcludeProperties",
+          "location":"querystring",
+          "locationName":"excludeProperties"
         }
       }
     },
@@ -2858,6 +2933,11 @@
           "shape":"ID",
           "location":"uri",
           "locationName":"assetId"
+        },
+        "excludeProperties":{
+          "shape":"ExcludeProperties",
+          "location":"querystring",
+          "locationName":"excludeProperties"
         }
       }
     },
@@ -3320,6 +3400,7 @@
       }
     },
     "ExceptionMessage":{"type":"string"},
+    "ExcludeProperties":{"type":"boolean"},
     "Expression":{
       "type":"string",
       "max":1024,
@@ -3921,6 +4002,47 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListAssetModelPropertiesFilter":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "BASE"
+      ]
+    },
+    "ListAssetModelPropertiesRequest":{
+      "type":"structure",
+      "required":["assetModelId"],
+      "members":{
+        "assetModelId":{
+          "shape":"ID",
+          "location":"uri",
+          "locationName":"assetModelId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "filter":{
+          "shape":"ListAssetModelPropertiesFilter",
+          "location":"querystring",
+          "locationName":"filter"
+        }
+      }
+    },
+    "ListAssetModelPropertiesResponse":{
+      "type":"structure",
+      "required":["assetModelPropertySummaries"],
+      "members":{
+        "assetModelPropertySummaries":{"shape":"AssetModelPropertySummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListAssetModelsRequest":{
       "type":"structure",
       "members":{
@@ -3941,6 +4063,47 @@
       "required":["assetModelSummaries"],
       "members":{
         "assetModelSummaries":{"shape":"AssetModelSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAssetPropertiesFilter":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "BASE"
+      ]
+    },
+    "ListAssetPropertiesRequest":{
+      "type":"structure",
+      "required":["assetId"],
+      "members":{
+        "assetId":{
+          "shape":"ID",
+          "location":"uri",
+          "locationName":"assetId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "filter":{
+          "shape":"ListAssetPropertiesFilter",
+          "location":"querystring",
+          "locationName":"filter"
+        }
+      }
+    },
+    "ListAssetPropertiesResponse":{
+      "type":"structure",
+      "required":["assetPropertySummaries"],
+      "members":{
+        "assetPropertySummaries":{"shape":"AssetPropertySummaries"},
         "nextToken":{"shape":"NextToken"}
       }
     },

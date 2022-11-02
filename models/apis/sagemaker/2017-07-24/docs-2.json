@@ -5095,8 +5095,7 @@
     "FrameworkVersion": {
       "base": null,
       "refs": {
-        "InputConfig$FrameworkVersion": "<p>Specifies the framework version to use. This API field is only supported for the MXNet, PyTorch, TensorFlow and TensorFlow Lite frameworks.</p> <p>For information about framework versions supported for cloud targets and edge devices, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html\">Cloud Supported Instance Types and Frameworks</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html\">Edge Supported Frameworks</a>.</p>",
-        "ModelPackageContainerDefinition$FrameworkVersion": "<p>The framework version of the Model Package Container Image.</p>"
+        "InputConfig$FrameworkVersion": "<p>Specifies the framework version to use. This API field is only supported for the MXNet, PyTorch, TensorFlow and TensorFlow Lite frameworks.</p> <p>For information about framework versions supported for cloud targets and edge devices, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html\">Cloud Supported Instance Types and Frameworks</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html\">Edge Supported Frameworks</a>.</p>"
       }
     },
     "GenerateCandidateDefinitionsOnly": {
@@ -7607,6 +7606,12 @@
       "refs": {
         "AdditionalInferenceSpecificationDefinition$Containers": "<p>The Amazon ECR registry path of the Docker image that contains the inference code.</p>",
         "InferenceSpecification$Containers": "<p>The Amazon ECR registry path of the Docker image that contains the inference code.</p>"
+      }
+    },
+    "ModelPackageFrameworkVersion": {
+      "base": null,
+      "refs": {
+        "ModelPackageContainerDefinition$FrameworkVersion": "<p>The framework version of the Model Package Container Image.</p>"
       }
     },
     "ModelPackageGroup": {

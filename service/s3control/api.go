@@ -13310,8 +13310,6 @@ type LifecycleRule struct {
 	ID *string `type:"string"`
 
 	// The noncurrent version expiration of the lifecycle rule.
-	//
-	// This is not supported by Amazon S3 on Outposts buckets.
 	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
 
 	// Specifies the transition rule for the lifecycle rule that describes when
@@ -13423,6 +13421,12 @@ func (s *LifecycleRule) SetTransitions(v []*Transition) *LifecycleRule {
 type LifecycleRuleAndOperator struct {
 	_ struct{} `type:"structure"`
 
+	// Minimum object size to which the rule applies.
+	ObjectSizeGreaterThan *int64 `type:"long"`
+
+	// Maximum object size to which the rule applies.
+	ObjectSizeLessThan *int64 `type:"long"`
+
 	// Prefix identifying one or more objects to which the rule applies.
 	Prefix *string `type:"string"`
 
@@ -13469,6 +13473,18 @@ func (s *LifecycleRuleAndOperator) Validate() error {
 	return nil
 }
 
+// SetObjectSizeGreaterThan sets the ObjectSizeGreaterThan field's value.
+func (s *LifecycleRuleAndOperator) SetObjectSizeGreaterThan(v int64) *LifecycleRuleAndOperator {
+	s.ObjectSizeGreaterThan = &v
+	return s
+}
+
+// SetObjectSizeLessThan sets the ObjectSizeLessThan field's value.
+func (s *LifecycleRuleAndOperator) SetObjectSizeLessThan(v int64) *LifecycleRuleAndOperator {
+	s.ObjectSizeLessThan = &v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *LifecycleRuleAndOperator) SetPrefix(v string) *LifecycleRuleAndOperator {
 	s.Prefix = &v
@@ -13487,6 +13503,12 @@ type LifecycleRuleFilter struct {
 
 	// The container for the AND condition for the lifecycle rule.
 	And *LifecycleRuleAndOperator `type:"structure"`
+
+	// Minimum object size to which the rule applies.
+	ObjectSizeGreaterThan *int64 `type:"long"`
+
+	// Maximum object size to which the rule applies.
+	ObjectSizeLessThan *int64 `type:"long"`
 
 	// Prefix identifying one or more objects to which the rule applies.
 	//
@@ -13539,6 +13561,18 @@ func (s *LifecycleRuleFilter) Validate() error {
 // SetAnd sets the And field's value.
 func (s *LifecycleRuleFilter) SetAnd(v *LifecycleRuleAndOperator) *LifecycleRuleFilter {
 	s.And = v
+	return s
+}
+
+// SetObjectSizeGreaterThan sets the ObjectSizeGreaterThan field's value.
+func (s *LifecycleRuleFilter) SetObjectSizeGreaterThan(v int64) *LifecycleRuleFilter {
+	s.ObjectSizeGreaterThan = &v
+	return s
+}
+
+// SetObjectSizeLessThan sets the ObjectSizeLessThan field's value.
+func (s *LifecycleRuleFilter) SetObjectSizeLessThan(v int64) *LifecycleRuleFilter {
+	s.ObjectSizeLessThan = &v
 	return s
 }
 
@@ -14657,6 +14691,13 @@ func (s *MultiRegionAccessPointsAsyncResponse) SetRegions(v []*MultiRegionAccess
 type NoncurrentVersionExpiration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how many noncurrent versions S3 on Outposts will retain. If there
+	// are this many more recent noncurrent versions, S3 on Outposts will take the
+	// associated action. For more information about noncurrent versions, see Lifecycle
+	// configuration elements (https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html)
+	// in the Amazon S3 User Guide.
+	NewerNoncurrentVersions *int64 `type:"integer"`
+
 	// Specifies the number of days an object is noncurrent before Amazon S3 can
 	// perform the associated action. For information about the noncurrent days
 	// calculations, see How Amazon S3 Calculates When an Object Became Noncurrent
@@ -14681,6 +14722,12 @@ func (s NoncurrentVersionExpiration) String() string {
 // value will be replaced with "sensitive".
 func (s NoncurrentVersionExpiration) GoString() string {
 	return s.String()
+}
+
+// SetNewerNoncurrentVersions sets the NewerNoncurrentVersions field's value.
+func (s *NoncurrentVersionExpiration) SetNewerNoncurrentVersions(v int64) *NoncurrentVersionExpiration {
+	s.NewerNoncurrentVersions = &v
+	return s
 }
 
 // SetNoncurrentDays sets the NoncurrentDays field's value.
@@ -14782,7 +14829,8 @@ func (s *ObjectLambdaAccessPoint) SetObjectLambdaAccessPointArn(v string) *Objec
 type ObjectLambdaConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A container for allowed features. Valid inputs are GetObject-Range and GetObject-PartNumber.
+	// A container for allowed features. Valid inputs are GetObject-Range, GetObject-PartNumber,
+	// HeadObject-Range, and HeadObject-PartNumber.
 	AllowedFeatures []*string `locationNameList:"AllowedFeature" type:"list" enum:"ObjectLambdaAllowedFeature"`
 
 	// A container for whether the CloudWatch metrics configuration is enabled.
@@ -14923,7 +14971,7 @@ type ObjectLambdaTransformationConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// A container for the action of an Object Lambda Access Point configuration.
-	// Valid input is GetObject.
+	// Valid inputs are GetObject, ListObjects, HeadObject, and ListObjectsV2.
 	//
 	// Actions is a required field
 	Actions []*string `locationNameList:"Action" type:"list" required:"true" enum:"ObjectLambdaTransformationConfigurationAction"`

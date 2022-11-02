@@ -51,7 +51,6 @@
                 "AccountId": "123456789012",
                 "Region": "us-west-2",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": false,
                 "UseDualStack": false,
                 "UseFIPS": false
             }
@@ -107,7 +106,6 @@
                 "AccountId": "123456789012",
                 "Region": "us-west-2",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": false
             }
@@ -387,7 +385,6 @@
                 "AccountId": "123456789012",
                 "Region": "us-gov-west-1",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": true
             }
@@ -557,7 +554,6 @@
                 "AccountId": "123456789012",
                 "Region": "us-gov-west-1",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": true
             }
@@ -727,7 +723,6 @@
                 "AccountId": "123456789012",
                 "Region": "us-gov-west-1",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": true
             }
@@ -1585,7 +1580,6 @@
                 "Bucket": "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
                 "Region": "us-west-2",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": false
             }
@@ -1630,7 +1624,6 @@
                 "Bucket": "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
                 "Region": "us-gov-east-1",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": false
             }
@@ -1824,7 +1817,6 @@
                 "Bucket": "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
                 "Region": "us-west-2",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": false
             }
@@ -1869,7 +1861,6 @@
                 "Bucket": "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
                 "Region": "us-gov-east-1",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": false
             }
@@ -2063,7 +2054,6 @@
                 "Bucket": "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
                 "Region": "us-west-2",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": false
             }
@@ -2108,7 +2098,6 @@
                 "Bucket": "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
                 "Region": "us-gov-east-1",
                 "RequiresAccountId": true,
-                "S3Control::UseArnRegion": true,
                 "UseDualStack": false,
                 "UseFIPS": false
             }

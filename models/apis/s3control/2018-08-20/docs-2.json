@@ -1471,10 +1471,16 @@
         "RegionalBucket$OutpostId": "<p>The Outposts ID of the regional bucket.</p>"
       }
     },
+    "NoncurrentVersionCount": {
+      "base": null,
+      "refs": {
+        "NoncurrentVersionExpiration$NewerNoncurrentVersions": "<p>Specifies how many noncurrent versions S3 on Outposts will retain. If there are this many more recent noncurrent versions, S3 on Outposts will take the associated action. For more information about noncurrent versions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html\">Lifecycle configuration elements</a> in the <i>Amazon S3 User Guide</i>.</p>"
+      }
+    },
     "NoncurrentVersionExpiration": {
       "base": "<p>The container of the noncurrent version expiration.</p>",
       "refs": {
-        "LifecycleRule$NoncurrentVersionExpiration": "<p>The noncurrent version expiration of the lifecycle rule.</p> <note> <p>This is not supported by Amazon S3 on Outposts buckets.</p> </note>"
+        "LifecycleRule$NoncurrentVersionExpiration": "<p>The noncurrent version expiration of the lifecycle rule.</p>"
       }
     },
     "NoncurrentVersionTransition": {
@@ -1545,7 +1551,7 @@
     "ObjectLambdaAllowedFeaturesList": {
       "base": null,
       "refs": {
-        "ObjectLambdaConfiguration$AllowedFeatures": "<p>A container for allowed features. Valid inputs are <code>GetObject-Range</code> and <code>GetObject-PartNumber</code>.</p>"
+        "ObjectLambdaConfiguration$AllowedFeatures": "<p>A container for allowed features. Valid inputs are <code>GetObject-Range</code>, <code>GetObject-PartNumber</code>, <code>HeadObject-Range</code>, and <code>HeadObject-PartNumber</code>.</p>"
       }
     },
     "ObjectLambdaConfiguration": {
@@ -1590,7 +1596,7 @@
     "ObjectLambdaTransformationConfigurationActionsList": {
       "base": null,
       "refs": {
-        "ObjectLambdaTransformationConfiguration$Actions": "<p>A container for the action of an Object Lambda Access Point configuration. Valid input is <code>GetObject</code>.</p>"
+        "ObjectLambdaTransformationConfiguration$Actions": "<p>A container for the action of an Object Lambda Access Point configuration. Valid inputs are <code>GetObject</code>, <code>ListObjects</code>, <code>HeadObject</code>, and <code>ListObjectsV2</code>.</p>"
       }
     },
     "ObjectLambdaTransformationConfigurationsList": {
@@ -1603,6 +1609,20 @@
       "base": null,
       "refs": {
         "CreateBucketRequest$ObjectLockEnabledForBucket": "<p>Specifies whether you want S3 Object Lock to be enabled for the new bucket.</p> <note> <p>This is not supported by Amazon S3 on Outposts buckets.</p> </note>"
+      }
+    },
+    "ObjectSizeGreaterThanBytes": {
+      "base": null,
+      "refs": {
+        "LifecycleRuleAndOperator$ObjectSizeGreaterThan": "<p>Minimum object size to which the rule applies.</p>",
+        "LifecycleRuleFilter$ObjectSizeGreaterThan": "<p>Minimum object size to which the rule applies.</p>"
+      }
+    },
+    "ObjectSizeLessThanBytes": {
+      "base": null,
+      "refs": {
+        "LifecycleRuleAndOperator$ObjectSizeLessThan": "<p>Maximum object size to which the rule applies.</p>",
+        "LifecycleRuleFilter$ObjectSizeLessThan": "<p>Maximum object size to which the rule applies.</p>"
       }
     },
     "OperationName": {

@@ -1073,8 +1073,8 @@ func (c *IoTSiteWise) CreateAccessPolicyRequest(input *CreateAccessPolicyInput) 
 
 // CreateAccessPolicy API operation for AWS IoT SiteWise.
 //
-// Creates an access policy that grants the specified identity (Amazon Web Services
-// SSO user, Amazon Web Services SSO group, or IAM user) access to the specified
+// Creates an access policy that grants the specified identity (IAM Identity
+// Center user, IAM Identity Center group, or IAM user) access to the specified
 // IoT SiteWise Monitor portal or project resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1737,8 +1737,8 @@ func (c *IoTSiteWise) CreatePortalRequest(input *CreatePortalInput) (req *reques
 // CreatePortal API operation for AWS IoT SiteWise.
 //
 // Creates a portal, which can contain projects and dashboards. IoT SiteWise
-// Monitor uses Amazon Web Services SSO or IAM to authenticate portal users
-// and manage user permissions.
+// Monitor uses IAM Identity Center or IAM to authenticate portal users and
+// manage user permissions.
 //
 // Before you can sign in to a new portal, you must add at least one identity
 // to that portal. For more information, see Adding or removing portal administrators
@@ -4964,9 +4964,9 @@ func (c *IoTSiteWise) ListAccessPoliciesRequest(input *ListAccessPoliciesInput) 
 
 // ListAccessPolicies API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of access policies for an identity (an Amazon
-// Web Services SSO user, an Amazon Web Services SSO group, or an IAM user)
-// or an IoT SiteWise Monitor resource (a portal or project).
+// Retrieves a paginated list of access policies for an identity (an IAM Identity
+// Center user, an IAM Identity Center group, or an IAM user) or an IoT SiteWise
+// Monitor resource (a portal or project).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5058,6 +5058,161 @@ func (c *IoTSiteWise) ListAccessPoliciesPagesWithContext(ctx aws.Context, input 
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAccessPoliciesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAssetModelProperties = "ListAssetModelProperties"
+
+// ListAssetModelPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssetModelProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssetModelProperties for more information on using the ListAssetModelProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAssetModelPropertiesRequest method.
+//	req, resp := client.ListAssetModelPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssetModelProperties
+func (c *IoTSiteWise) ListAssetModelPropertiesRequest(input *ListAssetModelPropertiesInput) (req *request.Request, output *ListAssetModelPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opListAssetModelProperties,
+		HTTPMethod: "GET",
+		HTTPPath:   "/asset-models/{assetModelId}/properties",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssetModelPropertiesInput{}
+	}
+
+	output = &ListAssetModelPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListAssetModelProperties API operation for AWS IoT SiteWise.
+//
+// Retrieves a paginated list of properties associated with an asset model.
+// If you update properties associated with the model before you finish listing
+// all the properties, you need to start all over again.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation ListAssetModelProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request isn't valid. This can occur if your request contains malformed
+//     JSON or unsupported characters. Check your request and try again.
+//
+//   - InternalFailureException
+//     IoT SiteWise can't process your request right now. Try again later.
+//
+//   - ResourceNotFoundException
+//     The requested resource can't be found.
+//
+//   - ThrottlingException
+//     Your request exceeded a rate limit. For example, you might have exceeded
+//     the number of IoT SiteWise assets that can be created per second, the allowed
+//     number of messages per second, and so on.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//     in the IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssetModelProperties
+func (c *IoTSiteWise) ListAssetModelProperties(input *ListAssetModelPropertiesInput) (*ListAssetModelPropertiesOutput, error) {
+	req, out := c.ListAssetModelPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// ListAssetModelPropertiesWithContext is the same as ListAssetModelProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssetModelProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListAssetModelPropertiesWithContext(ctx aws.Context, input *ListAssetModelPropertiesInput, opts ...request.Option) (*ListAssetModelPropertiesOutput, error) {
+	req, out := c.ListAssetModelPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssetModelPropertiesPages iterates over the pages of a ListAssetModelProperties operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssetModelProperties method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAssetModelProperties operation.
+//	pageNum := 0
+//	err := client.ListAssetModelPropertiesPages(params,
+//	    func(page *iotsitewise.ListAssetModelPropertiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoTSiteWise) ListAssetModelPropertiesPages(input *ListAssetModelPropertiesInput, fn func(*ListAssetModelPropertiesOutput, bool) bool) error {
+	return c.ListAssetModelPropertiesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssetModelPropertiesPagesWithContext same as ListAssetModelPropertiesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListAssetModelPropertiesPagesWithContext(ctx aws.Context, input *ListAssetModelPropertiesInput, fn func(*ListAssetModelPropertiesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssetModelPropertiesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssetModelPropertiesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssetModelPropertiesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5208,6 +5363,161 @@ func (c *IoTSiteWise) ListAssetModelsPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAssetModelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAssetProperties = "ListAssetProperties"
+
+// ListAssetPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssetProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssetProperties for more information on using the ListAssetProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAssetPropertiesRequest method.
+//	req, resp := client.ListAssetPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssetProperties
+func (c *IoTSiteWise) ListAssetPropertiesRequest(input *ListAssetPropertiesInput) (req *request.Request, output *ListAssetPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opListAssetProperties,
+		HTTPMethod: "GET",
+		HTTPPath:   "/assets/{assetId}/properties",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssetPropertiesInput{}
+	}
+
+	output = &ListAssetPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListAssetProperties API operation for AWS IoT SiteWise.
+//
+// Retrieves a paginated list of properties associated with an asset. If you
+// update properties associated with the model before you finish listing all
+// the properties, you need to start all over again.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation ListAssetProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request isn't valid. This can occur if your request contains malformed
+//     JSON or unsupported characters. Check your request and try again.
+//
+//   - InternalFailureException
+//     IoT SiteWise can't process your request right now. Try again later.
+//
+//   - ResourceNotFoundException
+//     The requested resource can't be found.
+//
+//   - ThrottlingException
+//     Your request exceeded a rate limit. For example, you might have exceeded
+//     the number of IoT SiteWise assets that can be created per second, the allowed
+//     number of messages per second, and so on.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//     in the IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssetProperties
+func (c *IoTSiteWise) ListAssetProperties(input *ListAssetPropertiesInput) (*ListAssetPropertiesOutput, error) {
+	req, out := c.ListAssetPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// ListAssetPropertiesWithContext is the same as ListAssetProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssetProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListAssetPropertiesWithContext(ctx aws.Context, input *ListAssetPropertiesInput, opts ...request.Option) (*ListAssetPropertiesOutput, error) {
+	req, out := c.ListAssetPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssetPropertiesPages iterates over the pages of a ListAssetProperties operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssetProperties method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAssetProperties operation.
+//	pageNum := 0
+//	err := client.ListAssetPropertiesPages(params,
+//	    func(page *iotsitewise.ListAssetPropertiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoTSiteWise) ListAssetPropertiesPages(input *ListAssetPropertiesInput, fn func(*ListAssetPropertiesOutput, bool) bool) error {
+	return c.ListAssetPropertiesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssetPropertiesPagesWithContext same as ListAssetPropertiesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListAssetPropertiesPagesWithContext(ctx aws.Context, input *ListAssetPropertiesInput, fn func(*ListAssetPropertiesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssetPropertiesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssetPropertiesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssetPropertiesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -8368,8 +8678,8 @@ type AccessPolicySummary struct {
 	// Id is a required field
 	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
 
-	// The identity (an Amazon Web Services SSO user, an Amazon Web Services SSO
-	// group, or an IAM user).
+	// The identity (an IAM Identity Center user, an IAM Identity Center group,
+	// or an IAM user).
 	//
 	// Identity is a required field
 	Identity *Identity `locationName:"identity" type:"structure" required:"true"`
@@ -8654,6 +8964,9 @@ type AssetCompositeModel struct {
 	// The description of the composite model.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The ID of the asset composite model.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
 	// The name of the composite model.
 	//
 	// Name is a required field
@@ -8692,6 +9005,12 @@ func (s AssetCompositeModel) GoString() string {
 // SetDescription sets the Description field's value.
 func (s *AssetCompositeModel) SetDescription(v string) *AssetCompositeModel {
 	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AssetCompositeModel) SetId(v string) *AssetCompositeModel {
+	s.Id = &v
 	return s
 }
 
@@ -8865,6 +9184,9 @@ type AssetModelCompositeModel struct {
 	// The description of the composite model.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The ID of the asset model composite model.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
 	// The name of the composite model.
 	//
 	// Name is a required field
@@ -8904,6 +9226,9 @@ func (s *AssetModelCompositeModel) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.Id != nil && len(*s.Id) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -8936,6 +9261,12 @@ func (s *AssetModelCompositeModel) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *AssetModelCompositeModel) SetDescription(v string) *AssetModelCompositeModel {
 	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AssetModelCompositeModel) SetId(v string) *AssetModelCompositeModel {
+	s.Id = &v
 	return s
 }
 
@@ -9450,6 +9781,100 @@ func (s *AssetModelPropertyDefinition) SetUnit(v string) *AssetModelPropertyDefi
 	return s
 }
 
+// Contains a summary of a property associated with a model.
+type AssetModelPropertySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the composite model that contains the asset model property.
+	AssetModelCompositeModelId *string `locationName:"assetModelCompositeModelId" min:"36" type:"string"`
+
+	// The data type of the property.
+	//
+	// DataType is a required field
+	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"PropertyDataType"`
+
+	// The data type of the structure for this property. This parameter exists on
+	// properties that have the STRUCT data type.
+	DataTypeSpec *string `locationName:"dataTypeSpec" min:"1" type:"string"`
+
+	// The ID of the property.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
+	// The name of the property.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Contains a property type, which can be one of attribute, measurement, metric,
+	// or transform.
+	//
+	// Type is a required field
+	Type *PropertyType `locationName:"type" type:"structure" required:"true"`
+
+	// The unit (such as Newtons or RPM) of the property.
+	Unit *string `locationName:"unit" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetModelPropertySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetModelPropertySummary) GoString() string {
+	return s.String()
+}
+
+// SetAssetModelCompositeModelId sets the AssetModelCompositeModelId field's value.
+func (s *AssetModelPropertySummary) SetAssetModelCompositeModelId(v string) *AssetModelPropertySummary {
+	s.AssetModelCompositeModelId = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *AssetModelPropertySummary) SetDataType(v string) *AssetModelPropertySummary {
+	s.DataType = &v
+	return s
+}
+
+// SetDataTypeSpec sets the DataTypeSpec field's value.
+func (s *AssetModelPropertySummary) SetDataTypeSpec(v string) *AssetModelPropertySummary {
+	s.DataTypeSpec = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AssetModelPropertySummary) SetId(v string) *AssetModelPropertySummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssetModelPropertySummary) SetName(v string) *AssetModelPropertySummary {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AssetModelPropertySummary) SetType(v *PropertyType) *AssetModelPropertySummary {
+	s.Type = v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *AssetModelPropertySummary) SetUnit(v string) *AssetModelPropertySummary {
+	s.Unit = &v
+	return s
+}
+
 // Contains current status information for an asset model. For more information,
 // see Asset and model states (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html)
 // in the IoT SiteWise User Guide.
@@ -9691,6 +10116,80 @@ func (s *AssetProperty) SetNotification(v *PropertyNotification) *AssetProperty 
 
 // SetUnit sets the Unit field's value.
 func (s *AssetProperty) SetUnit(v string) *AssetProperty {
+	s.Unit = &v
+	return s
+}
+
+// Contains a summary of a property associated with an asset.
+type AssetPropertySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
+	Alias *string `locationName:"alias" min:"1" type:"string"`
+
+	// The ID of the composite model that contains the asset property.
+	AssetCompositeModelId *string `locationName:"assetCompositeModelId" min:"36" type:"string"`
+
+	// The ID of the property.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
+	// Contains asset property value notification information. When the notification
+	// state is enabled, IoT SiteWise publishes property value updates to a unique
+	// MQTT topic. For more information, see Interacting with other services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
+	// in the IoT SiteWise User Guide.
+	Notification *PropertyNotification `locationName:"notification" type:"structure"`
+
+	// The unit of measure (such as Newtons or RPM) of the asset property.
+	Unit *string `locationName:"unit" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetPropertySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetPropertySummary) GoString() string {
+	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *AssetPropertySummary) SetAlias(v string) *AssetPropertySummary {
+	s.Alias = &v
+	return s
+}
+
+// SetAssetCompositeModelId sets the AssetCompositeModelId field's value.
+func (s *AssetPropertySummary) SetAssetCompositeModelId(v string) *AssetPropertySummary {
+	s.AssetCompositeModelId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AssetPropertySummary) SetId(v string) *AssetPropertySummary {
+	s.Id = &v
+	return s
+}
+
+// SetNotification sets the Notification field's value.
+func (s *AssetPropertySummary) SetNotification(v *PropertyNotification) *AssetPropertySummary {
+	s.Notification = v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *AssetPropertySummary) SetUnit(v string) *AssetPropertySummary {
 	s.Unit = &v
 	return s
 }
@@ -12331,6 +12830,9 @@ type CompositeModelProperty struct {
 	// AssetProperty is a required field
 	AssetProperty *Property `locationName:"assetProperty" type:"structure" required:"true"`
 
+	// The ID of the composite model that contains the property.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
 	// The name of the property.
 	//
 	// Name is a required field
@@ -12363,6 +12865,12 @@ func (s CompositeModelProperty) GoString() string {
 // SetAssetProperty sets the AssetProperty field's value.
 func (s *CompositeModelProperty) SetAssetProperty(v *Property) *CompositeModelProperty {
 	s.AssetProperty = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CompositeModelProperty) SetId(v string) *CompositeModelProperty {
+	s.Id = &v
 	return s
 }
 
@@ -12544,8 +13052,8 @@ func (s *ConflictingOperationException) RequestID() string {
 type CreateAccessPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity for this access policy. Choose an Amazon Web Services SSO user,
-	// an Amazon Web Services SSO group, or an IAM user.
+	// The identity for this access policy. Choose an IAM Identity Center user,
+	// an IAM Identity Center group, or an IAM user.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -13620,10 +14128,10 @@ type CreatePortalInput struct {
 	// The service to use to authenticate users to the portal. Choose from the following
 	// options:
 	//
-	//    * SSO – The portal uses Amazon Web Services Single Sign On to authenticate
-	//    users and manage user permissions. Before you can create a portal that
-	//    uses Amazon Web Services SSO, you must enable Amazon Web Services SSO.
-	//    For more information, see Enabling Amazon Web Services SSO (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
+	//    * SSO – The portal uses IAM Identity Center (successor to Single Sign-On)
+	//    to authenticate users and manage user permissions. Before you can create
+	//    a portal that uses IAM Identity Center, you must enable IAM Identity Center.
+	//    For more information, see Enabling IAM Identity Center (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
 	//    in the IoT SiteWise User Guide. This option is only available in Amazon
 	//    Web Services Regions other than the China Regions.
 	//
@@ -13812,9 +14320,9 @@ type CreatePortalOutput struct {
 	PortalId *string `locationName:"portalId" min:"36" type:"string" required:"true"`
 
 	// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
-	// portals that use Amazon Web Services SSO for authentication. For portals
-	// that use IAM for authentication, you must use the IoT SiteWise console to
-	// get a URL that you can use to access the portal.
+	// portals that use IAM Identity Center for authentication. For portals that
+	// use IAM for authentication, you must use the IoT SiteWise console to get
+	// a URL that you can use to access the portal.
 	//
 	// PortalStartUrl is a required field
 	PortalStartUrl *string `locationName:"portalStartUrl" min:"1" type:"string" required:"true"`
@@ -13825,8 +14333,8 @@ type CreatePortalOutput struct {
 	// PortalStatus is a required field
 	PortalStatus *PortalStatus `locationName:"portalStatus" type:"structure" required:"true"`
 
-	// The associated Amazon Web Services SSO application ID, if the portal uses
-	// Amazon Web Services SSO.
+	// The associated IAM Identity Center application ID, if the portal uses IAM
+	// Identity Center.
 	//
 	// SsoApplicationId is a required field
 	SsoApplicationId *string `locationName:"ssoApplicationId" min:"1" type:"string" required:"true"`
@@ -15000,8 +15508,8 @@ type DescribeAccessPolicyOutput struct {
 	// AccessPolicyId is a required field
 	AccessPolicyId *string `locationName:"accessPolicyId" min:"36" type:"string" required:"true"`
 
-	// The identity (Amazon Web Services SSO user, Amazon Web Services SSO group,
-	// or IAM user) to which this access policy applies.
+	// The identity (IAM Identity Center user, IAM Identity Center group, or IAM
+	// user) to which this access policy applies.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -15091,6 +15599,9 @@ type DescribeAssetInput struct {
 	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"assetId" min:"36" type:"string" required:"true"`
+
+	// Whether or not to exclude asset properties from the response.
+	ExcludeProperties *bool `location:"querystring" locationName:"excludeProperties" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -15133,6 +15644,12 @@ func (s *DescribeAssetInput) SetAssetId(v string) *DescribeAssetInput {
 	return s
 }
 
+// SetExcludeProperties sets the ExcludeProperties field's value.
+func (s *DescribeAssetInput) SetExcludeProperties(v bool) *DescribeAssetInput {
+	s.ExcludeProperties = &v
+	return s
+}
+
 type DescribeAssetModelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -15140,6 +15657,9 @@ type DescribeAssetModelInput struct {
 	//
 	// AssetModelId is a required field
 	AssetModelId *string `location:"uri" locationName:"assetModelId" min:"36" type:"string" required:"true"`
+
+	// Whether or not to exclude asset model properties from the response.
+	ExcludeProperties *bool `location:"querystring" locationName:"excludeProperties" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -15179,6 +15699,12 @@ func (s *DescribeAssetModelInput) Validate() error {
 // SetAssetModelId sets the AssetModelId field's value.
 func (s *DescribeAssetModelInput) SetAssetModelId(v string) *DescribeAssetModelInput {
 	s.AssetModelId = &v
+	return s
+}
+
+// SetExcludeProperties sets the ExcludeProperties field's value.
+func (s *DescribeAssetModelInput) SetExcludeProperties(v bool) *DescribeAssetModelInput {
+	s.ExcludeProperties = &v
 	return s
 }
 
@@ -16464,9 +16990,9 @@ type DescribePortalOutput struct {
 	// The service to use to authenticate users to the portal.
 	PortalAuthMode *string `locationName:"portalAuthMode" type:"string" enum:"AuthMode"`
 
-	// The Amazon Web Services SSO application generated client ID (used with Amazon
-	// Web Services SSO APIs). IoT SiteWise includes portalClientId for only portals
-	// that use Amazon Web Services SSO to authenticate users.
+	// The IAM Identity Center application generated client ID (used with IAM Identity
+	// Center APIs). IoT SiteWise includes portalClientId for only portals that
+	// use IAM Identity Center to authenticate users.
 	//
 	// PortalClientId is a required field
 	PortalClientId *string `locationName:"portalClientId" min:"1" type:"string" required:"true"`
@@ -16503,9 +17029,9 @@ type DescribePortalOutput struct {
 	PortalName *string `locationName:"portalName" min:"1" type:"string" required:"true"`
 
 	// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
-	// portals that use Amazon Web Services SSO for authentication. For portals
-	// that use IAM for authentication, you must use the IoT SiteWise console to
-	// get a URL that you can use to access the portal.
+	// portals that use IAM Identity Center for authentication. For portals that
+	// use IAM for authentication, you must use the IoT SiteWise console to get
+	// a URL that you can use to access the portal.
 	//
 	// PortalStartUrl is a required field
 	PortalStartUrl *string `locationName:"portalStartUrl" min:"1" type:"string" required:"true"`
@@ -18843,7 +19369,7 @@ func (s *GreengrassV2) SetCoreDeviceThingName(v string) *GreengrassV2 {
 type GroupIdentity struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services SSO ID of the group.
+	// The IAM Identity Center ID of the group.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
@@ -18999,14 +19525,13 @@ func (s *IAMUserIdentity) SetArn(v string) *IAMUserIdentity {
 
 // Contains an identity that can access an IoT SiteWise Monitor resource.
 //
-// Currently, you can't use Amazon Web Services APIs to retrieve Amazon Web
-// Services SSO identity IDs. You can find the Amazon Web Services SSO identity
-// IDs in the URL of user and group pages in the Amazon Web Services SSO console
-// (https://console.aws.amazon.com/singlesignon).
+// Currently, you can't use Amazon Web Services APIs to retrieve IAM Identity
+// Center identity IDs. You can find the IAM Identity Center identity IDs in
+// the URL of user and group pages in the IAM Identity Center console (https://console.aws.amazon.com/singlesignon).
 type Identity struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Web Services SSO group identity.
+	// An IAM Identity Center group identity.
 	Group *GroupIdentity `locationName:"group" type:"structure"`
 
 	// An IAM role identity.
@@ -19015,7 +19540,7 @@ type Identity struct {
 	// An IAM user identity.
 	IamUser *IAMUserIdentity `locationName:"iamUser" type:"structure"`
 
-	// An Amazon Web Services SSO user identity.
+	// An IAM Identity Center user identity.
 	User *UserIdentity `locationName:"user" type:"structure"`
 }
 
@@ -19645,8 +20170,8 @@ type ListAccessPoliciesInput struct {
 	// GROUP for identityType.
 	IdentityId *string `location:"querystring" locationName:"identityId" min:"1" type:"string"`
 
-	// The type of identity (Amazon Web Services SSO user, Amazon Web Services SSO
-	// group, or IAM user). This parameter is required if you specify identityId.
+	// The type of identity (IAM Identity Center user, IAM Identity Center group,
+	// or IAM user). This parameter is required if you specify identityId.
 	IdentityType *string `location:"querystring" locationName:"identityType" type:"string" enum:"IdentityType"`
 
 	// The maximum number of results to return for each paginated request.
@@ -19793,6 +20318,142 @@ func (s *ListAccessPoliciesOutput) SetNextToken(v string) *ListAccessPoliciesOut
 	return s
 }
 
+type ListAssetModelPropertiesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the asset model.
+	//
+	// AssetModelId is a required field
+	AssetModelId *string `location:"uri" locationName:"assetModelId" min:"36" type:"string" required:"true"`
+
+	// Filters the requested list of asset model properties. You can choose one
+	// of the following options:
+	//
+	//    * ALL – The list includes all asset model properties for a given asset
+	//    model ID.
+	//
+	//    * BASE – The list includes only base asset model properties for a given
+	//    asset model ID.
+	//
+	// Default: BASE
+	Filter *string `location:"querystring" locationName:"filter" type:"string" enum:"ListAssetModelPropertiesFilter"`
+
+	// The maximum number of results to return for each paginated request. If not
+	// specified, the default value is 50.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetModelPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetModelPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssetModelPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssetModelPropertiesInput"}
+	if s.AssetModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetModelId"))
+	}
+	if s.AssetModelId != nil && len(*s.AssetModelId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetModelId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetModelId sets the AssetModelId field's value.
+func (s *ListAssetModelPropertiesInput) SetAssetModelId(v string) *ListAssetModelPropertiesInput {
+	s.AssetModelId = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListAssetModelPropertiesInput) SetFilter(v string) *ListAssetModelPropertiesInput {
+	s.Filter = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssetModelPropertiesInput) SetMaxResults(v int64) *ListAssetModelPropertiesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetModelPropertiesInput) SetNextToken(v string) *ListAssetModelPropertiesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAssetModelPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list that summarizes the properties associated with the specified asset
+	// model.
+	//
+	// AssetModelPropertySummaries is a required field
+	AssetModelPropertySummaries []*AssetModelPropertySummary `locationName:"assetModelPropertySummaries" type:"list" required:"true"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetModelPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetModelPropertiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssetModelPropertySummaries sets the AssetModelPropertySummaries field's value.
+func (s *ListAssetModelPropertiesOutput) SetAssetModelPropertySummaries(v []*AssetModelPropertySummary) *ListAssetModelPropertiesOutput {
+	s.AssetModelPropertySummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetModelPropertiesOutput) SetNextToken(v string) *ListAssetModelPropertiesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListAssetModelsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -19890,6 +20551,141 @@ func (s *ListAssetModelsOutput) SetAssetModelSummaries(v []*AssetModelSummary) *
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAssetModelsOutput) SetNextToken(v string) *ListAssetModelsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAssetPropertiesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the asset.
+	//
+	// AssetId is a required field
+	AssetId *string `location:"uri" locationName:"assetId" min:"36" type:"string" required:"true"`
+
+	// Filters the requested list of asset properties. You can choose one of the
+	// following options:
+	//
+	//    * ALL – The list includes all asset properties for a given asset model
+	//    ID.
+	//
+	//    * BASE – The list includes only base asset properties for a given asset
+	//    model ID.
+	//
+	// Default: BASE
+	Filter *string `location:"querystring" locationName:"filter" type:"string" enum:"ListAssetPropertiesFilter"`
+
+	// The maximum number of results to return for each paginated request. If not
+	// specified, the default value is 50.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssetPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssetPropertiesInput"}
+	if s.AssetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetId"))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *ListAssetPropertiesInput) SetAssetId(v string) *ListAssetPropertiesInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListAssetPropertiesInput) SetFilter(v string) *ListAssetPropertiesInput {
+	s.Filter = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssetPropertiesInput) SetMaxResults(v int64) *ListAssetPropertiesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetPropertiesInput) SetNextToken(v string) *ListAssetPropertiesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAssetPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list that summarizes the properties associated with the specified asset.
+	//
+	// AssetPropertySummaries is a required field
+	AssetPropertySummaries []*AssetPropertySummary `locationName:"assetPropertySummaries" type:"list" required:"true"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssetPropertiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssetPropertySummaries sets the AssetPropertySummaries field's value.
+func (s *ListAssetPropertiesOutput) SetAssetPropertySummaries(v []*AssetPropertySummary) *ListAssetPropertiesOutput {
+	s.AssetPropertySummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssetPropertiesOutput) SetNextToken(v string) *ListAssetPropertiesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -21788,9 +22584,9 @@ type PortalSummary struct {
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
 	// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
-	// portals that use Amazon Web Services SSO for authentication. For portals
-	// that use IAM for authentication, you must use the IoT SiteWise console to
-	// get a URL that you can use to access the portal.
+	// portals that use IAM Identity Center for authentication. For portals that
+	// use IAM for authentication, you must use the IoT SiteWise console to get
+	// a URL that you can use to access the portal.
 	//
 	// StartUrl is a required field
 	StartUrl *string `locationName:"startUrl" min:"1" type:"string" required:"true"`
@@ -23887,8 +24683,8 @@ type UpdateAccessPolicyInput struct {
 	// AccessPolicyId is a required field
 	AccessPolicyId *string `location:"uri" locationName:"accessPolicyId" min:"36" type:"string" required:"true"`
 
-	// The identity for this access policy. Choose an Amazon Web Services SSO user,
-	// an Amazon Web Services SSO group, or an IAM user.
+	// The identity for this access policy. Choose an IAM Identity Center user,
+	// an IAM Identity Center group, or an IAM user.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -25183,7 +25979,7 @@ func (s UpdateProjectOutput) GoString() string {
 type UserIdentity struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services SSO ID of the user.
+	// The IAM Identity Center ID of the user.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
@@ -25851,6 +26647,38 @@ func JobStatus_Values() []string {
 		JobStatusCompleted,
 		JobStatusFailed,
 		JobStatusCompletedWithFailures,
+	}
+}
+
+const (
+	// ListAssetModelPropertiesFilterAll is a ListAssetModelPropertiesFilter enum value
+	ListAssetModelPropertiesFilterAll = "ALL"
+
+	// ListAssetModelPropertiesFilterBase is a ListAssetModelPropertiesFilter enum value
+	ListAssetModelPropertiesFilterBase = "BASE"
+)
+
+// ListAssetModelPropertiesFilter_Values returns all elements of the ListAssetModelPropertiesFilter enum
+func ListAssetModelPropertiesFilter_Values() []string {
+	return []string{
+		ListAssetModelPropertiesFilterAll,
+		ListAssetModelPropertiesFilterBase,
+	}
+}
+
+const (
+	// ListAssetPropertiesFilterAll is a ListAssetPropertiesFilter enum value
+	ListAssetPropertiesFilterAll = "ALL"
+
+	// ListAssetPropertiesFilterBase is a ListAssetPropertiesFilter enum value
+	ListAssetPropertiesFilterBase = "BASE"
+)
+
+// ListAssetPropertiesFilter_Values returns all elements of the ListAssetPropertiesFilter enum
+func ListAssetPropertiesFilter_Values() []string {
+	return []string{
+		ListAssetPropertiesFilterAll,
+		ListAssetPropertiesFilterBase,
 	}
 }
 

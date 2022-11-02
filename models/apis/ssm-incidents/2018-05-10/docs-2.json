@@ -21,7 +21,7 @@
     "ListResponsePlans": "<p>Lists all response plans in your account.</p>",
     "ListTagsForResource": "<p>Lists the tags that are attached to the specified response plan.</p>",
     "ListTimelineEvents": "<p>Lists timeline events for the specified incident record.</p>",
-    "PutResourcePolicy": "<p>Adds a resource policy to the specified response plan. The resource policy is used to share the response plan using Resource Access Manager (RAM). For more information about cross-account sharing, see <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/xa.html\">Setting up cross-account functionality</a>.</p>",
+    "PutResourcePolicy": "<p>Adds a resource policy to the specified response plan. The resource policy is used to share the response plan using Resource Access Manager (RAM). For more information about cross-account sharing, see <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-manager-cross-account-cross-region.html\">Cross-Region and cross-account incident management</a>.</p>",
     "StartIncident": "<p>Used to start an incident from CloudWatch alarms, EventBridge events, or manually. </p>",
     "TagResource": "<p>Adds a tag to a response plan.</p>",
     "UntagResource": "<p>Removes a tag from a resource.</p>",
@@ -87,7 +87,7 @@
         "ListRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record containing the listed related items.</p>",
         "ListTimelineEventsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>",
         "NotificationTargetItem$snsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic.</p>",
-        "PutResourcePolicyInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan you're adding the resource policy to.</p>",
+        "PutResourcePolicyInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan to add the resource policy to.</p>",
         "ReplicationSet$arn": "<p>The Amazon Resource Name (ARN) of the replication set.</p>",
         "ReplicationSet$createdBy": "<p>Details about who created the replication set.</p>",
         "ReplicationSet$lastModifiedBy": "<p>Who last modified the replication set.</p>",
@@ -97,7 +97,7 @@
         "StartIncidentOutput$incidentRecordArn": "<p>The ARN of the newly created incident record.</p>",
         "TimelineEvent$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the event occurred during.</p>",
         "TriggerDetails$triggerArn": "<p>The Amazon Resource Name (ARN) of the source that detected the incident.</p>",
-        "UpdateDeletionProtectionInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you're updating.</p>",
+        "UpdateDeletionProtectionInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set to update.</p>",
         "UpdateIncidentRecordInput$arn": "<p>The Amazon Resource Name (ARN) of the incident record you are updating.</p>",
         "UpdateRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record containing the related items you are updating.</p>",
         "UpdateReplicationSetInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you're updating.</p>",
@@ -127,7 +127,7 @@
       "base": null,
       "refs": {
         "ReplicationSet$deletionProtected": "<p>Determines if the replication set deletion protection is enabled or not. If deletion protection is enabled, you can't delete the last Amazon Web Services Region in the replication set. </p>",
-        "UpdateDeletionProtectionInput$deletionProtected": "<p>Details if deletion protection is enabled or disabled in your account.</p>"
+        "UpdateDeletionProtectionInput$deletionProtected": "<p>Specifies if deletion protection is turned on or off in your account. </p>"
       }
     },
     "ChatChannel": {
@@ -149,14 +149,14 @@
     "ClientToken": {
       "base": null,
       "refs": {
-        "CreateReplicationSetInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "CreateReplicationSetInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
         "CreateResponsePlanInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
         "CreateTimelineEventInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
         "StartIncidentInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
-        "UpdateDeletionProtectionInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateDeletionProtectionInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
         "UpdateIncidentRecordInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
         "UpdateRelatedItemsInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
-        "UpdateReplicationSetInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateReplicationSetInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
         "UpdateResponsePlanInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
         "UpdateTimelineEventInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>"
       }
@@ -293,9 +293,9 @@
     "EngagementSet": {
       "base": null,
       "refs": {
-        "CreateResponsePlanInput$engagements": "<p>The contacts and escalation plans that the response plan engages during an incident.</p>",
-        "GetResponsePlanOutput$engagements": "<p>The contacts and escalation plans that the response plan engages during an incident.</p>",
-        "UpdateResponsePlanInput$engagements": "<p>The contacts and escalation plans that Incident Manager engages at the start of the incident.</p>"
+        "CreateResponsePlanInput$engagements": "<p>The Amazon Resource Name (ARN) for the contacts and escalation plans that the response plan engages during an incident.</p>",
+        "GetResponsePlanOutput$engagements": "<p>The Amazon Resource Name (ARN) for the contacts and escalation plans that the response plan engages during an incident.</p>",
+        "UpdateResponsePlanInput$engagements": "<p>The Amazon Resource Name (ARN) for the contacts and escalation plans that the response plan engages during an incident.</p>"
       }
     },
     "EventData": {
@@ -576,7 +576,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "GetResourcePoliciesInput$maxResults": "<p>The maximum number of resource policies to display per page of results.</p>",
+        "GetResourcePoliciesInput$maxResults": "<p>The maximum number of resource policies to display for each page of results.</p>",
         "ListIncidentRecordsInput$maxResults": "<p>The maximum number of results per page.</p>",
         "ListRelatedItemsInput$maxResults": "<p>The maximum number of related items per page.</p>",
         "ListReplicationSetsInput$maxResults": "<p>The maximum number of results per page. </p>",
@@ -936,22 +936,23 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$tagKeys": "<p>The name of the tag you're removing from the response plan.</p>"
+        "UntagResourceRequest$tagKeys": "<p>The name of the tag to remove from the response plan.</p>"
       }
     },
     "TagMap": {
       "base": null,
       "refs": {
+        "CreateReplicationSetInput$tags": "<p>A list of tags to add to the replication set.</p>",
         "CreateResponsePlanInput$tags": "<p>A list of tags that you are adding to the response plan.</p>",
-        "IncidentTemplate$incidentTags": "<p>Tags to apply to an incident when calling the <code>StartIncident</code> API action.</p>",
+        "IncidentTemplate$incidentTags": "<p>Tags to assign to the template. When the <code>StartIncident</code> API action is called, Incident Manager assigns the tags specified in the template to the incident.</p>",
         "ListTagsForResourceResponse$tags": "<p>A list of tags for the response plan.</p>",
-        "TagResourceRequest$tags": "<p>A list of tags that you are adding to the response plan.</p>"
+        "TagResourceRequest$tags": "<p>A list of tags to add to the response plan.</p>"
       }
     },
     "TagMapUpdate": {
       "base": null,
       "refs": {
-        "UpdateResponsePlanInput$incidentTemplateTags": "<p>Tags to apply to an incident when calling the <code>StartIncident</code> API action. To call this action, you must also have permission to call the <code>TagResource</code> API action for the incident record resource.</p>"
+        "UpdateResponsePlanInput$incidentTemplateTags": "<p>Tags to assign to the template. When the <code>StartIncident</code> API action is called, Incident Manager assigns the tags specified in the template to the incident. To call this action, you must also have permission to call the <code>TagResource</code> API action for the incident record resource.</p>"
       }
     },
     "TagResourceRequest": {
