@@ -12866,7 +12866,7 @@
         "Environment":{"shape":"EnvironmentMap"},
         "ModelInput":{"shape":"ModelInput"},
         "Framework":{"shape":"String"},
-        "FrameworkVersion":{"shape":"FrameworkVersion"},
+        "FrameworkVersion":{"shape":"ModelPackageFrameworkVersion"},
         "NearestModelName":{"shape":"String"}
       }
     },
@@ -12875,6 +12875,12 @@
       "member":{"shape":"ModelPackageContainerDefinition"},
       "max":15,
       "min":1
+    },
+    "ModelPackageFrameworkVersion":{
+      "type":"string",
+      "max":10,
+      "min":3,
+      "pattern":"[0-9]\\.[A-Za-z0-9.-]+"
     },
     "ModelPackageGroup":{
       "type":"structure",
