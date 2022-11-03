@@ -105949,6 +105949,12 @@ const (
 
 	// TrainingInstanceTypeMlG548xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlG548xlarge = "ml.g5.48xlarge"
+
+	// TrainingInstanceTypeMlTrn12xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlTrn12xlarge = "ml.trn1.2xlarge"
+
+	// TrainingInstanceTypeMlTrn132xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlTrn132xlarge = "ml.trn1.32xlarge"
 )
 
 // TrainingInstanceType_Values returns all elements of the TrainingInstanceType enum
@@ -106001,6 +106007,8 @@ func TrainingInstanceType_Values() []string {
 		TrainingInstanceTypeMlG512xlarge,
 		TrainingInstanceTypeMlG524xlarge,
 		TrainingInstanceTypeMlG548xlarge,
+		TrainingInstanceTypeMlTrn12xlarge,
+		TrainingInstanceTypeMlTrn132xlarge,
 	}
 }
 

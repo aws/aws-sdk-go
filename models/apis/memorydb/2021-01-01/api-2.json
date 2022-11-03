@@ -750,7 +750,8 @@
         "MaintenanceWindow":{"shape":"String"},
         "SnapshotWindow":{"shape":"String"},
         "ACLName":{"shape":"ACLName"},
-        "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"}
+        "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
+        "DataTiering":{"shape":"DataTieringStatus"}
       }
     },
     "ClusterAlreadyExistsFault":{
@@ -870,7 +871,8 @@
         "SnapshotWindow":{"shape":"String"},
         "ACLName":{"shape":"ACLName"},
         "EngineVersion":{"shape":"String"},
-        "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"}
+        "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
+        "DataTiering":{"shape":"BooleanOptional"}
       }
     },
     "CreateClusterResponse":{
@@ -955,6 +957,13 @@
       "members":{
         "User":{"shape":"User"}
       }
+    },
+    "DataTieringStatus":{
+      "type":"string",
+      "enum":[
+        "true",
+        "false"
+      ]
     },
     "DefaultUserRequired":{
       "type":"structure",
@@ -1692,7 +1701,8 @@
         "Source":{"shape":"String"},
         "KmsKeyId":{"shape":"String"},
         "ARN":{"shape":"String"},
-        "ClusterConfiguration":{"shape":"ClusterConfiguration"}
+        "ClusterConfiguration":{"shape":"ClusterConfiguration"},
+        "DataTiering":{"shape":"DataTieringStatus"}
       }
     },
     "SnapshotAlreadyExistsFault":{
