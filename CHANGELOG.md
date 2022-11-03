@@ -1,3 +1,11 @@
+Release v1.44.130 (2022-11-03)
+===
+
+### Service Client Updates
+* `service/memorydb`: Updates service API and documentation
+* `service/sagemaker`: Updates service API
+  * Amazon SageMaker now supports running training jobs on ml.trn1 instance types.
+
 Release v1.44.129 (2022-11-02)
 ===
 
