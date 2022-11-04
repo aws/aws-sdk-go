@@ -1,3 +1,13 @@
+Release v1.44.131 (2022-11-04)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds API support for the recipient of an AMI account share to remove shared AMI launch permissions.
+* `service/emr-containers`: Updates service API, documentation, and paginators
+* `service/logs`: Updates service documentation
+  * Doc-only update for bug fixes and support of export to buckets encrypted with SSE-KMS
+
 Release v1.44.130 (2022-11-03)
 ===
 

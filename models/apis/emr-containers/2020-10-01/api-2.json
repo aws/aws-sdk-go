@@ -25,6 +25,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateJobTemplate":{
+      "name":"CreateJobTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/jobtemplates"
+      },
+      "input":{"shape":"CreateJobTemplateRequest"},
+      "output":{"shape":"CreateJobTemplateResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateManagedEndpoint":{
       "name":"CreateManagedEndpoint",
       "http":{
@@ -50,6 +64,19 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteJobTemplate":{
+      "name":"DeleteJobTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/jobtemplates/{templateId}"
+      },
+      "input":{"shape":"DeleteJobTemplateRequest"},
+      "output":{"shape":"DeleteJobTemplateResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -93,6 +120,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeJobTemplate":{
+      "name":"DescribeJobTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/jobtemplates/{templateId}"
+      },
+      "input":{"shape":"DescribeJobTemplateRequest"},
+      "output":{"shape":"DescribeJobTemplateResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeManagedEndpoint":{
       "name":"DescribeManagedEndpoint",
       "http":{
@@ -129,6 +170,19 @@
       },
       "input":{"shape":"ListJobRunsRequest"},
       "output":{"shape":"ListJobRunsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListJobTemplates":{
+      "name":"ListJobTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/jobtemplates"
+      },
+      "input":{"shape":"ListJobTemplatesRequest"},
+      "output":{"shape":"ListJobTemplatesResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
@@ -326,6 +380,33 @@
       "type":"string",
       "enum":["EKS"]
     },
+    "CreateJobTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "clientToken",
+        "jobTemplateData"
+      ],
+      "members":{
+        "name":{"shape":"ResourceNameString"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "jobTemplateData":{"shape":"JobTemplateData"},
+        "tags":{"shape":"TagMap"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "CreateJobTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ResourceIdString"},
+        "name":{"shape":"ResourceNameString"},
+        "arn":{"shape":"JobTemplateArn"},
+        "createdAt":{"shape":"Date"}
+      }
+    },
     "CreateManagedEndpointRequest":{
       "type":"structure",
       "required":[
@@ -397,6 +478,23 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
+    "DeleteJobTemplateRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"templateId"
+        }
+      }
+    },
+    "DeleteJobTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ResourceIdString"}
+      }
+    },
     "DeleteManagedEndpointRequest":{
       "type":"structure",
       "required":[
@@ -463,6 +561,23 @@
       "type":"structure",
       "members":{
         "jobRun":{"shape":"JobRun"}
+      }
+    },
+    "DescribeJobTemplateRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"templateId"
+        }
+      }
+    },
+    "DescribeJobTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "jobTemplate":{"shape":"JobTemplate"}
       }
     },
     "DescribeManagedEndpointRequest":{
@@ -673,6 +788,53 @@
       "type":"list",
       "member":{"shape":"JobRun"}
     },
+    "JobTemplate":{
+      "type":"structure",
+      "required":["jobTemplateData"],
+      "members":{
+        "name":{"shape":"ResourceNameString"},
+        "id":{"shape":"ResourceIdString"},
+        "arn":{"shape":"JobTemplateArn"},
+        "createdAt":{"shape":"Date"},
+        "createdBy":{"shape":"RequestIdentityUserArn"},
+        "tags":{"shape":"TagMap"},
+        "jobTemplateData":{"shape":"JobTemplateData"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "decryptionError":{"shape":"String2048"}
+      }
+    },
+    "JobTemplateArn":{
+      "type":"string",
+      "max":1024,
+      "min":60,
+      "pattern":"^arn:(aws[a-zA-Z0-9-]*):emr-containers:.+:(\\d{12}):\\/jobtemplates\\/[0-9a-zA-Z]+$"
+    },
+    "JobTemplateData":{
+      "type":"structure",
+      "required":[
+        "executionRoleArn",
+        "releaseLabel",
+        "jobDriver"
+      ],
+      "members":{
+        "executionRoleArn":{"shape":"ParametricIAMRoleArn"},
+        "releaseLabel":{"shape":"ParametricReleaseLabel"},
+        "configurationOverrides":{"shape":"ParametricConfigurationOverrides"},
+        "jobDriver":{"shape":"JobDriver"},
+        "parameterConfiguration":{"shape":"TemplateParameterConfigurationMap"},
+        "jobTags":{"shape":"TagMap"}
+      }
+    },
+    "JobTemplates":{
+      "type":"list",
+      "member":{"shape":"JobTemplate"}
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":3,
+      "pattern":"^(arn:(aws[a-zA-Z0-9-]*):kms:([a-zA-Z0-9]+-?)+:(\\d{12})?:key\\/[(0-9a-zA-Z)-?]+|\\$\\{[a-zA-Z]\\w*\\})$"
+    },
     "KubernetesNamespace":{
       "type":"string",
       "max":63,
@@ -724,6 +886,38 @@
       "type":"structure",
       "members":{
         "jobRuns":{"shape":"JobRuns"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListJobTemplatesRequest":{
+      "type":"structure",
+      "members":{
+        "createdAfter":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"createdAfter"
+        },
+        "createdBefore":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"createdBefore"
+        },
+        "maxResults":{
+          "shape":"JavaInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListJobTemplatesResponse":{
+      "type":"structure",
+      "members":{
+        "templates":{"shape":"JobTemplates"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -859,6 +1053,46 @@
       "min":1,
       "pattern":".*\\S.*"
     },
+    "ParametricCloudWatchMonitoringConfiguration":{
+      "type":"structure",
+      "members":{
+        "logGroupName":{"shape":"TemplateParameter"},
+        "logStreamNamePrefix":{"shape":"String256"}
+      }
+    },
+    "ParametricConfigurationOverrides":{
+      "type":"structure",
+      "members":{
+        "applicationConfiguration":{"shape":"ConfigurationList"},
+        "monitoringConfiguration":{"shape":"ParametricMonitoringConfiguration"}
+      }
+    },
+    "ParametricIAMRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":4,
+      "pattern":"(^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$)|([\\.\\-_\\#A-Za-z0-9\\$\\{\\}]+)"
+    },
+    "ParametricMonitoringConfiguration":{
+      "type":"structure",
+      "members":{
+        "persistentAppUI":{"shape":"TemplateParameter"},
+        "cloudWatchMonitoringConfiguration":{"shape":"ParametricCloudWatchMonitoringConfiguration"},
+        "s3MonitoringConfiguration":{"shape":"ParametricS3MonitoringConfiguration"}
+      }
+    },
+    "ParametricReleaseLabel":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"([\\.\\-_/A-Za-z0-9]+|\\$\\{[a-zA-Z]\\w*\\})"
+    },
+    "ParametricS3MonitoringConfiguration":{
+      "type":"structure",
+      "members":{
+        "logUri":{"shape":"UriString"}
+      }
+    },
     "PersistentAppUI":{
       "type":"string",
       "enum":[
@@ -952,10 +1186,7 @@
       "type":"structure",
       "required":[
         "virtualClusterId",
-        "clientToken",
-        "executionRoleArn",
-        "releaseLabel",
-        "jobDriver"
+        "clientToken"
       ],
       "members":{
         "name":{"shape":"ResourceNameString"},
@@ -972,7 +1203,9 @@
         "releaseLabel":{"shape":"ReleaseLabel"},
         "jobDriver":{"shape":"JobDriver"},
         "configurationOverrides":{"shape":"ConfigurationOverrides"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "jobTemplateId":{"shape":"ResourceIdString"},
+        "jobTemplateParameters":{"shape":"TemplateParameterInputMap"}
       }
     },
     "StartJobRunResponse":{
@@ -993,6 +1226,12 @@
     "String128":{
       "type":"string",
       "max":128,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "String2048":{
+      "type":"string",
+      "max":2048,
       "min":1,
       "pattern":".*\\S.*"
     },
@@ -1044,6 +1283,44 @@
       "type":"structure",
       "members":{
       }
+    },
+    "TemplateParameter":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\.\\-_/#A-Za-z0-9\\$\\{\\}]+"
+    },
+    "TemplateParameterConfiguration":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"TemplateParameterDataType"},
+        "defaultValue":{"shape":"String1024"}
+      }
+    },
+    "TemplateParameterConfigurationMap":{
+      "type":"map",
+      "key":{"shape":"TemplateParameterName"},
+      "value":{"shape":"TemplateParameterConfiguration"},
+      "max":20
+    },
+    "TemplateParameterDataType":{
+      "type":"string",
+      "enum":[
+        "NUMBER",
+        "STRING"
+      ]
+    },
+    "TemplateParameterInputMap":{
+      "type":"map",
+      "key":{"shape":"TemplateParameterName"},
+      "value":{"shape":"String1024"},
+      "max":20
+    },
+    "TemplateParameterName":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\.\\-_\\#A-Za-z0-9]+"
     },
     "UntagResourceRequest":{
       "type":"structure",

@@ -377,6 +377,15 @@
       },
       "input":{"shape":"CancelExportTaskRequest"}
     },
+    "CancelImageLaunchPermission":{
+      "name":"CancelImageLaunchPermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelImageLaunchPermissionRequest"},
+      "output":{"shape":"CancelImageLaunchPermissionResult"}
+    },
     "CancelImportTask":{
       "name":"CancelImportTask",
       "http":{
@@ -7403,6 +7412,23 @@
         "ExportTaskId":{
           "shape":"ExportVmTaskId",
           "locationName":"exportTaskId"
+        }
+      }
+    },
+    "CancelImageLaunchPermissionRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CancelImageLaunchPermissionResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
