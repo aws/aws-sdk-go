@@ -2943,8 +2943,14 @@ func (s *AacSettings) SetVbrQuality(v string) *AacSettings {
 type Ac3Settings struct {
 	_ struct{} `type:"structure"`
 
-	// Specify the average bitrate in bits per second. Valid bitrates depend on
-	// the coding mode.
+	// Specify the average bitrate in bits per second. The bitrate that you specify
+	// must be a multiple of 8000 within the allowed minimum and maximum values.
+	// Leave blank to use the default bitrate for the coding mode you select according
+	// ETSI TS 102 366. Valid bitrates for coding mode 1/0: Default: 96000. Minimum:
+	// 64000. Maximum: 128000. Valid bitrates for coding mode 1/1: Default: 192000.
+	// Minimum: 128000. Maximum: 384000. Valid bitrates for coding mode 2/0: Default:
+	// 192000. Minimum: 128000. Maximum: 384000. Valid bitrates for coding mode
+	// 3/2 with FLE: Default: 384000. Minimum: 384000. Maximum: 640000.
 	Bitrate *int64 `locationName:"bitrate" min:"64000" type:"integer"`
 
 	// Specify the bitstream mode for the AC-3 stream that the encoder emits. For
@@ -7128,7 +7134,10 @@ type ColorCorrector struct {
 	// SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
 	// video has an HDR format, but visually appears the same as an unconverted
 	// output. HDR to SDR conversion uses Elemental tone mapping technology to approximate
-	// the outcome of manually regrading from HDR to SDR.
+	// the outcome of manually regrading from HDR to SDR. Select Force P3D65 (SDR)
+	// to set the output color space metadata to the following: * Color primaries:
+	// Display P3 * Transfer characteristics: SMPTE 428M * Matrix coefficients:
+	// BT.709
 	ColorSpaceConversion *string `locationName:"colorSpaceConversion" type:"string" enum:"ColorSpaceConversion"`
 
 	// Contrast level.
@@ -7165,6 +7174,17 @@ type ColorCorrector struct {
 
 	// Saturation level.
 	Saturation *int64 `locationName:"saturation" min:"1" type:"integer"`
+
+	// Specify the reference white level, in nits, for all of your SDR inputs. Use
+	// to correct brightness levels within HDR10 outputs. The following color metadata
+	// must be present in your SDR input: color primaries, transfer characteristics,
+	// and matrix coefficients. If your SDR input has missing color metadata, or
+	// if you want to correct input color metadata, manually specify a color space
+	// in the input video selector. For 1,000 nit peak brightness displays, we recommend
+	// that you set SDR reference white level to 203 (according to ITU-R BT.2408).
+	// Leave blank to use the default value of 100, or specify an integer from 100
+	// to 1000.
+	SdrReferenceWhiteLevel *int64 `locationName:"sdrReferenceWhiteLevel" min:"100" type:"integer"`
 }
 
 // String returns the string representation.
@@ -7199,6 +7219,9 @@ func (s *ColorCorrector) Validate() error {
 	}
 	if s.Saturation != nil && *s.Saturation < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Saturation", 1))
+	}
+	if s.SdrReferenceWhiteLevel != nil && *s.SdrReferenceWhiteLevel < 100 {
+		invalidParams.Add(request.NewErrParamMinValue("SdrReferenceWhiteLevel", 100))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7246,6 +7269,12 @@ func (s *ColorCorrector) SetSampleRangeConversion(v string) *ColorCorrector {
 // SetSaturation sets the Saturation field's value.
 func (s *ColorCorrector) SetSaturation(v int64) *ColorCorrector {
 	s.Saturation = &v
+	return s
+}
+
+// SetSdrReferenceWhiteLevel sets the SdrReferenceWhiteLevel field's value.
+func (s *ColorCorrector) SetSdrReferenceWhiteLevel(v int64) *ColorCorrector {
+	s.SdrReferenceWhiteLevel = &v
 	return s
 }
 
@@ -10300,9 +10329,14 @@ type Eac3Settings struct {
 	// Only used for 3/2 coding mode.
 	AttenuationControl *string `locationName:"attenuationControl" type:"string" enum:"Eac3AttenuationControl"`
 
-	// Specify the average bitrate in bits per second. Valid bitrates depend on
-	// the coding mode.
-	Bitrate *int64 `locationName:"bitrate" min:"64000" type:"integer"`
+	// Specify the average bitrate in bits per second. The bitrate that you specify
+	// must be a multiple of 8000 within the allowed minimum and maximum values.
+	// Leave blank to use the default bitrate for the coding mode you select according
+	// ETSI TS 102 366. Valid bitrates for coding mode 1/0: Default: 96000. Minimum:
+	// 32000. Maximum: 3024000. Valid bitrates for coding mode 2/0: Default: 192000.
+	// Minimum: 96000. Maximum: 3024000. Valid bitrates for coding mode 3/2: Default:
+	// 384000. Minimum: 192000. Maximum: 3024000.
+	Bitrate *int64 `locationName:"bitrate" min:"32000" type:"integer"`
 
 	// Specify the bitstream mode for the E-AC-3 stream that the encoder emits.
 	// For more information about the EAC3 bitstream mode, see ATSC A/52-2012 (Annex
@@ -10436,8 +10470,8 @@ func (s Eac3Settings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Eac3Settings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Eac3Settings"}
-	if s.Bitrate != nil && *s.Bitrate < 64000 {
-		invalidParams.Add(request.NewErrParamMinValue("Bitrate", 64000))
+	if s.Bitrate != nil && *s.Bitrate < 32000 {
+		invalidParams.Add(request.NewErrParamMinValue("Bitrate", 32000))
 	}
 	if s.Dialnorm != nil && *s.Dialnorm < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Dialnorm", 1))
@@ -14540,6 +14574,13 @@ type ImageInserter struct {
 	// Specify the images that you want to overlay on your video. The images must
 	// be PNG or TGA files.
 	InsertableImages []*InsertableImage `locationName:"insertableImages" type:"list"`
+
+	// Specify the reference white level, in nits, for all of your image inserter
+	// images. Use to correct brightness levels within HDR10 outputs. For 1,000
+	// nit peak brightness displays, we recommend that you set SDR reference white
+	// level to 203 (according to ITU-R BT.2408). Leave blank to use the default
+	// value of 100, or specify an integer from 100 to 1000.
+	SdrReferenceWhiteLevel *int64 `locationName:"sdrReferenceWhiteLevel" min:"100" type:"integer"`
 }
 
 // String returns the string representation.
@@ -14563,6 +14604,9 @@ func (s ImageInserter) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ImageInserter) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ImageInserter"}
+	if s.SdrReferenceWhiteLevel != nil && *s.SdrReferenceWhiteLevel < 100 {
+		invalidParams.Add(request.NewErrParamMinValue("SdrReferenceWhiteLevel", 100))
+	}
 	if s.InsertableImages != nil {
 		for i, v := range s.InsertableImages {
 			if v == nil {
@@ -14583,6 +14627,12 @@ func (s *ImageInserter) Validate() error {
 // SetInsertableImages sets the InsertableImages field's value.
 func (s *ImageInserter) SetInsertableImages(v []*InsertableImage) *ImageInserter {
 	s.InsertableImages = v
+	return s
+}
+
+// SetSdrReferenceWhiteLevel sets the SdrReferenceWhiteLevel field's value.
+func (s *ImageInserter) SetSdrReferenceWhiteLevel(v int64) *ImageInserter {
+	s.SdrReferenceWhiteLevel = &v
 	return s
 }
 
@@ -24915,14 +24965,17 @@ type VideoSelector struct {
 	AlphaBehavior *string `locationName:"alphaBehavior" type:"string" enum:"AlphaBehavior"`
 
 	// If your input video has accurate color space metadata, or if you don't know
-	// about color space, leave this set to the default value Follow (FOLLOW). The
-	// service will automatically detect your input color space. If your input video
-	// has metadata indicating the wrong color space, specify the accurate color
-	// space here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering
-	// Display Color Volume static metadata isn't present in your video stream,
-	// or if that metadata is present but not accurate, choose Force HDR 10 (FORCE_HDR10)
-	// here and specify correct values in the input HDR 10 metadata (Hdr10Metadata)
-	// settings. For more information about MediaConvert HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
+	// about color space, leave this set to the default value Follow. The service
+	// will automatically detect your input color space. If your input video has
+	// metadata indicating the wrong color space, specify the accurate color space
+	// here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering Display
+	// Color Volume static metadata isn't present in your video stream, or if that
+	// metadata is present but not accurate, choose Force HDR 10 here and specify
+	// correct values in the input HDR 10 metadata settings. For more information
+	// about MediaConvert HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
+	// Select P3D65 (SDR) to set the input color space metadata to the following:
+	// * Color primaries: Display P3 * Transfer characteristics: SMPTE 428M * Matrix
+	// coefficients: BT.709
 	ColorSpace *string `locationName:"colorSpace" type:"string" enum:"ColorSpace"`
 
 	// There are two sources for color metadata, the input file and the job input
@@ -28765,14 +28818,17 @@ func ColorMetadata_Values() []string {
 }
 
 // If your input video has accurate color space metadata, or if you don't know
-// about color space, leave this set to the default value Follow (FOLLOW). The
-// service will automatically detect your input color space. If your input video
-// has metadata indicating the wrong color space, specify the accurate color
-// space here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering
-// Display Color Volume static metadata isn't present in your video stream,
-// or if that metadata is present but not accurate, choose Force HDR 10 (FORCE_HDR10)
-// here and specify correct values in the input HDR 10 metadata (Hdr10Metadata)
-// settings. For more information about MediaConvert HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
+// about color space, leave this set to the default value Follow. The service
+// will automatically detect your input color space. If your input video has
+// metadata indicating the wrong color space, specify the accurate color space
+// here. If your input video is HDR 10 and the SMPTE ST 2086 Mastering Display
+// Color Volume static metadata isn't present in your video stream, or if that
+// metadata is present but not accurate, choose Force HDR 10 here and specify
+// correct values in the input HDR 10 metadata settings. For more information
+// about MediaConvert HDR jobs, see https://docs.aws.amazon.com/console/mediaconvert/hdr.
+// Select P3D65 (SDR) to set the input color space metadata to the following:
+// * Color primaries: Display P3 * Transfer characteristics: SMPTE 428M * Matrix
+// coefficients: BT.709
 const (
 	// ColorSpaceFollow is a ColorSpace enum value
 	ColorSpaceFollow = "FOLLOW"
@@ -28788,6 +28844,12 @@ const (
 
 	// ColorSpaceHlg2020 is a ColorSpace enum value
 	ColorSpaceHlg2020 = "HLG_2020"
+
+	// ColorSpaceP3dci is a ColorSpace enum value
+	ColorSpaceP3dci = "P3DCI"
+
+	// ColorSpaceP3d65Sdr is a ColorSpace enum value
+	ColorSpaceP3d65Sdr = "P3D65_SDR"
 )
 
 // ColorSpace_Values returns all elements of the ColorSpace enum
@@ -28798,6 +28860,8 @@ func ColorSpace_Values() []string {
 		ColorSpaceRec709,
 		ColorSpaceHdr10,
 		ColorSpaceHlg2020,
+		ColorSpaceP3dci,
+		ColorSpaceP3d65Sdr,
 	}
 }
 
@@ -28806,7 +28870,10 @@ func ColorSpace_Values() []string {
 // SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
 // video has an HDR format, but visually appears the same as an unconverted
 // output. HDR to SDR conversion uses Elemental tone mapping technology to approximate
-// the outcome of manually regrading from HDR to SDR.
+// the outcome of manually regrading from HDR to SDR. Select Force P3D65 (SDR)
+// to set the output color space metadata to the following: * Color primaries:
+// Display P3 * Transfer characteristics: SMPTE 428M * Matrix coefficients:
+// BT.709
 const (
 	// ColorSpaceConversionNone is a ColorSpaceConversion enum value
 	ColorSpaceConversionNone = "NONE"
@@ -28822,6 +28889,12 @@ const (
 
 	// ColorSpaceConversionForceHlg2020 is a ColorSpaceConversion enum value
 	ColorSpaceConversionForceHlg2020 = "FORCE_HLG_2020"
+
+	// ColorSpaceConversionForceP3dci is a ColorSpaceConversion enum value
+	ColorSpaceConversionForceP3dci = "FORCE_P3DCI"
+
+	// ColorSpaceConversionForceP3d65Sdr is a ColorSpaceConversion enum value
+	ColorSpaceConversionForceP3d65Sdr = "FORCE_P3D65_SDR"
 )
 
 // ColorSpaceConversion_Values returns all elements of the ColorSpaceConversion enum
@@ -28832,6 +28905,8 @@ func ColorSpaceConversion_Values() []string {
 		ColorSpaceConversionForce709,
 		ColorSpaceConversionForceHdr10,
 		ColorSpaceConversionForceHlg2020,
+		ColorSpaceConversionForceP3dci,
+		ColorSpaceConversionForceP3d65Sdr,
 	}
 }
 

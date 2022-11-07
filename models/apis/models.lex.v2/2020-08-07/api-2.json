@@ -13,6 +13,57 @@
     "uid":"models.lex.v2-2020-08-07"
   },
   "operations":{
+    "BatchCreateCustomVocabularyItem":{
+      "name":"BatchCreateCustomVocabularyItem",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchcreate",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchCreateCustomVocabularyItemRequest"},
+      "output":{"shape":"BatchCreateCustomVocabularyItemResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "BatchDeleteCustomVocabularyItem":{
+      "name":"BatchDeleteCustomVocabularyItem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchdelete",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchDeleteCustomVocabularyItemRequest"},
+      "output":{"shape":"BatchDeleteCustomVocabularyItemResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "BatchUpdateCustomVocabularyItem":{
+      "name":"BatchUpdateCustomVocabularyItem",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchupdate",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdateCustomVocabularyItemRequest"},
+      "output":{"shape":"BatchUpdateCustomVocabularyItemResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BuildBotLocale":{
       "name":"BuildBotLocale",
       "http":{
@@ -778,6 +829,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListCustomVocabularyItems":{
+      "name":"ListCustomVocabularyItems",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/list",
+        "responseCode":200
+      },
+      "input":{"shape":"ListCustomVocabularyItemsRequest"},
+      "output":{"shape":"ListCustomVocabularyItemsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListExports":{
       "name":"ListExports",
       "http":{
@@ -1337,6 +1405,117 @@
       "members":{
         "maxLengthMs":{"shape":"TimeInMilliSeconds"},
         "endTimeoutMs":{"shape":"TimeInMilliSeconds"}
+      }
+    },
+    "BatchCreateCustomVocabularyItemRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "customVocabularyItemList"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "customVocabularyItemList":{"shape":"CreateCustomVocabularyItemsList"}
+      }
+    },
+    "BatchCreateCustomVocabularyItemResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "errors":{"shape":"FailedCustomVocabularyItems"},
+        "resources":{"shape":"CustomVocabularyItems"}
+      }
+    },
+    "BatchDeleteCustomVocabularyItemRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "customVocabularyItemList"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "customVocabularyItemList":{"shape":"DeleteCustomVocabularyItemsList"}
+      }
+    },
+    "BatchDeleteCustomVocabularyItemResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "errors":{"shape":"FailedCustomVocabularyItems"},
+        "resources":{"shape":"CustomVocabularyItems"}
+      }
+    },
+    "BatchUpdateCustomVocabularyItemRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "customVocabularyItemList"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "customVocabularyItemList":{"shape":"UpdateCustomVocabularyItemsList"}
+      }
+    },
+    "BatchUpdateCustomVocabularyItemResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "errors":{"shape":"FailedCustomVocabularyItems"},
+        "resources":{"shape":"CustomVocabularyItems"}
       }
     },
     "Boolean":{"type":"boolean"},
@@ -2114,6 +2293,12 @@
         "creationDateTime":{"shape":"Timestamp"}
       }
     },
+    "CreateCustomVocabularyItemsList":{
+      "type":"list",
+      "member":{"shape":"NewCustomVocabularyItem"},
+      "max":10,
+      "min":1
+    },
     "CreateExportRequest":{
       "type":"structure",
       "required":[
@@ -2384,6 +2569,13 @@
       "max":1000,
       "min":1
     },
+    "CustomVocabularyEntryId":{
+      "type":"structure",
+      "required":["itemId"],
+      "members":{
+        "itemId":{"shape":"ItemId"}
+      }
+    },
     "CustomVocabularyExportSpecification":{
       "type":"structure",
       "required":[
@@ -2409,6 +2601,23 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"}
       }
+    },
+    "CustomVocabularyItem":{
+      "type":"structure",
+      "required":[
+        "itemId",
+        "phrase"
+      ],
+      "members":{
+        "itemId":{"shape":"ItemId"},
+        "phrase":{"shape":"Phrase"},
+        "weight":{"shape":"Weight"},
+        "displayAs":{"shape":"Phrase"}
+      }
+    },
+    "CustomVocabularyItems":{
+      "type":"list",
+      "member":{"shape":"CustomVocabularyItem"}
     },
     "CustomVocabularyStatus":{
       "type":"string",
@@ -2584,6 +2793,12 @@
         "botVersion":{"shape":"NumericalBotVersion"},
         "botStatus":{"shape":"BotStatus"}
       }
+    },
+    "DeleteCustomVocabularyItemsList":{
+      "type":"list",
+      "member":{"shape":"CustomVocabularyEntryId"},
+      "max":10,
+      "min":1
     },
     "DeleteCustomVocabularyRequest":{
       "type":"structure",
@@ -3377,6 +3592,16 @@
         "associatedTranscriptsPassword":{"shape":"FilePassword"}
       }
     },
+    "ErrorCode":{
+      "type":"string",
+      "enum":[
+        "DUPLICATE_INPUT",
+        "RESOURCE_DOES_NOT_EXIST",
+        "RESOURCE_ALREADY_EXISTS",
+        "INTERNAL_SERVER_FAILURE"
+      ]
+    },
+    "ErrorMessage":{"type":"string"},
     "ExceptionMessage":{"type":"string"},
     "ExportFilter":{
       "type":"structure",
@@ -3460,6 +3685,18 @@
       "members":{
         "grammarSlotTypeSetting":{"shape":"GrammarSlotTypeSetting"}
       }
+    },
+    "FailedCustomVocabularyItem":{
+      "type":"structure",
+      "members":{
+        "itemId":{"shape":"ItemId"},
+        "errorMessage":{"shape":"ErrorMessage"},
+        "errorCode":{"shape":"ErrorCode"}
+      }
+    },
+    "FailedCustomVocabularyItems":{
+      "type":"list",
+      "member":{"shape":"FailedCustomVocabularyItem"}
     },
     "FailureReason":{"type":"string"},
     "FailureReasons":{
@@ -3821,6 +4058,11 @@
       "exception":true,
       "fault":true
     },
+    "ItemId":{
+      "type":"string",
+      "max":32,
+      "min":1
+    },
     "KendraConfiguration":{
       "type":"structure",
       "required":["kendraIndex"],
@@ -4073,6 +4315,43 @@
         "builtInSlotTypeSummaries":{"shape":"BuiltInSlotTypeSummaryList"},
         "nextToken":{"shape":"NextToken"},
         "localeId":{"shape":"LocaleId"}
+      }
+    },
+    "ListCustomVocabularyItemsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCustomVocabularyItemsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "customVocabularyItems":{"shape":"CustomVocabularyItems"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListExportsRequest":{
@@ -4378,6 +4657,15 @@
       "min":1,
       "pattern":"^([0-9a-zA-Z][_-]?)+$"
     },
+    "NewCustomVocabularyItem":{
+      "type":"structure",
+      "required":["phrase"],
+      "members":{
+        "phrase":{"shape":"Phrase"},
+        "weight":{"shape":"Weight"},
+        "displayAs":{"shape":"Phrase"}
+      }
+    },
     "NextIndex":{
       "type":"integer",
       "box":true,
@@ -4454,6 +4742,11 @@
       "members":{
         "objectPrefixes":{"shape":"ObjectPrefixes"}
       }
+    },
+    "Phrase":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "PlainTextMessage":{
       "type":"structure",
@@ -5624,6 +5917,12 @@
         "lastUpdatedDateTime":{"shape":"Timestamp"}
       }
     },
+    "UpdateCustomVocabularyItemsList":{
+      "type":"list",
+      "member":{"shape":"CustomVocabularyItem"},
+      "max":10,
+      "min":1
+    },
     "UpdateExportRequest":{
       "type":"structure",
       "required":["exportId"],
@@ -5914,6 +6213,12 @@
         "stillWaitingResponse":{"shape":"StillWaitingResponseSpecification"},
         "active":{"shape":"BoxedBoolean"}
       }
+    },
+    "Weight":{
+      "type":"integer",
+      "box":true,
+      "max":3,
+      "min":1
     }
   }
 }

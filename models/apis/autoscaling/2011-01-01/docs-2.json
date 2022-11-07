@@ -10,9 +10,9 @@
     "CancelInstanceRefresh": "<p>Cancels an instance refresh operation in progress. Cancellation does not roll back any replacements that have already been completed, but it prevents new replacements from being started. </p> <p>This operation is part of the <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html\">instance refresh feature</a> in Amazon EC2 Auto Scaling, which helps you update instances in your Auto Scaling group after you make configuration changes.</p>",
     "CompleteLifecycleAction": "<p>Completes the lifecycle action for the specified token or instance with the specified result.</p> <p>This step is a part of the procedure for adding a lifecycle hook to an Auto Scaling group:</p> <ol> <li> <p>(Optional) Create a launch template or launch configuration with a user data script that runs while an instance is in a wait state due to a lifecycle hook.</p> </li> <li> <p>(Optional) Create a Lambda function and a rule that allows Amazon EventBridge to invoke your Lambda function when an instance is put into a wait state due to a lifecycle hook.</p> </li> <li> <p>(Optional) Create a notification target and an IAM role. The target can be either an Amazon SQS queue or an Amazon SNS topic. The role allows Amazon EC2 Auto Scaling to publish lifecycle notifications to the target.</p> </li> <li> <p>Create the lifecycle hook. Specify whether the hook is used when the instances launch or terminate.</p> </li> <li> <p>If you need more time, record the lifecycle action heartbeat to keep the instance in a wait state.</p> </li> <li> <p> <b>If you finish before the timeout period ends, send a callback by using the <a>CompleteLifecycleAction</a> API call.</b> </p> </li> </ol> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html\">Amazon EC2 Auto Scaling lifecycle hooks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "CreateAutoScalingGroup": "<p> <b>We strongly recommend using a launch template when calling this operation to ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.</b> </p> <p>Creates an Auto Scaling group with the specified name and attributes. </p> <p>If you exceed your maximum limit of Auto Scaling groups, the call fails. To query this limit, call the <a>DescribeAccountLimits</a> API. For information about updating this limit, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-quotas.html\">Quotas for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>For introductory exercises for creating an Auto Scaling group, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/GettingStartedTutorial.html\">Getting started with Amazon EC2 Auto Scaling</a> and <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-register-lbs-with-asg.html\">Tutorial: Set up a scaled and load-balanced application</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html\">Auto Scaling groups</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>Every Auto Scaling group has three size properties (<code>DesiredCapacity</code>, <code>MaxSize</code>, and <code>MinSize</code>). Usually, you set these sizes based on a specific number of instances. However, if you configure a mixed instances policy that defines weights for the instance types, you must specify these sizes with the same units that you use for weighting instances.</p>",
-    "CreateLaunchConfiguration": "<p>Creates a launch configuration.</p> <p>If you exceed your maximum limit of launch configurations, the call fails. To query this limit, call the <a>DescribeAccountLimits</a> API. For information about updating this limit, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-quotas.html\">Quotas for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html\">Launch configurations</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+    "CreateLaunchConfiguration": "<p>Creates a launch configuration.</p> <p>If you exceed your maximum limit of launch configurations, the call fails. To query this limit, call the <a>DescribeAccountLimits</a> API. For information about updating this limit, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-quotas.html\">Quotas for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html\">Launch configurations</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <note> <p>Amazon EC2 Auto Scaling configures instances launched as part of an Auto Scaling group using either a launch template or a launch configuration. We strongly recommend that you do not use launch configurations. They do not provide full functionality for Amazon EC2 Auto Scaling or Amazon EC2. For information about using launch templates, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html\">Launch templates</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> </note>",
     "CreateOrUpdateTags": "<p>Creates or updates tags for the specified Auto Scaling group.</p> <p>When you specify a tag with a key that already exists, the operation overwrites the previous tag definition, and you do not get an error message.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-tagging.html\">Tag Auto Scaling groups and instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
-    "DeleteAutoScalingGroup": "<p>Deletes the specified Auto Scaling group.</p> <p>If the group has instances or scaling activities in progress, you must specify the option to force the deletion in order for it to succeed.</p> <p>If the group has policies, deleting the group deletes the policies, the underlying alarm actions, and any alarm that no longer has an associated action.</p> <p>To remove instances from the Auto Scaling group before deleting it, call the <a>DetachInstances</a> API with the list of instances and the option to decrement the desired capacity. This ensures that Amazon EC2 Auto Scaling does not launch replacement instances.</p> <p>To terminate all instances before deleting the Auto Scaling group, call the <a>UpdateAutoScalingGroup</a> API and set the minimum size and desired capacity of the Auto Scaling group to zero.</p>",
+    "DeleteAutoScalingGroup": "<p>Deletes the specified Auto Scaling group.</p> <p>If the group has instances or scaling activities in progress, you must specify the option to force the deletion in order for it to succeed. The force delete operation will also terminate the EC2 instances. If the group has a warm pool, the force delete option also deletes the warm pool.</p> <p>To remove instances from the Auto Scaling group before deleting it, call the <a>DetachInstances</a> API with the list of instances and the option to decrement the desired capacity. This ensures that Amazon EC2 Auto Scaling does not launch replacement instances.</p> <p>To terminate all instances before deleting the Auto Scaling group, call the <a>UpdateAutoScalingGroup</a> API and set the minimum size and desired capacity of the Auto Scaling group to zero.</p> <p>If the group has scaling policies, deleting the group deletes the policies, the underlying alarm actions, and any alarm that no longer has an associated action.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-process-shutdown.html\">Delete your Auto Scaling infrastructure</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "DeleteLaunchConfiguration": "<p>Deletes the specified launch configuration.</p> <p>The launch configuration must not be attached to an Auto Scaling group. When this call completes, the launch configuration is no longer available for use.</p>",
     "DeleteLifecycleHook": "<p>Deletes the specified lifecycle hook.</p> <p>If there are any outstanding lifecycle actions, they are completed first (<code>ABANDON</code> for launching instances, <code>CONTINUE</code> for terminating instances).</p>",
     "DeleteNotificationConfiguration": "<p>Deletes the specified notification.</p>",
@@ -68,7 +68,7 @@
     "AcceleratorCountRequest": {
       "base": "<p>Specifies the minimum and maximum for the <code>AcceleratorCount</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p>",
       "refs": {
-        "InstanceRequirements$AcceleratorCount": "<p>The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) for an instance type.</p> <p>To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>.</p> <p>Default: No minimum or maximum</p>"
+        "InstanceRequirements$AcceleratorCount": "<p>The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) for an instance type.</p> <p>To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "AcceleratorManufacturer": {
@@ -98,7 +98,7 @@
     "AcceleratorTotalMemoryMiBRequest": {
       "base": "<p>Specifies the minimum and maximum for the <code>AcceleratorTotalMemoryMiB</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p>",
       "refs": {
-        "InstanceRequirements$AcceleratorTotalMemoryMiB": "<p>The minimum and maximum total memory size for the accelerators on an instance type, in MiB.</p> <p>Default: No minimum or maximum</p>"
+        "InstanceRequirements$AcceleratorTotalMemoryMiB": "<p>The minimum and maximum total memory size for the accelerators on an instance type, in MiB.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "AcceleratorType": {
@@ -173,6 +173,18 @@
       "refs": {
         "PolicyARNType$Alarms": "<p>The CloudWatch alarms created for the target tracking scaling policy.</p>",
         "ScalingPolicy$Alarms": "<p>The CloudWatch alarms related to the policy.</p>"
+      }
+    },
+    "AllowedInstanceType": {
+      "base": null,
+      "refs": {
+        "AllowedInstanceTypes$member": null
+      }
+    },
+    "AllowedInstanceTypes": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$AllowedInstanceTypes": "<p>The instance types to apply your specified attributes against. All other instance types are ignored, even if they match your specified attributes.</p> <p>You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to allow an instance type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.</p> <p>For example, if you specify <code>c5*</code>, Amazon EC2 Auto Scaling will allow the entire C5 instance family, which includes all C5a and C5n instance types. If you specify <code>m5a.*</code>, Amazon EC2 Auto Scaling will allow all the M5a instance types, but not the M5n instance types.</p> <note> <p>If you specify <code>AllowedInstanceTypes</code>, you can't specify <code>ExcludedInstanceTypes</code>.</p> </note> <p>Default: All instance types</p>"
       }
     },
     "AlreadyExistsFault": {
@@ -341,7 +353,7 @@
     "BaselineEbsBandwidthMbpsRequest": {
       "base": "<p>Specifies the minimum and maximum for the <code>BaselineEbsBandwidthMbps</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p>",
       "refs": {
-        "InstanceRequirements$BaselineEbsBandwidthMbps": "<p>The minimum and maximum baseline bandwidth performance for an instance type, in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS–optimized instances</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <p>Default: No minimum or maximum</p>"
+        "InstanceRequirements$BaselineEbsBandwidthMbps": "<p>The minimum and maximum baseline bandwidth performance for an instance type, in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS–optimized instances</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "BatchDeleteScheduledActionAnswer": {
@@ -458,8 +470,8 @@
     "ClassicLinkVPCSecurityGroups": {
       "base": null,
       "refs": {
-        "CreateLaunchConfigurationType$ClassicLinkVPCSecurityGroups": "<p> <i>EC2-Classic retires on August 15, 2022. This property is not supported after that date.</i> </p> <p>The IDs of one or more security groups for the specified ClassicLink-enabled VPC.</p> <p>If you specify the <code>ClassicLinkVPCId</code> property, you must specify <code>ClassicLinkVPCSecurityGroups</code>.</p>",
-        "LaunchConfiguration$ClassicLinkVPCSecurityGroups": "<p> <i>EC2-Classic retires on August 15, 2022. This property is not supported after that date.</i> </p> <p>The IDs of one or more security groups for the VPC specified in <code>ClassicLinkVPCId</code>.</p>"
+        "CreateLaunchConfigurationType$ClassicLinkVPCSecurityGroups": "<p>Available for backward compatibility.</p>",
+        "LaunchConfiguration$ClassicLinkVPCSecurityGroups": "<p>Available for backward compatibility.</p>"
       }
     },
     "CompleteLifecycleActionAnswer": {
@@ -795,7 +807,7 @@
     "ExcludedInstanceTypes": {
       "base": null,
       "refs": {
-        "InstanceRequirements$ExcludedInstanceTypes": "<p>Lists which instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>). The following are examples: <code>c5*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>. </p> <p>For example, if you specify <code>c5*</code>, you are excluding the entire C5 instance family, which includes all C5a and C5n instance types. If you specify <code>m5a.*</code>, you are excluding all the M5a instance types, but not the M5n instance types.</p> <p>Default: No excluded instance types</p>"
+        "InstanceRequirements$ExcludedInstanceTypes": "<p>The instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to exclude an instance family, type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>. </p> <p>For example, if you specify <code>c5*</code>, you are excluding the entire C5 instance family, which includes all C5a and C5n instance types. If you specify <code>m5a.*</code>, Amazon EC2 Auto Scaling will exclude all the M5a instance types, but not the M5n instance types.</p> <note> <p>If you specify <code>ExcludedInstanceTypes</code>, you can't specify <code>AllowedInstanceTypes</code>.</p> </note> <p>Default: No excluded instance types</p>"
       }
     },
     "ExecutePolicyType": {
@@ -1010,9 +1022,9 @@
       }
     },
     "InstanceRequirements": {
-      "base": "<p>When you specify multiple parameters, you get instance types that satisfy all of the specified parameters. If you specify multiple values for a parameter, you get instance types that satisfy any of the specified values.</p> <p>Represents requirements for the types of instances that can be launched. You must specify <code>VCpuCount</code> and <code>MemoryMiB</code>, but all other parameters are optional. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html\">Creating an Auto Scaling group using attribute-based instance type selection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+      "base": "<p>The attributes for the instance types for a mixed instances policy. Amazon EC2 Auto Scaling uses your specified requirements to identify instance types. Then, it uses your On-Demand and Spot allocation strategies to launch instances from these instance types.</p> <p>When you specify multiple attributes, you get instance types that satisfy all of the specified attributes. If you specify multiple values for an attribute, you get instance types that satisfy any of the specified values.</p> <p>To limit the list of instance types from which Amazon EC2 Auto Scaling can identify matching instance types, you can use one of the following parameters, but not both in the same request:</p> <ul> <li> <p> <code>AllowedInstanceTypes</code> - The instance types to include in the list. All other instance types are ignored, even if they match your specified attributes.</p> </li> <li> <p> <code>ExcludedInstanceTypes</code> - The instance types to exclude from the list, even if they match your specified attributes.</p> </li> </ul> <note> <p>You must specify <code>VCpuCount</code> and <code>MemoryMiB</code>. All other attributes are optional. Any unspecified optional attribute is set to its default.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html\">Creating an Auto Scaling group using attribute-based instance type selection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. For help determining which instance types match your attributes before you apply them to your Auto Scaling group, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html#ec2fleet-get-instance-types-from-instance-requirements\">Preview instance types with specified attributes</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
       "refs": {
-        "LaunchTemplateOverrides$InstanceRequirements": "<p>The instance requirements. When you specify instance requirements, Amazon EC2 Auto Scaling finds instance types that satisfy your requirements, and then uses your On-Demand and Spot allocation strategies to launch instances from these instance types, in the same way as when you specify a list of specific instance types. </p>"
+        "LaunchTemplateOverrides$InstanceRequirements": "<p>The instance requirements. Amazon EC2 Auto Scaling uses your specified requirements to identify instance types. Then, it uses your On-Demand and Spot allocation strategies to launch instances from these instance types.</p> <p>You can specify up to four separate sets of instance requirements per Auto Scaling group. This is useful for provisioning instances from different Amazon Machine Images (AMIs) in the same Auto Scaling group. To do this, create the AMIs and create a new launch template for each AMI. Then, create a compatible set of instance requirements for each launch template. </p> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.</p> </note>"
       }
     },
     "InstanceReusePolicy": {
@@ -1030,7 +1042,7 @@
       }
     },
     "InstancesDistribution": {
-      "base": "<p>Describes an instances distribution for an Auto Scaling group.</p>",
+      "base": "<p>Use this structure to specify the distribution of On-Demand Instances and Spot Instances and the allocation strategies used to fulfill On-Demand and Spot capacities for a mixed instances policy.</p>",
       "refs": {
         "MixedInstancesPolicy$InstancesDistribution": "<p>The instances distribution.</p>"
       }
@@ -1091,7 +1103,7 @@
       }
     },
     "LaunchTemplate": {
-      "base": "<p>Describes a launch template and overrides. You specify these properties as part of a mixed instances policy. </p>",
+      "base": "<p>Use this structure to specify the launch templates and instance types (overrides) for a mixed instances policy.</p>",
       "refs": {
         "MixedInstancesPolicy$LaunchTemplate": "<p>One or more launch templates and the instance types (overrides) that are used to launch EC2 instances to fulfill On-Demand and Spot capacities.</p>"
       }
@@ -1103,7 +1115,7 @@
       }
     },
     "LaunchTemplateOverrides": {
-      "base": "<p>Describes an override for a launch template. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-configuring-overrides.html\">Configuring overrides</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p>",
+      "base": "<p>Use this structure to let Amazon EC2 Auto Scaling do the following when the Auto Scaling group has a mixed instances policy:</p> <ul> <li> <p>Override the instance type that is specified in the launch template.</p> </li> <li> <p>Use multiple instance types.</p> </li> </ul> <p>Specify the instance types that you want, or define your instance requirements instead and let Amazon EC2 Auto Scaling provision the available instance types that meet your requirements. This can provide Amazon EC2 Auto Scaling with a larger selection of instance types to choose from when fulfilling Spot and On-Demand capacities. You can view which instance types are matched before you apply the instance requirements to your Auto Scaling group.</p> <p>After you define your instance requirements, you don't have to keep updating these settings to get new EC2 instance types automatically. Amazon EC2 Auto Scaling uses the instance requirements of the Auto Scaling group to determine whether a new EC2 instance type can be used.</p>",
       "refs": {
         "Overrides$member": null
       }
@@ -1116,8 +1128,8 @@
         "CreateAutoScalingGroupType$LaunchTemplate": "<p>Information used to specify the launch template and version to use to launch instances. </p> <p>Conditional: You must specify either a launch template (<code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>) or a launch configuration (<code>LaunchConfigurationName</code> or <code>InstanceId</code>).</p> <note> <p>The launch template that is specified must be configured for use with an Auto Scaling group. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html\">Creating a launch template for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> </note>",
         "DesiredConfiguration$LaunchTemplate": null,
         "Instance$LaunchTemplate": "<p>The launch template for the instance.</p>",
-        "LaunchTemplate$LaunchTemplateSpecification": "<p>The launch template to use.</p>",
-        "LaunchTemplateOverrides$LaunchTemplateSpecification": "<p>Provides a launch template for the specified instance type or instance requirements. For example, some instance types might require a launch template with a different AMI. If not provided, Amazon EC2 Auto Scaling uses the launch template that's defined for your mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups-launch-template-overrides.html\">Specifying a different launch template for an instance type</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p>",
+        "LaunchTemplate$LaunchTemplateSpecification": "<p>The launch template.</p>",
+        "LaunchTemplateOverrides$LaunchTemplateSpecification": "<p>Provides a launch template for the specified instance type or set of instance requirements. For example, some instance types might require a launch template with a different AMI. If not provided, Amazon EC2 Auto Scaling uses the launch template that's specified in the <code>LaunchTemplate</code> definition. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups-launch-template-overrides.html\">Specifying a different launch template for an instance type</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p> <p>You can specify up to 20 launch templates per Auto Scaling group. The launch templates specified in the overrides and in the <code>LaunchTemplate</code> definition count towards this limit.</p>",
         "UpdateAutoScalingGroupType$LaunchTemplate": "<p>The launch template and version to use to specify the updates. If you specify <code>LaunchTemplate</code> in your update request, you can't specify <code>LaunchConfigurationName</code> or <code>MixedInstancesPolicy</code>.</p>"
       }
     },
@@ -1296,7 +1308,7 @@
     "MemoryGiBPerVCpuRequest": {
       "base": "<p>Specifies the minimum and maximum for the <code>MemoryGiBPerVCpu</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p>",
       "refs": {
-        "InstanceRequirements$MemoryGiBPerVCpu": "<p>The minimum and maximum amount of memory per vCPU for an instance type, in GiB.</p> <p>Default: No minimum or maximum</p>"
+        "InstanceRequirements$MemoryGiBPerVCpu": "<p>The minimum and maximum amount of memory per vCPU for an instance type, in GiB.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "MemoryMiBRequest": {
@@ -1449,16 +1461,16 @@
     "MixedInstanceSpotPrice": {
       "base": null,
       "refs": {
-        "InstancesDistribution$SpotMaxPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance. If you keep the value at its default (unspecified), Amazon EC2 Auto Scaling uses the On-Demand price as the maximum Spot price. To remove a value that you previously set, include the property but specify an empty string (\"\") for the value.</p> <important> <p>If your maximum price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched.</p> </important> <p>Valid Range: Minimum value of 0.001</p>"
+        "InstancesDistribution$SpotMaxPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance. If your maximum price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched. We do not recommend specifying a maximum price because it can lead to increased interruptions. When Spot Instances launch, you pay the current Spot price. To remove a maximum price that you previously set, include the property but specify an empty string (\"\") for the value.</p> <important> <p>If you specify a maximum price, your instances will be interrupted more frequently than if you do not specify one.</p> </important> <p>Valid Range: Minimum value of 0.001</p>"
       }
     },
     "MixedInstancesPolicy": {
-      "base": "<p>Describes a mixed instances policy. A mixed instances policy contains the instance types that Amazon EC2 Auto Scaling can launch and other information that Amazon EC2 Auto Scaling can use to launch instances and help optimize your costs. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+      "base": "<p>Use this structure to launch multiple instance types and On-Demand Instances and Spot Instances within a single Auto Scaling group.</p> <p>A mixed instances policy contains information that Amazon EC2 Auto Scaling can use to launch instances and help optimize your costs. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
       "refs": {
         "AutoScalingGroup$MixedInstancesPolicy": "<p>The mixed instances policy for the group.</p>",
-        "CreateAutoScalingGroupType$MixedInstancesPolicy": "<p>An embedded object that specifies a mixed instances policy.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+        "CreateAutoScalingGroupType$MixedInstancesPolicy": "<p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
         "DesiredConfiguration$MixedInstancesPolicy": null,
-        "UpdateAutoScalingGroupType$MixedInstancesPolicy": "<p>An embedded object that specifies a mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"
+        "UpdateAutoScalingGroupType$MixedInstancesPolicy": "<p>The mixed instances policy. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html\">Auto Scaling groups with multiple instance types and purchase options</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"
       }
     },
     "MonitoringEnabled": {
@@ -1467,10 +1479,16 @@
         "InstanceMonitoring$Enabled": "<p>If <code>true</code>, detailed monitoring is enabled. Otherwise, basic monitoring is enabled.</p>"
       }
     },
+    "NetworkBandwidthGbpsRequest": {
+      "base": "<p>Specifies the minimum and maximum for the <code>NetworkBandwidthGbps</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p> <note> <p>Setting the minimum bandwidth does not guarantee that your instance will achieve the minimum bandwidth. Amazon EC2 will identify instance types that support the specified minimum bandwidth, but the actual bandwidth of your instance might go below the specified minimum at times. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html#available-instance-bandwidth\">Available instance bandwidth</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> </note>",
+      "refs": {
+        "InstanceRequirements$NetworkBandwidthGbps": "<p>The minimum and maximum amount of network bandwidth, in gigabits per second (Gbps).</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
     "NetworkInterfaceCountRequest": {
       "base": "<p>Specifies the minimum and maximum for the <code>NetworkInterfaceCount</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p>",
       "refs": {
-        "InstanceRequirements$NetworkInterfaceCount": "<p>The minimum and maximum number of network interfaces for an instance type.</p> <p>Default: No minimum or maximum</p>"
+        "InstanceRequirements$NetworkInterfaceCount": "<p>The minimum and maximum number of network interfaces for an instance type.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "NoDevice": {
@@ -1516,6 +1534,8 @@
       "refs": {
         "MemoryGiBPerVCpuRequest$Min": "<p>The memory minimum in GiB.</p>",
         "MemoryGiBPerVCpuRequest$Max": "<p>The memory maximum in GiB.</p>",
+        "NetworkBandwidthGbpsRequest$Min": "<p>The minimum amount of network bandwidth, in gigabits per second (Gbps).</p>",
+        "NetworkBandwidthGbpsRequest$Max": "<p>The maximum amount of network bandwidth, in gigabits per second (Gbps).</p>",
         "TotalLocalStorageGBRequest$Min": "<p>The storage minimum in GB.</p>",
         "TotalLocalStorageGBRequest$Max": "<p>The storage maximum in GB.</p>"
       }
@@ -1566,7 +1586,7 @@
     "Overrides": {
       "base": null,
       "refs": {
-        "LaunchTemplate$Overrides": "<p>Any properties that you specify override the same properties in the launch template. If not provided, Amazon EC2 Auto Scaling uses the instance type or instance type requirements specified in the launch template when it launches an instance.</p> <p>The overrides can include either one or more instance types or a set of instance requirements, but not both.</p>"
+        "LaunchTemplate$Overrides": "<p>Any properties that you specify override the same properties in the launch template.</p>"
       }
     },
     "PoliciesType": {
@@ -2140,7 +2160,7 @@
     "TotalLocalStorageGBRequest": {
       "base": "<p>Specifies the minimum and maximum for the <code>TotalLocalStorageGB</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p>",
       "refs": {
-        "InstanceRequirements$TotalLocalStorageGB": "<p>The minimum and maximum total local storage size for an instance type, in GB.</p> <p>Default: No minimum or maximum</p>"
+        "InstanceRequirements$TotalLocalStorageGB": "<p>The minimum and maximum total local storage size for an instance type, in GB.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "UpdateAutoScalingGroupType": {
@@ -2319,7 +2339,7 @@
         "CreateLaunchConfigurationType$LaunchConfigurationName": "<p>The name of the launch configuration. This name must be unique per Region per account.</p>",
         "CreateLaunchConfigurationType$ImageId": "<p>The ID of the Amazon Machine Image (AMI) that was assigned during registration. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html\">Finding a Linux AMI</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <p>If you specify <code>InstanceId</code>, an <code>ImageId</code> is not required.</p>",
         "CreateLaunchConfigurationType$KeyName": "<p>The name of the key pair. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 key pairs and Linux instances</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
-        "CreateLaunchConfigurationType$ClassicLinkVPCId": "<p> <i>EC2-Classic retires on August 15, 2022. This property is not supported after that date.</i> </p> <p>The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
+        "CreateLaunchConfigurationType$ClassicLinkVPCId": "<p>Available for backward compatibility.</p>",
         "CreateLaunchConfigurationType$InstanceType": "<p>Specifies the instance type of the EC2 instance. For information about available instance types, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes\">Available instance types</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <p>If you specify <code>InstanceId</code>, an <code>InstanceType</code> is not required.</p>",
         "CreateLaunchConfigurationType$KernelId": "<p>The ID of the kernel associated with the AMI.</p> <note> <p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html\">User provided kernels</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> </note>",
         "CreateLaunchConfigurationType$RamdiskId": "<p>The ID of the RAM disk to select.</p> <note> <p>We recommend that you use PV-GRUB instead of kernels and RAM disks. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html\">User provided kernels</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> </note>",
@@ -2365,13 +2385,13 @@
         "LaunchConfiguration$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
         "LaunchConfiguration$ImageId": "<p>The ID of the Amazon Machine Image (AMI) to use to launch your EC2 instances. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html\">Find a Linux AMI</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
         "LaunchConfiguration$KeyName": "<p>The name of the key pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 Key Pairs</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
-        "LaunchConfiguration$ClassicLinkVPCId": "<p> <i>EC2-Classic retires on August 15, 2022. This property is not supported after that date.</i> </p> <p>The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.</p>",
+        "LaunchConfiguration$ClassicLinkVPCId": "<p>Available for backward compatibility.</p>",
         "LaunchConfiguration$InstanceType": "<p>The instance type for the instances. For information about available instance types, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes\">Available instance types</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
         "LaunchConfiguration$KernelId": "<p>The ID of the kernel associated with the AMI.</p>",
         "LaunchConfiguration$RamdiskId": "<p>The ID of the RAM disk associated with the AMI.</p>",
         "LaunchConfigurationNameType$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
         "LaunchConfigurationNames$member": null,
-        "LaunchTemplateOverrides$InstanceType": "<p>The instance type, such as <code>m3.xlarge</code>. You must use an instance type that is supported in your requested Region and Availability Zones. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "LaunchTemplateOverrides$InstanceType": "<p>The instance type, such as <code>m3.xlarge</code>. You must specify an instance type that is supported in your requested Region and Availability Zones. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify up to 40 instance types per Auto Scaling group.</p>",
         "LaunchTemplateSpecification$LaunchTemplateId": "<p>The ID of the launch template. To get the template ID, use the Amazon EC2 <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html\">DescribeLaunchTemplates</a> API operation. New launch templates can be created using the Amazon EC2 <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateLaunchTemplate.html\">CreateLaunchTemplate</a> API. </p> <p>Conditional: You must specify either a <code>LaunchTemplateId</code> or a <code>LaunchTemplateName</code>.</p>",
         "LaunchTemplateSpecification$Version": "<p>The version number, <code>$Latest</code>, or <code>$Default</code>. To get the version number, use the Amazon EC2 <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplateVersions.html\">DescribeLaunchTemplateVersions</a> API operation. New launch template versions can be created using the Amazon EC2 <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateLaunchTemplateVersion.html\">CreateLaunchTemplateVersion</a> API. If the value is <code>$Latest</code>, Amazon EC2 Auto Scaling selects the latest version of the launch template when launching instances. If the value is <code>$Default</code>, Amazon EC2 Auto Scaling selects the default version of the launch template when launching instances. The default value is <code>$Default</code>.</p>",
         "LifecycleHook$AutoScalingGroupName": "<p>The name of the Auto Scaling group for the lifecycle hook.</p>",
@@ -2441,7 +2461,7 @@
         "CreateAutoScalingGroupType$HealthCheckType": "<p>The service to use for the health checks. The valid values are <code>EC2</code> (default) and <code>ELB</code>. If you configure an Auto Scaling group to use load balancer (ELB) health checks, it considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html\">Health checks for Auto Scaling instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
         "Instance$HealthStatus": "<p>The last reported health status of the instance. \"Healthy\" means that the instance is healthy and should remain in service. \"Unhealthy\" means that the instance is unhealthy and that Amazon EC2 Auto Scaling should terminate and replace it.</p>",
         "Instance$WeightedCapacity": "<p>The number of capacity units contributed by the instance based on its instance type.</p> <p>Valid Range: Minimum value of 1. Maximum value of 999.</p>",
-        "LaunchTemplateOverrides$WeightedCapacity": "<p>The number of capacity units provided by the instance type specified in <code>InstanceType</code> in terms of virtual CPUs, memory, storage, throughput, or other relative performance characteristic. When a Spot or On-Demand Instance is launched, the capacity units count toward the desired capacity. Amazon EC2 Auto Scaling launches instances until the desired capacity is totally fulfilled, even if this results in an overage. For example, if there are two units remaining to fulfill capacity, and Amazon EC2 Auto Scaling can only launch an instance with a <code>WeightedCapacity</code> of five units, the instance is launched, and the desired capacity is exceeded by three units. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups-instance-weighting.html\">Configuring instance weighting for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. Value must be in the range of 1–999.</p>",
+        "LaunchTemplateOverrides$WeightedCapacity": "<p>If you provide a list of instance types to use, you can specify the number of capacity units provided by each instance type in terms of virtual CPUs, memory, storage, throughput, or other relative performance characteristic. When a Spot or On-Demand Instance is launched, the capacity units count toward the desired capacity. Amazon EC2 Auto Scaling launches instances until the desired capacity is totally fulfilled, even if this results in an overage. For example, if there are two units remaining to fulfill capacity, and Amazon EC2 Auto Scaling can only launch an instance with a <code>WeightedCapacity</code> of five units, the instance is launched, and the desired capacity is exceeded by three units. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups-instance-weighting.html\">Configuring instance weighting for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. Value must be in the range of 1–999.</p> <p>If you specify a value for <code>WeightedCapacity</code> for one instance type, you must specify a value for <code>WeightedCapacity</code> for all of them.</p> <important> <p>Every Auto Scaling group has three size parameters (<code>DesiredCapacity</code>, <code>MaxSize</code>, and <code>MinSize</code>). Usually, you set these sizes based on a specific number of instances. However, if you configure a mixed instances policy that defines weights for the instance types, you must specify these sizes with the same units that you use for weighting instances. </p> </important>",
         "PutScalingPolicyType$MetricAggregationType": "<p>The aggregation type for the CloudWatch metrics. The valid values are <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>. If the aggregation type is null, the value is treated as <code>Average</code>.</p> <p>Valid only if the policy type is <code>StepScaling</code>.</p>",
         "ScalingPolicy$MetricAggregationType": "<p>The aggregation type for the CloudWatch metrics. The valid values are <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.</p>",
         "SetInstanceHealthQuery$HealthStatus": "<p>The health status of the instance. Set to <code>Healthy</code> to have the instance remain in service. Set to <code>Unhealthy</code> to have the instance be out of service. Amazon EC2 Auto Scaling terminates and replaces the unhealthy instance.</p>",

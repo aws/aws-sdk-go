@@ -257,6 +257,7 @@
         "RegisterTaskWithMaintenanceWindowRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your maintenance window task.</p>",
         "SendCommandRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your command.</p>",
         "StartAutomationExecutionRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your automation.</p>",
+        "TargetLocation$TargetLocationAlarmConfiguration": null,
         "UpdateAssociationRequest$AlarmConfiguration": null,
         "UpdateMaintenanceWindowTaskRequest$AlarmConfiguration": "<p>The CloudWatch alarm you want to apply to your maintenance window task.</p>",
         "UpdateMaintenanceWindowTaskResult$AlarmConfiguration": "<p>The details for the CloudWatch alarm you applied to your maintenance window task.</p>"
@@ -290,7 +291,8 @@
         "AutomationExecutionMetadata$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the automation.</p>",
         "Command$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the command.</p>",
         "GetMaintenanceWindowExecutionTaskResult$TriggeredAlarms": "<p>The CloudWatch alarms that were invoked by the maintenance window task.</p>",
-        "MaintenanceWindowExecutionTaskIdentity$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the maintenance window task.</p>"
+        "MaintenanceWindowExecutionTaskIdentity$TriggeredAlarms": "<p>The CloudWatch alarm that was invoked by the maintenance window task.</p>",
+        "StepExecution$TriggeredAlarms": "<p>The CloudWatch alarms that were invoked by the automation.</p>"
       }
     },
     "AllowedPattern": {

@@ -84,6 +84,10 @@ type CloudTrailAPI interface {
 	DeleteTrailWithContext(aws.Context, *cloudtrail.DeleteTrailInput, ...request.Option) (*cloudtrail.DeleteTrailOutput, error)
 	DeleteTrailRequest(*cloudtrail.DeleteTrailInput) (*request.Request, *cloudtrail.DeleteTrailOutput)
 
+	DeregisterOrganizationDelegatedAdmin(*cloudtrail.DeregisterOrganizationDelegatedAdminInput) (*cloudtrail.DeregisterOrganizationDelegatedAdminOutput, error)
+	DeregisterOrganizationDelegatedAdminWithContext(aws.Context, *cloudtrail.DeregisterOrganizationDelegatedAdminInput, ...request.Option) (*cloudtrail.DeregisterOrganizationDelegatedAdminOutput, error)
+	DeregisterOrganizationDelegatedAdminRequest(*cloudtrail.DeregisterOrganizationDelegatedAdminInput) (*request.Request, *cloudtrail.DeregisterOrganizationDelegatedAdminOutput)
+
 	DescribeQuery(*cloudtrail.DescribeQueryInput) (*cloudtrail.DescribeQueryOutput, error)
 	DescribeQueryWithContext(aws.Context, *cloudtrail.DescribeQueryInput, ...request.Option) (*cloudtrail.DescribeQueryOutput, error)
 	DescribeQueryRequest(*cloudtrail.DescribeQueryInput) (*request.Request, *cloudtrail.DescribeQueryOutput)
@@ -197,6 +201,10 @@ type CloudTrailAPI interface {
 	PutInsightSelectors(*cloudtrail.PutInsightSelectorsInput) (*cloudtrail.PutInsightSelectorsOutput, error)
 	PutInsightSelectorsWithContext(aws.Context, *cloudtrail.PutInsightSelectorsInput, ...request.Option) (*cloudtrail.PutInsightSelectorsOutput, error)
 	PutInsightSelectorsRequest(*cloudtrail.PutInsightSelectorsInput) (*request.Request, *cloudtrail.PutInsightSelectorsOutput)
+
+	RegisterOrganizationDelegatedAdmin(*cloudtrail.RegisterOrganizationDelegatedAdminInput) (*cloudtrail.RegisterOrganizationDelegatedAdminOutput, error)
+	RegisterOrganizationDelegatedAdminWithContext(aws.Context, *cloudtrail.RegisterOrganizationDelegatedAdminInput, ...request.Option) (*cloudtrail.RegisterOrganizationDelegatedAdminOutput, error)
+	RegisterOrganizationDelegatedAdminRequest(*cloudtrail.RegisterOrganizationDelegatedAdminInput) (*request.Request, *cloudtrail.RegisterOrganizationDelegatedAdminOutput)
 
 	RemoveTags(*cloudtrail.RemoveTagsInput) (*cloudtrail.RemoveTagsOutput, error)
 	RemoveTagsWithContext(aws.Context, *cloudtrail.RemoveTagsInput, ...request.Option) (*cloudtrail.RemoveTagsOutput, error)

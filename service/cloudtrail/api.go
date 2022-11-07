@@ -131,6 +131,10 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - ConflictException
 //     This exception is thrown when the specified resource is not ready for an
 //     operation. This can occur when you try to run an operation on a resource
@@ -243,6 +247,10 @@ func (c *CloudTrail) CancelQueryRequest(input *CancelQueryInput) (req *request.R
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - ConflictException
 //     This exception is thrown when the specified resource is not ready for an
 //     operation. This can occur when you try to run an operation on a resource
@@ -350,6 +358,22 @@ func (c *CloudTrail) CreateEventDataStoreRequest(input *CreateEventDataStoreInpu
 //     before CloudTrail has time to fully load the resource. If this exception
 //     occurs, wait a few minutes, and then try the operation again.
 //
+//   - InsufficientEncryptionPolicyException
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
+//
+//   - InvalidKmsKeyIdException
+//     This exception is thrown when the KMS key ARN is not valid.
+//
+//   - KmsKeyNotFoundException
+//     This exception is thrown when the KMS key does not exist, when the S3 bucket
+//     and the KMS key are not in the same region, or when the KMS key associated
+//     with the Amazon SNS topic either does not exist or is not in the same region.
+//
+//   - KmsException
+//     This exception is thrown when there is an issue with the specified KMS key
+//     and the trail or event data store can't be updated.
+//
 //   - AccessNotEnabledException
 //     This exception is thrown when trusted access has not been enabled between
 //     CloudTrail and Organizations. For more information, see Enabling Trusted
@@ -377,6 +401,10 @@ func (c *CloudTrail) CreateEventDataStoreRequest(input *CreateEventDataStoreInpu
 //     This exception is thrown when Organizations is not configured to support
 //     all features. All features must be enabled in Organizations to support creating
 //     an organization trail or event data store.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/CreateEventDataStore
 func (c *CloudTrail) CreateEventDataStore(input *CreateEventDataStoreInput) (*CreateEventDataStoreOutput, error) {
@@ -519,7 +547,7 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //
 //   - KmsException
 //     This exception is thrown when there is an issue with the specified KMS key
-//     and the trail can’t be updated.
+//     and the trail or event data store can't be updated.
 //
 //   - InvalidCloudWatchLogsLogGroupArnException
 //     This exception is thrown when the provided CloudWatch Logs log group is not
@@ -568,6 +596,10 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //     This exception is thrown when Organizations is not configured to support
 //     all features. All features must be enabled in Organizations to support creating
 //     an organization trail or event data store.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 //   - CloudTrailInvalidClientTokenIdException
 //     This exception is thrown when a call results in the InvalidClientTokenId
@@ -699,6 +731,10 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - InsufficientDependencyServiceAccessPermissionException
 //     This exception is thrown when the IAM user or role that is used to create
 //     the organization resource lacks one or more required permissions for creating
@@ -819,6 +855,10 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - InsufficientDependencyServiceAccessPermissionException
 //     This exception is thrown when the IAM user or role that is used to create
 //     the organization resource lacks one or more required permissions for creating
@@ -847,6 +887,126 @@ func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, e
 // for more information on using Contexts.
 func (c *CloudTrail) DeleteTrailWithContext(ctx aws.Context, input *DeleteTrailInput, opts ...request.Option) (*DeleteTrailOutput, error) {
 	req, out := c.DeleteTrailRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeregisterOrganizationDelegatedAdmin = "DeregisterOrganizationDelegatedAdmin"
+
+// DeregisterOrganizationDelegatedAdminRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterOrganizationDelegatedAdmin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeregisterOrganizationDelegatedAdmin for more information on using the DeregisterOrganizationDelegatedAdmin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeregisterOrganizationDelegatedAdminRequest method.
+//	req, resp := client.DeregisterOrganizationDelegatedAdminRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeregisterOrganizationDelegatedAdmin
+func (c *CloudTrail) DeregisterOrganizationDelegatedAdminRequest(input *DeregisterOrganizationDelegatedAdminInput) (req *request.Request, output *DeregisterOrganizationDelegatedAdminOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterOrganizationDelegatedAdmin,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeregisterOrganizationDelegatedAdminInput{}
+	}
+
+	output = &DeregisterOrganizationDelegatedAdminOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeregisterOrganizationDelegatedAdmin API operation for AWS CloudTrail.
+//
+// Removes CloudTrail delegated administrator permissions from a member account
+// in an organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation DeregisterOrganizationDelegatedAdmin for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccountNotFoundException
+//     This exception is thrown when when the specified account is not found or
+//     not part of an organization.
+//
+//   - AccountNotRegisteredException
+//     This exception is thrown when the specified account is not registered as
+//     the CloudTrail delegated administrator.
+//
+//   - AccessNotEnabledException
+//     This exception is thrown when trusted access has not been enabled between
+//     CloudTrail and Organizations. For more information, see Enabling Trusted
+//     Access with Other Amazon Web Services Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
+//     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//
+//   - InsufficientDependencyServiceAccessPermissionException
+//     This exception is thrown when the IAM user or role that is used to create
+//     the organization resource lacks one or more required permissions for creating
+//     an organization resource in a required service.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - NotOrganizationManagementAccountException
+//     This exception is thrown when the account making the request is not the organization's
+//     management account.
+//
+//   - OrganizationNotInAllFeaturesModeException
+//     This exception is thrown when Organizations is not configured to support
+//     all features. All features must be enabled in Organizations to support creating
+//     an organization trail or event data store.
+//
+//   - OrganizationsNotInUseException
+//     This exception is thrown when the request is made from an Amazon Web Services
+//     account that is not a member of an organization. To make this request, sign
+//     in using the credentials of an account that belongs to an organization.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeregisterOrganizationDelegatedAdmin
+func (c *CloudTrail) DeregisterOrganizationDelegatedAdmin(input *DeregisterOrganizationDelegatedAdminInput) (*DeregisterOrganizationDelegatedAdminOutput, error) {
+	req, out := c.DeregisterOrganizationDelegatedAdminRequest(input)
+	return out, req.Send()
+}
+
+// DeregisterOrganizationDelegatedAdminWithContext is the same as DeregisterOrganizationDelegatedAdmin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterOrganizationDelegatedAdmin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) DeregisterOrganizationDelegatedAdminWithContext(ctx aws.Context, input *DeregisterOrganizationDelegatedAdminInput, opts ...request.Option) (*DeregisterOrganizationDelegatedAdminOutput, error) {
+	req, out := c.DeregisterOrganizationDelegatedAdminRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -929,6 +1089,10 @@ func (c *CloudTrail) DescribeQueryRequest(input *DescribeQueryInput) (req *reque
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DescribeQuery
 func (c *CloudTrail) DescribeQuery(input *DescribeQueryInput) (*DescribeQueryOutput, error) {
@@ -1029,6 +1193,10 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *req
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DescribeTrails
 func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrailsOutput, error) {
 	req, out := c.DescribeTrailsRequest(input)
@@ -1097,7 +1265,7 @@ func (c *CloudTrail) GetChannelRequest(input *GetChannelInput) (req *request.Req
 // Returns information about a specific channel. Amazon Web Services services
 // create service-linked channels to get information about CloudTrail events
 // on your behalf. For more information about service-linked channels, see Viewing
-// service-linked channels for CloudTrail by using the CLI. (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/viewing-service-linked-channels.html).
+// service-linked channels for CloudTrail by using the CLI (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/viewing-service-linked-channels.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1212,6 +1380,10 @@ func (c *CloudTrail) GetEventDataStoreRequest(input *GetEventDataStoreInput) (re
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetEventDataStore
 func (c *CloudTrail) GetEventDataStore(input *GetEventDataStoreInput) (*GetEventDataStoreOutput, error) {
@@ -1329,6 +1501,10 @@ func (c *CloudTrail) GetEventSelectorsRequest(input *GetEventSelectorsInput) (re
 //
 //   - OperationNotPermittedException
 //     This exception is thrown when the requested operation is not permitted.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetEventSelectors
 func (c *CloudTrail) GetEventSelectors(input *GetEventSelectorsInput) (*GetEventSelectorsOutput, error) {
@@ -1530,6 +1706,10 @@ func (c *CloudTrail) GetInsightSelectorsRequest(input *GetInsightSelectorsInput)
 //     If you run GetInsightSelectors on a trail that does not have Insights events
 //     enabled, the operation throws the exception InsightNotEnabledException.
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetInsightSelectors
 func (c *CloudTrail) GetInsightSelectors(input *GetInsightSelectorsInput) (*GetInsightSelectorsOutput, error) {
 	req, out := c.GetInsightSelectorsRequest(input)
@@ -1636,11 +1816,19 @@ func (c *CloudTrail) GetQueryResultsRequest(input *GetQueryResultsInput) (req *r
 //   - QueryIdNotFoundException
 //     The query ID does not exist or does not map to a query.
 //
+//   - InsufficientEncryptionPolicyException
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
+//
 //   - OperationNotPermittedException
 //     This exception is thrown when the requested operation is not permitted.
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetQueryResults
 func (c *CloudTrail) GetQueryResults(input *GetQueryResultsInput) (*GetQueryResultsOutput, error) {
@@ -2141,6 +2329,10 @@ func (c *CloudTrail) ListEventDataStoresRequest(input *ListEventDataStoresInput)
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListEventDataStores
 func (c *CloudTrail) ListEventDataStores(input *ListEventDataStoresInput) (*ListEventDataStoresOutput, error) {
@@ -2762,6 +2954,10 @@ func (c *CloudTrail) ListQueriesRequest(input *ListQueriesInput) (req *request.R
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListQueries
 func (c *CloudTrail) ListQueries(input *ListQueriesInput) (*ListQueriesOutput, error) {
 	req, out := c.ListQueriesRequest(input)
@@ -2938,6 +3134,10 @@ func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request
 //
 //   - InvalidTokenException
 //     Reserved for future use.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListTags
 func (c *CloudTrail) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
@@ -3501,6 +3701,10 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - InsufficientDependencyServiceAccessPermissionException
 //     This exception is thrown when the IAM user or role that is used to create
 //     the organization resource lacks one or more required permissions for creating
@@ -3626,7 +3830,7 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 //
 //   - KmsException
 //     This exception is thrown when there is an issue with the specified KMS key
-//     and the trail can’t be updated.
+//     and the trail or event data store can't be updated.
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
@@ -3640,6 +3844,10 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 //     not the management account for an organization in Organizations. For more
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/PutInsightSelectors
 func (c *CloudTrail) PutInsightSelectors(input *PutInsightSelectorsInput) (*PutInsightSelectorsOutput, error) {
@@ -3658,6 +3866,134 @@ func (c *CloudTrail) PutInsightSelectors(input *PutInsightSelectorsInput) (*PutI
 // for more information on using Contexts.
 func (c *CloudTrail) PutInsightSelectorsWithContext(ctx aws.Context, input *PutInsightSelectorsInput, opts ...request.Option) (*PutInsightSelectorsOutput, error) {
 	req, out := c.PutInsightSelectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRegisterOrganizationDelegatedAdmin = "RegisterOrganizationDelegatedAdmin"
+
+// RegisterOrganizationDelegatedAdminRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterOrganizationDelegatedAdmin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterOrganizationDelegatedAdmin for more information on using the RegisterOrganizationDelegatedAdmin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RegisterOrganizationDelegatedAdminRequest method.
+//	req, resp := client.RegisterOrganizationDelegatedAdminRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/RegisterOrganizationDelegatedAdmin
+func (c *CloudTrail) RegisterOrganizationDelegatedAdminRequest(input *RegisterOrganizationDelegatedAdminInput) (req *request.Request, output *RegisterOrganizationDelegatedAdminOutput) {
+	op := &request.Operation{
+		Name:       opRegisterOrganizationDelegatedAdmin,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RegisterOrganizationDelegatedAdminInput{}
+	}
+
+	output = &RegisterOrganizationDelegatedAdminOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RegisterOrganizationDelegatedAdmin API operation for AWS CloudTrail.
+//
+// Registers an organization’s member account as the CloudTrail delegated
+// administrator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation RegisterOrganizationDelegatedAdmin for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccountRegisteredException
+//     This exception is thrown when the account is already registered as the CloudTrail
+//     delegated administrator.
+//
+//   - AccountNotFoundException
+//     This exception is thrown when when the specified account is not found or
+//     not part of an organization.
+//
+//   - InsufficientDependencyServiceAccessPermissionException
+//     This exception is thrown when the IAM user or role that is used to create
+//     the organization resource lacks one or more required permissions for creating
+//     an organization resource in a required service.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - CannotDelegateManagementAccountException
+//     This exception is thrown when the management account of an organization is
+//     registered as the CloudTrail delegated administrator.
+//
+//   - AccessNotEnabledException
+//     This exception is thrown when trusted access has not been enabled between
+//     CloudTrail and Organizations. For more information, see Enabling Trusted
+//     Access with Other Amazon Web Services Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
+//     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//
+//   - DelegatedAdminAccountLimitExceededException
+//     This exception is thrown when the maximum number of CloudTrail delegated
+//     administrators is reached.
+//
+//   - NotOrganizationManagementAccountException
+//     This exception is thrown when the account making the request is not the organization's
+//     management account.
+//
+//   - OrganizationNotInAllFeaturesModeException
+//     This exception is thrown when Organizations is not configured to support
+//     all features. All features must be enabled in Organizations to support creating
+//     an organization trail or event data store.
+//
+//   - OrganizationsNotInUseException
+//     This exception is thrown when the request is made from an Amazon Web Services
+//     account that is not a member of an organization. To make this request, sign
+//     in using the credentials of an account that belongs to an organization.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/RegisterOrganizationDelegatedAdmin
+func (c *CloudTrail) RegisterOrganizationDelegatedAdmin(input *RegisterOrganizationDelegatedAdminInput) (*RegisterOrganizationDelegatedAdminOutput, error) {
+	req, out := c.RegisterOrganizationDelegatedAdminRequest(input)
+	return out, req.Send()
+}
+
+// RegisterOrganizationDelegatedAdminWithContext is the same as RegisterOrganizationDelegatedAdmin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterOrganizationDelegatedAdmin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) RegisterOrganizationDelegatedAdminWithContext(ctx aws.Context, input *RegisterOrganizationDelegatedAdminInput, opts ...request.Option) (*RegisterOrganizationDelegatedAdminOutput, error) {
+	req, out := c.RegisterOrganizationDelegatedAdminRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3769,6 +4105,10 @@ func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Req
 //     not the management account for an organization in Organizations. For more
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/RemoveTags
 func (c *CloudTrail) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
@@ -3893,6 +4233,10 @@ func (c *CloudTrail) RestoreEventDataStoreRequest(input *RestoreEventDataStoreIn
 //     not the management account for an organization in Organizations. For more
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 //   - OrganizationNotInAllFeaturesModeException
 //     This exception is thrown when Organizations is not configured to support
@@ -4149,6 +4493,10 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - InsufficientDependencyServiceAccessPermissionException
 //     This exception is thrown when the IAM user or role that is used to create
 //     the organization resource lacks one or more required permissions for creating
@@ -4255,6 +4603,10 @@ func (c *CloudTrail) StartQueryRequest(input *StartQueryInput) (req *request.Req
 //     You are already running the maximum number of concurrent queries. Wait a
 //     minute for some queries to finish, and then run the query again.
 //
+//   - InsufficientEncryptionPolicyException
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
+//
 //   - InvalidS3PrefixException
 //     This exception is thrown when the provided S3 prefix is not valid.
 //
@@ -4272,6 +4624,10 @@ func (c *CloudTrail) StartQueryRequest(input *StartQueryInput) (req *request.Req
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StartQuery
 func (c *CloudTrail) StartQuery(input *StartQueryInput) (*StartQueryOutput, error) {
@@ -4481,6 +4837,10 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - InsufficientDependencyServiceAccessPermissionException
 //     This exception is thrown when the IAM user or role that is used to create
 //     the organization resource lacks one or more required permissions for creating
@@ -4591,6 +4951,22 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
 //
+//   - InsufficientEncryptionPolicyException
+//     This exception is thrown when the policy on the S3 bucket or KMS key does
+//     not have sufficient permissions for the operation.
+//
+//   - InvalidKmsKeyIdException
+//     This exception is thrown when the KMS key ARN is not valid.
+//
+//   - KmsKeyNotFoundException
+//     This exception is thrown when the KMS key does not exist, when the S3 bucket
+//     and the KMS key are not in the same region, or when the KMS key associated
+//     with the Amazon SNS topic either does not exist or is not in the same region.
+//
+//   - KmsException
+//     This exception is thrown when there is an issue with the specified KMS key
+//     and the trail or event data store can't be updated.
+//
 //   - AccessNotEnabledException
 //     This exception is thrown when trusted access has not been enabled between
 //     CloudTrail and Organizations. For more information, see Enabling Trusted
@@ -4613,6 +4989,10 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //     not the management account for an organization in Organizations. For more
 //     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
 //     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
 //
 //   - OrganizationNotInAllFeaturesModeException
 //     This exception is thrown when Organizations is not configured to support
@@ -4792,7 +5172,7 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //
 //   - KmsException
 //     This exception is thrown when there is an issue with the specified KMS key
-//     and the trail can’t be updated.
+//     and the trail or event data store can't be updated.
 //
 //   - InvalidCloudWatchLogsLogGroupArnException
 //     This exception is thrown when the provided CloudWatch Logs log group is not
@@ -4838,11 +5218,18 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //     all features. All features must be enabled in Organizations to support creating
 //     an organization trail or event data store.
 //
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
 //   - CloudTrailInvalidClientTokenIdException
 //     This exception is thrown when a call results in the InvalidClientTokenId
 //     error code. This can occur when you are creating or updating a trail to send
 //     notifications to an Amazon SNS topic that is in a suspended Amazon Web Services
 //     account.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/UpdateTrail
 func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, error) {
@@ -5062,6 +5449,201 @@ func (s *AccountHasOngoingImportException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *AccountHasOngoingImportException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when when the specified account is not found or
+// not part of an organization.
+type AccountNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccountNotFoundException(v protocol.ResponseMetadata) error {
+	return &AccountNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccountNotFoundException) Code() string {
+	return "AccountNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *AccountNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccountNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *AccountNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccountNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccountNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when the specified account is not registered as
+// the CloudTrail delegated administrator.
+type AccountNotRegisteredException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountNotRegisteredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountNotRegisteredException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccountNotRegisteredException(v protocol.ResponseMetadata) error {
+	return &AccountNotRegisteredException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccountNotRegisteredException) Code() string {
+	return "AccountNotRegisteredException"
+}
+
+// Message returns the exception's message.
+func (s *AccountNotRegisteredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccountNotRegisteredException) OrigErr() error {
+	return nil
+}
+
+func (s *AccountNotRegisteredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccountNotRegisteredException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccountNotRegisteredException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when the account is already registered as the CloudTrail
+// delegated administrator.
+type AccountRegisteredException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountRegisteredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountRegisteredException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccountRegisteredException(v protocol.ResponseMetadata) error {
+	return &AccountRegisteredException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccountRegisteredException) Code() string {
+	return "AccountRegisteredException"
+}
+
+// Message returns the exception's message.
+func (s *AccountRegisteredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccountRegisteredException) OrigErr() error {
+	return nil
+}
+
+func (s *AccountRegisteredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccountRegisteredException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccountRegisteredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -5445,8 +6027,8 @@ type CancelQueryInput struct {
 	// The ARN (or the ID suffix of the ARN) of an event data store on which the
 	// specified query is running.
 	//
-	// EventDataStore is a required field
-	EventDataStore *string `min:"3" type:"string" required:"true"`
+	// Deprecated: EventDataStore is no longer required by CancelQueryRequest
+	EventDataStore *string `min:"3" deprecated:"true" type:"string"`
 
 	// The ID of the query that you want to cancel. The QueryId comes from the response
 	// of a StartQuery operation.
@@ -5476,9 +6058,6 @@ func (s CancelQueryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CancelQueryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CancelQueryInput"}
-	if s.EventDataStore == nil {
-		invalidParams.Add(request.NewErrParamRequired("EventDataStore"))
-	}
 	if s.EventDataStore != nil && len(*s.EventDataStore) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("EventDataStore", 3))
 	}
@@ -5550,6 +6129,71 @@ func (s *CancelQueryOutput) SetQueryId(v string) *CancelQueryOutput {
 func (s *CancelQueryOutput) SetQueryStatus(v string) *CancelQueryOutput {
 	s.QueryStatus = &v
 	return s
+}
+
+// This exception is thrown when the management account of an organization is
+// registered as the CloudTrail delegated administrator.
+type CannotDelegateManagementAccountException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CannotDelegateManagementAccountException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CannotDelegateManagementAccountException) GoString() string {
+	return s.String()
+}
+
+func newErrorCannotDelegateManagementAccountException(v protocol.ResponseMetadata) error {
+	return &CannotDelegateManagementAccountException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CannotDelegateManagementAccountException) Code() string {
+	return "CannotDelegateManagementAccountException"
+}
+
+// Message returns the exception's message.
+func (s *CannotDelegateManagementAccountException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CannotDelegateManagementAccountException) OrigErr() error {
+	return nil
+}
+
+func (s *CannotDelegateManagementAccountException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CannotDelegateManagementAccountException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CannotDelegateManagementAccountException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a returned CloudTrail channel.
@@ -5931,6 +6575,33 @@ type CreateEventDataStoreInput struct {
 	// in the CloudTrail User Guide.
 	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
+	// Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail.
+	// The value can be an alias name prefixed by alias/, a fully specified ARN
+	// to an alias, a fully specified ARN to a key, or a globally unique identifier.
+	//
+	// Disabling or deleting the KMS key, or removing CloudTrail permissions on
+	// the key, prevents CloudTrail from logging events to the event data store,
+	// and prevents users from querying the data in the event data store that was
+	// encrypted with the key. After you associate an event data store with a KMS
+	// key, the KMS key cannot be removed or changed. Before you disable or delete
+	// a KMS key that you are using with an event data store, delete or back up
+	// your event data store.
+	//
+	// CloudTrail also supports KMS multi-Region keys. For more information about
+	// multi-Region keys, see Using multi-Region keys (https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html)
+	// in the Key Management Service Developer Guide.
+	//
+	// Examples:
+	//
+	//    * alias/MyAliasName
+	//
+	//    * arn:aws:kms:us-east-2:123456789012:alias/MyAliasName
+	//
+	//    * arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	//
+	//    * 12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// Specifies whether the event data store includes events from all regions,
 	// or only from the region in which the event data store is created.
 	MultiRegionEnabled *bool `type:"boolean"`
@@ -5978,6 +6649,9 @@ func (s CreateEventDataStoreInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateEventDataStoreInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEventDataStoreInput"}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -6017,6 +6691,12 @@ func (s *CreateEventDataStoreInput) Validate() error {
 // SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
 func (s *CreateEventDataStoreInput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *CreateEventDataStoreInput {
 	s.AdvancedEventSelectors = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateEventDataStoreInput) SetKmsKeyId(v string) *CreateEventDataStoreInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -6068,6 +6748,12 @@ type CreateEventDataStoreOutput struct {
 
 	// The ARN of the event data store.
 	EventDataStoreArn *string `min:"3" type:"string"`
+
+	// Specifies the KMS key ID that encrypts the events delivered by CloudTrail.
+	// The value is a fully specified ARN to a KMS key in the following format.
+	//
+	// arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `min:"1" type:"string"`
 
 	// Indicates whether the event data store collects events from all regions,
 	// or only from the region in which it was created.
@@ -6131,6 +6817,12 @@ func (s *CreateEventDataStoreOutput) SetCreatedTimestamp(v time.Time) *CreateEve
 // SetEventDataStoreArn sets the EventDataStoreArn field's value.
 func (s *CreateEventDataStoreOutput) SetEventDataStoreArn(v string) *CreateEventDataStoreOutput {
 	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateEventDataStoreOutput) SetKmsKeyId(v string) *CreateEventDataStoreOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -6699,6 +7391,71 @@ func (s *DataResource) SetValues(v []*string) *DataResource {
 	return s
 }
 
+// This exception is thrown when the maximum number of CloudTrail delegated
+// administrators is reached.
+type DelegatedAdminAccountLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DelegatedAdminAccountLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DelegatedAdminAccountLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorDelegatedAdminAccountLimitExceededException(v protocol.ResponseMetadata) error {
+	return &DelegatedAdminAccountLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DelegatedAdminAccountLimitExceededException) Code() string {
+	return "DelegatedAdminAccountLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *DelegatedAdminAccountLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DelegatedAdminAccountLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *DelegatedAdminAccountLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DelegatedAdminAccountLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DelegatedAdminAccountLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type DeleteEventDataStoreInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6842,14 +7599,89 @@ func (s DeleteTrailOutput) GoString() string {
 	return s.String()
 }
 
+// Removes CloudTrail delegated administrator permissions from a specified member
+// account in an organization that is currently designated as a delegated administrator.
+type DeregisterOrganizationDelegatedAdminInput struct {
+	_ struct{} `type:"structure"`
+
+	// A delegated administrator account ID. This is a member account in an organization
+	// that is currently designated as a delegated administrator.
+	//
+	// DelegatedAdminAccountId is a required field
+	DelegatedAdminAccountId *string `min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterOrganizationDelegatedAdminInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterOrganizationDelegatedAdminInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterOrganizationDelegatedAdminInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterOrganizationDelegatedAdminInput"}
+	if s.DelegatedAdminAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DelegatedAdminAccountId"))
+	}
+	if s.DelegatedAdminAccountId != nil && len(*s.DelegatedAdminAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DelegatedAdminAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDelegatedAdminAccountId sets the DelegatedAdminAccountId field's value.
+func (s *DeregisterOrganizationDelegatedAdminInput) SetDelegatedAdminAccountId(v string) *DeregisterOrganizationDelegatedAdminInput {
+	s.DelegatedAdminAccountId = &v
+	return s
+}
+
+// Returns the following response if successful. Otherwise, returns an error.
+type DeregisterOrganizationDelegatedAdminOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterOrganizationDelegatedAdminOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterOrganizationDelegatedAdminOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeQueryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (or the ID suffix of the ARN) of an event data store on which the
 	// specified query was run.
 	//
-	// EventDataStore is a required field
-	EventDataStore *string `min:"3" type:"string" required:"true"`
+	// Deprecated: EventDataStore is no longer required by DescribeQueryRequest
+	EventDataStore *string `min:"3" deprecated:"true" type:"string"`
 
 	// The query ID.
 	//
@@ -6878,9 +7710,6 @@ func (s DescribeQueryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeQueryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeQueryInput"}
-	if s.EventDataStore == nil {
-		invalidParams.Add(request.NewErrParamRequired("EventDataStore"))
-	}
 	if s.EventDataStore != nil && len(*s.EventDataStore) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("EventDataStore", 3))
 	}
@@ -8061,6 +8890,12 @@ type GetEventDataStoreOutput struct {
 	// The event data store Amazon Resource Number (ARN).
 	EventDataStoreArn *string `min:"3" type:"string"`
 
+	// Specifies the KMS key ID that encrypts the events delivered by CloudTrail.
+	// The value is a fully specified ARN to a KMS key in the following format.
+	//
+	// arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// Indicates whether the event data store includes events from all regions,
 	// or only from the region in which it was created.
 	MultiRegionEnabled *bool `type:"boolean"`
@@ -8119,6 +8954,12 @@ func (s *GetEventDataStoreOutput) SetCreatedTimestamp(v time.Time) *GetEventData
 // SetEventDataStoreArn sets the EventDataStoreArn field's value.
 func (s *GetEventDataStoreOutput) SetEventDataStoreArn(v string) *GetEventDataStoreOutput {
 	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *GetEventDataStoreOutput) SetKmsKeyId(v string) *GetEventDataStoreOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -8545,8 +9386,8 @@ type GetQueryResultsInput struct {
 	// The ARN (or ID suffix of the ARN) of the event data store against which the
 	// query was run.
 	//
-	// EventDataStore is a required field
-	EventDataStore *string `min:"3" type:"string" required:"true"`
+	// Deprecated: EventDataStore is no longer required by GetQueryResultsRequest
+	EventDataStore *string `min:"3" deprecated:"true" type:"string"`
 
 	// The maximum number of query results to display on a single page.
 	MaxQueryResults *int64 `min:"1" type:"integer"`
@@ -8581,9 +9422,6 @@ func (s GetQueryResultsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetQueryResultsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetQueryResultsInput"}
-	if s.EventDataStore == nil {
-		invalidParams.Add(request.NewErrParamRequired("EventDataStore"))
-	}
 	if s.EventDataStore != nil && len(*s.EventDataStore) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("EventDataStore", 3))
 	}
@@ -11495,7 +12333,7 @@ func (s *InvalidTrailNameException) RequestID() string {
 }
 
 // This exception is thrown when there is an issue with the specified KMS key
-// and the trail can’t be updated.
+// and the trail or event data store can't be updated.
 type KmsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12888,6 +13726,136 @@ func (s *MaximumNumberOfTrailsExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This exception is thrown when the management account does not have a service-linked
+// role.
+type NoManagementAccountSLRExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoManagementAccountSLRExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoManagementAccountSLRExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorNoManagementAccountSLRExistsException(v protocol.ResponseMetadata) error {
+	return &NoManagementAccountSLRExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *NoManagementAccountSLRExistsException) Code() string {
+	return "NoManagementAccountSLRExistsException"
+}
+
+// Message returns the exception's message.
+func (s *NoManagementAccountSLRExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *NoManagementAccountSLRExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *NoManagementAccountSLRExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *NoManagementAccountSLRExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *NoManagementAccountSLRExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when the account making the request is not the organization's
+// management account.
+type NotOrganizationManagementAccountException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotOrganizationManagementAccountException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotOrganizationManagementAccountException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotOrganizationManagementAccountException(v protocol.ResponseMetadata) error {
+	return &NotOrganizationManagementAccountException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *NotOrganizationManagementAccountException) Code() string {
+	return "NotOrganizationManagementAccountException"
+}
+
+// Message returns the exception's message.
+func (s *NotOrganizationManagementAccountException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *NotOrganizationManagementAccountException) OrigErr() error {
+	return nil
+}
+
+func (s *NotOrganizationManagementAccountException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *NotOrganizationManagementAccountException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *NotOrganizationManagementAccountException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // This exception is thrown when the Amazon Web Services account making the
 // request to create or update an organization trail or event data store is
 // not the management account for an organization in Organizations. For more
@@ -13710,6 +14678,80 @@ func (s *QueryStatisticsForDescribeQuery) SetExecutionTimeInMillis(v int64) *Que
 	return s
 }
 
+// Specifies an organization member account ID as a CloudTrail delegated administrator.
+type RegisterOrganizationDelegatedAdminInput struct {
+	_ struct{} `type:"structure"`
+
+	// An organization member account ID that you want to designate as a delegated
+	// administrator.
+	//
+	// MemberAccountId is a required field
+	MemberAccountId *string `min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterOrganizationDelegatedAdminInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterOrganizationDelegatedAdminInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterOrganizationDelegatedAdminInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterOrganizationDelegatedAdminInput"}
+	if s.MemberAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberAccountId"))
+	}
+	if s.MemberAccountId != nil && len(*s.MemberAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMemberAccountId sets the MemberAccountId field's value.
+func (s *RegisterOrganizationDelegatedAdminInput) SetMemberAccountId(v string) *RegisterOrganizationDelegatedAdminInput {
+	s.MemberAccountId = &v
+	return s
+}
+
+// Returns the following response if successful. Otherwise, returns an error.
+type RegisterOrganizationDelegatedAdminOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterOrganizationDelegatedAdminOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterOrganizationDelegatedAdminOutput) GoString() string {
+	return s.String()
+}
+
 // Specifies the tags to remove from a trail or event data store.
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
@@ -14091,6 +15133,12 @@ type RestoreEventDataStoreOutput struct {
 	// The event data store ARN.
 	EventDataStoreArn *string `min:"3" type:"string"`
 
+	// Specifies the KMS key ID that encrypts the events delivered by CloudTrail.
+	// The value is a fully specified ARN to a KMS key in the following format.
+	//
+	// arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// Indicates whether the event data store is collecting events from all regions,
 	// or only from the region in which the event data store was created.
 	MultiRegionEnabled *bool `type:"boolean"`
@@ -14151,6 +15199,12 @@ func (s *RestoreEventDataStoreOutput) SetCreatedTimestamp(v time.Time) *RestoreE
 // SetEventDataStoreArn sets the EventDataStoreArn field's value.
 func (s *RestoreEventDataStoreOutput) SetEventDataStoreArn(v string) *RestoreEventDataStoreOutput {
 	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RestoreEventDataStoreOutput) SetKmsKeyId(v string) *RestoreEventDataStoreOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -15601,6 +16655,33 @@ type UpdateEventDataStoreInput struct {
 	// EventDataStore is a required field
 	EventDataStore *string `min:"3" type:"string" required:"true"`
 
+	// Specifies the KMS key ID to use to encrypt the events delivered by CloudTrail.
+	// The value can be an alias name prefixed by alias/, a fully specified ARN
+	// to an alias, a fully specified ARN to a key, or a globally unique identifier.
+	//
+	// Disabling or deleting the KMS key, or removing CloudTrail permissions on
+	// the key, prevents CloudTrail from logging events to the event data store,
+	// and prevents users from querying the data in the event data store that was
+	// encrypted with the key. After you associate an event data store with a KMS
+	// key, the KMS key cannot be removed or changed. Before you disable or delete
+	// a KMS key that you are using with an event data store, delete or back up
+	// your event data store.
+	//
+	// CloudTrail also supports KMS multi-Region keys. For more information about
+	// multi-Region keys, see Using multi-Region keys (https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html)
+	// in the Key Management Service Developer Guide.
+	//
+	// Examples:
+	//
+	//    * alias/MyAliasName
+	//
+	//    * arn:aws:kms:us-east-2:123456789012:alias/MyAliasName
+	//
+	//    * arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	//
+	//    * 12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// Specifies whether an event data store collects events from all regions, or
 	// only from the region in which it was created.
 	MultiRegionEnabled *bool `type:"boolean"`
@@ -15647,6 +16728,9 @@ func (s *UpdateEventDataStoreInput) Validate() error {
 	if s.EventDataStore != nil && len(*s.EventDataStore) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("EventDataStore", 3))
 	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
 	if s.Name != nil && len(*s.Name) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
 	}
@@ -15679,6 +16763,12 @@ func (s *UpdateEventDataStoreInput) SetAdvancedEventSelectors(v []*AdvancedEvent
 // SetEventDataStore sets the EventDataStore field's value.
 func (s *UpdateEventDataStoreInput) SetEventDataStore(v string) *UpdateEventDataStoreInput {
 	s.EventDataStore = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *UpdateEventDataStoreInput) SetKmsKeyId(v string) *UpdateEventDataStoreInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -15723,6 +16813,12 @@ type UpdateEventDataStoreOutput struct {
 
 	// The ARN of the event data store.
 	EventDataStoreArn *string `min:"3" type:"string"`
+
+	// Specifies the KMS key ID that encrypts the events delivered by CloudTrail.
+	// The value is a fully specified ARN to a KMS key in the following format.
+	//
+	// arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `min:"1" type:"string"`
 
 	// Indicates whether the event data store includes events from all regions,
 	// or only from the region in which it was created.
@@ -15782,6 +16878,12 @@ func (s *UpdateEventDataStoreOutput) SetCreatedTimestamp(v time.Time) *UpdateEve
 // SetEventDataStoreArn sets the EventDataStoreArn field's value.
 func (s *UpdateEventDataStoreOutput) SetEventDataStoreArn(v string) *UpdateEventDataStoreOutput {
 	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *UpdateEventDataStoreOutput) SetKmsKeyId(v string) *UpdateEventDataStoreOutput {
+	s.KmsKeyId = &v
 	return s
 }
 

@@ -1,3 +1,27 @@
+Release v1.44.132 (2022-11-07)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * Adds support for using Query Result Reuse
+* `service/autoscaling`: Updates service API and documentation
+  * This release adds support for two new attributes for attribute-based instance type selection - NetworkBandwidthGbps and AllowedInstanceTypes.
+* `service/cloudtrail`: Updates service API and documentation
+  * This release includes support for configuring a delegated administrator to manage an AWS Organizations organization CloudTrail trails and event data stores, and AWS Key Management Service encryption of CloudTrail Lake event data stores.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for two new attributes for attribute-based instance type selection - NetworkBandwidthGbps and AllowedInstanceTypes.
+* `service/elasticache`: Updates service API and documentation
+  * Added support for IPv6 and dual stack for Memcached and Redis clusters. Customers can now launch new Redis and Memcached clusters with IPv6 and dual stack networking support.
+* `service/mediaconvert`: Updates service API and documentation
+  * The AWS Elemental MediaConvert SDK has added support for setting the SDR reference white point for HDR conversions and conversion of HDR10 to DolbyVision without mastering metadata.
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/ssm`: Updates service API and documentation
+  * This release includes support for applying a CloudWatch alarm to multi account multi region Systems Manager Automation
+* `service/wafv2`: Updates service documentation
+* `service/wellarchitected`: Updates service API, documentation, and paginators
+* `service/workspaces`: Updates service API and documentation
+  * This release adds protocols attribute to workspaces properties data type. This enables customers to migrate workspaces from PC over IP (PCoIP) to WorkSpaces Streaming Protocol (WSP) using create and modify workspaces public APIs.
+
 Release v1.44.131 (2022-11-04)
 ===
 

@@ -33,6 +33,34 @@ const (
 	// is still in progress.
 	ErrCodeAccountHasOngoingImportException = "AccountHasOngoingImportException"
 
+	// ErrCodeAccountNotFoundException for service response error code
+	// "AccountNotFoundException".
+	//
+	// This exception is thrown when when the specified account is not found or
+	// not part of an organization.
+	ErrCodeAccountNotFoundException = "AccountNotFoundException"
+
+	// ErrCodeAccountNotRegisteredException for service response error code
+	// "AccountNotRegisteredException".
+	//
+	// This exception is thrown when the specified account is not registered as
+	// the CloudTrail delegated administrator.
+	ErrCodeAccountNotRegisteredException = "AccountNotRegisteredException"
+
+	// ErrCodeAccountRegisteredException for service response error code
+	// "AccountRegisteredException".
+	//
+	// This exception is thrown when the account is already registered as the CloudTrail
+	// delegated administrator.
+	ErrCodeAccountRegisteredException = "AccountRegisteredException"
+
+	// ErrCodeCannotDelegateManagementAccountException for service response error code
+	// "CannotDelegateManagementAccountException".
+	//
+	// This exception is thrown when the management account of an organization is
+	// registered as the CloudTrail delegated administrator.
+	ErrCodeCannotDelegateManagementAccountException = "CannotDelegateManagementAccountException"
+
 	// ErrCodeChannelARNInvalidException for service response error code
 	// "ChannelARNInvalidException".
 	//
@@ -68,6 +96,13 @@ const (
 	// before CloudTrail has time to fully load the resource. If this exception
 	// occurs, wait a few minutes, and then try the operation again.
 	ErrCodeConflictException = "ConflictException"
+
+	// ErrCodeDelegatedAdminAccountLimitExceededException for service response error code
+	// "DelegatedAdminAccountLimitExceededException".
+	//
+	// This exception is thrown when the maximum number of CloudTrail delegated
+	// administrators is reached.
+	ErrCodeDelegatedAdminAccountLimitExceededException = "DelegatedAdminAccountLimitExceededException"
 
 	// ErrCodeEventDataStoreARNInvalidException for service response error code
 	// "EventDataStoreARNInvalidException".
@@ -368,7 +403,7 @@ const (
 	// "KmsException".
 	//
 	// This exception is thrown when there is an issue with the specified KMS key
-	// and the trail can’t be updated.
+	// and the trail or event data store can't be updated.
 	ErrCodeKmsException = "KmsException"
 
 	// ErrCodeKmsKeyDisabledException for service response error code
@@ -397,6 +432,20 @@ const (
 	//
 	// This exception is thrown when the maximum number of trails is reached.
 	ErrCodeMaximumNumberOfTrailsExceededException = "MaximumNumberOfTrailsExceededException"
+
+	// ErrCodeNoManagementAccountSLRExistsException for service response error code
+	// "NoManagementAccountSLRExistsException".
+	//
+	// This exception is thrown when the management account does not have a service-linked
+	// role.
+	ErrCodeNoManagementAccountSLRExistsException = "NoManagementAccountSLRExistsException"
+
+	// ErrCodeNotOrganizationManagementAccountException for service response error code
+	// "NotOrganizationManagementAccountException".
+	//
+	// This exception is thrown when the account making the request is not the organization's
+	// management account.
+	ErrCodeNotOrganizationManagementAccountException = "NotOrganizationManagementAccountException"
 
 	// ErrCodeNotOrganizationMasterAccountException for service response error code
 	// "NotOrganizationMasterAccountException".
@@ -491,11 +540,16 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CloudTrailARNInvalidException":                          newErrorARNInvalidException,
 	"CloudTrailAccessNotEnabledException":                    newErrorAccessNotEnabledException,
 	"AccountHasOngoingImportException":                       newErrorAccountHasOngoingImportException,
+	"AccountNotFoundException":                               newErrorAccountNotFoundException,
+	"AccountNotRegisteredException":                          newErrorAccountNotRegisteredException,
+	"AccountRegisteredException":                             newErrorAccountRegisteredException,
+	"CannotDelegateManagementAccountException":               newErrorCannotDelegateManagementAccountException,
 	"ChannelARNInvalidException":                             newErrorChannelARNInvalidException,
 	"ChannelNotFoundException":                               newErrorChannelNotFoundException,
 	"CloudTrailInvalidClientTokenIdException":                newErrorCloudTrailInvalidClientTokenIdException,
 	"CloudWatchLogsDeliveryUnavailableException":             newErrorCloudWatchLogsDeliveryUnavailableException,
 	"ConflictException":                                      newErrorConflictException,
+	"DelegatedAdminAccountLimitExceededException":            newErrorDelegatedAdminAccountLimitExceededException,
 	"EventDataStoreARNInvalidException":                      newErrorEventDataStoreARNInvalidException,
 	"EventDataStoreAlreadyExistsException":                   newErrorEventDataStoreAlreadyExistsException,
 	"EventDataStoreHasOngoingImportException":                newErrorEventDataStoreHasOngoingImportException,
@@ -540,6 +594,8 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"KmsKeyNotFoundException":                                newErrorKmsKeyNotFoundException,
 	"MaxConcurrentQueriesException":                          newErrorMaxConcurrentQueriesException,
 	"MaximumNumberOfTrailsExceededException":                 newErrorMaximumNumberOfTrailsExceededException,
+	"NoManagementAccountSLRExistsException":                  newErrorNoManagementAccountSLRExistsException,
+	"NotOrganizationManagementAccountException":              newErrorNotOrganizationManagementAccountException,
 	"NotOrganizationMasterAccountException":                  newErrorNotOrganizationMasterAccountException,
 	"OperationNotPermittedException":                         newErrorOperationNotPermittedException,
 	"OrganizationNotInAllFeaturesModeException":              newErrorOrganizationNotInAllFeaturesModeException,

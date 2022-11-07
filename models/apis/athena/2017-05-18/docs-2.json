@@ -48,6 +48,12 @@
         "ResultConfigurationUpdates$AclConfiguration": "<p>The ACL configuration for the query results.</p>"
       }
     },
+    "Age": {
+      "base": null,
+      "refs": {
+        "ResultReuseByAgeConfiguration$MaxAgeInMinutes": "<p>Specifies, in minutes, the maximum age of a previous query result that Athena should consider for reuse. The default is 60.</p>"
+      }
+    },
     "AmazonResourceName": {
       "base": null,
       "refs": {
@@ -104,7 +110,9 @@
       "base": null,
       "refs": {
         "AthenaError$Retryable": "<p>True if the query might succeed if resubmitted.</p>",
-        "ColumnInfo$CaseSensitive": "<p>Indicates whether values in the column are case-sensitive.</p>"
+        "ColumnInfo$CaseSensitive": "<p>Indicates whether values in the column are case-sensitive.</p>",
+        "ResultReuseByAgeConfiguration$Enabled": "<p>True if previous query results can be reused when the query is run; otherwise, false. The default is false.</p>",
+        "ResultReuseInformation$ReusedPreviousResult": "<p>True if a previous query result was reused; false if the result was generated from a new run of the query.</p>"
       }
     },
     "BoxedBoolean": {
@@ -968,6 +976,25 @@
       "refs": {
         "ResultConfiguration$OutputLocation": "<p>The location in Amazon S3 where your query results are stored, such as <code>s3://path/to/query/bucket/</code>. To run the query, you must specify the query results location using one of the ways: either for individual queries using either this setting (client-side), or in the workgroup, using <a>WorkGroupConfiguration</a>. If none of them is set, Athena issues an error that no output location is provided. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a>. If workgroup settings override client-side settings, then the query uses the settings specified for the workgroup. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>",
         "ResultConfigurationUpdates$OutputLocation": "<p>The location in Amazon S3 where your query results are stored, such as <code>s3://path/to/query/bucket/</code>. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a> If workgroup settings override client-side settings, then the query uses the location for the query results and the encryption configuration that are specified for the workgroup. The \"workgroup settings override\" is specified in <code>EnforceWorkGroupConfiguration</code> (true/false) in the <code>WorkGroupConfiguration</code>. See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.</p>"
+      }
+    },
+    "ResultReuseByAgeConfiguration": {
+      "base": "<p>Specifies whether previous query results are reused, and if so, their maximum age.</p>",
+      "refs": {
+        "ResultReuseConfiguration$ResultReuseByAgeConfiguration": "<p>Specifies whether previous query results are reused, and if so, their maximum age.</p>"
+      }
+    },
+    "ResultReuseConfiguration": {
+      "base": "<p>Specifies the query result reuse behavior for the query.</p>",
+      "refs": {
+        "QueryExecution$ResultReuseConfiguration": "<p>Specifies the query result reuse behavior that was used for the query.</p>",
+        "StartQueryExecutionInput$ResultReuseConfiguration": "<p>Specifies the query result reuse behavior for the query.</p>"
+      }
+    },
+    "ResultReuseInformation": {
+      "base": "<p>Contains information about whether the result of a previous query was reused.</p>",
+      "refs": {
+        "QueryExecutionStatistics$ResultReuseInformation": "<p>Contains information about whether previous query results were reused for the query.</p>"
       }
     },
     "ResultSet": {

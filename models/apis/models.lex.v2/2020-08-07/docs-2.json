@@ -2,6 +2,9 @@
   "version": "2.0",
   "service": "<p/>",
   "operations": {
+    "BatchCreateCustomVocabularyItem": "<p>Batch create custom vocabulary item for the specified locale in the specified bot.</p>",
+    "BatchDeleteCustomVocabularyItem": "<p>Batch delete custom vocabulary item for the specified locale in the specified bot.</p>",
+    "BatchUpdateCustomVocabularyItem": "<p>Batch update custom vocabulary item for the specified locale in the specified bot.</p>",
     "BuildBotLocale": "<p>Builds a bot, its intents, and its slot types into a specific locale. A bot can be built into multiple locales. At runtime the locale is used to choose a specific build of the bot.</p>",
     "CreateBot": "<p>Creates an Amazon Lex conversational bot. </p>",
     "CreateBotAlias": "<p>Creates an alias for the specified version of a bot. Use an alias to enable you to change the version of a bot without updating applications that use the bot.</p> <p>For example, you can create an alias called \"PROD\" that your applications use to call the Amazon Lex bot. </p>",
@@ -47,10 +50,11 @@
     "ListBots": "<p>Gets a list of available bots.</p>",
     "ListBuiltInIntents": "<p>Gets a list of built-in intents provided by Amazon Lex that you can use in your bot. </p> <p>To use a built-in intent as a the base for your own intent, include the built-in intent signature in the <code>parentIntentSignature</code> parameter when you call the <code>CreateIntent</code> operation. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateIntent.html\">CreateIntent</a>.</p>",
     "ListBuiltInSlotTypes": "<p>Gets a list of built-in slot types that meet the specified criteria.</p>",
+    "ListCustomVocabularyItems": "<p>List custom vocabulary items for the specified locale in the specified bot.</p>",
     "ListExports": "<p>Lists the exports for a bot, bot locale, or custom vocabulary. Exports are kept in the list for 7 days.</p>",
     "ListImports": "<p>Lists the imports for a bot, bot locale, or custom vocabulary. Imports are kept in the list for 7 days.</p>",
     "ListIntents": "<p>Get a list of intents that meet the specified criteria.</p>",
-    "ListRecommendedIntents": "<p>Gets a list of recommended intents provided by the bot recommendation that you can use in your bot.</p>",
+    "ListRecommendedIntents": "<p>Gets a list of recommended intents provided by the bot recommendation that you can use in your bot. Intents in the response are ordered by relevance.</p>",
     "ListSlotTypes": "<p>Gets a list of slot types that match the specified criteria.</p>",
     "ListSlots": "<p>Gets a list of slots that match the specified criteria.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a resource. Only bots, bot aliases, and bot channels can have tags associated with them.</p>",
@@ -228,6 +232,36 @@
       "base": "<p>Specifies the audio input specifications.</p>",
       "refs": {
         "AudioAndDTMFInputSpecification$audioSpecification": "<p>Specifies the settings on audio input.</p>"
+      }
+    },
+    "BatchCreateCustomVocabularyItemRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchCreateCustomVocabularyItemResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteCustomVocabularyItemRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteCustomVocabularyItemResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdateCustomVocabularyItemRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdateCustomVocabularyItemResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Boolean": {
@@ -508,6 +542,12 @@
     "BotVersion": {
       "base": null,
       "refs": {
+        "BatchCreateCustomVocabularyItemRequest$botVersion": "<p>The bot version of the bot to batch create the custom vocabulary item for.</p>",
+        "BatchCreateCustomVocabularyItemResponse$botVersion": "<p>The bot version of the bot to batch create the custom vocabulary item response for.</p>",
+        "BatchDeleteCustomVocabularyItemRequest$botVersion": "<p>The version of the bot to batch delete request for the custom vocabulary item.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$botVersion": "<p>The version of the bot to batch delete response for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemRequest$botVersion": "<p>The bot version of the bot to the batch update request for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$botVersion": "<p>The bot version of the bot to the batch update response for the custom vocabulary item.</p>",
         "BotAliasHistoryEvent$botVersion": "<p>The version of the bot that was used in the event. </p>",
         "BotAliasSummary$botVersion": "<p>The version of the bot that the bot alias references.</p>",
         "BotExportSpecification$botVersion": "<p>The version of the bot that was exported. This will be either <code>DRAFT</code> or the version number.</p>",
@@ -529,6 +569,8 @@
         "ListAggregatedUtterancesResponse$botVersion": "<p>The identifier of the bot version that contains the utterances. If you specified the bot alias, the bot version isn't returned.</p>",
         "ListBotLocalesRequest$botVersion": "<p>The version of the bot to list locales for.</p>",
         "ListBotLocalesResponse$botVersion": "<p>The version of the bot.</p>",
+        "ListCustomVocabularyItemsRequest$botVersion": "<p>The bot version of the bot to the list custom vocabulary request.</p>",
+        "ListCustomVocabularyItemsResponse$botVersion": "<p>The bot version of the bot to the list custom vocabulary response.</p>",
         "ListExportsRequest$botVersion": "<p>The version of the bot to list exports for. </p>",
         "ListExportsResponse$botVersion": "<p>The version of the bot that was exported.</p>",
         "ListIntentsRequest$botVersion": "<p>The version of the bot that contains the intent.</p>",
@@ -903,6 +945,12 @@
       "refs": {
       }
     },
+    "CreateCustomVocabularyItemsList": {
+      "base": null,
+      "refs": {
+        "BatchCreateCustomVocabularyItemRequest$customVocabularyItemList": "<p>The custom vocabulary item list of the bot to batch create the custom vocabulary item for.</p>"
+      }
+    },
     "CreateExportRequest": {
       "base": null,
       "refs": {
@@ -985,6 +1033,12 @@
         "CustomPayload$value": "<p>The string that is sent to your application.</p>"
       }
     },
+    "CustomVocabularyEntryId": {
+      "base": "<p>The unique entry identifier for the custom vocabulary items.</p>",
+      "refs": {
+        "DeleteCustomVocabularyItemsList$member": null
+      }
+    },
     "CustomVocabularyExportSpecification": {
       "base": "<p>Provides the parameters required for exporting a custom vocabulary.</p>",
       "refs": {
@@ -995,6 +1049,22 @@
       "base": "<p>Provides the parameters required for importing a custom vocabulary.</p>",
       "refs": {
         "ImportResourceSpecification$customVocabularyImportSpecification": null
+      }
+    },
+    "CustomVocabularyItem": {
+      "base": "<p>The unique custom vocabulary item from the custom vocabulary list.</p>",
+      "refs": {
+        "CustomVocabularyItems$member": null,
+        "UpdateCustomVocabularyItemsList$member": null
+      }
+    },
+    "CustomVocabularyItems": {
+      "base": null,
+      "refs": {
+        "BatchCreateCustomVocabularyItemResponse$resources": "<p>The resources of the action to batch create the custom vocabulary item response for a bot.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$resources": "<p>The resources of the action to batch delete response for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$resources": "<p>The resources of the action to batch update response for the custom vocabulary item.</p>",
+        "ListCustomVocabularyItemsResponse$customVocabularyItems": "<p>The custom vocabulary items from the list custom vocabulary response.</p>"
       }
     },
     "CustomVocabularyStatus": {
@@ -1079,6 +1149,12 @@
     "DeleteBotVersionResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeleteCustomVocabularyItemsList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteCustomVocabularyItemRequest$customVocabularyItemList": "<p>The custom vocabulary list to batch delete request for the custom vocabulary item.</p>"
       }
     },
     "DeleteCustomVocabularyRequest": {
@@ -1443,6 +1519,18 @@
         "UpdateBotRecommendationResponse$encryptionSetting": "<p>The object representing the passwords that were used to encrypt the data related to the bot recommendation results, as well as the KMS key ARN used to encrypt the associated metadata.</p>"
       }
     },
+    "ErrorCode": {
+      "base": null,
+      "refs": {
+        "FailedCustomVocabularyItem$errorCode": "<p>The unique error code for the failed custom vocabulary item from the custom vocabulary list.</p>"
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "FailedCustomVocabularyItem$errorMessage": "<p>The error message for the failed custom vocabulary item from the custom vocabulary list.</p>"
+      }
+    },
     "ExceptionMessage": {
       "base": null,
       "refs": {
@@ -1531,6 +1619,20 @@
         "DescribeSlotTypeResponse$externalSourceSetting": null,
         "UpdateSlotTypeRequest$externalSourceSetting": null,
         "UpdateSlotTypeResponse$externalSourceSetting": null
+      }
+    },
+    "FailedCustomVocabularyItem": {
+      "base": "<p>The unique failed custom vocabulary item from the custom vocabulary list.</p>",
+      "refs": {
+        "FailedCustomVocabularyItems$member": null
+      }
+    },
+    "FailedCustomVocabularyItems": {
+      "base": null,
+      "refs": {
+        "BatchCreateCustomVocabularyItemResponse$errors": "<p>The errors of the action to batch create the custom vocabulary item response for a bot.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$errors": "<p>The errors of the action to batch delete response for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$errors": "<p>The errors of the action to batch update response for the custom vocabulary item.</p>"
       }
     },
     "FailureReason": {
@@ -1644,6 +1746,12 @@
     "Id": {
       "base": null,
       "refs": {
+        "BatchCreateCustomVocabularyItemRequest$botId": "<p>The unique identifier of the bot to batch create the custom vocabulary item for.</p>",
+        "BatchCreateCustomVocabularyItemResponse$botId": "<p>The unique identifier of the bot to batch create response for the custom vocabulary item.</p>",
+        "BatchDeleteCustomVocabularyItemRequest$botId": "<p>The unique identifier of the bot to batch delete request for the custom vocabulary item.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$botId": "<p>The unique identifier of the bot to batch delete response for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemRequest$botId": "<p>The unique identifier of the bot to the batch update request for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$botId": "<p>The unique identifier of the bot to the batch update response for the custom vocabulary item.</p>",
         "BotExportSpecification$botId": "<p>The identifier of the bot assigned by Amazon Lex.</p>",
         "BotLocaleExportSpecification$botId": "<p>The identifier of the bot to create the locale for.</p>",
         "BotLocaleImportSpecification$botId": "<p>The identifier of the bot to import the locale to.</p>",
@@ -1740,6 +1848,8 @@
         "ListBotRecommendationsResponse$botId": "<p>The unique identifier of the bot that contains the bot recommendation list.</p>",
         "ListBotVersionsRequest$botId": "<p>The identifier of the bot to list versions for.</p>",
         "ListBotVersionsResponse$botId": "<p>The identifier of the bot to list versions for.</p>",
+        "ListCustomVocabularyItemsRequest$botId": "<p>The unique identifier of the bot to the list custom vocabulary request.</p>",
+        "ListCustomVocabularyItemsResponse$botId": "<p>The unique identifier of the bot to the list custom vocabulary response.</p>",
         "ListExportsRequest$botId": "<p>The unique identifier that Amazon Lex assigned to the bot.</p>",
         "ListExportsResponse$botId": "<p>The unique identifier assigned to the bot by Amazon Lex.</p>",
         "ListImportsRequest$botId": "<p>The unique identifier that Amazon Lex assigned to the bot.</p>",
@@ -2027,6 +2137,14 @@
       "refs": {
       }
     },
+    "ItemId": {
+      "base": null,
+      "refs": {
+        "CustomVocabularyEntryId$itemId": "<p>The unique item identifier for the custom vocabulary items.</p>",
+        "CustomVocabularyItem$itemId": "<p>The unique item identifer for the custom vocabulary item from the custom vocabulary list.</p>",
+        "FailedCustomVocabularyItem$itemId": "<p>The unique item identifer for the failed custom vocabulary item from the custom vocabulary list.</p>"
+      }
+    },
     "KendraConfiguration": {
       "base": "<p>Provides configuration information for the AMAZON.KendraSearchIntent intent. When you use this intent, Amazon Lex searches the specified Amazon Kendra index and returns documents from the index that match the user's utterance.</p>",
       "refs": {
@@ -2150,6 +2268,16 @@
       "refs": {
       }
     },
+    "ListCustomVocabularyItemsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCustomVocabularyItemsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListExportsRequest": {
       "base": null,
       "refs": {
@@ -2223,6 +2351,12 @@
     "LocaleId": {
       "base": null,
       "refs": {
+        "BatchCreateCustomVocabularyItemRequest$localeId": "<p>The unique locale identifier of the bot to batch create the custom vocabulary item for.</p>",
+        "BatchCreateCustomVocabularyItemResponse$localeId": "<p>The unique locale identifier of the bot to batch create the custom vocabulary item response for.</p>",
+        "BatchDeleteCustomVocabularyItemRequest$localeId": "<p>The locale identifier of the bot to batch delete request for the custom vocabulary item.</p>",
+        "BatchDeleteCustomVocabularyItemResponse$localeId": "<p>The locale identifier of the bot to batch delete response for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemRequest$localeId": "<p>The locale identifier of the bot to the batch update request for the custom vocabulary item.</p>",
+        "BatchUpdateCustomVocabularyItemResponse$localeId": "<p>The locale identifier of the bot to the batch update response for the custom vocabulary item.</p>",
         "BotAliasLocaleSettingsMap$key": null,
         "BotLocaleExportSpecification$localeId": "<p>The identifier of the language and locale to export. The string must match one of the locales in the bot.</p>",
         "BotLocaleImportSpecification$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
@@ -2268,6 +2402,8 @@
         "ListBuiltInIntentsResponse$localeId": "<p>The language and locale of the intents in the list.</p>",
         "ListBuiltInSlotTypesRequest$localeId": "<p>The identifier of the language and locale of the slot types to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "ListBuiltInSlotTypesResponse$localeId": "<p>The language and locale of the slot types in the list.</p>",
+        "ListCustomVocabularyItemsRequest$localeId": "<p>The locale identifier of the bot to the list custom vocabulary request.</p>",
+        "ListCustomVocabularyItemsResponse$localeId": "<p>The locale identifier of the bot to the list custom vocabulary response.</p>",
         "ListExportsRequest$localeId": "<p>Specifies the resources that should be exported. If you don't specify a resource type in the <code>filters</code> parameter, both bot locales and custom vocabularies are exported.</p>",
         "ListExportsResponse$localeId": "<p>The locale specified in the request.</p>",
         "ListImportsRequest$localeId": "<p>Specifies the locale that should be present in the list. If you don't specify a resource type in the <code>filters</code> parameter, the list contains both bot locales and custom vocabularies.</p>",
@@ -2323,6 +2459,7 @@
         "ListBotRecommendationsRequest$maxResults": "<p>The maximum number of bot recommendations to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotVersionsRequest$maxResults": "<p>The maximum number of versions to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotsRequest$maxResults": "<p>The maximum number of bots to return in each page of results. If there are fewer results than the maximum page size, only the actual number of results are returned.</p>",
+        "ListCustomVocabularyItemsRequest$maxResults": "<p>The maximum results to the list custom vocabulary request.</p>",
         "ListExportsRequest$maxResults": "<p>The maximum number of exports to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListImportsRequest$maxResults": "<p>The maximum number of imports to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListIntentsRequest$maxResults": "<p>The maximum number of intents to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
@@ -2452,6 +2589,12 @@
         "UpdateSlotTypeResponse$slotTypeName": "<p>The updated name of the slot type.</p>"
       }
     },
+    "NewCustomVocabularyItem": {
+      "base": "<p>The new custom vocabulary item from the custom vocabulary list.</p>",
+      "refs": {
+        "CreateCustomVocabularyItemsList$member": null
+      }
+    },
     "NextIndex": {
       "base": null,
       "refs": {
@@ -2478,6 +2621,8 @@
         "ListBuiltInIntentsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBuiltInIntents</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListBotAliases</code> operation request to get the next page of results.</p>",
         "ListBuiltInSlotTypesRequest$nextToken": "<p>If the response from the <code>ListBuiltInSlotTypes</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListBuiltInSlotTypesResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBuiltInSlotTypes</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>LIstBuiltInSlotTypes</code> operation request to get the next page of results.</p>",
+        "ListCustomVocabularyItemsRequest$nextToken": "<p>The nextToken identifier to the list custom vocabulary request.</p>",
+        "ListCustomVocabularyItemsResponse$nextToken": "<p>The nextToken identifier to the list custom vocabulary response.</p>",
         "ListExportsRequest$nextToken": "<p>If the response from the <code>ListExports</code> operation contains more results that specified in the <code>maxResults</code> parameter, a token is returned in the response. </p> <p>Use the returned token in the <code>nextToken</code> parameter of a <code>ListExports</code> request to return the next page of results. For a complete set of results, call the <code>ListExports</code> operation until the <code>nextToken</code> returned in the response is null.</p>",
         "ListExportsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListExports</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListExports</code> operation request to get the next page of results.</p>",
         "ListImportsRequest$nextToken": "<p>If the response from the <code>ListImports</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response.</p> <p>Use the returned token in the <code>nextToken</code> parameter of a <code>ListImports</code> request to return the next page of results. For a complete set of results, call the <code>ListImports</code> operation until the <code>nextToken</code> returned in the response is null.</p>",
@@ -2573,6 +2718,15 @@
       "base": "<p>The object that contains a path format that will be applied when Amazon Lex reads the transcript file in the bucket you provide. Specify this object if you only want Lex to read a subset of files in your Amazon S3 bucket.</p>",
       "refs": {
         "S3BucketTranscriptSource$pathFormat": "<p>The object that contains a path format that will be applied when Amazon Lex reads the transcript file in the bucket you provide. Specify this object if you only want Lex to read a subset of files in your Amazon S3 bucket.</p>"
+      }
+    },
+    "Phrase": {
+      "base": null,
+      "refs": {
+        "CustomVocabularyItem$phrase": "<p>The unique phrase for the custom vocabulary item from the custom vocabulary list.</p>",
+        "CustomVocabularyItem$displayAs": "<p>The display as value for the custom vocabulary item from the custom vocabulary list.</p>",
+        "NewCustomVocabularyItem$phrase": "<p>The unique phrase for the new custom vocabulary item from the custom vocabulary list.</p>",
+        "NewCustomVocabularyItem$displayAs": "<p>The display as value assigned to the new custom vocabulary item from the custom vocabulary list.</p>"
       }
     },
     "PlainTextMessage": {
@@ -3556,6 +3710,12 @@
       "refs": {
       }
     },
+    "UpdateCustomVocabularyItemsList": {
+      "base": null,
+      "refs": {
+        "BatchUpdateCustomVocabularyItemRequest$customVocabularyItemList": "<p>The custom vocabulary item list of the bot to the batch update request for the custom vocabulary item.</p>"
+      }
+    },
     "UpdateExportRequest": {
       "base": null,
       "refs": {
@@ -3659,6 +3819,13 @@
       "refs": {
         "SlotValueElicitationSetting$waitAndContinueSpecification": null,
         "SubSlotValueElicitationSetting$waitAndContinueSpecification": null
+      }
+    },
+    "Weight": {
+      "base": null,
+      "refs": {
+        "CustomVocabularyItem$weight": "<p>The weight assigned for the custom vocabulary item from the custom vocabulary list.</p>",
+        "NewCustomVocabularyItem$weight": "<p>The weight assigned to the new custom vocabulary item from the custom vocabulary list.</p>"
       }
     }
   }

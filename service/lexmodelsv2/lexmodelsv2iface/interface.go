@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Lex Model Building V2.
 //	func myFunc(svc lexmodelsv2iface.LexModelsV2API) bool {
-//	    // Make svc.BuildBotLocale request
+//	    // Make svc.BatchCreateCustomVocabularyItem request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockLexModelsV2Client struct {
 //	    lexmodelsv2iface.LexModelsV2API
 //	}
-//	func (m *mockLexModelsV2Client) BuildBotLocale(input *lexmodelsv2.BuildBotLocaleInput) (*lexmodelsv2.BuildBotLocaleOutput, error) {
+//	func (m *mockLexModelsV2Client) BatchCreateCustomVocabularyItem(input *lexmodelsv2.BatchCreateCustomVocabularyItemInput) (*lexmodelsv2.BatchCreateCustomVocabularyItemOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,18 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type LexModelsV2API interface {
+	BatchCreateCustomVocabularyItem(*lexmodelsv2.BatchCreateCustomVocabularyItemInput) (*lexmodelsv2.BatchCreateCustomVocabularyItemOutput, error)
+	BatchCreateCustomVocabularyItemWithContext(aws.Context, *lexmodelsv2.BatchCreateCustomVocabularyItemInput, ...request.Option) (*lexmodelsv2.BatchCreateCustomVocabularyItemOutput, error)
+	BatchCreateCustomVocabularyItemRequest(*lexmodelsv2.BatchCreateCustomVocabularyItemInput) (*request.Request, *lexmodelsv2.BatchCreateCustomVocabularyItemOutput)
+
+	BatchDeleteCustomVocabularyItem(*lexmodelsv2.BatchDeleteCustomVocabularyItemInput) (*lexmodelsv2.BatchDeleteCustomVocabularyItemOutput, error)
+	BatchDeleteCustomVocabularyItemWithContext(aws.Context, *lexmodelsv2.BatchDeleteCustomVocabularyItemInput, ...request.Option) (*lexmodelsv2.BatchDeleteCustomVocabularyItemOutput, error)
+	BatchDeleteCustomVocabularyItemRequest(*lexmodelsv2.BatchDeleteCustomVocabularyItemInput) (*request.Request, *lexmodelsv2.BatchDeleteCustomVocabularyItemOutput)
+
+	BatchUpdateCustomVocabularyItem(*lexmodelsv2.BatchUpdateCustomVocabularyItemInput) (*lexmodelsv2.BatchUpdateCustomVocabularyItemOutput, error)
+	BatchUpdateCustomVocabularyItemWithContext(aws.Context, *lexmodelsv2.BatchUpdateCustomVocabularyItemInput, ...request.Option) (*lexmodelsv2.BatchUpdateCustomVocabularyItemOutput, error)
+	BatchUpdateCustomVocabularyItemRequest(*lexmodelsv2.BatchUpdateCustomVocabularyItemInput) (*request.Request, *lexmodelsv2.BatchUpdateCustomVocabularyItemOutput)
+
 	BuildBotLocale(*lexmodelsv2.BuildBotLocaleInput) (*lexmodelsv2.BuildBotLocaleOutput, error)
 	BuildBotLocaleWithContext(aws.Context, *lexmodelsv2.BuildBotLocaleInput, ...request.Option) (*lexmodelsv2.BuildBotLocaleOutput, error)
 	BuildBotLocaleRequest(*lexmodelsv2.BuildBotLocaleInput) (*request.Request, *lexmodelsv2.BuildBotLocaleOutput)
@@ -263,6 +275,13 @@ type LexModelsV2API interface {
 
 	ListBuiltInSlotTypesPages(*lexmodelsv2.ListBuiltInSlotTypesInput, func(*lexmodelsv2.ListBuiltInSlotTypesOutput, bool) bool) error
 	ListBuiltInSlotTypesPagesWithContext(aws.Context, *lexmodelsv2.ListBuiltInSlotTypesInput, func(*lexmodelsv2.ListBuiltInSlotTypesOutput, bool) bool, ...request.Option) error
+
+	ListCustomVocabularyItems(*lexmodelsv2.ListCustomVocabularyItemsInput) (*lexmodelsv2.ListCustomVocabularyItemsOutput, error)
+	ListCustomVocabularyItemsWithContext(aws.Context, *lexmodelsv2.ListCustomVocabularyItemsInput, ...request.Option) (*lexmodelsv2.ListCustomVocabularyItemsOutput, error)
+	ListCustomVocabularyItemsRequest(*lexmodelsv2.ListCustomVocabularyItemsInput) (*request.Request, *lexmodelsv2.ListCustomVocabularyItemsOutput)
+
+	ListCustomVocabularyItemsPages(*lexmodelsv2.ListCustomVocabularyItemsInput, func(*lexmodelsv2.ListCustomVocabularyItemsOutput, bool) bool) error
+	ListCustomVocabularyItemsPagesWithContext(aws.Context, *lexmodelsv2.ListCustomVocabularyItemsInput, func(*lexmodelsv2.ListCustomVocabularyItemsOutput, bool) bool, ...request.Option) error
 
 	ListExports(*lexmodelsv2.ListExportsInput) (*lexmodelsv2.ListExportsOutput, error)
 	ListExportsWithContext(aws.Context, *lexmodelsv2.ListExportsInput, ...request.Option) (*lexmodelsv2.ListExportsOutput, error)

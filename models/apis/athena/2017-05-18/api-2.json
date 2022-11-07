@@ -236,7 +236,8 @@
       "output":{"shape":"GetQueryResultsOutput"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetQueryRuntimeStatistics":{
@@ -518,6 +519,11 @@
       "members":{
         "S3AclOption":{"shape":"S3AclOption"}
       }
+    },
+    "Age":{
+      "type":"integer",
+      "max":10080,
+      "min":0
     },
     "AmazonResourceName":{
       "type":"string",
@@ -1365,6 +1371,7 @@
         "Query":{"shape":"QueryString"},
         "StatementType":{"shape":"StatementType"},
         "ResultConfiguration":{"shape":"ResultConfiguration"},
+        "ResultReuseConfiguration":{"shape":"ResultReuseConfiguration"},
         "QueryExecutionContext":{"shape":"QueryExecutionContext"},
         "Status":{"shape":"QueryExecutionStatus"},
         "Statistics":{"shape":"QueryExecutionStatistics"},
@@ -1415,7 +1422,8 @@
         "TotalExecutionTimeInMillis":{"shape":"Long"},
         "QueryQueueTimeInMillis":{"shape":"Long"},
         "QueryPlanningTimeInMillis":{"shape":"Long"},
-        "ServiceProcessingTimeInMillis":{"shape":"Long"}
+        "ServiceProcessingTimeInMillis":{"shape":"Long"},
+        "ResultReuseInformation":{"shape":"ResultReuseInformation"}
       }
     },
     "QueryExecutionStatus":{
@@ -1522,6 +1530,27 @@
       }
     },
     "ResultOutputLocation":{"type":"string"},
+    "ResultReuseByAgeConfiguration":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "MaxAgeInMinutes":{"shape":"Age"}
+      }
+    },
+    "ResultReuseConfiguration":{
+      "type":"structure",
+      "members":{
+        "ResultReuseByAgeConfiguration":{"shape":"ResultReuseByAgeConfiguration"}
+      }
+    },
+    "ResultReuseInformation":{
+      "type":"structure",
+      "required":["ReusedPreviousResult"],
+      "members":{
+        "ReusedPreviousResult":{"shape":"Boolean"}
+      }
+    },
     "ResultSet":{
       "type":"structure",
       "members":{
@@ -1561,7 +1590,8 @@
         "QueryExecutionContext":{"shape":"QueryExecutionContext"},
         "ResultConfiguration":{"shape":"ResultConfiguration"},
         "WorkGroup":{"shape":"WorkGroupName"},
-        "ExecutionParameters":{"shape":"ExecutionParameters"}
+        "ExecutionParameters":{"shape":"ExecutionParameters"},
+        "ResultReuseConfiguration":{"shape":"ResultReuseConfiguration"}
       }
     },
     "StartQueryExecutionOutput":{

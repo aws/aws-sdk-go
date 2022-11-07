@@ -5695,6 +5695,21 @@
       "type":"string",
       "enum":["used"]
     },
+    "AllowedInstanceType":{
+      "type":"string",
+      "max":30,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\.\\*]+"
+    },
+    "AllowedInstanceTypeSet":{
+      "type":"list",
+      "member":{
+        "shape":"AllowedInstanceType",
+        "locationName":"item"
+      },
+      "max":400,
+      "min":0
+    },
     "AllowedPrincipal":{
       "type":"structure",
       "members":{
@@ -24373,6 +24388,14 @@
         "AcceleratorTotalMemoryMiB":{
           "shape":"AcceleratorTotalMemoryMiB",
           "locationName":"acceleratorTotalMemoryMiB"
+        },
+        "NetworkBandwidthGbps":{
+          "shape":"NetworkBandwidthGbps",
+          "locationName":"networkBandwidthGbps"
+        },
+        "AllowedInstanceTypes":{
+          "shape":"AllowedInstanceTypeSet",
+          "locationName":"allowedInstanceTypeSet"
         }
       }
     },
@@ -24424,7 +24447,12 @@
           "shape":"AcceleratorNameSet",
           "locationName":"AcceleratorName"
         },
-        "AcceleratorTotalMemoryMiB":{"shape":"AcceleratorTotalMemoryMiBRequest"}
+        "AcceleratorTotalMemoryMiB":{"shape":"AcceleratorTotalMemoryMiBRequest"},
+        "NetworkBandwidthGbps":{"shape":"NetworkBandwidthGbpsRequest"},
+        "AllowedInstanceTypes":{
+          "shape":"AllowedInstanceTypeSet",
+          "locationName":"AllowedInstanceType"
+        }
       }
     },
     "InstanceRequirementsWithMetadataRequest":{
@@ -30019,6 +30047,26 @@
       "member":{
         "shape":"NetworkAcl",
         "locationName":"item"
+      }
+    },
+    "NetworkBandwidthGbps":{
+      "type":"structure",
+      "members":{
+        "Min":{
+          "shape":"Double",
+          "locationName":"min"
+        },
+        "Max":{
+          "shape":"Double",
+          "locationName":"max"
+        }
+      }
+    },
+    "NetworkBandwidthGbpsRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"Double"},
+        "Max":{"shape":"Double"}
       }
     },
     "NetworkCardIndex":{"type":"integer"},

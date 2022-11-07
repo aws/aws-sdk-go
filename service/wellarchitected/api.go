@@ -163,9 +163,10 @@ func (c *WellArchitected) CreateLensShareRequest(input *CreateLensShareInput) (r
 //
 // Create a lens share.
 //
-// The owner of a lens can share it with other Amazon Web Services accounts
-// and IAM users in the same Amazon Web Services Region. Shared access to a
-// lens is not removed until the lens invitation is deleted.
+// The owner of a lens can share it with other Amazon Web Services accounts,
+// IAM users, an organization, and organizational units (OUs) in the same Amazon
+// Web Services Region. Shared access to a lens is not removed until the lens
+// invitation is deleted.
 //
 // # Disclaimer
 //
@@ -474,8 +475,9 @@ func (c *WellArchitected) CreateWorkloadRequest(input *CreateWorkloadInput) (req
 // Create a new workload.
 //
 // The owner of a workload can share the workload with other Amazon Web Services
-// accounts and IAM users in the same Amazon Web Services Region. Only the owner
-// of a workload can delete it.
+// accounts, IAM users, an organization, and organizational units (OUs) in the
+// same Amazon Web Services Region. Only the owner of a workload can delete
+// it.
 //
 // For more information, see Defining a Workload (https://docs.aws.amazon.com/wellarchitected/latest/userguide/define-workload.html)
 // in the Well-Architected Tool User Guide.
@@ -786,9 +788,10 @@ func (c *WellArchitected) DeleteLensShareRequest(input *DeleteLensShareInput) (r
 //
 // Delete a lens share.
 //
-// After the lens share is deleted, Amazon Web Services accounts and IAM users
-// that you shared the lens with can continue to use it, but they will no longer
-// be able to apply it to new workloads.
+// After the lens share is deleted, Amazon Web Services accounts, IAM users,
+// organizations, and organizational units (OUs) that you shared the lens with
+// can continue to use it, but they will no longer be able to apply it to new
+// workloads.
 //
 // # Disclaimer
 //
@@ -2135,6 +2138,303 @@ func (c *WellArchitected) ListAnswersPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAnswersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCheckDetails = "ListCheckDetails"
+
+// ListCheckDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCheckDetails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCheckDetails for more information on using the ListCheckDetails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCheckDetailsRequest method.
+//	req, resp := client.ListCheckDetailsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/ListCheckDetails
+func (c *WellArchitected) ListCheckDetailsRequest(input *ListCheckDetailsInput) (req *request.Request, output *ListCheckDetailsOutput) {
+	op := &request.Operation{
+		Name:       opListCheckDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workloads/{WorkloadId}/checks",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCheckDetailsInput{}
+	}
+
+	output = &ListCheckDetailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCheckDetails API operation for AWS Well-Architected Tool.
+//
+// List of Trusted Advisor check details by account related to the workload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Well-Architected Tool's
+// API operation ListCheckDetails for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The user input is not valid.
+//
+//   - ResourceNotFoundException
+//     The requested resource was not found.
+//
+//   - InternalServerException
+//     There is a problem with the Well-Architected Tool API service.
+//
+//   - AccessDeniedException
+//     User does not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/ListCheckDetails
+func (c *WellArchitected) ListCheckDetails(input *ListCheckDetailsInput) (*ListCheckDetailsOutput, error) {
+	req, out := c.ListCheckDetailsRequest(input)
+	return out, req.Send()
+}
+
+// ListCheckDetailsWithContext is the same as ListCheckDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCheckDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WellArchitected) ListCheckDetailsWithContext(ctx aws.Context, input *ListCheckDetailsInput, opts ...request.Option) (*ListCheckDetailsOutput, error) {
+	req, out := c.ListCheckDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCheckDetailsPages iterates over the pages of a ListCheckDetails operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCheckDetails method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCheckDetails operation.
+//	pageNum := 0
+//	err := client.ListCheckDetailsPages(params,
+//	    func(page *wellarchitected.ListCheckDetailsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *WellArchitected) ListCheckDetailsPages(input *ListCheckDetailsInput, fn func(*ListCheckDetailsOutput, bool) bool) error {
+	return c.ListCheckDetailsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCheckDetailsPagesWithContext same as ListCheckDetailsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WellArchitected) ListCheckDetailsPagesWithContext(ctx aws.Context, input *ListCheckDetailsInput, fn func(*ListCheckDetailsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCheckDetailsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCheckDetailsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCheckDetailsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCheckSummaries = "ListCheckSummaries"
+
+// ListCheckSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCheckSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCheckSummaries for more information on using the ListCheckSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCheckSummariesRequest method.
+//	req, resp := client.ListCheckSummariesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/ListCheckSummaries
+func (c *WellArchitected) ListCheckSummariesRequest(input *ListCheckSummariesInput) (req *request.Request, output *ListCheckSummariesOutput) {
+	op := &request.Operation{
+		Name:       opListCheckSummaries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workloads/{WorkloadId}/checkSummaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCheckSummariesInput{}
+	}
+
+	output = &ListCheckSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCheckSummaries API operation for AWS Well-Architected Tool.
+//
+// List of Trusted Advisor checks summarized for all accounts related to the
+// workload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Well-Architected Tool's
+// API operation ListCheckSummaries for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The user input is not valid.
+//
+//   - ResourceNotFoundException
+//     The requested resource was not found.
+//
+//   - InternalServerException
+//     There is a problem with the Well-Architected Tool API service.
+//
+//   - AccessDeniedException
+//     User does not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/ListCheckSummaries
+func (c *WellArchitected) ListCheckSummaries(input *ListCheckSummariesInput) (*ListCheckSummariesOutput, error) {
+	req, out := c.ListCheckSummariesRequest(input)
+	return out, req.Send()
+}
+
+// ListCheckSummariesWithContext is the same as ListCheckSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCheckSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WellArchitected) ListCheckSummariesWithContext(ctx aws.Context, input *ListCheckSummariesInput, opts ...request.Option) (*ListCheckSummariesOutput, error) {
+	req, out := c.ListCheckSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCheckSummariesPages iterates over the pages of a ListCheckSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCheckSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCheckSummaries operation.
+//	pageNum := 0
+//	err := client.ListCheckSummariesPages(params,
+//	    func(page *wellarchitected.ListCheckSummariesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *WellArchitected) ListCheckSummariesPages(input *ListCheckSummariesInput, fn func(*ListCheckSummariesOutput, bool) bool) error {
+	return c.ListCheckSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCheckSummariesPagesWithContext same as ListCheckSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WellArchitected) ListCheckSummariesPagesWithContext(ctx aws.Context, input *ListCheckSummariesInput, fn func(*ListCheckSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCheckSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCheckSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCheckSummariesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4044,7 +4344,10 @@ func (c *WellArchitected) UpdateShareInvitationRequest(input *UpdateShareInvitat
 
 // UpdateShareInvitation API operation for AWS Well-Architected Tool.
 //
-// Update a workload invitation.
+// Update a workload or custom lens share invitation.
+//
+// This API operation can be called independently of any resource. Previous
+// documentation implied that a workload ARN must be specified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4841,6 +5144,273 @@ func (s AssociateLensesOutput) GoString() string {
 	return s.String()
 }
 
+// Account details for a Well-Architected best practice in relation to Trusted
+// Advisor checks.
+type CheckDetail struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services account ID.
+	AccountId *string `type:"string"`
+
+	// The ID of a choice.
+	ChoiceId *string `min:"1" type:"string"`
+
+	// Trusted Advisor check description.
+	Description *string `type:"string"`
+
+	// Count of flagged resources associated to the check.
+	FlaggedResources *int64 `min:"1" type:"integer"`
+
+	// Trusted Advisor check ID.
+	Id *string `type:"string"`
+
+	// Well-Architected Lens ARN associated to the check.
+	LensArn *string `type:"string"`
+
+	// Trusted Advisor check name.
+	Name *string `type:"string"`
+
+	// The ID used to identify a pillar, for example, security.
+	//
+	// A pillar is identified by its PillarReviewSummary$PillarId.
+	PillarId *string `min:"1" type:"string"`
+
+	// Provider of the check related to the best practice.
+	Provider *string `type:"string" enum:"CheckProvider"`
+
+	// The ID of the question.
+	QuestionId *string `min:"1" type:"string"`
+
+	// Reason associated to the check.
+	Reason *string `type:"string" enum:"CheckFailureReason"`
+
+	// Status associated to the check.
+	Status *string `type:"string" enum:"CheckStatus"`
+
+	// The date and time recorded.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckDetail) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CheckDetail) SetAccountId(v string) *CheckDetail {
+	s.AccountId = &v
+	return s
+}
+
+// SetChoiceId sets the ChoiceId field's value.
+func (s *CheckDetail) SetChoiceId(v string) *CheckDetail {
+	s.ChoiceId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CheckDetail) SetDescription(v string) *CheckDetail {
+	s.Description = &v
+	return s
+}
+
+// SetFlaggedResources sets the FlaggedResources field's value.
+func (s *CheckDetail) SetFlaggedResources(v int64) *CheckDetail {
+	s.FlaggedResources = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CheckDetail) SetId(v string) *CheckDetail {
+	s.Id = &v
+	return s
+}
+
+// SetLensArn sets the LensArn field's value.
+func (s *CheckDetail) SetLensArn(v string) *CheckDetail {
+	s.LensArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CheckDetail) SetName(v string) *CheckDetail {
+	s.Name = &v
+	return s
+}
+
+// SetPillarId sets the PillarId field's value.
+func (s *CheckDetail) SetPillarId(v string) *CheckDetail {
+	s.PillarId = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *CheckDetail) SetProvider(v string) *CheckDetail {
+	s.Provider = &v
+	return s
+}
+
+// SetQuestionId sets the QuestionId field's value.
+func (s *CheckDetail) SetQuestionId(v string) *CheckDetail {
+	s.QuestionId = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *CheckDetail) SetReason(v string) *CheckDetail {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CheckDetail) SetStatus(v string) *CheckDetail {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CheckDetail) SetUpdatedAt(v time.Time) *CheckDetail {
+	s.UpdatedAt = &v
+	return s
+}
+
+// Trusted Advisor check summary.
+type CheckSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Account summary associated to the check.
+	AccountSummary map[string]*int64 `type:"map"`
+
+	// The ID of a choice.
+	ChoiceId *string `min:"1" type:"string"`
+
+	// Trusted Advisor check description.
+	Description *string `type:"string"`
+
+	// Trusted Advisor check ID.
+	Id *string `type:"string"`
+
+	// Well-Architected Lens ARN associated to the check.
+	LensArn *string `type:"string"`
+
+	// Trusted Advisor check name.
+	Name *string `type:"string"`
+
+	// The ID used to identify a pillar, for example, security.
+	//
+	// A pillar is identified by its PillarReviewSummary$PillarId.
+	PillarId *string `min:"1" type:"string"`
+
+	// Provider of the check related to the best practice.
+	Provider *string `type:"string" enum:"CheckProvider"`
+
+	// The ID of the question.
+	QuestionId *string `min:"1" type:"string"`
+
+	// Status associated to the check.
+	Status *string `type:"string" enum:"CheckStatus"`
+
+	// The date and time recorded.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CheckSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountSummary sets the AccountSummary field's value.
+func (s *CheckSummary) SetAccountSummary(v map[string]*int64) *CheckSummary {
+	s.AccountSummary = v
+	return s
+}
+
+// SetChoiceId sets the ChoiceId field's value.
+func (s *CheckSummary) SetChoiceId(v string) *CheckSummary {
+	s.ChoiceId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CheckSummary) SetDescription(v string) *CheckSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CheckSummary) SetId(v string) *CheckSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLensArn sets the LensArn field's value.
+func (s *CheckSummary) SetLensArn(v string) *CheckSummary {
+	s.LensArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CheckSummary) SetName(v string) *CheckSummary {
+	s.Name = &v
+	return s
+}
+
+// SetPillarId sets the PillarId field's value.
+func (s *CheckSummary) SetPillarId(v string) *CheckSummary {
+	s.PillarId = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *CheckSummary) SetProvider(v string) *CheckSummary {
+	s.Provider = &v
+	return s
+}
+
+// SetQuestionId sets the QuestionId field's value.
+func (s *CheckSummary) SetQuestionId(v string) *CheckSummary {
+	s.QuestionId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CheckSummary) SetStatus(v string) *CheckSummary {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CheckSummary) SetUpdatedAt(v time.Time) *CheckSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
 // A choice available to answer question.
 type Choice struct {
 	_ struct{} `type:"structure"`
@@ -5290,8 +5860,8 @@ type CreateLensShareInput struct {
 	// LensAlias is a required field
 	LensAlias *string `location:"uri" locationName:"LensAlias" min:"1" type:"string" required:"true"`
 
-	// The Amazon Web Services account ID or IAM role with which the workload is
-	// shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the workload is shared.
 	//
 	// SharedWith is a required field
 	SharedWith *string `min:"12" type:"string" required:"true"`
@@ -5667,6 +6237,9 @@ type CreateWorkloadInput struct {
 	// The list of Amazon Web Services account IDs associated with the workload.
 	AccountIds []*string `type:"list"`
 
+	// List of AppRegistry application ARNs associated to the workload.
+	Applications []*string `type:"list"`
+
 	// The URL of the architectural design for the workload.
 	ArchitecturalDesign *string `type:"string"`
 
@@ -5691,6 +6264,9 @@ type CreateWorkloadInput struct {
 	//
 	// Description is a required field
 	Description *string `min:"3" type:"string" required:"true"`
+
+	// Well-Architected discovery configuration settings associated to the workload.
+	DiscoveryConfig *WorkloadDiscoveryConfig `type:"structure"`
 
 	// The environment for the workload.
 	//
@@ -5849,6 +6425,12 @@ func (s *CreateWorkloadInput) SetAccountIds(v []*string) *CreateWorkloadInput {
 	return s
 }
 
+// SetApplications sets the Applications field's value.
+func (s *CreateWorkloadInput) SetApplications(v []*string) *CreateWorkloadInput {
+	s.Applications = v
+	return s
+}
+
 // SetArchitecturalDesign sets the ArchitecturalDesign field's value.
 func (s *CreateWorkloadInput) SetArchitecturalDesign(v string) *CreateWorkloadInput {
 	s.ArchitecturalDesign = &v
@@ -5870,6 +6452,12 @@ func (s *CreateWorkloadInput) SetClientRequestToken(v string) *CreateWorkloadInp
 // SetDescription sets the Description field's value.
 func (s *CreateWorkloadInput) SetDescription(v string) *CreateWorkloadInput {
 	s.Description = &v
+	return s
+}
+
+// SetDiscoveryConfig sets the DiscoveryConfig field's value.
+func (s *CreateWorkloadInput) SetDiscoveryConfig(v *WorkloadDiscoveryConfig) *CreateWorkloadInput {
+	s.DiscoveryConfig = v
 	return s
 }
 
@@ -5997,8 +6585,8 @@ type CreateWorkloadShareInput struct {
 	// PermissionType is a required field
 	PermissionType *string `type:"string" required:"true" enum:"PermissionType"`
 
-	// The Amazon Web Services account ID or IAM role with which the workload is
-	// shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the workload is shared.
 	//
 	// SharedWith is a required field
 	SharedWith *string `min:"12" type:"string" required:"true"`
@@ -8312,8 +8900,8 @@ type LensShareSummary struct {
 	// The ID associated with the workload share.
 	ShareId *string `type:"string"`
 
-	// The Amazon Web Services account ID or IAM role with which the workload is
-	// shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the workload is shared.
 	SharedWith *string `min:"12" type:"string"`
 
 	// The status of a workload share.
@@ -8784,6 +9372,363 @@ func (s *ListAnswersOutput) SetWorkloadId(v string) *ListAnswersOutput {
 	return s
 }
 
+type ListCheckDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a choice.
+	//
+	// ChoiceId is a required field
+	ChoiceId *string `min:"1" type:"string" required:"true"`
+
+	// Well-Architected Lens ARN.
+	//
+	// LensArn is a required field
+	LensArn *string `type:"string" required:"true"`
+
+	// The maximum number of results to return for this request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next set of results.
+	NextToken *string `type:"string"`
+
+	// The ID used to identify a pillar, for example, security.
+	//
+	// A pillar is identified by its PillarReviewSummary$PillarId.
+	//
+	// PillarId is a required field
+	PillarId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the question.
+	//
+	// QuestionId is a required field
+	QuestionId *string `min:"1" type:"string" required:"true"`
+
+	// The ID assigned to the workload. This ID is unique within an Amazon Web Services
+	// Region.
+	//
+	// WorkloadId is a required field
+	WorkloadId *string `location:"uri" locationName:"WorkloadId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCheckDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCheckDetailsInput"}
+	if s.ChoiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChoiceId"))
+	}
+	if s.ChoiceId != nil && len(*s.ChoiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChoiceId", 1))
+	}
+	if s.LensArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LensArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PillarId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PillarId"))
+	}
+	if s.PillarId != nil && len(*s.PillarId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PillarId", 1))
+	}
+	if s.QuestionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuestionId"))
+	}
+	if s.QuestionId != nil && len(*s.QuestionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuestionId", 1))
+	}
+	if s.WorkloadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadId"))
+	}
+	if s.WorkloadId != nil && len(*s.WorkloadId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChoiceId sets the ChoiceId field's value.
+func (s *ListCheckDetailsInput) SetChoiceId(v string) *ListCheckDetailsInput {
+	s.ChoiceId = &v
+	return s
+}
+
+// SetLensArn sets the LensArn field's value.
+func (s *ListCheckDetailsInput) SetLensArn(v string) *ListCheckDetailsInput {
+	s.LensArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCheckDetailsInput) SetMaxResults(v int64) *ListCheckDetailsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCheckDetailsInput) SetNextToken(v string) *ListCheckDetailsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPillarId sets the PillarId field's value.
+func (s *ListCheckDetailsInput) SetPillarId(v string) *ListCheckDetailsInput {
+	s.PillarId = &v
+	return s
+}
+
+// SetQuestionId sets the QuestionId field's value.
+func (s *ListCheckDetailsInput) SetQuestionId(v string) *ListCheckDetailsInput {
+	s.QuestionId = &v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *ListCheckDetailsInput) SetWorkloadId(v string) *ListCheckDetailsInput {
+	s.WorkloadId = &v
+	return s
+}
+
+type ListCheckDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details about the Trusted Advisor checks related to the Well-Architected
+	// best practice.
+	CheckDetails []*CheckDetail `type:"list"`
+
+	// The token to use to retrieve the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCheckDetails sets the CheckDetails field's value.
+func (s *ListCheckDetailsOutput) SetCheckDetails(v []*CheckDetail) *ListCheckDetailsOutput {
+	s.CheckDetails = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCheckDetailsOutput) SetNextToken(v string) *ListCheckDetailsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCheckSummariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a choice.
+	//
+	// ChoiceId is a required field
+	ChoiceId *string `min:"1" type:"string" required:"true"`
+
+	// Well-Architected Lens ARN.
+	//
+	// LensArn is a required field
+	LensArn *string `type:"string" required:"true"`
+
+	// The maximum number of results to return for this request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next set of results.
+	NextToken *string `type:"string"`
+
+	// The ID used to identify a pillar, for example, security.
+	//
+	// A pillar is identified by its PillarReviewSummary$PillarId.
+	//
+	// PillarId is a required field
+	PillarId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the question.
+	//
+	// QuestionId is a required field
+	QuestionId *string `min:"1" type:"string" required:"true"`
+
+	// The ID assigned to the workload. This ID is unique within an Amazon Web Services
+	// Region.
+	//
+	// WorkloadId is a required field
+	WorkloadId *string `location:"uri" locationName:"WorkloadId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCheckSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCheckSummariesInput"}
+	if s.ChoiceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChoiceId"))
+	}
+	if s.ChoiceId != nil && len(*s.ChoiceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChoiceId", 1))
+	}
+	if s.LensArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LensArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PillarId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PillarId"))
+	}
+	if s.PillarId != nil && len(*s.PillarId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PillarId", 1))
+	}
+	if s.QuestionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuestionId"))
+	}
+	if s.QuestionId != nil && len(*s.QuestionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuestionId", 1))
+	}
+	if s.WorkloadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadId"))
+	}
+	if s.WorkloadId != nil && len(*s.WorkloadId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChoiceId sets the ChoiceId field's value.
+func (s *ListCheckSummariesInput) SetChoiceId(v string) *ListCheckSummariesInput {
+	s.ChoiceId = &v
+	return s
+}
+
+// SetLensArn sets the LensArn field's value.
+func (s *ListCheckSummariesInput) SetLensArn(v string) *ListCheckSummariesInput {
+	s.LensArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCheckSummariesInput) SetMaxResults(v int64) *ListCheckSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCheckSummariesInput) SetNextToken(v string) *ListCheckSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPillarId sets the PillarId field's value.
+func (s *ListCheckSummariesInput) SetPillarId(v string) *ListCheckSummariesInput {
+	s.PillarId = &v
+	return s
+}
+
+// SetQuestionId sets the QuestionId field's value.
+func (s *ListCheckSummariesInput) SetQuestionId(v string) *ListCheckSummariesInput {
+	s.QuestionId = &v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *ListCheckSummariesInput) SetWorkloadId(v string) *ListCheckSummariesInput {
+	s.WorkloadId = &v
+	return s
+}
+
+type ListCheckSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of Trusted Advisor summaries related to the Well-Architected best practice.
+	CheckSummaries []*CheckSummary `type:"list"`
+
+	// The token to use to retrieve the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCheckSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCheckSummaries sets the CheckSummaries field's value.
+func (s *ListCheckSummariesOutput) SetCheckSummaries(v []*CheckSummary) *ListCheckSummariesOutput {
+	s.CheckSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCheckSummariesOutput) SetNextToken(v string) *ListCheckSummariesOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Input to list lens review improvements.
 type ListLensReviewImprovementsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -9164,7 +10109,8 @@ type ListLensSharesInput struct {
 	// The token to use to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
-	// The Amazon Web Services account ID or IAM role with which the lens is shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the lens is shared.
 	SharedWithPrefix *string `location:"querystring" locationName:"SharedWithPrefix" type:"string"`
 
 	// The status of a workload share.
@@ -9843,8 +10789,8 @@ type ListWorkloadSharesInput struct {
 	// The token to use to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
-	// The Amazon Web Services account ID or IAM role with which the workload is
-	// shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the workload is shared.
 	SharedWithPrefix *string `location:"querystring" locationName:"SharedWithPrefix" type:"string"`
 
 	// The status of a workload share.
@@ -10673,8 +11619,8 @@ type ShareInvitationSummary struct {
 	// An Amazon Web Services account ID.
 	SharedBy *string `type:"string"`
 
-	// The Amazon Web Services account ID or IAM role with which the workload is
-	// shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the workload is shared.
 	SharedWith *string `min:"12" type:"string"`
 
 	// The ID assigned to the workload. This ID is unique within an Amazon Web Services
@@ -11480,7 +12426,7 @@ func (s *UpdateShareInvitationInput) SetShareInvitationId(v string) *UpdateShare
 type UpdateShareInvitationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The updated workload share invitation.
+	// The updated workload or custom lens share invitation.
 	ShareInvitation *ShareInvitation `type:"structure"`
 }
 
@@ -11515,6 +12461,9 @@ type UpdateWorkloadInput struct {
 	// The list of Amazon Web Services account IDs associated with the workload.
 	AccountIds []*string `type:"list"`
 
+	// List of AppRegistry application ARNs to associate to the workload.
+	Applications []*string `type:"list"`
+
 	// The URL of the architectural design for the workload.
 	ArchitecturalDesign *string `type:"string"`
 
@@ -11524,6 +12473,9 @@ type UpdateWorkloadInput struct {
 
 	// The description for the workload.
 	Description *string `min:"3" type:"string"`
+
+	// Well-Architected discovery configuration settings to associate to the workload.
+	DiscoveryConfig *WorkloadDiscoveryConfig `type:"structure"`
 
 	// The environment for the workload.
 	Environment *string `type:"string" enum:"WorkloadEnvironment"`
@@ -11676,6 +12628,12 @@ func (s *UpdateWorkloadInput) SetAccountIds(v []*string) *UpdateWorkloadInput {
 	return s
 }
 
+// SetApplications sets the Applications field's value.
+func (s *UpdateWorkloadInput) SetApplications(v []*string) *UpdateWorkloadInput {
+	s.Applications = v
+	return s
+}
+
 // SetArchitecturalDesign sets the ArchitecturalDesign field's value.
 func (s *UpdateWorkloadInput) SetArchitecturalDesign(v string) *UpdateWorkloadInput {
 	s.ArchitecturalDesign = &v
@@ -11691,6 +12649,12 @@ func (s *UpdateWorkloadInput) SetAwsRegions(v []*string) *UpdateWorkloadInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateWorkloadInput) SetDescription(v string) *UpdateWorkloadInput {
 	s.Description = &v
+	return s
+}
+
+// SetDiscoveryConfig sets the DiscoveryConfig field's value.
+func (s *UpdateWorkloadInput) SetDiscoveryConfig(v *WorkloadDiscoveryConfig) *UpdateWorkloadInput {
+	s.DiscoveryConfig = v
 	return s
 }
 
@@ -12206,6 +13170,9 @@ type Workload struct {
 	// The list of Amazon Web Services account IDs associated with the workload.
 	AccountIds []*string `type:"list"`
 
+	// List of AppRegistry application ARNs associated to the workload.
+	Applications []*string `type:"list"`
+
 	// The URL of the architectural design for the workload.
 	ArchitecturalDesign *string `type:"string"`
 
@@ -12215,6 +13182,9 @@ type Workload struct {
 
 	// The description for the workload.
 	Description *string `min:"3" type:"string"`
+
+	// Discovery configuration associated to the workload.
+	DiscoveryConfig *WorkloadDiscoveryConfig `type:"structure"`
 
 	// The environment for the workload.
 	Environment *string `type:"string" enum:"WorkloadEnvironment"`
@@ -12365,6 +13335,12 @@ func (s *Workload) SetAccountIds(v []*string) *Workload {
 	return s
 }
 
+// SetApplications sets the Applications field's value.
+func (s *Workload) SetApplications(v []*string) *Workload {
+	s.Applications = v
+	return s
+}
+
 // SetArchitecturalDesign sets the ArchitecturalDesign field's value.
 func (s *Workload) SetArchitecturalDesign(v string) *Workload {
 	s.ArchitecturalDesign = &v
@@ -12380,6 +13356,12 @@ func (s *Workload) SetAwsRegions(v []*string) *Workload {
 // SetDescription sets the Description field's value.
 func (s *Workload) SetDescription(v string) *Workload {
 	s.Description = &v
+	return s
+}
+
+// SetDiscoveryConfig sets the DiscoveryConfig field's value.
+func (s *Workload) SetDiscoveryConfig(v *WorkloadDiscoveryConfig) *Workload {
+	s.DiscoveryConfig = v
 	return s
 }
 
@@ -12497,6 +13479,38 @@ func (s *Workload) SetWorkloadName(v string) *Workload {
 	return s
 }
 
+// Discovery configuration associated to the workload.
+type WorkloadDiscoveryConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Discovery integration status in respect to Trusted Advisor for the workload.
+	TrustedAdvisorIntegrationStatus *string `type:"string" enum:"TrustedAdvisorIntegrationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadDiscoveryConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadDiscoveryConfig) GoString() string {
+	return s.String()
+}
+
+// SetTrustedAdvisorIntegrationStatus sets the TrustedAdvisorIntegrationStatus field's value.
+func (s *WorkloadDiscoveryConfig) SetTrustedAdvisorIntegrationStatus(v string) *WorkloadDiscoveryConfig {
+	s.TrustedAdvisorIntegrationStatus = &v
+	return s
+}
+
 // A workload share return object.
 type WorkloadShare struct {
 	_ struct{} `type:"structure"`
@@ -12510,8 +13524,8 @@ type WorkloadShare struct {
 	// An Amazon Web Services account ID.
 	SharedBy *string `type:"string"`
 
-	// The Amazon Web Services account ID or IAM role with which the workload is
-	// shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the workload is shared.
 	SharedWith *string `min:"12" type:"string"`
 
 	// The status of a workload share.
@@ -12598,8 +13612,8 @@ type WorkloadShareSummary struct {
 	// The ID associated with the workload share.
 	ShareId *string `type:"string"`
 
-	// The Amazon Web Services account ID or IAM role with which the workload is
-	// shared.
+	// The Amazon Web Services account ID, IAM role, organization ID, or organizational
+	// unit (OU) ID with which the workload is shared.
 	SharedWith *string `min:"12" type:"string"`
 
 	// The status of a workload share.
@@ -12798,6 +13812,70 @@ func AnswerReason_Values() []string {
 		AnswerReasonArchitectureConstraints,
 		AnswerReasonOther,
 		AnswerReasonNone,
+	}
+}
+
+const (
+	// CheckFailureReasonAssumeRoleError is a CheckFailureReason enum value
+	CheckFailureReasonAssumeRoleError = "ASSUME_ROLE_ERROR"
+
+	// CheckFailureReasonAccessDenied is a CheckFailureReason enum value
+	CheckFailureReasonAccessDenied = "ACCESS_DENIED"
+
+	// CheckFailureReasonUnknownError is a CheckFailureReason enum value
+	CheckFailureReasonUnknownError = "UNKNOWN_ERROR"
+
+	// CheckFailureReasonPremiumSupportRequired is a CheckFailureReason enum value
+	CheckFailureReasonPremiumSupportRequired = "PREMIUM_SUPPORT_REQUIRED"
+)
+
+// CheckFailureReason_Values returns all elements of the CheckFailureReason enum
+func CheckFailureReason_Values() []string {
+	return []string{
+		CheckFailureReasonAssumeRoleError,
+		CheckFailureReasonAccessDenied,
+		CheckFailureReasonUnknownError,
+		CheckFailureReasonPremiumSupportRequired,
+	}
+}
+
+const (
+	// CheckProviderTrustedAdvisor is a CheckProvider enum value
+	CheckProviderTrustedAdvisor = "TRUSTED_ADVISOR"
+)
+
+// CheckProvider_Values returns all elements of the CheckProvider enum
+func CheckProvider_Values() []string {
+	return []string{
+		CheckProviderTrustedAdvisor,
+	}
+}
+
+const (
+	// CheckStatusOkay is a CheckStatus enum value
+	CheckStatusOkay = "OKAY"
+
+	// CheckStatusWarning is a CheckStatus enum value
+	CheckStatusWarning = "WARNING"
+
+	// CheckStatusError is a CheckStatus enum value
+	CheckStatusError = "ERROR"
+
+	// CheckStatusNotAvailable is a CheckStatus enum value
+	CheckStatusNotAvailable = "NOT_AVAILABLE"
+
+	// CheckStatusFetchFailed is a CheckStatus enum value
+	CheckStatusFetchFailed = "FETCH_FAILED"
+)
+
+// CheckStatus_Values returns all elements of the CheckStatus enum
+func CheckStatus_Values() []string {
+	return []string{
+		CheckStatusOkay,
+		CheckStatusWarning,
+		CheckStatusError,
+		CheckStatusNotAvailable,
+		CheckStatusFetchFailed,
 	}
 }
 
@@ -13106,6 +14184,22 @@ func ShareStatus_Values() []string {
 		ShareStatusAssociating,
 		ShareStatusAssociated,
 		ShareStatusFailed,
+	}
+}
+
+const (
+	// TrustedAdvisorIntegrationStatusEnabled is a TrustedAdvisorIntegrationStatus enum value
+	TrustedAdvisorIntegrationStatusEnabled = "ENABLED"
+
+	// TrustedAdvisorIntegrationStatusDisabled is a TrustedAdvisorIntegrationStatus enum value
+	TrustedAdvisorIntegrationStatusDisabled = "DISABLED"
+)
+
+// TrustedAdvisorIntegrationStatus_Values returns all elements of the TrustedAdvisorIntegrationStatus enum
+func TrustedAdvisorIntegrationStatus_Values() []string {
+	return []string{
+		TrustedAdvisorIntegrationStatusEnabled,
+		TrustedAdvisorIntegrationStatusDisabled,
 	}
 }
 
