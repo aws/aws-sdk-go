@@ -15985,6 +15985,16 @@ type WorkspaceProperties struct {
 	// The compute type. For more information, see Amazon WorkSpaces Bundles (http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles).
 	ComputeTypeName *string `type:"string" enum:"Compute"`
 
+	// The protocol. For more information, see Protocols for Amazon WorkSpaces (https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-protocols.html).
+	//
+	//    * Only available for WorkSpaces created with PCoIP bundles.
+	//
+	//    * The Protocols property is case sensitive. Ensure you use PCOIP or WSP.
+	//
+	//    * Unavailable for Windows 7 WorkSpaces and WorkSpaces using GPU-based
+	//    bundles (Graphics, GraphicsPro, Graphics.g4dn, and GraphicsPro.g4dn).
+	Protocols []*string `type:"list" enum:"Protocol"`
+
 	// The size of the root volume. For important information about how to modify
 	// the size of the root and user volumes, see Modify a WorkSpace (https://docs.aws.amazon.com/workspaces/latest/adminguide/modify-workspaces.html).
 	RootVolumeSizeGib *int64 `type:"integer"`
@@ -16027,6 +16037,12 @@ func (s WorkspaceProperties) GoString() string {
 // SetComputeTypeName sets the ComputeTypeName field's value.
 func (s *WorkspaceProperties) SetComputeTypeName(v string) *WorkspaceProperties {
 	s.ComputeTypeName = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *WorkspaceProperties) SetProtocols(v []*string) *WorkspaceProperties {
+	s.Protocols = v
 	return s
 }
 
@@ -16582,6 +16598,22 @@ func OperatingSystemType_Values() []string {
 	return []string{
 		OperatingSystemTypeWindows,
 		OperatingSystemTypeLinux,
+	}
+}
+
+const (
+	// ProtocolPcoip is a Protocol enum value
+	ProtocolPcoip = "PCOIP"
+
+	// ProtocolWsp is a Protocol enum value
+	ProtocolWsp = "WSP"
+)
+
+// Protocol_Values returns all elements of the Protocol enum
+func Protocol_Values() []string {
+	return []string{
+		ProtocolPcoip,
+		ProtocolWsp,
 	}
 }
 

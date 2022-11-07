@@ -5369,9 +5369,8 @@ func (c *ElastiCache) FailoverGlobalReplicationGroupRequest(input *FailoverGloba
 
 // FailoverGlobalReplicationGroup API operation for Amazon ElastiCache.
 //
-// Used to failover the primary region to a selected secondary region. The selected
-// secondary region will become primary, and all other clusters will become
-// secondary.
+// Used to failover the primary region to a secondary region. The secondary
+// region will become primary, and all other clusters will become secondary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8009,7 +8008,7 @@ type CacheCluster struct {
 	// the current generation types provide more memory and computational power
 	// at lower cost when compared to their equivalent previous generation counterparts.
 	//
-	//    * General purpose: Current generation: M6g node types: (available only
+	//    * General purpose: Current generation: M6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
 	//    1.5.16 onward): cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
 	//    cache.m6g.4xlarge, cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge
@@ -8017,7 +8016,7 @@ type CacheCluster struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and for Memcached engine version
+	//    only for Redis engine version 5.0.6 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -8029,11 +8028,6 @@ type CacheCluster struct {
 	//    * Compute optimized: Previous generation: (not recommended. Existing clusters
 	//    are still supported but creation of new clusters is not supported for
 	//    these types.) C1 node types: cache.c1.xlarge
-	//
-	//    * Memory optimized with data tiering: Current generation: R6gd node types
-	//    (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-	//    cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-	//    cache.r6gd.16xlarge
 	//
 	//    * Memory optimized: Current generation: R6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
@@ -8089,8 +8083,18 @@ type CacheCluster struct {
 	// The version of the cache engine that is used in this cluster.
 	EngineVersion *string `type:"string"`
 
+	// The network type associated with the cluster, either ipv4 | ipv6. IPv6 is
+	// supported for workloads using Redis engine version 6.2 onward or Memcached
+	// engine version 1.6.6 on all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
+
 	// Returns the destination, format and type of the logs.
 	LogDeliveryConfigurations []*LogDeliveryConfiguration `locationNameList:"LogDeliveryConfiguration" type:"list"`
+
+	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
+	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
+	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// Describes a notification topic and its status. Notification topics are used
 	// for publishing ElastiCache events to subscribers using Amazon Simple Notification
@@ -8295,9 +8299,21 @@ func (s *CacheCluster) SetEngineVersion(v string) *CacheCluster {
 	return s
 }
 
+// SetIpDiscovery sets the IpDiscovery field's value.
+func (s *CacheCluster) SetIpDiscovery(v string) *CacheCluster {
+	s.IpDiscovery = &v
+	return s
+}
+
 // SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
 func (s *CacheCluster) SetLogDeliveryConfigurations(v []*LogDeliveryConfiguration) *CacheCluster {
 	s.LogDeliveryConfigurations = v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *CacheCluster) SetNetworkType(v string) *CacheCluster {
+	s.NetworkType = &v
 	return s
 }
 
@@ -8452,7 +8468,7 @@ func (s *CacheEngineVersion) SetEngineVersion(v string) *CacheEngineVersion {
 // the current generation types provide more memory and computational power
 // at lower cost when compared to their equivalent previous generation counterparts.
 //
-//   - General purpose: Current generation: M6g node types: (available only
+//   - General purpose: Current generation: M6g node types (available only
 //     for Redis engine version 5.0.6 onward and for Memcached engine version
 //     1.5.16 onward): cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
 //     cache.m6g.4xlarge, cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge
@@ -8460,7 +8476,7 @@ func (s *CacheEngineVersion) SetEngineVersion(v string) *CacheEngineVersion {
 //     M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 //     cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 //     cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-//     only for Redis engine version 5.0.6 onward and for Memcached engine version
+//     only for Redis engine version 5.0.6 onward and Memcached engine version
 //     1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 //     node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 //     cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -8472,11 +8488,6 @@ func (s *CacheEngineVersion) SetEngineVersion(v string) *CacheEngineVersion {
 //   - Compute optimized: Previous generation: (not recommended. Existing clusters
 //     are still supported but creation of new clusters is not supported for
 //     these types.) C1 node types: cache.c1.xlarge
-//
-//   - Memory optimized with data tiering: Current generation: R6gd node types
-//     (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-//     cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-//     cache.r6gd.16xlarge
 //
 //   - Memory optimized: Current generation: R6g node types (available only
 //     for Redis engine version 5.0.6 onward and for Memcached engine version
@@ -9144,6 +9155,11 @@ type CacheSubnetGroup struct {
 	// A list of subnets associated with the cache subnet group.
 	Subnets []*Subnet `locationNameList:"Subnet" type:"list"`
 
+	// Either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads using Redis
+	// engine version 6.2 onward or Memcached engine version 1.6.6 on all instances
+	// built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	SupportedNetworkTypes []*string `type:"list" enum:"NetworkType"`
+
 	// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
 	// group.
 	VpcId *string `type:"string"`
@@ -9188,6 +9204,12 @@ func (s *CacheSubnetGroup) SetCacheSubnetGroupName(v string) *CacheSubnetGroup {
 // SetSubnets sets the Subnets field's value.
 func (s *CacheSubnetGroup) SetSubnets(v []*Subnet) *CacheSubnetGroup {
 	s.Subnets = v
+	return s
+}
+
+// SetSupportedNetworkTypes sets the SupportedNetworkTypes field's value.
+func (s *CacheSubnetGroup) SetSupportedNetworkTypes(v []*string) *CacheSubnetGroup {
+	s.SupportedNetworkTypes = v
 	return s
 }
 
@@ -9688,8 +9710,19 @@ type CreateCacheClusterInput struct {
 	// group and create it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
+	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
+	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
+	// Memcached engine version 1.6.6 on all instances built on the Nitro system
+	// (https://aws.amazon.com/ec2/nitro/).
+	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
+
 	// Specifies the destination, format and type of the logs.
 	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
+
+	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
+	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
+	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic to which notifications are sent.
@@ -9814,8 +9847,8 @@ type CreateCacheClusterInput struct {
 	// in-transit encryption on a cluster you must set TransitEncryptionEnabled
 	// to true when you create a cluster.
 	//
-	// Required: Only available when creating a cache cluster in an Amazon VPC using
-	// Memcached version 1.6.12 or later.
+	// Only available when creating a cache cluster in an Amazon VPC using Memcached
+	// version 1.6.12 or later.
 	TransitEncryptionEnabled *bool `type:"boolean"`
 }
 
@@ -9910,9 +9943,21 @@ func (s *CreateCacheClusterInput) SetEngineVersion(v string) *CreateCacheCluster
 	return s
 }
 
+// SetIpDiscovery sets the IpDiscovery field's value.
+func (s *CreateCacheClusterInput) SetIpDiscovery(v string) *CreateCacheClusterInput {
+	s.IpDiscovery = &v
+	return s
+}
+
 // SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
 func (s *CreateCacheClusterInput) SetLogDeliveryConfigurations(v []*LogDeliveryConfigurationRequest) *CreateCacheClusterInput {
 	s.LogDeliveryConfigurations = v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateCacheClusterInput) SetNetworkType(v string) *CreateCacheClusterInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -10602,11 +10647,6 @@ type CreateReplicationGroupInput struct {
 	//    are still supported but creation of new clusters is not supported for
 	//    these types.) C1 node types: cache.c1.xlarge
 	//
-	//    * Memory optimized with data tiering: Current generation: R6gd node types
-	//    (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-	//    cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-	//    cache.r6gd.16xlarge
-	//
 	//    * Memory optimized: Current generation: R6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
 	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
@@ -10679,6 +10719,12 @@ type CreateReplicationGroupInput struct {
 	// The name of the Global datastore
 	GlobalReplicationGroupId *string `type:"string"`
 
+	// The network type you choose when creating a replication group, either ipv4
+	// | ipv6. IPv6 is supported for workloads using Redis engine version 6.2 onward
+	// or Memcached engine version 1.6.6 on all instances built on the Nitro system
+	// (https://aws.amazon.com/ec2/nitro/).
+	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
+
 	// The ID of the KMS key used to encrypt the disk in the cluster.
 	KmsKeyId *string `type:"string"`
 
@@ -10688,6 +10734,11 @@ type CreateReplicationGroupInput struct {
 	// A flag indicating if you have Multi-AZ enabled to enhance fault tolerance.
 	// For more information, see Minimizing Downtime: Multi-AZ (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html).
 	MultiAZEnabled *bool `type:"boolean"`
+
+	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
+	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
+	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// A list of node group (shard) configuration options. Each node group (shard)
 	// configuration has the following members: PrimaryAvailabilityZone, ReplicaAvailabilityZones,
@@ -10993,6 +11044,12 @@ func (s *CreateReplicationGroupInput) SetGlobalReplicationGroupId(v string) *Cre
 	return s
 }
 
+// SetIpDiscovery sets the IpDiscovery field's value.
+func (s *CreateReplicationGroupInput) SetIpDiscovery(v string) *CreateReplicationGroupInput {
+	s.IpDiscovery = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateReplicationGroupInput) SetKmsKeyId(v string) *CreateReplicationGroupInput {
 	s.KmsKeyId = &v
@@ -11008,6 +11065,12 @@ func (s *CreateReplicationGroupInput) SetLogDeliveryConfigurations(v []*LogDeliv
 // SetMultiAZEnabled sets the MultiAZEnabled field's value.
 func (s *CreateReplicationGroupInput) SetMultiAZEnabled(v bool) *CreateReplicationGroupInput {
 	s.MultiAZEnabled = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateReplicationGroupInput) SetNetworkType(v string) *CreateReplicationGroupInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -14045,7 +14108,7 @@ type DescribeReservedCacheNodesInput struct {
 	// the current generation types provide more memory and computational power
 	// at lower cost when compared to their equivalent previous generation counterparts.
 	//
-	//    * General purpose: Current generation: M6g node types: (available only
+	//    * General purpose: Current generation: M6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
 	//    1.5.16 onward): cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
 	//    cache.m6g.4xlarge, cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge
@@ -14053,7 +14116,7 @@ type DescribeReservedCacheNodesInput struct {
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and for Memcached engine version
+	//    only for Redis engine version 5.0.6 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -14065,11 +14128,6 @@ type DescribeReservedCacheNodesInput struct {
 	//    * Compute optimized: Previous generation: (not recommended. Existing clusters
 	//    are still supported but creation of new clusters is not supported for
 	//    these types.) C1 node types: cache.c1.xlarge
-	//
-	//    * Memory optimized with data tiering: Current generation: R6gd node types
-	//    (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-	//    cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-	//    cache.r6gd.16xlarge
 	//
 	//    * Memory optimized: Current generation: R6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
@@ -14213,15 +14271,15 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	// the current generation types provide more memory and computational power
 	// at lower cost when compared to their equivalent previous generation counterparts.
 	//
-	//    * General purpose: Current generation: M6g node types: (available only
+	//    * General purpose: Current generation: M6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward) cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge, cache.m6g.4xlarge,
-	//    cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge For region availability,
-	//    see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    1.5.16 onward): cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
+	//    cache.m6g.4xlarge, cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge
+	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
 	//    cache.m5.12xlarge, cache.m5.24xlarge M4 node types: cache.m4.large, cache.m4.xlarge,
 	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge T4g node types (available
-	//    only for Redis engine version 5.0.6 onward and for Memcached engine version
+	//    only for Redis engine version 5.0.6 onward and Memcached engine version
 	//    1.5.16 onward): cache.t4g.micro, cache.t4g.small, cache.t4g.medium T3
 	//    node types: cache.t3.micro, cache.t3.small, cache.t3.medium T2 node types:
 	//    cache.t2.micro, cache.t2.small, cache.t2.medium Previous generation: (not
@@ -14233,11 +14291,6 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	//    * Compute optimized: Previous generation: (not recommended. Existing clusters
 	//    are still supported but creation of new clusters is not supported for
 	//    these types.) C1 node types: cache.c1.xlarge
-	//
-	//    * Memory optimized with data tiering: Current generation: R6gd node types
-	//    (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-	//    cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-	//    cache.r6gd.16xlarge
 	//
 	//    * Memory optimized: Current generation: R6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
@@ -16643,6 +16696,12 @@ type ModifyCacheClusterInput struct {
 	// it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
+	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
+	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
+	// Memcached engine version 1.6.6 on all instances built on the Nitro system
+	// (https://aws.amazon.com/ec2/nitro/).
+	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
+
 	// Specifies the destination, format and type of the logs.
 	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
 
@@ -16878,6 +16937,12 @@ func (s *ModifyCacheClusterInput) SetCacheSecurityGroupNames(v []*string) *Modif
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *ModifyCacheClusterInput) SetEngineVersion(v string) *ModifyCacheClusterInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetIpDiscovery sets the IpDiscovery field's value.
+func (s *ModifyCacheClusterInput) SetIpDiscovery(v string) *ModifyCacheClusterInput {
+	s.IpDiscovery = &v
 	return s
 }
 
@@ -17361,6 +17426,12 @@ type ModifyReplicationGroupInput struct {
 	// and create it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
+	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
+	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
+	// Memcached engine version 1.6.6 on all instances built on the Nitro system
+	// (https://aws.amazon.com/ec2/nitro/).
+	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
+
 	// Specifies the destination, format and type of the logs.
 	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
 
@@ -17544,6 +17615,12 @@ func (s *ModifyReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *M
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *ModifyReplicationGroupInput) SetEngineVersion(v string) *ModifyReplicationGroupInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetIpDiscovery sets the IpDiscovery field's value.
+func (s *ModifyReplicationGroupInput) SetIpDiscovery(v string) *ModifyReplicationGroupInput {
+	s.IpDiscovery = &v
 	return s
 }
 
@@ -19658,6 +19735,12 @@ type ReplicationGroup struct {
 	// Global datastore.
 	GlobalReplicationGroupInfo *GlobalReplicationGroupInfo `type:"structure"`
 
+	// The network type you choose when modifying a cluster, either ipv4 | ipv6.
+	// IPv6 is supported for workloads using Redis engine version 6.2 onward or
+	// Memcached engine version 1.6.6 on all instances built on the Nitro system
+	// (https://aws.amazon.com/ec2/nitro/).
+	IpDiscovery *string `type:"string" enum:"IpDiscovery"`
+
 	// The ID of the KMS key used to encrypt the disk in the cluster.
 	KmsKeyId *string `type:"string"`
 
@@ -19673,6 +19756,11 @@ type ReplicationGroup struct {
 	// A flag indicating if you have Multi-AZ enabled to enhance fault tolerance.
 	// For more information, see Minimizing Downtime: Multi-AZ (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html)
 	MultiAZ *string `type:"string" enum:"MultiAZStatus"`
+
+	// Must be either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads
+	// using Redis engine version 6.2 onward or Memcached engine version 1.6.6 on
+	// all instances built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	NetworkType *string `type:"string" enum:"NetworkType"`
 
 	// A list of node groups in this replication group. For Redis (cluster mode
 	// disabled) replication groups, this is a single-element list. For Redis (cluster
@@ -19823,6 +19911,12 @@ func (s *ReplicationGroup) SetGlobalReplicationGroupInfo(v *GlobalReplicationGro
 	return s
 }
 
+// SetIpDiscovery sets the IpDiscovery field's value.
+func (s *ReplicationGroup) SetIpDiscovery(v string) *ReplicationGroup {
+	s.IpDiscovery = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *ReplicationGroup) SetKmsKeyId(v string) *ReplicationGroup {
 	s.KmsKeyId = &v
@@ -19850,6 +19944,12 @@ func (s *ReplicationGroup) SetMemberClustersOutpostArns(v []*string) *Replicatio
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *ReplicationGroup) SetMultiAZ(v string) *ReplicationGroup {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *ReplicationGroup) SetNetworkType(v string) *ReplicationGroup {
+	s.NetworkType = &v
 	return s
 }
 
@@ -20005,7 +20105,7 @@ type ReservedCacheNode struct {
 	// the current generation types provide more memory and computational power
 	// at lower cost when compared to their equivalent previous generation counterparts.
 	//
-	//    * General purpose: Current generation: M6g node types: (available only
+	//    * General purpose: Current generation: M6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
 	//    1.5.16 onward): cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
 	//    cache.m6g.4xlarge, cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge
@@ -20025,11 +20125,6 @@ type ReservedCacheNode struct {
 	//    * Compute optimized: Previous generation: (not recommended. Existing clusters
 	//    are still supported but creation of new clusters is not supported for
 	//    these types.) C1 node types: cache.c1.xlarge
-	//
-	//    * Memory optimized with data tiering: Current generation: R6gd node types
-	//    (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-	//    cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-	//    cache.r6gd.16xlarge
 	//
 	//    * Memory optimized: Current generation: R6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
@@ -20198,7 +20293,7 @@ type ReservedCacheNodesOffering struct {
 	// the current generation types provide more memory and computational power
 	// at lower cost when compared to their equivalent previous generation counterparts.
 	//
-	//    * General purpose: Current generation: M6g node types: (available only
+	//    * General purpose: Current generation: M6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
 	//    1.5.16 onward): cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
 	//    cache.m6g.4xlarge, cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge
@@ -20218,11 +20313,6 @@ type ReservedCacheNodesOffering struct {
 	//    * Compute optimized: Previous generation: (not recommended. Existing clusters
 	//    are still supported but creation of new clusters is not supported for
 	//    these types.) C1 node types: cache.c1.xlarge
-	//
-	//    * Memory optimized with data tiering: Current generation: R6gd node types
-	//    (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-	//    cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-	//    cache.r6gd.16xlarge
 	//
 	//    * Memory optimized: Current generation: R6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
@@ -20851,7 +20941,7 @@ type Snapshot struct {
 	//
 	//    * General purpose: Current generation: M6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
+	//    1.5.16 onward): cache.m6g.large, cache.m6g.xlarge, cache.m6g.2xlarge,
 	//    cache.m6g.4xlarge, cache.m6g.8xlarge, cache.m6g.12xlarge, cache.m6g.16xlarge
 	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    M5 node types: cache.m5.large, cache.m5.xlarge, cache.m5.2xlarge, cache.m5.4xlarge,
@@ -20870,16 +20960,10 @@ type Snapshot struct {
 	//    are still supported but creation of new clusters is not supported for
 	//    these types.) C1 node types: cache.c1.xlarge
 	//
-	//    * Memory optimized with data tiering: Current generation: R6gd node types
-	//    (available only for Redis engine version 6.2 onward). cache.r6gd.xlarge,
-	//    cache.r6gd.2xlarge, cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge,
-	//    cache.r6gd.16xlarge
-	//
 	//    * Memory optimized: Current generation: R6g node types (available only
 	//    for Redis engine version 5.0.6 onward and for Memcached engine version
 	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
 	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
@@ -21302,6 +21386,11 @@ type Subnet struct {
 
 	// The outpost ARN of the subnet.
 	SubnetOutpost *SubnetOutpost `type:"structure"`
+
+	// Either ipv4 | ipv6 | dual_stack. IPv6 is supported for workloads using Redis
+	// engine version 6.2 onward or Memcached engine version 1.6.6 on all instances
+	// built on the Nitro system (https://aws.amazon.com/ec2/nitro/).
+	SupportedNetworkTypes []*string `type:"list" enum:"NetworkType"`
 }
 
 // String returns the string representation.
@@ -21337,6 +21426,12 @@ func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
 // SetSubnetOutpost sets the SubnetOutpost field's value.
 func (s *Subnet) SetSubnetOutpost(v *SubnetOutpost) *Subnet {
 	s.SubnetOutpost = v
+	return s
+}
+
+// SetSupportedNetworkTypes sets the SupportedNetworkTypes field's value.
+func (s *Subnet) SetSupportedNetworkTypes(v []*string) *Subnet {
+	s.SupportedNetworkTypes = v
 	return s
 }
 
@@ -22260,6 +22355,22 @@ func DestinationType_Values() []string {
 }
 
 const (
+	// IpDiscoveryIpv4 is a IpDiscovery enum value
+	IpDiscoveryIpv4 = "ipv4"
+
+	// IpDiscoveryIpv6 is a IpDiscovery enum value
+	IpDiscoveryIpv6 = "ipv6"
+)
+
+// IpDiscovery_Values returns all elements of the IpDiscovery enum
+func IpDiscovery_Values() []string {
+	return []string{
+		IpDiscoveryIpv4,
+		IpDiscoveryIpv6,
+	}
+}
+
+const (
 	// LogDeliveryConfigurationStatusActive is a LogDeliveryConfigurationStatus enum value
 	LogDeliveryConfigurationStatusActive = "active"
 
@@ -22332,6 +22443,26 @@ func MultiAZStatus_Values() []string {
 	return []string{
 		MultiAZStatusEnabled,
 		MultiAZStatusDisabled,
+	}
+}
+
+const (
+	// NetworkTypeIpv4 is a NetworkType enum value
+	NetworkTypeIpv4 = "ipv4"
+
+	// NetworkTypeIpv6 is a NetworkType enum value
+	NetworkTypeIpv6 = "ipv6"
+
+	// NetworkTypeDualStack is a NetworkType enum value
+	NetworkTypeDualStack = "dual_stack"
+)
+
+// NetworkType_Values returns all elements of the NetworkType enum
+func NetworkType_Values() []string {
+	return []string{
+		NetworkTypeIpv4,
+		NetworkTypeIpv6,
+		NetworkTypeDualStack,
 	}
 }
 

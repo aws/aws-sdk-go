@@ -1030,6 +1030,17 @@
       "type":"list",
       "member":{"shape":"Alarm"}
     },
+    "AllowedInstanceType":{
+      "type":"string",
+      "max":30,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\.\\*]+"
+    },
+    "AllowedInstanceTypes":{
+      "type":"list",
+      "member":{"shape":"AllowedInstanceType"},
+      "max":400
+    },
     "AlreadyExistsFault":{
       "type":"structure",
       "members":{
@@ -2099,7 +2110,9 @@
         "AcceleratorCount":{"shape":"AcceleratorCountRequest"},
         "AcceleratorManufacturers":{"shape":"AcceleratorManufacturers"},
         "AcceleratorNames":{"shape":"AcceleratorNames"},
-        "AcceleratorTotalMemoryMiB":{"shape":"AcceleratorTotalMemoryMiBRequest"}
+        "AcceleratorTotalMemoryMiB":{"shape":"AcceleratorTotalMemoryMiBRequest"},
+        "NetworkBandwidthGbps":{"shape":"NetworkBandwidthGbpsRequest"},
+        "AllowedInstanceTypes":{"shape":"AllowedInstanceTypes"}
       }
     },
     "InstanceReusePolicy":{
@@ -2532,6 +2545,13 @@
       }
     },
     "MonitoringEnabled":{"type":"boolean"},
+    "NetworkBandwidthGbpsRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"NullablePositiveDouble"},
+        "Max":{"shape":"NullablePositiveDouble"}
+      }
+    },
     "NetworkInterfaceCountRequest":{
       "type":"structure",
       "members":{

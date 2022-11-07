@@ -2330,6 +2330,17 @@
       "max":2048,
       "min":1
     },
+    "Protocol":{
+      "type":"string",
+      "enum":[
+        "PCOIP",
+        "WSP"
+      ]
+    },
+    "ProtocolList":{
+      "type":"list",
+      "member":{"shape":"Protocol"}
+    },
     "RebootRequest":{
       "type":"structure",
       "required":["WorkspaceId"],
@@ -3024,7 +3035,8 @@
         "RunningModeAutoStopTimeoutInMinutes":{"shape":"RunningModeAutoStopTimeoutInMinutes"},
         "RootVolumeSizeGib":{"shape":"RootVolumeSizeGib"},
         "UserVolumeSizeGib":{"shape":"UserVolumeSizeGib"},
-        "ComputeTypeName":{"shape":"Compute"}
+        "ComputeTypeName":{"shape":"Compute"},
+        "Protocols":{"shape":"ProtocolList"}
       }
     },
     "WorkspaceRequest":{

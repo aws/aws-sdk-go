@@ -2751,6 +2751,10 @@
         "Saturation": {
           "shape": "__integerMin1Max100",
           "locationName": "saturation"
+        },
+        "SdrReferenceWhiteLevel": {
+          "shape": "__integerMin100Max1000",
+          "locationName": "sdrReferenceWhiteLevel"
         }
       }
     },
@@ -2768,7 +2772,9 @@
         "REC_601",
         "REC_709",
         "HDR10",
-        "HLG_2020"
+        "HLG_2020",
+        "P3DCI",
+        "P3D65_SDR"
       ]
     },
     "ColorSpaceConversion": {
@@ -2778,7 +2784,9 @@
         "FORCE_601",
         "FORCE_709",
         "FORCE_HDR10",
-        "FORCE_HLG_2020"
+        "FORCE_HLG_2020",
+        "FORCE_P3DCI",
+        "FORCE_P3D65_SDR"
       ]
     },
     "ColorSpaceUsage": {
@@ -4045,7 +4053,7 @@
           "locationName": "attenuationControl"
         },
         "Bitrate": {
-          "shape": "__integerMin64000Max640000",
+          "shape": "__integerMin32000Max3024000",
           "locationName": "bitrate"
         },
         "BitstreamMode": {
@@ -5844,6 +5852,10 @@
         "InsertableImages": {
           "shape": "__listOfInsertableImage",
           "locationName": "insertableImages"
+        },
+        "SdrReferenceWhiteLevel": {
+          "shape": "__integerMin100Max1000",
+          "locationName": "sdrReferenceWhiteLevel"
         }
       }
     },
@@ -10707,6 +10719,11 @@
       "min": 1000,
       "max": 480000000
     },
+    "__integerMin100Max1000": {
+      "type": "integer",
+      "min": 100,
+      "max": 1000
+    },
     "__integerMin10Max48": {
       "type": "integer",
       "min": 10,
@@ -10856,6 +10873,11 @@
       "type": "integer",
       "min": 32000,
       "max": 192000
+    },
+    "__integerMin32000Max3024000": {
+      "type": "integer",
+      "min": 32000,
+      "max": 3024000
     },
     "__integerMin32000Max384000": {
       "type": "integer",

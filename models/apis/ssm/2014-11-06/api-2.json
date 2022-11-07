@@ -9913,7 +9913,8 @@
         "TargetLocation":{
           "shape":"TargetLocation",
           "box":true
-        }
+        },
+        "TriggeredAlarms":{"shape":"AlarmStateInformationList"}
       }
     },
     "StepExecutionFilter":{
@@ -10060,6 +10061,10 @@
         },
         "ExecutionRoleName":{
           "shape":"ExecutionRoleName",
+          "box":true
+        },
+        "TargetLocationAlarmConfiguration":{
+          "shape":"AlarmConfiguration",
           "box":true
         }
       }
