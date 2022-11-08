@@ -27337,6 +27337,10 @@
         "PartitionNumber":{
           "shape":"Integer",
           "locationName":"partitionNumber"
+        },
+        "GroupId":{
+          "shape":"PlacementGroupId",
+          "locationName":"groupId"
         }
       }
     },
@@ -27350,7 +27354,8 @@
         "Tenancy":{"shape":"Tenancy"},
         "SpreadDomain":{"shape":"String"},
         "HostResourceGroupArn":{"shape":"String"},
-        "PartitionNumber":{"shape":"Integer"}
+        "PartitionNumber":{"shape":"Integer"},
+        "GroupId":{"shape":"PlacementGroupId"}
       }
     },
     "LaunchTemplatePrivateDnsNameOptions":{
@@ -28771,7 +28776,8 @@
           "locationName":"tenancy"
         },
         "PartitionNumber":{"shape":"Integer"},
-        "HostResourceGroupArn":{"shape":"String"}
+        "HostResourceGroupArn":{"shape":"String"},
+        "GroupId":{"shape":"PlacementGroupId"}
       }
     },
     "ModifyInstancePlacementResult":{
@@ -31395,6 +31401,10 @@
         "HostResourceGroupArn":{
           "shape":"String",
           "locationName":"hostResourceGroupArn"
+        },
+        "GroupId":{
+          "shape":"PlacementGroupId",
+          "locationName":"groupId"
         }
       }
     },

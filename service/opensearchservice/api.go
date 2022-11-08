@@ -56,8 +56,9 @@ func (c *OpenSearchService) AcceptInboundConnectionRequest(input *AcceptInboundC
 
 // AcceptInboundConnection API operation for Amazon OpenSearch Service.
 //
-// Allows the remote domain owner to accept an inbound cross-cluster connection
-// request.
+// Allows the destination Amazon OpenSearch Service domain owner to accept an
+// inbound cross-cluster search connection request. For more information, see
+// Cross-cluster search for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -146,10 +147,9 @@ func (c *OpenSearchService) AddTagsRequest(input *AddTagsInput) (req *request.Re
 
 // AddTags API operation for Amazon OpenSearch Service.
 //
-// Attaches tags to an existing domain. Tags are a set of case-sensitive key
-// value pairs. An domain can have up to 10 tags. See Tagging Amazon OpenSearch
-// Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging)
-// for more information.
+// Attaches tags to an existing Amazon OpenSearch Service domain. Tags are a
+// set of case-sensitive key-value pairs. An domain can have up to 10 tags.
+// For more information, see Tagging Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -241,7 +241,8 @@ func (c *OpenSearchService) AssociatePackageRequest(input *AssociatePackageInput
 
 // AssociatePackage API operation for Amazon OpenSearch Service.
 //
-// Associates a package with an Amazon OpenSearch Service domain.
+// Associates a package with an Amazon OpenSearch Service domain. For more information,
+// see Custom packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -298,6 +299,107 @@ func (c *OpenSearchService) AssociatePackageWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opAuthorizeVpcEndpointAccess = "AuthorizeVpcEndpointAccess"
+
+// AuthorizeVpcEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the AuthorizeVpcEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AuthorizeVpcEndpointAccess for more information on using the AuthorizeVpcEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AuthorizeVpcEndpointAccessRequest method.
+//	req, resp := client.AuthorizeVpcEndpointAccessRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AuthorizeVpcEndpointAccess
+func (c *OpenSearchService) AuthorizeVpcEndpointAccessRequest(input *AuthorizeVpcEndpointAccessInput) (req *request.Request, output *AuthorizeVpcEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opAuthorizeVpcEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/authorizeVpcEndpointAccess",
+	}
+
+	if input == nil {
+		input = &AuthorizeVpcEndpointAccessInput{}
+	}
+
+	output = &AuthorizeVpcEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AuthorizeVpcEndpointAccess API operation for Amazon OpenSearch Service.
+//
+// Provides access to an Amazon OpenSearch Service domain through the use of
+// an interface VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation AuthorizeVpcEndpointAccess for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist. Gives
+//     http status code of 400.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - LimitExceededException
+//     An exception for trying to create more than allowed resources or sub-resources.
+//     Gives http status code of 409.
+//
+//   - ValidationException
+//     An exception for missing / invalid input fields. Gives http status code of
+//     400.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/AuthorizeVpcEndpointAccess
+func (c *OpenSearchService) AuthorizeVpcEndpointAccess(input *AuthorizeVpcEndpointAccessInput) (*AuthorizeVpcEndpointAccessOutput, error) {
+	req, out := c.AuthorizeVpcEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// AuthorizeVpcEndpointAccessWithContext is the same as AuthorizeVpcEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AuthorizeVpcEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) AuthorizeVpcEndpointAccessWithContext(ctx aws.Context, input *AuthorizeVpcEndpointAccessInput, opts ...request.Option) (*AuthorizeVpcEndpointAccessOutput, error) {
+	req, out := c.AuthorizeVpcEndpointAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelServiceSoftwareUpdate = "CancelServiceSoftwareUpdate"
 
 // CancelServiceSoftwareUpdateRequest generates a "aws/request.Request" representing the
@@ -343,7 +445,8 @@ func (c *OpenSearchService) CancelServiceSoftwareUpdateRequest(input *CancelServ
 //
 // Cancels a scheduled service software update for an Amazon OpenSearch Service
 // domain. You can only perform this operation before the AutomatedUpdateDate
-// and when the UpdateStatus is in the PENDING_UPDATE state.
+// and when the domain's UpdateStatus is PENDING_UPDATE. For more information,
+// see Service software updates in Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -435,9 +538,8 @@ func (c *OpenSearchService) CreateDomainRequest(input *CreateDomainInput) (req *
 
 // CreateDomain API operation for Amazon OpenSearch Service.
 //
-// Creates a new Amazon OpenSearch Service domain. For more information, see
-// Creating and managing Amazon OpenSearch Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html)
-// in the Amazon OpenSearch Service Developer Guide.
+// Creates an Amazon OpenSearch Service domain. For more information, see Creating
+// and managing Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -541,8 +643,9 @@ func (c *OpenSearchService) CreateOutboundConnectionRequest(input *CreateOutboun
 
 // CreateOutboundConnection API operation for Amazon OpenSearch Service.
 //
-// Creates a new cross-cluster connection from a local OpenSearch domain to
-// a remote OpenSearch domain.
+// Creates a new cross-cluster search connection from a source Amazon OpenSearch
+// Service domain to a destination domain. For more information, see Cross-cluster
+// search for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -635,7 +738,8 @@ func (c *OpenSearchService) CreatePackageRequest(input *CreatePackageInput) (req
 
 // CreatePackage API operation for Amazon OpenSearch Service.
 //
-// Create a package for use with Amazon OpenSearch Service domains.
+// Creates a package for use with Amazon OpenSearch Service domains. For more
+// information, see Custom packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -696,6 +800,106 @@ func (c *OpenSearchService) CreatePackageWithContext(ctx aws.Context, input *Cre
 	return out, req.Send()
 }
 
+const opCreateVpcEndpoint = "CreateVpcEndpoint"
+
+// CreateVpcEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVpcEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVpcEndpoint for more information on using the CreateVpcEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateVpcEndpointRequest method.
+//	req, resp := client.CreateVpcEndpointRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateVpcEndpoint
+func (c *OpenSearchService) CreateVpcEndpointRequest(input *CreateVpcEndpointInput) (req *request.Request, output *CreateVpcEndpointOutput) {
+	op := &request.Operation{
+		Name:       opCreateVpcEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2021-01-01/opensearch/vpcEndpoints",
+	}
+
+	if input == nil {
+		input = &CreateVpcEndpointInput{}
+	}
+
+	output = &CreateVpcEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVpcEndpoint API operation for Amazon OpenSearch Service.
+//
+// Creates an Amazon OpenSearch Service-managed VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation CreateVpcEndpoint for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     An error occurred because the client attempts to remove a resource that is
+//     currently in use. Returns HTTP status code 409.
+//
+//   - ValidationException
+//     An exception for missing / invalid input fields. Gives http status code of
+//     400.
+//
+//   - LimitExceededException
+//     An exception for trying to create more than allowed resources or sub-resources.
+//     Gives http status code of 409.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CreateVpcEndpoint
+func (c *OpenSearchService) CreateVpcEndpoint(input *CreateVpcEndpointInput) (*CreateVpcEndpointOutput, error) {
+	req, out := c.CreateVpcEndpointRequest(input)
+	return out, req.Send()
+}
+
+// CreateVpcEndpointWithContext is the same as CreateVpcEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVpcEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) CreateVpcEndpointWithContext(ctx aws.Context, input *CreateVpcEndpointInput, opts ...request.Option) (*CreateVpcEndpointOutput, error) {
+	req, out := c.CreateVpcEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDomain = "DeleteDomain"
 
 // DeleteDomainRequest generates a "aws/request.Request" representing the
@@ -739,8 +943,8 @@ func (c *OpenSearchService) DeleteDomainRequest(input *DeleteDomainInput) (req *
 
 // DeleteDomain API operation for Amazon OpenSearch Service.
 //
-// Permanently deletes the specified domain and all of its data. Once a domain
-// is deleted, it cannot be recovered.
+// Deletes an Amazon OpenSearch Service domain and all of its data. You can't
+// recover a domain after you delete it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -832,8 +1036,9 @@ func (c *OpenSearchService) DeleteInboundConnectionRequest(input *DeleteInboundC
 
 // DeleteInboundConnection API operation for Amazon OpenSearch Service.
 //
-// Allows the remote domain owner to delete an existing inbound cross-cluster
-// connection.
+// Allows the destination Amazon OpenSearch Service domain owner to delete an
+// existing inbound cross-cluster search connection. For more information, see
+// Cross-cluster search for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -917,8 +1122,9 @@ func (c *OpenSearchService) DeleteOutboundConnectionRequest(input *DeleteOutboun
 
 // DeleteOutboundConnection API operation for Amazon OpenSearch Service.
 //
-// Allows the local domain owner to delete an existing outbound cross-cluster
-// connection.
+// Allows the source Amazon OpenSearch Service domain owner to delete an existing
+// outbound cross-cluster search connection. For more information, see Cross-cluster
+// search for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1002,7 +1208,8 @@ func (c *OpenSearchService) DeletePackageRequest(input *DeletePackageInput) (req
 
 // DeletePackage API operation for Amazon OpenSearch Service.
 //
-// Deletes the package.
+// Deletes an Amazon OpenSearch Service package. For more information, see Custom
+// packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1059,6 +1266,98 @@ func (c *OpenSearchService) DeletePackageWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
+const opDeleteVpcEndpoint = "DeleteVpcEndpoint"
+
+// DeleteVpcEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVpcEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVpcEndpoint for more information on using the DeleteVpcEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteVpcEndpointRequest method.
+//	req, resp := client.DeleteVpcEndpointRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteVpcEndpoint
+func (c *OpenSearchService) DeleteVpcEndpointRequest(input *DeleteVpcEndpointInput) (req *request.Request, output *DeleteVpcEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVpcEndpoint,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2021-01-01/opensearch/vpcEndpoints/{VpcEndpointId}",
+	}
+
+	if input == nil {
+		input = &DeleteVpcEndpointInput{}
+	}
+
+	output = &DeleteVpcEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVpcEndpoint API operation for Amazon OpenSearch Service.
+//
+// Deletes an Amazon OpenSearch Service-managed interface VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation DeleteVpcEndpoint for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist. Gives
+//     http status code of 400.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DeleteVpcEndpoint
+func (c *OpenSearchService) DeleteVpcEndpoint(input *DeleteVpcEndpointInput) (*DeleteVpcEndpointOutput, error) {
+	req, out := c.DeleteVpcEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVpcEndpointWithContext is the same as DeleteVpcEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVpcEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) DeleteVpcEndpointWithContext(ctx aws.Context, input *DeleteVpcEndpointInput, opts ...request.Option) (*DeleteVpcEndpointOutput, error) {
+	req, out := c.DeleteVpcEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDomain = "DescribeDomain"
 
 // DescribeDomainRequest generates a "aws/request.Request" representing the
@@ -1102,8 +1401,8 @@ func (c *OpenSearchService) DescribeDomainRequest(input *DescribeDomainInput) (r
 
 // DescribeDomain API operation for Amazon OpenSearch Service.
 //
-// Returns domain configuration information about the specified domain, including
-// the domain ID, domain endpoint, and domain ARN.
+// Describes the domain configuration for the specified Amazon OpenSearch Service
+// domain, including the domain ID, domain service endpoint, and domain ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1201,8 +1500,9 @@ func (c *OpenSearchService) DescribeDomainAutoTunesRequest(input *DescribeDomain
 
 // DescribeDomainAutoTunes API operation for Amazon OpenSearch Service.
 //
-// Provides scheduled Auto-Tune action details for the domain, such as Auto-Tune
-// action type, description, severity, and scheduled date.
+// Returns the list of optimizations that Auto-Tune has made to an Amazon OpenSearch
+// Service domain. For more information, see Auto-Tune for Amazon OpenSearch
+// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1346,7 +1646,8 @@ func (c *OpenSearchService) DescribeDomainChangeProgressRequest(input *DescribeD
 // DescribeDomainChangeProgress API operation for Amazon OpenSearch Service.
 //
 // Returns information about the current blue/green deployment happening on
-// a domain, including a change ID, status, and progress stages.
+// an Amazon OpenSearch Service domain. For more information, see Making configuration
+// changes in Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-configuration-changes.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1438,9 +1739,7 @@ func (c *OpenSearchService) DescribeDomainConfigRequest(input *DescribeDomainCon
 
 // DescribeDomainConfig API operation for Amazon OpenSearch Service.
 //
-// Provides cluster configuration information about the specified domain, such
-// as the state, creation date, update version, and update date for cluster
-// options.
+// Returns the configuration of an Amazon OpenSearch Service domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1532,8 +1831,8 @@ func (c *OpenSearchService) DescribeDomainsRequest(input *DescribeDomainsInput) 
 
 // DescribeDomains API operation for Amazon OpenSearch Service.
 //
-// Returns domain configuration information about the specified domains, including
-// the domain ID, domain endpoint, and domain ARN.
+// Returns domain configuration information about the specified Amazon OpenSearch
+// Service domains.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1627,7 +1926,9 @@ func (c *OpenSearchService) DescribeInboundConnectionsRequest(input *DescribeInb
 
 // DescribeInboundConnections API operation for Amazon OpenSearch Service.
 //
-// Lists all the inbound cross-cluster connections for a remote domain.
+// Lists all the inbound cross-cluster search connections for a destination
+// (remote) Amazon OpenSearch Service domain. For more information, see Cross-cluster
+// search for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1762,9 +2063,8 @@ func (c *OpenSearchService) DescribeInstanceTypeLimitsRequest(input *DescribeIns
 
 // DescribeInstanceTypeLimits API operation for Amazon OpenSearch Service.
 //
-// Describe the limits for a given instance type and OpenSearch or Elasticsearch
-// version. When modifying an existing domain, specify the DomainName to see
-// which limits you can modify.
+// Describes the instance count, storage, and master node limits for a given
+// OpenSearch or Elasticsearch version and instance type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1870,7 +2170,9 @@ func (c *OpenSearchService) DescribeOutboundConnectionsRequest(input *DescribeOu
 
 // DescribeOutboundConnections API operation for Amazon OpenSearch Service.
 //
-// Lists all the outbound cross-cluster connections for a local domain.
+// Lists all the outbound cross-cluster connections for a local (source) Amazon
+// OpenSearch Service domain. For more information, see Cross-cluster search
+// for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2011,8 +2313,8 @@ func (c *OpenSearchService) DescribePackagesRequest(input *DescribePackagesInput
 
 // DescribePackages API operation for Amazon OpenSearch Service.
 //
-// Describes all packages available to Amazon OpenSearch Service domains. Includes
-// options for filtering, limiting the number of results, and pagination.
+// Describes all packages available to OpenSearch Service. For more information,
+// see Custom packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2165,7 +2467,9 @@ func (c *OpenSearchService) DescribeReservedInstanceOfferingsRequest(input *Desc
 
 // DescribeReservedInstanceOfferings API operation for Amazon OpenSearch Service.
 //
-// Lists available reserved OpenSearch instance offerings.
+// Describes the available Amazon OpenSearch Service Reserved Instance offerings
+// for a given Region. For more information, see Reserved Instances in Amazon
+// OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ri.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2315,7 +2619,9 @@ func (c *OpenSearchService) DescribeReservedInstancesRequest(input *DescribeRese
 
 // DescribeReservedInstances API operation for Amazon OpenSearch Service.
 //
-// Returns information about reserved OpenSearch instances for this account.
+// Describes the Amazon OpenSearch Service instances that you have reserved
+// in a given Region. For more information, see Reserved Instances in Amazon
+// OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ri.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2416,6 +2722,98 @@ func (c *OpenSearchService) DescribeReservedInstancesPagesWithContext(ctx aws.Co
 	return p.Err()
 }
 
+const opDescribeVpcEndpoints = "DescribeVpcEndpoints"
+
+// DescribeVpcEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVpcEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVpcEndpoints for more information on using the DescribeVpcEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeVpcEndpointsRequest method.
+//	req, resp := client.DescribeVpcEndpointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeVpcEndpoints
+func (c *OpenSearchService) DescribeVpcEndpointsRequest(input *DescribeVpcEndpointsInput) (req *request.Request, output *DescribeVpcEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVpcEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2021-01-01/opensearch/vpcEndpoints/describe",
+	}
+
+	if input == nil {
+		input = &DescribeVpcEndpointsInput{}
+	}
+
+	output = &DescribeVpcEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVpcEndpoints API operation for Amazon OpenSearch Service.
+//
+// Describes one or more Amazon OpenSearch Service-managed VPC endpoints.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation DescribeVpcEndpoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     An exception for missing / invalid input fields. Gives http status code of
+//     400.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/DescribeVpcEndpoints
+func (c *OpenSearchService) DescribeVpcEndpoints(input *DescribeVpcEndpointsInput) (*DescribeVpcEndpointsOutput, error) {
+	req, out := c.DescribeVpcEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVpcEndpointsWithContext is the same as DescribeVpcEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVpcEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) DescribeVpcEndpointsWithContext(ctx aws.Context, input *DescribeVpcEndpointsInput, opts ...request.Option) (*DescribeVpcEndpointsOutput, error) {
+	req, out := c.DescribeVpcEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDissociatePackage = "DissociatePackage"
 
 // DissociatePackageRequest generates a "aws/request.Request" representing the
@@ -2459,7 +2857,11 @@ func (c *OpenSearchService) DissociatePackageRequest(input *DissociatePackageInp
 
 // DissociatePackage API operation for Amazon OpenSearch Service.
 //
-// Dissociates a package from the Amazon OpenSearch Service domain.
+// Removes a package from the specified Amazon OpenSearch Service domain. The
+// package can't be in use with any OpenSearch index for the dissociation to
+// succeed. The package is still available in OpenSearch Service for association
+// later. For more information, see Custom packages for Amazon OpenSearch Service
+// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2559,9 +2961,8 @@ func (c *OpenSearchService) GetCompatibleVersionsRequest(input *GetCompatibleVer
 
 // GetCompatibleVersions API operation for Amazon OpenSearch Service.
 //
-// Returns a list of upgrade-compatible versions of OpenSearch/Elasticsearch.
-// You can optionally pass a DomainName to get all upgrade-compatible versions
-// of OpenSearch/Elasticsearch for that specific domain.
+// Returns a map of OpenSearch or Elasticsearch versions and the versions you
+// can upgrade them to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2663,8 +3064,9 @@ func (c *OpenSearchService) GetPackageVersionHistoryRequest(input *GetPackageVer
 
 // GetPackageVersionHistory API operation for Amazon OpenSearch Service.
 //
-// Returns a list of package versions, along with their creation time and commit
-// message.
+// Returns a list of Amazon OpenSearch Service package versions, along with
+// their creation time and commit message. For more information, see Custom
+// packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2817,7 +3219,8 @@ func (c *OpenSearchService) GetUpgradeHistoryRequest(input *GetUpgradeHistoryInp
 
 // GetUpgradeHistory API operation for Amazon OpenSearch Service.
 //
-// Retrieves the complete history of the last 10 upgrades performed on the domain.
+// Retrieves the complete history of the last 10 upgrades performed on an Amazon
+// OpenSearch Service domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2964,8 +3367,8 @@ func (c *OpenSearchService) GetUpgradeStatusRequest(input *GetUpgradeStatusInput
 
 // GetUpgradeStatus API operation for Amazon OpenSearch Service.
 //
-// Retrieves the latest status of the last upgrade or upgrade eligibility check
-// performed on the domain.
+// Returns the most recent status of the last upgrade or upgrade eligibility
+// check performed on an Amazon OpenSearch Service domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3061,7 +3464,8 @@ func (c *OpenSearchService) ListDomainNamesRequest(input *ListDomainNamesInput) 
 
 // ListDomainNames API operation for Amazon OpenSearch Service.
 //
-// Returns the names of all domains owned by the current user's account.
+// Returns the names of all Amazon OpenSearch Service domains owned by the current
+// user in the active Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3150,7 +3554,8 @@ func (c *OpenSearchService) ListDomainsForPackageRequest(input *ListDomainsForPa
 
 // ListDomainsForPackage API operation for Amazon OpenSearch Service.
 //
-// Lists all Amazon OpenSearch Service domains associated with the package.
+// Lists all Amazon OpenSearch Service domains associated with a given package.
+// For more information, see Custom packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3303,6 +3708,9 @@ func (c *OpenSearchService) ListInstanceTypeDetailsRequest(input *ListInstanceTy
 
 // ListInstanceTypeDetails API operation for Amazon OpenSearch Service.
 //
+// Lists all instance types and available features for a given OpenSearch or
+// Elasticsearch version.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3450,7 +3858,8 @@ func (c *OpenSearchService) ListPackagesForDomainRequest(input *ListPackagesForD
 
 // ListPackagesForDomain API operation for Amazon OpenSearch Service.
 //
-// Lists all packages associated with the Amazon OpenSearch Service domain.
+// Lists all packages associated with an Amazon OpenSearch Service domain. For
+// more information, see Custom packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3597,7 +4006,8 @@ func (c *OpenSearchService) ListTagsRequest(input *ListTagsInput) (req *request.
 
 // ListTags API operation for Amazon OpenSearch Service.
 //
-// Returns all tags for the given domain.
+// Returns all resource tags for an Amazon OpenSearch Service domain. For more
+// information, see Tagging Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3695,7 +4105,8 @@ func (c *OpenSearchService) ListVersionsRequest(input *ListVersionsInput) (req *
 
 // ListVersions API operation for Amazon OpenSearch Service.
 //
-// List all supported versions of OpenSearch and Elasticsearch.
+// Lists all versions of OpenSearch and Elasticsearch that Amazon OpenSearch
+// Service supports.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3795,6 +4206,282 @@ func (c *OpenSearchService) ListVersionsPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opListVpcEndpointAccess = "ListVpcEndpointAccess"
+
+// ListVpcEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the ListVpcEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVpcEndpointAccess for more information on using the ListVpcEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVpcEndpointAccessRequest method.
+//	req, resp := client.ListVpcEndpointAccessRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVpcEndpointAccess
+func (c *OpenSearchService) ListVpcEndpointAccessRequest(input *ListVpcEndpointAccessInput) (req *request.Request, output *ListVpcEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opListVpcEndpointAccess,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/listVpcEndpointAccess",
+	}
+
+	if input == nil {
+		input = &ListVpcEndpointAccessInput{}
+	}
+
+	output = &ListVpcEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVpcEndpointAccess API operation for Amazon OpenSearch Service.
+//
+// Retrieves information about each Amazon Web Services principal that is allowed
+// to access a given Amazon OpenSearch Service domain through the use of an
+// interface VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation ListVpcEndpointAccess for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist. Gives
+//     http status code of 400.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVpcEndpointAccess
+func (c *OpenSearchService) ListVpcEndpointAccess(input *ListVpcEndpointAccessInput) (*ListVpcEndpointAccessOutput, error) {
+	req, out := c.ListVpcEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// ListVpcEndpointAccessWithContext is the same as ListVpcEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVpcEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) ListVpcEndpointAccessWithContext(ctx aws.Context, input *ListVpcEndpointAccessInput, opts ...request.Option) (*ListVpcEndpointAccessOutput, error) {
+	req, out := c.ListVpcEndpointAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListVpcEndpoints = "ListVpcEndpoints"
+
+// ListVpcEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVpcEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVpcEndpoints for more information on using the ListVpcEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVpcEndpointsRequest method.
+//	req, resp := client.ListVpcEndpointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVpcEndpoints
+func (c *OpenSearchService) ListVpcEndpointsRequest(input *ListVpcEndpointsInput) (req *request.Request, output *ListVpcEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opListVpcEndpoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-01-01/opensearch/vpcEndpoints",
+	}
+
+	if input == nil {
+		input = &ListVpcEndpointsInput{}
+	}
+
+	output = &ListVpcEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVpcEndpoints API operation for Amazon OpenSearch Service.
+//
+// Retrieves all Amazon OpenSearch Service-managed VPC endpoints in the current
+// Amazon Web Services account and Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation ListVpcEndpoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVpcEndpoints
+func (c *OpenSearchService) ListVpcEndpoints(input *ListVpcEndpointsInput) (*ListVpcEndpointsOutput, error) {
+	req, out := c.ListVpcEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// ListVpcEndpointsWithContext is the same as ListVpcEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVpcEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) ListVpcEndpointsWithContext(ctx aws.Context, input *ListVpcEndpointsInput, opts ...request.Option) (*ListVpcEndpointsOutput, error) {
+	req, out := c.ListVpcEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListVpcEndpointsForDomain = "ListVpcEndpointsForDomain"
+
+// ListVpcEndpointsForDomainRequest generates a "aws/request.Request" representing the
+// client's request for the ListVpcEndpointsForDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVpcEndpointsForDomain for more information on using the ListVpcEndpointsForDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListVpcEndpointsForDomainRequest method.
+//	req, resp := client.ListVpcEndpointsForDomainRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVpcEndpointsForDomain
+func (c *OpenSearchService) ListVpcEndpointsForDomainRequest(input *ListVpcEndpointsForDomainInput) (req *request.Request, output *ListVpcEndpointsForDomainOutput) {
+	op := &request.Operation{
+		Name:       opListVpcEndpointsForDomain,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/vpcEndpoints",
+	}
+
+	if input == nil {
+		input = &ListVpcEndpointsForDomainInput{}
+	}
+
+	output = &ListVpcEndpointsForDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVpcEndpointsForDomain API operation for Amazon OpenSearch Service.
+//
+// Retrieves all Amazon OpenSearch Service-managed VPC endpoints associated
+// with a particular domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation ListVpcEndpointsForDomain for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist. Gives
+//     http status code of 400.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/ListVpcEndpointsForDomain
+func (c *OpenSearchService) ListVpcEndpointsForDomain(input *ListVpcEndpointsForDomainInput) (*ListVpcEndpointsForDomainOutput, error) {
+	req, out := c.ListVpcEndpointsForDomainRequest(input)
+	return out, req.Send()
+}
+
+// ListVpcEndpointsForDomainWithContext is the same as ListVpcEndpointsForDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVpcEndpointsForDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) ListVpcEndpointsForDomainWithContext(ctx aws.Context, input *ListVpcEndpointsForDomainInput, opts ...request.Option) (*ListVpcEndpointsForDomainOutput, error) {
+	req, out := c.ListVpcEndpointsForDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPurchaseReservedInstanceOffering = "PurchaseReservedInstanceOffering"
 
 // PurchaseReservedInstanceOfferingRequest generates a "aws/request.Request" representing the
@@ -3838,7 +4525,7 @@ func (c *OpenSearchService) PurchaseReservedInstanceOfferingRequest(input *Purch
 
 // PurchaseReservedInstanceOffering API operation for Amazon OpenSearch Service.
 //
-// Allows you to purchase reserved OpenSearch instances.
+// Allows you to purchase Amazon OpenSearch Service Reserved Instances.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3939,8 +4626,8 @@ func (c *OpenSearchService) RejectInboundConnectionRequest(input *RejectInboundC
 
 // RejectInboundConnection API operation for Amazon OpenSearch Service.
 //
-// Allows the remote domain owner to reject an inbound cross-cluster connection
-// request.
+// Allows the remote Amazon OpenSearch Service domain owner to reject an inbound
+// cross-cluster connection request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4025,7 +4712,8 @@ func (c *OpenSearchService) RemoveTagsRequest(input *RemoveTagsInput) (req *requ
 
 // RemoveTags API operation for Amazon OpenSearch Service.
 //
-// Removes the specified set of tags from the given domain.
+// Removes the specified set of tags from an Amazon OpenSearch Service domain.
+// For more information, see Tagging Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-awsresorcetagging).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4065,6 +4753,104 @@ func (c *OpenSearchService) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutpu
 // for more information on using Contexts.
 func (c *OpenSearchService) RemoveTagsWithContext(ctx aws.Context, input *RemoveTagsInput, opts ...request.Option) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRevokeVpcEndpointAccess = "RevokeVpcEndpointAccess"
+
+// RevokeVpcEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeVpcEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RevokeVpcEndpointAccess for more information on using the RevokeVpcEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RevokeVpcEndpointAccessRequest method.
+//	req, resp := client.RevokeVpcEndpointAccessRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/RevokeVpcEndpointAccess
+func (c *OpenSearchService) RevokeVpcEndpointAccessRequest(input *RevokeVpcEndpointAccessInput) (req *request.Request, output *RevokeVpcEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opRevokeVpcEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/revokeVpcEndpointAccess",
+	}
+
+	if input == nil {
+		input = &RevokeVpcEndpointAccessInput{}
+	}
+
+	output = &RevokeVpcEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RevokeVpcEndpointAccess API operation for Amazon OpenSearch Service.
+//
+// Revokes access to an Amazon OpenSearch Service domain that was provided through
+// an interface VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation RevokeVpcEndpointAccess for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist. Gives
+//     http status code of 400.
+//
+//   - ValidationException
+//     An exception for missing / invalid input fields. Gives http status code of
+//     400.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/RevokeVpcEndpointAccess
+func (c *OpenSearchService) RevokeVpcEndpointAccess(input *RevokeVpcEndpointAccessInput) (*RevokeVpcEndpointAccessOutput, error) {
+	req, out := c.RevokeVpcEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// RevokeVpcEndpointAccessWithContext is the same as RevokeVpcEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RevokeVpcEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) RevokeVpcEndpointAccessWithContext(ctx aws.Context, input *RevokeVpcEndpointAccessInput, opts ...request.Option) (*RevokeVpcEndpointAccessOutput, error) {
+	req, out := c.RevokeVpcEndpointAccessRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4114,6 +4900,8 @@ func (c *OpenSearchService) StartServiceSoftwareUpdateRequest(input *StartServic
 // StartServiceSoftwareUpdate API operation for Amazon OpenSearch Service.
 //
 // Schedules a service software update for an Amazon OpenSearch Service domain.
+// For more information, see Service software updates in Amazon OpenSearch Service
+// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4205,8 +4993,8 @@ func (c *OpenSearchService) UpdateDomainConfigRequest(input *UpdateDomainConfigI
 
 // UpdateDomainConfig API operation for Amazon OpenSearch Service.
 //
-// Modifies the cluster configuration of the specified domain, such as setting
-// the instance type and the number of instances.
+// Modifies the cluster configuration of the specified Amazon OpenSearch Service
+// domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4306,7 +5094,8 @@ func (c *OpenSearchService) UpdatePackageRequest(input *UpdatePackageInput) (req
 
 // UpdatePackage API operation for Amazon OpenSearch Service.
 //
-// Updates a package for use with Amazon OpenSearch Service domains.
+// Updates a package for use with Amazon OpenSearch Service domains. For more
+// information, see Custom packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4363,6 +5152,106 @@ func (c *OpenSearchService) UpdatePackageWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
+const opUpdateVpcEndpoint = "UpdateVpcEndpoint"
+
+// UpdateVpcEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVpcEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVpcEndpoint for more information on using the UpdateVpcEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateVpcEndpointRequest method.
+//	req, resp := client.UpdateVpcEndpointRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateVpcEndpoint
+func (c *OpenSearchService) UpdateVpcEndpointRequest(input *UpdateVpcEndpointInput) (req *request.Request, output *UpdateVpcEndpointOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVpcEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2021-01-01/opensearch/vpcEndpoints/update",
+	}
+
+	if input == nil {
+		input = &UpdateVpcEndpointInput{}
+	}
+
+	output = &UpdateVpcEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVpcEndpoint API operation for Amazon OpenSearch Service.
+//
+// Modifies an Amazon OpenSearch Service-managed interface VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation UpdateVpcEndpoint for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that does not exist. Gives
+//     http status code of 400.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access a not supported operation.
+//     Gives http status code of 409.
+//
+//   - InternalException
+//     The request processing has failed because of an unknown error, exception
+//     or failure (the failure is internal to the service) . Gives http status code
+//     of 500.
+//
+//   - ValidationException
+//     An exception for missing / invalid input fields. Gives http status code of
+//     400.
+//
+//   - ConflictException
+//     An error occurred because the client attempts to remove a resource that is
+//     currently in use. Returns HTTP status code 409.
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/UpdateVpcEndpoint
+func (c *OpenSearchService) UpdateVpcEndpoint(input *UpdateVpcEndpointInput) (*UpdateVpcEndpointOutput, error) {
+	req, out := c.UpdateVpcEndpointRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVpcEndpointWithContext is the same as UpdateVpcEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVpcEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) UpdateVpcEndpointWithContext(ctx aws.Context, input *UpdateVpcEndpointInput, opts ...request.Option) (*UpdateVpcEndpointOutput, error) {
+	req, out := c.UpdateVpcEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpgradeDomain = "UpgradeDomain"
 
 // UpgradeDomainRequest generates a "aws/request.Request" representing the
@@ -4406,8 +5295,8 @@ func (c *OpenSearchService) UpgradeDomainRequest(input *UpgradeDomainInput) (req
 
 // UpgradeDomain API operation for Amazon OpenSearch Service.
 //
-// Allows you to either upgrade your domain or perform an upgrade eligibility
-// check to a compatible version of OpenSearch or Elasticsearch.
+// Allows you to either upgrade your Amazon OpenSearch Service domain or perform
+// an upgrade eligibility check to a compatible version of OpenSearch or Elasticsearch.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4464,18 +5353,19 @@ func (c *OpenSearchService) UpgradeDomainWithContext(ctx aws.Context, input *Upg
 	return out, req.Send()
 }
 
+// Information about an Amazon OpenSearch Service domain.
 type AWSDomainInformation struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// Name of the domain.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
+	// The Amazon Web Services account ID of the domain owner.
 	OwnerId *string `min:"12" type:"string"`
 
+	// The Amazon Web Services Region in which the domain is located.
 	Region *string `min:"5" type:"string"`
 }
 
@@ -4541,7 +5431,7 @@ func (s *AWSDomainInformation) SetRegion(v string) *AWSDomainInformation {
 type AcceptInboundConnectionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the inbound connection you want to accept.
+	// The ID of the inbound connection to accept.
 	//
 	// ConnectionId is a required field
 	ConnectionId *string `location:"uri" locationName:"ConnectionId" min:"10" type:"string" required:"true"`
@@ -4587,12 +5477,11 @@ func (s *AcceptInboundConnectionInput) SetConnectionId(v string) *AcceptInboundC
 	return s
 }
 
-// The result of an AcceptInboundConnection operation. Contains details about
-// the accepted inbound connection.
+// Contains details about the accepted inbound connection.
 type AcceptInboundConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The InboundConnection of the accepted inbound connection.
+	// Information about the accepted inbound connection.
 	Connection *InboundConnection `type:"structure"`
 }
 
@@ -4685,20 +5574,19 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The configured access rules for the domain's document and search endpoints,
-// and the current status of those rules.
+// The configured access rules for the domain's search endpoint, and the current
+// status of those rules.
 type AccessPoliciesStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The access policy configured for the domain. Access policies can be resource-based,
-	// IP-based, or IAM-based. See Configuring access policies (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-access-policies)for
-	// more information.
+	// IP-based, or IAM-based. For more information, see Configuring access policies
+	// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-access-policies).
 	//
 	// Options is a required field
 	Options *string `type:"string" required:"true"`
 
-	// The status of the access policy for the domain. See OptionStatus for the
-	// status information that's included.
+	// The status of the access policy for the domain.
 	//
 	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
@@ -4739,12 +5627,13 @@ func (s *AccessPoliciesStatus) SetStatus(v *OptionStatus) *AccessPoliciesStatus 
 type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specify the ARN of the domain you want to add tags to.
+	// Amazon Resource Name (ARN) for the OpenSearch Service domain to which you
+	// want to attach resource tags.
 	//
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// List of Tag to add to the domain.
+	// List of resource tags.
 	//
 	// TagList is a required field
 	TagList []*Tag `type:"list" required:"true"`
@@ -4831,19 +5720,20 @@ func (s AddTagsOutput) GoString() string {
 	return s.String()
 }
 
-// List of limits that are specific to a given InstanceType and for each of
-// its InstanceRole .
+// List of limits that are specific to a given instance type.
 type AdditionalLimit struct {
 	_ struct{} `type:"structure"`
 
-	// Additional limit is specific to a given InstanceType and for each of its
-	// InstanceRole etc. Attributes and their details:
-	//    * MaximumNumberOfDataNodesSupported
+	//    * MaximumNumberOfDataNodesSupported - This attribute only applies to master
+	//    nodes and specifies the maximum number of data nodes of a given instance
+	//    type a master node can support.
 	//
-	//    * MaximumNumberOfDataNodesWithoutMasterNode
+	//    * MaximumNumberOfDataNodesWithoutMasterNode - This attribute only applies
+	//    to data nodes and specifies the maximum number of data nodes of a given
+	//    instance type can exist without a master node governing them.
 	LimitName *string `type:"string"`
 
-	// Value for a given AdditionalLimit$LimitName .
+	// The values of the additional instance type limits.
 	LimitValues []*string `type:"list"`
 }
 
@@ -4877,17 +5767,31 @@ func (s *AdditionalLimit) SetLimitValues(v []*string) *AdditionalLimit {
 	return s
 }
 
-// Status of the advanced options for the specified domain. Currently, the following
-// advanced options are available:
+// Status of the advanced options for the specified domain. The following options
+// are available:
 //
-//   - Option to allow references to indices in an HTTP request body. Must
-//     be false when configuring access to individual sub-resources. By default,
-//     the value is true. See Advanced cluster parameters for more information.
+//   - "rest.action.multi.allow_explicit_index": "true" | "false" - Note the
+//     use of a string rather than a boolean. Specifies whether explicit references
+//     to indexes are allowed inside the body of HTTP requests. If you want to
+//     configure access policies for domain sub-resources, such as specific indexes
+//     and domain APIs, you must disable this property. Default is true.
 //
-//   - Option to specify the percentage of heap space allocated to field data.
-//     By default, this setting is unbounded.
+//   - "indices.fielddata.cache.size": "80" - Note the use of a string rather
+//     than a boolean. Specifies the percentage of heap space allocated to field
+//     data. Default is unbounded.
 //
-// For more information, see Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
+//   - "indices.query.bool.max_clause_count": "1024" - Note the use of a string
+//     rather than a boolean. Specifies the maximum number of clauses allowed
+//     in a Lucene boolean query. Default is 1,024. Queries with more than the
+//     permitted number of clauses result in a TooManyClauses error.
+//
+//   - "override_main_response_version": "true" | "false" - Note the use of
+//     a string rather than a boolean. Specifies whether the domain reports its
+//     version as 7.10 to allow Elasticsearch OSS clients and plugins to continue
+//     working with it. Default is false when creating a domain and true when
+//     upgrading a domain.
+//
+// For more information, see Advanced cluster parameters (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
 type AdvancedOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -4896,7 +5800,7 @@ type AdvancedOptionsStatus struct {
 	// Options is a required field
 	Options map[string]*string `type:"map" required:"true"`
 
-	// The OptionStatus for advanced options for the specified domain.
+	// The status of advanced options for the specified domain.
 	//
 	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
@@ -4932,25 +5836,26 @@ func (s *AdvancedOptionsStatus) SetStatus(v *OptionStatus) *AdvancedOptionsStatu
 	return s
 }
 
-// The advanced security configuration: whether advanced security is enabled,
-// whether the internal database option is enabled.
+// Container for fine-grained access control settings.
 type AdvancedSecurityOptions struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Anonymous Auth Disable Date when Anonymous Auth is enabled.
+	// Date and time when the migration period will be disabled. Only necessary
+	// when enabling fine-grained access control on an existing domain (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-enabling-existing).
 	AnonymousAuthDisableDate *time.Time `type:"timestamp"`
 
-	// True if Anonymous auth is enabled. Anonymous auth can be enabled only when
-	// AdvancedSecurity is enabled on existing domains.
+	// True if a 30-day migration period is enabled, during which administrators
+	// can create role mappings. Only necessary when enabling fine-grained access
+	// control on an existing domain (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-enabling-existing).
 	AnonymousAuthEnabled *bool `type:"boolean"`
 
-	// True if advanced security is enabled.
+	// True if fine-grained access control is enabled.
 	Enabled *bool `type:"boolean"`
 
 	// True if the internal user database is enabled.
 	InternalUserDatabaseEnabled *bool `type:"boolean"`
 
-	// Describes the SAML application configured for a domain.
+	// Container for information about the SAML configuration for OpenSearch Dashboards.
 	SAMLOptions *SAMLOptionsOutput_ `type:"structure"`
 }
 
@@ -5002,26 +5907,27 @@ func (s *AdvancedSecurityOptions) SetSAMLOptions(v *SAMLOptionsOutput_) *Advance
 	return s
 }
 
-// The advanced security configuration: whether advanced security is enabled,
-// whether the internal database option is enabled, master username and password
-// (if internal database is enabled), and master user ARN (if IAM is enabled).
+// Options for enabling and configuring fine-grained access control. For more
+// information, see Fine-grained access control in Amazon OpenSearch Service
+// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html).
 type AdvancedSecurityOptionsInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// True if Anonymous auth is enabled. Anonymous auth can be enabled only when
-	// AdvancedSecurity is enabled on existing domains.
+	// True to enable a 30-day migration period during which administrators can
+	// create role mappings. Only necessary when enabling fine-grained access control
+	// on an existing domain (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/fgac.html#fgac-enabling-existing).
 	AnonymousAuthEnabled *bool `type:"boolean"`
 
-	// True if advanced security is enabled.
+	// True to enable fine-grained access control.
 	Enabled *bool `type:"boolean"`
 
-	// True if the internal user database is enabled.
+	// True to enable the internal user database.
 	InternalUserDatabaseEnabled *bool `type:"boolean"`
 
-	// Credentials for the master user: username and password, ARN, or both.
+	// Container for information about the master user.
 	MasterUserOptions *MasterUserOptions `type:"structure"`
 
-	// The SAML application configuration for the domain.
+	// Container for information about the SAML configuration for OpenSearch Dashboards.
 	SAMLOptions *SAMLOptionsInput_ `type:"structure"`
 }
 
@@ -5093,16 +5999,16 @@ func (s *AdvancedSecurityOptionsInput_) SetSAMLOptions(v *SAMLOptionsInput_) *Ad
 	return s
 }
 
-// The status of advanced security options for the specified domain.
+// The status of fine-grained access control settings for a domain.
 type AdvancedSecurityOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
-	// Advanced security options for the specified domain.
+	// Container for fine-grained access control settings.
 	//
 	// Options is a required field
 	Options *AdvancedSecurityOptions `type:"structure" required:"true"`
 
-	// Status of the advanced security options for the specified domain.
+	// Status of the fine-grained access control settings for a domain.
 	//
 	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
@@ -5142,7 +6048,7 @@ func (s *AdvancedSecurityOptionsStatus) SetStatus(v *OptionStatus) *AdvancedSecu
 type AssociatePackageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the domain to associate the package with.
+	// Name of the domain to associate the package with.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
@@ -5206,11 +6112,11 @@ func (s *AssociatePackageInput) SetPackageID(v string) *AssociatePackageInput {
 	return s
 }
 
-// Container for the response returned by AssociatePackage operation.
+// Container for the response returned by the AssociatePackage operation.
 type AssociatePackageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// DomainPackageDetails
+	// Information about a package that is associated with a domain.
 	DomainPackageDetails *DomainPackageDetails `type:"structure"`
 }
 
@@ -5238,16 +6144,156 @@ func (s *AssociatePackageOutput) SetDomainPackageDetails(v *DomainPackageDetails
 	return s
 }
 
-// Specifies the Auto-Tune type and Auto-Tune action details.
+type AuthorizeVpcEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID to grant access to.
+	//
+	// Account is a required field
+	Account *string `type:"string" required:"true"`
+
+	// The name of the OpenSearch Service domain to provide access to.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizeVpcEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizeVpcEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthorizeVpcEndpointAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthorizeVpcEndpointAccessInput"}
+	if s.Account == nil {
+		invalidParams.Add(request.NewErrParamRequired("Account"))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccount sets the Account field's value.
+func (s *AuthorizeVpcEndpointAccessInput) SetAccount(v string) *AuthorizeVpcEndpointAccessInput {
+	s.Account = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *AuthorizeVpcEndpointAccessInput) SetDomainName(v string) *AuthorizeVpcEndpointAccessInput {
+	s.DomainName = &v
+	return s
+}
+
+type AuthorizeVpcEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the Amazon Web Services account or service that was provided
+	// access to the domain.
+	//
+	// AuthorizedPrincipal is a required field
+	AuthorizedPrincipal *AuthorizedPrincipal `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizeVpcEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizeVpcEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizedPrincipal sets the AuthorizedPrincipal field's value.
+func (s *AuthorizeVpcEndpointAccessOutput) SetAuthorizedPrincipal(v *AuthorizedPrincipal) *AuthorizeVpcEndpointAccessOutput {
+	s.AuthorizedPrincipal = v
+	return s
+}
+
+// Information about an Amazon Web Services account or service that has access
+// to an Amazon OpenSearch Service domain through the use of an interface VPC
+// endpoint.
+type AuthorizedPrincipal struct {
+	_ struct{} `type:"structure"`
+
+	// The IAM principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html)
+	// that is allowed access to the domain.
+	Principal *string `type:"string"`
+
+	// The type of principal.
+	PrincipalType *string `type:"string" enum:"PrincipalType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizedPrincipal) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizedPrincipal) GoString() string {
+	return s.String()
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *AuthorizedPrincipal) SetPrincipal(v string) *AuthorizedPrincipal {
+	s.Principal = &v
+	return s
+}
+
+// SetPrincipalType sets the PrincipalType field's value.
+func (s *AuthorizedPrincipal) SetPrincipalType(v string) *AuthorizedPrincipal {
+	s.PrincipalType = &v
+	return s
+}
+
+// Information about an Auto-Tune action. For more information, see Auto-Tune
+// for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type AutoTune struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies details about the Auto-Tune action. See Auto-Tune for Amazon OpenSearch
-	// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// Details about an Auto-Tune action.
 	AutoTuneDetails *AutoTuneDetails `type:"structure"`
 
-	// Specifies the Auto-Tune type. Valid value is SCHEDULED_ACTION.
+	// The type of Auto-Tune action.
 	AutoTuneType *string `type:"string" enum:"AutoTuneType"`
 }
 
@@ -5281,15 +6327,12 @@ func (s *AutoTune) SetAutoTuneType(v string) *AutoTune {
 	return s
 }
 
-// Specifies details about the Auto-Tune action. See Auto-Tune for Amazon OpenSearch
-// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-// for more information.
+// Specifies details about a scheduled Auto-Tune action. For more information,
+// see Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type AutoTuneDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies details about the scheduled Auto-Tune action. See Auto-Tune for
-	// Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// Container for details about a scheduled Auto-Tune action.
 	ScheduledAutoTuneDetails *ScheduledAutoTuneDetails `type:"structure"`
 }
 
@@ -5317,23 +6360,20 @@ func (s *AutoTuneDetails) SetScheduledAutoTuneDetails(v *ScheduledAutoTuneDetail
 	return s
 }
 
-// Specifies the Auto-Tune maintenance schedule. See Auto-Tune for Amazon OpenSearch
-// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-// for more information.
+// The Auto-Tune maintenance schedule. For more information, see Auto-Tune for
+// Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type AutoTuneMaintenanceSchedule struct {
 	_ struct{} `type:"structure"`
 
-	// A cron expression for a recurring maintenance schedule. See Auto-Tune for
-	// Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// A cron expression for a recurring maintenance schedule during which Auto-Tune
+	// can deploy changes.
 	CronExpressionForRecurrence *string `type:"string"`
 
-	// Specifies maintenance schedule duration: duration value and duration unit.
-	// See Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// The duration of the maintenance schedule. For example, "Duration": {"Value":
+	// 2, "Unit": "HOURS"}.
 	Duration *Duration `type:"structure"`
 
-	// The timestamp at which the Auto-Tune maintenance schedule starts.
+	// The Epoch timestamp at which the Auto-Tune maintenance schedule starts.
 	StartAt *time.Time `type:"timestamp"`
 }
 
@@ -5388,21 +6428,21 @@ func (s *AutoTuneMaintenanceSchedule) SetStartAt(v time.Time) *AutoTuneMaintenan
 	return s
 }
 
-// The Auto-Tune options: the Auto-Tune desired state for the domain, rollback
-// state when disabling Auto-Tune options and list of maintenance schedules.
+// Auto-Tune settings when updating a domain. For more information, see Auto-Tune
+// for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type AutoTuneOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The Auto-Tune desired state. Valid values are ENABLED and DISABLED.
+	// Whether Auto-Tune is enabled or disabled.
 	DesiredState *string `type:"string" enum:"AutoTuneDesiredState"`
 
-	// A list of maintenance schedules. See Auto-Tune for Amazon OpenSearch Service
-	// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// A list of maintenance schedules during which Auto-Tune can deploy changes.
 	MaintenanceSchedules []*AutoTuneMaintenanceSchedule `type:"list"`
 
-	// The rollback state while disabling Auto-Tune for the domain. Valid values
-	// are NO_ROLLBACK and DEFAULT_ROLLBACK.
+	// When disabling Auto-Tune, specify NO_ROLLBACK to retain all prior Auto-Tune
+	// settings or DEFAULT_ROLLBACK to revert to the OpenSearch Service defaults.
+	// If you specify DEFAULT_ROLLBACK, you must include a MaintenanceSchedule in
+	// the request. Otherwise, OpenSearch Service is unable to perform the rollback.
 	RollbackOnDisable *string `type:"string" enum:"RollbackOnDisable"`
 }
 
@@ -5462,17 +6502,19 @@ func (s *AutoTuneOptions) SetRollbackOnDisable(v string) *AutoTuneOptions {
 	return s
 }
 
-// The Auto-Tune options: the Auto-Tune desired state for the domain and list
-// of maintenance schedules.
+// Options for configuring Auto-Tune. For more information, see Auto-Tune for
+// Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type AutoTuneOptionsInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The Auto-Tune desired state. Valid values are ENABLED and DISABLED.
+	// Whether Auto-Tune is enabled or disabled.
 	DesiredState *string `type:"string" enum:"AutoTuneDesiredState"`
 
-	// A list of maintenance schedules. See Auto-Tune for Amazon OpenSearch Service
-	// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// A list of maintenance schedules during which Auto-Tune can deploy changes.
+	// Maintenance schedules are overwrite, not append. If your request includes
+	// no schedules, the request deletes all existing schedules. To preserve existing
+	// schedules, make a call to DescribeDomainConfig first and use the MaintenanceSchedules
+	// portion of the response as the basis for this section.
 	MaintenanceSchedules []*AutoTuneMaintenanceSchedule `type:"list"`
 }
 
@@ -5526,15 +6568,15 @@ func (s *AutoTuneOptionsInput_) SetMaintenanceSchedules(v []*AutoTuneMaintenance
 	return s
 }
 
-// The Auto-Tune options: the Auto-Tune desired state for the domain and list
-// of maintenance schedules.
+// The Auto-Tune settings for a domain, displayed when enabling or disabling
+// Auto-Tune.
 type AutoTuneOptionsOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The error message while enabling or disabling Auto-Tune.
+	// Any errors that occurred while enabling or disabling Auto-Tune.
 	ErrorMessage *string `type:"string"`
 
-	// The AutoTuneState for the domain.
+	// The current state of Auto-Tune on the domain.
 	State *string `type:"string" enum:"AutoTuneState"`
 }
 
@@ -5572,10 +6614,10 @@ func (s *AutoTuneOptionsOutput_) SetState(v string) *AutoTuneOptionsOutput_ {
 type AutoTuneOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies Auto-Tune options for the domain.
+	// Auto-Tune settings for updating a domain.
 	Options *AutoTuneOptions `type:"structure"`
 
-	// The status of the Auto-Tune options for the domain.
+	// The current status of Auto-Tune for a domain.
 	Status *AutoTuneStatus `type:"structure"`
 }
 
@@ -5609,27 +6651,28 @@ func (s *AutoTuneOptionsStatus) SetStatus(v *AutoTuneStatus) *AutoTuneOptionsSta
 	return s
 }
 
-// Provides the current Auto-Tune status for the domain.
+// The current status of Auto-Tune for the domain. For more information, see
+// Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type AutoTuneStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp of the Auto-Tune options creation date.
+	// Date and time when Auto-Tune was enabled for the domain.
 	//
 	// CreationDate is a required field
 	CreationDate *time.Time `type:"timestamp" required:"true"`
 
-	// The error message while enabling or disabling Auto-Tune.
+	// Any errors that occurred while enabling or disabling Auto-Tune.
 	ErrorMessage *string `type:"string"`
 
 	// Indicates whether the domain is being deleted.
 	PendingDeletion *bool `type:"boolean"`
 
-	// The AutoTuneState for the domain.
+	// The current state of Auto-Tune on the domain.
 	//
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"AutoTuneState"`
 
-	// The timestamp of when the Auto-Tune options were last updated.
+	// Date and time when the Auto-Tune options were last updated for the domain.
 	//
 	// UpdateDate is a required field
 	UpdateDate *time.Time `type:"timestamp" required:"true"`
@@ -5757,14 +6800,12 @@ func (s *BaseException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Container for the parameters to the CancelServiceSoftwareUpdate operation.
-// Specifies the name of the domain that you wish to cancel a service software
-// update on.
+// Container for the request parameters to cancel a service software update.
 type CancelServiceSoftwareUpdateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the domain that you want to stop the latest service software
-	// update on.
+	// Name of the OpenSearch Service domain that you want to cancel the service
+	// software update on.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
@@ -5810,12 +6851,12 @@ func (s *CancelServiceSoftwareUpdateInput) SetDomainName(v string) *CancelServic
 	return s
 }
 
-// The result of a CancelServiceSoftwareUpdate operation. Contains the status
-// of the update.
+// Container for the response to a CancelServiceSoftwareUpdate operation. Contains
+// the status of the update.
 type CancelServiceSoftwareUpdateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The current status of the OpenSearch service software update.
+	// Container for the state of your domain relative to the latest service software.
 	ServiceSoftwareOptions *ServiceSoftwareOptions `type:"structure"`
 }
 
@@ -5843,15 +6884,14 @@ func (s *CancelServiceSoftwareUpdateOutput) SetServiceSoftwareOptions(v *Service
 	return s
 }
 
-// Specifies change details of the domain configuration change.
+// Container for information about a configuration change happening on a domain.
 type ChangeProgressDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The unique change identifier associated with a specific domain configuration
-	// change.
+	// The ID of the configuration change.
 	ChangeId *string `min:"36" type:"string"`
 
-	// Contains an optional message associated with the domain configuration change.
+	// A message corresponding to the status of the configuration change.
 	Message *string `type:"string"`
 }
 
@@ -5885,20 +6925,20 @@ func (s *ChangeProgressDetails) SetMessage(v string) *ChangeProgressDetails {
 	return s
 }
 
-// A progress stage details of a specific domain configuration change.
+// Progress details for each stage of a domain update.
 type ChangeProgressStage struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the progress stage.
+	// The description of the stage.
 	Description *string `type:"string"`
 
-	// The last updated timestamp of the progress stage.
+	// The most recent updated timestamp of the stage.
 	LastUpdated *time.Time `type:"timestamp"`
 
-	// The name of the specific progress stage.
+	// The name of the stage.
 	Name *string `min:"1" type:"string"`
 
-	// The overall status of a specific progress stage.
+	// The status of the stage.
 	Status *string `min:"1" type:"string"`
 }
 
@@ -5956,19 +6996,17 @@ type ChangeProgressStatusDetails struct {
 	// change.
 	ChangeProgressStages []*ChangeProgressStage `type:"list"`
 
-	// The list of properties involved in the domain configuration change that are
-	// completed.
+	// The list of properties in the domain configuration change that have completed.
 	CompletedProperties []*string `type:"list"`
 
-	// The list of properties involved in the domain configuration change that are
-	// still in pending.
+	// The list of properties in the domain configuration change that are still
+	// pending.
 	PendingProperties []*string `type:"list"`
 
 	// The time at which the configuration change is made on the domain.
 	StartTime *time.Time `type:"timestamp"`
 
-	// The overall status of the domain configuration change. This field can take
-	// the following values: PENDING, PROCESSING, COMPLETED and FAILED
+	// The overall status of the domain configuration change.
 	Status *string `type:"string" enum:"OverallChangeStatus"`
 
 	// The total number of stages required for the configuration change.
@@ -6035,47 +7073,49 @@ func (s *ChangeProgressStatusDetails) SetTotalNumberOfStages(v int64) *ChangePro
 	return s
 }
 
-// The configuration for the domain cluster, such as the type and number of
-// instances.
+// Container for the cluster configuration of an OpenSearch Service domain.
+// For more information, see Creating and managing Amazon OpenSearch Service
+// domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html).
 type ClusterConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the ColdStorageOptions config for a Domain
+	// Container for cold storage configuration options.
 	ColdStorageOptions *ColdStorageOptions `type:"structure"`
 
-	// Total number of dedicated master nodes, active and on standby, for the cluster.
+	// Number of dedicated master nodes in the cluster. This number must be greater
+	// than 1, otherwise you receive a validation exception.
 	DedicatedMasterCount *int64 `type:"integer"`
 
-	// A boolean value to indicate whether a dedicated master node is enabled. See
-	// Dedicated master nodes in Amazon OpenSearch Service (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains.html#managedomains-dedicatedmasternodes)
-	// for more information.
+	// Indicates whether dedicated master nodes are enabled for the cluster.True
+	// if the cluster will use a dedicated master node.False if the cluster will
+	// not.
 	DedicatedMasterEnabled *bool `type:"boolean"`
 
-	// The instance type for a dedicated master node.
+	// OpenSearch Service instance type of the dedicated master nodes in the cluster.
 	DedicatedMasterType *string `type:"string" enum:"OpenSearchPartitionInstanceType"`
 
-	// The number of instances in the specified domain cluster.
+	// Number of dedicated master nodes in the cluster. This number must be greater
+	// than 1, otherwise you receive a validation exception.
 	InstanceCount *int64 `type:"integer"`
 
-	// The instance type for an OpenSearch cluster. UltraWarm instance types are
-	// not supported for data instances.
+	// Instance type of data nodes in the cluster.
 	InstanceType *string `type:"string" enum:"OpenSearchPartitionInstanceType"`
 
-	// The number of UltraWarm nodes in the cluster.
+	// The number of warm nodes in the cluster.
 	WarmCount *int64 `type:"integer"`
 
-	// True to enable UltraWarm storage.
+	// Whether to enable warm storage for the cluster.
 	WarmEnabled *bool `type:"boolean"`
 
-	// The instance type for the OpenSearch cluster's warm nodes.
+	// The instance type for the cluster's warm nodes.
 	WarmType *string `type:"string" enum:"OpenSearchWarmPartitionInstanceType"`
 
-	// The zone awareness configuration for a domain when zone awareness is enabled.
+	// Container for zone awareness configuration options. Only required if ZoneAwarenessEnabled
+	// is true.
 	ZoneAwarenessConfig *ZoneAwarenessConfig `type:"structure"`
 
-	// A boolean value to indicate whether zone awareness is enabled. See Configuring
-	// a multi-AZ domain in Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html)
-	// for more information.
+	// Indicates whether multiple Availability Zones are enabled. For more information,
+	// see Configuring a multi-AZ domain in Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html).
 	ZoneAwarenessEnabled *bool `type:"boolean"`
 }
 
@@ -6178,16 +7218,16 @@ func (s *ClusterConfig) SetZoneAwarenessEnabled(v bool) *ClusterConfig {
 	return s
 }
 
-// The configuration status for the specified domain.
+// The cluster configuration status for a domain.
 type ClusterConfigStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The cluster configuration for the specified domain.
+	// Cluster configuration options for the specified domain.
 	//
 	// Options is a required field
 	Options *ClusterConfig `type:"structure" required:"true"`
 
-	// The cluster configuration status for the specified domain.
+	// The status of cluster configuration options for the specified domain.
 	//
 	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
@@ -6223,22 +7263,26 @@ func (s *ClusterConfigStatus) SetStatus(v *OptionStatus) *ClusterConfigStatus {
 	return s
 }
 
-// Options to specify the Cognito user and identity pools for OpenSearch Dashboards
-// authentication. For more information, see Configuring Amazon Cognito authentication
-// for OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).
+// Container for the parameters required to enable Cognito authentication for
+// an OpenSearch Service domain. For more information, see Configuring Amazon
+// Cognito authentication for OpenSearch Dashboards (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).
 type CognitoOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The option to enable Cognito for OpenSearch Dashboards authentication.
+	// Whether to enable or disable Amazon Cognito authentication for OpenSearch
+	// Dashboards.
 	Enabled *bool `type:"boolean"`
 
-	// The Cognito identity pool ID for OpenSearch Dashboards authentication.
+	// The Amazon Cognito identity pool ID that you want OpenSearch Service to use
+	// for OpenSearch Dashboards authentication.
 	IdentityPoolId *string `min:"1" type:"string"`
 
-	// The role ARN that provides OpenSearch permissions for accessing Cognito resources.
+	// The AmazonOpenSearchServiceCognitoAccess role that allows OpenSearch Service
+	// to configure your user pool and identity pool.
 	RoleArn *string `min:"20" type:"string"`
 
-	// The Cognito user pool ID for OpenSearch Dashboards authentication.
+	// The Amazon Cognito user pool ID that you want OpenSearch Service to use for
+	// OpenSearch Dashboards authentication.
 	UserPoolId *string `min:"1" type:"string"`
 }
 
@@ -6348,11 +7392,13 @@ func (s *CognitoOptionsStatus) SetStatus(v *OptionStatus) *CognitoOptionsStatus 
 	return s
 }
 
-// Specifies the configuration for cold storage options such as enabled
+// Container for the parameters required to enable cold storage for an OpenSearch
+// Service domain. For more information, see Cold storage for Amazon OpenSearch
+// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cold-storage.html).
 type ColdStorageOptions struct {
 	_ struct{} `type:"structure"`
 
-	// Enable cold storage option. Accepted values true or false
+	// Whether to enable or disable cold storage on the domain.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
@@ -6395,15 +7441,15 @@ func (s *ColdStorageOptions) SetEnabled(v bool) *ColdStorageOptions {
 	return s
 }
 
-// A map from an EngineVersion to a list of compatible EngineVersion s to which
-// the domain can be upgraded.
+// A map of OpenSearch or Elasticsearch versions and the versions you can upgrade
+// them to.
 type CompatibleVersionsMap struct {
 	_ struct{} `type:"structure"`
 
-	// The current version of OpenSearch a domain is on.
+	// The current version that the OpenSearch Service domain is running.
 	SourceVersion *string `min:"14" type:"string"`
 
-	// List of supported OpenSearch versions.
+	// The possible versions that you can upgrade the domain to.
 	TargetVersions []*string `type:"list"`
 }
 
@@ -6505,71 +7551,90 @@ func (s *ConflictException) RequestID() string {
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// IAM access policy as a JSON-formatted string.
+	// Identity and Access Management (IAM) policy document specifying the access
+	// policies for the new domain.
 	AccessPolicies *string `type:"string"`
 
-	// Option to allow references to indices in an HTTP request body. Must be false
-	// when configuring access to individual sub-resources. By default, the value
-	// is true. See Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options)
-	// for more information.
+	// Key-value pairs to specify advanced configuration options. The following
+	// key-value pairs are supported:
+	//
+	//    * "rest.action.multi.allow_explicit_index": "true" | "false" - Note the
+	//    use of a string rather than a boolean. Specifies whether explicit references
+	//    to indexes are allowed inside the body of HTTP requests. If you want to
+	//    configure access policies for domain sub-resources, such as specific indexes
+	//    and domain APIs, you must disable this property. Default is true.
+	//
+	//    * "indices.fielddata.cache.size": "80" - Note the use of a string rather
+	//    than a boolean. Specifies the percentage of heap space allocated to field
+	//    data. Default is unbounded.
+	//
+	//    * "indices.query.bool.max_clause_count": "1024" - Note the use of a string
+	//    rather than a boolean. Specifies the maximum number of clauses allowed
+	//    in a Lucene boolean query. Default is 1,024. Queries with more than the
+	//    permitted number of clauses result in a TooManyClauses error.
+	//
+	//    * "override_main_response_version": "true" | "false" - Note the use of
+	//    a string rather than a boolean. Specifies whether the domain reports its
+	//    version as 7.10 to allow Elasticsearch OSS clients and plugins to continue
+	//    working with it. Default is false when creating a domain and true when
+	//    upgrading a domain.
+	//
+	// For more information, see Advanced cluster parameters (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
 	AdvancedOptions map[string]*string `type:"map"`
 
-	// Specifies advanced security options.
+	// Options for fine-grained access control.
 	AdvancedSecurityOptions *AdvancedSecurityOptionsInput_ `type:"structure"`
 
-	// Specifies Auto-Tune options.
+	// Options for Auto-Tune.
 	AutoTuneOptions *AutoTuneOptionsInput_ `type:"structure"`
 
-	// Configuration options for a domain. Specifies the instance type and number
-	// of instances in the domain.
+	// Container for the cluster configuration of a domain.
 	ClusterConfig *ClusterConfig `type:"structure"`
 
-	// Options to specify the Cognito user and identity pools for OpenSearch Dashboards
-	// authentication. For more information, see Configuring Amazon Cognito authentication
-	// for OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).
+	// Key-value pairs to configure Amazon Cognito authentication. For more information,
+	// see Configuring Amazon Cognito authentication for OpenSearch Dashboards (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).
 	CognitoOptions *CognitoOptions `type:"structure"`
 
-	// Options to specify configurations that will be applied to the domain endpoint.
+	// Additional options for the domain endpoint, such as whether to require HTTPS
+	// for all traffic.
 	DomainEndpointOptions *DomainEndpointOptions `type:"structure"`
 
-	// The name of the Amazon OpenSearch Service domain you're creating. Domain
-	// names are unique across the domains owned by an account within an AWS region.
-	// Domain names must start with a lowercase letter and can contain the following
-	// characters: a-z (lowercase), 0-9, and - (hyphen).
+	// Name of the OpenSearch Service domain to create. Domain names are unique
+	// across the domains owned by an account within an Amazon Web Services Region.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	// Options to enable, disable, and specify the type and size of EBS storage
-	// volumes.
+	// Container for the parameters required to enable EBS-based storage for an
+	// OpenSearch Service domain.
 	EBSOptions *EBSOptions `type:"structure"`
 
-	// Options for encryption of data at rest.
+	// Key-value pairs to enable encryption at rest.
 	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
 	// String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine
-	// version for the Amazon OpenSearch Service domain. For example, "OpenSearch_1.0"
-	// or "Elasticsearch_7.9". For more information, see Creating and managing Amazon
-	// OpenSearch Service domains (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
+	// version for the OpenSearch Service domain. For example, OpenSearch_1.0 or
+	// Elasticsearch_7.9. For more information, see Creating and managing Amazon
+	// OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
 	EngineVersion *string `min:"14" type:"string"`
 
-	// Map of LogType and LogPublishingOption, each containing options to publish
-	// a given type of OpenSearch log.
+	// Key-value pairs to configure slow log publishing.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
-	// Node-to-node encryption options.
+	// Enables node-to-node encryption.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
 
-	// Option to set time, in UTC format, of the daily automated snapshot. Default
-	// value is 0 hours.
+	// DEPRECATED. Container for the parameters required to configure automated
+	// snapshots of domain indexes.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
 
-	// A list of Tag added during domain creation.
+	// List of tags to add to the domain upon creation.
 	TagList []*Tag `type:"list"`
 
-	// Options to specify the subnets and security groups for a VPC endpoint. For
-	// more information, see Launching your Amazon OpenSearch Service domains using
-	// a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
+	// Container for the values required to configure VPC access domains. If you
+	// don't specify these values, OpenSearch Service creates the domain with a
+	// public endpoint. For more information, see Launching your Amazon OpenSearch
+	// Service domains using a VPC (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
 	VPCOptions *VPCOptions `type:"structure"`
 }
 
@@ -6757,7 +7822,7 @@ func (s *CreateDomainInput) SetVPCOptions(v *VPCOptions) *CreateDomainInput {
 }
 
 // The result of a CreateDomain operation. Contains the status of the newly
-// created Amazon OpenSearch Service domain.
+// created domain.
 type CreateDomainOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6793,17 +7858,17 @@ func (s *CreateDomainOutput) SetDomainStatus(v *DomainStatus) *CreateDomainOutpu
 type CreateOutboundConnectionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The connection alias used used by the customer for this cross-cluster connection.
+	// Name of the connection.
 	//
 	// ConnectionAlias is a required field
 	ConnectionAlias *string `min:"2" type:"string" required:"true"`
 
-	// The AWSDomainInformation for the local OpenSearch domain.
+	// Name and Region of the source (local) domain.
 	//
 	// LocalDomainInfo is a required field
 	LocalDomainInfo *DomainInformationContainer `type:"structure" required:"true"`
 
-	// The AWSDomainInformation for the remote OpenSearch domain.
+	// Name and Region of the destination (remote) domain.
 	//
 	// RemoteDomainInfo is a required field
 	RemoteDomainInfo *DomainInformationContainer `type:"structure" required:"true"`
@@ -6877,25 +7942,25 @@ func (s *CreateOutboundConnectionInput) SetRemoteDomainInfo(v *DomainInformation
 	return s
 }
 
-// The result of a CreateOutboundConnection request. Contains the details about
+// The result of a CreateOutboundConnection request. Contains details about
 // the newly created cross-cluster connection.
 type CreateOutboundConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The connection alias provided during the create connection request.
+	// Name of the connection.
 	ConnectionAlias *string `min:"2" type:"string"`
 
-	// The unique ID for the created outbound connection, which is used for subsequent
-	// operations on the connection.
+	// The unique identifier for the created outbound connection, which is used
+	// for subsequent operations on the connection.
 	ConnectionId *string `min:"10" type:"string"`
 
-	// The OutboundConnectionStatus for the newly created connection.
+	// The status of the connection.
 	ConnectionStatus *OutboundConnectionStatus `type:"structure"`
 
-	// The AWSDomainInformation for the local OpenSearch domain.
+	// Information about the source (local) domain.
 	LocalDomainInfo *DomainInformationContainer `type:"structure"`
 
-	// The AWSDomainInformation for the remote OpenSearch domain.
+	// Information about the destination (remote) domain.
 	RemoteDomainInfo *DomainInformationContainer `type:"structure"`
 }
 
@@ -6954,7 +8019,7 @@ type CreatePackageInput struct {
 	// Description of the package.
 	PackageDescription *string `type:"string"`
 
-	// Unique identifier for the package.
+	// Unique name for the package.
 	//
 	// PackageName is a required field
 	PackageName *string `min:"3" type:"string" required:"true"`
@@ -6964,7 +8029,7 @@ type CreatePackageInput struct {
 	// PackageSource is a required field
 	PackageSource *PackageSource `type:"structure" required:"true"`
 
-	// Type of package. Currently supports only TXT-DICTIONARY.
+	// Type of package.
 	//
 	// PackageType is a required field
 	PackageType *string `type:"string" required:"true" enum:"PackageType"`
@@ -7043,7 +8108,7 @@ func (s *CreatePackageInput) SetPackageType(v string) *CreatePackageInput {
 type CreatePackageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the package.
+	// Basic information about an OpenSearch Service package.
 	PackageDetails *PackageDetails `type:"structure"`
 }
 
@@ -7071,8 +8136,115 @@ func (s *CreatePackageOutput) SetPackageDetails(v *PackageDetails) *CreatePackag
 	return s
 }
 
-// Container for the parameters to the DeleteDomain operation. Specifies the
-// name of the domain you want to delete.
+type CreateVpcEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier to ensure idempotency of the request.
+	ClientToken *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the domain to grant access to.
+	//
+	// DomainArn is a required field
+	DomainArn *string `min:"1" type:"string" required:"true"`
+
+	// Options to specify the subnets and security groups for the endpoint.
+	//
+	// VpcOptions is a required field
+	VpcOptions *VPCOptions `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVpcEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVpcEndpointInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DomainArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainArn"))
+	}
+	if s.DomainArn != nil && len(*s.DomainArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainArn", 1))
+	}
+	if s.VpcOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcOptions"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateVpcEndpointInput) SetClientToken(v string) *CreateVpcEndpointInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDomainArn sets the DomainArn field's value.
+func (s *CreateVpcEndpointInput) SetDomainArn(v string) *CreateVpcEndpointInput {
+	s.DomainArn = &v
+	return s
+}
+
+// SetVpcOptions sets the VpcOptions field's value.
+func (s *CreateVpcEndpointInput) SetVpcOptions(v *VPCOptions) *CreateVpcEndpointInput {
+	s.VpcOptions = v
+	return s
+}
+
+type CreateVpcEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the newly created VPC endpoint.
+	//
+	// VpcEndpoint is a required field
+	VpcEndpoint *VpcEndpoint `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *CreateVpcEndpointOutput) SetVpcEndpoint(v *VpcEndpoint) *CreateVpcEndpointOutput {
+	s.VpcEndpoint = v
+	return s
+}
+
+// Container for the parameters to the DeleteDomain operation.
 type DeleteDomainInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7122,7 +8294,7 @@ func (s *DeleteDomainInput) SetDomainName(v string) *DeleteDomainInput {
 	return s
 }
 
-// The result of a DeleteDomain request. Contains the status of the pending
+// The results of a DeleteDomain request. Contains the status of the pending
 // deletion, or a "domain not found" error if the domain and all of its resources
 // have been deleted.
 type DeleteDomainOutput struct {
@@ -7206,12 +8378,12 @@ func (s *DeleteInboundConnectionInput) SetConnectionId(v string) *DeleteInboundC
 	return s
 }
 
-// The result of a DeleteInboundConnection operation. Contains details about
+// The results of a DeleteInboundConnection operation. Contains details about
 // the deleted inbound connection.
 type DeleteInboundConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The InboundConnection of the deleted inbound connection.
+	// The deleted inbound connection.
 	Connection *InboundConnection `type:"structure"`
 }
 
@@ -7289,12 +8461,11 @@ func (s *DeleteOutboundConnectionInput) SetConnectionId(v string) *DeleteOutboun
 	return s
 }
 
-// The result of a DeleteOutboundConnection operation. Contains details about
-// the deleted outbound connection.
+// Details about the deleted outbound connection.
 type DeleteOutboundConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The OutboundConnection of the deleted outbound connection.
+	// The deleted inbound connection.
 	Connection *OutboundConnection `type:"structure"`
 }
 
@@ -7322,7 +8493,8 @@ func (s *DeleteOutboundConnectionOutput) SetConnection(v *OutboundConnection) *D
 	return s
 }
 
-// Container for the request parameters to the DeletePackage operation.
+// Deletes a package from OpenSearch Service. The package can't be associated
+// with any OpenSearch Service domain.
 type DeletePackageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7377,7 +8549,7 @@ func (s *DeletePackageInput) SetPackageID(v string) *DeletePackageInput {
 type DeletePackageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// PackageDetails
+	// Information about the deleted package.
 	PackageDetails *PackageDetails `type:"structure"`
 }
 
@@ -7405,21 +8577,105 @@ func (s *DeletePackageOutput) SetPackageDetails(v *PackageDetails) *DeletePackag
 	return s
 }
 
+type DeleteVpcEndpointInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the endpoint.
+	//
+	// VpcEndpointId is a required field
+	VpcEndpointId *string `location:"uri" locationName:"VpcEndpointId" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVpcEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVpcEndpointInput"}
+	if s.VpcEndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcEndpointId"))
+	}
+	if s.VpcEndpointId != nil && len(*s.VpcEndpointId) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcEndpointId", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *DeleteVpcEndpointInput) SetVpcEndpointId(v string) *DeleteVpcEndpointInput {
+	s.VpcEndpointId = &v
+	return s
+}
+
+type DeleteVpcEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the deleted endpoint, including its current status (DELETING
+	// or DELETE_FAILED).
+	//
+	// VpcEndpointSummary is a required field
+	VpcEndpointSummary *VpcEndpointSummary `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcEndpointSummary sets the VpcEndpointSummary field's value.
+func (s *DeleteVpcEndpointOutput) SetVpcEndpointSummary(v *VpcEndpointSummary) *DeleteVpcEndpointOutput {
+	s.VpcEndpointSummary = v
+	return s
+}
+
 // Container for the parameters to the DescribeDomainAutoTunes operation.
 type DescribeDomainAutoTunesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain name for which you want Auto-Tune action details.
+	// Name of the domain that you want Auto-Tune details about.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// Set this value to limit the number of results returned. If not specified,
-	// defaults to 100.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `type:"integer"`
 
-	// NextToken is sent in case the earlier API call results contain the NextToken.
-	// Used for pagination.
+	// If your initial DescribeDomainAutoTunes operation returns a nextToken, you
+	// can include the returned nextToken in subsequent DescribeDomainAutoTunes
+	// operations, which returns results in the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -7475,18 +8731,16 @@ func (s *DescribeDomainAutoTunesInput) SetNextToken(v string) *DescribeDomainAut
 	return s
 }
 
-// The result of a DescribeDomainAutoTunes request. See Auto-Tune for Amazon
-// OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-// for more information.
+// The result of a DescribeDomainAutoTunes request.
 type DescribeDomainAutoTunesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of setting adjustments that Auto-Tune has made to the domain. See
-	// Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// The list of setting adjustments that Auto-Tune has made to the domain.
 	AutoTunes []*AutoTune `type:"list"`
 
-	// An identifier to allow retrieval of paginated results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -7521,17 +8775,15 @@ func (s *DescribeDomainAutoTunesOutput) SetNextToken(v string) *DescribeDomainAu
 }
 
 // Container for the parameters to the DescribeDomainChangeProgress operation.
-// Specifies the domain name and optional change specific identity for which
-// you want progress information.
 type DescribeDomainChangeProgressInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The specific change ID for which you want to get progress information. This
-	// is an optional parameter. If omitted, the service returns information about
-	// the most recent configuration change.
+	// The specific change ID for which you want to get progress information. If
+	// omitted, the request returns information about the most recent configuration
+	// change.
 	ChangeId *string `location:"querystring" locationName:"changeid" min:"36" type:"string"`
 
-	// The domain you want to get the progress information about.
+	// The name of the domain to get progress information for.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
@@ -7586,13 +8838,13 @@ func (s *DescribeDomainChangeProgressInput) SetDomainName(v string) *DescribeDom
 	return s
 }
 
-// The result of a DescribeDomainChangeProgress request. Contains the progress
-// information of the requested domain change.
+// The result of a DescribeDomainChangeProgress request. Contains progress information
+// for the requested domain change.
 type DescribeDomainChangeProgressOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Progress information for the configuration change that is requested in the
-	// DescribeDomainChangeProgress request.
+	// Container for information about the stages of a configuration change happening
+	// on a domain.
 	ChangeProgressStatus *ChangeProgressStatusDetails `type:"structure"`
 }
 
@@ -7620,12 +8872,11 @@ func (s *DescribeDomainChangeProgressOutput) SetChangeProgressStatus(v *ChangePr
 	return s
 }
 
-// Container for the parameters to the DescribeDomainConfig operation. Specifies
-// the domain name for which you want configuration information.
+// Container for the parameters to the DescribeDomainConfig operation.
 type DescribeDomainConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The domain you want to get information about.
+	// Name of the OpenSearch Service domain configuration that you want to describe.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
@@ -7671,13 +8922,11 @@ func (s *DescribeDomainConfigInput) SetDomainName(v string) *DescribeDomainConfi
 	return s
 }
 
-// The result of a DescribeDomainConfig request. Contains the configuration
-// information of the requested domain.
+// Contains the configuration information of the requested domain.
 type DescribeDomainConfigOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration information of the domain requested in the DescribeDomainConfig
-	// request.
+	// Container for the configuration of the OpenSearch Service domain.
 	//
 	// DomainConfig is a required field
 	DomainConfig *DomainConfig `type:"structure" required:"true"`
@@ -7711,7 +8960,7 @@ func (s *DescribeDomainConfigOutput) SetDomainConfig(v *DomainConfig) *DescribeD
 type DescribeDomainInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the domain for which you want information.
+	// The name of the domain that you want information about.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
@@ -7757,12 +9006,11 @@ func (s *DescribeDomainInput) SetDomainName(v string) *DescribeDomainInput {
 	return s
 }
 
-// The result of a DescribeDomain request. Contains the status of the domain
-// specified in the request.
+// Contains the status of the domain specified in the request.
 type DescribeDomainOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The current status of the domain.
+	// List that contains the status of each specified OpenSearch Service domain.
 	//
 	// DomainStatus is a required field
 	DomainStatus *DomainStatus `type:"structure" required:"true"`
@@ -7792,12 +9040,13 @@ func (s *DescribeDomainOutput) SetDomainStatus(v *DomainStatus) *DescribeDomainO
 	return s
 }
 
-// Container for the parameters to the DescribeDomains operation. By default,
-// the API returns the status of all domains.
+// Container for the parameters to the DescribeDomains operation.
 type DescribeDomainsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domains for which you want information.
+	// Array of OpenSearch Service domain names that you want information about.
+	// If you don't specify any domains, OpenSearch Service returns information
+	// about all domains owned by the account.
 	//
 	// DomainNames is a required field
 	DomainNames []*string `type:"list" required:"true"`
@@ -7840,12 +9089,12 @@ func (s *DescribeDomainsInput) SetDomainNames(v []*string) *DescribeDomainsInput
 	return s
 }
 
-// The result of a DescribeDomains request. Contains the status of the specified
-// domains or all domains owned by the account.
+// Contains the status of the specified domains or all domains owned by the
+// account.
 type DescribeDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the domains requested in the DescribeDomains request.
+	// The status of the requested domains.
 	//
 	// DomainStatusList is a required field
 	DomainStatusList []*DomainStatus `type:"list" required:"true"`
@@ -7880,24 +9129,15 @@ type DescribeInboundConnectionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of filters used to match properties for inbound cross-cluster connections.
-	// Available Filter values are:
-	//    * connection-id
-	//
-	//    * local-domain-info.domain-name
-	//
-	//    * local-domain-info.owner-id
-	//
-	//    * local-domain-info.region
-	//
-	//    * remote-domain-info.domain-name
 	Filters []*Filter `type:"list"`
 
-	// Set this value to limit the number of results returned. If not specified,
-	// defaults to 100.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `type:"integer"`
 
-	// If more results are available and NextToken is present, make the next request
-	// to the same API with the received NextToken to paginate the remaining results.
+	// If your initial DescribeInboundConnections operation returns a nextToken,
+	// you can include the returned nextToken in subsequent DescribeInboundConnections
+	// operations, which returns results in the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -7957,16 +9197,16 @@ func (s *DescribeInboundConnectionsInput) SetNextToken(v string) *DescribeInboun
 	return s
 }
 
-// The result of a DescribeInboundConnections request. Contains a list of connections
-// matching the filter criteria.
+// Contains a list of connections matching the filter criteria.
 type DescribeInboundConnectionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of InboundConnection matching the specified filter criteria.
+	// List of inbound connections.
 	Connections []*InboundConnection `type:"list"`
 
-	// If more results are available and NextToken is present, make the next request
-	// to the same API with the received NextToken to paginate the remaining results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -8004,17 +9244,17 @@ func (s *DescribeInboundConnectionsOutput) SetNextToken(v string) *DescribeInbou
 type DescribeInstanceTypeLimitsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the domain you want to modify. Only include this value if you're
-	// querying OpenSearch Limits for an existing domain.
+	// The name of the domain. Only specify if you need the limits for an existing
+	// domain.
 	DomainName *string `location:"querystring" locationName:"domainName" min:"3" type:"string"`
 
-	// Version of OpenSearch for which Limits are needed.
+	// Version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y or
+	// OpenSearch_X.Y. Defaults to the latest version of OpenSearch.
 	//
 	// EngineVersion is a required field
 	EngineVersion *string `location:"uri" locationName:"EngineVersion" min:"14" type:"string" required:"true"`
 
-	// The instance type for an OpenSearch cluster for which OpenSearch Limits are
-	// needed.
+	// The OpenSearch Service instance type for which you need limit information.
 	//
 	// InstanceType is a required field
 	InstanceType *string `location:"uri" locationName:"InstanceType" type:"string" required:"true" enum:"OpenSearchPartitionInstanceType"`
@@ -8086,13 +9326,8 @@ func (s *DescribeInstanceTypeLimitsInput) SetInstanceType(v string) *DescribeIns
 type DescribeInstanceTypeLimitsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The role of a given instance and all applicable limits. The role performed
-	// by a given OpenSearch instance can be one of the following:
-	//    * data: If the given InstanceType is used as a data node
-	//
-	//    * master: If the given InstanceType is used as a master node
-	//
-	//    * ultra_warm: If the given InstanceType is used as a warm node
+	// Map that contains all applicable instance type limits.data refers to data
+	// nodes.master refers to dedicated master nodes.
 	LimitsByRole map[string]*Limits `type:"map"`
 }
 
@@ -8124,25 +9359,16 @@ func (s *DescribeInstanceTypeLimitsOutput) SetLimitsByRole(v map[string]*Limits)
 type DescribeOutboundConnectionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of filters used to match properties for outbound cross-cluster connections.
-	// Available Filter names for this operation are:
-	//    * connection-id
-	//
-	//    * remote-domain-info.domain-name
-	//
-	//    * remote-domain-info.owner-id
-	//
-	//    * remote-domain-info.region
-	//
-	//    * local-domain-info.domain-name
+	// List of filter names and values that you can use for requests.
 	Filters []*Filter `type:"list"`
 
-	// Set this value to limit the number of results returned. If not specified,
-	// defaults to 100.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `type:"integer"`
 
-	// NextToken is sent in case the earlier API call results contain the NextToken
-	// parameter. Used for pagination.
+	// If your initial DescribeOutboundConnections operation returns a nextToken,
+	// you can include the returned nextToken in subsequent DescribeOutboundConnections
+	// operations, which returns results in the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -8202,16 +9428,16 @@ func (s *DescribeOutboundConnectionsInput) SetNextToken(v string) *DescribeOutbo
 	return s
 }
 
-// The result of a DescribeOutboundConnections request. Contains the list of
-// connections matching the filter criteria.
+// Contains a list of connections matching the filter criteria.
 type DescribeOutboundConnectionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of OutboundConnection matching the specified filter criteria.
+	// List of outbound connections that match the filter criteria.
 	Connections []*OutboundConnection `type:"list"`
 
-	// If more results are available and NextToken is present, make the next request
-	// to the same API with the received NextToken to paginate the remaining results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -8252,7 +9478,7 @@ type DescribePackagesFilter struct {
 	// Any field from PackageDetails.
 	Name *string `type:"string" enum:"DescribePackagesFilterName"`
 
-	// A list of values for the specified field.
+	// A list of values for the specified filter field.
 	Value []*string `type:"list"`
 }
 
@@ -8293,11 +9519,13 @@ type DescribePackagesInput struct {
 	// Only returns packages that match the DescribePackagesFilterList values.
 	Filters []*DescribePackagesFilter `type:"list"`
 
-	// Limits results to a maximum number of packages.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `type:"integer"`
 
-	// Used for pagination. Only necessary if a previous API call includes a non-null
-	// NextToken value. If provided, returns results for the next page.
+	// If your initial DescribePackageFilters operation returns a nextToken, you
+	// can include the returned nextToken in subsequent DescribePackageFilters operations,
+	// which returns results in the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -8341,9 +9569,12 @@ func (s *DescribePackagesInput) SetNextToken(v string) *DescribePackagesInput {
 type DescribePackagesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
-	// List of PackageDetails objects.
+	// Basic information about a package.
 	PackageDetailsList []*PackageDetails `type:"list"`
 }
 
@@ -8377,19 +9608,22 @@ func (s *DescribePackagesOutput) SetPackageDetailsList(v []*PackageDetails) *Des
 	return s
 }
 
-// Container for parameters to DescribeReservedInstanceOfferings
+// Container for the request parameters to a DescribeReservedInstanceOfferings
+// operation.
 type DescribeReservedInstanceOfferingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Set this value to limit the number of results returned. If not specified,
-	// defaults to 100.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Provides an identifier to allow retrieval of paginated results.
+	// If your initial DescribeReservedInstanceOfferings operation returns a nextToken,
+	// you can include the returned nextToken in subsequent DescribeReservedInstanceOfferings
+	// operations, which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// The offering identifier filter value. Use this parameter to show only the
-	// available offering that matches the specified reservation identifier.
+	// The Reserved Instance identifier filter value. Use this parameter to show
+	// only the available instance types that match the specified reservation identifier.
 	ReservedInstanceOfferingId *string `location:"querystring" locationName:"offeringId" min:"36" type:"string"`
 }
 
@@ -8442,14 +9676,16 @@ func (s *DescribeReservedInstanceOfferingsInput) SetReservedInstanceOfferingId(v
 	return s
 }
 
-// Container for results from DescribeReservedInstanceOfferings
+// Container for results of a DescribeReservedInstanceOfferings request.
 type DescribeReservedInstanceOfferingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides an identifier to allow retrieval of paginated results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
-	// List of reserved OpenSearch instance offerings
+	// List of Reserved Instance offerings.
 	ReservedInstanceOfferings []*ReservedInstanceOffering `type:"list"`
 }
 
@@ -8483,15 +9719,17 @@ func (s *DescribeReservedInstanceOfferingsOutput) SetReservedInstanceOfferings(v
 	return s
 }
 
-// Container for parameters to DescribeReservedInstances
+// Container for the request parameters to the DescribeReservedInstances operation.
 type DescribeReservedInstancesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Set this value to limit the number of results returned. If not specified,
-	// defaults to 100.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Provides an identifier to allow retrieval of paginated results.
+	// If your initial DescribeReservedInstances operation returns a nextToken,
+	// you can include the returned nextToken in subsequent DescribeReservedInstances
+	// operations, which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The reserved instance identifier filter value. Use this parameter to show
@@ -8553,10 +9791,12 @@ func (s *DescribeReservedInstancesInput) SetReservedInstanceId(v string) *Descri
 type DescribeReservedInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides an identifier to allow retrieval of paginated results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
-	// List of reserved OpenSearch instances.
+	// List of Reserved Instances in the current Region.
 	ReservedInstances []*ReservedInstance `type:"list"`
 }
 
@@ -8587,6 +9827,96 @@ func (s *DescribeReservedInstancesOutput) SetNextToken(v string) *DescribeReserv
 // SetReservedInstances sets the ReservedInstances field's value.
 func (s *DescribeReservedInstancesOutput) SetReservedInstances(v []*ReservedInstance) *DescribeReservedInstancesOutput {
 	s.ReservedInstances = v
+	return s
+}
+
+type DescribeVpcEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifiers of the endpoints to get information about.
+	//
+	// VpcEndpointIds is a required field
+	VpcEndpointIds []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVpcEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVpcEndpointsInput"}
+	if s.VpcEndpointIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcEndpointIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcEndpointIds sets the VpcEndpointIds field's value.
+func (s *DescribeVpcEndpointsInput) SetVpcEndpointIds(v []*string) *DescribeVpcEndpointsInput {
+	s.VpcEndpointIds = v
+	return s
+}
+
+type DescribeVpcEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Any errors associated with the request.
+	//
+	// VpcEndpointErrors is a required field
+	VpcEndpointErrors []*VpcEndpointError `type:"list" required:"true"`
+
+	// Information about each requested VPC endpoint.
+	//
+	// VpcEndpoints is a required field
+	VpcEndpoints []*VpcEndpoint `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcEndpointErrors sets the VpcEndpointErrors field's value.
+func (s *DescribeVpcEndpointsOutput) SetVpcEndpointErrors(v []*VpcEndpointError) *DescribeVpcEndpointsOutput {
+	s.VpcEndpointErrors = v
+	return s
+}
+
+// SetVpcEndpoints sets the VpcEndpoints field's value.
+func (s *DescribeVpcEndpointsOutput) SetVpcEndpoints(v []*VpcEndpoint) *DescribeVpcEndpointsOutput {
+	s.VpcEndpoints = v
 	return s
 }
 
@@ -8659,12 +9989,12 @@ func (s *DisabledOperationException) RequestID() string {
 type DissociatePackageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the domain to associate the package with.
+	// Name of the domain to dissociate the package from.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// The internal ID of the package to associate with a domain. Use DescribePackages
+	// Internal ID of the package to dissociate from the domain. Use ListPackagesForDomain
 	// to find this value.
 	//
 	// PackageID is a required field
@@ -8723,11 +10053,11 @@ func (s *DissociatePackageInput) SetPackageID(v string) *DissociatePackageInput 
 	return s
 }
 
-// Container for the response returned by DissociatePackage operation.
+// Container for the response returned by an DissociatePackage operation.
 type DissociatePackageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// DomainPackageDetails
+	// Information about a package that has been dissociated from the domain.
 	DomainPackageDetails *DomainPackageDetails `type:"structure"`
 }
 
@@ -8755,57 +10085,58 @@ func (s *DissociatePackageOutput) SetDomainPackageDetails(v *DomainPackageDetail
 	return s
 }
 
-// The configuration of a domain.
+// Container for the configuration of an OpenSearch Service domain.
 type DomainConfig struct {
 	_ struct{} `type:"structure"`
 
-	// IAM access policy as a JSON-formatted string.
+	// Specifies the access policies for the domain.
 	AccessPolicies *AccessPoliciesStatus `type:"structure"`
 
-	// The AdvancedOptions for the domain. See Advanced options (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options)
-	// for more information.
+	// Key-value pairs to specify advanced configuration options. For more information,
+	// see Advanced options (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
 	AdvancedOptions *AdvancedOptionsStatus `type:"structure"`
 
-	// Specifies AdvancedSecurityOptions for the domain.
+	// Container for fine-grained access control settings for the domain.
 	AdvancedSecurityOptions *AdvancedSecurityOptionsStatus `type:"structure"`
 
-	// Specifies AutoTuneOptions for the domain.
+	// Container for Auto-Tune settings for the domain.
 	AutoTuneOptions *AutoTuneOptionsStatus `type:"structure"`
 
-	// Specifies change details of the domain configuration change.
+	// Container for information about the progress of an existing configuration
+	// change.
 	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
 
-	// The ClusterConfig for the domain.
+	// Container for the cluster configuration of a the domain.
 	ClusterConfig *ClusterConfigStatus `type:"structure"`
 
-	// The CognitoOptions for the specified domain. For more information, see Configuring
-	// Amazon Cognito authentication for OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).
+	// Container for Amazon Cognito options for the domain.
 	CognitoOptions *CognitoOptionsStatus `type:"structure"`
 
-	// The DomainEndpointOptions for the domain.
+	// Additional options for the domain endpoint, such as whether to require HTTPS
+	// for all traffic.
 	DomainEndpointOptions *DomainEndpointOptionsStatus `type:"structure"`
 
-	// The EBSOptions for the domain.
+	// Container for EBS options configured for an OpenSearch Service domain.
 	EBSOptions *EBSOptionsStatus `type:"structure"`
 
-	// The EncryptionAtRestOptions for the domain.
+	// Key-value pairs to enable encryption at rest.
 	EncryptionAtRestOptions *EncryptionAtRestOptionsStatus `type:"structure"`
 
-	// String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine
-	// version for the OpenSearch or Elasticsearch domain.
+	// The OpenSearch or Elasticsearch version that the domain is running.
 	EngineVersion *VersionStatus `type:"structure"`
 
-	// Log publishing options for the given domain.
+	// Key-value pairs to configure slow log publishing.
 	LogPublishingOptions *LogPublishingOptionsStatus `type:"structure"`
 
-	// The NodeToNodeEncryptionOptions for the domain.
+	// Whether node-to-node encryption is enabled or disabled.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptionsStatus `type:"structure"`
 
-	// The SnapshotOptions for the domain.
+	// DEPRECATED. Container for parameters required to configure automated snapshots
+	// of domain indexes.
 	SnapshotOptions *SnapshotOptionsStatus `type:"structure"`
 
-	// The VPCOptions for the specified domain. For more information, see Launching
-	// your Amazon OpenSearch Service domains using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
+	// The current VPC options for the domain and the status of any updates to their
+	// configuration.
 	VPCOptions *VPCDerivedInfoStatus `type:"structure"`
 }
 
@@ -8917,29 +10248,32 @@ func (s *DomainConfig) SetVPCOptions(v *VPCDerivedInfoStatus) *DomainConfig {
 	return s
 }
 
-// Options to configure the endpoint for the domain.
+// Options to configure a custom endpoint for an OpenSearch Service domain.
 type DomainEndpointOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The fully qualified domain for your custom endpoint.
+	// The fully qualified URL for the custom endpoint.
 	CustomEndpoint *string `min:"1" type:"string"`
 
-	// The ACM certificate ARN for your custom endpoint.
+	// The ARN for your security certificate, managed in Amazon Web Services Certificate
+	// Manager (ACM).
 	CustomEndpointCertificateArn *string `min:"20" type:"string"`
 
 	// Whether to enable a custom endpoint for the domain.
 	CustomEndpointEnabled *bool `type:"boolean"`
 
-	// Whether only HTTPS endpoint should be enabled for the domain.
+	// True to require that all traffic to the domain arrive over HTTPS.
 	EnforceHTTPS *bool `type:"boolean"`
 
 	// Specify the TLS security policy to apply to the HTTPS endpoint of the domain.
+	//
 	// Can be one of the following values:
-	//    * Policy-Min-TLS-1-0-2019-07: TLS security policy which supports TLSv1.0
-	//    and higher.
+	//
+	//    * Policy-Min-TLS-1-0-2019-07: TLS security policy which supports TLS version
+	//    1.0 and higher.
 	//
 	//    * Policy-Min-TLS-1-2-2019-07: TLS security policy which supports only
-	//    TLSv1.2
+	//    TLS version 1.2
 	TLSSecurityPolicy *string `type:"string" enum:"TLSSecurityPolicy"`
 }
 
@@ -9007,17 +10341,16 @@ func (s *DomainEndpointOptions) SetTLSSecurityPolicy(v string) *DomainEndpointOp
 	return s
 }
 
-// The configured endpoint options for the domain and their current status.
+// The configured endpoint options for a domain and their current status.
 type DomainEndpointOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
-	// Options to configure the endpoint for the domain.
+	// Options to configure the endpoint for a domain.
 	//
 	// Options is a required field
 	Options *DomainEndpointOptions `type:"structure" required:"true"`
 
-	// The status of the endpoint options for the domain. See OptionStatus for the
-	// status information that's included.
+	// The status of the endpoint options for a domain.
 	//
 	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
@@ -9053,13 +10386,15 @@ func (s *DomainEndpointOptionsStatus) SetStatus(v *OptionStatus) *DomainEndpoint
 	return s
 }
 
+// Information about an OpenSearch Service domain.
 type DomainInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The DomainName.
+	// Name of the domain.
 	DomainName *string `min:"3" type:"string"`
 
-	// Specifies the EngineType of the domain.
+	// The type of search engine that the domain is running.OpenSearch for an OpenSearch
+	// engine, or Elasticsearch for a legacy Elasticsearch OSS engine.
 	EngineType *string `type:"string" enum:"EngineType"`
 }
 
@@ -9093,9 +10428,11 @@ func (s *DomainInfo) SetEngineType(v string) *DomainInfo {
 	return s
 }
 
+// Container for information about an OpenSearch Service domain.
 type DomainInformationContainer struct {
 	_ struct{} `type:"structure"`
 
+	// Information about an Amazon OpenSearch Service domain.
 	AWSDomainInformation *AWSDomainInformation `type:"structure"`
 }
 
@@ -9138,36 +10475,37 @@ func (s *DomainInformationContainer) SetAWSDomainInformation(v *AWSDomainInforma
 	return s
 }
 
-// Information on a package associated with a domain.
+// Information about a package that is associated with a domain. For more information,
+// see Custom packages for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html).
 type DomainPackageDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the domain you've associated a package with.
+	// Name of the domain that the package is associated with.
 	DomainName *string `min:"3" type:"string"`
 
-	// State of the association. Values are ASSOCIATING, ASSOCIATION_FAILED, ACTIVE,
-	// DISSOCIATING, and DISSOCIATION_FAILED.
+	// State of the association.
 	DomainPackageStatus *string `type:"string" enum:"DomainPackageStatus"`
 
 	// Additional information if the package is in an error state. Null otherwise.
 	ErrorDetails *ErrorDetails `type:"structure"`
 
-	// The timestamp of the most recent update to the package association status.
+	// Timestamp of the most recent update to the package association status.
 	LastUpdated *time.Time `type:"timestamp"`
 
-	// The internal ID of the package.
+	// Internal ID of the package.
 	PackageID *string `type:"string"`
 
 	// User-specified name of the package.
 	PackageName *string `min:"3" type:"string"`
 
-	// Currently supports only TXT-DICTIONARY.
+	// The type of package.
 	PackageType *string `type:"string" enum:"PackageType"`
 
+	// The current version of the package.
 	PackageVersion *string `type:"string"`
 
-	// The relative path on Amazon OpenSearch Service nodes, which can be used as
-	// synonym_path when the package is a synonym file.
+	// Denotes the location of the package on the OpenSearch Service cluster nodes.
+	// It's the same as synonym_path for dictionary files.
 	ReferencePath *string `type:"string"`
 }
 
@@ -9243,102 +10581,107 @@ func (s *DomainPackageDetails) SetReferencePath(v string) *DomainPackageDetails 
 	return s
 }
 
-// The current status of a domain.
+// The current status of an OpenSearch Service domain.
 type DomainStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of a domain. See IAM identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
-	// in the AWS Identity and Access Management User Guide for more information.
+	// The Amazon Resource Name (ARN) of the domain. For more information, see IAM
+	// identifiers (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
+	// in the AWS Identity and Access Management User Guide.
 	//
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// IAM access policy as a JSON-formatted string.
+	// Identity and Access Management (IAM) policy document specifying the access
+	// policies for the domain.
 	AccessPolicies *string `type:"string"`
 
-	// The status of the AdvancedOptions.
+	// Key-value pairs that specify advanced configuration options.
 	AdvancedOptions map[string]*string `type:"map"`
 
-	// The current status of the domain's advanced security options.
+	// Settings for fine-grained access control.
 	AdvancedSecurityOptions *AdvancedSecurityOptions `type:"structure"`
 
-	// The current status of the domain's Auto-Tune options.
+	// Auto-Tune settings for the domain.
 	AutoTuneOptions *AutoTuneOptionsOutput_ `type:"structure"`
 
-	// Specifies change details of the domain configuration change.
+	// Information about a configuration change happening on the domain.
 	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
 
-	// The type and number of instances in the domain.
+	// Container for the cluster configuration of the domain.
 	//
 	// ClusterConfig is a required field
 	ClusterConfig *ClusterConfig `type:"structure" required:"true"`
 
-	// The CognitoOptions for the specified domain. For more information, see Configuring
-	// Amazon Cognito authentication for OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).
+	// Key-value pairs to configure Amazon Cognito authentication for OpenSearch
+	// Dashboards.
 	CognitoOptions *CognitoOptions `type:"structure"`
 
-	// The domain creation status. True if the creation of a domain is complete.
-	// False if domain creation is still in progress.
+	// Creation status of an OpenSearch Service domain. True if domain creation
+	// is complete. False if domain creation is still in progress.
 	Created *bool `type:"boolean"`
 
-	// The domain deletion status. True if a delete request has been received for
-	// the domain but resource cleanup is still in progress. False if the domain
-	// has not been deleted. Once domain deletion is complete, the status of the
-	// domain is no longer returned.
+	// Deletion status of an OpenSearch Service domain. True if domain deletion
+	// is complete. False if domain deletion is still in progress. Once deletion
+	// is complete, the status of the domain is no longer returned.
 	Deleted *bool `type:"boolean"`
 
-	// The current status of the domain's endpoint options.
+	// Additional options for the domain endpoint, such as whether to require HTTPS
+	// for all traffic.
 	DomainEndpointOptions *DomainEndpointOptions `type:"structure"`
 
-	// The unique identifier for the specified domain.
+	// Unique identifier for the domain.
 	//
 	// DomainId is a required field
 	DomainId *string `min:"1" type:"string" required:"true"`
 
-	// The name of a domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// Name of the domain. Domain names are unique across all domains owned by the
+	// same account within an Amazon Web Services Region.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	// The EBSOptions for the specified domain.
+	// Container for EBS-based storage settings for the domain.
 	EBSOptions *EBSOptions `type:"structure"`
 
-	// The status of the EncryptionAtRestOptions.
+	// Encryption at rest settings for the domain.
 	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
-	// The domain endpoint that you use to submit index and search requests.
+	// Domain-specific endpoint used to submit index, search, and data upload requests
+	// to the domain.
 	Endpoint *string `type:"string"`
 
-	// Map containing the domain endpoints used to submit index and search requests.
-	// Example key, value: 'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'.
+	// The key-value pair that exists if the OpenSearch Service domain uses VPC
+	// endpoints.. Example key, value: 'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'.
 	Endpoints map[string]*string `type:"map"`
 
+	// Version of OpenSearch or Elasticsearch that the domain is running, in the
+	// format Elasticsearch_X.Y or OpenSearch_X.Y.
 	EngineVersion *string `min:"14" type:"string"`
 
-	// Log publishing options for the given domain.
+	// Log publishing options for the domain.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
-	// The status of the NodeToNodeEncryptionOptions.
+	// Whether node-to-node encryption is enabled or disabled.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
 
-	// The status of the domain configuration. True if Amazon OpenSearch Service
-	// is processing configuration changes. False if the configuration is active.
+	// The status of the domain configuration. True if OpenSearch Service is processing
+	// configuration changes. False if the configuration is active.
 	Processing *bool `type:"boolean"`
 
 	// The current status of the domain's service software.
 	ServiceSoftwareOptions *ServiceSoftwareOptions `type:"structure"`
 
-	// The status of the SnapshotOptions.
+	// DEPRECATED. Container for parameters required to configure automated snapshots
+	// of domain indexes.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
 
-	// The status of a domain version upgrade. True if Amazon OpenSearch Service
-	// is undergoing a version upgrade. False if the configuration is active.
+	// The status of a domain version upgrade to a new version of OpenSearch or
+	// Elasticsearch. True if OpenSearch Service is in the process of a version
+	// upgrade. False if the configuration is active.
 	UpgradeProcessing *bool `type:"boolean"`
 
-	// The VPCOptions for the specified domain. For more information, see Launching
-	// your Amazon OpenSearch Service domains using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
+	// The VPC configuration for the domain.
 	VPCOptions *VPCDerivedInfo `type:"structure"`
 }
 
@@ -9510,17 +10853,24 @@ func (s *DomainStatus) SetVPCOptions(v *VPCDerivedInfo) *DomainStatus {
 	return s
 }
 
+// Results of a dry run performed in an update domain request.
 type DryRunResults struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the way in which Amazon OpenSearch Service applies the update.
-	// Possible responses are Blue/Green (the update requires a blue/green deployment),
-	// DynamicUpdate (no blue/green required), Undetermined (the domain is undergoing
-	// an update and can't predict the deployment type; try again after the update
-	// is complete), and None (the request doesn't include any configuration changes).
+	// Specifies the way in which OpenSearch Service will apply an update. Possible
+	// values are:
+	//
+	//    * Blue/Green - The update requires a blue/green deployment.
+	//
+	//    * DynamicUpdate - No blue/green deployment required
+	//
+	//    * Undetermined - The domain is in the middle of an update and can't predict
+	//    the deployment type. Try again after the update is complete.
+	//
+	//    * None - The request doesn't include any configuration changes.
 	DeploymentType *string `min:"2" type:"string"`
 
-	// Contains an optional message associated with the DryRunResults.
+	// A message corresponding to the deployment type.
 	Message *string `type:"string"`
 }
 
@@ -9554,20 +10904,15 @@ func (s *DryRunResults) SetMessage(v string) *DryRunResults {
 	return s
 }
 
-// The maintenance schedule duration: duration value and duration unit. See
-// Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-// for more information.
+// The duration of a maintenance schedule. For more information, see Auto-Tune
+// for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type Duration struct {
 	_ struct{} `type:"structure"`
 
-	// The unit of a maintenance schedule duration. Valid value is HOURS. See Auto-Tune
-	// for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// The unit of measurement for the duration of a maintenance schedule.
 	Unit *string `type:"string" enum:"TimeUnit"`
 
-	// Integer to specify the value of a maintenance schedule duration. See Auto-Tune
-	// for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-	// for more information.
+	// Integer to specify the value of a maintenance schedule duration.
 	Value *int64 `min:"1" type:"long"`
 }
 
@@ -9614,23 +10959,28 @@ func (s *Duration) SetValue(v int64) *Duration {
 	return s
 }
 
-// Options to enable, disable, and specify the properties of EBS storage volumes.
+// Container for the parameters required to enable EBS-based storage for an
+// OpenSearch Service domain.
 type EBSOptions struct {
 	_ struct{} `type:"structure"`
 
-	// Whether EBS-based storage is enabled.
+	// Indicates whether EBS volumes are attached to data nodes in an OpenSearch
+	// Service domain.
 	EBSEnabled *bool `type:"boolean"`
 
-	// The IOPS for Provisioned IOPS And GP3 EBS volume (SSD).
+	// Specifies the baseline input/output (I/O) performance of EBS volumes attached
+	// to data nodes. Applicable only for the gp3 and provisioned IOPS EBS volume
+	// types.
 	Iops *int64 `type:"integer"`
 
-	// The Throughput for GP3 EBS volume (SSD).
+	// Specifies the throughput (in MiB/s) of the EBS volumes attached to data nodes.
+	// Applicable only for the gp3 volume type.
 	Throughput *int64 `type:"integer"`
 
-	// Integer to specify the size of an EBS volume.
+	// Specifies the size (in GiB) of EBS volumes attached to data nodes.
 	VolumeSize *int64 `type:"integer"`
 
-	// The volume type for EBS-based storage.
+	// Specifies the type of EBS volumes attached to data nodes.
 	VolumeType *string `type:"string" enum:"VolumeType"`
 }
 
@@ -9682,11 +11032,11 @@ func (s *EBSOptions) SetVolumeType(v string) *EBSOptions {
 	return s
 }
 
-// Status of the EBS options for the specified domain.
+// The status of the EBS options for the specified OpenSearch Service domain.
 type EBSOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The EBS options for the specified domain.
+	// The configured EBS options for the specified domain.
 	//
 	// Options is a required field
 	Options *EBSOptions `type:"structure" required:"true"`
@@ -9727,14 +11077,16 @@ func (s *EBSOptionsStatus) SetStatus(v *OptionStatus) *EBSOptionsStatus {
 	return s
 }
 
-// Specifies encryption at rest options.
+// Specifies whether the domain should encrypt data at rest, and if so, the
+// Key Management Service (KMS) key to use. Can be used only to create a new
+// domain, not update an existing one.
 type EncryptionAtRestOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The option to enable encryption at rest.
+	// True to enable encryption at rest.
 	Enabled *bool `type:"boolean"`
 
-	// The KMS key ID for encryption at rest options.
+	// The KMS key ID. Takes the form 1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a.
 	KmsKeyId *string `min:"1" type:"string"`
 }
 
@@ -9781,16 +11133,17 @@ func (s *EncryptionAtRestOptions) SetKmsKeyId(v string) *EncryptionAtRestOptions
 	return s
 }
 
-// Status of the encryption At Rest options for the specified domain.
+// Status of the encryption at rest options for the specified OpenSearch Service
+// domain.
 type EncryptionAtRestOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The Encryption At Rest options for the specified domain.
+	// Encryption at rest options for the specified domain.
 	//
 	// Options is a required field
 	Options *EncryptionAtRestOptions `type:"structure" required:"true"`
 
-	// The status of the Encryption At Rest options for the specified domain.
+	// The status of the encryption at rest options for the specified domain.
 	//
 	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
@@ -9826,11 +11179,14 @@ func (s *EncryptionAtRestOptionsStatus) SetStatus(v *OptionStatus) *EncryptionAt
 	return s
 }
 
+// Additional information if the package is in an error state. Null otherwise.
 type ErrorDetails struct {
 	_ struct{} `type:"structure"`
 
+	// A message describing the error.
 	ErrorMessage *string `type:"string"`
 
+	// The type of error that occurred.
 	ErrorType *string `type:"string"`
 }
 
@@ -9865,7 +11221,7 @@ func (s *ErrorDetails) SetErrorType(v string) *ErrorDetails {
 }
 
 // A filter used to limit results when describing inbound or outbound cross-cluster
-// connections. Multiple values can be specified per filter. A cross-cluster
+// connections. You can specify multiple values per filter. A cross-cluster
 // connection must match at least one of the specified values for it to be returned
 // from an operation.
 type Filter struct {
@@ -9874,7 +11230,7 @@ type Filter struct {
 	// The name of the filter.
 	Name *string `min:"1" type:"string"`
 
-	// Contains one or more values for the filter.
+	// One or more values for the filter.
 	Values []*string `min:"1" type:"list"`
 }
 
@@ -9928,9 +11284,8 @@ func (s *Filter) SetValues(v []*string) *Filter {
 type GetCompatibleVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of an domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// The name of an existing domain. Provide this parameter to limit the results
+	// to a single domain.
 	DomainName *string `location:"querystring" locationName:"domainName" min:"3" type:"string"`
 }
 
@@ -9975,8 +11330,8 @@ func (s *GetCompatibleVersionsInput) SetDomainName(v string) *GetCompatibleVersi
 type GetCompatibleVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A map of compatible OpenSearch versions returned as part of the GetCompatibleVersions
-	// operation.
+	// A map of OpenSearch or Elasticsearch versions and the versions you can upgrade
+	// them to.
 	CompatibleVersions []*CompatibleVersionsMap `type:"list"`
 }
 
@@ -10008,14 +11363,16 @@ func (s *GetCompatibleVersionsOutput) SetCompatibleVersions(v []*CompatibleVersi
 type GetPackageVersionHistoryInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Limits results to a maximum number of package versions.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Used for pagination. Only necessary if a previous API call includes a non-null
-	// NextToken value. If provided, returns results for the next page.
+	// If your initial GetPackageVersionHistory operation returns a nextToken, you
+	// can include the returned nextToken in subsequent GetPackageVersionHistory
+	// operations, which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// Returns an audit history of package versions.
+	// The unique identifier of the package.
 	//
 	// PackageID is a required field
 	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
@@ -10077,11 +11434,15 @@ func (s *GetPackageVersionHistoryInput) SetPackageID(v string) *GetPackageVersio
 type GetPackageVersionHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
+	// The unique identifier of the package.
 	PackageID *string `type:"string"`
 
-	// List of PackageVersionHistory objects.
+	// A list of package versions, along with their creation time and commit message.
 	PackageVersionHistoryList []*PackageVersionHistory `type:"list"`
 }
 
@@ -10125,19 +11486,18 @@ func (s *GetPackageVersionHistoryOutput) SetPackageVersionHistoryList(v []*Packa
 type GetUpgradeHistoryInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of an domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// The name of an existing domain.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// Set this value to limit the number of results returned.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Paginated APIs accept the NextToken input to return the next page of results
-	// and provide a NextToken output in the response, which you can use to retrieve
-	// more results.
+	// If your initial GetUpgradeHistory operation returns a nextToken, you can
+	// include the returned nextToken in subsequent GetUpgradeHistory operations,
+	// which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -10197,13 +11557,13 @@ func (s *GetUpgradeHistoryInput) SetNextToken(v string) *GetUpgradeHistoryInput 
 type GetUpgradeHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token that needs to be supplied to the next call to get the next
-	// page of results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
-	// A list of UpgradeHistory objects corresponding to each upgrade or upgrade
-	// eligibility check performed on a domain returned as part of the GetUpgradeHistoryResponse
-	// object.
+	// A list of objects corresponding to each upgrade or upgrade eligibility check
+	// performed on a domain.
 	UpgradeHistories []*UpgradeHistory `type:"list"`
 }
 
@@ -10241,9 +11601,7 @@ func (s *GetUpgradeHistoryOutput) SetUpgradeHistories(v []*UpgradeHistory) *GetU
 type GetUpgradeStatusInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of an domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// The domain of the domain to get upgrade status information for.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
@@ -10293,26 +11651,13 @@ func (s *GetUpgradeStatusInput) SetDomainName(v string) *GetUpgradeStatusInput {
 type GetUpgradeStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// One of four statuses an upgrade have, returned as part of the GetUpgradeStatusResponse
-	// object. The status can take one of the following values:
-	//    * In Progress
-	//
-	//    * Succeeded
-	//
-	//    * Succeeded with Issues
-	//
-	//    * Failed
+	// The status of the current step that an upgrade is on.
 	StepStatus *string `type:"string" enum:"UpgradeStatus"`
 
-	// A string that briefly describes the update.
+	// A string that describes the update.
 	UpgradeName *string `type:"string"`
 
-	// One of three steps an upgrade or upgrade eligibility check goes through:
-	//    * PreUpgradeCheck
-	//
-	//    * Snapshot
-	//
-	//    * Upgrade
+	// One of three steps that an upgrade or upgrade eligibility check goes through.
 	UpgradeStep *string `type:"string" enum:"UpgradeStep"`
 }
 
@@ -10352,20 +11697,22 @@ func (s *GetUpgradeStatusOutput) SetUpgradeStep(v string) *GetUpgradeStatusOutpu
 	return s
 }
 
-// Details of an inbound connection.
+// Describes an inbound cross-cluster connection for Amazon OpenSearch Service.
+// For more information, see Cross-cluster search for Amazon OpenSearch Service
+// (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html).
 type InboundConnection struct {
 	_ struct{} `type:"structure"`
 
-	// The connection ID for the inbound cross-cluster connection.
+	// The unique identifier of the connection.
 	ConnectionId *string `min:"10" type:"string"`
 
-	// The InboundConnectionStatus for the outbound connection.
+	// The current status of the connection.
 	ConnectionStatus *InboundConnectionStatus `type:"structure"`
 
-	// The AWSDomainInformation for the local OpenSearch domain.
+	// Information about the source (local) domain.
 	LocalDomainInfo *DomainInformationContainer `type:"structure"`
 
-	// The AWSDomainInformation for the remote OpenSearch domain.
+	// Information about the destination (remote) domain.
 	RemoteDomainInfo *DomainInformationContainer `type:"structure"`
 }
 
@@ -10411,22 +11758,22 @@ func (s *InboundConnection) SetRemoteDomainInfo(v *DomainInformationContainer) *
 	return s
 }
 
-// The connection status of an inbound cross-cluster connection.
+// The status of an inbound cross-cluster connection for OpenSearch Service.
 type InboundConnectionStatus struct {
 	_ struct{} `type:"structure"`
 
-	// Verbose information for the inbound connection status.
+	// Information about the connection.
 	Message *string `type:"string"`
 
-	// The state code for the inbound connection. Can be one of the following:
+	// The status code for the connection. Can be one of the following:
 	//
-	//    * PENDING_ACCEPTANCE: Inbound connection is not yet accepted by the remote
+	//    * PENDING_ACCEPTANCE - Inbound connection is not yet accepted by the remote
 	//    domain owner.
 	//
 	//    * APPROVED: Inbound connection is pending acceptance by the remote domain
 	//    owner.
 	//
-	//    * PROVISIONING: Inbound connection provisioning is in progress.
+	//    * PROVISIONING: Inbound connection is being provisioned.
 	//
 	//    * ACTIVE: Inbound connection is active and ready to use.
 	//
@@ -10470,15 +11817,15 @@ func (s *InboundConnectionStatus) SetStatusCode(v string) *InboundConnectionStat
 	return s
 }
 
-// InstanceCountLimits represents the limits on the number of instances that
-// can be created in Amazon OpenSearch Service for a given InstanceType.
+// Limits on the number of instances that can be created in OpenSearch Service
+// for a given instance type.
 type InstanceCountLimits struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum number of instances that can be instantiated for a given InstanceType.
+	// The minimum allowed number of instances.
 	MaximumInstanceCount *int64 `type:"integer"`
 
-	// Minimum number of instances that can be instantiated for a given InstanceType.
+	// The maximum allowed number of instances.
 	MinimumInstanceCount *int64 `type:"integer"`
 }
 
@@ -10512,13 +11859,12 @@ func (s *InstanceCountLimits) SetMinimumInstanceCount(v int64) *InstanceCountLim
 	return s
 }
 
-// InstanceLimits represents the list of instance-related attributes that are
-// available for a given InstanceType.
+// Instance-related attributes that are available for a given instance type.
 type InstanceLimits struct {
 	_ struct{} `type:"structure"`
 
-	// InstanceCountLimits represents the limits on the number of instances that
-	// can be created in Amazon OpenSearch Service for a given InstanceType.
+	// Limits on the number of instances that can be created for a given instance
+	// type.
 	InstanceCountLimits *InstanceCountLimits `type:"structure"`
 }
 
@@ -10546,21 +11892,32 @@ func (s *InstanceLimits) SetInstanceCountLimits(v *InstanceCountLimits) *Instanc
 	return s
 }
 
+// Lists all instance types and available features for a given OpenSearch or
+// Elasticsearch version.
 type InstanceTypeDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Whether fine-grained access control is supported for the instance type.
 	AdvancedSecurityEnabled *bool `type:"boolean"`
 
+	// Whether logging is supported for the instance type.
 	AppLogsEnabled *bool `type:"boolean"`
 
+	// Whether Amazon Cognito access is supported for the instance type.
 	CognitoEnabled *bool `type:"boolean"`
 
+	// Whether encryption at rest and node-to-node encryption are supported for
+	// the instance type.
 	EncryptionEnabled *bool `type:"boolean"`
 
+	// Whether the instance acts as a data node, a dedicated master node, or an
+	// UltraWarm node.
 	InstanceRole []*string `type:"list"`
 
+	// The instance type.
 	InstanceType *string `type:"string" enum:"OpenSearchPartitionInstanceType"`
 
+	// Whether UltraWarm is supported for the instance type.
 	WarmEnabled *bool `type:"boolean"`
 }
 
@@ -10885,20 +12242,18 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Limits for a given InstanceType and for each of its roles. Limits contains
-// the following: StorageTypes , InstanceLimits , and AdditionalLimits
+// Limits for a given instance type and for each of its roles.
 type Limits struct {
 	_ struct{} `type:"structure"`
 
-	// List of additional limits that are specific to a given InstanceType and for
-	// each of its InstanceRole .
+	// List of additional limits that are specific to a given instance type for
+	// each of its instance roles.
 	AdditionalLimits []*AdditionalLimit `type:"list"`
 
-	// InstanceLimits represents the list of instance-related attributes that are
-	// available for a given InstanceType.
+	// The limits for a given instance type.
 	InstanceLimits *InstanceLimits `type:"structure"`
 
-	// Storage-related types and attributes that are available for a given InstanceType.
+	// Storage-related attributes that are available for a given instance type.
 	StorageTypes []*StorageType `type:"list"`
 }
 
@@ -10942,8 +12297,7 @@ func (s *Limits) SetStorageTypes(v []*StorageType) *Limits {
 type ListDomainNamesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Optional parameter to filter the output by domain engine type. Acceptable
-	// values are 'Elasticsearch' and 'OpenSearch'.
+	// Filters the output by domain engine type.
 	EngineType *string `location:"querystring" locationName:"engineType" type:"string" enum:"EngineType"`
 }
 
@@ -10971,12 +12325,13 @@ func (s *ListDomainNamesInput) SetEngineType(v string) *ListDomainNamesInput {
 	return s
 }
 
-// The result of a ListDomainNames operation. Contains the names of all domains
+// The results of a ListDomainNames operation. Contains the names of all domains
 // owned by this account and their respective engine types.
 type ListDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of domain names and respective engine types.
+	// The names of all OpenSearch Service domains owned by the current user and
+	// their respective engine types.
 	DomainNames []*DomainInfo `type:"list"`
 }
 
@@ -11008,14 +12363,16 @@ func (s *ListDomainNamesOutput) SetDomainNames(v []*DomainInfo) *ListDomainNames
 type ListDomainsForPackageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Limits the results to a maximum number of domains.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Used for pagination. Only necessary if a previous API call includes a non-null
-	// NextToken value. If provided, returns results for the next page.
+	// If your initial ListDomainsForPackage operation returns a nextToken, you
+	// can include the returned nextToken in subsequent ListDomainsForPackage operations,
+	// which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// The package for which to list associated domains.
+	// The unique identifier of the package for which to list associated domains.
 	//
 	// PackageID is a required field
 	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
@@ -11077,9 +12434,12 @@ func (s *ListDomainsForPackageInput) SetPackageID(v string) *ListDomainsForPacka
 type ListDomainsForPackageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of DomainPackageDetails objects.
+	// Information about all domains associated with a package.
 	DomainPackageDetailsList []*DomainPackageDetails `type:"list"`
 
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -11116,20 +12476,22 @@ func (s *ListDomainsForPackageOutput) SetNextToken(v string) *ListDomainsForPack
 type ListInstanceTypeDetailsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of an domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// Name of the domain to list instance type details for.
 	DomainName *string `location:"querystring" locationName:"domainName" min:"3" type:"string"`
 
+	// Version of OpenSearch or Elasticsearch, in the format Elasticsearch_X.Y or
+	// OpenSearch_X.Y. Defaults to the latest version of OpenSearch.
+	//
 	// EngineVersion is a required field
 	EngineVersion *string `location:"uri" locationName:"EngineVersion" min:"14" type:"string" required:"true"`
 
-	// Set this value to limit the number of results returned.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Paginated APIs accept the NextToken input to return the next page of results
-	// and provide a NextToken output in the response, which you can use to retrieve
-	// more results.
+	// If your initial ListInstanceTypeDetails operation returns a nextToken, you
+	// can include the returned nextToken in subsequent ListInstanceTypeDetails
+	// operations, which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -11197,11 +12559,13 @@ func (s *ListInstanceTypeDetailsInput) SetNextToken(v string) *ListInstanceTypeD
 type ListInstanceTypeDetailsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Lists all supported instance types and features for the given OpenSearch
+	// or Elasticsearch version.
 	InstanceTypeDetails []*InstanceTypeDetails `type:"list"`
 
-	// Paginated APIs accept the NextToken input to return the next page of results
-	// and provide a NextToken output in the response, which you can use to retrieve
-	// more results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -11244,11 +12608,13 @@ type ListPackagesForDomainInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// Limits results to a maximum number of packages.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Used for pagination. Only necessary if a previous API call includes a non-null
-	// NextToken value. If provided, returns results for the next page.
+	// If your initial ListPackagesForDomain operation returns a nextToken, you
+	// can include the returned nextToken in subsequent ListPackagesForDomain operations,
+	// which returns results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -11308,10 +12674,12 @@ func (s *ListPackagesForDomainInput) SetNextToken(v string) *ListPackagesForDoma
 type ListPackagesForDomainOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of DomainPackageDetails objects.
+	// List of all packages associated with a domain.
 	DomainPackageDetailsList []*DomainPackageDetails `type:"list"`
 
-	// Pagination token to supply to the next call to get the next page of results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
 
@@ -11345,13 +12713,11 @@ func (s *ListPackagesForDomainOutput) SetNextToken(v string) *ListPackagesForDom
 	return s
 }
 
-// Container for the parameters to the ListTags operation. Specify the ARN of
-// the domain that the tags you want to view are attached to.
+// Container for the parameters to the ListTags operation.
 type ListTagsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Specify the ARN of the domain that the tags you want to view are attached
-	// to.
+	// Amazon Resource Name (ARN) for the domain to view tags for.
 	//
 	// ARN is a required field
 	ARN *string `location:"querystring" locationName:"arn" min:"20" type:"string" required:"true"`
@@ -11397,11 +12763,11 @@ func (s *ListTagsInput) SetARN(v string) *ListTagsInput {
 	return s
 }
 
-// The result of a ListTags operation. Contains tags for all requested domains.
+// The results of a ListTags operation.
 type ListTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of Tag for the requested domain.
+	// List of resource tags associated with the specified domain.
 	TagList []*Tag `type:"list"`
 }
 
@@ -11429,22 +12795,17 @@ func (s *ListTagsOutput) SetTagList(v []*Tag) *ListTagsOutput {
 	return s
 }
 
-// Container for the parameters to the ListVersions operation.
-// Use MaxResults to control the maximum number of results to retrieve in a
-// single call.
-//
-// Use NextToken in response to retrieve more results. If the received response
-// does not contain a NextToken, there are no more results to retrieve.
+// Container for the request parameters to the ListVersions operation.
 type ListVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Set this value to limit the number of results returned. Value must be greater
-	// than 10 or it won't be honored.
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to get the next page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
-	// Paginated APIs accept the NextToken input to return the next page of results
-	// and provide a NextToken output in the response, which you can use to retrieve
-	// more results.
+	// If your initial ListVersions operation returns a nextToken, you can include
+	// the returned nextToken in subsequent ListVersions operations, which returns
+	// results in the next page.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -11483,12 +12844,13 @@ func (s *ListVersionsInput) SetNextToken(v string) *ListVersionsInput {
 type ListVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Paginated APIs accept the NextToken input to return the next page of results
-	// and provide a NextToken output in the response, which you can use to retrieve
-	// more results.
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
-	// List of supported OpenSearch versions.
+	// A list of all versions of OpenSearch and Elasticsearch that Amazon OpenSearch
+	// Service supports.
 	Versions []*string `type:"list"`
 }
 
@@ -11522,21 +12884,313 @@ func (s *ListVersionsOutput) SetVersions(v []*string) *ListVersionsOutput {
 	return s
 }
 
-// Log Publishing option that is set for a given domain. Attributes and their
-// details:
+type ListVpcEndpointAccessInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the OpenSearch Service domain to retrieve access information
+	// for.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+
+	// If your initial ListVpcEndpointAccess operation returns a nextToken, you
+	// can include the returned nextToken in subsequent ListVpcEndpointAccess operations,
+	// which returns results in the next page.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
 //
-//   - CloudWatchLogsLogGroupArn: ARN of the Cloudwatch log group to publish
-//     logs to.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
 //
-//   - Enabled: Whether the log publishing for a given log type is enabled
-//     or not.
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVpcEndpointAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVpcEndpointAccessInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ListVpcEndpointAccessInput) SetDomainName(v string) *ListVpcEndpointAccessInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcEndpointAccessInput) SetNextToken(v string) *ListVpcEndpointAccessInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVpcEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IAM principals (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html)
+	// that can currently access the domain.
+	//
+	// AuthorizedPrincipalList is a required field
+	AuthorizedPrincipalList []*AuthorizedPrincipal `type:"list" required:"true"`
+
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
+	//
+	// NextToken is a required field
+	NextToken *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizedPrincipalList sets the AuthorizedPrincipalList field's value.
+func (s *ListVpcEndpointAccessOutput) SetAuthorizedPrincipalList(v []*AuthorizedPrincipal) *ListVpcEndpointAccessOutput {
+	s.AuthorizedPrincipalList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcEndpointAccessOutput) SetNextToken(v string) *ListVpcEndpointAccessOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVpcEndpointsForDomainInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the domain to list associated VPC endpoints for.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+
+	// If your initial ListEndpointsForDomain operation returns a nextToken, you
+	// can include the returned nextToken in subsequent ListEndpointsForDomain operations,
+	// which returns results in the next page.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsForDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsForDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVpcEndpointsForDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVpcEndpointsForDomainInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ListVpcEndpointsForDomainInput) SetDomainName(v string) *ListVpcEndpointsForDomainInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcEndpointsForDomainInput) SetNextToken(v string) *ListVpcEndpointsForDomainInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVpcEndpointsForDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
+	//
+	// NextToken is a required field
+	NextToken *string `type:"string" required:"true"`
+
+	// Information about each endpoint associated with the domain.
+	//
+	// VpcEndpointSummaryList is a required field
+	VpcEndpointSummaryList []*VpcEndpointSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsForDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsForDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcEndpointsForDomainOutput) SetNextToken(v string) *ListVpcEndpointsForDomainOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcEndpointSummaryList sets the VpcEndpointSummaryList field's value.
+func (s *ListVpcEndpointsForDomainOutput) SetVpcEndpointSummaryList(v []*VpcEndpointSummary) *ListVpcEndpointsForDomainOutput {
+	s.VpcEndpointSummaryList = v
+	return s
+}
+
+type ListVpcEndpointsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// If your initial ListVpcEndpoints operation returns a nextToken, you can include
+	// the returned nextToken in subsequent ListVpcEndpoints operations, which returns
+	// results in the next page.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcEndpointsInput) SetNextToken(v string) *ListVpcEndpointsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVpcEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page.
+	//
+	// NextToken is a required field
+	NextToken *string `type:"string" required:"true"`
+
+	// Information about each endpoint.
+	//
+	// VpcEndpointSummaryList is a required field
+	VpcEndpointSummaryList []*VpcEndpointSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcEndpointsOutput) SetNextToken(v string) *ListVpcEndpointsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcEndpointSummaryList sets the VpcEndpointSummaryList field's value.
+func (s *ListVpcEndpointsOutput) SetVpcEndpointSummaryList(v []*VpcEndpointSummary) *ListVpcEndpointsOutput {
+	s.VpcEndpointSummaryList = v
+	return s
+}
+
+// Specifies whether the Amazon OpenSearch Service domain publishes the OpenSearch
+// application and slow logs to Amazon CloudWatch. For more information, see
+// Monitoring OpenSearch logs with Amazon CloudWatch Logs (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createdomain-configure-slow-logs.html).
+//
+// After you enable log publishing, you still have to enable the collection
+// of slow logs using the OpenSearch REST API.
 type LogPublishingOption struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the Cloudwatch log group to publish logs to.
+	// The Amazon Resource Name (ARN) of the CloudWatch Logs group to publish logs
+	// to.
 	CloudWatchLogsLogGroupArn *string `min:"20" type:"string"`
 
-	// Whether the given log publishing option is enabled or not.
+	// Whether the log should be published.
 	Enabled *bool `type:"boolean"`
 }
 
@@ -11590,8 +13244,7 @@ type LogPublishingOptionsStatus struct {
 	// The log publishing options configured for the domain.
 	Options map[string]*LogPublishingOption `type:"map"`
 
-	// The status of the log publishing options for the domain. See OptionStatus
-	// for the status information that's included.
+	// The status of the log publishing options for the domain.
 	Status *OptionStatus `type:"structure"`
 }
 
@@ -11625,23 +13278,24 @@ func (s *LogPublishingOptionsStatus) SetStatus(v *OptionStatus) *LogPublishingOp
 	return s
 }
 
-// Credentials for the master user: username and password, ARN, or both.
+// Credentials for the master user for a domain.
 type MasterUserOptions struct {
 	_ struct{} `type:"structure"`
 
-	// ARN for the master user (if IAM is enabled).
+	// Amazon Resource Name (ARN) for the master user. Only specify if InternalUserDatabaseEnabled
+	// is false.
 	MasterUserARN *string `min:"20" type:"string"`
 
-	// The master user's username, which is stored in the Amazon OpenSearch Service
-	// domain's internal database.
+	// User name for the master user. Only specify if InternalUserDatabaseEnabled
+	// is true.
 	//
 	// MasterUserName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by MasterUserOptions's
 	// String and GoString methods.
 	MasterUserName *string `min:"1" type:"string" sensitive:"true"`
 
-	// The master user's password, which is stored in the Amazon OpenSearch Service
-	// domain's internal database.
+	// Password for the master user. Only specify if InternalUserDatabaseEnabled
+	// is true.
 	//
 	// MasterUserPassword is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by MasterUserOptions's
@@ -11704,7 +13358,8 @@ func (s *MasterUserOptions) SetMasterUserPassword(v string) *MasterUserOptions {
 	return s
 }
 
-// The node-to-node encryption options.
+// Enables or disables node-to-node encryption. For more information, see Node-to-node
+// encryption for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ntn.html).
 type NodeToNodeEncryptionOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -11781,19 +13436,19 @@ func (s *NodeToNodeEncryptionOptionsStatus) SetStatus(v *OptionStatus) *NodeToNo
 	return s
 }
 
-// Provides the current status of the entity.
+// Provides the current status of an entity.
 type OptionStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp of when the entity was created.
+	// The timestamp when the entity was created.
 	//
 	// CreationDate is a required field
 	CreationDate *time.Time `type:"timestamp" required:"true"`
 
-	// Indicates whether the domain is being deleted.
+	// Indicates whether the entity is being deleted.
 	PendingDeletion *bool `type:"boolean"`
 
-	// Provides the OptionState for the domain.
+	// The state of the entity.
 	//
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"OptionState"`
@@ -11855,23 +13510,23 @@ func (s *OptionStatus) SetUpdateVersion(v int64) *OptionStatus {
 	return s
 }
 
-// Specifies details about an outbound connection.
+// Specifies details about an outbound cross-cluster connection.
 type OutboundConnection struct {
 	_ struct{} `type:"structure"`
 
-	// The connection alias for the outbound cross-cluster connection.
+	// Name of the connection.
 	ConnectionAlias *string `min:"2" type:"string"`
 
-	// The connection ID for the outbound cross-cluster connection.
+	// Unique identifier of the connection.
 	ConnectionId *string `min:"10" type:"string"`
 
-	// The OutboundConnectionStatus for the outbound connection.
+	// Status of the connection.
 	ConnectionStatus *OutboundConnectionStatus `type:"structure"`
 
-	// The DomainInformation for the local OpenSearch domain.
+	// Information about the source (local) domain.
 	LocalDomainInfo *DomainInformationContainer `type:"structure"`
 
-	// The DomainInformation for the remote OpenSearch domain.
+	// Information about the destination (remote) domain.
 	RemoteDomainInfo *DomainInformationContainer `type:"structure"`
 }
 
@@ -11923,37 +13578,38 @@ func (s *OutboundConnection) SetRemoteDomainInfo(v *DomainInformationContainer) 
 	return s
 }
 
-// The connection status of an outbound cross-cluster connection.
+// The status of an outbound cross-cluster connection.
 type OutboundConnectionStatus struct {
 	_ struct{} `type:"structure"`
 
-	// Verbose information for the outbound connection status.
+	// Verbose information for the outbound connection.
 	Message *string `type:"string"`
 
-	// The state code for the outbound connection. Can be one of the following:
+	// The status code for the outbound connection. Can be one of the following:
 	//
-	//    * VALIDATING: The outbound connection request is being validated.
+	//    * VALIDATING - The outbound connection request is being validated.
 	//
-	//    * VALIDATION_FAILED: Validation failed for the connection request.
+	//    * VALIDATION_FAILED - Validation failed for the connection request.
 	//
 	//    * PENDING_ACCEPTANCE: Outbound connection request is validated and is
 	//    not yet accepted by the remote domain owner.
 	//
-	//    * APPROVED: Outbound connection has been approved by the remote domain
+	//    * APPROVED - Outbound connection has been approved by the remote domain
 	//    owner for getting provisioned.
 	//
-	//    * PROVISIONING: Outbound connection request is in process.
+	//    * PROVISIONING - Outbound connection request is in process.
 	//
-	//    * ACTIVE: Outbound connection is active and ready to use.
+	//    * ACTIVE - Outbound connection is active and ready to use.
 	//
-	//    * REJECTING: Outbound connection rejection by remote domain owner is in
-	//    progress.
+	//    * REJECTING - Outbound connection rejection by remote domain owner is
+	//    in progress.
 	//
-	//    * REJECTED: Outbound connection request is rejected by remote domain owner.
+	//    * REJECTED - Outbound connection request is rejected by remote domain
+	//    owner.
 	//
-	//    * DELETING: Outbound connection deletion is in progress.
+	//    * DELETING - Outbound connection deletion is in progress.
 	//
-	//    * DELETED: Outbound connection is deleted and can no longer be used.
+	//    * DELETED - Outbound connection is deleted and can no longer be used.
 	StatusCode *string `type:"string" enum:"OutboundConnectionStatusCode"`
 }
 
@@ -11991,30 +13647,31 @@ func (s *OutboundConnectionStatus) SetStatusCode(v string) *OutboundConnectionSt
 type PackageDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The package version.
 	AvailablePackageVersion *string `type:"string"`
 
-	// The timestamp of when the package was created.
+	// The timestamp when the package was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// Additional information if the package is in an error state. Null otherwise.
 	ErrorDetails *ErrorDetails `type:"structure"`
 
+	// Date and time when the package was last updated.
 	LastUpdatedAt *time.Time `type:"timestamp"`
 
 	// User-specified description of the package.
 	PackageDescription *string `type:"string"`
 
-	// Internal ID of the package.
+	// The unique identifier of the package.
 	PackageID *string `type:"string"`
 
 	// User-specified name of the package.
 	PackageName *string `min:"3" type:"string"`
 
-	// Current state of the package. Values are COPYING, COPY_FAILED, AVAILABLE,
-	// DELETING, and DELETE_FAILED.
+	// Current status of the package.
 	PackageStatus *string `type:"string" enum:"PackageStatus"`
 
-	// Currently supports only TXT-DICTIONARY.
+	// The type of package.
 	PackageType *string `type:"string" enum:"PackageType"`
 }
 
@@ -12090,8 +13747,7 @@ func (s *PackageDetails) SetPackageType(v string) *PackageDetails {
 	return s
 }
 
-// The Amazon S3 location for importing the package specified as S3BucketName
-// and S3Key
+// The Amazon S3 location to import the package from.
 type PackageSource struct {
 	_ struct{} `type:"structure"`
 
@@ -12148,14 +13804,14 @@ func (s *PackageSource) SetS3Key(v string) *PackageSource {
 	return s
 }
 
-// Details of a package version.
+// Details about a package version.
 type PackageVersionHistory struct {
 	_ struct{} `type:"structure"`
 
-	// A message associated with the package version.
+	// A message associated with the package version when it was uploaded.
 	CommitMessage *string `type:"string"`
 
-	// The timestamp of when the package was created.
+	// The date and time when the package was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The package version.
@@ -12198,7 +13854,8 @@ func (s *PackageVersionHistory) SetPackageVersion(v string) *PackageVersionHisto
 	return s
 }
 
-// Container for parameters to PurchaseReservedInstanceOffering
+// Container for request parameters to the PurchaseReservedInstanceOffering
+// operation.
 type PurchaseReservedInstanceOfferingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12210,7 +13867,7 @@ type PurchaseReservedInstanceOfferingInput struct {
 	// ReservationName is a required field
 	ReservationName *string `min:"5" type:"string" required:"true"`
 
-	// The ID of the reserved OpenSearch instance offering to purchase.
+	// The ID of the Reserved Instance offering to purchase.
 	//
 	// ReservedInstanceOfferingId is a required field
 	ReservedInstanceOfferingId *string `min:"36" type:"string" required:"true"`
@@ -12284,7 +13941,7 @@ type PurchaseReservedInstanceOfferingOutput struct {
 	// The customer-specified identifier used to track this reservation.
 	ReservationName *string `min:"5" type:"string"`
 
-	// Details of the reserved OpenSearch instance which was purchased.
+	// The ID of the Reserved Instance offering that was purchased.
 	ReservedInstanceId *string `min:"36" type:"string"`
 }
 
@@ -12318,8 +13975,8 @@ func (s *PurchaseReservedInstanceOfferingOutput) SetReservedInstanceId(v string)
 	return s
 }
 
-// Contains the specific price and frequency of a recurring charges for a reserved
-// OpenSearch instance, or for a reserved OpenSearch instance offering.
+// Contains the specific price and frequency of a recurring charges for an OpenSearch
+// Reserved Instance, or for a Reserved Instance offering.
 type RecurringCharge struct {
 	_ struct{} `type:"structure"`
 
@@ -12360,11 +14017,11 @@ func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge
 	return s
 }
 
-// Container for the parameters to the RejectInboundConnection operation.
+// Container for the request parameters to the RejectInboundConnection operation.
 type RejectInboundConnectionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the inbound connection to reject.
+	// The unique identifier of the inbound connection to reject.
 	//
 	// ConnectionId is a required field
 	ConnectionId *string `location:"uri" locationName:"ConnectionId" min:"10" type:"string" required:"true"`
@@ -12410,12 +14067,11 @@ func (s *RejectInboundConnectionInput) SetConnectionId(v string) *RejectInboundC
 	return s
 }
 
-// The result of a RejectInboundConnection operation. Contains details about
-// the rejected inbound connection.
+// Represents the output of a RejectInboundConnection operation.
 type RejectInboundConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The InboundConnection of the rejected inbound connection.
+	// Contains details about the rejected inbound connection.
 	Connection *InboundConnection `type:"structure"`
 }
 
@@ -12443,17 +14099,17 @@ func (s *RejectInboundConnectionOutput) SetConnection(v *InboundConnection) *Rej
 	return s
 }
 
-// Container for the parameters to the RemoveTags operation. Specify the ARN
-// for the domain from which you want to remove the specified TagKey.
+// Container for the request parameters to the RemoveTags operation.
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the domain from which you want to delete the specified tags.
+	// The Amazon Resource Name (ARN) of the domain from which you want to delete
+	// the specified tags.
 	//
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The TagKey list you want to remove from the domain.
+	// The list of tag keys to remove from the domain.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
@@ -12530,33 +14186,34 @@ func (s RemoveTagsOutput) GoString() string {
 	return s.String()
 }
 
-// Details of a reserved OpenSearch instance.
+// Details of an OpenSearch Reserved Instance.
 type ReservedInstance struct {
 	_ struct{} `type:"structure"`
 
+	// The unique identifier of the billing subscription.
 	BillingSubscriptionId *int64 `type:"long"`
 
-	// The currency code for the reserved OpenSearch instance offering.
+	// The currency code for the offering.
 	CurrencyCode *string `type:"string"`
 
 	// The duration, in seconds, for which the OpenSearch instance is reserved.
 	Duration *int64 `type:"integer"`
 
-	// The upfront fixed charge you will paid to purchase the specific reserved
-	// OpenSearch instance offering.
+	// The upfront fixed charge you will paid to purchase the specific Reserved
+	// Instance offering.
 	FixedPrice *float64 `type:"double"`
 
 	// The number of OpenSearch instances that have been reserved.
 	InstanceCount *int64 `type:"integer"`
 
-	// The OpenSearch instance type offered by the reserved instance offering.
+	// The OpenSearch instance type offered by theReserved Instance offering.
 	InstanceType *string `type:"string" enum:"OpenSearchPartitionInstanceType"`
 
-	// The payment option as defined in the reserved OpenSearch instance offering.
+	// The payment option as defined in the Reserved Instance offering.
 	PaymentOption *string `type:"string" enum:"ReservedInstancePaymentOption"`
 
-	// The charge to your account regardless of whether you are creating any domains
-	// using the instance offering.
+	// The recurring charge to your account, regardless of whether you create any
+	// domains using the Reserved Instance offering.
 	RecurringCharges []*RecurringCharge `type:"list"`
 
 	// The customer-specified identifier to track this reservation.
@@ -12565,17 +14222,17 @@ type ReservedInstance struct {
 	// The unique identifier for the reservation.
 	ReservedInstanceId *string `min:"36" type:"string"`
 
-	// The offering identifier.
+	// The unique identifier of the Reserved Instance offering.
 	ReservedInstanceOfferingId *string `type:"string"`
 
-	// The time the reservation started.
+	// The date and time when the reservation was purchased.
 	StartTime *time.Time `type:"timestamp"`
 
-	// The state of the reserved OpenSearch instance.
+	// The state of the Reserved Instance.
 	State *string `type:"string"`
 
-	// The rate you are charged for each hour for the domain that is using this
-	// reserved instance.
+	// The hourly rate at which you're charged for the domain using this Reserved
+	// Instance.
 	UsagePrice *float64 `type:"double"`
 }
 
@@ -12681,36 +14338,36 @@ func (s *ReservedInstance) SetUsagePrice(v float64) *ReservedInstance {
 	return s
 }
 
-// Details of a reserved OpenSearch instance offering.
+// Details of an OpenSearch Reserved Instance offering.
 type ReservedInstanceOffering struct {
 	_ struct{} `type:"structure"`
 
-	// The currency code for the reserved OpenSearch instance offering.
+	// The currency code for the Reserved Instance offering.
 	CurrencyCode *string `type:"string"`
 
 	// The duration, in seconds, for which the offering will reserve the OpenSearch
 	// instance.
 	Duration *int64 `type:"integer"`
 
-	// The upfront fixed charge you will pay to purchase the specific reserved OpenSearch
-	// instance offering.
+	// The upfront fixed charge you will pay to purchase the specific Reserved Instance
+	// offering.
 	FixedPrice *float64 `type:"double"`
 
-	// The OpenSearch instance type offered by the reserved instance offering.
+	// The OpenSearch instance type offered by the Reserved Instance offering.
 	InstanceType *string `type:"string" enum:"OpenSearchPartitionInstanceType"`
 
-	// Payment option for the reserved OpenSearch instance offering
+	// Payment option for the Reserved Instance offering
 	PaymentOption *string `type:"string" enum:"ReservedInstancePaymentOption"`
 
-	// The charge to your account regardless of whether you are creating any domains
-	// using the instance offering.
+	// The recurring charge to your account, regardless of whether you creates any
+	// domains using the offering.
 	RecurringCharges []*RecurringCharge `type:"list"`
 
-	// The OpenSearch reserved instance offering identifier.
+	// The unique identifier of the Reserved Instance offering.
 	ReservedInstanceOfferingId *string `min:"36" type:"string"`
 
-	// The rate you are charged for each hour the domain that is using the offering
-	// is running.
+	// The hourly rate at which you're charged for the domain using this Reserved
+	// Instance.
 	UsagePrice *float64 `type:"double"`
 }
 
@@ -12910,16 +14567,101 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The SAML identity povider's information.
+type RevokeVpcEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID to revoke access from.
+	//
+	// Account is a required field
+	Account *string `type:"string" required:"true"`
+
+	// The name of the OpenSearch Service domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeVpcEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeVpcEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevokeVpcEndpointAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevokeVpcEndpointAccessInput"}
+	if s.Account == nil {
+		invalidParams.Add(request.NewErrParamRequired("Account"))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccount sets the Account field's value.
+func (s *RevokeVpcEndpointAccessInput) SetAccount(v string) *RevokeVpcEndpointAccessInput {
+	s.Account = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *RevokeVpcEndpointAccessInput) SetDomainName(v string) *RevokeVpcEndpointAccessInput {
+	s.DomainName = &v
+	return s
+}
+
+type RevokeVpcEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeVpcEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevokeVpcEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// The SAML identity povider information.
 type SAMLIdp struct {
 	_ struct{} `type:"structure"`
 
-	// The unique entity ID of the application in SAML identity provider.
+	// The unique entity ID of the application in the SAML identity provider.
 	//
 	// EntityId is a required field
 	EntityId *string `min:"8" type:"string" required:"true"`
 
-	// The metadata of the SAML application in XML format.
+	// The metadata of the SAML application, in XML format.
 	//
 	// MetadataContent is a required field
 	MetadataContent *string `min:"1" type:"string" required:"true"`
@@ -12977,11 +14719,11 @@ func (s *SAMLIdp) SetMetadataContent(v string) *SAMLIdp {
 	return s
 }
 
-// The SAML application configuration for the domain.
+// The SAML authentication configuration for an Amazon OpenSearch Service domain.
 type SAMLOptionsInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// True if SAML is enabled.
+	// True to enable SAML authentication for a domain.
 	Enabled *bool `type:"boolean"`
 
 	// The SAML Identity Provider's information.
@@ -12990,8 +14732,8 @@ type SAMLOptionsInput_ struct {
 	// The backend role that the SAML master user is mapped to.
 	MasterBackendRole *string `min:"1" type:"string"`
 
-	// The SAML master username, which is stored in the Amazon OpenSearch Service
-	// domain's internal database.
+	// The SAML master user name, which is stored in the domain's internal user
+	// database.
 	//
 	// MasterUserName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SAMLOptionsInput_'s
@@ -13005,7 +14747,7 @@ type SAMLOptionsInput_ struct {
 	// values are between 1 and 1440, and the default value is 60.
 	SessionTimeoutMinutes *int64 `type:"integer"`
 
-	// Element of the SAML assertion to use for username. Default is NameID.
+	// Element of the SAML assertion to use for the user name. Default is NameID.
 	SubjectKey *string `type:"string"`
 }
 
@@ -13158,22 +14900,21 @@ func (s *SAMLOptionsOutput_) SetSubjectKey(v string) *SAMLOptionsOutput_ {
 	return s
 }
 
-// Specifies details about the scheduled Auto-Tune action. See Auto-Tune for
-// Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-// for more information.
+// Specifies details about a scheduled Auto-Tune action. For more information,
+// see Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html).
 type ScheduledAutoTuneDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The Auto-Tune action description.
+	// A description of the Auto-Tune action.
 	Action *string `type:"string"`
 
-	// The Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING and JVM_YOUNG_GEN_TUNING.
+	// The type of Auto-Tune action.
 	ActionType *string `type:"string" enum:"ScheduledAutoTuneActionType"`
 
-	// The timestamp of the Auto-Tune action scheduled for the domain.
+	// The date and time when the Auto-Tune action is scheduled for the domain.
 	Date *time.Time `type:"timestamp"`
 
-	// The Auto-Tune action severity. Valid values are LOW, MEDIUM, and HIGH.
+	// The severity of the Auto-Tune action. Valid values are LOW, MEDIUM, and HIGH.
 	Severity *string `type:"string" enum:"ScheduledAutoTuneSeverityType"`
 }
 
@@ -13219,7 +14960,9 @@ func (s *ScheduledAutoTuneDetails) SetSeverity(v string) *ScheduledAutoTuneDetai
 	return s
 }
 
-// The current options of an domain service software options.
+// The current status of the service software for an Amazon OpenSearch Service
+// domain. For more information, see Service software updates in Amazon OpenSearch
+// Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html).
 type ServiceSoftwareOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -13234,22 +14977,21 @@ type ServiceSoftwareOptions struct {
 	// The current service software version present on the domain.
 	CurrentVersion *string `type:"string"`
 
-	// The description of the UpdateStatus.
+	// A description of the service software update status.
 	Description *string `type:"string"`
 
-	// The new service software version if one is available.
+	// The new service software version, if one is available.
 	NewVersion *string `type:"string"`
 
 	// True if a service software is never automatically updated. False if a service
-	// software is automatically updated after AutomatedUpdateDate.
+	// software is automatically updated after the automated update date.
 	OptionalDeployment *bool `type:"boolean"`
 
 	// True if you're able to update your service software version. False if you
 	// can't update your service software version.
 	UpdateAvailable *bool `type:"boolean"`
 
-	// The status of your service software update. This field can take the following
-	// values: ELIGIBLE, PENDING_UPDATE, IN_PROGRESS, COMPLETED, and NOT_ELIGIBLE.
+	// The status of your service software update.
 	UpdateStatus *string `type:"string" enum:"DeploymentStatus"`
 }
 
@@ -13319,13 +15061,13 @@ func (s *ServiceSoftwareOptions) SetUpdateStatus(v string) *ServiceSoftwareOptio
 	return s
 }
 
-// The time, in UTC format, when the service takes a daily automated snapshot
-// of the specified domain. Default is 0 hours.
+// The time, in UTC format, when OpenSearch Service takes a daily automated
+// snapshot of the specified domain. Default is 0 hours.
 type SnapshotOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The time, in UTC format, when the service takes a daily automated snapshot
-	// of the specified domain. Default is 0 hours.
+	// The time, in UTC format, when OpenSearch Service takes a daily automated
+	// snapshot of the specified domain. Default is 0 hours.
 	AutomatedSnapshotStartHour *int64 `type:"integer"`
 }
 
@@ -13353,7 +15095,8 @@ func (s *SnapshotOptions) SetAutomatedSnapshotStartHour(v int64) *SnapshotOption
 	return s
 }
 
-// Status of a daily automated snapshot.
+// Container for information about a daily automated snapshot for an OpenSearch
+// Service domain.
 type SnapshotOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -13398,8 +15141,7 @@ func (s *SnapshotOptionsStatus) SetStatus(v *OptionStatus) *SnapshotOptionsStatu
 	return s
 }
 
-// Container for the parameters to the StartServiceSoftwareUpdate operation.
-// Specifies the name of the domain to schedule a service software update for.
+// Container for the request parameters to the StartServiceSoftwareUpdate operation.
 type StartServiceSoftwareUpdateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13449,12 +15191,12 @@ func (s *StartServiceSoftwareUpdateInput) SetDomainName(v string) *StartServiceS
 	return s
 }
 
-// The result of a StartServiceSoftwareUpdate operation. Contains the status
-// of the update.
+// Represents the output of a StartServiceSoftwareUpdate operation. Contains
+// the status of the update.
 type StartServiceSoftwareUpdateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The current status of the OpenSearch service software update.
+	// The current status of the OpenSearch Service software update.
 	ServiceSoftwareOptions *ServiceSoftwareOptions `type:"structure"`
 }
 
@@ -13482,22 +15224,18 @@ func (s *StartServiceSoftwareUpdateOutput) SetServiceSoftwareOptions(v *ServiceS
 	return s
 }
 
-// StorageTypes represents the list of storage-related types and their attributes
-// that are available for a given InstanceType.
+// A list of storage types for an Amazon OpenSearch Service domain that are
+// available for a given intance type.
 type StorageType struct {
 	_ struct{} `type:"structure"`
 
-	// Sub-type of the given storage type. List of available sub-storage options:
-	// "instance" storageType has no storageSubType. "ebs" storageType has the following
-	// valid storageSubTypes: standard gp2 gp3 io1 See VolumeType for more information
-	// regarding each EBS storage option.
+	// The storage sub-type, such as gp3 or io1.
 	StorageSubTypeName *string `type:"string"`
 
 	// Limits that are applicable for the given storage type.
 	StorageTypeLimits []*StorageTypeLimit `type:"list"`
 
-	// Type of storage. List of available storage options: instance Built-in storage
-	// available for the instance ebs Elastic block storage attached to the instance
+	// The name of the storage type.
 	StorageTypeName *string `type:"string"`
 }
 
@@ -13537,25 +15275,34 @@ func (s *StorageType) SetStorageTypeName(v string) *StorageType {
 	return s
 }
 
-// Limits that are applicable for the given storage type.
+// Limits that are applicable for the given Amazon OpenSearch Service storage
+// type.
 type StorageTypeLimit struct {
 	_ struct{} `type:"structure"`
 
 	// Name of storage limits that are applicable for the given storage type. If
-	// StorageType is "ebs", the following storage options are applicable: MinimumVolumeSize
-	// Minimum amount of volume size that is applicable for the given storage type.
-	// Can be empty if not applicable. MaximumVolumeSize Maximum amount of volume
-	// size that is applicable for the given storage type. Can be empty if not applicable.
-	// MaximumIops Maximum amount of Iops that is applicable for given the storage
-	// type. Can be empty if not applicable. MinimumIops Minimum amount of Iops
-	// that is applicable for given the storage type. Can be empty if not applicable.
-	// MaximumThroughput Maximum amount of Throughput that is applicable for given
-	// the storage type. Can be empty if not applicable. MinimumThroughput Minimum
-	// amount of Throughput that is applicable for given the storage type. Can be
-	// empty if not applicable.
+	// StorageType is ebs, the following options are available:
+	//
+	//    * MinimumVolumeSize - Minimum volume size that is available for the given
+	//    storage type. Can be empty if not applicable.
+	//
+	//    * MaximumVolumeSize - Maximum volume size that is available for the given
+	//    storage type. Can be empty if not applicable.
+	//
+	//    * MaximumIops - Maximum amount of IOPS that is available for the given
+	//    the storage type. Can be empty if not applicable.
+	//
+	//    * MinimumIops - Minimum amount of IOPS that is available for the given
+	//    the storage type. Can be empty if not applicable.
+	//
+	//    * MaximumThroughput - Maximum amount of throughput that is available for
+	//    the given the storage type. Can be empty if not applicable.
+	//
+	//    * MinimumThroughput - Minimum amount of throughput that is available for
+	//    the given the storage type. Can be empty if not applicable.
 	LimitName *string `type:"string"`
 
-	// Values for the StorageTypeLimit$LimitName .
+	// The limit values.
 	LimitValues []*string `type:"list"`
 }
 
@@ -13589,20 +15336,18 @@ func (s *StorageTypeLimit) SetLimitValues(v []*string) *StorageTypeLimit {
 	return s
 }
 
-// A key value pair for a resource tag.
+// A tag (key-value pair) for an Amazon OpenSearch Service resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The TagKey, the name of the tag. Tag keys must be unique for the domain to
-	// which they are attached.
+	// The tag key. Tag keys must be unique for the domain to which they are attached.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The TagValue, the value assigned to the corresponding tag key. Tag values
-	// can be null and don't have to be unique in a tag set. For example, you can
-	// have a key value pair in a tag set of project : Trinity and cost-center :
-	// Trinity
+	// The value assigned to the corresponding tag key. Tag values can be null and
+	// don't have to be unique in a tag set. For example, you can have a key value
+	// pair in a tag set of project : Trinity and cost-center : Trinity
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -13657,67 +15402,86 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-// Container for the parameters to the UpdateDomain operation. Specifies the
-// type and number of instances in the domain cluster.
+// Container for the request parameters to the UpdateDomain operation.
 type UpdateDomainConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// IAM access policy as a JSON-formatted string.
+	// Identity and Access Management (IAM) access policy as a JSON-formatted string.
 	AccessPolicies *string `type:"string"`
 
-	// Modifies the advanced option to allow references to indices in an HTTP request
-	// body. Must be false when configuring access to individual sub-resources.
-	// By default, the value is true. See Advanced options (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options)
-	// for more information.
+	// Key-value pairs to specify advanced configuration options. The following
+	// key-value pairs are supported:
+	//
+	//    * "rest.action.multi.allow_explicit_index": "true" | "false" - Note the
+	//    use of a string rather than a boolean. Specifies whether explicit references
+	//    to indexes are allowed inside the body of HTTP requests. If you want to
+	//    configure access policies for domain sub-resources, such as specific indexes
+	//    and domain APIs, you must disable this property. Default is true.
+	//
+	//    * "indices.fielddata.cache.size": "80" - Note the use of a string rather
+	//    than a boolean. Specifies the percentage of heap space allocated to field
+	//    data. Default is unbounded.
+	//
+	//    * "indices.query.bool.max_clause_count": "1024" - Note the use of a string
+	//    rather than a boolean. Specifies the maximum number of clauses allowed
+	//    in a Lucene boolean query. Default is 1,024. Queries with more than the
+	//    permitted number of clauses result in a TooManyClauses error.
+	//
+	//    * "override_main_response_version": "true" | "false" - Note the use of
+	//    a string rather than a boolean. Specifies whether the domain reports its
+	//    version as 7.10 to allow Elasticsearch OSS clients and plugins to continue
+	//    working with it. Default is false when creating a domain and true when
+	//    upgrading a domain.
+	//
+	// For more information, see Advanced cluster parameters (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
 	AdvancedOptions map[string]*string `type:"map"`
 
-	// Specifies advanced security options.
+	// Options for fine-grained access control.
 	AdvancedSecurityOptions *AdvancedSecurityOptionsInput_ `type:"structure"`
 
-	// Specifies Auto-Tune options.
+	// Options for Auto-Tune.
 	AutoTuneOptions *AutoTuneOptions `type:"structure"`
 
-	// The type and number of instances to instantiate for the domain cluster.
+	// Changes that you want to make to the cluster configuration, such as the instance
+	// type and number of EC2 instances.
 	ClusterConfig *ClusterConfig `type:"structure"`
 
-	// Options to specify the Cognito user and identity pools for OpenSearch Dashboards
-	// authentication. For more information, see Configuring Amazon Cognito authentication
-	// for OpenSearch Dashboards (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/cognito-auth.html).
+	// Key-value pairs to configure Amazon Cognito authentication for OpenSearch
+	// Dashboards.
 	CognitoOptions *CognitoOptions `type:"structure"`
 
-	// Options to specify configuration that will be applied to the domain endpoint.
+	// Additional options for the domain endpoint, such as whether to require HTTPS
+	// for all traffic.
 	DomainEndpointOptions *DomainEndpointOptions `type:"structure"`
 
-	// The name of the domain you're updating.
+	// The name of the domain that you're updating.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
 	// This flag, when set to True, specifies whether the UpdateDomain request should
-	// return the results of validation checks (DryRunResults) without actually
-	// applying the change.
+	// return the results of validation check without actually applying the change.
 	DryRun *bool `type:"boolean"`
 
-	// Specify the type and size of the EBS volume to use.
+	// The type and size of the EBS volume to attach to instances in the domain.
 	EBSOptions *EBSOptions `type:"structure"`
 
-	// Specifies encryption of data at rest options.
+	// Encryption at rest options for the domain.
 	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
-	// Map of LogType and LogPublishingOption, each containing options to publish
-	// a given type of OpenSearch log.
+	// Options to publish OpenSearch lots to Amazon CloudWatch Logs.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
 
-	// Specifies node-to-node encryption options.
+	// Node-To-Node Encryption options for the domain.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
 
 	// Option to set the time, in UTC format, for the daily automated snapshot.
 	// Default value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
 
-	// Options to specify the subnets and security groups for the VPC endpoint.
-	// For more information, see Launching your Amazon OpenSearch Service domains
-	// using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
+	// Options to specify the subnets and security groups for a VPC endpoint. For
+	// more information, see Launching your Amazon OpenSearch Service domains using
+	// a VPC (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
 	VPCOptions *VPCOptions `type:"structure"`
 }
 
@@ -13885,7 +15649,7 @@ func (s *UpdateDomainConfigInput) SetVPCOptions(v *VPCOptions) *UpdateDomainConf
 	return s
 }
 
-// The result of an UpdateDomain request. Contains the status of the domain
+// The results of an UpdateDomain request. Contains the status of the domain
 // being updated.
 type UpdateDomainConfigOutput struct {
 	_ struct{} `type:"structure"`
@@ -13895,7 +15659,7 @@ type UpdateDomainConfigOutput struct {
 	// DomainConfig is a required field
 	DomainConfig *DomainConfig `type:"structure" required:"true"`
 
-	// Contains result of DryRun.
+	// Results of a dry run performed in an update domain request.
 	DryRunResults *DryRunResults `type:"structure"`
 }
 
@@ -13933,7 +15697,7 @@ func (s *UpdateDomainConfigOutput) SetDryRunResults(v *DryRunResults) *UpdateDom
 type UpdatePackageInput struct {
 	_ struct{} `type:"structure"`
 
-	// A commit message for the new version which is shown as part of GetPackageVersionHistoryResponse.
+	// Commit message for the updated file, which is shown as part of GetPackageVersionHistoryResponse.
 	CommitMessage *string `type:"string"`
 
 	// A new description of the package.
@@ -13944,8 +15708,7 @@ type UpdatePackageInput struct {
 	// PackageID is a required field
 	PackageID *string `type:"string" required:"true"`
 
-	// The Amazon S3 location for importing the package specified as S3BucketName
-	// and S3Key
+	// Amazon S3 bucket and key for the package.
 	//
 	// PackageSource is a required field
 	PackageSource *PackageSource `type:"structure" required:"true"`
@@ -14018,7 +15781,7 @@ func (s *UpdatePackageInput) SetPackageSource(v *PackageSource) *UpdatePackageIn
 type UpdatePackageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the package.
+	// Information about a package.
 	PackageDetails *PackageDetails `type:"structure"`
 }
 
@@ -14046,26 +15809,113 @@ func (s *UpdatePackageOutput) SetPackageDetails(v *PackageDetails) *UpdatePackag
 	return s
 }
 
-// Container for the request parameters to UpgradeDomain operation.
+type UpdateVpcEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the endpoint.
+	//
+	// VpcEndpointId is a required field
+	VpcEndpointId *string `min:"5" type:"string" required:"true"`
+
+	// The security groups and/or subnets to add, remove, or modify.
+	//
+	// VpcOptions is a required field
+	VpcOptions *VPCOptions `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVpcEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVpcEndpointInput"}
+	if s.VpcEndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcEndpointId"))
+	}
+	if s.VpcEndpointId != nil && len(*s.VpcEndpointId) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcEndpointId", 5))
+	}
+	if s.VpcOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcOptions"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *UpdateVpcEndpointInput) SetVpcEndpointId(v string) *UpdateVpcEndpointInput {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcOptions sets the VpcOptions field's value.
+func (s *UpdateVpcEndpointInput) SetVpcOptions(v *VPCOptions) *UpdateVpcEndpointInput {
+	s.VpcOptions = v
+	return s
+}
+
+type UpdateVpcEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint to be updated.
+	//
+	// VpcEndpoint is a required field
+	VpcEndpoint *VpcEndpoint `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateVpcEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *UpdateVpcEndpointOutput) SetVpcEndpoint(v *VpcEndpoint) *UpdateVpcEndpointOutput {
+	s.VpcEndpoint = v
+	return s
+}
+
+// Container for the request parameters to the UpgradeDomain operation.
 type UpgradeDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// Exposes select native OpenSearch configuration values from opensearch.yml.
-	// Currently, the following advanced options are available:
-	//
-	//    * Option to allow references to indices in an HTTP request body. Must
-	//    be false when configuring access to individual sub-resources. By default,
-	//    the value is true. See Advanced cluster parameters for more information.
-	//
-	//    * Option to specify the percentage of heap space allocated to field data.
-	//    By default, this setting is unbounded.
-	//
-	// For more information, see Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
+	// Only supports the override_main_response_version parameter and not other
+	// advanced options. You can only include this option when upgrading to an OpenSearch
+	// version. Specifies whether the domain reports its version as 7.10 so that
+	// it continues to work with Elasticsearch OSS clients and plugins.
 	AdvancedOptions map[string]*string `type:"map"`
 
-	// The name of an domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// Name of the OpenSearch Service domain that you want to upgrade.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
@@ -14074,7 +15924,8 @@ type UpgradeDomainInput struct {
 	// Does not actually perform the upgrade.
 	PerformCheckOnly *bool `type:"boolean"`
 
-	// The version of OpenSearch you intend to upgrade the domain to.
+	// OpenSearch or Elasticsearch version to which you want to upgrade, in the
+	// format Opensearch_X.Y or Elasticsearch_X.Y.
 	//
 	// TargetVersion is a required field
 	TargetVersion *string `min:"14" type:"string" required:"true"`
@@ -14144,38 +15995,26 @@ func (s *UpgradeDomainInput) SetTargetVersion(v string) *UpgradeDomainInput {
 	return s
 }
 
-// Container for response returned by UpgradeDomain operation.
+// Container for the response returned by UpgradeDomain operation.
 type UpgradeDomainOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Exposes select native OpenSearch configuration values from opensearch.yml.
-	// Currently, the following advanced options are available:
-	//
-	//    * Option to allow references to indices in an HTTP request body. Must
-	//    be false when configuring access to individual sub-resources. By default,
-	//    the value is true. See Advanced cluster parameters for more information.
-	//
-	//    * Option to specify the percentage of heap space allocated to field data.
-	//    By default, this setting is unbounded.
-	//
-	// For more information, see Advanced cluster parameters (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomain-configure-advanced-options).
+	// The advanced options configuration for the domain.
 	AdvancedOptions map[string]*string `type:"map"`
 
-	// Specifies change details of the domain configuration change.
+	// Container for information about a configuration change happening on a domain.
 	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
 
-	// The name of an domain. Domain names are unique across the domains owned by
-	// an account within an AWS region. Domain names start with a letter or number
-	// and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+	// The name of the domain that was upgraded.
 	DomainName *string `min:"3" type:"string"`
 
-	// When true, indicates that an upgrade eligibility check needs to be performed.
-	// Does not actually perform the upgrade.
+	// When true, indicates that an upgrade eligibility check was performed.
 	PerformCheckOnly *bool `type:"boolean"`
 
-	// The version of OpenSearch that you intend to upgrade the domain to.
+	// OpenSearch or Elasticsearch version that the domain was upgraded to.
 	TargetVersion *string `min:"14" type:"string"`
 
+	// The unique identifier of the domain upgrade.
 	UpgradeId *string `type:"string"`
 }
 
@@ -14233,23 +16072,24 @@ func (s *UpgradeDomainOutput) SetUpgradeId(v string) *UpgradeDomainOutput {
 	return s
 }
 
-// History of the last 10 upgrades and upgrade eligibility checks.
+// History of the last 10 upgrades and upgrade eligibility checks for an Amazon
+// OpenSearch Service domain.
 type UpgradeHistory struct {
 	_ struct{} `type:"structure"`
 
-	// UTC timestamp at which the upgrade API call was made in "yyyy-MM-ddTHH:mm:ssZ"
-	// format.
+	// UTC timestamp at which the upgrade API call was made, in the format yyyy-MM-ddTHH:mm:ssZ.
 	StartTimestamp *time.Time `type:"timestamp"`
 
-	// A list of UpgradeStepItem s representing information about each step performed
-	// as part of a specific upgrade or upgrade eligibility check.
+	// A list of each step performed as part of a specific upgrade or upgrade eligibility
+	// check.
 	StepsList []*UpgradeStepItem `type:"list"`
 
-	// A string that briefly describes the upgrade.
+	// A string that describes the upgrade.
 	UpgradeName *string `type:"string"`
 
 	// The current status of the upgrade. The status can take one of the following
 	// values:
+	//
 	//    * In Progress
 	//
 	//    * Succeeded
@@ -14302,7 +16142,7 @@ func (s *UpgradeHistory) SetUpgradeStatus(v string) *UpgradeHistory {
 	return s
 }
 
-// Represents a single step of the upgrade or upgrade eligibility check workflow.
+// Represents a single step of an upgrade or upgrade eligibility check workflow.
 type UpgradeStepItem struct {
 	_ struct{} `type:"structure"`
 
@@ -14314,7 +16154,8 @@ type UpgradeStepItem struct {
 	// step.
 	ProgressPercent *float64 `type:"double"`
 
-	// One of three steps an upgrade or upgrade eligibility check goes through:
+	// One of three steps that an upgrade or upgrade eligibility check goes through:
+	//
 	//    * PreUpgradeCheck
 	//
 	//    * Snapshot
@@ -14324,6 +16165,7 @@ type UpgradeStepItem struct {
 
 	// The current status of the upgrade. The status can take one of the following
 	// values:
+	//
 	//    * In Progress
 	//
 	//    * Succeeded
@@ -14376,23 +16218,25 @@ func (s *UpgradeStepItem) SetUpgradeStepStatus(v string) *UpgradeStepItem {
 	return s
 }
 
-// Options to specify the subnets and security groups for the VPC endpoint.
-// For more information, see Launching your Amazon OpenSearch Service domains
-// using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
+// Information about the subnets and security groups for an Amazon OpenSearch
+// Service domain provisioned within a virtual private cloud (VPC). For more
+// information, see Launching your Amazon OpenSearch Service domains using a
+// VPC (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
+// This information only exists if the domain was created with VPCOptions.
 type VPCDerivedInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zones for the domain. Exists only if the domain was created
-	// with VPCOptions.
+	// The list of Availability Zones associated with the VPC subnets.
 	AvailabilityZones []*string `type:"list"`
 
-	// The security groups for the VPC endpoint.
+	// The list of security group IDs associated with the VPC endpoints for the
+	// domain.
 	SecurityGroupIds []*string `type:"list"`
 
-	// The subnets for the VPC endpoint.
+	// A list of subnet IDs associated with the VPC endpoints for the domain.
 	SubnetIds []*string `type:"list"`
 
-	// The VPC ID for the domain. Exists only if the domain was created with VPCOptions.
+	// The ID for your VPC. Amazon VPC generates this value when you create a VPC.
 	VPCId *string `type:"string"`
 }
 
@@ -14438,7 +16282,7 @@ func (s *VPCDerivedInfo) SetVPCId(v string) *VPCDerivedInfo {
 	return s
 }
 
-// Status of the VPC options for the specified domain.
+// Status of the VPC options for a specified domain.
 type VPCDerivedInfoStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -14483,16 +16327,20 @@ func (s *VPCDerivedInfoStatus) SetStatus(v *OptionStatus) *VPCDerivedInfoStatus 
 	return s
 }
 
-// Options to specify the subnets and security groups for the VPC endpoint.
-// For more information, see Launching your Amazon OpenSearch Service domains
-// using a VPC (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
+// Options to specify the subnets and security groups for an Amazon OpenSearch
+// Service VPC endpoint. For more information, see Launching your Amazon OpenSearch
+// Service domains using a VPC (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html).
 type VPCOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The security groups for the VPC endpoint.
+	// The list of security group IDs associated with the VPC endpoints for the
+	// domain. If you do not provide a security group ID, OpenSearch Service uses
+	// the default security group for the VPC.
 	SecurityGroupIds []*string `type:"list"`
 
-	// The subnets for the VPC endpoint.
+	// A list of subnet IDs associated with the VPC endpoints for the domain. If
+	// your domain uses multiple Availability Zones, you need to provide two subnet
+	// IDs, one per zone. Otherwise, provide only one.
 	SubnetIds []*string `type:"list"`
 }
 
@@ -14591,18 +16439,17 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The status of the OpenSearch version options for the specified OpenSearch
-// domain.
+// The status of the the OpenSearch or Elasticsearch version options for the
+// specified Amazon OpenSearch Service domain.
 type VersionStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The OpenSearch version for the specified OpenSearch domain.
+	// The OpenSearch or Elasticsearch version for the specified domain.
 	//
 	// Options is a required field
 	Options *string `min:"14" type:"string" required:"true"`
 
-	// The status of the OpenSearch version options for the specified OpenSearch
-	// domain.
+	// The status of the version options for the specified domain.
 	//
 	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
@@ -14638,14 +16485,202 @@ func (s *VersionStatus) SetStatus(v *OptionStatus) *VersionStatus {
 	return s
 }
 
-// The zone awareness configuration for the domain cluster, such as the number
-// of availability zones.
+// The connection endpoint for connecting to an Amazon OpenSearch Service domain
+// through a proxy.
+type VpcEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the domain associated with the endpoint.
+	DomainArn *string `min:"1" type:"string"`
+
+	// The connection endpoint ID for connecting to the domain.
+	Endpoint *string `type:"string"`
+
+	// The current status of the endpoint.
+	Status *string `type:"string" enum:"VpcEndpointStatus"`
+
+	// The unique identifier of the endpoint.
+	VpcEndpointId *string `min:"5" type:"string"`
+
+	// The creator of the endpoint.
+	VpcEndpointOwner *string `type:"string"`
+
+	// Options to specify the subnets and security groups for an Amazon OpenSearch
+	// Service VPC endpoint.
+	VpcOptions *VPCDerivedInfo `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetDomainArn sets the DomainArn field's value.
+func (s *VpcEndpoint) SetDomainArn(v string) *VpcEndpoint {
+	s.DomainArn = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *VpcEndpoint) SetEndpoint(v string) *VpcEndpoint {
+	s.Endpoint = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VpcEndpoint) SetStatus(v string) *VpcEndpoint {
+	s.Status = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *VpcEndpoint) SetVpcEndpointId(v string) *VpcEndpoint {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcEndpointOwner sets the VpcEndpointOwner field's value.
+func (s *VpcEndpoint) SetVpcEndpointOwner(v string) *VpcEndpoint {
+	s.VpcEndpointOwner = &v
+	return s
+}
+
+// SetVpcOptions sets the VpcOptions field's value.
+func (s *VpcEndpoint) SetVpcOptions(v *VPCDerivedInfo) *VpcEndpoint {
+	s.VpcOptions = v
+	return s
+}
+
+// Error information when attempting to describe an Amazon OpenSearch Service-managed
+// VPC endpoint.
+type VpcEndpointError struct {
+	_ struct{} `type:"structure"`
+
+	// The code associated with the error.
+	ErrorCode *string `type:"string" enum:"VpcEndpointErrorCode"`
+
+	// A message describing the error.
+	ErrorMessage *string `type:"string"`
+
+	// The unique identifier of the endpoint.
+	VpcEndpointId *string `min:"5" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcEndpointError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcEndpointError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *VpcEndpointError) SetErrorCode(v string) *VpcEndpointError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *VpcEndpointError) SetErrorMessage(v string) *VpcEndpointError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *VpcEndpointError) SetVpcEndpointId(v string) *VpcEndpointError {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// Summary information for an Amazon OpenSearch Service-managed VPC endpoint.
+type VpcEndpointSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the domain associated with the endpoint.
+	DomainArn *string `min:"1" type:"string"`
+
+	// The current status of the endpoint.
+	Status *string `type:"string" enum:"VpcEndpointStatus"`
+
+	// The unique identifier of the endpoint.
+	VpcEndpointId *string `min:"5" type:"string"`
+
+	// The creator of the endpoint.
+	VpcEndpointOwner *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcEndpointSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcEndpointSummary) GoString() string {
+	return s.String()
+}
+
+// SetDomainArn sets the DomainArn field's value.
+func (s *VpcEndpointSummary) SetDomainArn(v string) *VpcEndpointSummary {
+	s.DomainArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VpcEndpointSummary) SetStatus(v string) *VpcEndpointSummary {
+	s.Status = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *VpcEndpointSummary) SetVpcEndpointId(v string) *VpcEndpointSummary {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcEndpointOwner sets the VpcEndpointOwner field's value.
+func (s *VpcEndpointSummary) SetVpcEndpointOwner(v string) *VpcEndpointSummary {
+	s.VpcEndpointOwner = &v
+	return s
+}
+
+// The zone awareness configuration for an Amazon OpenSearch Service domain.
 type ZoneAwarenessConfig struct {
 	_ struct{} `type:"structure"`
 
-	// An integer value to indicate the number of availability zones for a domain
-	// when zone awareness is enabled. This should be equal to number of subnets
-	// if VPC endpoints is enabled.
+	// If you enabled multiple Availability Zones, this value is the number of zones
+	// that you want the domain to use. Valid values are 2 and 3. If your domain
+	// is provisioned within a VPC, this value be equal to number of subnets.
 	AvailabilityZoneCount *int64 `type:"integer"`
 }
 
@@ -14881,20 +16916,20 @@ func InboundConnectionStatusCode_Values() []string {
 	}
 }
 
-// Type of log file. Can be one of the following:
+// The type of log file. Can be one of the following:
 //
-//   - INDEX_SLOW_LOGS: Index slow logs contain insert requests that took more
-//     time than configured index query log threshold to execute.
+//   - INDEX_SLOW_LOGS - Index slow logs contain insert requests that took
+//     more time than the configured index query log threshold to execute.
 //
-//   - SEARCH_SLOW_LOGS: Search slow logs contain search queries that took
-//     more time than configured search query log threshold to execute.
+//   - SEARCH_SLOW_LOGS - Search slow logs contain search queries that took
+//     more time than the configured search query log threshold to execute.
 //
-//   - ES_APPLICATION_LOGS: OpenSearch application logs contain information
+//   - ES_APPLICATION_LOGS - OpenSearch application logs contain information
 //     about errors and warnings raised during the operation of the service and
 //     can be useful for troubleshooting.
 //
-//   - AUDIT_LOGS: Audit logs contain records of user requests for access from
-//     the domain.
+//   - AUDIT_LOGS - Audit logs contain records of user requests for access
+//     to the domain.
 const (
 	// LogTypeIndexSlowLogs is a LogType enum value
 	LogTypeIndexSlowLogs = "INDEX_SLOW_LOGS"
@@ -15327,11 +17362,11 @@ func OpenSearchWarmPartitionInstanceType_Values() []string {
 	}
 }
 
-// The state of a requested change. One of the following:
+// The state of a requested domain configuration change. Can be one of the following:
 //
-//   - Processing: The request change is still in progress.
+//   - Processing - The requested change is still in progress.
 //
-//   - Active: The request change is processed and deployed to the domain.
+//   - Active - The requested change is processed and deployed to the domain.
 const (
 	// OptionStateRequiresIndexDocuments is a OptionState enum value
 	OptionStateRequiresIndexDocuments = "RequiresIndexDocuments"
@@ -15478,6 +17513,22 @@ func PackageType_Values() []string {
 }
 
 const (
+	// PrincipalTypeAwsAccount is a PrincipalType enum value
+	PrincipalTypeAwsAccount = "AWS_ACCOUNT"
+
+	// PrincipalTypeAwsService is a PrincipalType enum value
+	PrincipalTypeAwsService = "AWS_SERVICE"
+)
+
+// PrincipalType_Values returns all elements of the PrincipalType enum
+func PrincipalType_Values() []string {
+	return []string{
+		PrincipalTypeAwsAccount,
+		PrincipalTypeAwsService,
+	}
+}
+
+const (
 	// ReservedInstancePaymentOptionAllUpfront is a ReservedInstancePaymentOption enum value
 	ReservedInstancePaymentOptionAllUpfront = "ALL_UPFRONT"
 
@@ -15497,8 +17548,7 @@ func ReservedInstancePaymentOption_Values() []string {
 	}
 }
 
-// The rollback state while disabling Auto-Tune for the domain. Valid values
-// are NO_ROLLBACK and DEFAULT_ROLLBACK.
+// The rollback state while disabling Auto-Tune for the domain.
 const (
 	// RollbackOnDisableNoRollback is a RollbackOnDisable enum value
 	RollbackOnDisableNoRollback = "NO_ROLLBACK"
@@ -15515,7 +17565,7 @@ func RollbackOnDisable_Values() []string {
 	}
 }
 
-// The Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING, and JVM_YOUNG_GEN_TUNING.
+// The Auto-Tune action type.
 const (
 	// ScheduledAutoTuneActionTypeJvmHeapSizeTuning is a ScheduledAutoTuneActionType enum value
 	ScheduledAutoTuneActionTypeJvmHeapSizeTuning = "JVM_HEAP_SIZE_TUNING"
@@ -15532,7 +17582,7 @@ func ScheduledAutoTuneActionType_Values() []string {
 	}
 }
 
-// The Auto-Tune action severity. Valid values are LOW, MEDIUM, and HIGH.
+// The Auto-Tune action severity.
 const (
 	// ScheduledAutoTuneSeverityTypeLow is a ScheduledAutoTuneSeverityType enum value
 	ScheduledAutoTuneSeverityTypeLow = "LOW"
@@ -15569,9 +17619,7 @@ func TLSSecurityPolicy_Values() []string {
 	}
 }
 
-// The unit of a maintenance schedule duration. Valid value is HOUR. See Auto-Tune
-// for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
-// for more information.
+// The unit of a maintenance schedule duration. Valid value is HOUR.
 const (
 	// TimeUnitHours is a TimeUnit enum value
 	TimeUnitHours = "HOURS"
@@ -15628,9 +17676,8 @@ func UpgradeStep_Values() []string {
 	}
 }
 
-// The type of EBS volume, standard, gp2, gp3 or io1. See Configuring EBS-based
-// Storage (http://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs)
-// for more information.
+// The type of EBS volume that a domain uses. For more information, see Configuring
+// EBS-based storage (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-createupdatedomains.html#opensearch-createdomain-configure-ebs).
 const (
 	// VolumeTypeStandard is a VolumeType enum value
 	VolumeTypeStandard = "standard"
@@ -15652,5 +17699,57 @@ func VolumeType_Values() []string {
 		VolumeTypeGp2,
 		VolumeTypeIo1,
 		VolumeTypeGp3,
+	}
+}
+
+const (
+	// VpcEndpointErrorCodeEndpointNotFound is a VpcEndpointErrorCode enum value
+	VpcEndpointErrorCodeEndpointNotFound = "ENDPOINT_NOT_FOUND"
+
+	// VpcEndpointErrorCodeServerError is a VpcEndpointErrorCode enum value
+	VpcEndpointErrorCodeServerError = "SERVER_ERROR"
+)
+
+// VpcEndpointErrorCode_Values returns all elements of the VpcEndpointErrorCode enum
+func VpcEndpointErrorCode_Values() []string {
+	return []string{
+		VpcEndpointErrorCodeEndpointNotFound,
+		VpcEndpointErrorCodeServerError,
+	}
+}
+
+const (
+	// VpcEndpointStatusCreating is a VpcEndpointStatus enum value
+	VpcEndpointStatusCreating = "CREATING"
+
+	// VpcEndpointStatusCreateFailed is a VpcEndpointStatus enum value
+	VpcEndpointStatusCreateFailed = "CREATE_FAILED"
+
+	// VpcEndpointStatusActive is a VpcEndpointStatus enum value
+	VpcEndpointStatusActive = "ACTIVE"
+
+	// VpcEndpointStatusUpdating is a VpcEndpointStatus enum value
+	VpcEndpointStatusUpdating = "UPDATING"
+
+	// VpcEndpointStatusUpdateFailed is a VpcEndpointStatus enum value
+	VpcEndpointStatusUpdateFailed = "UPDATE_FAILED"
+
+	// VpcEndpointStatusDeleting is a VpcEndpointStatus enum value
+	VpcEndpointStatusDeleting = "DELETING"
+
+	// VpcEndpointStatusDeleteFailed is a VpcEndpointStatus enum value
+	VpcEndpointStatusDeleteFailed = "DELETE_FAILED"
+)
+
+// VpcEndpointStatus_Values returns all elements of the VpcEndpointStatus enum
+func VpcEndpointStatus_Values() []string {
+	return []string{
+		VpcEndpointStatusCreating,
+		VpcEndpointStatusCreateFailed,
+		VpcEndpointStatusActive,
+		VpcEndpointStatusUpdating,
+		VpcEndpointStatusUpdateFailed,
+		VpcEndpointStatusDeleting,
+		VpcEndpointStatusDeleteFailed,
 	}
 }

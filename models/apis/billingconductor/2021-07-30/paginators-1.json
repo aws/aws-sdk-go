@@ -23,6 +23,12 @@
       "output_token": "NextToken",
       "result_key": "CustomLineItems"
     },
+    "ListCustomLineItemVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "CustomLineItemVersions"
+    },
     "ListPricingPlans": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

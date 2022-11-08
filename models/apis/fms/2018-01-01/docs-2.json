@@ -4,10 +4,13 @@
   "operations": {
     "AssociateAdminAccount": "<p>Sets the Firewall Manager administrator account. The account must be a member of the organization in Organizations whose resources you want to protect. Firewall Manager sets the permissions that allow the account to administer your Firewall Manager policies.</p> <p>The account that you associate with Firewall Manager is called the Firewall Manager administrator account. </p>",
     "AssociateThirdPartyFirewall": "<p>Sets the Firewall Manager policy administrator as a tenant administrator of a third-party firewall service. A tenant is an instance of the third-party firewall service that's associated with your Amazon Web Services customer account.</p>",
+    "BatchAssociateResource": "<p>Associate resources to a Firewall Manager resource set.</p>",
+    "BatchDisassociateResource": "<p>Disassociates resources from a Firewall Manager resource set.</p>",
     "DeleteAppsList": "<p>Permanently deletes an Firewall Manager applications list.</p>",
     "DeleteNotificationChannel": "<p>Deletes an Firewall Manager association with the IAM role and the Amazon Simple Notification Service (SNS) topic that is used to record Firewall Manager SNS logs.</p>",
     "DeletePolicy": "<p>Permanently deletes an Firewall Manager policy. </p>",
     "DeleteProtocolsList": "<p>Permanently deletes an Firewall Manager protocols list.</p>",
+    "DeleteResourceSet": "<p>Deletes the specified <a>ResourceSet</a>.</p>",
     "DisassociateAdminAccount": "<p>Disassociates the account that has been set as the Firewall Manager administrator account. To set a different account as the administrator account, you must submit an <code>AssociateAdminAccount</code> request.</p>",
     "DisassociateThirdPartyFirewall": "<p>Disassociates a Firewall Manager policy administrator from a third-party firewall tenant. When you call <code>DisassociateThirdPartyFirewall</code>, the third-party firewall vendor deletes all of the firewalls that are associated with the account.</p>",
     "GetAdminAccount": "<p>Returns the Organizations account that is associated with Firewall Manager as the Firewall Manager administrator.</p>",
@@ -17,19 +20,24 @@
     "GetPolicy": "<p>Returns information about the specified Firewall Manager policy.</p>",
     "GetProtectionStatus": "<p>If you created a Shield Advanced policy, returns policy-level attack summary information in the event of a potential DDoS attack. Other policy types are currently unsupported.</p>",
     "GetProtocolsList": "<p>Returns information about the specified Firewall Manager protocols list.</p>",
+    "GetResourceSet": "<p>Gets information about a specific resource set.</p>",
     "GetThirdPartyFirewallAssociationStatus": "<p>The onboarding status of a Firewall Manager admin account to third-party firewall vendor tenant.</p>",
     "GetViolationDetails": "<p>Retrieves violations for a resource based on the specified Firewall Manager policy and Amazon Web Services account.</p>",
     "ListAppsLists": "<p>Returns an array of <code>AppsListDataSummary</code> objects.</p>",
     "ListComplianceStatus": "<p>Returns an array of <code>PolicyComplianceStatus</code> objects. Use <code>PolicyComplianceStatus</code> to get a summary of which member accounts are protected by the specified policy. </p>",
+    "ListDiscoveredResources": "<p>Returns an array of resources in the organization's accounts that are available to be associated with a resource set.</p>",
     "ListMemberAccounts": "<p>Returns a <code>MemberAccounts</code> object that lists the member accounts in the administrator's Amazon Web Services organization.</p> <p>The <code>ListMemberAccounts</code> must be submitted by the account that is set as the Firewall Manager administrator.</p>",
     "ListPolicies": "<p>Returns an array of <code>PolicySummary</code> objects.</p>",
     "ListProtocolsLists": "<p>Returns an array of <code>ProtocolsListDataSummary</code> objects.</p>",
+    "ListResourceSetResources": "<p>Returns an array of resources that are currently associated to a resource set.</p>",
+    "ListResourceSets": "<p>Returns an array of <code>ResourceSetSummary</code> objects.</p>",
     "ListTagsForResource": "<p>Retrieves the list of tags for the specified Amazon Web Services resource. </p>",
     "ListThirdPartyFirewallFirewallPolicies": "<p>Retrieves a list of all of the third-party firewall policies that are associated with the third-party firewall administrator's account.</p>",
     "PutAppsList": "<p>Creates an Firewall Manager applications list.</p>",
     "PutNotificationChannel": "<p>Designates the IAM role and Amazon Simple Notification Service (SNS) topic that Firewall Manager uses to record SNS logs.</p> <p>To perform this action outside of the console, you must configure the SNS topic to allow the Firewall Manager role <code>AWSServiceRoleForFMS</code> to publish SNS logs. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html\">Firewall Manager required permissions for API actions</a> in the <i>Firewall Manager Developer Guide</i>.</p>",
     "PutPolicy": "<p>Creates an Firewall Manager policy.</p> <p>Firewall Manager provides the following types of policies: </p> <ul> <li> <p>An WAF policy (type WAFV2), which defines rule groups to run first in the corresponding WAF web ACL and rule groups to run last in the web ACL.</p> </li> <li> <p>An WAF Classic policy (type WAF), which defines a rule group. </p> </li> <li> <p>A Shield Advanced policy, which applies Shield Advanced protection to specified accounts and resources.</p> </li> <li> <p>A security group policy, which manages VPC security groups across your Amazon Web Services organization. </p> </li> <li> <p>An Network Firewall policy, which provides firewall rules to filter network traffic in specified Amazon VPCs.</p> </li> <li> <p>A DNS Firewall policy, which provides Route 53 Resolver DNS Firewall rules to filter DNS queries for specified VPCs.</p> </li> </ul> <p>Each policy is specific to one of the types. If you want to enforce more than one policy type across accounts, create multiple policies. You can create multiple policies for each type.</p> <p>You must be subscribed to Shield Advanced to create a Shield Advanced policy. For more information about subscribing to Shield Advanced, see <a href=\"https://docs.aws.amazon.com/waf/latest/DDOSAPIReference/API_CreateSubscription.html\">CreateSubscription</a>.</p>",
     "PutProtocolsList": "<p>Creates an Firewall Manager protocols list.</p>",
+    "PutResourceSet": "<p>Creates the resource set.</p> <p>An Firewall Manager resource set defines the resources to import into an Firewall Manager policy from another Amazon Web Services service.</p>",
     "TagResource": "<p>Adds one or more tags to an Amazon Web Services resource.</p>",
     "UntagResource": "<p>Removes one or more tags from an Amazon Web Services resource.</p>"
   },
@@ -37,7 +45,9 @@
     "AWSAccountId": {
       "base": null,
       "refs": {
+        "AWSAccountIdList$member": null,
         "AssociateAdminAccountRequest$AdminAccount": "<p>The Amazon Web Services account ID to associate with Firewall Manager as the Firewall Manager administrator account. This must be an Organizations member account. For more information about Organizations, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html\">Managing the Amazon Web Services Accounts in Your Organization</a>. </p>",
+        "DiscoveredResource$AccountId": "<p>The Amazon Web Services account ID associated with the discovered resource.</p>",
         "GetAdminAccountResponse$AdminAccount": "<p>The Amazon Web Services account that is set as the Firewall Manager administrator.</p>",
         "GetComplianceDetailRequest$MemberAccount": "<p>The Amazon Web Services account that owns the resources that you want to get the details for.</p>",
         "GetProtectionStatusRequest$MemberAccountId": "<p>The Amazon Web Services account that is in scope of the policy that you want to get the details for.</p>",
@@ -48,7 +58,14 @@
         "PolicyComplianceDetail$MemberAccount": "<p>The Amazon Web Services account ID.</p>",
         "PolicyComplianceStatus$PolicyOwner": "<p>The Amazon Web Services account that created the Firewall Manager policy.</p>",
         "PolicyComplianceStatus$MemberAccount": "<p>The member account ID.</p>",
+        "Resource$AccountId": "<p>The Amazon Web Services account ID that the associated resource belongs to.</p>",
         "ViolationDetail$MemberAccount": "<p>The Amazon Web Services account that the violation details were requested for.</p>"
+      }
+    },
+    "AWSAccountIdList": {
+      "base": null,
+      "refs": {
+        "ListDiscoveredResourcesRequest$MemberAccountIds": "<p>The Amazon Web Services account IDs to discover resources in. Only one account is supported per request. The account must be a member of your organization.</p>"
       }
     },
     "AccountRoleStatus": {
@@ -150,11 +167,41 @@
         "ResourceViolation$AwsVPCSecurityGroupViolation": "<p>Violation detail for security groups.</p>"
       }
     },
+    "Base62Id": {
+      "base": null,
+      "refs": {
+        "DeleteResourceSetRequest$Identifier": "<p>A unique identifier for the resource set, used in a TODO to refer to the resource set.</p>",
+        "GetResourceSetRequest$Identifier": "<p>A unique identifier for the resource set, used in a TODO to refer to the resource set.</p>",
+        "ResourceSet$Id": "<p>A unique identifier for the resource set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.</p>",
+        "ResourceSetIds$member": null,
+        "ResourceSetSummary$Id": "<p>A unique identifier for the resource set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.</p>"
+      }
+    },
     "BasicInteger": {
       "base": null,
       "refs": {
         "DnsRuleGroupLimitExceededViolation$NumberOfRuleGroupsAlreadyAssociated": "<p>The number of rule groups currently associated with the VPC. </p>",
         "RemediationActionWithOrder$Order": "<p>The order of the remediation actions in the list.</p>"
+      }
+    },
+    "BatchAssociateResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchAssociateResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Boolean": {
@@ -257,10 +304,22 @@
       "refs": {
       }
     },
+    "DeleteResourceSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DependentServiceName": {
       "base": null,
       "refs": {
         "IssueInfoMap$key": null
+      }
+    },
+    "Description": {
+      "base": null,
+      "refs": {
+        "ResourceSet$Description": "<p>A description of the resource set.</p>",
+        "ResourceSetSummary$Description": "<p>A description of the resource set.</p>"
       }
     },
     "DestinationType": {
@@ -288,6 +347,18 @@
     "DisassociateThirdPartyFirewallResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DiscoveredResource": {
+      "base": "<p>A resource in the organization that's available to be associated with a Firewall Manager resource set.</p>",
+      "refs": {
+        "DiscoveredResourceList$member": null
+      }
+    },
+    "DiscoveredResourceList": {
+      "base": null,
+      "refs": {
+        "ListDiscoveredResourcesResponse$Items": "<p>Details of the resources that were discovered.</p>"
       }
     },
     "DnsDuplicateRuleGroupViolation": {
@@ -408,6 +479,25 @@
         "RemediationAction$FMSPolicyUpdateFirewallCreationConfigAction": "<p>The remedial action to take when updating a firewall configuration.</p>"
       }
     },
+    "FailedItem": {
+      "base": "<p>Details of a resource that failed when trying to update it's association to a resource set.</p>",
+      "refs": {
+        "FailedItemList$member": null
+      }
+    },
+    "FailedItemList": {
+      "base": null,
+      "refs": {
+        "BatchAssociateResourceResponse$FailedItems": "<p>The resources that failed to associate to the resource set.</p>",
+        "BatchDisassociateResourceResponse$FailedItems": "<p>The resources that failed to disassociate from the resource set.</p>"
+      }
+    },
+    "FailedItemReason": {
+      "base": null,
+      "refs": {
+        "FailedItem$Reason": "<p>The reason the resource's association could not be updated.</p>"
+      }
+    },
     "FirewallDeploymentModel": {
       "base": null,
       "refs": {
@@ -509,6 +599,16 @@
       "refs": {
       }
     },
+    "GetResourceSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourceSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetThirdPartyFirewallAssociationStatusRequest": {
       "base": null,
       "refs": {
@@ -535,6 +635,26 @@
         "App$Port": "<p>The application's port number, for example <code>80</code>.</p>",
         "SecurityGroupRuleDescription$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of <code>-1</code> indicates all ICMP/ICMPv6 types.</p>",
         "SecurityGroupRuleDescription$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes.</p>"
+      }
+    },
+    "Identifier": {
+      "base": null,
+      "refs": {
+        "BatchAssociateResourceRequest$ResourceSetIdentifier": "<p>A unique identifier for the resource set, used in a TODO to refer to the resource set.</p>",
+        "BatchAssociateResourceResponse$ResourceSetIdentifier": "<p>A unique identifier for the resource set, used in a TODO to refer to the resource set.</p>",
+        "BatchDisassociateResourceRequest$ResourceSetIdentifier": "<p>A unique identifier for the resource set, used in a TODO to refer to the resource set.</p>",
+        "BatchDisassociateResourceResponse$ResourceSetIdentifier": "<p>A unique identifier for the resource set, used in a TODO to refer to the resource set.</p>",
+        "DiscoveredResource$URI": "<p>The universal resource identifier (URI) of the discovered resource.</p>",
+        "FailedItem$URI": "<p>The univeral resource indicator (URI) of the resource that failed.</p>",
+        "IdentifierList$member": null,
+        "Resource$URI": "<p>The resource's universal resource indicator (URI).</p>"
+      }
+    },
+    "IdentifierList": {
+      "base": null,
+      "refs": {
+        "BatchAssociateResourceRequest$Items": "<p>The uniform resource identifiers (URIs) of resources that should be associated to the resource set. The URIs must be Amazon Resource Names (ARNs).</p>",
+        "BatchDisassociateResourceRequest$Items": "<p>The uniform resource identifiers (URI) of resources that should be disassociated from the resource set. The URIs must be Amazon Resource Names (ARNs).</p>"
       }
     },
     "InternalErrorException": {
@@ -636,6 +756,16 @@
       "refs": {
       }
     },
+    "ListDiscoveredResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDiscoveredResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListId": {
       "base": null,
       "refs": {
@@ -679,6 +809,26 @@
       "refs": {
       }
     },
+    "ListResourceSetResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourceSetResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourceSetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourceSetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -716,6 +866,13 @@
       "base": null,
       "refs": {
         "ListMemberAccountsResponse$MemberAccounts": "<p>An array of account IDs.</p>"
+      }
+    },
+    "Name": {
+      "base": null,
+      "refs": {
+        "ResourceSet$Name": "<p>The descriptive name of the resource set. You can't change the name of a resource set after you create it.</p>",
+        "ResourceSetSummary$Name": "<p>The descriptive name of the resource set. You can't change the name of a resource set after you create it.</p>"
       }
     },
     "NetworkFirewallAction": {
@@ -837,9 +994,12 @@
         "GetProtectionStatusRequest$MaxResults": "<p>Specifies the number of objects that you want Firewall Manager to return for this request. If you have more objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of objects.</p>",
         "ListAppsListsRequest$MaxResults": "<p>The maximum number of objects that you want Firewall Manager to return for this request. If more objects are available, in the response, Firewall Manager provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p> <p>If you don't specify this, Firewall Manager returns all available objects.</p>",
         "ListComplianceStatusRequest$MaxResults": "<p>Specifies the number of <code>PolicyComplianceStatus</code> objects that you want Firewall Manager to return for this request. If you have more <code>PolicyComplianceStatus</code> objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of <code>PolicyComplianceStatus</code> objects.</p>",
+        "ListDiscoveredResourcesRequest$MaxResults": "<p>The maximum number of objects that you want Firewall Manager to return for this request. If more objects are available, in the response, Firewall Manager provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListMemberAccountsRequest$MaxResults": "<p>Specifies the number of member account IDs that you want Firewall Manager to return for this request. If you have more IDs than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of member account IDs.</p>",
         "ListPoliciesRequest$MaxResults": "<p>Specifies the number of <code>PolicySummary</code> objects that you want Firewall Manager to return for this request. If you have more <code>PolicySummary</code> objects than the number that you specify for <code>MaxResults</code>, the response includes a <code>NextToken</code> value that you can use to get another batch of <code>PolicySummary</code> objects.</p>",
         "ListProtocolsListsRequest$MaxResults": "<p>The maximum number of objects that you want Firewall Manager to return for this request. If more objects are available, in the response, Firewall Manager provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p> <p>If you don't specify this, Firewall Manager returns all available objects.</p>",
+        "ListResourceSetResourcesRequest$MaxResults": "<p>The maximum number of objects that you want Firewall Manager to return for this request. If more objects are available, in the response, Firewall Manager provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
+        "ListResourceSetsRequest$MaxResults": "<p>The maximum number of objects that you want Firewall Manager to return for this request. If more objects are available, in the response, Firewall Manager provides a <code>NextToken</code> value that you can use in a subsequent call to get the next batch of objects.</p>",
         "ListThirdPartyFirewallFirewallPoliciesRequest$MaxResults": "<p>The maximum number of third-party firewall policies that you want Firewall Manager to return. If the specified third-party firewall vendor is associated with more than <code>MaxResults</code> firewall policies, the response includes a <code>NextToken</code> element. <code>NextToken</code> contains an encrypted token that identifies the first third-party firewall policies that Firewall Manager will return if you submit another request.</p>"
       }
     },
@@ -852,12 +1012,18 @@
         "ListAppsListsResponse$NextToken": "<p>If you specify a value for <code>MaxResults</code> in your list request, and you have more objects than the maximum, Firewall Manager returns this token in the response. You can use this token in subsequent requests to retrieve the next batch of objects.</p>",
         "ListComplianceStatusRequest$NextToken": "<p>If you specify a value for <code>MaxResults</code> and you have more <code>PolicyComplianceStatus</code> objects than the number that you specify for <code>MaxResults</code>, Firewall Manager returns a <code>NextToken</code> value in the response that allows you to list another group of <code>PolicyComplianceStatus</code> objects. For the second and subsequent <code>ListComplianceStatus</code> requests, specify the value of <code>NextToken</code> from the previous response to get information about another batch of <code>PolicyComplianceStatus</code> objects.</p>",
         "ListComplianceStatusResponse$NextToken": "<p>If you have more <code>PolicyComplianceStatus</code> objects than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more <code>PolicyComplianceStatus</code> objects, submit another <code>ListComplianceStatus</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>",
+        "ListDiscoveredResourcesRequest$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Firewall Manager returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
+        "ListDiscoveredResourcesResponse$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Firewall Manager returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
         "ListMemberAccountsRequest$NextToken": "<p>If you specify a value for <code>MaxResults</code> and you have more account IDs than the number that you specify for <code>MaxResults</code>, Firewall Manager returns a <code>NextToken</code> value in the response that allows you to list another group of IDs. For the second and subsequent <code>ListMemberAccountsRequest</code> requests, specify the value of <code>NextToken</code> from the previous response to get information about another batch of member account IDs.</p>",
         "ListMemberAccountsResponse$NextToken": "<p>If you have more member account IDs than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more IDs, submit another <code>ListMemberAccounts</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>",
         "ListPoliciesRequest$NextToken": "<p>If you specify a value for <code>MaxResults</code> and you have more <code>PolicySummary</code> objects than the number that you specify for <code>MaxResults</code>, Firewall Manager returns a <code>NextToken</code> value in the response that allows you to list another group of <code>PolicySummary</code> objects. For the second and subsequent <code>ListPolicies</code> requests, specify the value of <code>NextToken</code> from the previous response to get information about another batch of <code>PolicySummary</code> objects.</p>",
         "ListPoliciesResponse$NextToken": "<p>If you have more <code>PolicySummary</code> objects than the number that you specified for <code>MaxResults</code> in the request, the response includes a <code>NextToken</code> value. To list more <code>PolicySummary</code> objects, submit another <code>ListPolicies</code> request, and specify the <code>NextToken</code> value from the response in the <code>NextToken</code> value in the next request.</p>",
         "ListProtocolsListsRequest$NextToken": "<p>If you specify a value for <code>MaxResults</code> in your list request, and you have more objects than the maximum, Firewall Manager returns this token in the response. For all but the first request, you provide the token returned by the prior request in the request parameters, to retrieve the next batch of objects.</p>",
         "ListProtocolsListsResponse$NextToken": "<p>If you specify a value for <code>MaxResults</code> in your list request, and you have more objects than the maximum, Firewall Manager returns this token in the response. You can use this token in subsequent requests to retrieve the next batch of objects.</p>",
+        "ListResourceSetResourcesRequest$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Firewall Manager returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
+        "ListResourceSetResourcesResponse$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Firewall Manager returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
+        "ListResourceSetsRequest$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Firewall Manager returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
+        "ListResourceSetsResponse$NextToken": "<p>When you request a list of objects with a <code>MaxResults</code> setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Firewall Manager returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.</p>",
         "ListThirdPartyFirewallFirewallPoliciesRequest$NextToken": "<p>If the previous response included a <code>NextToken</code> element, the specified third-party firewall vendor is associated with more third-party firewall policies. To get more third-party firewall policies, submit another <code>ListThirdPartyFirewallFirewallPoliciesRequest</code> request.</p> <p> For the value of <code>NextToken</code>, specify the value of <code>NextToken</code> from the previous response. If the previous response didn't include a <code>NextToken</code> element, there are no more third-party firewall policies to get. </p>",
         "ListThirdPartyFirewallFirewallPoliciesResponse$NextToken": "<p>The value that you will use for <code>NextToken</code> in the next <code>ListThirdPartyFirewallFirewallPolicies</code> request.</p>"
       }
@@ -1066,6 +1232,16 @@
       "refs": {
       }
     },
+    "PutResourceSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourceSetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ReferenceRule": {
       "base": null,
       "refs": {
@@ -1096,6 +1272,12 @@
         "OrderedRemediationActions$member": null
       }
     },
+    "Resource": {
+      "base": "<p>Details of a resource that is associated to an Firewall Manager resource set.</p>",
+      "refs": {
+        "ResourceList$member": null
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -1105,6 +1287,7 @@
         "GetNotificationChannelResponse$SnsRoleName": "<p>The IAM role that is used by Firewall Manager to record activity to SNS.</p>",
         "GetPolicyResponse$PolicyArn": "<p>The Amazon Resource Name (ARN) of the specified policy.</p>",
         "GetProtocolsListResponse$ProtocolsListArn": "<p>The Amazon Resource Name (ARN) of the specified protocols list.</p>",
+        "GetResourceSetResponse$ResourceSetArn": "<p>The Amazon Resource Name (ARN) of the resource set.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager resources that support tagging are policies, applications lists, and protocols lists. </p>",
         "PolicySummary$PolicyArn": "<p>The Amazon Resource Name (ARN) of the specified policy.</p>",
         "ProtocolsListDataSummary$ListArn": "<p>The Amazon Resource Name (ARN) of the specified protocols list.</p>",
@@ -1113,6 +1296,7 @@
         "PutNotificationChannelRequest$SnsRoleName": "<p>The Amazon Resource Name (ARN) of the IAM role that allows Amazon SNS to record Firewall Manager activity. </p>",
         "PutPolicyResponse$PolicyArn": "<p>The Amazon Resource Name (ARN) of the policy.</p>",
         "PutProtocolsListResponse$ProtocolsListArn": "<p>The Amazon Resource Name (ARN) of the protocols list.</p>",
+        "PutResourceSetResponse$ResourceSetArn": "<p>The Amazon Resource Name (ARN) of the resource set.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager resources that support tagging are policies, applications lists, and protocols lists. </p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager resources that support tagging are policies, applications lists, and protocols lists. </p>"
       }
@@ -1121,6 +1305,12 @@
       "base": null,
       "refs": {
         "EvaluationResult$ViolatorCount": "<p>The number of resources that are noncompliant with the specified policy. For WAF and Shield Advanced policies, a resource is considered noncompliant if it is not associated with the policy. For security group policies, a resource is considered noncompliant if it doesn't comply with the rules of the policy and remediation is disabled or not possible.</p>"
+      }
+    },
+    "ResourceDescription": {
+      "base": null,
+      "refs": {
+        "Policy$PolicyDescription": "<p>The definition of the Network Firewall firewall policy.</p>"
       }
     },
     "ResourceId": {
@@ -1138,6 +1328,7 @@
         "FirewallSubnetMissingVPCEndpointViolation$FirewallSubnetId": "<p>The ID of the firewall that this VPC endpoint is associated with.</p>",
         "FirewallSubnetMissingVPCEndpointViolation$VpcId": "<p>The resource ID of the VPC associated with the deleted VPC subnet.</p>",
         "GetViolationDetailsRequest$ResourceId": "<p>The ID of the resource that has violations.</p>",
+        "ListResourceSetResourcesRequest$Identifier": "<p>A unique identifier for the resource set, used in a TODO to refer to the resource set.</p>",
         "NetworkFirewallBlackHoleRouteDetectedViolation$RouteTableId": "<p>Information about the route table ID.</p>",
         "NetworkFirewallBlackHoleRouteDetectedViolation$VpcId": "<p>Information about the VPC ID.</p>",
         "NetworkFirewallInternetTrafficNotInspectedViolation$SubnetId": "<p>The subnet ID.</p>",
@@ -1197,12 +1388,19 @@
         "NetworkFirewallInvalidRouteConfigurationViolation$AffectedSubnets": "<p>The subnets that are affected.</p>"
       }
     },
+    "ResourceList": {
+      "base": null,
+      "refs": {
+        "ListResourceSetResourcesResponse$Items": "<p>An array of the associated resources' uniform resource identifiers (URI).</p>"
+      }
+    },
     "ResourceName": {
       "base": null,
       "refs": {
         "App$AppName": "<p>The application's name.</p>",
         "AppsListData$ListName": "<p>The name of the Firewall Manager applications list.</p>",
         "AppsListDataSummary$ListName": "<p>The name of the applications list.</p>",
+        "DiscoveredResource$Name": "<p>The name of the discovered resource.</p>",
         "Policy$PolicyName": "<p>The name of the Firewall Manager policy.</p>",
         "PolicyComplianceStatus$PolicyName": "<p>The name of the Firewall Manager policy.</p>",
         "PolicySummary$PolicyName": "<p>The name of the specified policy.</p>",
@@ -1213,6 +1411,32 @@
     "ResourceNotFoundException": {
       "base": "<p>The specified resource was not found.</p>",
       "refs": {
+      }
+    },
+    "ResourceSet": {
+      "base": "<p>A set of resources to include in a policy.</p>",
+      "refs": {
+        "GetResourceSetResponse$ResourceSet": "<p>Information about the specified resource set.</p>",
+        "PutResourceSetRequest$ResourceSet": "<p>Details about the resource set to be created or updated.&gt;</p>",
+        "PutResourceSetResponse$ResourceSet": "<p>Details about the resource set.</p>"
+      }
+    },
+    "ResourceSetIds": {
+      "base": null,
+      "refs": {
+        "Policy$ResourceSetIds": "<p>The unique identifiers of the resource sets used by the policy.</p>"
+      }
+    },
+    "ResourceSetSummary": {
+      "base": "<p>Summarizes the resource sets used in a policy.</p>",
+      "refs": {
+        "ResourceSetSummaryList$member": null
+      }
+    },
+    "ResourceSetSummaryList": {
+      "base": null,
+      "refs": {
+        "ListResourceSetsResponse$ResourceSets": "<p>An array of <code>ResourceSetSummary</code> objects.</p>"
       }
     },
     "ResourceTag": {
@@ -1243,7 +1467,9 @@
       "base": null,
       "refs": {
         "ComplianceViolator$ResourceType": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. For example: <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>, <code>AWS::CloudFront::Distribution</code>, or <code>AWS::NetworkFirewall::FirewallPolicy</code>.</p>",
+        "DiscoveredResource$Type": "<p>The type of the discovered resource.</p>",
         "GetViolationDetailsRequest$ResourceType": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. Supported resource types are: <code>AWS::EC2::Instance</code>, <code>AWS::EC2::NetworkInterface</code>, <code>AWS::EC2::SecurityGroup</code>, <code>AWS::NetworkFirewall::FirewallPolicy</code>, and <code>AWS::EC2::Subnet</code>. </p>",
+        "ListDiscoveredResourcesRequest$ResourceType": "<p>The type of resources to discover.</p>",
         "Policy$ResourceType": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. To apply this policy to multiple resource types, specify a resource type of <code>ResourceTypeList</code> and then specify the resource types in a <code>ResourceTypeList</code>.</p> <p>For WAF and Shield Advanced, resource types include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>, <code>AWS::ElasticLoadBalancing::LoadBalancer</code>, <code>AWS::EC2::EIP</code>, and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. For an Network Firewall policy or DNS Firewall policy, the value is <code>AWS::EC2::VPC</code>.</p>",
         "PolicySummary$ResourceType": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services Resource Types Reference</a>. For WAF and Shield Advanced, examples include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. For an Network Firewall policy or DNS Firewall policy, the value is <code>AWS::EC2::VPC</code>.</p>",
         "ResourceTypeList$member": null,
@@ -1253,7 +1479,8 @@
     "ResourceTypeList": {
       "base": null,
       "refs": {
-        "Policy$ResourceTypeList": "<p>An array of <code>ResourceType</code> objects. Use this only to specify multiple resource types. To specify a single resource type, use <code>ResourceType</code>.</p>"
+        "Policy$ResourceTypeList": "<p>An array of <code>ResourceType</code> objects. Use this only to specify multiple resource types. To specify a single resource type, use <code>ResourceType</code>.</p>",
+        "ResourceSet$ResourceTypeList": "<p>Determines the resources that can be associated to the resource set. Depending on your setting for max results and the number of resource sets, a single call might not return the full list.</p>"
       }
     },
     "ResourceViolation": {
@@ -1397,6 +1624,7 @@
         "PutAppsListRequest$TagList": "<p>The tags associated with the resource.</p>",
         "PutPolicyRequest$TagList": "<p>The tags to add to the Amazon Web Services resource.</p>",
         "PutProtocolsListRequest$TagList": "<p>The tags associated with the resource.</p>",
+        "PutResourceSetRequest$TagList": "<p>Retrieves the tags associated with the specified resource set. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each Amazon Web Services resource, up to 50 tags for a resource.</p>",
         "TagResourceRequest$TagList": "<p>The tags to add to the resource.</p>",
         "ViolationDetail$ResourceTags": "<p>The <code>ResourceTag</code> objects associated with the resource.</p>"
       }
@@ -1502,7 +1730,9 @@
         "PolicyComplianceDetail$ExpiredAt": "<p>A timestamp that indicates when the returned information should be considered out of date.</p>",
         "PolicyComplianceStatus$LastUpdated": "<p>Timestamp of the last update to the <code>EvaluationResult</code> objects.</p>",
         "ProtocolsListData$CreateTime": "<p>The time that the Firewall Manager protocols list was created.</p>",
-        "ProtocolsListData$LastUpdateTime": "<p>The time that the Firewall Manager protocols list was last updated.</p>"
+        "ProtocolsListData$LastUpdateTime": "<p>The time that the Firewall Manager protocols list was last updated.</p>",
+        "ResourceSet$LastUpdateTime": "<p>The last time that the resource set was changed.</p>",
+        "ResourceSetSummary$LastUpdateTime": "<p>The last time that the resource set was changed.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -1519,7 +1749,8 @@
       "base": null,
       "refs": {
         "AppsListData$ListUpdateToken": "<p>A unique identifier for each update to the list. When you update the list, the update token must match the token of the current version of the application list. You can retrieve the update token by getting the list. </p>",
-        "ProtocolsListData$ListUpdateToken": "<p>A unique identifier for each update to the list. When you update the list, the update token must match the token of the current version of the application list. You can retrieve the update token by getting the list. </p>"
+        "ProtocolsListData$ListUpdateToken": "<p>A unique identifier for each update to the list. When you update the list, the update token must match the token of the current version of the application list. You can retrieve the update token by getting the list. </p>",
+        "ResourceSet$UpdateToken": "<p>An optional token that you can use for optimistic locking. Firewall Manager returns a token to your requests that access the resource set. The token marks the state of the resource set resource at the time of the request. Update tokens are not allowed when creating a resource set. After creation, each subsequent update call to the resource set requires the update token. </p> <p>To make an unconditional change to the resource set, omit the token in your update request. Without the token, Firewall Manager performs your updates regardless of whether the resource set has changed since you last retrieved it.</p> <p>To make a conditional change to the resource set, provide the token in your update request. Firewall Manager uses the token to ensure that the resource set hasn't changed since you last retrieved it. If it has changed, the operation fails with an <code>InvalidTokenException</code>. If this happens, retrieve the resource set again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token. </p>"
       }
     },
     "ViolationDetail": {

@@ -201,6 +201,16 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 //     The certificate is in use by another Amazon Web Services service in the caller's
 //     account. Remove the association and try again.
 //
+//   - AccessDeniedException
+//     You do not have access required to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded a quota.
+//
+//   - ConflictException
+//     You are trying to update a resource or configuration that is already being
+//     created or updated. Wait for the previous operation to finish and try again.
+//
 //   - InvalidArnException
 //     The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
@@ -798,8 +808,13 @@ func (c *ACM) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 // API operation ListCertificates for usage and error information.
 //
 // Returned Error Types:
+//
 //   - InvalidArgsException
 //     One or more of of request parameters specified is not valid.
+//
+//   - ValidationException
+//     The supplied input failed to satisfy constraints of an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListCertificates
 func (c *ACM) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
@@ -1206,9 +1221,9 @@ func (c *ACM) RenewCertificateRequest(input *RenewCertificateInput) (req *reques
 // RenewCertificate API operation for AWS Certificate Manager.
 //
 // Renews an eligible ACM certificate. At this time, only exported private certificates
-// can be renewed with this operation. In order to renew your ACM Private CA
-// certificates with ACM, you must first grant the ACM service principal permission
-// to do so (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaPermissions.html).
+// can be renewed with this operation. In order to renew your Amazon Web Services
+// Private CA certificates with ACM, you must first grant the ACM service principal
+// permission to do so (https://docs.aws.amazon.com/privateca/latest/userguide/PcaPermissions.html).
 // For more information, see Testing Managed Renewal (https://docs.aws.amazon.com/acm/latest/userguide/manual-renewal.html)
 // in the ACM User Guide.
 //
@@ -4373,7 +4388,7 @@ type RequestCertificateInput struct {
 	// that will be used to issue the certificate. If you do not provide an ARN
 	// and you are trying to request a private certificate, ACM will attempt to
 	// issue a public certificate. For more information about private CAs, see the
-	// Certificate Manager Private Certificate Authority (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html)
+	// Amazon Web Services Private Certificate Authority (https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html)
 	// user guide. The ARN must have the following form:
 	//
 	// arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012
@@ -4404,6 +4419,19 @@ type RequestCertificateInput struct {
 	// you change the idempotency token for each call, ACM recognizes that you are
 	// requesting multiple certificates.
 	IdempotencyToken *string `min:"1" type:"string"`
+
+	// Specifies the algorithm of the public and private key pair that your certificate
+	// uses to encrypt data. RSA is the default key algorithm for ACM certificates.
+	// Elliptic Curve Digital Signature Algorithm (ECDSA) keys are smaller, offering
+	// security comparable to RSA keys but with greater computing efficiency. However,
+	// ECDSA is not supported by all network clients. Some AWS services may require
+	// RSA keys, or only support ECDSA keys of a particular size, while others allow
+	// the use of either RSA and ECDSA keys to ensure that compatibility is not
+	// broken. Check the requirements for the AWS service where you plan to deploy
+	// your certificate.
+	//
+	// Default: RSA_2048
+	KeyAlgorithm *string `type:"string" enum:"KeyAlgorithm"`
 
 	// Currently, you can use this parameter to specify whether to add the certificate
 	// to a certificate transparency log. Certificate transparency makes it possible
@@ -4537,6 +4565,12 @@ func (s *RequestCertificateInput) SetDomainValidationOptions(v []*DomainValidati
 // SetIdempotencyToken sets the IdempotencyToken field's value.
 func (s *RequestCertificateInput) SetIdempotencyToken(v string) *RequestCertificateInput {
 	s.IdempotencyToken = &v
+	return s
+}
+
+// SetKeyAlgorithm sets the KeyAlgorithm field's value.
+func (s *RequestCertificateInput) SetKeyAlgorithm(v string) *RequestCertificateInput {
+	s.KeyAlgorithm = &v
 	return s
 }
 
