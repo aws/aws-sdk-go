@@ -3225,6 +3225,14 @@
         "supportCode":{"shape":"string"}
       }
     },
+    "CertificateDomainValidationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING_VALIDATION",
+        "FAILED",
+        "SUCCESS"
+      ]
+    },
     "CertificateName":{"type":"string"},
     "CertificateStatus":{
       "type":"string",
@@ -4612,6 +4620,21 @@
         "Http5xxErrorRate"
       ]
     },
+    "DnsRecordCreationState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"DnsRecordCreationStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "DnsRecordCreationStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "STARTED",
+        "FAILED"
+      ]
+    },
     "Domain":{
       "type":"structure",
       "members":{
@@ -4622,7 +4645,8 @@
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
         "tags":{"shape":"TagList"},
-        "domainEntries":{"shape":"DomainEntryList"}
+        "domainEntries":{"shape":"DomainEntryList"},
+        "registeredDomainDelegationInfo":{"shape":"RegisteredDomainDelegationInfo"}
       }
     },
     "DomainEntry":{
@@ -4663,7 +4687,9 @@
       "type":"structure",
       "members":{
         "domainName":{"shape":"DomainName"},
-        "resourceRecord":{"shape":"ResourceRecord"}
+        "resourceRecord":{"shape":"ResourceRecord"},
+        "dnsRecordCreationState":{"shape":"DnsRecordCreationState"},
+        "validationStatus":{"shape":"CertificateDomainValidationStatus"}
       }
     },
     "DomainValidationRecordList":{
@@ -6260,6 +6286,21 @@
         "subjectAlternativeNames":{"shape":"StringList"}
       }
     },
+    "LoadBalancerTlsCertificateDnsRecordCreationState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"LoadBalancerTlsCertificateDnsRecordCreationStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "LoadBalancerTlsCertificateDnsRecordCreationStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "STARTED",
+        "FAILED"
+      ]
+    },
     "LoadBalancerTlsCertificateDomainStatus":{
       "type":"string",
       "enum":[
@@ -6286,7 +6327,8 @@
         "type":{"shape":"NonEmptyString"},
         "value":{"shape":"NonEmptyString"},
         "validationStatus":{"shape":"LoadBalancerTlsCertificateDomainStatus"},
-        "domainName":{"shape":"DomainName"}
+        "domainName":{"shape":"DomainName"},
+        "dnsRecordCreationState":{"shape":"LoadBalancerTlsCertificateDnsRecordCreationState"}
       }
     },
     "LoadBalancerTlsCertificateDomainValidationRecordList":{
@@ -6497,6 +6539,22 @@
       "members":{
         "gbPerMonthAllocated":{"shape":"integer"}
       }
+    },
+    "NameServersUpdateState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"NameServersUpdateStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "NameServersUpdateStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "PENDING",
+        "FAILED",
+        "STARTED"
+      ]
     },
     "NetworkProtocol":{
       "type":"string",
@@ -6845,6 +6903,22 @@
         "queryStringsAllowList":{"shape":"StringList"}
       }
     },
+    "R53HostedZoneDeletionState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"R53HostedZoneDeletionStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "R53HostedZoneDeletionStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "PENDING",
+        "FAILED",
+        "STARTED"
+      ]
+    },
     "RebootInstanceRequest":{
       "type":"structure",
       "required":["instanceName"],
@@ -6931,6 +7005,13 @@
       "type":"structure",
       "members":{
         "containerImage":{"shape":"ContainerImage"}
+      }
+    },
+    "RegisteredDomainDelegationInfo":{
+      "type":"structure",
+      "members":{
+        "nameServersUpdateState":{"shape":"NameServersUpdateState"},
+        "r53HostedZoneDeletionState":{"shape":"R53HostedZoneDeletionState"}
       }
     },
     "RelationalDatabase":{

@@ -43,6 +43,37 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "BatchAssociateResource":{
+      "name":"BatchAssociateResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchAssociateResourceRequest"},
+      "output":{"shape":"BatchAssociateResourceResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "BatchDisassociateResource":{
+      "name":"BatchDisassociateResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchDisassociateResourceRequest"},
+      "output":{"shape":"BatchDisassociateResourceResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeleteAppsList":{
       "name":"DeleteAppsList",
       "http":{
@@ -95,6 +126,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidOperationException"},
         {"shape":"InternalErrorException"}
+      ]
+    },
+    "DeleteResourceSet":{
+      "name":"DeleteResourceSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourceSetRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidInputException"}
       ]
     },
     "DisassociateAdminAccount":{
@@ -225,6 +270,21 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "GetResourceSet":{
+      "name":"GetResourceSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourceSetRequest"},
+      "output":{"shape":"GetResourceSetResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "GetThirdPartyFirewallAssociationStatus":{
       "name":"GetThirdPartyFirewallAssociationStatus",
       "http":{
@@ -282,6 +342,20 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "ListDiscoveredResources":{
+      "name":"ListDiscoveredResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDiscoveredResourcesRequest"},
+      "output":{"shape":"ListDiscoveredResourcesResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "ListMemberAccounts":{
       "name":"ListMemberAccounts",
       "http":{
@@ -321,6 +395,35 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "ListResourceSetResources":{
+      "name":"ListResourceSetResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceSetResourcesRequest"},
+      "output":{"shape":"ListResourceSetResourcesResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListResourceSets":{
+      "name":"ListResourceSets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceSetsRequest"},
+      "output":{"shape":"ListResourceSetsResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -416,6 +519,21 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "PutResourceSet":{
+      "name":"PutResourceSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourceSetRequest"},
+      "output":{"shape":"PutResourceSetResponse"},
+      "errors":[
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -454,6 +572,10 @@
       "max":1024,
       "min":1,
       "pattern":"^[0-9]+$"
+    },
+    "AWSAccountIdList":{
+      "type":"list",
+      "member":{"shape":"AWSAccountId"}
     },
     "AccountRoleStatus":{
       "type":"string",
@@ -565,10 +687,60 @@
         "PossibleSecurityGroupRemediationActions":{"shape":"SecurityGroupRemediationActions"}
       }
     },
+    "Base62Id":{
+      "type":"string",
+      "max":22,
+      "min":22,
+      "pattern":"^[a-z0-9A-Z]{22}$"
+    },
     "BasicInteger":{
       "type":"integer",
       "max":2147483647,
       "min":-2147483648
+    },
+    "BatchAssociateResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceSetIdentifier",
+        "Items"
+      ],
+      "members":{
+        "ResourceSetIdentifier":{"shape":"Identifier"},
+        "Items":{"shape":"IdentifierList"}
+      }
+    },
+    "BatchAssociateResourceResponse":{
+      "type":"structure",
+      "required":[
+        "ResourceSetIdentifier",
+        "FailedItems"
+      ],
+      "members":{
+        "ResourceSetIdentifier":{"shape":"Identifier"},
+        "FailedItems":{"shape":"FailedItemList"}
+      }
+    },
+    "BatchDisassociateResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceSetIdentifier",
+        "Items"
+      ],
+      "members":{
+        "ResourceSetIdentifier":{"shape":"Identifier"},
+        "Items":{"shape":"IdentifierList"}
+      }
+    },
+    "BatchDisassociateResourceResponse":{
+      "type":"structure",
+      "required":[
+        "ResourceSetIdentifier",
+        "FailedItems"
+      ],
+      "members":{
+        "ResourceSetIdentifier":{"shape":"Identifier"},
+        "FailedItems":{"shape":"FailedItemList"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "CIDR":{
@@ -644,6 +816,13 @@
         "ListId":{"shape":"ListId"}
       }
     },
+    "DeleteResourceSetRequest":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"Base62Id"}
+      }
+    },
     "DependentServiceName":{
       "type":"string",
       "enum":[
@@ -652,6 +831,11 @@
         "AWSSHIELD_ADVANCED",
         "AWSVPC"
       ]
+    },
+    "Description":{
+      "type":"string",
+      "max":256,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "DestinationType":{
       "type":"string",
@@ -663,7 +847,7 @@
     },
     "DetailedInfo":{
       "type":"string",
-      "max":1024,
+      "max":4096,
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=,+\\-@]*)$"
     },
@@ -684,6 +868,19 @@
       "members":{
         "ThirdPartyFirewallStatus":{"shape":"ThirdPartyFirewallAssociationStatus"}
       }
+    },
+    "DiscoveredResource":{
+      "type":"structure",
+      "members":{
+        "URI":{"shape":"Identifier"},
+        "AccountId":{"shape":"AWSAccountId"},
+        "Type":{"shape":"ResourceType"},
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "DiscoveredResourceList":{
+      "type":"list",
+      "member":{"shape":"DiscoveredResource"}
     },
     "DnsDuplicateRuleGroupViolation":{
       "type":"structure",
@@ -832,6 +1029,28 @@
         "FirewallCreationConfig":{"shape":"ManagedServiceData"}
       }
     },
+    "FailedItem":{
+      "type":"structure",
+      "members":{
+        "URI":{"shape":"Identifier"},
+        "Reason":{"shape":"FailedItemReason"}
+      }
+    },
+    "FailedItemList":{
+      "type":"list",
+      "member":{"shape":"FailedItem"}
+    },
+    "FailedItemReason":{
+      "type":"string",
+      "enum":[
+        "NOT_VALID_ARN",
+        "NOT_VALID_PARTITION",
+        "NOT_VALID_REGION",
+        "NOT_VALID_SERVICE",
+        "NOT_VALID_RESOURCE_TYPE",
+        "NOT_VALID_ACCOUNT_ID"
+      ]
+    },
     "FirewallDeploymentModel":{
       "type":"string",
       "enum":[
@@ -976,6 +1195,24 @@
         "ProtocolsListArn":{"shape":"ResourceArn"}
       }
     },
+    "GetResourceSetRequest":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"Base62Id"}
+      }
+    },
+    "GetResourceSetResponse":{
+      "type":"structure",
+      "required":[
+        "ResourceSet",
+        "ResourceSetArn"
+      ],
+      "members":{
+        "ResourceSet":{"shape":"ResourceSet"},
+        "ResourceSetArn":{"shape":"ResourceArn"}
+      }
+    },
     "GetThirdPartyFirewallAssociationStatusRequest":{
       "type":"structure",
       "required":["ThirdPartyFirewall"],
@@ -1015,6 +1252,16 @@
       "type":"long",
       "max":65535,
       "min":0
+    },
+    "Identifier":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "IdentifierList":{
+      "type":"list",
+      "member":{"shape":"Identifier"}
     },
     "InternalErrorException":{
       "type":"structure",
@@ -1097,6 +1344,26 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListDiscoveredResourcesRequest":{
+      "type":"structure",
+      "required":[
+        "MemberAccountIds",
+        "ResourceType"
+      ],
+      "members":{
+        "MemberAccountIds":{"shape":"AWSAccountIdList"},
+        "ResourceType":{"shape":"ResourceType"},
+        "MaxResults":{"shape":"PaginationMaxResults"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListDiscoveredResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"DiscoveredResourceList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListId":{
       "type":"string",
       "max":36,
@@ -1144,6 +1411,37 @@
       "type":"structure",
       "members":{
         "ProtocolsLists":{"shape":"ProtocolsListsData"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListResourceSetResourcesRequest":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{"shape":"ResourceId"},
+        "MaxResults":{"shape":"PaginationMaxResults"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListResourceSetResourcesResponse":{
+      "type":"structure",
+      "required":["Items"],
+      "members":{
+        "Items":{"shape":"ResourceList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListResourceSetsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PaginationMaxResults"}
+      }
+    },
+    "ListResourceSetsResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceSets":{"shape":"ResourceSetSummaryList"},
         "NextToken":{"shape":"PaginationToken"}
       }
     },
@@ -1196,6 +1494,12 @@
     "MemberAccounts":{
       "type":"list",
       "member":{"shape":"AWSAccountId"}
+    },
+    "Name":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "NetworkFirewallAction":{
       "type":"string",
@@ -1401,7 +1705,9 @@
         "RemediationEnabled":{"shape":"Boolean"},
         "DeleteUnusedFMManagedResources":{"shape":"Boolean"},
         "IncludeMap":{"shape":"CustomerPolicyScopeMap"},
-        "ExcludeMap":{"shape":"CustomerPolicyScopeMap"}
+        "ExcludeMap":{"shape":"CustomerPolicyScopeMap"},
+        "ResourceSetIds":{"shape":"ResourceSetIds"},
+        "PolicyDescription":{"shape":"ResourceDescription"}
       }
     },
     "PolicyComplianceDetail":{
@@ -1607,6 +1913,25 @@
         "ProtocolsListArn":{"shape":"ResourceArn"}
       }
     },
+    "PutResourceSetRequest":{
+      "type":"structure",
+      "required":["ResourceSet"],
+      "members":{
+        "ResourceSet":{"shape":"ResourceSet"},
+        "TagList":{"shape":"TagList"}
+      }
+    },
+    "PutResourceSetResponse":{
+      "type":"structure",
+      "required":[
+        "ResourceSet",
+        "ResourceSetArn"
+      ],
+      "members":{
+        "ResourceSet":{"shape":"ResourceSet"},
+        "ResourceSetArn":{"shape":"ResourceArn"}
+      }
+    },
     "ReferenceRule":{"type":"string"},
     "RemediationAction":{
       "type":"structure",
@@ -1642,6 +1967,14 @@
         "Order":{"shape":"BasicInteger"}
       }
     },
+    "Resource":{
+      "type":"structure",
+      "required":["URI"],
+      "members":{
+        "URI":{"shape":"Identifier"},
+        "AccountId":{"shape":"AWSAccountId"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "max":1024,
@@ -1652,6 +1985,11 @@
       "type":"long",
       "min":0
     },
+    "ResourceDescription":{
+      "type":"string",
+      "max":256,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
     "ResourceId":{
       "type":"string",
       "max":1024,
@@ -1661,6 +1999,10 @@
     "ResourceIdList":{
       "type":"list",
       "member":{"shape":"ResourceId"}
+    },
+    "ResourceList":{
+      "type":"list",
+      "member":{"shape":"Resource"}
     },
     "ResourceName":{
       "type":"string",
@@ -1674,6 +2016,38 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ResourceSet":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ResourceTypeList"
+      ],
+      "members":{
+        "Id":{"shape":"Base62Id"},
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "UpdateToken":{"shape":"UpdateToken"},
+        "ResourceTypeList":{"shape":"ResourceTypeList"},
+        "LastUpdateTime":{"shape":"TimeStamp"}
+      }
+    },
+    "ResourceSetIds":{
+      "type":"list",
+      "member":{"shape":"Base62Id"}
+    },
+    "ResourceSetSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Base62Id"},
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "LastUpdateTime":{"shape":"TimeStamp"}
+      }
+    },
+    "ResourceSetSummaryList":{
+      "type":"list",
+      "member":{"shape":"ResourceSetSummary"}
     },
     "ResourceTag":{
       "type":"structure",
@@ -1823,7 +2197,8 @@
         "SECURITY_GROUPS_USAGE_AUDIT",
         "NETWORK_FIREWALL",
         "DNS_FIREWALL",
-        "THIRD_PARTY_FIREWALL"
+        "THIRD_PARTY_FIREWALL",
+        "IMPORT_NETWORK_FIREWALL"
       ]
     },
     "StatefulEngineOptions":{

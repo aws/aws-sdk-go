@@ -14394,6 +14394,10 @@
     "PlacementGroupId": {
       "base": null,
       "refs": {
+        "LaunchTemplatePlacement$GroupId": "<p>The Group ID of the placement group. You must specify the Placement Group <b>Group ID</b> to launch an instance in a shared placement group.</p>",
+        "LaunchTemplatePlacementRequest$GroupId": "<p>The Group Id of a placement group. You must specify the Placement Group <b>Group Id</b> to launch an instance in a shared placement group.</p>",
+        "ModifyInstancePlacementRequest$GroupId": "<p>The Group Id of a placement group. You must specify the Placement Group <b>Group Id</b> to launch an instance in a shared placement group.</p>",
+        "Placement$GroupId": "<p>The Group Id of the placement group.</p>",
         "PlacementGroupIdStringList$member": null
       }
     },

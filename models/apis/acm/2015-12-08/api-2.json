@@ -40,6 +40,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
         {"shape":"InvalidArnException"}
       ]
     },
@@ -123,7 +126,8 @@
       "input":{"shape":"ListCertificatesRequest"},
       "output":{"shape":"ListCertificatesResponse"},
       "errors":[
-        {"shape":"InvalidArgsException"}
+        {"shape":"InvalidArgsException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListTagsForCertificate":{
@@ -252,7 +256,7 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+      "pattern":"arn:[\\w+=/,.@-]+:acm:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
     },
     "AvailabilityErrorMessage":{"type":"string"},
     "CertificateBody":{
@@ -752,6 +756,12 @@
       "min":4,
       "sensitive":true
     },
+    "PcaArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:[\\w+=/,.@-]+:acm-pca:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+    },
     "PositiveInteger":{
       "type":"integer",
       "min":1
@@ -839,8 +849,9 @@
         "IdempotencyToken":{"shape":"IdempotencyToken"},
         "DomainValidationOptions":{"shape":"DomainValidationOptionList"},
         "Options":{"shape":"CertificateOptions"},
-        "CertificateAuthorityArn":{"shape":"Arn"},
-        "Tags":{"shape":"TagList"}
+        "CertificateAuthorityArn":{"shape":"PcaArn"},
+        "Tags":{"shape":"TagList"},
+        "KeyAlgorithm":{"shape":"KeyAlgorithm"}
       }
     },
     "RequestCertificateResponse":{

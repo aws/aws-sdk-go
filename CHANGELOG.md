@@ -1,3 +1,22 @@
+Release v1.44.133 (2022-11-08)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * Support added for requesting elliptic curve certificate key algorithm types P-256 (EC_prime256v1) and P-384 (EC_secp384r1).
+* `service/billingconductor`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * This release enables sharing of EC2 Placement Groups across accounts and within AWS Organizations using Resource Access Manager
+* `service/fms`: Updates service API and documentation
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for Amazon Lightsail to automate the delegation of domains registered through Amazon Route 53 to Lightsail DNS management and to automate record creation for DNS validation of Lightsail SSL/TLS certificates.
+* `service/opensearch`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds new voices: Elin (sv-SE), Ida (nb-NO), Laura (nl-NL) and Suvi (fi-FI). They are available as neural voices only.
+* `service/resource-explorer-2`: Adds new service
+* `service/route53`: Updates service API and documentation
+  * Amazon Route 53 now supports the Europe (Zurich) Region (eu-central-2) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+
 Release v1.44.132 (2022-11-07)
 ===
 

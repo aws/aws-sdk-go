@@ -217,6 +217,200 @@ func (c *FMS) AssociateThirdPartyFirewallWithContext(ctx aws.Context, input *Ass
 	return out, req.Send()
 }
 
+const opBatchAssociateResource = "BatchAssociateResource"
+
+// BatchAssociateResourceRequest generates a "aws/request.Request" representing the
+// client's request for the BatchAssociateResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchAssociateResource for more information on using the BatchAssociateResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchAssociateResourceRequest method.
+//	req, resp := client.BatchAssociateResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/BatchAssociateResource
+func (c *FMS) BatchAssociateResourceRequest(input *BatchAssociateResourceInput) (req *request.Request, output *BatchAssociateResourceOutput) {
+	op := &request.Operation{
+		Name:       opBatchAssociateResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchAssociateResourceInput{}
+	}
+
+	output = &BatchAssociateResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchAssociateResource API operation for Firewall Management Service.
+//
+// Associate resources to a Firewall Manager resource set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation BatchAssociateResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - LimitExceededException
+//     The operation exceeds a resource limit, for example, the maximum number of
+//     policy objects that you can create for an Amazon Web Services account. For
+//     more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//     in the WAF Developer Guide.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/BatchAssociateResource
+func (c *FMS) BatchAssociateResource(input *BatchAssociateResourceInput) (*BatchAssociateResourceOutput, error) {
+	req, out := c.BatchAssociateResourceRequest(input)
+	return out, req.Send()
+}
+
+// BatchAssociateResourceWithContext is the same as BatchAssociateResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchAssociateResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) BatchAssociateResourceWithContext(ctx aws.Context, input *BatchAssociateResourceInput, opts ...request.Option) (*BatchAssociateResourceOutput, error) {
+	req, out := c.BatchAssociateResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchDisassociateResource = "BatchDisassociateResource"
+
+// BatchDisassociateResourceRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDisassociateResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDisassociateResource for more information on using the BatchDisassociateResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDisassociateResourceRequest method.
+//	req, resp := client.BatchDisassociateResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/BatchDisassociateResource
+func (c *FMS) BatchDisassociateResourceRequest(input *BatchDisassociateResourceInput) (req *request.Request, output *BatchDisassociateResourceOutput) {
+	op := &request.Operation{
+		Name:       opBatchDisassociateResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchDisassociateResourceInput{}
+	}
+
+	output = &BatchDisassociateResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDisassociateResource API operation for Firewall Management Service.
+//
+// Disassociates resources from a Firewall Manager resource set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation BatchDisassociateResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/BatchDisassociateResource
+func (c *FMS) BatchDisassociateResource(input *BatchDisassociateResourceInput) (*BatchDisassociateResourceOutput, error) {
+	req, out := c.BatchDisassociateResourceRequest(input)
+	return out, req.Send()
+}
+
+// BatchDisassociateResourceWithContext is the same as BatchDisassociateResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDisassociateResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) BatchDisassociateResourceWithContext(ctx aws.Context, input *BatchDisassociateResourceInput, opts ...request.Option) (*BatchDisassociateResourceOutput, error) {
+	req, out := c.BatchDisassociateResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAppsList = "DeleteAppsList"
 
 // DeleteAppsListRequest generates a "aws/request.Request" representing the
@@ -591,6 +785,101 @@ func (c *FMS) DeleteProtocolsList(input *DeleteProtocolsListInput) (*DeleteProto
 // for more information on using Contexts.
 func (c *FMS) DeleteProtocolsListWithContext(ctx aws.Context, input *DeleteProtocolsListInput, opts ...request.Option) (*DeleteProtocolsListOutput, error) {
 	req, out := c.DeleteProtocolsListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteResourceSet = "DeleteResourceSet"
+
+// DeleteResourceSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourceSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourceSet for more information on using the DeleteResourceSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteResourceSetRequest method.
+//	req, resp := client.DeleteResourceSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/DeleteResourceSet
+func (c *FMS) DeleteResourceSetRequest(input *DeleteResourceSetInput) (req *request.Request, output *DeleteResourceSetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourceSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourceSetInput{}
+	}
+
+	output = &DeleteResourceSetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourceSet API operation for Firewall Management Service.
+//
+// Deletes the specified ResourceSet.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation DeleteResourceSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/DeleteResourceSet
+func (c *FMS) DeleteResourceSet(input *DeleteResourceSetInput) (*DeleteResourceSetOutput, error) {
+	req, out := c.DeleteResourceSetRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourceSetWithContext is the same as DeleteResourceSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourceSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) DeleteResourceSetWithContext(ctx aws.Context, input *DeleteResourceSetInput, opts ...request.Option) (*DeleteResourceSetOutput, error) {
+	req, out := c.DeleteResourceSetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1448,6 +1737,100 @@ func (c *FMS) GetProtocolsListWithContext(ctx aws.Context, input *GetProtocolsLi
 	return out, req.Send()
 }
 
+const opGetResourceSet = "GetResourceSet"
+
+// GetResourceSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourceSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourceSet for more information on using the GetResourceSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourceSetRequest method.
+//	req, resp := client.GetResourceSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/GetResourceSet
+func (c *FMS) GetResourceSetRequest(input *GetResourceSetInput) (req *request.Request, output *GetResourceSetOutput) {
+	op := &request.Operation{
+		Name:       opGetResourceSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourceSetInput{}
+	}
+
+	output = &GetResourceSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourceSet API operation for Firewall Management Service.
+//
+// Gets information about a specific resource set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation GetResourceSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/GetResourceSet
+func (c *FMS) GetResourceSet(input *GetResourceSetInput) (*GetResourceSetOutput, error) {
+	req, out := c.GetResourceSetRequest(input)
+	return out, req.Send()
+}
+
+// GetResourceSetWithContext is the same as GetResourceSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourceSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) GetResourceSetWithContext(ctx aws.Context, input *GetResourceSetInput, opts ...request.Option) (*GetResourceSetOutput, error) {
+	req, out := c.GetResourceSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetThirdPartyFirewallAssociationStatus = "GetThirdPartyFirewallAssociationStatus"
 
 // GetThirdPartyFirewallAssociationStatusRequest generates a "aws/request.Request" representing the
@@ -1926,6 +2309,98 @@ func (c *FMS) ListComplianceStatusPagesWithContext(ctx aws.Context, input *ListC
 	return p.Err()
 }
 
+const opListDiscoveredResources = "ListDiscoveredResources"
+
+// ListDiscoveredResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDiscoveredResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDiscoveredResources for more information on using the ListDiscoveredResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDiscoveredResourcesRequest method.
+//	req, resp := client.ListDiscoveredResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListDiscoveredResources
+func (c *FMS) ListDiscoveredResourcesRequest(input *ListDiscoveredResourcesInput) (req *request.Request, output *ListDiscoveredResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListDiscoveredResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListDiscoveredResourcesInput{}
+	}
+
+	output = &ListDiscoveredResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDiscoveredResources API operation for Firewall Management Service.
+//
+// Returns an array of resources in the organization's accounts that are available
+// to be associated with a resource set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation ListDiscoveredResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListDiscoveredResources
+func (c *FMS) ListDiscoveredResources(input *ListDiscoveredResourcesInput) (*ListDiscoveredResourcesOutput, error) {
+	req, out := c.ListDiscoveredResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListDiscoveredResourcesWithContext is the same as ListDiscoveredResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDiscoveredResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListDiscoveredResourcesWithContext(ctx aws.Context, input *ListDiscoveredResourcesInput, opts ...request.Option) (*ListDiscoveredResourcesOutput, error) {
+	req, out := c.ListDiscoveredResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListMemberAccounts = "ListMemberAccounts"
 
 // ListMemberAccountsRequest generates a "aws/request.Request" representing the
@@ -2370,6 +2845,192 @@ func (c *FMS) ListProtocolsListsPagesWithContext(ctx aws.Context, input *ListPro
 	}
 
 	return p.Err()
+}
+
+const opListResourceSetResources = "ListResourceSetResources"
+
+// ListResourceSetResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListResourceSetResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResourceSetResources for more information on using the ListResourceSetResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResourceSetResourcesRequest method.
+//	req, resp := client.ListResourceSetResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListResourceSetResources
+func (c *FMS) ListResourceSetResourcesRequest(input *ListResourceSetResourcesInput) (req *request.Request, output *ListResourceSetResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListResourceSetResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListResourceSetResourcesInput{}
+	}
+
+	output = &ListResourceSetResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResourceSetResources API operation for Firewall Management Service.
+//
+// Returns an array of resources that are currently associated to a resource
+// set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation ListResourceSetResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListResourceSetResources
+func (c *FMS) ListResourceSetResources(input *ListResourceSetResourcesInput) (*ListResourceSetResourcesOutput, error) {
+	req, out := c.ListResourceSetResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListResourceSetResourcesWithContext is the same as ListResourceSetResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResourceSetResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListResourceSetResourcesWithContext(ctx aws.Context, input *ListResourceSetResourcesInput, opts ...request.Option) (*ListResourceSetResourcesOutput, error) {
+	req, out := c.ListResourceSetResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListResourceSets = "ListResourceSets"
+
+// ListResourceSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListResourceSets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResourceSets for more information on using the ListResourceSets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResourceSetsRequest method.
+//	req, resp := client.ListResourceSetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListResourceSets
+func (c *FMS) ListResourceSetsRequest(input *ListResourceSetsInput) (req *request.Request, output *ListResourceSetsOutput) {
+	op := &request.Operation{
+		Name:       opListResourceSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListResourceSetsInput{}
+	}
+
+	output = &ListResourceSetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResourceSets API operation for Firewall Management Service.
+//
+// Returns an array of ResourceSetSummary objects.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation ListResourceSets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListResourceSets
+func (c *FMS) ListResourceSets(input *ListResourceSetsInput) (*ListResourceSetsOutput, error) {
+	req, out := c.ListResourceSetsRequest(input)
+	return out, req.Send()
+}
+
+// ListResourceSetsWithContext is the same as ListResourceSets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResourceSets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListResourceSetsWithContext(ctx aws.Context, input *ListResourceSetsInput, opts ...request.Option) (*ListResourceSetsOutput, error) {
+	req, out := c.ListResourceSetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -3042,6 +3703,106 @@ func (c *FMS) PutProtocolsList(input *PutProtocolsListInput) (*PutProtocolsListO
 // for more information on using Contexts.
 func (c *FMS) PutProtocolsListWithContext(ctx aws.Context, input *PutProtocolsListInput, opts ...request.Option) (*PutProtocolsListOutput, error) {
 	req, out := c.PutProtocolsListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutResourceSet = "PutResourceSet"
+
+// PutResourceSetRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourceSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourceSet for more information on using the PutResourceSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutResourceSetRequest method.
+//	req, resp := client.PutResourceSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/PutResourceSet
+func (c *FMS) PutResourceSetRequest(input *PutResourceSetInput) (req *request.Request, output *PutResourceSetOutput) {
+	op := &request.Operation{
+		Name:       opPutResourceSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutResourceSetInput{}
+	}
+
+	output = &PutResourceSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutResourceSet API operation for Firewall Management Service.
+//
+// Creates the resource set.
+//
+// An Firewall Manager resource set defines the resources to import into an
+// Firewall Manager policy from another Amazon Web Services service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Firewall Management Service's
+// API operation PutResourceSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidOperationException
+//     The operation failed because there was nothing to do or the operation wasn't
+//     possible. For example, you might have submitted an AssociateAdminAccount
+//     request for an account ID that was already set as the Firewall Manager administrator.
+//     Or you might have tried to access a Region that's disabled by default, and
+//     that you need to enable for the Firewall Manager administrator account and
+//     for Organizations before you can access it.
+//
+//   - InvalidInputException
+//     The parameters of the request were invalid.
+//
+//   - LimitExceededException
+//     The operation exceeds a resource limit, for example, the maximum number of
+//     policy objects that you can create for an Amazon Web Services account. For
+//     more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//     in the WAF Developer Guide.
+//
+//   - InternalErrorException
+//     The operation failed because of a system problem, even though the request
+//     was valid. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/PutResourceSet
+func (c *FMS) PutResourceSet(input *PutResourceSetInput) (*PutResourceSetOutput, error) {
+	req, out := c.PutResourceSetRequest(input)
+	return out, req.Send()
+}
+
+// PutResourceSetWithContext is the same as PutResourceSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourceSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) PutResourceSetWithContext(ctx aws.Context, input *PutResourceSetInput, opts ...request.Option) (*PutResourceSetOutput, error) {
+	req, out := c.PutResourceSetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3863,6 +4624,226 @@ func (s *AwsVPCSecurityGroupViolation) SetViolationTargetDescription(v string) *
 	return s
 }
 
+type BatchAssociateResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The uniform resource identifiers (URIs) of resources that should be associated
+	// to the resource set. The URIs must be Amazon Resource Names (ARNs).
+	//
+	// Items is a required field
+	Items []*string `type:"list" required:"true"`
+
+	// A unique identifier for the resource set, used in a TODO to refer to the
+	// resource set.
+	//
+	// ResourceSetIdentifier is a required field
+	ResourceSetIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchAssociateResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchAssociateResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchAssociateResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchAssociateResourceInput"}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.ResourceSetIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceSetIdentifier"))
+	}
+	if s.ResourceSetIdentifier != nil && len(*s.ResourceSetIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceSetIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *BatchAssociateResourceInput) SetItems(v []*string) *BatchAssociateResourceInput {
+	s.Items = v
+	return s
+}
+
+// SetResourceSetIdentifier sets the ResourceSetIdentifier field's value.
+func (s *BatchAssociateResourceInput) SetResourceSetIdentifier(v string) *BatchAssociateResourceInput {
+	s.ResourceSetIdentifier = &v
+	return s
+}
+
+type BatchAssociateResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resources that failed to associate to the resource set.
+	//
+	// FailedItems is a required field
+	FailedItems []*FailedItem `type:"list" required:"true"`
+
+	// A unique identifier for the resource set, used in a TODO to refer to the
+	// resource set.
+	//
+	// ResourceSetIdentifier is a required field
+	ResourceSetIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchAssociateResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchAssociateResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedItems sets the FailedItems field's value.
+func (s *BatchAssociateResourceOutput) SetFailedItems(v []*FailedItem) *BatchAssociateResourceOutput {
+	s.FailedItems = v
+	return s
+}
+
+// SetResourceSetIdentifier sets the ResourceSetIdentifier field's value.
+func (s *BatchAssociateResourceOutput) SetResourceSetIdentifier(v string) *BatchAssociateResourceOutput {
+	s.ResourceSetIdentifier = &v
+	return s
+}
+
+type BatchDisassociateResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The uniform resource identifiers (URI) of resources that should be disassociated
+	// from the resource set. The URIs must be Amazon Resource Names (ARNs).
+	//
+	// Items is a required field
+	Items []*string `type:"list" required:"true"`
+
+	// A unique identifier for the resource set, used in a TODO to refer to the
+	// resource set.
+	//
+	// ResourceSetIdentifier is a required field
+	ResourceSetIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDisassociateResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDisassociateResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDisassociateResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDisassociateResourceInput"}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.ResourceSetIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceSetIdentifier"))
+	}
+	if s.ResourceSetIdentifier != nil && len(*s.ResourceSetIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceSetIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *BatchDisassociateResourceInput) SetItems(v []*string) *BatchDisassociateResourceInput {
+	s.Items = v
+	return s
+}
+
+// SetResourceSetIdentifier sets the ResourceSetIdentifier field's value.
+func (s *BatchDisassociateResourceInput) SetResourceSetIdentifier(v string) *BatchDisassociateResourceInput {
+	s.ResourceSetIdentifier = &v
+	return s
+}
+
+type BatchDisassociateResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resources that failed to disassociate from the resource set.
+	//
+	// FailedItems is a required field
+	FailedItems []*FailedItem `type:"list" required:"true"`
+
+	// A unique identifier for the resource set, used in a TODO to refer to the
+	// resource set.
+	//
+	// ResourceSetIdentifier is a required field
+	ResourceSetIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDisassociateResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDisassociateResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedItems sets the FailedItems field's value.
+func (s *BatchDisassociateResourceOutput) SetFailedItems(v []*FailedItem) *BatchDisassociateResourceOutput {
+	s.FailedItems = v
+	return s
+}
+
+// SetResourceSetIdentifier sets the ResourceSetIdentifier field's value.
+func (s *BatchDisassociateResourceOutput) SetResourceSetIdentifier(v string) *BatchDisassociateResourceOutput {
+	s.ResourceSetIdentifier = &v
+	return s
+}
+
 // Details of the resource that is not protected by the policy.
 type ComplianceViolator struct {
 	_ struct{} `type:"structure"`
@@ -4218,6 +5199,78 @@ func (s DeleteProtocolsListOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteResourceSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the resource set, used in a TODO to refer to the
+	// resource set.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourceSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourceSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourceSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourceSetInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteResourceSetInput) SetIdentifier(v string) *DeleteResourceSetInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteResourceSetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourceSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourceSetOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4337,6 +5390,66 @@ func (s DisassociateThirdPartyFirewallOutput) GoString() string {
 // SetThirdPartyFirewallStatus sets the ThirdPartyFirewallStatus field's value.
 func (s *DisassociateThirdPartyFirewallOutput) SetThirdPartyFirewallStatus(v string) *DisassociateThirdPartyFirewallOutput {
 	s.ThirdPartyFirewallStatus = &v
+	return s
+}
+
+// A resource in the organization that's available to be associated with a Firewall
+// Manager resource set.
+type DiscoveredResource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID associated with the discovered resource.
+	AccountId *string `min:"1" type:"string"`
+
+	// The name of the discovered resource.
+	Name *string `min:"1" type:"string"`
+
+	// The type of the discovered resource.
+	Type *string `min:"1" type:"string"`
+
+	// The universal resource identifier (URI) of the discovered resource.
+	URI *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoveredResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DiscoveredResource) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DiscoveredResource) SetAccountId(v string) *DiscoveredResource {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DiscoveredResource) SetName(v string) *DiscoveredResource {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DiscoveredResource) SetType(v string) *DiscoveredResource {
+	s.Type = &v
+	return s
+}
+
+// SetURI sets the URI field's value.
+func (s *DiscoveredResource) SetURI(v string) *DiscoveredResource {
+	s.URI = &v
 	return s
 }
 
@@ -5150,6 +6263,48 @@ func (s *FMSPolicyUpdateFirewallCreationConfigAction) SetDescription(v string) *
 // SetFirewallCreationConfig sets the FirewallCreationConfig field's value.
 func (s *FMSPolicyUpdateFirewallCreationConfigAction) SetFirewallCreationConfig(v string) *FMSPolicyUpdateFirewallCreationConfigAction {
 	s.FirewallCreationConfig = &v
+	return s
+}
+
+// Details of a resource that failed when trying to update it's association
+// to a resource set.
+type FailedItem struct {
+	_ struct{} `type:"structure"`
+
+	// The reason the resource's association could not be updated.
+	Reason *string `type:"string" enum:"FailedItemReason"`
+
+	// The univeral resource indicator (URI) of the resource that failed.
+	URI *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedItem) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *FailedItem) SetReason(v string) *FailedItem {
+	s.Reason = &v
+	return s
+}
+
+// SetURI sets the URI field's value.
+func (s *FailedItem) SetURI(v string) *FailedItem {
+	s.URI = &v
 	return s
 }
 
@@ -5992,6 +7147,100 @@ func (s *GetProtocolsListOutput) SetProtocolsListArn(v string) *GetProtocolsList
 	return s
 }
 
+type GetResourceSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the resource set, used in a TODO to refer to the
+	// resource set.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"22" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourceSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourceSetInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 22))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetResourceSetInput) SetIdentifier(v string) *GetResourceSetInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetResourceSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the specified resource set.
+	//
+	// ResourceSet is a required field
+	ResourceSet *ResourceSet `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource set.
+	//
+	// ResourceSetArn is a required field
+	ResourceSetArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceSet sets the ResourceSet field's value.
+func (s *GetResourceSetOutput) SetResourceSet(v *ResourceSet) *GetResourceSetOutput {
+	s.ResourceSet = v
+	return s
+}
+
+// SetResourceSetArn sets the ResourceSetArn field's value.
+func (s *GetResourceSetOutput) SetResourceSetArn(v string) *GetResourceSetOutput {
+	s.ResourceSetArn = &v
+	return s
+}
+
 type GetThirdPartyFirewallAssociationStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6818,6 +8067,145 @@ func (s *ListComplianceStatusOutput) SetPolicyComplianceStatusList(v []*PolicyCo
 	return s
 }
 
+type ListDiscoveredResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Firewall Manager to return for
+	// this request. If more objects are available, in the response, Firewall Manager
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The Amazon Web Services account IDs to discover resources in. Only one account
+	// is supported per request. The account must be a member of your organization.
+	//
+	// MemberAccountIds is a required field
+	MemberAccountIds []*string `type:"list" required:"true"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+
+	// The type of resources to discover.
+	//
+	// ResourceType is a required field
+	ResourceType *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveredResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveredResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDiscoveredResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDiscoveredResourcesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MemberAccountIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberAccountIds"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDiscoveredResourcesInput) SetMaxResults(v int64) *ListDiscoveredResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMemberAccountIds sets the MemberAccountIds field's value.
+func (s *ListDiscoveredResourcesInput) SetMemberAccountIds(v []*string) *ListDiscoveredResourcesInput {
+	s.MemberAccountIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDiscoveredResourcesInput) SetNextToken(v string) *ListDiscoveredResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListDiscoveredResourcesInput) SetResourceType(v string) *ListDiscoveredResourcesInput {
+	s.ResourceType = &v
+	return s
+}
+
+type ListDiscoveredResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details of the resources that were discovered.
+	Items []*DiscoveredResource `type:"list"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveredResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDiscoveredResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListDiscoveredResourcesOutput) SetItems(v []*DiscoveredResource) *ListDiscoveredResourcesOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDiscoveredResourcesOutput) SetNextToken(v string) *ListDiscoveredResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListMemberAccountsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7153,6 +8541,240 @@ func (s *ListProtocolsListsOutput) SetNextToken(v string) *ListProtocolsListsOut
 // SetProtocolsLists sets the ProtocolsLists field's value.
 func (s *ListProtocolsListsOutput) SetProtocolsLists(v []*ProtocolsListDataSummary) *ListProtocolsListsOutput {
 	s.ProtocolsLists = v
+	return s
+}
+
+type ListResourceSetResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the resource set, used in a TODO to refer to the
+	// resource set.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of objects that you want Firewall Manager to return for
+	// this request. If more objects are available, in the response, Firewall Manager
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResourceSetResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResourceSetResourcesInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ListResourceSetResourcesInput) SetIdentifier(v string) *ListResourceSetResourcesInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResourceSetResourcesInput) SetMaxResults(v int64) *ListResourceSetResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceSetResourcesInput) SetNextToken(v string) *ListResourceSetResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResourceSetResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of the associated resources' uniform resource identifiers (URI).
+	//
+	// Items is a required field
+	Items []*Resource `type:"list" required:"true"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListResourceSetResourcesOutput) SetItems(v []*Resource) *ListResourceSetResourcesOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceSetResourcesOutput) SetNextToken(v string) *ListResourceSetResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResourceSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Firewall Manager to return for
+	// this request. If more objects are available, in the response, Firewall Manager
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResourceSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResourceSetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResourceSetsInput) SetMaxResults(v int64) *ListResourceSetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceSetsInput) SetNextToken(v string) *ListResourceSetsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResourceSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When you request a list of objects with a MaxResults setting, if the number
+	// of objects that are still available for retrieval exceeds the maximum you
+	// requested, Firewall Manager returns a NextToken value in the response. To
+	// retrieve the next batch of objects, use the token returned from the prior
+	// request in your next request.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of ResourceSetSummary objects.
+	ResourceSets []*ResourceSetSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceSetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceSetsOutput) SetNextToken(v string) *ListResourceSetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceSets sets the ResourceSets field's value.
+func (s *ListResourceSetsOutput) SetResourceSets(v []*ResourceSetSummary) *ListResourceSetsOutput {
+	s.ResourceSets = v
 	return s
 }
 
@@ -8471,6 +10093,9 @@ type Policy struct {
 	//    “accountID2”], “ORG_UNIT” : [“ouid111”, “ouid112”]}.
 	IncludeMap map[string][]*string `type:"map"`
 
+	// The definition of the Network Firewall firewall policy.
+	PolicyDescription *string `type:"string"`
+
 	// The ID of the Firewall Manager policy.
 	PolicyId *string `min:"36" type:"string"`
 
@@ -8489,6 +10114,9 @@ type Policy struct {
 	//
 	// RemediationEnabled is a required field
 	RemediationEnabled *bool `type:"boolean" required:"true"`
+
+	// The unique identifiers of the resource sets used by the policy.
+	ResourceSetIds []*string `type:"list"`
 
 	// An array of ResourceTag objects.
 	ResourceTags []*ResourceTag `type:"list"`
@@ -8613,6 +10241,12 @@ func (s *Policy) SetIncludeMap(v map[string][]*string) *Policy {
 	return s
 }
 
+// SetPolicyDescription sets the PolicyDescription field's value.
+func (s *Policy) SetPolicyDescription(v string) *Policy {
+	s.PolicyDescription = &v
+	return s
+}
+
 // SetPolicyId sets the PolicyId field's value.
 func (s *Policy) SetPolicyId(v string) *Policy {
 	s.PolicyId = &v
@@ -8634,6 +10268,12 @@ func (s *Policy) SetPolicyUpdateToken(v string) *Policy {
 // SetRemediationEnabled sets the RemediationEnabled field's value.
 func (s *Policy) SetRemediationEnabled(v bool) *Policy {
 	s.RemediationEnabled = &v
+	return s
+}
+
+// SetResourceSetIds sets the ResourceSetIds field's value.
+func (s *Policy) SetResourceSetIds(v []*string) *Policy {
+	s.ResourceSetIds = v
 	return s
 }
 
@@ -9681,6 +11321,124 @@ func (s *PutProtocolsListOutput) SetProtocolsListArn(v string) *PutProtocolsList
 	return s
 }
 
+type PutResourceSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the resource set to be created or updated.>
+	//
+	// ResourceSet is a required field
+	ResourceSet *ResourceSet `type:"structure" required:"true"`
+
+	// Retrieves the tags associated with the specified resource set. Tags are key:value
+	// pairs that you can use to categorize and manage your resources, for purposes
+	// like billing. For example, you might set the tag key to "customer" and the
+	// value to the customer name or ID. You can specify one or more tags to add
+	// to each Amazon Web Services resource, up to 50 tags for a resource.
+	TagList []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourceSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourceSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourceSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourceSetInput"}
+	if s.ResourceSet == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceSet"))
+	}
+	if s.ResourceSet != nil {
+		if err := s.ResourceSet.Validate(); err != nil {
+			invalidParams.AddNested("ResourceSet", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TagList != nil {
+		for i, v := range s.TagList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TagList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceSet sets the ResourceSet field's value.
+func (s *PutResourceSetInput) SetResourceSet(v *ResourceSet) *PutResourceSetInput {
+	s.ResourceSet = v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *PutResourceSetInput) SetTagList(v []*Tag) *PutResourceSetInput {
+	s.TagList = v
+	return s
+}
+
+type PutResourceSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the resource set.
+	//
+	// ResourceSet is a required field
+	ResourceSet *ResourceSet `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource set.
+	//
+	// ResourceSetArn is a required field
+	ResourceSetArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourceSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourceSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceSet sets the ResourceSet field's value.
+func (s *PutResourceSetOutput) SetResourceSet(v *ResourceSet) *PutResourceSetOutput {
+	s.ResourceSet = v
+	return s
+}
+
+// SetResourceSetArn sets the ResourceSetArn field's value.
+func (s *PutResourceSetOutput) SetResourceSetArn(v string) *PutResourceSetOutput {
+	s.ResourceSetArn = &v
+	return s
+}
+
 // Information about an individual action you can take to remediate a violation.
 type RemediationAction struct {
 	_ struct{} `type:"structure"`
@@ -9827,6 +11585,50 @@ func (s *RemediationActionWithOrder) SetRemediationAction(v *RemediationAction) 
 	return s
 }
 
+// Details of a resource that is associated to an Firewall Manager resource
+// set.
+type Resource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID that the associated resource belongs to.
+	AccountId *string `min:"1" type:"string"`
+
+	// The resource's universal resource indicator (URI).
+	//
+	// URI is a required field
+	URI *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Resource) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *Resource) SetAccountId(v string) *Resource {
+	s.AccountId = &v
+	return s
+}
+
+// SetURI sets the URI field's value.
+func (s *Resource) SetURI(v string) *Resource {
+	s.URI = &v
+	return s
+}
+
 // The specified resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -9889,6 +11691,195 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A set of resources to include in a policy.
+type ResourceSet struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the resource set.
+	Description *string `type:"string"`
+
+	// A unique identifier for the resource set. This ID is returned in the responses
+	// to create and list commands. You provide it to operations like update and
+	// delete.
+	Id *string `min:"22" type:"string"`
+
+	// The last time that the resource set was changed.
+	LastUpdateTime *time.Time `type:"timestamp"`
+
+	// The descriptive name of the resource set. You can't change the name of a
+	// resource set after you create it.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Determines the resources that can be associated to the resource set. Depending
+	// on your setting for max results and the number of resource sets, a single
+	// call might not return the full list.
+	//
+	// ResourceTypeList is a required field
+	ResourceTypeList []*string `type:"list" required:"true"`
+
+	// An optional token that you can use for optimistic locking. Firewall Manager
+	// returns a token to your requests that access the resource set. The token
+	// marks the state of the resource set resource at the time of the request.
+	// Update tokens are not allowed when creating a resource set. After creation,
+	// each subsequent update call to the resource set requires the update token.
+	//
+	// To make an unconditional change to the resource set, omit the token in your
+	// update request. Without the token, Firewall Manager performs your updates
+	// regardless of whether the resource set has changed since you last retrieved
+	// it.
+	//
+	// To make a conditional change to the resource set, provide the token in your
+	// update request. Firewall Manager uses the token to ensure that the resource
+	// set hasn't changed since you last retrieved it. If it has changed, the operation
+	// fails with an InvalidTokenException. If this happens, retrieve the resource
+	// set again to get a current copy of it with a new token. Reapply your changes
+	// as needed, then try the operation again using the new token.
+	UpdateToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSet) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceSet) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceSet"}
+	if s.Id != nil && len(*s.Id) < 22 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 22))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ResourceTypeList == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceTypeList"))
+	}
+	if s.UpdateToken != nil && len(*s.UpdateToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UpdateToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *ResourceSet) SetDescription(v string) *ResourceSet {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ResourceSet) SetId(v string) *ResourceSet {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *ResourceSet) SetLastUpdateTime(v time.Time) *ResourceSet {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceSet) SetName(v string) *ResourceSet {
+	s.Name = &v
+	return s
+}
+
+// SetResourceTypeList sets the ResourceTypeList field's value.
+func (s *ResourceSet) SetResourceTypeList(v []*string) *ResourceSet {
+	s.ResourceTypeList = v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *ResourceSet) SetUpdateToken(v string) *ResourceSet {
+	s.UpdateToken = &v
+	return s
+}
+
+// Summarizes the resource sets used in a policy.
+type ResourceSetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the resource set.
+	Description *string `type:"string"`
+
+	// A unique identifier for the resource set. This ID is returned in the responses
+	// to create and list commands. You provide it to operations like update and
+	// delete.
+	Id *string `min:"22" type:"string"`
+
+	// The last time that the resource set was changed.
+	LastUpdateTime *time.Time `type:"timestamp"`
+
+	// The descriptive name of the resource set. You can't change the name of a
+	// resource set after you create it.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSetSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ResourceSetSummary) SetDescription(v string) *ResourceSetSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ResourceSetSummary) SetId(v string) *ResourceSetSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *ResourceSetSummary) SetLastUpdateTime(v time.Time) *ResourceSetSummary {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceSetSummary) SetName(v string) *ResourceSetSummary {
+	s.Name = &v
+	return s
 }
 
 // The resource tags that Firewall Manager uses to determine if a particular
@@ -11578,6 +13569,38 @@ func DestinationType_Values() []string {
 }
 
 const (
+	// FailedItemReasonNotValidArn is a FailedItemReason enum value
+	FailedItemReasonNotValidArn = "NOT_VALID_ARN"
+
+	// FailedItemReasonNotValidPartition is a FailedItemReason enum value
+	FailedItemReasonNotValidPartition = "NOT_VALID_PARTITION"
+
+	// FailedItemReasonNotValidRegion is a FailedItemReason enum value
+	FailedItemReasonNotValidRegion = "NOT_VALID_REGION"
+
+	// FailedItemReasonNotValidService is a FailedItemReason enum value
+	FailedItemReasonNotValidService = "NOT_VALID_SERVICE"
+
+	// FailedItemReasonNotValidResourceType is a FailedItemReason enum value
+	FailedItemReasonNotValidResourceType = "NOT_VALID_RESOURCE_TYPE"
+
+	// FailedItemReasonNotValidAccountId is a FailedItemReason enum value
+	FailedItemReasonNotValidAccountId = "NOT_VALID_ACCOUNT_ID"
+)
+
+// FailedItemReason_Values returns all elements of the FailedItemReason enum
+func FailedItemReason_Values() []string {
+	return []string{
+		FailedItemReasonNotValidArn,
+		FailedItemReasonNotValidPartition,
+		FailedItemReasonNotValidRegion,
+		FailedItemReasonNotValidService,
+		FailedItemReasonNotValidResourceType,
+		FailedItemReasonNotValidAccountId,
+	}
+}
+
+const (
 	// FirewallDeploymentModelCentralized is a FirewallDeploymentModel enum value
 	FirewallDeploymentModelCentralized = "CENTRALIZED"
 
@@ -11700,6 +13723,9 @@ const (
 
 	// SecurityServiceTypeThirdPartyFirewall is a SecurityServiceType enum value
 	SecurityServiceTypeThirdPartyFirewall = "THIRD_PARTY_FIREWALL"
+
+	// SecurityServiceTypeImportNetworkFirewall is a SecurityServiceType enum value
+	SecurityServiceTypeImportNetworkFirewall = "IMPORT_NETWORK_FIREWALL"
 )
 
 // SecurityServiceType_Values returns all elements of the SecurityServiceType enum
@@ -11714,6 +13740,7 @@ func SecurityServiceType_Values() []string {
 		SecurityServiceTypeNetworkFirewall,
 		SecurityServiceTypeDnsFirewall,
 		SecurityServiceTypeThirdPartyFirewall,
+		SecurityServiceTypeImportNetworkFirewall,
 	}
 }
 
