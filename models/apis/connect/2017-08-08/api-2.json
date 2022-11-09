@@ -4998,7 +4998,10 @@
     "GetFederationTokenResponse":{
       "type":"structure",
       "members":{
-        "Credentials":{"shape":"Credentials"}
+        "Credentials":{"shape":"Credentials"},
+        "SignInUrl":{"shape":"Url"},
+        "UserArn":{"shape":"ARN"},
+        "UserId":{"shape":"AgentResourceId"}
       }
     },
     "GetMetricDataRequest":{
@@ -9344,6 +9347,7 @@
         }
       }
     },
+    "Url":{"type":"string"},
     "UrlReference":{
       "type":"structure",
       "members":{

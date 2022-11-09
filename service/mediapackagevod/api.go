@@ -2786,6 +2786,9 @@ type DashPackage struct {
 	// your assets during content playback.
 	IncludeEncoderConfigurationInSegments *bool `locationName:"includeEncoderConfigurationInSegments" type:"boolean"`
 
+	// When enabled, an I-Frame only stream will be included in the output.
+	IncludeIframeOnlyStream *bool `locationName:"includeIframeOnlyStream" type:"boolean"`
+
 	// A list of triggers that controls when the outgoing Dynamic Adaptive Streaming
 	// over HTTP (DASH)Media Presentation Description (MPD) will be partitioned
 	// into multiple periods. If empty, the content will notbe partitioned into
@@ -2857,6 +2860,12 @@ func (s *DashPackage) SetEncryption(v *DashEncryption) *DashPackage {
 // SetIncludeEncoderConfigurationInSegments sets the IncludeEncoderConfigurationInSegments field's value.
 func (s *DashPackage) SetIncludeEncoderConfigurationInSegments(v bool) *DashPackage {
 	s.IncludeEncoderConfigurationInSegments = &v
+	return s
+}
+
+// SetIncludeIframeOnlyStream sets the IncludeIframeOnlyStream field's value.
+func (s *DashPackage) SetIncludeIframeOnlyStream(v bool) *DashPackage {
+	s.IncludeIframeOnlyStream = &v
 	return s
 }
 

@@ -1,3 +1,15 @@
+Release v1.44.134 (2022-11-09)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/connectcases`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Amazon EC2 Trn1 instances, powered by AWS Trainium chips, are purpose built for high-performance deep learning training. u-24tb1.112xlarge and u-18tb1.112xlarge High Memory instances are purpose-built to run large in-memory databases.
+* `service/groundstation`: Updates service API, documentation, and paginators
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.44.133 (2022-11-08)
 ===
 

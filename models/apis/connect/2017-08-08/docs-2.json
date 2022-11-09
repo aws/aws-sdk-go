@@ -197,6 +197,7 @@
         "CreateUserResponse$UserArn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
         "CreateVocabularyResponse$VocabularyArn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
         "DeleteVocabularyResponse$VocabularyArn": "<p>The Amazon Resource Name (ARN) of the custom vocabulary.</p>",
+        "GetFederationTokenResponse$UserArn": "<p>The Amazon Resource Name (ARN) of the user.</p>",
         "HierarchyGroup$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy group.</p>",
         "HierarchyGroupSummary$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy group.</p>",
         "HierarchyGroupSummaryReference$Arn": "<p>The Amazon Resource Name (ARN) for the hierarchy group. </p>",
@@ -293,6 +294,7 @@
       "base": null,
       "refs": {
         "AgentInfo$Id": "<p>The identifier of the agent who accepted the contact.</p>",
+        "GetFederationTokenResponse$UserId": "<p>The identifier for the user.</p>",
         "TransferContactRequest$UserId": "<p>The identifier for the user.</p>"
       }
     },
@@ -660,7 +662,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
-        "ClaimPhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
+        "ClaimPhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p> <p>Pattern: <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code> </p>",
         "CreateContactFlowModuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateInstanceRequest$ClientToken": "<p>The idempotency token.</p>",
         "CreateTaskTemplateRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
@@ -2180,7 +2182,7 @@
       "refs": {
         "CreateTrafficDistributionGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance that has been replicated. You can find the <code>instanceId</code> in the ARN of the instance.</p>",
         "ListTrafficDistributionGroupsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
-        "ReplicateInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>"
+        "ReplicateInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance. You can provide the <code>InstanceId</code>, or the entire ARN.</p>"
       }
     },
     "InstanceStatus": {
@@ -4685,6 +4687,12 @@
     "UpdateUserSecurityProfilesRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "Url": {
+      "base": null,
+      "refs": {
+        "GetFederationTokenResponse$SignInUrl": "<p>The URL to sign into the user's instance. </p>"
       }
     },
     "UrlReference": {

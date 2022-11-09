@@ -59,6 +59,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "CreateEphemeris":{
+      "name":"CreateEphemeris",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ephemeris",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateEphemerisRequest"},
+      "output":{"shape":"EphemerisIdResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "CreateMissionProfile":{
       "name":"CreateMissionProfile",
       "http":{
@@ -106,6 +121,22 @@
       ],
       "idempotent":true
     },
+    "DeleteEphemeris":{
+      "name":"DeleteEphemeris",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/ephemeris/{ephemerisId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteEphemerisRequest"},
+      "output":{"shape":"EphemerisIdResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DeleteMissionProfile":{
       "name":"DeleteMissionProfile",
       "http":{
@@ -131,6 +162,21 @@
       },
       "input":{"shape":"DescribeContactRequest"},
       "output":{"shape":"DescribeContactResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeEphemeris":{
+      "name":"DescribeEphemeris",
+      "http":{
+        "method":"GET",
+        "requestUri":"/ephemeris/{ephemerisId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeEphemerisRequest"},
+      "output":{"shape":"DescribeEphemerisResponse"},
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"DependencyException"},
@@ -251,6 +297,21 @@
       },
       "input":{"shape":"ListDataflowEndpointGroupsRequest"},
       "output":{"shape":"ListDataflowEndpointGroupsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListEphemerides":{
+      "name":"ListEphemerides",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ephemerides",
+        "responseCode":200
+      },
+      "input":{"shape":"ListEphemeridesRequest"},
+      "output":{"shape":"ListEphemeridesResponse"},
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"DependencyException"},
@@ -379,6 +440,22 @@
       ],
       "idempotent":true
     },
+    "UpdateEphemeris":{
+      "name":"UpdateEphemeris",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/ephemeris/{ephemerisId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateEphemerisRequest"},
+      "output":{"shape":"EphemerisIdResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DependencyException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "UpdateMissionProfile":{
       "name":"UpdateMissionProfile",
       "http":{
@@ -397,6 +474,12 @@
     }
   },
   "shapes":{
+    "AWSRegion":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[\\w-]+$"
+    },
     "AngleUnits":{
       "type":"string",
       "enum":[
@@ -442,6 +525,12 @@
         "transmitDisabled":{"shape":"Boolean"}
       }
     },
+    "AnyArn":{
+      "type":"string",
+      "max":1024,
+      "min":5,
+      "pattern":"^(arn:aws:)[\\s\\S]{0,1024}$"
+    },
     "BandwidthUnits":{
       "type":"string",
       "enum":[
@@ -460,7 +549,7 @@
       "required":["contactId"],
       "members":{
         "contactId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"contactId"
         }
@@ -525,7 +614,7 @@
     "ContactData":{
       "type":"structure",
       "members":{
-        "contactId":{"shape":"String"},
+        "contactId":{"shape":"Uuid"},
         "contactStatus":{"shape":"ContactStatus"},
         "endTime":{"shape":"Timestamp"},
         "errorMessage":{"shape":"String"},
@@ -543,7 +632,7 @@
     "ContactIdResponse":{
       "type":"structure",
       "members":{
-        "contactId":{"shape":"String"}
+        "contactId":{"shape":"Uuid"}
       }
     },
     "ContactList":{
@@ -588,6 +677,23 @@
         "tags":{"shape":"TagsMap"}
       }
     },
+    "CreateEphemerisRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "satelliteId"
+      ],
+      "members":{
+        "enabled":{"shape":"Boolean"},
+        "ephemeris":{"shape":"EphemerisData"},
+        "expirationTime":{"shape":"Timestamp"},
+        "kmsKeyArn":{"shape":"KeyArn"},
+        "name":{"shape":"SafeName"},
+        "priority":{"shape":"CustomerEphemerisPriority"},
+        "satelliteId":{"shape":"Uuid"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
     "CreateMissionProfileRequest":{
       "type":"structure",
       "required":[
@@ -600,7 +706,7 @@
         "contactPostPassDurationSeconds":{"shape":"DurationInSeconds"},
         "contactPrePassDurationSeconds":{"shape":"DurationInSeconds"},
         "dataflowEdges":{"shape":"DataflowEdgeList"},
-        "minimumViableContactDurationSeconds":{"shape":"DurationInSeconds"},
+        "minimumViableContactDurationSeconds":{"shape":"PositiveDurationInSeconds"},
         "name":{"shape":"SafeName"},
         "tags":{"shape":"TagsMap"},
         "trackingConfigArn":{"shape":"ConfigArn"}
@@ -613,6 +719,12 @@
         "REMOVED",
         "REQUIRED"
       ]
+    },
+    "CustomerEphemerisPriority":{
+      "type":"integer",
+      "box":true,
+      "max":99999,
+      "min":1
     },
     "DataflowDetail":{
       "type":"structure",
@@ -630,7 +742,9 @@
     },
     "DataflowEdgeList":{
       "type":"list",
-      "member":{"shape":"DataflowEdge"}
+      "member":{"shape":"DataflowEdge"},
+      "max":500,
+      "min":0
     },
     "DataflowEndpoint":{
       "type":"structure",
@@ -653,7 +767,7 @@
     "DataflowEndpointGroupIdResponse":{
       "type":"structure",
       "members":{
-        "dataflowEndpointGroupId":{"shape":"String"}
+        "dataflowEndpointGroupId":{"shape":"Uuid"}
       }
     },
     "DataflowEndpointGroupList":{
@@ -664,7 +778,7 @@
       "type":"structure",
       "members":{
         "dataflowEndpointGroupArn":{"shape":"DataflowEndpointGroupArn"},
-        "dataflowEndpointGroupId":{"shape":"String"}
+        "dataflowEndpointGroupId":{"shape":"Uuid"}
       }
     },
     "DataflowEndpointMtuInteger":{
@@ -692,7 +806,7 @@
       ],
       "members":{
         "configId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"configId"
         },
@@ -708,9 +822,20 @@
       "required":["dataflowEndpointGroupId"],
       "members":{
         "dataflowEndpointGroupId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"dataflowEndpointGroupId"
+        }
+      }
+    },
+    "DeleteEphemerisRequest":{
+      "type":"structure",
+      "required":["ephemerisId"],
+      "members":{
+        "ephemerisId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"ephemerisId"
         }
       }
     },
@@ -719,7 +844,7 @@
       "required":["missionProfileId"],
       "members":{
         "missionProfileId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"missionProfileId"
         }
@@ -747,7 +872,7 @@
       "required":["contactId"],
       "members":{
         "contactId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"contactId"
         }
@@ -756,7 +881,7 @@
     "DescribeContactResponse":{
       "type":"structure",
       "members":{
-        "contactId":{"shape":"String"},
+        "contactId":{"shape":"Uuid"},
         "contactStatus":{"shape":"ContactStatus"},
         "dataflowList":{"shape":"DataflowList"},
         "endTime":{"shape":"Timestamp"},
@@ -772,11 +897,37 @@
         "tags":{"shape":"TagsMap"}
       }
     },
+    "DescribeEphemerisRequest":{
+      "type":"structure",
+      "required":["ephemerisId"],
+      "members":{
+        "ephemerisId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"ephemerisId"
+        }
+      }
+    },
+    "DescribeEphemerisResponse":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "enabled":{"shape":"Boolean"},
+        "ephemerisId":{"shape":"Uuid"},
+        "invalidReason":{"shape":"EphemerisInvalidReason"},
+        "name":{"shape":"SafeName"},
+        "priority":{"shape":"EphemerisPriority"},
+        "satelliteId":{"shape":"Uuid"},
+        "status":{"shape":"EphemerisStatus"},
+        "suppliedData":{"shape":"EphemerisTypeDescription"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
     "Destination":{
       "type":"structure",
       "members":{
         "configDetails":{"shape":"ConfigDetails"},
-        "configId":{"shape":"String"},
+        "configId":{"shape":"Uuid"},
         "configType":{"shape":"ConfigCapabilityType"},
         "dataflowDestinationRegion":{"shape":"String"}
       }
@@ -789,7 +940,7 @@
       "type":"integer",
       "box":true,
       "max":21600,
-      "min":1
+      "min":0
     },
     "Eirp":{
       "type":"structure",
@@ -826,7 +977,9 @@
     },
     "EndpointDetailsList":{
       "type":"list",
-      "member":{"shape":"EndpointDetails"}
+      "member":{"shape":"EndpointDetails"},
+      "max":500,
+      "min":0
     },
     "EndpointStatus":{
       "type":"string",
@@ -837,6 +990,103 @@
         "deleting",
         "failed"
       ]
+    },
+    "EphemeridesList":{
+      "type":"list",
+      "member":{"shape":"EphemerisItem"},
+      "max":500,
+      "min":1
+    },
+    "EphemerisData":{
+      "type":"structure",
+      "members":{
+        "oem":{"shape":"OEMEphemeris"},
+        "tle":{"shape":"TLEEphemeris"}
+      },
+      "union":true
+    },
+    "EphemerisDescription":{
+      "type":"structure",
+      "members":{
+        "ephemerisData":{"shape":"UnboundedString"},
+        "sourceS3Object":{"shape":"S3Object"}
+      }
+    },
+    "EphemerisIdResponse":{
+      "type":"structure",
+      "members":{
+        "ephemerisId":{"shape":"Uuid"}
+      }
+    },
+    "EphemerisInvalidReason":{
+      "type":"string",
+      "enum":[
+        "METADATA_INVALID",
+        "TIME_RANGE_INVALID",
+        "TRAJECTORY_INVALID",
+        "KMS_KEY_INVALID",
+        "VALIDATION_ERROR"
+      ]
+    },
+    "EphemerisItem":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "enabled":{"shape":"Boolean"},
+        "ephemerisId":{"shape":"Uuid"},
+        "name":{"shape":"SafeName"},
+        "priority":{"shape":"EphemerisPriority"},
+        "sourceS3Object":{"shape":"S3Object"},
+        "status":{"shape":"EphemerisStatus"}
+      }
+    },
+    "EphemerisMetaData":{
+      "type":"structure",
+      "required":["source"],
+      "members":{
+        "ephemerisId":{"shape":"Uuid"},
+        "epoch":{"shape":"Timestamp"},
+        "name":{"shape":"SafeName"},
+        "source":{"shape":"EphemerisSource"}
+      }
+    },
+    "EphemerisPriority":{
+      "type":"integer",
+      "box":true,
+      "max":99999,
+      "min":0
+    },
+    "EphemerisSource":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER_PROVIDED",
+        "SPACE_TRACK"
+      ]
+    },
+    "EphemerisStatus":{
+      "type":"string",
+      "enum":[
+        "VALIDATING",
+        "INVALID",
+        "ERROR",
+        "ENABLED",
+        "DISABLED",
+        "EXPIRED"
+      ]
+    },
+    "EphemerisStatusList":{
+      "type":"list",
+      "member":{"shape":"EphemerisStatus"},
+      "max":500,
+      "min":0
+    },
+    "EphemerisTypeDescription":{
+      "type":"structure",
+      "members":{
+        "oem":{"shape":"EphemerisDescription"},
+        "tle":{"shape":"EphemerisDescription"}
+      },
+      "union":true
     },
     "Frequency":{
       "type":"structure",
@@ -876,7 +1126,7 @@
       ],
       "members":{
         "configId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"configId"
         },
@@ -909,7 +1159,7 @@
       "required":["dataflowEndpointGroupId"],
       "members":{
         "dataflowEndpointGroupId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"dataflowEndpointGroupId"
         }
@@ -919,7 +1169,7 @@
       "type":"structure",
       "members":{
         "dataflowEndpointGroupArn":{"shape":"DataflowEndpointGroupArn"},
-        "dataflowEndpointGroupId":{"shape":"String"},
+        "dataflowEndpointGroupId":{"shape":"Uuid"},
         "endpointsDetails":{"shape":"EndpointDetailsList"},
         "tags":{"shape":"TagsMap"}
       }
@@ -931,8 +1181,8 @@
         "year"
       ],
       "members":{
-        "month":{"shape":"Integer"},
-        "year":{"shape":"Integer"}
+        "month":{"shape":"Month"},
+        "year":{"shape":"Year"}
       }
     },
     "GetMinuteUsageResponse":{
@@ -950,7 +1200,7 @@
       "required":["missionProfileId"],
       "members":{
         "missionProfileId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"missionProfileId"
         }
@@ -962,11 +1212,11 @@
         "contactPostPassDurationSeconds":{"shape":"DurationInSeconds"},
         "contactPrePassDurationSeconds":{"shape":"DurationInSeconds"},
         "dataflowEdges":{"shape":"DataflowEdgeList"},
-        "minimumViableContactDurationSeconds":{"shape":"DurationInSeconds"},
+        "minimumViableContactDurationSeconds":{"shape":"PositiveDurationInSeconds"},
         "missionProfileArn":{"shape":"MissionProfileArn"},
-        "missionProfileId":{"shape":"String"},
-        "name":{"shape":"String"},
-        "region":{"shape":"String"},
+        "missionProfileId":{"shape":"Uuid"},
+        "name":{"shape":"SafeName"},
+        "region":{"shape":"AWSRegion"},
         "tags":{"shape":"TagsMap"},
         "trackingConfigArn":{"shape":"ConfigArn"}
       }
@@ -976,7 +1226,7 @@
       "required":["satelliteId"],
       "members":{
         "satelliteId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"satelliteId"
         }
@@ -985,6 +1235,7 @@
     "GetSatelliteResponse":{
       "type":"structure",
       "members":{
+        "currentEphemeris":{"shape":"EphemerisMetaData"},
         "groundStations":{"shape":"GroundStationIdList"},
         "noradSatelliteID":{"shape":"noradSatelliteID"},
         "satelliteArn":{"shape":"satelliteArn"},
@@ -994,18 +1245,26 @@
     "GroundStationData":{
       "type":"structure",
       "members":{
-        "groundStationId":{"shape":"String"},
-        "groundStationName":{"shape":"String"},
-        "region":{"shape":"String"}
+        "groundStationId":{"shape":"GroundStationName"},
+        "groundStationName":{"shape":"GroundStationName"},
+        "region":{"shape":"AWSRegion"}
       }
     },
     "GroundStationIdList":{
       "type":"list",
-      "member":{"shape":"String"}
+      "member":{"shape":"GroundStationName"},
+      "max":500,
+      "min":0
     },
     "GroundStationList":{
       "type":"list",
       "member":{"shape":"GroundStationData"}
+    },
+    "GroundStationName":{
+      "type":"string",
+      "max":500,
+      "min":4,
+      "pattern":"^[ a-zA-Z0-9-._:=]{4,256}$"
     },
     "Integer":{
       "type":"integer",
@@ -1029,16 +1288,17 @@
       "min":2,
       "pattern":"^[{}\\[\\]:.,\"0-9A-z\\-_\\s]{2,8192}$"
     },
+    "KeyArn":{"type":"string"},
     "ListConfigsRequest":{
       "type":"structure",
       "members":{
         "maxResults":{
-          "shape":"Integer",
+          "shape":"PaginationMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"nextToken"
         }
@@ -1048,7 +1308,7 @@
       "type":"structure",
       "members":{
         "configList":{"shape":"ConfigList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListContactsRequest":{
@@ -1060,10 +1320,10 @@
       ],
       "members":{
         "endTime":{"shape":"Timestamp"},
-        "groundStation":{"shape":"String"},
-        "maxResults":{"shape":"Integer"},
+        "groundStation":{"shape":"GroundStationName"},
+        "maxResults":{"shape":"PaginationMaxResults"},
         "missionProfileArn":{"shape":"MissionProfileArn"},
-        "nextToken":{"shape":"String"},
+        "nextToken":{"shape":"PaginationToken"},
         "satelliteArn":{"shape":"satelliteArn"},
         "startTime":{"shape":"Timestamp"},
         "statusList":{"shape":"StatusList"}
@@ -1073,19 +1333,19 @@
       "type":"structure",
       "members":{
         "contactList":{"shape":"ContactList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListDataflowEndpointGroupsRequest":{
       "type":"structure",
       "members":{
         "maxResults":{
-          "shape":"Integer",
+          "shape":"PaginationMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"nextToken"
         }
@@ -1095,24 +1355,55 @@
       "type":"structure",
       "members":{
         "dataflowEndpointGroupList":{"shape":"DataflowEndpointGroupList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListEphemeridesRequest":{
+      "type":"structure",
+      "required":[
+        "endTime",
+        "satelliteId",
+        "startTime"
+      ],
+      "members":{
+        "endTime":{"shape":"Timestamp"},
+        "maxResults":{
+          "shape":"PaginationMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "satelliteId":{"shape":"Uuid"},
+        "startTime":{"shape":"Timestamp"},
+        "statusList":{"shape":"EphemerisStatusList"}
+      }
+    },
+    "ListEphemeridesResponse":{
+      "type":"structure",
+      "members":{
+        "ephemerides":{"shape":"EphemeridesList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListGroundStationsRequest":{
       "type":"structure",
       "members":{
         "maxResults":{
-          "shape":"Integer",
+          "shape":"PaginationMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
         "satelliteId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"querystring",
           "locationName":"satelliteId"
         }
@@ -1122,19 +1413,19 @@
       "type":"structure",
       "members":{
         "groundStationList":{"shape":"GroundStationList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListMissionProfilesRequest":{
       "type":"structure",
       "members":{
         "maxResults":{
-          "shape":"Integer",
+          "shape":"PaginationMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"nextToken"
         }
@@ -1144,19 +1435,19 @@
       "type":"structure",
       "members":{
         "missionProfileList":{"shape":"MissionProfileList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListSatellitesRequest":{
       "type":"structure",
       "members":{
         "maxResults":{
-          "shape":"Integer",
+          "shape":"PaginationMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"nextToken"
         }
@@ -1165,7 +1456,7 @@
     "ListSatellitesResponse":{
       "type":"structure",
       "members":{
-        "nextToken":{"shape":"String"},
+        "nextToken":{"shape":"PaginationToken"},
         "satellites":{"shape":"SatelliteList"}
       }
     },
@@ -1174,7 +1465,7 @@
       "required":["resourceArn"],
       "members":{
         "resourceArn":{
-          "shape":"String",
+          "shape":"AnyArn",
           "location":"uri",
           "locationName":"resourceArn"
         }
@@ -1190,7 +1481,7 @@
     "MissionProfileIdResponse":{
       "type":"structure",
       "members":{
-        "missionProfileId":{"shape":"String"}
+        "missionProfileId":{"shape":"Uuid"}
       }
     },
     "MissionProfileList":{
@@ -1201,10 +1492,35 @@
       "type":"structure",
       "members":{
         "missionProfileArn":{"shape":"MissionProfileArn"},
-        "missionProfileId":{"shape":"String"},
-        "name":{"shape":"String"},
-        "region":{"shape":"String"}
+        "missionProfileId":{"shape":"Uuid"},
+        "name":{"shape":"SafeName"},
+        "region":{"shape":"AWSRegion"}
       }
+    },
+    "Month":{
+      "type":"integer",
+      "box":true,
+      "max":12,
+      "min":1
+    },
+    "OEMEphemeris":{
+      "type":"structure",
+      "members":{
+        "oemData":{"shape":"UnboundedString"},
+        "s3Object":{"shape":"S3Object"}
+      }
+    },
+    "PaginationMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":0
+    },
+    "PaginationToken":{
+      "type":"string",
+      "max":1000,
+      "min":3,
+      "pattern":"^[A-Za-z0-9-/+_.=]+$"
     },
     "Polarization":{
       "type":"string",
@@ -1213,6 +1529,12 @@
         "NONE",
         "RIGHT_HAND"
       ]
+    },
+    "PositiveDurationInSeconds":{
+      "type":"integer",
+      "box":true,
+      "max":21600,
+      "min":1
     },
     "ReserveContactRequest":{
       "type":"structure",
@@ -1225,7 +1547,7 @@
       ],
       "members":{
         "endTime":{"shape":"Timestamp"},
-        "groundStation":{"shape":"String"},
+        "groundStation":{"shape":"GroundStationName"},
         "missionProfileArn":{"shape":"MissionProfileArn"},
         "satelliteArn":{"shape":"satelliteArn"},
         "startTime":{"shape":"Timestamp"},
@@ -1256,11 +1578,31 @@
       "exception":true
     },
     "RoleArn":{"type":"string"},
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[a-z0-9.-]{3,63}$"
+    },
     "S3KeyPrefix":{
       "type":"string",
       "max":900,
       "min":1,
       "pattern":"^([a-zA-Z0-9_\\-=/]|\\{satellite_id\\}|\\{config\\-name}|\\{s3\\-config-id}|\\{year\\}|\\{month\\}|\\{day\\}){1,900}$"
+    },
+    "S3Object":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"S3BucketName"},
+        "key":{"shape":"S3ObjectKey"},
+        "version":{"shape":"S3VersionId"}
+      }
+    },
+    "S3ObjectKey":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9!*'\\)\\(./_-]{1,1024}$"
     },
     "S3RecordingConfig":{
       "type":"structure",
@@ -1281,6 +1623,12 @@
         "keyTemplate":{"shape":"String"}
       }
     },
+    "S3VersionId":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[\\s\\S]{1,1024}$"
+    },
     "SafeName":{
       "type":"string",
       "max":256,
@@ -1294,6 +1642,7 @@
     "SatelliteListItem":{
       "type":"structure",
       "members":{
+        "currentEphemeris":{"shape":"EphemerisMetaData"},
         "groundStations":{"shape":"GroundStationIdList"},
         "noradSatelliteID":{"shape":"noradSatelliteID"},
         "satelliteArn":{"shape":"satelliteArn"},
@@ -1351,16 +1700,46 @@
     },
     "StatusList":{
       "type":"list",
-      "member":{"shape":"ContactStatus"}
+      "member":{"shape":"ContactStatus"},
+      "max":500,
+      "min":0
     },
     "String":{"type":"string"},
     "SubnetList":{
       "type":"list",
       "member":{"shape":"String"}
     },
+    "TLEData":{
+      "type":"structure",
+      "required":[
+        "tleLine1",
+        "tleLine2",
+        "validTimeRange"
+      ],
+      "members":{
+        "tleLine1":{"shape":"TleLineOne"},
+        "tleLine2":{"shape":"TleLineTwo"},
+        "validTimeRange":{"shape":"TimeRange"}
+      }
+    },
+    "TLEDataList":{
+      "type":"list",
+      "member":{"shape":"TLEData"},
+      "max":500,
+      "min":1
+    },
+    "TLEEphemeris":{
+      "type":"structure",
+      "members":{
+        "s3Object":{"shape":"S3Object"},
+        "tleData":{"shape":"TLEDataList"}
+      }
+    },
     "TagKeys":{
       "type":"list",
-      "member":{"shape":"String"}
+      "member":{"shape":"UnboundedString"},
+      "max":500,
+      "min":0
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -1370,7 +1749,7 @@
       ],
       "members":{
         "resourceArn":{
-          "shape":"String",
+          "shape":"AnyArn",
           "location":"uri",
           "locationName":"resourceArn"
         },
@@ -1387,13 +1766,41 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "TimeRange":{
+      "type":"structure",
+      "required":[
+        "endTime",
+        "startTime"
+      ],
+      "members":{
+        "endTime":{"shape":"Timestamp"},
+        "startTime":{"shape":"Timestamp"}
+      }
+    },
     "Timestamp":{"type":"timestamp"},
+    "TleLineOne":{
+      "type":"string",
+      "max":69,
+      "min":69,
+      "pattern":"^1 [ 0-9]{5}[A-Z] [ 0-9]{5}[ A-Z]{3} [ 0-9]{5}[.][ 0-9]{8} (?:(?:[ 0+-][.][ 0-9]{8})|(?: [ +-][.][ 0-9]{7})) [ +-][ 0-9]{5}[+-][ 0-9] [ +-][ 0-9]{5}[+-][ 0-9] [ 0-9] [ 0-9]{4}[ 0-9]$"
+    },
+    "TleLineTwo":{
+      "type":"string",
+      "max":69,
+      "min":69,
+      "pattern":"^2 [ 0-9]{5} [ 0-9]{3}[.][ 0-9]{4} [ 0-9]{3}[.][ 0-9]{4} [ 0-9]{7} [ 0-9]{3}[.][ 0-9]{4} [ 0-9]{3}[.][ 0-9]{4} [ 0-9]{2}[.][ 0-9]{13}[ 0-9]$"
+    },
     "TrackingConfig":{
       "type":"structure",
       "required":["autotrack"],
       "members":{
         "autotrack":{"shape":"Criticality"}
       }
+    },
+    "UnboundedString":{
+      "type":"string",
+      "min":1,
+      "pattern":"^[\\s\\S]+$"
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -1403,7 +1810,7 @@
       ],
       "members":{
         "resourceArn":{
-          "shape":"String",
+          "shape":"AnyArn",
           "location":"uri",
           "locationName":"resourceArn"
         },
@@ -1430,7 +1837,7 @@
       "members":{
         "configData":{"shape":"ConfigTypeData"},
         "configId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"configId"
         },
@@ -1442,6 +1849,23 @@
         "name":{"shape":"SafeName"}
       }
     },
+    "UpdateEphemerisRequest":{
+      "type":"structure",
+      "required":[
+        "enabled",
+        "ephemerisId"
+      ],
+      "members":{
+        "enabled":{"shape":"Boolean"},
+        "ephemerisId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"ephemerisId"
+        },
+        "name":{"shape":"SafeName"},
+        "priority":{"shape":"EphemerisPriority"}
+      }
+    },
     "UpdateMissionProfileRequest":{
       "type":"structure",
       "required":["missionProfileId"],
@@ -1449,9 +1873,9 @@
         "contactPostPassDurationSeconds":{"shape":"DurationInSeconds"},
         "contactPrePassDurationSeconds":{"shape":"DurationInSeconds"},
         "dataflowEdges":{"shape":"DataflowEdgeList"},
-        "minimumViableContactDurationSeconds":{"shape":"DurationInSeconds"},
+        "minimumViableContactDurationSeconds":{"shape":"PositiveDurationInSeconds"},
         "missionProfileId":{
-          "shape":"String",
+          "shape":"Uuid",
           "location":"uri",
           "locationName":"missionProfileId"
         },
@@ -1482,12 +1906,18 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "Year":{
+      "type":"integer",
+      "box":true,
+      "max":3000,
+      "min":2018
     },
     "noradSatelliteID":{
       "type":"integer",
       "max":99999,
-      "min":1
+      "min":0
     },
     "satelliteArn":{"type":"string"}
   }

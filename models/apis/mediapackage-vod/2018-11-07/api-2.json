@@ -1033,6 +1033,10 @@
           "locationName": "includeEncoderConfigurationInSegments",
           "shape": "__boolean"
         },
+        "IncludeIframeOnlyStream": {
+          "locationName": "includeIframeOnlyStream",
+          "shape": "__boolean"
+        },
         "PeriodTriggers": {
           "locationName": "periodTriggers",
           "shape": "__listOf__PeriodTriggersElement"
