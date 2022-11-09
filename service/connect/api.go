@@ -19440,6 +19440,8 @@ type ClaimPhoneNumberInput struct {
 	// of the request. If not provided, the Amazon Web Services SDK populates this
 	// field. For more information about idempotency, see Making retries safe with
 	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	//
+	// Pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The phone number you want to claim. Phone numbers are formatted [+] [country
@@ -28185,6 +28187,15 @@ type GetFederationTokenOutput struct {
 
 	// The credentials to use for federation.
 	Credentials *Credentials `type:"structure"`
+
+	// The URL to sign into the user's instance.
+	SignInUrl *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the user.
+	UserArn *string `type:"string"`
+
+	// The identifier for the user.
+	UserId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -28208,6 +28219,24 @@ func (s GetFederationTokenOutput) GoString() string {
 // SetCredentials sets the Credentials field's value.
 func (s *GetFederationTokenOutput) SetCredentials(v *Credentials) *GetFederationTokenOutput {
 	s.Credentials = v
+	return s
+}
+
+// SetSignInUrl sets the SignInUrl field's value.
+func (s *GetFederationTokenOutput) SetSignInUrl(v string) *GetFederationTokenOutput {
+	s.SignInUrl = &v
+	return s
+}
+
+// SetUserArn sets the UserArn field's value.
+func (s *GetFederationTokenOutput) SetUserArn(v string) *GetFederationTokenOutput {
+	s.UserArn = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetFederationTokenOutput) SetUserId(v string) *GetFederationTokenOutput {
+	s.UserId = &v
 	return s
 }
 
@@ -36707,7 +36736,8 @@ type ReplicateInstanceInput struct {
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
-	// in the ARN of the instance.
+	// in the ARN of the instance. You can provide the InstanceId, or the entire
+	// ARN.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`

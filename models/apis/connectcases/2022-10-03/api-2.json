@@ -505,7 +505,8 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
       ],
       "idempotent":true
     },
@@ -947,7 +948,8 @@
         },
         "layoutConfiguration":{"shape":"LayoutConfiguration"},
         "name":{"shape":"TemplateName"},
-        "requiredFields":{"shape":"RequiredFieldList"}
+        "requiredFields":{"shape":"RequiredFieldList"},
+        "status":{"shape":"TemplateStatus"}
       }
     },
     "CreateTemplateResponse":{
@@ -1070,7 +1072,7 @@
     "FieldGroupFieldsList":{
       "type":"list",
       "member":{"shape":"FieldItem"},
-      "max":30,
+      "max":100,
       "min":0
     },
     "FieldGroupNameString":{
@@ -1375,6 +1377,7 @@
       "type":"structure",
       "required":[
         "name",
+        "status",
         "templateArn",
         "templateId"
       ],
@@ -1383,6 +1386,7 @@
         "layoutConfiguration":{"shape":"LayoutConfiguration"},
         "name":{"shape":"TemplateName"},
         "requiredFields":{"shape":"RequiredFieldList"},
+        "status":{"shape":"TemplateStatus"},
         "tags":{"shape":"Tags"},
         "templateArn":{"shape":"TemplateArn"},
         "templateId":{"shape":"TemplateId"}
@@ -1667,6 +1671,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "status":{
+          "shape":"TemplateStatusFilters",
+          "location":"querystring",
+          "locationName":"status"
         }
       }
     },
@@ -2029,15 +2038,30 @@
       "min":1,
       "pattern":"^.*[\\S]$"
     },
+    "TemplateStatus":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "Inactive"
+      ]
+    },
+    "TemplateStatusFilters":{
+      "type":"list",
+      "member":{"shape":"TemplateStatus"},
+      "max":2,
+      "min":1
+    },
     "TemplateSummary":{
       "type":"structure",
       "required":[
         "name",
+        "status",
         "templateArn",
         "templateId"
       ],
       "members":{
         "name":{"shape":"TemplateName"},
+        "status":{"shape":"TemplateStatus"},
         "templateArn":{"shape":"TemplateArn"},
         "templateId":{"shape":"TemplateId"}
       }
@@ -2174,6 +2198,7 @@
         "layoutConfiguration":{"shape":"LayoutConfiguration"},
         "name":{"shape":"TemplateName"},
         "requiredFields":{"shape":"RequiredFieldList"},
+        "status":{"shape":"TemplateStatus"},
         "templateId":{
           "shape":"TemplateId",
           "location":"uri",

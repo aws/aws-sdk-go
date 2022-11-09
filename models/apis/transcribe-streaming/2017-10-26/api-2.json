@@ -165,7 +165,9 @@
         "pt-BR",
         "ja-JP",
         "ko-KR",
-        "zh-CN"
+        "zh-CN",
+        "hi-IN",
+        "th-TH"
       ]
     },
     "LanguageIdentification":{

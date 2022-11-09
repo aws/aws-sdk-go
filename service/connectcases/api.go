@@ -780,10 +780,12 @@ func (c *ConnectCases) CreateTemplateRequest(input *CreateTemplateInput) (req *r
 // CreateTemplate API operation for Amazon Connect Cases.
 //
 // Creates a template in the Cases domain. This template is used to define the
-// case object model (that is, define what data can be captured on cases) in
-// a Cases domain. A template must have a unique name within a domain, and it
-// must reference existing field IDs and layout IDs. Additionally, multiple
-// fields with same IDs are not allowed within the same Template.
+// case object model (that is, to define what data can be captured on cases)
+// in a Cases domain. A template must have a unique name within a domain, and
+// it must reference existing field IDs and layout IDs. Additionally, multiple
+// fields with same IDs are not allowed within the same Template. A template
+// can be either Active or Inactive, as indicated by its status. Inactive templates
+// cannot be used to create cases.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3245,6 +3247,11 @@ func (c *ConnectCases) UpdateLayoutRequest(input *UpdateLayoutInput) (req *reque
 //     a service resource associated with the request. Resolve the conflict before
 //     retrying this request. See the accompanying error message for details.
 //
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded. For a list of service quotas, see Amazon
+//     Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+//     in the Amazon Connect Administrator Guide.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/UpdateLayout
 func (c *ConnectCases) UpdateLayout(input *UpdateLayoutInput) (*UpdateLayoutOutput, error) {
 	req, out := c.UpdateLayoutRequest(input)
@@ -3312,10 +3319,10 @@ func (c *ConnectCases) UpdateTemplateRequest(input *UpdateTemplateInput) (req *r
 // UpdateTemplate API operation for Amazon Connect Cases.
 //
 // Updates the attributes of an existing template. The template attributes that
-// can be modified include name, description, layouts, and requiredFields. At
-// least one of these attributes must not be null. If a null value is provided
-// for a given attribute, that attribute is ignored and its current value is
-// preserved.
+// can be modified include name, description, layoutConfiguration, requiredFields,
+// and status. At least one of these attributes must not be null. If a null
+// value is provided for a given attribute, that attribute is ignored and its
+// current value is preserved.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4228,7 +4235,9 @@ type CreateCaseInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// The unique identifier of the Cases domain.
@@ -4903,6 +4912,9 @@ type CreateTemplateInput struct {
 	// A list of fields that must contain a value for a case to be successfully
 	// created with this template.
 	RequiredFields []*RequiredField `locationName:"requiredFields" type:"list"`
+
+	// The status of the template.
+	Status *string `locationName:"status" type:"string" enum:"TemplateStatus"`
 }
 
 // String returns the string representation.
@@ -4987,6 +4999,12 @@ func (s *CreateTemplateInput) SetName(v string) *CreateTemplateInput {
 // SetRequiredFields sets the RequiredFields field's value.
 func (s *CreateTemplateInput) SetRequiredFields(v []*RequiredField) *CreateTemplateInput {
 	s.RequiredFields = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateTemplateInput) SetStatus(v string) *CreateTemplateInput {
+	s.Status = &v
 	return s
 }
 
@@ -6593,6 +6611,11 @@ type GetTemplateOutput struct {
 	// created with this template.
 	RequiredFields []*RequiredField `locationName:"requiredFields" type:"list"`
 
+	// The status of the template.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"TemplateStatus"`
+
 	// A map of of key-value pairs that represent tags on a resource. Tags are used
 	// to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -6647,6 +6670,12 @@ func (s *GetTemplateOutput) SetName(v string) *GetTemplateOutput {
 // SetRequiredFields sets the RequiredFields field's value.
 func (s *GetTemplateOutput) SetRequiredFields(v []*RequiredField) *GetTemplateOutput {
 	s.RequiredFields = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetTemplateOutput) SetStatus(v string) *GetTemplateOutput {
+	s.Status = &v
 	return s
 }
 
@@ -7629,6 +7658,9 @@ type ListTemplatesInput struct {
 	// The token for the next set of results. Use the value returned in the previous
 	// response in the next request to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// A list of status values to filter on.
+	Status []*string `location:"querystring" locationName:"status" min:"1" type:"list" enum:"TemplateStatus"`
 }
 
 // String returns the string representation.
@@ -7661,6 +7693,9 @@ func (s *ListTemplatesInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.Status != nil && len(s.Status) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Status", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7683,6 +7718,12 @@ func (s *ListTemplatesInput) SetMaxResults(v int64) *ListTemplatesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListTemplatesInput) SetNextToken(v string) *ListTemplatesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListTemplatesInput) SetStatus(v []*string) *ListTemplatesInput {
+	s.Status = v
 	return s
 }
 
@@ -8894,6 +8935,11 @@ type TemplateSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The status of the template.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"TemplateStatus"`
+
 	// The Amazon Resource Name (ARN) of the template.
 	//
 	// TemplateArn is a required field
@@ -8926,6 +8972,12 @@ func (s TemplateSummary) GoString() string {
 // SetName sets the Name field's value.
 func (s *TemplateSummary) SetName(v string) *TemplateSummary {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TemplateSummary) SetStatus(v string) *TemplateSummary {
+	s.Status = &v
 	return s
 }
 
@@ -9448,6 +9500,9 @@ type UpdateTemplateInput struct {
 	// created with this template.
 	RequiredFields []*RequiredField `locationName:"requiredFields" type:"list"`
 
+	// The status of the template.
+	Status *string `locationName:"status" type:"string" enum:"TemplateStatus"`
+
 	// A unique identifier for the template.
 	//
 	// TemplateId is a required field
@@ -9539,6 +9594,12 @@ func (s *UpdateTemplateInput) SetName(v string) *UpdateTemplateInput {
 // SetRequiredFields sets the RequiredFields field's value.
 func (s *UpdateTemplateInput) SetRequiredFields(v []*RequiredField) *UpdateTemplateInput {
 	s.RequiredFields = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateTemplateInput) SetStatus(v string) *UpdateTemplateInput {
+	s.Status = &v
 	return s
 }
 
@@ -9739,5 +9800,22 @@ func RelatedItemType_Values() []string {
 	return []string{
 		RelatedItemTypeContact,
 		RelatedItemTypeComment,
+	}
+}
+
+// Status of a template
+const (
+	// TemplateStatusActive is a TemplateStatus enum value
+	TemplateStatusActive = "Active"
+
+	// TemplateStatusInactive is a TemplateStatus enum value
+	TemplateStatusInactive = "Inactive"
+)
+
+// TemplateStatus_Values returns all elements of the TemplateStatus enum
+func TemplateStatus_Values() []string {
+	return []string{
+		TemplateStatusActive,
+		TemplateStatusInactive,
 	}
 }

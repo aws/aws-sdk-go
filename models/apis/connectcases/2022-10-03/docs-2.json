@@ -9,7 +9,7 @@
     "CreateField": "<p>Creates a field in the Cases domain. This field is used to define the case object model (that is, defines what data can be captured on cases) in a Cases domain. </p>",
     "CreateLayout": "<p>Creates a layout in the Cases domain. Layouts define the following configuration in the top section and More Info tab of the Cases user interface:</p> <ul> <li> <p>Fields to display to the users</p> </li> <li> <p>Field ordering</p> </li> </ul> <note> <p>Title and Status fields cannot be part of layouts since they are not configurable.</p> </note>",
     "CreateRelatedItem": "<p>Creates a related item (comments, tasks, and contacts) and associates it with a case.</p> <note> <p>A Related Item is a resource that is associated with a case. It may or may not have an external identifier linking it to an external resource (for example, a <code>contactArn</code>). All Related Items have their own internal identifier, the <code>relatedItemArn</code>. Examples of related items include <code>comments</code> and <code>contacts</code>.</p> </note>",
-    "CreateTemplate": "<p>Creates a template in the Cases domain. This template is used to define the case object model (that is, define what data can be captured on cases) in a Cases domain. A template must have a unique name within a domain, and it must reference existing field IDs and layout IDs. Additionally, multiple fields with same IDs are not allowed within the same Template.</p>",
+    "CreateTemplate": "<p>Creates a template in the Cases domain. This template is used to define the case object model (that is, to define what data can be captured on cases) in a Cases domain. A template must have a unique name within a domain, and it must reference existing field IDs and layout IDs. Additionally, multiple fields with same IDs are not allowed within the same Template. A template can be either Active or Inactive, as indicated by its status. Inactive templates cannot be used to create cases.</p>",
     "GetCase": "<p>Returns information about a specific case if it exists. </p>",
     "GetCaseEventConfiguration": "<p>Returns the case event publishing configuration.</p>",
     "GetDomain": "<p>Returns information about a specific domain if it exists. </p>",
@@ -30,7 +30,7 @@
     "UpdateCase": "<p>Updates the values of fields on a case. Fields to be updated are received as an array of id/value pairs identical to the <code>CreateCase</code> input .</p> <p>If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.</p>",
     "UpdateField": "<p>Updates the properties of an existing field. </p>",
     "UpdateLayout": "<p>Updates the attributes of an existing layout.</p> <p>If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body.</p> <p>A <code>ValidationException</code> is returned when you add non-existent <code>fieldIds</code> to a layout.</p> <note> <p>Title and Status fields cannot be part of layouts because they are not configurable.</p> </note>",
-    "UpdateTemplate": "<p>Updates the attributes of an existing template. The template attributes that can be modified include <code>name</code>, <code>description</code>, <code>layouts</code>, and <code>requiredFields</code>. At least one of these attributes must not be null. If a null value is provided for a given attribute, that attribute is ignored and its current value is preserved.</p>"
+    "UpdateTemplate": "<p>Updates the attributes of an existing template. The template attributes that can be modified include <code>name</code>, <code>description</code>, <code>layoutConfiguration</code>, <code>requiredFields</code>, and <code>status</code>. At least one of these attributes must not be null. If a null value is provided for a given attribute, that attribute is ignored and its current value is preserved.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -251,7 +251,7 @@
     "CreateCaseRequestClientTokenString": {
       "base": null,
       "refs": {
-        "CreateCaseRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+        "CreateCaseRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>"
       }
     },
     "CreateCaseRequestFieldsList": {
@@ -1124,6 +1124,22 @@
         "GetTemplateResponse$name": "<p>The name of the template.</p>",
         "TemplateSummary$name": "<p>The template name.</p>",
         "UpdateTemplateRequest$name": "<p>The name of the template. It must be unique per domain.</p>"
+      }
+    },
+    "TemplateStatus": {
+      "base": "<p>Status of a template</p>",
+      "refs": {
+        "CreateTemplateRequest$status": "<p>The status of the template.</p>",
+        "GetTemplateResponse$status": "<p>The status of the template.</p>",
+        "TemplateStatusFilters$member": null,
+        "TemplateSummary$status": "<p>The status of the template.</p>",
+        "UpdateTemplateRequest$status": "<p>The status of the template.</p>"
+      }
+    },
+    "TemplateStatusFilters": {
+      "base": "<p>List of filters used on the ListTemplates result set</p>",
+      "refs": {
+        "ListTemplatesRequest$status": "<p>A list of status values to filter on.</p>"
       }
     },
     "TemplateSummary": {
