@@ -582,6 +582,37 @@
         "title": "To describe a task"
       }
     ],
+    "GetTaskProtection": [
+      {
+        "input": {
+          "cluster": "test-task-protection",
+          "tasks": [
+            "b8b1cf532d0e46ba8d44a40d1de16772"
+          ]
+        },
+        "output": {
+          "failures": [
+
+          ],
+          "protectedTasks": [
+            {
+              "expirationDate": "2022-11-02T06:56:32.553Z",
+              "protectionEnabled": true,
+              "taskArn": "arn:aws:ecs:us-west-2:012345678910:task/b8b1cf532d0e46ba8d44a40d1de16772"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "In this example, we get the protection status for a single task.",
+        "id": "get-the-protection-status-for-a-single-task-2022-11-02T06:56:32.553Z",
+        "title": "To get the protection status of a task"
+      }
+    ],
     "ListAccountSettings": [
       {
         "input": {
@@ -1131,6 +1162,98 @@
         "description": "This example updates the desired count of the my-http-service service to 10.",
         "id": "9581d6c5-02e3-4140-8cc1-5a4301586633",
         "title": "To change the number of tasks in a service"
+      }
+    ],
+    "UpdateTaskProtection": [
+      {
+        "input": {
+          "cluster": "test-task-protection",
+          "expiresInMinutes": 60,
+          "protectionEnabled": true,
+          "tasks": [
+            "b8b1cf532d0e46ba8d44a40d1de16772"
+          ]
+        },
+        "output": {
+          "failures": [
+
+          ],
+          "protectedTasks": [
+            {
+              "expirationDate": "2022-11-02T06:56:32.553Z",
+              "protectionEnabled": true,
+              "taskArn": "arn:aws:ecs:us-west-2:012345678910:task/b8b1cf532d0e46ba8d44a40d1de16772"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example enables scale-in protection for a task for 60 minutes.",
+        "id": "enable-the-protection-status-for-a-single-task-for-60-minutes-2022-11-02T06:56:32.553Z",
+        "title": "To set task scale-in protection for a task for 60 minutes"
+      },
+      {
+        "input": {
+          "cluster": "test-task-protection",
+          "protectionEnabled": true,
+          "tasks": [
+            "b8b1cf532d0e46ba8d44a40d1de16772"
+          ]
+        },
+        "output": {
+          "failures": [
+
+          ],
+          "protectedTasks": [
+            {
+              "expirationDate": "2022-11-02T06:56:32.553Z",
+              "protectionEnabled": true,
+              "taskArn": "arn:aws:ecs:us-west-2:012345678910:task/b8b1cf532d0e46ba8d44a40d1de16772"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example enables task scale-in protection for a task, without specifying the expiresInMinutes parameter, for the default protection period of 120 minutes.",
+        "id": "enable-the-protection-status-for-a-single-task-with-default-expiresinminutes-2022-11-02T06:56:32.553Z",
+        "title": "To set task scale-in protection for the default time period in minutes"
+      },
+      {
+        "input": {
+          "cluster": "test-task-protection",
+          "protectionEnabled": false,
+          "tasks": [
+            "b8b1cf532d0e46ba8d44a40d1de16772"
+          ]
+        },
+        "output": {
+          "failures": [
+
+          ],
+          "protectedTasks": [
+            {
+              "protectionEnabled": false,
+              "taskArn": "arn:aws:ecs:us-west-2:012345678910:task/b8b1cf532d0e46ba8d44a40d1de16772"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example removes scale-in protection for a task.",
+        "id": "disable-scale-in-protection-on-a-single-task",
+        "title": "To remove task scale-in protection"
       }
     ]
   }

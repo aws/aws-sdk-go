@@ -519,6 +519,49 @@ func ExampleECS_DescribeTasks_shared00() {
 	fmt.Println(result)
 }
 
+// To get the protection status of a task
+// In this example, we get the protection status for a single task.
+func ExampleECS_GetTaskProtection_shared00() {
+	svc := ecs.New(session.New())
+	input := &ecs.GetTaskProtectionInput{
+		Cluster: aws.String("test-task-protection"),
+		Tasks: []*string{
+			aws.String("b8b1cf532d0e46ba8d44a40d1de16772"),
+		},
+	}
+
+	result, err := svc.GetTaskProtection(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecs.ErrCodeAccessDeniedException:
+				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeClientException:
+				fmt.Println(ecs.ErrCodeClientException, aerr.Error())
+			case ecs.ErrCodeClusterNotFoundException:
+				fmt.Println(ecs.ErrCodeClusterNotFoundException, aerr.Error())
+			case ecs.ErrCodeInvalidParameterException:
+				fmt.Println(ecs.ErrCodeInvalidParameterException, aerr.Error())
+			case ecs.ErrCodeResourceNotFoundException:
+				fmt.Println(ecs.ErrCodeResourceNotFoundException, aerr.Error())
+			case ecs.ErrCodeServerException:
+				fmt.Println(ecs.ErrCodeServerException, aerr.Error())
+			case ecs.ErrCodeUnsupportedFeatureException:
+				fmt.Println(ecs.ErrCodeUnsupportedFeatureException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To view your effective account settings
 // This example displays the effective account settings for your account.
 func ExampleECS_ListAccountSettings_shared00() {
@@ -1270,6 +1313,140 @@ func ExampleECS_UpdateService_shared01() {
 				fmt.Println(ecs.ErrCodePlatformTaskDefinitionIncompatibilityException, aerr.Error())
 			case ecs.ErrCodeAccessDeniedException:
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To set task scale-in protection for a task for 60 minutes
+// This example enables scale-in protection for a task for 60 minutes.
+func ExampleECS_UpdateTaskProtection_shared00() {
+	svc := ecs.New(session.New())
+	input := &ecs.UpdateTaskProtectionInput{
+		Cluster:           aws.String("test-task-protection"),
+		ExpiresInMinutes:  aws.Int64(60),
+		ProtectionEnabled: aws.Bool(true),
+		Tasks: []*string{
+			aws.String("b8b1cf532d0e46ba8d44a40d1de16772"),
+		},
+	}
+
+	result, err := svc.UpdateTaskProtection(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecs.ErrCodeAccessDeniedException:
+				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeClientException:
+				fmt.Println(ecs.ErrCodeClientException, aerr.Error())
+			case ecs.ErrCodeClusterNotFoundException:
+				fmt.Println(ecs.ErrCodeClusterNotFoundException, aerr.Error())
+			case ecs.ErrCodeInvalidParameterException:
+				fmt.Println(ecs.ErrCodeInvalidParameterException, aerr.Error())
+			case ecs.ErrCodeResourceNotFoundException:
+				fmt.Println(ecs.ErrCodeResourceNotFoundException, aerr.Error())
+			case ecs.ErrCodeServerException:
+				fmt.Println(ecs.ErrCodeServerException, aerr.Error())
+			case ecs.ErrCodeUnsupportedFeatureException:
+				fmt.Println(ecs.ErrCodeUnsupportedFeatureException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To set task scale-in protection for the default time period in minutes
+// This example enables task scale-in protection for a task, without specifying the
+// expiresInMinutes parameter, for the default protection period of 120 minutes.
+func ExampleECS_UpdateTaskProtection_shared01() {
+	svc := ecs.New(session.New())
+	input := &ecs.UpdateTaskProtectionInput{
+		Cluster:           aws.String("test-task-protection"),
+		ProtectionEnabled: aws.Bool(true),
+		Tasks: []*string{
+			aws.String("b8b1cf532d0e46ba8d44a40d1de16772"),
+		},
+	}
+
+	result, err := svc.UpdateTaskProtection(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecs.ErrCodeAccessDeniedException:
+				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeClientException:
+				fmt.Println(ecs.ErrCodeClientException, aerr.Error())
+			case ecs.ErrCodeClusterNotFoundException:
+				fmt.Println(ecs.ErrCodeClusterNotFoundException, aerr.Error())
+			case ecs.ErrCodeInvalidParameterException:
+				fmt.Println(ecs.ErrCodeInvalidParameterException, aerr.Error())
+			case ecs.ErrCodeResourceNotFoundException:
+				fmt.Println(ecs.ErrCodeResourceNotFoundException, aerr.Error())
+			case ecs.ErrCodeServerException:
+				fmt.Println(ecs.ErrCodeServerException, aerr.Error())
+			case ecs.ErrCodeUnsupportedFeatureException:
+				fmt.Println(ecs.ErrCodeUnsupportedFeatureException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To remove task scale-in protection
+// This example removes scale-in protection for a task.
+func ExampleECS_UpdateTaskProtection_shared02() {
+	svc := ecs.New(session.New())
+	input := &ecs.UpdateTaskProtectionInput{
+		Cluster:           aws.String("test-task-protection"),
+		ProtectionEnabled: aws.Bool(false),
+		Tasks: []*string{
+			aws.String("b8b1cf532d0e46ba8d44a40d1de16772"),
+		},
+	}
+
+	result, err := svc.UpdateTaskProtection(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ecs.ErrCodeAccessDeniedException:
+				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeClientException:
+				fmt.Println(ecs.ErrCodeClientException, aerr.Error())
+			case ecs.ErrCodeClusterNotFoundException:
+				fmt.Println(ecs.ErrCodeClusterNotFoundException, aerr.Error())
+			case ecs.ErrCodeInvalidParameterException:
+				fmt.Println(ecs.ErrCodeInvalidParameterException, aerr.Error())
+			case ecs.ErrCodeResourceNotFoundException:
+				fmt.Println(ecs.ErrCodeResourceNotFoundException, aerr.Error())
+			case ecs.ErrCodeServerException:
+				fmt.Println(ecs.ErrCodeServerException, aerr.Error())
+			case ecs.ErrCodeUnsupportedFeatureException:
+				fmt.Println(ecs.ErrCodeUnsupportedFeatureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

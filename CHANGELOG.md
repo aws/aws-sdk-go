@@ -1,3 +1,18 @@
+Release v1.44.135 (2022-11-10)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * This release adds a new price capacity optimized allocation strategy for Spot Instances to help customers optimize provisioning of Spot Instances via EC2 Auto Scaling, EC2 Fleet, and Spot Fleet. It allocates Spot Instances based on both spare capacity availability and Spot Instance price.
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new price capacity optimized allocation strategy for Spot Instances to help customers optimize provisioning of Spot Instances via EC2 Auto Scaling, EC2 Fleet, and Spot Fleet. It allocates Spot Instances based on both spare capacity availability and Spot Instance price.
+* `service/ecs`: Updates service API, documentation, and examples
+  * This release adds support for task scale-in protection with updateTaskProtection and getTaskProtection APIs. UpdateTaskProtection API can be used to protect a service managed task from being terminated by scale-in events and getTaskProtection API to get the scale-in protection status of a task.
+* `service/es`: Updates service API and documentation
+  * Amazon OpenSearch Service now offers managed VPC endpoints to connect to your Amazon OpenSearch Service VPC-enabled domain in a Virtual Private Cloud (VPC). This feature allows you to privately access OpenSearch Service domain without using public IPs or requiring traffic to traverse the Internet.
+* `service/resource-explorer-2`: Updates service documentation
+* `service/scheduler`: Updates service API, documentation, paginators, and examples
+
 Release v1.44.134 (2022-11-09)
 ===
 

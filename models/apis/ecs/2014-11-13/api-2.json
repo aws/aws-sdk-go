@@ -345,6 +345,24 @@
         {"shape":"TargetNotConnectedException"}
       ]
     },
+    "GetTaskProtection":{
+      "name":"GetTaskProtection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTaskProtectionRequest"},
+      "output":{"shape":"GetTaskProtectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServerException"},
+        {"shape":"UnsupportedFeatureException"}
+      ]
+    },
     "ListAccountSettings":{
       "name":"ListAccountSettings",
       "http":{
@@ -804,6 +822,24 @@
         {"shape":"ServiceNotActiveException"},
         {"shape":"TaskSetNotFoundException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateTaskProtection":{
+      "name":"UpdateTaskProtection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateTaskProtectionRequest"},
+      "output":{"shape":"UpdateTaskProtectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServerException"},
+        {"shape":"UnsupportedFeatureException"}
       ]
     },
     "UpdateTaskSet":{
@@ -1940,6 +1976,21 @@
         "fluentbit"
       ]
     },
+    "GetTaskProtectionRequest":{
+      "type":"structure",
+      "required":["cluster"],
+      "members":{
+        "cluster":{"shape":"String"},
+        "tasks":{"shape":"StringList"}
+      }
+    },
+    "GetTaskProtectionResponse":{
+      "type":"structure",
+      "members":{
+        "protectedTasks":{"shape":"ProtectedTasks"},
+        "failures":{"shape":"Failures"}
+      }
+    },
     "GpuIds":{
       "type":"list",
       "member":{"shape":"String"}
@@ -2529,6 +2580,18 @@
         "SERVICE",
         "NONE"
       ]
+    },
+    "ProtectedTask":{
+      "type":"structure",
+      "members":{
+        "taskArn":{"shape":"String"},
+        "protectionEnabled":{"shape":"Boolean"},
+        "expirationDate":{"shape":"Timestamp"}
+      }
+    },
+    "ProtectedTasks":{
+      "type":"list",
+      "member":{"shape":"ProtectedTask"}
     },
     "ProxyConfiguration":{
       "type":"structure",
@@ -3533,6 +3596,27 @@
       "type":"structure",
       "members":{
         "service":{"shape":"Service"}
+      }
+    },
+    "UpdateTaskProtectionRequest":{
+      "type":"structure",
+      "required":[
+        "cluster",
+        "tasks",
+        "protectionEnabled"
+      ],
+      "members":{
+        "cluster":{"shape":"String"},
+        "tasks":{"shape":"StringList"},
+        "protectionEnabled":{"shape":"Boolean"},
+        "expiresInMinutes":{"shape":"BoxedInteger"}
+      }
+    },
+    "UpdateTaskProtectionResponse":{
+      "type":"structure",
+      "members":{
+        "protectedTasks":{"shape":"ProtectedTasks"},
+        "failures":{"shape":"Failures"}
       }
     },
     "UpdateTaskSetRequest":{
