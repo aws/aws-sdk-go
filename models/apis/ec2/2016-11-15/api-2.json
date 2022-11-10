@@ -5688,7 +5688,8 @@
         "lowestPrice",
         "diversified",
         "capacityOptimized",
-        "capacityOptimizedPrioritized"
+        "capacityOptimizedPrioritized",
+        "priceCapacityOptimized"
       ]
     },
     "AllocationType":{
@@ -36152,7 +36153,8 @@
         "lowest-price",
         "diversified",
         "capacity-optimized",
-        "capacity-optimized-prioritized"
+        "capacity-optimized-prioritized",
+        "price-capacity-optimized"
       ]
     },
     "SpotCapacityRebalance":{
