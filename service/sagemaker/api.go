@@ -553,10 +553,10 @@ func (c *SageMaker) CreateAppRequest(input *CreateAppInput) (req *request.Reques
 
 // CreateApp API operation for Amazon SageMaker Service.
 //
-// Creates a running app for the specified UserProfile. Supported apps are JupyterServer
-// and KernelGateway. This operation is automatically invoked by Amazon SageMaker
-// Studio upon access to the associated Domain, and when new kernel configurations
-// are selected by the user. A user may have multiple Apps active simultaneously.
+// Creates a running app for the specified UserProfile. This operation is automatically
+// invoked by Amazon SageMaker Studio upon access to the associated Domain,
+// and when new kernel configurations are selected by the user. A user may have
+// multiple Apps active simultaneously.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2310,6 +2310,16 @@ func (c *SageMaker) CreateHyperParameterTuningJobRequest(input *CreateHyperParam
 // the algorithm you choose and values for hyperparameters within ranges that
 // you specify. It then chooses the hyperparameter values that result in a model
 // that performs the best, as measured by an objective metric that you choose.
+//
+// A hyperparameter tuning job automatically creates Amazon SageMaker experiments,
+// trials, and trial components for each training job that it runs. You can
+// view these entities in Amazon SageMaker Studio. For more information, see
+// View Experiments, Trials, and Trial Components (https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-view-compare.html#experiments-view).
+//
+// Do not include any security-sensitive information including account access
+// IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive
+// credentials are detected, SageMaker will reject your training job request
+// and return an exception error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4134,13 +4144,13 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //     the estimation of model parameters during training. Hyperparameters can
 //     be tuned to optimize this learning process. For a list of hyperparameters
 //     for each training algorithm provided by SageMaker, see Algorithms (https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html).
-//     You must not include any security-sensitive information, such as account
-//     access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters.
-//     SageMaker rejects the training job request and returns an exception error
-//     for detected credentials, if such user input is found.
+//     Do not include any security-sensitive information including account access
+//     IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive
+//     credentials are detected, SageMaker will reject your training job request
+//     and return an exception error.
 //
-//   - InputDataConfig - Describes the training dataset and the Amazon S3,
-//     EFS, or FSx location where it is stored.
+//   - InputDataConfig - Describes the input required by the training job and
+//     the Amazon S3, EFS, or FSx location where it is stored.
 //
 //   - OutputDataConfig - Identifies the Amazon S3 bucket where you want SageMaker
 //     to save the results of model training.
@@ -4558,7 +4568,7 @@ func (c *SageMaker) CreateUserProfileRequest(input *CreateUserProfileInput) (req
 // domain, and is the main way to reference a "person" for the purposes of sharing,
 // reporting, and other user-oriented features. This entity is created when
 // a user onboards to Amazon SageMaker Studio. If an administrator invites a
-// person by email or imports them from Amazon Web Services SSO, a user profile
+// person by email or imports them from IAM Identity Center, a user profile
 // is automatically created. A user profile is the primary holder of settings
 // for an individual user and has a reference to the user's private Amazon Elastic
 // File System (EFS) home directory.
@@ -5603,9 +5613,9 @@ func (c *SageMaker) DeleteDomainRequest(input *DeleteDomainInput) (req *request.
 // DeleteDomain API operation for Amazon SageMaker Service.
 //
 // Used to delete a domain. If you onboarded with IAM mode, you will need to
-// delete your domain to onboard again using Amazon Web Services SSO. Use with
-// caution. All of the members of the domain will lose access to their EFS volume,
-// including data, notebooks, and other artifacts.
+// delete your domain to onboard again using IAM Identity Center. Use with caution.
+// All of the members of the domain will lose access to their EFS volume, including
+// data, notebooks, and other artifacts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16045,6 +16055,139 @@ func (c *SageMaker) ListImagesPagesWithContext(ctx aws.Context, input *ListImage
 	return p.Err()
 }
 
+const opListInferenceRecommendationsJobSteps = "ListInferenceRecommendationsJobSteps"
+
+// ListInferenceRecommendationsJobStepsRequest generates a "aws/request.Request" representing the
+// client's request for the ListInferenceRecommendationsJobSteps operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInferenceRecommendationsJobSteps for more information on using the ListInferenceRecommendationsJobSteps
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListInferenceRecommendationsJobStepsRequest method.
+//	req, resp := client.ListInferenceRecommendationsJobStepsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceRecommendationsJobSteps
+func (c *SageMaker) ListInferenceRecommendationsJobStepsRequest(input *ListInferenceRecommendationsJobStepsInput) (req *request.Request, output *ListInferenceRecommendationsJobStepsOutput) {
+	op := &request.Operation{
+		Name:       opListInferenceRecommendationsJobSteps,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInferenceRecommendationsJobStepsInput{}
+	}
+
+	output = &ListInferenceRecommendationsJobStepsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInferenceRecommendationsJobSteps API operation for Amazon SageMaker Service.
+//
+// Returns a list of the subtasks for an Inference Recommender job.
+//
+// The supported subtasks are benchmarks, which evaluate the performance of
+// your model on different instance types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListInferenceRecommendationsJobSteps for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceRecommendationsJobSteps
+func (c *SageMaker) ListInferenceRecommendationsJobSteps(input *ListInferenceRecommendationsJobStepsInput) (*ListInferenceRecommendationsJobStepsOutput, error) {
+	req, out := c.ListInferenceRecommendationsJobStepsRequest(input)
+	return out, req.Send()
+}
+
+// ListInferenceRecommendationsJobStepsWithContext is the same as ListInferenceRecommendationsJobSteps with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInferenceRecommendationsJobSteps for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListInferenceRecommendationsJobStepsWithContext(ctx aws.Context, input *ListInferenceRecommendationsJobStepsInput, opts ...request.Option) (*ListInferenceRecommendationsJobStepsOutput, error) {
+	req, out := c.ListInferenceRecommendationsJobStepsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInferenceRecommendationsJobStepsPages iterates over the pages of a ListInferenceRecommendationsJobSteps operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInferenceRecommendationsJobSteps method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListInferenceRecommendationsJobSteps operation.
+//	pageNum := 0
+//	err := client.ListInferenceRecommendationsJobStepsPages(params,
+//	    func(page *sagemaker.ListInferenceRecommendationsJobStepsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SageMaker) ListInferenceRecommendationsJobStepsPages(input *ListInferenceRecommendationsJobStepsInput, fn func(*ListInferenceRecommendationsJobStepsOutput, bool) bool) error {
+	return c.ListInferenceRecommendationsJobStepsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInferenceRecommendationsJobStepsPagesWithContext same as ListInferenceRecommendationsJobStepsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListInferenceRecommendationsJobStepsPagesWithContext(ctx aws.Context, input *ListInferenceRecommendationsJobStepsInput, fn func(*ListInferenceRecommendationsJobStepsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInferenceRecommendationsJobStepsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInferenceRecommendationsJobStepsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInferenceRecommendationsJobStepsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListInferenceRecommendationsJobs = "ListInferenceRecommendationsJobs"
 
 // ListInferenceRecommendationsJobsRequest generates a "aws/request.Request" representing the
@@ -24315,7 +24458,8 @@ func (c *SageMaker) UpdateTrainingJobRequest(input *UpdateTrainingJobInput) (req
 
 // UpdateTrainingJob API operation for Amazon SageMaker Service.
 //
-// Update a model training job to request a new Debugger profiling configuration.
+// Update a model training job to request a new Debugger profiling configuration
+// or to change warm pool retention length.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -25417,6 +25561,18 @@ type AlgorithmSpecification struct {
 	// raise a null error.
 	AlgorithmName *string `min:"1" type:"string"`
 
+	// The arguments for a container used to run a training job. See How Amazon
+	// SageMaker Runs Your Training Image (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html)
+	// for additional information.
+	ContainerArguments []*string `min:"1" type:"list"`
+
+	// The entrypoint script for a Docker container (https://docs.docker.com/engine/reference/builder/)
+	// used to run a training job. This script takes precedence over the default
+	// train processing instructions. See How Amazon SageMaker Runs Your Training
+	// Image (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html)
+	// for more information.
+	ContainerEntrypoint []*string `min:"1" type:"list"`
+
 	// To generate and save time-series metrics during training, set to true. The
 	// default is false and time-series metrics aren't generated except in the following
 	// cases:
@@ -25514,6 +25670,12 @@ func (s *AlgorithmSpecification) Validate() error {
 	if s.AlgorithmName != nil && len(*s.AlgorithmName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AlgorithmName", 1))
 	}
+	if s.ContainerArguments != nil && len(s.ContainerArguments) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerArguments", 1))
+	}
+	if s.ContainerEntrypoint != nil && len(s.ContainerEntrypoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerEntrypoint", 1))
+	}
 	if s.TrainingInputMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrainingInputMode"))
 	}
@@ -25537,6 +25699,18 @@ func (s *AlgorithmSpecification) Validate() error {
 // SetAlgorithmName sets the AlgorithmName field's value.
 func (s *AlgorithmSpecification) SetAlgorithmName(v string) *AlgorithmSpecification {
 	s.AlgorithmName = &v
+	return s
+}
+
+// SetContainerArguments sets the ContainerArguments field's value.
+func (s *AlgorithmSpecification) SetContainerArguments(v []*string) *AlgorithmSpecification {
+	s.ContainerArguments = v
+	return s
+}
+
+// SetContainerEntrypoint sets the ContainerEntrypoint field's value.
+func (s *AlgorithmSpecification) SetContainerEntrypoint(v []*string) *AlgorithmSpecification {
+	s.ContainerEntrypoint = v
 	return s
 }
 
@@ -27729,10 +27903,27 @@ type AutoMLCandidateGenerationConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A URL to the Amazon S3 data source containing selected features from the
-	// input data source to run an Autopilot job (optional). This file should be
-	// in json format as shown below:
+	// input data source to run an Autopilot job. You can input FeatureAttributeNames
+	// (optional) in JSON format as shown below:
 	//
 	// { "FeatureAttributeNames":["col1", "col2", ...] }.
+	//
+	// You can also specify the data type of the feature (optional) in the format
+	// shown below:
+	//
+	// { "FeatureDataTypes":{"col1":"numeric", "col2":"categorical" ... } }
+	//
+	// These column keys may not include the target column.
+	//
+	// In ensembling mode, Autopilot will only support the following data types:
+	// numeric, categorical, text and datetime. In HPO mode, Autopilot can support
+	// numeric, categorical, text, datetime and sequence.
+	//
+	// If only FeatureDataTypes is provided, the column keys (col1, col2,..) should
+	// be a subset of the column names in the input data.
+	//
+	// If both FeatureDataTypes and FeatureAttributeNames are provided, then the
+	// column keys should be a subset of the column names provided in FeatureAttributeNames.
 	//
 	// The key name FeatureAttributeNames is fixed. The values listed in ["col1",
 	// "col2", ...] is case sensitive and should be a list of strings containing
@@ -28815,6 +29006,84 @@ func (s *AutoRollbackConfig) SetAlarms(v []*Alarm) *AutoRollbackConfig {
 	return s
 }
 
+// Configuration to control how SageMaker captures inference data for batch
+// transform jobs.
+type BatchDataCaptureConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location being used to capture the data.
+	//
+	// DestinationS3Uri is a required field
+	DestinationS3Uri *string `type:"string" required:"true"`
+
+	// Flag that indicates whether to append inference id to the output.
+	GenerateInferenceId *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
+	// key that SageMaker uses to encrypt data on the storage volume attached to
+	// the ML compute instance that hosts the batch transform job.
+	//
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Alias name: alias/ExampleAlias
+	//
+	//    * Alias name ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
+	KmsKeyId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDataCaptureConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDataCaptureConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDataCaptureConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDataCaptureConfig"}
+	if s.DestinationS3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationS3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationS3Uri sets the DestinationS3Uri field's value.
+func (s *BatchDataCaptureConfig) SetDestinationS3Uri(v string) *BatchDataCaptureConfig {
+	s.DestinationS3Uri = &v
+	return s
+}
+
+// SetGenerateInferenceId sets the GenerateInferenceId field's value.
+func (s *BatchDataCaptureConfig) SetGenerateInferenceId(v bool) *BatchDataCaptureConfig {
+	s.GenerateInferenceId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *BatchDataCaptureConfig) SetKmsKeyId(v string) *BatchDataCaptureConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
 // The error code and error description associated with the resource.
 type BatchDescribeModelPackageError struct {
 	_ struct{} `type:"structure"`
@@ -29048,6 +29317,167 @@ func (s *BatchDescribeModelPackageSummary) SetModelPackageStatus(v string) *Batc
 // SetModelPackageVersion sets the ModelPackageVersion field's value.
 func (s *BatchDescribeModelPackageSummary) SetModelPackageVersion(v int64) *BatchDescribeModelPackageSummary {
 	s.ModelPackageVersion = &v
+	return s
+}
+
+// Input object for the batch transform job.
+type BatchTransformInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location being used to capture the data.
+	//
+	// DataCapturedDestinationS3Uri is a required field
+	DataCapturedDestinationS3Uri *string `type:"string" required:"true"`
+
+	// The dataset format for your batch transform job.
+	//
+	// DatasetFormat is a required field
+	DatasetFormat *MonitoringDatasetFormat `type:"structure" required:"true"`
+
+	// If specified, monitoring jobs substract this time from the end time. For
+	// information about using offsets for scheduling monitoring jobs, see Schedule
+	// Model Quality Monitoring Jobs (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html).
+	EndTimeOffset *string `min:"1" type:"string"`
+
+	// The attributes of the input data that are the input features.
+	FeaturesAttribute *string `type:"string"`
+
+	// The attribute of the input data that represents the ground truth label.
+	InferenceAttribute *string `type:"string"`
+
+	// Path to the filesystem where the batch transform data is available to the
+	// container.
+	//
+	// LocalPath is a required field
+	LocalPath *string `type:"string" required:"true"`
+
+	// In a classification problem, the attribute that represents the class probability.
+	ProbabilityAttribute *string `type:"string"`
+
+	// The threshold for the class probability to be evaluated as a positive result.
+	ProbabilityThresholdAttribute *float64 `type:"double"`
+
+	// Whether input data distributed in Amazon S3 is fully replicated or sharded
+	// by an S3 key. Defaults to FullyReplicated
+	S3DataDistributionType *string `type:"string" enum:"ProcessingS3DataDistributionType"`
+
+	// Whether the Pipe or File is used as the input mode for transferring data
+	// for the monitoring job. Pipe mode is recommended for large datasets. File
+	// mode is useful for small files that fit in memory. Defaults to File.
+	S3InputMode *string `type:"string" enum:"ProcessingS3InputMode"`
+
+	// If specified, monitoring jobs substract this time from the start time. For
+	// information about using offsets for scheduling monitoring jobs, see Schedule
+	// Model Quality Monitoring Jobs (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html).
+	StartTimeOffset *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchTransformInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchTransformInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchTransformInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchTransformInput_"}
+	if s.DataCapturedDestinationS3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataCapturedDestinationS3Uri"))
+	}
+	if s.DatasetFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetFormat"))
+	}
+	if s.EndTimeOffset != nil && len(*s.EndTimeOffset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndTimeOffset", 1))
+	}
+	if s.LocalPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocalPath"))
+	}
+	if s.StartTimeOffset != nil && len(*s.StartTimeOffset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartTimeOffset", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataCapturedDestinationS3Uri sets the DataCapturedDestinationS3Uri field's value.
+func (s *BatchTransformInput_) SetDataCapturedDestinationS3Uri(v string) *BatchTransformInput_ {
+	s.DataCapturedDestinationS3Uri = &v
+	return s
+}
+
+// SetDatasetFormat sets the DatasetFormat field's value.
+func (s *BatchTransformInput_) SetDatasetFormat(v *MonitoringDatasetFormat) *BatchTransformInput_ {
+	s.DatasetFormat = v
+	return s
+}
+
+// SetEndTimeOffset sets the EndTimeOffset field's value.
+func (s *BatchTransformInput_) SetEndTimeOffset(v string) *BatchTransformInput_ {
+	s.EndTimeOffset = &v
+	return s
+}
+
+// SetFeaturesAttribute sets the FeaturesAttribute field's value.
+func (s *BatchTransformInput_) SetFeaturesAttribute(v string) *BatchTransformInput_ {
+	s.FeaturesAttribute = &v
+	return s
+}
+
+// SetInferenceAttribute sets the InferenceAttribute field's value.
+func (s *BatchTransformInput_) SetInferenceAttribute(v string) *BatchTransformInput_ {
+	s.InferenceAttribute = &v
+	return s
+}
+
+// SetLocalPath sets the LocalPath field's value.
+func (s *BatchTransformInput_) SetLocalPath(v string) *BatchTransformInput_ {
+	s.LocalPath = &v
+	return s
+}
+
+// SetProbabilityAttribute sets the ProbabilityAttribute field's value.
+func (s *BatchTransformInput_) SetProbabilityAttribute(v string) *BatchTransformInput_ {
+	s.ProbabilityAttribute = &v
+	return s
+}
+
+// SetProbabilityThresholdAttribute sets the ProbabilityThresholdAttribute field's value.
+func (s *BatchTransformInput_) SetProbabilityThresholdAttribute(v float64) *BatchTransformInput_ {
+	s.ProbabilityThresholdAttribute = &v
+	return s
+}
+
+// SetS3DataDistributionType sets the S3DataDistributionType field's value.
+func (s *BatchTransformInput_) SetS3DataDistributionType(v string) *BatchTransformInput_ {
+	s.S3DataDistributionType = &v
+	return s
+}
+
+// SetS3InputMode sets the S3InputMode field's value.
+func (s *BatchTransformInput_) SetS3InputMode(v string) *BatchTransformInput_ {
+	s.S3InputMode = &v
+	return s
+}
+
+// SetStartTimeOffset sets the StartTimeOffset field's value.
+func (s *BatchTransformInput_) SetStartTimeOffset(v string) *BatchTransformInput_ {
+	s.StartTimeOffset = &v
 	return s
 }
 
@@ -29374,6 +29804,53 @@ func (s *CandidateProperties) SetCandidateArtifactLocations(v *CandidateArtifact
 // SetCandidateMetrics sets the CandidateMetrics field's value.
 func (s *CandidateProperties) SetCandidateMetrics(v []*MetricDatum) *CandidateProperties {
 	s.CandidateMetrics = v
+	return s
+}
+
+// The SageMaker Canvas app settings.
+type CanvasAppSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Time series forecast settings for the Canvas app.
+	TimeSeriesForecastingSettings *TimeSeriesForecastingSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CanvasAppSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CanvasAppSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CanvasAppSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CanvasAppSettings"}
+	if s.TimeSeriesForecastingSettings != nil {
+		if err := s.TimeSeriesForecastingSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimeSeriesForecastingSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeSeriesForecastingSettings sets the TimeSeriesForecastingSettings field's value.
+func (s *CanvasAppSettings) SetTimeSeriesForecastingSettings(v *TimeSeriesForecastingSettings) *CanvasAppSettings {
+	s.TimeSeriesForecastingSettings = v
 	return s
 }
 
@@ -30157,6 +30634,564 @@ func (s *ClarifyCheckStepMetadata) SetSkipCheck(v bool) *ClarifyCheckStepMetadat
 // SetViolationReport sets the ViolationReport field's value.
 func (s *ClarifyCheckStepMetadata) SetViolationReport(v string) *ClarifyCheckStepMetadata {
 	s.ViolationReport = &v
+	return s
+}
+
+// The configuration parameters for the SageMaker Clarify explainer.
+type ClarifyExplainerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A JMESPath boolean expression used to filter which records to explain. Explanations
+	// are activated by default. See EnableExplanations (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable)for
+	// additional information.
+	EnableExplanations *string `min:"1" type:"string"`
+
+	// The inference configuration parameter for the model container.
+	InferenceConfig *ClarifyInferenceConfig `type:"structure"`
+
+	// The configuration for SHAP analysis.
+	//
+	// ShapConfig is a required field
+	ShapConfig *ClarifyShapConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyExplainerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyExplainerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyExplainerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyExplainerConfig"}
+	if s.EnableExplanations != nil && len(*s.EnableExplanations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnableExplanations", 1))
+	}
+	if s.ShapConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShapConfig"))
+	}
+	if s.InferenceConfig != nil {
+		if err := s.InferenceConfig.Validate(); err != nil {
+			invalidParams.AddNested("InferenceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ShapConfig != nil {
+		if err := s.ShapConfig.Validate(); err != nil {
+			invalidParams.AddNested("ShapConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableExplanations sets the EnableExplanations field's value.
+func (s *ClarifyExplainerConfig) SetEnableExplanations(v string) *ClarifyExplainerConfig {
+	s.EnableExplanations = &v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *ClarifyExplainerConfig) SetInferenceConfig(v *ClarifyInferenceConfig) *ClarifyExplainerConfig {
+	s.InferenceConfig = v
+	return s
+}
+
+// SetShapConfig sets the ShapConfig field's value.
+func (s *ClarifyExplainerConfig) SetShapConfig(v *ClarifyShapConfig) *ClarifyExplainerConfig {
+	s.ShapConfig = v
+	return s
+}
+
+// The inference configuration parameter for the model container.
+type ClarifyInferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A template string used to format a JSON record into an acceptable model container
+	// input. For example, a ContentTemplate string '{"myfeatures":$features}' will
+	// format a list of features [1,2,3] into the record string '{"myfeatures":[1,2,3]}'.
+	// Required only when the model container input is in JSON Lines format.
+	ContentTemplate *string `min:"1" type:"string"`
+
+	// The names of the features. If provided, these are included in the endpoint
+	// response payload to help readability of the InvokeEndpoint output. See the
+	// Response (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response)
+	// section under Invoke the endpoint in the Developer Guide for more information.
+	FeatureHeaders []*string `min:"1" type:"list"`
+
+	// A list of data types of the features (optional). Applicable only to NLP explainability.
+	// If provided, FeatureTypes must have at least one 'text' string (for example,
+	// ['text']). If FeatureTypes is not provided, the explainer infers the feature
+	// types based on the baseline data. The feature types are included in the endpoint
+	// response payload. For additional information see the response (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response)
+	// section under Invoke the endpoint in the Developer Guide for more information.
+	FeatureTypes []*string `min:"1" type:"list" enum:"ClarifyFeatureType"`
+
+	// Provides the JMESPath expression to extract the features from a model container
+	// input in JSON Lines format. For example, if FeaturesAttribute is the JMESPath
+	// expression 'myfeatures', it extracts a list of features [1,2,3] from request
+	// data '{"myfeatures":[1,2,3]}'.
+	FeaturesAttribute *string `min:"1" type:"string"`
+
+	// A JMESPath expression used to locate the list of label headers in the model
+	// container output.
+	//
+	// Example: If the model container output of a batch request is '{"labels":["cat","dog","fish"],"probability":[0.6,0.3,0.1]}',
+	// then set LabelAttribute to 'labels' to extract the list of label headers
+	// ["cat","dog","fish"]
+	LabelAttribute *string `min:"1" type:"string"`
+
+	// For multiclass classification problems, the label headers are the names of
+	// the classes. Otherwise, the label header is the name of the predicted label.
+	// These are used to help readability for the output of the InvokeEndpoint API.
+	// See the response (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response)
+	// section under Invoke the endpoint in the Developer Guide for more information.
+	// If there are no label headers in the model container output, provide them
+	// manually using this parameter.
+	LabelHeaders []*string `min:"1" type:"list"`
+
+	// A zero-based index used to extract a label header or list of label headers
+	// from model container output in CSV format.
+	//
+	// Example for a multiclass model: If the model container output consists of
+	// label headers followed by probabilities: '"[\'cat\',\'dog\',\'fish\']","[0.1,0.6,0.3]"',
+	// set LabelIndex to 0 to select the label headers ['cat','dog','fish'].
+	LabelIndex *int64 `type:"integer"`
+
+	// The maximum payload size (MB) allowed of a request from the explainer to
+	// the model container. Defaults to 6 MB.
+	MaxPayloadInMB *int64 `min:"1" type:"integer"`
+
+	// The maximum number of records in a request that the model container can process
+	// when querying the model container for the predictions of a synthetic dataset
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-synthetic).
+	// A record is a unit of input data that inference can be made on, for example,
+	// a single line in CSV data. If MaxRecordCount is 1, the model container expects
+	// one record per request. A value of 2 or greater means that the model expects
+	// batch requests, which can reduce overhead and speed up the inferencing process.
+	// If this parameter is not provided, the explainer will tune the record count
+	// per request according to the model container's capacity at runtime.
+	MaxRecordCount *int64 `min:"1" type:"integer"`
+
+	// A JMESPath expression used to extract the probability (or score) from the
+	// model container output if the model container is in JSON Lines format.
+	//
+	// Example: If the model container output of a single request is '{"predicted_label":1,"probability":0.6}',
+	// then set ProbabilityAttribute to 'probability'.
+	ProbabilityAttribute *string `min:"1" type:"string"`
+
+	// A zero-based index used to extract a probability value (score) or list from
+	// model container output in CSV format. If this value is not provided, the
+	// entire model container output will be treated as a probability value (score)
+	// or list.
+	//
+	// Example for a single class model: If the model container output consists
+	// of a string-formatted prediction label followed by its probability: '1,0.6',
+	// set ProbabilityIndex to 1 to select the probability value 0.6.
+	//
+	// Example for a multiclass model: If the model container output consists of
+	// a string-formatted prediction label followed by its probability: '"[\'cat\',\'dog\',\'fish\']","[0.1,0.6,0.3]"',
+	// set ProbabilityIndex to 1 to select the probability values [0.1,0.6,0.3].
+	ProbabilityIndex *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyInferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyInferenceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyInferenceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyInferenceConfig"}
+	if s.ContentTemplate != nil && len(*s.ContentTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentTemplate", 1))
+	}
+	if s.FeatureHeaders != nil && len(s.FeatureHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureHeaders", 1))
+	}
+	if s.FeatureTypes != nil && len(s.FeatureTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureTypes", 1))
+	}
+	if s.FeaturesAttribute != nil && len(*s.FeaturesAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeaturesAttribute", 1))
+	}
+	if s.LabelAttribute != nil && len(*s.LabelAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelAttribute", 1))
+	}
+	if s.LabelHeaders != nil && len(s.LabelHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelHeaders", 1))
+	}
+	if s.MaxPayloadInMB != nil && *s.MaxPayloadInMB < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxPayloadInMB", 1))
+	}
+	if s.MaxRecordCount != nil && *s.MaxRecordCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRecordCount", 1))
+	}
+	if s.ProbabilityAttribute != nil && len(*s.ProbabilityAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProbabilityAttribute", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentTemplate sets the ContentTemplate field's value.
+func (s *ClarifyInferenceConfig) SetContentTemplate(v string) *ClarifyInferenceConfig {
+	s.ContentTemplate = &v
+	return s
+}
+
+// SetFeatureHeaders sets the FeatureHeaders field's value.
+func (s *ClarifyInferenceConfig) SetFeatureHeaders(v []*string) *ClarifyInferenceConfig {
+	s.FeatureHeaders = v
+	return s
+}
+
+// SetFeatureTypes sets the FeatureTypes field's value.
+func (s *ClarifyInferenceConfig) SetFeatureTypes(v []*string) *ClarifyInferenceConfig {
+	s.FeatureTypes = v
+	return s
+}
+
+// SetFeaturesAttribute sets the FeaturesAttribute field's value.
+func (s *ClarifyInferenceConfig) SetFeaturesAttribute(v string) *ClarifyInferenceConfig {
+	s.FeaturesAttribute = &v
+	return s
+}
+
+// SetLabelAttribute sets the LabelAttribute field's value.
+func (s *ClarifyInferenceConfig) SetLabelAttribute(v string) *ClarifyInferenceConfig {
+	s.LabelAttribute = &v
+	return s
+}
+
+// SetLabelHeaders sets the LabelHeaders field's value.
+func (s *ClarifyInferenceConfig) SetLabelHeaders(v []*string) *ClarifyInferenceConfig {
+	s.LabelHeaders = v
+	return s
+}
+
+// SetLabelIndex sets the LabelIndex field's value.
+func (s *ClarifyInferenceConfig) SetLabelIndex(v int64) *ClarifyInferenceConfig {
+	s.LabelIndex = &v
+	return s
+}
+
+// SetMaxPayloadInMB sets the MaxPayloadInMB field's value.
+func (s *ClarifyInferenceConfig) SetMaxPayloadInMB(v int64) *ClarifyInferenceConfig {
+	s.MaxPayloadInMB = &v
+	return s
+}
+
+// SetMaxRecordCount sets the MaxRecordCount field's value.
+func (s *ClarifyInferenceConfig) SetMaxRecordCount(v int64) *ClarifyInferenceConfig {
+	s.MaxRecordCount = &v
+	return s
+}
+
+// SetProbabilityAttribute sets the ProbabilityAttribute field's value.
+func (s *ClarifyInferenceConfig) SetProbabilityAttribute(v string) *ClarifyInferenceConfig {
+	s.ProbabilityAttribute = &v
+	return s
+}
+
+// SetProbabilityIndex sets the ProbabilityIndex field's value.
+func (s *ClarifyInferenceConfig) SetProbabilityIndex(v int64) *ClarifyInferenceConfig {
+	s.ProbabilityIndex = &v
+	return s
+}
+
+// The configuration for the SHAP baseline (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-feature-attribute-shap-baselines.html)
+// (also called the background or reference dataset) of the Kernal SHAP algorithm.
+//
+//   - The number of records in the baseline data determines the size of the
+//     synthetic dataset, which has an impact on latency of explainability requests.
+//     For more information, see the Synthetic data of Configure and create an
+//     endpoint (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html).
+//
+//   - ShapBaseline and ShapBaselineUri are mutually exclusive parameters.
+//     One or the either is required to configure a SHAP baseline.
+type ClarifyShapBaselineConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The MIME type of the baseline data. Choose from 'text/csv' or 'application/jsonlines'.
+	// Defaults to 'text/csv'.
+	MimeType *string `type:"string"`
+
+	// The inline SHAP baseline data in string format. ShapBaseline can have one
+	// or multiple records to be used as the baseline dataset. The format of the
+	// SHAP baseline file should be the same format as the training dataset. For
+	// example, if the training dataset is in CSV format and each record contains
+	// four features, and all features are numerical, then the format of the baseline
+	// data should also share these characteristics. For natural language processing
+	// (NLP) of text columns, the baseline value should be the value used to replace
+	// the unit of text specified by the Granularity of the TextConfig parameter.
+	// The size limit for ShapBasline is 4 KB. Use the ShapBaselineUri parameter
+	// if you want to provide more than 4 KB of baseline data.
+	ShapBaseline *string `min:"1" type:"string"`
+
+	// The uniform resource identifier (URI) of the S3 bucket where the SHAP baseline
+	// file is stored. The format of the SHAP baseline file should be the same format
+	// as the format of the training dataset. For example, if the training dataset
+	// is in CSV format, and each record in the training dataset has four features,
+	// and all features are numerical, then the baseline file should also have this
+	// same format. Each record should contain only the features. If you are using
+	// a virtual private cloud (VPC), the ShapBaselineUri should be accessible to
+	// the VPC. For more information about setting up endpoints with Amazon Virtual
+	// Private Cloud, see Give SageMaker access to Resources in your Amazon Virtual
+	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html).
+	ShapBaselineUri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapBaselineConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapBaselineConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyShapBaselineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyShapBaselineConfig"}
+	if s.ShapBaseline != nil && len(*s.ShapBaseline) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ShapBaseline", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMimeType sets the MimeType field's value.
+func (s *ClarifyShapBaselineConfig) SetMimeType(v string) *ClarifyShapBaselineConfig {
+	s.MimeType = &v
+	return s
+}
+
+// SetShapBaseline sets the ShapBaseline field's value.
+func (s *ClarifyShapBaselineConfig) SetShapBaseline(v string) *ClarifyShapBaselineConfig {
+	s.ShapBaseline = &v
+	return s
+}
+
+// SetShapBaselineUri sets the ShapBaselineUri field's value.
+func (s *ClarifyShapBaselineConfig) SetShapBaselineUri(v string) *ClarifyShapBaselineConfig {
+	s.ShapBaselineUri = &v
+	return s
+}
+
+// The configuration for SHAP analysis using SageMaker Clarify Explainer.
+type ClarifyShapConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The number of samples to be used for analysis by the Kernal SHAP algorithm.
+	//
+	// The number of samples determines the size of the synthetic dataset, which
+	// has an impact on latency of explainability requests. For more information,
+	// see the Synthetic data of Configure and create an endpoint (https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html).
+	NumberOfSamples *int64 `min:"1" type:"integer"`
+
+	// The starting value used to initialize the random number generator in the
+	// explainer. Provide a value for this parameter to obtain a deterministic SHAP
+	// result.
+	Seed *int64 `type:"integer"`
+
+	// The configuration for the SHAP baseline of the Kernal SHAP algorithm.
+	//
+	// ShapBaselineConfig is a required field
+	ShapBaselineConfig *ClarifyShapBaselineConfig `type:"structure" required:"true"`
+
+	// A parameter that indicates if text features are treated as text and explanations
+	// are provided for individual units of text. Required for natural language
+	// processing (NLP) explainability only.
+	TextConfig *ClarifyTextConfig `type:"structure"`
+
+	// A Boolean toggle to indicate if you want to use the logit function (true)
+	// or log-odds units (false) for model predictions. Defaults to false.
+	UseLogit *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyShapConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyShapConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyShapConfig"}
+	if s.NumberOfSamples != nil && *s.NumberOfSamples < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("NumberOfSamples", 1))
+	}
+	if s.ShapBaselineConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShapBaselineConfig"))
+	}
+	if s.ShapBaselineConfig != nil {
+		if err := s.ShapBaselineConfig.Validate(); err != nil {
+			invalidParams.AddNested("ShapBaselineConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextConfig != nil {
+		if err := s.TextConfig.Validate(); err != nil {
+			invalidParams.AddNested("TextConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNumberOfSamples sets the NumberOfSamples field's value.
+func (s *ClarifyShapConfig) SetNumberOfSamples(v int64) *ClarifyShapConfig {
+	s.NumberOfSamples = &v
+	return s
+}
+
+// SetSeed sets the Seed field's value.
+func (s *ClarifyShapConfig) SetSeed(v int64) *ClarifyShapConfig {
+	s.Seed = &v
+	return s
+}
+
+// SetShapBaselineConfig sets the ShapBaselineConfig field's value.
+func (s *ClarifyShapConfig) SetShapBaselineConfig(v *ClarifyShapBaselineConfig) *ClarifyShapConfig {
+	s.ShapBaselineConfig = v
+	return s
+}
+
+// SetTextConfig sets the TextConfig field's value.
+func (s *ClarifyShapConfig) SetTextConfig(v *ClarifyTextConfig) *ClarifyShapConfig {
+	s.TextConfig = v
+	return s
+}
+
+// SetUseLogit sets the UseLogit field's value.
+func (s *ClarifyShapConfig) SetUseLogit(v bool) *ClarifyShapConfig {
+	s.UseLogit = &v
+	return s
+}
+
+// A parameter used to configure the SageMaker Clarify explainer to treat text
+// features as text so that explanations are provided for individual units of
+// text. Required only for natural language processing (NLP) explainability.
+type ClarifyTextConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The unit of granularity for the analysis of text features. For example, if
+	// the unit is 'token', then each token (like a word in English) of the text
+	// is treated as a feature. SHAP values are computed for each unit/feature.
+	//
+	// Granularity is a required field
+	Granularity *string `type:"string" required:"true" enum:"ClarifyTextGranularity"`
+
+	// Specifies the language of the text features in ISO 639-1 (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+	// or ISO 639-3 (https://en.wikipedia.org/wiki/ISO_639-3) code of a supported
+	// language.
+	//
+	// For a mix of multiple languages, use code 'xx'.
+	//
+	// Language is a required field
+	Language *string `type:"string" required:"true" enum:"ClarifyTextLanguage"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyTextConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyTextConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClarifyTextConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClarifyTextConfig"}
+	if s.Granularity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Granularity"))
+	}
+	if s.Language == nil {
+		invalidParams.Add(request.NewErrParamRequired("Language"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *ClarifyTextConfig) SetGranularity(v string) *ClarifyTextConfig {
+	s.Granularity = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *ClarifyTextConfig) SetLanguage(v string) *ClarifyTextConfig {
+	s.Language = &v
 	return s
 }
 
@@ -31657,8 +32692,7 @@ type CreateAppInput struct {
 	// AppName is a required field
 	AppName *string `type:"string" required:"true"`
 
-	// The type of app. Supported apps are JupyterServer and KernelGateway. TensorBoard
-	// is not supported.
+	// The type of app.
 	//
 	// AppType is a required field
 	AppType *string `type:"string" required:"true" enum:"AppType"`
@@ -33780,6 +34814,9 @@ type CreateEndpointConfigInput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
+	// A member of CreateEndpointConfig that enables explainers.
+	ExplainerConfig *ExplainerConfig `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
 	// key that SageMaker uses to encrypt data on the storage volume attached to
 	// the ML compute instance that hosts the endpoint.
@@ -33868,6 +34905,11 @@ func (s *CreateEndpointConfigInput) Validate() error {
 			invalidParams.AddNested("DataCaptureConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ExplainerConfig != nil {
+		if err := s.ExplainerConfig.Validate(); err != nil {
+			invalidParams.AddNested("ExplainerConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProductionVariants != nil {
 		for i, v := range s.ProductionVariants {
 			if v == nil {
@@ -33910,6 +34952,12 @@ func (s *CreateEndpointConfigInput) SetDataCaptureConfig(v *DataCaptureConfig) *
 // SetEndpointConfigName sets the EndpointConfigName field's value.
 func (s *CreateEndpointConfigInput) SetEndpointConfigName(v string) *CreateEndpointConfigInput {
 	s.EndpointConfigName = &v
+	return s
+}
+
+// SetExplainerConfig sets the ExplainerConfig field's value.
+func (s *CreateEndpointConfigInput) SetExplainerConfig(v *ExplainerConfig) *CreateEndpointConfigInput {
+	s.ExplainerConfig = v
 	return s
 }
 
@@ -38685,10 +39733,10 @@ type CreateTrainingJobInput struct {
 	// a key-value pair. Each key and value is limited to 256 characters, as specified
 	// by the Length Constraint.
 	//
-	// You must not include any security-sensitive information, such as account
-	// access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters.
-	// SageMaker rejects the training job request and returns an exception error
-	// for detected credentials, if such user input is found.
+	// Do not include any security-sensitive information including account access
+	// IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive
+	// credentials are detected, SageMaker will reject your training job request
+	// and return an exception error.
 	HyperParameters map[string]*string `type:"map"`
 
 	// An array of Channel objects. Each channel is a named input source. InputDataConfig
@@ -39118,6 +40166,9 @@ type CreateTransformJobInput struct {
 	// limit, set BatchStrategy to MultiRecord and SplitType to Line.
 	BatchStrategy *string `type:"string" enum:"BatchStrategy"`
 
+	// Configuration to control how SageMaker captures inference data.
+	DataCaptureConfig *BatchDataCaptureConfig `type:"structure"`
+
 	// The data structure used to specify the data to be used for inference in a
 	// batch transform job and to associate the data that is relevant to the prediction
 	// results in the output. The input filter provided allows you to exclude input
@@ -39245,6 +40296,11 @@ func (s *CreateTransformJobInput) Validate() error {
 	if s.TransformResources == nil {
 		invalidParams.Add(request.NewErrParamRequired("TransformResources"))
 	}
+	if s.DataCaptureConfig != nil {
+		if err := s.DataCaptureConfig.Validate(); err != nil {
+			invalidParams.AddNested("DataCaptureConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExperimentConfig != nil {
 		if err := s.ExperimentConfig.Validate(); err != nil {
 			invalidParams.AddNested("ExperimentConfig", err.(request.ErrInvalidParams))
@@ -39290,6 +40346,12 @@ func (s *CreateTransformJobInput) Validate() error {
 // SetBatchStrategy sets the BatchStrategy field's value.
 func (s *CreateTransformJobInput) SetBatchStrategy(v string) *CreateTransformJobInput {
 	s.BatchStrategy = &v
+	return s
+}
+
+// SetDataCaptureConfig sets the DataCaptureConfig field's value.
+func (s *CreateTransformJobInput) SetDataCaptureConfig(v *BatchDataCaptureConfig) *CreateTransformJobInput {
+	s.DataCaptureConfig = v
 	return s
 }
 
@@ -39752,16 +40814,16 @@ type CreateUserProfileInput struct {
 	DomainId *string `type:"string" required:"true"`
 
 	// A specifier for the type of value specified in SingleSignOnUserValue. Currently,
-	// the only supported value is "UserName". If the Domain's AuthMode is Amazon
-	// Web Services SSO, this field is required. If the Domain's AuthMode is not
-	// Amazon Web Services SSO, this field cannot be specified.
+	// the only supported value is "UserName". If the Domain's AuthMode is IAM Identity
+	// Center, this field is required. If the Domain's AuthMode is not IAM Identity
+	// Center, this field cannot be specified.
 	SingleSignOnUserIdentifier *string `type:"string"`
 
 	// The username of the associated Amazon Web Services Single Sign-On User for
-	// this UserProfile. If the Domain's AuthMode is Amazon Web Services SSO, this
-	// field is required, and must match a valid username of a user in your directory.
-	// If the Domain's AuthMode is not Amazon Web Services SSO, this field cannot
-	// be specified.
+	// this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field
+	// is required, and must match a valid username of a user in your directory.
+	// If the Domain's AuthMode is not IAM Identity Center, this field cannot be
+	// specified.
 	SingleSignOnUserValue *string `type:"string"`
 
 	// Each tag consists of a key and an optional value. Tag keys must be unique
@@ -40884,10 +41946,11 @@ func (s *DataQualityBaselineConfig) SetStatisticsResource(v *MonitoringStatistic
 type DataQualityJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 }
 
 // String returns the string representation.
@@ -40911,8 +41974,10 @@ func (s DataQualityJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataQualityJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataQualityJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -40924,6 +41989,12 @@ func (s *DataQualityJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *DataQualityJobInput) SetBatchTransformInput(v *BatchTransformInput_) *DataQualityJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -47150,7 +48221,7 @@ type DescribeDomainOutput struct {
 	// apps and the RStudioServerPro app.
 	SecurityGroupIdForDomainBoundary *string `type:"string"`
 
-	// The Amazon Web Services SSO managed application instance ID.
+	// The IAM Identity Center managed application instance ID.
 	SingleSignOnManagedApplicationInstanceId *string `type:"string"`
 
 	// The status.
@@ -47790,6 +48861,9 @@ type DescribeEndpointConfigOutput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
+	// The configuration parameters for an explainer.
+	ExplainerConfig *ExplainerConfig `type:"structure"`
+
 	// Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data when
 	// storing it on the ML storage volume attached to the instance.
 	KmsKeyId *string `type:"string"`
@@ -47846,6 +48920,12 @@ func (s *DescribeEndpointConfigOutput) SetEndpointConfigArn(v string) *DescribeE
 // SetEndpointConfigName sets the EndpointConfigName field's value.
 func (s *DescribeEndpointConfigOutput) SetEndpointConfigName(v string) *DescribeEndpointConfigOutput {
 	s.EndpointConfigName = &v
+	return s
+}
+
+// SetExplainerConfig sets the ExplainerConfig field's value.
+func (s *DescribeEndpointConfigOutput) SetExplainerConfig(v *ExplainerConfig) *DescribeEndpointConfigOutput {
+	s.ExplainerConfig = v
 	return s
 }
 
@@ -47970,6 +49050,9 @@ type DescribeEndpointOutput struct {
 	// EndpointStatus is a required field
 	EndpointStatus *string `type:"string" required:"true" enum:"EndpointStatus"`
 
+	// The configuration parameters for an explainer.
+	ExplainerConfig *ExplainerConfig `type:"structure"`
+
 	// If the status of the endpoint is Failed, the reason why it failed.
 	FailureReason *string `type:"string"`
 
@@ -48047,6 +49130,12 @@ func (s *DescribeEndpointOutput) SetEndpointName(v string) *DescribeEndpointOutp
 // SetEndpointStatus sets the EndpointStatus field's value.
 func (s *DescribeEndpointOutput) SetEndpointStatus(v string) *DescribeEndpointOutput {
 	s.EndpointStatus = &v
+	return s
+}
+
+// SetExplainerConfig sets the ExplainerConfig field's value.
+func (s *DescribeEndpointOutput) SetExplainerConfig(v *ExplainerConfig) *DescribeEndpointOutput {
+	s.ExplainerConfig = v
 	return s
 }
 
@@ -49584,6 +50673,10 @@ type DescribeInferenceRecommendationsJobOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// The performance results from running an Inference Recommender job on an existing
+	// endpoint.
+	EndpointPerformances []*EndpointPerformance `type:"list"`
+
 	// If the job fails, provides information why the job failed.
 	FailureReason *string `type:"string"`
 
@@ -49663,6 +50756,12 @@ func (s *DescribeInferenceRecommendationsJobOutput) SetCompletionTime(v time.Tim
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeInferenceRecommendationsJobOutput) SetCreationTime(v time.Time) *DescribeInferenceRecommendationsJobOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetEndpointPerformances sets the EndpointPerformances field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetEndpointPerformances(v []*EndpointPerformance) *DescribeInferenceRecommendationsJobOutput {
+	s.EndpointPerformances = v
 	return s
 }
 
@@ -53419,6 +54518,9 @@ type DescribeTrainingJobOutput struct {
 	// to. For more information, see Protect Training Jobs by Using an Amazon Virtual
 	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
+
+	// The status of the warm pool associated with the training job.
+	WarmPoolStatus *WarmPoolStatus `type:"structure"`
 }
 
 // String returns the string representation.
@@ -53679,6 +54781,12 @@ func (s *DescribeTrainingJobOutput) SetVpcConfig(v *VpcConfig) *DescribeTraining
 	return s
 }
 
+// SetWarmPoolStatus sets the WarmPoolStatus field's value.
+func (s *DescribeTrainingJobOutput) SetWarmPoolStatus(v *WarmPoolStatus) *DescribeTrainingJobOutput {
+	s.WarmPoolStatus = v
+	return s
+}
+
 type DescribeTransformJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -53746,6 +54854,9 @@ type DescribeTransformJobOutput struct {
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// Configuration to control how SageMaker captures inference data.
+	DataCaptureConfig *BatchDataCaptureConfig `type:"structure"`
 
 	// The data structure used to specify the data to be used for inference in a
 	// batch transform job and to associate the data that is relevant to the prediction
@@ -53870,6 +54981,12 @@ func (s *DescribeTransformJobOutput) SetBatchStrategy(v string) *DescribeTransfo
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeTransformJobOutput) SetCreationTime(v time.Time) *DescribeTransformJobOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDataCaptureConfig sets the DataCaptureConfig field's value.
+func (s *DescribeTransformJobOutput) SetDataCaptureConfig(v *BatchDataCaptureConfig) *DescribeTransformJobOutput {
+	s.DataCaptureConfig = v
 	return s
 }
 
@@ -54446,10 +55563,10 @@ type DescribeUserProfileOutput struct {
 	// The last modified time.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The Amazon Web Services SSO user identifier.
+	// The IAM Identity Center user identifier.
 	SingleSignOnUserIdentifier *string `type:"string"`
 
-	// The Amazon Web Services SSO user value.
+	// The IAM Identity Center user value.
 	SingleSignOnUserValue *string `type:"string"`
 
 	// The status.
@@ -57123,6 +58240,54 @@ func (s *EndpointConfigSummary) SetEndpointConfigName(v string) *EndpointConfigS
 	return s
 }
 
+// Details about a customer endpoint that was compared in an Inference Recommender
+// job.
+type EndpointInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a customer's endpoint.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EndpointInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EndpointInfo"}
+	if s.EndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *EndpointInfo) SetEndpointName(v string) *EndpointInfo {
+	s.EndpointName = &v
+	return s
+}
+
 // Input object for the endpoint
 type EndpointInput struct {
 	_ struct{} `type:"structure"`
@@ -57408,6 +58573,53 @@ func (s *EndpointOutputConfiguration) SetInstanceType(v string) *EndpointOutputC
 // SetVariantName sets the VariantName field's value.
 func (s *EndpointOutputConfiguration) SetVariantName(v string) *EndpointOutputConfiguration {
 	s.VariantName = &v
+	return s
+}
+
+// The performance results from running an Inference Recommender job on an existing
+// endpoint.
+type EndpointPerformance struct {
+	_ struct{} `type:"structure"`
+
+	// Details about a customer endpoint that was compared in an Inference Recommender
+	// job.
+	//
+	// EndpointInfo is a required field
+	EndpointInfo *EndpointInfo `type:"structure" required:"true"`
+
+	// The metrics for an existing endpoint.
+	//
+	// Metrics is a required field
+	Metrics *InferenceMetrics `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointPerformance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointPerformance) GoString() string {
+	return s.String()
+}
+
+// SetEndpointInfo sets the EndpointInfo field's value.
+func (s *EndpointPerformance) SetEndpointInfo(v *EndpointInfo) *EndpointPerformance {
+	s.EndpointInfo = v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *EndpointPerformance) SetMetrics(v *InferenceMetrics) *EndpointPerformance {
+	s.Metrics = v
 	return s
 }
 
@@ -57991,6 +59203,54 @@ func (s *Explainability) Validate() error {
 // SetReport sets the Report field's value.
 func (s *Explainability) SetReport(v *MetricsSource) *Explainability {
 	s.Report = v
+	return s
+}
+
+// A parameter to activate explainers.
+type ExplainerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A member of ExplainerConfig that contains configuration parameters for the
+	// SageMaker Clarify explainer.
+	ClarifyExplainerConfig *ClarifyExplainerConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExplainerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExplainerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExplainerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExplainerConfig"}
+	if s.ClarifyExplainerConfig != nil {
+		if err := s.ClarifyExplainerConfig.Validate(); err != nil {
+			invalidParams.AddNested("ClarifyExplainerConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClarifyExplainerConfig sets the ClarifyExplainerConfig field's value.
+func (s *ExplainerConfig) SetClarifyExplainerConfig(v *ClarifyExplainerConfig) *ExplainerConfig {
+	s.ClarifyExplainerConfig = v
 	return s
 }
 
@@ -60295,7 +61555,8 @@ type HumanTaskConfig struct {
 
 	// Defines the maximum number of data objects that can be labeled by human workers
 	// at the same time. Also referred to as batch size. Each object may have more
-	// than one worker at one time. The default value is 1000 objects.
+	// than one worker at one time. The default value is 1000 objects. To increase
+	// the maximum value to 5000 objects, contact Amazon Web Services Support.
 	MaxConcurrentTaskCount *int64 `min:"1" type:"integer"`
 
 	// The number of human workers that will label an object.
@@ -62043,17 +63304,21 @@ type HyperParameterTuningJobConfig struct {
 	ResourceLimits *ResourceLimits `type:"structure" required:"true"`
 
 	// Specifies how hyperparameter tuning chooses the combinations of hyperparameter
-	// values to use for the training job it launches. To use the Bayesian search
-	// strategy, set this to Bayesian. To randomly search, set it to Random. For
-	// information about search strategies, see How Hyperparameter Tuning Works
-	// (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
+	// values to use for the training job it launches. For information about search
+	// strategies, see How Hyperparameter Tuning Works (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
 	//
 	// Strategy is a required field
 	Strategy *string `type:"string" required:"true" enum:"HyperParameterTuningJobStrategyType"`
 
+	// The configuration for the Hyperband optimization strategy. This parameter
+	// should be provided only if Hyperband is selected as the strategy for HyperParameterTuningJobConfig.
+	StrategyConfig *HyperParameterTuningJobStrategyConfig `type:"structure"`
+
 	// Specifies whether to use early stopping for training jobs launched by the
-	// hyperparameter tuning job. This can be one of the following values (the default
-	// value is OFF):
+	// hyperparameter tuning job. Because the Hyperband strategy has its own advanced
+	// internal early stopping mechanism, TrainingJobEarlyStoppingType must be OFF
+	// to use Hyperband. This parameter can take on one of the following values
+	// (the default value is OFF):
 	//
 	// OFF
 	//
@@ -62113,6 +63378,11 @@ func (s *HyperParameterTuningJobConfig) Validate() error {
 			invalidParams.AddNested("ResourceLimits", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.StrategyConfig != nil {
+		if err := s.StrategyConfig.Validate(); err != nil {
+			invalidParams.AddNested("StrategyConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TuningJobCompletionCriteria != nil {
 		if err := s.TuningJobCompletionCriteria.Validate(); err != nil {
 			invalidParams.AddNested("TuningJobCompletionCriteria", err.(request.ErrInvalidParams))
@@ -62146,6 +63416,12 @@ func (s *HyperParameterTuningJobConfig) SetResourceLimits(v *ResourceLimits) *Hy
 // SetStrategy sets the Strategy field's value.
 func (s *HyperParameterTuningJobConfig) SetStrategy(v string) *HyperParameterTuningJobConfig {
 	s.Strategy = &v
+	return s
+}
+
+// SetStrategyConfig sets the StrategyConfig field's value.
+func (s *HyperParameterTuningJobConfig) SetStrategyConfig(v *HyperParameterTuningJobStrategyConfig) *HyperParameterTuningJobConfig {
+	s.StrategyConfig = v
 	return s
 }
 
@@ -62228,8 +63504,8 @@ func (s *HyperParameterTuningJobObjective) SetType(v string) *HyperParameterTuni
 	return s
 }
 
-// An entity having characteristics over which a user can search for a hyperparameter
-// tuning job.
+// An entity returned by the SearchRecord (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_SearchRecord.html)
+// API containing the properties of a hyperparameter tuning job.
 type HyperParameterTuningJobSearchEntity struct {
 	_ struct{} `type:"structure"`
 
@@ -62415,6 +63691,59 @@ func (s *HyperParameterTuningJobSearchEntity) SetWarmStartConfig(v *HyperParamet
 	return s
 }
 
+// The configuration for a training job launched by a hyperparameter tuning
+// job. Choose Bayesian for Bayesian optimization, and Random for random search
+// optimization. For more advanced use cases, use Hyperband, which evaluates
+// objective metrics for training jobs after every epoch. For more information
+// about strategies, see How Hyperparameter Tuning Works (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html).
+type HyperParameterTuningJobStrategyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the object that specifies the Hyperband strategy. This
+	// parameter is only supported for the Hyperband selection for Strategy within
+	// the HyperParameterTuningJobConfig API.
+	HyperbandStrategyConfig *HyperbandStrategyConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningJobStrategyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperParameterTuningJobStrategyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HyperParameterTuningJobStrategyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HyperParameterTuningJobStrategyConfig"}
+	if s.HyperbandStrategyConfig != nil {
+		if err := s.HyperbandStrategyConfig.Validate(); err != nil {
+			invalidParams.AddNested("HyperbandStrategyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHyperbandStrategyConfig sets the HyperbandStrategyConfig field's value.
+func (s *HyperParameterTuningJobStrategyConfig) SetHyperbandStrategyConfig(v *HyperbandStrategyConfig) *HyperParameterTuningJobStrategyConfig {
+	s.HyperbandStrategyConfig = v
+	return s
+}
+
 // Provides summary information about a hyperparameter tuning job.
 type HyperParameterTuningJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -62456,8 +63785,7 @@ type HyperParameterTuningJobSummary struct {
 	ResourceLimits *ResourceLimits `type:"structure"`
 
 	// Specifies the search strategy hyperparameter tuning uses to choose which
-	// hyperparameters to use for each iteration. Currently, the only valid value
-	// is Bayesian.
+	// hyperparameters to evaluate at each iteration.
 	//
 	// Strategy is a required field
 	Strategy *string `type:"string" required:"true" enum:"HyperParameterTuningJobStrategyType"`
@@ -62815,6 +64143,95 @@ func (s *HyperParameterTuningResourceConfig) SetVolumeSizeInGB(v int64) *HyperPa
 	return s
 }
 
+// The configuration for Hyperband, a multi-fidelity based hyperparameter tuning
+// strategy. Hyperband uses the final and intermediate results of a training
+// job to dynamically allocate resources to utilized hyperparameter configurations
+// while automatically stopping under-performing configurations. This parameter
+// should be provided only if Hyperband is selected as the StrategyConfig under
+// the HyperParameterTuningJobConfig API.
+type HyperbandStrategyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of resources (such as epochs) that can be used by a training
+	// job launched by a hyperparameter tuning job. Once a job reaches the MaxResource
+	// value, it is stopped. If a value for MaxResource is not provided, and Hyperband
+	// is selected as the hyperparameter tuning strategy, HyperbandTrainingJ attempts
+	// to infer MaxResource from the following keys (if present) in StaticsHyperParameters
+	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTrainingJobDefinition.html#sagemaker-Type-HyperParameterTrainingJobDefinition-StaticHyperParameters):
+	//
+	//    * epochs
+	//
+	//    * numepochs
+	//
+	//    * n-epochs
+	//
+	//    * n_epochs
+	//
+	//    * num_epochs
+	//
+	// If HyperbandStrategyConfig is unable to infer a value for MaxResource, it
+	// generates a validation error. The maximum value is 20,000 epochs. All metrics
+	// that correspond to an objective metric are used to derive early stopping
+	// decisions (https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html).
+	// For distributive (https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-training.html)
+	// training jobs, ensure that duplicate metrics are not printed in the logs
+	// across the individual nodes in a training job. If multiple nodes are publishing
+	// duplicate or incorrect metrics, training jobs may make an incorrect stopping
+	// decision and stop the job prematurely.
+	MaxResource *int64 `min:"1" type:"integer"`
+
+	// The minimum number of resources (such as epochs) that can be used by a training
+	// job launched by a hyperparameter tuning job. If the value for MinResource
+	// has not been reached, the training job will not be stopped by Hyperband.
+	MinResource *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperbandStrategyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HyperbandStrategyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HyperbandStrategyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HyperbandStrategyConfig"}
+	if s.MaxResource != nil && *s.MaxResource < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResource", 1))
+	}
+	if s.MinResource != nil && *s.MinResource < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinResource", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResource sets the MaxResource field's value.
+func (s *HyperbandStrategyConfig) SetMaxResource(v int64) *HyperbandStrategyConfig {
+	s.MaxResource = &v
+	return s
+}
+
+// SetMinResource sets the MinResource field's value.
+func (s *HyperbandStrategyConfig) SetMinResource(v int64) *HyperbandStrategyConfig {
+	s.MinResource = &v
+	return s
+}
+
 // A SageMaker image. A SageMaker image represents a set of container images
 // that are derived from a common base container image. Each of these container
 // images is represented by a SageMaker ImageVersion.
@@ -63144,6 +64561,52 @@ func (s *InferenceExecutionConfig) SetMode(v string) *InferenceExecutionConfig {
 	return s
 }
 
+// The metrics for an existing endpoint compared in an Inference Recommender
+// job.
+type InferenceMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The expected maximum number of requests per minute for the instance.
+	//
+	// MaxInvocations is a required field
+	MaxInvocations *int64 `type:"integer" required:"true"`
+
+	// The expected model latency at maximum invocations per minute for the instance.
+	//
+	// ModelLatency is a required field
+	ModelLatency *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceMetrics) GoString() string {
+	return s.String()
+}
+
+// SetMaxInvocations sets the MaxInvocations field's value.
+func (s *InferenceMetrics) SetMaxInvocations(v int64) *InferenceMetrics {
+	s.MaxInvocations = &v
+	return s
+}
+
+// SetModelLatency sets the ModelLatency field's value.
+func (s *InferenceMetrics) SetModelLatency(v int64) *InferenceMetrics {
+	s.ModelLatency = &v
+	return s
+}
+
 // A list of recommendations made by Amazon SageMaker Inference Recommender.
 type InferenceRecommendation struct {
 	_ struct{} `type:"structure"`
@@ -63327,6 +64790,75 @@ func (s *InferenceRecommendationsJob) SetRoleArn(v string) *InferenceRecommendat
 // SetStatus sets the Status field's value.
 func (s *InferenceRecommendationsJob) SetStatus(v string) *InferenceRecommendationsJob {
 	s.Status = &v
+	return s
+}
+
+// A returned array object for the Steps response field in the ListInferenceRecommendationsJobSteps
+// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InferenceRecommendationsJobStep.html)
+// API command.
+type InferenceRecommendationsJobStep struct {
+	_ struct{} `type:"structure"`
+
+	// The details for a specific benchmark.
+	InferenceBenchmark *RecommendationJobInferenceBenchmark `type:"structure"`
+
+	// The name of the Inference Recommender job.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The current status of the benchmark.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"RecommendationJobStatus"`
+
+	// The type of the subtask.
+	//
+	// BENCHMARK: Evaluate the performance of your model on different instance types.
+	//
+	// StepType is a required field
+	StepType *string `type:"string" required:"true" enum:"RecommendationStepType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendationsJobStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendationsJobStep) GoString() string {
+	return s.String()
+}
+
+// SetInferenceBenchmark sets the InferenceBenchmark field's value.
+func (s *InferenceRecommendationsJobStep) SetInferenceBenchmark(v *RecommendationJobInferenceBenchmark) *InferenceRecommendationsJobStep {
+	s.InferenceBenchmark = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *InferenceRecommendationsJobStep) SetJobName(v string) *InferenceRecommendationsJobStep {
+	s.JobName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InferenceRecommendationsJobStep) SetStatus(v string) *InferenceRecommendationsJobStep {
+	s.Status = &v
+	return s
+}
+
+// SetStepType sets the StepType field's value.
+func (s *InferenceRecommendationsJobStep) SetStepType(v string) *InferenceRecommendationsJobStep {
+	s.StepType = &v
 	return s
 }
 
@@ -63567,7 +65099,7 @@ type InputConfig struct {
 	Framework *string `type:"string" required:"true" enum:"Framework"`
 
 	// Specifies the framework version to use. This API field is only supported
-	// for the PyTorch and TensorFlow frameworks.
+	// for the MXNet, PyTorch, TensorFlow and TensorFlow Lite frameworks.
 	//
 	// For information about framework versions supported for cloud targets and
 	// edge devices, see Cloud Supported Instance Types and Frameworks (https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html)
@@ -69312,6 +70844,139 @@ func (s *ListImagesOutput) SetNextToken(v string) *ListImagesOutput {
 	return s
 }
 
+type ListInferenceRecommendationsJobStepsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name for the Inference Recommender job.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token that you can specify to return more results from the list. Specify
+	// this field if you have a token that was returned from a previous request.
+	NextToken *string `type:"string"`
+
+	// A filter to return benchmarks of a specified status. If this field is left
+	// empty, then all benchmarks are returned.
+	Status *string `type:"string" enum:"RecommendationJobStatus"`
+
+	// A filter to return details about the specified type of subtask.
+	//
+	// BENCHMARK: Evaluate the performance of your model on different instance types.
+	StepType *string `type:"string" enum:"RecommendationStepType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInferenceRecommendationsJobStepsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInferenceRecommendationsJobStepsInput"}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetJobName(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.JobName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetMaxResults(v int64) *ListInferenceRecommendationsJobStepsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetNextToken(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetStatus(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.Status = &v
+	return s
+}
+
+// SetStepType sets the StepType field's value.
+func (s *ListInferenceRecommendationsJobStepsInput) SetStepType(v string) *ListInferenceRecommendationsJobStepsInput {
+	s.StepType = &v
+	return s
+}
+
+type ListInferenceRecommendationsJobStepsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that you can specify in your next request to return more results
+	// from the list.
+	NextToken *string `type:"string"`
+
+	// A list of all subtask details in Inference Recommender.
+	Steps []*InferenceRecommendationsJobStep `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobStepsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceRecommendationsJobStepsOutput) SetNextToken(v string) *ListInferenceRecommendationsJobStepsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *ListInferenceRecommendationsJobStepsOutput) SetSteps(v []*InferenceRecommendationsJobStep) *ListInferenceRecommendationsJobStepsOutput {
+	s.Steps = v
+	return s
+}
+
 type ListInferenceRecommendationsJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -73395,6 +75060,9 @@ type ListTrainingJobsInput struct {
 
 	// A filter that retrieves only training jobs with a specific status.
 	StatusEquals *string `type:"string" enum:"TrainingJobStatus"`
+
+	// A filter that retrieves only training jobs with a specific warm pool status.
+	WarmPoolStatusEquals *string `type:"string" enum:"WarmPoolResourceStatus"`
 }
 
 // String returns the string representation.
@@ -73485,6 +75153,12 @@ func (s *ListTrainingJobsInput) SetSortOrder(v string) *ListTrainingJobsInput {
 // SetStatusEquals sets the StatusEquals field's value.
 func (s *ListTrainingJobsInput) SetStatusEquals(v string) *ListTrainingJobsInput {
 	s.StatusEquals = &v
+	return s
+}
+
+// SetWarmPoolStatusEquals sets the WarmPoolStatusEquals field's value.
+func (s *ListTrainingJobsInput) SetWarmPoolStatusEquals(v string) *ListTrainingJobsInput {
+	s.WarmPoolStatusEquals = &v
 	return s
 }
 
@@ -74962,10 +76636,11 @@ func (s *ModelBiasBaselineConfig) SetConstraintsResource(v *MonitoringConstraint
 type ModelBiasJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 
 	// Location of ground truth labels to use in model bias job.
 	//
@@ -74994,11 +76669,13 @@ func (s ModelBiasJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelBiasJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelBiasJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
-	}
 	if s.GroundTruthS3Input == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroundTruthS3Input"))
+	}
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -75010,6 +76687,12 @@ func (s *ModelBiasJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *ModelBiasJobInput) SetBatchTransformInput(v *BatchTransformInput_) *ModelBiasJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -75431,10 +77114,11 @@ func (s *ModelExplainabilityBaselineConfig) SetConstraintsResource(v *Monitoring
 type ModelExplainabilityJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 }
 
 // String returns the string representation.
@@ -75458,8 +77142,10 @@ func (s ModelExplainabilityJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelExplainabilityJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelExplainabilityJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -75471,6 +77157,12 @@ func (s *ModelExplainabilityJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *ModelExplainabilityJobInput) SetBatchTransformInput(v *BatchTransformInput_) *ModelExplainabilityJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -77064,10 +78756,11 @@ func (s *ModelQualityBaselineConfig) SetConstraintsResource(v *MonitoringConstra
 type ModelQualityJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// Input object for the endpoint
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 
 	// The ground truth label provided for the model.
 	//
@@ -77096,11 +78789,13 @@ func (s ModelQualityJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelQualityJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelQualityJobInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
-	}
 	if s.GroundTruthS3Input == nil {
 		invalidParams.Add(request.NewErrParamRequired("GroundTruthS3Input"))
+	}
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -77112,6 +78807,12 @@ func (s *ModelQualityJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *ModelQualityJobInput) SetBatchTransformInput(v *BatchTransformInput_) *ModelQualityJobInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -77501,6 +79202,88 @@ func (s *MonitoringConstraintsResource) SetS3Uri(v string) *MonitoringConstraint
 	return s
 }
 
+// Represents the CSV dataset format used when running a monitoring job.
+type MonitoringCsvDatasetFormat struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates if the CSV data has a header.
+	Header *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringCsvDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringCsvDatasetFormat) GoString() string {
+	return s.String()
+}
+
+// SetHeader sets the Header field's value.
+func (s *MonitoringCsvDatasetFormat) SetHeader(v bool) *MonitoringCsvDatasetFormat {
+	s.Header = &v
+	return s
+}
+
+// Represents the dataset format used when running a monitoring job.
+type MonitoringDatasetFormat struct {
+	_ struct{} `type:"structure"`
+
+	// The CSV dataset used in the monitoring job.
+	Csv *MonitoringCsvDatasetFormat `type:"structure"`
+
+	// The JSON dataset used in the monitoring job
+	Json *MonitoringJsonDatasetFormat `type:"structure"`
+
+	// The Parquet dataset used in the monitoring job
+	Parquet *MonitoringParquetDatasetFormat `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringDatasetFormat) GoString() string {
+	return s.String()
+}
+
+// SetCsv sets the Csv field's value.
+func (s *MonitoringDatasetFormat) SetCsv(v *MonitoringCsvDatasetFormat) *MonitoringDatasetFormat {
+	s.Csv = v
+	return s
+}
+
+// SetJson sets the Json field's value.
+func (s *MonitoringDatasetFormat) SetJson(v *MonitoringJsonDatasetFormat) *MonitoringDatasetFormat {
+	s.Json = v
+	return s
+}
+
+// SetParquet sets the Parquet field's value.
+func (s *MonitoringDatasetFormat) SetParquet(v *MonitoringParquetDatasetFormat) *MonitoringDatasetFormat {
+	s.Parquet = v
+	return s
+}
+
 // Summary of information about the last monitoring job to run.
 type MonitoringExecutionSummary struct {
 	_ struct{} `type:"structure"`
@@ -77660,10 +79443,11 @@ func (s *MonitoringGroundTruthS3Input) SetS3Uri(v string) *MonitoringGroundTruth
 type MonitoringInput struct {
 	_ struct{} `type:"structure"`
 
+	// Input object for the batch transform job.
+	BatchTransformInput *BatchTransformInput_ `type:"structure"`
+
 	// The endpoint for a monitoring job.
-	//
-	// EndpointInput is a required field
-	EndpointInput *EndpointInput `type:"structure" required:"true"`
+	EndpointInput *EndpointInput `type:"structure"`
 }
 
 // String returns the string representation.
@@ -77687,8 +79471,10 @@ func (s MonitoringInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MonitoringInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MonitoringInput"}
-	if s.EndpointInput == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	if s.BatchTransformInput != nil {
+		if err := s.BatchTransformInput.Validate(); err != nil {
+			invalidParams.AddNested("BatchTransformInput", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EndpointInput != nil {
 		if err := s.EndpointInput.Validate(); err != nil {
@@ -77700,6 +79486,12 @@ func (s *MonitoringInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchTransformInput sets the BatchTransformInput field's value.
+func (s *MonitoringInput) SetBatchTransformInput(v *BatchTransformInput_) *MonitoringInput {
+	s.BatchTransformInput = v
+	return s
 }
 
 // SetEndpointInput sets the EndpointInput field's value.
@@ -77966,6 +79758,38 @@ func (s *MonitoringJobDefinitionSummary) SetMonitoringJobDefinitionName(v string
 	return s
 }
 
+// Represents the JSON dataset format used when running a monitoring job.
+type MonitoringJsonDatasetFormat struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates if the file should be read as a json object per line.
+	Line *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringJsonDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringJsonDatasetFormat) GoString() string {
+	return s.String()
+}
+
+// SetLine sets the Line field's value.
+func (s *MonitoringJsonDatasetFormat) SetLine(v bool) *MonitoringJsonDatasetFormat {
+	s.Line = &v
+	return s
+}
+
 // The networking configuration for the monitoring job.
 type MonitoringNetworkConfig struct {
 	_ struct{} `type:"structure"`
@@ -78161,6 +79985,29 @@ func (s *MonitoringOutputConfig) SetKmsKeyId(v string) *MonitoringOutputConfig {
 func (s *MonitoringOutputConfig) SetMonitoringOutputs(v []*MonitoringOutput) *MonitoringOutputConfig {
 	s.MonitoringOutputs = v
 	return s
+}
+
+// Represents the Parquet dataset format used when running a monitoring job.
+type MonitoringParquetDatasetFormat struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringParquetDatasetFormat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitoringParquetDatasetFormat) GoString() string {
+	return s.String()
 }
 
 // Identifies the resources to deploy for a monitoring job.
@@ -85082,6 +86929,69 @@ func (s *RecommendationJobContainerConfig) SetTask(v string) *RecommendationJobC
 	return s
 }
 
+// The details for a specific benchmark from an Inference Recommender job.
+type RecommendationJobInferenceBenchmark struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint configuration made by Inference Recommender during a recommendation
+	// job.
+	EndpointConfiguration *EndpointOutputConfiguration `type:"structure"`
+
+	// The reason why a benchmark failed.
+	FailureReason *string `type:"string"`
+
+	// The metrics of recommendations.
+	Metrics *RecommendationMetrics `type:"structure"`
+
+	// Defines the model configuration. Includes the specification name and environment
+	// parameters.
+	//
+	// ModelConfiguration is a required field
+	ModelConfiguration *ModelConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobInferenceBenchmark) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobInferenceBenchmark) GoString() string {
+	return s.String()
+}
+
+// SetEndpointConfiguration sets the EndpointConfiguration field's value.
+func (s *RecommendationJobInferenceBenchmark) SetEndpointConfiguration(v *EndpointOutputConfiguration) *RecommendationJobInferenceBenchmark {
+	s.EndpointConfiguration = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *RecommendationJobInferenceBenchmark) SetFailureReason(v string) *RecommendationJobInferenceBenchmark {
+	s.FailureReason = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *RecommendationJobInferenceBenchmark) SetMetrics(v *RecommendationMetrics) *RecommendationJobInferenceBenchmark {
+	s.Metrics = v
+	return s
+}
+
+// SetModelConfiguration sets the ModelConfiguration field's value.
+func (s *RecommendationJobInferenceBenchmark) SetModelConfiguration(v *ModelConfiguration) *RecommendationJobInferenceBenchmark {
+	s.ModelConfiguration = v
+	return s
+}
+
 // The input configuration of the recommendation job.
 type RecommendationJobInputConfig struct {
 	_ struct{} `type:"structure"`
@@ -85093,6 +87003,9 @@ type RecommendationJobInputConfig struct {
 
 	// Specifies the endpoint configuration to use for a job.
 	EndpointConfigurations []*EndpointInputConfiguration `min:"1" type:"list"`
+
+	// Existing customer endpoints on which to run an Inference Recommender job.
+	Endpoints []*EndpointInfo `type:"list"`
 
 	// Specifies the maximum duration of the job, in seconds.>
 	JobDurationInSeconds *int64 `min:"1" type:"integer"`
@@ -85178,6 +87091,16 @@ func (s *RecommendationJobInputConfig) Validate() error {
 			}
 		}
 	}
+	if s.Endpoints != nil {
+		for i, v := range s.Endpoints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Endpoints", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.ResourceLimit != nil {
 		if err := s.ResourceLimit.Validate(); err != nil {
 			invalidParams.AddNested("ResourceLimit", err.(request.ErrInvalidParams))
@@ -85204,6 +87127,12 @@ func (s *RecommendationJobInputConfig) SetContainerConfig(v *RecommendationJobCo
 // SetEndpointConfigurations sets the EndpointConfigurations field's value.
 func (s *RecommendationJobInputConfig) SetEndpointConfigurations(v []*EndpointInputConfiguration) *RecommendationJobInputConfig {
 	s.EndpointConfigurations = v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *RecommendationJobInputConfig) SetEndpoints(v []*EndpointInfo) *RecommendationJobInputConfig {
+	s.Endpoints = v
 	return s
 }
 
@@ -86196,6 +88125,10 @@ type ResourceConfig struct {
 	// The ML compute instance type.
 	InstanceType *string `type:"string" enum:"TrainingInstanceType"`
 
+	// The duration of time in seconds to retain configured resources in a warm
+	// pool for subsequent training jobs.
+	KeepAlivePeriodInSeconds *int64 `type:"integer"`
+
 	// The Amazon Web Services KMS key that SageMaker uses to encrypt data on the
 	// storage volume attached to the ML compute instance(s) that run the training
 	// job.
@@ -86311,6 +88244,12 @@ func (s *ResourceConfig) SetInstanceType(v string) *ResourceConfig {
 	return s
 }
 
+// SetKeepAlivePeriodInSeconds sets the KeepAlivePeriodInSeconds field's value.
+func (s *ResourceConfig) SetKeepAlivePeriodInSeconds(v int64) *ResourceConfig {
+	s.KeepAlivePeriodInSeconds = &v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *ResourceConfig) SetVolumeKmsKeyId(v string) *ResourceConfig {
 	s.VolumeKmsKeyId = &v
@@ -86320,6 +88259,54 @@ func (s *ResourceConfig) SetVolumeKmsKeyId(v string) *ResourceConfig {
 // SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
 func (s *ResourceConfig) SetVolumeSizeInGB(v int64) *ResourceConfig {
 	s.VolumeSizeInGB = &v
+	return s
+}
+
+// The ResourceConfig to update KeepAlivePeriodInSeconds. Other fields in the
+// ResourceConfig cannot be updated.
+type ResourceConfigForUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The KeepAlivePeriodInSeconds value specified in the ResourceConfig to update.
+	//
+	// KeepAlivePeriodInSeconds is a required field
+	KeepAlivePeriodInSeconds *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceConfigForUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceConfigForUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceConfigForUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceConfigForUpdate"}
+	if s.KeepAlivePeriodInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeepAlivePeriodInSeconds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeepAlivePeriodInSeconds sets the KeepAlivePeriodInSeconds field's value.
+func (s *ResourceConfigForUpdate) SetKeepAlivePeriodInSeconds(v int64) *ResourceConfigForUpdate {
+	s.KeepAlivePeriodInSeconds = &v
 	return s
 }
 
@@ -86459,9 +88446,7 @@ type ResourceLimits struct {
 
 	// The maximum number of training jobs that a hyperparameter tuning job can
 	// launch.
-	//
-	// MaxNumberOfTrainingJobs is a required field
-	MaxNumberOfTrainingJobs *int64 `min:"1" type:"integer" required:"true"`
+	MaxNumberOfTrainingJobs *int64 `min:"1" type:"integer"`
 
 	// The maximum number of concurrent training jobs that a hyperparameter tuning
 	// job can launch.
@@ -86491,9 +88476,6 @@ func (s ResourceLimits) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ResourceLimits) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ResourceLimits"}
-	if s.MaxNumberOfTrainingJobs == nil {
-		invalidParams.Add(request.NewErrParamRequired("MaxNumberOfTrainingJobs"))
-	}
 	if s.MaxNumberOfTrainingJobs != nil && *s.MaxNumberOfTrainingJobs < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxNumberOfTrainingJobs", 1))
 	}
@@ -90322,6 +92304,68 @@ func (s *TensorBoardOutputConfig) SetS3OutputPath(v string) *TensorBoardOutputCo
 	return s
 }
 
+// Time series forecast settings for the SageMaker Canvas app.
+type TimeSeriesForecastingSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The IAM role that Canvas passes to Amazon Forecast for time series forecasting.
+	// By default, Canvas uses the execution role specified in the UserProfile that
+	// launches the Canvas app. If an execution role is not specified in the UserProfile,
+	// Canvas uses the execution role specified in the Domain that owns the UserProfile.
+	// To allow time series forecasting, this IAM role should have the AmazonSageMakerCanvasForecastAccess
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess)
+	// policy attached and forecast.amazonaws.com added in the trust relationship
+	// as a service principal.
+	AmazonForecastRoleArn *string `min:"20" type:"string"`
+
+	// Describes whether time series forecasting is enabled or disabled in the Canvas
+	// app.
+	Status *string `type:"string" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesForecastingSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesForecastingSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimeSeriesForecastingSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimeSeriesForecastingSettings"}
+	if s.AmazonForecastRoleArn != nil && len(*s.AmazonForecastRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AmazonForecastRoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAmazonForecastRoleArn sets the AmazonForecastRoleArn field's value.
+func (s *TimeSeriesForecastingSettings) SetAmazonForecastRoleArn(v string) *TimeSeriesForecastingSettings {
+	s.AmazonForecastRoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TimeSeriesForecastingSettings) SetStatus(v string) *TimeSeriesForecastingSettings {
+	s.Status = &v
+	return s
+}
+
 // Defines the traffic pattern of the load test.
 type TrafficPattern struct {
 	_ struct{} `type:"structure"`
@@ -91276,6 +93320,9 @@ type TrainingJobSummary struct {
 	//
 	// TrainingJobStatus is a required field
 	TrainingJobStatus *string `type:"string" required:"true" enum:"TrainingJobStatus"`
+
+	// The status of the warm pool associated with the training job.
+	WarmPoolStatus *WarmPoolStatus `type:"structure"`
 }
 
 // String returns the string representation.
@@ -91329,6 +93376,12 @@ func (s *TrainingJobSummary) SetTrainingJobName(v string) *TrainingJobSummary {
 // SetTrainingJobStatus sets the TrainingJobStatus field's value.
 func (s *TrainingJobSummary) SetTrainingJobStatus(v string) *TrainingJobSummary {
 	s.TrainingJobStatus = &v
+	return s
+}
+
+// SetWarmPoolStatus sets the WarmPoolStatus field's value.
+func (s *TrainingJobSummary) SetWarmPoolStatus(v *WarmPoolStatus) *TrainingJobSummary {
+	s.WarmPoolStatus = v
 	return s
 }
 
@@ -92316,8 +94369,9 @@ func (s *TransformOutput) SetS3OutputPath(v string) *TransformOutput {
 type TransformResources struct {
 	_ struct{} `type:"structure"`
 
-	// The number of ML compute instances to use in the transform job. For distributed
-	// transform jobs, specify a value greater than 1. The default value is 1.
+	// The number of ML compute instances to use in the transform job. The default
+	// value is 1, and the maximum is 100. For distributed transform jobs, specify
+	// a value greater than 1.
 	//
 	// InstanceCount is a required field
 	InstanceCount *int64 `min:"1" type:"integer" required:"true"`
@@ -96420,6 +98474,9 @@ type UpdateTrainingJobInput struct {
 	// metrics.
 	ProfilerRuleConfigurations []*ProfilerRuleConfiguration `type:"list"`
 
+	// The training job ResourceConfig to update warm pool retention length.
+	ResourceConfig *ResourceConfigForUpdate `type:"structure"`
+
 	// The name of a training job to update the Debugger profiling configuration.
 	//
 	// TrainingJobName is a required field
@@ -96463,6 +98520,11 @@ func (s *UpdateTrainingJobInput) Validate() error {
 			}
 		}
 	}
+	if s.ResourceConfig != nil {
+		if err := s.ResourceConfig.Validate(); err != nil {
+			invalidParams.AddNested("ResourceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -96479,6 +98541,12 @@ func (s *UpdateTrainingJobInput) SetProfilerConfig(v *ProfilerConfigForUpdate) *
 // SetProfilerRuleConfigurations sets the ProfilerRuleConfigurations field's value.
 func (s *UpdateTrainingJobInput) SetProfilerRuleConfigurations(v []*ProfilerRuleConfiguration) *UpdateTrainingJobInput {
 	s.ProfilerRuleConfigurations = v
+	return s
+}
+
+// SetResourceConfig sets the ResourceConfig field's value.
+func (s *UpdateTrainingJobInput) SetResourceConfig(v *ResourceConfigForUpdate) *UpdateTrainingJobInput {
+	s.ResourceConfig = v
 	return s
 }
 
@@ -97320,6 +99388,9 @@ func (s *UserProfileDetails) SetUserProfileName(v string) *UserProfileDetails {
 type UserSettings struct {
 	_ struct{} `type:"structure"`
 
+	// The Canvas app settings.
+	CanvasAppSettings *CanvasAppSettings `type:"structure"`
+
 	// The execution role for the user.
 	ExecutionRole *string `min:"20" type:"string"`
 
@@ -97379,6 +99450,11 @@ func (s *UserSettings) Validate() error {
 	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 20))
 	}
+	if s.CanvasAppSettings != nil {
+		if err := s.CanvasAppSettings.Validate(); err != nil {
+			invalidParams.AddNested("CanvasAppSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.KernelGatewayAppSettings != nil {
 		if err := s.KernelGatewayAppSettings.Validate(); err != nil {
 			invalidParams.AddNested("KernelGatewayAppSettings", err.(request.ErrInvalidParams))
@@ -97394,6 +99470,12 @@ func (s *UserSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCanvasAppSettings sets the CanvasAppSettings field's value.
+func (s *UserSettings) SetCanvasAppSettings(v *CanvasAppSettings) *UserSettings {
+	s.CanvasAppSettings = v
+	return s
 }
 
 // SetExecutionRole sets the ExecutionRole field's value.
@@ -97625,6 +99707,75 @@ func (s *VpcConfig) SetSecurityGroupIds(v []*string) *VpcConfig {
 // SetSubnets sets the Subnets field's value.
 func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 	s.Subnets = v
+	return s
+}
+
+// Status and billing information about the warm pool.
+type WarmPoolStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The billable time in seconds used by the warm pool. Billable time refers
+	// to the absolute wall-clock time.
+	//
+	// Multiply ResourceRetainedBillableTimeInSeconds by the number of instances
+	// (InstanceCount) in your training cluster to get the total compute time SageMaker
+	// bills you if you run warm pool training. The formula is as follows: ResourceRetainedBillableTimeInSeconds
+	// * InstanceCount.
+	ResourceRetainedBillableTimeInSeconds *int64 `type:"integer"`
+
+	// The name of the matching training job that reused the warm pool.
+	ReusedByJob *string `min:"1" type:"string"`
+
+	// The status of the warm pool.
+	//
+	//    * InUse: The warm pool is in use for the training job.
+	//
+	//    * Available: The warm pool is available to reuse for a matching training
+	//    job.
+	//
+	//    * Reused: The warm pool moved to a matching training job for reuse.
+	//
+	//    * Terminated: The warm pool is no longer available. Warm pools are unavailable
+	//    if they are terminated by a user, terminated for a patch update, or terminated
+	//    for exceeding the specified KeepAlivePeriodInSeconds.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"WarmPoolResourceStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarmPoolStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarmPoolStatus) GoString() string {
+	return s.String()
+}
+
+// SetResourceRetainedBillableTimeInSeconds sets the ResourceRetainedBillableTimeInSeconds field's value.
+func (s *WarmPoolStatus) SetResourceRetainedBillableTimeInSeconds(v int64) *WarmPoolStatus {
+	s.ResourceRetainedBillableTimeInSeconds = &v
+	return s
+}
+
+// SetReusedByJob sets the ReusedByJob field's value.
+func (s *WarmPoolStatus) SetReusedByJob(v string) *WarmPoolStatus {
+	s.ReusedByJob = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *WarmPoolStatus) SetStatus(v string) *WarmPoolStatus {
+	s.Status = &v
 	return s
 }
 
@@ -98795,6 +100946,9 @@ const (
 
 	// AutoMLMetricExtendedEnumLogLoss is a AutoMLMetricExtendedEnum enum value
 	AutoMLMetricExtendedEnumLogLoss = "LogLoss"
+
+	// AutoMLMetricExtendedEnumInferenceLatency is a AutoMLMetricExtendedEnum enum value
+	AutoMLMetricExtendedEnumInferenceLatency = "InferenceLatency"
 )
 
 // AutoMLMetricExtendedEnum_Values returns all elements of the AutoMLMetricExtendedEnum enum
@@ -98814,6 +100968,7 @@ func AutoMLMetricExtendedEnum_Values() []string {
 		AutoMLMetricExtendedEnumRecall,
 		AutoMLMetricExtendedEnumRecallMacro,
 		AutoMLMetricExtendedEnumLogLoss,
+		AutoMLMetricExtendedEnumInferenceLatency,
 	}
 }
 
@@ -99050,6 +101205,294 @@ func CaptureStatus_Values() []string {
 	return []string{
 		CaptureStatusStarted,
 		CaptureStatusStopped,
+	}
+}
+
+const (
+	// ClarifyFeatureTypeNumerical is a ClarifyFeatureType enum value
+	ClarifyFeatureTypeNumerical = "numerical"
+
+	// ClarifyFeatureTypeCategorical is a ClarifyFeatureType enum value
+	ClarifyFeatureTypeCategorical = "categorical"
+
+	// ClarifyFeatureTypeText is a ClarifyFeatureType enum value
+	ClarifyFeatureTypeText = "text"
+)
+
+// ClarifyFeatureType_Values returns all elements of the ClarifyFeatureType enum
+func ClarifyFeatureType_Values() []string {
+	return []string{
+		ClarifyFeatureTypeNumerical,
+		ClarifyFeatureTypeCategorical,
+		ClarifyFeatureTypeText,
+	}
+}
+
+const (
+	// ClarifyTextGranularityToken is a ClarifyTextGranularity enum value
+	ClarifyTextGranularityToken = "token"
+
+	// ClarifyTextGranularitySentence is a ClarifyTextGranularity enum value
+	ClarifyTextGranularitySentence = "sentence"
+
+	// ClarifyTextGranularityParagraph is a ClarifyTextGranularity enum value
+	ClarifyTextGranularityParagraph = "paragraph"
+)
+
+// ClarifyTextGranularity_Values returns all elements of the ClarifyTextGranularity enum
+func ClarifyTextGranularity_Values() []string {
+	return []string{
+		ClarifyTextGranularityToken,
+		ClarifyTextGranularitySentence,
+		ClarifyTextGranularityParagraph,
+	}
+}
+
+const (
+	// ClarifyTextLanguageAf is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageAf = "af"
+
+	// ClarifyTextLanguageSq is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSq = "sq"
+
+	// ClarifyTextLanguageAr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageAr = "ar"
+
+	// ClarifyTextLanguageHy is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHy = "hy"
+
+	// ClarifyTextLanguageEu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEu = "eu"
+
+	// ClarifyTextLanguageBn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageBn = "bn"
+
+	// ClarifyTextLanguageBg is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageBg = "bg"
+
+	// ClarifyTextLanguageCa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageCa = "ca"
+
+	// ClarifyTextLanguageZh is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageZh = "zh"
+
+	// ClarifyTextLanguageHr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHr = "hr"
+
+	// ClarifyTextLanguageCs is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageCs = "cs"
+
+	// ClarifyTextLanguageDa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageDa = "da"
+
+	// ClarifyTextLanguageNl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageNl = "nl"
+
+	// ClarifyTextLanguageEn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEn = "en"
+
+	// ClarifyTextLanguageEt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEt = "et"
+
+	// ClarifyTextLanguageFi is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageFi = "fi"
+
+	// ClarifyTextLanguageFr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageFr = "fr"
+
+	// ClarifyTextLanguageDe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageDe = "de"
+
+	// ClarifyTextLanguageEl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEl = "el"
+
+	// ClarifyTextLanguageGu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageGu = "gu"
+
+	// ClarifyTextLanguageHe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHe = "he"
+
+	// ClarifyTextLanguageHi is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHi = "hi"
+
+	// ClarifyTextLanguageHu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageHu = "hu"
+
+	// ClarifyTextLanguageIs is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageIs = "is"
+
+	// ClarifyTextLanguageId is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageId = "id"
+
+	// ClarifyTextLanguageGa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageGa = "ga"
+
+	// ClarifyTextLanguageIt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageIt = "it"
+
+	// ClarifyTextLanguageKn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageKn = "kn"
+
+	// ClarifyTextLanguageKy is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageKy = "ky"
+
+	// ClarifyTextLanguageLv is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLv = "lv"
+
+	// ClarifyTextLanguageLt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLt = "lt"
+
+	// ClarifyTextLanguageLb is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLb = "lb"
+
+	// ClarifyTextLanguageMk is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageMk = "mk"
+
+	// ClarifyTextLanguageMl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageMl = "ml"
+
+	// ClarifyTextLanguageMr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageMr = "mr"
+
+	// ClarifyTextLanguageNe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageNe = "ne"
+
+	// ClarifyTextLanguageNb is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageNb = "nb"
+
+	// ClarifyTextLanguageFa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageFa = "fa"
+
+	// ClarifyTextLanguagePl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguagePl = "pl"
+
+	// ClarifyTextLanguagePt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguagePt = "pt"
+
+	// ClarifyTextLanguageRo is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageRo = "ro"
+
+	// ClarifyTextLanguageRu is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageRu = "ru"
+
+	// ClarifyTextLanguageSa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSa = "sa"
+
+	// ClarifyTextLanguageSr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSr = "sr"
+
+	// ClarifyTextLanguageTn is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTn = "tn"
+
+	// ClarifyTextLanguageSi is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSi = "si"
+
+	// ClarifyTextLanguageSk is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSk = "sk"
+
+	// ClarifyTextLanguageSl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSl = "sl"
+
+	// ClarifyTextLanguageEs is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageEs = "es"
+
+	// ClarifyTextLanguageSv is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageSv = "sv"
+
+	// ClarifyTextLanguageTl is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTl = "tl"
+
+	// ClarifyTextLanguageTa is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTa = "ta"
+
+	// ClarifyTextLanguageTt is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTt = "tt"
+
+	// ClarifyTextLanguageTe is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTe = "te"
+
+	// ClarifyTextLanguageTr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageTr = "tr"
+
+	// ClarifyTextLanguageUk is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageUk = "uk"
+
+	// ClarifyTextLanguageUr is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageUr = "ur"
+
+	// ClarifyTextLanguageYo is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageYo = "yo"
+
+	// ClarifyTextLanguageLij is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageLij = "lij"
+
+	// ClarifyTextLanguageXx is a ClarifyTextLanguage enum value
+	ClarifyTextLanguageXx = "xx"
+)
+
+// ClarifyTextLanguage_Values returns all elements of the ClarifyTextLanguage enum
+func ClarifyTextLanguage_Values() []string {
+	return []string{
+		ClarifyTextLanguageAf,
+		ClarifyTextLanguageSq,
+		ClarifyTextLanguageAr,
+		ClarifyTextLanguageHy,
+		ClarifyTextLanguageEu,
+		ClarifyTextLanguageBn,
+		ClarifyTextLanguageBg,
+		ClarifyTextLanguageCa,
+		ClarifyTextLanguageZh,
+		ClarifyTextLanguageHr,
+		ClarifyTextLanguageCs,
+		ClarifyTextLanguageDa,
+		ClarifyTextLanguageNl,
+		ClarifyTextLanguageEn,
+		ClarifyTextLanguageEt,
+		ClarifyTextLanguageFi,
+		ClarifyTextLanguageFr,
+		ClarifyTextLanguageDe,
+		ClarifyTextLanguageEl,
+		ClarifyTextLanguageGu,
+		ClarifyTextLanguageHe,
+		ClarifyTextLanguageHi,
+		ClarifyTextLanguageHu,
+		ClarifyTextLanguageIs,
+		ClarifyTextLanguageId,
+		ClarifyTextLanguageGa,
+		ClarifyTextLanguageIt,
+		ClarifyTextLanguageKn,
+		ClarifyTextLanguageKy,
+		ClarifyTextLanguageLv,
+		ClarifyTextLanguageLt,
+		ClarifyTextLanguageLb,
+		ClarifyTextLanguageMk,
+		ClarifyTextLanguageMl,
+		ClarifyTextLanguageMr,
+		ClarifyTextLanguageNe,
+		ClarifyTextLanguageNb,
+		ClarifyTextLanguageFa,
+		ClarifyTextLanguagePl,
+		ClarifyTextLanguagePt,
+		ClarifyTextLanguageRo,
+		ClarifyTextLanguageRu,
+		ClarifyTextLanguageSa,
+		ClarifyTextLanguageSr,
+		ClarifyTextLanguageTn,
+		ClarifyTextLanguageSi,
+		ClarifyTextLanguageSk,
+		ClarifyTextLanguageSl,
+		ClarifyTextLanguageEs,
+		ClarifyTextLanguageSv,
+		ClarifyTextLanguageTl,
+		ClarifyTextLanguageTa,
+		ClarifyTextLanguageTt,
+		ClarifyTextLanguageTe,
+		ClarifyTextLanguageTr,
+		ClarifyTextLanguageUk,
+		ClarifyTextLanguageUr,
+		ClarifyTextLanguageYo,
+		ClarifyTextLanguageLij,
+		ClarifyTextLanguageXx,
 	}
 }
 
@@ -99646,6 +102089,22 @@ func FeatureGroupStatus_Values() []string {
 }
 
 const (
+	// FeatureStatusEnabled is a FeatureStatus enum value
+	FeatureStatusEnabled = "ENABLED"
+
+	// FeatureStatusDisabled is a FeatureStatus enum value
+	FeatureStatusDisabled = "DISABLED"
+)
+
+// FeatureStatus_Values returns all elements of the FeatureStatus enum
+func FeatureStatus_Values() []string {
+	return []string{
+		FeatureStatusEnabled,
+		FeatureStatusDisabled,
+	}
+}
+
+const (
 	// FeatureTypeIntegral is a FeatureType enum value
 	FeatureTypeIntegral = "Integral"
 
@@ -99889,6 +102348,12 @@ const (
 
 	// HyperParameterTuningJobStrategyTypeRandom is a HyperParameterTuningJobStrategyType enum value
 	HyperParameterTuningJobStrategyTypeRandom = "Random"
+
+	// HyperParameterTuningJobStrategyTypeHyperband is a HyperParameterTuningJobStrategyType enum value
+	HyperParameterTuningJobStrategyTypeHyperband = "Hyperband"
+
+	// HyperParameterTuningJobStrategyTypeGrid is a HyperParameterTuningJobStrategyType enum value
+	HyperParameterTuningJobStrategyTypeGrid = "Grid"
 )
 
 // HyperParameterTuningJobStrategyType_Values returns all elements of the HyperParameterTuningJobStrategyType enum
@@ -99896,6 +102361,8 @@ func HyperParameterTuningJobStrategyType_Values() []string {
 	return []string{
 		HyperParameterTuningJobStrategyTypeBayesian,
 		HyperParameterTuningJobStrategyTypeRandom,
+		HyperParameterTuningJobStrategyTypeHyperband,
+		HyperParameterTuningJobStrategyTypeGrid,
 	}
 }
 
@@ -101843,6 +104310,174 @@ const (
 
 	// ProductionVariantInstanceTypeMlP4d24xlarge is a ProductionVariantInstanceType enum value
 	ProductionVariantInstanceTypeMlP4d24xlarge = "ml.p4d.24xlarge"
+
+	// ProductionVariantInstanceTypeMlC7gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7gLarge = "ml.c7g.large"
+
+	// ProductionVariantInstanceTypeMlC7gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7gXlarge = "ml.c7g.xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g2xlarge = "ml.c7g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g4xlarge = "ml.c7g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g8xlarge = "ml.c7g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g12xlarge = "ml.c7g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC7g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC7g16xlarge = "ml.c7g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gLarge = "ml.m6g.large"
+
+	// ProductionVariantInstanceTypeMlM6gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gXlarge = "ml.m6g.xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g2xlarge = "ml.m6g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g4xlarge = "ml.m6g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g8xlarge = "ml.m6g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g12xlarge = "ml.m6g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlM6g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6g16xlarge = "ml.m6g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gdLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gdLarge = "ml.m6gd.large"
+
+	// ProductionVariantInstanceTypeMlM6gdXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gdXlarge = "ml.m6gd.xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd2xlarge = "ml.m6gd.2xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd4xlarge = "ml.m6gd.4xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd8xlarge = "ml.m6gd.8xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd12xlarge = "ml.m6gd.12xlarge"
+
+	// ProductionVariantInstanceTypeMlM6gd16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlM6gd16xlarge = "ml.m6gd.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gLarge = "ml.c6g.large"
+
+	// ProductionVariantInstanceTypeMlC6gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gXlarge = "ml.c6g.xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g2xlarge = "ml.c6g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g4xlarge = "ml.c6g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g8xlarge = "ml.c6g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g12xlarge = "ml.c6g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC6g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6g16xlarge = "ml.c6g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gdLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gdLarge = "ml.c6gd.large"
+
+	// ProductionVariantInstanceTypeMlC6gdXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gdXlarge = "ml.c6gd.xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd2xlarge = "ml.c6gd.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd4xlarge = "ml.c6gd.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd8xlarge = "ml.c6gd.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd12xlarge = "ml.c6gd.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gd16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gd16xlarge = "ml.c6gd.16xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gnLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gnLarge = "ml.c6gn.large"
+
+	// ProductionVariantInstanceTypeMlC6gnXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gnXlarge = "ml.c6gn.xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn2xlarge = "ml.c6gn.2xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn4xlarge = "ml.c6gn.4xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn8xlarge = "ml.c6gn.8xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn12xlarge = "ml.c6gn.12xlarge"
+
+	// ProductionVariantInstanceTypeMlC6gn16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlC6gn16xlarge = "ml.c6gn.16xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gLarge = "ml.r6g.large"
+
+	// ProductionVariantInstanceTypeMlR6gXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gXlarge = "ml.r6g.xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g2xlarge = "ml.r6g.2xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g4xlarge = "ml.r6g.4xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g8xlarge = "ml.r6g.8xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g12xlarge = "ml.r6g.12xlarge"
+
+	// ProductionVariantInstanceTypeMlR6g16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6g16xlarge = "ml.r6g.16xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gdLarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gdLarge = "ml.r6gd.large"
+
+	// ProductionVariantInstanceTypeMlR6gdXlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gdXlarge = "ml.r6gd.xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd2xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd2xlarge = "ml.r6gd.2xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd4xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd4xlarge = "ml.r6gd.4xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd8xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd8xlarge = "ml.r6gd.8xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd12xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd12xlarge = "ml.r6gd.12xlarge"
+
+	// ProductionVariantInstanceTypeMlR6gd16xlarge is a ProductionVariantInstanceType enum value
+	ProductionVariantInstanceTypeMlR6gd16xlarge = "ml.r6gd.16xlarge"
 )
 
 // ProductionVariantInstanceType_Values returns all elements of the ProductionVariantInstanceType enum
@@ -101932,6 +104567,62 @@ func ProductionVariantInstanceType_Values() []string {
 		ProductionVariantInstanceTypeMlG524xlarge,
 		ProductionVariantInstanceTypeMlG548xlarge,
 		ProductionVariantInstanceTypeMlP4d24xlarge,
+		ProductionVariantInstanceTypeMlC7gLarge,
+		ProductionVariantInstanceTypeMlC7gXlarge,
+		ProductionVariantInstanceTypeMlC7g2xlarge,
+		ProductionVariantInstanceTypeMlC7g4xlarge,
+		ProductionVariantInstanceTypeMlC7g8xlarge,
+		ProductionVariantInstanceTypeMlC7g12xlarge,
+		ProductionVariantInstanceTypeMlC7g16xlarge,
+		ProductionVariantInstanceTypeMlM6gLarge,
+		ProductionVariantInstanceTypeMlM6gXlarge,
+		ProductionVariantInstanceTypeMlM6g2xlarge,
+		ProductionVariantInstanceTypeMlM6g4xlarge,
+		ProductionVariantInstanceTypeMlM6g8xlarge,
+		ProductionVariantInstanceTypeMlM6g12xlarge,
+		ProductionVariantInstanceTypeMlM6g16xlarge,
+		ProductionVariantInstanceTypeMlM6gdLarge,
+		ProductionVariantInstanceTypeMlM6gdXlarge,
+		ProductionVariantInstanceTypeMlM6gd2xlarge,
+		ProductionVariantInstanceTypeMlM6gd4xlarge,
+		ProductionVariantInstanceTypeMlM6gd8xlarge,
+		ProductionVariantInstanceTypeMlM6gd12xlarge,
+		ProductionVariantInstanceTypeMlM6gd16xlarge,
+		ProductionVariantInstanceTypeMlC6gLarge,
+		ProductionVariantInstanceTypeMlC6gXlarge,
+		ProductionVariantInstanceTypeMlC6g2xlarge,
+		ProductionVariantInstanceTypeMlC6g4xlarge,
+		ProductionVariantInstanceTypeMlC6g8xlarge,
+		ProductionVariantInstanceTypeMlC6g12xlarge,
+		ProductionVariantInstanceTypeMlC6g16xlarge,
+		ProductionVariantInstanceTypeMlC6gdLarge,
+		ProductionVariantInstanceTypeMlC6gdXlarge,
+		ProductionVariantInstanceTypeMlC6gd2xlarge,
+		ProductionVariantInstanceTypeMlC6gd4xlarge,
+		ProductionVariantInstanceTypeMlC6gd8xlarge,
+		ProductionVariantInstanceTypeMlC6gd12xlarge,
+		ProductionVariantInstanceTypeMlC6gd16xlarge,
+		ProductionVariantInstanceTypeMlC6gnLarge,
+		ProductionVariantInstanceTypeMlC6gnXlarge,
+		ProductionVariantInstanceTypeMlC6gn2xlarge,
+		ProductionVariantInstanceTypeMlC6gn4xlarge,
+		ProductionVariantInstanceTypeMlC6gn8xlarge,
+		ProductionVariantInstanceTypeMlC6gn12xlarge,
+		ProductionVariantInstanceTypeMlC6gn16xlarge,
+		ProductionVariantInstanceTypeMlR6gLarge,
+		ProductionVariantInstanceTypeMlR6gXlarge,
+		ProductionVariantInstanceTypeMlR6g2xlarge,
+		ProductionVariantInstanceTypeMlR6g4xlarge,
+		ProductionVariantInstanceTypeMlR6g8xlarge,
+		ProductionVariantInstanceTypeMlR6g12xlarge,
+		ProductionVariantInstanceTypeMlR6g16xlarge,
+		ProductionVariantInstanceTypeMlR6gdLarge,
+		ProductionVariantInstanceTypeMlR6gdXlarge,
+		ProductionVariantInstanceTypeMlR6gd2xlarge,
+		ProductionVariantInstanceTypeMlR6gd4xlarge,
+		ProductionVariantInstanceTypeMlR6gd8xlarge,
+		ProductionVariantInstanceTypeMlR6gd12xlarge,
+		ProductionVariantInstanceTypeMlR6gd16xlarge,
 	}
 }
 
@@ -102108,6 +104799,18 @@ func RecommendationJobType_Values() []string {
 	return []string{
 		RecommendationJobTypeDefault,
 		RecommendationJobTypeAdvanced,
+	}
+}
+
+const (
+	// RecommendationStepTypeBenchmark is a RecommendationStepType enum value
+	RecommendationStepTypeBenchmark = "BENCHMARK"
+)
+
+// RecommendationStepType_Values returns all elements of the RecommendationStepType enum
+func RecommendationStepType_Values() []string {
+	return []string{
+		RecommendationStepTypeBenchmark,
 	}
 }
 
@@ -103246,6 +105949,12 @@ const (
 
 	// TrainingInstanceTypeMlG548xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlG548xlarge = "ml.g5.48xlarge"
+
+	// TrainingInstanceTypeMlTrn12xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlTrn12xlarge = "ml.trn1.2xlarge"
+
+	// TrainingInstanceTypeMlTrn132xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlTrn132xlarge = "ml.trn1.32xlarge"
 )
 
 // TrainingInstanceType_Values returns all elements of the TrainingInstanceType enum
@@ -103298,6 +106007,8 @@ func TrainingInstanceType_Values() []string {
 		TrainingInstanceTypeMlG512xlarge,
 		TrainingInstanceTypeMlG524xlarge,
 		TrainingInstanceTypeMlG548xlarge,
+		TrainingInstanceTypeMlTrn12xlarge,
+		TrainingInstanceTypeMlTrn132xlarge,
 	}
 }
 
@@ -103658,6 +106369,30 @@ func VariantStatus_Values() []string {
 		VariantStatusDeleting,
 		VariantStatusActivatingTraffic,
 		VariantStatusBaking,
+	}
+}
+
+const (
+	// WarmPoolResourceStatusAvailable is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusAvailable = "Available"
+
+	// WarmPoolResourceStatusTerminated is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusTerminated = "Terminated"
+
+	// WarmPoolResourceStatusReused is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusReused = "Reused"
+
+	// WarmPoolResourceStatusInUse is a WarmPoolResourceStatus enum value
+	WarmPoolResourceStatusInUse = "InUse"
+)
+
+// WarmPoolResourceStatus_Values returns all elements of the WarmPoolResourceStatus enum
+func WarmPoolResourceStatus_Values() []string {
+	return []string{
+		WarmPoolResourceStatusAvailable,
+		WarmPoolResourceStatusTerminated,
+		WarmPoolResourceStatusReused,
+		WarmPoolResourceStatusInUse,
 	}
 }
 

@@ -436,7 +436,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 // information about Region availability, see Amazon Web Services Regional Services
 // (https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4).
 //
-// Snow Family Devices and their capacities.
+// Snow Family devices and their capacities.
 //
 //   - Snow Family device type: SNC1_SSD Capacity: T14 Description: Snowcone
 //
@@ -453,6 +453,9 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //
 //   - Device type: EDGE Capacity: T100 Description: Snowball Edge Storage
 //     Optimized with EC2 Compute
+//
+//   - Device type: V3_5C Capacity: T32 Description: Snowball Edge Compute
+//     Optimized without GPU
 //
 //   - Device type: STANDARD Capacity: T50 Description: Original Snowball device
 //     This device is only available in the Ningxia, Beijing, and Singapore Amazon
@@ -1219,9 +1222,12 @@ func (c *Snowball) GetJobManifestRequest(input *GetJobManifestInput) (req *reque
 // action.
 //
 // The manifest is an encrypted file that you can download after your job enters
-// the WithCustomer status. The manifest is decrypted by using the UnlockCode
-// code value, when you pass both values to the Snow device through the Snowball
-// client when the client is started for the first time.
+// the WithCustomer status. This is the only valid status for calling this API
+// as the manifest and UnlockCode code value are used for securing your device
+// and should only be used when you have the device. The manifest is decrypted
+// by using the UnlockCode code value, when you pass both values to the Snow
+// device through the Snowball client when the client is started for the first
+// time.
 //
 // As a best practice, we recommend that you don't save a copy of an UnlockCode
 // value in the same location as the manifest file for that job. Saving these
@@ -1320,7 +1326,9 @@ func (c *Snowball) GetJobUnlockCodeRequest(input *GetJobUnlockCodeInput) (req *r
 // The UnlockCode value is a 29-character code with 25 alphanumeric characters
 // and 4 hyphens. This code is used to decrypt the manifest file when it is
 // passed along with the manifest to the Snow device through the Snowball client
-// when the client is started for the first time.
+// when the client is started for the first time. The only valid status for
+// calling this API is WithCustomer as the manifest and Unlock code values are
+// used for securing your device and should only be used when you have the device.
 //
 // As a best practice, we recommend that you don't save a copy of the UnlockCode
 // in the same location as the manifest file for that job. Saving these separately
@@ -1559,6 +1567,12 @@ func (c *Snowball) ListClusterJobsRequest(input *ListClusterJobsInput) (req *req
 		Name:       opListClusterJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1615,6 +1629,57 @@ func (c *Snowball) ListClusterJobsWithContext(ctx aws.Context, input *ListCluste
 	return out, req.Send()
 }
 
+// ListClusterJobsPages iterates over the pages of a ListClusterJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClusterJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListClusterJobs operation.
+//	pageNum := 0
+//	err := client.ListClusterJobsPages(params,
+//	    func(page *snowball.ListClusterJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Snowball) ListClusterJobsPages(input *ListClusterJobsInput, fn func(*ListClusterJobsOutput, bool) bool) error {
+	return c.ListClusterJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClusterJobsPagesWithContext same as ListClusterJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListClusterJobsPagesWithContext(ctx aws.Context, input *ListClusterJobsInput, fn func(*ListClusterJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClusterJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClusterJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListClusterJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListClusters = "ListClusters"
 
 // ListClustersRequest generates a "aws/request.Request" representing the
@@ -1645,6 +1710,12 @@ func (c *Snowball) ListClustersRequest(input *ListClustersInput) (req *request.R
 		Name:       opListClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1696,6 +1767,57 @@ func (c *Snowball) ListClustersWithContext(ctx aws.Context, input *ListClustersI
 	return out, req.Send()
 }
 
+// ListClustersPages iterates over the pages of a ListClusters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClusters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListClusters operation.
+//	pageNum := 0
+//	err := client.ListClustersPages(params,
+//	    func(page *snowball.ListClustersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Snowball) ListClustersPages(input *ListClustersInput, fn func(*ListClustersOutput, bool) bool) error {
+	return c.ListClustersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClustersPagesWithContext same as ListClustersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListClustersPagesWithContext(ctx aws.Context, input *ListClustersInput, fn func(*ListClustersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClustersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClustersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListClustersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCompatibleImages = "ListCompatibleImages"
 
 // ListCompatibleImagesRequest generates a "aws/request.Request" representing the
@@ -1726,6 +1848,12 @@ func (c *Snowball) ListCompatibleImagesRequest(input *ListCompatibleImagesInput)
 		Name:       opListCompatibleImages,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1782,6 +1910,57 @@ func (c *Snowball) ListCompatibleImagesWithContext(ctx aws.Context, input *ListC
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListCompatibleImagesPages iterates over the pages of a ListCompatibleImages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCompatibleImages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCompatibleImages operation.
+//	pageNum := 0
+//	err := client.ListCompatibleImagesPages(params,
+//	    func(page *snowball.ListCompatibleImagesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Snowball) ListCompatibleImagesPages(input *ListCompatibleImagesInput, fn func(*ListCompatibleImagesOutput, bool) bool) error {
+	return c.ListCompatibleImagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCompatibleImagesPagesWithContext same as ListCompatibleImagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListCompatibleImagesPagesWithContext(ctx aws.Context, input *ListCompatibleImagesInput, fn func(*ListCompatibleImagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCompatibleImagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCompatibleImagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCompatibleImagesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListJobs = "ListJobs"
@@ -1954,6 +2133,12 @@ func (c *Snowball) ListLongTermPricingRequest(input *ListLongTermPricingInput) (
 		Name:       opListLongTermPricing,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2006,6 +2191,57 @@ func (c *Snowball) ListLongTermPricingWithContext(ctx aws.Context, input *ListLo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListLongTermPricingPages iterates over the pages of a ListLongTermPricing operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLongTermPricing method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLongTermPricing operation.
+//	pageNum := 0
+//	err := client.ListLongTermPricingPages(params,
+//	    func(page *snowball.ListLongTermPricingOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Snowball) ListLongTermPricingPages(input *ListLongTermPricingInput, fn func(*ListLongTermPricingOutput, bool) bool) error {
+	return c.ListLongTermPricingPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLongTermPricingPagesWithContext same as ListLongTermPricingPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListLongTermPricingPagesWithContext(ctx aws.Context, input *ListLongTermPricingInput, fn func(*ListLongTermPricingOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLongTermPricingInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLongTermPricingRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLongTermPricingOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opUpdateCluster = "UpdateCluster"
@@ -3334,7 +3570,7 @@ type CreateClusterInput struct {
 	// ShippingOption is a required field
 	ShippingOption *string `type:"string" required:"true" enum:"ShippingOption"`
 
-	// The type of Snow Family Devices to use for this cluster.
+	// The type of Snow Family devices to use for this cluster.
 	//
 	// For cluster jobs, Amazon Web Services Snow Family currently supports only
 	// the EDGE device type.
@@ -3620,7 +3856,7 @@ type CreateJobInput struct {
 	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
 
-	// The type of Snow Family Devices to use for this job.
+	// The type of Snow Family devices to use for this job.
 	//
 	// For cluster jobs, Amazon Web Services Snow Family currently supports only
 	// the EDGE device type.
@@ -3829,6 +4065,8 @@ func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 type CreateLongTermPricingInput struct {
 	_ struct{} `type:"structure"`
 
+	// snowballty
+	//
 	// Specifies whether the current long-term pricing type for the device should
 	// be renewed.
 	IsLongTermPricingAutoRenew *bool `type:"boolean"`
@@ -3839,7 +4077,7 @@ type CreateLongTermPricingInput struct {
 	// LongTermPricingType is a required field
 	LongTermPricingType *string `type:"string" required:"true" enum:"LongTermPricingType"`
 
-	// The type of Snow Family Devices to use for the long-term pricing job.
+	// The type of Snow Family devices to use for the long-term pricing job.
 	SnowballType *string `type:"string" enum:"Type"`
 }
 
@@ -6614,7 +6852,7 @@ type LongTermPricingListEntry struct {
 	// A new device that replaces a device that is ordered with long-term pricing.
 	ReplacementJob *string `min:"39" type:"string"`
 
-	// The type of Snow Family Devices associated with this long-term pricing job.
+	// The type of Snow Family devices associated with this long-term pricing job.
 	SnowballType *string `type:"string" enum:"Type"`
 }
 
@@ -7918,6 +8156,9 @@ const (
 
 	// CapacityNoPreference is a Capacity enum value
 	CapacityNoPreference = "NoPreference"
+
+	// CapacityT32 is a Capacity enum value
+	CapacityT32 = "T32"
 )
 
 // Capacity_Values returns all elements of the Capacity enum
@@ -7931,6 +8172,7 @@ func Capacity_Values() []string {
 		CapacityT8,
 		CapacityT14,
 		CapacityNoPreference,
+		CapacityT32,
 	}
 }
 
@@ -8207,6 +8449,9 @@ const (
 
 	// TypeSnc1Ssd is a Type enum value
 	TypeSnc1Ssd = "SNC1_SSD"
+
+	// TypeV35c is a Type enum value
+	TypeV35c = "V3_5C"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -8219,5 +8464,6 @@ func Type_Values() []string {
 		TypeEdgeS,
 		TypeSnc1Hdd,
 		TypeSnc1Ssd,
+		TypeV35c,
 	}
 }

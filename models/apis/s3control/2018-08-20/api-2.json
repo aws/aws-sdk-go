@@ -25,6 +25,9 @@
       "output":{"shape":"CreateAccessPointResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "CreateAccessPointForObjectLambda":{
@@ -41,6 +44,9 @@
       "output":{"shape":"CreateAccessPointForObjectLambdaResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "CreateBucket":{
@@ -77,6 +83,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "CreateMultiRegionAccessPoint":{
@@ -94,7 +103,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "DeleteAccessPoint":{
       "name":"DeleteAccessPoint",
@@ -105,6 +117,9 @@
       "input":{"shape":"DeleteAccessPointRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteAccessPointForObjectLambda":{
@@ -116,6 +131,9 @@
       "input":{"shape":"DeleteAccessPointForObjectLambdaRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteAccessPointPolicy":{
@@ -127,6 +145,9 @@
       "input":{"shape":"DeleteAccessPointPolicyRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteAccessPointPolicyForObjectLambda":{
@@ -138,6 +159,9 @@
       "input":{"shape":"DeleteAccessPointPolicyForObjectLambdaRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteBucket":{
@@ -149,6 +173,9 @@
       "input":{"shape":"DeleteBucketRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteBucketLifecycleConfiguration":{
@@ -160,6 +187,9 @@
       "input":{"shape":"DeleteBucketLifecycleConfigurationRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteBucketPolicy":{
@@ -171,6 +201,9 @@
       "input":{"shape":"DeleteBucketPolicyRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteBucketTagging":{
@@ -183,6 +216,9 @@
       "input":{"shape":"DeleteBucketTaggingRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteJobTagging":{
@@ -200,6 +236,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteMultiRegionAccessPoint":{
@@ -217,7 +256,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "DeletePublicAccessBlock":{
       "name":"DeletePublicAccessBlock",
@@ -228,6 +270,9 @@
       "input":{"shape":"DeletePublicAccessBlockRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteStorageLensConfiguration":{
@@ -239,6 +284,9 @@
       "input":{"shape":"DeleteStorageLensConfigurationRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DeleteStorageLensConfigurationTagging":{
@@ -251,6 +299,9 @@
       "output":{"shape":"DeleteStorageLensConfigurationTaggingResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DescribeJob":{
@@ -269,6 +320,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "DescribeMultiRegionAccessPointOperation":{
@@ -282,7 +336,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "GetAccessPoint":{
       "name":"GetAccessPoint",
@@ -294,6 +351,9 @@
       "output":{"shape":"GetAccessPointResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetAccessPointConfigurationForObjectLambda":{
@@ -306,6 +366,9 @@
       "output":{"shape":"GetAccessPointConfigurationForObjectLambdaResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetAccessPointForObjectLambda":{
@@ -318,6 +381,9 @@
       "output":{"shape":"GetAccessPointForObjectLambdaResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetAccessPointPolicy":{
@@ -330,6 +396,9 @@
       "output":{"shape":"GetAccessPointPolicyResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetAccessPointPolicyForObjectLambda":{
@@ -342,6 +411,9 @@
       "output":{"shape":"GetAccessPointPolicyForObjectLambdaResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetAccessPointPolicyStatus":{
@@ -354,6 +426,9 @@
       "output":{"shape":"GetAccessPointPolicyStatusResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetAccessPointPolicyStatusForObjectLambda":{
@@ -366,6 +441,9 @@
       "output":{"shape":"GetAccessPointPolicyStatusForObjectLambdaResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetBucket":{
@@ -378,6 +456,9 @@
       "output":{"shape":"GetBucketResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetBucketLifecycleConfiguration":{
@@ -390,6 +471,9 @@
       "output":{"shape":"GetBucketLifecycleConfigurationResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetBucketPolicy":{
@@ -402,6 +486,9 @@
       "output":{"shape":"GetBucketPolicyResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetBucketTagging":{
@@ -412,6 +499,21 @@
       },
       "input":{"shape":"GetBucketTaggingRequest"},
       "output":{"shape":"GetBucketTaggingResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetBucketVersioning":{
+      "name":"GetBucketVersioning",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/bucket/{name}/versioning"
+      },
+      "input":{"shape":"GetBucketVersioningRequest"},
+      "output":{"shape":"GetBucketVersioningResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
       }
@@ -431,6 +533,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetMultiRegionAccessPoint":{
@@ -444,7 +549,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "GetMultiRegionAccessPointPolicy":{
       "name":"GetMultiRegionAccessPointPolicy",
@@ -457,7 +565,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "GetMultiRegionAccessPointPolicyStatus":{
       "name":"GetMultiRegionAccessPointPolicyStatus",
@@ -470,7 +581,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "GetPublicAccessBlock":{
       "name":"GetPublicAccessBlock",
@@ -485,6 +599,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetStorageLensConfiguration":{
@@ -497,6 +614,9 @@
       "output":{"shape":"GetStorageLensConfigurationResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "GetStorageLensConfigurationTagging":{
@@ -509,6 +629,9 @@
       "output":{"shape":"GetStorageLensConfigurationTaggingResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "ListAccessPoints":{
@@ -521,6 +644,9 @@
       "output":{"shape":"ListAccessPointsResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "ListAccessPointsForObjectLambda":{
@@ -533,6 +659,9 @@
       "output":{"shape":"ListAccessPointsForObjectLambdaResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "ListJobs":{
@@ -550,6 +679,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "ListMultiRegionAccessPoints":{
@@ -563,7 +695,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "ListRegionalBuckets":{
       "name":"ListRegionalBuckets",
@@ -575,6 +710,9 @@
       "output":{"shape":"ListRegionalBucketsResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "ListStorageLensConfigurations":{
@@ -587,6 +725,9 @@
       "output":{"shape":"ListStorageLensConfigurationsResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "PutAccessPointConfigurationForObjectLambda":{
@@ -602,6 +743,9 @@
       },
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "PutAccessPointPolicy":{
@@ -617,6 +761,9 @@
       },
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "PutAccessPointPolicyForObjectLambda":{
@@ -632,6 +779,9 @@
       },
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "PutBucketLifecycleConfiguration":{
@@ -644,7 +794,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "PutBucketPolicy":{
       "name":"PutBucketPolicy",
@@ -660,7 +813,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "PutBucketTagging":{
       "name":"PutBucketTagging",
@@ -669,6 +825,21 @@
         "requestUri":"/v20180820/bucket/{name}/tagging"
       },
       "input":{"shape":"PutBucketTaggingRequest"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "PutBucketVersioning":{
+      "name":"PutBucketVersioning",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/bucket/{name}/versioning"
+      },
+      "input":{"shape":"PutBucketVersioningRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
@@ -694,6 +865,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "PutMultiRegionAccessPointPolicy":{
@@ -711,7 +885,10 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
-      "httpChecksumRequired":true
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
     },
     "PutPublicAccessBlock":{
       "name":"PutPublicAccessBlock",
@@ -722,6 +899,9 @@
       "input":{"shape":"PutPublicAccessBlockRequest"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "PutStorageLensConfiguration":{
@@ -737,6 +917,9 @@
       },
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "PutStorageLensConfigurationTagging":{
@@ -753,6 +936,9 @@
       "output":{"shape":"PutStorageLensConfigurationTaggingResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "UpdateJobPriority":{
@@ -771,6 +957,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     },
     "UpdateJobStatus":{
@@ -790,6 +979,9 @@
       ],
       "endpoint":{
         "hostPrefix":"{AccountId}."
+      },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
       }
     }
   },
@@ -975,6 +1167,13 @@
       "max":255,
       "min":3
     },
+    "BucketVersioningStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Suspended"
+      ]
+    },
     "Buckets":{
       "type":"list",
       "member":{
@@ -1008,6 +1207,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1036,6 +1236,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1045,7 +1246,10 @@
           "location":"uri",
           "locationName":"name"
         },
-        "Bucket":{"shape":"BucketName"},
+        "Bucket":{
+          "shape":"BucketName",
+          "contextParam":{"name":"Bucket"}
+        },
         "VpcConfiguration":{"shape":"VpcConfiguration"},
         "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"}
       }
@@ -1074,6 +1278,7 @@
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         },
@@ -1114,6 +1319,7 @@
         },
         "OutpostId":{
           "shape":"NonEmptyMaxLength64String",
+          "contextParam":{"name":"OutpostId"},
           "location":"header",
           "locationName":"x-amz-outpost-id"
         }
@@ -1144,6 +1350,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1197,6 +1404,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1228,6 +1436,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1248,6 +1457,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1268,12 +1478,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Name":{
           "shape":"AccessPointName",
+          "contextParam":{"name":"AccessPointName"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1288,12 +1500,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Name":{
           "shape":"AccessPointName",
+          "contextParam":{"name":"AccessPointName"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1308,12 +1522,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1328,12 +1544,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1348,12 +1566,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1368,12 +1588,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1388,6 +1610,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1421,6 +1644,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1444,6 +1668,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1464,6 +1689,7 @@
         },
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1484,6 +1710,7 @@
         },
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1504,6 +1731,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1530,6 +1758,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1617,6 +1846,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1643,6 +1873,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1671,6 +1902,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1697,12 +1929,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Name":{
           "shape":"AccessPointName",
+          "contextParam":{"name":"AccessPointName"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1723,6 +1957,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1749,12 +1984,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Name":{
           "shape":"AccessPointName",
+          "contextParam":{"name":"AccessPointName"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1775,12 +2012,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Name":{
           "shape":"AccessPointName",
+          "contextParam":{"name":"AccessPointName"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1809,12 +2048,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1835,12 +2076,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1861,12 +2104,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1889,12 +2134,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         }
@@ -1907,6 +2154,36 @@
         "TagSet":{"shape":"S3TagSet"}
       }
     },
+    "GetBucketVersioningRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Bucket"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetBucketVersioningResult":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"BucketVersioningStatus"},
+        "MFADelete":{
+          "shape":"MFADeleteStatus",
+          "locationName":"MfaDelete"
+        }
+      }
+    },
     "GetJobTaggingRequest":{
       "type":"structure",
       "required":[
@@ -1916,6 +2193,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1942,6 +2220,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1968,6 +2247,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -1994,6 +2274,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2024,6 +2305,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2044,6 +2326,7 @@
         },
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2071,6 +2354,7 @@
         },
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2524,7 +2808,15 @@
       "type":"structure",
       "members":{
         "Prefix":{"shape":"Prefix"},
-        "Tags":{"shape":"S3TagSet"}
+        "Tags":{"shape":"S3TagSet"},
+        "ObjectSizeGreaterThan":{
+          "shape":"ObjectSizeGreaterThanBytes",
+          "box":true
+        },
+        "ObjectSizeLessThan":{
+          "shape":"ObjectSizeLessThanBytes",
+          "box":true
+        }
       }
     },
     "LifecycleRuleFilter":{
@@ -2532,7 +2824,15 @@
       "members":{
         "Prefix":{"shape":"Prefix"},
         "Tag":{"shape":"S3Tag"},
-        "And":{"shape":"LifecycleRuleAndOperator"}
+        "And":{"shape":"LifecycleRuleAndOperator"},
+        "ObjectSizeGreaterThan":{
+          "shape":"ObjectSizeGreaterThanBytes",
+          "box":true
+        },
+        "ObjectSizeLessThan":{
+          "shape":"ObjectSizeLessThanBytes",
+          "box":true
+        }
       }
     },
     "LifecycleRules":{
@@ -2548,6 +2848,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2577,12 +2878,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"querystring",
           "locationName":"bucket"
         },
@@ -2611,6 +2914,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2646,6 +2950,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2675,6 +2980,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2691,6 +2997,7 @@
         },
         "OutpostId":{
           "shape":"NonEmptyMaxLength64String",
+          "contextParam":{"name":"OutpostId"},
           "location":"header",
           "locationName":"x-amz-outpost-id"
         }
@@ -2723,6 +3030,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -2742,6 +3050,21 @@
       }
     },
     "Location":{"type":"string"},
+    "MFA":{"type":"string"},
+    "MFADelete":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "MFADeleteStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "ManifestPrefixString":{
       "type":"string",
       "max":512,
@@ -2868,10 +3191,15 @@
       "max":64,
       "min":1
     },
+    "NoncurrentVersionCount":{"type":"integer"},
     "NoncurrentVersionExpiration":{
       "type":"structure",
       "members":{
-        "NoncurrentDays":{"shape":"Days"}
+        "NoncurrentDays":{"shape":"Days"},
+        "NewerNoncurrentVersions":{
+          "shape":"NoncurrentVersionCount",
+          "box":true
+        }
       }
     },
     "NoncurrentVersionTransition":{
@@ -2927,7 +3255,9 @@
       "type":"string",
       "enum":[
         "GetObject-Range",
-        "GetObject-PartNumber"
+        "GetObject-PartNumber",
+        "HeadObject-Range",
+        "HeadObject-PartNumber"
       ]
     },
     "ObjectLambdaAllowedFeaturesList":{
@@ -2977,7 +3307,12 @@
     },
     "ObjectLambdaTransformationConfigurationAction":{
       "type":"string",
-      "enum":["GetObject"]
+      "enum":[
+        "GetObject",
+        "HeadObject",
+        "ListObjects",
+        "ListObjectsV2"
+      ]
     },
     "ObjectLambdaTransformationConfigurationActionsList":{
       "type":"list",
@@ -2994,6 +3329,8 @@
       }
     },
     "ObjectLockEnabledForBucket":{"type":"boolean"},
+    "ObjectSizeGreaterThanBytes":{"type":"long"},
+    "ObjectSizeLessThanBytes":{"type":"long"},
     "OperationName":{
       "type":"string",
       "enum":[
@@ -3075,6 +3412,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -3097,6 +3435,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -3119,12 +3458,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Name":{
           "shape":"AccessPointName",
+          "contextParam":{"name":"AccessPointName"},
           "location":"uri",
           "locationName":"name"
         },
@@ -3140,12 +3481,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         },
@@ -3167,12 +3510,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         },
@@ -3194,12 +3539,14 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
         },
         "Bucket":{
           "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
           "location":"uri",
           "locationName":"name"
         },
@@ -3211,6 +3558,38 @@
       },
       "payload":"Tagging"
     },
+    "PutBucketVersioningRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Bucket",
+        "VersioningConfiguration"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "MFA":{
+          "shape":"MFA",
+          "location":"header",
+          "locationName":"x-amz-mfa"
+        },
+        "VersioningConfiguration":{
+          "shape":"VersioningConfiguration",
+          "locationName":"VersioningConfiguration",
+          "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+        }
+      },
+      "payload":"VersioningConfiguration"
+    },
     "PutJobTaggingRequest":{
       "type":"structure",
       "required":[
@@ -3221,6 +3600,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -3259,6 +3639,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -3290,6 +3671,7 @@
         },
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -3312,6 +3694,7 @@
         },
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -3335,6 +3718,7 @@
         },
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -4007,6 +4391,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -4044,6 +4429,7 @@
       "members":{
         "AccountId":{
           "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
           "hostLabel":true,
           "location":"header",
           "locationName":"x-amz-account-id"
@@ -4073,6 +4459,16 @@
         "StatusUpdateReason":{"shape":"JobStatusUpdateReason"}
       }
     },
+    "VersioningConfiguration":{
+      "type":"structure",
+      "members":{
+        "MFADelete":{
+          "shape":"MFADelete",
+          "locationName":"MfaDelete"
+        },
+        "Status":{"shape":"BucketVersioningStatus"}
+      }
+    },
     "VpcConfiguration":{
       "type":"structure",
       "required":["VpcId"],
@@ -4084,6 +4480,12 @@
       "type":"string",
       "max":1024,
       "min":1
+    }
+  },
+  "clientContextParams":{
+    "UseArnRegion":{
+      "documentation":"Enables this client to use an ARN's region when constructing an endpoint instead of the client's configured region.",
+      "type":"boolean"
     }
   }
 }

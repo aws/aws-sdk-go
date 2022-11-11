@@ -392,6 +392,25 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CreateTrafficDistributionGroup":{
+      "name":"CreateTrafficDistributionGroup",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/traffic-distribution-group"
+      },
+      "input":{"shape":"CreateTrafficDistributionGroupRequest"},
+      "output":{"shape":"CreateTrafficDistributionGroupResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ResourceNotReadyException"}
+      ]
+    },
     "CreateUseCase":{
       "name":"CreateUseCase",
       "http":{
@@ -581,6 +600,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "DeleteTrafficDistributionGroup":{
+      "name":"DeleteTrafficDistributionGroup",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/traffic-distribution-group/{TrafficDistributionGroupId}"
+      },
+      "input":{"shape":"DeleteTrafficDistributionGroupRequest"},
+      "output":{"shape":"DeleteTrafficDistributionGroupResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
       ]
@@ -855,6 +890,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "DescribeTrafficDistributionGroup":{
+      "name":"DescribeTrafficDistributionGroup",
+      "http":{
+        "method":"GET",
+        "requestUri":"/traffic-distribution-group/{TrafficDistributionGroupId}"
+      },
+      "input":{"shape":"DescribeTrafficDistributionGroupRequest"},
+      "output":{"shape":"DescribeTrafficDistributionGroupResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeUser":{
       "name":"DescribeUser",
       "http":{
@@ -1053,6 +1104,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DismissUserContact":{
+      "name":"DismissUserContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/users/{InstanceId}/{UserId}/contact"
+      },
+      "input":{"shape":"DismissUserContactRequest"},
+      "output":{"shape":"DismissUserContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "GetContactAttributes":{
       "name":"GetContactAttributes",
       "http":{
@@ -1146,6 +1214,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetTrafficDistribution":{
+      "name":"GetTrafficDistribution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/traffic-distribution/{Id}"
+      },
+      "input":{"shape":"GetTrafficDistributionRequest"},
+      "output":{"shape":"GetTrafficDistributionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListAgentStatuses":{
@@ -1575,6 +1659,21 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ListTrafficDistributionGroups":{
+      "name":"ListTrafficDistributionGroups",
+      "http":{
+        "method":"GET",
+        "requestUri":"/traffic-distribution-groups"
+      },
+      "input":{"shape":"ListTrafficDistributionGroupsRequest"},
+      "output":{"shape":"ListTrafficDistributionGroupsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListUseCases":{
       "name":"ListUseCases",
       "http":{
@@ -1654,6 +1753,25 @@
         {"shape":"ResourceInUseException"},
         {"shape":"IdempotencyException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ReplicateInstance":{
+      "name":"ReplicateInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/instance/{InstanceId}/replicate"
+      },
+      "input":{"shape":"ReplicateInstanceRequest"},
+      "output":{"shape":"ReplicateInstanceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceNotReadyException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "ResumeContactRecording":{
@@ -2364,6 +2482,23 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateTrafficDistribution":{
+      "name":"UpdateTrafficDistribution",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/traffic-distribution/{Id}"
+      },
+      "input":{"shape":"UpdateTrafficDistributionRequest"},
+      "output":{"shape":"UpdateTrafficDistributionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdateUserHierarchy":{
       "name":"UpdateUserHierarchy",
       "http":{
@@ -2848,6 +2983,12 @@
     "AvailableNumbersList":{
       "type":"list",
       "member":{"shape":"AvailableNumberSummary"}
+    },
+    "AwsRegion":{
+      "type":"string",
+      "max":31,
+      "min":8,
+      "pattern":"[a-z]{2}(-[a-z]+){1,2}(-[0-9])?"
     },
     "Boolean":{"type":"boolean"},
     "BotName":{
@@ -3507,6 +3648,30 @@
         "Arn":{"shape":"TaskTemplateArn"}
       }
     },
+    "CreateTrafficDistributionGroupRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "InstanceId"
+      ],
+      "members":{
+        "Name":{"shape":"Name128"},
+        "Description":{"shape":"Description250"},
+        "InstanceId":{"shape":"InstanceIdOrArn"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateTrafficDistributionGroupResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TrafficDistributionGroupId"},
+        "Arn":{"shape":"TrafficDistributionGroupArn"}
+      }
+    },
     "CreateUseCaseRequest":{
       "type":"structure",
       "required":[
@@ -3874,6 +4039,22 @@
       }
     },
     "DeleteTaskTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteTrafficDistributionGroupRequest":{
+      "type":"structure",
+      "required":["TrafficDistributionGroupId"],
+      "members":{
+        "TrafficDistributionGroupId":{
+          "shape":"TrafficDistributionGroupIdOrArn",
+          "location":"uri",
+          "locationName":"TrafficDistributionGroupId"
+        }
+      }
+    },
+    "DeleteTrafficDistributionGroupResponse":{
       "type":"structure",
       "members":{
       }
@@ -4288,6 +4469,23 @@
         "SecurityProfile":{"shape":"SecurityProfile"}
       }
     },
+    "DescribeTrafficDistributionGroupRequest":{
+      "type":"structure",
+      "required":["TrafficDistributionGroupId"],
+      "members":{
+        "TrafficDistributionGroupId":{
+          "shape":"TrafficDistributionGroupIdOrArn",
+          "location":"uri",
+          "locationName":"TrafficDistributionGroupId"
+        }
+      }
+    },
+    "DescribeTrafficDistributionGroupResponse":{
+      "type":"structure",
+      "members":{
+        "TrafficDistributionGroup":{"shape":"TrafficDistributionGroup"}
+      }
+    },
     "DescribeUserHierarchyGroupRequest":{
       "type":"structure",
       "required":[
@@ -4385,6 +4583,12 @@
       "type":"string",
       "max":4096,
       "min":0
+    },
+    "Description250":{
+      "type":"string",
+      "max":250,
+      "min":1,
+      "pattern":"(^[\\S].*[\\S]$)|(^[\\S]$)"
     },
     "DestinationNotAllowedException":{
       "type":"structure",
@@ -4604,10 +4808,51 @@
         }
       }
     },
+    "DismissUserContactRequest":{
+      "type":"structure",
+      "required":[
+        "UserId",
+        "InstanceId",
+        "ContactId"
+      ],
+      "members":{
+        "UserId":{
+          "shape":"UserId",
+          "location":"uri",
+          "locationName":"UserId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{"shape":"ContactId"}
+      }
+    },
+    "DismissUserContactResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisplayName":{
       "type":"string",
       "max":256,
       "min":1
+    },
+    "Distribution":{
+      "type":"structure",
+      "required":[
+        "Region",
+        "Percentage"
+      ],
+      "members":{
+        "Region":{"shape":"AwsRegion"},
+        "Percentage":{"shape":"Percentage"}
+      }
+    },
+    "DistributionList":{
+      "type":"list",
+      "member":{"shape":"Distribution"}
     },
     "DuplicateResourceException":{
       "type":"structure",
@@ -4753,7 +4998,10 @@
     "GetFederationTokenResponse":{
       "type":"structure",
       "members":{
-        "Credentials":{"shape":"Credentials"}
+        "Credentials":{"shape":"Credentials"},
+        "SignInUrl":{"shape":"Url"},
+        "UserArn":{"shape":"ARN"},
+        "UserId":{"shape":"AgentResourceId"}
       }
     },
     "GetMetricDataRequest":{
@@ -4835,6 +5083,25 @@
         "LastModifiedTime":{"shape":"timestamp"},
         "CreatedTime":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
+      }
+    },
+    "GetTrafficDistributionRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"TrafficDistributionGroupIdOrArn",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetTrafficDistributionResponse":{
+      "type":"structure",
+      "members":{
+        "TelephonyConfig":{"shape":"TelephonyConfig"},
+        "Id":{"shape":"TrafficDistributionGroupId"},
+        "Arn":{"shape":"TrafficDistributionGroupArn"}
       }
     },
     "Grouping":{
@@ -5136,6 +5403,10 @@
         "OutboundCallsEnabled":{"shape":"OutboundCallsEnabled"}
       }
     },
+    "InstanceArn":{
+      "type":"string",
+      "pattern":"arn:(aws|aws-us-gov):connect:[a-z]{2}-[a-z]+-[0-9-]{1}:[0-9]{1,20}:instance/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
     "InstanceAttributeType":{
       "type":"string",
       "enum":[
@@ -5159,6 +5430,12 @@
       "type":"string",
       "max":100,
       "min":1
+    },
+    "InstanceIdOrArn":{
+      "type":"string",
+      "max":250,
+      "min":1,
+      "pattern":"^(arn:(aws|aws-us-gov):connect:[a-z]{2}-[a-z]+-[0-9]{1}:[0-9]{1,20}:instance/)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
     "InstanceStatus":{
       "type":"string",
@@ -5253,7 +5530,8 @@
         "VOICE_ID",
         "PINPOINT_APP",
         "WISDOM_ASSISTANT",
-        "WISDOM_KNOWLEDGE_BASE"
+        "WISDOM_KNOWLEDGE_BASE",
+        "CASES_DOMAIN"
       ]
     },
     "InternalServiceException":{
@@ -6249,6 +6527,33 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTrafficDistributionGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResult10",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "InstanceId":{
+          "shape":"InstanceIdOrArn",
+          "location":"querystring",
+          "locationName":"instanceId"
+        }
+      }
+    },
+    "ListTrafficDistributionGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "TrafficDistributionGroupSummaryList":{"shape":"TrafficDistributionGroupSummaryList"}
+      }
+    },
     "ListUseCasesRequest":{
       "type":"structure",
       "required":[
@@ -6401,6 +6706,12 @@
       "max":512,
       "min":0
     },
+    "Name128":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"(^[\\S].*[\\S]$)|(^[\\S]$)"
+    },
     "NextToken":{"type":"string"},
     "NextToken2500":{
       "type":"string",
@@ -6469,6 +6780,11 @@
     "Password":{
       "type":"string",
       "pattern":"/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/"
+    },
+    "Percentage":{
+      "type":"integer",
+      "max":100,
+      "min":0
     },
     "PermissionsList":{
       "type":"list",
@@ -7180,6 +7496,34 @@
         }
       }
     },
+    "ReplicateInstanceRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ReplicaRegion",
+        "ReplicaAlias"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceIdOrArn",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ReplicaRegion":{"shape":"AwsRegion"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "ReplicaAlias":{"shape":"DirectoryAlias"}
+      }
+    },
+    "ReplicateInstanceResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"InstanceId"},
+        "Arn":{"shape":"ARN"}
+      }
+    },
     "RequiredFieldInfo":{
       "type":"structure",
       "members":{
@@ -7214,6 +7558,14 @@
         "Message":{"shape":"Message"}
       },
       "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "ResourceNotReadyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":409},
       "exception":true
     },
     "ResourceType":{
@@ -8078,6 +8430,13 @@
         "INACTIVE"
       ]
     },
+    "TelephonyConfig":{
+      "type":"structure",
+      "required":["Distributions"],
+      "members":{
+        "Distributions":{"shape":"DistributionList"}
+      }
+    },
     "Threshold":{
       "type":"structure",
       "members":{
@@ -8099,6 +8458,57 @@
     },
     "TimeZone":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
+    "TrafficDistributionGroup":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TrafficDistributionGroupId"},
+        "Arn":{"shape":"TrafficDistributionGroupArn"},
+        "Name":{"shape":"Name128"},
+        "Description":{"shape":"Description250"},
+        "InstanceArn":{"shape":"InstanceArn"},
+        "Status":{"shape":"TrafficDistributionGroupStatus"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "TrafficDistributionGroupArn":{
+      "type":"string",
+      "pattern":"^arn:(aws|aws-us-gov):connect:[a-z]{2}-[a-z]+-[0-9]{1}:[0-9]{1,20}:traffic-distribution-group/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "TrafficDistributionGroupId":{
+      "type":"string",
+      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "TrafficDistributionGroupIdOrArn":{
+      "type":"string",
+      "pattern":"^(arn:(aws|aws-us-gov):connect:[a-z]{2}-[a-z-]+-[0-9]{1}:[0-9]{1,20}:traffic-distribution-group/)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "TrafficDistributionGroupStatus":{
+      "type":"string",
+      "enum":[
+        "CREATION_IN_PROGRESS",
+        "ACTIVE",
+        "CREATION_FAILED",
+        "PENDING_DELETION",
+        "DELETION_FAILED",
+        "UPDATE_IN_PROGRESS"
+      ]
+    },
+    "TrafficDistributionGroupSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"TrafficDistributionGroupId"},
+        "Arn":{"shape":"TrafficDistributionGroupArn"},
+        "Name":{"shape":"Name128"},
+        "InstanceArn":{"shape":"InstanceArn"},
+        "Status":{"shape":"TrafficDistributionGroupStatus"}
+      }
+    },
+    "TrafficDistributionGroupSummaryList":{
+      "type":"list",
+      "member":{"shape":"TrafficDistributionGroupSummary"},
+      "max":10,
+      "min":0
+    },
     "TrafficType":{
       "type":"string",
       "enum":[
@@ -8780,6 +9190,23 @@
         "CreatedTime":{"shape":"timestamp"}
       }
     },
+    "UpdateTrafficDistributionRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"TrafficDistributionGroupIdOrArn",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "TelephonyConfig":{"shape":"TelephonyConfig"}
+      }
+    },
+    "UpdateTrafficDistributionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateUserHierarchyGroupNameRequest":{
       "type":"structure",
       "required":[
@@ -8920,6 +9347,7 @@
         }
       }
     },
+    "Url":{"type":"string"},
     "UrlReference":{
       "type":"structure",
       "members":{
@@ -8996,7 +9424,9 @@
       "members":{
         "FirstName":{"shape":"AgentFirstName"},
         "LastName":{"shape":"AgentLastName"},
-        "Email":{"shape":"Email"}
+        "Email":{"shape":"Email"},
+        "SecondaryEmail":{"shape":"Email"},
+        "Mobile":{"shape":"PhoneNumber"}
       }
     },
     "UserIdentityInfoLite":{

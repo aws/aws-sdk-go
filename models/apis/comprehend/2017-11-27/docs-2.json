@@ -3,13 +3,14 @@
   "service": "<p>Amazon Comprehend is an AWS service for gaining insight into the content of documents. Use these actions to determine the topics contained in your documents, the topics they discuss, the predominant sentiment expressed in them, the predominant language used, and more.</p>",
   "operations": {
     "BatchDetectDominantLanguage": "<p>Determines the dominant language of the input text for a batch of documents. For a list of languages that Amazon Comprehend can detect, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html\">Amazon Comprehend Supported Languages</a>. </p>",
-    "BatchDetectEntities": "<p>Inspects the text of a batch of documents for named entities and returns information about them. For more information about named entities, see <a>how-entities</a> </p>",
+    "BatchDetectEntities": "<p>Inspects the text of a batch of documents for named entities and returns information about them. For more information about named entities, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html\">Entities</a> in the Comprehend Developer Guide. </p>",
     "BatchDetectKeyPhrases": "<p>Detects the key noun phrases found in a batch of documents.</p>",
     "BatchDetectSentiment": "<p>Inspects a batch of documents and returns an inference of the prevailing sentiment, <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>, in each one.</p>",
-    "BatchDetectSyntax": "<p>Inspects the text of a batch of documents for the syntax and part of speech of the words in the document and returns information about them. For more information, see <a>how-syntax</a>.</p>",
+    "BatchDetectSyntax": "<p>Inspects the text of a batch of documents for the syntax and part of speech of the words in the document and returns information about them. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>",
+    "BatchDetectTargetedSentiment": "<p>Inspects a batch of documents and returns a sentiment analysis for each entity identified in the documents.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
     "ClassifyDocument": "<p>Creates a new document classification request to analyze a single document in real-time, using a previously created and trained custom model and an endpoint.</p>",
     "ContainsPiiEntities": "<p>Analyzes input text for the presence of personally identifiable information (PII) and returns the labels of identified PII entity types such as name, address, bank account number, or phone number.</p>",
-    "CreateDocumentClassifier": "<p>Creates a new document classifier that you can use to categorize documents. To create a classifier, you provide a set of training documents that labeled with the categories that you want to use. After the classifier is trained you can use it to categorize a set of labeled documents into the categories. For more information, see <a>how-document-classification</a>.</p>",
+    "CreateDocumentClassifier": "<p>Creates a new document classifier that you can use to categorize documents. To create a classifier, you provide a set of training documents that labeled with the categories that you want to use. After the classifier is trained you can use it to categorize a set of labeled documents into the categories. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html\">Document Classification</a> in the Comprehend Developer Guide. </p>",
     "CreateEndpoint": "<p>Creates a model-specific endpoint for synchronous inference for a previously trained custom model For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>",
     "CreateEntityRecognizer": "<p>Creates an entity recognizer using submitted files. After your <code>CreateEntityRecognizer</code> request is submitted, you can check job status using the API. </p>",
     "DeleteDocumentClassifier": "<p>Deletes a previously created document classifier</p> <p>Only those classifiers that are in terminated states (IN_ERROR, TRAINED) will be deleted. If an active inference job is using the model, a <code>ResourceInUseException</code> will be returned.</p> <p>This is an asynchronous action that puts the classifier into a DELETING state, and it is then removed by a background job. Once removed, the classifier disappears from your account and is no longer available for use. </p>",
@@ -30,11 +31,12 @@
     "DescribeTargetedSentimentDetectionJob": "<p>Gets the properties associated with a targeted sentiment detection job. Use this operation to get the status of the job.</p>",
     "DescribeTopicsDetectionJob": "<p>Gets the properties associated with a topic detection job. Use this operation to get the status of a detection job.</p>",
     "DetectDominantLanguage": "<p>Determines the dominant language of the input text. For a list of languages that Amazon Comprehend can detect, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html\">Amazon Comprehend Supported Languages</a>. </p>",
-    "DetectEntities": "<p>Inspects text for named entities, and returns information about them. For more information, about named entities, see <a>how-entities</a>. </p>",
+    "DetectEntities": "<p>Inspects text for named entities, and returns information about them. For more information, about named entities, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html\">Entities</a> in the Comprehend Developer Guide.</p>",
     "DetectKeyPhrases": "<p>Detects the key noun phrases found in the text. </p>",
     "DetectPiiEntities": "<p>Inspects the input text for entities that contain personally identifiable information (PII) and returns information about them.</p>",
     "DetectSentiment": "<p>Inspects text and returns an inference of the prevailing sentiment (<code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>). </p>",
-    "DetectSyntax": "<p>Inspects text for syntax and the part of speech of words in the document. For more information, <a>how-syntax</a>.</p>",
+    "DetectSyntax": "<p>Inspects text for syntax and the part of speech of words in the document. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>",
+    "DetectTargetedSentiment": "<p>Inspects the input text and returns a sentiment analysis for each entity identified in the text.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
     "ImportModel": "<p>Creates a new custom model that replicates a source custom model that you import. The source model can be in your AWS account or another one.</p> <p>If the source model is in another AWS account, then it must have a resource-based policy that authorizes you to import it.</p> <p>The source model must be in the same AWS region that you're using when you import. You can't import a model that's in a different region.</p>",
     "ListDocumentClassificationJobs": "<p>Gets a list of the documentation classification jobs that you have submitted.</p>",
     "ListDocumentClassifierSummaries": "<p>Gets a list of summaries of the document classifiers that you have created</p>",
@@ -198,6 +200,22 @@
       "refs": {
       }
     },
+    "BatchDetectTargetedSentimentItemResult": {
+      "base": "<p>Analysis results for one of the documents in the batch.</p>",
+      "refs": {
+        "ListOfDetectTargetedSentimentResult$member": null
+      }
+    },
+    "BatchDetectTargetedSentimentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDetectTargetedSentimentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BatchItemError": {
       "base": "<p>Describes an error that occurred while processing a document in a batch. The operation returns on <code>BatchItemError</code> object for each document that contained an error.</p>",
       "refs": {
@@ -211,7 +229,8 @@
         "BatchDetectEntitiesResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
         "BatchDetectKeyPhrasesResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
         "BatchDetectSentimentResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
-        "BatchDetectSyntaxResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>"
+        "BatchDetectSyntaxResponse$ErrorList": "<p>A list containing one object for each document that contained an error. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If there are no errors in the batch, the <code>ErrorList</code> is empty.</p>",
+        "BatchDetectTargetedSentimentResponse$ErrorList": "<p>List of errors that the operation can return.</p>"
       }
     },
     "BatchSizeLimitExceededException": {
@@ -378,21 +397,23 @@
       "refs": {
         "ClassifyDocumentRequest$Text": "<p>The document text to be analyzed.</p>",
         "CustomerInputStringList$member": null,
-        "DetectDominantLanguageRequest$Text": "<p>A UTF-8 text string. Each string should contain at least 20 characters and must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
-        "DetectEntitiesRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
-        "DetectKeyPhrasesRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
-        "DetectSentimentRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
-        "DetectSyntaxRequest$Text": "<p>A UTF-8 string. Each string must contain fewer that 5,000 bytes of UTF encoded characters.</p>"
+        "DetectDominantLanguageRequest$Text": "<p>A UTF-8 text string. The string must contain at least 20 characters. The maximum string size is 100 KB.</p>",
+        "DetectEntitiesRequest$Text": "<p>A UTF-8 text string. The maximum string size is 100 KB.</p>",
+        "DetectKeyPhrasesRequest$Text": "<p>A UTF-8 text string. The string must contain less than 100 KB of UTF-8 encoded characters.</p>",
+        "DetectSentimentRequest$Text": "<p>A UTF-8 text string. The maximum string size is 5 KB.</p> <note> <p>Amazon Comprehend performs real-time sentiment analysis on the first 500 characters of the input text and ignores any additional text in the input.</p> </note>",
+        "DetectSyntaxRequest$Text": "<p>A UTF-8 string. The maximum string size is 5 KB.</p>",
+        "DetectTargetedSentimentRequest$Text": "<p>A UTF-8 text string. The maximum string length is 5 KB.</p>"
       }
     },
     "CustomerInputStringList": {
       "base": null,
       "refs": {
-        "BatchDetectDominantLanguageRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document should contain at least 20 characters and must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
-        "BatchDetectEntitiesRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
-        "BatchDetectKeyPhrasesRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer than 5,000 bytes of UTF-8 encoded characters.</p>",
-        "BatchDetectSentimentRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
-        "BatchDetectSyntaxRequest$TextList": "<p>A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>"
+        "BatchDetectDominantLanguageRequest$TextList": "<p>A list containing the UTF-8 encoded text of the input documents. The list can contain a maximum of 25 documents. Each document should contain at least 20 characters. The maximum size of each document is 5 KB.</p>",
+        "BatchDetectEntitiesRequest$TextList": "<p>A list containing the UTF-8 encoded text of the input documents. The list can contain a maximum of 25 documents. The maximum size of each document is 5 KB.</p>",
+        "BatchDetectKeyPhrasesRequest$TextList": "<p>A list containing the UTF-8 encoded text of the input documents. The list can contain a maximum of 25 documents. The maximum size of each document is 5 KB.</p>",
+        "BatchDetectSentimentRequest$TextList": "<p>A list containing the UTF-8 encoded text of the input documents. The list can contain a maximum of 25 documents. The maximum size of each document is 5 KB. </p> <note> <p>Amazon Comprehend performs real-time sentiment analysis on the first 500 characters of the input text and ignores any additional text in the input.</p> </note>",
+        "BatchDetectSyntaxRequest$TextList": "<p>A list containing the UTF-8 encoded text of the input documents. The list can contain a maximum of 25 documents. The maximum size for each document is 5 KB.</p>",
+        "BatchDetectTargetedSentimentRequest$TextList": "<p>A list containing the UTF-8 encoded text of the input documents. The list can contain a maximum of 25 documents. The maximum size of each document is 5 KB.</p>"
       }
     },
     "DeleteDocumentClassifierRequest": {
@@ -625,6 +646,16 @@
       "refs": {
       }
     },
+    "DetectTargetedSentimentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectTargetedSentimentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DocumentClass": {
       "base": "<p>Specifies the class that categorizes the document being analyzed</p>",
       "refs": {
@@ -688,7 +719,7 @@
       }
     },
     "DocumentClassifierInputDataConfig": {
-      "base": "<p>The input properties for training a document classifier. </p> <p>For more information on how the input file is formatted, see <a>prep-classifier-data</a>. </p>",
+      "base": "<p>The input properties for training a document classifier. </p> <p>For more information on how the input file is formatted, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/prep-classifier-data.html\">Preparing training data</a> in the Comprehend Developer Guide. </p>",
       "refs": {
         "CreateDocumentClassifierRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
         "DocumentClassifierProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the document classifier for training.</p>"
@@ -1044,7 +1075,9 @@
         "SentimentScore$Positive": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>POSITIVE</code> sentiment.</p>",
         "SentimentScore$Negative": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEGATIVE</code> sentiment.</p>",
         "SentimentScore$Neutral": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEUTRAL</code> sentiment.</p>",
-        "SentimentScore$Mixed": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>MIXED</code> sentiment.</p>"
+        "SentimentScore$Mixed": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>MIXED</code> sentiment.</p>",
+        "TargetedSentimentMention$Score": "<p>Model confidence that the entity is relevant. Value range is zero to one, where one is highest confidence.</p>",
+        "TargetedSentimentMention$GroupScore": "<p>The confidence that all the entities mentioned in the group relate to the same entity.</p>"
       }
     },
     "IamRoleArn": {
@@ -1136,24 +1169,28 @@
         "BatchDetectKeyPhrasesItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
         "BatchDetectSentimentItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
         "BatchDetectSyntaxItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
+        "BatchDetectTargetedSentimentItemResult$Index": "<p>The zero-based index of this result in the input list.</p>",
         "BatchItemError$Index": "<p>The zero-based index of the document in the input list.</p>",
         "ClassifierMetadata$NumberOfLabels": "<p>The number of labels in the input data. </p>",
         "ClassifierMetadata$NumberOfTrainedDocuments": "<p>The number of documents in the input data that were used to train the classifier. Typically this is 80 to 90 percent of the input documents.</p>",
         "ClassifierMetadata$NumberOfTestDocuments": "<p>The number of documents in the input data that were used to test the classifier. Typically this is 10 to 20 percent of the input documents, up to 10,000 documents.</p>",
         "DocumentClassifierSummary$NumberOfVersions": "<p>The number of versions you created.</p>",
-        "Entity$BeginOffset": "<p>A character offset in the input text that shows where the entity begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
-        "Entity$EndOffset": "<p>A character offset in the input text that shows where the entity ends. The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point. </p>",
+        "Entity$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the entity.</p>",
+        "Entity$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the entity.</p>",
         "EntityRecognizerMetadata$NumberOfTrainedDocuments": "<p> The number of documents in the input data that were used to train the entity recognizer. Typically this is 80 to 90 percent of the input documents.</p>",
         "EntityRecognizerMetadata$NumberOfTestDocuments": "<p> The number of documents in the input data that were used to test the entity recognizer. Typically this is 10 to 20 percent of the input documents.</p>",
         "EntityRecognizerMetadataEntityTypesListItem$NumberOfTrainMentions": "<p>Indicates the number of times the given entity type was seen in the training data. </p>",
         "EntityRecognizerSummary$NumberOfVersions": "<p> The number of versions you created.</p>",
-        "KeyPhrase$BeginOffset": "<p>A character offset in the input text that shows where the key phrase begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
-        "KeyPhrase$EndOffset": "<p>A character offset in the input text where the key phrase ends. The offset returns the position of each UTF-8 code point in the string. A <code>code point</code> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
-        "PiiEntity$BeginOffset": "<p>A character offset in the input text that shows where the PII entity begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
-        "PiiEntity$EndOffset": "<p>A character offset in the input text that shows where the PII entity ends. The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
+        "KeyPhrase$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the key phrase.</p>",
+        "KeyPhrase$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the key phrase.</p>",
+        "ListOfDescriptiveMentionIndices$member": null,
+        "PiiEntity$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the entity.</p>",
+        "PiiEntity$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the entity.</p>",
         "SyntaxToken$TokenId": "<p>A unique identifier for a token.</p>",
         "SyntaxToken$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the word.</p>",
         "SyntaxToken$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the word.</p>",
+        "TargetedSentimentMention$BeginOffset": "<p>The offset into the document text where the mention begins.</p>",
+        "TargetedSentimentMention$EndOffset": "<p>The offset into the document text where the mention ends.</p>",
         "TopicsDetectionJobProperties$NumberOfTopics": "<p>The number of topics to detect supplied when you created the topic detection job. The default is 10. </p>"
       }
     },
@@ -1367,6 +1404,7 @@
         "BatchDetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "BatchDetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "BatchDetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
+        "BatchDetectTargetedSentimentRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only supported language.</p>",
         "ContainsPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "CreateDocumentClassifierRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the following languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
         "CreateEntityRecognizerRequest$LanguageCode": "<p> You can specify any of the following languages supported by Amazon Comprehend: English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), German (\"de\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
@@ -1374,6 +1412,7 @@
         "DetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "DetectPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "DetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
+        "DetectTargetedSentimentRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only supported language.</p>",
         "DocumentClassifierProperties$LanguageCode": "<p>The language code for the language of the documents that the classifier was trained on.</p>",
         "EntitiesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "EntityRecognizerProperties$LanguageCode": "<p> The language of the input documents. All documents must be in the same language. Only English (\"en\") is currently supported.</p>",
@@ -1386,7 +1425,7 @@
         "StartKeyPhrasesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "StartPiiEntitiesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "StartSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
-        "StartTargetedSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
+        "StartTargetedSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only supported language.</p>",
         "TargetedSentimentDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>"
       }
     },
@@ -1496,6 +1535,12 @@
         "ClassifyDocumentResponse$Classes": "<p>The classes used by the document being analyzed. These are used for multi-class trained models. Individual classes are mutually exclusive and each document is expected to have only a single class assigned to it. For example, an animal can be a dog or a cat, but not both at the same time. </p>"
       }
     },
+    "ListOfDescriptiveMentionIndices": {
+      "base": null,
+      "refs": {
+        "TargetedSentimentEntity$DescriptiveMentionIndex": "<p>One or more index into the Mentions array that provides the best name for the entity group.</p>"
+      }
+    },
     "ListOfDetectDominantLanguageResult": {
       "base": null,
       "refs": {
@@ -1526,6 +1571,12 @@
         "BatchDetectSyntaxResponse$ResultList": "<p>A list of objects containing the results of the operation. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If all of the documents contain an error, the <code>ResultList</code> is empty.</p>"
       }
     },
+    "ListOfDetectTargetedSentimentResult": {
+      "base": null,
+      "refs": {
+        "BatchDetectTargetedSentimentResponse$ResultList": "<p>A list of objects containing the results of the operation. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If all of the documents contain an error, the <code>ResultList</code> is empty.</p>"
+      }
+    },
     "ListOfDocumentReadFeatureTypes": {
       "base": null,
       "refs": {
@@ -1543,7 +1594,7 @@
       "base": null,
       "refs": {
         "BatchDetectEntitiesItemResult$Entities": "<p>One or more <a>Entity</a> objects, one for each entity detected in the document.</p>",
-        "DetectEntitiesResponse$Entities": "<p>A collection of entities identified in the input text. For each entity, the response provides the entity text, entity type, where the entity text begins and ends, and the level of confidence that Amazon Comprehend has in the detection. </p> <p>If your request uses a custom entity recognition model, Amazon Comprehend detects the entities that the model is trained to recognize. Otherwise, it detects the default entity types. For a list of default entity types, see <a>how-entities</a>.</p>"
+        "DetectEntitiesResponse$Entities": "<p>A collection of entities identified in the input text. For each entity, the response provides the entity text, entity type, where the entity text begins and ends, and the level of confidence that Amazon Comprehend has in the detection. </p> <p>If your request uses a custom entity recognition model, Amazon Comprehend detects the entities that the model is trained to recognize. Otherwise, it detects the default entity types. For a list of default entity types, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html\">Entities</a> in the Comprehend Developer Guide. </p>"
       }
     },
     "ListOfEntityLabels": {
@@ -1565,6 +1616,12 @@
         "ClassifyDocumentResponse$Labels": "<p>The labels used the document being analyzed. These are used for multi-label trained models. Individual labels represent different categories that are related in some manner and are not mutually exclusive. For example, a movie can be just an action movie, or it can be an action movie, a science fiction movie, and a comedy, all at the same time. </p>"
       }
     },
+    "ListOfMentions": {
+      "base": null,
+      "refs": {
+        "TargetedSentimentEntity$Mentions": "<p>An array of mentions of the entity in the document. The array represents a co-reference group. See <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html#how-targeted-sentiment-values\"> Co-reference group</a> for an example. </p>"
+      }
+    },
     "ListOfPiiEntities": {
       "base": null,
       "refs": {
@@ -1581,7 +1638,14 @@
       "base": null,
       "refs": {
         "BatchDetectSyntaxItemResult$SyntaxTokens": "<p>The syntax tokens for the words in the document, one token for each word.</p>",
-        "DetectSyntaxResponse$SyntaxTokens": "<p>A collection of syntax tokens describing the text. For each token, the response provides the text, the token type, where the text begins and ends, and the level of confidence that Amazon Comprehend has that the token is correct. For a list of token types, see <a>how-syntax</a>.</p>"
+        "DetectSyntaxResponse$SyntaxTokens": "<p>A collection of syntax tokens describing the text. For each token, the response provides the text, the token type, where the text begins and ends, and the level of confidence that Amazon Comprehend has that the token is correct. For a list of token types, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>"
+      }
+    },
+    "ListOfTargetedSentimentEntities": {
+      "base": null,
+      "refs": {
+        "BatchDetectTargetedSentimentItemResult$Entities": "<p>An array of targeted sentiment entities.</p>",
+        "DetectTargetedSentimentResponse$Entities": "<p>Targeted sentiment analysis for each of the entities identified in the input text.</p>"
       }
     },
     "ListPiiEntitiesDetectionJobsRequest": {
@@ -1659,6 +1723,12 @@
         "ListTopicsDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>"
       }
     },
+    "MentionSentiment": {
+      "base": "<p>Contains the sentiment and sentiment score for one mention of an entity.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
+      "refs": {
+        "TargetedSentimentMention$MentionSentiment": "<p>Contains the sentiment and sentiment score for the mention.</p>"
+      }
+    },
     "ModelStatus": {
       "base": null,
       "refs": {
@@ -1699,9 +1769,9 @@
       }
     },
     "PartOfSpeechTag": {
-      "base": "<p>Identifies the part of speech represented by the token and gives the confidence that Amazon Comprehend has that the part of speech was correctly identified. For more information about the parts of speech that Amazon Comprehend can identify, see <a>how-syntax</a>.</p>",
+      "base": "<p>Identifies the part of speech represented by the token and gives the confidence that Amazon Comprehend has that the part of speech was correctly identified. For more information about the parts of speech that Amazon Comprehend can identify, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>",
       "refs": {
-        "SyntaxToken$PartOfSpeech": "<p>Provides the part of speech label and the confidence level that Amazon Comprehend has that the part of speech was correctly identified. For more information, see <a>how-syntax</a>.</p>"
+        "SyntaxToken$PartOfSpeech": "<p>Provides the part of speech label and the confidence level that Amazon Comprehend has that the part of speech was correctly identified. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>"
       }
     },
     "PartOfSpeechTagType": {
@@ -1824,10 +1894,10 @@
         "AugmentedManifestsListItem$AnnotationDataS3Uri": "<p>The S3 prefix to the annotation files that are referred in the augmented manifest file.</p>",
         "AugmentedManifestsListItem$SourceDocumentsS3Uri": "<p>The S3 prefix to the source files (PDFs) that are referred to in the augmented manifest file.</p>",
         "DocumentClassifierInputDataConfig$S3Uri": "<p>The Amazon S3 URI for the input data. The S3 bucket must be in the same region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files.</p> <p>For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix is a single file, Amazon Comprehend uses that file as input. If more than one file begins with the prefix, Amazon Comprehend uses all of them as input.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.</p>",
-        "DocumentClassifierInputDataConfig$TestS3Uri": "<p>The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the same AWS Region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files. </p>",
+        "DocumentClassifierInputDataConfig$TestS3Uri": "<p>This specifies the Amazon S3 location where the test annotations for an entity recognizer are located. The URI must be in the same AWS Region as the API endpoint that you are calling. </p>",
         "DocumentClassifierOutputDataConfig$S3Uri": "<p>When you use the <code>OutputDataConfig</code> object while creating a custom classifier, you specify the Amazon S3 location where you want to write the confusion matrix. The URI must be in the same region as the API endpoint that you are calling. The location is used as the prefix for the actual location of this output file.</p> <p>When the custom classifier job is finished, the service creates the output file in a directory specific to the job. The <code>S3Uri</code> field contains the location of the output file, called <code>output.tar.gz</code>. It is a compressed archive that contains the confusion matrix.</p>",
         "EntityRecognizerAnnotations$S3Uri": "<p> Specifies the Amazon S3 location where the annotations for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",
-        "EntityRecognizerAnnotations$TestS3Uri": "<p>This specifies the Amazon S3 location where the test annotations for an entity recognizer are located. The URI must be in the same AWS Region as the API endpoint that you are calling.</p>",
+        "EntityRecognizerAnnotations$TestS3Uri": "<p> Specifies the Amazon S3 location where the test annotations for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",
         "EntityRecognizerDocuments$S3Uri": "<p> Specifies the Amazon S3 location where the training documents for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",
         "EntityRecognizerDocuments$TestS3Uri": "<p> Specifies the Amazon S3 location where the test documents for an entity recognizer are located. The URI must be in the same AWS Region as the API endpoint that you are calling.</p>",
         "EntityRecognizerEntityList$S3Uri": "<p>Specifies the Amazon S3 location where the entity list is located. The URI must be in the same region as the API endpoint that you are calling.</p>",
@@ -1871,14 +1941,16 @@
       "base": "<p>Describes the level of confidence that Amazon Comprehend has in the accuracy of its detection of sentiments.</p>",
       "refs": {
         "BatchDetectSentimentItemResult$SentimentScore": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its sentiment detection.</p>",
-        "DetectSentimentResponse$SentimentScore": "<p>An object that lists the sentiments, and their corresponding confidence levels.</p>"
+        "DetectSentimentResponse$SentimentScore": "<p>An object that lists the sentiments, and their corresponding confidence levels.</p>",
+        "MentionSentiment$SentimentScore": null
       }
     },
     "SentimentType": {
       "base": null,
       "refs": {
         "BatchDetectSentimentItemResult$Sentiment": "<p>The sentiment detected in the document.</p>",
-        "DetectSentimentResponse$Sentiment": "<p>The inferred sentiment that Amazon Comprehend has the highest level of confidence in.</p>"
+        "DetectSentimentResponse$Sentiment": "<p>The inferred sentiment that Amazon Comprehend has the highest level of confidence in.</p>",
+        "MentionSentiment$Sentiment": "<p>The sentiment of the mention. </p>"
       }
     },
     "Split": {
@@ -2074,8 +2146,8 @@
         "BatchItemError$ErrorMessage": "<p>A text description of the error.</p>",
         "BatchSizeLimitExceededException$Message": null,
         "ConcurrentModificationException$Message": null,
-        "ContainsPiiEntitiesRequest$Text": "<p>Creates a new document classification request to analyze a single document in real-time, returning personally identifiable information (PII) entity labels.</p>",
-        "DetectPiiEntitiesRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
+        "ContainsPiiEntitiesRequest$Text": "<p>A UTF-8 text string. The maximum string size is 100 KB.</p>",
+        "DetectPiiEntitiesRequest$Text": "<p>A UTF-8 text string. The maximum string size is 100 KB.</p>",
         "DocumentClass$Name": "<p>The name of the class.</p>",
         "DocumentLabel$Name": "<p>The name of the label.</p>",
         "DominantLanguage$LanguageCode": "<p>The RFC 5646 language code for the dominant language. For more information about RFC 5646, see <a href=\"https://tools.ietf.org/html/rfc5646\">Tags for Identifying Languages</a> on the <i>IETF Tools</i> web site.</p>",
@@ -2119,6 +2191,7 @@
         "ResourceNotFoundException$Message": null,
         "ResourceUnavailableException$Message": null,
         "SyntaxToken$Text": "<p>The word that was recognized in the source text.</p>",
+        "TargetedSentimentMention$Text": "<p>The text in the document that identifies the entity.</p>",
         "TextSizeLimitExceededException$Message": null,
         "TooManyRequestsException$Message": null,
         "TooManyTagKeysException$Message": null,
@@ -2232,6 +2305,24 @@
         "ListTargetedSentimentDetectionJobsResponse$TargetedSentimentDetectionJobPropertiesList": "<p>A list containing the properties of each job that is returned.</p>"
       }
     },
+    "TargetedSentimentEntity": {
+      "base": "<p>Information about one of the entities found by targeted sentiment analysis.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
+      "refs": {
+        "ListOfTargetedSentimentEntities$member": null
+      }
+    },
+    "TargetedSentimentEntityType": {
+      "base": null,
+      "refs": {
+        "TargetedSentimentMention$Type": "<p>The type of the entity. Amazon Comprehend supports a variety of <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html#how-targeted-sentiment-entities\">entity types</a>.</p>"
+      }
+    },
+    "TargetedSentimentMention": {
+      "base": "<p>Information about one mention of an entity. The mention information includes the location of the mention in the text and the sentiment of the mention.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
+      "refs": {
+        "ListOfMentions$member": null
+      }
+    },
     "TextSizeLimitExceededException": {
       "base": "<p>The size of the input text exceeds the limit. Use a smaller document.</p>",
       "refs": {
@@ -2333,7 +2424,7 @@
       }
     },
     "UnsupportedLanguageException": {
-      "base": "<p>Amazon Comprehend can't process the language of the input text. For custom entity recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are accepted. For a list of supported languages, see <a>supported-languages</a>. </p>",
+      "base": "<p>Amazon Comprehend can't process the language of the input text. For custom entity recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are accepted. For a list of supported languages, <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html\">Supported languages</a> in the Comprehend Developer Guide. </p>",
       "refs": {
       }
     },

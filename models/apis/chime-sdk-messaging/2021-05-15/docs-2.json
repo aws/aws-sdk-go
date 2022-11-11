@@ -41,7 +41,7 @@
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK messaging resource.</p>",
     "PutChannelMembershipPreferences": "<p>Sets the membership preferences of an <code>AppInstanceUser</code> for the specified channel. The <code>AppInstanceUser</code> must be a member of the channel. Only the <code>AppInstanceUser</code> who owns the membership can set preferences. Users in the <code>AppInstanceAdmin</code> and channel moderator roles can't set preferences for other users. Banned users can't set membership preferences for the channel from which they are banned.</p>",
     "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
-    "SearchChannels": "<p>Allows an <code>AppInstanceUser</code> to search the channels that they belong to. The <code>AppInstanceUser</code> can search by membership or external ID. An <code>AppInstanceAdmin</code> can search across all channels within the <code>AppInstance</code>.</p>",
+    "SearchChannels": "<p>Allows <code>ChimeBearer</code> to search channels by channel members. AppInstanceUsers can search across the channels that they belong to. AppInstanceAdmins can search across all channels.</p>",
     "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
     "TagResource": "<p>Applies the specified tags to the specified Amazon Chime SDK messaging resource.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified Amazon Chime SDK messaging resource.</p>",
@@ -1376,7 +1376,7 @@
         "ChannelMessageSummary$LastUpdatedTimestamp": "<p>The time at which a message was last updated.</p>",
         "ChannelMessageSummary$LastEditedTimestamp": "<p>The time at which a message was last edited.</p>",
         "ChannelModerator$CreatedTimestamp": "<p>The time at which the moderator was created.</p>",
-        "ChannelSummary$LastMessageTimestamp": "<p>The time at which the last message in a channel was sent.</p>",
+        "ChannelSummary$LastMessageTimestamp": "<p>The time at which the last persistent message in a channel was sent.</p>",
         "ListChannelMessagesRequest$NotBefore": "<p>The initial or starting time stamp for your requested messages.</p>",
         "ListChannelMessagesRequest$NotAfter": "<p>The final or ending time stamp for your requested messages.</p>"
       }

@@ -2140,7 +2140,11 @@ func (c *MemoryDB) FailoverShardRequest(input *FailoverShardInput) (req *request
 
 // FailoverShard API operation for Amazon MemoryDB.
 //
-// # Used to failover a shard
+// Used to failover a shard. This API is designed for testing the behavior of
+// your application in case of MemoryDB failover. It is not designed to be used
+// as a production-level tool for initiating a failover to overcome a problem
+// you may have with the cluster. Moreover, in certain conditions such as large
+// scale operational events, Amazon may block this API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3782,6 +3786,11 @@ type Cluster struct {
 	// The cluster's configuration endpoint
 	ClusterEndpoint *Endpoint `type:"structure"`
 
+	// Enables data tiering. Data tiering is only supported for clusters using the
+	// r6gd node type. This parameter must be set when using r6gd nodes. For more
+	// information, see Data tiering (https://docs.aws.amazon.com/memorydb/latest/devguide/data-tiering.html).
+	DataTiering *string `type:"string" enum:"DataTieringStatus"`
+
 	// A description of the cluster
 	Description *string `type:"string"`
 
@@ -3896,6 +3905,12 @@ func (s *Cluster) SetAvailabilityMode(v string) *Cluster {
 // SetClusterEndpoint sets the ClusterEndpoint field's value.
 func (s *Cluster) SetClusterEndpoint(v *Endpoint) *Cluster {
 	s.ClusterEndpoint = v
+	return s
+}
+
+// SetDataTiering sets the DataTiering field's value.
+func (s *Cluster) SetDataTiering(v string) *Cluster {
+	s.DataTiering = &v
 	return s
 }
 
@@ -4650,6 +4665,11 @@ type CreateClusterInput struct {
 	// ClusterName is a required field
 	ClusterName *string `type:"string" required:"true"`
 
+	// Enables data tiering. Data tiering is only supported for clusters using the
+	// r6gd node type. This parameter must be set when using r6gd nodes. For more
+	// information, see Data tiering (https://docs.aws.amazon.com/memorydb/latest/devguide/data-tiering.html).
+	DataTiering *bool `type:"boolean"`
+
 	// An optional description of the cluster.
 	Description *string `type:"string"`
 
@@ -4662,6 +4682,24 @@ type CreateClusterInput struct {
 	// Specifies the weekly time range during which maintenance on the cluster is
 	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period.
+	//
+	// Valid values for ddd are:
+	//
+	//    * sun
+	//
+	//    * mon
+	//
+	//    * tue
+	//
+	//    * wed
+	//
+	//    * thu
+	//
+	//    * fri
+	//
+	//    * sat
+	//
+	// Example: sun:23:00-mon:01:30
 	MaintenanceWindow *string `type:"string"`
 
 	// The compute and memory capacity of the nodes in the cluster.
@@ -4779,6 +4817,12 @@ func (s *CreateClusterInput) SetAutoMinorVersionUpgrade(v bool) *CreateClusterIn
 // SetClusterName sets the ClusterName field's value.
 func (s *CreateClusterInput) SetClusterName(v string) *CreateClusterInput {
 	s.ClusterName = &v
+	return s
+}
+
+// SetDataTiering sets the DataTiering field's value.
+func (s *CreateClusterInput) SetDataTiering(v bool) *CreateClusterInput {
+	s.DataTiering = &v
 	return s
 }
 
@@ -10003,6 +10047,11 @@ type Snapshot struct {
 	// The configuration of the cluster from which the snapshot was taken
 	ClusterConfiguration *ClusterConfiguration `type:"structure"`
 
+	// Enables data tiering. Data tiering is only supported for clusters using the
+	// r6gd node type. This parameter must be set when using r6gd nodes. For more
+	// information, see Data tiering (https://docs.aws.amazon.com/memorydb/latest/devguide/data-tiering.html).
+	DataTiering *string `type:"string" enum:"DataTieringStatus"`
+
 	// The ID of the KMS key used to encrypt the snapshot.
 	KmsKeyId *string `type:"string"`
 
@@ -10045,6 +10094,12 @@ func (s *Snapshot) SetARN(v string) *Snapshot {
 // SetClusterConfiguration sets the ClusterConfiguration field's value.
 func (s *Snapshot) SetClusterConfiguration(v *ClusterConfiguration) *Snapshot {
 	s.ClusterConfiguration = v
+	return s
+}
+
+// SetDataTiering sets the DataTiering field's value.
+func (s *Snapshot) SetDataTiering(v string) *Snapshot {
+	s.DataTiering = &v
 	return s
 }
 
@@ -11411,7 +11466,27 @@ type UpdateClusterInput struct {
 	// existing cluster and create it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
-	// The maintenance window to update
+	// Specifies the weekly time range during which maintenance on the cluster is
+	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period.
+	//
+	// Valid values for ddd are:
+	//
+	//    * sun
+	//
+	//    * mon
+	//
+	//    * tue
+	//
+	//    * wed
+	//
+	//    * thu
+	//
+	//    * fri
+	//
+	//    * sat
+	//
+	// Example: sun:23:00-mon:01:30
 	MaintenanceWindow *string `type:"string"`
 
 	// A valid node type that you want to scale this cluster up or down to.
@@ -12194,6 +12269,22 @@ func AuthenticationType_Values() []string {
 	return []string{
 		AuthenticationTypePassword,
 		AuthenticationTypeNoPassword,
+	}
+}
+
+const (
+	// DataTieringStatusTrue is a DataTieringStatus enum value
+	DataTieringStatusTrue = "true"
+
+	// DataTieringStatusFalse is a DataTieringStatus enum value
+	DataTieringStatusFalse = "false"
+)
+
+// DataTieringStatus_Values returns all elements of the DataTieringStatus enum
+func DataTieringStatus_Values() []string {
+	return []string{
+		DataTieringStatusTrue,
+		DataTieringStatusFalse,
 	}
 }
 

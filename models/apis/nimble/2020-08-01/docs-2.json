@@ -40,7 +40,7 @@
     "PutLaunchProfileMembers": "<p>Add/update users with given persona to launch profile membership.</p>",
     "PutStudioMembers": "<p>Add/update users with given persona to studio membership.</p>",
     "StartStreamingSession": "<p> Transitions sessions from the STOPPED state into the READY state. The START_IN_PROGRESS state is the intermediate state between the STOPPED and READY states.</p>",
-    "StartStudioSSOConfigurationRepair": "<p>Repairs the Amazon Web Services SSO configuration for a given studio.</p> <p>If the studio has a valid Amazon Web Services SSO configuration currently associated with it, this operation will fail with a validation error.</p> <p>If the studio does not have a valid Amazon Web Services SSO configuration currently associated with it, then a new Amazon Web Services SSO application is created for the studio and the studio is changed to the READY state.</p> <p>After the Amazon Web Services SSO application is repaired, you must use the Amazon Nimble Studio console to add administrators and users to your studio.</p>",
+    "StartStudioSSOConfigurationRepair": "<p>Repairs the IAM Identity Center configuration for a given studio.</p> <p>If the studio has a valid IAM Identity Center configuration currently associated with it, this operation will fail with a validation error.</p> <p>If the studio does not have a valid IAM Identity Center configuration currently associated with it, then a new IAM Identity Center application is created for the studio and the studio is changed to the READY state.</p> <p>After the IAM Identity Center application is repaired, you must use the Amazon Nimble Studio console to add administrators and users to your studio.</p>",
     "StopStreamingSession": "<p>Transitions sessions from the READY state into the STOPPED state. The STOP_IN_PROGRESS state is the intermediate state between the READY and STOPPED states.</p>",
     "TagResource": "<p>Creates tags for a resource, given its ARN.</p>",
     "UntagResource": "<p>Deletes the tags for a resource.</p>",
@@ -1176,7 +1176,7 @@
     "String": {
       "base": null,
       "refs": {
-        "AcceptEulasRequest$studioId": "<p>A collection of EULA IDs.</p>",
+        "AcceptEulasRequest$studioId": "<p>The studio ID.</p>",
         "AccessDeniedException$code": "<p>A more specific error code.</p>",
         "AccessDeniedException$message": "<p>A human-readable description of the error.</p>",
         "ComputeFarmConfiguration$activeDirectoryUser": "<p>The name of an Active Directory user that is used on ComputeFarm worker instances.</p>",
@@ -1191,7 +1191,7 @@
         "CreateStreamingSessionStreamRequest$studioId": "<p>The studio ID. </p>",
         "CreateStudioComponentRequest$studioId": "<p>The studio ID. </p>",
         "DeleteLaunchProfileMemberRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
-        "DeleteLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "DeleteLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a IAM Identity Center UserId. </p>",
         "DeleteLaunchProfileMemberRequest$studioId": "<p>The studio ID. </p>",
         "DeleteLaunchProfileRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
         "DeleteLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
@@ -1201,7 +1201,7 @@
         "DeleteStreamingSessionRequest$studioId": "<p>The studio ID. </p>",
         "DeleteStudioComponentRequest$studioComponentId": "<p>The studio component ID.</p>",
         "DeleteStudioComponentRequest$studioId": "<p>The studio ID. </p>",
-        "DeleteStudioMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "DeleteStudioMemberRequest$principalId": "<p>The principal ID. This currently supports a IAM Identity Center UserId. </p>",
         "DeleteStudioMemberRequest$studioId": "<p>The studio ID. </p>",
         "DeleteStudioRequest$studioId": "<p>The studio ID. </p>",
         "Eula$content": "<p>The EULA content.</p>",
@@ -1218,7 +1218,7 @@
         "GetLaunchProfileInitializationRequest$platform": "<p>The platform where this Launch Profile will be used, either WINDOWS or LINUX.</p>",
         "GetLaunchProfileInitializationRequest$studioId": "<p>The studio ID. </p>",
         "GetLaunchProfileMemberRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
-        "GetLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "GetLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a IAM Identity Center UserId. </p>",
         "GetLaunchProfileMemberRequest$studioId": "<p>The studio ID. </p>",
         "GetLaunchProfileRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
         "GetLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
@@ -1231,7 +1231,7 @@
         "GetStreamingSessionStreamRequest$studioId": "<p>The studio ID. </p>",
         "GetStudioComponentRequest$studioComponentId": "<p>The studio component ID.</p>",
         "GetStudioComponentRequest$studioId": "<p>The studio ID. </p>",
-        "GetStudioMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "GetStudioMemberRequest$principalId": "<p>The principal ID. This currently supports a IAM Identity Center UserId. </p>",
         "GetStudioMemberRequest$studioId": "<p>The studio ID. </p>",
         "GetStudioRequest$studioId": "<p>The studio ID. </p>",
         "InternalServerErrorException$code": "<p>A more specific error code.</p>",
@@ -1255,7 +1255,7 @@
         "ListLaunchProfileMembersRequest$studioId": "<p>The studio ID. </p>",
         "ListLaunchProfileMembersResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListLaunchProfilesRequest$nextToken": "<p>The token to request the next page of results. </p>",
-        "ListLaunchProfilesRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "ListLaunchProfilesRequest$principalId": "<p>The principal ID. This currently supports a IAM Identity Center UserId. </p>",
         "ListLaunchProfilesRequest$studioId": "<p>The studio ID. </p>",
         "ListLaunchProfilesResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListStreamingImagesRequest$nextToken": "<p>The token to request the next page of results. </p>",
@@ -1310,7 +1310,7 @@
         "StreamingSessionStream$streamId": "<p>The stream ID.</p>",
         "StringList$member": null,
         "Studio$arn": "<p>The Amazon Resource Name (ARN) that is assigned to a studio resource and uniquely identifies it. ARNs are unique across all Regions.</p>",
-        "Studio$ssoClientId": "<p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble Studio portal.</p>",
+        "Studio$ssoClientId": "<p>The IAM Identity Center application client ID used to integrate with IAM Identity Center to enable IAM Identity Center users to log in to Nimble Studio portal.</p>",
         "Studio$statusMessage": "<p>Additional detail on the studio state.</p>",
         "Studio$studioId": "<p>The unique identifier for a studio resource. In Nimble Studio, all other resources are contained in a studio resource.</p>",
         "Studio$studioUrl": "<p>The address of the web page for the studio.</p>",
@@ -1330,7 +1330,7 @@
         "ThrottlingException$message": "<p>A human-readable description of the error.</p>",
         "UntagResourceRequest$resourceArn": "<p>Identifies the Amazon Resource Name(ARN) key from which you are removing tags. </p>",
         "UpdateLaunchProfileMemberRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
-        "UpdateLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "UpdateLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a IAM Identity Center UserId. </p>",
         "UpdateLaunchProfileMemberRequest$studioId": "<p>The studio ID. </p>",
         "UpdateLaunchProfileRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
         "UpdateLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
@@ -1353,7 +1353,7 @@
       }
     },
     "Studio": {
-      "base": "<p>Represents a studio resource.</p> <p>A studio is the core resource used with Nimble Studio. You must create a studio first, before any other resource type can be created. All other resources you create and manage in Nimble Studio are contained within a studio.</p> <p>When creating a studio, you must provides two IAM roles for use with the Nimble Studio portal. These roles are assumed by your users when they log in to the Nimble Studio portal via Amazon Web Services SSO and your identity source.</p> <p>The user role must have the AmazonNimbleStudio-StudioUser managed policy attached for the portal to function properly.</p> <p>The admin role must have the AmazonNimbleStudio-StudioAdmin managed policy attached for the portal to function properly.</p> <p>Your studio roles must trust the identity.nimble.amazonaws.com service principal to function properly.</p>",
+      "base": "<p>Represents a studio resource.</p> <p>A studio is the core resource used with Nimble Studio. You must create a studio first, before any other resource type can be created. All other resources you create and manage in Nimble Studio are contained within a studio.</p> <p>When creating a studio, you must provides two IAM roles for use with the Nimble Studio portal. These roles are assumed by your users when they log in to the Nimble Studio portal via IAM Identity Center and your identity source.</p> <p>The user role must have the AmazonNimbleStudio-StudioUser managed policy attached for the portal to function properly.</p> <p>The admin role must have the AmazonNimbleStudio-StudioAdmin managed policy attached for the portal to function properly.</p> <p>Your studio roles must trust the identity.nimble.amazonaws.com service principal to function properly.</p>",
       "refs": {
         "CreateStudioResponse$studio": "<p>Information about a studio.</p>",
         "DeleteStudioResponse$studio": "<p>Information about a studio.</p>",
@@ -1549,7 +1549,7 @@
       }
     },
     "StudioMembership": {
-      "base": "<p>A studio member is an association of a user from your studio identity source to elevated permissions that they are granted in the studio.</p> <p>When you add a user to your studio using the Nimble Studio console, they are given access to the studio's AWS SSO application and are given access to log in to the Nimble Studio portal. These users have the permissions provided by the studio's user IAM role and do not appear in the studio membership collection. Only studio admins appear in studio membership.</p> <p>When you add a user to studio membership with the persona ADMIN, upon logging in to the Nimble Studio portal, they are granted permissions specified by the Studio's Admin IAM role.</p>",
+      "base": "<p>A studio member is an association of a user from your studio identity source to elevated permissions that they are granted in the studio.</p> <p>When you add a user to your studio using the Nimble Studio console, they are given access to the studio's IAM Identity Center application and are given access to log in to the Nimble Studio portal. These users have the permissions provided by the studio's user IAM role and do not appear in the studio membership collection. Only studio admins appear in studio membership.</p> <p>When you add a user to studio membership with the persona ADMIN, upon logging in to the Nimble Studio portal, they are granted permissions specified by the Studio's Admin IAM role.</p>",
       "refs": {
         "GetStudioMemberResponse$member": "<p>The member.</p>",
         "StudioMembershipList$member": null

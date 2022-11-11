@@ -419,6 +419,13 @@
       "member":{"shape":"EntityType"}
     },
     "ErrorCode":{"type":"string"},
+    "ExpenseCurrency":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"String"},
+        "Confidence":{"shape":"Percent"}
+      }
+    },
     "ExpenseDetection":{
       "type":"structure",
       "members":{
@@ -432,7 +439,8 @@
       "members":{
         "ExpenseIndex":{"shape":"UInteger"},
         "SummaryFields":{"shape":"ExpenseFieldList"},
-        "LineItemGroups":{"shape":"LineItemGroupList"}
+        "LineItemGroups":{"shape":"LineItemGroupList"},
+        "Blocks":{"shape":"BlockList"}
       }
     },
     "ExpenseDocumentList":{
@@ -445,12 +453,25 @@
         "Type":{"shape":"ExpenseType"},
         "LabelDetection":{"shape":"ExpenseDetection"},
         "ValueDetection":{"shape":"ExpenseDetection"},
-        "PageNumber":{"shape":"UInteger"}
+        "PageNumber":{"shape":"UInteger"},
+        "Currency":{"shape":"ExpenseCurrency"},
+        "GroupProperties":{"shape":"ExpenseGroupPropertyList"}
       }
     },
     "ExpenseFieldList":{
       "type":"list",
       "member":{"shape":"ExpenseField"}
+    },
+    "ExpenseGroupProperty":{
+      "type":"structure",
+      "members":{
+        "Types":{"shape":"StringList"},
+        "Id":{"shape":"String"}
+      }
+    },
+    "ExpenseGroupPropertyList":{
+      "type":"list",
+      "member":{"shape":"ExpenseGroupProperty"}
     },
     "ExpenseType":{
       "type":"structure",
@@ -618,7 +639,8 @@
       "type":"structure",
       "members":{
         "DocumentIndex":{"shape":"UInteger"},
-        "IdentityDocumentFields":{"shape":"IdentityDocumentFieldList"}
+        "IdentityDocumentFields":{"shape":"IdentityDocumentFieldList"},
+        "Blocks":{"shape":"BlockList"}
       }
     },
     "IdentityDocumentField":{
@@ -958,6 +980,10 @@
     },
     "StatusMessage":{"type":"string"},
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "TextType":{
       "type":"string",
       "enum":[

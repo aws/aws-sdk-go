@@ -4594,7 +4594,27 @@
         "AWS::GlobalAccelerator::Listener",
         "AWS::EC2::TransitGatewayAttachment",
         "AWS::EC2::TransitGatewayRouteTable",
-        "AWS::DMS::Certificate"
+        "AWS::DMS::Certificate",
+        "AWS::AppConfig::Application",
+        "AWS::AppSync::GraphQLApi",
+        "AWS::DataSync::LocationSMB",
+        "AWS::DataSync::LocationFSxLustre",
+        "AWS::DataSync::LocationS3",
+        "AWS::DataSync::LocationEFS",
+        "AWS::DataSync::Task",
+        "AWS::DataSync::LocationNFS",
+        "AWS::EC2::NetworkInsightsAccessScopeAnalysis",
+        "AWS::EKS::FargateProfile",
+        "AWS::Glue::Job",
+        "AWS::GuardDuty::ThreatIntelSet",
+        "AWS::GuardDuty::IPSet",
+        "AWS::SageMaker::Workteam",
+        "AWS::SageMaker::NotebookInstanceLifecycleConfig",
+        "AWS::ServiceDiscovery::Service",
+        "AWS::ServiceDiscovery::PublicDnsNamespace",
+        "AWS::SES::ContactList",
+        "AWS::SES::ConfigurationSet",
+        "AWS::Route53::HostedZone"
       ]
     },
     "ResourceTypeList":{

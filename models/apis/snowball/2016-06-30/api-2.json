@@ -1156,7 +1156,8 @@
         "T98",
         "T8",
         "T14",
-        "NoPreference"
+        "NoPreference",
+        "T32"
       ]
     },
     "SnowballType":{
@@ -1168,7 +1169,8 @@
         "EDGE_CG",
         "EDGE_S",
         "SNC1_HDD",
-        "SNC1_SSD"
+        "SNC1_SSD",
+        "V3_5C"
       ]
     },
     "SnowconeDeviceConfiguration":{

@@ -126,6 +126,114 @@ func (c *GlobalAccelerator) AddCustomRoutingEndpointsWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opAddEndpoints = "AddEndpoints"
+
+// AddEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the AddEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddEndpoints for more information on using the AddEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AddEndpointsRequest method.
+//	req, resp := client.AddEndpointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/AddEndpoints
+func (c *GlobalAccelerator) AddEndpointsRequest(input *AddEndpointsInput) (req *request.Request, output *AddEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opAddEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddEndpointsInput{}
+	}
+
+	output = &AddEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddEndpoints API operation for AWS Global Accelerator.
+//
+// Add endpoints to an endpoint group. The AddEndpoints API operation is the
+// recommended option for adding endpoints. The alternative options are to add
+// endpoints when you create an endpoint group (with the CreateEndpointGroup
+// (https://docs.aws.amazon.com/global-accelerator/latest/api/API_CreateEndpointGroup.html)
+// API) or when you update an endpoint group (with the UpdateEndpointGroup (https://docs.aws.amazon.com/global-accelerator/latest/api/API_UpdateEndpointGroup.html)
+// API).
+//
+// There are two advantages to using AddEndpoints to add endpoints:
+//
+//   - It's faster, because Global Accelerator only has to resolve the new
+//     endpoints that you're adding.
+//
+//   - It's more convenient, because you don't need to specify all of the current
+//     endpoints that are already in the endpoint group in addition to the new
+//     endpoints that you want to add.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation AddEndpoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - TransactionInProgressException
+//     There's already a transaction in progress. Another transaction can't be processed.
+//
+//   - EndpointGroupNotFoundException
+//     The endpoint group that you specified doesn't exist.
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+//   - LimitExceededException
+//     Processing your request would cause you to exceed an Global Accelerator limit.
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/AddEndpoints
+func (c *GlobalAccelerator) AddEndpoints(input *AddEndpointsInput) (*AddEndpointsOutput, error) {
+	req, out := c.AddEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// AddEndpointsWithContext is the same as AddEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) AddEndpointsWithContext(ctx aws.Context, input *AddEndpointsInput, opts ...request.Option) (*AddEndpointsOutput, error) {
+	req, out := c.AddEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAdvertiseByoipCidr = "AdvertiseByoipCidr"
 
 // AdvertiseByoipCidrRequest generates a "aws/request.Request" representing the
@@ -3958,6 +4066,113 @@ func (c *GlobalAccelerator) RemoveCustomRoutingEndpointsWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+const opRemoveEndpoints = "RemoveEndpoints"
+
+// RemoveEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveEndpoints for more information on using the RemoveEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RemoveEndpointsRequest method.
+//	req, resp := client.RemoveEndpointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/RemoveEndpoints
+func (c *GlobalAccelerator) RemoveEndpointsRequest(input *RemoveEndpointsInput) (req *request.Request, output *RemoveEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opRemoveEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveEndpointsInput{}
+	}
+
+	output = &RemoveEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RemoveEndpoints API operation for AWS Global Accelerator.
+//
+// Remove endpoints from an endpoint group.
+//
+// The RemoveEndpoints API operation is the recommended option for removing
+// endpoints. The alternative is to remove endpoints by updating an endpoint
+// group by using the UpdateEndpointGroup (https://docs.aws.amazon.com/global-accelerator/latest/api/API_UpdateEndpointGroup.html)
+// API operation. There are two advantages to using AddEndpoints to remove endpoints
+// instead:
+//
+//   - It's more convenient, because you only need to specify the endpoints
+//     that you want to remove. With the UpdateEndpointGroup API operation, you
+//     must specify all of the endpoints in the endpoint group except the ones
+//     that you want to remove from the group.
+//
+//   - It's faster, because Global Accelerator doesn't need to resolve any
+//     endpoints. With the UpdateEndpointGroup API operation, Global Accelerator
+//     must resolve all of the endpoints that remain in the group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation RemoveEndpoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EndpointGroupNotFoundException
+//     The endpoint group that you specified doesn't exist.
+//
+//   - InternalServiceErrorException
+//     There was an internal error for Global Accelerator.
+//
+//   - InvalidArgumentException
+//     An argument that you specified is invalid.
+//
+//   - AccessDeniedException
+//     You don't have access permission.
+//
+//   - TransactionInProgressException
+//     There's already a transaction in progress. Another transaction can't be processed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/RemoveEndpoints
+func (c *GlobalAccelerator) RemoveEndpoints(input *RemoveEndpointsInput) (*RemoveEndpointsOutput, error) {
+	req, out := c.RemoveEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// RemoveEndpointsWithContext is the same as RemoveEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) RemoveEndpointsWithContext(ctx aws.Context, input *RemoveEndpointsInput, opts ...request.Option) (*RemoveEndpointsOutput, error) {
+	req, out := c.RemoveEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -4890,9 +5105,9 @@ type Accelerator struct {
 	//
 	// If you have a dual-stack accelerator, you also have a second DNS name, DualStackDnsName,
 	// that points to both the A record and the AAAA record for all four static
-	// addresses for the accelerator (two IPv4 addresses and two IPv6 addresses).
+	// addresses for the accelerator: two IPv4 addresses and two IPv6 addresses.
 	//
-	// For more information about the default DNS name, see Support for DNS Addressing
+	// For more information about the default DNS name, see Support for DNS addressing
 	// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/dns-addressing-custom-domains.dns-addressing.html)
 	// in the Global Accelerator Developer Guide.
 	DnsName *string `type:"string"`
@@ -4908,7 +5123,7 @@ type Accelerator struct {
 	// Note: Global Accelerator also assigns a default DNS name, DnsName, to your
 	// accelerator that points just to the static IPv4 addresses.
 	//
-	// For more information, see Support for DNS Addressing in Global Accelerator
+	// For more information, see Support for DNS addressing in Global Accelerator
 	// (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.html#about-accelerators.dns-addressing)
 	// in the Global Accelerator Developer Guide.
 	DualStackDnsName *string `type:"string"`
@@ -5428,6 +5643,106 @@ func (s *AddCustomRoutingEndpointsOutput) SetEndpointDescriptions(v []*CustomRou
 
 // SetEndpointGroupArn sets the EndpointGroupArn field's value.
 func (s *AddCustomRoutingEndpointsOutput) SetEndpointGroupArn(v string) *AddCustomRoutingEndpointsOutput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+type AddEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of endpoint objects.
+	//
+	// EndpointConfigurations is a required field
+	EndpointConfigurations []*EndpointConfiguration `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddEndpointsInput"}
+	if s.EndpointConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointConfigurations"))
+	}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointConfigurations sets the EndpointConfigurations field's value.
+func (s *AddEndpointsInput) SetEndpointConfigurations(v []*EndpointConfiguration) *AddEndpointsInput {
+	s.EndpointConfigurations = v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *AddEndpointsInput) SetEndpointGroupArn(v string) *AddEndpointsInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+type AddEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of endpoint objects.
+	EndpointDescriptions []*EndpointDescription `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	EndpointGroupArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointDescriptions sets the EndpointDescriptions field's value.
+func (s *AddEndpointsOutput) SetEndpointDescriptions(v []*EndpointDescription) *AddEndpointsOutput {
+	s.EndpointDescriptions = v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *AddEndpointsOutput) SetEndpointGroupArn(v string) *AddEndpointsOutput {
 	s.EndpointGroupArn = &v
 	return s
 }
@@ -7067,9 +7382,9 @@ type CustomRoutingAccelerator struct {
 	//
 	// If you have a dual-stack accelerator, you also have a second DNS name, DualStackDnsName,
 	// that points to both the A record and the AAAA record for all four static
-	// addresses for the accelerator (two IPv4 addresses and two IPv6 addresses).
+	// addresses for the accelerator: two IPv4 addresses and two IPv6 addresses.
 	//
-	// For more information about the default DNS name, see Support for DNS Addressing
+	// For more information about the default DNS name, see Support for DNS addressing
 	// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/dns-addressing-custom-domains.dns-addressing.html)
 	// in the Global Accelerator Developer Guide.
 	DnsName *string `type:"string"`
@@ -9385,6 +9700,73 @@ func (s *EndpointGroupNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A complex type for an endpoint. Specifies information about the endpoint
+// to remove from the endpoint group.
+type EndpointIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether client IP address preservation is enabled for an endpoint.
+	// The value is true or false.
+	//
+	// If the value is set to true, the client's IP address is preserved in the
+	// X-Forwarded-For request header as traffic travels to applications on the
+	// endpoint fronted by the accelerator.
+	ClientIPPreservationEnabled *bool `type:"boolean"`
+
+	// An ID for the endpoint. If the endpoint is a Network Load Balancer or Application
+	// Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If
+	// the endpoint is an Elastic IP address, this is the Elastic IP address allocation
+	// ID. For Amazon EC2 instances, this is the EC2 instance ID.
+	//
+	// An Application Load Balancer can be either internal or internet-facing.
+	//
+	// EndpointId is a required field
+	EndpointId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EndpointIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EndpointIdentifier"}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientIPPreservationEnabled sets the ClientIPPreservationEnabled field's value.
+func (s *EndpointIdentifier) SetClientIPPreservationEnabled(v bool) *EndpointIdentifier {
+	s.ClientIPPreservationEnabled = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *EndpointIdentifier) SetEndpointId(v string) *EndpointIdentifier {
+	s.EndpointId = &v
+	return s
+}
+
 // The endpoint that you specified doesn't exist.
 type EndpointNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -11475,6 +11857,101 @@ func (s RemoveCustomRoutingEndpointsOutput) GoString() string {
 	return s.String()
 }
 
+type RemoveEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+
+	// The identifiers of the endpoints that you want to remove.
+	//
+	// EndpointIdentifiers is a required field
+	EndpointIdentifiers []*EndpointIdentifier `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveEndpointsInput"}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+	if s.EndpointIdentifiers == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointIdentifiers"))
+	}
+	if s.EndpointIdentifiers != nil && len(s.EndpointIdentifiers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointIdentifiers", 1))
+	}
+	if s.EndpointIdentifiers != nil {
+		for i, v := range s.EndpointIdentifiers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EndpointIdentifiers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *RemoveEndpointsInput) SetEndpointGroupArn(v string) *RemoveEndpointsInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetEndpointIdentifiers sets the EndpointIdentifiers field's value.
+func (s *RemoveEndpointsInput) SetEndpointIdentifiers(v []*EndpointIdentifier) *RemoveEndpointsInput {
+	s.EndpointIdentifiers = v
+	return s
+}
+
+type RemoveEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoveEndpointsOutput) GoString() string {
+	return s.String()
+}
+
 // An IP address/port combination.
 type SocketAddress struct {
 	_ struct{} `type:"structure"`
@@ -11675,6 +12152,70 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// There's already a transaction in progress. Another transaction can't be processed.
+type TransactionInProgressException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionInProgressException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionInProgressException) GoString() string {
+	return s.String()
+}
+
+func newErrorTransactionInProgressException(v protocol.ResponseMetadata) error {
+	return &TransactionInProgressException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TransactionInProgressException) Code() string {
+	return "TransactionInProgressException"
+}
+
+// Message returns the exception's message.
+func (s *TransactionInProgressException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TransactionInProgressException) OrigErr() error {
+	return nil
+}
+
+func (s *TransactionInProgressException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TransactionInProgressException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TransactionInProgressException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

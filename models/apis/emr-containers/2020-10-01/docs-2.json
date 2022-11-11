@@ -3,14 +3,18 @@
   "service": "<p>Amazon EMR on EKS provides a deployment option for Amazon EMR that allows you to run open-source big data frameworks on Amazon Elastic Kubernetes Service (Amazon EKS). With this deployment option, you can focus on running analytics workloads while Amazon EMR on EKS builds, configures, and manages containers for open-source applications. For more information about Amazon EMR on EKS concepts and tasks, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/emr-eks.html\">What is Amazon EMR on EKS</a>.</p> <p> <i>Amazon EMR containers</i> is the API name for Amazon EMR on EKS. The <code>emr-containers</code> prefix is used in the following scenarios: </p> <ul> <li> <p>It is the prefix in the CLI commands for Amazon EMR on EKS. For example, <code>aws emr-containers start-job-run</code>.</p> </li> <li> <p>It is the prefix before IAM policy actions for Amazon EMR on EKS. For example, <code>\"Action\": [ \"emr-containers:StartJobRun\"]</code>. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-actions\">Policy actions for Amazon EMR on EKS</a>.</p> </li> <li> <p>It is the prefix used in Amazon EMR on EKS service endpoints. For example, <code>emr-containers.us-east-2.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/service-quotas.html#service-endpoints\">Amazon EMR on EKS Service Endpoints</a>.</p> </li> </ul>",
   "operations": {
     "CancelJobRun": "<p>Cancels a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
+    "CreateJobTemplate": "<p>Creates a job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
     "CreateManagedEndpoint": "<p>Creates a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
     "CreateVirtualCluster": "<p>Creates a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
+    "DeleteJobTemplate": "<p>Deletes a job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
     "DeleteManagedEndpoint": "<p>Deletes a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
     "DeleteVirtualCluster": "<p>Deletes a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
     "DescribeJobRun": "<p>Displays detailed information about a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
+    "DescribeJobTemplate": "<p>Displays detailed information about a specified job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
     "DescribeManagedEndpoint": "<p>Displays detailed information about a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
     "DescribeVirtualCluster": "<p>Displays detailed information about a specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
     "ListJobRuns": "<p>Lists job runs based on a set of parameters. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.</p>",
+    "ListJobTemplates": "<p>Lists job templates based on a set of parameters. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
     "ListManagedEndpoints": "<p>Lists managed endpoints based on a set of parameters. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to the resources.</p>",
     "ListVirtualClusters": "<p>Lists information about the specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.</p>",
@@ -52,6 +56,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
+        "CreateJobTemplateRequest$clientToken": "<p>The client token of the job template.</p>",
         "CreateManagedEndpointRequest$clientToken": "<p>The client idempotency token for this create call.</p>",
         "CreateVirtualClusterRequest$clientToken": "<p>The client token of the virtual cluster.</p>",
         "JobRun$clientToken": "<p>The client token used to start a job run.</p>",
@@ -80,7 +85,8 @@
       "base": null,
       "refs": {
         "Configuration$configurations": "<p>A list of additional configurations to apply within a configuration object.</p>",
-        "ConfigurationOverrides$applicationConfiguration": "<p>The configurations for the application running by the job run. </p>"
+        "ConfigurationOverrides$applicationConfiguration": "<p>The configurations for the application running by the job run. </p>",
+        "ParametricConfigurationOverrides$applicationConfiguration": "<p> The configurations for the application running by the job run.</p>"
       }
     },
     "ConfigurationOverrides": {
@@ -112,6 +118,16 @@
         "ListVirtualClustersRequest$containerProviderType": "<p>The container provider type of the virtual cluster. EKS is the only supported type as of now.</p>"
       }
     },
+    "CreateJobTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateJobTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateManagedEndpointRequest": {
       "base": null,
       "refs": {
@@ -135,16 +151,30 @@
     "Date": {
       "base": null,
       "refs": {
+        "CreateJobTemplateResponse$createdAt": "<p>This output displays the date and time when the job template was created.</p>",
         "Endpoint$createdAt": "<p>The date and time when the endpoint was created.</p>",
         "JobRun$createdAt": "<p>The date and time when the job run was created.</p>",
         "JobRun$finishedAt": "<p>The date and time when the job run has finished.</p>",
+        "JobTemplate$createdAt": "<p> The date and time when the job template was created.</p>",
         "ListJobRunsRequest$createdBefore": "<p>The date and time before which the job runs were submitted.</p>",
         "ListJobRunsRequest$createdAfter": "<p>The date and time after which the job runs were submitted.</p>",
+        "ListJobTemplatesRequest$createdAfter": "<p>The date and time after which the job templates were created.</p>",
+        "ListJobTemplatesRequest$createdBefore": "<p> The date and time before which the job templates were created.</p>",
         "ListManagedEndpointsRequest$createdBefore": "<p>The date and time before which the endpoints are created.</p>",
         "ListManagedEndpointsRequest$createdAfter": "<p> The date and time after which the endpoints are created.</p>",
         "ListVirtualClustersRequest$createdAfter": "<p>The date and time after which the virtual clusters are created.</p>",
         "ListVirtualClustersRequest$createdBefore": "<p>The date and time before which the virtual clusters are created.</p>",
         "VirtualCluster$createdAt": "<p>The date and time when the virtual cluster is created.</p>"
+      }
+    },
+    "DeleteJobTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteJobTemplateResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteManagedEndpointRequest": {
@@ -173,6 +203,16 @@
       }
     },
     "DescribeJobRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeJobTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeJobTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -294,6 +334,7 @@
       "base": null,
       "refs": {
         "ListJobRunsRequest$maxResults": "<p>The maximum number of job runs that can be listed.</p>",
+        "ListJobTemplatesRequest$maxResults": "<p> The maximum number of job templates that can be listed.</p>",
         "ListManagedEndpointsRequest$maxResults": "<p>The maximum number of managed endpoints that can be listed.</p>",
         "ListVirtualClustersRequest$maxResults": "<p>The maximum number of virtual clusters that can be listed.</p>"
       }
@@ -306,9 +347,10 @@
       }
     },
     "JobDriver": {
-      "base": "<p>Specify the driver that the job runs on.</p>",
+      "base": "<p>Specify the driver that the job runs on. Exactly one of the two available job drivers is required, either sparkSqlJobDriver or sparkSubmitJobDriver.</p>",
       "refs": {
         "JobRun$jobDriver": "<p>Parameters of job driver for the job run.</p>",
+        "JobTemplateData$jobDriver": null,
         "StartJobRunRequest$jobDriver": "<p>The job driver for the job run.</p>"
       }
     },
@@ -338,6 +380,40 @@
         "ListJobRunsResponse$jobRuns": "<p>This output lists information about the specified job runs.</p>"
       }
     },
+    "JobTemplate": {
+      "base": "<p>This entity describes a job template. Job template stores values of StartJobRun API request in a template and can be used to start a job run. Job template allows two use cases: avoid repeating recurring StartJobRun API request values, enforcing certain values in StartJobRun API request.</p>",
+      "refs": {
+        "DescribeJobTemplateResponse$jobTemplate": "<p>This output displays information about the specified job template.</p>",
+        "JobTemplates$member": null
+      }
+    },
+    "JobTemplateArn": {
+      "base": null,
+      "refs": {
+        "CreateJobTemplateResponse$arn": "<p>This output display the ARN of the created job template.</p>",
+        "JobTemplate$arn": "<p>The ARN of the job template.</p>"
+      }
+    },
+    "JobTemplateData": {
+      "base": "<p>The values of StartJobRun API requests used in job runs started using the job template.</p>",
+      "refs": {
+        "CreateJobTemplateRequest$jobTemplateData": "<p>The job template data which holds values of StartJobRun API request.</p>",
+        "JobTemplate$jobTemplateData": "<p>The job template data which holds values of StartJobRun API request.</p>"
+      }
+    },
+    "JobTemplates": {
+      "base": null,
+      "refs": {
+        "ListJobTemplatesResponse$templates": "<p>This output lists information about the specified job templates.</p>"
+      }
+    },
+    "KmsKeyArn": {
+      "base": null,
+      "refs": {
+        "CreateJobTemplateRequest$kmsKeyArn": "<p>The KMS key ARN used to encrypt the job template.</p>",
+        "JobTemplate$kmsKeyArn": "<p> The KMS key ARN used to encrypt the job template.</p>"
+      }
+    },
     "KubernetesNamespace": {
       "base": null,
       "refs": {
@@ -350,6 +426,16 @@
       }
     },
     "ListJobRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobTemplatesResponse": {
       "base": null,
       "refs": {
       }
@@ -401,10 +487,48 @@
       "refs": {
         "ListJobRunsRequest$nextToken": "<p>The token for the next set of job runs to return.</p>",
         "ListJobRunsResponse$nextToken": "<p>This output displays the token for the next set of job runs.</p>",
+        "ListJobTemplatesRequest$nextToken": "<p> The token for the next set of job templates to return.</p>",
+        "ListJobTemplatesResponse$nextToken": "<p> This output displays the token for the next set of job templates.</p>",
         "ListManagedEndpointsRequest$nextToken": "<p> The token for the next set of managed endpoints to return. </p>",
         "ListManagedEndpointsResponse$nextToken": "<p> The token for the next set of endpoints to return. </p>",
         "ListVirtualClustersRequest$nextToken": "<p>The token for the next set of virtual clusters to return. </p>",
         "ListVirtualClustersResponse$nextToken": "<p>This output displays the token for the next set of virtual clusters.</p>"
+      }
+    },
+    "ParametricCloudWatchMonitoringConfiguration": {
+      "base": "<p> A configuration for CloudWatch monitoring. You can configure your jobs to send log information to CloudWatch Logs. This data type allows job template parameters to be specified within.</p>",
+      "refs": {
+        "ParametricMonitoringConfiguration$cloudWatchMonitoringConfiguration": "<p> Monitoring configurations for CloudWatch.</p>"
+      }
+    },
+    "ParametricConfigurationOverrides": {
+      "base": "<p> A configuration specification to be used to override existing configurations. This data type allows job template parameters to be specified within.</p>",
+      "refs": {
+        "JobTemplateData$configurationOverrides": "<p> The configuration settings that are used to override defaults configuration.</p>"
+      }
+    },
+    "ParametricIAMRoleArn": {
+      "base": null,
+      "refs": {
+        "JobTemplateData$executionRoleArn": "<p>The execution role ARN of the job run.</p>"
+      }
+    },
+    "ParametricMonitoringConfiguration": {
+      "base": "<p> Configuration setting for monitoring. This data type allows job template parameters to be specified within.</p>",
+      "refs": {
+        "ParametricConfigurationOverrides$monitoringConfiguration": "<p> The configurations for monitoring. </p>"
+      }
+    },
+    "ParametricReleaseLabel": {
+      "base": null,
+      "refs": {
+        "JobTemplateData$releaseLabel": "<p> The release version of Amazon EMR.</p>"
+      }
+    },
+    "ParametricS3MonitoringConfiguration": {
+      "base": "<p> Amazon S3 configuration for monitoring log publishing. You can configure your jobs to send log information to Amazon S3. This data type allows job template parameters to be specified within.</p>",
+      "refs": {
+        "ParametricMonitoringConfiguration$s3MonitoringConfiguration": "<p> Amazon S3 configuration for monitoring log publishing.</p>"
       }
     },
     "PersistentAppUI": {
@@ -425,7 +549,8 @@
     "RequestIdentityUserArn": {
       "base": null,
       "refs": {
-        "JobRun$createdBy": "<p>The user who created the job run.</p>"
+        "JobRun$createdBy": "<p>The user who created the job run.</p>",
+        "JobTemplate$createdBy": "<p> The user who created the job template.</p>"
       }
     },
     "ResourceIdString": {
@@ -435,10 +560,13 @@
         "CancelJobRunRequest$virtualClusterId": "<p>The ID of the virtual cluster for which the job run will be canceled.</p>",
         "CancelJobRunResponse$id": "<p>The output contains the ID of the cancelled job run.</p>",
         "CancelJobRunResponse$virtualClusterId": "<p>The output contains the virtual cluster ID for which the job run is cancelled.</p>",
+        "CreateJobTemplateResponse$id": "<p>This output display the created job template ID.</p>",
         "CreateManagedEndpointRequest$virtualClusterId": "<p>The ID of the virtual cluster for which a managed endpoint is created.</p>",
         "CreateManagedEndpointResponse$id": "<p>The output contains the ID of the managed endpoint.</p>",
         "CreateManagedEndpointResponse$virtualClusterId": "<p>The output contains the ID of the virtual cluster.</p>",
         "CreateVirtualClusterResponse$id": "<p>This output contains the virtual cluster ID.</p>",
+        "DeleteJobTemplateRequest$id": "<p>The ID of the job template that will be deleted.</p>",
+        "DeleteJobTemplateResponse$id": "<p>This output contains the ID of the job template that was deleted.</p>",
         "DeleteManagedEndpointRequest$id": "<p>The ID of the managed endpoint.</p>",
         "DeleteManagedEndpointRequest$virtualClusterId": "<p>The ID of the endpoint's virtual cluster.</p>",
         "DeleteManagedEndpointResponse$id": "<p>The output displays the ID of the managed endpoint.</p>",
@@ -447,6 +575,7 @@
         "DeleteVirtualClusterResponse$id": "<p>This output contains the ID of the virtual cluster that will be deleted. </p>",
         "DescribeJobRunRequest$id": "<p>The ID of the job run request. </p>",
         "DescribeJobRunRequest$virtualClusterId": "<p>The ID of the virtual cluster for which the job run is submitted.</p>",
+        "DescribeJobTemplateRequest$id": "<p>The ID of the job template that will be described.</p>",
         "DescribeManagedEndpointRequest$id": "<p>This output displays ID of the managed endpoint.</p>",
         "DescribeManagedEndpointRequest$virtualClusterId": "<p>The ID of the endpoint's virtual cluster.</p>",
         "DescribeVirtualClusterRequest$id": "<p>The ID of the virtual cluster that will be described.</p>",
@@ -454,9 +583,11 @@
         "Endpoint$virtualClusterId": "<p>The ID of the endpoint's virtual cluster.</p>",
         "JobRun$id": "<p>The ID of the job run.</p>",
         "JobRun$virtualClusterId": "<p>The ID of the job run's virtual cluster.</p>",
+        "JobTemplate$id": "<p>The ID of the job template.</p>",
         "ListJobRunsRequest$virtualClusterId": "<p>The ID of the virtual cluster for which to list the job run. </p>",
         "ListManagedEndpointsRequest$virtualClusterId": "<p>The ID of the virtual cluster.</p>",
         "StartJobRunRequest$virtualClusterId": "<p>The virtual cluster ID for which the job run request is submitted.</p>",
+        "StartJobRunRequest$jobTemplateId": "<p>The job template ID to be used to start the job run.</p>",
         "StartJobRunResponse$id": "<p>This output displays the started job run ID.</p>",
         "StartJobRunResponse$virtualClusterId": "<p>This output displays the virtual cluster ID for which the job run was submitted.</p>",
         "VirtualCluster$id": "<p>The ID of the virtual cluster.</p>"
@@ -465,12 +596,15 @@
     "ResourceNameString": {
       "base": null,
       "refs": {
+        "CreateJobTemplateRequest$name": "<p>The specified name of the job template.</p>",
+        "CreateJobTemplateResponse$name": "<p>This output displays the name of the created job template.</p>",
         "CreateManagedEndpointRequest$name": "<p>The name of the managed endpoint.</p>",
         "CreateManagedEndpointResponse$name": "<p>The output contains the name of the managed endpoint.</p>",
         "CreateVirtualClusterRequest$name": "<p>The specified name of the virtual cluster.</p>",
         "CreateVirtualClusterResponse$name": "<p>This output contains the name of the virtual cluster.</p>",
         "Endpoint$name": "<p>The name of the endpoint.</p>",
         "JobRun$name": "<p>The name of the job run.</p>",
+        "JobTemplate$name": "<p>The name of the job template.</p>",
         "ListJobRunsRequest$name": "<p>The name of the job run.</p>",
         "StartJobRunRequest$name": "<p>The name of the job run.</p>",
         "StartJobRunResponse$name": "<p>This output displays the name of the started job run.</p>",
@@ -545,6 +679,8 @@
         "ResourceNotFoundException$message": null,
         "SensitivePropertiesMap$key": null,
         "SensitivePropertiesMap$value": null,
+        "TemplateParameterConfiguration$defaultValue": "<p>The default value for the job template parameter.</p>",
+        "TemplateParameterInputMap$value": null,
         "ValidationException$message": null
       }
     },
@@ -555,6 +691,12 @@
         "TagMap$key": null
       }
     },
+    "String2048": {
+      "base": null,
+      "refs": {
+        "JobTemplate$decryptionError": "<p>The error message in case the decryption of job template fails.</p>"
+      }
+    },
     "String256": {
       "base": null,
       "refs": {
@@ -562,6 +704,7 @@
         "Endpoint$securityGroup": "<p>The security group configuration of the endpoint. </p>",
         "Endpoint$stateDetails": "<p> Additional details of the endpoint state. </p>",
         "JobRun$stateDetails": "<p>Additional details of the job run state.</p>",
+        "ParametricCloudWatchMonitoringConfiguration$logStreamNamePrefix": "<p> The specified name prefix for log streams.</p>",
         "SubnetIds$member": null
       }
     },
@@ -586,10 +729,13 @@
     "TagMap": {
       "base": null,
       "refs": {
+        "CreateJobTemplateRequest$tags": "<p>The tags that are associated with the job template.</p>",
         "CreateManagedEndpointRequest$tags": "<p>The tags of the managed endpoint. </p>",
         "CreateVirtualClusterRequest$tags": "<p>The tags assigned to the virtual cluster.</p>",
         "Endpoint$tags": "<p>The tags of the endpoint. </p>",
         "JobRun$tags": "<p>The assigned tags of the job run.</p>",
+        "JobTemplate$tags": "<p>The tags assigned to the job template.</p>",
+        "JobTemplateData$jobTags": "<p>The tags assigned to jobs started using the job template.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags assigned to resources.</p>",
         "StartJobRunRequest$tags": "<p>The tags assigned to job runs.</p>",
         "TagResourceRequest$tags": "<p>The tags assigned to resources.</p>",
@@ -606,6 +752,44 @@
       "refs": {
       }
     },
+    "TemplateParameter": {
+      "base": null,
+      "refs": {
+        "ParametricCloudWatchMonitoringConfiguration$logGroupName": "<p> The name of the log group for log publishing.</p>",
+        "ParametricMonitoringConfiguration$persistentAppUI": "<p> Monitoring configurations for the persistent application UI.</p>"
+      }
+    },
+    "TemplateParameterConfiguration": {
+      "base": "<p>The configuration of a job template parameter.</p>",
+      "refs": {
+        "TemplateParameterConfigurationMap$value": null
+      }
+    },
+    "TemplateParameterConfigurationMap": {
+      "base": null,
+      "refs": {
+        "JobTemplateData$parameterConfiguration": "<p>The configuration of parameters existing in the job template.</p>"
+      }
+    },
+    "TemplateParameterDataType": {
+      "base": null,
+      "refs": {
+        "TemplateParameterConfiguration$type": "<p>The type of the job template parameter. Allowed values are: ‘String’, ‘Number’.</p>"
+      }
+    },
+    "TemplateParameterInputMap": {
+      "base": null,
+      "refs": {
+        "StartJobRunRequest$jobTemplateParameters": "<p>The values of job template parameters to start a job run.</p>"
+      }
+    },
+    "TemplateParameterName": {
+      "base": null,
+      "refs": {
+        "TemplateParameterConfigurationMap$key": null,
+        "TemplateParameterInputMap$key": null
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -620,6 +804,7 @@
       "base": null,
       "refs": {
         "Endpoint$serverUrl": "<p>The server URL of the endpoint.</p>",
+        "ParametricS3MonitoringConfiguration$logUri": "<p>Amazon S3 destination URI for log publishing.</p>",
         "S3MonitoringConfiguration$logUri": "<p>Amazon S3 destination URI for log publishing.</p>"
       }
     },

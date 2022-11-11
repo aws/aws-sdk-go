@@ -57,16 +57,15 @@ func (c *DataSync) CancelTaskExecutionRequest(input *CancelTaskExecutionInput) (
 
 // CancelTaskExecution API operation for AWS DataSync.
 //
-// Cancels execution of a task.
+// Stops an DataSync task execution that's in progress. The transfer of some
+// files are abruptly interrupted. File contents that're transferred to the
+// destination might be incomplete or inconsistent with the source files.
 //
-// When you cancel a task execution, the transfer of some files is abruptly
-// interrupted. The contents of files that are transferred to the destination
-// might be incomplete or inconsistent with the source files. However, if you
-// start a new task execution on the same task and you allow the task execution
-// to complete, file content on the destination is complete and consistent.
+// However, if you start a new task execution using the same task and allow
+// it to finish, file content on the destination will be complete and consistent.
 // This applies to other unexpected failures that interrupt a task execution.
-// In all of these cases, DataSync successfully complete the transfer when you
-// start the next task execution.
+// In all of these cases, DataSync successfully completes the transfer when
+// you start the next task execution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -148,12 +147,12 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 
 // CreateAgent API operation for AWS DataSync.
 //
-// Activates an DataSync agent that you have deployed on your host. The activation
-// process associates your agent with your account. In the activation process,
-// you specify information such as the Amazon Web Services Region that you want
-// to activate the agent in. You activate the agent in the Amazon Web Services
-// Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your
-// tasks are created in this Amazon Web Services Region.
+// Activates an DataSync agent that you have deployed in your storage environment.
+// The activation process associates your agent with your account. In the activation
+// process, you specify information such as the Amazon Web Services Region that
+// you want to activate the agent in. You activate the agent in the Amazon Web
+// Services Region where your target locations (in Amazon S3 or Amazon EFS)
+// reside. Your tasks are created in this Amazon Web Services Region.
 //
 // You can activate the agent in a VPC (virtual private cloud) or provide the
 // agent access to a VPC endpoint so you can run tasks without going over the
@@ -497,7 +496,12 @@ func (c *DataSync) CreateLocationFsxOpenZfsRequest(input *CreateLocationFsxOpenZ
 
 // CreateLocationFsxOpenZfs API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon FSx for OpenZFS file system.
+// Creates an endpoint for an Amazon FSx for OpenZFS file system that DataSync
+// can access for a transfer. For more information, see Creating a location
+// for FSx for OpenZFS (https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html).
+//
+// Request parameters related to SMB aren't supported with the CreateLocationFsxOpenZfs
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -910,7 +914,8 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 
 // CreateLocationS3 API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon S3 bucket.
+// Creates an endpoint for an Amazon S3 bucket that DataSync can access for
+// a transfer.
 //
 // For more information, see Create an Amazon S3 location (https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli)
 // in the DataSync User Guide.
@@ -1593,8 +1598,8 @@ func (c *DataSync) DescribeLocationFsxLustreRequest(input *DescribeLocationFsxLu
 
 // DescribeLocationFsxLustre API operation for AWS DataSync.
 //
-// Returns metadata about an Amazon FSx for Lustre location, such as information
-// about its path.
+// Provides details about how an DataSync location for an Amazon FSx for Lustre
+// file system is configured.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1679,6 +1684,9 @@ func (c *DataSync) DescribeLocationFsxOntapRequest(input *DescribeLocationFsxOnt
 // Provides details about how an DataSync location for an Amazon FSx for NetApp
 // ONTAP file system is configured.
 //
+// If your location uses SMB, the DescribeLocationFsxOntap operation doesn't
+// actually return a Password.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1759,8 +1767,11 @@ func (c *DataSync) DescribeLocationFsxOpenZfsRequest(input *DescribeLocationFsxO
 
 // DescribeLocationFsxOpenZfs API operation for AWS DataSync.
 //
-// Returns metadata about an Amazon FSx for OpenZFS location, such as information
-// about its path.
+// Provides details about how an DataSync location for an Amazon FSx for OpenZFS
+// file system is configured.
+//
+// Response elements related to SMB aren't supported with the DescribeLocationFsxOpenZfs
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3719,9 +3730,9 @@ func (c *DataSync) UpdateLocationObjectStorageRequest(input *UpdateLocationObjec
 
 // UpdateLocationObjectStorage API operation for AWS DataSync.
 //
-// Updates some of the parameters of a previously created location for self-managed
-// object storage server access. For information about creating a self-managed
-// object storage location, see Creating a location for object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
+// Updates some parameters of an existing object storage location that DataSync
+// accesses for a transfer. For information about creating a self-managed object
+// storage location, see Creating a location for object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4074,7 +4085,7 @@ func (s *AgentListEntry) SetStatus(v string) *AgentListEntry {
 type CancelTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the task execution to cancel.
+	// The Amazon Resource Name (ARN) of the task execution to stop.
 	//
 	// TaskExecutionArn is a required field
 	TaskExecutionArn *string `type:"string" required:"true"`
@@ -5571,6 +5582,15 @@ type CreateLocationObjectStorageInput struct {
 	// String and GoString methods.
 	SecretKey *string `min:"8" type:"string" sensitive:"true"`
 
+	// Specifies a certificate to authenticate with an object storage system that
+	// uses a private or self-signed certificate authority (CA). You must specify
+	// a Base64-encoded .pem file (for example, file:///home/user/.ssh/storage_sys_certificate.pem).
+	// The certificate can be up to 32768 bytes (before Base64 encoding).
+	//
+	// To use this parameter, configure ServerProtocol to HTTPS.
+	// ServerCertificate is automatically base64 encoded/decoded by the SDK.
+	ServerCertificate []byte `type:"blob"`
+
 	// Specifies the domain name or IP address of the object storage server. A DataSync
 	// agent uses this hostname to mount the object storage server in a network.
 	//
@@ -5678,6 +5698,12 @@ func (s *CreateLocationObjectStorageInput) SetBucketName(v string) *CreateLocati
 // SetSecretKey sets the SecretKey field's value.
 func (s *CreateLocationObjectStorageInput) SetSecretKey(v string) *CreateLocationObjectStorageInput {
 	s.SecretKey = &v
+	return s
+}
+
+// SetServerCertificate sets the ServerCertificate field's value.
+func (s *CreateLocationObjectStorageInput) SetServerCertificate(v []byte) *CreateLocationObjectStorageInput {
+	s.ServerCertificate = v
 	return s
 }
 
@@ -7635,7 +7661,7 @@ type DescribeLocationObjectStorageOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The access key (for example, a user name) required to authenticate with the
-	// object storage server.
+	// object storage system.
 	AccessKey *string `min:"8" type:"string"`
 
 	// The ARNs of the DataSync agents that can securely connect with your location.
@@ -7650,11 +7676,16 @@ type DescribeLocationObjectStorageOutput struct {
 	// The URL of the object storage system location.
 	LocationUri *string `type:"string"`
 
+	// The self-signed certificate that DataSync uses to securely authenticate with
+	// your object storage system.
+	// ServerCertificate is automatically base64 encoded/decoded by the SDK.
+	ServerCertificate []byte `type:"blob"`
+
 	// The port that your object storage server accepts inbound network traffic
 	// on (for example, port 443).
 	ServerPort *int64 `min:"1" type:"integer"`
 
-	// The protocol that your object storage server uses to communicate.
+	// The protocol that your object storage system uses to communicate.
 	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
 }
 
@@ -7703,6 +7734,12 @@ func (s *DescribeLocationObjectStorageOutput) SetLocationArn(v string) *Describe
 // SetLocationUri sets the LocationUri field's value.
 func (s *DescribeLocationObjectStorageOutput) SetLocationUri(v string) *DescribeLocationObjectStorageOutput {
 	s.LocationUri = &v
+	return s
+}
+
+// SetServerCertificate sets the ServerCertificate field's value.
+func (s *DescribeLocationObjectStorageOutput) SetServerCertificate(v []byte) *DescribeLocationObjectStorageOutput {
+	s.ServerCertificate = v
 	return s
 }
 
@@ -8041,6 +8078,10 @@ func (s *DescribeTaskExecutionInput) SetTaskExecutionArn(v string) *DescribeTask
 type DescribeTaskExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The physical number of bytes transferred over the network after compression
+	// was applied. In most cases, this number is less than BytesTransferred.
+	BytesCompressed *int64 `type:"long"`
+
 	// The physical number of bytes transferred over the network.
 	BytesTransferred *int64 `type:"long"`
 
@@ -8133,6 +8174,12 @@ func (s DescribeTaskExecutionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeTaskExecutionOutput) GoString() string {
 	return s.String()
+}
+
+// SetBytesCompressed sets the BytesCompressed field's value.
+func (s *DescribeTaskExecutionOutput) SetBytesCompressed(v int64) *DescribeTaskExecutionOutput {
+	s.BytesCompressed = &v
+	return s
 }
 
 // SetBytesTransferred sets the BytesTransferred field's value.
@@ -11422,44 +11469,48 @@ func (s UpdateLocationNfsOutput) GoString() string {
 type UpdateLocationObjectStorageInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional. The access key is used if credentials are required to access the
-	// self-managed object storage server. If your object storage requires a user
-	// name and password to authenticate, use AccessKey and SecretKey to provide
-	// the user name and password, respectively.
+	// Specifies the access key (for example, a user name) if credentials are required
+	// to authenticate with the object storage server.
 	AccessKey *string `min:"8" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the agents associated with the self-managed
-	// object storage server location.
+	// Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can
+	// securely connect with your location.
 	AgentArns []*string `min:"1" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the self-managed object storage server
-	// location to be updated.
+	// Specifies the ARN of the object storage system location that you're updating.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
 
-	// Optional. The secret key is used if credentials are required to access the
-	// self-managed object storage server. If your object storage requires a user
-	// name and password to authenticate, use AccessKey and SecretKey to provide
-	// the user name and password, respectively.
+	// Specifies the secret key (for example, a password) if credentials are required
+	// to authenticate with the object storage server.
 	//
 	// SecretKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateLocationObjectStorageInput's
 	// String and GoString methods.
 	SecretKey *string `min:"8" type:"string" sensitive:"true"`
 
-	// The port that your self-managed object storage server accepts inbound network
-	// traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443
-	// (HTTPS). You can specify a custom port if your self-managed object storage
-	// server requires one.
+	// Specifies a certificate to authenticate with an object storage system that
+	// uses a private or self-signed certificate authority (CA). You must specify
+	// a Base64-encoded .pem file (for example, file:///home/user/.ssh/storage_sys_certificate.pem).
+	// The certificate can be up to 32768 bytes (before Base64 encoding).
+	//
+	// To use this parameter, configure ServerProtocol to HTTPS.
+	//
+	// Updating the certificate doesn't interfere with tasks that you have in progress.
+	// ServerCertificate is automatically base64 encoded/decoded by the SDK.
+	ServerCertificate []byte `type:"blob"`
+
+	// Specifies the port that your object storage server accepts inbound network
+	// traffic on (for example, port 443).
 	ServerPort *int64 `min:"1" type:"integer"`
 
-	// The protocol that the object storage server uses to communicate. Valid values
-	// are HTTP or HTTPS.
+	// Specifies the protocol that your object storage server uses to communicate.
 	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
 
-	// The subdirectory in the self-managed object storage server that is used to
-	// read data from.
+	// Specifies the object prefix for your object storage server. If this is a
+	// source location, DataSync only copies objects with this prefix. If this is
+	// a destination location, DataSync writes all objects with this prefix.
 	Subdirectory *string `type:"string"`
 }
 
@@ -11527,6 +11578,12 @@ func (s *UpdateLocationObjectStorageInput) SetLocationArn(v string) *UpdateLocat
 // SetSecretKey sets the SecretKey field's value.
 func (s *UpdateLocationObjectStorageInput) SetSecretKey(v string) *UpdateLocationObjectStorageInput {
 	s.SecretKey = &v
+	return s
+}
+
+// SetServerCertificate sets the ServerCertificate field's value.
+func (s *UpdateLocationObjectStorageInput) SetServerCertificate(v []byte) *UpdateLocationObjectStorageInput {
+	s.ServerCertificate = v
 	return s
 }
 

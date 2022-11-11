@@ -9332,7 +9332,15 @@ func (c *RDS) DescribeSourceRegionsRequest(input *DescribeSourceRegionsInput) (r
 //
 // Returns a list of the source Amazon Web Services Regions where the current
 // Amazon Web Services Region can create a read replica, copy a DB snapshot
-// from, or replicate automated backups from. This API action supports pagination.
+// from, or replicate automated backups from.
+//
+// Use this operation to determine whether cross-Region features are supported
+// between other Regions and your current Region. This operation supports pagination.
+//
+// To return information about the Regions that are enabled for your account,
+// or all Regions, use the EC2 operation DescribeRegions. For more information,
+// see DescribeRegions (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeRegions.html)
+// in the Amazon EC2 API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14591,6 +14599,9 @@ func (c *RDS) StartExportTaskRequest(input *StartExportTaskInput) (req *request.
 //   - ErrCodeDBClusterSnapshotNotFoundFault "DBClusterSnapshotNotFoundFault"
 //     DBClusterSnapshotIdentifier doesn't refer to an existing DB cluster snapshot.
 //
+//   - ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//     DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
 //   - ErrCodeExportTaskAlreadyExistsFault "ExportTaskAlreadyExists"
 //     You can't start an export task that's already running.
 //
@@ -16252,6 +16263,9 @@ type CancelExportTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
 
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
+
 	// The progress status of the export task.
 	Status *string `type:"string"`
 
@@ -16343,6 +16357,12 @@ func (s *CancelExportTaskOutput) SetSnapshotTime(v time.Time) *CancelExportTaskO
 // SetSourceArn sets the SourceArn field's value.
 func (s *CancelExportTaskOutput) SetSourceArn(v string) *CancelExportTaskOutput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *CancelExportTaskOutput) SetSourceType(v string) *CancelExportTaskOutput {
+	s.SourceType = &v
 	return s
 }
 
@@ -16665,9 +16685,12 @@ type ConnectionPoolConfiguration struct {
 	// The value is expressed as a percentage of the max_connections setting for
 	// the RDS DB instance or Aurora DB cluster used by the target group.
 	//
-	// Default: 100
+	// If you specify MaxIdleConnectionsPercent, then you must also include a value
+	// for this parameter.
 	//
-	// Constraints: between 1 and 100
+	// Default: 10 for RDS for Microsoft SQL Server, and 100 for all other engines
+	//
+	// Constraints: Must be between 1 and 100.
 	MaxConnectionsPercent *int64 `type:"integer"`
 
 	// Controls how actively the proxy closes idle database connections in the connection
@@ -16677,9 +16700,15 @@ type ConnectionPoolConfiguration struct {
 	// open. A low value causes the proxy to close more idle connections and return
 	// them to the database.
 	//
-	// Default: 50
+	// If you specify this parameter, then you must also include a value for MaxConnectionsPercent.
 	//
-	// Constraints: between 0 and MaxConnectionsPercent
+	// Default: The default value is half of the value of MaxConnectionsPercent.
+	// For example, if MaxConnectionsPercent is 80, then the default value of MaxIdleConnectionsPercent
+	// is 40. If the value of MaxConnectionsPercent isn't specified, then for SQL
+	// Server, MaxIdleConnectionsPercent is 5, and for all other engines, the default
+	// is 50.
+	//
+	// Constraints: Must be between 0 and the value of MaxConnectionsPercent.
 	MaxIdleConnectionsPercent *int64 `type:"integer"`
 
 	// Each item in the list represents a class of SQL operations that normally
@@ -16773,8 +16802,9 @@ type ConnectionPoolConfigurationInfo struct {
 	// Each item in the list represents a class of SQL operations that normally
 	// cause all later statements in a session using a proxy to be pinned to the
 	// same underlying database connection. Including an item in the list exempts
-	// that class of SQL operations from the pinning behavior. Currently, the only
-	// allowed value is EXCLUDE_VARIABLE_SETS.
+	// that class of SQL operations from the pinning behavior. This setting is only
+	// supported for MySQL engine family databases. Currently, the only allowed
+	// value is EXCLUDE_VARIABLE_SETS.
 	SessionPinningFilters []*string `type:"list"`
 }
 
@@ -18557,8 +18587,8 @@ type CreateDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of each DB instance in the Multi-AZ DB cluster,
-	// for example db.m6g.xlarge. Not all DB instance classes are available in all
-	// Amazon Web Services Regions, or for all database engines.
+	// for example db.m6gd.xlarge. Not all DB instance classes are available in
+	// all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes and availability for your engine,
 	// see DB instance class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -18816,8 +18846,8 @@ type CreateDBClusterInput struct {
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for each DB instance in the Multi-AZ DB cluster.
 	//
-	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
-	// storage to improve performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// For information about valid IOPS values, see Amazon RDS Provisioned IOPS
+	// storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	//
 	// This setting is required to create a Multi-AZ DB cluster.
@@ -19826,8 +19856,8 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp2): Must be an integer from 40 to 65536
-	//    for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
+	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 40
+	//    to 65536 for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
 	//
 	//    * Provisioned IOPS storage (io1): Must be an integer from 40 to 65536
 	//    for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
@@ -19836,7 +19866,8 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.
+	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
+	//    to 65536.
 	//
 	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
 	//
@@ -19846,7 +19877,8 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.
+	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
+	//    to 65536.
 	//
 	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
 	//
@@ -19856,7 +19888,8 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.
+	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
+	//    to 65536.
 	//
 	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
 	//
@@ -19866,7 +19899,8 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.
+	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
+	//    to 65536.
 	//
 	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
 	//
@@ -19876,7 +19910,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp2): Enterprise and Standard editions:
+	//    * General Purpose (SSD) storage (gp2, gp3): Enterprise and Standard editions:
 	//    Must be an integer from 20 to 16384. Web and Express editions: Must be
 	//    an integer from 20 to 16384.
 	//
@@ -20120,8 +20154,8 @@ type CreateDBInstanceInput struct {
 	//
 	//    * It must contain 1 to 63 alphanumeric characters.
 	//
-	//    * It must begin with a letter or an underscore. Subsequent characters
-	//    can be letters, underscores, or digits (0 to 9).
+	//    * It must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0 to 9).
 	//
 	//    * It can't be a word reserved by the database engine.
 	DBName *string `type:"string"`
@@ -20134,11 +20168,11 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must be 1 to 255 letters, numbers, or hyphens.
+	//    * It must be 1 to 255 letters, numbers, or hyphens.
 	//
-	//    * First character must be a letter
+	//    * The first character must be a letter.
 	//
-	//    * Can't end with a hyphen or contain two consecutive hyphens
+	//    * It can't end with a hyphen or contain two consecutive hyphens.
 	DBParameterGroupName *string `type:"string"`
 
 	// A list of DB security groups to associate with this DB instance.
@@ -20363,8 +20397,8 @@ type CreateDBInstanceInput struct {
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
-	// initially allocated for the DB instance. For information about valid Iops
-	// values, see Amazon RDS Provisioned IOPS storage to improve performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// initially allocated for the DB instance. For information about valid IOPS
+	// values, see Amazon RDS DB instance storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints: For MariaDB, MySQL, Oracle, and PostgreSQL DB instances, must
@@ -20737,11 +20771,16 @@ type CreateDBInstanceInput struct {
 	// Not applicable. The encryption for DB instances is managed by the DB cluster.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// Specifies the storage throughput value for the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom or Amazon Aurora.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: gp2 | gp3 | io1 | standard
 	//
-	// If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
 	// Default: io1 if the Iops parameter is specified, otherwise gp2
 	//
@@ -21087,6 +21126,12 @@ func (s *CreateDBInstanceInput) SetPubliclyAccessible(v bool) *CreateDBInstanceI
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *CreateDBInstanceInput) SetStorageEncrypted(v bool) *CreateDBInstanceInput {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *CreateDBInstanceInput) SetStorageThroughput(v int64) *CreateDBInstanceInput {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -21599,11 +21644,16 @@ type CreateDBInstanceReadReplicaInput struct {
 	// have the same region as the source ARN.
 	SourceRegion *string `type:"string" ignore:"true"`
 
+	// Specifies the storage throughput value for the read replica.
+	//
+	// This setting doesn't apply to RDS Custom or Amazon Aurora.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type to be associated with the read replica.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: gp2 | gp3 | io1 | standard
 	//
-	// If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
 	// Default: io1 if the Iops parameter is specified, otherwise gp2
 	StorageType *string `type:"string"`
@@ -21849,6 +21899,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetSourceDBInstanceIdentifier(v strin
 // SetSourceRegion sets the SourceRegion field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetSourceRegion(v string) *CreateDBInstanceReadReplicaInput {
 	s.SourceRegion = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetStorageThroughput(v int64) *CreateDBInstanceReadReplicaInput {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -22104,7 +22160,8 @@ type CreateDBProxyEndpointInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A value that indicates whether the DB proxy endpoint can be used for read/write
-	// or read-only operations. The default is READ_WRITE.
+	// or read-only operations. The default is READ_WRITE. The only role that proxies
+	// for RDS for Microsoft SQL Server support is READ_WRITE.
 	TargetRole *string `type:"string" enum:"DBProxyEndpointTargetRole"`
 
 	// The VPC security group IDs for the DB proxy endpoint that you create. You
@@ -22261,7 +22318,8 @@ type CreateDBProxyInput struct {
 	// which database network protocol the proxy recognizes when it interprets network
 	// traffic to and from the database. For Aurora MySQL, RDS for MariaDB, and
 	// RDS for MySQL databases, specify MYSQL. For Aurora PostgreSQL and RDS for
-	// PostgreSQL databases, specify POSTGRESQL.
+	// PostgreSQL databases, specify POSTGRESQL. For RDS for Microsoft SQL Server,
+	// specify SQLSERVER.
 	//
 	// EngineFamily is a required field
 	EngineFamily *string `type:"string" required:"true" enum:"EngineFamily"`
@@ -25507,7 +25565,10 @@ type DBInstance struct {
 	// Specifies whether the DB instance is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
-	// Specifies the storage type associated with DB instance.
+	// Specifies the storage throughput for the DB instance.
+	StorageThroughput *int64 `type:"integer"`
+
+	// Specifies the storage type associated with the DB instance.
 	StorageType *string `type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
@@ -25972,6 +26033,12 @@ func (s *DBInstance) SetStorageEncrypted(v bool) *DBInstance {
 	return s
 }
 
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *DBInstance) SetStorageThroughput(v int64) *DBInstance {
+	s.StorageThroughput = &v
+	return s
+}
+
 // SetStorageType sets the StorageType field's value.
 func (s *DBInstance) SetStorageType(v string) *DBInstance {
 	s.StorageType = &v
@@ -26099,6 +26166,9 @@ type DBInstanceAutomatedBackup struct {
 	//    snapshot to be available.
 	Status *string `type:"string"`
 
+	// Specifies the storage throughput for the automated backup.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type associated with the automated backup.
 	StorageType *string `type:"string"`
 
@@ -26111,7 +26181,7 @@ type DBInstanceAutomatedBackup struct {
 	// that were created with a time zone specified.
 	Timezone *string `type:"string"`
 
-	// Provides the VPC ID associated with the DB instance
+	// Provides the VPC ID associated with the DB instance.
 	VpcId *string `type:"string"`
 }
 
@@ -26268,6 +26338,12 @@ func (s *DBInstanceAutomatedBackup) SetRestoreWindow(v *RestoreWindow) *DBInstan
 // SetStatus sets the Status field's value.
 func (s *DBInstanceAutomatedBackup) SetStatus(v string) *DBInstanceAutomatedBackup {
 	s.Status = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *DBInstanceAutomatedBackup) SetStorageThroughput(v int64) *DBInstanceAutomatedBackup {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -26645,7 +26721,8 @@ type DBProxy struct {
 	// which database network protocol the proxy recognizes when it interprets network
 	// traffic to and from the database. MYSQL supports Aurora MySQL, RDS for MariaDB,
 	// and RDS for MySQL databases. POSTGRESQL supports Aurora PostgreSQL and RDS
-	// for PostgreSQL databases.
+	// for PostgreSQL databases. SQLSERVER supports RDS for Microsoft SQL Server
+	// databases.
 	EngineFamily *string `type:"string"`
 
 	// The number of seconds a connection to the proxy can have no activity before
@@ -27397,6 +27474,9 @@ type DBSnapshot struct {
 	// Specifies the status of this DB snapshot.
 	Status *string `type:"string"`
 
+	// Specifies the storage throughput for the DB snapshot.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type associated with DB snapshot.
 	StorageType *string `type:"string"`
 
@@ -27593,6 +27673,12 @@ func (s *DBSnapshot) SetSourceRegion(v string) *DBSnapshot {
 // SetStatus sets the Status field's value.
 func (s *DBSnapshot) SetStatus(v string) *DBSnapshot {
 	s.Status = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *DBSnapshot) SetStorageThroughput(v int64) *DBSnapshot {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -30777,9 +30863,9 @@ func (s *DescribeDBClusterSnapshotsOutput) SetMarker(v string) *DescribeDBCluste
 type DescribeDBClustersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The user-supplied DB cluster identifier. If this parameter is specified,
-	// information from only the specific DB cluster is returned. This parameter
-	// isn't case-sensitive.
+	// The user-supplied DB cluster identifier or the Amazon Resource Name (ARN)
+	// of the DB cluster. If this parameter is specified, information from only
+	// the specific DB cluster is returned. This parameter isn't case-sensitive.
 	//
 	// Constraints:
 	//
@@ -31365,8 +31451,9 @@ func (s *DescribeDBInstanceAutomatedBackupsOutput) SetMarker(v string) *Describe
 type DescribeDBInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The user-supplied instance identifier. If this parameter is specified, information
-	// from only the specific DB instance is returned. This parameter isn't case-sensitive.
+	// The user-supplied instance identifier or the Amazon Resource Name (ARN) of
+	// the DB instance. If this parameter is specified, information from only the
+	// specific DB instance is returned. This parameter isn't case-sensitive.
 	//
 	// Constraints:
 	//
@@ -33322,6 +33409,10 @@ type DescribeEngineDefaultParametersInput struct {
 	//
 	//    * aurora-postgresql13
 	//
+	//    * aurora-postgresql14
+	//
+	//    * custom-oracle-ee-19
+	//
 	//    * mariadb10.2
 	//
 	//    * mariadb10.3
@@ -33335,6 +33426,18 @@ type DescribeEngineDefaultParametersInput struct {
 	//    * mysql5.7
 	//
 	//    * mysql8.0
+	//
+	//    * oracle-ee-19
+	//
+	//    * oracle-ee-cdb-19
+	//
+	//    * oracle-ee-cdb-21
+	//
+	//    * oracle-se2-19
+	//
+	//    * oracle-se2-cdb-19
+	//
+	//    * oracle-se2-cdb-21
 	//
 	//    * postgres10
 	//
@@ -33982,6 +34085,9 @@ type DescribeExportTasksInput struct {
 
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
+
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
 }
 
 // String returns the string representation.
@@ -34052,6 +34158,12 @@ func (s *DescribeExportTasksInput) SetMaxRecords(v int64) *DescribeExportTasksIn
 // SetSourceArn sets the SourceArn field's value.
 func (s *DescribeExportTasksInput) SetSourceArn(v string) *DescribeExportTasksInput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *DescribeExportTasksInput) SetSourceType(v string) *DescribeExportTasksInput {
+	s.SourceType = &v
 	return s
 }
 
@@ -36291,6 +36403,9 @@ type ExportTask struct {
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
 
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
+
 	// The progress status of the export task.
 	Status *string `type:"string"`
 
@@ -36382,6 +36497,12 @@ func (s *ExportTask) SetSnapshotTime(v time.Time) *ExportTask {
 // SetSourceArn sets the SourceArn field's value.
 func (s *ExportTask) SetSourceArn(v string) *ExportTask {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *ExportTask) SetSourceType(v string) *ExportTask {
+	s.SourceType = &v
 	return s
 }
 
@@ -38247,8 +38368,8 @@ type ModifyDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of each DB instance in the Multi-AZ DB cluster,
-	// for example db.m6g.xlarge. Not all DB instance classes are available in all
-	// Amazon Web Services Regions, or for all database engines.
+	// for example db.m6gd.xlarge. Not all DB instance classes are available in
+	// all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes and availability for your engine,
 	// see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -38386,8 +38507,8 @@ type ModifyDBClusterInput struct {
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for each DB instance in the Multi-AZ DB cluster.
 	//
-	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
-	// Storage to Improve Performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// For information about valid IOPS values, see Amazon RDS Provisioned IOPS
+	// storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints: Must be a multiple between .5 and 50 of the storage amount for
@@ -39748,6 +39869,11 @@ type ModifyDBInstanceInput struct {
 	// maximum value is 1,440.
 	ResumeFullAutomationModeMinutes *int64 `type:"integer"`
 
+	// Specifies the storage throughput value for the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom or Amazon Aurora.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type to be associated with the DB instance.
 	//
 	// If you specify Provisioned IOPS (io1), you must also include a value for
@@ -39766,7 +39892,7 @@ type ModifyDBInstanceInput struct {
 	// modifying the instance, rebooting the instance, deleting the instance, creating
 	// a read replica for the instance, and creating a DB snapshot of the instance.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: gp2 | gp3 | io1 | standard
 	//
 	// Default: io1 if the Iops parameter is specified, otherwise gp2
 	StorageType *string `type:"string"`
@@ -40093,6 +40219,12 @@ func (s *ModifyDBInstanceInput) SetReplicaMode(v string) *ModifyDBInstanceInput 
 // SetResumeFullAutomationModeMinutes sets the ResumeFullAutomationModeMinutes field's value.
 func (s *ModifyDBInstanceInput) SetResumeFullAutomationModeMinutes(v int64) *ModifyDBInstanceInput {
 	s.ResumeFullAutomationModeMinutes = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *ModifyDBInstanceInput) SetStorageThroughput(v int64) *ModifyDBInstanceInput {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -42181,6 +42313,12 @@ type OrderableDBInstanceOption struct {
 	// Maximum storage size for a DB instance.
 	MaxStorageSize *int64 `type:"integer"`
 
+	// Maximum storage throughput for a DB instance.
+	MaxStorageThroughputPerDbInstance *int64 `type:"integer"`
+
+	// Maximum storage throughput to provisioned IOPS ratio for a DB instance.
+	MaxStorageThroughputPerIops *float64 `type:"double"`
+
 	// Minimum total provisioned IOPS for a DB instance.
 	MinIopsPerDbInstance *int64 `type:"integer"`
 
@@ -42189,6 +42327,12 @@ type OrderableDBInstanceOption struct {
 
 	// Minimum storage size for a DB instance.
 	MinStorageSize *int64 `type:"integer"`
+
+	// Minimum storage throughput for a DB instance.
+	MinStorageThroughputPerDbInstance *int64 `type:"integer"`
+
+	// Minimum storage throughput to provisioned IOPS ratio for a DB instance.
+	MinStorageThroughputPerIops *float64 `type:"double"`
 
 	// Indicates whether a DB instance is Multi-AZ capable.
 	MultiAZCapable *bool `type:"boolean"`
@@ -42257,6 +42401,9 @@ type OrderableDBInstanceOption struct {
 
 	// Indicates whether a DB instance supports encrypted storage.
 	SupportsStorageEncryption *bool `type:"boolean"`
+
+	// Indicates whether a DB instance supports storage throughput.
+	SupportsStorageThroughput *bool `type:"boolean"`
 
 	// Indicates whether a DB instance is in a VPC.
 	Vpc *bool `type:"boolean"`
@@ -42340,6 +42487,18 @@ func (s *OrderableDBInstanceOption) SetMaxStorageSize(v int64) *OrderableDBInsta
 	return s
 }
 
+// SetMaxStorageThroughputPerDbInstance sets the MaxStorageThroughputPerDbInstance field's value.
+func (s *OrderableDBInstanceOption) SetMaxStorageThroughputPerDbInstance(v int64) *OrderableDBInstanceOption {
+	s.MaxStorageThroughputPerDbInstance = &v
+	return s
+}
+
+// SetMaxStorageThroughputPerIops sets the MaxStorageThroughputPerIops field's value.
+func (s *OrderableDBInstanceOption) SetMaxStorageThroughputPerIops(v float64) *OrderableDBInstanceOption {
+	s.MaxStorageThroughputPerIops = &v
+	return s
+}
+
 // SetMinIopsPerDbInstance sets the MinIopsPerDbInstance field's value.
 func (s *OrderableDBInstanceOption) SetMinIopsPerDbInstance(v int64) *OrderableDBInstanceOption {
 	s.MinIopsPerDbInstance = &v
@@ -42355,6 +42514,18 @@ func (s *OrderableDBInstanceOption) SetMinIopsPerGib(v float64) *OrderableDBInst
 // SetMinStorageSize sets the MinStorageSize field's value.
 func (s *OrderableDBInstanceOption) SetMinStorageSize(v int64) *OrderableDBInstanceOption {
 	s.MinStorageSize = &v
+	return s
+}
+
+// SetMinStorageThroughputPerDbInstance sets the MinStorageThroughputPerDbInstance field's value.
+func (s *OrderableDBInstanceOption) SetMinStorageThroughputPerDbInstance(v int64) *OrderableDBInstanceOption {
+	s.MinStorageThroughputPerDbInstance = &v
+	return s
+}
+
+// SetMinStorageThroughputPerIops sets the MinStorageThroughputPerIops field's value.
+func (s *OrderableDBInstanceOption) SetMinStorageThroughputPerIops(v float64) *OrderableDBInstanceOption {
+	s.MinStorageThroughputPerIops = &v
 	return s
 }
 
@@ -42451,6 +42622,12 @@ func (s *OrderableDBInstanceOption) SetSupportsStorageAutoscaling(v bool) *Order
 // SetSupportsStorageEncryption sets the SupportsStorageEncryption field's value.
 func (s *OrderableDBInstanceOption) SetSupportsStorageEncryption(v bool) *OrderableDBInstanceOption {
 	s.SupportsStorageEncryption = &v
+	return s
+}
+
+// SetSupportsStorageThroughput sets the SupportsStorageThroughput field's value.
+func (s *OrderableDBInstanceOption) SetSupportsStorageThroughput(v bool) *OrderableDBInstanceOption {
+	s.SupportsStorageThroughput = &v
 	return s
 }
 
@@ -42823,6 +43000,9 @@ type PendingModifiedValues struct {
 	// maximum value is 1,440.
 	ResumeFullAutomationModeTime *time.Time `type:"timestamp"`
 
+	// The storage throughput of the DB instance.
+	StorageThroughput *int64 `type:"integer"`
+
 	// The storage type of the DB instance.
 	StorageType *string `type:"string"`
 }
@@ -42944,6 +43124,12 @@ func (s *PendingModifiedValues) SetProcessorFeatures(v []*ProcessorFeature) *Pen
 // SetResumeFullAutomationModeTime sets the ResumeFullAutomationModeTime field's value.
 func (s *PendingModifiedValues) SetResumeFullAutomationModeTime(v time.Time) *PendingModifiedValues {
 	s.ResumeFullAutomationModeTime = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *PendingModifiedValues) SetStorageThroughput(v int64) *PendingModifiedValues {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -45347,7 +45533,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the each DB instance in the Multi-AZ DB
-	// cluster, for example db.m6g.xlarge. Not all DB instance classes are available
+	// cluster, for example db.m6gd.xlarge. Not all DB instance classes are available
 	// in all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes, and availability for your engine,
@@ -45525,8 +45711,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for each DB instance in the Multi-AZ DB cluster.
 	//
-	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
-	// Storage to Improve Performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// For information about valid IOPS values, see Amazon RDS Provisioned IOPS
+	// storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints: Must be a multiple between .5 and 50 of the storage amount for
@@ -45964,7 +46150,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the each DB instance in the Multi-AZ DB
-	// cluster, for example db.m6g.xlarge. Not all DB instance classes are available
+	// cluster, for example db.m6gd.xlarge. Not all DB instance classes are available
 	// in all Amazon Web Services Regions, or for all database engines.
 	//
 	// For the full list of DB instance classes, and availability for your engine,
@@ -46078,8 +46264,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for each DB instance in the Multi-AZ DB cluster.
 	//
-	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
-	// storage to improve performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// For information about valid IOPS values, see Amazon RDS Provisioned IOPS
+	// storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints: Must be a multiple between .5 and 50 of the storage amount for
@@ -46749,8 +46935,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// starts.
 	//
 	// The provisioned IOPS value must follow the requirements for your database
-	// engine. For more information, see Amazon RDS Provisioned IOPS Storage to
-	// Improve Performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// engine. For more information, see Amazon RDS Provisioned IOPS storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints: Must be an integer greater than 1000.
@@ -46826,11 +47011,16 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// For more information, see CreateDBInstance.
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// Specifies the storage throughput value for the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom or Amazon Aurora.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: gp2 | gp3 | io1 | standard
 	//
-	// If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
 	// Default: io1 if the Iops parameter is specified, otherwise gp2
 	StorageType *string `type:"string"`
@@ -47052,6 +47242,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetPubliclyAccessible(v bool) *Re
 	return s
 }
 
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetStorageThroughput(v int64) *RestoreDBInstanceFromDBSnapshotInput {
+	s.StorageThroughput = &v
+	return s
+}
+
 // SetStorageType sets the StorageType field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetStorageType(v string) *RestoreDBInstanceFromDBSnapshotInput {
 	s.StorageType = &v
@@ -47253,8 +47449,8 @@ type RestoreDBInstanceFromS3Input struct {
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to allocate
-	// initially for the DB instance. For information about valid Iops values, see
-	// Amazon RDS Provisioned IOPS Storage to Improve Performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// initially for the DB instance. For information about valid IOPS values, see
+	// Amazon RDS Provisioned IOPS storage (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	Iops *int64 `type:"integer"`
 
@@ -47477,11 +47673,16 @@ type RestoreDBInstanceFromS3Input struct {
 	// A value that indicates whether the new DB instance is encrypted or not.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// Specifies the storage throughput value for the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom or Amazon Aurora.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: gp2 | gp3 | io1 | standard
 	//
-	// If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
 	// Default: io1 if the Iops parameter is specified; otherwise gp2
 	StorageType *string `type:"string"`
@@ -47791,6 +47992,12 @@ func (s *RestoreDBInstanceFromS3Input) SetSourceEngineVersion(v string) *Restore
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *RestoreDBInstanceFromS3Input) SetStorageEncrypted(v bool) *RestoreDBInstanceFromS3Input {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *RestoreDBInstanceFromS3Input) SetStorageThroughput(v int64) *RestoreDBInstanceFromS3Input {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -48159,11 +48366,16 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// The resource ID of the source DB instance from which to restore.
 	SourceDbiResourceId *string `type:"string"`
 
+	// Specifies the storage throughput value for the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom or Amazon Aurora.
+	StorageThroughput *int64 `type:"integer"`
+
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid values: standard | gp2 | io1
+	// Valid values: gp2 | gp3 | io1 | standard
 	//
-	// If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
 	//
 	// Default: io1 if the Iops parameter is specified, otherwise gp2
 	StorageType *string `type:"string"`
@@ -48417,6 +48629,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetSourceDBInstanceIdentifier(v st
 // SetSourceDbiResourceId sets the SourceDbiResourceId field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetSourceDbiResourceId(v string) *RestoreDBInstanceToPointInTimeInput {
 	s.SourceDbiResourceId = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetStorageThroughput(v int64) *RestoreDBInstanceToPointInTimeInput {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -49760,6 +49978,9 @@ type StartExportTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the snapshot exported to Amazon S3.
 	SourceArn *string `type:"string"`
 
+	// The type of source for the export.
+	SourceType *string `type:"string" enum:"ExportSourceType"`
+
 	// The progress status of the export task.
 	Status *string `type:"string"`
 
@@ -49851,6 +50072,12 @@ func (s *StartExportTaskOutput) SetSnapshotTime(v time.Time) *StartExportTaskOut
 // SetSourceArn sets the SourceArn field's value.
 func (s *StartExportTaskOutput) SetSourceArn(v string) *StartExportTaskOutput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *StartExportTaskOutput) SetSourceType(v string) *StartExportTaskOutput {
+	s.SourceType = &v
 	return s
 }
 
@@ -50675,7 +50902,8 @@ type UserAuthConfig struct {
 	Description *string `type:"string"`
 
 	// Whether to require or disallow Amazon Web Services Identity and Access Management
-	// (IAM) authentication for connections to the proxy.
+	// (IAM) authentication for connections to the proxy. The ENABLED value is valid
+	// only for proxies with RDS for Microsoft SQL Server.
 	IAMAuth *string `type:"string" enum:"IAMAuthMode"`
 
 	// The Amazon Resource Name (ARN) representing the secret that the proxy uses
@@ -50749,7 +50977,8 @@ type UserAuthConfigInfo struct {
 	Description *string `type:"string"`
 
 	// Whether to require or disallow Amazon Web Services Identity and Access Management
-	// (IAM) authentication for connections to the proxy.
+	// (IAM) authentication for connections to the proxy. The ENABLED value is valid
+	// only for proxies with RDS for Microsoft SQL Server.
 	IAMAuth *string `type:"string" enum:"IAMAuthMode"`
 
 	// The Amazon Resource Name (ARN) representing the secret that the proxy uses
@@ -50863,13 +51092,21 @@ type ValidStorageOptions struct {
 	// times storage.
 	IopsToStorageRatio []*DoubleRange `locationNameList:"DoubleRange" type:"list"`
 
-	// The valid range of provisioned IOPS. For example, 1000-20000.
+	// The valid range of provisioned IOPS. For example, 1000-256,000.
 	ProvisionedIops []*Range `locationNameList:"Range" type:"list"`
 
-	// The valid range of storage in gibibytes (GiB). For example, 100 to 16384.
+	// The valid range of provisioned storage throughput. For example, 500-4,000
+	// mebibytes per second (MiBps).
+	ProvisionedStorageThroughput []*Range `locationNameList:"Range" type:"list"`
+
+	// The valid range of storage in gibibytes (GiB). For example, 100 to 16,384.
 	StorageSize []*Range `locationNameList:"Range" type:"list"`
 
-	// The valid storage types for your DB instance. For example, gp2, io1.
+	// The valid range of storage throughput to provisioned IOPS ratios. For example,
+	// 0-0.25.
+	StorageThroughputToIopsRatio []*DoubleRange `locationNameList:"DoubleRange" type:"list"`
+
+	// The valid storage types for your DB instance. For example: gp2, gp3, io1.
 	StorageType *string `type:"string"`
 
 	// Whether or not Amazon RDS can automatically scale storage for DB instances
@@ -50907,9 +51144,21 @@ func (s *ValidStorageOptions) SetProvisionedIops(v []*Range) *ValidStorageOption
 	return s
 }
 
+// SetProvisionedStorageThroughput sets the ProvisionedStorageThroughput field's value.
+func (s *ValidStorageOptions) SetProvisionedStorageThroughput(v []*Range) *ValidStorageOptions {
+	s.ProvisionedStorageThroughput = v
+	return s
+}
+
 // SetStorageSize sets the StorageSize field's value.
 func (s *ValidStorageOptions) SetStorageSize(v []*Range) *ValidStorageOptions {
 	s.StorageSize = v
+	return s
+}
+
+// SetStorageThroughputToIopsRatio sets the StorageThroughputToIopsRatio field's value.
+func (s *ValidStorageOptions) SetStorageThroughputToIopsRatio(v []*DoubleRange) *ValidStorageOptions {
+	s.StorageThroughputToIopsRatio = v
 	return s
 }
 
@@ -51211,6 +51460,9 @@ const (
 
 	// EngineFamilyPostgresql is a EngineFamily enum value
 	EngineFamilyPostgresql = "POSTGRESQL"
+
+	// EngineFamilySqlserver is a EngineFamily enum value
+	EngineFamilySqlserver = "SQLSERVER"
 )
 
 // EngineFamily_Values returns all elements of the EngineFamily enum
@@ -51218,6 +51470,23 @@ func EngineFamily_Values() []string {
 	return []string{
 		EngineFamilyMysql,
 		EngineFamilyPostgresql,
+		EngineFamilySqlserver,
+	}
+}
+
+const (
+	// ExportSourceTypeSnapshot is a ExportSourceType enum value
+	ExportSourceTypeSnapshot = "SNAPSHOT"
+
+	// ExportSourceTypeCluster is a ExportSourceType enum value
+	ExportSourceTypeCluster = "CLUSTER"
+)
+
+// ExportSourceType_Values returns all elements of the ExportSourceType enum
+func ExportSourceType_Values() []string {
+	return []string{
+		ExportSourceTypeSnapshot,
+		ExportSourceTypeCluster,
 	}
 }
 
@@ -51247,6 +51516,9 @@ const (
 
 	// IAMAuthModeRequired is a IAMAuthMode enum value
 	IAMAuthModeRequired = "REQUIRED"
+
+	// IAMAuthModeEnabled is a IAMAuthMode enum value
+	IAMAuthModeEnabled = "ENABLED"
 )
 
 // IAMAuthMode_Values returns all elements of the IAMAuthMode enum
@@ -51254,6 +51526,7 @@ func IAMAuthMode_Values() []string {
 	return []string{
 		IAMAuthModeDisabled,
 		IAMAuthModeRequired,
+		IAMAuthModeEnabled,
 	}
 }
 

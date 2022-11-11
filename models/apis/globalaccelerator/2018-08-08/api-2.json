@@ -31,6 +31,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "AddEndpoints":{
+      "name":"AddEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddEndpointsRequest"},
+      "output":{"shape":"AddEndpointsResponse"},
+      "errors":[
+        {"shape":"TransactionInProgressException"},
+        {"shape":"EndpointGroupNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "AdvertiseByoipCidr":{
       "name":"AdvertiseByoipCidr",
       "http":{
@@ -563,6 +580,21 @@
         {"shape":"ConflictException"}
       ]
     },
+    "RemoveEndpoints":{
+      "name":"RemoveEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveEndpointsRequest"},
+      "errors":[
+        {"shape":"EndpointGroupNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TransactionInProgressException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -798,6 +830,24 @@
       "type":"structure",
       "members":{
         "EndpointDescriptions":{"shape":"CustomRoutingEndpointDescriptions"},
+        "EndpointGroupArn":{"shape":"GenericString"}
+      }
+    },
+    "AddEndpointsRequest":{
+      "type":"structure",
+      "required":[
+        "EndpointConfigurations",
+        "EndpointGroupArn"
+      ],
+      "members":{
+        "EndpointConfigurations":{"shape":"EndpointConfigurations"},
+        "EndpointGroupArn":{"shape":"GenericString"}
+      }
+    },
+    "AddEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "EndpointDescriptions":{"shape":"EndpointDescriptions"},
         "EndpointGroupArn":{"shape":"GenericString"}
       }
     },
@@ -1460,6 +1510,20 @@
       "type":"list",
       "member":{"shape":"EndpointGroup"}
     },
+    "EndpointIdentifier":{
+      "type":"structure",
+      "required":["EndpointId"],
+      "members":{
+        "EndpointId":{"shape":"GenericString"},
+        "ClientIPPreservationEnabled":{"shape":"GenericBoolean"}
+      }
+    },
+    "EndpointIdentifiers":{
+      "type":"list",
+      "member":{"shape":"EndpointIdentifier"},
+      "max":10,
+      "min":1
+    },
     "EndpointIds":{
       "type":"list",
       "member":{"shape":"GenericString"}
@@ -1870,6 +1934,17 @@
         "EndpointGroupArn":{"shape":"GenericString"}
       }
     },
+    "RemoveEndpointsRequest":{
+      "type":"structure",
+      "required":[
+        "EndpointIdentifiers",
+        "EndpointGroupArn"
+      ],
+      "members":{
+        "EndpointIdentifiers":{"shape":"EndpointIdentifiers"},
+        "EndpointGroupArn":{"shape":"GenericString"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "max":1011,
@@ -1943,6 +2018,13 @@
       "type":"float",
       "max":100,
       "min":0
+    },
+    "TransactionInProgressException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "UntagResourceRequest":{
       "type":"structure",

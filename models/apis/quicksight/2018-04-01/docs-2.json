@@ -105,7 +105,7 @@
     "UpdateDashboard": "<p>Updates a dashboard in an Amazon Web Services account.</p> <note> <p>Updating a Dashboard creates a new dashboard version but does not immediately publish the new version. You can update the published version of a dashboard by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateDashboardPublishedVersion.html\">UpdateDashboardPublishedVersion</a> </code> API operation.</p> </note>",
     "UpdateDashboardPermissions": "<p>Updates read and write permissions on a dashboard.</p>",
     "UpdateDashboardPublishedVersion": "<p>Updates the published version of a dashboard.</p>",
-    "UpdateDataSet": "<p>Updates a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>",
+    "UpdateDataSet": "<p>Updates a dataset. This operation doesn't support datasets that include uploaded files as a source. Partial updates are not supported by this operation.</p>",
     "UpdateDataSetPermissions": "<p>Updates the permissions on a dataset.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code>.</p>",
     "UpdateDataSource": "<p>Updates a data source.</p>",
     "UpdateDataSourcePermissions": "<p>Updates the permissions to a data source.</p>",
@@ -3499,6 +3499,13 @@
       "refs": {
       }
     },
+    "SecretArn": {
+      "base": null,
+      "refs": {
+        "DataSource$SecretArn": "<p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>",
+        "DataSourceCredentials$SecretArn": "<p>The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.</p>"
+      }
+    },
     "ServiceNowParameters": {
       "base": "<p>The parameters for ServiceNow.</p>",
       "refs": {
@@ -4718,7 +4725,7 @@
         "ListUserGroupsRequest$UserName": "<p>The Amazon QuickSight user name that you want to list group memberships for.</p>",
         "RegisterUserRequest$UserName": "<p>The Amazon QuickSight user name that you want to create for the user you are registering.</p>",
         "UpdateUserRequest$UserName": "<p>The Amazon QuickSight user name that you want to update.</p>",
-        "User$UserName": "<p>The user's user name. In the output, the value for <code>UserName</code> is <code>N/A</code> when the value for <code>IdentityType</code> is <code>IAM</code> and the corresponding IAM user is deleted.</p>"
+        "User$UserName": "<p>The user's user name. This value is required if you are registering a user that will be managed in Amazon QuickSight. In the output, the value for <code>UserName</code> is <code>N/A</code> when the value for <code>IdentityType</code> is <code>IAM</code> and the corresponding IAM user is deleted.</p>"
       }
     },
     "UserRole": {

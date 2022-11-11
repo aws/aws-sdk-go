@@ -102,6 +102,10 @@ type TranslateAPI interface {
 	ListParallelDataPages(*translate.ListParallelDataInput, func(*translate.ListParallelDataOutput, bool) bool) error
 	ListParallelDataPagesWithContext(aws.Context, *translate.ListParallelDataInput, func(*translate.ListParallelDataOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*translate.ListTagsForResourceInput) (*translate.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *translate.ListTagsForResourceInput, ...request.Option) (*translate.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*translate.ListTagsForResourceInput) (*request.Request, *translate.ListTagsForResourceOutput)
+
 	ListTerminologies(*translate.ListTerminologiesInput) (*translate.ListTerminologiesOutput, error)
 	ListTerminologiesWithContext(aws.Context, *translate.ListTerminologiesInput, ...request.Option) (*translate.ListTerminologiesOutput, error)
 	ListTerminologiesRequest(*translate.ListTerminologiesInput) (*request.Request, *translate.ListTerminologiesOutput)
@@ -124,9 +128,17 @@ type TranslateAPI interface {
 	StopTextTranslationJobWithContext(aws.Context, *translate.StopTextTranslationJobInput, ...request.Option) (*translate.StopTextTranslationJobOutput, error)
 	StopTextTranslationJobRequest(*translate.StopTextTranslationJobInput) (*request.Request, *translate.StopTextTranslationJobOutput)
 
+	TagResource(*translate.TagResourceInput) (*translate.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *translate.TagResourceInput, ...request.Option) (*translate.TagResourceOutput, error)
+	TagResourceRequest(*translate.TagResourceInput) (*request.Request, *translate.TagResourceOutput)
+
 	Text(*translate.TextInput) (*translate.TextOutput, error)
 	TextWithContext(aws.Context, *translate.TextInput, ...request.Option) (*translate.TextOutput, error)
 	TextRequest(*translate.TextInput) (*request.Request, *translate.TextOutput)
+
+	UntagResource(*translate.UntagResourceInput) (*translate.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *translate.UntagResourceInput, ...request.Option) (*translate.UntagResourceOutput, error)
+	UntagResourceRequest(*translate.UntagResourceInput) (*request.Request, *translate.UntagResourceOutput)
 
 	UpdateParallelData(*translate.UpdateParallelDataInput) (*translate.UpdateParallelDataOutput, error)
 	UpdateParallelDataWithContext(aws.Context, *translate.UpdateParallelDataInput, ...request.Option) (*translate.UpdateParallelDataOutput, error)

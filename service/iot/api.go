@@ -25318,6 +25318,10 @@ type Action struct {
 	// Invoke a Lambda function.
 	Lambda *LambdaAction `locationName:"lambda" type:"structure"`
 
+	// The Amazon Location Service rule action sends device location updates from
+	// an MQTT message to an Amazon Location tracker resource.
+	Location *LocationAction `locationName:"location" type:"structure"`
+
 	// Write data to an Amazon OpenSearch Service domain.
 	OpenSearch *OpenSearchAction `locationName:"openSearch" type:"structure"`
 
@@ -25430,6 +25434,11 @@ func (s *Action) Validate() error {
 	if s.Lambda != nil {
 		if err := s.Lambda.Validate(); err != nil {
 			invalidParams.AddNested("Lambda", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Location != nil {
+		if err := s.Location.Validate(); err != nil {
+			invalidParams.AddNested("Location", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.OpenSearch != nil {
@@ -25560,6 +25569,12 @@ func (s *Action) SetKinesis(v *KinesisAction) *Action {
 // SetLambda sets the Lambda field's value.
 func (s *Action) SetLambda(v *LambdaAction) *Action {
 	s.Lambda = v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *Action) SetLocation(v *LocationAction) *Action {
+	s.Location = v
 	return s
 }
 
@@ -33642,7 +33657,9 @@ type CreateProvisioningTemplateInput struct {
 	// True to enable the provisioning template, otherwise false.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
-	// Creates a pre-provisioning hook template.
+	// Creates a pre-provisioning hook template. Only supports template of type
+	// FLEET_PROVISIONING. For more information about provisioning template types,
+	// see type (https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type).
 	PreProvisioningHook *ProvisioningHook `locationName:"preProvisioningHook" type:"structure"`
 
 	// The role ARN for the role associated with the provisioning template. This
@@ -43766,7 +43783,7 @@ func (s *FleetMetricNameAndArn) SetMetricName(v string) *FleetMetricNameAndArn {
 type GetBehaviorModelTrainingSummariesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of results to return at one time. The default is 25.
+	// The maximum number of results to return at one time. The default is 10.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results.
@@ -54573,6 +54590,189 @@ func (s *ListViolationEventsOutput) SetViolationEvents(v []*ViolationEvent) *Lis
 	return s
 }
 
+// The Amazon Location rule action sends device location updates from an MQTT
+// message to an Amazon Location tracker resource.
+type LocationAction struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the device providing the location data.
+	//
+	// DeviceId is a required field
+	DeviceId *string `locationName:"deviceId" type:"string" required:"true"`
+
+	// A string that evaluates to a double value that represents the latitude of
+	// the device's location.
+	//
+	// Latitude is a required field
+	Latitude *string `locationName:"latitude" type:"string" required:"true"`
+
+	// A string that evaluates to a double value that represents the longitude of
+	// the device's location.
+	//
+	// Longitude is a required field
+	Longitude *string `locationName:"longitude" type:"string" required:"true"`
+
+	// The IAM role that grants permission to write to the Amazon Location resource.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The time that the location data was sampled. The default value is the time
+	// the MQTT message was processed.
+	Timestamp *LocationTimestamp `locationName:"timestamp" type:"structure"`
+
+	// The name of the tracker resource in Amazon Location in which the location
+	// is updated.
+	//
+	// TrackerName is a required field
+	TrackerName *string `locationName:"trackerName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocationAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocationAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LocationAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LocationAction"}
+	if s.DeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.Latitude == nil {
+		invalidParams.Add(request.NewErrParamRequired("Latitude"))
+	}
+	if s.Longitude == nil {
+		invalidParams.Add(request.NewErrParamRequired("Longitude"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.TrackerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrackerName"))
+	}
+	if s.Timestamp != nil {
+		if err := s.Timestamp.Validate(); err != nil {
+			invalidParams.AddNested("Timestamp", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *LocationAction) SetDeviceId(v string) *LocationAction {
+	s.DeviceId = &v
+	return s
+}
+
+// SetLatitude sets the Latitude field's value.
+func (s *LocationAction) SetLatitude(v string) *LocationAction {
+	s.Latitude = &v
+	return s
+}
+
+// SetLongitude sets the Longitude field's value.
+func (s *LocationAction) SetLongitude(v string) *LocationAction {
+	s.Longitude = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *LocationAction) SetRoleArn(v string) *LocationAction {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *LocationAction) SetTimestamp(v *LocationTimestamp) *LocationAction {
+	s.Timestamp = v
+	return s
+}
+
+// SetTrackerName sets the TrackerName field's value.
+func (s *LocationAction) SetTrackerName(v string) *LocationAction {
+	s.TrackerName = &v
+	return s
+}
+
+// Describes how to interpret an application-defined timestamp value from an
+// MQTT message payload and the precision of that value.
+type LocationTimestamp struct {
+	_ struct{} `type:"structure"`
+
+	// The precision of the timestamp value that results from the expression described
+	// in value.
+	//
+	// Valid values: SECONDS | MILLISECONDS | MICROSECONDS | NANOSECONDS. The default
+	// is MILLISECONDS.
+	Unit *string `locationName:"unit" type:"string"`
+
+	// An expression that returns a long epoch time value.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocationTimestamp) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LocationTimestamp) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LocationTimestamp) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LocationTimestamp"}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUnit sets the Unit field's value.
+func (s *LocationTimestamp) SetUnit(v string) *LocationTimestamp {
+	s.Unit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *LocationTimestamp) SetValue(v string) *LocationTimestamp {
+	s.Value = &v
+	return s
+}
+
 // A log target.
 type LogTarget struct {
 	_ struct{} `type:"structure"`
@@ -56492,7 +56692,7 @@ type ProvisioningTemplateVersionSummary struct {
 	// false.
 	IsDefaultVersion *bool `locationName:"isDefaultVersion" type:"boolean"`
 
-	// The ID of the fleet privisioning template version.
+	// The ID of the fleet provisioning template version.
 	VersionId *int64 `locationName:"versionId" type:"integer"`
 }
 
@@ -65969,7 +66169,9 @@ type UpdateProvisioningTemplateInput struct {
 	// True to enable the provisioning template, otherwise false.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
-	// Updates the pre-provisioning hook template.
+	// Updates the pre-provisioning hook template. Only supports template of type
+	// FLEET_PROVISIONING. For more information about provisioning template types,
+	// see type (https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type).
 	PreProvisioningHook *ProvisioningHook `locationName:"preProvisioningHook" type:"structure"`
 
 	// The ARN of the role associated with the provisioning template. This IoT role

@@ -206,6 +206,8 @@
         {"shape":"DescriptionTooLongException"},
         {"shape":"DeploymentLimitExceededException"},
         {"shape":"InvalidTargetInstancesException"},
+        {"shape":"InvalidAlarmConfigException"},
+        {"shape":"AlarmsLimitExceededException"},
         {"shape":"InvalidAutoRollbackConfigException"},
         {"shape":"InvalidLoadBalancerInfoException"},
         {"shape":"InvalidFileExistsBehaviorException"},
@@ -1264,7 +1266,8 @@
         "targetInstances":{"shape":"TargetInstances"},
         "autoRollbackConfiguration":{"shape":"AutoRollbackConfiguration"},
         "updateOutdatedInstancesOnly":{"shape":"Boolean"},
-        "fileExistsBehavior":{"shape":"FileExistsBehavior"}
+        "fileExistsBehavior":{"shape":"FileExistsBehavior"},
+        "overrideAlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "CreateDeploymentOutput":{
@@ -1511,7 +1514,8 @@
         "deploymentStatusMessages":{"shape":"DeploymentStatusMessageList"},
         "computePlatform":{"shape":"ComputePlatform"},
         "externalId":{"shape":"ExternalId"},
-        "relatedDeployments":{"shape":"RelatedDeployments"}
+        "relatedDeployments":{"shape":"RelatedDeployments"},
+        "overrideAlarmConfiguration":{"shape":"AlarmConfiguration"}
       }
     },
     "DeploymentIsNotInReadyStateException":{

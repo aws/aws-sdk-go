@@ -3289,6 +3289,110 @@ func (c *LocationService) GetMapTileWithContext(ctx aws.Context, input *GetMapTi
 	return out, req.Send()
 }
 
+const opGetPlace = "GetPlace"
+
+// GetPlaceRequest generates a "aws/request.Request" representing the
+// client's request for the GetPlace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPlace for more information on using the GetPlace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPlaceRequest method.
+//	req, resp := client.GetPlaceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/GetPlace
+func (c *LocationService) GetPlaceRequest(input *GetPlaceInput) (req *request.Request, output *GetPlaceOutput) {
+	op := &request.Operation{
+		Name:       opGetPlace,
+		HTTPMethod: "GET",
+		HTTPPath:   "/places/v0/indexes/{IndexName}/places/{PlaceId}",
+	}
+
+	if input == nil {
+		input = &GetPlaceInput{}
+	}
+
+	output = &GetPlaceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("places.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetPlace API operation for Amazon Location Service.
+//
+// Finds a place by its unique ID. A PlaceId is returned by other search operations.
+//
+// A PlaceId is valid only if all of the following are the same in the original
+// search request and the call to GetPlace.
+//
+//   - Customer AWS account
+//
+//   - AWS Region
+//
+//   - Data provider specified in the place index resource
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation GetPlace for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed to process because of an unknown server error, exception,
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource that you've entered was not found in your AWS account.
+//
+//   - AccessDeniedException
+//     The request was denied because of insufficient access or permissions. Check
+//     with an administrator to verify your permissions.
+//
+//   - ValidationException
+//     The input failed to meet the constraints specified by the AWS service.
+//
+//   - ThrottlingException
+//     The request was denied because of request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/GetPlace
+func (c *LocationService) GetPlace(input *GetPlaceInput) (*GetPlaceOutput, error) {
+	req, out := c.GetPlaceRequest(input)
+	return out, req.Send()
+}
+
+// GetPlaceWithContext is the same as GetPlace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPlace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) GetPlaceWithContext(ctx aws.Context, input *GetPlaceInput, opts ...request.Option) (*GetPlaceOutput, error) {
+	req, out := c.GetPlaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDevicePositions = "ListDevicePositions"
 
 // ListDevicePositionsRequest generates a "aws/request.Request" representing the
@@ -8158,7 +8262,9 @@ func (s *CreateGeofenceCollectionOutput) SetCreateTime(v time.Time) *CreateGeofe
 type CreateMapInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the map style selected from an available data provider.
+	// Specifies the MapConfiguration, including the map style, for the map resource
+	// that you create. The map style defines the look of maps and the data provider
+	// for your map resource.
 	//
 	// Configuration is a required field
 	Configuration *MapConfiguration `type:"structure" required:"true"`
@@ -8291,7 +8397,7 @@ type CreateMapOutput struct {
 	// The Amazon Resource Name (ARN) for the map resource. Used to specify a resource
 	// across all AWS.
 	//
-	//    * Format example: arn:aws:geo:region:account-id:maps/ExampleMap
+	//    * Format example: arn:aws:geo:region:account-id:map/ExampleMap
 	//
 	// MapArn is a required field
 	MapArn *string `type:"string" required:"true"`
@@ -9624,7 +9730,7 @@ type DescribeMapOutput struct {
 	// The Amazon Resource Name (ARN) for the map resource. Used to specify a resource
 	// across all AWS.
 	//
-	//    * Format example: arn:aws:geo:region:account-id:maps/ExampleMap
+	//    * Format example: arn:aws:geo:region:account-id:map/ExampleMap
 	//
 	// MapArn is a required field
 	MapArn *string `type:"string" required:"true"`
@@ -10577,18 +10683,22 @@ type GeofenceGeometry struct {
 	// String and GoString methods.
 	Circle *Circle `type:"structure" sensitive:"true"`
 
-	// An array of 1 or more linear rings. A linear ring is an array of 4 or more
-	// vertices, where the first and last vertex are the same to form a closed boundary.
+	// A polygon is a list of linear rings which are each made up of a list of vertices.
+	//
 	// Each vertex is a 2-dimensional point of the form: [longitude, latitude].
+	// This is represented as an array of doubles of length 2 (so [double, double]).
 	//
-	// The first linear ring is an outer ring, describing the polygon's boundary.
-	// Subsequent linear rings may be inner or outer rings to describe holes and
-	// islands. Outer rings must list their vertices in counter-clockwise order
-	// around the ring's center, where the left side is the polygon's exterior.
-	// Inner rings must list their vertices in clockwise order, where the left side
-	// is the polygon's interior.
+	// An array of 4 or more vertices, where the first and last vertex are the same
+	// (to form a closed boundary), is called a linear ring. The linear ring vertices
+	// must be listed in counter-clockwise order around the ring’s interior. The
+	// linear ring is represented as an array of vertices, or an array of arrays
+	// of doubles ([[double, double], ...]).
 	//
-	// A geofence polygon can consist of between 4 and 1,000 vertices.
+	// A geofence consists of a single linear ring. To allow for future expansion,
+	// the Polygon parameter takes an array of linear rings, which is represented
+	// as an array of arrays of arrays of doubles ([[[double, double], ...], ...]).
+	//
+	// A linear ring for use in geofences can consist of between 4 and 1,000 vertices.
 	Polygon [][][]*float64 `min:"1" type:"list"`
 }
 
@@ -11151,9 +11261,9 @@ type GetMapGlyphsInput struct {
 	//
 	//    * VectorHereContrast – Fira GO Regular | Fira GO Bold
 	//
-	//    * VectorHereExplore, VectorHereExploreTruck – Firo GO Italic | Fira
-	//    GO Map | Fira GO Map Bold | Noto Sans CJK JP Bold | Noto Sans CJK JP Light
-	//    | Noto Sans CJK JP Regular
+	//    * VectorHereExplore, VectorHereExploreTruck, HybridHereExploreSatellite
+	//    – Fira GO Italic | Fira GO Map | Fira GO Map Bold | Noto Sans CJK JP
+	//    Bold | Noto Sans CJK JP Light | Noto Sans CJK JP Regular
 	//
 	// FontStack is a required field
 	FontStack *string `location:"uri" locationName:"FontStack" type:"string" required:"true"`
@@ -11285,7 +11395,7 @@ type GetMapSpritesInput struct {
 	//
 	//    * sprites@2x.png for high pixel density displays
 	//
-	// For the JSON document contain image offsets. Use the following ﬁle names:
+	// For the JSON document containing image offsets. Use the following ﬁle names:
 	//
 	//    * sprites.json
 	//
@@ -11619,6 +11729,133 @@ func (s *GetMapTileOutput) SetBlob(v []byte) *GetMapTileOutput {
 // SetContentType sets the ContentType field's value.
 func (s *GetMapTileOutput) SetContentType(v string) *GetMapTileOutput {
 	s.ContentType = &v
+	return s
+}
+
+type GetPlaceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the place index resource that you want to use for the search.
+	//
+	// IndexName is a required field
+	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
+
+	// The preferred language used to return results. The value must be a valid
+	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
+	// for English.
+	//
+	// This setting affects the languages used in the results, but not the results
+	// themselves. If no language is specified, or not supported for a particular
+	// result, the partner automatically chooses a language for the result.
+	//
+	// For an example, we'll use the Greek language. You search for a location around
+	// Athens, Greece, with the language parameter set to en. The city in the results
+	// will most likely be returned as Athens.
+	//
+	// If you set the language parameter to el, for Greek, then the city in the
+	// results will more likely be returned as Αθήνα.
+	//
+	// If the data provider does not have a value for Greek, the result will be
+	// in a language that the provider does support.
+	Language *string `location:"querystring" locationName:"language" min:"2" type:"string"`
+
+	// The identifier of the place to find.
+	//
+	// PlaceId is a required field
+	PlaceId *string `location:"uri" locationName:"PlaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPlaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPlaceInput"}
+	if s.IndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexName"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.Language != nil && len(*s.Language) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Language", 2))
+	}
+	if s.PlaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlaceId"))
+	}
+	if s.PlaceId != nil && len(*s.PlaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *GetPlaceInput) SetIndexName(v string) *GetPlaceInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *GetPlaceInput) SetLanguage(v string) *GetPlaceInput {
+	s.Language = &v
+	return s
+}
+
+// SetPlaceId sets the PlaceId field's value.
+func (s *GetPlaceInput) SetPlaceId(v string) *GetPlaceInput {
+	s.PlaceId = &v
+	return s
+}
+
+type GetPlaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the result, such as its address and position.
+	//
+	// Place is a required field
+	Place *Place `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetPlace sets the Place field's value.
+func (s *GetPlaceOutput) SetPlace(v *Place) *GetPlaceOutput {
+	s.Place = v
 	return s
 }
 
@@ -13512,6 +13749,9 @@ type MapConfiguration struct {
 	//
 	//    * VectorHereContrast – The HERE Contrast (Berlin) map style is a high
 	//    contrast detailed base map of the world that blends 3D and 2D rendering.
+	//    The VectorHereContrast style has been renamed from VectorHereBerlin. VectorHereBerlin
+	//    has been deprecated, but will continue to work in applications that use
+	//    it.
 	//
 	//    * VectorHereExplore – A default HERE map style containing a neutral,
 	//    global map and its features including roads, buildings, landmarks, and
@@ -13522,8 +13762,16 @@ type MapConfiguration struct {
 	//    segments and icons on top of HERE Explore to support use cases within
 	//    transport and logistics.
 	//
-	// The VectorHereContrast style has been renamed from VectorHereBerlin. VectorHereBerlin
-	// has been deprecated, but will continue to work in applications that use it.
+	//    * RasterHereExploreSatellite – A global map containing high resolution
+	//    satellite imagery.
+	//
+	//    * HybridHereExploreSatellite – A global map displaying the road network,
+	//    street names, and city labels over satellite imagery. This style will
+	//    automatically retrieve both raster and vector tiles, and your charges
+	//    will be based on total tiles retrieved. Hybrid styles use both vector
+	//    and raster tiles when rendering the map that you see. This means that
+	//    more tiles are retrieved than when using either vector or raster tiles
+	//    alone. Your charges will include all tiles retrieved.
 	//
 	// Style is a required field
 	Style *string `min:"1" type:"string" required:"true"`
@@ -13626,9 +13874,19 @@ type Place struct {
 	// Vancouver.
 	SubRegion *string `type:"string"`
 
-	// The time zone in which the Place is located. Returned only when using Here
+	// The time zone in which the Place is located. Returned only when using HERE
 	// as the selected partner.
 	TimeZone *TimeZone `type:"structure"`
+
+	// For addresses with multiple units, the unit identifier. Can include numbers
+	// and letters, for example 3B or Unit 123.
+	//
+	// Returned only for a place index that uses Esri as a data provider. Is not
+	// returned for SearchPlaceIndexForPosition.
+	UnitNumber *string `type:"string"`
+
+	// For addresses with a UnitNumber, the type of unit. For example, Apartment.
+	UnitType *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -13718,6 +13976,18 @@ func (s *Place) SetSubRegion(v string) *Place {
 // SetTimeZone sets the TimeZone field's value.
 func (s *Place) SetTimeZone(v *TimeZone) *Place {
 	s.TimeZone = v
+	return s
+}
+
+// SetUnitNumber sets the UnitNumber field's value.
+func (s *Place) SetUnitNumber(v string) *Place {
+	s.UnitNumber = &v
+	return s
+}
+
+// SetUnitType sets the UnitType field's value.
+func (s *Place) SetUnitType(v string) *Place {
+	s.UnitType = &v
 	return s
 }
 
@@ -14153,6 +14423,13 @@ type SearchForPositionResult struct {
 	//
 	// Place is a required field
 	Place *Place `type:"structure" required:"true"`
+
+	// The unique identifier of the place. You can use this with the GetPlace operation
+	// to find the place again later.
+	//
+	// For SearchPlaceIndexForPosition operations, the PlaceId is returned only
+	// by place indexes that use HERE as a data provider.
+	PlaceId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -14185,10 +14462,23 @@ func (s *SearchForPositionResult) SetPlace(v *Place) *SearchForPositionResult {
 	return s
 }
 
+// SetPlaceId sets the PlaceId field's value.
+func (s *SearchForPositionResult) SetPlaceId(v string) *SearchForPositionResult {
+	s.PlaceId = &v
+	return s
+}
+
 // Contains a place suggestion resulting from a place suggestion query that
 // is run on a place index resource.
 type SearchForSuggestionsResult struct {
 	_ struct{} `type:"structure"`
+
+	// The unique identifier of the place. You can use this with the GetPlace operation
+	// to find the place again later.
+	//
+	// For SearchPlaceIndexForSuggestions operations, the PlaceId is returned by
+	// place indexes that use HERE or Esri as data providers.
+	PlaceId *string `type:"string"`
 
 	// The text of the place suggestion, typically formatted as an address string.
 	//
@@ -14214,6 +14504,12 @@ func (s SearchForSuggestionsResult) GoString() string {
 	return s.String()
 }
 
+// SetPlaceId sets the PlaceId field's value.
+func (s *SearchForSuggestionsResult) SetPlaceId(v string) *SearchForSuggestionsResult {
+	s.PlaceId = &v
+	return s
+}
+
 // SetText sets the Text field's value.
 func (s *SearchForSuggestionsResult) SetText(v string) *SearchForSuggestionsResult {
 	s.Text = &v
@@ -14237,6 +14533,13 @@ type SearchForTextResult struct {
 	//
 	// Place is a required field
 	Place *Place `type:"structure" required:"true"`
+
+	// The unique identifier of the place. You can use this with the GetPlace operation
+	// to find the place again later.
+	//
+	// For SearchPlaceIndexForText operations, the PlaceId is returned only by place
+	// indexes that use HERE as a data provider.
+	PlaceId *string `type:"string"`
 
 	// The relative confidence in the match for a result among the results returned.
 	// For example, if more fields for an address match (including house number,
@@ -14274,6 +14577,12 @@ func (s *SearchForTextResult) SetDistance(v float64) *SearchForTextResult {
 // SetPlace sets the Place field's value.
 func (s *SearchForTextResult) SetPlace(v *Place) *SearchForTextResult {
 	s.Place = v
+	return s
+}
+
+// SetPlaceId sets the PlaceId field's value.
+func (s *SearchForTextResult) SetPlaceId(v string) *SearchForTextResult {
+	s.PlaceId = &v
 	return s
 }
 
@@ -16058,7 +16367,7 @@ type UpdateMapOutput struct {
 	// The Amazon Resource Name (ARN) of the updated map resource. Used to specify
 	// a resource across AWS.
 	//
-	//    * Format example: arn:aws:geo:region:account-id:maps/ExampleMap
+	//    * Format example: arn:aws:geo:region:account-id:map/ExampleMap
 	//
 	// MapArn is a required field
 	MapArn *string `type:"string" required:"true"`

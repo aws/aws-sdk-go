@@ -40,6 +40,11 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListCustomVocabularyItems": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListExports": {
       "input_token": "nextToken",
       "output_token": "nextToken",

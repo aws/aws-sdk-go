@@ -2,8 +2,8 @@
   "version": "2.0",
   "service": "<p>Amazon Kendra is a service for indexing large document sets.</p>",
   "operations": {
-    "AssociateEntitiesToExperience": "<p>Grants users or groups in your Amazon Web Services SSO identity source access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
-    "AssociatePersonasToEntities": "<p>Defines the specific permissions of users or groups in your Amazon Web Services SSO identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+    "AssociateEntitiesToExperience": "<p>Grants users or groups in your IAM Identity Center identity source access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+    "AssociatePersonasToEntities": "<p>Defines the specific permissions of users or groups in your IAM Identity Center identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <code>BatchPutDocument</code> API.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using Amazon Web Services CloudWatch. Any error messages related to the processing of the batch are sent to you CloudWatch log.</p>",
     "BatchGetDocumentStatus": "<p>Returns the indexing status for one or more documents submitted with the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\"> BatchPutDocument</a> API.</p> <p>When you use the <code>BatchPutDocument</code> API, documents are indexed asynchronously. You can use the <code>BatchGetDocumentStatus</code> API to get the current status of a list of documents so that you can determine if they have been successfully indexed.</p> <p>You can also use the <code>BatchGetDocumentStatus</code> API to check the status of the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html\"> BatchDeleteDocument</a> API. When a document is deleted from the index, Amazon Kendra returns <code>NOT_FOUND</code> as the status.</p>",
     "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> API enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this API to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using Amazon Web Services CloudWatch. Any error messages related to processing the batch are sent to your Amazon Web Services CloudWatch log.</p> <p>For an example of ingesting inline documents using Python and Java SDKs, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-adding-binary-doc.html\">Adding files directly to an index</a>.</p>",
@@ -32,15 +32,15 @@
     "DescribeQuerySuggestionsBlockList": "<p>Gets information about a block list used for query suggestions for an index.</p> <p>This is used to check the current settings that are applied to a block list.</p> <p> <code>DescribeQuerySuggestionsBlockList</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "DescribeQuerySuggestionsConfig": "<p>Gets information on the settings of query suggestions for an index.</p> <p>This is used to check the current settings applied to query suggestions.</p> <p> <code>DescribeQuerySuggestionsConfig</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "DescribeThesaurus": "<p>Gets information about an existing Amazon Kendra thesaurus.</p>",
-    "DisassociateEntitiesFromExperience": "<p>Prevents users or groups in your Amazon Web Services SSO identity source from accessing your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
-    "DisassociatePersonasFromEntities": "<p>Removes the specific permissions of users or groups in your Amazon Web Services SSO identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+    "DisassociateEntitiesFromExperience": "<p>Prevents users or groups in your IAM Identity Center identity source from accessing your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+    "DisassociatePersonasFromEntities": "<p>Removes the specific permissions of users or groups in your IAM Identity Center identity source with access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "GetQuerySuggestions": "<p>Fetches the queries that are suggested to your users.</p> <p> <code>GetQuerySuggestions</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
     "GetSnapshots": "<p>Retrieves search metrics data. The data provides a snapshot of how your users interact with your search application and how effective the application is.</p>",
     "ListAccessControlConfigurations": "<p>Lists one or more access control configurations for an index. This includes user and group access information for your documents. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents.</p>",
     "ListDataSourceSyncJobs": "<p>Gets statistics about synchronizing a data source connector.</p>",
     "ListDataSources": "<p>Lists the data source connectors that you have created.</p>",
     "ListEntityPersonas": "<p>Lists specific permissions of users and groups with access to your Amazon Kendra experience.</p>",
-    "ListExperienceEntities": "<p>Lists users or groups in your Amazon Web Services SSO identity source that are granted access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+    "ListExperienceEntities": "<p>Lists users or groups in your IAM Identity Center identity source that are granted access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "ListExperiences": "<p>Lists one or more Amazon Kendra experiences. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
     "ListFaqs": "<p>Gets a list of FAQ lists associated with an index.</p>",
     "ListGroupsOlderThanOrderingId": "<p>Provides a list of groups that are mapped to users before a given ordering or timestamp identifier.</p> <p> <code>ListGroupsOlderThanOrderingId</code> is currently not supported in the Amazon Web Services GovCloud (US-West) region.</p>",
@@ -159,7 +159,7 @@
     "AssociateEntitiesToExperienceFailedEntityList": {
       "base": null,
       "refs": {
-        "AssociateEntitiesToExperienceResponse$FailedEntityList": "<p>Lists the users or groups in your Amazon Web Services SSO identity source that failed to properly configure with your Amazon Kendra experience.</p>"
+        "AssociateEntitiesToExperienceResponse$FailedEntityList": "<p>Lists the users or groups in your IAM Identity Center identity source that failed to properly configure with your Amazon Kendra experience.</p>"
       }
     },
     "AssociateEntitiesToExperienceRequest": {
@@ -175,7 +175,7 @@
     "AssociateEntityList": {
       "base": null,
       "refs": {
-        "AssociateEntitiesToExperienceRequest$EntityList": "<p>Lists users or groups in your Amazon Web Services SSO identity source.</p>"
+        "AssociateEntitiesToExperienceRequest$EntityList": "<p>Lists users or groups in your IAM Identity Center identity source.</p>"
       }
     },
     "AssociatePersonasToEntitiesRequest": {
@@ -1134,7 +1134,7 @@
     "DisassociateEntityList": {
       "base": null,
       "refs": {
-        "DisassociateEntitiesFromExperienceRequest$EntityList": "<p>Lists users or groups in your Amazon Web Services SSO identity source.</p>"
+        "DisassociateEntitiesFromExperienceRequest$EntityList": "<p>Lists users or groups in your IAM Identity Center identity source.</p>"
       }
     },
     "DisassociatePersonasFromEntitiesRequest": {
@@ -1369,7 +1369,7 @@
       }
     },
     "EntityConfiguration": {
-      "base": "<p>Provides the configuration information for users or groups in your Amazon Web Services SSO identity source to grant access your Amazon Kendra experience.</p>",
+      "base": "<p>Provides the configuration information for users or groups in your IAM Identity Center identity source to grant access your Amazon Kendra experience.</p>",
       "refs": {
         "AssociateEntityList$member": null,
         "DisassociateEntityList$member": null
@@ -1390,22 +1390,22 @@
     "EntityId": {
       "base": null,
       "refs": {
-        "EntityConfiguration$EntityId": "<p>The identifier of a user or group in your Amazon Web Services SSO identity source. For example, a user ID could be an email.</p>",
+        "EntityConfiguration$EntityId": "<p>The identifier of a user or group in your IAM Identity Center identity source. For example, a user ID could be an email.</p>",
         "EntityIdsList$member": null,
-        "EntityPersonaConfiguration$EntityId": "<p>The identifier of a user or group in your Amazon Web Services SSO identity source. For example, a user ID could be an email.</p>",
-        "ExperienceEntitiesSummary$EntityId": "<p>The identifier of a user or group in your Amazon Web Services SSO identity source. For example, a user ID could be an email.</p>",
-        "FailedEntity$EntityId": "<p>The identifier of the user or group in your Amazon Web Services SSO identity source. For example, a user ID could be an email.</p>",
-        "PersonasSummary$EntityId": "<p>The identifier of a user or group in your Amazon Web Services SSO identity source. For example, a user ID could be an email.</p>"
+        "EntityPersonaConfiguration$EntityId": "<p>The identifier of a user or group in your IAM Identity Center identity source. For example, a user ID could be an email.</p>",
+        "ExperienceEntitiesSummary$EntityId": "<p>The identifier of a user or group in your IAM Identity Center identity source. For example, a user ID could be an email.</p>",
+        "FailedEntity$EntityId": "<p>The identifier of the user or group in your IAM Identity Center identity source. For example, a user ID could be an email.</p>",
+        "PersonasSummary$EntityId": "<p>The identifier of a user or group in your IAM Identity Center identity source. For example, a user ID could be an email.</p>"
       }
     },
     "EntityIdsList": {
       "base": null,
       "refs": {
-        "DisassociatePersonasFromEntitiesRequest$EntityIds": "<p>The identifiers of users or groups in your Amazon Web Services SSO identity source. For example, user IDs could be user emails.</p>"
+        "DisassociatePersonasFromEntitiesRequest$EntityIds": "<p>The identifiers of users or groups in your IAM Identity Center identity source. For example, user IDs could be user emails.</p>"
       }
     },
     "EntityPersonaConfiguration": {
-      "base": "<p>Provides the configuration information for users or groups in your Amazon Web Services SSO identity source for access to your Amazon Kendra experience. Specific permissions are defined for each user or group once they are granted access to your Amazon Kendra experience.</p>",
+      "base": "<p>Provides the configuration information for users or groups in your IAM Identity Center identity source for access to your Amazon Kendra experience. Specific permissions are defined for each user or group once they are granted access to your Amazon Kendra experience.</p>",
       "refs": {
         "EntityPersonaConfigurationList$member": null
       }
@@ -1413,7 +1413,7 @@
     "EntityPersonaConfigurationList": {
       "base": null,
       "refs": {
-        "AssociatePersonasToEntitiesRequest$Personas": "<p>The personas that define the specific permissions of users or groups in your Amazon Web Services SSO identity source. The available personas or access roles are <code>Owner</code> and <code>Viewer</code>. For more information on these personas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience\">Providing access to your search page</a>.</p>"
+        "AssociatePersonasToEntitiesRequest$Personas": "<p>The personas that define the specific permissions of users or groups in your IAM Identity Center identity source. The available personas or access roles are <code>Owner</code> and <code>Viewer</code>. For more information on these personas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience\">Providing access to your search page</a>.</p>"
       }
     },
     "EntityType": {
@@ -1448,7 +1448,7 @@
         "DescribeIndexResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a message that explains why.</p>",
         "DescribeQuerySuggestionsBlockListResponse$ErrorMessage": "<p>The error message containing details if there are issues processing the block list.</p>",
         "DescribeThesaurusResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field provides more information. </p>",
-        "FailedEntity$ErrorMessage": "<p>The reason the user or group in your Amazon Web Services SSO identity source failed to properly configure with your Amazon Kendra experience.</p>",
+        "FailedEntity$ErrorMessage": "<p>The reason the user or group in your IAM Identity Center identity source failed to properly configure with your Amazon Kendra experience.</p>",
         "InternalServerException$Message": null,
         "InvalidRequestException$Message": null,
         "ResourceAlreadyExistException$Message": null,
@@ -1500,7 +1500,7 @@
       }
     },
     "ExperienceEntitiesSummary": {
-      "base": "<p>Summary information for users or groups in your Amazon Web Services SSO identity source with granted access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+      "base": "<p>Summary information for users or groups in your IAM Identity Center identity source with granted access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
       "refs": {
         "ExperienceEntitiesSummaryList$member": null
       }
@@ -1583,7 +1583,7 @@
       }
     },
     "FailedEntity": {
-      "base": "<p>Information on the users or groups in your Amazon Web Services SSO identity source that failed to properly configure with your Amazon Kendra experience.</p>",
+      "base": "<p>Information on the users or groups in your IAM Identity Center identity source that failed to properly configure with your Amazon Kendra experience.</p>",
       "refs": {
         "AssociateEntitiesToExperienceFailedEntityList$member": null,
         "FailedEntityList$member": null
@@ -1592,9 +1592,9 @@
     "FailedEntityList": {
       "base": null,
       "refs": {
-        "AssociatePersonasToEntitiesResponse$FailedEntityList": "<p>Lists the users or groups in your Amazon Web Services SSO identity source that failed to properly configure with your Amazon Kendra experience.</p>",
-        "DisassociateEntitiesFromExperienceResponse$FailedEntityList": "<p>Lists the users or groups in your Amazon Web Services SSO identity source that failed to properly remove access to your Amazon Kendra experience.</p>",
-        "DisassociatePersonasFromEntitiesResponse$FailedEntityList": "<p>Lists the users or groups in your Amazon Web Services SSO identity source that failed to properly remove access to your Amazon Kendra experience.</p>"
+        "AssociatePersonasToEntitiesResponse$FailedEntityList": "<p>Lists the users or groups in your IAM Identity Center identity source that failed to properly configure with your Amazon Kendra experience.</p>",
+        "DisassociateEntitiesFromExperienceResponse$FailedEntityList": "<p>Lists the users or groups in your IAM Identity Center identity source that failed to properly remove access to your Amazon Kendra experience.</p>",
+        "DisassociatePersonasFromEntitiesResponse$FailedEntityList": "<p>Lists the users or groups in your IAM Identity Center identity source that failed to properly remove access to your Amazon Kendra experience.</p>"
       }
     },
     "FailureReason": {
@@ -1832,7 +1832,7 @@
     "IdentityAttributeName": {
       "base": null,
       "refs": {
-        "UserIdentityConfiguration$IdentityAttributeName": "<p>The Amazon Web Services SSO field name that contains the identifiers of your users, such as their emails. This is used for <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">user context filtering</a> and for granting access to your Amazon Kendra experience. You must set up Amazon Web Services SSO with Amazon Kendra. You must include your users and groups in your Access Control List when you ingest documents into your index. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an Amazon Web Services SSO identity source</a>.</p>"
+        "UserIdentityConfiguration$IdentityAttributeName": "<p>The IAM Identity Center field name that contains the identifiers of your users, such as their emails. This is used for <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">user context filtering</a> and for granting access to your Amazon Kendra experience. You must set up IAM Identity Center with Amazon Kendra. You must include your users and groups in your Access Control List when you ingest documents into your index. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an IAM Identity Center identity source</a>.</p>"
       }
     },
     "Importance": {
@@ -2498,12 +2498,12 @@
     "Persona": {
       "base": null,
       "refs": {
-        "EntityPersonaConfiguration$Persona": "<p>The persona that defines the specific permissions of the user or group in your Amazon Web Services SSO identity source. The available personas or access roles are <code>Owner</code> and <code>Viewer</code>. For more information on these personas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience\">Providing access to your search page</a>.</p>",
-        "PersonasSummary$Persona": "<p>The persona that defines the specific permissions of the user or group in your Amazon Web Services SSO identity source. The available personas or access roles are <code>Owner</code> and <code>Viewer</code>. For more information on these personas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience\">Providing access to your search page</a>.</p>"
+        "EntityPersonaConfiguration$Persona": "<p>The persona that defines the specific permissions of the user or group in your IAM Identity Center identity source. The available personas or access roles are <code>Owner</code> and <code>Viewer</code>. For more information on these personas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience\">Providing access to your search page</a>.</p>",
+        "PersonasSummary$Persona": "<p>The persona that defines the specific permissions of the user or group in your IAM Identity Center identity source. The available personas or access roles are <code>Owner</code> and <code>Viewer</code>. For more information on these personas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience\">Providing access to your search page</a>.</p>"
       }
     },
     "PersonasSummary": {
-      "base": "<p>Summary information for users or groups in your Amazon Web Services SSO identity source. This applies to users and groups with specific permissions that define their level of access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
+      "base": "<p>Summary information for users or groups in your IAM Identity Center identity source. This applies to users and groups with specific permissions that define their level of access to your Amazon Kendra experience. You can create an Amazon Kendra experience such as a search application. For more information on creating a search application experience, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html\">Building a search experience with no code</a>.</p>",
       "refs": {
         "PersonasSummaryList$member": null
       }
@@ -2787,14 +2787,14 @@
       "refs": {
         "BatchPutDocumentRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role that is allowed to run the <code>BatchPutDocument</code> API. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p>",
         "CreateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source and required resources. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p> <p>You can't specify the <code>RoleArn</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>RoleArn</code> parameter is required for all other data sources.</p>",
-        "CreateExperienceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and Amazon Web Services SSO that stores your user and group information. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
+        "CreateExperienceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and IAM Identity Center that stores your user and group information. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
         "CreateFaqRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p>",
         "CreateIndexRequest$RoleArn": "<p>An Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role you use when you call the <code>BatchPutDocument</code> API to index documents from an Amazon S3 bucket.</p>",
         "CreateQuerySuggestionsBlockListRequest$RoleArn": "<p>The IAM (Identity and Access Management) role used by Amazon Kendra to access the block list text file in your S3 bucket.</p> <p>You need permissions to the role ARN (Amazon Web Services Resource Name). The role needs S3 read permissions to your file in S3 and needs to give STS (Security Token Service) assume role permissions to Amazon Kendra.</p>",
         "CreateThesaurusRequest$RoleArn": "<p>An IAM role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>. </p>",
         "CustomDocumentEnrichmentConfiguration$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to run <code>PreExtractionHookConfiguration</code> and <code>PostExtractionHookConfiguration</code> for altering document metadata and content during the document ingestion process. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
         "DescribeDataSourceResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role with permission to access the data source and required resources.</p>",
-        "DescribeExperienceResponse$RoleArn": "<p>Shows the Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and Amazon Web Services SSO that stores your user and group information.</p>",
+        "DescribeExperienceResponse$RoleArn": "<p>Shows the Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and IAM Identity Center that stores your user and group information.</p>",
         "DescribeFaqResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that provides access to the S3 bucket containing the input files for the FAQ.</p>",
         "DescribeIndexResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that gives Amazon Kendra permission to write to your Amazon Cloudwatch logs.</p>",
         "DescribeQuerySuggestionsBlockListResponse$RoleArn": "<p>The IAM (Identity and Access Management) role used by Amazon Kendra to access the block list text file in S3.</p> <p>The role needs S3 read permissions to your file in S3 and needs to give STS (Security Token Service) assume role permissions to Amazon Kendra.</p>",
@@ -2802,7 +2802,7 @@
         "JwtTokenTypeConfiguration$SecretManagerArn": "<p>The Amazon Resource Name (arn) of the secret.</p>",
         "PutPrincipalMappingRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role that has access to the S3 file that contains your list of users or sub groups that belong to a group.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-ds\">IAM roles for Amazon Kendra</a>.</p>",
         "UpdateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source and required resources. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
-        "UpdateExperienceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and Amazon Web Services SSO that stores your user and group information. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
+        "UpdateExperienceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access <code>Query</code> API, <code>QuerySuggestions</code> API, <code>SubmitFeedback</code> API, and IAM Identity Center that stores your user and group information. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM roles for Amazon Kendra</a>.</p>",
         "UpdateIndexRequest$RoleArn": "<p>An Identity and Access Management (IAM) role that gives Amazon Kendra permission to access Amazon CloudWatch logs and metrics.</p>",
         "UpdateQuerySuggestionsBlockListRequest$RoleArn": "<p>The IAM (Identity and Access Management) role used to access the block list text file in S3.</p>",
         "UpdateThesaurusRequest$RoleArn": "<p>An IAM role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>.</p>"
@@ -3399,9 +3399,9 @@
       }
     },
     "Template": {
-      "base": "<p>The template schema used for the data source.</p> <p>The following links to the template schema for data sources where templates are supported:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-zendesk.html#zendesk-template-schema\">Zendesk template schema</a> </p> </li> </ul>",
+      "base": "<p>The template schema used for the data source, where templates schemas are supported.</p> <p>See <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/ds-schemas.html\">Data source template schemas</a>.</p>",
       "refs": {
-        "TemplateConfiguration$Template": "<p>The template schema used for the data source.</p> <p>The following links to the template schema for data sources where templates are supported:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-zendesk.html#zendesk-template-schema\">Zendesk template schema</a> </p> </li> </ul>"
+        "TemplateConfiguration$Template": "<p>The template schema used for the data source, where templates schemas are supported.</p> <p>See <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/ds-schemas.html\">Data source template schemas</a>.</p>"
       }
     },
     "TemplateConfiguration": {
@@ -3634,17 +3634,17 @@
       }
     },
     "UserGroupResolutionConfiguration": {
-      "base": "<p>Provides the configuration information to fetch access levels of groups and users from an Amazon Web Services Single Sign On identity source. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents. You can also use the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html\">PutPrincipalMapping</a> API to map users to their groups so that you only need to provide the user ID when you issue the query.</p> <p>To set up an Amazon Web Services SSO identity source in the console to use with Amazon Kendra, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an Amazon Web Services SSO identity source</a>. You must also grant the required permissions to use Amazon Web Services SSO with Amazon Kendra. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso\">IAM roles for Amazon Web Services SSO</a>.</p> <p>Amazon Kendra currently does not support using <code>UserGroupResolutionConfiguration</code> with an Amazon Web Services organization member account for your Amazon Web Services SSO identify source. You must create your index in the management account for the organization in order to use <code>UserGroupResolutionConfiguration</code>.</p>",
+      "base": "<p>Provides the configuration information to fetch access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents. You can also use the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html\">PutPrincipalMapping</a> API to map users to their groups so that you only need to provide the user ID when you issue the query.</p> <p>To set up an IAM Identity Center identity source in the console to use with Amazon Kendra, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html\">Getting started with an IAM Identity Center identity source</a>. You must also grant the required permissions to use IAM Identity Center with Amazon Kendra. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso\">IAM roles for IAM Identity Center</a>.</p> <p>Amazon Kendra currently does not support using <code>UserGroupResolutionConfiguration</code> with an Amazon Web Services organization member account for your IAM Identity Center identify source. You must create your index in the management account for the organization in order to use <code>UserGroupResolutionConfiguration</code>.</p>",
       "refs": {
-        "CreateIndexRequest$UserGroupResolutionConfiguration": "<p>Enables fetching access levels of groups and users from an Amazon Web Services Single Sign On identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>",
-        "DescribeIndexResponse$UserGroupResolutionConfiguration": "<p>Whether you have enabled the configuration for fetching access levels of groups and users from an Amazon Web Services Single Sign On identity source.</p>",
-        "UpdateIndexRequest$UserGroupResolutionConfiguration": "<p>Enables fetching access levels of groups and users from an Amazon Web Services Single Sign On identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>"
+        "CreateIndexRequest$UserGroupResolutionConfiguration": "<p>Enables fetching access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>",
+        "DescribeIndexResponse$UserGroupResolutionConfiguration": "<p>Whether you have enabled the configuration for fetching access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source.</p>",
+        "UpdateIndexRequest$UserGroupResolutionConfiguration": "<p>Enables fetching access levels of groups and users from an IAM Identity Center (successor to Single Sign-On) identity source. To configure this, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html\">UserGroupResolutionConfiguration</a>.</p>"
       }
     },
     "UserGroupResolutionMode": {
       "base": null,
       "refs": {
-        "UserGroupResolutionConfiguration$UserGroupResolutionMode": "<p>The identity store provider (mode) you want to use to fetch access levels of groups and users. Amazon Web Services Single Sign On is currently the only available mode. Your users and groups must exist in an Amazon Web Services SSO identity source in order to use this mode.</p>"
+        "UserGroupResolutionConfiguration$UserGroupResolutionMode": "<p>The identity store provider (mode) you want to use to fetch access levels of groups and users. IAM Identity Center (successor to Single Sign-On) is currently the only available mode. Your users and groups must exist in an IAM Identity Center identity source in order to use this mode.</p>"
       }
     },
     "UserId": {
@@ -3656,7 +3656,7 @@
     "UserIdentityConfiguration": {
       "base": "<p>Provides the configuration information for the identifiers of your users.</p>",
       "refs": {
-        "ExperienceConfiguration$UserIdentityConfiguration": "<p>The Amazon Web Services SSO field name that contains the identifiers of your users, such as their emails.</p>"
+        "ExperienceConfiguration$UserIdentityConfiguration": "<p>The IAM Identity Center field name that contains the identifiers of your users, such as their emails.</p>"
       }
     },
     "UserNameAttributeField": {

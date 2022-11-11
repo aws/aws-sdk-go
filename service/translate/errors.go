@@ -94,6 +94,12 @@ const (
 	// short time and then try your request again.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// You have added too many tags to this resource. The maximum is 50 tags.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
+
 	// ErrCodeUnsupportedDisplayLanguageCodeException for service response error code
 	// "UnsupportedDisplayLanguageCodeException".
 	//
@@ -104,7 +110,8 @@ const (
 	// "UnsupportedLanguagePairException".
 	//
 	// Amazon Translate does not support translation from the language of the source
-	// text into the requested target language. For more information, see how-to-error-msg.
+	// text into the requested target language. For more information, see Error
+	// messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
 	ErrCodeUnsupportedLanguagePairException = "UnsupportedLanguagePairException"
 )
 
@@ -121,6 +128,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ServiceUnavailableException":             newErrorServiceUnavailableException,
 	"TextSizeLimitExceededException":          newErrorTextSizeLimitExceededException,
 	"TooManyRequestsException":                newErrorTooManyRequestsException,
+	"TooManyTagsException":                    newErrorTooManyTagsException,
 	"UnsupportedDisplayLanguageCodeException": newErrorUnsupportedDisplayLanguageCodeException,
 	"UnsupportedLanguagePairException":        newErrorUnsupportedLanguagePairException,
 }

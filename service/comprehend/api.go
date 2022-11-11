@@ -148,7 +148,9 @@ func (c *Comprehend) BatchDetectEntitiesRequest(input *BatchDetectEntitiesInput)
 // BatchDetectEntities API operation for Amazon Comprehend.
 //
 // Inspects the text of a batch of documents for named entities and returns
-// information about them. For more information about named entities, see how-entities
+// information about them. For more information about named entities, see Entities
+// (https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html) in the
+// Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -168,7 +170,9 @@ func (c *Comprehend) BatchDetectEntitiesRequest(input *BatchDetectEntitiesInput)
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
 //     The number of documents in the request exceeds the limit of 25. Try your
@@ -262,7 +266,9 @@ func (c *Comprehend) BatchDetectKeyPhrasesRequest(input *BatchDetectKeyPhrasesIn
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
 //     The number of documents in the request exceeds the limit of 25. Try your
@@ -357,7 +363,9 @@ func (c *Comprehend) BatchDetectSentimentRequest(input *BatchDetectSentimentInpu
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
 //     The number of documents in the request exceeds the limit of 25. Try your
@@ -433,7 +441,8 @@ func (c *Comprehend) BatchDetectSyntaxRequest(input *BatchDetectSyntaxInput) (re
 //
 // Inspects the text of a batch of documents for the syntax and part of speech
 // of the words in the document and returns information about them. For more
-// information, see how-syntax.
+// information, see Syntax (https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html)
+// in the Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -453,7 +462,9 @@ func (c *Comprehend) BatchDetectSyntaxRequest(input *BatchDetectSyntaxInput) (re
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
 //     The number of documents in the request exceeds the limit of 25. Try your
@@ -479,6 +490,105 @@ func (c *Comprehend) BatchDetectSyntax(input *BatchDetectSyntaxInput) (*BatchDet
 // for more information on using Contexts.
 func (c *Comprehend) BatchDetectSyntaxWithContext(ctx aws.Context, input *BatchDetectSyntaxInput, opts ...request.Option) (*BatchDetectSyntaxOutput, error) {
 	req, out := c.BatchDetectSyntaxRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchDetectTargetedSentiment = "BatchDetectTargetedSentiment"
+
+// BatchDetectTargetedSentimentRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDetectTargetedSentiment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDetectTargetedSentiment for more information on using the BatchDetectTargetedSentiment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDetectTargetedSentimentRequest method.
+//	req, resp := client.BatchDetectTargetedSentimentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectTargetedSentiment
+func (c *Comprehend) BatchDetectTargetedSentimentRequest(input *BatchDetectTargetedSentimentInput) (req *request.Request, output *BatchDetectTargetedSentimentOutput) {
+	op := &request.Operation{
+		Name:       opBatchDetectTargetedSentiment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchDetectTargetedSentimentInput{}
+	}
+
+	output = &BatchDetectTargetedSentimentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDetectTargetedSentiment API operation for Amazon Comprehend.
+//
+// Inspects a batch of documents and returns a sentiment analysis for each entity
+// identified in the documents.
+//
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation BatchDetectTargetedSentiment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TextSizeLimitExceededException
+//     The size of the input text exceeds the limit. Use a smaller document.
+//
+//   - UnsupportedLanguageException
+//     Amazon Comprehend can't process the language of the input text. For custom
+//     entity recognition APIs, only English, Spanish, French, Italian, German,
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
+//
+//   - BatchSizeLimitExceededException
+//     The number of documents in the request exceeds the limit of 25. Try your
+//     request again with fewer documents.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectTargetedSentiment
+func (c *Comprehend) BatchDetectTargetedSentiment(input *BatchDetectTargetedSentimentInput) (*BatchDetectTargetedSentimentOutput, error) {
+	req, out := c.BatchDetectTargetedSentimentRequest(input)
+	return out, req.Send()
+}
+
+// BatchDetectTargetedSentimentWithContext is the same as BatchDetectTargetedSentiment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDetectTargetedSentiment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) BatchDetectTargetedSentimentWithContext(ctx aws.Context, input *BatchDetectTargetedSentimentInput, opts ...request.Option) (*BatchDetectTargetedSentimentOutput, error) {
+	req, out := c.BatchDetectTargetedSentimentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -640,7 +750,9 @@ func (c *Comprehend) ContainsPiiEntitiesRequest(input *ContainsPiiEntitiesInput)
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -714,7 +826,8 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 // To create a classifier, you provide a set of training documents that labeled
 // with the categories that you want to use. After the classifier is trained
 // you can use it to categorize a set of labeled documents into the categories.
-// For more information, see how-document-classification.
+// For more information, see Document Classification (https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html)
+// in the Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -747,7 +860,9 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - KmsKeyValidationException
 //     The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -963,7 +1078,9 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - KmsKeyValidationException
 //     The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -2677,7 +2794,8 @@ func (c *Comprehend) DetectEntitiesRequest(input *DetectEntitiesInput) (req *req
 // DetectEntities API operation for Amazon Comprehend.
 //
 // Inspects text for named entities, and returns information about them. For
-// more information, about named entities, see how-entities.
+// more information, about named entities, see Entities (https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html)
+// in the Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2701,7 +2819,9 @@ func (c *Comprehend) DetectEntitiesRequest(input *DetectEntitiesInput) (req *req
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -2791,7 +2911,9 @@ func (c *Comprehend) DetectKeyPhrasesRequest(input *DetectKeyPhrasesInput) (req 
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -2882,7 +3004,9 @@ func (c *Comprehend) DetectPiiEntitiesRequest(input *DetectPiiEntitiesInput) (re
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -2973,7 +3097,9 @@ func (c *Comprehend) DetectSentimentRequest(input *DetectSentimentInput) (req *r
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -3044,7 +3170,8 @@ func (c *Comprehend) DetectSyntaxRequest(input *DetectSyntaxInput) (req *request
 // DetectSyntax API operation for Amazon Comprehend.
 //
 // Inspects text for syntax and the part of speech of words in the document.
-// For more information, how-syntax.
+// For more information, see Syntax (https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html)
+// in the Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3064,7 +3191,9 @@ func (c *Comprehend) DetectSyntaxRequest(input *DetectSyntaxInput) (req *request
 //   - UnsupportedLanguageException
 //     Amazon Comprehend can't process the language of the input text. For custom
 //     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -3086,6 +3215,101 @@ func (c *Comprehend) DetectSyntax(input *DetectSyntaxInput) (*DetectSyntaxOutput
 // for more information on using Contexts.
 func (c *Comprehend) DetectSyntaxWithContext(ctx aws.Context, input *DetectSyntaxInput, opts ...request.Option) (*DetectSyntaxOutput, error) {
 	req, out := c.DetectSyntaxRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDetectTargetedSentiment = "DetectTargetedSentiment"
+
+// DetectTargetedSentimentRequest generates a "aws/request.Request" representing the
+// client's request for the DetectTargetedSentiment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectTargetedSentiment for more information on using the DetectTargetedSentiment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DetectTargetedSentimentRequest method.
+//	req, resp := client.DetectTargetedSentimentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectTargetedSentiment
+func (c *Comprehend) DetectTargetedSentimentRequest(input *DetectTargetedSentimentInput) (req *request.Request, output *DetectTargetedSentimentOutput) {
+	op := &request.Operation{
+		Name:       opDetectTargetedSentiment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DetectTargetedSentimentInput{}
+	}
+
+	output = &DetectTargetedSentimentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectTargetedSentiment API operation for Amazon Comprehend.
+//
+// Inspects the input text and returns a sentiment analysis for each entity
+// identified in the text.
+//
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DetectTargetedSentiment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is invalid.
+//
+//   - TextSizeLimitExceededException
+//     The size of the input text exceeds the limit. Use a smaller document.
+//
+//   - UnsupportedLanguageException
+//     Amazon Comprehend can't process the language of the input text. For custom
+//     entity recognition APIs, only English, Spanish, French, Italian, German,
+//     or Portuguese are accepted. For a list of supported languages, Supported
+//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     in the Comprehend Developer Guide.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectTargetedSentiment
+func (c *Comprehend) DetectTargetedSentiment(input *DetectTargetedSentimentInput) (*DetectTargetedSentimentOutput, error) {
+	req, out := c.DetectTargetedSentimentRequest(input)
+	return out, req.Send()
+}
+
+// DetectTargetedSentimentWithContext is the same as DetectTargetedSentiment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectTargetedSentiment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DetectTargetedSentimentWithContext(ctx aws.Context, input *DetectTargetedSentimentInput, opts ...request.Option) (*DetectTargetedSentimentOutput, error) {
+	req, out := c.DetectTargetedSentimentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7439,9 +7663,9 @@ func (s *AugmentedManifestsListItem) SetSplit(v string) *AugmentedManifestsListI
 type BatchDetectDominantLanguageInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list containing the text of the input documents. The list can contain a
-	// maximum of 25 documents. Each document should contain at least 20 characters
-	// and must contain fewer than 5,000 bytes of UTF-8 encoded characters.
+	// A list containing the UTF-8 encoded text of the input documents. The list
+	// can contain a maximum of 25 documents. Each document should contain at least
+	// 20 characters. The maximum size of each document is 5 KB.
 	//
 	// TextList is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by BatchDetectDominantLanguageInput's
@@ -7593,9 +7817,9 @@ type BatchDetectEntitiesInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// A list containing the text of the input documents. The list can contain a
-	// maximum of 25 documents. Each document must contain fewer than 5,000 bytes
-	// of UTF-8 encoded characters.
+	// A list containing the UTF-8 encoded text of the input documents. The list
+	// can contain a maximum of 25 documents. The maximum size of each document
+	// is 5 KB.
 	//
 	// TextList is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by BatchDetectEntitiesInput's
@@ -7755,9 +7979,9 @@ type BatchDetectKeyPhrasesInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// A list containing the text of the input documents. The list can contain a
-	// maximum of 25 documents. Each document must contain fewer than 5,000 bytes
-	// of UTF-8 encoded characters.
+	// A list containing the UTF-8 encoded text of the input documents. The list
+	// can contain a maximum of 25 documents. The maximum size of each document
+	// is 5 KB.
 	//
 	// TextList is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by BatchDetectKeyPhrasesInput's
@@ -7917,9 +8141,12 @@ type BatchDetectSentimentInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// A list containing the text of the input documents. The list can contain a
-	// maximum of 25 documents. Each document must contain fewer that 5,000 bytes
-	// of UTF-8 encoded characters.
+	// A list containing the UTF-8 encoded text of the input documents. The list
+	// can contain a maximum of 25 documents. The maximum size of each document
+	// is 5 KB.
+	//
+	// Amazon Comprehend performs real-time sentiment analysis on the first 500
+	// characters of the input text and ignores any additional text in the input.
 	//
 	// TextList is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by BatchDetectSentimentInput's
@@ -8091,9 +8318,9 @@ type BatchDetectSyntaxInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"SyntaxLanguageCode"`
 
-	// A list containing the text of the input documents. The list can contain a
-	// maximum of 25 documents. Each document must contain fewer that 5,000 bytes
-	// of UTF-8 encoded characters.
+	// A list containing the UTF-8 encoded text of the input documents. The list
+	// can contain a maximum of 25 documents. The maximum size for each document
+	// is 5 KB.
 	//
 	// TextList is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by BatchDetectSyntaxInput's
@@ -8240,6 +8467,164 @@ func (s *BatchDetectSyntaxOutput) SetErrorList(v []*BatchItemError) *BatchDetect
 
 // SetResultList sets the ResultList field's value.
 func (s *BatchDetectSyntaxOutput) SetResultList(v []*BatchDetectSyntaxItemResult) *BatchDetectSyntaxOutput {
+	s.ResultList = v
+	return s
+}
+
+type BatchDetectTargetedSentimentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language of the input documents. Currently, English is the only supported
+	// language.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// A list containing the UTF-8 encoded text of the input documents. The list
+	// can contain a maximum of 25 documents. The maximum size of each document
+	// is 5 KB.
+	//
+	// TextList is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BatchDetectTargetedSentimentInput's
+	// String and GoString methods.
+	//
+	// TextList is a required field
+	TextList []*string `min:"1" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDetectTargetedSentimentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDetectTargetedSentimentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDetectTargetedSentimentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDetectTargetedSentimentInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.TextList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextList"))
+	}
+	if s.TextList != nil && len(s.TextList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *BatchDetectTargetedSentimentInput) SetLanguageCode(v string) *BatchDetectTargetedSentimentInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetTextList sets the TextList field's value.
+func (s *BatchDetectTargetedSentimentInput) SetTextList(v []*string) *BatchDetectTargetedSentimentInput {
+	s.TextList = v
+	return s
+}
+
+// Analysis results for one of the documents in the batch.
+type BatchDetectTargetedSentimentItemResult struct {
+	_ struct{} `type:"structure"`
+
+	// An array of targeted sentiment entities.
+	Entities []*TargetedSentimentEntity `type:"list"`
+
+	// The zero-based index of this result in the input list.
+	Index *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDetectTargetedSentimentItemResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDetectTargetedSentimentItemResult) GoString() string {
+	return s.String()
+}
+
+// SetEntities sets the Entities field's value.
+func (s *BatchDetectTargetedSentimentItemResult) SetEntities(v []*TargetedSentimentEntity) *BatchDetectTargetedSentimentItemResult {
+	s.Entities = v
+	return s
+}
+
+// SetIndex sets the Index field's value.
+func (s *BatchDetectTargetedSentimentItemResult) SetIndex(v int64) *BatchDetectTargetedSentimentItemResult {
+	s.Index = &v
+	return s
+}
+
+type BatchDetectTargetedSentimentOutput struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// List of errors that the operation can return.
+	//
+	// ErrorList is a required field
+	ErrorList []*BatchItemError `type:"list" required:"true"`
+
+	// A list of objects containing the results of the operation. The results are
+	// sorted in ascending order by the Index field and match the order of the documents
+	// in the input list. If all of the documents contain an error, the ResultList
+	// is empty.
+	//
+	// ResultList is a required field
+	ResultList []*BatchDetectTargetedSentimentItemResult `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDetectTargetedSentimentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDetectTargetedSentimentOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorList sets the ErrorList field's value.
+func (s *BatchDetectTargetedSentimentOutput) SetErrorList(v []*BatchItemError) *BatchDetectTargetedSentimentOutput {
+	s.ErrorList = v
+	return s
+}
+
+// SetResultList sets the ResultList field's value.
+func (s *BatchDetectTargetedSentimentOutput) SetResultList(v []*BatchDetectTargetedSentimentItemResult) *BatchDetectTargetedSentimentOutput {
 	s.ResultList = v
 	return s
 }
@@ -8730,9 +9115,7 @@ type ContainsPiiEntitiesInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// Creates a new document classification request to analyze a single document
-	// in real-time, returning personally identifiable information (PII) entity
-	// labels.
+	// A UTF-8 text string. The maximum string size is 100 KB.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
@@ -10864,8 +11247,8 @@ func (s *DescribeTopicsDetectionJobOutput) SetTopicsDetectionJobProperties(v *To
 type DetectDominantLanguageInput struct {
 	_ struct{} `type:"structure"`
 
-	// A UTF-8 text string. Each string should contain at least 20 characters and
-	// must contain fewer that 5,000 bytes of UTF-8 encoded characters.
+	// A UTF-8 text string. The string must contain at least 20 characters. The
+	// maximum string size is 100 KB.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DetectDominantLanguageInput's
@@ -10972,8 +11355,7 @@ type DetectEntitiesInput struct {
 	// any language code that you specify here.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8
-	// encoded characters.
+	// A UTF-8 text string. The maximum string size is 100 KB.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DetectEntitiesInput's
@@ -11045,7 +11427,8 @@ type DetectEntitiesOutput struct {
 	// If your request uses a custom entity recognition model, Amazon Comprehend
 	// detects the entities that the model is trained to recognize. Otherwise, it
 	// detects the default entity types. For a list of default entity types, see
-	// how-entities.
+	// Entities (https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html)
+	// in the Comprehend Developer Guide.
 	Entities []*Entity `type:"list"`
 }
 
@@ -11082,8 +11465,8 @@ type DetectKeyPhrasesInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8
-	// encoded characters.
+	// A UTF-8 text string. The string must contain less than 100 KB of UTF-8 encoded
+	// characters.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DetectKeyPhrasesInput's
@@ -11185,8 +11568,7 @@ type DetectPiiEntitiesInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8
-	// encoded characters.
+	// A UTF-8 text string. The maximum string size is 100 KB.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
@@ -11283,8 +11665,10 @@ type DetectSentimentInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8
-	// encoded characters.
+	// A UTF-8 text string. The maximum string size is 5 KB.
+	//
+	// Amazon Comprehend performs real-time sentiment analysis on the first 500
+	// characters of the input text and ignores any additional text in the input.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DetectSentimentInput's
@@ -11394,8 +11778,7 @@ type DetectSyntaxInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"SyntaxLanguageCode"`
 
-	// A UTF-8 string. Each string must contain fewer that 5,000 bytes of UTF encoded
-	// characters.
+	// A UTF-8 string. The maximum string size is 5 KB.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DetectSyntaxInput's
@@ -11460,7 +11843,8 @@ type DetectSyntaxOutput struct {
 	// A collection of syntax tokens describing the text. For each token, the response
 	// provides the text, the token type, where the text begins and ends, and the
 	// level of confidence that Amazon Comprehend has that the token is correct.
-	// For a list of token types, see how-syntax.
+	// For a list of token types, see Syntax (https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html)
+	// in the Comprehend Developer Guide.
 	SyntaxTokens []*SyntaxToken `type:"list"`
 }
 
@@ -11485,6 +11869,106 @@ func (s DetectSyntaxOutput) GoString() string {
 // SetSyntaxTokens sets the SyntaxTokens field's value.
 func (s *DetectSyntaxOutput) SetSyntaxTokens(v []*SyntaxToken) *DetectSyntaxOutput {
 	s.SyntaxTokens = v
+	return s
+}
+
+type DetectTargetedSentimentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language of the input documents. Currently, English is the only supported
+	// language.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// A UTF-8 text string. The maximum string length is 5 KB.
+	//
+	// Text is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DetectTargetedSentimentInput's
+	// String and GoString methods.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectTargetedSentimentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectTargetedSentimentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectTargetedSentimentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectTargetedSentimentInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DetectTargetedSentimentInput) SetLanguageCode(v string) *DetectTargetedSentimentInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *DetectTargetedSentimentInput) SetText(v string) *DetectTargetedSentimentInput {
+	s.Text = &v
+	return s
+}
+
+type DetectTargetedSentimentOutput struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// Targeted sentiment analysis for each of the entities identified in the input
+	// text.
+	Entities []*TargetedSentimentEntity `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectTargetedSentimentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectTargetedSentimentOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntities sets the Entities field's value.
+func (s *DetectTargetedSentimentOutput) SetEntities(v []*TargetedSentimentEntity) *DetectTargetedSentimentOutput {
+	s.Entities = v
 	return s
 }
 
@@ -11836,7 +12320,9 @@ func (s *DocumentClassifierFilter) SetSubmitTimeBefore(v time.Time) *DocumentCla
 
 // The input properties for training a document classifier.
 //
-// For more information on how the input file is formatted, see prep-classifier-data.
+// For more information on how the input file is formatted, see Preparing training
+// data (https://docs.aws.amazon.com/comprehend/latest/dg/prep-classifier-data.html)
+// in the Comprehend Developer Guide.
 type DocumentClassifierInputDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -11882,10 +12368,9 @@ type DocumentClassifierInputDataConfig struct {
 	// This parameter is required if you set DataFormat to COMPREHEND_CSV.
 	S3Uri *string `type:"string"`
 
-	// The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
-	// same AWS Region as the API endpoint that you are calling. The URI can point
-	// to a single input file or it can provide the prefix for a collection of input
-	// files.
+	// This specifies the Amazon S3 location where the test annotations for an entity
+	// recognizer are located. The URI must be in the same AWS Region as the API
+	// endpoint that you are calling.
 	TestS3Uri *string `type:"string"`
 }
 
@@ -13148,17 +13633,12 @@ func (s *EntitiesDetectionJobProperties) SetVpcConfig(v *VpcConfig) *EntitiesDet
 type Entity struct {
 	_ struct{} `type:"structure"`
 
-	// A character offset in the input text that shows where the entity begins (the
-	// first character is at position 0). The offset returns the position of each
-	// UTF-8 code point in the string. A code point is the abstract character from
-	// a particular graphical representation. For example, a multi-byte UTF-8 character
-	// maps to a single code point.
+	// The zero-based offset from the beginning of the source text to the first
+	// character in the entity.
 	BeginOffset *int64 `type:"integer"`
 
-	// A character offset in the input text that shows where the entity ends. The
-	// offset returns the position of each UTF-8 code point in the string. A code
-	// point is the abstract character from a particular graphical representation.
-	// For example, a multi-byte UTF-8 character maps to a single code point.
+	// The zero-based offset from the beginning of the source text to the last character
+	// in the entity.
 	EndOffset *int64 `type:"integer"`
 
 	// The level of confidence that Amazon Comprehend has in the accuracy of the
@@ -13274,9 +13754,9 @@ type EntityRecognizerAnnotations struct {
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
 
-	// This specifies the Amazon S3 location where the test annotations for an entity
-	// recognizer are located. The URI must be in the same AWS Region as the API
-	// endpoint that you are calling.
+	// Specifies the Amazon S3 location where the test annotations for an entity
+	// recognizer are located. The URI must be in the same region as the API endpoint
+	// that you are calling.
 	TestS3Uri *string `type:"string"`
 }
 
@@ -14927,17 +15407,12 @@ func (s *JobNotFoundException) RequestID() string {
 type KeyPhrase struct {
 	_ struct{} `type:"structure"`
 
-	// A character offset in the input text that shows where the key phrase begins
-	// (the first character is at position 0). The offset returns the position of
-	// each UTF-8 code point in the string. A code point is the abstract character
-	// from a particular graphical representation. For example, a multi-byte UTF-8
-	// character maps to a single code point.
+	// The zero-based offset from the beginning of the source text to the first
+	// character in the key phrase.
 	BeginOffset *int64 `type:"integer"`
 
-	// A character offset in the input text where the key phrase ends. The offset
-	// returns the position of each UTF-8 code point in the string. A code point
-	// is the abstract character from a particular graphical representation. For
-	// example, a multi-byte UTF-8 character maps to a single code point.
+	// The zero-based offset from the beginning of the source text to the last character
+	// in the key phrase.
 	EndOffset *int64 `type:"integer"`
 
 	// The level of confidence that Amazon Comprehend has in the accuracy of the
@@ -16906,6 +17381,50 @@ func (s *ListTopicsDetectionJobsOutput) SetTopicsDetectionJobPropertiesList(v []
 	return s
 }
 
+// Contains the sentiment and sentiment score for one mention of an entity.
+//
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+type MentionSentiment struct {
+	_ struct{} `type:"structure"`
+
+	// The sentiment of the mention.
+	Sentiment *string `type:"string" enum:"SentimentType"`
+
+	// Describes the level of confidence that Amazon Comprehend has in the accuracy
+	// of its detection of sentiments.
+	SentimentScore *SentimentScore `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MentionSentiment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MentionSentiment) GoString() string {
+	return s.String()
+}
+
+// SetSentiment sets the Sentiment field's value.
+func (s *MentionSentiment) SetSentiment(v string) *MentionSentiment {
+	s.Sentiment = &v
+	return s
+}
+
+// SetSentimentScore sets the SentimentScore field's value.
+func (s *MentionSentiment) SetSentimentScore(v *SentimentScore) *MentionSentiment {
+	s.SentimentScore = v
+	return s
+}
+
 // Provides configuration parameters for the output of inference jobs.
 type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
@@ -16988,7 +17507,8 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 // Identifies the part of speech represented by the token and gives the confidence
 // that Amazon Comprehend has that the part of speech was correctly identified.
 // For more information about the parts of speech that Amazon Comprehend can
-// identify, see how-syntax.
+// identify, see Syntax (https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html)
+// in the Comprehend Developer Guide.
 type PartOfSpeechTag struct {
 	_ struct{} `type:"structure"`
 
@@ -17267,17 +17787,12 @@ func (s *PiiEntitiesDetectionJobProperties) SetSubmitTime(v time.Time) *PiiEntit
 type PiiEntity struct {
 	_ struct{} `type:"structure"`
 
-	// A character offset in the input text that shows where the PII entity begins
-	// (the first character is at position 0). The offset returns the position of
-	// each UTF-8 code point in the string. A code point is the abstract character
-	// from a particular graphical representation. For example, a multi-byte UTF-8
-	// character maps to a single code point.
+	// The zero-based offset from the beginning of the source text to the first
+	// character in the entity.
 	BeginOffset *int64 `type:"integer"`
 
-	// A character offset in the input text that shows where the PII entity ends.
-	// The offset returns the position of each UTF-8 code point in the string. A
-	// code point is the abstract character from a particular graphical representation.
-	// For example, a multi-byte UTF-8 character maps to a single code point.
+	// The zero-based offset from the beginning of the source text to the last character
+	// in the entity.
 	EndOffset *int64 `type:"integer"`
 
 	// The level of confidence that Amazon Comprehend has in the accuracy of the
@@ -19868,7 +20383,7 @@ type StartTargetedSentimentDetectionJobInput struct {
 	// The identifier of the job.
 	JobName *string `min:"1" type:"string"`
 
-	// The language of the input documents. Currently, English is the only valid
+	// The language of the input documents. Currently, English is the only supported
 	// language.
 	//
 	// LanguageCode is a required field
@@ -21125,7 +21640,8 @@ type SyntaxToken struct {
 
 	// Provides the part of speech label and the confidence level that Amazon Comprehend
 	// has that the part of speech was correctly identified. For more information,
-	// see how-syntax.
+	// see Syntax (https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html)
+	// in the Comprehend Developer Guide.
 	PartOfSpeech *PartOfSpeechTag `type:"structure"`
 
 	// The word that was recognized in the source text.
@@ -21579,6 +22095,144 @@ func (s *TargetedSentimentDetectionJobProperties) SetVolumeKmsKeyId(v string) *T
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *TargetedSentimentDetectionJobProperties) SetVpcConfig(v *VpcConfig) *TargetedSentimentDetectionJobProperties {
 	s.VpcConfig = v
+	return s
+}
+
+// Information about one of the entities found by targeted sentiment analysis.
+//
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+type TargetedSentimentEntity struct {
+	_ struct{} `type:"structure"`
+
+	// One or more index into the Mentions array that provides the best name for
+	// the entity group.
+	DescriptiveMentionIndex []*int64 `type:"list"`
+
+	// An array of mentions of the entity in the document. The array represents
+	// a co-reference group. See Co-reference group (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html#how-targeted-sentiment-values)
+	// for an example.
+	Mentions []*TargetedSentimentMention `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentEntity) GoString() string {
+	return s.String()
+}
+
+// SetDescriptiveMentionIndex sets the DescriptiveMentionIndex field's value.
+func (s *TargetedSentimentEntity) SetDescriptiveMentionIndex(v []*int64) *TargetedSentimentEntity {
+	s.DescriptiveMentionIndex = v
+	return s
+}
+
+// SetMentions sets the Mentions field's value.
+func (s *TargetedSentimentEntity) SetMentions(v []*TargetedSentimentMention) *TargetedSentimentEntity {
+	s.Mentions = v
+	return s
+}
+
+// Information about one mention of an entity. The mention information includes
+// the location of the mention in the text and the sentiment of the mention.
+//
+// For more information about targeted sentiment, see Targeted sentiment (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html).
+type TargetedSentimentMention struct {
+	_ struct{} `type:"structure"`
+
+	// The offset into the document text where the mention begins.
+	BeginOffset *int64 `type:"integer"`
+
+	// The offset into the document text where the mention ends.
+	EndOffset *int64 `type:"integer"`
+
+	// The confidence that all the entities mentioned in the group relate to the
+	// same entity.
+	GroupScore *float64 `type:"float"`
+
+	// Contains the sentiment and sentiment score for the mention.
+	MentionSentiment *MentionSentiment `type:"structure"`
+
+	// Model confidence that the entity is relevant. Value range is zero to one,
+	// where one is highest confidence.
+	Score *float64 `type:"float"`
+
+	// The text in the document that identifies the entity.
+	Text *string `min:"1" type:"string"`
+
+	// The type of the entity. Amazon Comprehend supports a variety of entity types
+	// (https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html#how-targeted-sentiment-entities).
+	Type *string `type:"string" enum:"TargetedSentimentEntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentMention) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetedSentimentMention) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *TargetedSentimentMention) SetBeginOffset(v int64) *TargetedSentimentMention {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *TargetedSentimentMention) SetEndOffset(v int64) *TargetedSentimentMention {
+	s.EndOffset = &v
+	return s
+}
+
+// SetGroupScore sets the GroupScore field's value.
+func (s *TargetedSentimentMention) SetGroupScore(v float64) *TargetedSentimentMention {
+	s.GroupScore = &v
+	return s
+}
+
+// SetMentionSentiment sets the MentionSentiment field's value.
+func (s *TargetedSentimentMention) SetMentionSentiment(v *MentionSentiment) *TargetedSentimentMention {
+	s.MentionSentiment = v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *TargetedSentimentMention) SetScore(v float64) *TargetedSentimentMention {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *TargetedSentimentMention) SetText(v string) *TargetedSentimentMention {
+	s.Text = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TargetedSentimentMention) SetType(v string) *TargetedSentimentMention {
+	s.Type = &v
 	return s
 }
 
@@ -22082,7 +22736,9 @@ func (s *TopicsDetectionJobProperties) SetVpcConfig(v *VpcConfig) *TopicsDetecti
 
 // Amazon Comprehend can't process the language of the input text. For custom
 // entity recognition APIs, only English, Spanish, French, Italian, German,
-// or Portuguese are accepted. For a list of supported languages, see supported-languages.
+// or Portuguese are accepted. For a list of supported languages, Supported
+// languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+// in the Comprehend Developer Guide.
 type UnsupportedLanguageException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23083,5 +23739,81 @@ func SyntaxLanguageCode_Values() []string {
 		SyntaxLanguageCodeDe,
 		SyntaxLanguageCodeIt,
 		SyntaxLanguageCodePt,
+	}
+}
+
+const (
+	// TargetedSentimentEntityTypePerson is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypePerson = "PERSON"
+
+	// TargetedSentimentEntityTypeLocation is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeLocation = "LOCATION"
+
+	// TargetedSentimentEntityTypeOrganization is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeOrganization = "ORGANIZATION"
+
+	// TargetedSentimentEntityTypeFacility is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeFacility = "FACILITY"
+
+	// TargetedSentimentEntityTypeBrand is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeBrand = "BRAND"
+
+	// TargetedSentimentEntityTypeCommercialItem is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeCommercialItem = "COMMERCIAL_ITEM"
+
+	// TargetedSentimentEntityTypeMovie is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeMovie = "MOVIE"
+
+	// TargetedSentimentEntityTypeMusic is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeMusic = "MUSIC"
+
+	// TargetedSentimentEntityTypeBook is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeBook = "BOOK"
+
+	// TargetedSentimentEntityTypeSoftware is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeSoftware = "SOFTWARE"
+
+	// TargetedSentimentEntityTypeGame is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeGame = "GAME"
+
+	// TargetedSentimentEntityTypePersonalTitle is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypePersonalTitle = "PERSONAL_TITLE"
+
+	// TargetedSentimentEntityTypeEvent is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeEvent = "EVENT"
+
+	// TargetedSentimentEntityTypeDate is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeDate = "DATE"
+
+	// TargetedSentimentEntityTypeQuantity is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeQuantity = "QUANTITY"
+
+	// TargetedSentimentEntityTypeAttribute is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeAttribute = "ATTRIBUTE"
+
+	// TargetedSentimentEntityTypeOther is a TargetedSentimentEntityType enum value
+	TargetedSentimentEntityTypeOther = "OTHER"
+)
+
+// TargetedSentimentEntityType_Values returns all elements of the TargetedSentimentEntityType enum
+func TargetedSentimentEntityType_Values() []string {
+	return []string{
+		TargetedSentimentEntityTypePerson,
+		TargetedSentimentEntityTypeLocation,
+		TargetedSentimentEntityTypeOrganization,
+		TargetedSentimentEntityTypeFacility,
+		TargetedSentimentEntityTypeBrand,
+		TargetedSentimentEntityTypeCommercialItem,
+		TargetedSentimentEntityTypeMovie,
+		TargetedSentimentEntityTypeMusic,
+		TargetedSentimentEntityTypeBook,
+		TargetedSentimentEntityTypeSoftware,
+		TargetedSentimentEntityTypeGame,
+		TargetedSentimentEntityTypePersonalTitle,
+		TargetedSentimentEntityTypeEvent,
+		TargetedSentimentEntityTypeDate,
+		TargetedSentimentEntityTypeQuantity,
+		TargetedSentimentEntityTypeAttribute,
+		TargetedSentimentEntityTypeOther,
 	}
 }

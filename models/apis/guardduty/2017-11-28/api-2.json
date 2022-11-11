@@ -1469,6 +1469,10 @@
         "DetectorId":{
           "shape":"DetectorId",
           "locationName":"detectorId"
+        },
+        "UnprocessedDataSources":{
+          "shape":"UnprocessedDataSourcesResult",
+          "locationName":"unprocessedDataSources"
         }
       }
     },
@@ -2399,6 +2403,10 @@
         "Status":{
           "shape":"DataSourceStatus",
           "locationName":"status"
+        },
+        "Reason":{
+          "shape":"String",
+          "locationName":"reason"
         }
       }
     },
@@ -5348,6 +5356,15 @@
       "member":{"shape":"UnprocessedAccount"},
       "max":50,
       "min":0
+    },
+    "UnprocessedDataSourcesResult":{
+      "type":"structure",
+      "members":{
+        "MalwareProtection":{
+          "shape":"MalwareProtectionConfigurationResult",
+          "locationName":"malwareProtection"
+        }
+      }
     },
     "UntagResourceRequest":{
       "type":"structure",

@@ -26,11 +26,45 @@ const (
 	// and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 	ErrCodeAccessNotEnabledException = "CloudTrailAccessNotEnabledException"
 
+	// ErrCodeAccountHasOngoingImportException for service response error code
+	// "AccountHasOngoingImportException".
+	//
+	// This exception is thrown when you start a new import and a previous import
+	// is still in progress.
+	ErrCodeAccountHasOngoingImportException = "AccountHasOngoingImportException"
+
+	// ErrCodeAccountNotFoundException for service response error code
+	// "AccountNotFoundException".
+	//
+	// This exception is thrown when when the specified account is not found or
+	// not part of an organization.
+	ErrCodeAccountNotFoundException = "AccountNotFoundException"
+
+	// ErrCodeAccountNotRegisteredException for service response error code
+	// "AccountNotRegisteredException".
+	//
+	// This exception is thrown when the specified account is not registered as
+	// the CloudTrail delegated administrator.
+	ErrCodeAccountNotRegisteredException = "AccountNotRegisteredException"
+
+	// ErrCodeAccountRegisteredException for service response error code
+	// "AccountRegisteredException".
+	//
+	// This exception is thrown when the account is already registered as the CloudTrail
+	// delegated administrator.
+	ErrCodeAccountRegisteredException = "AccountRegisteredException"
+
+	// ErrCodeCannotDelegateManagementAccountException for service response error code
+	// "CannotDelegateManagementAccountException".
+	//
+	// This exception is thrown when the management account of an organization is
+	// registered as the CloudTrail delegated administrator.
+	ErrCodeCannotDelegateManagementAccountException = "CannotDelegateManagementAccountException"
+
 	// ErrCodeChannelARNInvalidException for service response error code
 	// "ChannelARNInvalidException".
 	//
-	// The specified channel ARN is not valid or does not map to a channel in your
-	// account.
+	// This exception is thrown when the specified value of ChannelARN is not valid.
 	ErrCodeChannelARNInvalidException = "ChannelARNInvalidException"
 
 	// ErrCodeChannelNotFoundException for service response error code
@@ -63,6 +97,13 @@ const (
 	// occurs, wait a few minutes, and then try the operation again.
 	ErrCodeConflictException = "ConflictException"
 
+	// ErrCodeDelegatedAdminAccountLimitExceededException for service response error code
+	// "DelegatedAdminAccountLimitExceededException".
+	//
+	// This exception is thrown when the maximum number of CloudTrail delegated
+	// administrators is reached.
+	ErrCodeDelegatedAdminAccountLimitExceededException = "DelegatedAdminAccountLimitExceededException"
+
 	// ErrCodeEventDataStoreARNInvalidException for service response error code
 	// "EventDataStoreARNInvalidException".
 	//
@@ -75,6 +116,13 @@ const (
 	//
 	// An event data store with that name already exists.
 	ErrCodeEventDataStoreAlreadyExistsException = "EventDataStoreAlreadyExistsException"
+
+	// ErrCodeEventDataStoreHasOngoingImportException for service response error code
+	// "EventDataStoreHasOngoingImportException".
+	//
+	// This exception is thrown when you try to update or delete an event data store
+	// that currently has an import in progress.
+	ErrCodeEventDataStoreHasOngoingImportException = "EventDataStoreHasOngoingImportException"
 
 	// ErrCodeEventDataStoreMaxLimitExceededException for service response error code
 	// "EventDataStoreMaxLimitExceededException".
@@ -94,6 +142,12 @@ const (
 	// The event data store cannot be deleted because termination protection is
 	// enabled for it.
 	ErrCodeEventDataStoreTerminationProtectedException = "EventDataStoreTerminationProtectedException"
+
+	// ErrCodeImportNotFoundException for service response error code
+	// "ImportNotFoundException".
+	//
+	// The specified import was not found.
+	ErrCodeImportNotFoundException = "ImportNotFoundException"
 
 	// ErrCodeInactiveEventDataStoreException for service response error code
 	// "InactiveEventDataStoreException".
@@ -126,8 +180,8 @@ const (
 	// ErrCodeInsufficientEncryptionPolicyException for service response error code
 	// "InsufficientEncryptionPolicyException".
 	//
-	// This exception is thrown when the policy on the S3 bucket or KMS key is not
-	// sufficient.
+	// This exception is thrown when the policy on the S3 bucket or KMS key does
+	// not have sufficient permissions for the operation.
 	ErrCodeInsufficientEncryptionPolicyException = "InsufficientEncryptionPolicyException"
 
 	// ErrCodeInsufficientS3BucketPolicyException for service response error code
@@ -171,6 +225,13 @@ const (
 	// EventCategory.
 	ErrCodeInvalidEventCategoryException = "InvalidEventCategoryException"
 
+	// ErrCodeInvalidEventDataStoreCategoryException for service response error code
+	// "InvalidEventDataStoreCategoryException".
+	//
+	// This exception is thrown when event categories of specified event data stores
+	// are not valid.
+	ErrCodeInvalidEventDataStoreCategoryException = "InvalidEventDataStoreCategoryException"
+
 	// ErrCodeInvalidEventDataStoreStatusException for service response error code
 	// "InvalidEventDataStoreStatusException".
 	//
@@ -212,6 +273,13 @@ const (
 	// This exception is thrown when an operation is called on a trail from a region
 	// other than the region in which the trail was created.
 	ErrCodeInvalidHomeRegionException = "InvalidHomeRegionException"
+
+	// ErrCodeInvalidImportSourceException for service response error code
+	// "InvalidImportSourceException".
+	//
+	// This exception is thrown when the provided source S3 bucket is not valid
+	// for import.
+	ErrCodeInvalidImportSourceException = "InvalidImportSourceException"
 
 	// ErrCodeInvalidInsightSelectorsException for service response error code
 	// "InvalidInsightSelectorsException".
@@ -335,7 +403,7 @@ const (
 	// "KmsException".
 	//
 	// This exception is thrown when there is an issue with the specified KMS key
-	// and the trail can’t be updated.
+	// and the trail or event data store can't be updated.
 	ErrCodeKmsException = "KmsException"
 
 	// ErrCodeKmsKeyDisabledException for service response error code
@@ -364,6 +432,20 @@ const (
 	//
 	// This exception is thrown when the maximum number of trails is reached.
 	ErrCodeMaximumNumberOfTrailsExceededException = "MaximumNumberOfTrailsExceededException"
+
+	// ErrCodeNoManagementAccountSLRExistsException for service response error code
+	// "NoManagementAccountSLRExistsException".
+	//
+	// This exception is thrown when the management account does not have a service-linked
+	// role.
+	ErrCodeNoManagementAccountSLRExistsException = "NoManagementAccountSLRExistsException"
+
+	// ErrCodeNotOrganizationManagementAccountException for service response error code
+	// "NotOrganizationManagementAccountException".
+	//
+	// This exception is thrown when the account making the request is not the organization's
+	// management account.
+	ErrCodeNotOrganizationManagementAccountException = "NotOrganizationManagementAccountException"
 
 	// ErrCodeNotOrganizationMasterAccountException for service response error code
 	// "NotOrganizationMasterAccountException".
@@ -457,16 +539,24 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CloudTrailARNInvalidException":                          newErrorARNInvalidException,
 	"CloudTrailAccessNotEnabledException":                    newErrorAccessNotEnabledException,
+	"AccountHasOngoingImportException":                       newErrorAccountHasOngoingImportException,
+	"AccountNotFoundException":                               newErrorAccountNotFoundException,
+	"AccountNotRegisteredException":                          newErrorAccountNotRegisteredException,
+	"AccountRegisteredException":                             newErrorAccountRegisteredException,
+	"CannotDelegateManagementAccountException":               newErrorCannotDelegateManagementAccountException,
 	"ChannelARNInvalidException":                             newErrorChannelARNInvalidException,
 	"ChannelNotFoundException":                               newErrorChannelNotFoundException,
 	"CloudTrailInvalidClientTokenIdException":                newErrorCloudTrailInvalidClientTokenIdException,
 	"CloudWatchLogsDeliveryUnavailableException":             newErrorCloudWatchLogsDeliveryUnavailableException,
 	"ConflictException":                                      newErrorConflictException,
+	"DelegatedAdminAccountLimitExceededException":            newErrorDelegatedAdminAccountLimitExceededException,
 	"EventDataStoreARNInvalidException":                      newErrorEventDataStoreARNInvalidException,
 	"EventDataStoreAlreadyExistsException":                   newErrorEventDataStoreAlreadyExistsException,
+	"EventDataStoreHasOngoingImportException":                newErrorEventDataStoreHasOngoingImportException,
 	"EventDataStoreMaxLimitExceededException":                newErrorEventDataStoreMaxLimitExceededException,
 	"EventDataStoreNotFoundException":                        newErrorEventDataStoreNotFoundException,
 	"EventDataStoreTerminationProtectedException":            newErrorEventDataStoreTerminationProtectedException,
+	"ImportNotFoundException":                                newErrorImportNotFoundException,
 	"InactiveEventDataStoreException":                        newErrorInactiveEventDataStoreException,
 	"InactiveQueryException":                                 newErrorInactiveQueryException,
 	"InsightNotEnabledException":                             newErrorInsightNotEnabledException,
@@ -478,9 +568,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidCloudWatchLogsRoleArnException":                  newErrorInvalidCloudWatchLogsRoleArnException,
 	"InvalidDateRangeException":                              newErrorInvalidDateRangeException,
 	"InvalidEventCategoryException":                          newErrorInvalidEventCategoryException,
+	"InvalidEventDataStoreCategoryException":                 newErrorInvalidEventDataStoreCategoryException,
 	"InvalidEventDataStoreStatusException":                   newErrorInvalidEventDataStoreStatusException,
 	"InvalidEventSelectorsException":                         newErrorInvalidEventSelectorsException,
 	"InvalidHomeRegionException":                             newErrorInvalidHomeRegionException,
+	"InvalidImportSourceException":                           newErrorInvalidImportSourceException,
 	"InvalidInsightSelectorsException":                       newErrorInvalidInsightSelectorsException,
 	"InvalidKmsKeyIdException":                               newErrorInvalidKmsKeyIdException,
 	"InvalidLookupAttributesException":                       newErrorInvalidLookupAttributesException,
@@ -502,6 +594,8 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"KmsKeyNotFoundException":                                newErrorKmsKeyNotFoundException,
 	"MaxConcurrentQueriesException":                          newErrorMaxConcurrentQueriesException,
 	"MaximumNumberOfTrailsExceededException":                 newErrorMaximumNumberOfTrailsExceededException,
+	"NoManagementAccountSLRExistsException":                  newErrorNoManagementAccountSLRExistsException,
+	"NotOrganizationManagementAccountException":              newErrorNotOrganizationManagementAccountException,
 	"NotOrganizationMasterAccountException":                  newErrorNotOrganizationMasterAccountException,
 	"OperationNotPermittedException":                         newErrorOperationNotPermittedException,
 	"OrganizationNotInAllFeaturesModeException":              newErrorOrganizationNotInAllFeaturesModeException,

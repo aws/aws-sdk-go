@@ -349,10 +349,22 @@
     "Field":{
       "type":"structure",
       "members":{
-        "isNull":{"shape":"BoxedBoolean"},
-        "booleanValue":{"shape":"BoxedBoolean"},
-        "longValue":{"shape":"BoxedLong"},
-        "doubleValue":{"shape":"BoxedDouble"},
+        "isNull":{
+          "shape":"BoxedBoolean",
+          "box":true
+        },
+        "booleanValue":{
+          "shape":"BoxedBoolean",
+          "box":true
+        },
+        "longValue":{
+          "shape":"BoxedLong",
+          "box":true
+        },
+        "doubleValue":{
+          "shape":"BoxedDouble",
+          "box":true
+        },
         "stringValue":{"shape":"String"},
         "blobValue":{"shape":"Blob"},
         "arrayValue":{"shape":"ArrayValue"}
@@ -575,12 +587,30 @@
     "Value":{
       "type":"structure",
       "members":{
-        "isNull":{"shape":"BoxedBoolean"},
-        "bitValue":{"shape":"BoxedBoolean"},
-        "bigIntValue":{"shape":"BoxedLong"},
-        "intValue":{"shape":"BoxedInteger"},
-        "doubleValue":{"shape":"BoxedDouble"},
-        "realValue":{"shape":"BoxedFloat"},
+        "isNull":{
+          "shape":"BoxedBoolean",
+          "box":true
+        },
+        "bitValue":{
+          "shape":"BoxedBoolean",
+          "box":true
+        },
+        "bigIntValue":{
+          "shape":"BoxedLong",
+          "box":true
+        },
+        "intValue":{
+          "shape":"BoxedInteger",
+          "box":true
+        },
+        "doubleValue":{
+          "shape":"BoxedDouble",
+          "box":true
+        },
+        "realValue":{
+          "shape":"BoxedFloat",
+          "box":true
+        },
         "stringValue":{"shape":"String"},
         "blobValue":{"shape":"Blob"},
         "arrayValues":{"shape":"ArrayValueList"},

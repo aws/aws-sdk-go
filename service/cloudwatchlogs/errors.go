@@ -73,6 +73,12 @@ const (
 	// The service cannot complete the request.
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
 
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// A resource can have no more than 50 tags.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
+
 	// ErrCodeUnrecognizedClientException for service response error code
 	// "UnrecognizedClientException".
 	//
@@ -92,5 +98,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceAlreadyExistsException": newErrorResourceAlreadyExistsException,
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,
 	"ServiceUnavailableException":    newErrorServiceUnavailableException,
+	"TooManyTagsException":           newErrorTooManyTagsException,
 	"UnrecognizedClientException":    newErrorUnrecognizedClientException,
 }

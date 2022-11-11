@@ -257,8 +257,9 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 // CreateConnector API operation for AWS Transfer Family.
 //
 // Creates the connector, which captures the parameters for an outbound connection
-// for the AS2 protocol. The connector is required for sending files from a
-// customer's non Amazon Web Services server.
+// for the AS2 protocol. The connector is required for sending files to an externally
+// hosted AS2 server. For more details about connectors, see Create AS2 connectors
+// (https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html#configure-as2-connector).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -352,8 +353,7 @@ func (c *Transfer) CreateProfileRequest(input *CreateProfileInput) (req *request
 
 // CreateProfile API operation for AWS Transfer Family.
 //
-// Creates the profile for the AS2 process. The agreement is between the partner
-// and the AS2 process.
+// Creates the local or partner profile to use for AS2 transfers.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2796,7 +2796,7 @@ func (c *Transfer) ImportHostKeyRequest(input *ImportHostKeyInput) (req *request
 
 // ImportHostKey API operation for AWS Transfer Family.
 //
-// Adds a host key to the server specified by the ServerId parameter.
+// Adds a host key to the server that's specified by the ServerId parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3758,7 +3758,8 @@ func (c *Transfer) ListHostKeysRequest(input *ListHostKeysInput) (req *request.R
 
 // ListHostKeys API operation for AWS Transfer Family.
 //
-// Returns a list of host keys for the server specified by the ServerId paramter.
+// Returns a list of host keys for the server that's specified by the ServerId
+// parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4851,8 +4852,8 @@ func (c *Transfer) StartFileTransferRequest(input *StartFileTransferInput) (req 
 
 // StartFileTransfer API operation for AWS Transfer Family.
 //
-// Begins an outbound file transfer. You specify the ConnectorId and the file
-// paths for where to send the files.
+// Begins an outbound file transfer to a remote AS2 server. You specify the
+// ConnectorId and the file paths for where to send the files.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5839,8 +5840,8 @@ func (c *Transfer) UpdateHostKeyRequest(input *UpdateHostKeyInput) (req *request
 
 // UpdateHostKey API operation for AWS Transfer Family.
 //
-// Updates the description for the host key specified by the specified by the
-// ServerId and HostKeyId parameters.
+// Updates the description for the host key that's specified by the ServerId
+// and HostKeyId parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6748,13 +6749,13 @@ func (s *CreateAccessInput) SetServerId(v string) *CreateAccessInput {
 type CreateAccessOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The external ID of the group whose users have access to your Amazon S3 or
-	// Amazon EFS resources over the enabled protocols using Transfer Family.
+	// The external identifier of the group whose users have access to your Amazon
+	// S3 or Amazon EFS resources over the enabled protocols using Transfer Family.
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the server that the user is attached to.
+	// The identifier of the server that the user is attached to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -6809,7 +6810,7 @@ type CreateAgreementInput struct {
 
 	// The landing directory (folder) for files transferred by using the AS2 protocol.
 	//
-	// A BaseDirectory example is /DOC-EXAMPLE-BUCKET/home/mydirectory .
+	// A BaseDirectory example is DOC-EXAMPLE-BUCKET/home/mydirectory.
 	//
 	// BaseDirectory is a required field
 	BaseDirectory *string `type:"string" required:"true"`
@@ -7171,8 +7172,13 @@ type CreateProfileInput struct {
 	// for working with profiles and partner profiles.
 	CertificateIds []*string `type:"list"`
 
-	// Indicates whether to list only LOCAL type profiles or only PARTNER type profiles.
-	// If not supplied in the request, the command lists all types of profiles.
+	// Determines the type of profile to create:
+	//
+	//    * Specify LOCAL to create a local profile. A local profile represents
+	//    the AS2-enabled Transfer Family server organization or party.
+	//
+	//    * Specify PARTNER to create a partner profile. A partner profile represents
+	//    a remote organization, external to Transfer Family.
 	//
 	// ProfileType is a required field
 	ProfileType *string `type:"string" required:"true" enum:"ProfileType"`
@@ -7358,7 +7364,9 @@ type CreateServerInput struct {
 	// possible with EndpointType set to VPC_ENDPOINT.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// The RSA, ECDSA, or ED25519 private key to use for your server.
+	// The RSA, ECDSA, or ED25519 private key to use for your SFTP-enabled server.
+	// You can add multiple host keys, in case you want to rotate keys, or have
+	// a set of active keys that use different algorithms.
 	//
 	// Use the following command to generate an RSA 2048 bit key with no passphrase:
 	//
@@ -7384,8 +7392,7 @@ type CreateServerInput struct {
 	// server to a new server, don't update the host key. Accidentally changing
 	// a server's host key can be disruptive.
 	//
-	// For more information, see Change the host key for your SFTP-enabled server
-	// (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
+	// For more information, see Update host keys for your SFTP-enabled server (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
 	// in the Transfer Family User Guide.
 	//
 	// HostKey is a sensitive parameter and its value will be
@@ -7503,6 +7510,11 @@ type CreateServerInput struct {
 
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
+	//
+	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+	// can also contain a workflow ID (and execution role) for a workflow to execute
+	// on partial upload. A partial upload occurs when a file is open when the session
+	// disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -7666,7 +7678,7 @@ func (s *CreateServerInput) SetWorkflowDetails(v *WorkflowDetails) *CreateServer
 type CreateServerOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service-assigned ID of the server that is created.
+	// The service-assigned identifier of the server that is created.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -7937,7 +7949,7 @@ func (s *CreateUserInput) SetUserName(v string) *CreateUserInput {
 type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the server that the user is attached to.
+	// The identifier of the server that the user is attached to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -8330,7 +8342,7 @@ type DeleteAgreementInput struct {
 	// AgreementId is a required field
 	AgreementId *string `min:"19" type:"string" required:"true"`
 
-	// The server ID associated with the agreement that you are deleting.
+	// The server identifier associated with the agreement that you are deleting.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -8413,7 +8425,7 @@ func (s DeleteAgreementOutput) GoString() string {
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the certificate object that you are deleting.
+	// The identifier of the certificate object that you are deleting.
 	//
 	// CertificateId is a required field
 	CertificateId *string `min:"22" type:"string" required:"true"`
@@ -8555,12 +8567,12 @@ func (s DeleteConnectorOutput) GoString() string {
 type DeleteHostKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the host key that you are deleting.
+	// The identifier of the host key that you are deleting.
 	//
 	// HostKeyId is a required field
 	HostKeyId *string `min:"25" type:"string" required:"true"`
 
-	// Provide the ID of the server that contains the host key that you are deleting.
+	// The identifier of the server that contains the host key that you are deleting.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -8643,7 +8655,7 @@ func (s DeleteHostKeyOutput) GoString() string {
 type DeleteProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the profile that you are deleting.
+	// The identifier of the profile that you are deleting.
 	//
 	// ProfileId is a required field
 	ProfileId *string `min:"19" type:"string" required:"true"`
@@ -9180,7 +9192,7 @@ func (s *DescribeAccessInput) SetServerId(v string) *DescribeAccessInput {
 type DescribeAccessOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The external ID of the server that the access is attached to.
+	// The external identifier of the server that the access is attached to.
 	//
 	// Access is a required field
 	Access *DescribedAccess `type:"structure" required:"true"`
@@ -9230,7 +9242,7 @@ type DescribeAgreementInput struct {
 	// AgreementId is a required field
 	AgreementId *string `min:"19" type:"string" required:"true"`
 
-	// The server ID that's associated with the agreement.
+	// The server identifier that's associated with the agreement.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -9600,12 +9612,12 @@ func (s *DescribeExecutionOutput) SetWorkflowId(v string) *DescribeExecutionOutp
 type DescribeHostKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Provide the ID of the host key that you want described.
+	// The identifier of the host key that you want described.
 	//
 	// HostKeyId is a required field
 	HostKeyId *string `min:"25" type:"string" required:"true"`
 
-	// Provide the ID of the server that contains the host key that you want described.
+	// The identifier of the server that contains the host key that you want described.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -10785,8 +10797,8 @@ type DescribedHostKey struct {
 	// Key-value pairs that can be used to group and search for host keys.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The encryption algorithm used for the host key. The Type is one of the following
-	// values:
+	// The encryption algorithm that is used for the host key. The Type parameter
+	// is specified by using one of the following values:
 	//
 	//    * ssh-rsa
 	//
@@ -10860,7 +10872,7 @@ func (s *DescribedHostKey) SetType(v string) *DescribedHostKey {
 	return s
 }
 
-// The details for a local or partner AS2 profile. profile.
+// The details for a local or partner AS2 profile.
 type DescribedProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -11190,6 +11202,11 @@ type DescribedServer struct {
 
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
+	//
+	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+	// can also contain a workflow ID (and execution role) for a workflow to execute
+	// on partial upload. A partial upload occurs when a file is open when the session
+	// disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -11563,7 +11580,7 @@ func (s *DescribedWorkflow) SetWorkflowId(v string) *DescribedWorkflow {
 type EfsFileLocation struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the file system, assigned by Amazon EFS.
+	// The identifier of the file system, assigned by Amazon EFS.
 	FileSystemId *string `type:"string"`
 
 	// The pathname for the folder being used by a workflow.
@@ -11654,14 +11671,14 @@ type EndpointDetails struct {
 	// This property can only be set when EndpointType is set to VPC.
 	SubnetIds []*string `type:"list"`
 
-	// The ID of the VPC endpoint.
+	// The identifier of the VPC endpoint.
 	//
 	// This property can only be set when EndpointType is set to VPC_ENDPOINT.
 	//
 	// For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 	VpcEndpointId *string `min:"22" type:"string"`
 
-	// The VPC ID of the VPC in which a server's endpoint will be hosted.
+	// The VPC identifier of the VPC in which a server's endpoint will be hosted.
 	//
 	// This property can only be set when EndpointType is set to VPC.
 	VpcId *string `type:"string"`
@@ -11906,7 +11923,7 @@ func (s *ExecutionStepResult) SetStepType(v string) *ExecutionStepResult {
 type FileLocation struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Amazon EFS ID and the path for the file being used.
+	// Specifies the Amazon EFS identifier and the path for the file being used.
 	EfsFileLocation *EfsFileLocation `type:"structure"`
 
 	// Specifies the S3 details for the file being used, such as bucket, ETag, and
@@ -12278,7 +12295,7 @@ func (s *ImportCertificateOutput) SetCertificateId(v string) *ImportCertificateO
 type ImportHostKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enter a text description to identify this host key.
+	// The text description that identifies this host key.
 	Description *string `type:"string"`
 
 	// The public key portion of an SSH key pair.
@@ -12292,7 +12309,7 @@ type ImportHostKeyInput struct {
 	// HostKeyBody is a required field
 	HostKeyBody *string `type:"string" required:"true" sensitive:"true"`
 
-	// Provide the ID of the server that contains the host key that you are importing.
+	// The identifier of the server that contains the host key that you are importing.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -12378,12 +12395,12 @@ func (s *ImportHostKeyInput) SetTags(v []*Tag) *ImportHostKeyInput {
 type ImportHostKeyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the host key ID for the imported key.
+	// Returns the host key identifier for the imported key.
 	//
 	// HostKeyId is a required field
 	HostKeyId *string `min:"25" type:"string" required:"true"`
 
-	// Returns the server ID that contains the imported key.
+	// Returns the server identifier that contains the imported key.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -13435,7 +13452,7 @@ type ListHostKeysInput struct {
 	// to continue listing results.
 	NextToken *string `min:"1" type:"string"`
 
-	// Provide the ID of the server that contains the host keys that you want to
+	// The identifier of the server that contains the host keys that you want to
 	// view.
 	//
 	// ServerId is a required field
@@ -13512,7 +13529,7 @@ type ListHostKeysOutput struct {
 	// results, if there are any.
 	NextToken *string `min:"1" type:"string"`
 
-	// Returns the server ID that contains the listed host keys.
+	// Returns the server identifier that contains the listed host keys.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -14624,11 +14641,11 @@ func (s *ListedExecution) SetStatus(v string) *ListedExecution {
 	return s
 }
 
-// Returns properties of the host key that is specified.
+// Returns properties of the host key that's specified.
 type ListedHostKey struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the unique Amazon Resource Name (ARN) of the host key.
+	// The unique Amazon Resource Name (ARN) of the host key.
 	//
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
@@ -14644,10 +14661,11 @@ type ListedHostKey struct {
 	// the longer public key.
 	Fingerprint *string `type:"string"`
 
+	// A unique identifier for the host key.
 	HostKeyId *string `min:"25" type:"string"`
 
-	// The encryption algorithm used for the host key. The Type is one of the following
-	// values:
+	// The encryption algorithm that is used for the host key. The Type parameter
+	// is specified by using one of the following values:
 	//
 	//    * ssh-rsa
 	//
@@ -15008,8 +15026,8 @@ func (s *ListedUser) SetUserName(v string) *ListedUser {
 	return s
 }
 
-// Contains the ID, text description, and Amazon Resource Name (ARN) for the
-// workflow.
+// Contains the identifier, text description, and Amazon Resource Name (ARN)
+// for the workflow.
 type ListedWorkflow struct {
 	_ struct{} `type:"structure"`
 
@@ -15199,6 +15217,22 @@ type ProtocolDetails struct {
 	// Family server for the change to take effect. For details on using passive
 	// mode (PASV) in a NAT environment, see Configuring your FTPS server behind
 	// a firewall or NAT with Transfer Family (http://aws.amazon.com/blogs/storage/configuring-your-ftps-server-behind-a-firewall-or-nat-with-aws-transfer-family/).
+	//
+	// Special values
+	//
+	// The AUTO and 0.0.0.0 are special values for the PassiveIp parameter. The
+	// value PassiveIp=AUTO is assigned by default to FTP and FTPS type servers.
+	// In this case, the server automatically responds with one of the endpoint
+	// IPs within the PASV response. PassiveIp=0.0.0.0 has a more unique application
+	// for its usage. For example, if you have a High Availability (HA) Network
+	// Load Balancer (NLB) environment, where you have 3 subnets, you can only specify
+	// a single IP address using the PassiveIp parameter. This reduces the effectiveness
+	// of having High Availability. In this case, you can specify PassiveIp=0.0.0.0.
+	// This tells the client to use the same IP address as the Control connection
+	// and utilize all AZs for their connections. Note, however, that not all FTP
+	// clients support the PassiveIp=0.0.0.0 response. FileZilla and WinSCP do support
+	// it. If you are using other clients, check to see if your client supports
+	// the PassiveIp=0.0.0.0 response.
 	PassiveIp *string `type:"string"`
 
 	// Use the SetStatOption to ignore the error that is generated when the client
@@ -16956,14 +16990,14 @@ func (s *UpdateAccessInput) SetServerId(v string) *UpdateAccessInput {
 type UpdateAccessOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The external ID of the group whose users have access to your Amazon S3 or
-	// Amazon EFS resources over the enabled protocols using Amazon Web ServicesTransfer
+	// The external identifier of the group whose users have access to your Amazon
+	// S3 or Amazon EFS resources over the enabled protocols using Amazon Web ServicesTransfer
 	// Family.
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the server that the user is attached to.
+	// The identifier of the server that the user is attached to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -17437,17 +17471,17 @@ func (s *UpdateConnectorOutput) SetConnectorId(v string) *UpdateConnectorOutput 
 type UpdateHostKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Provide an updated description for the host key.
+	// An updated description for the host key.
 	//
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// Provide the ID of the host key that you are updating.
+	// The identifier of the host key that you are updating.
 	//
 	// HostKeyId is a required field
 	HostKeyId *string `min:"25" type:"string" required:"true"`
 
-	// Provide the ID of the server that contains the host key that you are updating.
+	// The identifier of the server that contains the host key that you are updating.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -17517,12 +17551,13 @@ func (s *UpdateHostKeyInput) SetServerId(v string) *UpdateHostKeyInput {
 type UpdateHostKeyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the host key ID for the updated host key.
+	// Returns the host key identifier for the updated host key.
 	//
 	// HostKeyId is a required field
 	HostKeyId *string `min:"25" type:"string" required:"true"`
 
-	// Returns the server ID for the server that contains the updated host key.
+	// Returns the server identifier for the server that contains the updated host
+	// key.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -17713,7 +17748,9 @@ type UpdateServerInput struct {
 	// possible with EndpointType set to VPC_ENDPOINT.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// The RSA, ECDSA, or ED25519 private key to use for your server.
+	// The RSA, ECDSA, or ED25519 private key to use for your SFTP-enabled server.
+	// You can add multiple host keys, in case you want to rotate keys, or have
+	// a set of active keys that use different algorithms.
 	//
 	// Use the following command to generate an RSA 2048 bit key with no passphrase:
 	//
@@ -17739,8 +17776,7 @@ type UpdateServerInput struct {
 	// server to a new server, don't update the host key. Accidentally changing
 	// a server's host key can be disruptive.
 	//
-	// For more information, see Change the host key for your SFTP-enabled server
-	// (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
+	// For more information, see Update host keys for your SFTP-enabled server (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
 	// in the Transfer Family User Guide.
 	//
 	// HostKey is a sensitive parameter and its value will be
@@ -17838,6 +17874,11 @@ type UpdateServerInput struct {
 
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
+	//
+	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+	// can also contain a workflow ID (and execution role) for a workflow to execute
+	// on partial upload. A partial upload occurs when a file is open when the session
+	// disconnects.
 	//
 	// To remove an associated workflow from a server, you can provide an empty
 	// OnUpload object, as in the following example.
@@ -18320,6 +18361,11 @@ func (s *UserDetails) SetUserName(v string) *UserDetails {
 
 // Specifies the workflow ID for the workflow to assign and the execution role
 // that's used for executing the workflow.
+//
+// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+// can also contain a workflow ID (and execution role) for a workflow to execute
+// on partial upload. A partial upload occurs when a file is open when the session
+// disconnects.
 type WorkflowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -18393,6 +18439,13 @@ func (s *WorkflowDetail) SetWorkflowId(v string) *WorkflowDetail {
 type WorkflowDetails struct {
 	_ struct{} `type:"structure"`
 
+	// A trigger that starts a workflow if a file is only partially uploaded. You
+	// can attach a workflow to a server that executes whenever there is a partial
+	// upload.
+	//
+	// A partial upload occurs when a file is open when the session disconnects.
+	OnPartialUpload []*WorkflowDetail `type:"list"`
+
 	// A trigger that starts a workflow: the workflow begins to execute after a
 	// file is uploaded.
 	//
@@ -18401,9 +18454,7 @@ type WorkflowDetails struct {
 	//
 	// aws transfer update-server --server-id s-01234567890abcdef --workflow-details
 	// '{"OnUpload":[]}'
-	//
-	// OnUpload is a required field
-	OnUpload []*WorkflowDetail `type:"list" required:"true"`
+	OnUpload []*WorkflowDetail `type:"list"`
 }
 
 // String returns the string representation.
@@ -18427,8 +18478,15 @@ func (s WorkflowDetails) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *WorkflowDetails) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "WorkflowDetails"}
-	if s.OnUpload == nil {
-		invalidParams.Add(request.NewErrParamRequired("OnUpload"))
+	if s.OnPartialUpload != nil {
+		for i, v := range s.OnPartialUpload {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OnPartialUpload", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.OnUpload != nil {
 		for i, v := range s.OnUpload {
@@ -18445,6 +18503,12 @@ func (s *WorkflowDetails) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOnPartialUpload sets the OnPartialUpload field's value.
+func (s *WorkflowDetails) SetOnPartialUpload(v []*WorkflowDetail) *WorkflowDetails {
+	s.OnPartialUpload = v
+	return s
 }
 
 // SetOnUpload sets the OnUpload field's value.

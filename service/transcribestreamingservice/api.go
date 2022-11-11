@@ -95,8 +95,12 @@ func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionRequest(inpu
 
 // StartMedicalStreamTranscription API operation for Amazon Transcribe Streaming Service.
 //
-// Starts a bidirectional HTTP/2 stream where audio is streamed to Amazon Transcribe
-// Medical and the transcription results are streamed to your application.
+// Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed
+// to Amazon Transcribe Medical and the transcription results are streamed to
+// your application.
+//
+// For more information on streaming with Amazon Transcribe Medical, see Transcribing
+// streaming audio (https://docs.aws.amazon.com/transcribe/latest/dg/streaming.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -109,26 +113,24 @@ func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionRequest(inpu
 //
 //   - BadRequestException
 //     One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
-//     operation was invalid. For example, MediaEncoding was not set to a valid
-//     encoding, or LanguageCode was not set to a valid code. Check the parameters
-//     and try your request again.
+//     operation was not valid. For example, MediaEncoding or LanguageCode used
+//     not valid values. Check the specified parameters and try your request again.
 //
 //   - LimitExceededException
-//     You have exceeded the maximum number of concurrent transcription streams,
-//     are starting transcription streams too quickly, or the maximum audio length
-//     of 4 hours. Wait until a stream has finished processing, or break your audio
-//     stream into smaller chunks and try your request again.
+//     Your client has exceeded one of the Amazon Transcribe limits. This is typically
+//     the audio length limit. Break your audio stream into smaller chunks and try
+//     your request again.
 //
 //   - InternalFailureException
-//     A problem occurred while processing the audio. Amazon Transcribe or Amazon
-//     Transcribe Medical terminated processing. Try your request again.
+//     A problem occurred while processing the audio. Amazon Transcribe terminated
+//     processing.
 //
 //   - ConflictException
 //     A new stream started with the same session ID. The current stream has been
 //     terminated.
 //
 //   - ServiceUnavailableException
-//     Service is currently unavailable. Try your request later.
+//     The service is currently unavailable. Try your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-streaming-2017-10-26/StartMedicalStreamTranscription
 func (c *TranscribeStreamingService) StartMedicalStreamTranscription(input *StartMedicalStreamTranscriptionInput) (*StartMedicalStreamTranscriptionOutput, error) {
@@ -474,21 +476,21 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 
 // StartStreamTranscription API operation for Amazon Transcribe Streaming Service.
 //
-// Starts a bidirectional HTTP/2 stream where audio is streamed to Amazon Transcribe
-// and the transcription results are streamed to your application.
+// Starts a bidirectional HTTP/2 or WebSocket stream where audio is streamed
+// to Amazon Transcribe and the transcription results are streamed to your application.
 //
-// The following are encoded as HTTP/2 headers:
+// The following are encoded as headers:
 //
-//   - x-amzn-transcribe-language-code
+//   - language-code
 //
-//   - x-amzn-transcribe-media-encoding
+//   - media-encoding
 //
-//   - x-amzn-transcribe-sample-rate
+//   - sample-rate
 //
-//   - x-amzn-transcribe-session-id
+//   - session-id
 //
-// See the SDK for Go API Reference (https://docs.aws.amazon.com/sdk-for-go/api/service/transcribestreamingservice/#TranscribeStreamingService.StartStreamTranscription)
-// for more detail.
+// For more information on streaming with Amazon Transcribe, see Transcribing
+// streaming audio (https://docs.aws.amazon.com/transcribe/latest/dg/streaming.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -501,26 +503,24 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 //
 //   - BadRequestException
 //     One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
-//     operation was invalid. For example, MediaEncoding was not set to a valid
-//     encoding, or LanguageCode was not set to a valid code. Check the parameters
-//     and try your request again.
+//     operation was not valid. For example, MediaEncoding or LanguageCode used
+//     not valid values. Check the specified parameters and try your request again.
 //
 //   - LimitExceededException
-//     You have exceeded the maximum number of concurrent transcription streams,
-//     are starting transcription streams too quickly, or the maximum audio length
-//     of 4 hours. Wait until a stream has finished processing, or break your audio
-//     stream into smaller chunks and try your request again.
+//     Your client has exceeded one of the Amazon Transcribe limits. This is typically
+//     the audio length limit. Break your audio stream into smaller chunks and try
+//     your request again.
 //
 //   - InternalFailureException
-//     A problem occurred while processing the audio. Amazon Transcribe or Amazon
-//     Transcribe Medical terminated processing. Try your request again.
+//     A problem occurred while processing the audio. Amazon Transcribe terminated
+//     processing.
 //
 //   - ConflictException
 //     A new stream started with the same session ID. The current stream has been
 //     terminated.
 //
 //   - ServiceUnavailableException
-//     Service is currently unavailable. Try your request later.
+//     The service is currently unavailable. Try your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-streaming-2017-10-26/StartStreamTranscription
 func (c *TranscribeStreamingService) StartStreamTranscription(input *StartStreamTranscriptionInput) (*StartStreamTranscriptionOutput, error) {
@@ -793,18 +793,19 @@ func (es *StartStreamTranscriptionEventStream) Err() error {
 	return nil
 }
 
-// A list of possible transcriptions for the audio.
+// A list of possible alternative transcriptions for the input audio. Each alternative
+// may contain one or more of Items, Entities, or Transcript.
 type Alternative struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the entities identified as personally identifiable information (PII)
-	// in the transcription output.
+	// Contains entities identified as personally identifiable information (PII)
+	// in your transcription output.
 	Entities []*Entity `type:"list"`
 
-	// One or more alternative interpretations of the input audio.
+	// Contains words, phrases, or punctuation marks in your transcription output.
 	Items []*Item `type:"list"`
 
-	// The text that was transcribed from the audio.
+	// Contains transcribed text.
 	Transcript *string `type:"string"`
 }
 
@@ -844,12 +845,10 @@ func (s *Alternative) SetTranscript(v string) *Alternative {
 	return s
 }
 
-// Provides a wrapper for the audio chunks that you are sending.
+// A wrapper for your audio chunks. Your audio stream consists of one or more
+// audio events, which consist of one or more audio chunks.
 //
-// For information on audio encoding in Amazon Transcribe, see Speech input
-// (https://docs.aws.amazon.com/transcribe/latest/dg/input.html). For information
-// on audio encoding formats in Amazon Transcribe Medical, see Speech input
-// (https://docs.aws.amazon.com/transcribe/latest/dg/input-med.html).
+// For more information, see Event stream encoding (https://docs.aws.amazon.com/transcribe/latest/dg/event-stream.html).
 type AudioEvent struct {
 	_ struct{} `type:"structure" payload:"AudioChunk"`
 
@@ -960,9 +959,8 @@ func eventTypeForAudioStreamEvent(event eventstreamapi.Marshaler) (string, error
 }
 
 // One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
-// operation was invalid. For example, MediaEncoding was not set to a valid
-// encoding, or LanguageCode was not set to a valid code. Check the parameters
-// and try your request again.
+// operation was not valid. For example, MediaEncoding or LanguageCode used
+// not valid values. Check the specified parameters and try your request again.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1155,29 +1153,34 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The entity identified as personally identifiable information (PII).
+// Contains entities identified as personally identifiable information (PII)
+// in your transcription output, along with various associated attributes. Examples
+// include category, confidence score, type, stability score, and start and
+// end times.
 type Entity struct {
 	_ struct{} `type:"structure"`
 
-	// The category of information identified in this entity; for example, PII.
+	// The category of information identified. The only category is PII.
 	Category *string `type:"string"`
 
-	// A value between zero and one that Amazon Transcribe assigns to PII identified
-	// in the source audio. Larger values indicate a higher confidence in PII identification.
+	// The confidence score associated with the identified PII entity in your audio.
+	//
+	// Confidence scores are values between 0 and 1. A larger value indicates a
+	// higher probability that the identified entity correctly matches the entity
+	// spoken in your media.
 	Confidence *float64 `type:"double"`
 
-	// The words in the transcription output that have been identified as a PII
-	// entity.
+	// The word or words identified as PII.
 	Content *string `type:"string"`
 
-	// The end time of speech that was identified as PII.
+	// The end time, in milliseconds, of the utterance that was identified as PII.
 	EndTime *float64 `type:"double"`
 
-	// The start time of speech that was identified as PII.
+	// The start time, in milliseconds, of the utterance that was identified as
+	// PII.
 	StartTime *float64 `type:"double"`
 
-	// The type of PII identified in this entity; for example, name or credit card
-	// number.
+	// The type of PII identified. For example, NAME or CREDIT_DEBIT_NUMBER.
 	Type *string `type:"string"`
 }
 
@@ -1235,8 +1238,8 @@ func (s *Entity) SetType(v string) *Entity {
 	return s
 }
 
-// A problem occurred while processing the audio. Amazon Transcribe or Amazon
-// Transcribe Medical terminated processing. Try your request again.
+// A problem occurred while processing the audio. Amazon Transcribe terminated
+// processing.
 type InternalFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1332,41 +1335,43 @@ func (s *InternalFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A word, phrase, or punctuation mark that is transcribed from the input audio.
+// A word, phrase, or punctuation mark in your transcription output, along with
+// various associated attributes, such as confidence score, type, and start
+// and end times.
 type Item struct {
 	_ struct{} `type:"structure"`
 
-	// A value between zero and one for an item that is a confidence score that
-	// Amazon Transcribe assigns to each word or phrase that it transcribes.
+	// The confidence score associated with a word or phrase in your transcript.
+	//
+	// Confidence scores are values between 0 and 1. A larger value indicates a
+	// higher probability that the identified item correctly matches the item spoken
+	// in your media.
 	Confidence *float64 `type:"double"`
 
-	// The word or punctuation that was recognized in the input audio.
+	// The word or punctuation that was transcribed.
 	Content *string `type:"string"`
 
-	// The offset from the beginning of the audio stream to the end of the audio
-	// that resulted in the item.
+	// The end time, in milliseconds, of the transcribed item.
 	EndTime *float64 `type:"double"`
 
-	// If speaker identification is enabled, shows the speakers identified in the
-	// media stream.
+	// If speaker partitioning is enabled, Speaker labels the speaker of the specified
+	// item.
 	Speaker *string `type:"string"`
 
-	// If partial result stabilization has been enabled, indicates whether the word
-	// or phrase in the item is stable. If Stable is true, the result is stable.
+	// If partial result stabilization is enabled, Stable indicates whether the
+	// specified item is stable (true) or if it may change when the segment is complete
+	// (false).
 	Stable *bool `type:"boolean"`
 
-	// The offset from the beginning of the audio stream to the beginning of the
-	// audio that resulted in the item.
+	// The start time, in milliseconds, of the transcribed item.
 	StartTime *float64 `type:"double"`
 
-	// The type of the item. PRONUNCIATION indicates that the item is a word that
-	// was recognized in the input audio. PUNCTUATION indicates that the item was
-	// interpreted as a pause in the input audio.
+	// The type of item identified. Options are: PRONUNCIATION (spoken words) and
+	// PUNCTUATION.
 	Type *string `type:"string" enum:"ItemType"`
 
-	// Indicates whether a word in the item matches a word in the vocabulary filter
-	// you've chosen for your media stream. If true then a word in the item matches
-	// your vocabulary filter.
+	// Indicates whether the specified item matches a word in the vocabulary filter
+	// included in your request. If true, there is a vocabulary filter match.
 	VocabularyFilterMatch *bool `type:"boolean"`
 }
 
@@ -1436,17 +1441,18 @@ func (s *Item) SetVocabularyFilterMatch(v bool) *Item {
 	return s
 }
 
-// The language codes of the identified languages and their associated confidence
-// scores. The confidence score is a value between zero and one; a larger value
-// indicates a higher confidence in the identified language.
+// The language code that represents the language identified in your audio,
+// including the associated confidence score. If you enabled channel identification
+// in your request and each channel contained a different language, you will
+// have more than one LanguageWithScore result.
 type LanguageWithScore struct {
 	_ struct{} `type:"structure"`
 
-	// The language code of the language identified by Amazon Transcribe.
+	// The language code of the identified language.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// The confidence score for the associated language code. Confidence scores
-	// are values between zero and one; larger values indicate a higher confidence
+	// The confidence score associated with the identified language code. Confidence
+	// scores are values between zero and one; larger values indicate a higher confidence
 	// in the identified language.
 	Score *float64 `type:"double"`
 }
@@ -1481,10 +1487,9 @@ func (s *LanguageWithScore) SetScore(v float64) *LanguageWithScore {
 	return s
 }
 
-// You have exceeded the maximum number of concurrent transcription streams,
-// are starting transcription streams too quickly, or the maximum audio length
-// of 4 hours. Wait until a stream has finished processing, or break your audio
-// stream into smaller chunks and try your request again.
+// Your client has exceeded one of the Amazon Transcribe limits. This is typically
+// the audio length limit. Break your audio stream into smaller chunks and try
+// your request again.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1580,19 +1585,19 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A list of possible transcriptions for the audio.
+// A list of possible alternative transcriptions for the input audio. Each alternative
+// may contain one or more of Items, Entities, or Transcript.
 type MedicalAlternative struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the medical entities identified as personal health information in
-	// the transcription output.
+	// Contains entities identified as personal health information (PHI) in your
+	// transcription output.
 	Entities []*MedicalEntity `type:"list"`
 
-	// A list of objects that contains words and punctuation marks that represents
-	// one or more interpretations of the input audio.
+	// Contains words, phrases, or punctuation marks in your transcription output.
 	Items []*MedicalItem `type:"list"`
 
-	// The text that was transcribed from the audio.
+	// Contains transcribed text.
 	Transcript *string `type:"string"`
 }
 
@@ -1632,27 +1637,31 @@ func (s *MedicalAlternative) SetTranscript(v string) *MedicalAlternative {
 	return s
 }
 
-// The medical entity identified as personal health information.
+// Contains entities identified as personal health information (PHI) in your
+// transcription output, along with various associated attributes. Examples
+// include category, confidence score, type, stability score, and start and
+// end times.
 type MedicalEntity struct {
 	_ struct{} `type:"structure"`
 
-	// The type of personal health information of the medical entity.
+	// The category of information identified. The only category is PHI.
 	Category *string `type:"string"`
 
-	// A value between zero and one that Amazon Transcribe Medical assigned to the
-	// personal health information that it identified in the source audio. Larger
-	// values indicate that Amazon Transcribe Medical has higher confidence in the
-	// personal health information that it identified.
+	// The confidence score associated with the identified PHI entity in your audio.
+	//
+	// Confidence scores are values between 0 and 1. A larger value indicates a
+	// higher probability that the identified entity correctly matches the entity
+	// spoken in your media.
 	Confidence *float64 `type:"double"`
 
-	// The word or words in the transcription output that have been identified as
-	// a medical entity.
+	// The word or words identified as PHI.
 	Content *string `type:"string"`
 
-	// The end time of the speech that was identified as a medical entity.
+	// The end time, in milliseconds, of the utterance that was identified as PHI.
 	EndTime *float64 `type:"double"`
 
-	// The start time of the speech that was identified as a medical entity.
+	// The start time, in milliseconds, of the utterance that was identified as
+	// PHI.
 	StartTime *float64 `type:"double"`
 }
 
@@ -1704,37 +1713,34 @@ func (s *MedicalEntity) SetStartTime(v float64) *MedicalEntity {
 	return s
 }
 
-// A word, phrase, or punctuation mark that is transcribed from the input audio.
+// A word, phrase, or punctuation mark in your transcription output, along with
+// various associated attributes, such as confidence score, type, and start
+// and end times.
 type MedicalItem struct {
 	_ struct{} `type:"structure"`
 
-	// A value between 0 and 1 for an item that is a confidence score that Amazon
-	// Transcribe Medical assigns to each word that it transcribes.
+	// The confidence score associated with a word or phrase in your transcript.
+	//
+	// Confidence scores are values between 0 and 1. A larger value indicates a
+	// higher probability that the identified item correctly matches the item spoken
+	// in your media.
 	Confidence *float64 `type:"double"`
 
-	// The word or punctuation mark that was recognized in the input audio.
+	// The word or punctuation that was transcribed.
 	Content *string `type:"string"`
 
-	// The number of seconds into an audio stream that indicates the creation time
-	// of an item.
+	// The end time, in milliseconds, of the transcribed item.
 	EndTime *float64 `type:"double"`
 
-	// If speaker identification is enabled, shows the integer values that correspond
-	// to the different speakers identified in the stream. For example, if the value
-	// of Speaker in the stream is either a 0 or a 1, that indicates that Amazon
-	// Transcribe Medical has identified two speakers in the stream. The value of
-	// 0 corresponds to one speaker and the value of 1 corresponds to the other
-	// speaker.
+	// If speaker partitioning is enabled, Speaker labels the speaker of the specified
+	// item.
 	Speaker *string `type:"string"`
 
-	// The number of seconds into an audio stream that indicates the creation time
-	// of an item.
+	// The start time, in milliseconds, of the transcribed item.
 	StartTime *float64 `type:"double"`
 
-	// The type of the item. PRONUNCIATION indicates that the item is a word that
-	// was recognized in the input audio. PUNCTUATION indicates that the item was
-	// interpreted as a pause in the input audio, such as a period to indicate the
-	// end of a sentence.
+	// The type of item identified. Options are: PRONUNCIATION (spoken words) and
+	// PUNCTUATION.
 	Type *string `type:"string" enum:"ItemType"`
 }
 
@@ -1792,39 +1798,36 @@ func (s *MedicalItem) SetType(v string) *MedicalItem {
 	return s
 }
 
-// The results of transcribing a portion of the input audio stream.
+// The Result associated with a .
+//
+// Contains a set of transcription results from one or more audio segments,
+// along with additional information per your request parameters. This can include
+// information relating to alternative transcriptions, channel identification,
+// partial result stabilization, language identification, and other transcription-related
+// data.
 type MedicalResult struct {
 	_ struct{} `type:"structure"`
 
-	// A list of possible transcriptions of the audio. Each alternative typically
-	// contains one Item that contains the result of the transcription.
+	// A list of possible alternative transcriptions for the input audio. Each alternative
+	// may contain one or more of Items, Entities, or Transcript.
 	Alternatives []*MedicalAlternative `type:"list"`
 
-	// When channel identification is enabled, Amazon Transcribe Medical transcribes
-	// the speech from each audio channel separately.
-	//
-	// You can use ChannelId to retrieve the transcription results for a single
-	// channel in your audio stream.
+	// Indicates the channel identified for the Result.
 	ChannelId *string `type:"string"`
 
-	// The time, in seconds, from the beginning of the audio stream to the end of
-	// the result.
+	// The end time, in milliseconds, of the Result.
 	EndTime *float64 `type:"double"`
 
-	// Amazon Transcribe Medical divides the incoming audio stream into segments
-	// at natural points in the audio. Transcription results are returned based
-	// on these segments.
+	// Indicates if the segment is complete.
 	//
-	// The IsPartial field is true to indicate that Amazon Transcribe Medical has
-	// additional transcription data to send. The IsPartial field is false to indicate
-	// that this is the last transcription result for the segment.
+	// If IsPartial is true, the segment is not complete. If IsPartial is false,
+	// the segment is complete.
 	IsPartial *bool `type:"boolean"`
 
-	// A unique identifier for the result.
+	// Provides a unique identifier for the Result.
 	ResultId *string `type:"string"`
 
-	// The time, in seconds, from the beginning of the audio stream to the beginning
-	// of the result.
+	// The start time, in milliseconds, of the Result.
 	StartTime *float64 `type:"double"`
 }
 
@@ -1882,12 +1885,19 @@ func (s *MedicalResult) SetStartTime(v float64) *MedicalResult {
 	return s
 }
 
-// The medical transcript in a MedicalTranscriptEvent.
+// The MedicalTranscript associated with a .
+//
+// MedicalTranscript contains Results, which contains a set of transcription
+// results from one or more audio segments, along with additional information
+// per your request parameters.
 type MedicalTranscript struct {
 	_ struct{} `type:"structure"`
 
-	// MedicalResult objects that contain the results of transcribing a portion
-	// of the input audio stream. The array can be empty.
+	// Contains a set of transcription results from one or more audio segments,
+	// along with additional information per your request parameters. This can include
+	// information relating to alternative transcriptions, channel identification,
+	// partial result stabilization, language identification, and other transcription-related
+	// data.
 	Results []*MedicalResult `type:"list"`
 }
 
@@ -1915,13 +1925,18 @@ func (s *MedicalTranscript) SetResults(v []*MedicalResult) *MedicalTranscript {
 	return s
 }
 
-// Represents a set of transcription results from the server to the client.
-// It contains one or more segments of the transcription.
+// The MedicalTranscriptEvent associated with a MedicalTranscriptResultStream.
+//
+// Contains a set of transcription results from one or more audio segments,
+// along with additional information per your request parameters.
 type MedicalTranscriptEvent struct {
 	_ struct{} `type:"structure"`
 
-	// The transcription of the audio stream. The transcription is composed of all
-	// of the items in the results list.
+	// Contains Results, which contains a set of transcription results from one
+	// or more audio segments, along with additional information per your request
+	// parameters. This can include information relating to alternative transcriptions,
+	// channel identification, partial result stabilization, language identification,
+	// and other transcription-related data.
 	Transcript *MedicalTranscript `type:"structure"`
 }
 
@@ -2140,44 +2155,45 @@ func (e *MedicalTranscriptResultStreamUnknownEvent) UnmarshalEvent(
 	return nil
 }
 
-// The result of transcribing a portion of the input audio stream.
+// The Result associated with a .
+//
+// Contains a set of transcription results from one or more audio segments,
+// along with additional information per your request parameters. This can include
+// information relating to alternative transcriptions, channel identification,
+// partial result stabilization, language identification, and other transcription-related
+// data.
 type Result struct {
 	_ struct{} `type:"structure"`
 
-	// A list of possible transcriptions for the audio. Each alternative typically
-	// contains one item that contains the result of the transcription.
+	// A list of possible alternative transcriptions for the input audio. Each alternative
+	// may contain one or more of Items, Entities, or Transcript.
 	Alternatives []*Alternative `type:"list"`
 
-	// When channel identification is enabled, Amazon Transcribe transcribes the
-	// speech from each audio channel separately.
-	//
-	// You can use ChannelId to retrieve the transcription results for a single
-	// channel in your audio stream.
+	// Indicates the channel identified for the Result.
 	ChannelId *string `type:"string"`
 
-	// The offset in seconds from the beginning of the audio stream to the end of
-	// the result.
+	// The end time, in milliseconds, of the Result.
 	EndTime *float64 `type:"double"`
 
-	// Amazon Transcribe divides the incoming audio stream into segments at natural
-	// points in the audio. Transcription results are returned based on these segments.
+	// Indicates if the segment is complete.
 	//
-	// The IsPartial field is true to indicate that Amazon Transcribe has additional
-	// transcription data to send, false to indicate that this is the last transcription
-	// result for the segment.
+	// If IsPartial is true, the segment is not complete. If IsPartial is false,
+	// the segment is complete.
 	IsPartial *bool `type:"boolean"`
 
-	// The language code of the identified language in your media stream.
+	// The language code that represents the language spoken in your audio stream.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// The language code of the dominant language identified in your media.
+	// The language code of the dominant language identified in your stream.
+	//
+	// If you enabled channel identification and each channel of your audio contains
+	// a different language, you may have more than one result.
 	LanguageIdentification []*LanguageWithScore `type:"list"`
 
-	// A unique identifier for the result.
+	// Provides a unique identifier for the Result.
 	ResultId *string `type:"string"`
 
-	// The offset in seconds from the beginning of the audio stream to the beginning
-	// of the result.
+	// The start time, in milliseconds, of the Result.
 	StartTime *float64 `type:"double"`
 }
 
@@ -2247,7 +2263,7 @@ func (s *Result) SetStartTime(v float64) *Result {
 	return s
 }
 
-// Service is currently unavailable. Try your request later.
+// The service is currently unavailable. Try your request later.
 type ServiceUnavailableException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2346,64 +2362,87 @@ func (s *ServiceUnavailableException) RequestID() string {
 type StartMedicalStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
-	// Set this field to PHI to identify personal health information in the transcription
-	// output.
+	// Labels all personal health information (PHI) identified in your transcript.
+	//
+	// Content identification is performed at the segment level; PHI is flagged
+	// upon complete transcription of an audio segment.
+	//
+	// For more information, see Identifying personal health information (PHI) in
+	// a transcription (https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html).
 	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"MedicalContentIdentificationType"`
 
-	// When true, instructs Amazon Transcribe Medical to process each audio channel
-	// separately and then merge the transcription output of each channel into a
-	// single transcription.
+	// Enables channel identification in multi-channel audio.
 	//
-	// Amazon Transcribe Medical also produces a transcription of each item. An
-	// item includes the start time, end time, and any alternative transcriptions.
+	// Channel identification transcribes the audio on each channel independently,
+	// then appends the output for each channel into one transcript.
 	//
-	// You can't set both ShowSpeakerLabel and EnableChannelIdentification in the
-	// same request. If you set both, your request returns a BadRequestException.
+	// If you have multi-channel audio and do not enable channel identification,
+	// your audio is transcribed in a continuous manner and your transcript is not
+	// separated by channel.
+	//
+	// For more information, see Transcribing multi-channel audio (https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html).
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
-	// Indicates the source language used in the input audio stream. For Amazon
-	// Transcribe Medical, this is US English (en-US).
+	// Specify the language code that represents the language spoken in your audio.
+	//
+	// Amazon Transcribe Medical only supports US English (en-US).
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" required:"true" enum:"LanguageCode"`
 
-	// The encoding used for the input audio.
+	// Specify the encoding used for the input audio. Supported formats are:
+	//
+	//    * FLAC
+	//
+	//    * OPUS-encoded audio in an Ogg container
+	//
+	//    * PCM (only signed 16-bit little-endian audio formats, which does not
+	//    include WAV)
+	//
+	// For more information, see Media formats (https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio).
 	//
 	// MediaEncoding is a required field
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" required:"true" enum:"MediaEncoding"`
 
-	// The sample rate of the input audio (in Hertz). Amazon Transcribe medical
+	// The sample rate of the input audio (in hertz). Amazon Transcribe Medical
 	// supports a range from 16,000 Hz to 48,000 Hz. Note that the sample rate you
 	// specify must match that of your audio.
 	//
 	// MediaSampleRateHertz is a required field
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer" required:"true"`
 
-	// The number of channels that are in your audio stream.
+	// Specify the number of channels in your audio stream. Up to two channels are
+	// supported.
 	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
 
-	// Optional. An identifier for the transcription session. If you don't provide
-	// a session ID, Amazon Transcribe generates one for you and returns it in the
-	// response.
+	// Specify a name for your transcription session. If you don't include this
+	// parameter in your request, Amazon Transcribe Medical generates an ID and
+	// returns it in the response.
+	//
+	// You can use a session ID to retry a streaming session.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
 
-	// When true, enables speaker identification in your real-time stream.
+	// Enables speaker partitioning (diarization) in your transcription output.
+	// Speaker partitioning labels the speech from individual speakers in your media
+	// file.
+	//
+	// For more information, see Partitioning speakers (diarization) (https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html).
 	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
 
-	// The medical specialty of the clinician or provider.
+	// Specify the medical specialty contained in your audio.
 	//
 	// Specialty is a required field
 	Specialty *string `location:"header" locationName:"x-amzn-transcribe-specialty" type:"string" required:"true" enum:"Specialty"`
 
-	// The type of input audio. Choose DICTATION for a provider dictating patient
-	// notes. Choose CONVERSATION for a dialogue between a patient and one or more
-	// medical professionanls.
+	// Specify the type of input audio. For example, choose DICTATION for a provider
+	// dictating patient notes and CONVERSATION for a dialogue between a patient
+	// and a medical professional.
 	//
 	// Type is a required field
 	Type *string `location:"header" locationName:"x-amzn-transcribe-type" type:"string" required:"true" enum:"Type"`
 
-	// The name of the medical custom vocabulary to use when processing the real-time
-	// stream.
+	// Specify the name of the custom vocabulary that you want to use when processing
+	// your transcription. Note that vocabulary names are case sensitive.
 	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
 }
 
@@ -2533,44 +2572,41 @@ type StartMedicalStreamTranscriptionOutput struct {
 
 	eventStream *StartMedicalStreamTranscriptionEventStream
 
-	// If the value is PHI, indicates that you've configured your stream to identify
-	// personal health information.
+	// Shows whether content identification was enabled for your transcription.
 	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"MedicalContentIdentificationType"`
 
-	// Shows whether channel identification has been enabled in the stream.
+	// Shows whether channel identification was enabled for your transcription.
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
-	// The language code for the response transcript. For Amazon Transcribe Medical,
-	// this is US English (en-US).
+	// Provides the language code that you specified in your request. This must
+	// be en-US.
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
 
-	// The encoding used for the input audio stream.
+	// Provides the media encoding you specified in your request.
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" enum:"MediaEncoding"`
 
-	// The sample rate of the input audio, in Hertz (Hz).
+	// Provides the sample rate that you specified in your request.
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer"`
 
-	// The number of channels identified in the stream.
+	// Provides the number of channels that you specified in your request.
 	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
 
-	// An identifier for the streaming transcription.
+	// Provides the identifier for your streaming request.
 	RequestId *string `location:"header" locationName:"x-amzn-request-id" type:"string"`
 
-	// Optional. An identifier for the transcription session. If you don't provide
-	// a session ID, Amazon Transcribe generates one for you and returns it in the
-	// response.
+	// Provides the identifier for your transcription session.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
 
-	// Shows whether speaker identification was enabled in the stream.
+	// Shows whether speaker partitioning was enabled for your transcription.
 	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
 
-	// The specialty in the medical domain.
+	// Provides the medical specialty that you specified in your request.
 	Specialty *string `location:"header" locationName:"x-amzn-transcribe-specialty" type:"string" enum:"Specialty"`
 
-	// The type of audio that was transcribed.
+	// Provides the type of audio you specified in your request.
 	Type *string `location:"header" locationName:"x-amzn-transcribe-type" type:"string" enum:"Type"`
 
-	// The name of the vocabulary used when processing the stream.
+	// Provides the name of the custom vocabulary that you specified in your request.
 	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
 }
 
@@ -2672,63 +2708,121 @@ func (s *StartMedicalStreamTranscriptionOutput) GetStream() *StartMedicalStreamT
 type StartStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
-	// Set this field to PII to identify personally identifiable information (PII)
-	// in the transcription output. Content identification is performed only upon
-	// complete transcription of the audio segments.
+	// Labels all personally identifiable information (PII) identified in your transcript.
 	//
-	// You can’t set both ContentIdentificationType and ContentRedactionType in
-	// the same request. If you set both, your request returns a BadRequestException.
+	// Content identification is performed at the segment level; PII specified in
+	// PiiEntityTypes is flagged upon complete transcription of an audio segment.
+	//
+	// You can’t set ContentIdentificationType and ContentRedactionType in the
+	// same request. If you set both, your request returns a BadRequestException.
+	//
+	// For more information, see Redacting or identifying personally identifiable
+	// information (https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html).
 	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"ContentIdentificationType"`
 
-	// Set this field to PII to redact personally identifiable information (PII)
-	// in the transcription output. Content redaction is performed only upon complete
-	// transcription of the audio segments.
+	// Redacts all personally identifiable information (PII) identified in your
+	// transcript.
 	//
-	// You can’t set both ContentRedactionType and ContentIdentificationType in
-	// the same request. If you set both, your request returns a BadRequestException.
+	// Content redaction is performed at the segment level; PII specified in PiiEntityTypes
+	// is redacted upon complete transcription of an audio segment.
+	//
+	// You can’t set ContentRedactionType and ContentIdentificationType in the
+	// same request. If you set both, your request returns a BadRequestException.
+	//
+	// For more information, see Redacting or identifying personally identifiable
+	// information (https://docs.aws.amazon.com/transcribe/latest/dg/pii-redaction.html).
 	ContentRedactionType *string `location:"header" locationName:"x-amzn-transcribe-content-redaction-type" type:"string" enum:"ContentRedactionType"`
 
-	// When true, instructs Amazon Transcribe to process each audio channel separately,
-	// then merges the transcription output of each channel into a single transcription.
+	// Enables channel identification in multi-channel audio.
 	//
-	// Amazon Transcribe also produces a transcription of each item. An item includes
-	// the start time, end time, and any alternative transcriptions.
+	// Channel identification transcribes the audio on each channel independently,
+	// then appends the output for each channel into one transcript.
+	//
+	// If you have multi-channel audio and do not enable channel identification,
+	// your audio is transcribed in a continuous manner and your transcript is not
+	// separated by channel.
+	//
+	// For more information, see Transcribing multi-channel audio (https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html).
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
-	// When true, instructs Amazon Transcribe to present transcription results that
-	// have the partial results stabilized. Normally, any word or phrase from one
-	// partial result can change in a subsequent partial result. With partial results
-	// stabilization enabled, only the last few words of one partial result can
-	// change in another partial result.
+	// Enables partial result stabilization for your transcription. Partial result
+	// stabilization can reduce latency in your output, but may impact accuracy.
+	// For more information, see Partial-result stabilization (https://docs.aws.amazon.com/transcribe/latest/dg/streaming.html#streaming-partial-result-stabilization).
 	EnablePartialResultsStabilization *bool `location:"header" locationName:"x-amzn-transcribe-enable-partial-results-stabilization" type:"boolean"`
 
-	// Optional. Set this value to true to enable language identification for your
-	// media stream.
+	// Enables automatic language identification for your transcription.
+	//
+	// If you include IdentifyLanguage, you can optionally include a list of language
+	// codes, using LanguageOptions, that you think may be present in your audio
+	// stream. Including language options can improve transcription accuracy.
+	//
+	// You can also include a preferred language using PreferredLanguage. Adding
+	// a preferred language can help Amazon Transcribe identify the language faster
+	// than if you omit this parameter.
+	//
+	// If you have multi-channel audio that contains different languages on each
+	// channel, and you've enabled channel identification, automatic language identification
+	// identifies the dominant language on each audio channel.
+	//
+	// Note that you must include either LanguageCode or IdentifyLanguage in your
+	// request. If you include both parameters, your request fails.
+	//
+	// Streaming language identification can't be combined with custom language
+	// models or redaction.
 	IdentifyLanguage *bool `location:"header" locationName:"x-amzn-transcribe-identify-language" type:"boolean"`
 
-	// The language code of the input audio stream.
+	// Specify the language code that represents the language spoken in your audio.
+	//
+	// If you're unsure of the language spoken in your audio, consider using IdentifyLanguage
+	// to enable automatic language identification.
+	//
+	// For a list of languages supported with Amazon Transcribe streaming, refer
+	// to the Supported languages (https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html)
+	// table.
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
 
-	// The name of the language model you want to use.
+	// Specify the name of the custom language model that you want to use when processing
+	// your transcription. Note that language model names are case sensitive.
+	//
+	// The language of the specified language model must match the language code
+	// you specify in your transcription request. If the languages don't match,
+	// the language model isn't applied. There are no errors or warnings associated
+	// with a language mismatch.
+	//
+	// For more information, see Custom language models (https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html).
 	LanguageModelName *string `location:"header" locationName:"x-amzn-transcribe-language-model-name" min:"1" type:"string"`
 
-	// An object containing a list of languages that might be present in your audio.
+	// Specify two or more language codes that represent the languages you think
+	// may be present in your media; including more than five is not recommended.
+	// If you're unsure what languages are present, do not include this parameter.
 	//
-	// You must provide two or more language codes to help Amazon Transcribe identify
-	// the correct language of your media stream with the highest possible accuracy.
-	// You can only select one variant per language; for example, you can't include
-	// both en-US and en-UK in the same request.
+	// Including language options can improve the accuracy of language identification.
 	//
-	// You can only use this parameter if you've set IdentifyLanguage to truein
-	// your request.
+	// If you include LanguageOptions in your request, you must also include IdentifyLanguage.
+	//
+	// For a list of languages supported with Amazon Transcribe streaming, refer
+	// to the Supported languages (https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html)
+	// table.
+	//
+	// You can only include one language dialect per language per stream. For example,
+	// you cannot include en-US and en-AU in the same request.
 	LanguageOptions *string `location:"header" locationName:"x-amzn-transcribe-language-options" min:"1" type:"string"`
 
-	// The encoding used for the input audio.
+	// Specify the encoding used for the input audio. Supported formats are:
+	//
+	//    * FLAC
+	//
+	//    * OPUS-encoded audio in an Ogg container
+	//
+	//    * PCM (only signed 16-bit little-endian audio formats, which does not
+	//    include WAV)
+	//
+	// For more information, see Media formats (https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio).
 	//
 	// MediaEncoding is a required field
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" required:"true" enum:"MediaEncoding"`
 
-	// The sample rate of the input audio (in Hertz). Low-quality audio, such as
+	// The sample rate of the input audio (in hertz). Low-quality audio, such as
 	// telephone audio, is typically around 8,000 Hz. High-quality audio typically
 	// ranges from 16,000 Hz to 48,000 Hz. Note that the sample rate you specify
 	// must match that of your audio.
@@ -2736,84 +2830,119 @@ type StartStreamTranscriptionInput struct {
 	// MediaSampleRateHertz is a required field
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer" required:"true"`
 
-	// The number of channels that are in your audio stream.
+	// Specify the number of channels in your audio stream. Up to two channels are
+	// supported.
 	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
 
-	// You can use this field to set the stability level of the transcription results.
-	// A higher stability level means that the transcription results are less likely
-	// to change. Higher stability levels can come with lower overall transcription
-	// accuracy.
+	// Specify the level of stability to use when you enable partial results stabilization
+	// (EnablePartialResultsStabilization).
+	//
+	// Low stability provides the highest accuracy. High stability transcribes faster,
+	// but with slightly lower accuracy.
+	//
+	// For more information, see Partial-result stabilization (https://docs.aws.amazon.com/transcribe/latest/dg/streaming.html#streaming-partial-result-stabilization).
 	PartialResultsStability *string `location:"header" locationName:"x-amzn-transcribe-partial-results-stability" type:"string" enum:"PartialResultsStability"`
 
-	// List the PII entity types you want to identify or redact. In order to specify
-	// entity types, you must have either ContentIdentificationType or ContentRedactionType
-	// enabled.
+	// Specify which types of personally identifiable information (PII) you want
+	// to redact in your transcript. You can include as many types as you'd like,
+	// or you can select ALL.
 	//
-	// PIIEntityTypes must be comma-separated; the available values are: BANK_ACCOUNT_NUMBER,
-	// BANK_ROUTING, CREDIT_DEBIT_NUMBER, CREDIT_DEBIT_CVV, CREDIT_DEBIT_EXPIRY,
-	// PIN, EMAIL, ADDRESS, NAME, PHONE, SSN, and ALL.
+	// To include PiiEntityTypes in your request, you must also include either ContentIdentificationType
+	// or ContentRedactionType.
 	//
-	// PiiEntityTypes is an optional parameter with a default value of ALL.
+	// Values must be comma-separated and can include: BANK_ACCOUNT_NUMBER, BANK_ROUTING,
+	// CREDIT_DEBIT_NUMBER, CREDIT_DEBIT_CVV, CREDIT_DEBIT_EXPIRY, PIN, EMAIL, ADDRESS,
+	// NAME, PHONE, SSN, or ALL.
 	PiiEntityTypes *string `location:"header" locationName:"x-amzn-transcribe-pii-entity-types" min:"1" type:"string"`
 
-	// Optional. From the subset of languages codes you provided for LanguageOptions,
-	// you can select one preferred language for your transcription.
+	// Specify a preferred language from the subset of languages codes you specified
+	// in LanguageOptions.
 	//
-	// You can only use this parameter if you've set IdentifyLanguage to truein
-	// your request.
+	// You can only use this parameter if you've included IdentifyLanguage and LanguageOptions
+	// in your request.
 	PreferredLanguage *string `location:"header" locationName:"x-amzn-transcribe-preferred-language" type:"string" enum:"LanguageCode"`
 
-	// A identifier for the transcription session. Use this parameter when you want
-	// to retry a session. If you don't provide a session ID, Amazon Transcribe
-	// will generate one for you and return it in the response.
+	// Specify a name for your transcription session. If you don't include this
+	// parameter in your request, Amazon Transcribe generates an ID and returns
+	// it in the response.
+	//
+	// You can use a session ID to retry a streaming session.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
 
-	// When true, enables speaker identification in your media stream.
+	// Enables speaker partitioning (diarization) in your transcription output.
+	// Speaker partitioning labels the speech from individual speakers in your media
+	// file.
+	//
+	// For more information, see Partitioning speakers (diarization) (https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html).
 	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
 
-	// The manner in which you use your vocabulary filter to filter words in your
-	// transcript. Remove removes filtered words from your transcription results.
-	// Mask masks filtered words with a *** in your transcription results. Tag keeps
-	// the filtered words in your transcription results and tags them. The tag appears
-	// as VocabularyFilterMatch equal to True.
+	// Specify how you want your vocabulary filter applied to your transcript.
+	//
+	// To replace words with ***, choose mask.
+	//
+	// To delete words, choose remove.
+	//
+	// To flag words without changing them, choose tag.
 	VocabularyFilterMethod *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-method" type:"string" enum:"VocabularyFilterMethod"`
 
-	// The name of the vocabulary filter you want to use with your transcription.
+	// Specify the name of the custom vocabulary filter that you want to use when
+	// processing your transcription. Note that vocabulary filter names are case
+	// sensitive.
 	//
-	// This operation is not intended for use in conjunction with the IdentifyLanguage
-	// operation. If you're using IdentifyLanguage in your request and want to use
-	// one or more vocabulary filters with your transcription, use the VocabularyFilterNames
-	// operation instead.
+	// If the language of the specified custom vocabulary filter doesn't match the
+	// language identified in your media, your job fails.
+	//
+	// This parameter is not intended for use with the IdentifyLanguage parameter.
+	// If you're including IdentifyLanguage in your request and want to use one
+	// or more vocabulary filters with your transcription, use the VocabularyFilterNames
+	// parameter instead.
+	//
+	// For more information, see Using vocabulary filtering with unwanted words
+	// (https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-filtering.html).
 	VocabularyFilterName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-name" min:"1" type:"string"`
 
-	// The names of the vocabulary filters you want to use with your transcription.
+	// Specify the names of the custom vocabulary filters that you want to use when
+	// processing your transcription. Note that vocabulary filter names are case
+	// sensitive.
 	//
-	// Note that if the vocabulary filters you specify are in languages that don't
-	// match the language identified in your media, your job fails.
+	// If none of the languages of the specified custom vocabulary filters match
+	// the language identified in your media, your job fails.
 	//
-	// This operation is only intended for use in conjunction with the IdentifyLanguage
-	// operation. If you're not using IdentifyLanguage in your request and want
-	// to use a vocabulary filter with your transcription, use the VocabularyFilterName
-	// operation instead.
+	// This parameter is only intended for use with the IdentifyLanguage parameter.
+	// If you're not including IdentifyLanguage in your request and want to use
+	// a custom vocabulary filter with your transcription, use the VocabularyFilterName
+	// parameter instead.
+	//
+	// For more information, see Using vocabulary filtering with unwanted words
+	// (https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-filtering.html).
 	VocabularyFilterNames *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-names" min:"1" type:"string"`
 
-	// The name of the custom vocabulary you want to use with your transcription.
+	// Specify the name of the custom vocabulary that you want to use when processing
+	// your transcription. Note that vocabulary names are case sensitive.
 	//
-	// This operation is not intended for use in conjunction with the IdentifyLanguage
-	// operation. If you're using IdentifyLanguage in your request and want to use
-	// one or more custom vocabularies with your transcription, use the VocabularyNames
-	// operation instead.
+	// If the language of the specified custom vocabulary doesn't match the language
+	// identified in your media, your job fails.
+	//
+	// This parameter is not intended for use with the IdentifyLanguage parameter.
+	// If you're including IdentifyLanguage in your request and want to use one
+	// or more custom vocabularies with your transcription, use the VocabularyNames
+	// parameter instead.
+	//
+	// For more information, see Custom vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html).
 	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
 
-	// The names of the custom vocabularies you want to use with your transcription.
+	// Specify the names of the custom vocabularies that you want to use when processing
+	// your transcription. Note that vocabulary names are case sensitive.
 	//
-	// Note that if the custom vocabularies you specify are in languages that don't
-	// match the language identified in your media, your job fails.
+	// If none of the languages of the specified custom vocabularies match the language
+	// identified in your media, your job fails.
 	//
-	// This operation is only intended for use in conjunction with the IdentifyLanguage
-	// operation. If you're not using IdentifyLanguage in your request and want
-	// to use a custom vocabulary with your transcription, use the VocabularyName
-	// operation instead.
+	// This parameter is only intended for use with the IdentifyLanguage parameter.
+	// If you're not including IdentifyLanguage in your request and want to use
+	// a custom vocabulary with your transcription, use the VocabularyName parameter
+	// instead.
+	//
+	// For more information, see Custom vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html).
 	VocabularyNames *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-names" min:"1" type:"string"`
 }
 
@@ -3012,72 +3141,74 @@ type StartStreamTranscriptionOutput struct {
 
 	eventStream *StartStreamTranscriptionEventStream
 
-	// Shows whether content identification was enabled in this stream.
+	// Shows whether content identification was enabled for your transcription.
 	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"ContentIdentificationType"`
 
-	// Shows whether content redaction was enabled in this stream.
+	// Shows whether content redaction was enabled for your transcription.
 	ContentRedactionType *string `location:"header" locationName:"x-amzn-transcribe-content-redaction-type" type:"string" enum:"ContentRedactionType"`
 
-	// Shows whether channel identification was enabled in the stream.
+	// Shows whether channel identification was enabled for your transcription.
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
-	// Shows whether partial results stabilization was enabled in the transcription.
+	// Shows whether partial results stabilization was enabled for your transcription.
 	EnablePartialResultsStabilization *bool `location:"header" locationName:"x-amzn-transcribe-enable-partial-results-stabilization" type:"boolean"`
 
-	// The language code of the language identified in your media stream.
+	// Shows whether automatic language identification was enabled for your transcription.
 	IdentifyLanguage *bool `location:"header" locationName:"x-amzn-transcribe-identify-language" type:"boolean"`
 
-	// The language code of the input audio stream.
+	// Provides the language code that you specified in your request.
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
 
-	// The name of the custom language model used in the transcription.
+	// Provides the name of the custom language model that you specified in your
+	// request.
 	LanguageModelName *string `location:"header" locationName:"x-amzn-transcribe-language-model-name" min:"1" type:"string"`
 
-	// The language codes used in the identification of your media stream's predominant
-	// language.
+	// Provides the language codes that you specified in your request.
 	LanguageOptions *string `location:"header" locationName:"x-amzn-transcribe-language-options" min:"1" type:"string"`
 
-	// The encoding used for the input audio stream.
+	// Provides the media encoding you specified in your request.
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" enum:"MediaEncoding"`
 
-	// The sample rate, in Hertz (Hz), for the input audio stream.
+	// Provides the sample rate that you specified in your request.
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer"`
 
-	// The number of channels identified in the stream.
+	// Provides the number of channels that you specified in your request.
 	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
 
-	// If partial results stabilization has been enabled in the stream, shows the
-	// stability level.
+	// Provides the stabilization level used for your transcription.
 	PartialResultsStability *string `location:"header" locationName:"x-amzn-transcribe-partial-results-stability" type:"string" enum:"PartialResultsStability"`
 
 	// Lists the PII entity types you specified in your request.
 	PiiEntityTypes *string `location:"header" locationName:"x-amzn-transcribe-pii-entity-types" min:"1" type:"string"`
 
-	// The preferred language you specified in your request.
+	// Provides the preferred language that you specified in your request.
 	PreferredLanguage *string `location:"header" locationName:"x-amzn-transcribe-preferred-language" type:"string" enum:"LanguageCode"`
 
-	// An identifier for the transcription.
+	// Provides the identifier for your streaming request.
 	RequestId *string `location:"header" locationName:"x-amzn-request-id" type:"string"`
 
-	// An identifier for a specific transcription session.
+	// Provides the identifier for your transcription session.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
 
-	// Shows whether speaker identification was enabled in the transcription.
+	// Shows whether speaker partitioning was enabled for your transcription.
 	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
 
-	// The vocabulary filtering method used when processing the stream.
+	// Provides the vocabulary filtering method used in your transcription.
 	VocabularyFilterMethod *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-method" type:"string" enum:"VocabularyFilterMethod"`
 
-	// The name of the vocabulary filter used when processing the stream.
+	// Provides the name of the custom vocabulary filter that you specified in your
+	// request.
 	VocabularyFilterName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-name" min:"1" type:"string"`
 
-	// The name of the vocabulary filter used when processing the stream.
+	// Provides the names of the custom vocabulary filters that you specified in
+	// your request.
 	VocabularyFilterNames *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-names" min:"1" type:"string"`
 
-	// The name of the custom vocabulary used when processing the stream.
+	// Provides the name of the custom vocabulary that you specified in your request.
 	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
 
-	// The name of the custom vocabulary used when processing the stream.
+	// Provides the names of the custom vocabularies that you specified in your
+	// request.
 	VocabularyNames *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-names" min:"1" type:"string"`
 }
 
@@ -3236,12 +3367,19 @@ func (s *StartStreamTranscriptionOutput) GetStream() *StartStreamTranscriptionEv
 	return s.eventStream
 }
 
-// The transcription in a TranscriptEvent.
+// The Transcript associated with a .
+//
+// Transcript contains Results, which contains a set of transcription results
+// from one or more audio segments, along with additional information per your
+// request parameters.
 type Transcript struct {
 	_ struct{} `type:"structure"`
 
-	// Result objects that contain the results of transcribing a portion of the
-	// input audio stream. The array can be empty.
+	// Contains a set of transcription results from one or more audio segments,
+	// along with additional information per your request parameters. This can include
+	// information relating to alternative transcriptions, channel identification,
+	// partial result stabilization, language identification, and other transcription-related
+	// data.
 	Results []*Result `type:"list"`
 }
 
@@ -3269,13 +3407,18 @@ func (s *Transcript) SetResults(v []*Result) *Transcript {
 	return s
 }
 
-// Represents a set of transcription results from the server to the client.
-// It contains one or more segments of the transcription.
+// The TranscriptEvent associated with a TranscriptResultStream.
+//
+// Contains a set of transcription results from one or more audio segments,
+// along with additional information per your request parameters.
 type TranscriptEvent struct {
 	_ struct{} `type:"structure"`
 
-	// The transcription of the audio stream. The transcription is composed of all
-	// of the items in the results list.
+	// Contains Results, which contains a set of transcription results from one
+	// or more audio segments, along with additional information per your request
+	// parameters. This can include information relating to alternative transcriptions,
+	// channel identification, partial result stabilization, language identification,
+	// and other transcription-related data.
 	Transcript *Transcript `type:"structure"`
 }
 
@@ -3570,6 +3713,12 @@ const (
 
 	// LanguageCodeZhCn is a LanguageCode enum value
 	LanguageCodeZhCn = "zh-CN"
+
+	// LanguageCodeHiIn is a LanguageCode enum value
+	LanguageCodeHiIn = "hi-IN"
+
+	// LanguageCodeThTh is a LanguageCode enum value
+	LanguageCodeThTh = "th-TH"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -3587,6 +3736,8 @@ func LanguageCode_Values() []string {
 		LanguageCodeJaJp,
 		LanguageCodeKoKr,
 		LanguageCodeZhCn,
+		LanguageCodeHiIn,
+		LanguageCodeThTh,
 	}
 }
 

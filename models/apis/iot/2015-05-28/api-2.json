@@ -3899,7 +3899,8 @@
         "timestream":{"shape":"TimestreamAction"},
         "http":{"shape":"HttpAction"},
         "kafka":{"shape":"KafkaAction"},
-        "openSearch":{"shape":"OpenSearchAction"}
+        "openSearch":{"shape":"OpenSearchAction"},
+        "location":{"shape":"LocationAction"}
       }
     },
     "ActionList":{
@@ -10524,6 +10525,32 @@
       "members":{
         "violationEvents":{"shape":"ViolationEvents"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "LocationAction":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "trackerName",
+        "deviceId",
+        "latitude",
+        "longitude"
+      ],
+      "members":{
+        "roleArn":{"shape":"AwsArn"},
+        "trackerName":{"shape":"String"},
+        "deviceId":{"shape":"String"},
+        "timestamp":{"shape":"LocationTimestamp"},
+        "latitude":{"shape":"String"},
+        "longitude":{"shape":"String"}
+      }
+    },
+    "LocationTimestamp":{
+      "type":"structure",
+      "required":["value"],
+      "members":{
+        "value":{"shape":"String"},
+        "unit":{"shape":"String"}
       }
     },
     "LogGroupName":{"type":"string"},

@@ -4299,17 +4299,35 @@ func (s *CloudTrailProperties) SetTrailProperties(v []*TrailProperties) *CloudTr
 type Configuration struct {
 	_ struct{} `type:"structure"`
 
+	// The access control configuration is for an Amazon EBS volume snapshot.
+	EbsSnapshot *EbsSnapshotConfiguration `locationName:"ebsSnapshot" type:"structure"`
+
+	// The access control configuration is for an Amazon ECR repository.
+	EcrRepository *EcrRepositoryConfiguration `locationName:"ecrRepository" type:"structure"`
+
+	// The access control configuration is for an Amazon EFS file system.
+	EfsFileSystem *EfsFileSystemConfiguration `locationName:"efsFileSystem" type:"structure"`
+
 	// The access control configuration is for an IAM role.
 	IamRole *IamRoleConfiguration `locationName:"iamRole" type:"structure"`
 
 	// The access control configuration is for a KMS key.
 	KmsKey *KmsKeyConfiguration `locationName:"kmsKey" type:"structure"`
 
+	// The access control configuration is for an Amazon RDS DB cluster snapshot.
+	RdsDbClusterSnapshot *RdsDbClusterSnapshotConfiguration `locationName:"rdsDbClusterSnapshot" type:"structure"`
+
+	// The access control configuration is for an Amazon RDS DB snapshot.
+	RdsDbSnapshot *RdsDbSnapshotConfiguration `locationName:"rdsDbSnapshot" type:"structure"`
+
 	// The access control configuration is for an Amazon S3 Bucket.
 	S3Bucket *S3BucketConfiguration `locationName:"s3Bucket" type:"structure"`
 
 	// The access control configuration is for a Secrets Manager secret.
 	SecretsManagerSecret *SecretsManagerSecretConfiguration `locationName:"secretsManagerSecret" type:"structure"`
+
+	// The access control configuration is for an Amazon SNS topic
+	SnsTopic *SnsTopicConfiguration `locationName:"snsTopic" type:"structure"`
 
 	// The access control configuration is for an Amazon SQS queue.
 	SqsQueue *SqsQueueConfiguration `locationName:"sqsQueue" type:"structure"`
@@ -4353,6 +4371,24 @@ func (s *Configuration) Validate() error {
 	return nil
 }
 
+// SetEbsSnapshot sets the EbsSnapshot field's value.
+func (s *Configuration) SetEbsSnapshot(v *EbsSnapshotConfiguration) *Configuration {
+	s.EbsSnapshot = v
+	return s
+}
+
+// SetEcrRepository sets the EcrRepository field's value.
+func (s *Configuration) SetEcrRepository(v *EcrRepositoryConfiguration) *Configuration {
+	s.EcrRepository = v
+	return s
+}
+
+// SetEfsFileSystem sets the EfsFileSystem field's value.
+func (s *Configuration) SetEfsFileSystem(v *EfsFileSystemConfiguration) *Configuration {
+	s.EfsFileSystem = v
+	return s
+}
+
 // SetIamRole sets the IamRole field's value.
 func (s *Configuration) SetIamRole(v *IamRoleConfiguration) *Configuration {
 	s.IamRole = v
@@ -4365,6 +4401,18 @@ func (s *Configuration) SetKmsKey(v *KmsKeyConfiguration) *Configuration {
 	return s
 }
 
+// SetRdsDbClusterSnapshot sets the RdsDbClusterSnapshot field's value.
+func (s *Configuration) SetRdsDbClusterSnapshot(v *RdsDbClusterSnapshotConfiguration) *Configuration {
+	s.RdsDbClusterSnapshot = v
+	return s
+}
+
+// SetRdsDbSnapshot sets the RdsDbSnapshot field's value.
+func (s *Configuration) SetRdsDbSnapshot(v *RdsDbSnapshotConfiguration) *Configuration {
+	s.RdsDbSnapshot = v
+	return s
+}
+
 // SetS3Bucket sets the S3Bucket field's value.
 func (s *Configuration) SetS3Bucket(v *S3BucketConfiguration) *Configuration {
 	s.S3Bucket = v
@@ -4374,6 +4422,12 @@ func (s *Configuration) SetS3Bucket(v *S3BucketConfiguration) *Configuration {
 // SetSecretsManagerSecret sets the SecretsManagerSecret field's value.
 func (s *Configuration) SetSecretsManagerSecret(v *SecretsManagerSecretConfiguration) *Configuration {
 	s.SecretsManagerSecret = v
+	return s
+}
+
+// SetSnsTopic sets the SnsTopic field's value.
+func (s *Configuration) SetSnsTopic(v *SnsTopicConfiguration) *Configuration {
+	s.SnsTopic = v
 	return s
 }
 
@@ -5087,6 +5141,187 @@ func (s DeleteArchiveRuleOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteArchiveRuleOutput) GoString() string {
 	return s.String()
+}
+
+// The proposed access control configuration for an Amazon EBS volume snapshot.
+// You can propose a configuration for a new Amazon EBS volume snapshot or an
+// Amazon EBS volume snapshot that you own by specifying the user IDs, groups,
+// and optional KMS encryption key. For more information, see ModifySnapshotAttribute
+// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifySnapshotAttribute.html).
+type EbsSnapshotConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The groups that have access to the Amazon EBS volume snapshot. If the value
+	// all is specified, then the Amazon EBS volume snapshot is public.
+	//
+	//    * If the configuration is for an existing Amazon EBS volume snapshot and
+	//    you do not specify the groups, then the access preview uses the existing
+	//    shared groups for the snapshot.
+	//
+	//    * If the access preview is for a new resource and you do not specify the
+	//    groups, then the access preview considers the snapshot without any groups.
+	//
+	//    * To propose deletion of existing shared groups, you can specify an empty
+	//    list for groups.
+	Groups []*string `locationName:"groups" type:"list"`
+
+	// The KMS key identifier for an encrypted Amazon EBS volume snapshot. The KMS
+	// key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS
+	// key.
+	//
+	//    * If the configuration is for an existing Amazon EBS volume snapshot and
+	//    you do not specify the kmsKeyId, or you specify an empty string, then
+	//    the access preview uses the existing kmsKeyId of the snapshot.
+	//
+	//    * If the access preview is for a new resource and you do not specify the
+	//    kmsKeyId, the access preview considers the snapshot as unencrypted.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The IDs of the Amazon Web Services accounts that have access to the Amazon
+	// EBS volume snapshot.
+	//
+	//    * If the configuration is for an existing Amazon EBS volume snapshot and
+	//    you do not specify the userIds, then the access preview uses the existing
+	//    shared userIds for the snapshot.
+	//
+	//    * If the access preview is for a new resource and you do not specify the
+	//    userIds, then the access preview considers the snapshot without any userIds.
+	//
+	//    * To propose deletion of existing shared accountIds, you can specify an
+	//    empty list for userIds.
+	UserIds []*string `locationName:"userIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EbsSnapshotConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EbsSnapshotConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *EbsSnapshotConfiguration) SetGroups(v []*string) *EbsSnapshotConfiguration {
+	s.Groups = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *EbsSnapshotConfiguration) SetKmsKeyId(v string) *EbsSnapshotConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *EbsSnapshotConfiguration) SetUserIds(v []*string) *EbsSnapshotConfiguration {
+	s.UserIds = v
+	return s
+}
+
+// The proposed access control configuration for an Amazon ECR repository. You
+// can propose a configuration for a new Amazon ECR repository or an existing
+// Amazon ECR repository that you own by specifying the Amazon ECR policy. For
+// more information, see Repository (https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_Repository.html).
+//
+//   - If the configuration is for an existing Amazon ECR repository and you
+//     do not specify the Amazon ECR policy, then the access preview uses the
+//     existing Amazon ECR policy for the repository.
+//
+//   - If the access preview is for a new resource and you do not specify the
+//     policy, then the access preview assumes an Amazon ECR repository without
+//     a policy.
+//
+//   - To propose deletion of an existing Amazon ECR repository policy, you
+//     can specify an empty string for the Amazon ECR policy.
+type EcrRepositoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON repository policy text to apply to the Amazon ECR repository. For
+	// more information, see Private repository policy examples (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html)
+	// in the Amazon ECR User Guide.
+	RepositoryPolicy *string `locationName:"repositoryPolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrRepositoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EcrRepositoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetRepositoryPolicy sets the RepositoryPolicy field's value.
+func (s *EcrRepositoryConfiguration) SetRepositoryPolicy(v string) *EcrRepositoryConfiguration {
+	s.RepositoryPolicy = &v
+	return s
+}
+
+// The proposed access control configuration for an Amazon EFS file system.
+// You can propose a configuration for a new Amazon EFS file system or an existing
+// Amazon EFS file system that you own by specifying the Amazon EFS policy.
+// For more information, see Using file systems in Amazon EFS (https://docs.aws.amazon.com/efs/latest/ug/using-fs.html).
+//
+//   - If the configuration is for an existing Amazon EFS file system and you
+//     do not specify the Amazon EFS policy, then the access preview uses the
+//     existing Amazon EFS policy for the file system.
+//
+//   - If the access preview is for a new resource and you do not specify the
+//     policy, then the access preview assumes an Amazon EFS file system without
+//     a policy.
+//
+//   - To propose deletion of an existing Amazon EFS file system policy, you
+//     can specify an empty string for the Amazon EFS policy.
+type EfsFileSystemConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON policy definition to apply to the Amazon EFS file system. For more
+	// information on the elements that make up a file system policy, see Amazon
+	// EFS Resource-based policies (https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies).
+	FileSystemPolicy *string `locationName:"fileSystemPolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EfsFileSystemConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EfsFileSystemConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemPolicy sets the FileSystemPolicy field's value.
+func (s *EfsFileSystemConfiguration) SetFileSystemPolicy(v string) *EfsFileSystemConfiguration {
+	s.FileSystemPolicy = &v
+	return s
 }
 
 // Contains information about a finding.
@@ -8042,6 +8277,214 @@ func (s *Position) SetOffset(v int64) *Position {
 	return s
 }
 
+// The values for a manual Amazon RDS DB cluster snapshot attribute.
+type RdsDbClusterSnapshotAttributeValue struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account IDs that have access to the manual Amazon
+	// RDS DB cluster snapshot. If the value all is specified, then the Amazon RDS
+	// DB cluster snapshot is public and can be copied or restored by all Amazon
+	// Web Services accounts.
+	//
+	//    * If the configuration is for an existing Amazon RDS DB cluster snapshot
+	//    and you do not specify the accountIds in RdsDbClusterSnapshotAttributeValue,
+	//    then the access preview uses the existing shared accountIds for the snapshot.
+	//
+	//    * If the access preview is for a new resource and you do not specify the
+	//    specify the accountIds in RdsDbClusterSnapshotAttributeValue, then the
+	//    access preview considers the snapshot without any attributes.
+	//
+	//    * To propose deletion of existing shared accountIds, you can specify an
+	//    empty list for accountIds in the RdsDbClusterSnapshotAttributeValue.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbClusterSnapshotAttributeValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbClusterSnapshotAttributeValue) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *RdsDbClusterSnapshotAttributeValue) SetAccountIds(v []*string) *RdsDbClusterSnapshotAttributeValue {
+	s.AccountIds = v
+	return s
+}
+
+// The proposed access control configuration for an Amazon RDS DB cluster snapshot.
+// You can propose a configuration for a new Amazon RDS DB cluster snapshot
+// or an Amazon RDS DB cluster snapshot that you own by specifying the RdsDbClusterSnapshotAttributeValue
+// and optional KMS encryption key. For more information, see ModifyDBClusterSnapshotAttribute
+// (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ModifyDBClusterSnapshotAttribute.html).
+type RdsDbClusterSnapshotConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The names and values of manual DB cluster snapshot attributes. Manual DB
+	// cluster snapshot attributes are used to authorize other Amazon Web Services
+	// accounts to restore a manual DB cluster snapshot. The only valid value for
+	// AttributeName for the attribute map is restore
+	Attributes map[string]*RdsDbClusterSnapshotAttributeValue `locationName:"attributes" type:"map"`
+
+	// The KMS key identifier for an encrypted Amazon RDS DB cluster snapshot. The
+	// KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the
+	// KMS key.
+	//
+	//    * If the configuration is for an existing Amazon RDS DB cluster snapshot
+	//    and you do not specify the kmsKeyId, or you specify an empty string, then
+	//    the access preview uses the existing kmsKeyId of the snapshot.
+	//
+	//    * If the access preview is for a new resource and you do not specify the
+	//    specify the kmsKeyId, then the access preview considers the snapshot as
+	//    unencrypted.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbClusterSnapshotConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbClusterSnapshotConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *RdsDbClusterSnapshotConfiguration) SetAttributes(v map[string]*RdsDbClusterSnapshotAttributeValue) *RdsDbClusterSnapshotConfiguration {
+	s.Attributes = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RdsDbClusterSnapshotConfiguration) SetKmsKeyId(v string) *RdsDbClusterSnapshotConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// The name and values of a manual Amazon RDS DB snapshot attribute. Manual
+// DB snapshot attributes are used to authorize other Amazon Web Services accounts
+// to restore a manual DB snapshot.
+type RdsDbSnapshotAttributeValue struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account IDs that have access to the manual Amazon
+	// RDS DB snapshot. If the value all is specified, then the Amazon RDS DB snapshot
+	// is public and can be copied or restored by all Amazon Web Services accounts.
+	//
+	//    * If the configuration is for an existing Amazon RDS DB snapshot and you
+	//    do not specify the accountIds in RdsDbSnapshotAttributeValue, then the
+	//    access preview uses the existing shared accountIds for the snapshot.
+	//
+	//    * If the access preview is for a new resource and you do not specify the
+	//    specify the accountIds in RdsDbSnapshotAttributeValue, then the access
+	//    preview considers the snapshot without any attributes.
+	//
+	//    * To propose deletion of an existing shared accountIds, you can specify
+	//    an empty list for accountIds in the RdsDbSnapshotAttributeValue.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbSnapshotAttributeValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbSnapshotAttributeValue) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *RdsDbSnapshotAttributeValue) SetAccountIds(v []*string) *RdsDbSnapshotAttributeValue {
+	s.AccountIds = v
+	return s
+}
+
+// The proposed access control configuration for an Amazon RDS DB snapshot.
+// You can propose a configuration for a new Amazon RDS DB snapshot or an Amazon
+// RDS DB snapshot that you own by specifying the RdsDbSnapshotAttributeValue
+// and optional KMS encryption key. For more information, see ModifyDBSnapshotAttribute
+// (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ModifyDBSnapshotAttribute.html).
+type RdsDbSnapshotConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The names and values of manual DB snapshot attributes. Manual DB snapshot
+	// attributes are used to authorize other Amazon Web Services accounts to restore
+	// a manual DB snapshot. The only valid value for attributeName for the attribute
+	// map is restore.
+	Attributes map[string]*RdsDbSnapshotAttributeValue `locationName:"attributes" type:"map"`
+
+	// The KMS key identifier for an encrypted Amazon RDS DB snapshot. The KMS key
+	// identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.
+	//
+	//    * If the configuration is for an existing Amazon RDS DB snapshot and you
+	//    do not specify the kmsKeyId, or you specify an empty string, then the
+	//    access preview uses the existing kmsKeyId of the snapshot.
+	//
+	//    * If the access preview is for a new resource and you do not specify the
+	//    specify the kmsKeyId, then the access preview considers the snapshot as
+	//    unencrypted.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbSnapshotConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDbSnapshotConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *RdsDbSnapshotConfiguration) SetAttributes(v map[string]*RdsDbSnapshotAttributeValue) *RdsDbSnapshotConfiguration {
+	s.Attributes = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RdsDbSnapshotConfiguration) SetKmsKeyId(v string) *RdsDbSnapshotConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
 // The specified resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -8122,7 +8565,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 // for an existing bucket, the access preview uses the proposed access point
 // configuration in place of the existing access points. To propose an access
 // point without a policy, you can provide an empty string as the access point
-// policy. For more information, see Creating access points (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html).
+// policy. For more information, see Creating access points (https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html).
 // For more information about access point policy limits, see Access points
 // restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points-restrictions-limitations.html).
 type S3AccessPointConfiguration struct {
@@ -8570,6 +9013,49 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The proposed access control configuration for an Amazon SNS topic. You can
+// propose a configuration for a new Amazon SNS topic or an existing Amazon
+// SNS topic that you own by specifying the policy. If the configuration is
+// for an existing Amazon SNS topic and you do not specify the Amazon SNS policy,
+// then the access preview uses the existing Amazon SNS policy for the topic.
+// If the access preview is for a new resource and you do not specify the policy,
+// then the access preview assumes an Amazon SNS topic without a policy. To
+// propose deletion of an existing Amazon SNS topic policy, you can specify
+// an empty string for the Amazon SNS policy. For more information, see Topic
+// (https://docs.aws.amazon.com/sns/latest/api/API_Topic.html).
+type SnsTopicConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON policy text that defines who can access an Amazon SNS topic. For
+	// more information, see Example cases for Amazon SNS access control (https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-use-cases.html)
+	// in the Amazon SNS Developer Guide.
+	TopicPolicy *string `locationName:"topicPolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnsTopicConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnsTopicConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTopicPolicy sets the TopicPolicy field's value.
+func (s *SnsTopicConfiguration) SetTopicPolicy(v string) *SnsTopicConfiguration {
+	s.TopicPolicy = &v
+	return s
+}
+
 // The criteria used to sort.
 type SortCriteria struct {
 	_ struct{} `type:"structure"`
@@ -8830,6 +9316,11 @@ type StartResourceScanInput struct {
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// The Amazon Web Services account ID that owns the resource. For most Amazon
+	// Web Services resources, the owning account is the account in which the resource
+	// was created.
+	ResourceOwnerAccount *string `locationName:"resourceOwnerAccount" type:"string"`
 }
 
 // String returns the string representation.
@@ -8875,6 +9366,12 @@ func (s *StartResourceScanInput) SetAnalyzerArn(v string) *StartResourceScanInpu
 // SetResourceArn sets the ResourceArn field's value.
 func (s *StartResourceScanInput) SetResourceArn(v string) *StartResourceScanInput {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceOwnerAccount sets the ResourceOwnerAccount field's value.
+func (s *StartResourceScanInput) SetResourceOwnerAccount(v string) *StartResourceScanInput {
+	s.ResourceOwnerAccount = &v
 	return s
 }
 
@@ -10402,6 +10899,24 @@ const (
 
 	// ResourceTypeAwsSecretsManagerSecret is a ResourceType enum value
 	ResourceTypeAwsSecretsManagerSecret = "AWS::SecretsManager::Secret"
+
+	// ResourceTypeAwsEfsFileSystem is a ResourceType enum value
+	ResourceTypeAwsEfsFileSystem = "AWS::EFS::FileSystem"
+
+	// ResourceTypeAwsEc2Snapshot is a ResourceType enum value
+	ResourceTypeAwsEc2Snapshot = "AWS::EC2::Snapshot"
+
+	// ResourceTypeAwsEcrRepository is a ResourceType enum value
+	ResourceTypeAwsEcrRepository = "AWS::ECR::Repository"
+
+	// ResourceTypeAwsRdsDbsnapshot is a ResourceType enum value
+	ResourceTypeAwsRdsDbsnapshot = "AWS::RDS::DBSnapshot"
+
+	// ResourceTypeAwsRdsDbclusterSnapshot is a ResourceType enum value
+	ResourceTypeAwsRdsDbclusterSnapshot = "AWS::RDS::DBClusterSnapshot"
+
+	// ResourceTypeAwsSnsTopic is a ResourceType enum value
+	ResourceTypeAwsSnsTopic = "AWS::SNS::Topic"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -10414,6 +10929,12 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsLambdaLayerVersion,
 		ResourceTypeAwsKmsKey,
 		ResourceTypeAwsSecretsManagerSecret,
+		ResourceTypeAwsEfsFileSystem,
+		ResourceTypeAwsEc2Snapshot,
+		ResourceTypeAwsEcrRepository,
+		ResourceTypeAwsRdsDbsnapshot,
+		ResourceTypeAwsRdsDbclusterSnapshot,
+		ResourceTypeAwsSnsTopic,
 	}
 }
 
@@ -10469,6 +10990,9 @@ const (
 
 	// ValidatePolicyResourceTypeAwsS3objectLambdaAccessPoint is a ValidatePolicyResourceType enum value
 	ValidatePolicyResourceTypeAwsS3objectLambdaAccessPoint = "AWS::S3ObjectLambda::AccessPoint"
+
+	// ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument is a ValidatePolicyResourceType enum value
+	ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument = "AWS::IAM::AssumeRolePolicyDocument"
 )
 
 // ValidatePolicyResourceType_Values returns all elements of the ValidatePolicyResourceType enum
@@ -10478,6 +11002,7 @@ func ValidatePolicyResourceType_Values() []string {
 		ValidatePolicyResourceTypeAwsS3AccessPoint,
 		ValidatePolicyResourceTypeAwsS3MultiRegionAccessPoint,
 		ValidatePolicyResourceTypeAwsS3objectLambdaAccessPoint,
+		ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument,
 	}
 }
 

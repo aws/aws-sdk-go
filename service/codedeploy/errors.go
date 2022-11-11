@@ -17,14 +17,14 @@ const (
 	// ErrCodeApplicationAlreadyExistsException for service response error code
 	// "ApplicationAlreadyExistsException".
 	//
-	// An application with the specified name with the IAM user or AWS account already
-	// exists.
+	// An application with the specified name with the IAM user or Amazon Web Services
+	// account already exists.
 	ErrCodeApplicationAlreadyExistsException = "ApplicationAlreadyExistsException"
 
 	// ErrCodeApplicationDoesNotExistException for service response error code
 	// "ApplicationDoesNotExistException".
 	//
-	// The application does not exist with the IAM user or AWS account.
+	// The application does not exist with the IAM user or Amazon Web Services account.
 	ErrCodeApplicationDoesNotExistException = "ApplicationDoesNotExistException"
 
 	// ErrCodeApplicationLimitExceededException for service response error code
@@ -67,14 +67,15 @@ const (
 	// ErrCodeDeploymentConfigAlreadyExistsException for service response error code
 	// "DeploymentConfigAlreadyExistsException".
 	//
-	// A deployment configuration with the specified name with the IAM user or AWS
-	// account already exists.
+	// A deployment configuration with the specified name with the IAM user or Amazon
+	// Web Services account already exists.
 	ErrCodeDeploymentConfigAlreadyExistsException = "DeploymentConfigAlreadyExistsException"
 
 	// ErrCodeDeploymentConfigDoesNotExistException for service response error code
 	// "DeploymentConfigDoesNotExistException".
 	//
-	// The deployment configuration does not exist with the IAM user or AWS account.
+	// The deployment configuration does not exist with the IAM user or Amazon Web
+	// Services account.
 	ErrCodeDeploymentConfigDoesNotExistException = "DeploymentConfigDoesNotExistException"
 
 	// ErrCodeDeploymentConfigInUseException for service response error code
@@ -98,20 +99,22 @@ const (
 	// ErrCodeDeploymentDoesNotExistException for service response error code
 	// "DeploymentDoesNotExistException".
 	//
-	// The deployment with the IAM user or AWS account does not exist.
+	// The deployment with the IAM user or Amazon Web Services account does not
+	// exist.
 	ErrCodeDeploymentDoesNotExistException = "DeploymentDoesNotExistException"
 
 	// ErrCodeDeploymentGroupAlreadyExistsException for service response error code
 	// "DeploymentGroupAlreadyExistsException".
 	//
-	// A deployment group with the specified name with the IAM user or AWS account
-	// already exists.
+	// A deployment group with the specified name with the IAM user or Amazon Web
+	// Services account already exists.
 	ErrCodeDeploymentGroupAlreadyExistsException = "DeploymentGroupAlreadyExistsException"
 
 	// ErrCodeDeploymentGroupDoesNotExistException for service response error code
 	// "DeploymentGroupDoesNotExistException".
 	//
-	// The named deployment group with the IAM user or AWS account does not exist.
+	// The named deployment group with the IAM user or Amazon Web Services account
+	// does not exist.
 	ErrCodeDeploymentGroupDoesNotExistException = "DeploymentGroupDoesNotExistException"
 
 	// ErrCodeDeploymentGroupLimitExceededException for service response error code
@@ -166,7 +169,7 @@ const (
 	// "DeploymentTargetListSizeExceededException".
 	//
 	// The maximum number of targets that can be associated with an Amazon ECS or
-	// AWS Lambda deployment was exceeded. The target list of both types of deployments
+	// Lambda deployment was exceeded. The target list of both types of deployments
 	// must have exactly one item. This exception does not apply to EC2/On-premises
 	// deployments.
 	ErrCodeDeploymentTargetListSizeExceededException = "DeploymentTargetListSizeExceededException"
@@ -407,7 +410,7 @@ const (
 	// ErrCodeInvalidFileExistsBehaviorException for service response error code
 	// "InvalidFileExistsBehaviorException".
 	//
-	// An invalid fileExistsBehavior option was specified to determine how AWS CodeDeploy
+	// An invalid fileExistsBehavior option was specified to determine how CodeDeploy
 	// handles files or directories that already exist in a deployment target location,
 	// but weren't part of the previous successful deployment. Valid values include
 	// "DISALLOW," "OVERWRITE," and "RETAIN."
@@ -440,7 +443,7 @@ const (
 	// ErrCodeInvalidIgnoreApplicationStopFailuresValueException for service response error code
 	// "InvalidIgnoreApplicationStopFailuresValueException".
 	//
-	// The IgnoreApplicationStopFailures value is invalid. For AWS Lambda deployments,
+	// The IgnoreApplicationStopFailures value is invalid. For Lambda deployments,
 	// false is expected. For EC2/On-premises deployments, true or false is expected.
 	ErrCodeInvalidIgnoreApplicationStopFailuresValueException = "InvalidIgnoreApplicationStopFailuresValueException"
 
@@ -621,7 +624,7 @@ const (
 	// ErrCodeInvalidUpdateOutdatedInstancesOnlyValueException for service response error code
 	// "InvalidUpdateOutdatedInstancesOnlyValueException".
 	//
-	// The UpdateOutdatedInstancesOnly value is invalid. For AWS Lambda deployments,
+	// The UpdateOutdatedInstancesOnly value is invalid. For Lambda deployments,
 	// false is expected. For EC2/On-premises deployments, true or false is expected.
 	ErrCodeInvalidUpdateOutdatedInstancesOnlyValueException = "InvalidUpdateOutdatedInstancesOnlyValueException"
 
@@ -665,7 +668,8 @@ const (
 	// ErrCodeRevisionDoesNotExistException for service response error code
 	// "RevisionDoesNotExistException".
 	//
-	// The named revision does not exist with the IAM user or AWS account.
+	// The named revision does not exist with the IAM user or Amazon Web Services
+	// account.
 	ErrCodeRevisionDoesNotExistException = "RevisionDoesNotExistException"
 
 	// ErrCodeRevisionRequiredException for service response error code

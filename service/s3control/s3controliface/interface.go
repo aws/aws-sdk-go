@@ -184,6 +184,10 @@ type S3ControlAPI interface {
 	GetBucketTaggingWithContext(aws.Context, *s3control.GetBucketTaggingInput, ...request.Option) (*s3control.GetBucketTaggingOutput, error)
 	GetBucketTaggingRequest(*s3control.GetBucketTaggingInput) (*request.Request, *s3control.GetBucketTaggingOutput)
 
+	GetBucketVersioning(*s3control.GetBucketVersioningInput) (*s3control.GetBucketVersioningOutput, error)
+	GetBucketVersioningWithContext(aws.Context, *s3control.GetBucketVersioningInput, ...request.Option) (*s3control.GetBucketVersioningOutput, error)
+	GetBucketVersioningRequest(*s3control.GetBucketVersioningInput) (*request.Request, *s3control.GetBucketVersioningOutput)
+
 	GetJobTagging(*s3control.GetJobTaggingInput) (*s3control.GetJobTaggingOutput, error)
 	GetJobTaggingWithContext(aws.Context, *s3control.GetJobTaggingInput, ...request.Option) (*s3control.GetJobTaggingOutput, error)
 	GetJobTaggingRequest(*s3control.GetJobTaggingInput) (*request.Request, *s3control.GetJobTaggingOutput)
@@ -277,6 +281,10 @@ type S3ControlAPI interface {
 	PutBucketTagging(*s3control.PutBucketTaggingInput) (*s3control.PutBucketTaggingOutput, error)
 	PutBucketTaggingWithContext(aws.Context, *s3control.PutBucketTaggingInput, ...request.Option) (*s3control.PutBucketTaggingOutput, error)
 	PutBucketTaggingRequest(*s3control.PutBucketTaggingInput) (*request.Request, *s3control.PutBucketTaggingOutput)
+
+	PutBucketVersioning(*s3control.PutBucketVersioningInput) (*s3control.PutBucketVersioningOutput, error)
+	PutBucketVersioningWithContext(aws.Context, *s3control.PutBucketVersioningInput, ...request.Option) (*s3control.PutBucketVersioningOutput, error)
+	PutBucketVersioningRequest(*s3control.PutBucketVersioningInput) (*request.Request, *s3control.PutBucketVersioningOutput)
 
 	PutJobTagging(*s3control.PutJobTaggingInput) (*s3control.PutJobTaggingOutput, error)
 	PutJobTaggingWithContext(aws.Context, *s3control.PutJobTaggingInput, ...request.Option) (*s3control.PutJobTaggingOutput, error)

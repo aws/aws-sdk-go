@@ -78,6 +78,10 @@ func (c *BackupGateway) AssociateGatewayToServerRequest(input *AssociateGatewayT
 //     The operation did not succeed because an internal error occurred. Try again
 //     later.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/AssociateGatewayToServer
 func (c *BackupGateway) AssociateGatewayToServer(input *AssociateGatewayToServerInput) (*AssociateGatewayToServerOutput, error) {
 	req, out := c.AssociateGatewayToServerRequest(input)
@@ -161,6 +165,10 @@ func (c *BackupGateway) CreateGatewayRequest(input *CreateGatewayInput) (req *re
 //   - InternalServerException
 //     The operation did not succeed because an internal error occurred. Try again
 //     later.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/CreateGateway
 func (c *BackupGateway) CreateGateway(input *CreateGatewayInput) (*CreateGatewayOutput, error) {
@@ -247,6 +255,10 @@ func (c *BackupGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *re
 //
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/DeleteGateway
 func (c *BackupGateway) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewayOutput, error) {
@@ -336,6 +348,10 @@ func (c *BackupGateway) DeleteHypervisorRequest(input *DeleteHypervisorInput) (r
 //
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/DeleteHypervisor
 func (c *BackupGateway) DeleteHypervisor(input *DeleteHypervisorInput) (*DeleteHypervisorOutput, error) {
@@ -428,6 +444,10 @@ func (c *BackupGateway) DisassociateGatewayFromServerRequest(input *Disassociate
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/DisassociateGatewayFromServer
 func (c *BackupGateway) DisassociateGatewayFromServer(input *DisassociateGatewayFromServerInput) (*DisassociateGatewayFromServerOutput, error) {
 	req, out := c.DisassociateGatewayFromServerRequest(input)
@@ -514,6 +534,10 @@ func (c *BackupGateway) GetGatewayRequest(input *GetGatewayInput) (req *request.
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetGateway
 func (c *BackupGateway) GetGateway(input *GetGatewayInput) (*GetGatewayOutput, error) {
 	req, out := c.GetGatewayRequest(input)
@@ -531,6 +555,97 @@ func (c *BackupGateway) GetGateway(input *GetGatewayInput) (*GetGatewayOutput, e
 // for more information on using Contexts.
 func (c *BackupGateway) GetGatewayWithContext(ctx aws.Context, input *GetGatewayInput, opts ...request.Option) (*GetGatewayOutput, error) {
 	req, out := c.GetGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetVirtualMachine = "GetVirtualMachine"
+
+// GetVirtualMachineRequest generates a "aws/request.Request" representing the
+// client's request for the GetVirtualMachine operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetVirtualMachine for more information on using the GetVirtualMachine
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetVirtualMachineRequest method.
+//	req, resp := client.GetVirtualMachineRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetVirtualMachine
+func (c *BackupGateway) GetVirtualMachineRequest(input *GetVirtualMachineInput) (req *request.Request, output *GetVirtualMachineOutput) {
+	op := &request.Operation{
+		Name:       opGetVirtualMachine,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetVirtualMachineInput{}
+	}
+
+	output = &GetVirtualMachineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetVirtualMachine API operation for AWS Backup Gateway.
+//
+// By providing the ARN (Amazon Resource Name), this API returns the virtual
+// machine.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation GetVirtualMachine for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation did not succeed because a validation error occurred.
+//
+//   - InternalServerException
+//     The operation did not succeed because an internal error occurred. Try again
+//     later.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetVirtualMachine
+func (c *BackupGateway) GetVirtualMachine(input *GetVirtualMachineInput) (*GetVirtualMachineOutput, error) {
+	req, out := c.GetVirtualMachineRequest(input)
+	return out, req.Send()
+}
+
+// GetVirtualMachineWithContext is the same as GetVirtualMachine with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetVirtualMachine for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) GetVirtualMachineWithContext(ctx aws.Context, input *GetVirtualMachineInput, opts ...request.Option) (*GetVirtualMachineOutput, error) {
+	req, out := c.GetVirtualMachineRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -599,6 +714,10 @@ func (c *BackupGateway) ImportHypervisorConfigurationRequest(input *ImportHyperv
 //
 //   - AccessDeniedException
 //     The operation cannot proceed because you have insufficient permissions.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/ImportHypervisorConfiguration
 func (c *BackupGateway) ImportHypervisorConfiguration(input *ImportHypervisorConfigurationInput) (*ImportHypervisorConfigurationOutput, error) {
@@ -690,6 +809,10 @@ func (c *BackupGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *requ
 //   - InternalServerException
 //     The operation did not succeed because an internal error occurred. Try again
 //     later.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/ListGateways
 func (c *BackupGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOutput, error) {
@@ -831,6 +954,10 @@ func (c *BackupGateway) ListHypervisorsRequest(input *ListHypervisorsInput) (req
 //     The operation did not succeed because an internal error occurred. Try again
 //     later.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/ListHypervisors
 func (c *BackupGateway) ListHypervisors(input *ListHypervisorsInput) (*ListHypervisorsOutput, error) {
 	req, out := c.ListHypervisorsRequest(input)
@@ -969,6 +1096,10 @@ func (c *BackupGateway) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/ListTagsForResource
 func (c *BackupGateway) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
@@ -1057,6 +1188,10 @@ func (c *BackupGateway) ListVirtualMachinesRequest(input *ListVirtualMachinesInp
 //   - InternalServerException
 //     The operation did not succeed because an internal error occurred. Try again
 //     later.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/ListVirtualMachines
 func (c *BackupGateway) ListVirtualMachines(input *ListVirtualMachinesInput) (*ListVirtualMachinesOutput, error) {
@@ -1198,6 +1333,10 @@ func (c *BackupGateway) PutMaintenanceStartTimeRequest(input *PutMaintenanceStar
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/PutMaintenanceStartTime
 func (c *BackupGateway) PutMaintenanceStartTime(input *PutMaintenanceStartTimeInput) (*PutMaintenanceStartTimeOutput, error) {
 	req, out := c.PutMaintenanceStartTimeRequest(input)
@@ -1283,6 +1422,10 @@ func (c *BackupGateway) TagResourceRequest(input *TagResourceInput) (req *reques
 //
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/TagResource
 func (c *BackupGateway) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1375,6 +1518,10 @@ func (c *BackupGateway) TestHypervisorConfigurationRequest(input *TestHypervisor
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/TestHypervisorConfiguration
 func (c *BackupGateway) TestHypervisorConfiguration(input *TestHypervisorConfigurationInput) (*TestHypervisorConfigurationOutput, error) {
 	req, out := c.TestHypervisorConfigurationRequest(input)
@@ -1460,6 +1607,10 @@ func (c *BackupGateway) UntagResourceRequest(input *UntagResourceInput) (req *re
 //
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/UntagResource
 func (c *BackupGateway) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1551,6 +1702,10 @@ func (c *BackupGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInfo
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
 //
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/UpdateGatewayInformation
 func (c *BackupGateway) UpdateGatewayInformation(input *UpdateGatewayInformationInput) (*UpdateGatewayInformationOutput, error) {
 	req, out := c.UpdateGatewayInformationRequest(input)
@@ -1640,6 +1795,10 @@ func (c *BackupGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySoft
 //
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/UpdateGatewaySoftwareNow
 func (c *BackupGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNowInput) (*UpdateGatewaySoftwareNowOutput, error) {
@@ -1731,6 +1890,10 @@ func (c *BackupGateway) UpdateHypervisorRequest(input *UpdateHypervisorInput) (r
 //
 //   - ResourceNotFoundException
 //     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/UpdateHypervisor
 func (c *BackupGateway) UpdateHypervisor(input *UpdateHypervisorInput) (*UpdateHypervisorOutput, error) {
@@ -2454,6 +2617,11 @@ type GatewayDetails struct {
 	// in Unix format and UTC time.
 	LastSeenTime *time.Time `type:"timestamp"`
 
+	// Returns your gateway's weekly maintenance start time including the day and
+	// time of the week. Note that values are in terms of the gateway's time zone.
+	// Can be weekly or monthly.
+	MaintenanceStartTime *MaintenanceStartTime `type:"structure"`
+
 	// Details showing the next update availability time of the gateway.
 	NextUpdateAvailabilityTime *time.Time `type:"timestamp"`
 
@@ -2507,6 +2675,12 @@ func (s *GatewayDetails) SetHypervisorId(v string) *GatewayDetails {
 // SetLastSeenTime sets the LastSeenTime field's value.
 func (s *GatewayDetails) SetLastSeenTime(v time.Time) *GatewayDetails {
 	s.LastSeenTime = &v
+	return s
+}
+
+// SetMaintenanceStartTime sets the MaintenanceStartTime field's value.
+func (s *GatewayDetails) SetMaintenanceStartTime(v *MaintenanceStartTime) *GatewayDetails {
+	s.MaintenanceStartTime = v
 	return s
 }
 
@@ -2599,6 +2773,87 @@ func (s GetGatewayOutput) GoString() string {
 // SetGateway sets the Gateway field's value.
 func (s *GetGatewayOutput) SetGateway(v *GatewayDetails) *GetGatewayOutput {
 	s.Gateway = v
+	return s
+}
+
+type GetVirtualMachineInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the virtual machine.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVirtualMachineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVirtualMachineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetVirtualMachineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetVirtualMachineInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetVirtualMachineInput) SetResourceArn(v string) *GetVirtualMachineInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetVirtualMachineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This object contains the basic attributes of VirtualMachine contained by
+	// the output of GetVirtualMachine
+	VirtualMachine *VirtualMachineDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVirtualMachineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetVirtualMachineOutput) GoString() string {
+	return s.String()
+}
+
+// SetVirtualMachine sets the VirtualMachine field's value.
+func (s *GetVirtualMachineOutput) SetVirtualMachine(v *VirtualMachineDetails) *GetVirtualMachineOutput {
+	s.VirtualMachine = v
 	return s
 }
 
@@ -3201,6 +3456,10 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type ListVirtualMachinesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the hypervisor connected to your virtual
+	// machine.
+	HypervisorArn *string `min:"50" type:"string"`
+
 	// The maximum number of virtual machines to list.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -3232,6 +3491,9 @@ func (s ListVirtualMachinesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListVirtualMachinesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListVirtualMachinesInput"}
+	if s.HypervisorArn != nil && len(*s.HypervisorArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("HypervisorArn", 50))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -3243,6 +3505,12 @@ func (s *ListVirtualMachinesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *ListVirtualMachinesInput) SetHypervisorArn(v string) *ListVirtualMachinesInput {
+	s.HypervisorArn = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -3298,6 +3566,79 @@ func (s *ListVirtualMachinesOutput) SetNextToken(v string) *ListVirtualMachinesO
 // SetVirtualMachines sets the VirtualMachines field's value.
 func (s *ListVirtualMachinesOutput) SetVirtualMachines(v []*VirtualMachine) *ListVirtualMachinesOutput {
 	s.VirtualMachines = v
+	return s
+}
+
+// This is your gateway's weekly maintenance start time including the day and
+// time of the week. Note that values are in terms of the gateway's time zone.
+// Can be weekly or monthly.
+type MaintenanceStartTime struct {
+	_ struct{} `type:"structure"`
+
+	// The day of the month component of the maintenance start time represented
+	// as an ordinal number from 1 to 28, where 1 represents the first day of the
+	// month and 28 represents the last day of the month.
+	DayOfMonth *int64 `min:"1" type:"integer"`
+
+	// An ordinal number between 0 and 6 that represents the day of the week, where
+	// 0 represents Sunday and 6 represents Saturday. The day of week is in the
+	// time zone of the gateway.
+	DayOfWeek *int64 `type:"integer"`
+
+	// The hour component of the maintenance start time represented as hh, where
+	// hh is the hour (0 to 23). The hour of the day is in the time zone of the
+	// gateway.
+	//
+	// HourOfDay is a required field
+	HourOfDay *int64 `type:"integer" required:"true"`
+
+	// The minute component of the maintenance start time represented as mm, where
+	// mm is the minute (0 to 59). The minute of the hour is in the time zone of
+	// the gateway.
+	//
+	// MinuteOfHour is a required field
+	MinuteOfHour *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceStartTime) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MaintenanceStartTime) GoString() string {
+	return s.String()
+}
+
+// SetDayOfMonth sets the DayOfMonth field's value.
+func (s *MaintenanceStartTime) SetDayOfMonth(v int64) *MaintenanceStartTime {
+	s.DayOfMonth = &v
+	return s
+}
+
+// SetDayOfWeek sets the DayOfWeek field's value.
+func (s *MaintenanceStartTime) SetDayOfWeek(v int64) *MaintenanceStartTime {
+	s.DayOfWeek = &v
+	return s
+}
+
+// SetHourOfDay sets the HourOfDay field's value.
+func (s *MaintenanceStartTime) SetHourOfDay(v int64) *MaintenanceStartTime {
+	s.HourOfDay = &v
+	return s
+}
+
+// SetMinuteOfHour sets the MinuteOfHour field's value.
+func (s *MaintenanceStartTime) SetMinuteOfHour(v int64) *MaintenanceStartTime {
+	s.MinuteOfHour = &v
 	return s
 }
 
@@ -3790,6 +4131,77 @@ func (s TestHypervisorConfigurationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TestHypervisorConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// TPS has been limited to protect against intentional or unintentional high
+// request volumes.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Error: TPS has been limited to protect against intentional or unintentional
+	// high request volumes.
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -4336,6 +4748,84 @@ func (s *VirtualMachine) SetPath(v string) *VirtualMachine {
 
 // SetResourceArn sets the ResourceArn field's value.
 func (s *VirtualMachine) SetResourceArn(v string) *VirtualMachine {
+	s.ResourceArn = &v
+	return s
+}
+
+// Your VirtualMachine objects, ordered by their Amazon Resource Names (ARNs).
+type VirtualMachineDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The host name of the virtual machine.
+	HostName *string `min:"1" type:"string"`
+
+	// The ID of the virtual machine's hypervisor.
+	HypervisorId *string `type:"string"`
+
+	// The most recent date a virtual machine was backed up, in Unix format and
+	// UTC time.
+	LastBackupDate *time.Time `type:"timestamp"`
+
+	// The name of the virtual machine.
+	Name *string `min:"1" type:"string"`
+
+	// The path of the virtual machine.
+	Path *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the virtual machine. For example, arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL.
+	ResourceArn *string `min:"50" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VirtualMachineDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VirtualMachineDetails) GoString() string {
+	return s.String()
+}
+
+// SetHostName sets the HostName field's value.
+func (s *VirtualMachineDetails) SetHostName(v string) *VirtualMachineDetails {
+	s.HostName = &v
+	return s
+}
+
+// SetHypervisorId sets the HypervisorId field's value.
+func (s *VirtualMachineDetails) SetHypervisorId(v string) *VirtualMachineDetails {
+	s.HypervisorId = &v
+	return s
+}
+
+// SetLastBackupDate sets the LastBackupDate field's value.
+func (s *VirtualMachineDetails) SetLastBackupDate(v time.Time) *VirtualMachineDetails {
+	s.LastBackupDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VirtualMachineDetails) SetName(v string) *VirtualMachineDetails {
+	s.Name = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *VirtualMachineDetails) SetPath(v string) *VirtualMachineDetails {
+	s.Path = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *VirtualMachineDetails) SetResourceArn(v string) *VirtualMachineDetails {
 	s.ResourceArn = &v
 	return s
 }

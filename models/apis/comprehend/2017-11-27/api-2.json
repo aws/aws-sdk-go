@@ -92,6 +92,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "BatchDetectTargetedSentiment":{
+      "name":"BatchDetectTargetedSentiment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchDetectTargetedSentimentRequest"},
+      "output":{"shape":"BatchDetectTargetedSentimentResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"UnsupportedLanguageException"},
+        {"shape":"BatchSizeLimitExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ClassifyDocument":{
       "name":"ClassifyDocument",
       "http":{
@@ -520,6 +536,21 @@
       },
       "input":{"shape":"DetectSyntaxRequest"},
       "output":{"shape":"DetectSyntaxResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"UnsupportedLanguageException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DetectTargetedSentiment":{
+      "name":"DetectTargetedSentiment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectTargetedSentimentRequest"},
+      "output":{"shape":"DetectTargetedSentimentResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"TextSizeLimitExceededException"},
@@ -1290,6 +1321,36 @@
       },
       "sensitive":true
     },
+    "BatchDetectTargetedSentimentItemResult":{
+      "type":"structure",
+      "members":{
+        "Index":{"shape":"Integer"},
+        "Entities":{"shape":"ListOfTargetedSentimentEntities"}
+      }
+    },
+    "BatchDetectTargetedSentimentRequest":{
+      "type":"structure",
+      "required":[
+        "TextList",
+        "LanguageCode"
+      ],
+      "members":{
+        "TextList":{"shape":"CustomerInputStringList"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "BatchDetectTargetedSentimentResponse":{
+      "type":"structure",
+      "required":[
+        "ResultList",
+        "ErrorList"
+      ],
+      "members":{
+        "ResultList":{"shape":"ListOfDetectTargetedSentimentResult"},
+        "ErrorList":{"shape":"BatchItemErrorList"}
+      },
+      "sensitive":true
+    },
     "BatchItemError":{
       "type":"structure",
       "members":{
@@ -1826,6 +1887,24 @@
       "type":"structure",
       "members":{
         "SyntaxTokens":{"shape":"ListOfSyntaxTokens"}
+      },
+      "sensitive":true
+    },
+    "DetectTargetedSentimentRequest":{
+      "type":"structure",
+      "required":[
+        "Text",
+        "LanguageCode"
+      ],
+      "members":{
+        "Text":{"shape":"CustomerInputString"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "DetectTargetedSentimentResponse":{
+      "type":"structure",
+      "members":{
+        "Entities":{"shape":"ListOfTargetedSentimentEntities"}
       },
       "sensitive":true
     },
@@ -2659,6 +2738,10 @@
       "type":"list",
       "member":{"shape":"DocumentClass"}
     },
+    "ListOfDescriptiveMentionIndices":{
+      "type":"list",
+      "member":{"shape":"Integer"}
+    },
     "ListOfDetectDominantLanguageResult":{
       "type":"list",
       "member":{"shape":"BatchDetectDominantLanguageItemResult"}
@@ -2678,6 +2761,10 @@
     "ListOfDetectSyntaxResult":{
       "type":"list",
       "member":{"shape":"BatchDetectSyntaxItemResult"}
+    },
+    "ListOfDetectTargetedSentimentResult":{
+      "type":"list",
+      "member":{"shape":"BatchDetectTargetedSentimentItemResult"}
     },
     "ListOfDocumentReadFeatureTypes":{
       "type":"list",
@@ -2705,6 +2792,10 @@
       "type":"list",
       "member":{"shape":"DocumentLabel"}
     },
+    "ListOfMentions":{
+      "type":"list",
+      "member":{"shape":"TargetedSentimentMention"}
+    },
     "ListOfPiiEntities":{
       "type":"list",
       "member":{"shape":"PiiEntity"}
@@ -2716,6 +2807,10 @@
     "ListOfSyntaxTokens":{
       "type":"list",
       "member":{"shape":"SyntaxToken"}
+    },
+    "ListOfTargetedSentimentEntities":{
+      "type":"list",
+      "member":{"shape":"TargetedSentimentEntity"}
     },
     "ListPiiEntitiesDetectionJobsRequest":{
       "type":"structure",
@@ -2801,6 +2896,13 @@
       "type":"integer",
       "max":500,
       "min":1
+    },
+    "MentionSentiment":{
+      "type":"structure",
+      "members":{
+        "Sentiment":{"shape":"SentimentType"},
+        "SentimentScore":{"shape":"SentimentScore"}
+      }
     },
     "ModelStatus":{
       "type":"string",
@@ -3613,6 +3715,47 @@
     "TargetedSentimentDetectionJobPropertiesList":{
       "type":"list",
       "member":{"shape":"TargetedSentimentDetectionJobProperties"}
+    },
+    "TargetedSentimentEntity":{
+      "type":"structure",
+      "members":{
+        "DescriptiveMentionIndex":{"shape":"ListOfDescriptiveMentionIndices"},
+        "Mentions":{"shape":"ListOfMentions"}
+      }
+    },
+    "TargetedSentimentEntityType":{
+      "type":"string",
+      "enum":[
+        "PERSON",
+        "LOCATION",
+        "ORGANIZATION",
+        "FACILITY",
+        "BRAND",
+        "COMMERCIAL_ITEM",
+        "MOVIE",
+        "MUSIC",
+        "BOOK",
+        "SOFTWARE",
+        "GAME",
+        "PERSONAL_TITLE",
+        "EVENT",
+        "DATE",
+        "QUANTITY",
+        "ATTRIBUTE",
+        "OTHER"
+      ]
+    },
+    "TargetedSentimentMention":{
+      "type":"structure",
+      "members":{
+        "Score":{"shape":"Float"},
+        "GroupScore":{"shape":"Float"},
+        "Text":{"shape":"String"},
+        "Type":{"shape":"TargetedSentimentEntityType"},
+        "MentionSentiment":{"shape":"MentionSentiment"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"}
+      }
     },
     "TextSizeLimitExceededException":{
       "type":"structure",

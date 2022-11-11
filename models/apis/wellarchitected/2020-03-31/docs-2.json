@@ -3,13 +3,13 @@
   "service": "<fullname>Well-Architected Tool</fullname> <p>This is the <i>Well-Architected Tool API Reference</i>. The WA Tool API provides programmatic access to the <a href=\"http://aws.amazon.com/well-architected-tool\">Well-Architected Tool</a> in the <a href=\"https://console.aws.amazon.com/wellarchitected\">Amazon Web Services Management Console</a>. For information about the Well-Architected Tool, see the <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/intro.html\">Well-Architected Tool User Guide</a>.</p>",
   "operations": {
     "AssociateLenses": "<p>Associate a lens to a workload.</p> <p>Up to 10 lenses can be associated with a workload in a single API operation. A maximum of 20 lenses can be associated with a workload.</p> <note> <p> <b>Disclaimer</b> </p> <p>By accessing and/or applying custom lenses created by another Amazon Web Services user or account, you acknowledge that custom lenses created by other users and shared with you are Third Party Content as defined in the Amazon Web Services Customer Agreement. </p> </note>",
-    "CreateLensShare": "<p>Create a lens share.</p> <p>The owner of a lens can share it with other Amazon Web Services accounts and IAM users in the same Amazon Web Services Region. Shared access to a lens is not removed until the lens invitation is deleted.</p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your custom lenses with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your custom lenses available to those other accounts. Those other accounts may continue to access and use your shared custom lenses even if you delete the custom lenses from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
+    "CreateLensShare": "<p>Create a lens share.</p> <p>The owner of a lens can share it with other Amazon Web Services accounts, IAM users, an organization, and organizational units (OUs) in the same Amazon Web Services Region. Shared access to a lens is not removed until the lens invitation is deleted.</p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your custom lenses with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your custom lenses available to those other accounts. Those other accounts may continue to access and use your shared custom lenses even if you delete the custom lenses from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
     "CreateLensVersion": "<p>Create a new lens version.</p> <p>A lens can have up to 100 versions.</p> <p>After a lens has been imported, create a new lens version to publish it. The owner of a lens can share the lens with other Amazon Web Services accounts and IAM users in the same Amazon Web Services Region. Only the owner of a lens can delete it. </p>",
     "CreateMilestone": "<p>Create a milestone for an existing workload.</p>",
-    "CreateWorkload": "<p>Create a new workload.</p> <p>The owner of a workload can share the workload with other Amazon Web Services accounts and IAM users in the same Amazon Web Services Region. Only the owner of a workload can delete it.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/define-workload.html\">Defining a Workload</a> in the <i>Well-Architected Tool User Guide</i>.</p>",
+    "CreateWorkload": "<p>Create a new workload.</p> <p>The owner of a workload can share the workload with other Amazon Web Services accounts, IAM users, an organization, and organizational units (OUs) in the same Amazon Web Services Region. Only the owner of a workload can delete it.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/define-workload.html\">Defining a Workload</a> in the <i>Well-Architected Tool User Guide</i>.</p>",
     "CreateWorkloadShare": "<p>Create a workload share.</p> <p>The owner of a workload can share it with other Amazon Web Services accounts and IAM users in the same Amazon Web Services Region. Shared access to a workload is not removed until the workload invitation is deleted.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/workloads-sharing.html\">Sharing a Workload</a> in the <i>Well-Architected Tool User Guide</i>.</p>",
     "DeleteLens": "<p>Delete an existing lens.</p> <p>Only the owner of a lens can delete it. After the lens is deleted, Amazon Web Services accounts and IAM users that you shared the lens with can continue to use it, but they will no longer be able to apply it to new workloads. </p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your custom lenses with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your custom lenses available to those other accounts. Those other accounts may continue to access and use your shared custom lenses even if you delete the custom lenses from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
-    "DeleteLensShare": "<p>Delete a lens share.</p> <p>After the lens share is deleted, Amazon Web Services accounts and IAM users that you shared the lens with can continue to use it, but they will no longer be able to apply it to new workloads.</p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your custom lenses with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your custom lenses available to those other accounts. Those other accounts may continue to access and use your shared custom lenses even if you delete the custom lenses from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
+    "DeleteLensShare": "<p>Delete a lens share.</p> <p>After the lens share is deleted, Amazon Web Services accounts, IAM users, organizations, and organizational units (OUs) that you shared the lens with can continue to use it, but they will no longer be able to apply it to new workloads.</p> <note> <p> <b>Disclaimer</b> </p> <p>By sharing your custom lenses with other Amazon Web Services accounts, you acknowledge that Amazon Web Services will make your custom lenses available to those other accounts. Those other accounts may continue to access and use your shared custom lenses even if you delete the custom lenses from your own Amazon Web Services account or terminate your Amazon Web Services account.</p> </note>",
     "DeleteWorkload": "<p>Delete an existing workload.</p>",
     "DeleteWorkloadShare": "<p>Delete a workload share.</p>",
     "DisassociateLenses": "<p>Disassociate a lens from a workload.</p> <p>Up to 10 lenses can be disassociated from a workload in a single API operation.</p> <note> <p>The Amazon Web Services Well-Architected Framework lens (<code>wellarchitected</code>) cannot be removed from a workload.</p> </note>",
@@ -23,6 +23,8 @@
     "GetWorkload": "<p>Get an existing workload.</p>",
     "ImportLens": "<p>Import a new lens.</p> <p>The lens cannot be applied to workloads or shared with other Amazon Web Services accounts until it's published with <a>CreateLensVersion</a> </p> <p>Lenses are defined in JSON. For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/lenses-format-specification.html\">JSON format specification</a> in the <i>Well-Architected Tool User Guide</i>.</p> <p>A custom lens cannot exceed 500 KB in size.</p> <note> <p> <b>Disclaimer</b> </p> <p>Do not include or gather personal identifiable information (PII) of end users or other identifiable individuals in or via your custom lenses. If your custom lens or those shared with you and used in your account do include or collect PII you are responsible for: ensuring that the included PII is processed in accordance with applicable law, providing adequate privacy notices, and obtaining necessary consents for processing such data.</p> </note>",
     "ListAnswers": "<p>List of answers.</p>",
+    "ListCheckDetails": "<p>List of Trusted Advisor check details by account related to the workload.</p>",
+    "ListCheckSummaries": "<p>List of Trusted Advisor checks summarized for all accounts related to the workload.</p>",
     "ListLensReviewImprovements": "<p>List lens review improvements.</p>",
     "ListLensReviews": "<p>List lens reviews.</p>",
     "ListLensShares": "<p>List the lens shares associated with the lens.</p>",
@@ -38,7 +40,7 @@
     "UpdateAnswer": "<p>Update the answer to a specific question in a workload review.</p>",
     "UpdateGlobalSettings": "<p>Updates whether the Amazon Web Services account is opted into organization sharing features.</p>",
     "UpdateLensReview": "<p>Update lens review.</p>",
-    "UpdateShareInvitation": "<p>Update a workload invitation.</p>",
+    "UpdateShareInvitation": "<p>Update a workload or custom lens share invitation.</p> <note> <p>This API operation can be called independently of any resource. Previous documentation implied that a workload ARN must be specified.</p> </note>",
     "UpdateWorkload": "<p>Update an existing workload.</p>",
     "UpdateWorkloadShare": "<p>Update a workload share.</p>",
     "UpgradeLensReview": "<p>Upgrade lens review.</p>"
@@ -47,6 +49,12 @@
     "AccessDeniedException": {
       "base": "<p>User does not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "AccountSummary": {
+      "base": "<p>Account summary for a Well-Architected best practice in relation to Trusted Advisor checks.</p>",
+      "refs": {
+        "CheckSummary$AccountSummary": "<p>Account summary associated to the check.</p>"
       }
     },
     "AdditionalResourceType": {
@@ -94,6 +102,12 @@
         "AnswerSummaries$member": null
       }
     },
+    "ApplicationArn": {
+      "base": null,
+      "refs": {
+        "WorkloadApplications$member": null
+      }
+    },
     "AssociateLensesInput": {
       "base": "<p>Input to associate lens reviews.</p>",
       "refs": {
@@ -102,6 +116,7 @@
     "AwsAccountId": {
       "base": "<p>An Amazon Web Services account ID.</p>",
       "refs": {
+        "CheckDetail$AccountId": null,
         "LensSummary$Owner": null,
         "ShareInvitationSummary$SharedBy": null,
         "Workload$Owner": null,
@@ -120,6 +135,78 @@
       "base": "<p>The Base64-encoded string representation of a lens review report.</p> <p>This data can be used to create a PDF file.</p>",
       "refs": {
         "LensReviewReport$Base64String": null
+      }
+    },
+    "CheckDescription": {
+      "base": null,
+      "refs": {
+        "CheckDetail$Description": "<p>Trusted Advisor check description.</p>",
+        "CheckSummary$Description": "<p>Trusted Advisor check description.</p>"
+      }
+    },
+    "CheckDetail": {
+      "base": "<p>Account details for a Well-Architected best practice in relation to Trusted Advisor checks.</p>",
+      "refs": {
+        "CheckDetails$member": null
+      }
+    },
+    "CheckDetails": {
+      "base": null,
+      "refs": {
+        "ListCheckDetailsOutput$CheckDetails": "<p>The details about the Trusted Advisor checks related to the Well-Architected best practice.</p>"
+      }
+    },
+    "CheckFailureReason": {
+      "base": null,
+      "refs": {
+        "CheckDetail$Reason": "<p>Reason associated to the check.</p>"
+      }
+    },
+    "CheckId": {
+      "base": null,
+      "refs": {
+        "CheckDetail$Id": "<p>Trusted Advisor check ID.</p>",
+        "CheckSummary$Id": "<p>Trusted Advisor check ID.</p>"
+      }
+    },
+    "CheckName": {
+      "base": null,
+      "refs": {
+        "CheckDetail$Name": "<p>Trusted Advisor check name.</p>",
+        "CheckSummary$Name": "<p>Trusted Advisor check name.</p>"
+      }
+    },
+    "CheckProvider": {
+      "base": null,
+      "refs": {
+        "CheckDetail$Provider": "<p>Provider of the check related to the best practice.</p>",
+        "CheckSummary$Provider": "<p>Provider of the check related to the best practice.</p>"
+      }
+    },
+    "CheckStatus": {
+      "base": null,
+      "refs": {
+        "AccountSummary$key": null,
+        "CheckDetail$Status": "<p>Status associated to the check.</p>",
+        "CheckSummary$Status": "<p>Status associated to the check.</p>"
+      }
+    },
+    "CheckStatusCount": {
+      "base": null,
+      "refs": {
+        "AccountSummary$value": null
+      }
+    },
+    "CheckSummaries": {
+      "base": null,
+      "refs": {
+        "ListCheckSummariesOutput$CheckSummaries": "<p>List of Trusted Advisor summaries related to the Well-Architected best practice.</p>"
+      }
+    },
+    "CheckSummary": {
+      "base": "<p>Trusted Advisor check summary.</p>",
+      "refs": {
+        "CheckSummaries$member": null
       }
     },
     "Choice": {
@@ -181,11 +268,15 @@
     "ChoiceId": {
       "base": "<p>The ID of a choice.</p>",
       "refs": {
+        "CheckDetail$ChoiceId": null,
+        "CheckSummary$ChoiceId": null,
         "Choice$ChoiceId": null,
         "ChoiceAnswer$ChoiceId": null,
         "ChoiceAnswerSummary$ChoiceId": null,
         "ChoiceImprovementPlan$ChoiceId": null,
         "ChoiceUpdates$key": null,
+        "ListCheckDetailsInput$ChoiceId": null,
+        "ListCheckSummariesInput$ChoiceId": null,
         "SelectedChoices$member": null
       }
     },
@@ -404,6 +495,12 @@
       "refs": {
       }
     },
+    "FlaggedResources": {
+      "base": null,
+      "refs": {
+        "CheckDetail$FlaggedResources": "<p>Count of flagged resources associated to the check.</p>"
+      }
+    },
     "GetAnswerInput": {
       "base": "<p>Input to get answer.</p>",
       "refs": {
@@ -593,6 +690,8 @@
     "LensArn": {
       "base": null,
       "refs": {
+        "CheckDetail$LensArn": "<p>Well-Architected Lens ARN associated to the check.</p>",
+        "CheckSummary$LensArn": "<p>Well-Architected Lens ARN associated to the check.</p>",
         "CreateLensVersionOutput$LensArn": "<p>The ARN for the lens.</p>",
         "GetAnswerOutput$LensArn": "<p>The ARN for the lens.</p>",
         "GetLensVersionDifferenceOutput$LensArn": "<p>The ARN for the lens.</p>",
@@ -604,6 +703,8 @@
         "LensSummary$LensArn": "<p>The ARN of the lens.</p>",
         "LensUpgradeSummary$LensArn": "<p>The ARN for the lens.</p>",
         "ListAnswersOutput$LensArn": "<p>The ARN for the lens.</p>",
+        "ListCheckDetailsInput$LensArn": "<p>Well-Architected Lens ARN.</p>",
+        "ListCheckSummariesInput$LensArn": "<p>Well-Architected Lens ARN.</p>",
         "ListLensReviewImprovementsOutput$LensArn": "<p>The ARN for the lens.</p>",
         "ShareInvitation$LensArn": "<p>The ARN for the lens.</p>",
         "ShareInvitationSummary$LensArn": "<p>The ARN for the lens.</p>",
@@ -760,6 +861,26 @@
       "refs": {
       }
     },
+    "ListCheckDetailsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCheckDetailsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCheckSummariesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCheckSummariesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListLensReviewImprovementsInput": {
       "base": "<p>Input to list lens review improvements.</p>",
       "refs": {
@@ -894,6 +1015,8 @@
     "MaxResults": {
       "base": "<p>The maximum number of results to return for this request.</p>",
       "refs": {
+        "ListCheckDetailsInput$MaxResults": null,
+        "ListCheckSummariesInput$MaxResults": null,
         "ListLensReviewsInput$MaxResults": null,
         "ListLensesInput$MaxResults": null,
         "ListMilestonesInput$MaxResults": null
@@ -953,6 +1076,10 @@
         "LensReview$NextToken": null,
         "ListAnswersInput$NextToken": null,
         "ListAnswersOutput$NextToken": null,
+        "ListCheckDetailsInput$NextToken": null,
+        "ListCheckDetailsOutput$NextToken": null,
+        "ListCheckSummariesInput$NextToken": null,
+        "ListCheckSummariesOutput$NextToken": null,
         "ListLensReviewImprovementsInput$NextToken": null,
         "ListLensReviewImprovementsOutput$NextToken": null,
         "ListLensReviewsInput$NextToken": null,
@@ -1038,8 +1165,12 @@
       "refs": {
         "Answer$PillarId": null,
         "AnswerSummary$PillarId": null,
+        "CheckDetail$PillarId": null,
+        "CheckSummary$PillarId": null,
         "ImprovementSummary$PillarId": null,
         "ListAnswersInput$PillarId": null,
+        "ListCheckDetailsInput$PillarId": null,
+        "ListCheckSummariesInput$PillarId": null,
         "ListLensReviewImprovementsInput$PillarId": null,
         "PillarDifference$PillarId": null,
         "PillarNotes$key": null,
@@ -1095,8 +1226,12 @@
       "refs": {
         "Answer$QuestionId": null,
         "AnswerSummary$QuestionId": null,
+        "CheckDetail$QuestionId": null,
+        "CheckSummary$QuestionId": null,
         "GetAnswerInput$QuestionId": null,
         "ImprovementSummary$QuestionId": null,
+        "ListCheckDetailsInput$QuestionId": null,
+        "ListCheckSummariesInput$QuestionId": null,
         "QuestionDifference$QuestionId": null,
         "UpdateAnswerInput$QuestionId": null
       }
@@ -1177,7 +1312,7 @@
     "ShareInvitation": {
       "base": "<p>The share invitation.</p>",
       "refs": {
-        "UpdateShareInvitationOutput$ShareInvitation": "<p>The updated workload share invitation.</p>"
+        "UpdateShareInvitationOutput$ShareInvitation": "<p>The updated workload or custom lens share invitation.</p>"
       }
     },
     "ShareInvitationAction": {
@@ -1227,7 +1362,7 @@
       }
     },
     "SharedWith": {
-      "base": "<p>The Amazon Web Services account ID or IAM role with which the workload is shared.</p>",
+      "base": "<p>The Amazon Web Services account ID, IAM role, organization ID, or organizational unit (OU) ID with which the workload is shared.</p>",
       "refs": {
         "CreateLensShareInput$SharedWith": null,
         "CreateWorkloadShareInput$SharedWith": null,
@@ -1240,8 +1375,8 @@
     "SharedWithPrefix": {
       "base": null,
       "refs": {
-        "ListLensSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID or IAM role with which the lens is shared.</p>",
-        "ListWorkloadSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID or IAM role with which the workload is shared.</p>"
+        "ListLensSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, IAM role, organization ID, or organizational unit (OU) ID with which the lens is shared.</p>",
+        "ListWorkloadSharesInput$SharedWithPrefix": "<p>The Amazon Web Services account ID, IAM role, organization ID, or organizational unit (OU) ID with which the workload is shared.</p>"
       }
     },
     "StatusMessage": {
@@ -1299,6 +1434,8 @@
     "Timestamp": {
       "base": "<p>The date and time recorded.</p>",
       "refs": {
+        "CheckDetail$UpdatedAt": null,
+        "CheckSummary$UpdatedAt": null,
         "LensReview$UpdatedAt": null,
         "LensReviewSummary$UpdatedAt": null,
         "LensSummary$CreatedAt": null,
@@ -1308,6 +1445,12 @@
         "Workload$UpdatedAt": null,
         "Workload$ReviewRestrictionDate": null,
         "WorkloadSummary$UpdatedAt": null
+      }
+    },
+    "TrustedAdvisorIntegrationStatus": {
+      "base": null,
+      "refs": {
+        "WorkloadDiscoveryConfig$TrustedAdvisorIntegrationStatus": "<p>Discovery integration status in respect to Trusted Advisor for the workload.</p>"
       }
     },
     "UntagResourceInput": {
@@ -1437,6 +1580,14 @@
         "Workload$AccountIds": null
       }
     },
+    "WorkloadApplications": {
+      "base": null,
+      "refs": {
+        "CreateWorkloadInput$Applications": "<p>List of AppRegistry application ARNs associated to the workload.</p>",
+        "UpdateWorkloadInput$Applications": "<p>List of AppRegistry application ARNs to associate to the workload.</p>",
+        "Workload$Applications": "<p>List of AppRegistry application ARNs associated to the workload.</p>"
+      }
+    },
     "WorkloadArchitecturalDesign": {
       "base": "<p>The URL of the architectural design for the workload.</p>",
       "refs": {
@@ -1472,6 +1623,14 @@
         "Workload$Description": null
       }
     },
+    "WorkloadDiscoveryConfig": {
+      "base": "<p>Discovery configuration associated to the workload.</p>",
+      "refs": {
+        "CreateWorkloadInput$DiscoveryConfig": "<p>Well-Architected discovery configuration settings associated to the workload.</p>",
+        "UpdateWorkloadInput$DiscoveryConfig": "<p>Well-Architected discovery configuration settings to associate to the workload.</p>",
+        "Workload$DiscoveryConfig": "<p>Discovery configuration associated to the workload.</p>"
+      }
+    },
     "WorkloadEnvironment": {
       "base": "<p>The environment for the workload.</p>",
       "refs": {
@@ -1504,6 +1663,8 @@
         "LensUpgradeSummary$WorkloadId": null,
         "ListAnswersInput$WorkloadId": null,
         "ListAnswersOutput$WorkloadId": null,
+        "ListCheckDetailsInput$WorkloadId": null,
+        "ListCheckSummariesInput$WorkloadId": null,
         "ListLensReviewImprovementsInput$WorkloadId": null,
         "ListLensReviewImprovementsOutput$WorkloadId": null,
         "ListLensReviewsInput$WorkloadId": null,

@@ -13,6 +13,288 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opBatchCreateCustomVocabularyItem = "BatchCreateCustomVocabularyItem"
+
+// BatchCreateCustomVocabularyItemRequest generates a "aws/request.Request" representing the
+// client's request for the BatchCreateCustomVocabularyItem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchCreateCustomVocabularyItem for more information on using the BatchCreateCustomVocabularyItem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchCreateCustomVocabularyItemRequest method.
+//	req, resp := client.BatchCreateCustomVocabularyItemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/BatchCreateCustomVocabularyItem
+func (c *LexModelsV2) BatchCreateCustomVocabularyItemRequest(input *BatchCreateCustomVocabularyItemInput) (req *request.Request, output *BatchCreateCustomVocabularyItemOutput) {
+	op := &request.Operation{
+		Name:       opBatchCreateCustomVocabularyItem,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchcreate",
+	}
+
+	if input == nil {
+		input = &BatchCreateCustomVocabularyItemInput{}
+	}
+
+	output = &BatchCreateCustomVocabularyItemOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchCreateCustomVocabularyItem API operation for Amazon Lex Model Building V2.
+//
+// Batch create custom vocabulary item for the specified locale in the specified
+// bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation BatchCreateCustomVocabularyItem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/BatchCreateCustomVocabularyItem
+func (c *LexModelsV2) BatchCreateCustomVocabularyItem(input *BatchCreateCustomVocabularyItemInput) (*BatchCreateCustomVocabularyItemOutput, error) {
+	req, out := c.BatchCreateCustomVocabularyItemRequest(input)
+	return out, req.Send()
+}
+
+// BatchCreateCustomVocabularyItemWithContext is the same as BatchCreateCustomVocabularyItem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchCreateCustomVocabularyItem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) BatchCreateCustomVocabularyItemWithContext(ctx aws.Context, input *BatchCreateCustomVocabularyItemInput, opts ...request.Option) (*BatchCreateCustomVocabularyItemOutput, error) {
+	req, out := c.BatchCreateCustomVocabularyItemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchDeleteCustomVocabularyItem = "BatchDeleteCustomVocabularyItem"
+
+// BatchDeleteCustomVocabularyItemRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDeleteCustomVocabularyItem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDeleteCustomVocabularyItem for more information on using the BatchDeleteCustomVocabularyItem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDeleteCustomVocabularyItemRequest method.
+//	req, resp := client.BatchDeleteCustomVocabularyItemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/BatchDeleteCustomVocabularyItem
+func (c *LexModelsV2) BatchDeleteCustomVocabularyItemRequest(input *BatchDeleteCustomVocabularyItemInput) (req *request.Request, output *BatchDeleteCustomVocabularyItemOutput) {
+	op := &request.Operation{
+		Name:       opBatchDeleteCustomVocabularyItem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchdelete",
+	}
+
+	if input == nil {
+		input = &BatchDeleteCustomVocabularyItemInput{}
+	}
+
+	output = &BatchDeleteCustomVocabularyItemOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDeleteCustomVocabularyItem API operation for Amazon Lex Model Building V2.
+//
+// Batch delete custom vocabulary item for the specified locale in the specified
+// bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation BatchDeleteCustomVocabularyItem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/BatchDeleteCustomVocabularyItem
+func (c *LexModelsV2) BatchDeleteCustomVocabularyItem(input *BatchDeleteCustomVocabularyItemInput) (*BatchDeleteCustomVocabularyItemOutput, error) {
+	req, out := c.BatchDeleteCustomVocabularyItemRequest(input)
+	return out, req.Send()
+}
+
+// BatchDeleteCustomVocabularyItemWithContext is the same as BatchDeleteCustomVocabularyItem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteCustomVocabularyItem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) BatchDeleteCustomVocabularyItemWithContext(ctx aws.Context, input *BatchDeleteCustomVocabularyItemInput, opts ...request.Option) (*BatchDeleteCustomVocabularyItemOutput, error) {
+	req, out := c.BatchDeleteCustomVocabularyItemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchUpdateCustomVocabularyItem = "BatchUpdateCustomVocabularyItem"
+
+// BatchUpdateCustomVocabularyItemRequest generates a "aws/request.Request" representing the
+// client's request for the BatchUpdateCustomVocabularyItem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchUpdateCustomVocabularyItem for more information on using the BatchUpdateCustomVocabularyItem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchUpdateCustomVocabularyItemRequest method.
+//	req, resp := client.BatchUpdateCustomVocabularyItemRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/BatchUpdateCustomVocabularyItem
+func (c *LexModelsV2) BatchUpdateCustomVocabularyItemRequest(input *BatchUpdateCustomVocabularyItemInput) (req *request.Request, output *BatchUpdateCustomVocabularyItemOutput) {
+	op := &request.Operation{
+		Name:       opBatchUpdateCustomVocabularyItem,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/batchupdate",
+	}
+
+	if input == nil {
+		input = &BatchUpdateCustomVocabularyItemInput{}
+	}
+
+	output = &BatchUpdateCustomVocabularyItemOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchUpdateCustomVocabularyItem API operation for Amazon Lex Model Building V2.
+//
+// Batch update custom vocabulary item for the specified locale in the specified
+// bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation BatchUpdateCustomVocabularyItem for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/BatchUpdateCustomVocabularyItem
+func (c *LexModelsV2) BatchUpdateCustomVocabularyItem(input *BatchUpdateCustomVocabularyItemInput) (*BatchUpdateCustomVocabularyItemOutput, error) {
+	req, out := c.BatchUpdateCustomVocabularyItemRequest(input)
+	return out, req.Send()
+}
+
+// BatchUpdateCustomVocabularyItemWithContext is the same as BatchUpdateCustomVocabularyItem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchUpdateCustomVocabularyItem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) BatchUpdateCustomVocabularyItemWithContext(ctx aws.Context, input *BatchUpdateCustomVocabularyItemInput, opts ...request.Option) (*BatchUpdateCustomVocabularyItemOutput, error) {
+	req, out := c.BatchUpdateCustomVocabularyItemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBuildBotLocale = "BuildBotLocale"
 
 // BuildBotLocaleRequest generates a "aws/request.Request" representing the
@@ -4833,6 +5115,156 @@ func (c *LexModelsV2) ListBuiltInSlotTypesPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opListCustomVocabularyItems = "ListCustomVocabularyItems"
+
+// ListCustomVocabularyItemsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomVocabularyItems operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomVocabularyItems for more information on using the ListCustomVocabularyItems
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCustomVocabularyItemsRequest method.
+//	req, resp := client.ListCustomVocabularyItemsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListCustomVocabularyItems
+func (c *LexModelsV2) ListCustomVocabularyItemsRequest(input *ListCustomVocabularyItemsInput) (req *request.Request, output *ListCustomVocabularyItemsOutput) {
+	op := &request.Operation{
+		Name:       opListCustomVocabularyItems,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/customvocabulary/DEFAULT/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomVocabularyItemsInput{}
+	}
+
+	output = &ListCustomVocabularyItemsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomVocabularyItems API operation for Amazon Lex Model Building V2.
+//
+// List custom vocabulary items for the specified locale in the specified bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListCustomVocabularyItems for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Your request rate is too high. Reduce the frequency of requests.
+//
+//   - ServiceQuotaExceededException
+//     You have reached a quota for your bot.
+//
+//   - ValidationException
+//     One of the input parameters in your request isn't valid. Check the parameters
+//     and try your request again.
+//
+//   - ResourceNotFoundException
+//     You asked to describe a resource that doesn't exist. Check the resource that
+//     you are requesting and try again.
+//
+//   - InternalServerException
+//     The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListCustomVocabularyItems
+func (c *LexModelsV2) ListCustomVocabularyItems(input *ListCustomVocabularyItemsInput) (*ListCustomVocabularyItemsOutput, error) {
+	req, out := c.ListCustomVocabularyItemsRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomVocabularyItemsWithContext is the same as ListCustomVocabularyItems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomVocabularyItems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListCustomVocabularyItemsWithContext(ctx aws.Context, input *ListCustomVocabularyItemsInput, opts ...request.Option) (*ListCustomVocabularyItemsOutput, error) {
+	req, out := c.ListCustomVocabularyItemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomVocabularyItemsPages iterates over the pages of a ListCustomVocabularyItems operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomVocabularyItems method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCustomVocabularyItems operation.
+//	pageNum := 0
+//	err := client.ListCustomVocabularyItemsPages(params,
+//	    func(page *lexmodelsv2.ListCustomVocabularyItemsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *LexModelsV2) ListCustomVocabularyItemsPages(input *ListCustomVocabularyItemsInput, fn func(*ListCustomVocabularyItemsOutput, bool) bool) error {
+	return c.ListCustomVocabularyItemsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomVocabularyItemsPagesWithContext same as ListCustomVocabularyItemsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListCustomVocabularyItemsPagesWithContext(ctx aws.Context, input *ListCustomVocabularyItemsInput, fn func(*ListCustomVocabularyItemsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomVocabularyItemsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomVocabularyItemsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomVocabularyItemsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListExports = "ListExports"
 
 // ListExportsRequest generates a "aws/request.Request" representing the
@@ -5317,7 +5749,7 @@ func (c *LexModelsV2) ListRecommendedIntentsRequest(input *ListRecommendedIntent
 // ListRecommendedIntents API operation for Amazon Lex Model Building V2.
 //
 // Gets a list of recommended intents provided by the bot recommendation that
-// you can use in your bot.
+// you can use in your bot. Intents in the response are ordered by relevance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7552,6 +7984,67 @@ func (s *AggregatedUtterancesSummary) SetUtteranceLastRecordedInAggregationDurat
 	return s
 }
 
+// Specifies the allowed input types.
+type AllowedInputTypes struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether audio input is allowed.
+	//
+	// AllowAudioInput is a required field
+	AllowAudioInput *bool `locationName:"allowAudioInput" type:"boolean" required:"true"`
+
+	// Indicates whether DTMF input is allowed.
+	//
+	// AllowDTMFInput is a required field
+	AllowDTMFInput *bool `locationName:"allowDTMFInput" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowedInputTypes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowedInputTypes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllowedInputTypes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllowedInputTypes"}
+	if s.AllowAudioInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllowAudioInput"))
+	}
+	if s.AllowDTMFInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllowDTMFInput"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowAudioInput sets the AllowAudioInput field's value.
+func (s *AllowedInputTypes) SetAllowAudioInput(v bool) *AllowedInputTypes {
+	s.AllowAudioInput = &v
+	return s
+}
+
+// SetAllowDTMFInput sets the AllowDTMFInput field's value.
+func (s *AllowedInputTypes) SetAllowDTMFInput(v bool) *AllowedInputTypes {
+	s.AllowDTMFInput = &v
+	return s
+}
+
 // The object containing information that associates the recommended intent/slot
 // type with a conversation.
 type AssociatedTranscript struct {
@@ -7648,6 +8141,85 @@ func (s *AssociatedTranscriptFilter) SetName(v string) *AssociatedTranscriptFilt
 // SetValues sets the Values field's value.
 func (s *AssociatedTranscriptFilter) SetValues(v []*string) *AssociatedTranscriptFilter {
 	s.Values = v
+	return s
+}
+
+// Specifies the audio and DTMF input specification.
+type AudioAndDTMFInputSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the settings on audio input.
+	AudioSpecification *AudioSpecification `locationName:"audioSpecification" type:"structure"`
+
+	// Specifies the settings on DTMF input.
+	DtmfSpecification *DTMFSpecification `locationName:"dtmfSpecification" type:"structure"`
+
+	// Time for which a bot waits before assuming that the customer isn't going
+	// to speak or press a key. This timeout is shared between Audio and DTMF inputs.
+	//
+	// StartTimeoutMs is a required field
+	StartTimeoutMs *int64 `locationName:"startTimeoutMs" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioAndDTMFInputSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioAndDTMFInputSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioAndDTMFInputSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioAndDTMFInputSpecification"}
+	if s.StartTimeoutMs == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeoutMs"))
+	}
+	if s.StartTimeoutMs != nil && *s.StartTimeoutMs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("StartTimeoutMs", 1))
+	}
+	if s.AudioSpecification != nil {
+		if err := s.AudioSpecification.Validate(); err != nil {
+			invalidParams.AddNested("AudioSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DtmfSpecification != nil {
+		if err := s.DtmfSpecification.Validate(); err != nil {
+			invalidParams.AddNested("DtmfSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudioSpecification sets the AudioSpecification field's value.
+func (s *AudioAndDTMFInputSpecification) SetAudioSpecification(v *AudioSpecification) *AudioAndDTMFInputSpecification {
+	s.AudioSpecification = v
+	return s
+}
+
+// SetDtmfSpecification sets the DtmfSpecification field's value.
+func (s *AudioAndDTMFInputSpecification) SetDtmfSpecification(v *DTMFSpecification) *AudioAndDTMFInputSpecification {
+	s.DtmfSpecification = v
+	return s
+}
+
+// SetStartTimeoutMs sets the StartTimeoutMs field's value.
+func (s *AudioAndDTMFInputSpecification) SetStartTimeoutMs(v int64) *AudioAndDTMFInputSpecification {
+	s.StartTimeoutMs = &v
 	return s
 }
 
@@ -7772,6 +8344,632 @@ func (s *AudioLogSetting) SetDestination(v *AudioLogDestination) *AudioLogSettin
 // SetEnabled sets the Enabled field's value.
 func (s *AudioLogSetting) SetEnabled(v bool) *AudioLogSetting {
 	s.Enabled = &v
+	return s
+}
+
+// Specifies the audio input specifications.
+type AudioSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Time for which a bot waits after the customer stops speaking to assume the
+	// utterance is finished.
+	//
+	// EndTimeoutMs is a required field
+	EndTimeoutMs *int64 `locationName:"endTimeoutMs" min:"1" type:"integer" required:"true"`
+
+	// Time for how long Amazon Lex waits before speech input is truncated and the
+	// speech is returned to application.
+	//
+	// MaxLengthMs is a required field
+	MaxLengthMs *int64 `locationName:"maxLengthMs" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioSpecification"}
+	if s.EndTimeoutMs == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTimeoutMs"))
+	}
+	if s.EndTimeoutMs != nil && *s.EndTimeoutMs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EndTimeoutMs", 1))
+	}
+	if s.MaxLengthMs == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxLengthMs"))
+	}
+	if s.MaxLengthMs != nil && *s.MaxLengthMs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxLengthMs", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTimeoutMs sets the EndTimeoutMs field's value.
+func (s *AudioSpecification) SetEndTimeoutMs(v int64) *AudioSpecification {
+	s.EndTimeoutMs = &v
+	return s
+}
+
+// SetMaxLengthMs sets the MaxLengthMs field's value.
+func (s *AudioSpecification) SetMaxLengthMs(v int64) *AudioSpecification {
+	s.MaxLengthMs = &v
+	return s
+}
+
+type BatchCreateCustomVocabularyItemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to batch create the custom vocabulary item
+	// for.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The bot version of the bot to batch create the custom vocabulary item for.
+	//
+	// BotVersion is a required field
+	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
+
+	// The custom vocabulary item list of the bot to batch create the custom vocabulary
+	// item for.
+	//
+	// CustomVocabularyItemList is a required field
+	CustomVocabularyItemList []*NewCustomVocabularyItem `locationName:"customVocabularyItemList" min:"1" type:"list" required:"true"`
+
+	// The unique locale identifier of the bot to batch create the custom vocabulary
+	// item for.
+	//
+	// LocaleId is a required field
+	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateCustomVocabularyItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateCustomVocabularyItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchCreateCustomVocabularyItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchCreateCustomVocabularyItemInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+	if s.CustomVocabularyItemList == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomVocabularyItemList"))
+	}
+	if s.CustomVocabularyItemList != nil && len(s.CustomVocabularyItemList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomVocabularyItemList", 1))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.LocaleId != nil && len(*s.LocaleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocaleId", 1))
+	}
+	if s.CustomVocabularyItemList != nil {
+		for i, v := range s.CustomVocabularyItemList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomVocabularyItemList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BatchCreateCustomVocabularyItemInput) SetBotId(v string) *BatchCreateCustomVocabularyItemInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BatchCreateCustomVocabularyItemInput) SetBotVersion(v string) *BatchCreateCustomVocabularyItemInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetCustomVocabularyItemList sets the CustomVocabularyItemList field's value.
+func (s *BatchCreateCustomVocabularyItemInput) SetCustomVocabularyItemList(v []*NewCustomVocabularyItem) *BatchCreateCustomVocabularyItemInput {
+	s.CustomVocabularyItemList = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BatchCreateCustomVocabularyItemInput) SetLocaleId(v string) *BatchCreateCustomVocabularyItemInput {
+	s.LocaleId = &v
+	return s
+}
+
+type BatchCreateCustomVocabularyItemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to batch create response for the custom
+	// vocabulary item.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The bot version of the bot to batch create the custom vocabulary item response
+	// for.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// The errors of the action to batch create the custom vocabulary item response
+	// for a bot.
+	Errors []*FailedCustomVocabularyItem `locationName:"errors" type:"list"`
+
+	// The unique locale identifier of the bot to batch create the custom vocabulary
+	// item response for.
+	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// The resources of the action to batch create the custom vocabulary item response
+	// for a bot.
+	Resources []*CustomVocabularyItem `locationName:"resources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateCustomVocabularyItemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchCreateCustomVocabularyItemOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BatchCreateCustomVocabularyItemOutput) SetBotId(v string) *BatchCreateCustomVocabularyItemOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BatchCreateCustomVocabularyItemOutput) SetBotVersion(v string) *BatchCreateCustomVocabularyItemOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchCreateCustomVocabularyItemOutput) SetErrors(v []*FailedCustomVocabularyItem) *BatchCreateCustomVocabularyItemOutput {
+	s.Errors = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BatchCreateCustomVocabularyItemOutput) SetLocaleId(v string) *BatchCreateCustomVocabularyItemOutput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *BatchCreateCustomVocabularyItemOutput) SetResources(v []*CustomVocabularyItem) *BatchCreateCustomVocabularyItemOutput {
+	s.Resources = v
+	return s
+}
+
+type BatchDeleteCustomVocabularyItemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to batch delete request for the custom vocabulary
+	// item.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The version of the bot to batch delete request for the custom vocabulary
+	// item.
+	//
+	// BotVersion is a required field
+	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
+
+	// The custom vocabulary list to batch delete request for the custom vocabulary
+	// item.
+	//
+	// CustomVocabularyItemList is a required field
+	CustomVocabularyItemList []*CustomVocabularyEntryId `locationName:"customVocabularyItemList" min:"1" type:"list" required:"true"`
+
+	// The locale identifier of the bot to batch delete request for the custom vocabulary
+	// item.
+	//
+	// LocaleId is a required field
+	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteCustomVocabularyItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteCustomVocabularyItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDeleteCustomVocabularyItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDeleteCustomVocabularyItemInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+	if s.CustomVocabularyItemList == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomVocabularyItemList"))
+	}
+	if s.CustomVocabularyItemList != nil && len(s.CustomVocabularyItemList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomVocabularyItemList", 1))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.LocaleId != nil && len(*s.LocaleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocaleId", 1))
+	}
+	if s.CustomVocabularyItemList != nil {
+		for i, v := range s.CustomVocabularyItemList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomVocabularyItemList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BatchDeleteCustomVocabularyItemInput) SetBotId(v string) *BatchDeleteCustomVocabularyItemInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BatchDeleteCustomVocabularyItemInput) SetBotVersion(v string) *BatchDeleteCustomVocabularyItemInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetCustomVocabularyItemList sets the CustomVocabularyItemList field's value.
+func (s *BatchDeleteCustomVocabularyItemInput) SetCustomVocabularyItemList(v []*CustomVocabularyEntryId) *BatchDeleteCustomVocabularyItemInput {
+	s.CustomVocabularyItemList = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BatchDeleteCustomVocabularyItemInput) SetLocaleId(v string) *BatchDeleteCustomVocabularyItemInput {
+	s.LocaleId = &v
+	return s
+}
+
+type BatchDeleteCustomVocabularyItemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to batch delete response for the custom
+	// vocabulary item.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The version of the bot to batch delete response for the custom vocabulary
+	// item.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// The errors of the action to batch delete response for the custom vocabulary
+	// item.
+	Errors []*FailedCustomVocabularyItem `locationName:"errors" type:"list"`
+
+	// The locale identifier of the bot to batch delete response for the custom
+	// vocabulary item.
+	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// The resources of the action to batch delete response for the custom vocabulary
+	// item.
+	Resources []*CustomVocabularyItem `locationName:"resources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteCustomVocabularyItemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteCustomVocabularyItemOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BatchDeleteCustomVocabularyItemOutput) SetBotId(v string) *BatchDeleteCustomVocabularyItemOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BatchDeleteCustomVocabularyItemOutput) SetBotVersion(v string) *BatchDeleteCustomVocabularyItemOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchDeleteCustomVocabularyItemOutput) SetErrors(v []*FailedCustomVocabularyItem) *BatchDeleteCustomVocabularyItemOutput {
+	s.Errors = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BatchDeleteCustomVocabularyItemOutput) SetLocaleId(v string) *BatchDeleteCustomVocabularyItemOutput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *BatchDeleteCustomVocabularyItemOutput) SetResources(v []*CustomVocabularyItem) *BatchDeleteCustomVocabularyItemOutput {
+	s.Resources = v
+	return s
+}
+
+type BatchUpdateCustomVocabularyItemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to the batch update request for the custom
+	// vocabulary item.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The bot version of the bot to the batch update request for the custom vocabulary
+	// item.
+	//
+	// BotVersion is a required field
+	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
+
+	// The custom vocabulary item list of the bot to the batch update request for
+	// the custom vocabulary item.
+	//
+	// CustomVocabularyItemList is a required field
+	CustomVocabularyItemList []*CustomVocabularyItem `locationName:"customVocabularyItemList" min:"1" type:"list" required:"true"`
+
+	// The locale identifier of the bot to the batch update request for the custom
+	// vocabulary item.
+	//
+	// LocaleId is a required field
+	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateCustomVocabularyItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateCustomVocabularyItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchUpdateCustomVocabularyItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateCustomVocabularyItemInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+	if s.CustomVocabularyItemList == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomVocabularyItemList"))
+	}
+	if s.CustomVocabularyItemList != nil && len(s.CustomVocabularyItemList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomVocabularyItemList", 1))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.LocaleId != nil && len(*s.LocaleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocaleId", 1))
+	}
+	if s.CustomVocabularyItemList != nil {
+		for i, v := range s.CustomVocabularyItemList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomVocabularyItemList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BatchUpdateCustomVocabularyItemInput) SetBotId(v string) *BatchUpdateCustomVocabularyItemInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BatchUpdateCustomVocabularyItemInput) SetBotVersion(v string) *BatchUpdateCustomVocabularyItemInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetCustomVocabularyItemList sets the CustomVocabularyItemList field's value.
+func (s *BatchUpdateCustomVocabularyItemInput) SetCustomVocabularyItemList(v []*CustomVocabularyItem) *BatchUpdateCustomVocabularyItemInput {
+	s.CustomVocabularyItemList = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BatchUpdateCustomVocabularyItemInput) SetLocaleId(v string) *BatchUpdateCustomVocabularyItemInput {
+	s.LocaleId = &v
+	return s
+}
+
+type BatchUpdateCustomVocabularyItemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to the batch update response for the custom
+	// vocabulary item.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The bot version of the bot to the batch update response for the custom vocabulary
+	// item.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// The errors of the action to batch update response for the custom vocabulary
+	// item.
+	Errors []*FailedCustomVocabularyItem `locationName:"errors" type:"list"`
+
+	// The locale identifier of the bot to the batch update response for the custom
+	// vocabulary item.
+	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// The resources of the action to batch update response for the custom vocabulary
+	// item.
+	Resources []*CustomVocabularyItem `locationName:"resources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateCustomVocabularyItemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateCustomVocabularyItemOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BatchUpdateCustomVocabularyItemOutput) SetBotId(v string) *BatchUpdateCustomVocabularyItemOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BatchUpdateCustomVocabularyItemOutput) SetBotVersion(v string) *BatchUpdateCustomVocabularyItemOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchUpdateCustomVocabularyItemOutput) SetErrors(v []*FailedCustomVocabularyItem) *BatchUpdateCustomVocabularyItemOutput {
+	s.Errors = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BatchUpdateCustomVocabularyItemOutput) SetLocaleId(v string) *BatchUpdateCustomVocabularyItemOutput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *BatchUpdateCustomVocabularyItemOutput) SetResources(v []*CustomVocabularyItem) *BatchUpdateCustomVocabularyItemOutput {
+	s.Resources = v
 	return s
 }
 
@@ -12946,6 +14144,56 @@ func (s *CustomPayload) SetValue(v string) *CustomPayload {
 	return s
 }
 
+// The unique entry identifier for the custom vocabulary items.
+type CustomVocabularyEntryId struct {
+	_ struct{} `type:"structure"`
+
+	// The unique item identifier for the custom vocabulary items.
+	//
+	// ItemId is a required field
+	ItemId *string `locationName:"itemId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomVocabularyEntryId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomVocabularyEntryId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomVocabularyEntryId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomVocabularyEntryId"}
+	if s.ItemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ItemId"))
+	}
+	if s.ItemId != nil && len(*s.ItemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ItemId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItemId sets the ItemId field's value.
+func (s *CustomVocabularyEntryId) SetItemId(v string) *CustomVocabularyEntryId {
+	s.ItemId = &v
+	return s
+}
+
 // Provides the parameters required for exporting a custom vocabulary.
 type CustomVocabularyExportSpecification struct {
 	_ struct{} `type:"structure"`
@@ -13106,6 +14354,199 @@ func (s *CustomVocabularyImportSpecification) SetBotVersion(v string) *CustomVoc
 // SetLocaleId sets the LocaleId field's value.
 func (s *CustomVocabularyImportSpecification) SetLocaleId(v string) *CustomVocabularyImportSpecification {
 	s.LocaleId = &v
+	return s
+}
+
+// The unique custom vocabulary item from the custom vocabulary list.
+type CustomVocabularyItem struct {
+	_ struct{} `type:"structure"`
+
+	// The display as value for the custom vocabulary item from the custom vocabulary
+	// list.
+	DisplayAs *string `locationName:"displayAs" min:"1" type:"string"`
+
+	// The unique item identifer for the custom vocabulary item from the custom
+	// vocabulary list.
+	//
+	// ItemId is a required field
+	ItemId *string `locationName:"itemId" min:"1" type:"string" required:"true"`
+
+	// The unique phrase for the custom vocabulary item from the custom vocabulary
+	// list.
+	//
+	// Phrase is a required field
+	Phrase *string `locationName:"phrase" min:"1" type:"string" required:"true"`
+
+	// The weight assigned for the custom vocabulary item from the custom vocabulary
+	// list.
+	Weight *int64 `locationName:"weight" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomVocabularyItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomVocabularyItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomVocabularyItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomVocabularyItem"}
+	if s.DisplayAs != nil && len(*s.DisplayAs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayAs", 1))
+	}
+	if s.ItemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ItemId"))
+	}
+	if s.ItemId != nil && len(*s.ItemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ItemId", 1))
+	}
+	if s.Phrase == nil {
+		invalidParams.Add(request.NewErrParamRequired("Phrase"))
+	}
+	if s.Phrase != nil && len(*s.Phrase) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Phrase", 1))
+	}
+	if s.Weight != nil && *s.Weight < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Weight", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayAs sets the DisplayAs field's value.
+func (s *CustomVocabularyItem) SetDisplayAs(v string) *CustomVocabularyItem {
+	s.DisplayAs = &v
+	return s
+}
+
+// SetItemId sets the ItemId field's value.
+func (s *CustomVocabularyItem) SetItemId(v string) *CustomVocabularyItem {
+	s.ItemId = &v
+	return s
+}
+
+// SetPhrase sets the Phrase field's value.
+func (s *CustomVocabularyItem) SetPhrase(v string) *CustomVocabularyItem {
+	s.Phrase = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *CustomVocabularyItem) SetWeight(v int64) *CustomVocabularyItem {
+	s.Weight = &v
+	return s
+}
+
+// Specifies the DTMF input specifications.
+type DTMFSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The DTMF character that clears the accumulated DTMF digits and immediately
+	// ends the input.
+	//
+	// DeletionCharacter is a required field
+	DeletionCharacter *string `locationName:"deletionCharacter" type:"string" required:"true"`
+
+	// The DTMF character that immediately ends input. If the user does not press
+	// this character, the input ends after the end timeout.
+	//
+	// EndCharacter is a required field
+	EndCharacter *string `locationName:"endCharacter" type:"string" required:"true"`
+
+	// How long the bot should wait after the last DTMF character input before assuming
+	// that the input has concluded.
+	//
+	// EndTimeoutMs is a required field
+	EndTimeoutMs *int64 `locationName:"endTimeoutMs" min:"1" type:"integer" required:"true"`
+
+	// The maximum number of DTMF digits allowed in an utterance.
+	//
+	// MaxLength is a required field
+	MaxLength *int64 `locationName:"maxLength" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DTMFSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DTMFSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DTMFSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DTMFSpecification"}
+	if s.DeletionCharacter == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeletionCharacter"))
+	}
+	if s.EndCharacter == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndCharacter"))
+	}
+	if s.EndTimeoutMs == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTimeoutMs"))
+	}
+	if s.EndTimeoutMs != nil && *s.EndTimeoutMs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EndTimeoutMs", 1))
+	}
+	if s.MaxLength == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxLength"))
+	}
+	if s.MaxLength != nil && *s.MaxLength < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxLength", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeletionCharacter sets the DeletionCharacter field's value.
+func (s *DTMFSpecification) SetDeletionCharacter(v string) *DTMFSpecification {
+	s.DeletionCharacter = &v
+	return s
+}
+
+// SetEndCharacter sets the EndCharacter field's value.
+func (s *DTMFSpecification) SetEndCharacter(v string) *DTMFSpecification {
+	s.EndCharacter = &v
+	return s
+}
+
+// SetEndTimeoutMs sets the EndTimeoutMs field's value.
+func (s *DTMFSpecification) SetEndTimeoutMs(v int64) *DTMFSpecification {
+	s.EndTimeoutMs = &v
+	return s
+}
+
+// SetMaxLength sets the MaxLength field's value.
+func (s *DTMFSpecification) SetMaxLength(v int64) *DTMFSpecification {
+	s.MaxLength = &v
 	return s
 }
 
@@ -18033,6 +19474,59 @@ func (s *ExternalSourceSetting) SetGrammarSlotTypeSetting(v *GrammarSlotTypeSett
 	return s
 }
 
+// The unique failed custom vocabulary item from the custom vocabulary list.
+type FailedCustomVocabularyItem struct {
+	_ struct{} `type:"structure"`
+
+	// The unique error code for the failed custom vocabulary item from the custom
+	// vocabulary list.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"ErrorCode"`
+
+	// The error message for the failed custom vocabulary item from the custom vocabulary
+	// list.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The unique item identifer for the failed custom vocabulary item from the
+	// custom vocabulary list.
+	ItemId *string `locationName:"itemId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedCustomVocabularyItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedCustomVocabularyItem) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *FailedCustomVocabularyItem) SetErrorCode(v string) *FailedCustomVocabularyItem {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedCustomVocabularyItem) SetErrorMessage(v string) *FailedCustomVocabularyItem {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetItemId sets the ItemId field's value.
+func (s *FailedCustomVocabularyItem) SetItemId(v string) *FailedCustomVocabularyItem {
+	s.ItemId = &v
+	return s
+}
+
 // Determines if a Lambda function should be invoked for a specific intent.
 type FulfillmentCodeHookSettings struct {
 	_ struct{} `type:"structure"`
@@ -21405,6 +22899,177 @@ func (s *ListBuiltInSlotTypesOutput) SetNextToken(v string) *ListBuiltInSlotType
 	return s
 }
 
+type ListCustomVocabularyItemsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to the list custom vocabulary request.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The bot version of the bot to the list custom vocabulary request.
+	//
+	// BotVersion is a required field
+	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
+
+	// The locale identifier of the bot to the list custom vocabulary request.
+	//
+	// LocaleId is a required field
+	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
+
+	// The maximum results to the list custom vocabulary request.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The nextToken identifier to the list custom vocabulary request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomVocabularyItemsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomVocabularyItemsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomVocabularyItemsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomVocabularyItemsInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.LocaleId != nil && len(*s.LocaleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocaleId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListCustomVocabularyItemsInput) SetBotId(v string) *ListCustomVocabularyItemsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListCustomVocabularyItemsInput) SetBotVersion(v string) *ListCustomVocabularyItemsInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *ListCustomVocabularyItemsInput) SetLocaleId(v string) *ListCustomVocabularyItemsInput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomVocabularyItemsInput) SetMaxResults(v int64) *ListCustomVocabularyItemsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomVocabularyItemsInput) SetNextToken(v string) *ListCustomVocabularyItemsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomVocabularyItemsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot to the list custom vocabulary response.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The bot version of the bot to the list custom vocabulary response.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// The custom vocabulary items from the list custom vocabulary response.
+	CustomVocabularyItems []*CustomVocabularyItem `locationName:"customVocabularyItems" type:"list"`
+
+	// The locale identifier of the bot to the list custom vocabulary response.
+	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// The nextToken identifier to the list custom vocabulary response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomVocabularyItemsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCustomVocabularyItemsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListCustomVocabularyItemsOutput) SetBotId(v string) *ListCustomVocabularyItemsOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListCustomVocabularyItemsOutput) SetBotVersion(v string) *ListCustomVocabularyItemsOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetCustomVocabularyItems sets the CustomVocabularyItems field's value.
+func (s *ListCustomVocabularyItemsOutput) SetCustomVocabularyItems(v []*CustomVocabularyItem) *ListCustomVocabularyItemsOutput {
+	s.CustomVocabularyItems = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *ListCustomVocabularyItemsOutput) SetLocaleId(v string) *ListCustomVocabularyItemsOutput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomVocabularyItemsOutput) SetNextToken(v string) *ListCustomVocabularyItemsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListExportsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23007,6 +24672,83 @@ func (s *MultipleValuesSetting) SetAllowMultipleValues(v bool) *MultipleValuesSe
 	return s
 }
 
+// The new custom vocabulary item from the custom vocabulary list.
+type NewCustomVocabularyItem struct {
+	_ struct{} `type:"structure"`
+
+	// The display as value assigned to the new custom vocabulary item from the
+	// custom vocabulary list.
+	DisplayAs *string `locationName:"displayAs" min:"1" type:"string"`
+
+	// The unique phrase for the new custom vocabulary item from the custom vocabulary
+	// list.
+	//
+	// Phrase is a required field
+	Phrase *string `locationName:"phrase" min:"1" type:"string" required:"true"`
+
+	// The weight assigned to the new custom vocabulary item from the custom vocabulary
+	// list.
+	Weight *int64 `locationName:"weight" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NewCustomVocabularyItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NewCustomVocabularyItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NewCustomVocabularyItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NewCustomVocabularyItem"}
+	if s.DisplayAs != nil && len(*s.DisplayAs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayAs", 1))
+	}
+	if s.Phrase == nil {
+		invalidParams.Add(request.NewErrParamRequired("Phrase"))
+	}
+	if s.Phrase != nil && len(*s.Phrase) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Phrase", 1))
+	}
+	if s.Weight != nil && *s.Weight < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Weight", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayAs sets the DisplayAs field's value.
+func (s *NewCustomVocabularyItem) SetDisplayAs(v string) *NewCustomVocabularyItem {
+	s.DisplayAs = &v
+	return s
+}
+
+// SetPhrase sets the Phrase field's value.
+func (s *NewCustomVocabularyItem) SetPhrase(v string) *NewCustomVocabularyItem {
+	s.Phrase = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *NewCustomVocabularyItem) SetWeight(v int64) *NewCustomVocabularyItem {
+	s.Weight = &v
+	return s
+}
+
 // Determines whether Amazon Lex obscures slot values in conversation logs.
 type ObfuscationSetting struct {
 	_ struct{} `type:"structure"`
@@ -23705,6 +25447,96 @@ func (s *Principal) SetService(v string) *Principal {
 	return s
 }
 
+// Specifies the settings on a prompt attempt.
+type PromptAttemptSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the user can interrupt a speech prompt attempt from the
+	// bot.
+	AllowInterrupt *bool `locationName:"allowInterrupt" type:"boolean"`
+
+	// Indicates the allowed input types of the prompt attempt.
+	//
+	// AllowedInputTypes is a required field
+	AllowedInputTypes *AllowedInputTypes `locationName:"allowedInputTypes" type:"structure" required:"true"`
+
+	// Specifies the settings on audio and DTMF input.
+	AudioAndDTMFInputSpecification *AudioAndDTMFInputSpecification `locationName:"audioAndDTMFInputSpecification" type:"structure"`
+
+	// Specifies the settings on text input.
+	TextInputSpecification *TextInputSpecification `locationName:"textInputSpecification" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptAttemptSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptAttemptSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptAttemptSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptAttemptSpecification"}
+	if s.AllowedInputTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllowedInputTypes"))
+	}
+	if s.AllowedInputTypes != nil {
+		if err := s.AllowedInputTypes.Validate(); err != nil {
+			invalidParams.AddNested("AllowedInputTypes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AudioAndDTMFInputSpecification != nil {
+		if err := s.AudioAndDTMFInputSpecification.Validate(); err != nil {
+			invalidParams.AddNested("AudioAndDTMFInputSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextInputSpecification != nil {
+		if err := s.TextInputSpecification.Validate(); err != nil {
+			invalidParams.AddNested("TextInputSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowInterrupt sets the AllowInterrupt field's value.
+func (s *PromptAttemptSpecification) SetAllowInterrupt(v bool) *PromptAttemptSpecification {
+	s.AllowInterrupt = &v
+	return s
+}
+
+// SetAllowedInputTypes sets the AllowedInputTypes field's value.
+func (s *PromptAttemptSpecification) SetAllowedInputTypes(v *AllowedInputTypes) *PromptAttemptSpecification {
+	s.AllowedInputTypes = v
+	return s
+}
+
+// SetAudioAndDTMFInputSpecification sets the AudioAndDTMFInputSpecification field's value.
+func (s *PromptAttemptSpecification) SetAudioAndDTMFInputSpecification(v *AudioAndDTMFInputSpecification) *PromptAttemptSpecification {
+	s.AudioAndDTMFInputSpecification = v
+	return s
+}
+
+// SetTextInputSpecification sets the TextInputSpecification field's value.
+func (s *PromptAttemptSpecification) SetTextInputSpecification(v *TextInputSpecification) *PromptAttemptSpecification {
+	s.TextInputSpecification = v
+	return s
+}
+
 // Specifies a list of message groups that Amazon Lex sends to a user to elicit
 // a response.
 type PromptSpecification struct {
@@ -23727,6 +25559,9 @@ type PromptSpecification struct {
 
 	// Indicates how a message is selected from a message group among retries.
 	MessageSelectionStrategy *string `locationName:"messageSelectionStrategy" type:"string" enum:"MessageSelectionStrategy"`
+
+	// Specifies the advanced settings on each attempt of the prompt.
+	PromptAttemptsSpecification map[string]*PromptAttemptSpecification `locationName:"promptAttemptsSpecification" type:"map"`
 }
 
 // String returns the string representation.
@@ -23769,6 +25604,16 @@ func (s *PromptSpecification) Validate() error {
 			}
 		}
 	}
+	if s.PromptAttemptsSpecification != nil {
+		for i, v := range s.PromptAttemptsSpecification {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PromptAttemptsSpecification", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -23797,6 +25642,12 @@ func (s *PromptSpecification) SetMessageGroups(v []*MessageGroup) *PromptSpecifi
 // SetMessageSelectionStrategy sets the MessageSelectionStrategy field's value.
 func (s *PromptSpecification) SetMessageSelectionStrategy(v string) *PromptSpecification {
 	s.MessageSelectionStrategy = &v
+	return s
+}
+
+// SetPromptAttemptsSpecification sets the PromptAttemptsSpecification field's value.
+func (s *PromptSpecification) SetPromptAttemptsSpecification(v map[string]*PromptAttemptSpecification) *PromptSpecification {
+	s.PromptAttemptsSpecification = v
 	return s
 }
 
@@ -27156,6 +29007,56 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// Specifies the text input specifications.
+type TextInputSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Time for which a bot waits before re-prompting a customer for text input.
+	//
+	// StartTimeoutMs is a required field
+	StartTimeoutMs *int64 `locationName:"startTimeoutMs" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextInputSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextInputSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TextInputSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TextInputSpecification"}
+	if s.StartTimeoutMs == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeoutMs"))
+	}
+	if s.StartTimeoutMs != nil && *s.StartTimeoutMs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("StartTimeoutMs", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStartTimeoutMs sets the StartTimeoutMs field's value.
+func (s *TextInputSpecification) SetStartTimeoutMs(v int64) *TextInputSpecification {
+	s.StartTimeoutMs = &v
+	return s
 }
 
 // Defines the Amazon CloudWatch Logs destination log group for conversation
@@ -30748,6 +32649,30 @@ func Effect_Values() []string {
 }
 
 const (
+	// ErrorCodeDuplicateInput is a ErrorCode enum value
+	ErrorCodeDuplicateInput = "DUPLICATE_INPUT"
+
+	// ErrorCodeResourceDoesNotExist is a ErrorCode enum value
+	ErrorCodeResourceDoesNotExist = "RESOURCE_DOES_NOT_EXIST"
+
+	// ErrorCodeResourceAlreadyExists is a ErrorCode enum value
+	ErrorCodeResourceAlreadyExists = "RESOURCE_ALREADY_EXISTS"
+
+	// ErrorCodeInternalServerFailure is a ErrorCode enum value
+	ErrorCodeInternalServerFailure = "INTERNAL_SERVER_FAILURE"
+)
+
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeDuplicateInput,
+		ErrorCodeResourceDoesNotExist,
+		ErrorCodeResourceAlreadyExists,
+		ErrorCodeInternalServerFailure,
+	}
+}
+
+const (
 	// ExportFilterNameExportResourceType is a ExportFilterName enum value
 	ExportFilterNameExportResourceType = "ExportResourceType"
 )
@@ -31004,6 +32929,39 @@ func ObfuscationSettingType_Values() []string {
 	return []string{
 		ObfuscationSettingTypeNone,
 		ObfuscationSettingTypeDefaultObfuscation,
+	}
+}
+
+// The attempt name of attempts of a prompt.
+const (
+	// PromptAttemptInitial is a PromptAttempt enum value
+	PromptAttemptInitial = "Initial"
+
+	// PromptAttemptRetry1 is a PromptAttempt enum value
+	PromptAttemptRetry1 = "Retry1"
+
+	// PromptAttemptRetry2 is a PromptAttempt enum value
+	PromptAttemptRetry2 = "Retry2"
+
+	// PromptAttemptRetry3 is a PromptAttempt enum value
+	PromptAttemptRetry3 = "Retry3"
+
+	// PromptAttemptRetry4 is a PromptAttempt enum value
+	PromptAttemptRetry4 = "Retry4"
+
+	// PromptAttemptRetry5 is a PromptAttempt enum value
+	PromptAttemptRetry5 = "Retry5"
+)
+
+// PromptAttempt_Values returns all elements of the PromptAttempt enum
+func PromptAttempt_Values() []string {
+	return []string{
+		PromptAttemptInitial,
+		PromptAttemptRetry1,
+		PromptAttemptRetry2,
+		PromptAttemptRetry3,
+		PromptAttemptRetry4,
+		PromptAttemptRetry5,
 	}
 }
 

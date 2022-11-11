@@ -13,6 +13,113 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateAccessor = "CreateAccessor"
+
+// CreateAccessorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccessor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccessor for more information on using the CreateAccessor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAccessorRequest method.
+//	req, resp := client.CreateAccessorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/CreateAccessor
+func (c *ManagedBlockchain) CreateAccessorRequest(input *CreateAccessorInput) (req *request.Request, output *CreateAccessorOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccessor,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accessors",
+	}
+
+	if input == nil {
+		input = &CreateAccessorInput{}
+	}
+
+	output = &CreateAccessorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAccessor API operation for Amazon Managed Blockchain.
+//
+// The token based access feature is in preview release for Ethereum on Amazon
+// Managed Blockchain and is subject to change. We recommend that you use this
+// feature only with test scenarios, and not in production environments.
+//
+// Creates a new accessor for use with Managed Blockchain Ethereum nodes. An
+// accessor object is a container that has the information required for token
+// based access to your Ethereum nodes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain's
+// API operation CreateAccessor for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The action or operation requested is invalid. Verify that the action is typed
+//     correctly.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
+//
+//   - ResourceAlreadyExistsException
+//     A resource request is issued for a resource that already exists.
+//
+//   - ThrottlingException
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
+//
+//   - ResourceLimitExceededException
+//     The maximum number of resources of that type already exist. Ensure the resources
+//     requested are within the boundaries of the service edition and your account
+//     limits.
+//
+//   - InternalServiceErrorException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/CreateAccessor
+func (c *ManagedBlockchain) CreateAccessor(input *CreateAccessorInput) (*CreateAccessorOutput, error) {
+	req, out := c.CreateAccessorRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessorWithContext is the same as CreateAccessor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccessor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) CreateAccessorWithContext(ctx aws.Context, input *CreateAccessorInput, opts ...request.Option) (*CreateAccessorOutput, error) {
+	req, out := c.CreateAccessorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateMember = "CreateMember"
 
 // CreateMemberRequest generates a "aws/request.Request" representing the
@@ -74,24 +181,24 @@ func (c *ManagedBlockchain) CreateMemberRequest(input *CreateMemberInput) (req *
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ResourceAlreadyExistsException
 //     A resource request is issued for a resource that already exists.
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - ResourceLimitExceededException
 //     The maximum number of resources of that type already exist. Ensure the resources
@@ -187,16 +294,16 @@ func (c *ManagedBlockchain) CreateNetworkRequest(input *CreateNetworkInput) (req
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceAlreadyExistsException
 //     A resource request is issued for a resource that already exists.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - ResourceLimitExceededException
 //     The maximum number of resources of that type already exist. Ensure the resources
@@ -292,24 +399,24 @@ func (c *ManagedBlockchain) CreateNodeRequest(input *CreateNodeInput) (req *requ
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ResourceAlreadyExistsException
 //     A resource request is issued for a resource that already exists.
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - ResourceLimitExceededException
 //     The maximum number of resources of that type already exist. Ensure the resources
@@ -407,21 +514,21 @@ func (c *ManagedBlockchain) CreateProposalRequest(input *CreateProposalInput) (r
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -446,6 +553,115 @@ func (c *ManagedBlockchain) CreateProposal(input *CreateProposalInput) (*CreateP
 // for more information on using Contexts.
 func (c *ManagedBlockchain) CreateProposalWithContext(ctx aws.Context, input *CreateProposalInput, opts ...request.Option) (*CreateProposalOutput, error) {
 	req, out := c.CreateProposalRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccessor = "DeleteAccessor"
+
+// DeleteAccessorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessor for more information on using the DeleteAccessor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccessorRequest method.
+//	req, resp := client.DeleteAccessorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/DeleteAccessor
+func (c *ManagedBlockchain) DeleteAccessorRequest(input *DeleteAccessorInput) (req *request.Request, output *DeleteAccessorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessor,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accessors/{AccessorId}",
+	}
+
+	if input == nil {
+		input = &DeleteAccessorInput{}
+	}
+
+	output = &DeleteAccessorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAccessor API operation for Amazon Managed Blockchain.
+//
+// The token based access feature is in preview release for Ethereum on Amazon
+// Managed Blockchain and is subject to change. We recommend that you use this
+// feature only with test scenarios, and not in production environments.
+//
+// Deletes an accessor that your Amazon Web Services account owns. An accessor
+// object is a container that has the information required for token based access
+// to your Ethereum nodes including, the BILLING_TOKEN. After an accessor is
+// deleted, the status of the accessor changes from AVAILABLE to PENDING_DELETION.
+// An accessor in the PENDING_DELETION state can’t be used for new WebSocket
+// requests or HTTP requests. However, WebSocket connections that are initiated
+// while the accessor was in the AVAILABLE state remain open until they expire
+// (up to 2 hours).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain's
+// API operation DeleteAccessor for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The action or operation requested is invalid. Verify that the action is typed
+//     correctly.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
+//
+//   - ThrottlingException
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
+//
+//   - InternalServiceErrorException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/DeleteAccessor
+func (c *ManagedBlockchain) DeleteAccessor(input *DeleteAccessorInput) (*DeleteAccessorOutput, error) {
+	req, out := c.DeleteAccessorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessorWithContext is the same as DeleteAccessor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) DeleteAccessorWithContext(ctx aws.Context, input *DeleteAccessorInput, opts ...request.Option) (*DeleteAccessorOutput, error) {
+	req, out := c.DeleteAccessorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -497,11 +713,11 @@ func (c *ManagedBlockchain) DeleteMemberRequest(input *DeleteMemberInput) (req *
 //
 // Deletes a member. Deleting a member removes the member and all associated
 // resources from the network. DeleteMember can only be called for a specified
-// MemberId if the principal performing the action is associated with the AWS
-// account that owns the member. In all other cases, the DeleteMember action
-// is carried out as the result of an approved proposal to remove a member.
-// If MemberId is the last member in a network specified by the last AWS account,
-// the network is deleted also.
+// MemberId if the principal performing the action is associated with the Amazon
+// Web Services account that owns the member. In all other cases, the DeleteMember
+// action is carried out as the result of an approved proposal to remove a member.
+// If MemberId is the last member in a network specified by the last Amazon
+// Web Services account, the network is deleted also.
 //
 // Applies only to Hyperledger Fabric.
 //
@@ -519,21 +735,21 @@ func (c *ManagedBlockchain) DeleteMemberRequest(input *DeleteMemberInput) (req *
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -605,8 +821,8 @@ func (c *ManagedBlockchain) DeleteNodeRequest(input *DeleteNodeInput) (req *requ
 
 // DeleteNode API operation for Amazon Managed Blockchain.
 //
-// Deletes a node that your AWS account owns. All data on the node is lost and
-// cannot be recovered.
+// Deletes a node that your Amazon Web Services account owns. All data on the
+// node is lost and cannot be recovered.
 //
 // Applies to Hyperledger Fabric and Ethereum.
 //
@@ -624,21 +840,21 @@ func (c *ManagedBlockchain) DeleteNodeRequest(input *DeleteNodeInput) (req *requ
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -661,6 +877,109 @@ func (c *ManagedBlockchain) DeleteNode(input *DeleteNodeInput) (*DeleteNodeOutpu
 // for more information on using Contexts.
 func (c *ManagedBlockchain) DeleteNodeWithContext(ctx aws.Context, input *DeleteNodeInput, opts ...request.Option) (*DeleteNodeOutput, error) {
 	req, out := c.DeleteNodeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessor = "GetAccessor"
+
+// GetAccessorRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessor for more information on using the GetAccessor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccessorRequest method.
+//	req, resp := client.GetAccessorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/GetAccessor
+func (c *ManagedBlockchain) GetAccessorRequest(input *GetAccessorInput) (req *request.Request, output *GetAccessorOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessor,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accessors/{AccessorId}",
+	}
+
+	if input == nil {
+		input = &GetAccessorInput{}
+	}
+
+	output = &GetAccessorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAccessor API operation for Amazon Managed Blockchain.
+//
+// The token based access feature is in preview release for Ethereum on Amazon
+// Managed Blockchain and is subject to change. We recommend that you use this
+// feature only with test scenarios, and not in production environments.
+//
+// Returns detailed information about an accessor. An accessor object is a container
+// that has the information required for token based access to your Ethereum
+// nodes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain's
+// API operation GetAccessor for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The action or operation requested is invalid. Verify that the action is typed
+//     correctly.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
+//
+//   - ThrottlingException
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
+//
+//   - InternalServiceErrorException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/GetAccessor
+func (c *ManagedBlockchain) GetAccessor(input *GetAccessorInput) (*GetAccessorOutput, error) {
+	req, out := c.GetAccessorRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessorWithContext is the same as GetAccessor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) GetAccessorWithContext(ctx aws.Context, input *GetAccessorInput, opts ...request.Option) (*GetAccessorOutput, error) {
+	req, out := c.GetAccessorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -727,17 +1046,17 @@ func (c *ManagedBlockchain) GetMemberRequest(input *GetMemberInput) (req *reques
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -826,17 +1145,17 @@ func (c *ManagedBlockchain) GetNetworkRequest(input *GetNetworkInput) (req *requ
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -925,17 +1244,17 @@ func (c *ManagedBlockchain) GetNodeRequest(input *GetNodeInput) (req *request.Re
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -1024,17 +1343,17 @@ func (c *ManagedBlockchain) GetProposalRequest(input *GetProposalInput) (req *re
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -1060,6 +1379,162 @@ func (c *ManagedBlockchain) GetProposalWithContext(ctx aws.Context, input *GetPr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAccessors = "ListAccessors"
+
+// ListAccessorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessors for more information on using the ListAccessors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAccessorsRequest method.
+//	req, resp := client.ListAccessorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/ListAccessors
+func (c *ManagedBlockchain) ListAccessorsRequest(input *ListAccessorsInput) (req *request.Request, output *ListAccessorsOutput) {
+	op := &request.Operation{
+		Name:       opListAccessors,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accessors",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessorsInput{}
+	}
+
+	output = &ListAccessorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAccessors API operation for Amazon Managed Blockchain.
+//
+// The token based access feature is in preview release for Ethereum on Amazon
+// Managed Blockchain and is subject to change. We recommend that you use this
+// feature only with test scenarios, and not in production environments.
+//
+// Returns a list of the accessors and their properties. Accessor objects are
+// containers that have the information required for token based access to your
+// Ethereum nodes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain's
+// API operation ListAccessors for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The action or operation requested is invalid. Verify that the action is typed
+//     correctly.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
+//
+//   - InternalServiceErrorException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/ListAccessors
+func (c *ManagedBlockchain) ListAccessors(input *ListAccessorsInput) (*ListAccessorsOutput, error) {
+	req, out := c.ListAccessorsRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessorsWithContext is the same as ListAccessors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) ListAccessorsWithContext(ctx aws.Context, input *ListAccessorsInput, opts ...request.Option) (*ListAccessorsOutput, error) {
+	req, out := c.ListAccessorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessorsPages iterates over the pages of a ListAccessors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAccessors operation.
+//	pageNum := 0
+//	err := client.ListAccessorsPages(params,
+//	    func(page *managedblockchain.ListAccessorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ManagedBlockchain) ListAccessorsPages(input *ListAccessorsInput, fn func(*ListAccessorsOutput, bool) bool) error {
+	return c.ListAccessorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessorsPagesWithContext same as ListAccessorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) ListAccessorsPagesWithContext(ctx aws.Context, input *ListAccessorsInput, fn func(*ListAccessorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListInvitations = "ListInvitations"
@@ -1111,7 +1586,7 @@ func (c *ManagedBlockchain) ListInvitationsRequest(input *ListInvitationsInput) 
 
 // ListInvitations API operation for Amazon Managed Blockchain.
 //
-// Returns a list of all invitations for the current AWS account.
+// Returns a list of all invitations for the current Amazon Web Services account.
 //
 // Applies only to Hyperledger Fabric.
 //
@@ -1129,17 +1604,17 @@ func (c *ManagedBlockchain) ListInvitationsRequest(input *ListInvitationsInput) 
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - ResourceLimitExceededException
 //     The maximum number of resources of that type already exist. Ensure the resources
@@ -1290,13 +1765,13 @@ func (c *ManagedBlockchain) ListMembersRequest(input *ListMembersInput) (req *re
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -1424,7 +1899,8 @@ func (c *ManagedBlockchain) ListNetworksRequest(input *ListNetworksInput) (req *
 
 // ListNetworks API operation for Amazon Managed Blockchain.
 //
-// Returns information about the networks in which the current AWS account participates.
+// Returns information about the networks in which the current Amazon Web Services
+// account participates.
 //
 // Applies to Hyperledger Fabric and Ethereum.
 //
@@ -1442,13 +1918,13 @@ func (c *ManagedBlockchain) ListNetworksRequest(input *ListNetworksInput) (req *
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -1594,13 +2070,13 @@ func (c *ManagedBlockchain) ListNodesRequest(input *ListNodesInput) (req *reques
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -1747,13 +2223,13 @@ func (c *ManagedBlockchain) ListProposalVotesRequest(input *ListProposalVotesInp
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -1899,17 +2375,17 @@ func (c *ManagedBlockchain) ListProposalsRequest(input *ListProposalsInput) (req
 //     correctly.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -2057,11 +2533,11 @@ func (c *ManagedBlockchain) ListTagsForResourceRequest(input *ListTagsForResourc
 //     correctly.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/ListTagsForResource
@@ -2131,8 +2607,8 @@ func (c *ManagedBlockchain) RejectInvitationRequest(input *RejectInvitationInput
 // RejectInvitation API operation for Amazon Managed Blockchain.
 //
 // Rejects an invitation to join a network. This action can be called by a principal
-// in an AWS account that has received an invitation to create a member and
-// join a network.
+// in an Amazon Web Services account that has received an invitation to create
+// a member and join a network.
 //
 // Applies only to Hyperledger Fabric.
 //
@@ -2152,17 +2628,17 @@ func (c *ManagedBlockchain) RejectInvitationRequest(input *RejectInvitationInput
 //   - IllegalActionException
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -2266,13 +2742,13 @@ func (c *ManagedBlockchain) TagResourceRequest(input *TagResourceInput) (req *re
 //     correctly.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - TooManyTagsException
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/TagResource
@@ -2366,11 +2842,11 @@ func (c *ManagedBlockchain) UntagResourceRequest(input *UntagResourceInput) (req
 //     correctly.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ResourceNotReadyException
-//     The requested resource exists but is not in a status that can complete the
+//     The requested resource exists but isn't in a status that can complete the
 //     operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/UntagResource
@@ -2457,17 +2933,17 @@ func (c *ManagedBlockchain) UpdateMemberRequest(input *UpdateMemberInput) (req *
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -2557,17 +3033,17 @@ func (c *ManagedBlockchain) UpdateNodeRequest(input *UpdateNodeInput) (req *requ
 //     correctly.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -2640,8 +3116,8 @@ func (c *ManagedBlockchain) VoteOnProposalRequest(input *VoteOnProposalInput) (r
 // VoteOnProposal API operation for Amazon Managed Blockchain.
 //
 // Casts a vote for a specified ProposalId on behalf of a member. The member
-// to vote as, specified by VoterMemberId, must be in the same AWS account as
-// the principal that calls the action.
+// to vote as, specified by VoterMemberId, must be in the same Amazon Web Services
+// account as the principal that calls the action.
 //
 // Applies only to Hyperledger Fabric.
 //
@@ -2661,17 +3137,17 @@ func (c *ManagedBlockchain) VoteOnProposalRequest(input *VoteOnProposalInput) (r
 //   - IllegalActionException
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - ResourceNotFoundException
-//     A requested resource does not exist. It may have been deleted or referenced
-//     inaccurately.
+//     A requested resource doesn't exist. It may have been deleted or referenced
+//     incorrectly.
 //
 //   - ThrottlingException
-//     The request or operation could not be performed because a service is throttling
-//     requests. The most common source of throttling errors is launching EC2 instances
-//     such that your service limit for EC2 instances is exceeded. Request a limit
-//     increase or delete unused resources if possible.
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is creating resources
+//     that exceed your service limit for this resource type. Request a limit increase
+//     or delete unused resources if possible.
 //
 //   - InternalServiceErrorException
 //     The request processing has failed because of an unknown error, exception
@@ -2699,7 +3175,7 @@ func (c *ManagedBlockchain) VoteOnProposalWithContext(ctx aws.Context, input *Vo
 	return out, req.Send()
 }
 
-// You do not have sufficient access to perform this action.
+// You don't have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2763,6 +3239,169 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The token based access feature is in preview release for Ethereum on Amazon
+// Managed Blockchain and is subject to change. We recommend that you use this
+// feature only with test scenarios, and not in production environments.
+//
+// The properties of the Accessor.
+type Accessor struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the accessor. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	Arn *string `min:"1" type:"string"`
+
+	// The billing token is a property of the accessor. Use this token to make Ethereum
+	// API calls to your Ethereum node. The billing token is used to track your
+	// accessor object for billing Ethereum API requests made to your Ethereum nodes.
+	BillingToken *string `min:"42" type:"string"`
+
+	// The creation date and time of the accessor.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The unique identifier of the accessor.
+	Id *string `min:"1" type:"string"`
+
+	// The current status of the accessor.
+	Status *string `type:"string" enum:"AccessorStatus"`
+
+	// The type of the accessor.
+	//
+	// Currently accessor type is restricted to BILLING_TOKEN.
+	Type *string `type:"string" enum:"AccessorType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Accessor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Accessor) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Accessor) SetArn(v string) *Accessor {
+	s.Arn = &v
+	return s
+}
+
+// SetBillingToken sets the BillingToken field's value.
+func (s *Accessor) SetBillingToken(v string) *Accessor {
+	s.BillingToken = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *Accessor) SetCreationDate(v time.Time) *Accessor {
+	s.CreationDate = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Accessor) SetId(v string) *Accessor {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Accessor) SetStatus(v string) *Accessor {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Accessor) SetType(v string) *Accessor {
+	s.Type = &v
+	return s
+}
+
+// The token based access feature is in preview release for Ethereum on Amazon
+// Managed Blockchain and is subject to change. We recommend that you use this
+// feature only with test scenarios, and not in production environments.
+//
+// A summary of accessor properties.
+type AccessorSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the accessor. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	Arn *string `min:"1" type:"string"`
+
+	// The creation date and time of the accessor.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The unique identifier of the accessor.
+	Id *string `min:"1" type:"string"`
+
+	// The current status of the accessor.
+	Status *string `type:"string" enum:"AccessorStatus"`
+
+	// The type of the accessor.
+	//
+	// Currently accessor type is restricted to BILLING_TOKEN.
+	Type *string `type:"string" enum:"AccessorType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessorSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessorSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AccessorSummary) SetArn(v string) *AccessorSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *AccessorSummary) SetCreationDate(v time.Time) *AccessorSummary {
+	s.CreationDate = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AccessorSummary) SetId(v string) *AccessorSummary {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AccessorSummary) SetStatus(v string) *AccessorSummary {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AccessorSummary) SetType(v string) *AccessorSummary {
+	s.Type = &v
+	return s
+}
+
 // A policy type that defines the voting rules for the network. The rules decide
 // if a proposal is approved. Approval may be based on criteria such as the
 // percentage of YES votes and the duration of the proposal. The policy applies
@@ -2775,7 +3414,7 @@ type ApprovalThresholdPolicy struct {
 	// The duration from the time that a proposal is created until it expires. If
 	// members cast neither the required number of YES votes to approve the proposal
 	// nor the number of NO votes required to reject it before the duration expires,
-	// the proposal is EXPIRED and ProposalActions are not carried out.
+	// the proposal is EXPIRED and ProposalActions aren't carried out.
 	ProposalDurationInHours *int64 `min:"1" type:"integer"`
 
 	// Determines whether the vote percentage must be greater than the ThresholdPercentage
@@ -2840,14 +3479,120 @@ func (s *ApprovalThresholdPolicy) SetThresholdPercentage(v int64) *ApprovalThres
 	return s
 }
 
+type CreateAccessorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of accessor.
+	//
+	// Currently accessor type is restricted to BILLING_TOKEN.
+	//
+	// AccessorType is a required field
+	AccessorType *string `type:"string" required:"true" enum:"AccessorType"`
+
+	// This is a unique, case-sensitive identifier that you provide to ensure the
+	// idempotency of the operation. An idempotent operation completes no more than
+	// once. This identifier is required only if you make a service request directly
+	// using an HTTP client. It is generated automatically if you use an Amazon
+	// Web Services SDK or the Amazon Web Services CLI.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessorInput"}
+	if s.AccessorType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessorType"))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessorType sets the AccessorType field's value.
+func (s *CreateAccessorInput) SetAccessorType(v string) *CreateAccessorInput {
+	s.AccessorType = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateAccessorInput) SetClientRequestToken(v string) *CreateAccessorInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+type CreateAccessorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the accessor.
+	AccessorId *string `min:"1" type:"string"`
+
+	// The billing token is a property of the Accessor. Use this token to make Ethereum
+	// API calls to your Ethereum node. The billing token is used to track your
+	// accessor object for billing Ethereum API requests made to your Ethereum nodes.
+	BillingToken *string `min:"42" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessorOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessorId sets the AccessorId field's value.
+func (s *CreateAccessorOutput) SetAccessorId(v string) *CreateAccessorOutput {
+	s.AccessorId = &v
+	return s
+}
+
+// SetBillingToken sets the BillingToken field's value.
+func (s *CreateAccessorOutput) SetBillingToken(v string) *CreateAccessorOutput {
+	s.BillingToken = &v
+	return s
+}
+
 type CreateMemberInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the operation. An idempotent operation completes no more than one time.
 	// This identifier is required only if you make a service request directly using
-	// an HTTP client. It is generated automatically if you use an AWS SDK or the
-	// AWS CLI.
+	// an HTTP client. It is generated automatically if you use an Amazon Web Services
+	// SDK or the CLI.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The unique identifier of the invitation that is sent to the member to join
@@ -2976,11 +3721,11 @@ func (s *CreateMemberOutput) SetMemberId(v string) *CreateMemberOutput {
 type CreateNetworkInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the operation. An idempotent operation completes no more than one time.
-	// This identifier is required only if you make a service request directly using
-	// an HTTP client. It is generated automatically if you use an AWS SDK or the
-	// AWS CLI.
+	// This is a unique, case-sensitive identifier that you provide to ensure the
+	// idempotency of the operation. An idempotent operation completes no more than
+	// once. This identifier is required only if you make a service request directly
+	// using an HTTP client. It is generated automatically if you use an Amazon
+	// Web Services SDK or the Amazon Web Services CLI.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// An optional description for the network.
@@ -3195,8 +3940,8 @@ type CreateNodeInput struct {
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the operation. An idempotent operation completes no more than one time.
 	// This identifier is required only if you make a service request directly using
-	// an HTTP client. It is generated automatically if you use an AWS SDK or the
-	// AWS CLI.
+	// an HTTP client. It is generated automatically if you use an Amazon Web Services
+	// SDK or the CLI.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The unique identifier of the member that owns this node.
@@ -3357,8 +4102,8 @@ type CreateProposalInput struct {
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the operation. An idempotent operation completes no more than one time.
 	// This identifier is required only if you make a service request directly using
-	// an HTTP client. It is generated automatically if you use an AWS SDK or the
-	// AWS CLI.
+	// an HTTP client. It is generated automatically if you use an Amazon Web Services
+	// SDK or the CLI.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description for the proposal that is visible to voting members, for example,
@@ -3367,7 +4112,7 @@ type CreateProposalInput struct {
 
 	// The unique identifier of the member that is creating the proposal. This identifier
 	// is especially useful for identifying the member making the proposal when
-	// multiple members exist in a single AWS account.
+	// multiple members exist in a single Amazon Web Services account.
 	//
 	// MemberId is a required field
 	MemberId *string `min:"1" type:"string" required:"true"`
@@ -3507,6 +4252,77 @@ func (s CreateProposalOutput) GoString() string {
 func (s *CreateProposalOutput) SetProposalId(v string) *CreateProposalOutput {
 	s.ProposalId = &v
 	return s
+}
+
+type DeleteAccessorInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the accessor.
+	//
+	// AccessorId is a required field
+	AccessorId *string `location:"uri" locationName:"AccessorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessorInput"}
+	if s.AccessorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessorId"))
+	}
+	if s.AccessorId != nil && len(*s.AccessorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessorId sets the AccessorId field's value.
+func (s *DeleteAccessorInput) SetAccessorId(v string) *DeleteAccessorInput {
+	s.AccessorId = &v
+	return s
+}
+
+type DeleteAccessorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessorOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteMemberInput struct {
@@ -3705,6 +4521,86 @@ func (s DeleteNodeOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteNodeOutput) GoString() string {
 	return s.String()
+}
+
+type GetAccessorInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the accessor.
+	//
+	// AccessorId is a required field
+	AccessorId *string `location:"uri" locationName:"AccessorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessorInput"}
+	if s.AccessorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessorId"))
+	}
+	if s.AccessorId != nil && len(*s.AccessorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessorId sets the AccessorId field's value.
+func (s *GetAccessorInput) SetAccessorId(v string) *GetAccessorInput {
+	s.AccessorId = &v
+	return s
+}
+
+type GetAccessorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the accessor.
+	Accessor *Accessor `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessorOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessor sets the Accessor field's value.
+func (s *GetAccessorOutput) SetAccessor(v *Accessor) *GetAccessorOutput {
+	s.Accessor = v
+	return s
 }
 
 type GetMemberInput struct {
@@ -4285,7 +5181,8 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An invitation to an AWS account to create a member and join the network.
+// An invitation to an Amazon Web Services account to create a member and join
+// the network.
 //
 // Applies only to Hyperledger Fabric.
 type Invitation struct {
@@ -4293,7 +5190,7 @@ type Invitation struct {
 
 	// The Amazon Resource Name (ARN) of the invitation. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the invitation was created.
@@ -4313,11 +5210,11 @@ type Invitation struct {
 
 	// The status of the invitation:
 	//
-	//    * PENDING - The invitee has not created a member to join the network,
-	//    and the invitation has not yet expired.
+	//    * PENDING - The invitee hasn't created a member to join the network, and
+	//    the invitation hasn't yet expired.
 	//
-	//    * ACCEPTING - The invitee has begun creating a member, and creation has
-	//    not yet completed.
+	//    * ACCEPTING - The invitee has begun creating a member, and creation hasn't
+	//    yet completed.
 	//
 	//    * ACCEPTED - The invitee created a member and joined the network using
 	//    the InvitationID.
@@ -4383,14 +5280,15 @@ func (s *Invitation) SetStatus(v string) *Invitation {
 	return s
 }
 
-// An action to invite a specific AWS account to create a member and join the
-// network. The InviteAction is carried out when a Proposal is APPROVED.
+// An action to invite a specific Amazon Web Services account to create a member
+// and join the network. The InviteAction is carried out when a Proposal is
+// APPROVED.
 //
 // Applies only to Hyperledger Fabric.
 type InviteAction struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID to invite.
+	// The Amazon Web Services account ID to invite.
 	//
 	// Principal is a required field
 	Principal *string `type:"string" required:"true"`
@@ -4430,6 +5328,100 @@ func (s *InviteAction) Validate() error {
 // SetPrincipal sets the Principal field's value.
 func (s *InviteAction) SetPrincipal(v string) *InviteAction {
 	s.Principal = &v
+	return s
+}
+
+type ListAccessorsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of accessors to list.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessorsInput) SetMaxResults(v int64) *ListAccessorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessorsInput) SetNextToken(v string) *ListAccessorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAccessorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of AccessorSummary objects that contain configuration properties
+	// for each accessor.
+	Accessors []*AccessorSummary `type:"list"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessors sets the Accessors field's value.
+func (s *ListAccessorsOutput) SetAccessors(v []*AccessorSummary) *ListAccessorsOutput {
+	s.Accessors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessorsOutput) SetNextToken(v string) *ListAccessorsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4530,8 +5522,9 @@ type ListMembersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An optional Boolean value. If provided, the request is limited either to
-	// members that the current AWS account owns (true) or that other AWS accounts
-	// own (false). If omitted, all members are listed.
+	// members that the current Amazon Web Services account owns (true) or that
+	// other Amazon Web Services accountsn own (false). If omitted, all members
+	// are listed.
 	IsOwned *bool `location:"querystring" locationName:"isOwned" type:"boolean"`
 
 	// The maximum number of members to return in the request.
@@ -5169,7 +6162,7 @@ type ListTagsForResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -5318,7 +6311,7 @@ type Member struct {
 
 	// The Amazon Resource Name (ARN) of the member. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the member was created.
@@ -5334,11 +6327,14 @@ type Member struct {
 	// The unique identifier of the member.
 	Id *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the customer managed key in AWS Key Management
-	// Service (AWS KMS) that the member uses for encryption at rest. If the value
-	// of this parameter is "AWS Owned KMS Key", the member uses an AWS owned KMS
-	// key for encryption. This parameter is inherited by the nodes that this member
-	// owns.
+	// The Amazon Resource Name (ARN) of the customer managed key in Key Management
+	// Service (KMS) that the member uses for encryption at rest. If the value of
+	// this parameter is "AWS Owned KMS Key", the member uses an Amazon Web Services
+	// owned KMS key for encryption. This parameter is inherited by the nodes that
+	// this member owns.
+	//
+	// For more information, see Encryption at Rest (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/managed-blockchain-encryption-at-rest.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
 	KmsKeyArn *string `type:"string"`
 
 	// Configuration properties for logging events associated with a member.
@@ -5352,32 +6348,34 @@ type Member struct {
 
 	// The status of a member.
 	//
-	//    * CREATING - The AWS account is in the process of creating a member.
+	//    * CREATING - The Amazon Web Services account is in the process of creating
+	//    a member.
 	//
 	//    * AVAILABLE - The member has been created and can participate in the network.
 	//
-	//    * CREATE_FAILED - The AWS account attempted to create a member and creation
-	//    failed.
+	//    * CREATE_FAILED - The Amazon Web Services account attempted to create
+	//    a member and creation failed.
 	//
 	//    * UPDATING - The member is in the process of being updated.
 	//
 	//    * DELETING - The member and all associated resources are in the process
-	//    of being deleted. Either the AWS account that owns the member deleted
-	//    it, or the member is being deleted as the result of an APPROVED PROPOSAL
-	//    to remove the member.
-	//
-	//    * DELETED - The member can no longer participate on the network and all
-	//    associated resources are deleted. Either the AWS account that owns the
+	//    of being deleted. Either the Amazon Web Services account that owns the
 	//    member deleted it, or the member is being deleted as the result of an
 	//    APPROVED PROPOSAL to remove the member.
 	//
+	//    * DELETED - The member can no longer participate on the network and all
+	//    associated resources are deleted. Either the Amazon Web Services account
+	//    that owns the member deleted it, or the member is being deleted as the
+	//    result of an APPROVED PROPOSAL to remove the member.
+	//
 	//    * INACCESSIBLE_ENCRYPTION_KEY - The member is impaired and might not function
 	//    as expected because it cannot access the specified customer managed key
-	//    in AWS KMS for encryption at rest. Either the KMS key was disabled or
-	//    deleted, or the grants on the key were revoked. The effect of disabling
-	//    or deleting a key, or revoking a grant is not immediate. The member resource
-	//    might take some time to find that the key is inaccessible. When a resource
-	//    is in this state, we recommend deleting and recreating the resource.
+	//    in KMS for encryption at rest. Either the KMS key was disabled or deleted,
+	//    or the grants on the key were revoked. The effect of disabling or deleting
+	//    a key or of revoking a grant isn't immediate. It might take some time
+	//    for the member resource to discover that the key is inaccessible. When
+	//    a resource is in this state, we recommend deleting and recreating the
+	//    resource.
 	Status *string `type:"string" enum:"MemberStatus"`
 
 	// Tags assigned to the member. Tags consist of a key and optional value. For
@@ -5484,20 +6482,23 @@ type MemberConfiguration struct {
 	// FrameworkConfiguration is a required field
 	FrameworkConfiguration *MemberFrameworkConfiguration `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the customer managed key in AWS Key Management
-	// Service (AWS KMS) to use for encryption at rest in the member. This parameter
-	// is inherited by any nodes that this member creates.
+	// The Amazon Resource Name (ARN) of the customer managed key in Key Management
+	// Service (KMS) to use for encryption at rest in the member. This parameter
+	// is inherited by any nodes that this member creates. For more information,
+	// see Encryption at Rest (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/managed-blockchain-encryption-at-rest.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
 	//
 	// Use one of the following options to specify this parameter:
 	//
-	//    * Undefined or empty string - The member uses an AWS owned KMS key for
-	//    encryption by default.
+	//    * Undefined or empty string - By default, use an KMS key that is owned
+	//    and managed by Amazon Web Services on your behalf.
 	//
-	//    * A valid symmetric customer managed KMS key - The member uses the specified
-	//    key for encryption. Amazon Managed Blockchain doesn't support asymmetric
-	//    keys. For more information, see Using symmetric and asymmetric keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
-	//    in the AWS Key Management Service Developer Guide. The following is an
-	//    example of a KMS key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * A valid symmetric customer managed KMS key - Use the specified KMS key
+	//    in your account that you create, own, and manage. Amazon Managed Blockchain
+	//    doesn't support asymmetric keys. For more information, see Using symmetric
+	//    and asymmetric keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
+	//    in the Key Management Service Developer Guide. The following is an example
+	//    of a KMS key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	KmsKeyArn *string `min:"1" type:"string"`
 
 	// Configuration properties for logging events associated with a member of a
@@ -5878,7 +6879,7 @@ type MemberSummary struct {
 
 	// The Amazon Resource Name (ARN) of the member. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the member was created.
@@ -5890,8 +6891,8 @@ type MemberSummary struct {
 	// The unique identifier of the member.
 	Id *string `min:"1" type:"string"`
 
-	// An indicator of whether the member is owned by your AWS account or a different
-	// AWS account.
+	// An indicator of whether the member is owned by your Amazon Web Services account
+	// or a different Amazon Web Services account.
 	IsOwned *bool `type:"boolean"`
 
 	// The name of the member.
@@ -5899,31 +6900,32 @@ type MemberSummary struct {
 
 	// The status of the member.
 	//
-	//    * CREATING - The AWS account is in the process of creating a member.
+	//    * CREATING - The Amazon Web Services account is in the process of creating
+	//    a member.
 	//
 	//    * AVAILABLE - The member has been created and can participate in the network.
 	//
-	//    * CREATE_FAILED - The AWS account attempted to create a member and creation
-	//    failed.
+	//    * CREATE_FAILED - The Amazon Web Services account attempted to create
+	//    a member and creation failed.
 	//
 	//    * UPDATING - The member is in the process of being updated.
 	//
 	//    * DELETING - The member and all associated resources are in the process
-	//    of being deleted. Either the AWS account that owns the member deleted
-	//    it, or the member is being deleted as the result of an APPROVED PROPOSAL
-	//    to remove the member.
-	//
-	//    * DELETED - The member can no longer participate on the network and all
-	//    associated resources are deleted. Either the AWS account that owns the
+	//    of being deleted. Either the Amazon Web Services account that owns the
 	//    member deleted it, or the member is being deleted as the result of an
 	//    APPROVED PROPOSAL to remove the member.
 	//
+	//    * DELETED - The member can no longer participate on the network and all
+	//    associated resources are deleted. Either the Amazon Web Services account
+	//    that owns the member deleted it, or the member is being deleted as the
+	//    result of an APPROVED PROPOSAL to remove the member.
+	//
 	//    * INACCESSIBLE_ENCRYPTION_KEY - The member is impaired and might not function
 	//    as expected because it cannot access the specified customer managed key
-	//    in AWS Key Management Service (AWS KMS) for encryption at rest. Either
-	//    the KMS key was disabled or deleted, or the grants on the key were revoked.
-	//    The effect of disabling or deleting a key, or revoking a grant is not
-	//    immediate. The member resource might take some time to find that the key
+	//    in Key Management Service (KMS) for encryption at rest. Either the KMS
+	//    key was disabled or deleted, or the grants on the key were revoked. The
+	//    effect of disabling or deleting a key or of revoking a grant isn't immediate.
+	//    It might take some time for the member resource to discover that the key
 	//    is inaccessible. When a resource is in this state, we recommend deleting
 	//    and recreating the resource.
 	Status *string `type:"string" enum:"MemberStatus"`
@@ -5995,7 +6997,7 @@ type Network struct {
 
 	// The Amazon Resource Name (ARN) of the network. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the network was created.
@@ -6357,7 +7359,7 @@ type NetworkSummary struct {
 
 	// The Amazon Resource Name (ARN) of the network. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the network was created.
@@ -6454,7 +7456,7 @@ type Node struct {
 
 	// The Amazon Resource Name (ARN) of the node. For more information about ARNs
 	// and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The Availability Zone in which the node exists. Required for Ethereum nodes.
@@ -6472,11 +7474,14 @@ type Node struct {
 	// The instance type of the node.
 	InstanceType *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the customer managed key in AWS Key Management
-	// Service (AWS KMS) that the node uses for encryption at rest. If the value
-	// of this parameter is "AWS Owned KMS Key", the node uses an AWS owned KMS
-	// key for encryption. The node inherits this parameter from the member that
-	// it belongs to.
+	// The Amazon Resource Name (ARN) of the customer managed key in Key Management
+	// Service (KMS) that the node uses for encryption at rest. If the value of
+	// this parameter is "AWS Owned KMS Key", the node uses an Amazon Web Services
+	// owned KMS key for encryption. The node inherits this parameter from the member
+	// that it belongs to.
+	//
+	// For more information, see Encryption at Rest (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/managed-blockchain-encryption-at-rest.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
 	//
 	// Applies only to Hyperledger Fabric.
 	KmsKeyArn *string `type:"string"`
@@ -6500,7 +7505,8 @@ type Node struct {
 
 	// The status of the node.
 	//
-	//    * CREATING - The AWS account is in the process of creating a node.
+	//    * CREATING - The Amazon Web Services account is in the process of creating
+	//    a node.
 	//
 	//    * AVAILABLE - The node has been created and can participate in the network.
 	//
@@ -6509,8 +7515,8 @@ type Node struct {
 	//    tries to recover them. If a node is recoverable, it returns to AVAILABLE.
 	//    Otherwise, it moves to FAILED status.
 	//
-	//    * CREATE_FAILED - The AWS account attempted to create a node and creation
-	//    failed.
+	//    * CREATE_FAILED - The Amazon Web Services account attempted to create
+	//    a node and creation failed.
 	//
 	//    * UPDATING - The node is in the process of being updated.
 	//
@@ -6523,11 +7529,11 @@ type Node struct {
 	//
 	//    * INACCESSIBLE_ENCRYPTION_KEY - The node is impaired and might not function
 	//    as expected because it cannot access the specified customer managed key
-	//    in AWS KMS for encryption at rest. Either the KMS key was disabled or
-	//    deleted, or the grants on the key were revoked. The effect of disabling
-	//    or deleting a key, or revoking a grant is not immediate. The node resource
-	//    might take some time to find that the key is inaccessible. When a resource
-	//    is in this state, we recommend deleting and recreating the resource.
+	//    in KMS for encryption at rest. Either the KMS key was disabled or deleted,
+	//    or the grants on the key were revoked. The effect of disabling or deleting
+	//    a key or of revoking a grant isn't immediate. It might take some time
+	//    for the node resource to discover that the key is inaccessible. When a
+	//    resource is in this state, we recommend deleting and recreating the resource.
 	Status *string `type:"string" enum:"NodeStatus"`
 
 	// Tags assigned to the node. Each tag consists of a key and optional value.
@@ -6718,10 +7724,10 @@ func (s *NodeConfiguration) SetStateDB(v string) *NodeConfiguration {
 type NodeEthereumAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoint on which the Ethereum node listens to run Ethereum JSON-RPC
-	// methods over HTTP connections from a client. Use this endpoint in client
-	// code for smart contracts when using an HTTP connection. Connections to this
-	// endpoint are authenticated using Signature Version 4 (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+	// The endpoint on which the Ethereum node listens to run Ethereum API methods
+	// over HTTP connections from a client. Use this endpoint in client code for
+	// smart contracts when using an HTTP connection. Connections to this endpoint
+	// are authenticated using Signature Version 4 (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 	HttpEndpoint *string `type:"string"`
 
 	// The endpoint on which the Ethereum node listens to run Ethereum JSON-RPC
@@ -6938,7 +7944,7 @@ type NodeSummary struct {
 
 	// The Amazon Resource Name (ARN) of the node. For more information about ARNs
 	// and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The Availability Zone in which the node exists.
@@ -7022,7 +8028,7 @@ type Proposal struct {
 
 	// The Amazon Resource Name (ARN) of the proposal. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the proposal was created.
@@ -7033,9 +8039,9 @@ type Proposal struct {
 
 	// The date and time that the proposal expires. This is the CreationDate plus
 	// the ProposalDurationInHours that is specified in the ProposalThresholdPolicy.
-	// After this date and time, if members have not cast enough votes to determine
+	// After this date and time, if members haven't cast enough votes to determine
 	// the outcome according to the voting policy, the proposal is EXPIRED and Actions
-	// are not carried out.
+	// aren't carried out.
 	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The unique identifier of the network for which the proposal is made.
@@ -7067,14 +8073,14 @@ type Proposal struct {
 	//
 	//    * REJECTED - The proposal was rejected with insufficient YES votes among
 	//    members according to the VotingPolicy specified for the Network. The specified
-	//    ProposalActions are not carried out.
+	//    ProposalActions aren't carried out.
 	//
-	//    * EXPIRED - Members did not cast the number of votes required to determine
+	//    * EXPIRED - Members didn't cast the number of votes required to determine
 	//    the proposal outcome before the proposal expired. The specified ProposalActions
-	//    are not carried out.
+	//    aren't carried out.
 	//
 	//    * ACTION_FAILED - One or more of the specified ProposalActions in a proposal
-	//    that was approved could not be completed because of an error. The ACTION_FAILED
+	//    that was approved couldn't be completed because of an error. The ACTION_FAILED
 	//    status occurs even if only one ProposalAction fails and other actions
 	//    are successful.
 	Status *string `type:"string" enum:"ProposalStatus"`
@@ -7199,8 +8205,8 @@ func (s *Proposal) SetYesVoteCount(v int64) *Proposal {
 type ProposalActions struct {
 	_ struct{} `type:"structure"`
 
-	// The actions to perform for an APPROVED proposal to invite an AWS account
-	// to create a member and join the network.
+	// The actions to perform for an APPROVED proposal to invite an Amazon Web Services
+	// account to create a member and join the network.
 	Invitations []*InviteAction `type:"list"`
 
 	// The actions to perform for an APPROVED proposal to remove a member from the
@@ -7277,7 +8283,7 @@ type ProposalSummary struct {
 
 	// The Amazon Resource Name (ARN) of the proposal. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the proposal was created.
@@ -7288,9 +8294,9 @@ type ProposalSummary struct {
 
 	// The date and time that the proposal expires. This is the CreationDate plus
 	// the ProposalDurationInHours that is specified in the ProposalThresholdPolicy.
-	// After this date and time, if members have not cast enough votes to determine
+	// After this date and time, if members haven't cast enough votes to determine
 	// the outcome according to the voting policy, the proposal is EXPIRED and Actions
-	// are not carried out.
+	// aren't carried out.
 	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The unique identifier of the proposal.
@@ -7312,14 +8318,14 @@ type ProposalSummary struct {
 	//
 	//    * REJECTED - The proposal was rejected with insufficient YES votes among
 	//    members according to the VotingPolicy specified for the Network. The specified
-	//    ProposalActions are not carried out.
+	//    ProposalActions aren't carried out.
 	//
-	//    * EXPIRED - Members did not cast the number of votes required to determine
+	//    * EXPIRED - Members didn't cast the number of votes required to determine
 	//    the proposal outcome before the proposal expired. The specified ProposalActions
-	//    are not carried out.
+	//    aren't carried out.
 	//
 	//    * ACTION_FAILED - One or more of the specified ProposalActions in a proposal
-	//    that was approved could not be completed because of an error.
+	//    that was approved couldn't be completed because of an error.
 	Status *string `type:"string" enum:"ProposalStatus"`
 }
 
@@ -7644,15 +8650,15 @@ func (s *ResourceLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A requested resource does not exist. It may have been deleted or referenced
-// inaccurately.
+// A requested resource doesn't exist. It may have been deleted or referenced
+// incorrectly.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// A requested resource does not exist. It may have been deleted or referenced
+	// A requested resource doesn't exist. It may have been deleted or referenced
 	// inaccurately.
 	ResourceName *string `min:"1" type:"string"`
 }
@@ -7713,7 +8719,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The requested resource exists but is not in a status that can complete the
+// The requested resource exists but isn't in a status that can complete the
 // operation.
 type ResourceNotReadyException struct {
 	_            struct{}                  `type:"structure"`
@@ -7783,7 +8789,7 @@ type TagResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -7867,10 +8873,10 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The request or operation could not be performed because a service is throttling
-// requests. The most common source of throttling errors is launching EC2 instances
-// such that your service limit for EC2 instances is exceeded. Request a limit
-// increase or delete unused resources if possible.
+// The request or operation couldn't be performed because a service is throttling
+// requests. The most common source of throttling errors is creating resources
+// that exceed your service limit for this resource type. Request a limit increase
+// or delete unused resources if possible.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8004,7 +9010,7 @@ type UntagResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -8516,6 +9522,38 @@ func (s *VotingPolicy) Validate() error {
 func (s *VotingPolicy) SetApprovalThresholdPolicy(v *ApprovalThresholdPolicy) *VotingPolicy {
 	s.ApprovalThresholdPolicy = v
 	return s
+}
+
+const (
+	// AccessorStatusAvailable is a AccessorStatus enum value
+	AccessorStatusAvailable = "AVAILABLE"
+
+	// AccessorStatusPendingDeletion is a AccessorStatus enum value
+	AccessorStatusPendingDeletion = "PENDING_DELETION"
+
+	// AccessorStatusDeleted is a AccessorStatus enum value
+	AccessorStatusDeleted = "DELETED"
+)
+
+// AccessorStatus_Values returns all elements of the AccessorStatus enum
+func AccessorStatus_Values() []string {
+	return []string{
+		AccessorStatusAvailable,
+		AccessorStatusPendingDeletion,
+		AccessorStatusDeleted,
+	}
+}
+
+const (
+	// AccessorTypeBillingToken is a AccessorType enum value
+	AccessorTypeBillingToken = "BILLING_TOKEN"
+)
+
+// AccessorType_Values returns all elements of the AccessorType enum
+func AccessorType_Values() []string {
+	return []string{
+		AccessorTypeBillingToken,
+	}
 }
 
 const (

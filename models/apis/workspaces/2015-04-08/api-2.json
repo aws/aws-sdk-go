@@ -1104,7 +1104,8 @@
     "ClientProperties":{
       "type":"structure",
       "members":{
-        "ReconnectEnabled":{"shape":"ReconnectEnum"}
+        "ReconnectEnabled":{"shape":"ReconnectEnum"},
+        "LogUploadEnabled":{"shape":"LogUploadEnum"}
       }
     },
     "ClientPropertiesList":{
@@ -2105,6 +2106,13 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "LogUploadEnum":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "LoginMessage":{
       "type":"map",
       "key":{"shape":"ClientLocale"},
@@ -2322,6 +2330,17 @@
       "max":2048,
       "min":1
     },
+    "Protocol":{
+      "type":"string",
+      "enum":[
+        "PCOIP",
+        "WSP"
+      ]
+    },
+    "ProtocolList":{
+      "type":"list",
+      "member":{"shape":"Protocol"}
+    },
     "RebootRequest":{
       "type":"structure",
       "required":["WorkspaceId"],
@@ -2501,7 +2520,8 @@
       "type":"string",
       "enum":[
         "AUTO_STOP",
-        "ALWAYS_ON"
+        "ALWAYS_ON",
+        "MANUAL"
       ]
     },
     "RunningModeAutoStopTimeoutInMinutes":{"type":"integer"},
@@ -2974,7 +2994,9 @@
         "BYOL_GRAPHICS",
         "BYOL_GRAPHICSPRO",
         "BYOL_GRAPHICS_G4DN",
-        "BYOL_REGULAR_WSP"
+        "BYOL_REGULAR_WSP",
+        "BYOL_REGULAR_BYOP",
+        "BYOL_GRAPHICS_G4DN_BYOP"
       ]
     },
     "WorkspaceImageList":{
@@ -3013,7 +3035,8 @@
         "RunningModeAutoStopTimeoutInMinutes":{"shape":"RunningModeAutoStopTimeoutInMinutes"},
         "RootVolumeSizeGib":{"shape":"RootVolumeSizeGib"},
         "UserVolumeSizeGib":{"shape":"UserVolumeSizeGib"},
-        "ComputeTypeName":{"shape":"Compute"}
+        "ComputeTypeName":{"shape":"Compute"},
+        "Protocols":{"shape":"ProtocolList"}
       }
     },
     "WorkspaceRequest":{

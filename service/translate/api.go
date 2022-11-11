@@ -86,8 +86,15 @@ func (c *Translate) CreateParallelDataRequest(input *CreateParallelDataInput) (r
 //     You have made too many requests within a short period of time. Wait for a
 //     short time and then try your request again.
 //
+//   - TooManyTagsException
+//     You have added too many tags to this resource. The maximum is 50 tags.
+//
 //   - ConflictException
 //     There was a conflict processing the request. Try your request again.
+//
+//   - ConcurrentModificationException
+//     Another modification is being made. That modification must complete before
+//     you can make your change.
 //
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
@@ -647,6 +654,13 @@ func (c *Translate) ImportTerminologyRequest(input *ImportTerminologyInput) (req
 //     You have made too many requests within a short period of time. Wait for a
 //     short time and then try your request again.
 //
+//   - TooManyTagsException
+//     You have added too many tags to this resource. The maximum is 50 tags.
+//
+//   - ConcurrentModificationException
+//     Another modification is being made. That modification must complete before
+//     you can make your change.
+//
 //   - InternalServerException
 //     An internal server error occurred. Retry your request.
 //
@@ -962,6 +976,95 @@ func (c *Translate) ListParallelDataPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	return p.Err()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/ListTagsForResource
+func (c *Translate) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Translate.
+//
+// Lists all tags associated with a given Amazon Translate resource. For more
+// information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValueException
+//     The value of the parameter is not valid. Review the value of the parameter
+//     you are using to correct it, and then retry your operation.
+//
+//   - ResourceNotFoundException
+//     The resource you are looking for has not been found. Review the resource
+//     you're looking for and see if a different resource will accomplish your needs
+//     before retrying the revised request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/ListTagsForResource
+func (c *Translate) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListTerminologies = "ListTerminologies"
@@ -1299,9 +1402,12 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 
 // StartTextTranslationJob API operation for Amazon Translate.
 //
-// Starts an asynchronous batch translation job. Batch translation jobs can
-// be used to translate large volumes of text across multiple documents at once.
-// For more information, see async.
+// Starts an asynchronous batch translation job. Use batch translation jobs
+// to translate large volumes of text across multiple documents at once. For
+// batch translation, the input documents must share the same source language.
+// You can specify one or more target languages. Batch translation translates
+// each input document into each of the target languages. For more information,
+// see Asynchronous batch processing (https://docs.aws.amazon.com/translate/latest/dg/async.html)
 //
 // Batch translation jobs can be described with the DescribeTextTranslationJob
 // operation, listed with the ListTextTranslationJobs operation, and stopped
@@ -1325,7 +1431,8 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 //
 //   - UnsupportedLanguagePairException
 //     Amazon Translate does not support translation from the language of the source
-//     text into the requested target language. For more information, see how-to-error-msg.
+//     text into the requested target language. For more information, see Error
+//     messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
 //
 //   - InvalidRequestException
 //     The request that you made is not valid. Check your request to determine why
@@ -1462,6 +1569,104 @@ func (c *Translate) StopTextTranslationJobWithContext(ctx aws.Context, input *St
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TagResource
+func (c *Translate) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Translate.
+//
+// Associates a specific tag with a resource. A tag is a key-value pair that
+// adds as a metadata to a resource. For more information, see Tagging your
+// resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValueException
+//     The value of the parameter is not valid. Review the value of the parameter
+//     you are using to correct it, and then retry your operation.
+//
+//   - ConcurrentModificationException
+//     Another modification is being made. That modification must complete before
+//     you can make your change.
+//
+//   - ResourceNotFoundException
+//     The resource you are looking for has not been found. Review the resource
+//     you're looking for and see if a different resource will accomplish your needs
+//     before retrying the revised request.
+//
+//   - TooManyTagsException
+//     You have added too many tags to this resource. The maximum is 50 tags.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/TagResource
+func (c *Translate) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opText = "TranslateText"
 
 // TextRequest generates a "aws/request.Request" representing the
@@ -1506,7 +1711,8 @@ func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output 
 // Text API operation for Amazon Translate.
 //
 // Translates input text from the source language to the target language. For
-// a list of available languages and language codes, see what-is-languages.
+// a list of available languages and language codes, see Supported languages
+// (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1531,7 +1737,8 @@ func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output 
 //
 //   - UnsupportedLanguagePairException
 //     Amazon Translate does not support translation from the language of the source
-//     text into the requested target language. For more information, see how-to-error-msg.
+//     text into the requested target language. For more information, see Error
+//     messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
 //
 //   - DetectedLanguageLowConfidenceException
 //     The confidence that Amazon Comprehend accurately detected the source language
@@ -1569,6 +1776,100 @@ func (c *Translate) Text(input *TextInput) (*TextOutput, error) {
 // for more information on using Contexts.
 func (c *Translate) TextWithContext(ctx aws.Context, input *TextInput, opts ...request.Option) (*TextOutput, error) {
 	req, out := c.TextRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/UntagResource
+func (c *Translate) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Translate.
+//
+// Removes a specific tag associated with an Amazon Translate resource. For
+// more information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterValueException
+//     The value of the parameter is not valid. Review the value of the parameter
+//     you are using to correct it, and then retry your operation.
+//
+//   - ConcurrentModificationException
+//     Another modification is being made. That modification must complete before
+//     you can make your change.
+//
+//   - ResourceNotFoundException
+//     The resource you are looking for has not been found. Review the resource
+//     you're looking for and see if a different resource will accomplish your needs
+//     before retrying the revised request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/UntagResource
+func (c *Translate) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1882,6 +2183,11 @@ type CreateParallelDataInput struct {
 	//
 	// ParallelDataConfig is a required field
 	ParallelDataConfig *ParallelDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with this resource. A tag is a key-value pair that
+	// adds metadata to a resource. Each tag key for the resource must be unique.
+	// For more information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation.
@@ -1927,6 +2233,16 @@ func (s *CreateParallelDataInput) Validate() error {
 			invalidParams.AddNested("ParallelDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1961,6 +2277,12 @@ func (s *CreateParallelDataInput) SetName(v string) *CreateParallelDataInput {
 // SetParallelDataConfig sets the ParallelDataConfig field's value.
 func (s *CreateParallelDataInput) SetParallelDataConfig(v *ParallelDataConfig) *CreateParallelDataInput {
 	s.ParallelDataConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateParallelDataInput) SetTags(v []*Tag) *CreateParallelDataInput {
+	s.Tags = v
 	return s
 }
 
@@ -2660,6 +2982,11 @@ type ImportTerminologyInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Tags to be associated with this resource. A tag is a key-value pair that
+	// adds metadata to a resource. Each tag key for the resource must be unique.
+	// For more information, see Tagging your resources (https://docs.aws.amazon.com/translate/latest/dg/tagging.html).
+	Tags []*Tag `type:"list"`
+
 	// The terminology data for the custom terminology being imported.
 	//
 	// TerminologyData is a required field
@@ -2704,6 +3031,16 @@ func (s *ImportTerminologyInput) Validate() error {
 			invalidParams.AddNested("EncryptionKey", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.TerminologyData != nil {
 		if err := s.TerminologyData.Validate(); err != nil {
 			invalidParams.AddNested("TerminologyData", err.(request.ErrInvalidParams))
@@ -2737,6 +3074,12 @@ func (s *ImportTerminologyInput) SetMergeStrategy(v string) *ImportTerminologyIn
 // SetName sets the Name field's value.
 func (s *ImportTerminologyInput) SetName(v string) *ImportTerminologyInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportTerminologyInput) SetTags(v []*Tag) *ImportTerminologyInput {
+	s.Tags = v
 	return s
 }
 
@@ -3514,6 +3857,90 @@ func (s *ListParallelDataOutput) SetParallelDataPropertiesList(v []*ParallelData
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the given Amazon Translate resource you
+	// are querying.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Tags associated with the Amazon Translate resource being queried. A tag is
+	// a key-value pair that adds as a metadata to a resource used by Amazon Translate.
+	// For example, a tag with "Sales" as the key might be added to a resource to
+	// indicate its use by the sales department.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 type ListTerminologiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4228,7 +4655,7 @@ type StartTextTranslationJobInput struct {
 
 	// The Amazon Resource Name (ARN) of an AWS Identity Access and Management (IAM)
 	// role that grants Amazon Translate read access to your input data. For more
-	// information, see identity-and-access-management.
+	// information, see Identity and access management (https://docs.aws.amazon.com/translate/latest/dg/identity-and-access-management.html).
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -4249,8 +4676,11 @@ type StartTextTranslationJobInput struct {
 
 	// The name of a parallel data resource to add to the translation job. This
 	// resource consists of examples that show how you want segments of text to
-	// be translated. When you add parallel data to a translation job, you create
-	// an Active Custom Translation job.
+	// be translated. If you specify multiple target languages for the job, the
+	// parallel data file must include translations for all the target languages.
+	//
+	// When you add parallel data to a translation job, you create an Active Custom
+	// Translation job.
 	//
 	// This parameter accepts only one parallel data resource.
 	//
@@ -4261,16 +4691,17 @@ type StartTextTranslationJobInput struct {
 	// For a list of available parallel data resources, use the ListParallelData
 	// operation.
 	//
-	// For more information, see customizing-translations-parallel-data.
+	// For more information, see Customizing your translations with parallel data
+	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-parallel-data.html).
 	ParallelDataNames []*string `type:"list"`
 
-	// Settings to configure your translation output, including the option to mask
-	// profane words and phrases. StartTextTranslationJob does not support the formality
-	// setting.
+	// Settings to configure your translation output, including the option to set
+	// the formality level of the output text and the option to mask profane words
+	// and phrases.
 	Settings *TranslationSettings `type:"structure"`
 
 	// The language code of the input language. For a list of language codes, see
-	// what-is-languages.
+	// Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// Amazon Translate does not automatically detect a source language during batch
 	// translation jobs.
@@ -4278,7 +4709,11 @@ type StartTextTranslationJobInput struct {
 	// SourceLanguageCode is a required field
 	SourceLanguageCode *string `min:"2" type:"string" required:"true"`
 
-	// The language code of the output language.
+	// The target languages of the translation job. Enter up to 10 language codes.
+	// Each input file is translated into each target language.
+	//
+	// Each language code is two or five characters long. For a list of language
+	// codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// TargetLanguageCodes is a required field
 	TargetLanguageCodes []*string `min:"1" type:"list" required:"true"`
@@ -4289,10 +4724,14 @@ type StartTextTranslationJobInput struct {
 	//
 	// This parameter accepts only one custom terminology resource.
 	//
+	// If you specify multiple target languages for the job, translate uses the
+	// designated terminology for each requested target language that has an entry
+	// for the source term in the terminology file.
+	//
 	// For a list of available custom terminology resources, use the ListTerminologies
 	// operation.
 	//
-	// For more information, see how-custom-terminology.
+	// For more information, see Custom terminology (https://docs.aws.amazon.com/translate/latest/dg/how-custom-terminology.html).
 	TerminologyNames []*string `type:"list"`
 }
 
@@ -4570,6 +5009,170 @@ func (s *StopTextTranslationJobOutput) SetJobId(v string) *StopTextTranslationJo
 func (s *StopTextTranslationJobOutput) SetJobStatus(v string) *StopTextTranslationJobOutput {
 	s.JobStatus = &v
 	return s
+}
+
+// A key-value pair that adds as a metadata to a resource used by Amazon Translate.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The initial part of a key-value pair that forms a tag associated with a given
+	// resource.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The second part of a key-value pair that forms a tag associated with a given
+	// resource.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the given Amazon Translate resource to
+	// which you want to associate the tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// Tags being associated with a specific Amazon Translate resource. There can
+	// be a maximum of 50 tags (both existing and pending) associated with a specific
+	// resource.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The term being translated by the custom terminology.
@@ -4940,7 +5543,7 @@ type TextInput struct {
 
 	// The language code for the language of the source text. The language must
 	// be a language supported by Amazon Translate. For a list of language codes,
-	// see what-is-languages.
+	// see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// To have Amazon Translate determine the source language of your text, you
 	// can specify auto in the SourceLanguageCode field. If you specify auto, Amazon
@@ -5496,23 +6099,90 @@ func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Settings that configure the translation output.
+// You have added too many tags to this resource. The maximum is 50 tags.
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	ResourceArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Optional settings that configure the translation output. Use these settings
+// for real time translations and asynchronous translation jobs.
 type TranslationSettings struct {
 	_ struct{} `type:"structure"`
 
-	// You can optionally specify the desired level of formality for real-time translations
+	// You can optionally specify the desired level of formality for translations
 	// to supported target languages. The formality setting controls the level of
 	// formal language usage (also known as register (https://en.wikipedia.org/wiki/Register_(sociolinguistics)))
 	// in the translation output. You can set the value to informal or formal. If
 	// you don't specify a value for formality, or if the target language doesn't
 	// support formality, the translation will ignore the formality setting.
 	//
-	// Note that asynchronous translation jobs don't support formality. If you provide
-	// a value for formality, the StartTextTranslationJob API throws an exception
-	// (InvalidRequestException).
+	// If you specify multiple target languages for the job, translate ignores the
+	// formality setting for any unsupported target language.
 	//
-	// For target languages that support formality, see Supported Languages and
-	// Language Codes in the Amazon Translate Developer Guide (https://docs.aws.amazon.com/translate/latest/dg/what-is.html).
+	// For a list of target languages that support formality, see Setting Formality
+	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html)
+	// in the Amazon Translate Developer Guide.
 	Formality *string `type:"string" enum:"Formality"`
 
 	// Enable the profanity setting if you want Amazon Translate to mask profane
@@ -5523,8 +6193,13 @@ type TranslationSettings struct {
 	// word or phrase, regardless of the length or number of words.
 	//
 	// Amazon Translate doesn't detect profanity in all of its supported languages.
-	// For languages that support profanity detection, see Supported Languages and
-	// Language Codes in the Amazon Translate Developer Guide (https://docs.aws.amazon.com/translate/latest/dg/what-is.html).
+	// For languages that support profanity detection, see Masking profanity (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-profanity.html)
+	// in the Amazon Translate Developer Guide.
+	//
+	// If you specify multiple target languages for the job, all the target languages
+	// must support profanity masking. If any of the target languages don't support
+	// profanity masking, the translation job won't mask profanity for any target
+	// language.
 	Profanity *string `type:"string" enum:"Profanity"`
 }
 
@@ -5626,7 +6301,8 @@ func (s *UnsupportedDisplayLanguageCodeException) RequestID() string {
 }
 
 // Amazon Translate does not support translation from the language of the source
-// text into the requested target language. For more information, see how-to-error-msg.
+// text into the requested target language. For more information, see Error
+// messages (https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html).
 type UnsupportedLanguagePairException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5694,6 +6370,94 @@ func (s *UnsupportedLanguagePairException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnsupportedLanguagePairException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the given Amazon Translate resource from
+	// which you want to remove the tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// The initial part of a key-value pair that forms a tag being removed from
+	// a given resource. Keys must be unique and cannot be duplicated for a particular
+	// resource.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateParallelDataInput struct {

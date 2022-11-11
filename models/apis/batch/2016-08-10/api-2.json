@@ -482,7 +482,10 @@
         "statusReason":{"shape":"String"},
         "computeResources":{"shape":"ComputeResource"},
         "serviceRole":{"shape":"String"},
-        "updatePolicy":{"shape":"UpdatePolicy"}
+        "updatePolicy":{"shape":"UpdatePolicy"},
+        "eksConfiguration":{"shape":"EksConfiguration"},
+        "containerOrchestrationType":{"shape":"OrchestrationType"},
+        "uuid":{"shape":"String"}
       }
     },
     "ComputeEnvironmentDetailList":{
@@ -660,7 +663,8 @@
         "unmanagedvCpus":{"shape":"Integer"},
         "computeResources":{"shape":"ComputeResource"},
         "serviceRole":{"shape":"String"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "eksConfiguration":{"shape":"EksConfiguration"}
       }
     },
     "CreateComputeEnvironmentResponse":{
@@ -900,12 +904,235 @@
       "required":["imageType"],
       "members":{
         "imageType":{"shape":"ImageType"},
-        "imageIdOverride":{"shape":"ImageIdOverride"}
+        "imageIdOverride":{"shape":"ImageIdOverride"},
+        "imageKubernetesVersion":{"shape":"KubernetesVersion"}
       }
     },
     "Ec2ConfigurationList":{
       "type":"list",
       "member":{"shape":"Ec2Configuration"}
+    },
+    "EksAttemptContainerDetail":{
+      "type":"structure",
+      "members":{
+        "exitCode":{"shape":"Integer"},
+        "reason":{"shape":"String"}
+      }
+    },
+    "EksAttemptContainerDetails":{
+      "type":"list",
+      "member":{"shape":"EksAttemptContainerDetail"}
+    },
+    "EksAttemptDetail":{
+      "type":"structure",
+      "members":{
+        "containers":{"shape":"EksAttemptContainerDetails"},
+        "podName":{"shape":"String"},
+        "nodeName":{"shape":"String"},
+        "startedAt":{"shape":"Long"},
+        "stoppedAt":{"shape":"Long"},
+        "statusReason":{"shape":"String"}
+      }
+    },
+    "EksAttemptDetails":{
+      "type":"list",
+      "member":{"shape":"EksAttemptDetail"}
+    },
+    "EksConfiguration":{
+      "type":"structure",
+      "required":[
+        "eksClusterArn",
+        "kubernetesNamespace"
+      ],
+      "members":{
+        "eksClusterArn":{"shape":"String"},
+        "kubernetesNamespace":{"shape":"String"}
+      }
+    },
+    "EksContainer":{
+      "type":"structure",
+      "required":["image"],
+      "members":{
+        "name":{"shape":"String"},
+        "image":{"shape":"String"},
+        "imagePullPolicy":{"shape":"String"},
+        "command":{"shape":"StringList"},
+        "args":{"shape":"StringList"},
+        "env":{"shape":"EksContainerEnvironmentVariables"},
+        "resources":{"shape":"EksContainerResourceRequirements"},
+        "volumeMounts":{"shape":"EksContainerVolumeMounts"},
+        "securityContext":{"shape":"EksContainerSecurityContext"}
+      }
+    },
+    "EksContainerDetail":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "image":{"shape":"String"},
+        "imagePullPolicy":{"shape":"String"},
+        "command":{"shape":"StringList"},
+        "args":{"shape":"StringList"},
+        "env":{"shape":"EksContainerEnvironmentVariables"},
+        "resources":{"shape":"EksContainerResourceRequirements"},
+        "exitCode":{"shape":"Integer"},
+        "reason":{"shape":"String"},
+        "volumeMounts":{"shape":"EksContainerVolumeMounts"},
+        "securityContext":{"shape":"EksContainerSecurityContext"}
+      }
+    },
+    "EksContainerDetails":{
+      "type":"list",
+      "member":{"shape":"EksContainerDetail"}
+    },
+    "EksContainerEnvironmentVariable":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"},
+        "value":{"shape":"String"}
+      }
+    },
+    "EksContainerEnvironmentVariables":{
+      "type":"list",
+      "member":{"shape":"EksContainerEnvironmentVariable"}
+    },
+    "EksContainerOverride":{
+      "type":"structure",
+      "members":{
+        "image":{"shape":"String"},
+        "command":{"shape":"StringList"},
+        "args":{"shape":"StringList"},
+        "env":{"shape":"EksContainerEnvironmentVariables"},
+        "resources":{"shape":"EksContainerResourceRequirements"}
+      }
+    },
+    "EksContainerOverrideList":{
+      "type":"list",
+      "member":{"shape":"EksContainerOverride"}
+    },
+    "EksContainerResourceRequirements":{
+      "type":"structure",
+      "members":{
+        "limits":{"shape":"EksLimits"},
+        "requests":{"shape":"EksRequests"}
+      }
+    },
+    "EksContainerSecurityContext":{
+      "type":"structure",
+      "members":{
+        "runAsUser":{"shape":"Long"},
+        "runAsGroup":{"shape":"Long"},
+        "privileged":{"shape":"Boolean"},
+        "readOnlyRootFilesystem":{"shape":"Boolean"},
+        "runAsNonRoot":{"shape":"Boolean"}
+      }
+    },
+    "EksContainerVolumeMount":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "mountPath":{"shape":"String"},
+        "readOnly":{"shape":"Boolean"}
+      }
+    },
+    "EksContainerVolumeMounts":{
+      "type":"list",
+      "member":{"shape":"EksContainerVolumeMount"}
+    },
+    "EksContainers":{
+      "type":"list",
+      "member":{"shape":"EksContainer"}
+    },
+    "EksEmptyDir":{
+      "type":"structure",
+      "members":{
+        "medium":{"shape":"String"},
+        "sizeLimit":{"shape":"Quantity"}
+      }
+    },
+    "EksHostPath":{
+      "type":"structure",
+      "members":{
+        "path":{"shape":"String"}
+      }
+    },
+    "EksLimits":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"Quantity"}
+    },
+    "EksPodProperties":{
+      "type":"structure",
+      "members":{
+        "serviceAccountName":{"shape":"String"},
+        "hostNetwork":{"shape":"Boolean"},
+        "dnsPolicy":{"shape":"String"},
+        "containers":{"shape":"EksContainers"},
+        "volumes":{"shape":"EksVolumes"}
+      }
+    },
+    "EksPodPropertiesDetail":{
+      "type":"structure",
+      "members":{
+        "serviceAccountName":{"shape":"String"},
+        "hostNetwork":{"shape":"Boolean"},
+        "dnsPolicy":{"shape":"String"},
+        "containers":{"shape":"EksContainerDetails"},
+        "volumes":{"shape":"EksVolumes"},
+        "podName":{"shape":"String"},
+        "nodeName":{"shape":"String"}
+      }
+    },
+    "EksPodPropertiesOverride":{
+      "type":"structure",
+      "members":{
+        "containers":{"shape":"EksContainerOverrideList"}
+      }
+    },
+    "EksProperties":{
+      "type":"structure",
+      "members":{
+        "podProperties":{"shape":"EksPodProperties"}
+      }
+    },
+    "EksPropertiesDetail":{
+      "type":"structure",
+      "members":{
+        "podProperties":{"shape":"EksPodPropertiesDetail"}
+      }
+    },
+    "EksPropertiesOverride":{
+      "type":"structure",
+      "members":{
+        "podProperties":{"shape":"EksPodPropertiesOverride"}
+      }
+    },
+    "EksRequests":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"Quantity"}
+    },
+    "EksSecret":{
+      "type":"structure",
+      "required":["secretName"],
+      "members":{
+        "secretName":{"shape":"String"},
+        "optional":{"shape":"Boolean"}
+      }
+    },
+    "EksVolume":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"},
+        "hostPath":{"shape":"EksHostPath"},
+        "emptyDir":{"shape":"EksEmptyDir"},
+        "secret":{"shape":"EksSecret"}
+      }
+    },
+    "EksVolumes":{
+      "type":"list",
+      "member":{"shape":"EksVolume"}
     },
     "EnvironmentVariables":{
       "type":"list",
@@ -997,7 +1224,9 @@
         "nodeProperties":{"shape":"NodeProperties"},
         "tags":{"shape":"TagrisTagsMap"},
         "propagateTags":{"shape":"Boolean"},
-        "platformCapabilities":{"shape":"PlatformCapabilityList"}
+        "platformCapabilities":{"shape":"PlatformCapabilityList"},
+        "eksProperties":{"shape":"EksProperties"},
+        "containerOrchestrationType":{"shape":"OrchestrationType"}
       }
     },
     "JobDefinitionList":{
@@ -1056,7 +1285,9 @@
         "timeout":{"shape":"JobTimeout"},
         "tags":{"shape":"TagrisTagsMap"},
         "propagateTags":{"shape":"Boolean"},
-        "platformCapabilities":{"shape":"PlatformCapabilityList"}
+        "platformCapabilities":{"shape":"PlatformCapabilityList"},
+        "eksProperties":{"shape":"EksPropertiesDetail"},
+        "eksAttempts":{"shape":"EksAttemptDetails"}
       }
     },
     "JobDetailList":{
@@ -1149,6 +1380,11 @@
         "name":{"shape":"String"},
         "values":{"shape":"StringList"}
       }
+    },
+    "KubernetesVersion":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "LaunchTemplateSpecification":{
       "type":"structure",
@@ -1340,6 +1576,13 @@
         "container":{"shape":"ContainerProperties"}
       }
     },
+    "OrchestrationType":{
+      "type":"string",
+      "enum":[
+        "ECS",
+        "EKS"
+      ]
+    },
     "ParametersMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -1355,6 +1598,11 @@
     "PlatformCapabilityList":{
       "type":"list",
       "member":{"shape":"PlatformCapability"}
+    },
+    "Quantity":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "RegisterJobDefinitionRequest":{
       "type":"structure",
@@ -1373,7 +1621,8 @@
         "propagateTags":{"shape":"Boolean"},
         "timeout":{"shape":"JobTimeout"},
         "tags":{"shape":"TagrisTagsMap"},
-        "platformCapabilities":{"shape":"PlatformCapabilityList"}
+        "platformCapabilities":{"shape":"PlatformCapabilityList"},
+        "eksProperties":{"shape":"EksProperties"}
       }
     },
     "RegisterJobDefinitionResponse":{
@@ -1516,7 +1765,8 @@
         "retryStrategy":{"shape":"RetryStrategy"},
         "propagateTags":{"shape":"Boolean"},
         "timeout":{"shape":"JobTimeout"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "eksPropertiesOverride":{"shape":"EksPropertiesOverride"}
       }
     },
     "SubmitJobResponse":{

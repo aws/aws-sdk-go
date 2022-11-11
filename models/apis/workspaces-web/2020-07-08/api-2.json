@@ -68,6 +68,25 @@
       ],
       "idempotent":true
     },
+    "AssociateUserAccessLoggingSettings":{
+      "name":"AssociateUserAccessLoggingSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/portals/{portalArn+}/userAccessLoggingSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateUserAccessLoggingSettingsRequest"},
+      "output":{"shape":"AssociateUserAccessLoggingSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
     "AssociateUserSettings":{
       "name":"AssociateUserSettings",
       "http":{
@@ -171,6 +190,24 @@
       },
       "input":{"shape":"CreateTrustStoreRequest"},
       "output":{"shape":"CreateTrustStoreResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "CreateUserAccessLoggingSettings":{
+      "name":"CreateUserAccessLoggingSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/userAccessLoggingSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateUserAccessLoggingSettingsRequest"},
+      "output":{"shape":"CreateUserAccessLoggingSettingsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
@@ -288,6 +325,24 @@
       ],
       "idempotent":true
     },
+    "DeleteUserAccessLoggingSettings":{
+      "name":"DeleteUserAccessLoggingSettings",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteUserAccessLoggingSettingsRequest"},
+      "output":{"shape":"DeleteUserAccessLoggingSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
     "DeleteUserSettings":{
       "name":"DeleteUserSettings",
       "http":{
@@ -351,6 +406,24 @@
       },
       "input":{"shape":"DisassociateTrustStoreRequest"},
       "output":{"shape":"DisassociateTrustStoreResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
+    "DisassociateUserAccessLoggingSettings":{
+      "name":"DisassociateUserAccessLoggingSettings",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/portals/{portalArn+}/userAccessLoggingSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateUserAccessLoggingSettingsRequest"},
+      "output":{"shape":"DisassociateUserAccessLoggingSettingsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -497,6 +570,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "GetUserAccessLoggingSettings":{
+      "name":"GetUserAccessLoggingSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetUserAccessLoggingSettingsRequest"},
+      "output":{"shape":"GetUserAccessLoggingSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetUserSettings":{
       "name":"GetUserSettings",
       "http":{
@@ -621,6 +711,22 @@
       },
       "input":{"shape":"ListTrustStoresRequest"},
       "output":{"shape":"ListTrustStoresResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListUserAccessLoggingSettings":{
+      "name":"ListUserAccessLoggingSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/userAccessLoggingSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"ListUserAccessLoggingSettingsRequest"},
+      "output":{"shape":"ListUserAccessLoggingSettingsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
@@ -767,6 +873,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdateUserAccessLoggingSettings":{
+      "name":"UpdateUserAccessLoggingSettings",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateUserAccessLoggingSettingsRequest"},
+      "output":{"shape":"UpdateUserAccessLoggingSettingsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateUserSettings":{
       "name":"UpdateUserSettings",
       "http":{
@@ -895,6 +1018,36 @@
       "members":{
         "portalArn":{"shape":"ARN"},
         "trustStoreArn":{"shape":"ARN"}
+      }
+    },
+    "AssociateUserAccessLoggingSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "portalArn",
+        "userAccessLoggingSettingsArn"
+      ],
+      "members":{
+        "portalArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"portalArn"
+        },
+        "userAccessLoggingSettingsArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"userAccessLoggingSettingsArn"
+        }
+      }
+    },
+    "AssociateUserAccessLoggingSettingsResponse":{
+      "type":"structure",
+      "required":[
+        "portalArn",
+        "userAccessLoggingSettingsArn"
+      ],
+      "members":{
+        "portalArn":{"shape":"ARN"},
+        "userAccessLoggingSettingsArn":{"shape":"ARN"}
       }
     },
     "AssociateUserSettingsRequest":{
@@ -1136,6 +1289,25 @@
         "trustStoreArn":{"shape":"ARN"}
       }
     },
+    "CreateUserAccessLoggingSettingsRequest":{
+      "type":"structure",
+      "required":["kinesisStreamArn"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "kinesisStreamArn":{"shape":"KinesisStreamArn"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateUserAccessLoggingSettingsResponse":{
+      "type":"structure",
+      "required":["userAccessLoggingSettingsArn"],
+      "members":{
+        "userAccessLoggingSettingsArn":{"shape":"ARN"}
+      }
+    },
     "CreateUserSettingsRequest":{
       "type":"structure",
       "required":[
@@ -1247,6 +1419,22 @@
       "members":{
       }
     },
+    "DeleteUserAccessLoggingSettingsRequest":{
+      "type":"structure",
+      "required":["userAccessLoggingSettingsArn"],
+      "members":{
+        "userAccessLoggingSettingsArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"userAccessLoggingSettingsArn"
+        }
+      }
+    },
+    "DeleteUserAccessLoggingSettingsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteUserSettingsRequest":{
       "type":"structure",
       "required":["userSettingsArn"],
@@ -1307,6 +1495,22 @@
       }
     },
     "DisassociateTrustStoreResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociateUserAccessLoggingSettingsRequest":{
+      "type":"structure",
+      "required":["portalArn"],
+      "members":{
+        "portalArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"portalArn"
+        }
+      }
+    },
+    "DisassociateUserAccessLoggingSettingsResponse":{
       "type":"structure",
       "members":{
       }
@@ -1484,6 +1688,23 @@
         "trustStore":{"shape":"TrustStore"}
       }
     },
+    "GetUserAccessLoggingSettingsRequest":{
+      "type":"structure",
+      "required":["userAccessLoggingSettingsArn"],
+      "members":{
+        "userAccessLoggingSettingsArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"userAccessLoggingSettingsArn"
+        }
+      }
+    },
+    "GetUserAccessLoggingSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "userAccessLoggingSettings":{"shape":"UserAccessLoggingSettings"}
+      }
+    },
     "GetUserSettingsRequest":{
       "type":"structure",
       "required":["userSettingsArn"],
@@ -1566,6 +1787,12 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "KinesisStreamArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:[\\w+=/,.@-]+:kinesis:[a-zA-Z0-9\\-]*:[a-zA-Z0-9]{1,12}:stream/.+"
     },
     "ListBrowserSettingsRequest":{
       "type":"structure",
@@ -1729,6 +1956,28 @@
         "trustStores":{"shape":"TrustStoreSummaryList"}
       }
     },
+    "ListUserAccessLoggingSettingsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListUserAccessLoggingSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "userAccessLoggingSettings":{"shape":"UserAccessLoggingSettingsList"}
+      }
+    },
     "ListUserSettingsRequest":{
       "type":"structure",
       "members":{
@@ -1798,6 +2047,7 @@
         "rendererType":{"shape":"RendererType"},
         "statusReason":{"shape":"StatusReason"},
         "trustStoreArn":{"shape":"ARN"},
+        "userAccessLoggingSettingsArn":{"shape":"ARN"},
         "userSettingsArn":{"shape":"ARN"}
       }
     },
@@ -1832,6 +2082,7 @@
         "portalStatus":{"shape":"PortalStatus"},
         "rendererType":{"shape":"RendererType"},
         "trustStoreArn":{"shape":"ARN"},
+        "userAccessLoggingSettingsArn":{"shape":"ARN"},
         "userSettingsArn":{"shape":"ARN"}
       }
     },
@@ -2164,6 +2415,29 @@
         "trustStoreArn":{"shape":"ARN"}
       }
     },
+    "UpdateUserAccessLoggingSettingsRequest":{
+      "type":"structure",
+      "required":["userAccessLoggingSettingsArn"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "kinesisStreamArn":{"shape":"KinesisStreamArn"},
+        "userAccessLoggingSettingsArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"userAccessLoggingSettingsArn"
+        }
+      }
+    },
+    "UpdateUserAccessLoggingSettingsResponse":{
+      "type":"structure",
+      "required":["userAccessLoggingSettings"],
+      "members":{
+        "userAccessLoggingSettings":{"shape":"UserAccessLoggingSettings"}
+      }
+    },
     "UpdateUserSettingsRequest":{
       "type":"structure",
       "required":["userSettingsArn"],
@@ -2191,6 +2465,26 @@
       "required":["userSettings"],
       "members":{
         "userSettings":{"shape":"UserSettings"}
+      }
+    },
+    "UserAccessLoggingSettings":{
+      "type":"structure",
+      "required":["userAccessLoggingSettingsArn"],
+      "members":{
+        "associatedPortalArns":{"shape":"ArnList"},
+        "kinesisStreamArn":{"shape":"KinesisStreamArn"},
+        "userAccessLoggingSettingsArn":{"shape":"ARN"}
+      }
+    },
+    "UserAccessLoggingSettingsList":{
+      "type":"list",
+      "member":{"shape":"UserAccessLoggingSettingsSummary"}
+    },
+    "UserAccessLoggingSettingsSummary":{
+      "type":"structure",
+      "members":{
+        "kinesisStreamArn":{"shape":"KinesisStreamArn"},
+        "userAccessLoggingSettingsArn":{"shape":"ARN"}
       }
     },
     "UserSettings":{

@@ -72,6 +72,10 @@ type WorkSpacesWebAPI interface {
 	AssociateTrustStoreWithContext(aws.Context, *workspacesweb.AssociateTrustStoreInput, ...request.Option) (*workspacesweb.AssociateTrustStoreOutput, error)
 	AssociateTrustStoreRequest(*workspacesweb.AssociateTrustStoreInput) (*request.Request, *workspacesweb.AssociateTrustStoreOutput)
 
+	AssociateUserAccessLoggingSettings(*workspacesweb.AssociateUserAccessLoggingSettingsInput) (*workspacesweb.AssociateUserAccessLoggingSettingsOutput, error)
+	AssociateUserAccessLoggingSettingsWithContext(aws.Context, *workspacesweb.AssociateUserAccessLoggingSettingsInput, ...request.Option) (*workspacesweb.AssociateUserAccessLoggingSettingsOutput, error)
+	AssociateUserAccessLoggingSettingsRequest(*workspacesweb.AssociateUserAccessLoggingSettingsInput) (*request.Request, *workspacesweb.AssociateUserAccessLoggingSettingsOutput)
+
 	AssociateUserSettings(*workspacesweb.AssociateUserSettingsInput) (*workspacesweb.AssociateUserSettingsOutput, error)
 	AssociateUserSettingsWithContext(aws.Context, *workspacesweb.AssociateUserSettingsInput, ...request.Option) (*workspacesweb.AssociateUserSettingsOutput, error)
 	AssociateUserSettingsRequest(*workspacesweb.AssociateUserSettingsInput) (*request.Request, *workspacesweb.AssociateUserSettingsOutput)
@@ -95,6 +99,10 @@ type WorkSpacesWebAPI interface {
 	CreateTrustStore(*workspacesweb.CreateTrustStoreInput) (*workspacesweb.CreateTrustStoreOutput, error)
 	CreateTrustStoreWithContext(aws.Context, *workspacesweb.CreateTrustStoreInput, ...request.Option) (*workspacesweb.CreateTrustStoreOutput, error)
 	CreateTrustStoreRequest(*workspacesweb.CreateTrustStoreInput) (*request.Request, *workspacesweb.CreateTrustStoreOutput)
+
+	CreateUserAccessLoggingSettings(*workspacesweb.CreateUserAccessLoggingSettingsInput) (*workspacesweb.CreateUserAccessLoggingSettingsOutput, error)
+	CreateUserAccessLoggingSettingsWithContext(aws.Context, *workspacesweb.CreateUserAccessLoggingSettingsInput, ...request.Option) (*workspacesweb.CreateUserAccessLoggingSettingsOutput, error)
+	CreateUserAccessLoggingSettingsRequest(*workspacesweb.CreateUserAccessLoggingSettingsInput) (*request.Request, *workspacesweb.CreateUserAccessLoggingSettingsOutput)
 
 	CreateUserSettings(*workspacesweb.CreateUserSettingsInput) (*workspacesweb.CreateUserSettingsOutput, error)
 	CreateUserSettingsWithContext(aws.Context, *workspacesweb.CreateUserSettingsInput, ...request.Option) (*workspacesweb.CreateUserSettingsOutput, error)
@@ -120,6 +128,10 @@ type WorkSpacesWebAPI interface {
 	DeleteTrustStoreWithContext(aws.Context, *workspacesweb.DeleteTrustStoreInput, ...request.Option) (*workspacesweb.DeleteTrustStoreOutput, error)
 	DeleteTrustStoreRequest(*workspacesweb.DeleteTrustStoreInput) (*request.Request, *workspacesweb.DeleteTrustStoreOutput)
 
+	DeleteUserAccessLoggingSettings(*workspacesweb.DeleteUserAccessLoggingSettingsInput) (*workspacesweb.DeleteUserAccessLoggingSettingsOutput, error)
+	DeleteUserAccessLoggingSettingsWithContext(aws.Context, *workspacesweb.DeleteUserAccessLoggingSettingsInput, ...request.Option) (*workspacesweb.DeleteUserAccessLoggingSettingsOutput, error)
+	DeleteUserAccessLoggingSettingsRequest(*workspacesweb.DeleteUserAccessLoggingSettingsInput) (*request.Request, *workspacesweb.DeleteUserAccessLoggingSettingsOutput)
+
 	DeleteUserSettings(*workspacesweb.DeleteUserSettingsInput) (*workspacesweb.DeleteUserSettingsOutput, error)
 	DeleteUserSettingsWithContext(aws.Context, *workspacesweb.DeleteUserSettingsInput, ...request.Option) (*workspacesweb.DeleteUserSettingsOutput, error)
 	DeleteUserSettingsRequest(*workspacesweb.DeleteUserSettingsInput) (*request.Request, *workspacesweb.DeleteUserSettingsOutput)
@@ -135,6 +147,10 @@ type WorkSpacesWebAPI interface {
 	DisassociateTrustStore(*workspacesweb.DisassociateTrustStoreInput) (*workspacesweb.DisassociateTrustStoreOutput, error)
 	DisassociateTrustStoreWithContext(aws.Context, *workspacesweb.DisassociateTrustStoreInput, ...request.Option) (*workspacesweb.DisassociateTrustStoreOutput, error)
 	DisassociateTrustStoreRequest(*workspacesweb.DisassociateTrustStoreInput) (*request.Request, *workspacesweb.DisassociateTrustStoreOutput)
+
+	DisassociateUserAccessLoggingSettings(*workspacesweb.DisassociateUserAccessLoggingSettingsInput) (*workspacesweb.DisassociateUserAccessLoggingSettingsOutput, error)
+	DisassociateUserAccessLoggingSettingsWithContext(aws.Context, *workspacesweb.DisassociateUserAccessLoggingSettingsInput, ...request.Option) (*workspacesweb.DisassociateUserAccessLoggingSettingsOutput, error)
+	DisassociateUserAccessLoggingSettingsRequest(*workspacesweb.DisassociateUserAccessLoggingSettingsInput) (*request.Request, *workspacesweb.DisassociateUserAccessLoggingSettingsOutput)
 
 	DisassociateUserSettings(*workspacesweb.DisassociateUserSettingsInput) (*workspacesweb.DisassociateUserSettingsOutput, error)
 	DisassociateUserSettingsWithContext(aws.Context, *workspacesweb.DisassociateUserSettingsInput, ...request.Option) (*workspacesweb.DisassociateUserSettingsOutput, error)
@@ -167,6 +183,10 @@ type WorkSpacesWebAPI interface {
 	GetTrustStoreCertificate(*workspacesweb.GetTrustStoreCertificateInput) (*workspacesweb.GetTrustStoreCertificateOutput, error)
 	GetTrustStoreCertificateWithContext(aws.Context, *workspacesweb.GetTrustStoreCertificateInput, ...request.Option) (*workspacesweb.GetTrustStoreCertificateOutput, error)
 	GetTrustStoreCertificateRequest(*workspacesweb.GetTrustStoreCertificateInput) (*request.Request, *workspacesweb.GetTrustStoreCertificateOutput)
+
+	GetUserAccessLoggingSettings(*workspacesweb.GetUserAccessLoggingSettingsInput) (*workspacesweb.GetUserAccessLoggingSettingsOutput, error)
+	GetUserAccessLoggingSettingsWithContext(aws.Context, *workspacesweb.GetUserAccessLoggingSettingsInput, ...request.Option) (*workspacesweb.GetUserAccessLoggingSettingsOutput, error)
+	GetUserAccessLoggingSettingsRequest(*workspacesweb.GetUserAccessLoggingSettingsInput) (*request.Request, *workspacesweb.GetUserAccessLoggingSettingsOutput)
 
 	GetUserSettings(*workspacesweb.GetUserSettingsInput) (*workspacesweb.GetUserSettingsOutput, error)
 	GetUserSettingsWithContext(aws.Context, *workspacesweb.GetUserSettingsInput, ...request.Option) (*workspacesweb.GetUserSettingsOutput, error)
@@ -218,6 +238,13 @@ type WorkSpacesWebAPI interface {
 	ListTrustStoresPages(*workspacesweb.ListTrustStoresInput, func(*workspacesweb.ListTrustStoresOutput, bool) bool) error
 	ListTrustStoresPagesWithContext(aws.Context, *workspacesweb.ListTrustStoresInput, func(*workspacesweb.ListTrustStoresOutput, bool) bool, ...request.Option) error
 
+	ListUserAccessLoggingSettings(*workspacesweb.ListUserAccessLoggingSettingsInput) (*workspacesweb.ListUserAccessLoggingSettingsOutput, error)
+	ListUserAccessLoggingSettingsWithContext(aws.Context, *workspacesweb.ListUserAccessLoggingSettingsInput, ...request.Option) (*workspacesweb.ListUserAccessLoggingSettingsOutput, error)
+	ListUserAccessLoggingSettingsRequest(*workspacesweb.ListUserAccessLoggingSettingsInput) (*request.Request, *workspacesweb.ListUserAccessLoggingSettingsOutput)
+
+	ListUserAccessLoggingSettingsPages(*workspacesweb.ListUserAccessLoggingSettingsInput, func(*workspacesweb.ListUserAccessLoggingSettingsOutput, bool) bool) error
+	ListUserAccessLoggingSettingsPagesWithContext(aws.Context, *workspacesweb.ListUserAccessLoggingSettingsInput, func(*workspacesweb.ListUserAccessLoggingSettingsOutput, bool) bool, ...request.Option) error
+
 	ListUserSettings(*workspacesweb.ListUserSettingsInput) (*workspacesweb.ListUserSettingsOutput, error)
 	ListUserSettingsWithContext(aws.Context, *workspacesweb.ListUserSettingsInput, ...request.Option) (*workspacesweb.ListUserSettingsOutput, error)
 	ListUserSettingsRequest(*workspacesweb.ListUserSettingsInput) (*request.Request, *workspacesweb.ListUserSettingsOutput)
@@ -252,6 +279,10 @@ type WorkSpacesWebAPI interface {
 	UpdateTrustStore(*workspacesweb.UpdateTrustStoreInput) (*workspacesweb.UpdateTrustStoreOutput, error)
 	UpdateTrustStoreWithContext(aws.Context, *workspacesweb.UpdateTrustStoreInput, ...request.Option) (*workspacesweb.UpdateTrustStoreOutput, error)
 	UpdateTrustStoreRequest(*workspacesweb.UpdateTrustStoreInput) (*request.Request, *workspacesweb.UpdateTrustStoreOutput)
+
+	UpdateUserAccessLoggingSettings(*workspacesweb.UpdateUserAccessLoggingSettingsInput) (*workspacesweb.UpdateUserAccessLoggingSettingsOutput, error)
+	UpdateUserAccessLoggingSettingsWithContext(aws.Context, *workspacesweb.UpdateUserAccessLoggingSettingsInput, ...request.Option) (*workspacesweb.UpdateUserAccessLoggingSettingsOutput, error)
+	UpdateUserAccessLoggingSettingsRequest(*workspacesweb.UpdateUserAccessLoggingSettingsInput) (*request.Request, *workspacesweb.UpdateUserAccessLoggingSettingsOutput)
 
 	UpdateUserSettings(*workspacesweb.UpdateUserSettingsInput) (*workspacesweb.UpdateUserSettingsOutput, error)
 	UpdateUserSettingsWithContext(aws.Context, *workspacesweb.UpdateUserSettingsInput, ...request.Option) (*workspacesweb.UpdateUserSettingsOutput, error)

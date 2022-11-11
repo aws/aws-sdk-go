@@ -98,6 +98,10 @@ type SupportAppAPI interface {
 	PutAccountAliasWithContext(aws.Context, *supportapp.PutAccountAliasInput, ...request.Option) (*supportapp.PutAccountAliasOutput, error)
 	PutAccountAliasRequest(*supportapp.PutAccountAliasInput) (*request.Request, *supportapp.PutAccountAliasOutput)
 
+	RegisterSlackWorkspaceForOrganization(*supportapp.RegisterSlackWorkspaceForOrganizationInput) (*supportapp.RegisterSlackWorkspaceForOrganizationOutput, error)
+	RegisterSlackWorkspaceForOrganizationWithContext(aws.Context, *supportapp.RegisterSlackWorkspaceForOrganizationInput, ...request.Option) (*supportapp.RegisterSlackWorkspaceForOrganizationOutput, error)
+	RegisterSlackWorkspaceForOrganizationRequest(*supportapp.RegisterSlackWorkspaceForOrganizationInput) (*request.Request, *supportapp.RegisterSlackWorkspaceForOrganizationOutput)
+
 	UpdateSlackChannelConfiguration(*supportapp.UpdateSlackChannelConfigurationInput) (*supportapp.UpdateSlackChannelConfigurationOutput, error)
 	UpdateSlackChannelConfigurationWithContext(aws.Context, *supportapp.UpdateSlackChannelConfigurationInput, ...request.Option) (*supportapp.UpdateSlackChannelConfigurationOutput, error)
 	UpdateSlackChannelConfigurationRequest(*supportapp.UpdateSlackChannelConfigurationInput) (*request.Request, *supportapp.UpdateSlackChannelConfigurationOutput)

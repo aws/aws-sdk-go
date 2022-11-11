@@ -160,10 +160,6 @@ type ConnectWisdomServiceAPI interface {
 	NotifyRecommendationsReceivedWithContext(aws.Context, *connectwisdomservice.NotifyRecommendationsReceivedInput, ...request.Option) (*connectwisdomservice.NotifyRecommendationsReceivedOutput, error)
 	NotifyRecommendationsReceivedRequest(*connectwisdomservice.NotifyRecommendationsReceivedInput) (*request.Request, *connectwisdomservice.NotifyRecommendationsReceivedOutput)
 
-	PutFeedback(*connectwisdomservice.PutFeedbackInput) (*connectwisdomservice.PutFeedbackOutput, error)
-	PutFeedbackWithContext(aws.Context, *connectwisdomservice.PutFeedbackInput, ...request.Option) (*connectwisdomservice.PutFeedbackOutput, error)
-	PutFeedbackRequest(*connectwisdomservice.PutFeedbackInput) (*request.Request, *connectwisdomservice.PutFeedbackOutput)
-
 	QueryAssistant(*connectwisdomservice.QueryAssistantInput) (*connectwisdomservice.QueryAssistantOutput, error)
 	QueryAssistantWithContext(aws.Context, *connectwisdomservice.QueryAssistantInput, ...request.Option) (*connectwisdomservice.QueryAssistantOutput, error)
 	QueryAssistantRequest(*connectwisdomservice.QueryAssistantInput) (*request.Request, *connectwisdomservice.QueryAssistantOutput)

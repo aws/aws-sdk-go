@@ -103,6 +103,12 @@
         "__listOfEgressEndpoint$member" : null
       }
     },
+    "EncryptionContractConfiguration" : {
+      "base" : "Use encryptionContractConfiguration to configure one or more content encryption keys for your endpoints that use SPEKE 2.0. \nThe encryption contract defines which content keys are used to encrypt the audio and video tracks in your stream. \nTo configure the encryption contract, specify which audio and video encryption presets to use.\nNote the following considerations when using encryptionContractConfiguration:\nencryptionContractConfiguration can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the CPIX 2.3 specification.\nYou must disable key rotation for this endpoint by setting keyRotationIntervalSeconds to 0.\n",
+      "refs" : {
+        "SpekeKeyProvider$EncryptionContractConfiguration" : null
+      }
+    },
     "EncryptionMethod" : {
       "base" : null,
       "refs" : {
@@ -185,6 +191,18 @@
       "base" : "Parameters used to update a MediaPackage packaging group.",
       "refs" : { }
     },
+    "PresetSpeke20Audio" : {
+      "base" : null,
+      "refs" : {
+        "EncryptionContractConfiguration$PresetSpeke20Audio" : "A collection of audio encryption presets."
+      }
+    },
+    "PresetSpeke20Video" : {
+      "base" : null,
+      "refs" : {
+        "EncryptionContractConfiguration$PresetSpeke20Video" : "A collection of video encryption presets."
+      }
+    },
     "Profile" : {
       "base" : null,
       "refs" : {
@@ -253,6 +271,7 @@
       "refs" : {
         "CmafPackage$IncludeEncoderConfigurationInSegments" : "When includeEncoderConfigurationInSegments is set to true, MediaPackage places your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS), and Video Parameter Set (VPS) metadata in every video segment instead of in the init fragment. This lets you use different SPS/PPS/VPS settings for your assets during content playback.\n",
         "DashPackage$IncludeEncoderConfigurationInSegments" : "When includeEncoderConfigurationInSegments is set to true, MediaPackage places your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS), and Video Parameter Set (VPS) metadata in every video segment instead of in the init fragment. This lets you use different SPS/PPS/VPS settings for your assets during content playback.\n",
+        "DashPackage$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsManifest$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsManifest$RepeatExtXKey" : "When enabled, the EXT-X-KEY tag will be repeated in output manifests.",
         "HlsPackage$IncludeDvbSubtitles" : "When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.",

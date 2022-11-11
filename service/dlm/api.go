@@ -146,6 +146,9 @@ func (c *DLM) DeleteLifecyclePolicyRequest(input *DeleteLifecyclePolicyInput) (r
 // Deletes the specified lifecycle policy and halts the automated operations
 // that the policy specified.
 //
+// For more information about deleting a policy, see Delete lifecycle policies
+// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/view-modify-delete.html#delete).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -664,6 +667,9 @@ func (c *DLM) UpdateLifecyclePolicyRequest(input *UpdateLifecyclePolicyInput) (r
 //
 // Updates the specified lifecycle policy.
 //
+// For more information about updating a policy, see Modify lifecycle policies
+// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/view-modify-delete.html#modify).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -775,6 +781,112 @@ func (s *Action) SetCrossRegionCopy(v []*CrossRegionCopyAction) *Action {
 // SetName sets the Name field's value.
 func (s *Action) SetName(v string) *Action {
 	s.Name = &v
+	return s
+}
+
+// [Snapshot policies only] Specifies information about the archive storage
+// tier retention period.
+type ArchiveRetainRule struct {
+	_ struct{} `type:"structure"`
+
+	// Information about retention period in the Amazon EBS Snapshots Archive. For
+	// more information, see Archive Amazon EBS snapshots (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/snapshot-archive.html).
+	//
+	// RetentionArchiveTier is a required field
+	RetentionArchiveTier *RetentionArchiveTier `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArchiveRetainRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArchiveRetainRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ArchiveRetainRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ArchiveRetainRule"}
+	if s.RetentionArchiveTier == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetentionArchiveTier"))
+	}
+	if s.RetentionArchiveTier != nil {
+		if err := s.RetentionArchiveTier.Validate(); err != nil {
+			invalidParams.AddNested("RetentionArchiveTier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRetentionArchiveTier sets the RetentionArchiveTier field's value.
+func (s *ArchiveRetainRule) SetRetentionArchiveTier(v *RetentionArchiveTier) *ArchiveRetainRule {
+	s.RetentionArchiveTier = v
+	return s
+}
+
+// [Snapshot policies only] Specifies a snapshot archiving rule for a schedule.
+type ArchiveRule struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the retention period for the snapshot archiving rule.
+	//
+	// RetainRule is a required field
+	RetainRule *ArchiveRetainRule `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArchiveRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArchiveRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ArchiveRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ArchiveRule"}
+	if s.RetainRule == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetainRule"))
+	}
+	if s.RetainRule != nil {
+		if err := s.RetainRule.Validate(); err != nil {
+			invalidParams.AddNested("RetainRule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRetainRule sets the RetainRule field's value.
+func (s *ArchiveRule) SetRetainRule(v *ArchiveRetainRule) *ArchiveRule {
+	s.RetainRule = v
 	return s
 }
 
@@ -919,8 +1031,11 @@ func (s *CreateLifecyclePolicyOutput) SetPolicyId(v string) *CreateLifecyclePoli
 // [Snapshot and AMI policies only] Specifies when the policy should create
 // snapshots or AMIs.
 //
-// You must specify either a Cron expression or an interval, interval unit,
-// and start time. You cannot specify both.
+//   - You must specify either CronExpression, or Interval, IntervalUnit, and
+//     Times.
+//
+//   - If you need to specify an ArchiveRule for the schedule, then you must
+//     specify a creation frequency of at least 28 days.
 type CreateRule struct {
 	_ struct{} `type:"structure"`
 
@@ -950,8 +1065,8 @@ type CreateRule struct {
 	// The time, in UTC, to start the operation. The supported format is hh:mm.
 	//
 	// The operation occurs within a one-hour window following the specified time.
-	// If you do not specify a time, Amazon DLM selects a time within the next 24
-	// hours.
+	// If you do not specify a time, Amazon Data Lifecycle Manager selects a time
+	// within the next 24 hours.
 	Times []*string `type:"list"`
 }
 
@@ -1709,7 +1824,7 @@ func (s *EventSource) SetType(v string) *EventSource {
 }
 
 // [Snapshot policies only] Specifies a rule for enabling fast snapshot restore
-// for snapshots created by snaspshot policies. You can enable fast snapshot
+// for snapshots created by snapshot policies. You can enable fast snapshot
 // restore based on either a count or a time interval.
 type FastRestoreRule struct {
 	_ struct{} `type:"structure"`
@@ -2475,9 +2590,9 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 //
 // If you choose to exclude boot volumes and you specify tags that consequently
 // exclude all of the additional data volumes attached to an instance, then
-// Amazon DLM will not create any snapshots for the affected instance, and it
-// will emit a SnapshotsCreateFailed Amazon CloudWatch metric. For more information,
-// see Monitor your policies using Amazon CloudWatch (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-dlm-cw-metrics.html).
+// Amazon Data Lifecycle Manager will not create any snapshots for the affected
+// instance, and it will emit a SnapshotsCreateFailed Amazon CloudWatch metric.
+// For more information, see Monitor your policies using Amazon CloudWatch (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-dlm-cw-metrics.html).
 type Parameters struct {
 	_ struct{} `type:"structure"`
 
@@ -2819,21 +2934,45 @@ func (s *ResourceNotFoundException) RequestID() string {
 }
 
 // [Snapshot and AMI policies only] Specifies a retention rule for snapshots
-// created by snapshot policies or for AMIs created by AMI policies. You can
-// retain snapshots based on either a count or a time interval.
+// created by snapshot policies, or for AMIs created by AMI policies.
 //
-// You must specify either Count, or Interval and IntervalUnit.
+// For snapshot policies that have an ArchiveRule, this retention rule applies
+// to standard tier retention. When the retention threshold is met, snapshots
+// are moved from the standard to the archive tier.
+//
+// For snapshot policies that do not have an ArchiveRule, snapshots are permanently
+// deleted when this retention threshold is met.
+//
+// You can retain snapshots based on either a count or a time interval.
+//
+//   - Count-based retention You must specify Count. If you specify an ArchiveRule
+//     for the schedule, then you can specify a retention count of 0 to archive
+//     snapshots immediately after creation. If you specify a FastRestoreRule,
+//     ShareRule, or a CrossRegionCopyRule, then you must specify a retention
+//     count of 1 or more.
+//
+//   - Age-based retention You must specify Interval and IntervalUnit. If you
+//     specify an ArchiveRule for the schedule, then you can specify a retention
+//     interval of 0 days to archive snapshots immediately after creation. If
+//     you specify a FastRestoreRule, ShareRule, or a CrossRegionCopyRule, then
+//     you must specify a retention interval of 1 day or more.
 type RetainRule struct {
 	_ struct{} `type:"structure"`
 
 	// The number of snapshots to retain for each volume, up to a maximum of 1000.
-	Count *int64 `min:"1" type:"integer"`
+	// For example if you want to retain a maximum of three snapshots, specify 3.
+	// When the fourth snapshot is created, the oldest retained snapshot is deleted,
+	// or it is moved to the archive tier if you have specified an ArchiveRule.
+	Count *int64 `type:"integer"`
 
 	// The amount of time to retain each snapshot. The maximum is 100 years. This
 	// is equivalent to 1200 months, 5200 weeks, or 36500 days.
-	Interval *int64 `min:"1" type:"integer"`
+	Interval *int64 `type:"integer"`
 
-	// The unit of time for time-based retention.
+	// The unit of time for time-based retention. For example, to retain snapshots
+	// for 3 months, specify Interval=3 and IntervalUnit=MONTHS. Once the snapshot
+	// has been retained for 3 months, it is deleted, or it is moved to the archive
+	// tier if you have specified an ArchiveRule.
 	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
@@ -2855,22 +2994,6 @@ func (s RetainRule) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *RetainRule) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "RetainRule"}
-	if s.Count != nil && *s.Count < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("Count", 1))
-	}
-	if s.Interval != nil && *s.Interval < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetCount sets the Count field's value.
 func (s *RetainRule) SetCount(v int64) *RetainRule {
 	s.Count = &v
@@ -2889,10 +3012,103 @@ func (s *RetainRule) SetIntervalUnit(v string) *RetainRule {
 	return s
 }
 
+// [Snapshot policies only] Describes the retention rule for archived snapshots.
+// Once the archive retention threshold is met, the snapshots are permanently
+// deleted from the archive tier.
+//
+// The archive retention rule must retain snapshots in the archive tier for
+// a minimum of 90 days.
+//
+// For count-based schedules, you must specify Count. For age-based schedules,
+// you must specify Interval and IntervalUnit.
+//
+// For more information about using snapshot archiving, see Considerations for
+// snapshot lifecycle policies (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-ami-policy.html#dlm-archive).
+type RetentionArchiveTier struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of snapshots to retain in the archive storage tier for
+	// each volume. The count must ensure that each snapshot remains in the archive
+	// tier for at least 90 days. For example, if the schedule creates snapshots
+	// every 30 days, you must specify a count of 3 or more to ensure that each
+	// snapshot is archived for at least 90 days.
+	Count *int64 `min:"1" type:"integer"`
+
+	// Specifies the period of time to retain snapshots in the archive tier. After
+	// this period expires, the snapshot is permanently deleted.
+	Interval *int64 `min:"1" type:"integer"`
+
+	// The unit of time in which to measure the Interval. For example, to retain
+	// a snapshots in the archive tier for 6 months, specify Interval=6 and IntervalUnit=MONTHS.
+	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionArchiveTier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionArchiveTier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetentionArchiveTier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetentionArchiveTier"}
+	if s.Count != nil && *s.Count < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Count", 1))
+	}
+	if s.Interval != nil && *s.Interval < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCount sets the Count field's value.
+func (s *RetentionArchiveTier) SetCount(v int64) *RetentionArchiveTier {
+	s.Count = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *RetentionArchiveTier) SetInterval(v int64) *RetentionArchiveTier {
+	s.Interval = &v
+	return s
+}
+
+// SetIntervalUnit sets the IntervalUnit field's value.
+func (s *RetentionArchiveTier) SetIntervalUnit(v string) *RetentionArchiveTier {
+	s.IntervalUnit = &v
+	return s
+}
+
 // [Snapshot and AMI policies only] Specifies a schedule for a snapshot or AMI
 // lifecycle policy.
 type Schedule struct {
 	_ struct{} `type:"structure"`
+
+	// [Snapshot policies that target volumes only] The snapshot archiving rule
+	// for the schedule. When you specify an archiving rule, snapshots are automatically
+	// moved from the standard tier to the archive tier once the schedule's retention
+	// threshold is met. Snapshots are then retained in the archive tier for the
+	// archive retention period that you specify.
+	//
+	// For more information about using snapshot archiving, see Considerations for
+	// snapshot lifecycle policies (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-ami-policy.html#dlm-archive).
+	ArchiveRule *ArchiveRule `type:"structure"`
 
 	// Copy all user-defined tags on a source volume to snapshots of the volume
 	// created by this policy.
@@ -2957,6 +3173,11 @@ func (s Schedule) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Schedule) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Schedule"}
+	if s.ArchiveRule != nil {
+		if err := s.ArchiveRule.Validate(); err != nil {
+			invalidParams.AddNested("ArchiveRule", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CreateRule != nil {
 		if err := s.CreateRule.Validate(); err != nil {
 			invalidParams.AddNested("CreateRule", err.(request.ErrInvalidParams))
@@ -2980,11 +3201,6 @@ func (s *Schedule) Validate() error {
 	if s.FastRestoreRule != nil {
 		if err := s.FastRestoreRule.Validate(); err != nil {
 			invalidParams.AddNested("FastRestoreRule", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.RetainRule != nil {
-		if err := s.RetainRule.Validate(); err != nil {
-			invalidParams.AddNested("RetainRule", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.ShareRules != nil {
@@ -3022,6 +3238,12 @@ func (s *Schedule) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArchiveRule sets the ArchiveRule field's value.
+func (s *Schedule) SetArchiveRule(v *ArchiveRule) *Schedule {
+	s.ArchiveRule = v
+	return s
 }
 
 // SetCopyTags sets the CopyTags field's value.

@@ -109,12 +109,17 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -225,7 +230,10 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFLimitsExceededException
 //     WAF couldn’t perform the operation because you exceeded your resource limit.
@@ -239,8 +247,10 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFSubscriptionNotFoundException
 //     You tried to use a managed rule group that's available by subscription, but
@@ -616,8 +626,10 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -631,7 +643,10 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //     you aren't subscribed to it yet.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -762,11 +777,16 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -795,6 +815,11 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //     Alternately, you can suppress this warning by adding the following tag to
 //     the resource that you provide to this operation: Tag (key:WAF:OversizeFieldsHandlingConstraintOptOut,
 //     value:true).
+//
+//   - WAFExpiredManagedRuleGroupVersionException
+//     The operation failed because the specified version for the managed rule group
+//     has expired. You can retrieve the available versions for the managed rule
+//     group by calling ListAvailableManagedRuleGroupVersions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateWebACL
 func (c *WAFV2) CreateWebACL(input *CreateWebACLInput) (*CreateWebACLOutput, error) {
@@ -896,7 +921,10 @@ func (c *WAFV2) DeleteFirewallManagerRuleGroupsRequest(input *DeleteFirewallMana
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1003,7 +1031,10 @@ func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1106,7 +1137,10 @@ func (c *WAFV2) DeleteLoggingConfigurationRequest(input *DeleteLoggingConfigurat
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1211,7 +1245,10 @@ func (c *WAFV2) DeletePermissionPolicyRequest(input *DeletePermissionPolicyInput
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -1329,7 +1366,10 @@ func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) 
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1447,7 +1487,10 @@ func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1580,7 +1623,10 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -1702,7 +1748,10 @@ func (c *WAFV2) DescribeManagedRuleGroupRequest(input *DescribeManagedRuleGroupI
 //     isn’t valid. Check the resource, and try again.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -1817,7 +1866,10 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -1891,9 +1943,9 @@ func (c *WAFV2) GenerateMobileSdkReleaseUrlRequest(input *GenerateMobileSdkRelea
 // SDK.
 //
 // The mobile SDK is not generally available. Customers who have access to the
-// mobile SDK can use it to establish and manage Security Token Service (STS)
-// security tokens for use in HTTP(S) requests from a mobile device to WAF.
-// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
 // in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1910,7 +1962,10 @@ func (c *WAFV2) GenerateMobileSdkReleaseUrlRequest(input *GenerateMobileSdkRelea
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -2026,7 +2081,10 @@ func (c *WAFV2) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, out
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2112,7 +2170,10 @@ func (c *WAFV2) GetLoggingConfigurationRequest(input *GetLoggingConfigurationInp
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -2236,7 +2297,10 @@ func (c *WAFV2) GetManagedRuleSetRequest(input *GetManagedRuleSetInput) (req *re
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2310,9 +2374,9 @@ func (c *WAFV2) GetMobileSdkReleaseRequest(input *GetMobileSdkReleaseInput) (req
 // notes and tags.
 //
 // The mobile SDK is not generally available. Customers who have access to the
-// mobile SDK can use it to establish and manage Security Token Service (STS)
-// security tokens for use in HTTP(S) requests from a mobile device to WAF.
-// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
 // in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2329,7 +2393,10 @@ func (c *WAFV2) GetMobileSdkReleaseRequest(input *GetMobileSdkReleaseInput) (req
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -2428,7 +2495,10 @@ func (c *WAFV2) GetPermissionPolicyRequest(input *GetPermissionPolicyInput) (req
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -2560,7 +2630,10 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2661,7 +2734,10 @@ func (c *WAFV2) GetRegexPatternSetRequest(input *GetRegexPatternSetInput) (req *
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2762,7 +2838,10 @@ func (c *WAFV2) GetRuleGroupRequest(input *GetRuleGroupInput) (req *request.Requ
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -2854,7 +2933,10 @@ func (c *WAFV2) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -2971,7 +3053,10 @@ func (c *WAFV2) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, o
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -3057,7 +3142,10 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -3076,8 +3164,10 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -3178,7 +3268,10 @@ func (c *WAFV2) ListAvailableManagedRuleGroupVersionsRequest(input *ListAvailabl
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidOperationException
 //     The operation isn't valid.
@@ -3655,9 +3748,9 @@ func (c *WAFV2) ListMobileSdkReleasesRequest(input *ListMobileSdkReleasesInput) 
 // device platform.
 //
 // The mobile SDK is not generally available. Customers who have access to the
-// mobile SDK can use it to establish and manage Security Token Service (STS)
-// security tokens for use in HTTP(S) requests from a mobile device to WAF.
-// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
 // in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3873,7 +3966,10 @@ func (c *WAFV2) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -4096,7 +4192,10 @@ func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -4320,7 +4419,10 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 //     a system problem. Retry your request.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -4481,7 +4583,10 @@ func (c *WAFV2) PutManagedRuleSetVersionsRequest(input *PutManagedRuleSetVersion
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -4581,7 +4686,10 @@ func (c *WAFV2) PutPermissionPolicyRequest(input *PutPermissionPolicyInput) (req
 // Returned Error Types:
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
@@ -4733,7 +4841,10 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 //     in the WAF Developer Guide.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -4846,7 +4957,10 @@ func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFTagOperationException
 //     An error occurred during the tagging operation. Retry your request.
@@ -4972,7 +5086,10 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5099,7 +5216,10 @@ func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateRequest(input *UpdateManage
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFOptimisticLockException
 //     WAF couldn’t save your changes because you tried to update or delete a
@@ -5224,7 +5344,10 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5365,7 +5488,10 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5384,8 +5510,10 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFSubscriptionNotFoundException
 //     You tried to use a managed rule group that's available by subscription, but
@@ -5533,7 +5661,10 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //     a resource with which a web ACL can't be associated.
 //
 //   - WAFNonexistentItemException
-//     WAF couldn’t perform the operation because your resource doesn’t exist.
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFDuplicateItemException
 //     WAF couldn’t perform the operation because the resource that you tried
@@ -5556,8 +5687,10 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //
 //   - WAFUnavailableEntityException
 //     WAF couldn’t retrieve a resource that you specified for this operation.
-//     Verify the resources that you are specifying in your request parameters and
-//     then retry the operation.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate. Verify the resources that you
+//     are specifying in your request parameters and then retry the operation.
 //
 //   - WAFSubscriptionNotFoundException
 //     You tried to use a managed rule group that's available by subscription, but
@@ -5607,11 +5740,67 @@ func (c *WAFV2) UpdateWebACLWithContext(ctx aws.Context, input *UpdateWebACLInpu
 	return out, req.Send()
 }
 
+// Details for your use of the Bot Control managed rule group, used in ManagedRuleGroupConfig.
+type AWSManagedRulesBotControlRuleSet struct {
+	_ struct{} `type:"structure"`
+
+	// The inspection level to use for the Bot Control rule group. The common level
+	// is the least expensive. The targeted level includes all common level rules
+	// and adds rules with more advanced inspection criteria. For details, see WAF
+	// Bot Control rule group (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-bot.html).
+	//
+	// InspectionLevel is a required field
+	InspectionLevel *string `type:"string" required:"true" enum:"InspectionLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AWSManagedRulesBotControlRuleSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AWSManagedRulesBotControlRuleSet) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AWSManagedRulesBotControlRuleSet) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AWSManagedRulesBotControlRuleSet"}
+	if s.InspectionLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("InspectionLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInspectionLevel sets the InspectionLevel field's value.
+func (s *AWSManagedRulesBotControlRuleSet) SetInspectionLevel(v string) *AWSManagedRulesBotControlRuleSet {
+	s.InspectionLevel = &v
+	return s
+}
+
 // A single action condition for a Condition in a logging filter.
 type ActionCondition struct {
 	_ struct{} `type:"structure"`
 
 	// The action setting that a log record must contain in order to meet the condition.
+	// This is the action that WAF applied to the web request.
+	//
+	// For rule groups, this is either the configured rule action setting, or if
+	// you've applied a rule action override to the rule, it's the override action.
+	// The value EXCLUDED_AS_COUNT matches on excluded rules and also on rules that
+	// have a rule action override of Count.
 	//
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ActionValue"`
@@ -6208,16 +6397,18 @@ func (s *ByteMatchStatement) SetTextTransformations(v []*TextTransformation) *By
 
 // Specifies that WAF should run a CAPTCHA check against the request:
 //
-//   - If the request includes a valid, unexpired CAPTCHA token, WAF allows
-//     the web request inspection to proceed to the next rule, similar to a CountAction.
+//   - If the request includes a valid, unexpired CAPTCHA token, WAF applies
+//     any custom request handling and labels that you've configured and then
+//     allows the web request inspection to proceed to the next rule, similar
+//     to a CountAction.
 //
-//   - If the request doesn't include a valid, unexpired CAPTCHA token, WAF
-//     discontinues the web ACL evaluation of the request and blocks it from
-//     going to its intended destination. WAF generates a response that it sends
-//     back to the client, which includes the following: The header x-amzn-waf-action
-//     with a value of captcha. The HTTP status code 405 Method Not Allowed.
-//     If the request contains an Accept header with a value of text/html, the
-//     response includes a CAPTCHA challenge.
+//   - If the request doesn't include a valid, unexpired token, WAF discontinues
+//     the web ACL evaluation of the request and blocks it from going to its
+//     intended destination. WAF generates a response that it sends back to the
+//     client, which includes the following: The header x-amzn-waf-action with
+//     a value of captcha. The HTTP status code 405 Method Not Allowed. If the
+//     request contains an Accept header with a value of text/html, the response
+//     includes a CAPTCHA JavaScript page interstitial.
 //
 // You can configure the expiration time in the CaptchaConfig ImmunityTimeProperty
 // setting at the rule and web ACL level. The rule setting overrides the web
@@ -6228,7 +6419,8 @@ func (s *ByteMatchStatement) SetTextTransformations(v []*TextTransformation) *By
 type CaptchaAction struct {
 	_ struct{} `type:"structure"`
 
-	// Defines custom handling for the web request.
+	// Defines custom handling for the web request, used when the CAPTCHA inspection
+	// determines that the request's token is valid and unexpired.
 	//
 	// For information about customizing web requests and responses, see Customizing
 	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
@@ -6280,8 +6472,8 @@ func (s *CaptchaAction) SetCustomRequestHandling(v *CustomRequestHandling) *Capt
 type CaptchaConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Determines how long a CAPTCHA token remains valid after the client successfully
-	// solves a CAPTCHA puzzle.
+	// Determines how long a CAPTCHA timestamp in the token remains valid after
+	// the client successfully solves a CAPTCHA puzzle.
 	ImmunityTimeProperty *ImmunityTimeProperty `type:"structure"`
 }
 
@@ -6336,7 +6528,7 @@ type CaptchaResponse struct {
 	// Method Not Allowed.
 	ResponseCode *int64 `type:"integer"`
 
-	// The time that the CAPTCHA puzzle was solved for the supplied token.
+	// The time that the CAPTCHA was last solved for the supplied token.
 	SolveTimestamp *int64 `type:"long"`
 }
 
@@ -6372,6 +6564,188 @@ func (s *CaptchaResponse) SetResponseCode(v int64) *CaptchaResponse {
 
 // SetSolveTimestamp sets the SolveTimestamp field's value.
 func (s *CaptchaResponse) SetSolveTimestamp(v int64) *CaptchaResponse {
+	s.SolveTimestamp = &v
+	return s
+}
+
+// Specifies that WAF should run a Challenge check against the request to verify
+// that the request is coming from a legitimate client session:
+//
+//   - If the request includes a valid, unexpired challenge token, WAF applies
+//     any custom request handling and labels that you've configured and then
+//     allows the web request inspection to proceed to the next rule, similar
+//     to a CountAction.
+//
+//   - If the request doesn't include a valid, unexpired challenge token, WAF
+//     discontinues the web ACL evaluation of the request and blocks it from
+//     going to its intended destination. WAF then generates a challenge response
+//     that it sends back to the client, which includes the following: The header
+//     x-amzn-waf-action with a value of challenge. The HTTP status code 202
+//     Request Accepted. If the request contains an Accept header with a value
+//     of text/html, the response includes a JavaScript page interstitial with
+//     a challenge script. Challenges run silent browser interrogations in the
+//     background, and don't generally affect the end user experience. A challenge
+//     enforces token acquisition using an interstitial JavaScript challenge
+//     that inspects the client session for legitimate behavior. The challenge
+//     blocks bots or at least increases the cost of operating sophisticated
+//     bots. After the client session successfully responds to the challenge,
+//     it receives a new token from WAF, which the challenge script uses to resubmit
+//     the original request.
+//
+// You can configure the expiration time in the ChallengeConfig ImmunityTimeProperty
+// setting at the rule and web ACL level. The rule setting overrides the web
+// ACL setting.
+//
+// This action option is available for rules. It isn't available for web ACL
+// default actions.
+type ChallengeAction struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request, used when the challenge inspection
+	// determines that the request's token is valid and unexpired.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChallengeAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChallengeAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *ChallengeAction) SetCustomRequestHandling(v *CustomRequestHandling) *ChallengeAction {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// Specifies how WAF should handle Challenge evaluations. This is available
+// at the web ACL level and in each rule.
+type ChallengeConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how long a challenge timestamp in the token remains valid after
+	// the client successfully responds to a challenge.
+	ImmunityTimeProperty *ImmunityTimeProperty `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChallengeConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChallengeConfig"}
+	if s.ImmunityTimeProperty != nil {
+		if err := s.ImmunityTimeProperty.Validate(); err != nil {
+			invalidParams.AddNested("ImmunityTimeProperty", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTimeProperty sets the ImmunityTimeProperty field's value.
+func (s *ChallengeConfig) SetImmunityTimeProperty(v *ImmunityTimeProperty) *ChallengeConfig {
+	s.ImmunityTimeProperty = v
+	return s
+}
+
+// The result from the inspection of the web request for a valid challenge token.
+type ChallengeResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The reason for failure, populated when the evaluation of the token fails.
+	FailureReason *string `type:"string" enum:"FailureReason"`
+
+	// The HTTP response code indicating the status of the challenge token in the
+	// web request. If the token is missing, invalid, or expired, this code is 202
+	// Request Accepted.
+	ResponseCode *int64 `type:"integer"`
+
+	// The time that the challenge was last solved for the supplied token.
+	SolveTimestamp *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChallengeResponse) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *ChallengeResponse) SetFailureReason(v string) *ChallengeResponse {
+	s.FailureReason = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *ChallengeResponse) SetResponseCode(v int64) *ChallengeResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetSolveTimestamp sets the SolveTimestamp field's value.
+func (s *ChallengeResponse) SetSolveTimestamp(v int64) *ChallengeResponse {
 	s.SolveTimestamp = &v
 	return s
 }
@@ -6793,8 +7167,9 @@ type CreateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains an array of strings that specifies zero or more IP addresses or
-	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
-	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
 	// Example address strings:
 	//
@@ -7412,6 +7787,11 @@ type CreateWebACLInput struct {
 	// its default settings for CaptchaConfig.
 	CaptchaConfig *CaptchaConfig `type:"structure"`
 
+	// Specifies how WAF should handle challenge evaluations for rules that don't
+	// have their own ChallengeConfig settings. If you don't specify this, WAF uses
+	// its default settings for ChallengeConfig.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
 	// define these for the web ACL, and then use them in the rules and default
@@ -7465,6 +7845,17 @@ type CreateWebACLInput struct {
 	// An array of key:value pairs to associate with the resource.
 	Tags []*Tag `min:"1" type:"list"`
 
+	// Specifies the domains that WAF should accept in a web request token. This
+	// enables the use of tokens across multiple protected websites. When WAF provides
+	// a token, it uses the domain of the Amazon Web Services resource that the
+	// web ACL is protecting. If you don't specify a list of token domains, WAF
+	// accepts tokens only for the domain of the protected resource. With a token
+	// domain list, WAF accepts the resource's host domain plus all domains in the
+	// token domain list, including their prefixed subdomains.
+	//
+	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
+	TokenDomains []*string `min:"1" type:"list"`
+
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
 	// VisibilityConfig is a required field
@@ -7513,12 +7904,20 @@ func (s *CreateWebACLInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.TokenDomains != nil && len(s.TokenDomains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TokenDomains", 1))
+	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
 	if s.CaptchaConfig != nil {
 		if err := s.CaptchaConfig.Validate(); err != nil {
 			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ChallengeConfig != nil {
+		if err := s.ChallengeConfig.Validate(); err != nil {
+			invalidParams.AddNested("ChallengeConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.CustomResponseBodies != nil {
@@ -7574,6 +7973,12 @@ func (s *CreateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *CreateWebACLInpu
 	return s
 }
 
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *CreateWebACLInput) SetChallengeConfig(v *ChallengeConfig) *CreateWebACLInput {
+	s.ChallengeConfig = v
+	return s
+}
+
 // SetCustomResponseBodies sets the CustomResponseBodies field's value.
 func (s *CreateWebACLInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *CreateWebACLInput {
 	s.CustomResponseBodies = v
@@ -7613,6 +8018,12 @@ func (s *CreateWebACLInput) SetScope(v string) *CreateWebACLInput {
 // SetTags sets the Tags field's value.
 func (s *CreateWebACLInput) SetTags(v []*Tag) *CreateWebACLInput {
 	s.Tags = v
+	return s
+}
+
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *CreateWebACLInput) SetTokenDomains(v []*string) *CreateWebACLInput {
+	s.TokenDomains = v
 	return s
 }
 
@@ -7729,7 +8140,9 @@ func (s *CustomHTTPHeader) SetValue(v string) *CustomHTTPHeader {
 }
 
 // Custom request handling behavior that inserts custom headers into a web request.
-// You can add custom request handling for the rule actions allow and count.
+// You can add custom request handling for WAF to use when the rule action doesn't
+// block the request. For example, CaptchaAction for requests with valid t okens,
+// and AllowAction.
 //
 // For information about customizing web requests and responses, see Customizing
 // web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
@@ -7974,7 +8387,7 @@ func (s *CustomResponseBody) SetContentType(v string) *CustomResponseBody {
 
 // In a WebACL, this is the action that you want WAF to perform when a web request
 // doesn't match any of the rules in the WebACL. The default action must be
-// a terminating action, so you can't use count.
+// a terminating action.
 type DefaultAction struct {
 	_ struct{} `type:"structure"`
 
@@ -9146,9 +9559,10 @@ func (s DisassociateWebACLOutput) GoString() string {
 }
 
 // Specifies a single rule in a rule group whose action you want to override
-// to Count. When you exclude a rule, WAF evaluates it exactly as it would if
-// the rule action setting were Count. This is a useful option for testing the
-// rules in a rule group without modifying how they handle your web traffic.
+// to Count.
+//
+// Instead of this option, use RuleActionOverrides. It accepts any valid action
+// setting, including Count.
 type ExcludedRule struct {
 	_ struct{} `type:"structure"`
 
@@ -9517,8 +9931,8 @@ type FirewallManagerRuleGroup struct {
 	//
 	// This option is usually set to none. It does not affect how the rules in the
 	// rule group are evaluated. If you want the rules in the rule group to only
-	// count matches, do not use this and instead exclude those rules in your rule
-	// group reference statement settings.
+	// count matches, do not use this and instead use the rule action override option,
+	// with Count action, in your rule group reference statement settings.
 	//
 	// OverrideAction is a required field
 	OverrideAction *OverrideAction `type:"structure" required:"true"`
@@ -9597,6 +10011,11 @@ type FirewallManagerStatement struct {
 	// You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 	// NotStatement or OrStatement. It can only be referenced as a top-level statement
 	// within a rule.
+	//
+	// You are charged additional fees when you use the WAF Bot Control managed
+	// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+	// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
 	// A rule statement used to run the rules that are defined in a RuleGroup. To
@@ -9823,12 +10242,47 @@ func (s *GenerateMobileSdkReleaseUrlOutput) SetUrl(v string) *GenerateMobileSdkR
 	return s
 }
 
-// A rule statement used to identify web requests based on country of origin.
+// A rule statement that labels web requests by country and region and that
+// matches against web requests based on country code. A geo match rule labels
+// every request that it inspects regardless of whether it finds a match.
+//
+//   - To manage requests only by country, you can use this statement by itself
+//     and specify the countries that you want to match against in the CountryCodes
+//     array.
+//
+//   - Otherwise, configure your geo match rule with Count action so that it
+//     only labels requests. Then, add one or more label match rules to run after
+//     the geo match rule and configure them to match against the geographic
+//     labels and handle the requests as needed.
+//
+// WAF labels requests using the alpha-2 country and region codes from the International
+// Organization for Standardization (ISO) 3166 standard. WAF determines the
+// codes using either the IP address in the web request origin or, if you specify
+// it, the address in the geo match ForwardedIPConfig.
+//
+// If you use the web request origin, the label formats are awswaf:clientip:geo:region:<ISO
+// country code>-<ISO region code> and awswaf:clientip:geo:country:<ISO country
+// code>.
+//
+// If you use a forwarded IP address, the label formats are awswaf:forwardedip:geo:region:<ISO
+// country code>-<ISO region code> and awswaf:forwardedip:geo:country:<ISO country
+// code>.
+//
+// For additional details, see Geographic match rule statement (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html)
+// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 type GeoMatchStatement struct {
 	_ struct{} `type:"structure"`
 
-	// An array of two-character country codes, for example, [ "US", "CN" ], from
-	// the alpha-2 country ISO codes of the ISO 3166 international standard.
+	// An array of two-character country codes that you want to match against, for
+	// example, [ "US", "CN" ], from the alpha-2 country ISO codes of the ISO 3166
+	// international standard.
+	//
+	// When you use a geo match statement just for the region and country labels
+	// that it adds to requests, you still have to supply a country code for the
+	// rule to evaluate. In this case, you configure the rule to only count matching
+	// requests, but it will still generate logging and count metrics for any matches.
+	// You can reduce the logging and metrics that the rule produces by specifying
+	// a country that's unlikely to be a source of traffic to your site.
 	CountryCodes []*string `min:"1" type:"list" enum:"CountryCode"`
 
 	// The configuration for inspecting IP addresses in an HTTP header that you
@@ -11661,8 +12115,9 @@ type IPSet struct {
 	ARN *string `min:"20" type:"string" required:"true"`
 
 	// Contains an array of strings that specifies zero or more IP addresses or
-	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
-	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
 	// Example address strings:
 	//
@@ -12046,13 +12501,16 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 	return s
 }
 
-// Determines how long a CAPTCHA token remains valid after the client successfully
-// solves a CAPTCHA puzzle.
+// Used for CAPTCHA and challenge token settings. Determines how long a CAPTCHA
+// or challenge timestamp remains valid after WAF updates it for a successful
+// CAPTCHA or challenge response.
 type ImmunityTimeProperty struct {
 	_ struct{} `type:"structure"`
 
-	// The amount of time, in seconds, that a CAPTCHA token is valid. The default
-	// setting is 300.
+	// The amount of time, in seconds, that a CAPTCHA or challenge timestamp is
+	// considered valid by WAF. The default setting is 300.
+	//
+	// For the Challenge action, the minimum setting is 300.
 	//
 	// ImmunityTime is a required field
 	ImmunityTime *int64 `min:"60" type:"long" required:"true"`
@@ -12359,8 +12817,8 @@ func (s *Label) SetName(v string) *Label {
 	return s
 }
 
-// A rule statement that defines a string match search against labels that have
-// been added to the web request by rules that have already run in the web ACL.
+// A rule statement to match against labels that have been added to the web
+// request by rules that have already run in the web ACL.
 //
 // The label match statement provides the label or namespace string to search
 // for. The label string can represent a part or all of the fully qualified
@@ -13481,6 +13939,10 @@ type ListResourcesForWebACLInput struct {
 	// Used for web ACLs that are scoped for regional applications. A regional application
 	// can be an Application Load Balancer (ALB), an Amazon API Gateway REST API,
 	// an AppSync GraphQL API, or an Amazon Cognito user pool.
+	//
+	// If you don't provide a resource type, the call uses the resource type APPLICATION_LOAD_BALANCER.
+	//
+	// Default: APPLICATION_LOAD_BALANCER
 	ResourceType *string `type:"string" enum:"ResourceType"`
 
 	// The Amazon Resource Name (ARN) of the web ACL.
@@ -14173,21 +14635,23 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 	return s
 }
 
-// Additional information that's used by a managed rule group. Most managed
+// Additional information that's used by a managed rule group. Many managed
 // rule groups don't require this.
 //
-// Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
-// to provide information about the sign-in page of your application.
-//
-// You can provide multiple individual ManagedRuleGroupConfig objects for any
-// rule group configuration, for example UsernameField and PasswordField. The
-// configuration that you provide depends on the needs of the managed rule group.
-// For the ATP managed rule group, you provide the following individual configuration
-// objects: LoginPath, PasswordField, PayloadType and UsernameField.
+// Use the AWSManagedRulesBotControlRuleSet configuration object to configure
+// the protection level that you want the Bot Control rule group to use.
 //
 // For example specifications, see the examples section of CreateWebACL.
 type ManagedRuleGroupConfig struct {
 	_ struct{} `type:"structure"`
+
+	// Additional configuration for using the Bot Control managed rule group. Use
+	// this to specify the inspection level that you want to use. For information
+	// about using the Bot Control managed rule group, see WAF Bot Control rule
+	// group (https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-bot.html)
+	// and WAF Bot Control (https://docs.aws.amazon.com/waf/latest/developerguide/waf-bot-control.html)
+	// in the WAF Developer Guide.
+	AWSManagedRulesBotControlRuleSet *AWSManagedRulesBotControlRuleSet `type:"structure"`
 
 	// The path of the login endpoint for your application. For example, for the
 	// URL https://example.com/web/login, you would provide the path /web/login.
@@ -14227,6 +14691,11 @@ func (s *ManagedRuleGroupConfig) Validate() error {
 	if s.LoginPath != nil && len(*s.LoginPath) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LoginPath", 1))
 	}
+	if s.AWSManagedRulesBotControlRuleSet != nil {
+		if err := s.AWSManagedRulesBotControlRuleSet.Validate(); err != nil {
+			invalidParams.AddNested("AWSManagedRulesBotControlRuleSet", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PasswordField != nil {
 		if err := s.PasswordField.Validate(); err != nil {
 			invalidParams.AddNested("PasswordField", err.(request.ErrInvalidParams))
@@ -14242,6 +14711,12 @@ func (s *ManagedRuleGroupConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAWSManagedRulesBotControlRuleSet sets the AWSManagedRulesBotControlRuleSet field's value.
+func (s *ManagedRuleGroupConfig) SetAWSManagedRulesBotControlRuleSet(v *AWSManagedRulesBotControlRuleSet) *ManagedRuleGroupConfig {
+	s.AWSManagedRulesBotControlRuleSet = v
+	return s
 }
 
 // SetLoginPath sets the LoginPath field's value.
@@ -14275,26 +14750,25 @@ func (s *ManagedRuleGroupConfig) SetUsernameField(v *UsernameField) *ManagedRule
 // You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 // NotStatement or OrStatement. It can only be referenced as a top-level statement
 // within a rule.
+//
+// You are charged additional fees when you use the WAF Bot Control managed
+// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 type ManagedRuleGroupStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The rules in the referenced rule group whose actions are set to Count. When
-	// you exclude a rule, WAF evaluates it exactly as it would if the rule action
-	// setting were Count. This is a useful option for testing the rules in a rule
-	// group without modifying how they handle your web traffic.
+	// Rules in the referenced rule group whose actions are set to Count.
+	//
+	// Instead of this option, use RuleActionOverrides. It accepts any valid action
+	// setting, including Count.
 	ExcludedRules []*ExcludedRule `type:"list"`
 
-	// Additional information that's used by a managed rule group. Most managed
+	// Additional information that's used by a managed rule group. Many managed
 	// rule groups don't require this.
 	//
-	// Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
-	// to provide information about the sign-in page of your application.
-	//
-	// You can provide multiple individual ManagedRuleGroupConfig objects for any
-	// rule group configuration, for example UsernameField and PasswordField. The
-	// configuration that you provide depends on the needs of the managed rule group.
-	// For the ATP managed rule group, you provide the following individual configuration
-	// objects: LoginPath, PasswordField, PayloadType and UsernameField.
+	// Use the AWSManagedRulesBotControlRuleSet configuration object to configure
+	// the protection level that you want the Bot Control rule group to use.
 	ManagedRuleGroupConfigs []*ManagedRuleGroupConfig `min:"1" type:"list"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
@@ -14302,6 +14776,17 @@ type ManagedRuleGroupStatement struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// Action settings to use in the place of the rule actions that are configured
+	// inside the rule group. You specify one override for each rule whose action
+	// you want to change.
+	//
+	// You can use overrides for testing, for example you can override all of rule
+	// actions to Count and then monitor the resulting count metrics to understand
+	// how the rule group would handle your web traffic. You can also permanently
+	// override some or all actions, to modify how the rule group manages your web
+	// traffic.
+	RuleActionOverrides []*RuleActionOverride `min:"1" type:"list"`
 
 	// An optional nested statement that narrows the scope of the web requests that
 	// are evaluated by the managed rule group. Requests are only evaluated by the
@@ -14353,6 +14838,9 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.RuleActionOverrides != nil && len(s.RuleActionOverrides) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleActionOverrides", 1))
+	}
 	if s.VendorName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VendorName"))
 	}
@@ -14379,6 +14867,16 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ManagedRuleGroupConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RuleActionOverrides != nil {
+		for i, v := range s.RuleActionOverrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuleActionOverrides", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -14409,6 +14907,12 @@ func (s *ManagedRuleGroupStatement) SetManagedRuleGroupConfigs(v []*ManagedRuleG
 // SetName sets the Name field's value.
 func (s *ManagedRuleGroupStatement) SetName(v string) *ManagedRuleGroupStatement {
 	s.Name = &v
+	return s
+}
+
+// SetRuleActionOverrides sets the RuleActionOverrides field's value.
+func (s *ManagedRuleGroupStatement) SetRuleActionOverrides(v []*RuleActionOverride) *ManagedRuleGroupStatement {
+	s.RuleActionOverrides = v
 	return s
 }
 
@@ -14903,9 +15407,9 @@ func (s Method) GoString() string {
 // tags.
 //
 // The mobile SDK is not generally available. Customers who have access to the
-// mobile SDK can use it to establish and manage Security Token Service (STS)
-// security tokens for use in HTTP(S) requests from a mobile device to WAF.
-// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// mobile SDK can use it to establish and manage WAF tokens for use in HTTP(S)
+// requests from a mobile device to WAF. For more information, see WAF client
+// application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
 // in the WAF Developer Guide.
 type MobileSdkRelease struct {
 	_ struct{} `type:"structure"`
@@ -15115,8 +15619,8 @@ func (s *OrStatement) SetStatements(v []*Statement) *OrStatement {
 //
 // This option is usually set to none. It does not affect how the rules in the
 // rule group are evaluated. If you want the rules in the rule group to only
-// count matches, do not use this and instead exclude those rules in your rule
-// group reference statement settings.
+// count matches, do not use this and instead use the rule action override option,
+// with Count action, in your rule group reference statement settings.
 type OverrideAction struct {
 	_ struct{} `type:"structure"`
 
@@ -15124,8 +15628,8 @@ type OverrideAction struct {
 	//
 	// This option is usually set to none. It does not affect how the rules in the
 	// rule group are evaluated. If you want the rules in the rule group to only
-	// count matches, do not use this and instead exclude those rules in your rule
-	// group reference statement settings.
+	// count matches, do not use this and instead use the rule action override option,
+	// with Count action, in your rule group reference statement settings.
 	Count *CountAction `type:"structure"`
 
 	// Don't override the rule group evaluation result. This is the most common
@@ -16364,6 +16868,10 @@ type Rule struct {
 	// this, WAF uses the CAPTCHA configuration that's defined for the web ACL.
 	CaptchaConfig *CaptchaConfig `type:"structure"`
 
+	// Specifies how WAF should handle Challenge evaluations. If you don't specify
+	// this, WAF uses the challenge configuration that's defined for the web ACL.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
 	// The name of the rule. You can't change the name of a Rule after you create
 	// it.
 	//
@@ -16379,8 +16887,8 @@ type Rule struct {
 	//
 	// This option is usually set to none. It does not affect how the rules in the
 	// rule group are evaluated. If you want the rules in the rule group to only
-	// count matches, do not use this and instead exclude those rules in your rule
-	// group reference statement settings.
+	// count matches, do not use this and instead use the rule action override option,
+	// with Count action, in your rule group reference statement settings.
 	OverrideAction *OverrideAction `type:"structure"`
 
 	// If you define more than one Rule in a WebACL, WAF evaluates each request
@@ -16472,6 +16980,11 @@ func (s *Rule) Validate() error {
 			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ChallengeConfig != nil {
+		if err := s.ChallengeConfig.Validate(); err != nil {
+			invalidParams.AddNested("ChallengeConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.OverrideAction != nil {
 		if err := s.OverrideAction.Validate(); err != nil {
 			invalidParams.AddNested("OverrideAction", err.(request.ErrInvalidParams))
@@ -16513,6 +17026,12 @@ func (s *Rule) SetAction(v *RuleAction) *Rule {
 // SetCaptchaConfig sets the CaptchaConfig field's value.
 func (s *Rule) SetCaptchaConfig(v *CaptchaConfig) *Rule {
 	s.CaptchaConfig = v
+	return s
+}
+
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *Rule) SetChallengeConfig(v *ChallengeConfig) *Rule {
+	s.ChallengeConfig = v
 	return s
 }
 
@@ -16566,7 +17085,11 @@ type RuleAction struct {
 	// Instructs WAF to run a CAPTCHA check against the web request.
 	Captcha *CaptchaAction `type:"structure"`
 
-	// Instructs WAF to count the web request and allow it.
+	// Instructs WAF to run a Challenge check against the web request.
+	Challenge *ChallengeAction `type:"structure"`
+
+	// Instructs WAF to count the web request and then continue evaluating the request
+	// using the remaining rules in the web ACL.
 	Count *CountAction `type:"structure"`
 }
 
@@ -16606,6 +17129,11 @@ func (s *RuleAction) Validate() error {
 			invalidParams.AddNested("Captcha", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Challenge != nil {
+		if err := s.Challenge.Validate(); err != nil {
+			invalidParams.AddNested("Challenge", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Count != nil {
 		if err := s.Count.Validate(); err != nil {
 			invalidParams.AddNested("Count", err.(request.ErrInvalidParams))
@@ -16636,9 +17164,93 @@ func (s *RuleAction) SetCaptcha(v *CaptchaAction) *RuleAction {
 	return s
 }
 
+// SetChallenge sets the Challenge field's value.
+func (s *RuleAction) SetChallenge(v *ChallengeAction) *RuleAction {
+	s.Challenge = v
+	return s
+}
+
 // SetCount sets the Count field's value.
 func (s *RuleAction) SetCount(v *CountAction) *RuleAction {
 	s.Count = v
+	return s
+}
+
+// Action setting to use in the place of a rule action that is configured inside
+// the rule group. You specify one override for each rule whose action you want
+// to change.
+//
+// You can use overrides for testing, for example you can override all of rule
+// actions to Count and then monitor the resulting count metrics to understand
+// how the rule group would handle your web traffic. You can also permanently
+// override some or all actions, to modify how the rule group manages your web
+// traffic.
+type RuleActionOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The override action to use, in place of the configured action of the rule
+	// in the rule group.
+	//
+	// ActionToUse is a required field
+	ActionToUse *RuleAction `type:"structure" required:"true"`
+
+	// The name of the rule to override.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleActionOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleActionOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleActionOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleActionOverride"}
+	if s.ActionToUse == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionToUse"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ActionToUse != nil {
+		if err := s.ActionToUse.Validate(); err != nil {
+			invalidParams.AddNested("ActionToUse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionToUse sets the ActionToUse field's value.
+func (s *RuleActionOverride) SetActionToUse(v *RuleAction) *RuleActionOverride {
+	s.ActionToUse = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RuleActionOverride) SetName(v string) *RuleActionOverride {
+	s.Name = &v
 	return s
 }
 
@@ -16836,11 +17448,22 @@ type RuleGroupReferenceStatement struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The rules in the referenced rule group whose actions are set to Count. When
-	// you exclude a rule, WAF evaluates it exactly as it would if the rule action
-	// setting were Count. This is a useful option for testing the rules in a rule
-	// group without modifying how they handle your web traffic.
+	// Rules in the referenced rule group whose actions are set to Count.
+	//
+	// Instead of this option, use RuleActionOverrides. It accepts any valid action
+	// setting, including Count.
 	ExcludedRules []*ExcludedRule `type:"list"`
+
+	// Action settings to use in the place of the rule actions that are configured
+	// inside the rule group. You specify one override for each rule whose action
+	// you want to change.
+	//
+	// You can use overrides for testing, for example you can override all of rule
+	// actions to Count and then monitor the resulting count metrics to understand
+	// how the rule group would handle your web traffic. You can also permanently
+	// override some or all actions, to modify how the rule group manages your web
+	// traffic.
+	RuleActionOverrides []*RuleActionOverride `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -16870,6 +17493,9 @@ func (s *RuleGroupReferenceStatement) Validate() error {
 	if s.ARN != nil && len(*s.ARN) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ARN", 20))
 	}
+	if s.RuleActionOverrides != nil && len(s.RuleActionOverrides) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleActionOverrides", 1))
+	}
 	if s.ExcludedRules != nil {
 		for i, v := range s.ExcludedRules {
 			if v == nil {
@@ -16877,6 +17503,16 @@ func (s *RuleGroupReferenceStatement) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExcludedRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RuleActionOverrides != nil {
+		for i, v := range s.RuleActionOverrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuleActionOverrides", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -16896,6 +17532,12 @@ func (s *RuleGroupReferenceStatement) SetARN(v string) *RuleGroupReferenceStatem
 // SetExcludedRules sets the ExcludedRules field's value.
 func (s *RuleGroupReferenceStatement) SetExcludedRules(v []*ExcludedRule) *RuleGroupReferenceStatement {
 	s.ExcludedRules = v
+	return s
+}
+
+// SetRuleActionOverrides sets the RuleActionOverrides field's value.
+func (s *RuleGroupReferenceStatement) SetRuleActionOverrides(v []*RuleActionOverride) *RuleGroupReferenceStatement {
+	s.RuleActionOverrides = v
 	return s
 }
 
@@ -17032,11 +17674,14 @@ func (s *RuleSummary) SetName(v string) *RuleSummary {
 type SampledHTTPRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The action for the Rule that the request matched: Allow, Block, or Count.
+	// The action that WAF applied to the request.
 	Action *string `type:"string"`
 
 	// The CAPTCHA response for the request.
 	CaptchaResponse *CaptchaResponse `type:"structure"`
+
+	// The Challenge response for the request.
+	ChallengeResponse *ChallengeResponse `type:"structure"`
 
 	// Labels applied to the web request by matching rules. WAF applies fully qualified
 	// labels to matching web requests. A fully qualified label is the concatenation
@@ -17046,6 +17691,12 @@ type SampledHTTPRequest struct {
 	// For example, awswaf:111122223333:myRuleGroup:testRules:testNS1:testNS2:labelNameA
 	// or awswaf:managed:aws:managed-rule-set:header:encoding:utf8.
 	Labels []*Label `type:"list"`
+
+	// Used only for rule group rules that have a rule action override in place
+	// in the web ACL. This is the action that the rule group rule is configured
+	// for, and not the action that was applied to the request. The action that
+	// WAF applied is the Action value.
+	OverriddenAction *string `type:"string"`
 
 	// A complex type that contains detailed information about the request.
 	//
@@ -17108,9 +17759,21 @@ func (s *SampledHTTPRequest) SetCaptchaResponse(v *CaptchaResponse) *SampledHTTP
 	return s
 }
 
+// SetChallengeResponse sets the ChallengeResponse field's value.
+func (s *SampledHTTPRequest) SetChallengeResponse(v *ChallengeResponse) *SampledHTTPRequest {
+	s.ChallengeResponse = v
+	return s
+}
+
 // SetLabels sets the Labels field's value.
 func (s *SampledHTTPRequest) SetLabels(v []*Label) *SampledHTTPRequest {
 	s.Labels = v
+	return s
+}
+
+// SetOverriddenAction sets the OverriddenAction field's value.
+func (s *SampledHTTPRequest) SetOverriddenAction(v string) *SampledHTTPRequest {
+	s.OverriddenAction = &v
 	return s
 }
 
@@ -17511,7 +18174,34 @@ type Statement struct {
 	// statement.
 	ByteMatchStatement *ByteMatchStatement `type:"structure"`
 
-	// A rule statement used to identify web requests based on country of origin.
+	// A rule statement that labels web requests by country and region and that
+	// matches against web requests based on country code. A geo match rule labels
+	// every request that it inspects regardless of whether it finds a match.
+	//
+	//    * To manage requests only by country, you can use this statement by itself
+	//    and specify the countries that you want to match against in the CountryCodes
+	//    array.
+	//
+	//    * Otherwise, configure your geo match rule with Count action so that it
+	//    only labels requests. Then, add one or more label match rules to run after
+	//    the geo match rule and configure them to match against the geographic
+	//    labels and handle the requests as needed.
+	//
+	// WAF labels requests using the alpha-2 country and region codes from the International
+	// Organization for Standardization (ISO) 3166 standard. WAF determines the
+	// codes using either the IP address in the web request origin or, if you specify
+	// it, the address in the geo match ForwardedIPConfig.
+	//
+	// If you use the web request origin, the label formats are awswaf:clientip:geo:region:<ISO
+	// country code>-<ISO region code> and awswaf:clientip:geo:country:<ISO country
+	// code>.
+	//
+	// If you use a forwarded IP address, the label formats are awswaf:forwardedip:geo:region:<ISO
+	// country code>-<ISO region code> and awswaf:forwardedip:geo:country:<ISO country
+	// code>.
+	//
+	// For additional details, see Geographic match rule statement (https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 	GeoMatchStatement *GeoMatchStatement `type:"structure"`
 
 	// A rule statement used to detect web requests coming from particular IP addresses
@@ -17525,8 +18215,8 @@ type Statement struct {
 	// updates all rules that reference it.
 	IPSetReferenceStatement *IPSetReferenceStatement `type:"structure"`
 
-	// A rule statement that defines a string match search against labels that have
-	// been added to the web request by rules that have already run in the web ACL.
+	// A rule statement to match against labels that have been added to the web
+	// request by rules that have already run in the web ACL.
 	//
 	// The label match statement provides the label or namespace string to search
 	// for. The label string can represent a part or all of the fully qualified
@@ -17545,6 +18235,11 @@ type Statement struct {
 	// You cannot nest a ManagedRuleGroupStatement, for example for use inside a
 	// NotStatement or OrStatement. It can only be referenced as a top-level statement
 	// within a rule.
+	//
+	// You are charged additional fees when you use the WAF Bot Control managed
+	// rule group AWSManagedRulesBotControlRuleSet or the WAF Fraud Control account
+	// takeover prevention (ATP) managed rule group AWSManagedRulesATPRuleSet. For
+	// more information, see WAF Pricing (http://aws.amazon.com/waf/pricing/).
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
 	// A logical rule statement used to negate the results of another rule statement.
@@ -18416,8 +19111,9 @@ type UpdateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains an array of strings that specifies zero or more IP addresses or
-	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
-	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
+	// blocks of IP addresses. All addresses must be specified using Classless Inter-Domain
+	// Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except
+	// for /0.
 	//
 	// Example address strings:
 	//
@@ -19258,6 +19954,11 @@ type UpdateWebACLInput struct {
 	// its default settings for CaptchaConfig.
 	CaptchaConfig *CaptchaConfig `type:"structure"`
 
+	// Specifies how WAF should handle challenge evaluations for rules that don't
+	// have their own ChallengeConfig settings. If you don't specify this, WAF uses
+	// its default settings for ChallengeConfig.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
 	// define these for the web ACL, and then use them in the rules and default
@@ -19327,6 +20028,17 @@ type UpdateWebACLInput struct {
 	// Scope is a required field
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 
+	// Specifies the domains that WAF should accept in a web request token. This
+	// enables the use of tokens across multiple protected websites. When WAF provides
+	// a token, it uses the domain of the Amazon Web Services resource that the
+	// web ACL is protecting. If you don't specify a list of token domains, WAF
+	// accepts tokens only for the domain of the protected resource. With a token
+	// domain list, WAF accepts the resource's host domain plus all domains in the
+	// token domain list, including their prefixed subdomains.
+	//
+	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
+	TokenDomains []*string `min:"1" type:"list"`
+
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
 	// VisibilityConfig is a required field
@@ -19384,12 +20096,20 @@ func (s *UpdateWebACLInput) Validate() error {
 	if s.Scope == nil {
 		invalidParams.Add(request.NewErrParamRequired("Scope"))
 	}
+	if s.TokenDomains != nil && len(s.TokenDomains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TokenDomains", 1))
+	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
 	if s.CaptchaConfig != nil {
 		if err := s.CaptchaConfig.Validate(); err != nil {
 			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ChallengeConfig != nil {
+		if err := s.ChallengeConfig.Validate(); err != nil {
+			invalidParams.AddNested("ChallengeConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.CustomResponseBodies != nil {
@@ -19432,6 +20152,12 @@ func (s *UpdateWebACLInput) Validate() error {
 // SetCaptchaConfig sets the CaptchaConfig field's value.
 func (s *UpdateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *UpdateWebACLInput {
 	s.CaptchaConfig = v
+	return s
+}
+
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *UpdateWebACLInput) SetChallengeConfig(v *ChallengeConfig) *UpdateWebACLInput {
+	s.ChallengeConfig = v
 	return s
 }
 
@@ -19480,6 +20206,12 @@ func (s *UpdateWebACLInput) SetRules(v []*Rule) *UpdateWebACLInput {
 // SetScope sets the Scope field's value.
 func (s *UpdateWebACLInput) SetScope(v string) *UpdateWebACLInput {
 	s.Scope = &v
+	return s
+}
+
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *UpdateWebACLInput) SetTokenDomains(v []*string) *UpdateWebACLInput {
+	s.TokenDomains = v
 	return s
 }
 
@@ -20516,7 +21248,10 @@ func (s *WAFLogDestinationPermissionIssueException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// WAF couldn’t perform the operation because your resource doesn’t exist.
+// WAF couldn’t perform the operation because your resource doesn't exist.
+// If you've just created a resource that you're using in this operation, you
+// might just need to wait a few minutes. It can take from a few seconds to
+// a number of minutes for changes to propagate.
 type WAFNonexistentItemException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20912,8 +21647,10 @@ func (s *WAFTagOperationInternalErrorException) RequestID() string {
 }
 
 // WAF couldn’t retrieve a resource that you specified for this operation.
-// Verify the resources that you are specifying in your request parameters and
-// then retry the operation.
+// If you've just created a resource that you're using in this operation, you
+// might just need to wait a few minutes. It can take from a few seconds to
+// a number of minutes for changes to propagate. Verify the resources that you
+// are specifying in your request parameters and then retry the operation.
 type WAFUnavailableEntityException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21011,6 +21748,11 @@ type WebACL struct {
 	// its default settings for CaptchaConfig.
 	CaptchaConfig *CaptchaConfig `type:"structure"`
 
+	// Specifies how WAF should handle challenge evaluations for rules that don't
+	// have their own ChallengeConfig settings. If you don't specify this, WAF uses
+	// its default settings for ChallengeConfig.
+	ChallengeConfig *ChallengeConfig `type:"structure"`
+
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
 	// define these for the web ACL, and then use them in the rules and default
@@ -21092,6 +21834,15 @@ type WebACL struct {
 	// them.
 	Rules []*Rule `type:"list"`
 
+	// Specifies the domains that WAF should accept in a web request token. This
+	// enables the use of tokens across multiple protected websites. When WAF provides
+	// a token, it uses the domain of the Amazon Web Services resource that the
+	// web ACL is protecting. If you don't specify a list of token domains, WAF
+	// accepts tokens only for the domain of the protected resource. With a token
+	// domain list, WAF accepts the resource's host domain plus all domains in the
+	// token domain list, including their prefixed subdomains.
+	TokenDomains []*string `min:"1" type:"list"`
+
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
 	// VisibilityConfig is a required field
@@ -21131,6 +21882,12 @@ func (s *WebACL) SetCapacity(v int64) *WebACL {
 // SetCaptchaConfig sets the CaptchaConfig field's value.
 func (s *WebACL) SetCaptchaConfig(v *CaptchaConfig) *WebACL {
 	s.CaptchaConfig = v
+	return s
+}
+
+// SetChallengeConfig sets the ChallengeConfig field's value.
+func (s *WebACL) SetChallengeConfig(v *ChallengeConfig) *WebACL {
+	s.ChallengeConfig = v
 	return s
 }
 
@@ -21191,6 +21948,12 @@ func (s *WebACL) SetPreProcessFirewallManagerRuleGroups(v []*FirewallManagerRule
 // SetRules sets the Rules field's value.
 func (s *WebACL) SetRules(v []*Rule) *WebACL {
 	s.Rules = v
+	return s
+}
+
+// SetTokenDomains sets the TokenDomains field's value.
+func (s *WebACL) SetTokenDomains(v []*string) *WebACL {
+	s.TokenDomains = v
 	return s
 }
 
@@ -21378,6 +22141,9 @@ const (
 	// ActionValueCaptcha is a ActionValue enum value
 	ActionValueCaptcha = "CAPTCHA"
 
+	// ActionValueChallenge is a ActionValue enum value
+	ActionValueChallenge = "CHALLENGE"
+
 	// ActionValueExcludedAsCount is a ActionValue enum value
 	ActionValueExcludedAsCount = "EXCLUDED_AS_COUNT"
 )
@@ -21389,6 +22155,7 @@ func ActionValue_Values() []string {
 		ActionValueBlock,
 		ActionValueCount,
 		ActionValueCaptcha,
+		ActionValueChallenge,
 		ActionValueExcludedAsCount,
 	}
 }
@@ -22459,6 +23226,12 @@ const (
 
 	// FailureReasonTokenExpired is a FailureReason enum value
 	FailureReasonTokenExpired = "TOKEN_EXPIRED"
+
+	// FailureReasonTokenInvalid is a FailureReason enum value
+	FailureReasonTokenInvalid = "TOKEN_INVALID"
+
+	// FailureReasonTokenDomainMismatch is a FailureReason enum value
+	FailureReasonTokenDomainMismatch = "TOKEN_DOMAIN_MISMATCH"
 )
 
 // FailureReason_Values returns all elements of the FailureReason enum
@@ -22466,6 +23239,8 @@ func FailureReason_Values() []string {
 	return []string{
 		FailureReasonTokenMissing,
 		FailureReasonTokenExpired,
+		FailureReasonTokenInvalid,
+		FailureReasonTokenDomainMismatch,
 	}
 }
 
@@ -22550,6 +23325,22 @@ func IPAddressVersion_Values() []string {
 	return []string{
 		IPAddressVersionIpv4,
 		IPAddressVersionIpv6,
+	}
+}
+
+const (
+	// InspectionLevelCommon is a InspectionLevel enum value
+	InspectionLevelCommon = "COMMON"
+
+	// InspectionLevelTargeted is a InspectionLevel enum value
+	InspectionLevelTargeted = "TARGETED"
+)
+
+// InspectionLevel_Values returns all elements of the InspectionLevel enum
+func InspectionLevel_Values() []string {
+	return []string{
+		InspectionLevelCommon,
+		InspectionLevelTargeted,
 	}
 }
 
@@ -22818,6 +23609,12 @@ const (
 
 	// ParameterExceptionFieldOversizeHandling is a ParameterExceptionField enum value
 	ParameterExceptionFieldOversizeHandling = "OVERSIZE_HANDLING"
+
+	// ParameterExceptionFieldChallengeConfig is a ParameterExceptionField enum value
+	ParameterExceptionFieldChallengeConfig = "CHALLENGE_CONFIG"
+
+	// ParameterExceptionFieldTokenDomain is a ParameterExceptionField enum value
+	ParameterExceptionFieldTokenDomain = "TOKEN_DOMAIN"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -22886,6 +23683,8 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldCookieMatchPattern,
 		ParameterExceptionFieldMapMatchScope,
 		ParameterExceptionFieldOversizeHandling,
+		ParameterExceptionFieldChallengeConfig,
+		ParameterExceptionFieldTokenDomain,
 	}
 }
 

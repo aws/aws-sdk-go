@@ -267,6 +267,9 @@ type NeptuneAPI interface {
 	DescribeGlobalClustersWithContext(aws.Context, *neptune.DescribeGlobalClustersInput, ...request.Option) (*neptune.DescribeGlobalClustersOutput, error)
 	DescribeGlobalClustersRequest(*neptune.DescribeGlobalClustersInput) (*request.Request, *neptune.DescribeGlobalClustersOutput)
 
+	DescribeGlobalClustersPages(*neptune.DescribeGlobalClustersInput, func(*neptune.DescribeGlobalClustersOutput, bool) bool) error
+	DescribeGlobalClustersPagesWithContext(aws.Context, *neptune.DescribeGlobalClustersInput, func(*neptune.DescribeGlobalClustersOutput, bool) bool, ...request.Option) error
+
 	DescribeOrderableDBInstanceOptions(*neptune.DescribeOrderableDBInstanceOptionsInput) (*neptune.DescribeOrderableDBInstanceOptionsOutput, error)
 	DescribeOrderableDBInstanceOptionsWithContext(aws.Context, *neptune.DescribeOrderableDBInstanceOptionsInput, ...request.Option) (*neptune.DescribeOrderableDBInstanceOptionsOutput, error)
 	DescribeOrderableDBInstanceOptionsRequest(*neptune.DescribeOrderableDBInstanceOptionsInput) (*request.Request, *neptune.DescribeOrderableDBInstanceOptionsOutput)

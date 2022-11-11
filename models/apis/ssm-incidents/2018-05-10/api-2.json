@@ -638,7 +638,8 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "regions":{"shape":"RegionMapInput"}
+        "regions":{"shape":"RegionMapInput"},
+        "tags":{"shape":"TagMap"}
       }
     },
     "CreateReplicationSetOutput":{
@@ -1134,7 +1135,8 @@
         "ATTACHMENT",
         "OTHER",
         "AUTOMATION",
-        "INVOLVED_RESOURCE"
+        "INVOLVED_RESOURCE",
+        "TASK"
       ]
     },
     "ItemValue":{

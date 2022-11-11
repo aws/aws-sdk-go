@@ -1374,7 +1374,8 @@
       "required":["name"],
       "members":{
         "name":{"shape":"Name"},
-        "defaultJobTimeoutMinutes":{"shape":"JobTimeoutMinutes"}
+        "defaultJobTimeoutMinutes":{"shape":"JobTimeoutMinutes"},
+        "vpcConfig":{"shape":"VpcConfig"}
       }
     },
     "CreateProjectResult":{
@@ -2795,7 +2796,8 @@
         "arn":{"shape":"AmazonResourceName"},
         "name":{"shape":"Name"},
         "defaultJobTimeoutMinutes":{"shape":"JobTimeoutMinutes"},
-        "created":{"shape":"DateTime"}
+        "created":{"shape":"DateTime"},
+        "vpcConfig":{"shape":"VpcConfig"}
       }
     },
     "Projects":{
@@ -2872,7 +2874,8 @@
         "endpoint":{"shape":"String"},
         "deviceUdid":{"shape":"String"},
         "interactionMode":{"shape":"InteractionMode"},
-        "skipAppResign":{"shape":"SkipAppResign"}
+        "skipAppResign":{"shape":"SkipAppResign"},
+        "vpcConfig":{"shape":"VpcConfig"}
       }
     },
     "RemoteAccessSessions":{
@@ -2979,7 +2982,8 @@
         "webUrl":{"shape":"String"},
         "skipAppResign":{"shape":"SkipAppResign"},
         "testSpecArn":{"shape":"AmazonResourceName"},
-        "deviceSelectionResult":{"shape":"DeviceSelectionResult"}
+        "deviceSelectionResult":{"shape":"DeviceSelectionResult"},
+        "vpcConfig":{"shape":"VpcConfig"}
       }
     },
     "Runs":{
@@ -3068,6 +3072,12 @@
         "parameters":{"shape":"TestParameters"}
       }
     },
+    "SecurityGroupId":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"^sg-[0-9a-fA-F]{8,}$"
+    },
     "SecurityGroupIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"},
@@ -3142,6 +3152,12 @@
       }
     },
     "String":{"type":"string"},
+    "SubnetId":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"^subnet-[0-9a-fA-F]{8,}$"
+    },
     "SubnetIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"},
@@ -3515,7 +3531,8 @@
       "members":{
         "arn":{"shape":"AmazonResourceName"},
         "name":{"shape":"Name"},
-        "defaultJobTimeoutMinutes":{"shape":"JobTimeoutMinutes"}
+        "defaultJobTimeoutMinutes":{"shape":"JobTimeoutMinutes"},
+        "vpcConfig":{"shape":"VpcConfig"}
       }
     },
     "UpdateProjectResult":{
@@ -3674,6 +3691,31 @@
       "max":2048,
       "min":0
     },
-    "VideoCapture":{"type":"boolean"}
+    "VideoCapture":{"type":"boolean"},
+    "VpcConfig":{
+      "type":"structure",
+      "required":[
+        "securityGroupIds",
+        "subnetIds",
+        "vpcId"
+      ],
+      "members":{
+        "securityGroupIds":{"shape":"VpcSecurityGroupIds"},
+        "subnetIds":{"shape":"VpcSubnetIds"},
+        "vpcId":{"shape":"NonEmptyString"}
+      }
+    },
+    "VpcSecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"},
+      "max":5,
+      "min":1
+    },
+    "VpcSubnetIds":{
+      "type":"list",
+      "member":{"shape":"SubnetId"},
+      "max":8,
+      "min":1
+    }
   }
 }

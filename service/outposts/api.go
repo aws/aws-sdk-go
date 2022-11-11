@@ -57,7 +57,7 @@ func (c *Outposts) CancelOrderRequest(input *CancelOrderInput) (req *request.Req
 
 // CancelOrder API operation for AWS Outposts.
 //
-// Cancels an order for an Outpost.
+// Cancels the specified order for an Outpost.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -244,7 +244,7 @@ func (c *Outposts) CreateOutpostRequest(input *CreateOutpostInput) (req *request
 //
 // Creates an Outpost.
 //
-// You can specify AvailabilityZone or AvailabilityZoneId.
+// You can specify either an Availability one or an AZ ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -430,7 +430,7 @@ func (c *Outposts) DeleteOutpostRequest(input *DeleteOutpostInput) (req *request
 
 // DeleteOutpost API operation for AWS Outposts.
 //
-// Deletes the Outpost.
+// Deletes the specified Outpost.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -522,7 +522,7 @@ func (c *Outposts) DeleteSiteRequest(input *DeleteSiteInput) (req *request.Reque
 
 // DeleteSite API operation for AWS Outposts.
 //
-// Deletes the site.
+// Deletes the specified site.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -613,7 +613,7 @@ func (c *Outposts) GetCatalogItemRequest(input *GetCatalogItemInput) (req *reque
 
 // GetCatalogItem API operation for AWS Outposts.
 //
-// Gets information about a catalog item.
+// Gets information about the specified catalog item.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -700,7 +700,7 @@ func (c *Outposts) GetConnectionRequest(input *GetConnectionInput) (req *request
 //
 // Amazon Web Services uses this action to install Outpost servers.
 //
-// Gets information about a specified connection.
+// Gets information about the specified connection.
 //
 // Use CloudTrail to monitor this action or Amazon Web Services managed policy
 // for Amazon Web Services Outposts to secure it. For more information, see
@@ -795,7 +795,7 @@ func (c *Outposts) GetOrderRequest(input *GetOrderInput) (req *request.Request, 
 
 // GetOrder API operation for AWS Outposts.
 //
-// Gets an order.
+// Gets information about the specified order.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1201,7 +1201,7 @@ func (c *Outposts) GetSiteAddressRequest(input *GetSiteAddressInput) (req *reque
 
 // GetSiteAddress API operation for AWS Outposts.
 //
-// Gets the site address.
+// Gets the site address of the specified site.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1295,9 +1295,12 @@ func (c *Outposts) ListAssetsRequest(input *ListAssetsInput) (req *request.Reque
 
 // ListAssets API operation for AWS Outposts.
 //
-// Lists the hardware assets in an Outpost. If you are using Dedicated Hosts
-// on Amazon Web Services Outposts, you can filter your request by host ID to
-// return a list of hardware assets that allocate resources for Dedicated Hosts.
+// Lists the hardware assets for the specified Outpost.
+//
+// Use filters to return specific results. If you specify multiple filters,
+// the results include only the resources that match all of the specified filters.
+// For a filter where you can specify multiple values, the results include items
+// that match any of the values that you specify for the filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1442,12 +1445,12 @@ func (c *Outposts) ListCatalogItemsRequest(input *ListCatalogItemsInput) (req *r
 
 // ListCatalogItems API operation for AWS Outposts.
 //
-// Lists the items in the catalog. Add filters to your request to return a more
-// specific list of results. Use filters to match an item class, storage option,
-// or EC2 family.
+// Lists the items in the catalog.
 //
-// If you specify multiple filters, the filters are joined with an AND, and
-// the request returns only results that match all of the specified filters.
+// Use filters to return specific results. If you specify multiple filters,
+// the results include only the resources that match all of the specified filters.
+// For a filter where you can specify multiple values, the results include items
+// that match any of the values that you specify for the filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1589,8 +1592,7 @@ func (c *Outposts) ListOrdersRequest(input *ListOrdersInput) (req *request.Reque
 
 // ListOrders API operation for AWS Outposts.
 //
-// Lists the Outpost orders for your Amazon Web Services account. You can filter
-// your request by Outpost to return a more specific list of results.
+// Lists the Outpost orders for your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1735,12 +1737,12 @@ func (c *Outposts) ListOutpostsRequest(input *ListOutpostsInput) (req *request.R
 
 // ListOutposts API operation for AWS Outposts.
 //
-// Lists the Outposts for your Amazon Web Services account. Add filters to your
-// request to return a more specific list of results. Use filters to match an
-// Outpost lifecycle status, Availability Zone (us-east-1a), and AZ ID (use1-az1).
+// Lists the Outposts for your Amazon Web Services account.
 //
-// If you specify multiple filters, the filters are joined with an AND, and
-// the request returns only results that match all of the specified filters.
+// Use filters to return specific results. If you specify multiple filters,
+// the results include only the resources that match all of the specified filters.
+// For a filter where you can specify multiple values, the results include items
+// that match any of the values that you specify for the filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1882,13 +1884,13 @@ func (c *Outposts) ListSitesRequest(input *ListSitesInput) (req *request.Request
 
 // ListSites API operation for AWS Outposts.
 //
-// Lists the Outpost sites for your Amazon Web Services account. Add operating
-// address filters to your request to return a more specific list of results.
-// Use filters to match site city, country code, or state/region of the operating
-// address.
+// Lists the Outpost sites for your Amazon Web Services account. Use filters
+// to return specific results.
 //
-// If you specify multiple filters, the filters are joined with an AND, and
-// the request returns only results that match all of the specified filters.
+// Use filters to return specific results. If you specify multiple filters,
+// the results include only the resources that match all of the specified filters.
+// For a filter where you can specify multiple values, the results include items
+// that match any of the values that you specify for the filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2469,7 +2471,7 @@ func (c *Outposts) UpdateSiteRequest(input *UpdateSiteInput) (req *request.Reque
 
 // UpdateSite API operation for AWS Outposts.
 //
-// Updates the site.
+// Updates the specified site.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2560,10 +2562,10 @@ func (c *Outposts) UpdateSiteAddressRequest(input *UpdateSiteAddressInput) (req 
 
 // UpdateSiteAddress API operation for AWS Outposts.
 //
-// Updates the site address.
+// Updates the address of the specified site.
 //
-// To update a site address with an order IN_PROGRESS, you must wait for the
-// order to complete or cancel the order.
+// You can't update a site address if there is an order in progress. You must
+// wait for the order to complete or cancel the order.
 //
 // You can update the operating address before you place an order at the site,
 // or after all Outposts that belong to the site have been deactivated.
@@ -3059,7 +3061,7 @@ func (s *AssetLocation) SetRackElevation(v float64) *AssetLocation {
 type CancelOrderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the order to cancel.
+	// The ID of the order.
 	//
 	// OrderId is a required field
 	OrderId *string `location:"uri" locationName:"OrderId" min:"1" type:"string" required:"true"`
@@ -3217,8 +3219,22 @@ func (s *CatalogItem) SetWeightLbs(v int64) *CatalogItem {
 type ComputeAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// The host ID of any Dedicated Hosts on the asset.
+	// The host ID of the Dedicated Host on the asset.
 	HostId *string `min:"1" type:"string"`
+
+	// The state.
+	//
+	//    * ACTIVE - The asset is available and can provide capacity for new compute
+	//    resources.
+	//
+	//    * ISOLATED - The asset is undergoing maintenance and can't provide capacity
+	//    for new compute resources. Existing compute resources on the asset are
+	//    not affected.
+	//
+	//    * RETIRING - The underlying hardware for the asset is degraded. Capacity
+	//    for new compute resources is reduced. Amazon Web Services sends notifications
+	//    for resources that must be stopped before the asset can be replaced.
+	State *string `type:"string" enum:"ComputeAssetState"`
 }
 
 // String returns the string representation.
@@ -3242,6 +3258,12 @@ func (s ComputeAttributes) GoString() string {
 // SetHostId sets the HostId field's value.
 func (s *ComputeAttributes) SetHostId(v string) *ComputeAttributes {
 	s.HostId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ComputeAttributes) SetState(v string) *ComputeAttributes {
+	s.State = &v
 	return s
 }
 
@@ -3405,12 +3427,12 @@ type CreateOrderInput struct {
 	// OutpostIdentifier is a required field
 	OutpostIdentifier *string `min:"1" type:"string" required:"true"`
 
-	// The payment option for the order.
+	// The payment option.
 	//
 	// PaymentOption is a required field
 	PaymentOption *string `type:"string" required:"true" enum:"PaymentOption"`
 
-	// The payment terms for the order.
+	// The payment terms.
 	PaymentTerm *string `type:"string" enum:"PaymentTerm"`
 }
 
@@ -3540,12 +3562,6 @@ type CreateOutpostInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `min:"1" type:"string" required:"true"`
@@ -3844,12 +3860,6 @@ type DeleteOutpostInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
-	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
 }
@@ -3920,12 +3930,6 @@ type DeleteSiteInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -4126,7 +4130,7 @@ func (s *GetCatalogItemOutput) SetCatalogItem(v *CatalogItem) *GetCatalogItemOut
 type GetConnectionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the connection you request.
+	// The ID of the connection.
 	//
 	// ConnectionId is a required field
 	ConnectionId *string `location:"uri" locationName:"ConnectionId" min:"1" type:"string" required:"true"`
@@ -4175,10 +4179,10 @@ func (s *GetConnectionInput) SetConnectionId(v string) *GetConnectionInput {
 type GetConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a connection.
+	// Information about the connection.
 	ConnectionDetails *ConnectionDetails `type:"structure"`
 
-	// The ID of the connection you receive.
+	// The ID of the connection.
 	ConnectionId *string `min:"1" type:"string"`
 }
 
@@ -4297,12 +4301,6 @@ type GetOutpostInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
-	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
 }
@@ -4357,12 +4355,6 @@ type GetOutpostInstanceTypesInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -4439,12 +4431,6 @@ type GetOutpostInstanceTypesOutput struct {
 	OutpostArn *string `min:"1" type:"string"`
 
 	// The ID of the Outpost.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	OutpostId *string `min:"1" type:"string"`
 }
 
@@ -4530,12 +4516,6 @@ type GetSiteAddressInput struct {
 	AddressType *string `location:"querystring" locationName:"AddressType" type:"string" required:"true" enum:"AddressType"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -4643,12 +4623,6 @@ type GetSiteInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -4905,7 +4879,7 @@ type LineItemAssetInformation struct {
 	// The ID of the asset.
 	AssetId *string `min:"1" type:"string"`
 
-	// MAC addresses of the asset.
+	// The MAC addresses of the asset.
 	MacAddressList []*string `type:"list"`
 }
 
@@ -4999,11 +4973,7 @@ func (s *LineItemRequest) SetQuantity(v int64) *LineItemRequest {
 type ListAssetsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A filter for the host ID of Dedicated Hosts on the Outpost.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by the host ID of a Dedicated Host.
 	HostIdFilter []*string `location:"querystring" locationName:"HostIdFilter" type:"list"`
 
 	// The maximum page size.
@@ -5016,6 +4986,9 @@ type ListAssetsInput struct {
 	//
 	// OutpostIdentifier is a required field
 	OutpostIdentifier *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+
+	// Filters the results by state.
+	StatusFilter []*string `location:"querystring" locationName:"StatusFilter" min:"1" type:"list" enum:"AssetState"`
 }
 
 // String returns the string representation.
@@ -5051,6 +5024,9 @@ func (s *ListAssetsInput) Validate() error {
 	if s.OutpostIdentifier != nil && len(*s.OutpostIdentifier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifier", 1))
 	}
+	if s.StatusFilter != nil && len(s.StatusFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatusFilter", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5082,10 +5058,16 @@ func (s *ListAssetsInput) SetOutpostIdentifier(v string) *ListAssetsInput {
 	return s
 }
 
+// SetStatusFilter sets the StatusFilter field's value.
+func (s *ListAssetsInput) SetStatusFilter(v []*string) *ListAssetsInput {
+	s.StatusFilter = v
+	return s
+}
+
 type ListAssetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about hardware assets.
+	// Information about the hardware assets.
 	Assets []*AssetInfo `type:"list"`
 
 	// The pagination token.
@@ -5125,18 +5107,10 @@ func (s *ListAssetsOutput) SetNextToken(v string) *ListAssetsOutput {
 type ListCatalogItemsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A filter for EC2 family options for items in the catalog.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by EC2 family (for example, M5).
 	EC2FamilyFilter []*string `location:"querystring" locationName:"EC2FamilyFilter" type:"list"`
 
-	// A filter for the class of items in the catalog.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by item class.
 	ItemClassFilter []*string `location:"querystring" locationName:"ItemClassFilter" type:"list" enum:"CatalogItemClass"`
 
 	// The maximum page size.
@@ -5145,11 +5119,7 @@ type ListCatalogItemsInput struct {
 	// The pagination token.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
-	// A filter for the storage options of items in the catalog.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by storage option.
 	SupportedStorageFilter []*string `location:"querystring" locationName:"SupportedStorageFilter" type:"list" enum:"SupportedStorageEnum"`
 }
 
@@ -5368,25 +5338,13 @@ func (s *ListOrdersOutput) SetOrders(v []*OrderSummary) *ListOrdersOutput {
 type ListOutpostsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A filter for the Availability Zone (us-east-1a) of the Outpost.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by Availability Zone (for example, us-east-1a).
 	AvailabilityZoneFilter []*string `location:"querystring" locationName:"AvailabilityZoneFilter" min:"1" type:"list"`
 
-	// A filter for the AZ IDs (use1-az1) of the Outpost.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by AZ ID (for example, use1-az1).
 	AvailabilityZoneIdFilter []*string `location:"querystring" locationName:"AvailabilityZoneIdFilter" min:"1" type:"list"`
 
-	// A filter for the lifecycle status of the Outpost.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by the lifecycle status.
 	LifeCycleStatusFilter []*string `location:"querystring" locationName:"LifeCycleStatusFilter" min:"1" type:"list"`
 
 	// The maximum page size.
@@ -5518,25 +5476,13 @@ type ListSitesInput struct {
 	// The pagination token.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
-	// A filter for the city of the Outpost site.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by city.
 	OperatingAddressCityFilter []*string `location:"querystring" locationName:"OperatingAddressCityFilter" type:"list"`
 
-	// A filter for the country code of the Outpost site.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by country code.
 	OperatingAddressCountryCodeFilter []*string `location:"querystring" locationName:"OperatingAddressCountryCodeFilter" type:"list"`
 
-	// A filter for the state/region of the Outpost site.
-	//
-	// Filter values are case sensitive. If you specify multiple values for a filter,
-	// the values are joined with an OR, and the request returns all results that
-	// match any of the specified values.
+	// Filters the results by state or region.
 	OperatingAddressStateOrRegionFilter []*string `location:"querystring" locationName:"OperatingAddressStateOrRegionFilter" type:"list"`
 }
 
@@ -5815,7 +5761,7 @@ type Order struct {
 	//    * PREPARING - Order is received and being prepared.
 	//
 	//    * IN_PROGRESS - Order is either being built, shipped, or installed. To
-	//    get more details, see the LineItem status.
+	//    get more details, see the line item status.
 	//
 	//    * COMPLETED - Order is complete.
 	//
@@ -5895,13 +5841,13 @@ type OrderSummary struct {
 	// The status of all line items in the order.
 	LineItemCountsByStatus map[string]*int64 `type:"map"`
 
-	// Fulfilment date for the order.
+	// The fulfilment date for the order.
 	OrderFulfilledDate *time.Time `type:"timestamp"`
 
 	// The ID of the order.
 	OrderId *string `min:"1" type:"string"`
 
-	// Submission date for the order.
+	// The submission date for the order.
 	OrderSubmissionDate *time.Time `type:"timestamp"`
 
 	// The type of order.
@@ -6783,12 +6729,6 @@ type UpdateOutpostInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the Outpost.
 	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
-	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
 
@@ -6902,12 +6842,6 @@ type UpdateSiteAddressInput struct {
 	AddressType *string `type:"string" required:"true" enum:"AddressType"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -7030,12 +6964,6 @@ type UpdateSiteInput struct {
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
 	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
-	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
 }
@@ -7141,17 +7069,15 @@ func (s *UpdateSiteOutput) SetSite(v *Site) *UpdateSiteOutput {
 type UpdateSiteRackPhysicalPropertiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specify the type of fiber that you will use to attach the Outpost to your
-	// network.
+	// The type of fiber that you will use to attach the Outpost to your network.
 	FiberOpticCableType *string `type:"string" enum:"FiberOpticCableType"`
 
-	// Specify the maximum rack weight that this site can support. NO_LIMIT is over
-	// 2000lbs.
+	// The maximum rack weight that this site can support. NO_LIMIT is over 2000lbs.
 	MaximumSupportedWeightLbs *string `type:"string" enum:"MaximumSupportedWeightLbs"`
 
-	// Specify the type of optical standard that you will use to attach the Outpost
-	// to your network. This field is dependent on uplink speed, fiber type, and
-	// distance to the upstream device. For more information about networking requirements
+	// The type of optical standard that you will use to attach the Outpost to your
+	// network. This field is dependent on uplink speed, fiber type, and distance
+	// to the upstream device. For more information about networking requirements
 	// for racks, see Network (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#facility-networking)
 	// in the Amazon Web Services Outposts User Guide.
 	//
@@ -7182,9 +7108,8 @@ type UpdateSiteRackPhysicalPropertiesInput struct {
 	//    * OPTIC_1000BASE_SX : 1000Base-SX
 	OpticalStandard *string `type:"string" enum:"OpticalStandard"`
 
-	// Specify the power connector that Amazon Web Services should plan to provide
-	// for connections to the hardware. Note the correlation between PowerPhase
-	// and PowerConnector.
+	// The power connector that Amazon Web Services should plan to provide for connections
+	// to the hardware. Note the correlation between PowerPhase and PowerConnector.
 	//
 	//    * Single-phase AC feed L6-30P – (common in US); 30A; single phase IEC309
 	//    (blue) – P+N+E, 6hr; 32 A; single phase
@@ -7193,14 +7118,14 @@ type UpdateSiteRackPhysicalPropertiesInput struct {
 	//    AH532P6W (red) – 3P+N+E, 6hr; 32A; three phase
 	PowerConnector *string `type:"string" enum:"PowerConnector"`
 
-	// Specify in kVA the power draw available at the hardware placement position
-	// for the rack.
+	// The power draw, in kVA, available at the hardware placement position for
+	// the rack.
 	PowerDrawKva *string `type:"string" enum:"PowerDrawKva"`
 
-	// Specify whether the power feed comes above or below the rack.
+	// Indicates whether the power feed comes above or below the rack.
 	PowerFeedDrop *string `type:"string" enum:"PowerFeedDrop"`
 
-	// Specify the power option that you can provide for hardware.
+	// The power option that you can provide for hardware.
 	//
 	//    * Single-phase AC feed: 200 V to 277 V, 50 Hz or 60 Hz
 	//
@@ -7208,12 +7133,6 @@ type UpdateSiteRackPhysicalPropertiesInput struct {
 	PowerPhase *string `type:"string" enum:"PowerPhase"`
 
 	// The ID or the Amazon Resource Name (ARN) of the site.
-	//
-	// In requests, Amazon Web Services Outposts accepts the Amazon Resource Name
-	// (ARN) or an ID for Outposts and sites throughout the Outposts Query API.
-	// To address backwards compatibility, the parameter names OutpostID or SiteID
-	// remain in use. Despite the parameter name, you can make the request with
-	// an ARN.
 	//
 	// SiteId is a required field
 	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
@@ -7231,8 +7150,7 @@ type UpdateSiteRackPhysicalPropertiesInput struct {
 	//    * 40 and 100 Gbps- Uplinks available: 1, 2, 4
 	UplinkCount *string `type:"string" enum:"UplinkCount"`
 
-	// Specify the uplink speed the rack should support for the connection to the
-	// Region.
+	// The uplink speed the rack should support for the connection to the Region.
 	UplinkGbps *string `type:"string" enum:"UplinkGbps"`
 }
 
@@ -7442,6 +7360,22 @@ func AddressType_Values() []string {
 }
 
 const (
+	// AssetStateActive is a AssetState enum value
+	AssetStateActive = "ACTIVE"
+
+	// AssetStateRetiring is a AssetState enum value
+	AssetStateRetiring = "RETIRING"
+)
+
+// AssetState_Values returns all elements of the AssetState enum
+func AssetState_Values() []string {
+	return []string{
+		AssetStateActive,
+		AssetStateRetiring,
+	}
+}
+
+const (
 	// AssetTypeCompute is a AssetType enum value
 	AssetTypeCompute = "COMPUTE"
 )
@@ -7482,6 +7416,26 @@ func CatalogItemStatus_Values() []string {
 	return []string{
 		CatalogItemStatusAvailable,
 		CatalogItemStatusDiscontinued,
+	}
+}
+
+const (
+	// ComputeAssetStateActive is a ComputeAssetState enum value
+	ComputeAssetStateActive = "ACTIVE"
+
+	// ComputeAssetStateIsolated is a ComputeAssetState enum value
+	ComputeAssetStateIsolated = "ISOLATED"
+
+	// ComputeAssetStateRetiring is a ComputeAssetState enum value
+	ComputeAssetStateRetiring = "RETIRING"
+)
+
+// ComputeAssetState_Values returns all elements of the ComputeAssetState enum
+func ComputeAssetState_Values() []string {
+	return []string{
+		ComputeAssetStateActive,
+		ComputeAssetStateIsolated,
+		ComputeAssetStateRetiring,
 	}
 }
 
@@ -7716,12 +7670,16 @@ func PaymentOption_Values() []string {
 const (
 	// PaymentTermThreeYears is a PaymentTerm enum value
 	PaymentTermThreeYears = "THREE_YEARS"
+
+	// PaymentTermOneYear is a PaymentTerm enum value
+	PaymentTermOneYear = "ONE_YEAR"
 )
 
 // PaymentTerm_Values returns all elements of the PaymentTerm enum
 func PaymentTerm_Values() []string {
 	return []string{
 		PaymentTermThreeYears,
+		PaymentTermOneYear,
 	}
 }
 

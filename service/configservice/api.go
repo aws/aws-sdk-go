@@ -75,7 +75,7 @@ func (c *ConfigService) BatchGetAggregateResourceConfigRequest(input *BatchGetAg
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -173,7 +173,7 @@ func (c *ConfigService) BatchGetResourceConfigRequest(input *BatchGetResourceCon
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -352,7 +352,7 @@ func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (r
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -828,7 +828,7 @@ func (c *ConfigService) DeleteEvaluationResultsRequest(input *DeleteEvaluationRe
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -927,8 +927,8 @@ func (c *ConfigService) DeleteOrganizationConfigRuleRequest(input *DeleteOrganiz
 // Deletes the specified organization Config rule and all of its evaluation
 // results from all member accounts in that organization.
 //
-// Only a master account and a delegated administrator account can delete an
-// organization Config rule. When calling this API with a delegated administrator,
+// Only a management account and a delegated administrator account can delete
+// an organization Config rule. When calling this API with a delegated administrator,
 // you must ensure Organizations ListDelegatedAdministrator permissions are
 // added.
 //
@@ -945,7 +945,7 @@ func (c *ConfigService) DeleteOrganizationConfigRuleRequest(input *DeleteOrganiz
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     The Config rule in the request is invalid. Verify that the rule is an organization
 //     Config Custom Policy rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
@@ -998,7 +998,7 @@ func (c *ConfigService) DeleteOrganizationConfigRuleRequest(input *DeleteOrganiz
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteOrganizationConfigRule
 func (c *ConfigService) DeleteOrganizationConfigRule(input *DeleteOrganizationConfigRuleInput) (*DeleteOrganizationConfigRuleOutput, error) {
@@ -1069,10 +1069,10 @@ func (c *ConfigService) DeleteOrganizationConformancePackRequest(input *DeleteOr
 // Deletes the specified organization conformance pack and all of the Config
 // rules and remediation actions from all member accounts in that organization.
 //
-// Only a master account or a delegated administrator account can delete an
-// organization conformance pack. When calling this API with a delegated administrator,
-// you must ensure Organizations ListDelegatedAdministrator permissions are
-// added.
+// Only a management account or a delegated administrator account can delete
+// an organization conformance pack. When calling this API with a delegated
+// administrator, you must ensure Organizations ListDelegatedAdministrator permissions
+// are added.
 //
 // Config sets the state of a conformance pack to DELETE_IN_PROGRESS until the
 // deletion is complete. You cannot update a conformance pack while it is in
@@ -1143,7 +1143,7 @@ func (c *ConfigService) DeleteOrganizationConformancePackRequest(input *DeleteOr
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteOrganizationConformancePack
 func (c *ConfigService) DeleteOrganizationConformancePack(input *DeleteOrganizationConformancePackInput) (*DeleteOrganizationConformancePackOutput, error) {
@@ -1324,9 +1324,9 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - InvalidParameterValueException
 //     One or more of the specified parameters are invalid. Verify that your parameters
@@ -1495,7 +1495,7 @@ func (c *ConfigService) DeleteResourceConfigRequest(input *DeleteResourceConfigI
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -1671,7 +1671,7 @@ func (c *ConfigService) DeleteStoredQueryRequest(input *DeleteStoredQueryInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -1867,7 +1867,7 @@ func (c *ConfigService) DescribeAggregateComplianceByConfigRulesRequest(input *D
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -2027,7 +2027,7 @@ func (c *ConfigService) DescribeAggregateComplianceByConformancePacksRequest(inp
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -2352,7 +2352,7 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 //     are valid and try again.
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -2661,7 +2661,7 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -2807,7 +2807,7 @@ func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInp
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -4032,7 +4032,7 @@ func (c *ConfigService) DescribeOrganizationConfigRuleStatusesRequest(input *Des
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     The Config rule in the request is invalid. Verify that the rule is an organization
 //     Config Custom Policy rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
@@ -4066,7 +4066,7 @@ func (c *ConfigService) DescribeOrganizationConfigRuleStatusesRequest(input *Des
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConfigRuleStatuses
 func (c *ConfigService) DescribeOrganizationConfigRuleStatuses(input *DescribeOrganizationConfigRuleStatusesInput) (*DescribeOrganizationConfigRuleStatusesOutput, error) {
@@ -4221,7 +4221,7 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     The Config rule in the request is invalid. Verify that the rule is an organization
 //     Config Custom Policy rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
@@ -4255,7 +4255,7 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConfigRules
 func (c *ConfigService) DescribeOrganizationConfigRules(input *DescribeOrganizationConfigRulesInput) (*DescribeOrganizationConfigRulesOutput, error) {
@@ -4436,7 +4436,7 @@ func (c *ConfigService) DescribeOrganizationConformancePackStatusesRequest(input
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConformancePackStatuses
 func (c *ConfigService) DescribeOrganizationConformancePackStatuses(input *DescribeOrganizationConformancePackStatusesInput) (*DescribeOrganizationConformancePackStatusesOutput, error) {
@@ -4627,7 +4627,7 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConformancePacks
 func (c *ConfigService) DescribeOrganizationConformancePacks(input *DescribeOrganizationConformancePacksInput) (*DescribeOrganizationConformancePacksOutput, error) {
@@ -5435,7 +5435,7 @@ func (c *ConfigService) GetAggregateComplianceDetailsByConfigRuleRequest(input *
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -5593,7 +5593,7 @@ func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryRequest(input *Ge
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -5753,7 +5753,7 @@ func (c *ConfigService) GetAggregateConformancePackComplianceSummaryRequest(inpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -5915,7 +5915,7 @@ func (c *ConfigService) GetAggregateDiscoveredResourceCountsRequest(input *GetAg
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -6064,7 +6064,7 @@ func (c *ConfigService) GetAggregateResourceConfigRequest(input *GetAggregateRes
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -6177,7 +6177,7 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetCompli
 //     returned in the previous response to get the next page of results.
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -6898,7 +6898,7 @@ func (c *ConfigService) GetCustomRulePolicyRequest(input *GetCustomRulePolicyInp
 //
 // Returned Error Types:
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -7018,7 +7018,7 @@ func (c *ConfigService) GetDiscoveredResourceCountsRequest(input *GetDiscoveredR
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -7170,7 +7170,7 @@ func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusRequest(input *Ge
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     The Config rule in the request is invalid. Verify that the rule is an organization
 //     Config Custom Policy rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
@@ -7204,7 +7204,7 @@ func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusRequest(input *Ge
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationConfigRuleDetailedStatus
 func (c *ConfigService) GetOrganizationConfigRuleDetailedStatus(input *GetOrganizationConfigRuleDetailedStatusInput) (*GetOrganizationConfigRuleDetailedStatusOutput, error) {
@@ -7377,7 +7377,7 @@ func (c *ConfigService) GetOrganizationConformancePackDetailedStatusRequest(inpu
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationConformancePackDetailedStatus
 func (c *ConfigService) GetOrganizationConformancePackDetailedStatus(input *GetOrganizationConformancePackDetailedStatusInput) (*GetOrganizationConformancePackDetailedStatusOutput, error) {
@@ -7508,7 +7508,7 @@ func (c *ConfigService) GetOrganizationCustomRulePolicyRequest(input *GetOrganiz
 // Returned Error Types:
 //
 //   - NoSuchOrganizationConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an organization
+//     The Config rule in the request is invalid. Verify that the rule is an organization
 //     Config Custom Policy rule, that the rule name is correct, and that valid
 //     Amazon Resouce Names (ARNs) are used before trying again.
 //
@@ -7535,7 +7535,7 @@ func (c *ConfigService) GetOrganizationCustomRulePolicyRequest(input *GetOrganiz
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationCustomRulePolicy
 func (c *ConfigService) GetOrganizationCustomRulePolicy(input *GetOrganizationCustomRulePolicyInput) (*GetOrganizationCustomRulePolicyOutput, error) {
@@ -7633,7 +7633,7 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -7644,7 +7644,7 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 //     the validation.
 //
 //   - InvalidTimeRangeException
-//     The specified time range is not valid. The earlier time is not chronologically
+//     The specified time range is invalid. The earlier time is not chronologically
 //     before the later time.
 //
 //   - InvalidLimitException
@@ -7789,7 +7789,7 @@ func (c *ConfigService) GetStoredQueryRequest(input *GetStoredQueryInput) (req *
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -7894,7 +7894,7 @@ func (c *ConfigService) ListAggregateDiscoveredResourcesRequest(input *ListAggre
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -8040,7 +8040,7 @@ func (c *ConfigService) ListConformancePackComplianceScoresRequest(input *ListCo
 // is the percentage of the number of compliant rule-resource combinations in
 // a conformance pack compared to the number of total possible rule-resource
 // combinations in the conformance pack. This metric provides you with a high-level
-// view of the compliance state of your conformance packs, and can be used to
+// view of the compliance state of your conformance packs. You can use it to
 // identify, investigate, and understand the level of compliance in your conformance
 // packs.
 //
@@ -8214,7 +8214,7 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -8370,7 +8370,7 @@ func (c *ConfigService) ListStoredQueriesRequest(input *ListStoredQueriesInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -8521,7 +8521,7 @@ func (c *ConfigService) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //     You have specified a resource that does not exist.
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -8830,9 +8830,9 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - NoAvailableConfigurationRecorderException
 //     There are no configuration recorders available to provide the role needed
@@ -8972,7 +8972,7 @@ func (c *ConfigService) PutConfigurationAggregatorRequest(input *PutConfiguratio
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 //   - NoAvailableOrganizationException
 //     Organization is no longer available.
@@ -9148,16 +9148,16 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //
 // Creates or updates a conformance pack. A conformance pack is a collection
 // of Config rules that can be easily deployed in an account and a region and
-// across Amazon Web Services Organization. For information on how many conformance
-// packs you can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// across an organization. For information on how many conformance packs you
+// can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
 // in the Config Developer Guide.
 //
 // This API creates a service-linked role AWSServiceRoleForConfigConforms in
 // your account. The service-linked role is created only when the role does
 // not exist in your account.
 //
-// You must specify one and only one of theTemplateS3Uri, TemplateBody or TemplateSSMDocumentDetails
-// parameters.
+// You must specify only one of the follow parameters: TemplateS3Uri, TemplateBody
+// or TemplateSSMDocumentDetails.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9182,12 +9182,12 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - ConformancePackTemplateValidationException
-//     You have specified a template that is not valid or supported.
+//     You have specified a template that is invalid or supported.
 //
 //   - ResourceInUseException
 //     You see this exception in the following cases:
@@ -9220,8 +9220,9 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //     are valid and try again.
 //
 //   - MaxNumberOfConformancePacksExceededException
-//     You have reached the limit (6) of the number of conformance packs in an account
-//     (6 conformance pack with 25 Config rules per pack).
+//     You have reached the limit of the number of conformance packs you can create
+//     in an account. For more information, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+//     in the Config Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutConformancePack
 func (c *ConfigService) PutConformancePack(input *PutConformancePackInput) (*PutConformancePackOutput, error) {
@@ -9321,16 +9322,16 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 //     to describe your resources. Create a configuration recorder.
 //
 //   - InvalidDeliveryChannelNameException
-//     The specified delivery channel name is not valid.
+//     The specified delivery channel name is invalid.
 //
 //   - NoSuchBucketException
 //     The specified Amazon S3 bucket does not exist.
 //
 //   - InvalidS3KeyPrefixException
-//     The specified Amazon S3 key prefix is not valid.
+//     The specified Amazon S3 key prefix is invalid.
 //
 //   - InvalidS3KmsKeyArnException
-//     The specified Amazon KMS Key ARN is not valid.
+//     The specified Amazon KMS Key ARN is invalid.
 //
 //   - InvalidSNSTopicARNException
 //     The specified Amazon SNS topic does not exist.
@@ -9424,7 +9425,7 @@ func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *
 //     The specified ResultToken is invalid.
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -9507,7 +9508,7 @@ func (c *ConfigService) PutExternalEvaluationRequest(input *PutExternalEvaluatio
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -9586,16 +9587,16 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 // see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
 // in the Config Developer Guide.
 //
-// Only a master account and a delegated administrator can create or update
+// Only a management account and a delegated administrator can create or update
 // an organization Config rule. When calling this API with a delegated administrator,
 // you must ensure Organizations ListDelegatedAdministrator permissions are
 // added. An organization can have up to 3 delegated administrators.
 //
 // This API enables organization service access through the EnableAWSServiceAccess
 // action and creates a service-linked role AWSServiceRoleForConfigMultiAccountSetup
-// in the master or delegated administrator account of your organization. The
-// service-linked role is created only when the role does not exist in the caller
-// account. Config verifies the existence of role with GetRole action.
+// in the management or delegated administrator account of your organization.
+// The service-linked role is created only when the role does not exist in the
+// caller account. Config verifies the existence of role with GetRole action.
 //
 // To use this API with delegated administrator, register a delegated administrator
 // by calling Amazon Web Services Organization register-delegated-administrator
@@ -9610,12 +9611,12 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 // is a policy-as-code language that allows you to write policies that are enforced
 // by Config Custom Policy rules. Lambda uses custom code that you upload to
 // evaluate a custom rule. If you are adding a new Custom Lambda rule, you first
-// need to create an Lambda function in the master account or a delegated administrator
-// that the rule invokes to evaluate your resources. You also need to create
-// an IAM role in the managed account that can be assumed by the Lambda function.
-// When you use PutOrganizationConfigRule to add a Custom Lambda rule to Config,
-// you must specify the Amazon Resource Name (ARN) that Lambda assigns to the
-// function.
+// need to create an Lambda function in the management account or a delegated
+// administrator that the rule invokes to evaluate your resources. You also
+// need to create an IAM role in the managed account that can be assumed by
+// the Lambda function. When you use PutOrganizationConfigRule to add a Custom
+// Lambda rule to Config, you must specify the Amazon Resource Name (ARN) that
+// Lambda assigns to the function.
 //
 // Managed rules are predefined, customizable rules created by Config. For a
 // list of managed rules, see List of Config Managed Rules (https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html).
@@ -9640,7 +9641,8 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //
 //   - MaxNumberOfOrganizationConfigRulesExceededException
 //     You have reached the limit of the number of organization Config rules you
-//     can create.
+//     can create. For more information, see see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+//     in the Config Developer Guide.
 //
 //   - ResourceInUseException
 //     You see this exception in the following cases:
@@ -9673,7 +9675,7 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //     are valid and try again.
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -9706,7 +9708,7 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 //   - NoAvailableOrganizationException
 //     Organization is no longer available.
@@ -9729,9 +9731,9 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutOrganizationConfigRule
 func (c *ConfigService) PutOrganizationConfigRule(input *PutOrganizationConfigRuleInput) (*PutOrganizationConfigRuleOutput, error) {
@@ -9803,14 +9805,14 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // and how many Config rules you can have per account, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
 // in the Config Developer Guide.
 //
-// Only a master account and a delegated administrator can call this API. When
-// calling this API with a delegated administrator, you must ensure Organizations
+// Only a management account and a delegated administrator can call this API.
+// When calling this API with a delegated administrator, you must ensure Organizations
 // ListDelegatedAdministrator permissions are added. An organization can have
 // up to 3 delegated administrators.
 //
 // This API enables organization service access for config-multiaccountsetup.amazonaws.com
 // through the EnableAWSServiceAccess action and creates a service-linked role
-// AWSServiceRoleForConfigMultiAccountSetup in the master or delegated administrator
+// AWSServiceRoleForConfigMultiAccountSetup in the management or delegated administrator
 // account of your organization. The service-linked role is created only when
 // the role does not exist in the caller account. To use this API with delegated
 // administrator, register a delegated administrator by calling Amazon Web Services
@@ -9837,9 +9839,9 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // Returned Error Types:
 //
 //   - MaxNumberOfOrganizationConformancePacksExceededException
-//     You have reached the limit (6) of the number of organization conformance
-//     packs in an account (6 conformance pack with 25 Config rules per pack per
-//     account).
+//     You have reached the limit of the number of organization conformance packs
+//     you can create in an account. For more information, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+//     in the Config Developer Guide.
 //
 //   - ResourceInUseException
 //     You see this exception in the following cases:
@@ -9868,7 +9870,7 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //     deletion is in progress. Try your request again later.
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -9901,7 +9903,7 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //
 //     For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 //     throws an exception if APIs are called from member accounts. All APIs must
-//     be called from organization master account.
+//     be called from organization management account.
 //
 //   - InsufficientPermissionsException
 //     Indicates one of the following errors:
@@ -9917,12 +9919,12 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - OrganizationConformancePackTemplateValidationException
-//     You have specified a template that is not valid or supported.
+//     You have specified a template that is invalid or supported.
 //
 //   - OrganizationAllFeaturesNotEnabledException
 //     Config resource cannot be created because your organization does not have
@@ -10040,9 +10042,9 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - InvalidParameterValueException
 //     One or more of the specified parameters are invalid. Verify that your parameters
@@ -10148,9 +10150,9 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutRemediationExceptions
 func (c *ConfigService) PutRemediationExceptions(input *PutRemediationExceptionsInput) (*PutRemediationExceptionsOutput, error) {
@@ -10244,7 +10246,7 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -10268,16 +10270,17 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - NoRunningConfigurationRecorderException
 //     There is no configuration recorder running.
 //
 //   - MaxActiveResourcesExceededException
-//     You have reached the limit (100,000) of active custom resource types in your
-//     account. Delete unused resources using DeleteResourceConfig.
+//     You have reached the limit of active custom resource types in your account.
+//     There is a limit of 100,000. Delete unused resources using DeleteResourceConfig
+//     (https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteResourceConfig.html) .
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutResourceConfig
 func (c *ConfigService) PutResourceConfig(input *PutResourceConfigInput) (*PutResourceConfigOutput, error) {
@@ -10450,7 +10453,7 @@ func (c *ConfigService) PutStoredQueryRequest(input *PutStoredQueryInput) (req *
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -10461,8 +10464,9 @@ func (c *ConfigService) PutStoredQueryRequest(input *PutStoredQueryInput) (req *
 //     the validation.
 //
 //   - TooManyTagsException
-//     You have reached the limit of the number of tags you can use. You have more
-//     than 50 tags.
+//     You have reached the limit of the number of tags you can use. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+//     in the Config Developer Guide.
 //
 //   - ResourceConcurrentModificationException
 //     Two users are trying to modify the same query at the same time. Wait for
@@ -10884,7 +10888,7 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 // Returned Error Types:
 //
 //   - NoSuchConfigRuleException
-//     The Config rule in the request is not valid. Verify that the rule is an Config
+//     The Config rule in the request is invalid. Verify that the rule is an Config
 //     Custom Policy rule, that the rule name is correct, and that valid Amazon
 //     Resouce Names (ARNs) are used before trying again.
 //
@@ -11113,9 +11117,9 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 //
 //   - NoSuchRemediationConfigurationException
 //     You specified an Config rule without a remediation configuration.
@@ -11281,7 +11285,7 @@ func (c *ConfigService) TagResourceRequest(input *TagResourceInput) (req *reques
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -11295,8 +11299,9 @@ func (c *ConfigService) TagResourceRequest(input *TagResourceInput) (req *reques
 //     You have specified a resource that does not exist.
 //
 //   - TooManyTagsException
-//     You have reached the limit of the number of tags you can use. You have more
-//     than 50 tags.
+//     You have reached the limit of the number of tags you can use. For more information,
+//     see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+//     in the Config Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/TagResource
 func (c *ConfigService) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -11376,7 +11381,7 @@ func (c *ConfigService) UntagResourceRequest(input *UntagResourceInput) (req *re
 // Returned Error Types:
 //
 //   - ValidationException
-//     The requested action is not valid.
+//     The requested action is invalid.
 //
 //     For PutStoredQuery, you will see this exception if there are missing required
 //     fields or if the input value fails the validation, or if you are trying to
@@ -14222,8 +14227,8 @@ func (s *ConformancePackComplianceFilters) SetConfigRuleNames(v []*string) *Conf
 // A compliance score is the percentage of the number of compliant rule-resource
 // combinations in a conformance pack compared to the number of total possible
 // rule-resource combinations in the conformance pack. This metric provides
-// you with a high-level view of the compliance state of your conformance packs,
-// and can be used to identify, investigate, and understand the level of compliance
+// you with a high-level view of the compliance state of your conformance packs.
+// You can use it to identify, investigate, and understand the level of compliance
 // in your conformance packs.
 type ConformancePackComplianceScore struct {
 	_ struct{} `type:"structure"`
@@ -14890,7 +14895,7 @@ func (s *ConformancePackStatusDetail) SetStackArn(v string) *ConformancePackStat
 	return s
 }
 
-// You have specified a template that is not valid or supported.
+// You have specified a template that is invalid or supported.
 type ConformancePackTemplateValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21721,9 +21726,9 @@ func (s *InsufficientDeliveryPolicyException) RequestID() string {
 //     a service-linked role.
 //
 //   - For PutConformancePack and PutOrganizationConformancePack, a conformance
-//     pack cannot be created because you do not have permissions: To call IAM
-//     GetRole action or create a service-linked role. To read Amazon S3 bucket
-//     or call SSM:GetDocument.
+//     pack cannot be created because you do not have the following permissions:
+//     You do not have permission to call IAM GetRole action or create a service-linked
+//     role. You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
 type InsufficientPermissionsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21851,7 +21856,7 @@ func (s *InvalidConfigurationRecorderNameException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified delivery channel name is not valid.
+// The specified delivery channel name is invalid.
 type InvalidDeliveryChannelNameException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22366,7 +22371,7 @@ func (s *InvalidRoleException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified Amazon S3 key prefix is not valid.
+// The specified Amazon S3 key prefix is invalid.
 type InvalidS3KeyPrefixException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22430,7 +22435,7 @@ func (s *InvalidS3KeyPrefixException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified Amazon KMS Key ARN is not valid.
+// The specified Amazon KMS Key ARN is invalid.
 type InvalidS3KmsKeyArnException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22558,7 +22563,7 @@ func (s *InvalidSNSTopicARNException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified time range is not valid. The earlier time is not chronologically
+// The specified time range is invalid. The earlier time is not chronologically
 // before the later time.
 type InvalidTimeRangeException struct {
 	_            struct{}                  `type:"structure"`
@@ -22912,16 +22917,23 @@ type ListConformancePackComplianceScoresInput struct {
 	// Sorts your conformance pack compliance scores in either ascending or descending
 	// order, depending on SortOrder.
 	//
-	// By default, conformance pack compliance scores are sorted in ascending order
-	// by compliance score and alphabetically by name of the conformance pack if
-	// there is more than one conformance pack with the same compliance score.
+	// By default, conformance pack compliance scores are sorted in alphabetical
+	// order by name of the conformance pack. Enter SCORE, to sort conformance pack
+	// compliance scores by the numerical value of the compliance score.
 	SortBy *string `type:"string" enum:"SortBy"`
 
 	// Determines the order in which conformance pack compliance scores are sorted.
 	// Either in ascending or descending order.
 	//
-	// Conformance packs with a compliance score of INSUFFICIENT_DATA will be first
-	// when sorting by ascending order and last when sorting by descending order.
+	// By default, conformance pack compliance scores are sorted in alphabetical
+	// order by name of the conformance pack. Conformance pack compliance scores
+	// are sorted in reverse alphabetical order if you enter DESCENDING.
+	//
+	// You can sort conformance pack compliance scores by the numerical value of
+	// the compliance score by entering SCORE in the SortBy action. When compliance
+	// scores are sorted by SCORE, conformance packs with a compliance score of
+	// INSUFFICIENT_DATA will be last when sorting by ascending order and first
+	// when sorting by descending order.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
@@ -23370,8 +23382,9 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// You have reached the limit (100,000) of active custom resource types in your
-// account. Delete unused resources using DeleteResourceConfig.
+// You have reached the limit of active custom resource types in your account.
+// There is a limit of 100,000. Delete unused resources using DeleteResourceConfig
+// (https://docs.aws.amazon.com/config/latest/APIReference/API_DeleteResourceConfig.html) .
 type MaxActiveResourcesExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23565,8 +23578,9 @@ func (s *MaxNumberOfConfigurationRecordersExceededException) RequestID() string 
 	return s.RespMetadata.RequestID
 }
 
-// You have reached the limit (6) of the number of conformance packs in an account
-// (6 conformance pack with 25 Config rules per pack).
+// You have reached the limit of the number of conformance packs you can create
+// in an account. For more information, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 type MaxNumberOfConformancePacksExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23695,7 +23709,8 @@ func (s *MaxNumberOfDeliveryChannelsExceededException) RequestID() string {
 }
 
 // You have reached the limit of the number of organization Config rules you
-// can create.
+// can create. For more information, see see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 type MaxNumberOfOrganizationConfigRulesExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23759,9 +23774,9 @@ func (s *MaxNumberOfOrganizationConfigRulesExceededException) RequestID() string
 	return s.RespMetadata.RequestID
 }
 
-// You have reached the limit (6) of the number of organization conformance
-// packs in an account (6 conformance pack with 25 Config rules per pack per
-// account).
+// You have reached the limit of the number of organization conformance packs
+// you can create in an account. For more information, see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 type MaxNumberOfOrganizationConformancePacksExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -23917,12 +23932,13 @@ type MemberAccountStatus struct {
 	// The timestamp of the last status update.
 	LastUpdateTime *time.Time `type:"timestamp"`
 
-	// Indicates deployment status for Config rule in the member account. When master
+	// Indicates deployment status for Config rule in the member account. When management
 	// account calls PutOrganizationConfigRule action for the first time, Config
-	// rule status is created in the member account. When master account calls PutOrganizationConfigRule
-	// action for the second time, Config rule status is updated in the member account.
-	// Config rule status is deleted when the master account deletes OrganizationConfigRule
-	// and disables service access for config-multiaccountsetup.amazonaws.com.
+	// rule status is created in the member account. When management account calls
+	// PutOrganizationConfigRule action for the second time, Config rule status
+	// is updated in the member account. Config rule status is deleted when the
+	// management account deletes OrganizationConfigRule and disables service access
+	// for config-multiaccountsetup.amazonaws.com.
 	//
 	// Config sets the state of the rule to:
 	//
@@ -24323,7 +24339,7 @@ func (s *NoSuchBucketException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Config rule in the request is not valid. Verify that the rule is an Config
+// The Config rule in the request is invalid. Verify that the rule is an Config
 // Custom Policy rule, that the rule name is correct, and that valid Amazon
 // Resouce Names (ARNs) are used before trying again.
 type NoSuchConfigRuleException struct {
@@ -24709,7 +24725,7 @@ func (s *NoSuchDeliveryChannelException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Config rule in the request is not valid. Verify that the rule is an organization
+// The Config rule in the request is invalid. Verify that the rule is an organization
 // Config Custom Policy rule, that the rule name is correct, and that valid
 // Amazon Resouce Names (ARNs) are used before trying again.
 type NoSuchOrganizationConfigRuleException struct {
@@ -25057,7 +25073,7 @@ func (s *NoSuchRetentionConfigurationException) RequestID() string {
 //
 // For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
 // throws an exception if APIs are called from member accounts. All APIs must
-// be called from organization master account.
+// be called from organization management account.
 type OrganizationAccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -25372,14 +25388,14 @@ type OrganizationConfigRuleStatus struct {
 	// OrganizationConfigRuleName is a required field
 	OrganizationConfigRuleName *string `min:"1" type:"string" required:"true"`
 
-	// Indicates deployment status of an organization Config rule. When master account
-	// calls PutOrganizationConfigRule action for the first time, Config rule status
-	// is created in all the member accounts. When master account calls PutOrganizationConfigRule
-	// action for the second time, Config rule status is updated in all the member
-	// accounts. Additionally, Config rule status is updated when one or more member
-	// accounts join or leave an organization. Config rule status is deleted when
-	// the master account deletes OrganizationConfigRule in all the member accounts
-	// and disables service access for config-multiaccountsetup.amazonaws.com.
+	// Indicates deployment status of an organization Config rule. When management
+	// account calls PutOrganizationConfigRule action for the first time, Config
+	// rule status is created in all the member accounts. When management account
+	// calls PutOrganizationConfigRule action for the second time, Config rule status
+	// is updated in all the member accounts. Additionally, Config rule status is
+	// updated when one or more member accounts join or leave an organization. Config
+	// rule status is deleted when the management account deletes OrganizationConfigRule
+	// in all the member accounts and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
 	// Config sets the state of the rule to:
 	//
@@ -25585,11 +25601,11 @@ type OrganizationConformancePackDetailedStatus struct {
 	LastUpdateTime *time.Time `type:"timestamp"`
 
 	// Indicates deployment status for conformance pack in a member account. When
-	// master account calls PutOrganizationConformancePack action for the first
-	// time, conformance pack status is created in the member account. When master
+	// management account calls PutOrganizationConformancePack action for the first
+	// time, conformance pack status is created in the member account. When management
 	// account calls PutOrganizationConformancePack action for the second time,
 	// conformance pack status is updated in the member account. Conformance pack
-	// status is deleted when the master account deletes OrganizationConformancePack
+	// status is deleted when the management account deletes OrganizationConformancePack
 	// and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
 	// Config sets the state of the conformance pack to:
@@ -25699,13 +25715,13 @@ type OrganizationConformancePackStatus struct {
 	// OrganizationConformancePackName is a required field
 	OrganizationConformancePackName *string `min:"1" type:"string" required:"true"`
 
-	// Indicates deployment status of an organization conformance pack. When master
+	// Indicates deployment status of an organization conformance pack. When management
 	// account calls PutOrganizationConformancePack for the first time, conformance
-	// pack status is created in all the member accounts. When master account calls
-	// PutOrganizationConformancePack for the second time, conformance pack status
-	// is updated in all the member accounts. Additionally, conformance pack status
-	// is updated when one or more member accounts join or leave an organization.
-	// Conformance pack status is deleted when the master account deletes OrganizationConformancePack
+	// pack status is created in all the member accounts. When management account
+	// calls PutOrganizationConformancePack for the second time, conformance pack
+	// status is updated in all the member accounts. Additionally, conformance pack
+	// status is updated when one or more member accounts join or leave an organization.
+	// Conformance pack status is deleted when the management account deletes OrganizationConformancePack
 	// in all the member accounts and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
 	// Config sets the state of the conformance pack to:
@@ -25789,7 +25805,7 @@ func (s *OrganizationConformancePackStatus) SetStatus(v string) *OrganizationCon
 	return s
 }
 
-// You have specified a template that is not valid or supported.
+// You have specified a template that is invalid or supported.
 type OrganizationConformancePackTemplateValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -26486,11 +26502,11 @@ type OrganizationResourceDetailedStatusFilters struct {
 	AccountId *string `type:"string"`
 
 	// Indicates deployment status for conformance pack in a member account. When
-	// master account calls PutOrganizationConformancePack action for the first
-	// time, conformance pack status is created in the member account. When master
+	// management account calls PutOrganizationConformancePack action for the first
+	// time, conformance pack status is created in the member account. When management
 	// account calls PutOrganizationConformancePack action for the second time,
 	// conformance pack status is updated in the member account. Conformance pack
-	// status is deleted when the master account deletes OrganizationConformancePack
+	// status is deleted when the management account deletes OrganizationConformancePack
 	// and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
 	// Config sets the state of the conformance pack to:
@@ -27097,13 +27113,13 @@ type PutConformancePackInput struct {
 	// containing the template body has a minimum length of 1 byte and a maximum
 	// length of 51,200 bytes.
 	//
-	// You can only use a YAML template with two resource types: Config rule (AWS::Config::ConfigRule)
+	// You can use a YAML template with two resource types: Config rule (AWS::Config::ConfigRule)
 	// and remediation action (AWS::Config::RemediationConfiguration).
 	TemplateBody *string `min:"1" type:"string"`
 
 	// The location of the file containing the template body (s3://bucketname/prefix).
 	// The uri must point to a conformance pack template (max size: 300 KB) that
-	// is located in an Amazon S3 bucket in the same region as the conformance pack.
+	// is located in an Amazon S3 bucket in the same Region as the conformance pack.
 	//
 	// You must have access to read Amazon S3 bucket.
 	TemplateS3Uri *string `min:"1" type:"string"`
@@ -30790,12 +30806,13 @@ type StatusDetailFilters struct {
 	// The 12-digit account ID of the member account within an organization.
 	AccountId *string `type:"string"`
 
-	// Indicates deployment status for Config rule in the member account. When master
+	// Indicates deployment status for Config rule in the member account. When management
 	// account calls PutOrganizationConfigRule action for the first time, Config
-	// rule status is created in the member account. When master account calls PutOrganizationConfigRule
-	// action for the second time, Config rule status is updated in the member account.
-	// Config rule status is deleted when the master account deletes OrganizationConfigRule
-	// and disables service access for config-multiaccountsetup.amazonaws.com.
+	// rule status is created in the member account. When management account calls
+	// PutOrganizationConfigRule action for the second time, Config rule status
+	// is updated in the member account. Config rule status is deleted when the
+	// management account deletes OrganizationConfigRule and disables service access
+	// for config-multiaccountsetup.amazonaws.com.
 	//
 	// Config sets the state of the rule to:
 	//
@@ -31246,9 +31263,10 @@ func (s TagResourceOutput) GoString() string {
 
 // This API allows you to create a conformance pack template with an Amazon
 // Web Services Systems Manager document (SSM document). To deploy a conformance
-// pack using an SSM document, you first create an SSM document with conformance
-// pack content, and then provide the DocumentName (and optionally DocumentVersion)
-// in the PutConformancePack API (https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html).
+// pack using an SSM document, first create an SSM document with conformance
+// pack content, and then provide the DocumentName in the PutConformancePack
+// API (https://docs.aws.amazon.com/config/latest/APIReference/API_PutConformancePack.html).
+// You can also provide the DocumentVersion.
 //
 // The TemplateSSMDocumentDetails object contains the name of the SSM document
 // and the version of the SSM document.
@@ -31256,9 +31274,10 @@ type TemplateSSMDocumentDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The name or Amazon Resource Name (ARN) of the SSM document to use to create
-	// a conformance pack. If you use the Document Name, Config checks only your
-	// account and region for the SSM document. If you want to use an SSM document
-	// from another region or account, you must provide the ARN.
+	// a conformance pack. If you use the document name, Config checks only your
+	// account and Amazon Web Services Region for the SSM document. If you want
+	// to use an SSM document from another Region or account, you must provide the
+	// ARN.
 	//
 	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
@@ -31313,8 +31332,9 @@ func (s *TemplateSSMDocumentDetails) SetDocumentVersion(v string) *TemplateSSMDo
 	return s
 }
 
-// You have reached the limit of the number of tags you can use. You have more
-// than 50 tags.
+// You have reached the limit of the number of tags you can use. For more information,
+// see Service Limits (https://docs.aws.amazon.com/config/latest/developerguide/configlimits.html)
+// in the Config Developer Guide.
 type TooManyTagsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -31468,7 +31488,7 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The requested action is not valid.
+// The requested action is invalid.
 //
 // For PutStoredQuery, you will see this exception if there are missing required
 // fields or if the input value fails the validation, or if you are trying to
@@ -32592,6 +32612,66 @@ const (
 
 	// ResourceTypeAwsDmsCertificate is a ResourceType enum value
 	ResourceTypeAwsDmsCertificate = "AWS::DMS::Certificate"
+
+	// ResourceTypeAwsAppConfigApplication is a ResourceType enum value
+	ResourceTypeAwsAppConfigApplication = "AWS::AppConfig::Application"
+
+	// ResourceTypeAwsAppSyncGraphQlapi is a ResourceType enum value
+	ResourceTypeAwsAppSyncGraphQlapi = "AWS::AppSync::GraphQLApi"
+
+	// ResourceTypeAwsDataSyncLocationSmb is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationSmb = "AWS::DataSync::LocationSMB"
+
+	// ResourceTypeAwsDataSyncLocationFsxLustre is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationFsxLustre = "AWS::DataSync::LocationFSxLustre"
+
+	// ResourceTypeAwsDataSyncLocationS3 is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationS3 = "AWS::DataSync::LocationS3"
+
+	// ResourceTypeAwsDataSyncLocationEfs is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationEfs = "AWS::DataSync::LocationEFS"
+
+	// ResourceTypeAwsDataSyncTask is a ResourceType enum value
+	ResourceTypeAwsDataSyncTask = "AWS::DataSync::Task"
+
+	// ResourceTypeAwsDataSyncLocationNfs is a ResourceType enum value
+	ResourceTypeAwsDataSyncLocationNfs = "AWS::DataSync::LocationNFS"
+
+	// ResourceTypeAwsEc2NetworkInsightsAccessScopeAnalysis is a ResourceType enum value
+	ResourceTypeAwsEc2NetworkInsightsAccessScopeAnalysis = "AWS::EC2::NetworkInsightsAccessScopeAnalysis"
+
+	// ResourceTypeAwsEksFargateProfile is a ResourceType enum value
+	ResourceTypeAwsEksFargateProfile = "AWS::EKS::FargateProfile"
+
+	// ResourceTypeAwsGlueJob is a ResourceType enum value
+	ResourceTypeAwsGlueJob = "AWS::Glue::Job"
+
+	// ResourceTypeAwsGuardDutyThreatIntelSet is a ResourceType enum value
+	ResourceTypeAwsGuardDutyThreatIntelSet = "AWS::GuardDuty::ThreatIntelSet"
+
+	// ResourceTypeAwsGuardDutyIpset is a ResourceType enum value
+	ResourceTypeAwsGuardDutyIpset = "AWS::GuardDuty::IPSet"
+
+	// ResourceTypeAwsSageMakerWorkteam is a ResourceType enum value
+	ResourceTypeAwsSageMakerWorkteam = "AWS::SageMaker::Workteam"
+
+	// ResourceTypeAwsSageMakerNotebookInstanceLifecycleConfig is a ResourceType enum value
+	ResourceTypeAwsSageMakerNotebookInstanceLifecycleConfig = "AWS::SageMaker::NotebookInstanceLifecycleConfig"
+
+	// ResourceTypeAwsServiceDiscoveryService is a ResourceType enum value
+	ResourceTypeAwsServiceDiscoveryService = "AWS::ServiceDiscovery::Service"
+
+	// ResourceTypeAwsServiceDiscoveryPublicDnsNamespace is a ResourceType enum value
+	ResourceTypeAwsServiceDiscoveryPublicDnsNamespace = "AWS::ServiceDiscovery::PublicDnsNamespace"
+
+	// ResourceTypeAwsSesContactList is a ResourceType enum value
+	ResourceTypeAwsSesContactList = "AWS::SES::ContactList"
+
+	// ResourceTypeAwsSesConfigurationSet is a ResourceType enum value
+	ResourceTypeAwsSesConfigurationSet = "AWS::SES::ConfigurationSet"
+
+	// ResourceTypeAwsRoute53HostedZone is a ResourceType enum value
+	ResourceTypeAwsRoute53HostedZone = "AWS::Route53::HostedZone"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -32741,6 +32821,26 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsEc2TransitGatewayAttachment,
 		ResourceTypeAwsEc2TransitGatewayRouteTable,
 		ResourceTypeAwsDmsCertificate,
+		ResourceTypeAwsAppConfigApplication,
+		ResourceTypeAwsAppSyncGraphQlapi,
+		ResourceTypeAwsDataSyncLocationSmb,
+		ResourceTypeAwsDataSyncLocationFsxLustre,
+		ResourceTypeAwsDataSyncLocationS3,
+		ResourceTypeAwsDataSyncLocationEfs,
+		ResourceTypeAwsDataSyncTask,
+		ResourceTypeAwsDataSyncLocationNfs,
+		ResourceTypeAwsEc2NetworkInsightsAccessScopeAnalysis,
+		ResourceTypeAwsEksFargateProfile,
+		ResourceTypeAwsGlueJob,
+		ResourceTypeAwsGuardDutyThreatIntelSet,
+		ResourceTypeAwsGuardDutyIpset,
+		ResourceTypeAwsSageMakerWorkteam,
+		ResourceTypeAwsSageMakerNotebookInstanceLifecycleConfig,
+		ResourceTypeAwsServiceDiscoveryService,
+		ResourceTypeAwsServiceDiscoveryPublicDnsNamespace,
+		ResourceTypeAwsSesContactList,
+		ResourceTypeAwsSesConfigurationSet,
+		ResourceTypeAwsRoute53HostedZone,
 	}
 }
 

@@ -1012,7 +1012,11 @@
       "base": null,
       "refs": {
         "OrderableDBInstanceOption$MinIopsPerGib": "<p>Minimum provisioned IOPS per GiB for a DB instance.</p>",
-        "OrderableDBInstanceOption$MaxIopsPerGib": "<p>Maximum provisioned IOPS per GiB for a DB instance.</p>"
+        "OrderableDBInstanceOption$MaxIopsPerGib": "<p>Maximum provisioned IOPS per GiB for a DB instance.</p>",
+        "ServerlessV2ScalingConfiguration$MinCapacity": "<p>The minimum number of Neptune capacity units (NCUs) for a DB instance in a Neptune Serverless cluster. You can specify NCU values in half-step increments, such as 8, 8.5, 9, and so on.</p>",
+        "ServerlessV2ScalingConfiguration$MaxCapacity": "<p>The maximum number of Neptune capacity units (NCUs) for a DB instance in a Neptune Serverless cluster. You can specify NCU values in half-step increments, such as 40, 40.5, 41, and so on.</p>",
+        "ServerlessV2ScalingConfigurationInfo$MinCapacity": "<p>The minimum number of Neptune capacity units (NCUs) for a DB instance in a Neptune Serverless cluster. You can specify NCU values in half-step increments, such as 8, 8.5, 9, and so on.</p>",
+        "ServerlessV2ScalingConfigurationInfo$MaxCapacity": "<p>The maximum number of Neptune capacity units (NCUs) for a DB instance in a Neptune Serverless cluster. You can specify NCU values in half-step increments, such as 40, 40.5, 41, and so on.</p>"
       }
     },
     "DoubleRange": {
@@ -1737,6 +1741,21 @@
     "SNSTopicArnNotFoundFault": {
       "base": "<p>The ARN of the SNS topic could not be found.</p>",
       "refs": {
+      }
+    },
+    "ServerlessV2ScalingConfiguration": {
+      "base": "<p>Contains the scaling configuration of a Neptune Serverless DB cluster.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/neptune/latest/userguide/neptune-serverless-using.html\">Using Amazon Neptune Serverless</a> in the <i>Amazon Neptune User Guide</i>.</p>",
+      "refs": {
+        "CreateDBClusterMessage$ServerlessV2ScalingConfiguration": null,
+        "ModifyDBClusterMessage$ServerlessV2ScalingConfiguration": null,
+        "RestoreDBClusterFromSnapshotMessage$ServerlessV2ScalingConfiguration": null,
+        "RestoreDBClusterToPointInTimeMessage$ServerlessV2ScalingConfiguration": null
+      }
+    },
+    "ServerlessV2ScalingConfigurationInfo": {
+      "base": "<p>Shows the scaling configuration for a Neptune Serverless DB cluster.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/neptune/latest/userguide/neptune-serverless-using.html\">Using Amazon Neptune Serverless</a> in the <i>Amazon Neptune User Guide</i>.</p>",
+      "refs": {
+        "DBCluster$ServerlessV2ScalingConfiguration": null
       }
     },
     "SharedSnapshotQuotaExceededFault": {

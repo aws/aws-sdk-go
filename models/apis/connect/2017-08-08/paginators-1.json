@@ -170,6 +170,12 @@
       "output_token": "NextToken",
       "result_key": "TaskTemplates"
     },
+    "ListTrafficDistributionGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TrafficDistributionGroupSummaryList"
+    },
     "ListUseCases": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

@@ -61,8 +61,8 @@ func (c *Proton) AcceptEnvironmentAccountConnectionRequest(input *AcceptEnvironm
 // the associated IAM role to provision environment infrastructure resources
 // in the associated environment account.
 //
-// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the Proton Administrator guide.
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+// in the Proton User guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -160,8 +160,8 @@ func (c *Proton) CancelComponentDeploymentRequest(input *CancelComponentDeployme
 // Attempts to cancel a component deployment (for a component that is in the
 // IN_PROGRESS deployment status).
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -258,8 +258,8 @@ func (c *Proton) CancelEnvironmentDeploymentRequest(input *CancelEnvironmentDepl
 //
 // Attempts to cancel an environment deployment on an UpdateEnvironment action,
 // if the deployment is IN_PROGRESS. For more information, see Update an environment
-// (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-update.html)
-// in the Proton Administrator guide.
+// (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-update.html)
+// in the Proton User guide.
 //
 // The following list includes potential cancellation scenarios.
 //
@@ -368,8 +368,8 @@ func (c *Proton) CancelServiceInstanceDeploymentRequest(input *CancelServiceInst
 //
 // Attempts to cancel a service instance deployment on an UpdateServiceInstance
 // action, if the deployment is IN_PROGRESS. For more information, see Update
-// a service instance in the Proton Administrator guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-instance-update.html)
-// or the Proton User guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-instance-update.html).
+// a service instance (https://docs.aws.amazon.com/proton/latest/userguide/ag-svc-instance-update.html)
+// in the Proton User guide.
 //
 // The following list includes potential cancellation scenarios.
 //
@@ -478,8 +478,8 @@ func (c *Proton) CancelServicePipelineDeploymentRequest(input *CancelServicePipe
 //
 // Attempts to cancel a service pipeline deployment on an UpdateServicePipeline
 // action, if the deployment is IN_PROGRESS. For more information, see Update
-// a service pipeline in the Proton Administrator guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-pipeline-update.html)
-// or the Proton User guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-pipeline-update.html).
+// a service pipeline (https://docs.aws.amazon.com/proton/latest/userguide/ag-svc-pipeline-update.html)
+// in the Proton User guide.
 //
 // The following list includes potential cancellation scenarios.
 //
@@ -589,8 +589,8 @@ func (c *Proton) CreateComponentRequest(input *CreateComponentInput) (req *reque
 // Create an Proton component. A component is an infrastructure extension for
 // a service instance.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -602,8 +602,8 @@ func (c *Proton) CreateComponentRequest(input *CreateComponentInput) (req *reque
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -702,9 +702,9 @@ func (c *Proton) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *r
 //     to provide compiled infrastructure as code (IaC) files that your IaC engine
 //     uses to provision resources.
 //
-// For more information, see Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
-// and Provisioning methods (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html)
-// in the Proton Administrator Guide.
+// For more information, see Environments (https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html)
+// and Provisioning methods (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -716,8 +716,8 @@ func (c *Proton) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *r
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -810,8 +810,8 @@ func (c *Proton) CreateEnvironmentAccountConnectionRequest(input *CreateEnvironm
 // An environment account connection is a secure bi-directional connection between
 // a management account and an environment account that maintains authorization
 // and permissions. For more information, see Environment account connections
-// (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the Proton Administrator guide.
+// (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+// in the Proton User guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -823,8 +823,8 @@ func (c *Proton) CreateEnvironmentAccountConnectionRequest(input *CreateEnvironm
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -908,8 +908,8 @@ func (c *Proton) CreateEnvironmentTemplateRequest(input *CreateEnvironmentTempla
 // CreateEnvironmentTemplate API operation for AWS Proton.
 //
 // Create an environment template for Proton. For more information, see Environment
-// Templates (https://docs.aws.amazon.com/proton/latest/adminguide/ag-templates.html)
-// in the Proton Administrator Guide.
+// Templates (https://docs.aws.amazon.com/proton/latest/userguide/ag-templates.html)
+// in the Proton User Guide.
 //
 // You can create an environment template in one of the two following ways:
 //
@@ -922,8 +922,8 @@ func (c *Proton) CreateEnvironmentTemplateRequest(input *CreateEnvironmentTempla
 //     environment template for customer provisioned and managed infrastructure,
 //     include the provisioning parameter and set the value to CUSTOMER_MANAGED.
 //     For more information, see Register and publish an environment template
-//     (https://docs.aws.amazon.com/proton/latest/adminguide/template-create.html)
-//     in the Proton Administrator Guide.
+//     (https://docs.aws.amazon.com/proton/latest/userguide/template-create.html)
+//     in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -935,8 +935,8 @@ func (c *Proton) CreateEnvironmentTemplateRequest(input *CreateEnvironmentTempla
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -1034,8 +1034,8 @@ func (c *Proton) CreateEnvironmentTemplateVersionRequest(input *CreateEnvironmen
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -1121,15 +1121,17 @@ func (c *Proton) CreateRepositoryRequest(input *CreateRepositoryInput) (req *req
 
 // CreateRepository API operation for AWS Proton.
 //
-// Create and register a link to a repository that can be used with self-managed
-// provisioning (infrastructure or pipelines) or for template sync configurations.
-// When you create a repository link, Proton creates a service-linked role (https://docs.aws.amazon.com/proton/latest/adminguide/using-service-linked-roles.html)
+// Create and register a link to a repository. Proton uses the link to repeatedly
+// access the repository, to either push to it (self-managed provisioning) or
+// pull from it (template sync). You can share a linked repository across multiple
+// resources (like environments using self-managed provisioning, or synced templates).
+// When you create a repository link, Proton creates a service-linked role (https://docs.aws.amazon.com/proton/latest/userguide/using-service-linked-roles.html)
 // for you.
 //
-// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html#ag-works-prov-methods-self),
-// Template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html),
-// and Template sync configurations (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-sync-configs.html)
-// in the Proton Administrator Guide.
+// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self),
+// Template bundles (https://docs.aws.amazon.com/proton/latest/userguide/ag-template-authoring.html#ag-template-bundles),
+// and Template sync configurations (https://docs.aws.amazon.com/proton/latest/userguide/ag-template-sync-configs.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1141,8 +1143,8 @@ func (c *Proton) CreateRepositoryRequest(input *CreateRepositoryInput) (req *req
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -1227,8 +1229,7 @@ func (c *Proton) CreateServiceRequest(input *CreateServiceInput) (req *request.R
 //
 // Create an Proton service. An Proton service is an instantiation of a service
 // template and often includes several service instances and pipeline. For more
-// information, see Services (https://docs.aws.amazon.com/proton/latest/adminguide/ag-services.html)
-// in the Proton Administrator Guide and Services (https://docs.aws.amazon.com/proton/latest/userguide/ug-service.html)
+// information, see Services (https://docs.aws.amazon.com/proton/latest/userguide/ag-services.html)
 // in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1241,8 +1242,8 @@ func (c *Proton) CreateServiceRequest(input *CreateServiceInput) (req *request.R
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -1333,9 +1334,9 @@ func (c *Proton) CreateServiceTemplateRequest(input *CreateServiceTemplateInput)
 // Developers, in turn, select the service template from Proton. If the selected
 // service template includes a service pipeline definition, they provide a link
 // to their source code repository. Proton then deploys and manages the infrastructure
-// defined by the selected service template. For more information, see Service
-// Templates (https://docs.aws.amazon.com/proton/latest/adminguide/managing-svc-templates.html)
-// in the Proton Administrator Guide.
+// defined by the selected service template. For more information, see Proton
+// templates (https://docs.aws.amazon.com/proton/latest/userguide/ag-templates.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1347,8 +1348,8 @@ func (c *Proton) CreateServiceTemplateRequest(input *CreateServiceTemplateInput)
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -1446,8 +1447,8 @@ func (c *Proton) CreateServiceTemplateVersionRequest(input *CreateServiceTemplat
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -1533,13 +1534,15 @@ func (c *Proton) CreateTemplateSyncConfigRequest(input *CreateTemplateSyncConfig
 
 // CreateTemplateSyncConfig API operation for AWS Proton.
 //
-// Set up a template to create new template versions automatically. When a commit
-// is pushed to your registered repository (https://docs.aws.amazon.com/proton/latest/APIReference/API_Repository.html),
-// Proton checks for changes to your repository template bundles. If it detects
-// a template bundle change, a new major or minor version of its template is
-// created, if the version doesn’t already exist. For more information, see
-// Template sync configurations (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-sync-configs.html)
-// in the Proton Administrator Guide.
+// Set up a template to create new template versions automatically by tracking
+// a linked repository. A linked repository is a repository that has been registered
+// with Proton. For more information, see CreateRepository.
+//
+// When a commit is pushed to your linked repository, Proton checks for changes
+// to your repository template bundles. If it detects a template bundle change,
+// a new major or minor version of its template is created, if the version doesn’t
+// already exist. For more information, see Template sync configurations (https://docs.aws.amazon.com/proton/latest/userguide/ag-template-sync-configs.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1551,8 +1554,8 @@ func (c *Proton) CreateTemplateSyncConfigRequest(input *CreateTemplateSyncConfig
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -1637,8 +1640,8 @@ func (c *Proton) DeleteComponentRequest(input *DeleteComponentInput) (req *reque
 //
 // Delete an Proton component resource.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1836,8 +1839,8 @@ func (c *Proton) DeleteEnvironmentAccountConnectionRequest(input *DeleteEnvironm
 // environment account and associated environment. You're responsible for cleaning
 // up provisioned resources that remain without an environment connection.
 //
-// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the Proton Administrator guide.
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+// in the Proton User guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2232,8 +2235,8 @@ func (c *Proton) DeleteServiceRequest(input *DeleteServiceInput) (req *request.R
 // You can't delete a service if it has any service instances that have components
 // attached to them.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2623,7 +2626,7 @@ func (c *Proton) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req 
 
 // GetAccountSettings API operation for AWS Proton.
 //
-// Get detail data for the Proton pipeline service role.
+// Get detail data for Proton account-wide settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2717,8 +2720,8 @@ func (c *Proton) GetComponentRequest(input *GetComponentInput) (req *request.Req
 //
 // Get detailed data for a component.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2905,8 +2908,8 @@ func (c *Proton) GetEnvironmentAccountConnectionRequest(input *GetEnvironmentAcc
 // In an environment account, get the detailed data for an environment account
 // connection.
 //
-// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the Proton Administrator guide.
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+// in the Proton User guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3182,7 +3185,7 @@ func (c *Proton) GetRepositoryRequest(input *GetRepositoryInput) (req *request.R
 
 // GetRepository API operation for AWS Proton.
 //
-// Get detail data for a repository.
+// Get detail data for a linked repository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3282,8 +3285,8 @@ func (c *Proton) GetRepositorySyncStatusRequest(input *GetRepositorySyncStatusIn
 // have no effect on this action. Specifically, you can't use these tags to
 // control access to this action using Attribute-based access control (ABAC).
 //
-// For more information about ABAC, see ABAC (https://docs.aws.amazon.com/proton/latest/adminguide/security_iam_service-with-iam.html#security_iam_service-with-iam-tags)
-// in the Proton Administrator Guide.
+// For more information about ABAC, see ABAC (https://docs.aws.amazon.com/proton/latest/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-tags)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3936,8 +3939,8 @@ func (c *Proton) ListComponentOutputsRequest(input *ListComponentOutputsInput) (
 //
 // Get a list of component Infrastructure as Code (IaC) outputs.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4088,8 +4091,8 @@ func (c *Proton) ListComponentProvisionedResourcesRequest(input *ListComponentPr
 //
 // List provisioned resources for a component with details.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4241,8 +4244,8 @@ func (c *Proton) ListComponentsRequest(input *ListComponentsInput) (req *request
 // List components with summary data. You can filter the result list by environment,
 // service, or a single service instance.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4390,8 +4393,8 @@ func (c *Proton) ListEnvironmentAccountConnectionsRequest(input *ListEnvironment
 //
 // View a list of environment account connections.
 //
-// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the Proton Administrator guide.
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+// in the Proton User guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5279,7 +5282,7 @@ func (c *Proton) ListRepositoriesRequest(input *ListRepositoriesInput) (req *req
 
 // ListRepositories API operation for AWS Proton.
 //
-// List repositories with detail data.
+// List linked repositories with detail data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6761,8 +6764,8 @@ func (c *Proton) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 // ListTagsForResource API operation for AWS Proton.
 //
 // List tags for a resource. For more information, see Proton resources and
-// tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+// tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6909,8 +6912,8 @@ func (c *Proton) NotifyResourceDeploymentStatusChangeRequest(input *NotifyResour
 // Notify Proton of status changes to a provisioned resource when you use self-managed
 // provisioning.
 //
-// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
-// in the Proton Administrator Guide.
+// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6922,8 +6925,8 @@ func (c *Proton) NotifyResourceDeploymentStatusChangeRequest(input *NotifyResour
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -7018,8 +7021,8 @@ func (c *Proton) RejectEnvironmentAccountConnectionRequest(input *RejectEnvironm
 // You can’t reject an environment account connection that's connected to
 // an environment.
 //
-// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the Proton Administrator guide.
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+// in the Proton User guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7118,9 +7121,8 @@ func (c *Proton) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // Tag a resource. A tag is a key-value pair of metadata that you associate
 // with an Proton resource.
 //
-// For more information, see Proton resources and tagging in the Proton Administrator
-// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7219,9 +7221,8 @@ func (c *Proton) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // Remove a customer tag from a resource. A tag is a key-value pair of metadata
 // associated with an Proton resource.
 //
-// For more information, see Proton resources and tagging in the Proton Administrator
-// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7316,7 +7317,8 @@ func (c *Proton) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput)
 
 // UpdateAccountSettings API operation for AWS Proton.
 //
-// Update the Proton service pipeline role or repository settings.
+// Update Proton settings that are used for multiple services in the Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7416,8 +7418,8 @@ func (c *Proton) UpdateComponentRequest(input *UpdateComponentInput) (req *reque
 // You can't update a component while its deployment status, or the deployment
 // status of a service instance attached to it, is IN_PROGRESS.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7429,8 +7431,8 @@ func (c *Proton) UpdateComponentRequest(input *UpdateComponentInput) (req *reque
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -7542,9 +7544,9 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // the provisioningRepository parameter and omit the protonServiceRoleArn and
 // environmentAccountConnectionId parameters.
 //
-// For more information, see Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
-// and Provisioning methods (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html)
-// in the Proton Administrator Guide.
+// For more information, see Environments (https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html)
+// and Provisioning methods (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html)
+// in the Proton User Guide.
 //
 // There are four modes for updating an environment. The deploymentType field
 // defines the mode.
@@ -7670,8 +7672,8 @@ func (c *Proton) UpdateEnvironmentAccountConnectionRequest(input *UpdateEnvironm
 // In an environment account, update an environment account connection to use
 // a new IAM role.
 //
-// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the Proton Administrator guide.
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+// in the Proton User guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7968,8 +7970,8 @@ func (c *Proton) UpdateServiceRequest(input *UpdateServiceInput) (req *request.R
 // You can't delete a service instance (remove it from the spec) if it has an
 // attached component.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7981,8 +7983,8 @@ func (c *Proton) UpdateServiceRequest(input *UpdateServiceInput) (req *request.R
 // Returned Error Types:
 //
 //   - ServiceQuotaExceededException
-//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//     in the Proton Administrator Guide.
+//     A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+//     in the Proton User Guide.
 //
 //   - ValidationException
 //     The input is invalid or an out-of-range value was supplied for the input
@@ -8076,8 +8078,8 @@ func (c *Proton) UpdateServiceInstanceRequest(input *UpdateServiceInstanceInput)
 // You can't update a service instance while its deployment status, or the deployment
 // status of a component attached to it, is IN_PROGRESS.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8486,7 +8488,9 @@ func (c *Proton) UpdateTemplateSyncConfigRequest(input *UpdateTemplateSyncConfig
 // UpdateTemplateSyncConfig API operation for AWS Proton.
 //
 // Update template sync configuration parameters, except for the templateName
-// and templateType.
+// and templateType. Repository details (branch, name, and provider) should
+// be of a linked repository. A linked repository is a repository that has been
+// registered with Proton. For more information, see CreateRepository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8684,14 +8688,15 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Proton pipeline service role and repository data shared across the Amazon
-// Web Services account.
+// Proton settings that are used for multiple services in the Amazon Web Services
+// account.
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The repository configured in the Amazon Web Services account for pipeline
-	// provisioning. Required it if you have environments configured for self-managed
-	// provisioning with services that include pipelines.
+	// The linked repository for pipeline provisioning. Required if you have environments
+	// configured for self-managed provisioning with services that include pipelines.
+	// A linked repository is a repository that has been registered with Proton.
+	// For more information, see CreateRepository.
 	PipelineProvisioningRepository *RepositoryBranch `locationName:"pipelineProvisioningRepository" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
@@ -9189,8 +9194,8 @@ func (s *CompatibleEnvironmentTemplateInput) SetTemplateName(v string) *Compatib
 
 // Detailed data of an Proton component resource.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 type Component struct {
 	_ struct{} `type:"structure"`
 
@@ -9359,8 +9364,8 @@ func (s *Component) SetServiceSpec(v string) *Component {
 
 // Summary data of an Proton component resource.
 //
-// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-// in the Proton Administrator Guide.
+// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+// in the Proton User Guide.
 type ComponentSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -9619,9 +9624,8 @@ type CreateComponentInput struct {
 	// An optional list of metadata items that you can associate with the Proton
 	// component. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// A path to the Infrastructure as Code (IaC) file describing infrastructure
@@ -9809,8 +9813,8 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// You must specify componentRoleArn to allow directly defined components to
 	// be associated with any environments running in this account.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// The name of the Proton environment that's created in the associated management
@@ -9838,8 +9842,8 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// An optional list of metadata items that you can associate with the Proton
 	// environment account connection. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// in the Proton Administrator Guide.
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -9978,8 +9982,8 @@ type CreateEnvironmentInput struct {
 	// You must specify componentRoleArn to allow directly defined components to
 	// be associated with this environment.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// A description of the environment that's being created and deployed.
@@ -9991,8 +9995,8 @@ type CreateEnvironmentInput struct {
 
 	// The ID of the environment account connection that you provide if you're provisioning
 	// your environment infrastructure resources to an environment account. For
-	// more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-	// in the Proton Administrator guide.
+	// more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+	// in the Proton User guide.
 	//
 	// To use Amazon Web Services-managed provisioning for the environment, specify
 	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
@@ -10012,16 +10016,17 @@ type CreateEnvironmentInput struct {
 	// and omit the provisioningRepository parameter.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
-	// The infrastructure repository that you use to host your rendered infrastructure
-	// templates for self-managed provisioning.
+	// The linked repository that you use to host your rendered infrastructure templates
+	// for self-managed provisioning. A linked repository is a repository that has
+	// been registered with Proton. For more information, see CreateRepository.
 	//
 	// To use self-managed provisioning for the environment, specify this parameter
 	// and omit the environmentAccountConnectionId and protonServiceRoleArn parameters.
 	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
 	// A YAML formatted string that provides inputs as defined in the environment
-	// template bundle schema file. For more information, see Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
-	// in the Proton Administrator Guide.
+	// template bundle schema file. For more information, see Environments (https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html)
+	// in the Proton User Guide.
 	//
 	// Spec is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateEnvironmentInput's
@@ -10033,9 +10038,8 @@ type CreateEnvironmentInput struct {
 	// An optional list of metadata items that you can associate with the Proton
 	// environment. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The major version of the environment template.
@@ -10047,8 +10051,8 @@ type CreateEnvironmentInput struct {
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string"`
 
 	// The name of the environment template. For more information, see Environment
-	// Templates (https://docs.aws.amazon.com/proton/latest/adminguide/ag-templates.html)
-	// in the Proton Administrator Guide.
+	// Templates (https://docs.aws.amazon.com/proton/latest/userguide/ag-templates.html)
+	// in the Proton User Guide.
 	//
 	// TemplateName is a required field
 	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -10261,9 +10265,8 @@ type CreateEnvironmentTemplateInput struct {
 	// An optional list of metadata items that you can associate with the Proton
 	// environment template. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -10416,9 +10419,8 @@ type CreateEnvironmentTemplateVersionInput struct {
 	// An optional list of metadata items that you can associate with the Proton
 	// environment template version. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The name of the environment template.
@@ -10554,9 +10556,10 @@ func (s *CreateEnvironmentTemplateVersionOutput) SetEnvironmentTemplateVersion(v
 type CreateRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of your Amazon Web Services CodeStar connection.
-	// For more information, see Setting up for Proton (https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html)
-	// in the Proton Administrator Guide.
+	// The Amazon Resource Name (ARN) of your AWS CodeStar connection that connects
+	// Proton to your repository provider account. For more information, see Setting
+	// up for Proton (https://docs.aws.amazon.com/proton/latest/userguide/setting-up-for-service.html)
+	// in the Proton User Guide.
 	//
 	// ConnectionArn is a required field
 	ConnectionArn *string `locationName:"connectionArn" min:"1" type:"string" required:"true"`
@@ -10578,9 +10581,8 @@ type CreateRepositoryInput struct {
 	// An optional list of metadata items that you can associate with the Proton
 	// repository. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -10673,7 +10675,7 @@ func (s *CreateRepositoryInput) SetTags(v []*Tag) *CreateRepositoryInput {
 type CreateRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The repository detail data that's returned by Proton.
+	// The repository link's detail data that's returned by Proton.
 	//
 	// Repository is a required field
 	Repository *Repository `locationName:"repository" type:"structure" required:"true"`
@@ -10724,8 +10726,7 @@ type CreateServiceInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the repository connection. For more information,
-	// see Set up repository connection (https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html#setting-up-vcontrol)
-	// in the Proton Administrator Guide and Setting up with Proton (https://docs.aws.amazon.com/proton/latest/userguide/proton-setup.html#setup-repo-connection)
+	// see Setting up an AWS CodeStar connection (https://docs.aws.amazon.com/proton/latest/userguide/setting-up-for-service.html#setting-up-vcontrol)
 	// in the Proton User Guide. Don't include this parameter if your service template
 	// doesn't include a service pipeline.
 	RepositoryConnectionArn *string `locationName:"repositoryConnectionArn" min:"1" type:"string"`
@@ -10737,8 +10738,7 @@ type CreateServiceInput struct {
 	// A link to a spec file that provides inputs as defined in the service template
 	// bundle schema file. The spec file is in YAML format. Don’t include pipeline
 	// inputs in the spec if your service template doesn’t include a service pipeline.
-	// For more information, see Create a service (https://docs.aws.amazon.com/proton/latest/adminguide/ag-create-svc.html.html)
-	// in the Proton Administrator Guide and Create a service (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-create.html)
+	// For more information, see Create a service (https://docs.aws.amazon.com/proton/latest/userguide/ag-create-svc.html)
 	// in the Proton User Guide.
 	//
 	// Spec is a sensitive parameter and its value will be
@@ -10751,9 +10751,8 @@ type CreateServiceInput struct {
 	// An optional list of metadata items that you can associate with the Proton
 	// service. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The major version of the service template that was used to create the service.
@@ -10965,16 +10964,15 @@ type CreateServiceTemplateInput struct {
 	// By default, Proton provides a service pipeline for your service. When this
 	// parameter is included, it indicates that an Proton service pipeline isn't
 	// provided for your service. After it's included, it can't be changed. For
-	// more information, see Service template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html)
-	// in the Proton Administrator Guide.
+	// more information, see Template bundles (https://docs.aws.amazon.com/proton/latest/userguide/ag-template-authoring.html#ag-template-bundles)
+	// in the Proton User Guide.
 	PipelineProvisioning *string `locationName:"pipelineProvisioning" type:"string" enum:"Provisioning"`
 
 	// An optional list of metadata items that you can associate with the Proton
 	// service template. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -11133,16 +11131,15 @@ type CreateServiceTemplateVersionInput struct {
 	// An array of supported component sources. Components with supported sources
 	// can be attached to service instances based on this service template version.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	SupportedComponentSources []*string `locationName:"supportedComponentSources" type:"list" enum:"ServiceTemplateSupportedComponentSourceType"`
 
 	// An optional list of metadata items that you can associate with the Proton
 	// service template version. A tag is a key-value pair.
 	//
-	// For more information, see Proton resources and tagging in the Proton Administrator
-	// Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// For more information, see Proton resources and tagging (https://docs.aws.amazon.com/proton/latest/userguide/resources.html)
+	// in the Proton User Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The name of the service template.
@@ -11306,12 +11303,12 @@ func (s *CreateServiceTemplateVersionOutput) SetServiceTemplateVersion(v *Servic
 type CreateTemplateSyncConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The branch of the registered repository for your template.
+	// The repository branch for your template.
 	//
 	// Branch is a required field
 	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
 
-	// The name of your repository (for example, myrepos/myrepo).
+	// The repository name (for example, myrepos/myrepo).
 	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
@@ -11892,7 +11889,7 @@ func (s *DeleteEnvironmentTemplateVersionOutput) SetEnvironmentTemplateVersion(v
 type DeleteRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the repository.
+	// The repository name.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -11955,7 +11952,7 @@ func (s *DeleteRepositoryInput) SetProvider(v string) *DeleteRepositoryInput {
 type DeleteRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The repository detail data that's returned by Proton.
+	// The deleted repository link's detail data that's returned by Proton.
 	Repository *Repository `locationName:"repository" type:"structure"`
 }
 
@@ -12368,8 +12365,8 @@ type Environment struct {
 	// The environment must have a componentRoleArn to allow directly defined components
 	// to be associated with the environment.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// The time when the environment was created.
@@ -12427,8 +12424,9 @@ type Environment struct {
 	// and managed infrastructure.
 	Provisioning *string `locationName:"provisioning" type:"string" enum:"Provisioning"`
 
-	// The infrastructure repository that you use to host your rendered infrastructure
-	// templates for self-managed provisioning.
+	// The linked repository that you use to host your rendered infrastructure templates
+	// for self-managed provisioning. A linked repository is a repository that has
+	// been registered with Proton. For more information, see CreateRepository.
 	ProvisioningRepository *RepositoryBranch `locationName:"provisioningRepository" type:"structure"`
 
 	// The environment spec.
@@ -12598,8 +12596,8 @@ type EnvironmentAccountConnection struct {
 	// directly defined components to be associated with any environments running
 	// in the account.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// The environment account that's connected to the environment account connection.
@@ -12741,8 +12739,8 @@ type EnvironmentAccountConnectionSummary struct {
 	// directly defined components to be associated with any environments running
 	// in the account.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// The ID of the environment account that's connected to the environment account
@@ -12884,8 +12882,8 @@ type EnvironmentSummary struct {
 	// The environment must have a componentRoleArn to allow directly defined components
 	// to be associated with the environment.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// The time when the environment was created.
@@ -14050,7 +14048,7 @@ type GetEnvironmentTemplateVersionInput struct {
 	MinorVersion *string `locationName:"minorVersion" min:"1" type:"string" required:"true"`
 
 	// The name of the environment template a version of which you want to get detailed
-	// data for..
+	// data for.
 	//
 	// TemplateName is a required field
 	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -14219,7 +14217,7 @@ func (s *GetRepositoryInput) SetProvider(v string) *GetRepositoryInput {
 type GetRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The repository detail data that's returned by Proton.
+	// The repository link's detail data that's returned by Proton.
 	//
 	// Repository is a required field
 	Repository *Repository `locationName:"repository" type:"structure" required:"true"`
@@ -16138,7 +16136,7 @@ type ListRepositoriesOutput struct {
 	// repositories, after the current requested list of repositories.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// An array of repositories.
+	// An array of repository links.
 	//
 	// Repositories is a required field
 	Repositories []*RepositorySummary `locationName:"repositories" type:"list" required:"true"`
@@ -17497,8 +17495,8 @@ type ProvisionedResource struct {
 	// for Amazon Web Services-managed provisioning, and TERRAFORM can be used for
 	// self-managed provisioning.
 	//
-	// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/adminguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
-	// in the Proton Administrator Guide.
+	// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
+	// in the Proton User Guide.
 	ProvisioningEngine *string `locationName:"provisioningEngine" type:"string" enum:"ProvisionedResourceEngine"`
 }
 
@@ -17617,17 +17615,18 @@ func (s *RejectEnvironmentAccountConnectionOutput) SetEnvironmentAccountConnecti
 	return s
 }
 
-// Detailed data of a repository that has been registered with Proton.
+// Detailed data of a linked repository—a repository that has been registered
+// with Proton.
 type Repository struct {
 	_ struct{} `type:"structure"`
 
-	// The repository Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the linked repository.
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The repository Amazon Web Services CodeStar connection that connects Proton
-	// to your repository.
+	// The Amazon Resource Name (ARN) of your AWS CodeStar connection that connects
+	// Proton to your repository provider account.
 	//
 	// ConnectionArn is a required field
 	ConnectionArn *string `locationName:"connectionArn" min:"1" type:"string" required:"true"`
@@ -17694,11 +17693,11 @@ func (s *Repository) SetProvider(v string) *Repository {
 	return s
 }
 
-// Detail data for a repository branch.
+// Detail data for a linked repository branch.
 type RepositoryBranch struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the repository branch.
+	// The Amazon Resource Name (ARN) of the linked repository.
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
@@ -17761,7 +17760,7 @@ func (s *RepositoryBranch) SetProvider(v string) *RepositoryBranch {
 	return s
 }
 
-// Detail input data for a repository branch.
+// Detail input data for a linked repository branch.
 type RepositoryBranchInput_ struct {
 	_ struct{} `type:"structure"`
 
@@ -17842,11 +17841,12 @@ func (s *RepositoryBranchInput_) SetProvider(v string) *RepositoryBranchInput_ {
 	return s
 }
 
-// Summary data of a repository that has been registered with Proton.
+// Summary data of a linked repository—a repository that has been registered
+// with Proton.
 type RepositorySummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for a repository.
+	// The Amazon Resource Name (ARN) of the linked repository.
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
@@ -17954,7 +17954,7 @@ func (s *RepositorySyncAttempt) SetStatus(v string) *RepositorySyncAttempt {
 	return s
 }
 
-// The repository sync definition.
+// A repository sync definition.
 type RepositorySyncDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -18492,8 +18492,7 @@ type Service struct {
 	Pipeline *ServicePipeline `locationName:"pipeline" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the repository connection. For more information,
-	// see Set up a repository connection (https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html#setting-up-vcontrol)
-	// in the Proton Administrator Guide and Setting up with Proton (https://docs.aws.amazon.com/proton/latest/userguide/proton-setup.html#setup-repo-connection)
+	// see Setting up an AWS CodeStar connection (https://docs.aws.amazon.com/proton/latest/userguide/setting-up-for-service.html#setting-up-vcontrol)
 	// in the Proton User Guide.
 	RepositoryConnectionArn *string `locationName:"repositoryConnectionArn" min:"1" type:"string"`
 
@@ -19091,8 +19090,8 @@ func (s *ServicePipeline) SetTemplateName(v string) *ServicePipeline {
 	return s
 }
 
-// A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-// in the Proton Administrator Guide.
+// A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/userguide/ag-limits.html)
+// in the Proton User Guide.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19576,8 +19575,8 @@ type ServiceTemplateVersion struct {
 	// An array of supported component sources. Components with supported sources
 	// can be attached to service instances based on this service template version.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	SupportedComponentSources []*string `locationName:"supportedComponentSources" type:"list" enum:"ServiceTemplateSupportedComponentSourceType"`
 
 	// The name of the version of a service template.
@@ -19987,7 +19986,7 @@ type TemplateSyncConfig struct {
 	// Branch is a required field
 	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
 
-	// The name of the repository, for example myrepos/myrepo.
+	// The repository name (for example, myrepos/myrepo).
 	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
@@ -20269,13 +20268,24 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAccountSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A repository for pipeline provisioning. Specify it if you have environments
+	// Set to true to remove a configured pipeline repository from the account settings.
+	// Don't set this field if you are updating the configured pipeline repository.
+	DeletePipelineProvisioningRepository *bool `locationName:"deletePipelineProvisioningRepository" type:"boolean"`
+
+	// A linked repository for pipeline provisioning. Specify it if you have environments
 	// configured for self-managed provisioning with services that include pipelines.
+	// A linked repository is a repository that has been registered with Proton.
+	// For more information, see CreateRepository.
+	//
+	// To remove a previously configured repository, set deletePipelineProvisioningRepository
+	// to true, and don't set pipelineProvisioningRepository.
 	PipelineProvisioningRepository *RepositoryBranchInput_ `locationName:"pipelineProvisioningRepository" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
 	// pipelines. Assumed by Proton for Amazon Web Services-managed provisioning,
 	// and by customer-owned automation for self-managed provisioning.
+	//
+	// To remove a previously configured ARN, specify an empty string.
 	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" type:"string"`
 }
 
@@ -20310,6 +20320,12 @@ func (s *UpdateAccountSettingsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeletePipelineProvisioningRepository sets the DeletePipelineProvisioningRepository field's value.
+func (s *UpdateAccountSettingsInput) SetDeletePipelineProvisioningRepository(v bool) *UpdateAccountSettingsInput {
+	s.DeletePipelineProvisioningRepository = &v
+	return s
 }
 
 // SetPipelineProvisioningRepository sets the PipelineProvisioningRepository field's value.
@@ -20553,8 +20569,8 @@ type UpdateEnvironmentAccountConnectionInput struct {
 	// directly defined components to be associated with any environments running
 	// in the account.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// The ID of the environment account connection to update.
@@ -20665,8 +20681,8 @@ type UpdateEnvironmentInput struct {
 	// The environment must have a componentRoleArn to allow directly defined components
 	// to be associated with the environment.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	ComponentRoleArn *string `locationName:"componentRoleArn" min:"1" type:"string"`
 
 	// There are four modes for updating an environment. The deploymentType field
@@ -20723,8 +20739,9 @@ type UpdateEnvironmentInput struct {
 	// to make API calls to other services your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
-	// The infrastructure repository that you use to host your rendered infrastructure
-	// templates for self-managed provisioning.
+	// The linked repository that you use to host your rendered infrastructure templates
+	// for self-managed provisioning. A linked repository is a repository that has
+	// been registered with Proton. For more information, see CreateRepository.
 	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
 	// The formatted specification that defines the update.
@@ -21159,8 +21176,8 @@ type UpdateServiceInput struct {
 	// Lists the service instances to add and the existing service instances to
 	// remain. Omit the existing service instances to delete from the list. Don't
 	// include edits to the existing service instances or pipeline. For more information,
-	// see Edit a service in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-update.html)
-	// or the Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-update.html).
+	// see Edit a service (https://docs.aws.amazon.com/proton/latest/userguide/ag-svc-update.html)
+	// in the Proton User Guide.
 	//
 	// Spec is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateServiceInput's
@@ -21753,8 +21770,8 @@ type UpdateServiceTemplateVersionInput struct {
 	// to instances based on this template version. A change only affects later
 	// associations.
 	//
-	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/adminguide/ag-components.html)
-	// in the Proton Administrator Guide.
+	// For more information about components, see Proton components (https://docs.aws.amazon.com/proton/latest/userguide/ag-components.html)
+	// in the Proton User Guide.
 	SupportedComponentSources []*string `locationName:"supportedComponentSources" type:"list" enum:"ServiceTemplateSupportedComponentSourceType"`
 
 	// The name of the service template.
@@ -21900,12 +21917,12 @@ func (s *UpdateServiceTemplateVersionOutput) SetServiceTemplateVersion(v *Servic
 type UpdateTemplateSyncConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The repository branch.
+	// The repository branch for your template.
 	//
 	// Branch is a required field
 	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
 
-	// The name of the repository (for example, myrepos/myrepo).
+	// The repository name (for example, myrepos/myrepo).
 	//
 	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`

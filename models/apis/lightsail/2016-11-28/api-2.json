@@ -2645,6 +2645,24 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "UpdateInstanceMetadataOptions":{
+      "name":"UpdateInstanceMetadataOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateInstanceMetadataOptionsRequest"},
+      "output":{"shape":"UpdateInstanceMetadataOptionsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "UpdateLoadBalancerAttribute":{
       "name":"UpdateLoadBalancerAttribute",
       "http":{
@@ -3206,6 +3224,14 @@
         "tags":{"shape":"TagList"},
         "supportCode":{"shape":"string"}
       }
+    },
+    "CertificateDomainValidationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING_VALIDATION",
+        "FAILED",
+        "SUCCESS"
+      ]
     },
     "CertificateName":{"type":"string"},
     "CertificateStatus":{
@@ -4594,6 +4620,21 @@
         "Http5xxErrorRate"
       ]
     },
+    "DnsRecordCreationState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"DnsRecordCreationStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "DnsRecordCreationStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "STARTED",
+        "FAILED"
+      ]
+    },
     "Domain":{
       "type":"structure",
       "members":{
@@ -4604,7 +4645,8 @@
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
         "tags":{"shape":"TagList"},
-        "domainEntries":{"shape":"DomainEntryList"}
+        "domainEntries":{"shape":"DomainEntryList"},
+        "registeredDomainDelegationInfo":{"shape":"RegisteredDomainDelegationInfo"}
       }
     },
     "DomainEntry":{
@@ -4645,7 +4687,9 @@
       "type":"structure",
       "members":{
         "domainName":{"shape":"DomainName"},
-        "resourceRecord":{"shape":"ResourceRecord"}
+        "resourceRecord":{"shape":"ResourceRecord"},
+        "dnsRecordCreationState":{"shape":"DnsRecordCreationState"},
+        "validationStatus":{"shape":"CertificateDomainValidationStatus"}
       }
     },
     "DomainValidationRecordList":{
@@ -5743,6 +5787,27 @@
       "type":"list",
       "member":{"shape":"HostKeyAttributes"}
     },
+    "HttpEndpoint":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
+      ]
+    },
+    "HttpProtocolIpv6":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
+      ]
+    },
+    "HttpTokens":{
+      "type":"string",
+      "enum":[
+        "optional",
+        "required"
+      ]
+    },
     "IAMAccessKeyId":{
       "type":"string",
       "max":20,
@@ -5800,7 +5865,8 @@
         "networking":{"shape":"InstanceNetworking"},
         "state":{"shape":"InstanceState"},
         "username":{"shape":"NonEmptyString"},
-        "sshKeyName":{"shape":"ResourceName"}
+        "sshKeyName":{"shape":"ResourceName"},
+        "metadataOptions":{"shape":"InstanceMetadataOptions"}
       }
     },
     "InstanceAccessDetails":{
@@ -5896,6 +5962,23 @@
       "type":"list",
       "member":{"shape":"Instance"}
     },
+    "InstanceMetadataOptions":{
+      "type":"structure",
+      "members":{
+        "state":{"shape":"InstanceMetadataState"},
+        "httpTokens":{"shape":"HttpTokens"},
+        "httpEndpoint":{"shape":"HttpEndpoint"},
+        "httpPutResponseHopLimit":{"shape":"integer"},
+        "httpProtocolIpv6":{"shape":"HttpProtocolIpv6"}
+      }
+    },
+    "InstanceMetadataState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "applied"
+      ]
+    },
     "InstanceMetricName":{
       "type":"string",
       "enum":[
@@ -5906,7 +5989,8 @@
         "StatusCheckFailed_Instance",
         "StatusCheckFailed_System",
         "BurstCapacityTime",
-        "BurstCapacityPercentage"
+        "BurstCapacityPercentage",
+        "MetadataNoToken"
       ]
     },
     "InstanceNetworking":{
@@ -6202,6 +6286,21 @@
         "subjectAlternativeNames":{"shape":"StringList"}
       }
     },
+    "LoadBalancerTlsCertificateDnsRecordCreationState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"LoadBalancerTlsCertificateDnsRecordCreationStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "LoadBalancerTlsCertificateDnsRecordCreationStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "STARTED",
+        "FAILED"
+      ]
+    },
     "LoadBalancerTlsCertificateDomainStatus":{
       "type":"string",
       "enum":[
@@ -6228,7 +6327,8 @@
         "type":{"shape":"NonEmptyString"},
         "value":{"shape":"NonEmptyString"},
         "validationStatus":{"shape":"LoadBalancerTlsCertificateDomainStatus"},
-        "domainName":{"shape":"DomainName"}
+        "domainName":{"shape":"DomainName"},
+        "dnsRecordCreationState":{"shape":"LoadBalancerTlsCertificateDnsRecordCreationState"}
       }
     },
     "LoadBalancerTlsCertificateDomainValidationRecordList":{
@@ -6440,6 +6540,22 @@
         "gbPerMonthAllocated":{"shape":"integer"}
       }
     },
+    "NameServersUpdateState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"NameServersUpdateStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "NameServersUpdateStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "PENDING",
+        "FAILED",
+        "STARTED"
+      ]
+    },
     "NetworkProtocol":{
       "type":"string",
       "enum":[
@@ -6606,7 +6722,8 @@
         "DeleteBucketAccessKey",
         "UpdateBucketBundle",
         "UpdateBucket",
-        "SetResourceAccessForBucket"
+        "SetResourceAccessForBucket",
+        "UpdateInstanceMetadataOptions"
       ]
     },
     "Origin":{
@@ -6786,6 +6903,22 @@
         "queryStringsAllowList":{"shape":"StringList"}
       }
     },
+    "R53HostedZoneDeletionState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"R53HostedZoneDeletionStateCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "R53HostedZoneDeletionStateCode":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "PENDING",
+        "FAILED",
+        "STARTED"
+      ]
+    },
     "RebootInstanceRequest":{
       "type":"structure",
       "required":["instanceName"],
@@ -6872,6 +7005,13 @@
       "type":"structure",
       "members":{
         "containerImage":{"shape":"ContainerImage"}
+      }
+    },
+    "RegisteredDomainDelegationInfo":{
+      "type":"structure",
+      "members":{
+        "nameServersUpdateState":{"shape":"NameServersUpdateState"},
+        "r53HostedZoneDeletionState":{"shape":"R53HostedZoneDeletionState"}
       }
     },
     "RelationalDatabase":{
@@ -7510,6 +7650,23 @@
       "type":"structure",
       "members":{
         "operations":{"shape":"OperationList"}
+      }
+    },
+    "UpdateInstanceMetadataOptionsRequest":{
+      "type":"structure",
+      "required":["instanceName"],
+      "members":{
+        "instanceName":{"shape":"ResourceName"},
+        "httpTokens":{"shape":"HttpTokens"},
+        "httpEndpoint":{"shape":"HttpEndpoint"},
+        "httpPutResponseHopLimit":{"shape":"integer"},
+        "httpProtocolIpv6":{"shape":"HttpProtocolIpv6"}
+      }
+    },
+    "UpdateInstanceMetadataOptionsResult":{
+      "type":"structure",
+      "members":{
+        "operation":{"shape":"Operation"}
       }
     },
     "UpdateLoadBalancerAttributeRequest":{

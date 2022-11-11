@@ -9725,7 +9725,7 @@ type RulesSource struct {
 	// An array of individual stateful rules inspection criteria to be used together
 	// in a stateful rule group. Use this option to specify simple Suricata rules
 	// with protocol, source and destination, ports, direction, and rule options.
-	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-5.0.0/rules/intro.html#).
+	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/rules/intro.html#).
 	StatefulRules []*StatefulRule `type:"list"`
 
 	// Stateless inspection criteria to be used in a stateless rule group.
@@ -9974,6 +9974,23 @@ type StatefulEngineOptions struct {
 	// for stateful rules (https://docs.aws.amazon.com/network-firewall/latest/developerguide/suricata-rule-evaluation-order.html)
 	// in the Network Firewall Developer Guide.
 	RuleOrder *string `type:"string" enum:"RuleOrder"`
+
+	// Configures how Network Firewall processes traffic when a network connection
+	// breaks midstream. Network connections can break due to disruptions in external
+	// networks or within the firewall itself.
+	//
+	//    * DROP - Network Firewall fails closed and drops all subsequent traffic
+	//    going to the firewall. This is the default behavior.
+	//
+	//    * CONTINUE - Network Firewall continues to apply rules to the subsequent
+	//    traffic without context from traffic before the break. This impacts the
+	//    behavior of rules that depend on this context. For example, if you have
+	//    a stateful rule to drop http traffic, Network Firewall won't match the
+	//    traffic for this rule because the service won't have the context from
+	//    session initialization defining the application layer protocol as HTTP.
+	//    However, this behavior is rule dependent—a TCP-layer rule using a flow:stateless
+	//    rule would still match, as would the aws:drop_strict default action.
+	StreamExceptionPolicy *string `type:"string" enum:"StreamExceptionPolicy"`
 }
 
 // String returns the string representation.
@@ -10000,10 +10017,16 @@ func (s *StatefulEngineOptions) SetRuleOrder(v string) *StatefulEngineOptions {
 	return s
 }
 
+// SetStreamExceptionPolicy sets the StreamExceptionPolicy field's value.
+func (s *StatefulEngineOptions) SetStreamExceptionPolicy(v string) *StatefulEngineOptions {
+	s.StreamExceptionPolicy = &v
+	return s
+}
+
 // A single Suricata rules specification, for use in a stateful rule group.
 // Use this option to specify a simple Suricata rule with protocol, source and
 // destination, ports, direction, and rule options. For information about the
-// Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-5.0.0/rules/intro.html#).
+// Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/rules/intro.html#).
 type StatefulRule struct {
 	_ struct{} `type:"structure"`
 
@@ -12885,6 +12908,22 @@ func StatefulRuleProtocol_Values() []string {
 		StatefulRuleProtocolTftp,
 		StatefulRuleProtocolNtp,
 		StatefulRuleProtocolDhcp,
+	}
+}
+
+const (
+	// StreamExceptionPolicyDrop is a StreamExceptionPolicy enum value
+	StreamExceptionPolicyDrop = "DROP"
+
+	// StreamExceptionPolicyContinue is a StreamExceptionPolicy enum value
+	StreamExceptionPolicyContinue = "CONTINUE"
+)
+
+// StreamExceptionPolicy_Values returns all elements of the StreamExceptionPolicy enum
+func StreamExceptionPolicy_Values() []string {
+	return []string{
+		StreamExceptionPolicyDrop,
+		StreamExceptionPolicyContinue,
 	}
 }
 

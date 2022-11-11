@@ -360,6 +360,38 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListCheckDetails":{
+      "name":"ListCheckDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workloads/{WorkloadId}/checks"
+      },
+      "input":{"shape":"ListCheckDetailsInput"},
+      "output":{"shape":"ListCheckDetailsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListCheckSummaries":{
+      "name":"ListCheckSummaries",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workloads/{WorkloadId}/checkSummaries"
+      },
+      "input":{"shape":"ListCheckSummariesInput"},
+      "output":{"shape":"ListCheckSummariesOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListLensReviewImprovements":{
       "name":"ListLensReviewImprovements",
       "http":{
@@ -666,6 +698,11 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "AccountSummary":{
+      "type":"map",
+      "key":{"shape":"CheckStatus"},
+      "value":{"shape":"CheckStatusCount"}
+    },
     "AdditionalResourceType":{
       "type":"string",
       "enum":[
@@ -731,6 +768,11 @@
         "Reason":{"shape":"AnswerReason"}
       }
     },
+    "ApplicationArn":{
+      "type":"string",
+      "max":2084,
+      "pattern":"arn:aws[-a-z]*:servicecatalog:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:/applications/[a-z0-9]+"
+    },
     "AssociateLensesInput":{
       "type":"structure",
       "required":[
@@ -755,6 +797,79 @@
       "max":100
     },
     "Base64String":{"type":"string"},
+    "CheckDescription":{"type":"string"},
+    "CheckDetail":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"CheckId"},
+        "Name":{"shape":"CheckName"},
+        "Description":{"shape":"CheckDescription"},
+        "Provider":{"shape":"CheckProvider"},
+        "LensArn":{"shape":"LensArn"},
+        "PillarId":{"shape":"PillarId"},
+        "QuestionId":{"shape":"QuestionId"},
+        "ChoiceId":{"shape":"ChoiceId"},
+        "Status":{"shape":"CheckStatus"},
+        "AccountId":{"shape":"AwsAccountId"},
+        "FlaggedResources":{"shape":"FlaggedResources"},
+        "Reason":{"shape":"CheckFailureReason"},
+        "UpdatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "CheckDetails":{
+      "type":"list",
+      "member":{"shape":"CheckDetail"}
+    },
+    "CheckFailureReason":{
+      "type":"string",
+      "enum":[
+        "ASSUME_ROLE_ERROR",
+        "ACCESS_DENIED",
+        "UNKNOWN_ERROR",
+        "PREMIUM_SUPPORT_REQUIRED"
+      ]
+    },
+    "CheckId":{"type":"string"},
+    "CheckName":{"type":"string"},
+    "CheckProvider":{
+      "type":"string",
+      "enum":["TRUSTED_ADVISOR"]
+    },
+    "CheckStatus":{
+      "type":"string",
+      "enum":[
+        "OKAY",
+        "WARNING",
+        "ERROR",
+        "NOT_AVAILABLE",
+        "FETCH_FAILED"
+      ]
+    },
+    "CheckStatusCount":{
+      "type":"integer",
+      "max":101,
+      "min":1
+    },
+    "CheckSummaries":{
+      "type":"list",
+      "member":{"shape":"CheckSummary"}
+    },
+    "CheckSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"CheckId"},
+        "Name":{"shape":"CheckName"},
+        "Provider":{"shape":"CheckProvider"},
+        "Description":{"shape":"CheckDescription"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "LensArn":{"shape":"LensArn"},
+        "PillarId":{"shape":"PillarId"},
+        "QuestionId":{"shape":"QuestionId"},
+        "ChoiceId":{"shape":"ChoiceId"},
+        "Status":{"shape":"CheckStatus"},
+        "AccountSummary":{"shape":"AccountSummary"}
+      }
+    },
     "Choice":{
       "type":"structure",
       "members":{
@@ -1003,7 +1118,9 @@
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "DiscoveryConfig":{"shape":"WorkloadDiscoveryConfig"},
+        "Applications":{"shape":"WorkloadApplications"}
       }
     },
     "CreateWorkloadOutput":{
@@ -1192,6 +1309,11 @@
       "members":{
         "LensJSON":{"shape":"LensJSON"}
       }
+    },
+    "FlaggedResources":{
+      "type":"integer",
+      "max":9999,
+      "min":1
     },
     "GetAnswerInput":{
       "type":"structure",
@@ -1671,6 +1793,66 @@
         "LensAlias":{"shape":"LensAlias"},
         "LensArn":{"shape":"LensArn"},
         "AnswerSummaries":{"shape":"AnswerSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCheckDetailsInput":{
+      "type":"structure",
+      "required":[
+        "WorkloadId",
+        "LensArn",
+        "PillarId",
+        "QuestionId",
+        "ChoiceId"
+      ],
+      "members":{
+        "WorkloadId":{
+          "shape":"WorkloadId",
+          "location":"uri",
+          "locationName":"WorkloadId"
+        },
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "LensArn":{"shape":"LensArn"},
+        "PillarId":{"shape":"PillarId"},
+        "QuestionId":{"shape":"QuestionId"},
+        "ChoiceId":{"shape":"ChoiceId"}
+      }
+    },
+    "ListCheckDetailsOutput":{
+      "type":"structure",
+      "members":{
+        "CheckDetails":{"shape":"CheckDetails"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCheckSummariesInput":{
+      "type":"structure",
+      "required":[
+        "WorkloadId",
+        "LensArn",
+        "PillarId",
+        "QuestionId",
+        "ChoiceId"
+      ],
+      "members":{
+        "WorkloadId":{
+          "shape":"WorkloadId",
+          "location":"uri",
+          "locationName":"WorkloadId"
+        },
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "LensArn":{"shape":"LensArn"},
+        "PillarId":{"shape":"PillarId"},
+        "QuestionId":{"shape":"QuestionId"},
+        "ChoiceId":{"shape":"ChoiceId"}
+      }
+    },
+    "ListCheckSummariesOutput":{
+      "type":"structure",
+      "members":{
+        "CheckSummaries":{"shape":"CheckSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2330,6 +2512,13 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "TrustedAdvisorIntegrationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "UntagResourceInput":{
       "type":"structure",
       "required":[
@@ -2470,7 +2659,9 @@
         "IndustryType":{"shape":"WorkloadIndustryType"},
         "Industry":{"shape":"WorkloadIndustry"},
         "Notes":{"shape":"Notes"},
-        "ImprovementStatus":{"shape":"WorkloadImprovementStatus"}
+        "ImprovementStatus":{"shape":"WorkloadImprovementStatus"},
+        "DiscoveryConfig":{"shape":"WorkloadDiscoveryConfig"},
+        "Applications":{"shape":"WorkloadApplications"}
       }
     },
     "UpdateWorkloadOutput":{
@@ -2600,7 +2791,9 @@
         "Lenses":{"shape":"WorkloadLenses"},
         "Owner":{"shape":"AwsAccountId"},
         "ShareInvitationId":{"shape":"ShareInvitationId"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "DiscoveryConfig":{"shape":"WorkloadDiscoveryConfig"},
+        "Applications":{"shape":"WorkloadApplications"}
       }
     },
     "WorkloadAccountIds":{
@@ -2608,9 +2801,15 @@
       "member":{"shape":"AwsAccountId"},
       "max":100
     },
+    "WorkloadApplications":{
+      "type":"list",
+      "member":{"shape":"ApplicationArn"},
+      "max":1
+    },
     "WorkloadArchitecturalDesign":{
       "type":"string",
-      "max":2048
+      "max":2048,
+      "pattern":"^(|(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*)$"
     },
     "WorkloadArn":{"type":"string"},
     "WorkloadAwsRegions":{
@@ -2622,6 +2821,12 @@
       "type":"string",
       "max":250,
       "min":3
+    },
+    "WorkloadDiscoveryConfig":{
+      "type":"structure",
+      "members":{
+        "TrustedAdvisorIntegrationStatus":{"shape":"TrustedAdvisorIntegrationStatus"}
+      }
     },
     "WorkloadEnvironment":{
       "type":"string",

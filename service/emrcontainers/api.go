@@ -96,6 +96,94 @@ func (c *EMRContainers) CancelJobRunWithContext(ctx aws.Context, input *CancelJo
 	return out, req.Send()
 }
 
+const opCreateJobTemplate = "CreateJobTemplate"
+
+// CreateJobTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateJobTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateJobTemplate for more information on using the CreateJobTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateJobTemplateRequest method.
+//	req, resp := client.CreateJobTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateJobTemplate
+func (c *EMRContainers) CreateJobTemplateRequest(input *CreateJobTemplateInput) (req *request.Request, output *CreateJobTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateJobTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/jobtemplates",
+	}
+
+	if input == nil {
+		input = &CreateJobTemplateInput{}
+	}
+
+	output = &CreateJobTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateJobTemplate API operation for Amazon EMR Containers.
+//
+// Creates a job template. Job template stores values of StartJobRun API request
+// in a template and can be used to start a job run. Job template allows two
+// use cases: avoid repeating recurring StartJobRun API request values, enforcing
+// certain values in StartJobRun API request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation CreateJobTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateJobTemplate
+func (c *EMRContainers) CreateJobTemplate(input *CreateJobTemplateInput) (*CreateJobTemplateOutput, error) {
+	req, out := c.CreateJobTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateJobTemplateWithContext is the same as CreateJobTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateJobTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) CreateJobTemplateWithContext(ctx aws.Context, input *CreateJobTemplateInput, opts ...request.Option) (*CreateJobTemplateOutput, error) {
+	req, out := c.CreateJobTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateManagedEndpoint = "CreateManagedEndpoint"
 
 // CreateManagedEndpointRequest generates a "aws/request.Request" representing the
@@ -268,6 +356,91 @@ func (c *EMRContainers) CreateVirtualCluster(input *CreateVirtualClusterInput) (
 // for more information on using Contexts.
 func (c *EMRContainers) CreateVirtualClusterWithContext(ctx aws.Context, input *CreateVirtualClusterInput, opts ...request.Option) (*CreateVirtualClusterOutput, error) {
 	req, out := c.CreateVirtualClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteJobTemplate = "DeleteJobTemplate"
+
+// DeleteJobTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteJobTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteJobTemplate for more information on using the DeleteJobTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteJobTemplateRequest method.
+//	req, resp := client.DeleteJobTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DeleteJobTemplate
+func (c *EMRContainers) DeleteJobTemplateRequest(input *DeleteJobTemplateInput) (req *request.Request, output *DeleteJobTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteJobTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/jobtemplates/{templateId}",
+	}
+
+	if input == nil {
+		input = &DeleteJobTemplateInput{}
+	}
+
+	output = &DeleteJobTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteJobTemplate API operation for Amazon EMR Containers.
+//
+// Deletes a job template. Job template stores values of StartJobRun API request
+// in a template and can be used to start a job run. Job template allows two
+// use cases: avoid repeating recurring StartJobRun API request values, enforcing
+// certain values in StartJobRun API request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation DeleteJobTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DeleteJobTemplate
+func (c *EMRContainers) DeleteJobTemplate(input *DeleteJobTemplateInput) (*DeleteJobTemplateOutput, error) {
+	req, out := c.DeleteJobTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteJobTemplateWithContext is the same as DeleteJobTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteJobTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) DeleteJobTemplateWithContext(ctx aws.Context, input *DeleteJobTemplateInput, opts ...request.Option) (*DeleteJobTemplateOutput, error) {
+	req, out := c.DeleteJobTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -526,6 +699,95 @@ func (c *EMRContainers) DescribeJobRun(input *DescribeJobRunInput) (*DescribeJob
 // for more information on using Contexts.
 func (c *EMRContainers) DescribeJobRunWithContext(ctx aws.Context, input *DescribeJobRunInput, opts ...request.Option) (*DescribeJobRunOutput, error) {
 	req, out := c.DescribeJobRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeJobTemplate = "DescribeJobTemplate"
+
+// DescribeJobTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeJobTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeJobTemplate for more information on using the DescribeJobTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeJobTemplateRequest method.
+//	req, resp := client.DescribeJobTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeJobTemplate
+func (c *EMRContainers) DescribeJobTemplateRequest(input *DescribeJobTemplateInput) (req *request.Request, output *DescribeJobTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDescribeJobTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/jobtemplates/{templateId}",
+	}
+
+	if input == nil {
+		input = &DescribeJobTemplateInput{}
+	}
+
+	output = &DescribeJobTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeJobTemplate API operation for Amazon EMR Containers.
+//
+// Displays detailed information about a specified job template. Job template
+// stores values of StartJobRun API request in a template and can be used to
+// start a job run. Job template allows two use cases: avoid repeating recurring
+// StartJobRun API request values, enforcing certain values in StartJobRun API
+// request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation DescribeJobTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeJobTemplate
+func (c *EMRContainers) DescribeJobTemplate(input *DescribeJobTemplateInput) (*DescribeJobTemplateOutput, error) {
+	req, out := c.DescribeJobTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DescribeJobTemplateWithContext is the same as DescribeJobTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeJobTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) DescribeJobTemplateWithContext(ctx aws.Context, input *DescribeJobTemplateInput, opts ...request.Option) (*DescribeJobTemplateOutput, error) {
+	req, out := c.DescribeJobTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -842,6 +1104,148 @@ func (c *EMRContainers) ListJobRunsPagesWithContext(ctx aws.Context, input *List
 
 	for p.Next() {
 		if !fn(p.Page().(*ListJobRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListJobTemplates = "ListJobTemplates"
+
+// ListJobTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListJobTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListJobTemplates for more information on using the ListJobTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListJobTemplatesRequest method.
+//	req, resp := client.ListJobTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListJobTemplates
+func (c *EMRContainers) ListJobTemplatesRequest(input *ListJobTemplatesInput) (req *request.Request, output *ListJobTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListJobTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/jobtemplates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListJobTemplatesInput{}
+	}
+
+	output = &ListJobTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListJobTemplates API operation for Amazon EMR Containers.
+//
+// Lists job templates based on a set of parameters. Job template stores values
+// of StartJobRun API request in a template and can be used to start a job run.
+// Job template allows two use cases: avoid repeating recurring StartJobRun
+// API request values, enforcing certain values in StartJobRun API request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation ListJobTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListJobTemplates
+func (c *EMRContainers) ListJobTemplates(input *ListJobTemplatesInput) (*ListJobTemplatesOutput, error) {
+	req, out := c.ListJobTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListJobTemplatesWithContext is the same as ListJobTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListJobTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) ListJobTemplatesWithContext(ctx aws.Context, input *ListJobTemplatesInput, opts ...request.Option) (*ListJobTemplatesOutput, error) {
+	req, out := c.ListJobTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListJobTemplatesPages iterates over the pages of a ListJobTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListJobTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListJobTemplates operation.
+//	pageNum := 0
+//	err := client.ListJobTemplatesPages(params,
+//	    func(page *emrcontainers.ListJobTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMRContainers) ListJobTemplatesPages(input *ListJobTemplatesInput, fn func(*ListJobTemplatesOutput, bool) bool) error {
+	return c.ListJobTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListJobTemplatesPagesWithContext same as ListJobTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) ListJobTemplatesPagesWithContext(ctx aws.Context, input *ListJobTemplatesInput, fn func(*ListJobTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListJobTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListJobTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListJobTemplatesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1974,6 +2378,165 @@ func (s *ContainerProvider) SetType(v string) *ContainerProvider {
 	return s
 }
 
+type CreateJobTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The client token of the job template.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The job template data which holds values of StartJobRun API request.
+	//
+	// JobTemplateData is a required field
+	JobTemplateData *JobTemplateData `locationName:"jobTemplateData" type:"structure" required:"true"`
+
+	// The KMS key ARN used to encrypt the job template.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"3" type:"string"`
+
+	// The specified name of the job template.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The tags that are associated with the job template.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateJobTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateJobTemplateInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.JobTemplateData == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobTemplateData"))
+	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 3))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.JobTemplateData != nil {
+		if err := s.JobTemplateData.Validate(); err != nil {
+			invalidParams.AddNested("JobTemplateData", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateJobTemplateInput) SetClientToken(v string) *CreateJobTemplateInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetJobTemplateData sets the JobTemplateData field's value.
+func (s *CreateJobTemplateInput) SetJobTemplateData(v *JobTemplateData) *CreateJobTemplateInput {
+	s.JobTemplateData = v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateJobTemplateInput) SetKmsKeyArn(v string) *CreateJobTemplateInput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateJobTemplateInput) SetName(v string) *CreateJobTemplateInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateJobTemplateInput) SetTags(v map[string]*string) *CreateJobTemplateInput {
+	s.Tags = v
+	return s
+}
+
+type CreateJobTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This output display the ARN of the created job template.
+	Arn *string `locationName:"arn" min:"60" type:"string"`
+
+	// This output displays the date and time when the job template was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// This output display the created job template ID.
+	Id *string `locationName:"id" min:"1" type:"string"`
+
+	// This output displays the name of the created job template.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateJobTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateJobTemplateOutput) SetArn(v string) *CreateJobTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateJobTemplateOutput) SetCreatedAt(v time.Time) *CreateJobTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateJobTemplateOutput) SetId(v string) *CreateJobTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateJobTemplateOutput) SetName(v string) *CreateJobTemplateOutput {
+	s.Name = &v
+	return s
+}
+
 type CreateManagedEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2337,6 +2900,86 @@ func (s *CreateVirtualClusterOutput) SetName(v string) *CreateVirtualClusterOutp
 	return s
 }
 
+type DeleteJobTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the job template that will be deleted.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"templateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteJobTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteJobTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteJobTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteJobTemplateInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteJobTemplateInput) SetId(v string) *DeleteJobTemplateInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteJobTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This output contains the ID of the job template that was deleted.
+	Id *string `locationName:"id" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteJobTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteJobTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteJobTemplateOutput) SetId(v string) *DeleteJobTemplateOutput {
+	s.Id = &v
+	return s
+}
+
 type DeleteManagedEndpointInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -2617,6 +3260,86 @@ func (s DescribeJobRunOutput) GoString() string {
 // SetJobRun sets the JobRun field's value.
 func (s *DescribeJobRunOutput) SetJobRun(v *JobRun) *DescribeJobRunOutput {
 	s.JobRun = v
+	return s
+}
+
+type DescribeJobTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the job template that will be described.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"templateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeJobTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeJobTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeJobTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeJobTemplateInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeJobTemplateInput) SetId(v string) *DescribeJobTemplateInput {
+	s.Id = &v
+	return s
+}
+
+type DescribeJobTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This output displays information about the specified job template.
+	JobTemplate *JobTemplate `locationName:"jobTemplate" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeJobTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeJobTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobTemplate sets the JobTemplate field's value.
+func (s *DescribeJobTemplateOutput) SetJobTemplate(v *JobTemplate) *DescribeJobTemplateOutput {
+	s.JobTemplate = v
 	return s
 }
 
@@ -3096,7 +3819,8 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specify the driver that the job runs on.
+// Specify the driver that the job runs on. Exactly one of the two available
+// job drivers is required, either sparkSqlJobDriver or sparkSubmitJobDriver.
 type JobDriver struct {
 	_ struct{} `type:"structure"`
 
@@ -3326,6 +4050,245 @@ func (s *JobRun) SetVirtualClusterId(v string) *JobRun {
 	return s
 }
 
+// This entity describes a job template. Job template stores values of StartJobRun
+// API request in a template and can be used to start a job run. Job template
+// allows two use cases: avoid repeating recurring StartJobRun API request values,
+// enforcing certain values in StartJobRun API request.
+type JobTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the job template.
+	Arn *string `locationName:"arn" min:"60" type:"string"`
+
+	// The date and time when the job template was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The user who created the job template.
+	CreatedBy *string `locationName:"createdBy" min:"20" type:"string"`
+
+	// The error message in case the decryption of job template fails.
+	DecryptionError *string `locationName:"decryptionError" min:"1" type:"string"`
+
+	// The ID of the job template.
+	Id *string `locationName:"id" min:"1" type:"string"`
+
+	// The job template data which holds values of StartJobRun API request.
+	//
+	// JobTemplateData is a required field
+	JobTemplateData *JobTemplateData `locationName:"jobTemplateData" type:"structure" required:"true"`
+
+	// The KMS key ARN used to encrypt the job template.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"3" type:"string"`
+
+	// The name of the job template.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The tags assigned to the job template.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTemplate) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *JobTemplate) SetArn(v string) *JobTemplate {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *JobTemplate) SetCreatedAt(v time.Time) *JobTemplate {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *JobTemplate) SetCreatedBy(v string) *JobTemplate {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDecryptionError sets the DecryptionError field's value.
+func (s *JobTemplate) SetDecryptionError(v string) *JobTemplate {
+	s.DecryptionError = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *JobTemplate) SetId(v string) *JobTemplate {
+	s.Id = &v
+	return s
+}
+
+// SetJobTemplateData sets the JobTemplateData field's value.
+func (s *JobTemplate) SetJobTemplateData(v *JobTemplateData) *JobTemplate {
+	s.JobTemplateData = v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *JobTemplate) SetKmsKeyArn(v string) *JobTemplate {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *JobTemplate) SetName(v string) *JobTemplate {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *JobTemplate) SetTags(v map[string]*string) *JobTemplate {
+	s.Tags = v
+	return s
+}
+
+// The values of StartJobRun API requests used in job runs started using the
+// job template.
+type JobTemplateData struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings that are used to override defaults configuration.
+	ConfigurationOverrides *ParametricConfigurationOverrides `locationName:"configurationOverrides" type:"structure"`
+
+	// The execution role ARN of the job run.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"4" type:"string" required:"true"`
+
+	// Specify the driver that the job runs on. Exactly one of the two available
+	// job drivers is required, either sparkSqlJobDriver or sparkSubmitJobDriver.
+	//
+	// JobDriver is a required field
+	JobDriver *JobDriver `locationName:"jobDriver" type:"structure" required:"true"`
+
+	// The tags assigned to jobs started using the job template.
+	JobTags map[string]*string `locationName:"jobTags" type:"map"`
+
+	// The configuration of parameters existing in the job template.
+	ParameterConfiguration map[string]*TemplateParameterConfiguration `locationName:"parameterConfiguration" type:"map"`
+
+	// The release version of Amazon EMR.
+	//
+	// ReleaseLabel is a required field
+	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTemplateData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTemplateData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobTemplateData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobTemplateData"}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 4))
+	}
+	if s.JobDriver == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDriver"))
+	}
+	if s.ReleaseLabel == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseLabel"))
+	}
+	if s.ReleaseLabel != nil && len(*s.ReleaseLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseLabel", 1))
+	}
+	if s.ConfigurationOverrides != nil {
+		if err := s.ConfigurationOverrides.Validate(); err != nil {
+			invalidParams.AddNested("ConfigurationOverrides", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JobDriver != nil {
+		if err := s.JobDriver.Validate(); err != nil {
+			invalidParams.AddNested("JobDriver", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ParameterConfiguration != nil {
+		for i, v := range s.ParameterConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParameterConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationOverrides sets the ConfigurationOverrides field's value.
+func (s *JobTemplateData) SetConfigurationOverrides(v *ParametricConfigurationOverrides) *JobTemplateData {
+	s.ConfigurationOverrides = v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *JobTemplateData) SetExecutionRoleArn(v string) *JobTemplateData {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetJobDriver sets the JobDriver field's value.
+func (s *JobTemplateData) SetJobDriver(v *JobDriver) *JobTemplateData {
+	s.JobDriver = v
+	return s
+}
+
+// SetJobTags sets the JobTags field's value.
+func (s *JobTemplateData) SetJobTags(v map[string]*string) *JobTemplateData {
+	s.JobTags = v
+	return s
+}
+
+// SetParameterConfiguration sets the ParameterConfiguration field's value.
+func (s *JobTemplateData) SetParameterConfiguration(v map[string]*TemplateParameterConfiguration) *JobTemplateData {
+	s.ParameterConfiguration = v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *JobTemplateData) SetReleaseLabel(v string) *JobTemplateData {
+	s.ReleaseLabel = &v
+	return s
+}
+
 type ListJobRunsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3472,6 +4435,117 @@ func (s *ListJobRunsOutput) SetJobRuns(v []*JobRun) *ListJobRunsOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListJobRunsOutput) SetNextToken(v string) *ListJobRunsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListJobTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The date and time after which the job templates were created.
+	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The date and time before which the job templates were created.
+	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The maximum number of job templates that can be listed.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// The token for the next set of job templates to return.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListJobTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListJobTemplatesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *ListJobTemplatesInput) SetCreatedAfter(v time.Time) *ListJobTemplatesInput {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *ListJobTemplatesInput) SetCreatedBefore(v time.Time) *ListJobTemplatesInput {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListJobTemplatesInput) SetMaxResults(v int64) *ListJobTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobTemplatesInput) SetNextToken(v string) *ListJobTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListJobTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This output displays the token for the next set of job templates.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// This output lists information about the specified job templates.
+	Templates []*JobTemplate `locationName:"templates" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListJobTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobTemplatesOutput) SetNextToken(v string) *ListJobTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTemplates sets the Templates field's value.
+func (s *ListJobTemplatesOutput) SetTemplates(v []*JobTemplate) *ListJobTemplatesOutput {
+	s.Templates = v
 	return s
 }
 
@@ -3913,6 +4987,253 @@ func (s *MonitoringConfiguration) SetS3MonitoringConfiguration(v *S3MonitoringCo
 	return s
 }
 
+// A configuration for CloudWatch monitoring. You can configure your jobs to
+// send log information to CloudWatch Logs. This data type allows job template
+// parameters to be specified within.
+type ParametricCloudWatchMonitoringConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the log group for log publishing.
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
+
+	// The specified name prefix for log streams.
+	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricCloudWatchMonitoringConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricCloudWatchMonitoringConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParametricCloudWatchMonitoringConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParametricCloudWatchMonitoringConfiguration"}
+	if s.LogGroupName != nil && len(*s.LogGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogGroupName", 1))
+	}
+	if s.LogStreamNamePrefix != nil && len(*s.LogStreamNamePrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogStreamNamePrefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *ParametricCloudWatchMonitoringConfiguration) SetLogGroupName(v string) *ParametricCloudWatchMonitoringConfiguration {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamNamePrefix sets the LogStreamNamePrefix field's value.
+func (s *ParametricCloudWatchMonitoringConfiguration) SetLogStreamNamePrefix(v string) *ParametricCloudWatchMonitoringConfiguration {
+	s.LogStreamNamePrefix = &v
+	return s
+}
+
+// A configuration specification to be used to override existing configurations.
+// This data type allows job template parameters to be specified within.
+type ParametricConfigurationOverrides struct {
+	_ struct{} `type:"structure"`
+
+	// The configurations for the application running by the job run.
+	ApplicationConfiguration []*Configuration `locationName:"applicationConfiguration" type:"list"`
+
+	// The configurations for monitoring.
+	MonitoringConfiguration *ParametricMonitoringConfiguration `locationName:"monitoringConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricConfigurationOverrides) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricConfigurationOverrides) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParametricConfigurationOverrides) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParametricConfigurationOverrides"}
+	if s.ApplicationConfiguration != nil {
+		for i, v := range s.ApplicationConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ApplicationConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MonitoringConfiguration != nil {
+		if err := s.MonitoringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MonitoringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationConfiguration sets the ApplicationConfiguration field's value.
+func (s *ParametricConfigurationOverrides) SetApplicationConfiguration(v []*Configuration) *ParametricConfigurationOverrides {
+	s.ApplicationConfiguration = v
+	return s
+}
+
+// SetMonitoringConfiguration sets the MonitoringConfiguration field's value.
+func (s *ParametricConfigurationOverrides) SetMonitoringConfiguration(v *ParametricMonitoringConfiguration) *ParametricConfigurationOverrides {
+	s.MonitoringConfiguration = v
+	return s
+}
+
+// Configuration setting for monitoring. This data type allows job template
+// parameters to be specified within.
+type ParametricMonitoringConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Monitoring configurations for CloudWatch.
+	CloudWatchMonitoringConfiguration *ParametricCloudWatchMonitoringConfiguration `locationName:"cloudWatchMonitoringConfiguration" type:"structure"`
+
+	// Monitoring configurations for the persistent application UI.
+	PersistentAppUI *string `locationName:"persistentAppUI" min:"1" type:"string"`
+
+	// Amazon S3 configuration for monitoring log publishing.
+	S3MonitoringConfiguration *ParametricS3MonitoringConfiguration `locationName:"s3MonitoringConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricMonitoringConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricMonitoringConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParametricMonitoringConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParametricMonitoringConfiguration"}
+	if s.PersistentAppUI != nil && len(*s.PersistentAppUI) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PersistentAppUI", 1))
+	}
+	if s.CloudWatchMonitoringConfiguration != nil {
+		if err := s.CloudWatchMonitoringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchMonitoringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3MonitoringConfiguration != nil {
+		if err := s.S3MonitoringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("S3MonitoringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchMonitoringConfiguration sets the CloudWatchMonitoringConfiguration field's value.
+func (s *ParametricMonitoringConfiguration) SetCloudWatchMonitoringConfiguration(v *ParametricCloudWatchMonitoringConfiguration) *ParametricMonitoringConfiguration {
+	s.CloudWatchMonitoringConfiguration = v
+	return s
+}
+
+// SetPersistentAppUI sets the PersistentAppUI field's value.
+func (s *ParametricMonitoringConfiguration) SetPersistentAppUI(v string) *ParametricMonitoringConfiguration {
+	s.PersistentAppUI = &v
+	return s
+}
+
+// SetS3MonitoringConfiguration sets the S3MonitoringConfiguration field's value.
+func (s *ParametricMonitoringConfiguration) SetS3MonitoringConfiguration(v *ParametricS3MonitoringConfiguration) *ParametricMonitoringConfiguration {
+	s.S3MonitoringConfiguration = v
+	return s
+}
+
+// Amazon S3 configuration for monitoring log publishing. You can configure
+// your jobs to send log information to Amazon S3. This data type allows job
+// template parameters to be specified within.
+type ParametricS3MonitoringConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon S3 destination URI for log publishing.
+	LogUri *string `locationName:"logUri" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricS3MonitoringConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParametricS3MonitoringConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParametricS3MonitoringConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParametricS3MonitoringConfiguration"}
+	if s.LogUri != nil && len(*s.LogUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LogUri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogUri sets the LogUri field's value.
+func (s *ParametricS3MonitoringConfiguration) SetLogUri(v string) *ParametricS3MonitoringConfiguration {
+	s.LogUri = &v
+	return s
+}
+
 // The specified resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -4182,22 +5503,22 @@ type StartJobRunInput struct {
 	ConfigurationOverrides *ConfigurationOverrides `locationName:"configurationOverrides" type:"structure"`
 
 	// The execution role ARN for the job run.
-	//
-	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"20" type:"string" required:"true"`
+	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"20" type:"string"`
 
 	// The job driver for the job run.
-	//
-	// JobDriver is a required field
-	JobDriver *JobDriver `locationName:"jobDriver" type:"structure" required:"true"`
+	JobDriver *JobDriver `locationName:"jobDriver" type:"structure"`
+
+	// The job template ID to be used to start the job run.
+	JobTemplateId *string `locationName:"jobTemplateId" min:"1" type:"string"`
+
+	// The values of job template parameters to start a job run.
+	JobTemplateParameters map[string]*string `locationName:"jobTemplateParameters" type:"map"`
 
 	// The name of the job run.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The Amazon EMR release version to use for the job run.
-	//
-	// ReleaseLabel is a required field
-	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string" required:"true"`
+	ReleaseLabel *string `locationName:"releaseLabel" min:"1" type:"string"`
 
 	// The tags assigned to job runs.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -4232,20 +5553,14 @@ func (s *StartJobRunInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
-	if s.ExecutionRoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
-	}
 	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
 	}
-	if s.JobDriver == nil {
-		invalidParams.Add(request.NewErrParamRequired("JobDriver"))
+	if s.JobTemplateId != nil && len(*s.JobTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTemplateId", 1))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ReleaseLabel == nil {
-		invalidParams.Add(request.NewErrParamRequired("ReleaseLabel"))
 	}
 	if s.ReleaseLabel != nil && len(*s.ReleaseLabel) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ReleaseLabel", 1))
@@ -4294,6 +5609,18 @@ func (s *StartJobRunInput) SetExecutionRoleArn(v string) *StartJobRunInput {
 // SetJobDriver sets the JobDriver field's value.
 func (s *StartJobRunInput) SetJobDriver(v *JobDriver) *StartJobRunInput {
 	s.JobDriver = v
+	return s
+}
+
+// SetJobTemplateId sets the JobTemplateId field's value.
+func (s *StartJobRunInput) SetJobTemplateId(v string) *StartJobRunInput {
+	s.JobTemplateId = &v
+	return s
+}
+
+// SetJobTemplateParameters sets the JobTemplateParameters field's value.
+func (s *StartJobRunInput) SetJobTemplateParameters(v map[string]*string) *StartJobRunInput {
+	s.JobTemplateParameters = v
 	return s
 }
 
@@ -4462,6 +5789,61 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// The configuration of a job template parameter.
+type TemplateParameterConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The default value for the job template parameter.
+	DefaultValue *string `locationName:"defaultValue" min:"1" type:"string"`
+
+	// The type of the job template parameter. Allowed values are: ‘String’,
+	// ‘Number’.
+	Type *string `locationName:"type" type:"string" enum:"TemplateParameterDataType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateParameterConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateParameterConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TemplateParameterConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TemplateParameterConfiguration"}
+	if s.DefaultValue != nil && len(*s.DefaultValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *TemplateParameterConfiguration) SetDefaultValue(v string) *TemplateParameterConfiguration {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TemplateParameterConfiguration) SetType(v string) *TemplateParameterConfiguration {
+	s.Type = &v
+	return s
 }
 
 type UntagResourceInput struct {
@@ -4818,6 +6200,22 @@ func PersistentAppUI_Values() []string {
 	return []string{
 		PersistentAppUIEnabled,
 		PersistentAppUIDisabled,
+	}
+}
+
+const (
+	// TemplateParameterDataTypeNumber is a TemplateParameterDataType enum value
+	TemplateParameterDataTypeNumber = "NUMBER"
+
+	// TemplateParameterDataTypeString is a TemplateParameterDataType enum value
+	TemplateParameterDataTypeString = "STRING"
+)
+
+// TemplateParameterDataType_Values returns all elements of the TemplateParameterDataType enum
+func TemplateParameterDataType_Values() []string {
+	return []string{
+		TemplateParameterDataTypeNumber,
+		TemplateParameterDataTypeString,
 	}
 }
 

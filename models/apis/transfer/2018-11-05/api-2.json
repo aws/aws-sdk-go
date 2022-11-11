@@ -2460,6 +2460,11 @@
       "max":2048,
       "pattern":"^$|arn:.*role/.*"
     },
+    "OnPartialUploadWorkflowDetails":{
+      "type":"list",
+      "member":{"shape":"WorkflowDetail"},
+      "max":1
+    },
     "OnUploadWorkflowDetails":{
       "type":"list",
       "member":{"shape":"WorkflowDetail"},
@@ -3189,9 +3194,9 @@
     },
     "WorkflowDetails":{
       "type":"structure",
-      "required":["OnUpload"],
       "members":{
-        "OnUpload":{"shape":"OnUploadWorkflowDetails"}
+        "OnUpload":{"shape":"OnUploadWorkflowDetails"},
+        "OnPartialUpload":{"shape":"OnPartialUploadWorkflowDetails"}
       }
     },
     "WorkflowId":{

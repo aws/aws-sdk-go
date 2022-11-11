@@ -68,6 +68,14 @@ type FMSAPI interface {
 	AssociateThirdPartyFirewallWithContext(aws.Context, *fms.AssociateThirdPartyFirewallInput, ...request.Option) (*fms.AssociateThirdPartyFirewallOutput, error)
 	AssociateThirdPartyFirewallRequest(*fms.AssociateThirdPartyFirewallInput) (*request.Request, *fms.AssociateThirdPartyFirewallOutput)
 
+	BatchAssociateResource(*fms.BatchAssociateResourceInput) (*fms.BatchAssociateResourceOutput, error)
+	BatchAssociateResourceWithContext(aws.Context, *fms.BatchAssociateResourceInput, ...request.Option) (*fms.BatchAssociateResourceOutput, error)
+	BatchAssociateResourceRequest(*fms.BatchAssociateResourceInput) (*request.Request, *fms.BatchAssociateResourceOutput)
+
+	BatchDisassociateResource(*fms.BatchDisassociateResourceInput) (*fms.BatchDisassociateResourceOutput, error)
+	BatchDisassociateResourceWithContext(aws.Context, *fms.BatchDisassociateResourceInput, ...request.Option) (*fms.BatchDisassociateResourceOutput, error)
+	BatchDisassociateResourceRequest(*fms.BatchDisassociateResourceInput) (*request.Request, *fms.BatchDisassociateResourceOutput)
+
 	DeleteAppsList(*fms.DeleteAppsListInput) (*fms.DeleteAppsListOutput, error)
 	DeleteAppsListWithContext(aws.Context, *fms.DeleteAppsListInput, ...request.Option) (*fms.DeleteAppsListOutput, error)
 	DeleteAppsListRequest(*fms.DeleteAppsListInput) (*request.Request, *fms.DeleteAppsListOutput)
@@ -83,6 +91,10 @@ type FMSAPI interface {
 	DeleteProtocolsList(*fms.DeleteProtocolsListInput) (*fms.DeleteProtocolsListOutput, error)
 	DeleteProtocolsListWithContext(aws.Context, *fms.DeleteProtocolsListInput, ...request.Option) (*fms.DeleteProtocolsListOutput, error)
 	DeleteProtocolsListRequest(*fms.DeleteProtocolsListInput) (*request.Request, *fms.DeleteProtocolsListOutput)
+
+	DeleteResourceSet(*fms.DeleteResourceSetInput) (*fms.DeleteResourceSetOutput, error)
+	DeleteResourceSetWithContext(aws.Context, *fms.DeleteResourceSetInput, ...request.Option) (*fms.DeleteResourceSetOutput, error)
+	DeleteResourceSetRequest(*fms.DeleteResourceSetInput) (*request.Request, *fms.DeleteResourceSetOutput)
 
 	DisassociateAdminAccount(*fms.DisassociateAdminAccountInput) (*fms.DisassociateAdminAccountOutput, error)
 	DisassociateAdminAccountWithContext(aws.Context, *fms.DisassociateAdminAccountInput, ...request.Option) (*fms.DisassociateAdminAccountOutput, error)
@@ -120,6 +132,10 @@ type FMSAPI interface {
 	GetProtocolsListWithContext(aws.Context, *fms.GetProtocolsListInput, ...request.Option) (*fms.GetProtocolsListOutput, error)
 	GetProtocolsListRequest(*fms.GetProtocolsListInput) (*request.Request, *fms.GetProtocolsListOutput)
 
+	GetResourceSet(*fms.GetResourceSetInput) (*fms.GetResourceSetOutput, error)
+	GetResourceSetWithContext(aws.Context, *fms.GetResourceSetInput, ...request.Option) (*fms.GetResourceSetOutput, error)
+	GetResourceSetRequest(*fms.GetResourceSetInput) (*request.Request, *fms.GetResourceSetOutput)
+
 	GetThirdPartyFirewallAssociationStatus(*fms.GetThirdPartyFirewallAssociationStatusInput) (*fms.GetThirdPartyFirewallAssociationStatusOutput, error)
 	GetThirdPartyFirewallAssociationStatusWithContext(aws.Context, *fms.GetThirdPartyFirewallAssociationStatusInput, ...request.Option) (*fms.GetThirdPartyFirewallAssociationStatusOutput, error)
 	GetThirdPartyFirewallAssociationStatusRequest(*fms.GetThirdPartyFirewallAssociationStatusInput) (*request.Request, *fms.GetThirdPartyFirewallAssociationStatusOutput)
@@ -142,6 +158,10 @@ type FMSAPI interface {
 	ListComplianceStatusPages(*fms.ListComplianceStatusInput, func(*fms.ListComplianceStatusOutput, bool) bool) error
 	ListComplianceStatusPagesWithContext(aws.Context, *fms.ListComplianceStatusInput, func(*fms.ListComplianceStatusOutput, bool) bool, ...request.Option) error
 
+	ListDiscoveredResources(*fms.ListDiscoveredResourcesInput) (*fms.ListDiscoveredResourcesOutput, error)
+	ListDiscoveredResourcesWithContext(aws.Context, *fms.ListDiscoveredResourcesInput, ...request.Option) (*fms.ListDiscoveredResourcesOutput, error)
+	ListDiscoveredResourcesRequest(*fms.ListDiscoveredResourcesInput) (*request.Request, *fms.ListDiscoveredResourcesOutput)
+
 	ListMemberAccounts(*fms.ListMemberAccountsInput) (*fms.ListMemberAccountsOutput, error)
 	ListMemberAccountsWithContext(aws.Context, *fms.ListMemberAccountsInput, ...request.Option) (*fms.ListMemberAccountsOutput, error)
 	ListMemberAccountsRequest(*fms.ListMemberAccountsInput) (*request.Request, *fms.ListMemberAccountsOutput)
@@ -162,6 +182,14 @@ type FMSAPI interface {
 
 	ListProtocolsListsPages(*fms.ListProtocolsListsInput, func(*fms.ListProtocolsListsOutput, bool) bool) error
 	ListProtocolsListsPagesWithContext(aws.Context, *fms.ListProtocolsListsInput, func(*fms.ListProtocolsListsOutput, bool) bool, ...request.Option) error
+
+	ListResourceSetResources(*fms.ListResourceSetResourcesInput) (*fms.ListResourceSetResourcesOutput, error)
+	ListResourceSetResourcesWithContext(aws.Context, *fms.ListResourceSetResourcesInput, ...request.Option) (*fms.ListResourceSetResourcesOutput, error)
+	ListResourceSetResourcesRequest(*fms.ListResourceSetResourcesInput) (*request.Request, *fms.ListResourceSetResourcesOutput)
+
+	ListResourceSets(*fms.ListResourceSetsInput) (*fms.ListResourceSetsOutput, error)
+	ListResourceSetsWithContext(aws.Context, *fms.ListResourceSetsInput, ...request.Option) (*fms.ListResourceSetsOutput, error)
+	ListResourceSetsRequest(*fms.ListResourceSetsInput) (*request.Request, *fms.ListResourceSetsOutput)
 
 	ListTagsForResource(*fms.ListTagsForResourceInput) (*fms.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *fms.ListTagsForResourceInput, ...request.Option) (*fms.ListTagsForResourceOutput, error)
@@ -189,6 +217,10 @@ type FMSAPI interface {
 	PutProtocolsList(*fms.PutProtocolsListInput) (*fms.PutProtocolsListOutput, error)
 	PutProtocolsListWithContext(aws.Context, *fms.PutProtocolsListInput, ...request.Option) (*fms.PutProtocolsListOutput, error)
 	PutProtocolsListRequest(*fms.PutProtocolsListInput) (*request.Request, *fms.PutProtocolsListOutput)
+
+	PutResourceSet(*fms.PutResourceSetInput) (*fms.PutResourceSetOutput, error)
+	PutResourceSetWithContext(aws.Context, *fms.PutResourceSetInput, ...request.Option) (*fms.PutResourceSetOutput, error)
+	PutResourceSetRequest(*fms.PutResourceSetInput) (*request.Request, *fms.PutResourceSetOutput)
 
 	TagResource(*fms.TagResourceInput) (*fms.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *fms.TagResourceInput, ...request.Option) (*fms.TagResourceOutput, error)

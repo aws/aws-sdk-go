@@ -11269,6 +11269,48 @@ func (s *SalesforceConnectorProfileProperties) SetIsSandboxEnvironment(v bool) *
 type SalesforceDestinationProperties struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers
+	// data to Salesforce.
+	//
+	// AUTOMATIC
+	//
+	// The default. Amazon AppFlow selects which API to use based on the number
+	// of records that your flow transfers to Salesforce. If your flow transfers
+	// fewer than 1,000 records, Amazon AppFlow uses Salesforce REST API. If your
+	// flow transfers 1,000 records or more, Amazon AppFlow uses Salesforce Bulk
+	// API 2.0.
+	//
+	// Each of these Salesforce APIs structures data differently. If Amazon AppFlow
+	// selects the API automatically, be aware that, for recurring flows, the data
+	// output might vary from one flow run to the next. For example, if a flow runs
+	// daily, it might use REST API on one day to transfer 900 records, and it might
+	// use Bulk API 2.0 on the next day to transfer 1,100 records. For each of these
+	// flow runs, the respective Salesforce API formats the data differently. Some
+	// of the differences include how dates are formatted and null values are represented.
+	// Also, Bulk API 2.0 doesn't transfer Salesforce compound fields.
+	//
+	// By choosing this option, you optimize flow performance for both small and
+	// large data transfers, but the tradeoff is inconsistent formatting in the
+	// output.
+	//
+	// BULKV2
+	//
+	// Amazon AppFlow uses only Salesforce Bulk API 2.0. This API runs asynchronous
+	// data transfers, and it's optimal for large sets of data. By choosing this
+	// option, you ensure that your flow writes consistent output, but you optimize
+	// performance only for large data transfers.
+	//
+	// Note that Bulk API 2.0 does not transfer Salesforce compound fields.
+	//
+	// REST_SYNC
+	//
+	// Amazon AppFlow uses only Salesforce REST API. By choosing this option, you
+	// ensure that your flow writes consistent output, but you decrease performance
+	// for large data transfers that are better suited for Bulk API 2.0. In some
+	// cases, if your flow attempts to transfer a vary large set of data, it might
+	// fail with a timed out error.
+	DataTransferApi *string `locationName:"dataTransferApi" type:"string" enum:"SalesforceDataTransferApi"`
+
 	// The settings that determine how Amazon AppFlow handles an error when placing
 	// data in the Salesforce destination. For example, this setting would determine
 	// if the flow should fail after one insertion error, or continue and attempt
@@ -11326,6 +11368,12 @@ func (s *SalesforceDestinationProperties) Validate() error {
 	return nil
 }
 
+// SetDataTransferApi sets the DataTransferApi field's value.
+func (s *SalesforceDestinationProperties) SetDataTransferApi(v string) *SalesforceDestinationProperties {
+	s.DataTransferApi = &v
+	return s
+}
+
 // SetErrorHandlingConfig sets the ErrorHandlingConfig field's value.
 func (s *SalesforceDestinationProperties) SetErrorHandlingConfig(v *ErrorHandlingConfig) *SalesforceDestinationProperties {
 	s.ErrorHandlingConfig = v
@@ -11354,6 +11402,10 @@ func (s *SalesforceDestinationProperties) SetWriteOperationType(v string) *Sales
 type SalesforceMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// The Salesforce APIs that you can have Amazon AppFlow use when your flows
+	// transfers data to or from Salesforce.
+	DataTransferApis []*string `locationName:"dataTransferApis" type:"list" enum:"SalesforceDataTransferApi"`
+
 	// The desired authorization scope for the Salesforce account.
 	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
 }
@@ -11376,6 +11428,12 @@ func (s SalesforceMetadata) GoString() string {
 	return s.String()
 }
 
+// SetDataTransferApis sets the DataTransferApis field's value.
+func (s *SalesforceMetadata) SetDataTransferApis(v []*string) *SalesforceMetadata {
+	s.DataTransferApis = v
+	return s
+}
+
 // SetOAuthScopes sets the OAuthScopes field's value.
 func (s *SalesforceMetadata) SetOAuthScopes(v []*string) *SalesforceMetadata {
 	s.OAuthScopes = v
@@ -11385,6 +11443,49 @@ func (s *SalesforceMetadata) SetOAuthScopes(v []*string) *SalesforceMetadata {
 // The properties that are applied when Salesforce is being used as a source.
 type SalesforceSourceProperties struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers
+	// data from Salesforce.
+	//
+	// AUTOMATIC
+	//
+	// The default. Amazon AppFlow selects which API to use based on the number
+	// of records that your flow transfers from Salesforce. If your flow transfers
+	// fewer than 1,000,000 records, Amazon AppFlow uses Salesforce REST API. If
+	// your flow transfers 1,000,000 records or more, Amazon AppFlow uses Salesforce
+	// Bulk API 2.0.
+	//
+	// Each of these Salesforce APIs structures data differently. If Amazon AppFlow
+	// selects the API automatically, be aware that, for recurring flows, the data
+	// output might vary from one flow run to the next. For example, if a flow runs
+	// daily, it might use REST API on one day to transfer 900,000 records, and
+	// it might use Bulk API 2.0 on the next day to transfer 1,100,000 records.
+	// For each of these flow runs, the respective Salesforce API formats the data
+	// differently. Some of the differences include how dates are formatted and
+	// null values are represented. Also, Bulk API 2.0 doesn't transfer Salesforce
+	// compound fields.
+	//
+	// By choosing this option, you optimize flow performance for both small and
+	// large data transfers, but the tradeoff is inconsistent formatting in the
+	// output.
+	//
+	// BULKV2
+	//
+	// Amazon AppFlow uses only Salesforce Bulk API 2.0. This API runs asynchronous
+	// data transfers, and it's optimal for large sets of data. By choosing this
+	// option, you ensure that your flow writes consistent output, but you optimize
+	// performance only for large data transfers.
+	//
+	// Note that Bulk API 2.0 does not transfer Salesforce compound fields.
+	//
+	// REST_SYNC
+	//
+	// Amazon AppFlow uses only Salesforce REST API. By choosing this option, you
+	// ensure that your flow writes consistent output, but you decrease performance
+	// for large data transfers that are better suited for Bulk API 2.0. In some
+	// cases, if your flow attempts to transfer a vary large set of data, it might
+	// fail with a timed out error.
+	DataTransferApi *string `locationName:"dataTransferApi" type:"string" enum:"SalesforceDataTransferApi"`
 
 	// The flag that enables dynamic fetching of new (recently added) fields in
 	// the Salesforce objects while running a flow.
@@ -11428,6 +11529,12 @@ func (s *SalesforceSourceProperties) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataTransferApi sets the DataTransferApi field's value.
+func (s *SalesforceSourceProperties) SetDataTransferApi(v string) *SalesforceSourceProperties {
+	s.DataTransferApi = &v
+	return s
 }
 
 // SetEnableDynamicFieldUpdate sets the EnableDynamicFieldUpdate field's value.
@@ -15669,6 +15776,9 @@ const (
 
 	// OperatorPropertiesKeysExcludeSourceFieldsList is a OperatorPropertiesKeys enum value
 	OperatorPropertiesKeysExcludeSourceFieldsList = "EXCLUDE_SOURCE_FIELDS_LIST"
+
+	// OperatorPropertiesKeysIncludeNewFields is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysIncludeNewFields = "INCLUDE_NEW_FIELDS"
 )
 
 // OperatorPropertiesKeys_Values returns all elements of the OperatorPropertiesKeys enum
@@ -15689,6 +15799,7 @@ func OperatorPropertiesKeys_Values() []string {
 		OperatorPropertiesKeysConcatFormat,
 		OperatorPropertiesKeysSubfieldCategoryMap,
 		OperatorPropertiesKeysExcludeSourceFieldsList,
+		OperatorPropertiesKeysIncludeNewFields,
 	}
 }
 
@@ -16165,6 +16276,26 @@ func SalesforceConnectorOperator_Values() []string {
 		SalesforceConnectorOperatorValidateNonNegative,
 		SalesforceConnectorOperatorValidateNumeric,
 		SalesforceConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// SalesforceDataTransferApiAutomatic is a SalesforceDataTransferApi enum value
+	SalesforceDataTransferApiAutomatic = "AUTOMATIC"
+
+	// SalesforceDataTransferApiBulkv2 is a SalesforceDataTransferApi enum value
+	SalesforceDataTransferApiBulkv2 = "BULKV2"
+
+	// SalesforceDataTransferApiRestSync is a SalesforceDataTransferApi enum value
+	SalesforceDataTransferApiRestSync = "REST_SYNC"
+)
+
+// SalesforceDataTransferApi_Values returns all elements of the SalesforceDataTransferApi enum
+func SalesforceDataTransferApi_Values() []string {
+	return []string{
+		SalesforceDataTransferApiAutomatic,
+		SalesforceDataTransferApiBulkv2,
+		SalesforceDataTransferApiRestSync,
 	}
 }
 

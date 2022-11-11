@@ -342,6 +342,66 @@
       "refs": {
       }
     },
+    "EbsGroup": {
+      "base": null,
+      "refs": {
+        "EbsGroupList$member": null
+      }
+    },
+    "EbsGroupList": {
+      "base": null,
+      "refs": {
+        "EbsSnapshotConfiguration$groups": "<p>The groups that have access to the Amazon EBS volume snapshot. If the value <code>all</code> is specified, then the Amazon EBS volume snapshot is public.</p> <ul> <li> <p>If the configuration is for an existing Amazon EBS volume snapshot and you do not specify the <code>groups</code>, then the access preview uses the existing shared <code>groups</code> for the snapshot.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the <code>groups</code>, then the access preview considers the snapshot without any <code>groups</code>.</p> </li> <li> <p>To propose deletion of existing shared <code>groups</code>, you can specify an empty list for <code>groups</code>.</p> </li> </ul>"
+      }
+    },
+    "EbsSnapshotConfiguration": {
+      "base": "<p>The proposed access control configuration for an Amazon EBS volume snapshot. You can propose a configuration for a new Amazon EBS volume snapshot or an Amazon EBS volume snapshot that you own by specifying the user IDs, groups, and optional KMS encryption key. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifySnapshotAttribute.html\">ModifySnapshotAttribute</a>.</p>",
+      "refs": {
+        "Configuration$ebsSnapshot": "<p>The access control configuration is for an Amazon EBS volume snapshot.</p>"
+      }
+    },
+    "EbsSnapshotDataEncryptionKeyId": {
+      "base": null,
+      "refs": {
+        "EbsSnapshotConfiguration$kmsKeyId": "<p>The KMS key identifier for an encrypted Amazon EBS volume snapshot. The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.</p> <ul> <li> <p>If the configuration is for an existing Amazon EBS volume snapshot and you do not specify the <code>kmsKeyId</code>, or you specify an empty string, then the access preview uses the existing <code>kmsKeyId</code> of the snapshot.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the <code>kmsKeyId</code>, the access preview considers the snapshot as unencrypted.</p> </li> </ul>"
+      }
+    },
+    "EbsUserId": {
+      "base": null,
+      "refs": {
+        "EbsUserIdList$member": null
+      }
+    },
+    "EbsUserIdList": {
+      "base": null,
+      "refs": {
+        "EbsSnapshotConfiguration$userIds": "<p>The IDs of the Amazon Web Services accounts that have access to the Amazon EBS volume snapshot.</p> <ul> <li> <p>If the configuration is for an existing Amazon EBS volume snapshot and you do not specify the <code>userIds</code>, then the access preview uses the existing shared <code>userIds</code> for the snapshot.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the <code>userIds</code>, then the access preview considers the snapshot without any <code>userIds</code>.</p> </li> <li> <p>To propose deletion of existing shared <code>accountIds</code>, you can specify an empty list for <code>userIds</code>.</p> </li> </ul>"
+      }
+    },
+    "EcrRepositoryConfiguration": {
+      "base": "<p>The proposed access control configuration for an Amazon ECR repository. You can propose a configuration for a new Amazon ECR repository or an existing Amazon ECR repository that you own by specifying the Amazon ECR policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_Repository.html\">Repository</a>.</p> <ul> <li> <p>If the configuration is for an existing Amazon ECR repository and you do not specify the Amazon ECR policy, then the access preview uses the existing Amazon ECR policy for the repository.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the policy, then the access preview assumes an Amazon ECR repository without a policy.</p> </li> <li> <p>To propose deletion of an existing Amazon ECR repository policy, you can specify an empty string for the Amazon ECR policy.</p> </li> </ul>",
+      "refs": {
+        "Configuration$ecrRepository": "<p>The access control configuration is for an Amazon ECR repository.</p>"
+      }
+    },
+    "EcrRepositoryPolicy": {
+      "base": null,
+      "refs": {
+        "EcrRepositoryConfiguration$repositoryPolicy": "<p>The JSON repository policy text to apply to the Amazon ECR repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html\">Private repository policy examples</a> in the <i>Amazon ECR User Guide</i>.</p>"
+      }
+    },
+    "EfsFileSystemConfiguration": {
+      "base": "<p>The proposed access control configuration for an Amazon EFS file system. You can propose a configuration for a new Amazon EFS file system or an existing Amazon EFS file system that you own by specifying the Amazon EFS policy. For more information, see <a href=\"https://docs.aws.amazon.com/efs/latest/ug/using-fs.html\">Using file systems in Amazon EFS</a>.</p> <ul> <li> <p>If the configuration is for an existing Amazon EFS file system and you do not specify the Amazon EFS policy, then the access preview uses the existing Amazon EFS policy for the file system.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the policy, then the access preview assumes an Amazon EFS file system without a policy.</p> </li> <li> <p>To propose deletion of an existing Amazon EFS file system policy, you can specify an empty string for the Amazon EFS policy.</p> </li> </ul>",
+      "refs": {
+        "Configuration$efsFileSystem": "<p>The access control configuration is for an Amazon EFS file system.</p>"
+      }
+    },
+    "EfsFileSystemPolicy": {
+      "base": null,
+      "refs": {
+        "EfsFileSystemConfiguration$fileSystemPolicy": "<p>The JSON policy definition to apply to the Amazon EFS file system. For more information on the elements that make up a file system policy, see <a href=\"https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies\">Amazon EFS Resource-based policies</a>.</p>"
+      }
+    },
     "FilterCriteriaMap": {
       "base": null,
       "refs": {
@@ -560,11 +620,11 @@
         "ListArchiveRulesRequest$maxResults": "<p>The maximum number of results to return in the request.</p>",
         "ListFindingsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>",
         "PathElement$index": "<p>Refers to an index in a JSON array.</p>",
-        "Position$column": "<p>The column of the position, starting from 0.</p>",
         "Position$line": "<p>The line of the position, starting from 1.</p>",
+        "Position$column": "<p>The column of the position, starting from 0.</p>",
         "Position$offset": "<p>The offset within the policy that corresponds to the position, starting from 0.</p>",
-        "Substring$length": "<p>The length of the substring.</p>",
         "Substring$start": "<p>The start index of the substring, starting from 0.</p>",
+        "Substring$length": "<p>The length of the substring.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The seconds to wait to retry.</p>",
         "ValidatePolicyRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
       }
@@ -888,8 +948,8 @@
     "Position": {
       "base": "<p>A position in a policy.</p>",
       "refs": {
-        "Span$end": "<p>The end position of the span (exclusive).</p>",
-        "Span$start": "<p>The start position of the span (inclusive).</p>"
+        "Span$start": "<p>The start position of the span (inclusive).</p>",
+        "Span$end": "<p>The end position of the span (exclusive).</p>"
       }
     },
     "PrincipalArn": {
@@ -907,6 +967,90 @@
         "AccessPreviewFinding$principal": "<p>The external principal that has access to a resource within the zone of trust.</p>",
         "Finding$principal": "<p>The external principal that access to a resource within the zone of trust.</p>",
         "FindingSummary$principal": "<p>The external principal that has access to a resource within the zone of trust.</p>"
+      }
+    },
+    "RdsDbClusterSnapshotAccountId": {
+      "base": null,
+      "refs": {
+        "RdsDbClusterSnapshotAccountIdsList$member": null
+      }
+    },
+    "RdsDbClusterSnapshotAccountIdsList": {
+      "base": null,
+      "refs": {
+        "RdsDbClusterSnapshotAttributeValue$accountIds": "<p>The Amazon Web Services account IDs that have access to the manual Amazon RDS DB cluster snapshot. If the value <code>all</code> is specified, then the Amazon RDS DB cluster snapshot is public and can be copied or restored by all Amazon Web Services accounts.</p> <ul> <li> <p>If the configuration is for an existing Amazon RDS DB cluster snapshot and you do not specify the <code>accountIds</code> in <code>RdsDbClusterSnapshotAttributeValue</code>, then the access preview uses the existing shared <code>accountIds</code> for the snapshot.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the specify the <code>accountIds</code> in <code>RdsDbClusterSnapshotAttributeValue</code>, then the access preview considers the snapshot without any attributes.</p> </li> <li> <p>To propose deletion of existing shared <code>accountIds</code>, you can specify an empty list for <code>accountIds</code> in the <code>RdsDbClusterSnapshotAttributeValue</code>.</p> </li> </ul>"
+      }
+    },
+    "RdsDbClusterSnapshotAttributeName": {
+      "base": null,
+      "refs": {
+        "RdsDbClusterSnapshotAttributesMap$key": null
+      }
+    },
+    "RdsDbClusterSnapshotAttributeValue": {
+      "base": "<p>The values for a manual Amazon RDS DB cluster snapshot attribute.</p>",
+      "refs": {
+        "RdsDbClusterSnapshotAttributesMap$value": null
+      }
+    },
+    "RdsDbClusterSnapshotAttributesMap": {
+      "base": null,
+      "refs": {
+        "RdsDbClusterSnapshotConfiguration$attributes": "<p>The names and values of manual DB cluster snapshot attributes. Manual DB cluster snapshot attributes are used to authorize other Amazon Web Services accounts to restore a manual DB cluster snapshot. The only valid value for <code>AttributeName</code> for the attribute map is <code>restore</code> </p>"
+      }
+    },
+    "RdsDbClusterSnapshotConfiguration": {
+      "base": "<p>The proposed access control configuration for an Amazon RDS DB cluster snapshot. You can propose a configuration for a new Amazon RDS DB cluster snapshot or an Amazon RDS DB cluster snapshot that you own by specifying the <code>RdsDbClusterSnapshotAttributeValue</code> and optional KMS encryption key. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ModifyDBClusterSnapshotAttribute.html\">ModifyDBClusterSnapshotAttribute</a>.</p>",
+      "refs": {
+        "Configuration$rdsDbClusterSnapshot": "<p>The access control configuration is for an Amazon RDS DB cluster snapshot.</p>"
+      }
+    },
+    "RdsDbClusterSnapshotKmsKeyId": {
+      "base": null,
+      "refs": {
+        "RdsDbClusterSnapshotConfiguration$kmsKeyId": "<p>The KMS key identifier for an encrypted Amazon RDS DB cluster snapshot. The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.</p> <ul> <li> <p>If the configuration is for an existing Amazon RDS DB cluster snapshot and you do not specify the <code>kmsKeyId</code>, or you specify an empty string, then the access preview uses the existing <code>kmsKeyId</code> of the snapshot.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the specify the <code>kmsKeyId</code>, then the access preview considers the snapshot as unencrypted.</p> </li> </ul>"
+      }
+    },
+    "RdsDbSnapshotAccountId": {
+      "base": null,
+      "refs": {
+        "RdsDbSnapshotAccountIdsList$member": null
+      }
+    },
+    "RdsDbSnapshotAccountIdsList": {
+      "base": null,
+      "refs": {
+        "RdsDbSnapshotAttributeValue$accountIds": "<p>The Amazon Web Services account IDs that have access to the manual Amazon RDS DB snapshot. If the value <code>all</code> is specified, then the Amazon RDS DB snapshot is public and can be copied or restored by all Amazon Web Services accounts.</p> <ul> <li> <p>If the configuration is for an existing Amazon RDS DB snapshot and you do not specify the <code>accountIds</code> in <code>RdsDbSnapshotAttributeValue</code>, then the access preview uses the existing shared <code>accountIds</code> for the snapshot.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the specify the <code>accountIds</code> in <code>RdsDbSnapshotAttributeValue</code>, then the access preview considers the snapshot without any attributes.</p> </li> <li> <p>To propose deletion of an existing shared <code>accountIds</code>, you can specify an empty list for <code>accountIds</code> in the <code>RdsDbSnapshotAttributeValue</code>.</p> </li> </ul>"
+      }
+    },
+    "RdsDbSnapshotAttributeName": {
+      "base": null,
+      "refs": {
+        "RdsDbSnapshotAttributesMap$key": null
+      }
+    },
+    "RdsDbSnapshotAttributeValue": {
+      "base": "<p>The name and values of a manual Amazon RDS DB snapshot attribute. Manual DB snapshot attributes are used to authorize other Amazon Web Services accounts to restore a manual DB snapshot.</p>",
+      "refs": {
+        "RdsDbSnapshotAttributesMap$value": null
+      }
+    },
+    "RdsDbSnapshotAttributesMap": {
+      "base": null,
+      "refs": {
+        "RdsDbSnapshotConfiguration$attributes": "<p>The names and values of manual DB snapshot attributes. Manual DB snapshot attributes are used to authorize other Amazon Web Services accounts to restore a manual DB snapshot. The only valid value for <code>attributeName</code> for the attribute map is restore.</p>"
+      }
+    },
+    "RdsDbSnapshotConfiguration": {
+      "base": "<p>The proposed access control configuration for an Amazon RDS DB snapshot. You can propose a configuration for a new Amazon RDS DB snapshot or an Amazon RDS DB snapshot that you own by specifying the <code>RdsDbSnapshotAttributeValue</code> and optional KMS encryption key. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ModifyDBSnapshotAttribute.html\">ModifyDBSnapshotAttribute</a>.</p>",
+      "refs": {
+        "Configuration$rdsDbSnapshot": "<p>The access control configuration is for an Amazon RDS DB snapshot.</p>"
+      }
+    },
+    "RdsDbSnapshotKmsKeyId": {
+      "base": null,
+      "refs": {
+        "RdsDbSnapshotConfiguration$kmsKeyId": "<p>The KMS key identifier for an encrypted Amazon RDS DB snapshot. The KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the KMS key.</p> <ul> <li> <p>If the configuration is for an existing Amazon RDS DB snapshot and you do not specify the <code>kmsKeyId</code>, or you specify an empty string, then the access preview uses the existing <code>kmsKeyId</code> of the snapshot.</p> </li> <li> <p>If the access preview is for a new resource and you do not specify the specify the <code>kmsKeyId</code>, then the access preview considers the snapshot as unencrypted.</p> </li> </ul>"
       }
     },
     "ReasonCode": {
@@ -961,7 +1105,7 @@
       }
     },
     "S3AccessPointConfiguration": {
-      "base": "<p>The configuration for an Amazon S3 access point or multi-region access point for the bucket. You can propose up to 10 access points or multi-region access points per bucket. If the proposed Amazon S3 access point configuration is for an existing bucket, the access preview uses the proposed access point configuration in place of the existing access points. To propose an access point without a policy, you can provide an empty string as the access point policy. For more information, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html\">Creating access points</a>. For more information about access point policy limits, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points-restrictions-limitations.html\">Access points restrictions and limitations</a>.</p>",
+      "base": "<p>The configuration for an Amazon S3 access point or multi-region access point for the bucket. You can propose up to 10 access points or multi-region access points per bucket. If the proposed Amazon S3 access point configuration is for an existing bucket, the access preview uses the proposed access point configuration in place of the existing access points. To propose an access point without a policy, you can provide an empty string as the access point policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html\">Creating access points</a>. For more information about access point policy limits, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points-restrictions-limitations.html\">Access points restrictions and limitations</a>.</p>",
       "refs": {
         "S3AccessPointConfigurationsMap$value": null
       }
@@ -1032,6 +1176,18 @@
         "AnalyzedResource$sharedVia": "<p>Indicates how the access that generated the finding is granted. This is populated for Amazon S3 bucket findings.</p>"
       }
     },
+    "SnsTopicConfiguration": {
+      "base": "<p>The proposed access control configuration for an Amazon SNS topic. You can propose a configuration for a new Amazon SNS topic or an existing Amazon SNS topic that you own by specifying the policy. If the configuration is for an existing Amazon SNS topic and you do not specify the Amazon SNS policy, then the access preview uses the existing Amazon SNS policy for the topic. If the access preview is for a new resource and you do not specify the policy, then the access preview assumes an Amazon SNS topic without a policy. To propose deletion of an existing Amazon SNS topic policy, you can specify an empty string for the Amazon SNS policy. For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/api/API_Topic.html\">Topic</a>.</p>",
+      "refs": {
+        "Configuration$snsTopic": "<p>The access control configuration is for an Amazon SNS topic</p>"
+      }
+    },
+    "SnsTopicPolicy": {
+      "base": null,
+      "refs": {
+        "SnsTopicConfiguration$topicPolicy": "<p>The JSON policy text that defines who can access an Amazon SNS topic. For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-use-cases.html\">Example cases for Amazon SNS access control</a> in the <i>Amazon SNS Developer Guide</i>.</p>"
+      }
+    },
     "SortCriteria": {
       "base": "<p>The criteria used to sort.</p>",
       "refs": {
@@ -1081,12 +1237,12 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
-        "AccessPreviewFinding$error": "<p>An error.</p>",
         "AccessPreviewFinding$resource": "<p>The resource that an external principal has access to. This is the resource associated with the access preview.</p>",
         "AccessPreviewFinding$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource. For most Amazon Web Services resources, the owning account is the account in which the resource was created.</p>",
+        "AccessPreviewFinding$error": "<p>An error.</p>",
         "ActionList$member": null,
-        "AnalyzedResource$error": "<p>An error message.</p>",
         "AnalyzedResource$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
+        "AnalyzedResource$error": "<p>An error message.</p>",
         "AnalyzedResourceSummary$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
         "AnalyzerSummary$lastResourceAnalyzed": "<p>The resource that was most recently analyzed by the analyzer.</p>",
         "ApplyArchiveRuleRequest$clientToken": "<p>A client token.</p>",
@@ -1101,13 +1257,13 @@
         "DeleteAnalyzerRequest$clientToken": "<p>A client token.</p>",
         "DeleteArchiveRuleRequest$clientToken": "<p>A client token.</p>",
         "FilterCriteriaMap$key": null,
-        "Finding$error": "<p>An error.</p>",
         "Finding$resource": "<p>The resource that an external principal has access to.</p>",
         "Finding$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
+        "Finding$error": "<p>An error.</p>",
         "FindingSourceDetail$accessPointArn": "<p>The ARN of the access point that generated the finding. The ARN format depends on whether the ARN represents an access point or a multi-region access point.</p>",
-        "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",
         "FindingSummary$resource": "<p>The resource that the external principal has access to.</p>",
         "FindingSummary$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
+        "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",
         "GeneratedPolicy$policy": "<p>The text to use as the content for the new policy. The policy is created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a> action.</p>",
         "InternalServerException$message": null,
         "JobError$message": "<p>Specific information about the error. For example, which service quota was exceeded or which resource was not found.</p>",
@@ -1126,6 +1282,7 @@
         "SharedViaList$member": null,
         "SortCriteria$attributeName": "<p>The name of the attribute to sort on.</p>",
         "StartPolicyGenerationRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect.</p> <p>If you do not specify a client token, one is automatically generated by the Amazon Web Services SDK.</p>",
+        "StartResourceScanRequest$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource. For most Amazon Web Services resources, the owning account is the account in which the resource was created.</p>",
         "TagKeys$member": null,
         "TagResourceRequest$resourceArn": "<p>The ARN of the resource to add the tag to.</p>",
         "TagsMap$key": null,
@@ -1136,8 +1293,8 @@
         "UpdateFindingsRequest$clientToken": "<p>A client token.</p>",
         "ValidatePolicyFinding$findingDetails": "<p>A localized message that explains the finding and provides guidance on how to address it.</p>",
         "ValidationException$message": null,
-        "ValidationExceptionField$message": "<p>A message about the validation exception.</p>",
         "ValidationExceptionField$name": "<p>The name of the validation exception.</p>",
+        "ValidationExceptionField$message": "<p>A message about the validation exception.</p>",
         "ValueList$member": null
       }
     },
@@ -1183,27 +1340,27 @@
         "AccessPreview$createdAt": "<p>The time at which the access preview was created.</p>",
         "AccessPreviewFinding$createdAt": "<p>The time at which the access preview finding was created.</p>",
         "AccessPreviewSummary$createdAt": "<p>The time at which the access preview was created.</p>",
-        "AnalyzedResource$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
         "AnalyzedResource$createdAt": "<p>The time at which the finding was created.</p>",
+        "AnalyzedResource$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
         "AnalyzedResource$updatedAt": "<p>The time at which the finding was updated.</p>",
         "AnalyzerSummary$createdAt": "<p>A timestamp for the time at which the analyzer was created.</p>",
         "AnalyzerSummary$lastResourceAnalyzedAt": "<p>The time at which the most recently analyzed resource was analyzed.</p>",
         "ArchiveRuleSummary$createdAt": "<p>The time at which the archive rule was created.</p>",
         "ArchiveRuleSummary$updatedAt": "<p>The time at which the archive rule was last updated.</p>",
-        "CloudTrailDetails$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
         "CloudTrailDetails$startTime": "<p>The start of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp before this time are not considered to generate a policy.</p>",
-        "CloudTrailProperties$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
+        "CloudTrailDetails$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
         "CloudTrailProperties$startTime": "<p>The start of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp before this time are not considered to generate a policy.</p>",
-        "Finding$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
+        "CloudTrailProperties$endTime": "<p>The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.</p>",
         "Finding$createdAt": "<p>The time at which the finding was generated.</p>",
+        "Finding$analyzedAt": "<p>The time at which the resource was analyzed.</p>",
         "Finding$updatedAt": "<p>The time at which the finding was updated.</p>",
-        "FindingSummary$analyzedAt": "<p>The time at which the resource-based policy that generated the finding was analyzed.</p>",
         "FindingSummary$createdAt": "<p>The time at which the finding was created.</p>",
+        "FindingSummary$analyzedAt": "<p>The time at which the resource-based policy that generated the finding was analyzed.</p>",
         "FindingSummary$updatedAt": "<p>The time at which the finding was most recently updated.</p>",
-        "JobDetails$completedOn": "<p>A timestamp of when the job was completed.</p>",
         "JobDetails$startedOn": "<p>A timestamp of when the job was started.</p>",
-        "PolicyGeneration$completedOn": "<p>A timestamp of when the policy generation was completed.</p>",
-        "PolicyGeneration$startedOn": "<p>A timestamp of when the policy generation started.</p>"
+        "JobDetails$completedOn": "<p>A timestamp of when the job was completed.</p>",
+        "PolicyGeneration$startedOn": "<p>A timestamp of when the policy generation started.</p>",
+        "PolicyGeneration$completedOn": "<p>A timestamp of when the policy generation was completed.</p>"
       }
     },
     "Token": {
@@ -1339,9 +1496,9 @@
     "ValueList": {
       "base": null,
       "refs": {
-        "Criterion$contains": "<p>A \"contains\" operator to match for the filter used to create the rule.</p>",
         "Criterion$eq": "<p>An \"equals\" operator to match for the filter used to create the rule.</p>",
-        "Criterion$neq": "<p>A \"not equals\" operator to match for the filter used to create the rule.</p>"
+        "Criterion$neq": "<p>A \"not equals\" operator to match for the filter used to create the rule.</p>",
+        "Criterion$contains": "<p>A \"contains\" operator to match for the filter used to create the rule.</p>"
       }
     },
     "VpcConfiguration": {

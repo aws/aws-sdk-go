@@ -2551,6 +2551,7 @@
         "st2110-jpegxs",
         "cdi",
         "srt-listener",
+        "srt-caller",
         "fujitsu-qos"
       ]
     },
@@ -2953,6 +2954,14 @@
           "shape": "__string",
           "locationName": "senderIpAddress"
         },
+        "SourceListenerAddress": {
+          "shape": "__string",
+          "locationName": "sourceListenerAddress"
+        },
+        "SourceListenerPort": {
+          "shape": "__integer",
+          "locationName": "sourceListenerPort"
+        },
         "StreamId": {
           "shape": "__string",
           "locationName": "streamId"
@@ -3209,6 +3218,14 @@
         "SmoothingLatency": {
           "shape": "__integer",
           "locationName": "smoothingLatency"
+        },
+        "SourceListenerAddress": {
+          "shape": "__string",
+          "locationName": "sourceListenerAddress"
+        },
+        "SourceListenerPort": {
+          "shape": "__integer",
+          "locationName": "sourceListenerPort"
         },
         "StreamId": {
           "shape": "__string",
@@ -3583,6 +3600,14 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "sourceArn"
+        },
+        "SourceListenerAddress": {
+          "shape": "__string",
+          "locationName": "sourceListenerAddress"
+        },
+        "SourceListenerPort": {
+          "shape": "__integer",
+          "locationName": "sourceListenerPort"
         },
         "StreamId": {
           "shape": "__string",

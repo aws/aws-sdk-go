@@ -3196,6 +3196,14 @@ type CertificateAuthority struct {
 
 	// Type of your private CA.
 	Type *string `type:"string" enum:"CertificateAuthorityType"`
+
+	// Specifies whether the CA issues general-purpose certificates that typically
+	// require a revocation mechanism, or short-lived certificates that may optionally
+	// omit revocation because they expire quickly. Short-lived certificate validity
+	// is limited to seven days.
+	//
+	// The default value is GENERAL_PURPOSE.
+	UsageMode *string `type:"string" enum:"CertificateAuthorityUsageMode"`
 }
 
 // String returns the string representation.
@@ -3297,6 +3305,12 @@ func (s *CertificateAuthority) SetStatus(v string) *CertificateAuthority {
 // SetType sets the Type field's value.
 func (s *CertificateAuthority) SetType(v string) *CertificateAuthority {
 	s.Type = &v
+	return s
+}
+
+// SetUsageMode sets the UsageMode field's value.
+func (s *CertificateAuthority) SetUsageMode(v string) *CertificateAuthority {
+	s.UsageMode = &v
 	return s
 }
 
@@ -3710,6 +3724,14 @@ type CreateCertificateAuthorityInput struct {
 	// up to 50 tags with a private CA. For information using tags with IAM to manage
 	// permissions, see Controlling Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
 	Tags []*Tag `min:"1" type:"list"`
+
+	// Specifies whether the CA issues general-purpose certificates that typically
+	// require a revocation mechanism, or short-lived certificates that may optionally
+	// omit revocation because they expire quickly. Short-lived certificate validity
+	// is limited to seven days.
+	//
+	// The default value is GENERAL_PURPOSE.
+	UsageMode *string `type:"string" enum:"CertificateAuthorityUsageMode"`
 }
 
 // String returns the string representation.
@@ -3805,6 +3827,12 @@ func (s *CreateCertificateAuthorityInput) SetRevocationConfiguration(v *Revocati
 // SetTags sets the Tags field's value.
 func (s *CreateCertificateAuthorityInput) SetTags(v []*Tag) *CreateCertificateAuthorityInput {
 	s.Tags = v
+	return s
+}
+
+// SetUsageMode sets the UsageMode field's value.
+func (s *CreateCertificateAuthorityInput) SetUsageMode(v string) *CreateCertificateAuthorityInput {
+	s.UsageMode = &v
 	return s
 }
 
@@ -4020,7 +4048,7 @@ func (s CreatePermissionOutput) GoString() string {
 // openssl crl -inform DER -text -in crl_path -noout
 //
 // For more information, see Planning a certificate revocation list (CRL) (https://docs.aws.amazon.com/acm-pca/latest/userguide/crl-planning.html)
-// in the Certificate Manager Private Certificate Authority (PCA) User Guide
+// in the Private Certificate Authority (PCA) User Guide
 type CrlConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7128,7 +7156,7 @@ type OcspConfiguration struct {
 	//
 	// For more information, see Customizing Online Certificate Status Protocol
 	// (OCSP) (https://docs.aws.amazon.com/acm-pca/latest/userguide/ocsp-customize.html)
-	// in the Certificate Manager Private Certificate Authority (PCA) User Guide.
+	// in the Private Certificate Authority (PCA) User Guide.
 	OcspCustomCname *string `type:"string"`
 }
 
@@ -8015,7 +8043,7 @@ func (s RestoreCertificateAuthorityOutput) GoString() string {
 // by clients, and a CRL contains an updated list of certificates revoked by
 // your CA. For more information, see RevokeCertificate (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_RevokeCertificate.html)
 // and Setting up a certificate revocation method (https://docs.aws.amazon.com/acm-pca/latest/userguide/revocation-setup.html)
-// in the Certificate Manager Private Certificate Authority (PCA) User Guide.
+// in the Private Certificate Authority (PCA) User Guide.
 type RevocationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8632,7 +8660,7 @@ func (s UpdateCertificateAuthorityOutput) GoString() string {
 // Validity specifies the period of time during which a certificate is valid.
 // Validity can be expressed as an explicit date and time when the validity
 // of a certificate starts or expires, or as a span of time after issuance,
-// stated in days, months, or years. For more information, see Validity (https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.5)
+// stated in days, months, or years. For more information, see Validity (https://tools.ietf.org/html/rfc5280#section-4.1.2.5)
 // in RFC 5280.
 //
 // ACM Private CA API consumes the Validity data type differently in two distinct
@@ -8860,6 +8888,22 @@ func CertificateAuthorityType_Values() []string {
 	return []string{
 		CertificateAuthorityTypeRoot,
 		CertificateAuthorityTypeSubordinate,
+	}
+}
+
+const (
+	// CertificateAuthorityUsageModeGeneralPurpose is a CertificateAuthorityUsageMode enum value
+	CertificateAuthorityUsageModeGeneralPurpose = "GENERAL_PURPOSE"
+
+	// CertificateAuthorityUsageModeShortLivedCertificate is a CertificateAuthorityUsageMode enum value
+	CertificateAuthorityUsageModeShortLivedCertificate = "SHORT_LIVED_CERTIFICATE"
+)
+
+// CertificateAuthorityUsageMode_Values returns all elements of the CertificateAuthorityUsageMode enum
+func CertificateAuthorityUsageMode_Values() []string {
+	return []string{
+		CertificateAuthorityUsageModeGeneralPurpose,
+		CertificateAuthorityUsageModeShortLivedCertificate,
 	}
 }
 

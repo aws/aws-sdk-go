@@ -144,6 +144,10 @@ type ECSAPI interface {
 	ExecuteCommandWithContext(aws.Context, *ecs.ExecuteCommandInput, ...request.Option) (*ecs.ExecuteCommandOutput, error)
 	ExecuteCommandRequest(*ecs.ExecuteCommandInput) (*request.Request, *ecs.ExecuteCommandOutput)
 
+	GetTaskProtection(*ecs.GetTaskProtectionInput) (*ecs.GetTaskProtectionOutput, error)
+	GetTaskProtectionWithContext(aws.Context, *ecs.GetTaskProtectionInput, ...request.Option) (*ecs.GetTaskProtectionOutput, error)
+	GetTaskProtectionRequest(*ecs.GetTaskProtectionInput) (*request.Request, *ecs.GetTaskProtectionOutput)
+
 	ListAccountSettings(*ecs.ListAccountSettingsInput) (*ecs.ListAccountSettingsOutput, error)
 	ListAccountSettingsWithContext(aws.Context, *ecs.ListAccountSettingsInput, ...request.Option) (*ecs.ListAccountSettingsOutput, error)
 	ListAccountSettingsRequest(*ecs.ListAccountSettingsInput) (*request.Request, *ecs.ListAccountSettingsOutput)
@@ -287,6 +291,10 @@ type ECSAPI interface {
 	UpdateServicePrimaryTaskSet(*ecs.UpdateServicePrimaryTaskSetInput) (*ecs.UpdateServicePrimaryTaskSetOutput, error)
 	UpdateServicePrimaryTaskSetWithContext(aws.Context, *ecs.UpdateServicePrimaryTaskSetInput, ...request.Option) (*ecs.UpdateServicePrimaryTaskSetOutput, error)
 	UpdateServicePrimaryTaskSetRequest(*ecs.UpdateServicePrimaryTaskSetInput) (*request.Request, *ecs.UpdateServicePrimaryTaskSetOutput)
+
+	UpdateTaskProtection(*ecs.UpdateTaskProtectionInput) (*ecs.UpdateTaskProtectionOutput, error)
+	UpdateTaskProtectionWithContext(aws.Context, *ecs.UpdateTaskProtectionInput, ...request.Option) (*ecs.UpdateTaskProtectionOutput, error)
+	UpdateTaskProtectionRequest(*ecs.UpdateTaskProtectionInput) (*request.Request, *ecs.UpdateTaskProtectionOutput)
 
 	UpdateTaskSet(*ecs.UpdateTaskSetInput) (*ecs.UpdateTaskSetOutput, error)
 	UpdateTaskSetWithContext(aws.Context, *ecs.UpdateTaskSetInput, ...request.Option) (*ecs.UpdateTaskSetOutput, error)

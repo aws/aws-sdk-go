@@ -346,24 +346,10 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
-// When the service scheduler launches new tasks, it determines task placement
-// in your cluster using the following logic:
-//
-//   - Determine which of the container instances in your cluster can support
-//     the task definition of your service. For example, they have the required
-//     CPU, memory, ports, and container instance attributes.
-//
-//   - By default, the service scheduler attempts to balance tasks across Availability
-//     Zones in this manner. This is the case even if you can choose a different
-//     placement strategy with the placementStrategy parameter. Sort the valid
-//     container instances, giving priority to instances that have the fewest
-//     number of running tasks for this service in their respective Availability
-//     Zone. For example, if zone A has one running service task and zones B
-//     and C each have zero, valid container instances in either zone B or C
-//     are considered optimal for placement. Place the new service task on a
-//     valid container instance in an optimal Availability Zone based on the
-//     previous steps, favoring container instances with the fewest number of
-//     running tasks for this service.
+// When the service scheduler launches new tasks, it determines task placement.
+// For information about task placement and task placement strategies, see Amazon
+// ECS task placement (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement.html)
+// in the Amazon Elastic Container Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2248,6 +2234,108 @@ func (c *ECS) ExecuteCommand(input *ExecuteCommandInput) (*ExecuteCommandOutput,
 // for more information on using Contexts.
 func (c *ECS) ExecuteCommandWithContext(ctx aws.Context, input *ExecuteCommandInput, opts ...request.Option) (*ExecuteCommandOutput, error) {
 	req, out := c.ExecuteCommandRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTaskProtection = "GetTaskProtection"
+
+// GetTaskProtectionRequest generates a "aws/request.Request" representing the
+// client's request for the GetTaskProtection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTaskProtection for more information on using the GetTaskProtection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTaskProtectionRequest method.
+//	req, resp := client.GetTaskProtectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/GetTaskProtection
+func (c *ECS) GetTaskProtectionRequest(input *GetTaskProtectionInput) (req *request.Request, output *GetTaskProtectionOutput) {
+	op := &request.Operation{
+		Name:       opGetTaskProtection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetTaskProtectionInput{}
+	}
+
+	output = &GetTaskProtectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTaskProtection API operation for Amazon EC2 Container Service.
+//
+// Retrieves the protection status of tasks in an Amazon ECS service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Service's
+// API operation GetTaskProtection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have authorization to perform the requested action.
+//
+//   - ClientException
+//     These errors are usually caused by a client action. This client action might
+//     be using an action or resource on behalf of a user that doesn't have permissions
+//     to use the action or resource,. Or, it might be specifying an identifier
+//     that isn't valid.
+//
+//   - ClusterNotFoundException
+//     The specified cluster wasn't found. You can view your available clusters
+//     with ListClusters. Amazon ECS clusters are Region specific.
+//
+//   - InvalidParameterException
+//     The specified parameter isn't valid. Review the available parameters for
+//     the API request.
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
+//
+//   - UnsupportedFeatureException
+//     The specified task isn't supported in this Region.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/GetTaskProtection
+func (c *ECS) GetTaskProtection(input *GetTaskProtectionInput) (*GetTaskProtectionOutput, error) {
+	req, out := c.GetTaskProtectionRequest(input)
+	return out, req.Send()
+}
+
+// GetTaskProtectionWithContext is the same as GetTaskProtection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTaskProtection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ECS) GetTaskProtectionWithContext(ctx aws.Context, input *GetTaskProtectionInput, opts ...request.Option) (*GetTaskProtectionOutput, error) {
+	req, out := c.GetTaskProtectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5868,6 +5956,133 @@ func (c *ECS) UpdateServicePrimaryTaskSetWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
+const opUpdateTaskProtection = "UpdateTaskProtection"
+
+// UpdateTaskProtectionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTaskProtection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTaskProtection for more information on using the UpdateTaskProtection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTaskProtectionRequest method.
+//	req, resp := client.UpdateTaskProtectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateTaskProtection
+func (c *ECS) UpdateTaskProtectionRequest(input *UpdateTaskProtectionInput) (req *request.Request, output *UpdateTaskProtectionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTaskProtection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTaskProtectionInput{}
+	}
+
+	output = &UpdateTaskProtectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTaskProtection API operation for Amazon EC2 Container Service.
+//
+// Updates the protection status of a task. You can set protectionEnabled to
+// true to protect your task from termination during scale-in events from Service
+// Autoscaling (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html)
+// or deployments (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html).
+//
+// Task-protection, by default, expires after 2 hours at which point Amazon
+// ECS unsets the protectionEnabled property making the task eligible for termination
+// by a subsequent scale-in event.
+//
+// You can specify a custom expiration period for task protection from 1 minute
+// to up to 2,880 minutes (48 hours). To specify the custom expiration period,
+// set the expiresInMinutes property. The expiresInMinutes property is always
+// reset when you invoke this operation for a task that already has protectionEnabled
+// set to true. You can keep extending the protection expiration period of a
+// task by invoking this operation repeatedly.
+//
+// To learn more about Amazon ECS task protection, see Task scale-in protection
+// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-scale-in-protection.html)
+// in the Amazon Elastic Container Service Developer Guide.
+//
+// This operation is only supported for tasks belonging to an Amazon ECS service.
+// Invoking this operation for a standalone task will result in an TASK_NOT_VALID
+// failure. For more information, see API failure reasons (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/api_failures_messages.html.html).
+//
+// If you prefer to set task protection from within the container, we recommend
+// using the Amazon ECS container agent endpoint (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-endpoint.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Service's
+// API operation UpdateTaskProtection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have authorization to perform the requested action.
+//
+//   - ClientException
+//     These errors are usually caused by a client action. This client action might
+//     be using an action or resource on behalf of a user that doesn't have permissions
+//     to use the action or resource,. Or, it might be specifying an identifier
+//     that isn't valid.
+//
+//   - ClusterNotFoundException
+//     The specified cluster wasn't found. You can view your available clusters
+//     with ListClusters. Amazon ECS clusters are Region specific.
+//
+//   - InvalidParameterException
+//     The specified parameter isn't valid. Review the available parameters for
+//     the API request.
+//
+//   - ResourceNotFoundException
+//     The specified resource wasn't found.
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
+//
+//   - UnsupportedFeatureException
+//     The specified task isn't supported in this Region.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateTaskProtection
+func (c *ECS) UpdateTaskProtection(input *UpdateTaskProtectionInput) (*UpdateTaskProtectionOutput, error) {
+	req, out := c.UpdateTaskProtectionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTaskProtectionWithContext is the same as UpdateTaskProtection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTaskProtection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ECS) UpdateTaskProtectionWithContext(ctx aws.Context, input *UpdateTaskProtectionInput, opts ...request.Option) (*UpdateTaskProtectionOutput, error) {
+	req, out := c.UpdateTaskProtectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTaskSet = "UpdateTaskSet"
 
 // UpdateTaskSetRequest generates a "aws/request.Request" representing the
@@ -7748,8 +7963,9 @@ type ContainerDefinition struct {
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
 	// The dependencies defined for container startup and shutdown. A container
-	// can contain multiple dependencies. When a dependency is defined for container
-	// startup, for container shutdown it is reversed.
+	// can contain multiple dependencies on other containers in a task definition.
+	// When a dependency is defined for container startup, for container shutdown
+	// it is reversed.
 	//
 	// For tasks using the EC2 launch type, the container instances require at least
 	// version 1.26.0 of the container agent to turn on container dependencies.
@@ -8059,9 +8275,11 @@ type ContainerDefinition struct {
 	// resources on the container instance, but also allow the container to consume
 	// more memory resources when needed.
 	//
-	// The Docker daemon reserves a minimum of 4 MiB of memory for a container.
-	// Therefore, we recommend that you specify fewer than 4 MiB of memory for your
-	// containers.
+	// The Docker 20.10.0 or later daemon reserves a minimum of 6 MiB of memory
+	// for a container. So, don't specify less than 6 MiB of memory for your containers.
+	//
+	// The Docker 19.03.13-ce or earlier daemon reserves a minimum of 4 MiB of memory
+	// for a container. So, don't specify less than 4 MiB of memory for your containers.
 	MemoryReservation *int64 `locationName:"memoryReservation" type:"integer"`
 
 	// The mount points for data volumes in your container.
@@ -13538,6 +13756,109 @@ func (s *FirelensConfiguration) SetType(v string) *FirelensConfiguration {
 	return s
 }
 
+type GetTaskProtectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
+	// the service that the task sets exist in.
+	//
+	// Cluster is a required field
+	Cluster *string `locationName:"cluster" type:"string" required:"true"`
+
+	// A list of up to 100 task IDs or full ARN entries.
+	Tasks []*string `locationName:"tasks" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskProtectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskProtectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTaskProtectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTaskProtectionInput"}
+	if s.Cluster == nil {
+		invalidParams.Add(request.NewErrParamRequired("Cluster"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *GetTaskProtectionInput) SetCluster(v string) *GetTaskProtectionInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *GetTaskProtectionInput) SetTasks(v []*string) *GetTaskProtectionInput {
+	s.Tasks = v
+	return s
+}
+
+type GetTaskProtectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Any failures associated with the call.
+	Failures []*Failure `locationName:"failures" type:"list"`
+
+	// A list of tasks with the following information.
+	//
+	//    * taskArn: The task ARN.
+	//
+	//    * protectionEnabled: The protection status of the task. If scale-in protection
+	//    is enabled for a task, the value is true. Otherwise, it is false.
+	//
+	//    * expirationDate: The epoch time when protection for the task will expire.
+	ProtectedTasks []*ProtectedTask `locationName:"protectedTasks" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskProtectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTaskProtectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *GetTaskProtectionOutput) SetFailures(v []*Failure) *GetTaskProtectionOutput {
+	s.Failures = v
+	return s
+}
+
+// SetProtectedTasks sets the ProtectedTasks field's value.
+func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTaskProtectionOutput {
+	s.ProtectedTasks = v
+	return s
+}
+
 // An object representing a container health check. Health check parameters
 // that are specified in a container definition override any Docker health checks
 // that exist in the container image (such as those specified in a parent image
@@ -13595,7 +13916,7 @@ type HealthCheck struct {
 	_ struct{} `type:"structure"`
 
 	// A string array representing the command that the container runs to determine
-	// if it is healthy. The string array must start with CMD to execute the command
+	// if it is healthy. The string array must start with CMD to run the command
 	// arguments directly, or CMD-SHELL to run the command with the container's
 	// default shell.
 	//
@@ -15935,14 +16256,23 @@ type ManagedScaling struct {
 	// is omitted, the default value of 300 seconds is used.
 	InstanceWarmupPeriod *int64 `locationName:"instanceWarmupPeriod" type:"integer"`
 
-	// The maximum number of container instances that Amazon ECS scales in or scales
-	// out at one time. If this parameter is omitted, the default value of 10000
-	// is used.
+	// The maximum number of Amazon EC2 instances that Amazon ECS will scale out
+	// at one time. The scale in process is not affected by this parameter. If this
+	// parameter is omitted, the default value of 10000 is used.
 	MaximumScalingStepSize *int64 `locationName:"maximumScalingStepSize" min:"1" type:"integer"`
 
-	// The minimum number of container instances that Amazon ECS scales in or scales
-	// out at one time. If this parameter is omitted, the default value of 1 is
-	// used.
+	// The minimum number of Amazon EC2 instances that Amazon ECS will scale out
+	// at one time. The scale in process is not affected by this parameter If this
+	// parameter is omitted, the default value of 1 is used.
+	//
+	// When additional capacity is required, Amazon ECS will scale up the minimum
+	// scaling step size even if the actual demand is less than the minimum scaling
+	// step size.
+	//
+	// If you use a capacity provider with an Auto Scaling group configured with
+	// more than one Amazon EC2 instance type or Availability Zone, Amazon ECS will
+	// scale up by the exact minimum scaling step size value and will ignore both
+	// the maximum scaling step size as well as the capacity demand.
 	MinimumScalingStepSize *int64 `locationName:"minimumScalingStepSize" min:"1" type:"integer"`
 
 	// Determines whether to use managed scaling for the capacity provider.
@@ -16717,9 +17047,6 @@ type PortMapping struct {
 	// range as these are reserved for automatic assignment. In general, ports below
 	// 32768 are outside of the ephemeral port range.
 	//
-	// The default ephemeral port range from 49153 through 65535 is always used
-	// for Docker versions before 1.6.0.
-	//
 	// The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376,
 	// and the Amazon ECS container agent ports 51678-51680. Any host port that
 	// was previously specified in a running task is also reserved while the task
@@ -16768,6 +17095,59 @@ func (s *PortMapping) SetHostPort(v int64) *PortMapping {
 // SetProtocol sets the Protocol field's value.
 func (s *PortMapping) SetProtocol(v string) *PortMapping {
 	s.Protocol = &v
+	return s
+}
+
+// An object representing the protection status details for a task. You can
+// set the protection status with the UpdateTaskProtection API and get the status
+// of tasks with the GetTaskProtection API.
+type ProtectedTask struct {
+	_ struct{} `type:"structure"`
+
+	// The epoch time when protection for the task will expire.
+	ExpirationDate *time.Time `locationName:"expirationDate" type:"timestamp"`
+
+	// The protection status of the task. If scale-in protection is enabled for
+	// a task, the value is true. Otherwise, it is false.
+	ProtectionEnabled *bool `locationName:"protectionEnabled" type:"boolean"`
+
+	// The task ARN.
+	TaskArn *string `locationName:"taskArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectedTask) GoString() string {
+	return s.String()
+}
+
+// SetExpirationDate sets the ExpirationDate field's value.
+func (s *ProtectedTask) SetExpirationDate(v time.Time) *ProtectedTask {
+	s.ExpirationDate = &v
+	return s
+}
+
+// SetProtectionEnabled sets the ProtectionEnabled field's value.
+func (s *ProtectedTask) SetProtectionEnabled(v bool) *ProtectedTask {
+	s.ProtectionEnabled = &v
+	return s
+}
+
+// SetTaskArn sets the TaskArn field's value.
+func (s *ProtectedTask) SetTaskArn(v string) *ProtectedTask {
+	s.TaskArn = &v
 	return s
 }
 
@@ -16882,6 +17262,12 @@ type PutAccountSettingDefaultInput struct {
 	// the ENI limit for your Amazon ECS container instances is affected. If containerInsights
 	// is specified, the default setting for CloudWatch Container Insights for your
 	// clusters is affected.
+	//
+	// Fargate is transitioning from task count-based quotas to vCPU-based quotas.
+	// You can set the name to fargateVCPULimit to opt in or opt out of the vCPU-based
+	// quotas. For information about the opt in timeline, see Fargate vCPU-based
+	// quotas timeline (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#fargate-quota-timeline)
+	// in the Amazon ECS Developer Guide.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"SettingName"`
@@ -17553,7 +17939,8 @@ type RegisterTaskDefinitionInput struct {
 	// We recommend specifying container-level resources for Windows containers.
 	//
 	// If you're using the EC2 launch type, this field is optional. Supported values
-	// are between 128 CPU units (0.125 vCPUs) and 10240 CPU units (10 vCPUs).
+	// are between 128 CPU units (0.125 vCPUs) and 10240 CPU units (10 vCPUs). If
+	// you do not specify a value, the parameter is ignored.
 	//
 	// If you're using the Fargate launch type, this field is required and you must
 	// use one of the following values, which determines your range of supported
@@ -17571,11 +17958,17 @@ type RegisterTaskDefinitionInput struct {
 	//    * 1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096
 	//    (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
 	//
-	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4 GB) and 16384
-	//    (16 GB) in increments of 1024 (1 GB)
+	//    * 2048 (2 vCPU) - Available memory values: 4096 (4 GB) and 16384 (16 GB)
+	//    in increments of 1024 (1 GB)
 	//
-	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8 GB) and 30720
-	//    (30 GB) in increments of 1024 (1 GB)
+	//    * 4096 (4 vCPU) - Available memory values: 8192 (8 GB) and 30720 (30 GB)
+	//    in increments of 1024 (1 GB)
+	//
+	//    * 8192 (8 vCPU) - Available memory values: 16 GB and 60 GB in 4 GB increments
+	//    This option requires Linux platform 1.4.0 or later.
+	//
+	//    * 16384 (16vCPU) - Available memory values: 32GB and 120 GB in 8 GB increments
+	//    This option requires Linux platform 1.4.0 or later.
 	Cpu *string `locationName:"cpu" type:"string"`
 
 	// The amount of ephemeral storage to allocate for the task. This parameter
@@ -17588,8 +17981,6 @@ type RegisterTaskDefinitionInput struct {
 	// platform versions:
 	//
 	//    * Linux platform version 1.4.0 or later.
-	//
-	//    * Windows platform version 1.0.0 or later.
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task execution role that grants the
@@ -17672,6 +18063,12 @@ type RegisterTaskDefinitionInput struct {
 	//
 	//    * Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) -
 	//    Available cpu values: 4096 (4 vCPU)
+	//
+	//    * Between 16 GB and 60 GB in 4 GB increments - Available cpu values: 8192
+	//    (8 vCPU) This option requires Linux platform 1.4.0 or later.
+	//
+	//    * Between 32GB and 120 GB in 8 GB increments - Available cpu values: 16384
+	//    (16 vCPU) This option requires Linux platform 1.4.0 or later.
 	Memory *string `locationName:"memory" type:"string"`
 
 	// The Docker networking mode to use for the containers in the task. The valid
@@ -18736,7 +19133,7 @@ func (s *RunTaskOutput) SetTasks(v []*Task) *RunTaskOutput {
 
 // Information about the platform for the Amazon ECS service or task.
 //
-// For more informataion about RuntimePlatform, see RuntimePlatform (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#runtime-platform)
+// For more information about RuntimePlatform, see RuntimePlatform (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#runtime-platform)
 // in the Amazon Elastic Container Service Developer Guide.
 type RuntimePlatform struct {
 	_ struct{} `type:"structure"`
@@ -18995,9 +19392,7 @@ type Service struct {
 	// deployment and the ordering of stopping and starting tasks.
 	DeploymentConfiguration *DeploymentConfiguration `locationName:"deploymentConfiguration" type:"structure"`
 
-	// The deployment controller type the service is using. When using the DescribeServices
-	// API, this field is omitted if the service uses the ECS deployment controller
-	// type.
+	// The deployment controller type the service is using.
 	DeploymentController *DeploymentController `locationName:"deploymentController" type:"structure"`
 
 	// The current state of deployments for the service.
@@ -20941,11 +21336,17 @@ type Task struct {
 	//    * 1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096
 	//    (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
 	//
-	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4 GB) and 16384
-	//    (16 GB) in increments of 1024 (1 GB)
+	//    * 2048 (2 vCPU) - Available memory values: 4096 (4 GB) and 16384 (16 GB)
+	//    in increments of 1024 (1 GB)
 	//
-	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8 GB) and 30720
-	//    (30 GB) in increments of 1024 (1 GB)
+	//    * 4096 (4 vCPU) - Available memory values: 8192 (8 GB) and 30720 (30 GB)
+	//    in increments of 1024 (1 GB)
+	//
+	//    * 8192 (8 vCPU) - Available memory values: 16 GB and 60 GB in 4 GB increments
+	//    This option requires Linux platform 1.4.0 or later.
+	//
+	//    * 16384 (16vCPU) - Available memory values: 32GB and 120 GB in 8 GB increments
+	//    This option requires Linux platform 1.4.0 or later.
 	Cpu *string `locationName:"cpu" type:"string"`
 
 	// The Unix timestamp for the time when the task was created. More specifically,
@@ -21021,6 +21422,12 @@ type Task struct {
 	//
 	//    * Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) -
 	//    Available cpu values: 4096 (4 vCPU)
+	//
+	//    * Between 16 GB and 60 GB in 4 GB increments - Available cpu values: 8192
+	//    (8 vCPU) This option requires Linux platform 1.4.0 or later.
+	//
+	//    * Between 32GB and 120 GB in 8 GB increments - Available cpu values: 16384
+	//    (16 vCPU) This option requires Linux platform 1.4.0 or later.
 	Memory *string `locationName:"memory" type:"string"`
 
 	// One or more container overrides.
@@ -21399,11 +21806,17 @@ type TaskDefinition struct {
 	//    * 1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096
 	//    (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
 	//
-	//    * 2048 (2 vCPU) - Available memory values: Between 4096 (4 GB) and 16384
-	//    (16 GB) in increments of 1024 (1 GB)
+	//    * 2048 (2 vCPU) - Available memory values: 4096 (4 GB) and 16384 (16 GB)
+	//    in increments of 1024 (1 GB)
 	//
-	//    * 4096 (4 vCPU) - Available memory values: Between 8192 (8 GB) and 30720
-	//    (30 GB) in increments of 1024 (1 GB)
+	//    * 4096 (4 vCPU) - Available memory values: 8192 (8 GB) and 30720 (30 GB)
+	//    in increments of 1024 (1 GB)
+	//
+	//    * 8192 (8 vCPU) - Available memory values: 16 GB and 60 GB in 4 GB increments
+	//    This option requires Linux platform 1.4.0 or later.
+	//
+	//    * 16384 (16vCPU) - Available memory values: 32GB and 120 GB in 8 GB increments
+	//    This option requires Linux platform 1.4.0 or later.
 	Cpu *string `locationName:"cpu" type:"string"`
 
 	// The Unix timestamp for the time when the task definition was deregistered.
@@ -21489,6 +21902,12 @@ type TaskDefinition struct {
 	//
 	//    * Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) -
 	//    Available cpu values: 4096 (4 vCPU)
+	//
+	//    * Between 16 GB and 60 GB in 4 GB increments - Available cpu values: 8192
+	//    (8 vCPU) This option requires Linux platform 1.4.0 or later.
+	//
+	//    * Between 32GB and 120 GB in 8 GB increments - Available cpu values: 16384
+	//    (16 vCPU) This option requires Linux platform 1.4.0 or later.
 	Memory *string `locationName:"memory" type:"string"`
 
 	// The Docker networking mode to use for the containers in the task. The valid
@@ -23659,6 +24078,145 @@ func (s UpdateServicePrimaryTaskSetOutput) GoString() string {
 // SetTaskSet sets the TaskSet field's value.
 func (s *UpdateServicePrimaryTaskSetOutput) SetTaskSet(v *TaskSet) *UpdateServicePrimaryTaskSetOutput {
 	s.TaskSet = v
+	return s
+}
+
+type UpdateTaskProtectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
+	// the service that the task sets exist in.
+	//
+	// Cluster is a required field
+	Cluster *string `locationName:"cluster" type:"string" required:"true"`
+
+	// If you set protectionEnabled to true, you can specify the duration for task
+	// protection in minutes. You can specify a value from 1 minute to up to 2,880
+	// minutes (48 hours). During this time, your task will not be terminated by
+	// scale-in events from Service Auto Scaling or deployments. After this time
+	// period lapses, protectionEnabled will be reset to false.
+	//
+	// If you don’t specify the time, then the task is automatically protected
+	// for 120 minutes (2 hours).
+	ExpiresInMinutes *int64 `locationName:"expiresInMinutes" type:"integer"`
+
+	// Specify true to mark a task for protection and false to unset protection,
+	// making it eligible for termination.
+	//
+	// ProtectionEnabled is a required field
+	ProtectionEnabled *bool `locationName:"protectionEnabled" type:"boolean" required:"true"`
+
+	// A list of up to 10 task IDs or full ARN entries.
+	//
+	// Tasks is a required field
+	Tasks []*string `locationName:"tasks" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskProtectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskProtectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTaskProtectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTaskProtectionInput"}
+	if s.Cluster == nil {
+		invalidParams.Add(request.NewErrParamRequired("Cluster"))
+	}
+	if s.ProtectionEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectionEnabled"))
+	}
+	if s.Tasks == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tasks"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *UpdateTaskProtectionInput) SetCluster(v string) *UpdateTaskProtectionInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetExpiresInMinutes sets the ExpiresInMinutes field's value.
+func (s *UpdateTaskProtectionInput) SetExpiresInMinutes(v int64) *UpdateTaskProtectionInput {
+	s.ExpiresInMinutes = &v
+	return s
+}
+
+// SetProtectionEnabled sets the ProtectionEnabled field's value.
+func (s *UpdateTaskProtectionInput) SetProtectionEnabled(v bool) *UpdateTaskProtectionInput {
+	s.ProtectionEnabled = &v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *UpdateTaskProtectionInput) SetTasks(v []*string) *UpdateTaskProtectionInput {
+	s.Tasks = v
+	return s
+}
+
+type UpdateTaskProtectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Any failures associated with the call.
+	Failures []*Failure `locationName:"failures" type:"list"`
+
+	// A list of tasks with the following information.
+	//
+	//    * taskArn: The task ARN.
+	//
+	//    * protectionEnabled: The protection status of the task. If scale-in protection
+	//    is enabled for a task, the value is true. Otherwise, it is false.
+	//
+	//    * expirationDate: The epoch time when protection for the task will expire.
+	ProtectedTasks []*ProtectedTask `locationName:"protectedTasks" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskProtectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTaskProtectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *UpdateTaskProtectionOutput) SetFailures(v []*Failure) *UpdateTaskProtectionOutput {
+	s.Failures = v
+	return s
+}
+
+// SetProtectedTasks sets the ProtectedTasks field's value.
+func (s *UpdateTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *UpdateTaskProtectionOutput {
+	s.ProtectedTasks = v
 	return s
 }
 

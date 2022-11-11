@@ -103,6 +103,13 @@ func (c *SupportApp) CreateSlackChannelConfigurationRequest(input *CreateSlackCh
 //   - Delete a Slack workspace from your Amazon Web Services account that
 //     has an active live chat channel.
 //
+//   - Call the RegisterSlackWorkspaceForOrganization API from an Amazon Web
+//     Services account that doesn't belong to an organization.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from a member account,
+//     but the management account hasn't registered that workspace yet for the
+//     organization.
+//
 //   - AccessDeniedException
 //     You don't have sufficient permission to perform this action.
 //
@@ -195,8 +202,8 @@ func (c *SupportApp) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource is missing or doesn't exist, such as an account alias
-//     or Slack channel configuration.
+//     The specified resource is missing or doesn't exist, such as an account alias,
+//     Slack channel configuration, or Slack workspace configuration.
 //
 //   - AccessDeniedException
 //     You don't have sufficient permission to perform this action.
@@ -298,9 +305,16 @@ func (c *SupportApp) DeleteSlackChannelConfigurationRequest(input *DeleteSlackCh
 //   - Delete a Slack workspace from your Amazon Web Services account that
 //     has an active live chat channel.
 //
+//   - Call the RegisterSlackWorkspaceForOrganization API from an Amazon Web
+//     Services account that doesn't belong to an organization.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from a member account,
+//     but the management account hasn't registered that workspace yet for the
+//     organization.
+//
 //   - ResourceNotFoundException
-//     The specified resource is missing or doesn't exist, such as an account alias
-//     or Slack channel configuration.
+//     The specified resource is missing or doesn't exist, such as an account alias,
+//     Slack channel configuration, or Slack workspace configuration.
 //
 //   - AccessDeniedException
 //     You don't have sufficient permission to perform this action.
@@ -406,9 +420,16 @@ func (c *SupportApp) DeleteSlackWorkspaceConfigurationRequest(input *DeleteSlack
 //   - Delete a Slack workspace from your Amazon Web Services account that
 //     has an active live chat channel.
 //
+//   - Call the RegisterSlackWorkspaceForOrganization API from an Amazon Web
+//     Services account that doesn't belong to an organization.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from a member account,
+//     but the management account hasn't registered that workspace yet for the
+//     organization.
+//
 //   - ResourceNotFoundException
-//     The specified resource is missing or doesn't exist, such as an account alias
-//     or Slack channel configuration.
+//     The specified resource is missing or doesn't exist, such as an account alias,
+//     Slack channel configuration, or Slack workspace configuration.
 //
 //   - AccessDeniedException
 //     You don't have sufficient permission to perform this action.
@@ -896,6 +917,147 @@ func (c *SupportApp) PutAccountAliasWithContext(ctx aws.Context, input *PutAccou
 	return out, req.Send()
 }
 
+const opRegisterSlackWorkspaceForOrganization = "RegisterSlackWorkspaceForOrganization"
+
+// RegisterSlackWorkspaceForOrganizationRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterSlackWorkspaceForOrganization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterSlackWorkspaceForOrganization for more information on using the RegisterSlackWorkspaceForOrganization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RegisterSlackWorkspaceForOrganizationRequest method.
+//	req, resp := client.RegisterSlackWorkspaceForOrganizationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/support-app-2021-08-20/RegisterSlackWorkspaceForOrganization
+func (c *SupportApp) RegisterSlackWorkspaceForOrganizationRequest(input *RegisterSlackWorkspaceForOrganizationInput) (req *request.Request, output *RegisterSlackWorkspaceForOrganizationOutput) {
+	op := &request.Operation{
+		Name:       opRegisterSlackWorkspaceForOrganization,
+		HTTPMethod: "POST",
+		HTTPPath:   "/control/register-slack-workspace-for-organization",
+	}
+
+	if input == nil {
+		input = &RegisterSlackWorkspaceForOrganizationInput{}
+	}
+
+	output = &RegisterSlackWorkspaceForOrganizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RegisterSlackWorkspaceForOrganization API operation for AWS Support App.
+//
+// Registers a Slack workspace for your Amazon Web Services account. To call
+// this API, your account must be part of an organization in Organizations.
+//
+// If you're the management account and you want to register Slack workspaces
+// for your organization, you must complete the following tasks:
+//
+// Sign in to the Amazon Web Services Support Center (https://console.aws.amazon.com/support/app)
+// and authorize the Slack workspaces where you want your organization to have
+// access to. See Authorize a Slack workspace (https://docs.aws.amazon.com/awssupport/latest/user/authorize-slack-workspace.html)
+// in the Amazon Web Services Support User Guide.
+//
+// Call the RegisterSlackWorkspaceForOrganization API to authorize each Slack
+// workspace for the organization.
+//
+// After the management account authorizes the Slack workspace, member accounts
+// can call this API to authorize the same Slack workspace for their individual
+// accounts. Member accounts don't need to authorize the Slack workspace manually
+// through the Amazon Web Services Support Center (https://console.aws.amazon.com/support/app).
+//
+// To use the Amazon Web Services Support App, each account must then complete
+// the following tasks:
+//
+//   - Create an Identity and Access Management (IAM) role with the required
+//     permission. For more information, see Managing access to the Amazon Web
+//     Services Support App (https://docs.aws.amazon.com/awssupport/latest/user/support-app-permissions.html).
+//
+//   - Configure a Slack channel to use the Amazon Web Services Support App
+//     for support cases for that account. For more information, see Configuring
+//     a Slack channel (https://docs.aws.amazon.com/awssupport/latest/user/add-your-slack-channel.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Support App's
+// API operation RegisterSlackWorkspaceForOrganization for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Your request has a conflict. For example, you might receive this error if
+//     you try the following:
+//
+//   - Add, update, or delete a Slack channel configuration before you add
+//     a Slack workspace to your Amazon Web Services account.
+//
+//   - Add a Slack channel configuration that already exists in your Amazon
+//     Web Services account.
+//
+//   - Delete a Slack channel configuration for a live chat channel.
+//
+//   - Delete a Slack workspace from your Amazon Web Services account that
+//     has an active live chat channel.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from an Amazon Web
+//     Services account that doesn't belong to an organization.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from a member account,
+//     but the management account hasn't registered that workspace yet for the
+//     organization.
+//
+//   - ResourceNotFoundException
+//     The specified resource is missing or doesn't exist, such as an account alias,
+//     Slack channel configuration, or Slack workspace configuration.
+//
+//   - AccessDeniedException
+//     You don't have sufficient permission to perform this action.
+//
+//   - InternalServerException
+//     We can’t process your request right now because of a server issue. Try
+//     again later.
+//
+//   - ValidationException
+//     Your request input doesn't meet the constraints that the Amazon Web Services
+//     Support App specifies.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/support-app-2021-08-20/RegisterSlackWorkspaceForOrganization
+func (c *SupportApp) RegisterSlackWorkspaceForOrganization(input *RegisterSlackWorkspaceForOrganizationInput) (*RegisterSlackWorkspaceForOrganizationOutput, error) {
+	req, out := c.RegisterSlackWorkspaceForOrganizationRequest(input)
+	return out, req.Send()
+}
+
+// RegisterSlackWorkspaceForOrganizationWithContext is the same as RegisterSlackWorkspaceForOrganization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterSlackWorkspaceForOrganization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SupportApp) RegisterSlackWorkspaceForOrganizationWithContext(ctx aws.Context, input *RegisterSlackWorkspaceForOrganizationInput, opts ...request.Option) (*RegisterSlackWorkspaceForOrganizationOutput, error) {
+	req, out := c.RegisterSlackWorkspaceForOrganizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSlackChannelConfiguration = "UpdateSlackChannelConfiguration"
 
 // UpdateSlackChannelConfigurationRequest generates a "aws/request.Request" representing the
@@ -965,9 +1127,16 @@ func (c *SupportApp) UpdateSlackChannelConfigurationRequest(input *UpdateSlackCh
 //   - Delete a Slack workspace from your Amazon Web Services account that
 //     has an active live chat channel.
 //
+//   - Call the RegisterSlackWorkspaceForOrganization API from an Amazon Web
+//     Services account that doesn't belong to an organization.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from a member account,
+//     but the management account hasn't registered that workspace yet for the
+//     organization.
+//
 //   - ResourceNotFoundException
-//     The specified resource is missing or doesn't exist, such as an account alias
-//     or Slack channel configuration.
+//     The specified resource is missing or doesn't exist, such as an account alias,
+//     Slack channel configuration, or Slack workspace configuration.
 //
 //   - AccessDeniedException
 //     You don't have sufficient permission to perform this action.
@@ -1079,6 +1248,13 @@ func (s *AccessDeniedException) RequestID() string {
 //
 //   - Delete a Slack workspace from your Amazon Web Services account that
 //     has an active live chat channel.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from an Amazon Web
+//     Services account that doesn't belong to an organization.
+//
+//   - Call the RegisterSlackWorkspaceForOrganization API from a member account,
+//     but the management account hasn't registered that workspace yet for the
+//     organization.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1167,16 +1343,24 @@ type CreateSlackChannelConfigurationInput struct {
 
 	// The case severity for a support case that you want to receive notifications.
 	//
-	//    <p>If you specify <code>high</code> or <code>all</code>, you must specify
-	//    <code>true</code> for at least one of the following parameters:</p> <ul>
-	//    <li> <p> <code>notifyOnAddCorrespondenceToCase</code> </p> </li> <li>
-	//    <p> <code>notifyOnCreateOrReopenCase</code> </p> </li> <li> <p> <code>notifyOnResolveCase</code>
-	//    </p> </li> </ul> <p>If you specify <code>none</code>, the following parameters
-	//    must be null or <code>false</code>:</p> <ul> <li> <p> <code>notifyOnAddCorrespondenceToCase</code>
-	//    </p> </li> <li> <p> <code>notifyOnCreateOrReopenCase</code> </p> </li>
-	//    <li> <p> <code>notifyOnResolveCase</code> </p> </li> </ul> <note> <p>If
-	//    you don't specify these parameters in your request, they default to <code>false</code>.</p>
-	//    </note>
+	// If you specify high or all, you must specify true for at least one of the
+	// following parameters:
+	//
+	//    * notifyOnAddCorrespondenceToCase
+	//
+	//    * notifyOnCreateOrReopenCase
+	//
+	//    * notifyOnResolveCase
+	//
+	// If you specify none, the following parameters must be null or false:
+	//
+	//    * notifyOnAddCorrespondenceToCase
+	//
+	//    * notifyOnCreateOrReopenCase
+	//
+	//    * notifyOnResolveCase
+	//
+	// If you don't specify these parameters in your request, they default to false.
 	//
 	// NotifyOnCaseSeverity is a required field
 	NotifyOnCaseSeverity *string `locationName:"notifyOnCaseSeverity" type:"string" required:"true" enum:"NotificationSeverityLevel"`
@@ -1187,7 +1371,8 @@ type CreateSlackChannelConfigurationInput struct {
 	// Whether you want to get notified when a support case is resolved.
 	NotifyOnResolveCase *bool `locationName:"notifyOnResolveCase" type:"boolean"`
 
-	// The team ID in Slack. This ID uniquely identifies a Slack workspace.
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
 	//
 	// TeamId is a required field
 	TeamId *string `locationName:"teamId" min:"1" type:"string" required:"true"`
@@ -1367,7 +1552,8 @@ type DeleteSlackChannelConfigurationInput struct {
 	// ChannelId is a required field
 	ChannelId *string `locationName:"channelId" min:"1" type:"string" required:"true"`
 
-	// The team ID in Slack. This ID uniquely identifies a Slack workspace.
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
 	//
 	// TeamId is a required field
 	TeamId *string `locationName:"teamId" min:"1" type:"string" required:"true"`
@@ -1450,7 +1636,8 @@ func (s DeleteSlackChannelConfigurationOutput) GoString() string {
 type DeleteSlackWorkspaceConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The team ID in Slack. This ID uniquely identifies a Slack workspace.
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
 	//
 	// TeamId is a required field
 	TeamId *string `locationName:"teamId" min:"1" type:"string" required:"true"`
@@ -1887,8 +2074,110 @@ func (s PutAccountAliasOutput) GoString() string {
 	return s.String()
 }
 
-// The specified resource is missing or doesn't exist, such as an account alias
-// or Slack channel configuration.
+type RegisterSlackWorkspaceForOrganizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG. Specify the Slack workspace that you want to use for your
+	// organization.
+	//
+	// TeamId is a required field
+	TeamId *string `locationName:"teamId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSlackWorkspaceForOrganizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSlackWorkspaceForOrganizationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterSlackWorkspaceForOrganizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterSlackWorkspaceForOrganizationInput"}
+	if s.TeamId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TeamId"))
+	}
+	if s.TeamId != nil && len(*s.TeamId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TeamId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTeamId sets the TeamId field's value.
+func (s *RegisterSlackWorkspaceForOrganizationInput) SetTeamId(v string) *RegisterSlackWorkspaceForOrganizationInput {
+	s.TeamId = &v
+	return s
+}
+
+type RegisterSlackWorkspaceForOrganizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the Amazon Web Services account is a management or member account
+	// that's part of an organization in Organizations.
+	AccountType *string `locationName:"accountType" type:"string" enum:"AccountType"`
+
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
+	TeamId *string `locationName:"teamId" min:"1" type:"string"`
+
+	// The name of the Slack workspace.
+	TeamName *string `locationName:"teamName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSlackWorkspaceForOrganizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterSlackWorkspaceForOrganizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountType sets the AccountType field's value.
+func (s *RegisterSlackWorkspaceForOrganizationOutput) SetAccountType(v string) *RegisterSlackWorkspaceForOrganizationOutput {
+	s.AccountType = &v
+	return s
+}
+
+// SetTeamId sets the TeamId field's value.
+func (s *RegisterSlackWorkspaceForOrganizationOutput) SetTeamId(v string) *RegisterSlackWorkspaceForOrganizationOutput {
+	s.TeamId = &v
+	return s
+}
+
+// SetTeamName sets the TeamName field's value.
+func (s *RegisterSlackWorkspaceForOrganizationOutput) SetTeamName(v string) *RegisterSlackWorkspaceForOrganizationOutput {
+	s.TeamName = &v
+	return s
+}
+
+// The specified resource is missing or doesn't exist, such as an account alias,
+// Slack channel configuration, or Slack workspace configuration.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2019,8 +2308,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The configuration for a Slack channel that you added to an Amazon Web Services
-// account.
+// The configuration for a Slack channel that you added for your Amazon Web
+// Services account.
 type SlackChannelConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2030,7 +2319,7 @@ type SlackChannelConfiguration struct {
 	ChannelId *string `locationName:"channelId" min:"1" type:"string" required:"true"`
 
 	// The name of the Slack channel that you configured with the Amazon Web Services
-	// Support App.
+	// Support App for your Amazon Web Services account.
 	ChannelName *string `locationName:"channelName" min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of an IAM role that you want to use to perform
@@ -2051,7 +2340,8 @@ type SlackChannelConfiguration struct {
 	// Whether you want to get notified when a support case is resolved.
 	NotifyOnResolveCase *bool `locationName:"notifyOnResolveCase" type:"boolean"`
 
-	// The team ID in Slack. This ID uniquely identifies a Slack workspace.
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
 	//
 	// TeamId is a required field
 	TeamId *string `locationName:"teamId" min:"1" type:"string" required:"true"`
@@ -2128,10 +2418,18 @@ func (s *SlackChannelConfiguration) SetTeamId(v string) *SlackChannelConfigurati
 type SlackWorkspaceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The team ID in Slack. This ID uniquely identifies a Slack workspace.
+	// Whether to allow member accounts to authorize Slack workspaces. Member accounts
+	// must be part of an organization in Organizations.
+	AllowOrganizationMemberAccount *bool `locationName:"allowOrganizationMemberAccount" type:"boolean"`
+
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
 	//
 	// TeamId is a required field
 	TeamId *string `locationName:"teamId" min:"1" type:"string" required:"true"`
+
+	// The name of the Slack workspace.
+	TeamName *string `locationName:"teamName" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -2152,9 +2450,21 @@ func (s SlackWorkspaceConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetAllowOrganizationMemberAccount sets the AllowOrganizationMemberAccount field's value.
+func (s *SlackWorkspaceConfiguration) SetAllowOrganizationMemberAccount(v bool) *SlackWorkspaceConfiguration {
+	s.AllowOrganizationMemberAccount = &v
+	return s
+}
+
 // SetTeamId sets the TeamId field's value.
 func (s *SlackWorkspaceConfiguration) SetTeamId(v string) *SlackWorkspaceConfiguration {
 	s.TeamId = &v
+	return s
+}
+
+// SetTeamName sets the TeamName field's value.
+func (s *SlackWorkspaceConfiguration) SetTeamName(v string) *SlackWorkspaceConfiguration {
+	s.TeamName = &v
 	return s
 }
 
@@ -2180,16 +2490,26 @@ type UpdateSlackChannelConfigurationInput struct {
 
 	// The case severity for a support case that you want to receive notifications.
 	//
-	//    <p>If you specify <code>high</code> or <code>all</code>, at least one
-	//    of the following parameters must be <code>true</code>:</p> <ul> <li> <p>
-	//    <code>notifyOnAddCorrespondenceToCase</code> </p> </li> <li> <p> <code>notifyOnCreateOrReopenCase</code>
-	//    </p> </li> <li> <p> <code>notifyOnResolveCase</code> </p> </li> </ul>
-	//    <p>If you specify <code>none</code>, any of the following parameters that
-	//    you specify in your request must be <code>false</code>:</p> <ul> <li>
-	//    <p> <code>notifyOnAddCorrespondenceToCase</code> </p> </li> <li> <p> <code>notifyOnCreateOrReopenCase</code>
-	//    </p> </li> <li> <p> <code>notifyOnResolveCase</code> </p> </li> </ul>
-	//    <note> <p>If you don't specify these parameters in your request, the Amazon
-	//    Web Services Support App uses the current values by default.</p> </note>
+	// If you specify high or all, at least one of the following parameters must
+	// be true:
+	//
+	//    * notifyOnAddCorrespondenceToCase
+	//
+	//    * notifyOnCreateOrReopenCase
+	//
+	//    * notifyOnResolveCase
+	//
+	// If you specify none, any of the following parameters that you specify in
+	// your request must be false:
+	//
+	//    * notifyOnAddCorrespondenceToCase
+	//
+	//    * notifyOnCreateOrReopenCase
+	//
+	//    * notifyOnResolveCase
+	//
+	// If you don't specify these parameters in your request, the Amazon Web Services
+	// Support App uses the current values by default.
 	NotifyOnCaseSeverity *string `locationName:"notifyOnCaseSeverity" type:"string" enum:"NotificationSeverityLevel"`
 
 	// Whether you want to get notified when a support case is created or reopened.
@@ -2198,7 +2518,8 @@ type UpdateSlackChannelConfigurationInput struct {
 	// Whether you want to get notified when a support case is resolved.
 	NotifyOnResolveCase *bool `locationName:"notifyOnResolveCase" type:"boolean"`
 
-	// The team ID in Slack. This ID uniquely identifies a Slack workspace.
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
 	//
 	// TeamId is a required field
 	TeamId *string `locationName:"teamId" min:"1" type:"string" required:"true"`
@@ -2326,7 +2647,8 @@ type UpdateSlackChannelConfigurationOutput struct {
 	// Whether you want to get notified when a support case is resolved.
 	NotifyOnResolveCase *bool `locationName:"notifyOnResolveCase" type:"boolean"`
 
-	// The team ID in Slack. This ID uniquely identifies a Slack workspace.
+	// The team ID in Slack. This ID uniquely identifies a Slack workspace, such
+	// as T012ABCDEFG.
 	TeamId *string `locationName:"teamId" min:"1" type:"string"`
 }
 
@@ -2459,6 +2781,22 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// AccountTypeManagement is a AccountType enum value
+	AccountTypeManagement = "management"
+
+	// AccountTypeMember is a AccountType enum value
+	AccountTypeMember = "member"
+)
+
+// AccountType_Values returns all elements of the AccountType enum
+func AccountType_Values() []string {
+	return []string{
+		AccountTypeManagement,
+		AccountTypeMember,
+	}
 }
 
 const (

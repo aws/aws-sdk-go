@@ -563,10 +563,40 @@
         "EffectiveDeploymentsList$member": null
       }
     },
+    "EffectiveDeploymentErrorCode": {
+      "base": null,
+      "refs": {
+        "EffectiveDeploymentErrorStack$member": null
+      }
+    },
+    "EffectiveDeploymentErrorStack": {
+      "base": null,
+      "refs": {
+        "EffectiveDeploymentStatusDetails$errorStack": "<p>Contains an ordered list of short error codes that range from the most generic error to the most specific one. The error codes describe the reason for failure whenever the <code>coreDeviceExecutionStatus</code> is in a failed state. The response will be an empty list if there is no error.</p>"
+      }
+    },
+    "EffectiveDeploymentErrorType": {
+      "base": null,
+      "refs": {
+        "EffectiveDeploymentErrorTypeList$member": null
+      }
+    },
+    "EffectiveDeploymentErrorTypeList": {
+      "base": null,
+      "refs": {
+        "EffectiveDeploymentStatusDetails$errorTypes": "<p>Contains tags which describe the error. You can use the error types to classify errors to assist with remediating the failure. The response will be an empty list if there is no error.</p>"
+      }
+    },
     "EffectiveDeploymentExecutionStatus": {
       "base": null,
       "refs": {
         "EffectiveDeployment$coreDeviceExecutionStatus": "<p>The status of the deployment job on the Greengrass core device.</p>"
+      }
+    },
+    "EffectiveDeploymentStatusDetails": {
+      "base": "<p>Contains all error-related information for the deployment record. The status details will be null if the deployment is in a success state.</p> <note> <p>Greengrass nucleus v2.8.0 or later is required to get an accurate <code>errorStack</code> and <code>errorTypes</code> response. This field will not be returned for earlier Greengrass nucleus versions.</p> </note>",
+      "refs": {
+        "EffectiveDeployment$statusDetails": "<p>The status details that explain why a deployment has an error. This response will be null if the deployment is in a success state.</p>"
       }
     },
     "EffectiveDeploymentsList": {
@@ -669,10 +699,22 @@
         "InstalledComponent$lifecycleState": "<p>The lifecycle state of the component.</p>"
       }
     },
+    "InstalledComponentLifecycleStatusCode": {
+      "base": null,
+      "refs": {
+        "InstalledComponentLifecycleStatusCodeList$member": null
+      }
+    },
+    "InstalledComponentLifecycleStatusCodeList": {
+      "base": null,
+      "refs": {
+        "InstalledComponent$lifecycleStatusCodes": "<p>The status codes that indicate the reason for failure whenever the <code>lifecycleState</code> has an error or is in a broken state.</p> <note> <p>Greengrass nucleus v2.8.0 or later is required to get an accurate <code>lifecycleStatusCodes</code> response. This response can be inaccurate in earlier Greengrass nucleus versions.</p> </note>"
+      }
+    },
     "InstalledComponentList": {
       "base": null,
       "refs": {
-        "ListInstalledComponentsResponse$installedComponents": "<p>A list that summarizes each component on the core device.</p> <note> <p>Accuracy of the <code>lastStatusChangeTimestamp</code> response depends on Greengrass nucleus v2.7.0. It performs best on Greengrass nucleus v2.7.0 and can be inaccurate on earlier versions.</p> </note>"
+        "ListInstalledComponentsResponse$installedComponents": "<p>A list that summarizes each component on the core device.</p> <note> <p>Greengrass nucleus v2.7.0 or later is required to get an accurate <code>lastStatusChangeTimestamp</code> response. This response can be inaccurate in earlier Greengrass nucleus versions.</p> </note> <note> <p>Greengrass nucleus v2.8.0 or later is required to get an accurate <code>lastInstallationSource</code> and <code>lastReportedTimestamp</code> response. This response can be inaccurate or null in earlier Greengrass nucleus versions.</p> </note>"
       }
     },
     "InstalledComponentTopologyFilter": {
@@ -929,7 +971,7 @@
     "LifecycleStateDetails": {
       "base": null,
       "refs": {
-        "InstalledComponent$lifecycleStateDetails": "<p>The details about the lifecycle state of the component.</p>"
+        "InstalledComponent$lifecycleStateDetails": "<p>A detailed response about the lifecycle state of the component that explains the reason why a component has an error or is broken.</p>"
       }
     },
     "ListClientDevicesAssociatedWithCoreDeviceRequest": {
@@ -1070,6 +1112,7 @@
         "GetDeploymentRequest$deploymentId": "<p>The ID of the deployment.</p>",
         "GetDeploymentResponse$revisionId": "<p>The revision number of the deployment.</p>",
         "GetDeploymentResponse$deploymentId": "<p>The ID of the deployment.</p>",
+        "InstalledComponent$lastInstallationSource": "<p>The most recent deployment source that brought the component to the Greengrass core device. For a thing group deployment or thing deployment, the source will be the The ID of the deployment. and for local deployments it will be <code>LOCAL</code>.</p>",
         "LambdaEnvironmentVariables$key": null,
         "LambdaFunctionRecipeSource$lambdaArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the Lambda function. The ARN must include the version of the function to import. You can't use version aliases like <code>$LATEST</code>.</p>",
         "PlatformAttributesMap$key": null,
@@ -1316,7 +1359,8 @@
         "EffectiveDeployment$modifiedTimestamp": "<p>The time at which the deployment job was last modified, expressed in ISO 8601 format.</p>",
         "GetCoreDeviceResponse$lastStatusUpdateTimestamp": "<p>The time at which the core device's status last updated, expressed in ISO 8601 format.</p>",
         "GetDeploymentResponse$creationTimestamp": "<p>The time at which the deployment was created, expressed in ISO 8601 format.</p>",
-        "InstalledComponent$lastStatusChangeTimestamp": "<p>The status of how current the data is.</p> <p>This response is based off of component state changes. The status reflects component disruptions and deployments. If a component only sees a configuration update during a deployment, it might not undergo a state change and this status would not be updated.</p>"
+        "InstalledComponent$lastStatusChangeTimestamp": "<p>The status of how current the data is.</p> <p>This response is based off of component state changes. The status reflects component disruptions and deployments. If a component only sees a configuration update during a deployment, it might not undergo a state change and this status would not be updated.</p>",
+        "InstalledComponent$lastReportedTimestamp": "<p>The last time the Greengrass core device sent a message containing a certain component to the Amazon Web Services Cloud.</p> <p>A component does not need to see a state change for this field to update.</p>"
       }
     },
     "TopicString": {

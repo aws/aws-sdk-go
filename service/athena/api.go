@@ -1494,6 +1494,9 @@ func (c *Athena) GetQueryResultsRequest(input *GetQueryResultsInput) (req *reque
 //     Indicates that something is wrong with the input to the request. For example,
 //     a required parameter may be missing or out of range.
 //
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetQueryResults
 func (c *Athena) GetQueryResults(input *GetQueryResultsInput) (*GetQueryResultsOutput, error) {
 	req, out := c.GetQueryResultsRequest(input)
@@ -7874,6 +7877,9 @@ type QueryExecution struct {
 	// are specified for the workgroup.
 	ResultConfiguration *ResultConfiguration `type:"structure"`
 
+	// Specifies the query result reuse behavior that was used for the query.
+	ResultReuseConfiguration *ResultReuseConfiguration `type:"structure"`
+
 	// The type of query statement that was run. DDL indicates DDL query statements.
 	// DML indicates DML (Data Manipulation Language) query statements, such as
 	// CREATE TABLE AS SELECT. UTILITY indicates query statements other than DDL
@@ -7944,6 +7950,12 @@ func (s *QueryExecution) SetQueryExecutionId(v string) *QueryExecution {
 // SetResultConfiguration sets the ResultConfiguration field's value.
 func (s *QueryExecution) SetResultConfiguration(v *ResultConfiguration) *QueryExecution {
 	s.ResultConfiguration = v
+	return s
+}
+
+// SetResultReuseConfiguration sets the ResultReuseConfiguration field's value.
+func (s *QueryExecution) SetResultReuseConfiguration(v *ResultReuseConfiguration) *QueryExecution {
+	s.ResultReuseConfiguration = v
 	return s
 }
 
@@ -8061,6 +8073,10 @@ type QueryExecutionStatistics struct {
 	// add the query back to the queue.
 	QueryQueueTimeInMillis *int64 `type:"long"`
 
+	// Contains information about whether previous query results were reused for
+	// the query.
+	ResultReuseInformation *ResultReuseInformation `type:"structure"`
+
 	// The number of milliseconds that Athena took to finalize and publish the query
 	// results after the query engine finished running the query.
 	ServiceProcessingTimeInMillis *int64 `type:"long"`
@@ -8114,6 +8130,12 @@ func (s *QueryExecutionStatistics) SetQueryPlanningTimeInMillis(v int64) *QueryE
 // SetQueryQueueTimeInMillis sets the QueryQueueTimeInMillis field's value.
 func (s *QueryExecutionStatistics) SetQueryQueueTimeInMillis(v int64) *QueryExecutionStatistics {
 	s.QueryQueueTimeInMillis = &v
+	return s
+}
+
+// SetResultReuseInformation sets the ResultReuseInformation field's value.
+func (s *QueryExecutionStatistics) SetResultReuseInformation(v *ResultReuseInformation) *QueryExecutionStatistics {
+	s.ResultReuseInformation = v
 	return s
 }
 
@@ -8904,6 +8926,148 @@ func (s *ResultConfigurationUpdates) SetRemoveOutputLocation(v bool) *ResultConf
 	return s
 }
 
+// Specifies whether previous query results are reused, and if so, their maximum
+// age.
+type ResultReuseByAgeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// True if previous query results can be reused when the query is run; otherwise,
+	// false. The default is false.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// Specifies, in minutes, the maximum age of a previous query result that Athena
+	// should consider for reuse. The default is 60.
+	MaxAgeInMinutes *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResultReuseByAgeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResultReuseByAgeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResultReuseByAgeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResultReuseByAgeConfiguration"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ResultReuseByAgeConfiguration) SetEnabled(v bool) *ResultReuseByAgeConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetMaxAgeInMinutes sets the MaxAgeInMinutes field's value.
+func (s *ResultReuseByAgeConfiguration) SetMaxAgeInMinutes(v int64) *ResultReuseByAgeConfiguration {
+	s.MaxAgeInMinutes = &v
+	return s
+}
+
+// Specifies the query result reuse behavior for the query.
+type ResultReuseConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether previous query results are reused, and if so, their maximum
+	// age.
+	ResultReuseByAgeConfiguration *ResultReuseByAgeConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResultReuseConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResultReuseConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResultReuseConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResultReuseConfiguration"}
+	if s.ResultReuseByAgeConfiguration != nil {
+		if err := s.ResultReuseByAgeConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ResultReuseByAgeConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResultReuseByAgeConfiguration sets the ResultReuseByAgeConfiguration field's value.
+func (s *ResultReuseConfiguration) SetResultReuseByAgeConfiguration(v *ResultReuseByAgeConfiguration) *ResultReuseConfiguration {
+	s.ResultReuseByAgeConfiguration = v
+	return s
+}
+
+// Contains information about whether the result of a previous query was reused.
+type ResultReuseInformation struct {
+	_ struct{} `type:"structure"`
+
+	// True if a previous query result was reused; false if the result was generated
+	// from a new run of the query.
+	//
+	// ReusedPreviousResult is a required field
+	ReusedPreviousResult *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResultReuseInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResultReuseInformation) GoString() string {
+	return s.String()
+}
+
+// SetReusedPreviousResult sets the ReusedPreviousResult field's value.
+func (s *ResultReuseInformation) SetReusedPreviousResult(v bool) *ResultReuseInformation {
+	s.ReusedPreviousResult = &v
+	return s
+}
+
 // The metadata and rows that make up a query result set. The metadata describes
 // the column structure and data types. To return a ResultSet object, use GetQueryResults.
 type ResultSet struct {
@@ -9045,6 +9209,9 @@ type StartQueryExecutionInput struct {
 	// in the WorkGroupConfiguration. See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
 	ResultConfiguration *ResultConfiguration `type:"structure"`
 
+	// Specifies the query result reuse behavior for the query.
+	ResultReuseConfiguration *ResultReuseConfiguration `type:"structure"`
+
 	// The name of the workgroup in which the query is being started.
 	WorkGroup *string `type:"string"`
 }
@@ -9092,6 +9259,11 @@ func (s *StartQueryExecutionInput) Validate() error {
 			invalidParams.AddNested("ResultConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ResultReuseConfiguration != nil {
+		if err := s.ResultReuseConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ResultReuseConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9126,6 +9298,12 @@ func (s *StartQueryExecutionInput) SetQueryString(v string) *StartQueryExecution
 // SetResultConfiguration sets the ResultConfiguration field's value.
 func (s *StartQueryExecutionInput) SetResultConfiguration(v *ResultConfiguration) *StartQueryExecutionInput {
 	s.ResultConfiguration = v
+	return s
+}
+
+// SetResultReuseConfiguration sets the ResultReuseConfiguration field's value.
+func (s *StartQueryExecutionInput) SetResultReuseConfiguration(v *ResultReuseConfiguration) *StartQueryExecutionInput {
+	s.ResultReuseConfiguration = v
 	return s
 }
 

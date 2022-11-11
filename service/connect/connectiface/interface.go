@@ -148,6 +148,10 @@ type ConnectAPI interface {
 	CreateTaskTemplateWithContext(aws.Context, *connect.CreateTaskTemplateInput, ...request.Option) (*connect.CreateTaskTemplateOutput, error)
 	CreateTaskTemplateRequest(*connect.CreateTaskTemplateInput) (*request.Request, *connect.CreateTaskTemplateOutput)
 
+	CreateTrafficDistributionGroup(*connect.CreateTrafficDistributionGroupInput) (*connect.CreateTrafficDistributionGroupOutput, error)
+	CreateTrafficDistributionGroupWithContext(aws.Context, *connect.CreateTrafficDistributionGroupInput, ...request.Option) (*connect.CreateTrafficDistributionGroupOutput, error)
+	CreateTrafficDistributionGroupRequest(*connect.CreateTrafficDistributionGroupInput) (*request.Request, *connect.CreateTrafficDistributionGroupOutput)
+
 	CreateUseCase(*connect.CreateUseCaseInput) (*connect.CreateUseCaseOutput, error)
 	CreateUseCaseWithContext(aws.Context, *connect.CreateUseCaseInput, ...request.Option) (*connect.CreateUseCaseOutput, error)
 	CreateUseCaseRequest(*connect.CreateUseCaseInput) (*request.Request, *connect.CreateUseCaseOutput)
@@ -195,6 +199,10 @@ type ConnectAPI interface {
 	DeleteTaskTemplate(*connect.DeleteTaskTemplateInput) (*connect.DeleteTaskTemplateOutput, error)
 	DeleteTaskTemplateWithContext(aws.Context, *connect.DeleteTaskTemplateInput, ...request.Option) (*connect.DeleteTaskTemplateOutput, error)
 	DeleteTaskTemplateRequest(*connect.DeleteTaskTemplateInput) (*request.Request, *connect.DeleteTaskTemplateOutput)
+
+	DeleteTrafficDistributionGroup(*connect.DeleteTrafficDistributionGroupInput) (*connect.DeleteTrafficDistributionGroupOutput, error)
+	DeleteTrafficDistributionGroupWithContext(aws.Context, *connect.DeleteTrafficDistributionGroupInput, ...request.Option) (*connect.DeleteTrafficDistributionGroupOutput, error)
+	DeleteTrafficDistributionGroupRequest(*connect.DeleteTrafficDistributionGroupInput) (*request.Request, *connect.DeleteTrafficDistributionGroupOutput)
 
 	DeleteUseCase(*connect.DeleteUseCaseInput) (*connect.DeleteUseCaseOutput, error)
 	DeleteUseCaseWithContext(aws.Context, *connect.DeleteUseCaseInput, ...request.Option) (*connect.DeleteUseCaseOutput, error)
@@ -264,6 +272,10 @@ type ConnectAPI interface {
 	DescribeSecurityProfileWithContext(aws.Context, *connect.DescribeSecurityProfileInput, ...request.Option) (*connect.DescribeSecurityProfileOutput, error)
 	DescribeSecurityProfileRequest(*connect.DescribeSecurityProfileInput) (*request.Request, *connect.DescribeSecurityProfileOutput)
 
+	DescribeTrafficDistributionGroup(*connect.DescribeTrafficDistributionGroupInput) (*connect.DescribeTrafficDistributionGroupOutput, error)
+	DescribeTrafficDistributionGroupWithContext(aws.Context, *connect.DescribeTrafficDistributionGroupInput, ...request.Option) (*connect.DescribeTrafficDistributionGroupOutput, error)
+	DescribeTrafficDistributionGroupRequest(*connect.DescribeTrafficDistributionGroupInput) (*request.Request, *connect.DescribeTrafficDistributionGroupOutput)
+
 	DescribeUser(*connect.DescribeUserInput) (*connect.DescribeUserOutput, error)
 	DescribeUserWithContext(aws.Context, *connect.DescribeUserInput, ...request.Option) (*connect.DescribeUserOutput, error)
 	DescribeUserRequest(*connect.DescribeUserInput) (*request.Request, *connect.DescribeUserOutput)
@@ -316,6 +328,10 @@ type ConnectAPI interface {
 	DisassociateSecurityKeyWithContext(aws.Context, *connect.DisassociateSecurityKeyInput, ...request.Option) (*connect.DisassociateSecurityKeyOutput, error)
 	DisassociateSecurityKeyRequest(*connect.DisassociateSecurityKeyInput) (*request.Request, *connect.DisassociateSecurityKeyOutput)
 
+	DismissUserContact(*connect.DismissUserContactInput) (*connect.DismissUserContactOutput, error)
+	DismissUserContactWithContext(aws.Context, *connect.DismissUserContactInput, ...request.Option) (*connect.DismissUserContactOutput, error)
+	DismissUserContactRequest(*connect.DismissUserContactInput) (*request.Request, *connect.DismissUserContactOutput)
+
 	GetContactAttributes(*connect.GetContactAttributesInput) (*connect.GetContactAttributesOutput, error)
 	GetContactAttributesWithContext(aws.Context, *connect.GetContactAttributesInput, ...request.Option) (*connect.GetContactAttributesOutput, error)
 	GetContactAttributesRequest(*connect.GetContactAttributesInput) (*request.Request, *connect.GetContactAttributesOutput)
@@ -348,6 +364,10 @@ type ConnectAPI interface {
 	GetTaskTemplate(*connect.GetTaskTemplateInput) (*connect.GetTaskTemplateOutput, error)
 	GetTaskTemplateWithContext(aws.Context, *connect.GetTaskTemplateInput, ...request.Option) (*connect.GetTaskTemplateOutput, error)
 	GetTaskTemplateRequest(*connect.GetTaskTemplateInput) (*request.Request, *connect.GetTaskTemplateOutput)
+
+	GetTrafficDistribution(*connect.GetTrafficDistributionInput) (*connect.GetTrafficDistributionOutput, error)
+	GetTrafficDistributionWithContext(aws.Context, *connect.GetTrafficDistributionInput, ...request.Option) (*connect.GetTrafficDistributionOutput, error)
+	GetTrafficDistributionRequest(*connect.GetTrafficDistributionInput) (*request.Request, *connect.GetTrafficDistributionOutput)
 
 	ListAgentStatuses(*connect.ListAgentStatusesInput) (*connect.ListAgentStatusesOutput, error)
 	ListAgentStatusesWithContext(aws.Context, *connect.ListAgentStatusesInput, ...request.Option) (*connect.ListAgentStatusesOutput, error)
@@ -535,6 +555,13 @@ type ConnectAPI interface {
 	ListTaskTemplatesPages(*connect.ListTaskTemplatesInput, func(*connect.ListTaskTemplatesOutput, bool) bool) error
 	ListTaskTemplatesPagesWithContext(aws.Context, *connect.ListTaskTemplatesInput, func(*connect.ListTaskTemplatesOutput, bool) bool, ...request.Option) error
 
+	ListTrafficDistributionGroups(*connect.ListTrafficDistributionGroupsInput) (*connect.ListTrafficDistributionGroupsOutput, error)
+	ListTrafficDistributionGroupsWithContext(aws.Context, *connect.ListTrafficDistributionGroupsInput, ...request.Option) (*connect.ListTrafficDistributionGroupsOutput, error)
+	ListTrafficDistributionGroupsRequest(*connect.ListTrafficDistributionGroupsInput) (*request.Request, *connect.ListTrafficDistributionGroupsOutput)
+
+	ListTrafficDistributionGroupsPages(*connect.ListTrafficDistributionGroupsInput, func(*connect.ListTrafficDistributionGroupsOutput, bool) bool) error
+	ListTrafficDistributionGroupsPagesWithContext(aws.Context, *connect.ListTrafficDistributionGroupsInput, func(*connect.ListTrafficDistributionGroupsOutput, bool) bool, ...request.Option) error
+
 	ListUseCases(*connect.ListUseCasesInput) (*connect.ListUseCasesOutput, error)
 	ListUseCasesWithContext(aws.Context, *connect.ListUseCasesInput, ...request.Option) (*connect.ListUseCasesOutput, error)
 	ListUseCasesRequest(*connect.ListUseCasesInput) (*request.Request, *connect.ListUseCasesOutput)
@@ -563,6 +590,10 @@ type ConnectAPI interface {
 	ReleasePhoneNumber(*connect.ReleasePhoneNumberInput) (*connect.ReleasePhoneNumberOutput, error)
 	ReleasePhoneNumberWithContext(aws.Context, *connect.ReleasePhoneNumberInput, ...request.Option) (*connect.ReleasePhoneNumberOutput, error)
 	ReleasePhoneNumberRequest(*connect.ReleasePhoneNumberInput) (*request.Request, *connect.ReleasePhoneNumberOutput)
+
+	ReplicateInstance(*connect.ReplicateInstanceInput) (*connect.ReplicateInstanceOutput, error)
+	ReplicateInstanceWithContext(aws.Context, *connect.ReplicateInstanceInput, ...request.Option) (*connect.ReplicateInstanceOutput, error)
+	ReplicateInstanceRequest(*connect.ReplicateInstanceInput) (*request.Request, *connect.ReplicateInstanceOutput)
 
 	ResumeContactRecording(*connect.ResumeContactRecordingInput) (*connect.ResumeContactRecordingOutput, error)
 	ResumeContactRecordingWithContext(aws.Context, *connect.ResumeContactRecordingInput, ...request.Option) (*connect.ResumeContactRecordingOutput, error)
@@ -761,6 +792,10 @@ type ConnectAPI interface {
 	UpdateTaskTemplate(*connect.UpdateTaskTemplateInput) (*connect.UpdateTaskTemplateOutput, error)
 	UpdateTaskTemplateWithContext(aws.Context, *connect.UpdateTaskTemplateInput, ...request.Option) (*connect.UpdateTaskTemplateOutput, error)
 	UpdateTaskTemplateRequest(*connect.UpdateTaskTemplateInput) (*request.Request, *connect.UpdateTaskTemplateOutput)
+
+	UpdateTrafficDistribution(*connect.UpdateTrafficDistributionInput) (*connect.UpdateTrafficDistributionOutput, error)
+	UpdateTrafficDistributionWithContext(aws.Context, *connect.UpdateTrafficDistributionInput, ...request.Option) (*connect.UpdateTrafficDistributionOutput, error)
+	UpdateTrafficDistributionRequest(*connect.UpdateTrafficDistributionInput) (*request.Request, *connect.UpdateTrafficDistributionOutput)
 
 	UpdateUserHierarchy(*connect.UpdateUserHierarchyInput) (*connect.UpdateUserHierarchyOutput, error)
 	UpdateUserHierarchyWithContext(aws.Context, *connect.UpdateUserHierarchyInput, ...request.Option) (*connect.UpdateUserHierarchyOutput, error)

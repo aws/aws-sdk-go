@@ -1459,7 +1459,9 @@
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
         "ARN":{"shape":"String"},
         "ReplicationGroupLogDeliveryEnabled":{"shape":"Boolean"},
-        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"}
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"},
+        "NetworkType":{"shape":"NetworkType"},
+        "IpDiscovery":{"shape":"IpDiscovery"}
       },
       "wrapper":true
     },
@@ -1776,7 +1778,8 @@
         "CacheSubnetGroupDescription":{"shape":"String"},
         "VpcId":{"shape":"String"},
         "Subnets":{"shape":"SubnetList"},
-        "ARN":{"shape":"String"}
+        "ARN":{"shape":"String"},
+        "SupportedNetworkTypes":{"shape":"NetworkTypeList"}
       },
       "wrapper":true
     },
@@ -1958,7 +1961,9 @@
         "PreferredOutpostArn":{"shape":"String"},
         "PreferredOutpostArns":{"shape":"PreferredOutpostArnList"},
         "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"},
-        "TransitEncryptionEnabled":{"shape":"BooleanOptional"}
+        "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
+        "NetworkType":{"shape":"NetworkType"},
+        "IpDiscovery":{"shape":"IpDiscovery"}
       }
     },
     "CreateCacheClusterResult":{
@@ -2083,7 +2088,9 @@
         "KmsKeyId":{"shape":"String"},
         "UserGroupIds":{"shape":"UserGroupIdListInput"},
         "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"},
-        "DataTieringEnabled":{"shape":"BooleanOptional"}
+        "DataTieringEnabled":{"shape":"BooleanOptional"},
+        "NetworkType":{"shape":"NetworkType"},
+        "IpDiscovery":{"shape":"IpDiscovery"}
       }
     },
     "CreateReplicationGroupResult":{
@@ -2976,6 +2983,13 @@
       },
       "exception":true
     },
+    "IpDiscovery":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6"
+      ]
+    },
     "KeyList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -3082,7 +3096,8 @@
         "CacheNodeType":{"shape":"String"},
         "AuthToken":{"shape":"String"},
         "AuthTokenUpdateStrategy":{"shape":"AuthTokenUpdateStrategyType"},
-        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"},
+        "IpDiscovery":{"shape":"IpDiscovery"}
       }
     },
     "ModifyCacheClusterResult":{
@@ -3170,7 +3185,8 @@
         "UserGroupIdsToAdd":{"shape":"UserGroupIdList"},
         "UserGroupIdsToRemove":{"shape":"UserGroupIdList"},
         "RemoveUserGroups":{"shape":"BooleanOptional"},
-        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"},
+        "IpDiscovery":{"shape":"IpDiscovery"}
       }
     },
     "ModifyReplicationGroupResult":{
@@ -3227,6 +3243,18 @@
         "enabled",
         "disabled"
       ]
+    },
+    "NetworkType":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6",
+        "dual_stack"
+      ]
+    },
+    "NetworkTypeList":{
+      "type":"list",
+      "member":{"shape":"NetworkType"}
     },
     "NoOperationFault":{
       "type":"structure",
@@ -3688,7 +3716,9 @@
         "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"},
         "ReplicationGroupCreateTime":{"shape":"TStamp"},
         "DataTiering":{"shape":"DataTieringStatus"},
-        "AutoMinorVersionUpgrade":{"shape":"Boolean"}
+        "AutoMinorVersionUpgrade":{"shape":"Boolean"},
+        "NetworkType":{"shape":"NetworkType"},
+        "IpDiscovery":{"shape":"IpDiscovery"}
       },
       "wrapper":true
     },
@@ -4164,7 +4194,8 @@
       "members":{
         "SubnetIdentifier":{"shape":"String"},
         "SubnetAvailabilityZone":{"shape":"AvailabilityZone"},
-        "SubnetOutpost":{"shape":"SubnetOutpost"}
+        "SubnetOutpost":{"shape":"SubnetOutpost"},
+        "SupportedNetworkTypes":{"shape":"NetworkTypeList"}
       }
     },
     "SubnetIdentifierList":{

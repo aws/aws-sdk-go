@@ -8,7 +8,7 @@
     "BatchDescribeModelPackage": "<p>This action batch describes a list of versioned model packages</p>",
     "CreateAction": "<p>Creates an <i>action</i>. An action is a lineage tracking entity that represents an action or activity. For example, a model deployment or an HPO job. Generally, an action involves at least one input or output artifact. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
     "CreateAlgorithm": "<p>Create a machine learning algorithm that you can use in SageMaker and list in the Amazon Web Services Marketplace.</p>",
-    "CreateApp": "<p>Creates a running app for the specified UserProfile. Supported apps are <code>JupyterServer</code> and <code>KernelGateway</code>. This operation is automatically invoked by Amazon SageMaker Studio upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously.</p>",
+    "CreateApp": "<p>Creates a running app for the specified UserProfile. This operation is automatically invoked by Amazon SageMaker Studio upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously.</p>",
     "CreateAppImageConfig": "<p>Creates a configuration for running a SageMaker image as a KernelGateway app. The configuration specifies the Amazon Elastic File System (EFS) storage volume on the image, and a list of the kernels in the image.</p>",
     "CreateArtifact": "<p>Creates an <i>artifact</i>. An artifact is a lineage tracking entity that represents a URI addressable object or data. Some examples are the S3 URI of a dataset and the ECR registry path of an image. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
     "CreateAutoMLJob": "<p>Creates an Autopilot job.</p> <p>Find the best-performing model after you run an Autopilot job by calling .</p> <p>For information about how to use Autopilot, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html\">Automate Model Development with Amazon SageMaker Autopilot</a>.</p>",
@@ -27,7 +27,7 @@
     "CreateFeatureGroup": "<p>Create a new <code>FeatureGroup</code>. A <code>FeatureGroup</code> is a group of <code>Features</code> defined in the <code>FeatureStore</code> to describe a <code>Record</code>. </p> <p>The <code>FeatureGroup</code> defines the schema and features contained in the FeatureGroup. A <code>FeatureGroup</code> definition is composed of a list of <code>Features</code>, a <code>RecordIdentifierFeatureName</code>, an <code>EventTimeFeatureName</code> and configurations for its <code>OnlineStore</code> and <code>OfflineStore</code>. Check <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html\">Amazon Web Services service quotas</a> to see the <code>FeatureGroup</code>s quota for your Amazon Web Services account.</p> <important> <p>You must include at least one of <code>OnlineStoreConfig</code> and <code>OfflineStoreConfig</code> to create a <code>FeatureGroup</code>.</p> </important>",
     "CreateFlowDefinition": "<p>Creates a flow definition.</p>",
     "CreateHumanTaskUi": "<p>Defines the settings you will use for the human review workflow user interface. Reviewers will see a three-panel interface with an instruction area, the item to review, and an input area.</p>",
-    "CreateHyperParameterTuningJob": "<p>Starts a hyperparameter tuning job. A hyperparameter tuning job finds the best version of a model by running many training jobs on your dataset using the algorithm you choose and values for hyperparameters within ranges that you specify. It then chooses the hyperparameter values that result in a model that performs the best, as measured by an objective metric that you choose.</p>",
+    "CreateHyperParameterTuningJob": "<p>Starts a hyperparameter tuning job. A hyperparameter tuning job finds the best version of a model by running many training jobs on your dataset using the algorithm you choose and values for hyperparameters within ranges that you specify. It then chooses the hyperparameter values that result in a model that performs the best, as measured by an objective metric that you choose.</p> <p>A hyperparameter tuning job automatically creates Amazon SageMaker experiments, trials, and trial components for each training job that it runs. You can view these entities in Amazon SageMaker Studio. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-view-compare.html#experiments-view\">View Experiments, Trials, and Trial Components</a>.</p> <important> <p>Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.</p> </important>",
     "CreateImage": "<p>Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each image version represents a container image stored in Amazon Elastic Container Registry (ECR). For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html\">Bring your own SageMaker image</a>.</p>",
     "CreateImageVersion": "<p>Creates a version of the SageMaker image specified by <code>ImageName</code>. The version represents the Amazon Elastic Container Registry (ECR) container image specified by <code>BaseImage</code>.</p>",
     "CreateInferenceRecommendationsJob": "<p>Starts a recommendation job. You can create either an instance recommendation or load test job.</p>",
@@ -47,11 +47,11 @@
     "CreateProcessingJob": "<p>Creates a processing job.</p>",
     "CreateProject": "<p>Creates a machine learning (ML) project that can contain one or more templates that set up an ML pipeline from training to deploying an approved model.</p>",
     "CreateStudioLifecycleConfig": "<p>Creates a new Studio Lifecycle Configuration.</p>",
-    "CreateTrainingJob": "<p>Starts a model training job. After training completes, SageMaker saves the resulting model artifacts to an Amazon S3 location that you specify. </p> <p>If you choose to host your model using SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts in a machine learning service other than SageMaker, provided that you know how to use them for inference. </p> <p>In the request body, you provide the following: </p> <ul> <li> <p> <code>AlgorithmSpecification</code> - Identifies the training algorithm to use. </p> </li> <li> <p> <code>HyperParameters</code> - Specify these algorithm-specific parameters to enable the estimation of model parameters during training. Hyperparameters can be tuned to optimize this learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html\">Algorithms</a>. </p> <important> <p>You must not include any security-sensitive information, such as account access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters. SageMaker rejects the training job request and returns an exception error for detected credentials, if such user input is found.</p> </important> </li> <li> <p> <code>InputDataConfig</code> - Describes the training dataset and the Amazon S3, EFS, or FSx location where it is stored.</p> </li> <li> <p> <code>OutputDataConfig</code> - Identifies the Amazon S3 bucket where you want SageMaker to save the results of model training. </p> </li> <li> <p> <code>ResourceConfig</code> - Identifies the resources, ML compute instances, and ML storage volumes to deploy for model training. In distributed training, you specify more than one instance. </p> </li> <li> <p> <code>EnableManagedSpotTraining</code> - Optimize the cost of training machine learning models by up to 80% by using Amazon EC2 Spot instances. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html\">Managed Spot Training</a>. </p> </li> <li> <p> <code>RoleArn</code> - The Amazon Resource Name (ARN) that SageMaker assumes to perform tasks on your behalf during model training. You must grant this role the necessary permissions so that SageMaker can successfully complete model training. </p> </li> <li> <p> <code>StoppingCondition</code> - To help cap training costs, use <code>MaxRuntimeInSeconds</code> to set a time limit for training. Use <code>MaxWaitTimeInSeconds</code> to specify how long a managed spot training job has to complete. </p> </li> <li> <p> <code>Environment</code> - The environment variables to set in the Docker container.</p> </li> <li> <p> <code>RetryStrategy</code> - The number of times to retry the job when the job fails due to an <code>InternalServerError</code>.</p> </li> </ul> <p> For more information about SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html\">How It Works</a>. </p>",
+    "CreateTrainingJob": "<p>Starts a model training job. After training completes, SageMaker saves the resulting model artifacts to an Amazon S3 location that you specify. </p> <p>If you choose to host your model using SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts in a machine learning service other than SageMaker, provided that you know how to use them for inference. </p> <p>In the request body, you provide the following: </p> <ul> <li> <p> <code>AlgorithmSpecification</code> - Identifies the training algorithm to use. </p> </li> <li> <p> <code>HyperParameters</code> - Specify these algorithm-specific parameters to enable the estimation of model parameters during training. Hyperparameters can be tuned to optimize this learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html\">Algorithms</a>. </p> <important> <p>Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.</p> </important> </li> <li> <p> <code>InputDataConfig</code> - Describes the input required by the training job and the Amazon S3, EFS, or FSx location where it is stored.</p> </li> <li> <p> <code>OutputDataConfig</code> - Identifies the Amazon S3 bucket where you want SageMaker to save the results of model training. </p> </li> <li> <p> <code>ResourceConfig</code> - Identifies the resources, ML compute instances, and ML storage volumes to deploy for model training. In distributed training, you specify more than one instance. </p> </li> <li> <p> <code>EnableManagedSpotTraining</code> - Optimize the cost of training machine learning models by up to 80% by using Amazon EC2 Spot instances. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html\">Managed Spot Training</a>. </p> </li> <li> <p> <code>RoleArn</code> - The Amazon Resource Name (ARN) that SageMaker assumes to perform tasks on your behalf during model training. You must grant this role the necessary permissions so that SageMaker can successfully complete model training. </p> </li> <li> <p> <code>StoppingCondition</code> - To help cap training costs, use <code>MaxRuntimeInSeconds</code> to set a time limit for training. Use <code>MaxWaitTimeInSeconds</code> to specify how long a managed spot training job has to complete. </p> </li> <li> <p> <code>Environment</code> - The environment variables to set in the Docker container.</p> </li> <li> <p> <code>RetryStrategy</code> - The number of times to retry the job when the job fails due to an <code>InternalServerError</code>.</p> </li> </ul> <p> For more information about SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html\">How It Works</a>. </p>",
     "CreateTransformJob": "<p>Starts a transform job. A transform job uses a trained model to get inferences on a dataset and saves these results to an Amazon S3 location that you specify.</p> <p>To perform batch transformations, you create a transform job and use the data that you have readily available.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p> <code>TransformJobName</code> - Identifies the transform job. The name must be unique within an Amazon Web Services Region in an Amazon Web Services account.</p> </li> <li> <p> <code>ModelName</code> - Identifies the model to use. <code>ModelName</code> must be the name of an existing Amazon SageMaker model in the same Amazon Web Services Region and Amazon Web Services account. For information on creating a model, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html\">CreateModel</a>.</p> </li> <li> <p> <code>TransformInput</code> - Describes the dataset to be transformed and the Amazon S3 location where it is stored.</p> </li> <li> <p> <code>TransformOutput</code> - Identifies the Amazon S3 location where you want Amazon SageMaker to save the results from the transform job.</p> </li> <li> <p> <code>TransformResources</code> - Identifies the ML compute instances for the transform job.</p> </li> </ul> <p>For more information about how batch transformation works, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform.html\">Batch Transform</a>.</p>",
     "CreateTrial": "<p>Creates an SageMaker <i>trial</i>. A trial is a set of steps called <i>trial components</i> that produce a machine learning model. A trial is part of a single SageMaker <i>experiment</i>.</p> <p>When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to a trial and then use the <a>Search</a> API to search for the tags.</p> <p>To get a list of all your trials, call the <a>ListTrials</a> API. To view a trial's properties, call the <a>DescribeTrial</a> API. To create a trial component, call the <a>CreateTrialComponent</a> API.</p>",
     "CreateTrialComponent": "<p>Creates a <i>trial component</i>, which is a stage of a machine learning <i>trial</i>. A trial is composed of one or more trial components. A trial component can be used in multiple trials.</p> <p>Trial components include pre-processing jobs, training jobs, and batch transform jobs.</p> <p>When you use SageMaker Studio or the SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the Amazon Web Services SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to a trial component and then use the <a>Search</a> API to search for the tags.</p>",
-    "CreateUserProfile": "<p>Creates a user profile. A user profile represents a single user within a domain, and is the main way to reference a \"person\" for the purposes of sharing, reporting, and other user-oriented features. This entity is created when a user onboards to Amazon SageMaker Studio. If an administrator invites a person by email or imports them from Amazon Web Services SSO, a user profile is automatically created. A user profile is the primary holder of settings for an individual user and has a reference to the user's private Amazon Elastic File System (EFS) home directory. </p>",
+    "CreateUserProfile": "<p>Creates a user profile. A user profile represents a single user within a domain, and is the main way to reference a \"person\" for the purposes of sharing, reporting, and other user-oriented features. This entity is created when a user onboards to Amazon SageMaker Studio. If an administrator invites a person by email or imports them from IAM Identity Center, a user profile is automatically created. A user profile is the primary holder of settings for an individual user and has a reference to the user's private Amazon Elastic File System (EFS) home directory. </p>",
     "CreateWorkforce": "<p>Use this operation to create a workforce. This operation will return an error if a workforce already exists in the Amazon Web Services Region that you specify. You can only create one workforce in each Amazon Web Services Region per Amazon Web Services account.</p> <p>If you want to create a new workforce in an Amazon Web Services Region where a workforce already exists, use the API operation to delete the existing workforce and then use <code>CreateWorkforce</code> to create a new workforce.</p> <p>To create a private workforce using Amazon Cognito, you must specify a Cognito user pool in <code>CognitoConfig</code>. You can also create an Amazon Cognito workforce using the Amazon SageMaker console. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\"> Create a Private Workforce (Amazon Cognito)</a>.</p> <p>To create a private workforce using your own OIDC Identity Provider (IdP), specify your IdP configuration in <code>OidcConfig</code>. Your OIDC IdP must support <i>groups</i> because groups are used by Ground Truth and Amazon A2I to create work teams. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private-oidc.html\"> Create a Private Workforce (OIDC IdP)</a>.</p>",
     "CreateWorkteam": "<p>Creates a new work team for labeling your data. A work team is defined by one or more Amazon Cognito user pools. You must first create the user pools before you can create a work team.</p> <p>You cannot create more than 25 work teams in an account and region.</p>",
     "DeleteAction": "<p>Deletes an action.</p>",
@@ -64,7 +64,7 @@
     "DeleteContext": "<p>Deletes an context.</p>",
     "DeleteDataQualityJobDefinition": "<p>Deletes a data quality monitoring job definition.</p>",
     "DeleteDeviceFleet": "<p>Deletes a fleet.</p>",
-    "DeleteDomain": "<p>Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using Amazon Web Services SSO. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts. </p>",
+    "DeleteDomain": "<p>Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using IAM Identity Center. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts. </p>",
     "DeleteEdgeDeploymentPlan": "<p>Deletes an edge deployment plan if (and only if) all the stages in the plan are inactive or there are no stages in the plan.</p>",
     "DeleteEdgeDeploymentStage": "<p>Delete a stage in an edge deployment plan if (and only if) the stage is inactive.</p>",
     "DeleteEndpoint": "<p>Deletes an endpoint. SageMaker frees up all of the resources that were deployed when the endpoint was created. </p> <p>SageMaker retires any custom KMS key grants associated with the endpoint, meaning you don't need to use the <a href=\"http://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html\">RevokeGrant</a> API call.</p> <p>When you delete your endpoint, SageMaker asynchronously deletes associated endpoint resources such as KMS key grants. You might still see these resources in your account for a few minutes after deleting your endpoint. Do not delete or revoke the permissions for your <code> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html#sagemaker-CreateModel-request-ExecutionRoleArn\">ExecutionRoleArn</a> </code>, otherwise SageMaker cannot delete these resources.</p>",
@@ -180,6 +180,7 @@
     "ListHyperParameterTuningJobs": "<p>Gets a list of <a>HyperParameterTuningJobSummary</a> objects that describe the hyperparameter tuning jobs launched in your account.</p>",
     "ListImageVersions": "<p>Lists the versions of a specified image and their properties. The list can be filtered by creation time or modified time.</p>",
     "ListImages": "<p>Lists the images in your account and their properties. The list can be filtered by creation time or modified time, and whether the image name contains a specified string.</p>",
+    "ListInferenceRecommendationsJobSteps": "<p>Returns a list of the subtasks for an Inference Recommender job.</p> <p>The supported subtasks are benchmarks, which evaluate the performance of your model on different instance types.</p>",
     "ListInferenceRecommendationsJobs": "<p>Lists recommendation jobs that satisfy various filters.</p>",
     "ListLabelingJobs": "<p>Gets a list of labeling jobs.</p>",
     "ListLabelingJobsForWorkteam": "<p>Gets a list of labeling jobs assigned to a specified work team.</p>",
@@ -259,7 +260,7 @@
     "UpdatePipeline": "<p>Updates a pipeline.</p>",
     "UpdatePipelineExecution": "<p>Updates a pipeline execution.</p>",
     "UpdateProject": "<p>Updates a machine learning (ML) project that is created from a template that sets up an ML pipeline from training to deploying an approved model.</p> <note> <p>You must not update a project that is in use. If you update the <code>ServiceCatalogProvisioningUpdateDetails</code> of a project that is active or being created, or updated, you may lose resources already created by the project.</p> </note>",
-    "UpdateTrainingJob": "<p>Update a model training job to request a new Debugger profiling configuration.</p>",
+    "UpdateTrainingJob": "<p>Update a model training job to request a new Debugger profiling configuration or to change warm pool retention length.</p>",
     "UpdateTrial": "<p>Updates the display name of a trial.</p>",
     "UpdateTrialComponent": "<p>Updates one or more properties of a trial component.</p>",
     "UpdateUserProfile": "<p>Updates a user profile.</p>",
@@ -607,7 +608,7 @@
       "base": null,
       "refs": {
         "AppDetails$AppType": "<p>The type of app.</p>",
-        "CreateAppRequest$AppType": "<p>The type of app. Supported apps are <code>JupyterServer</code> and <code>KernelGateway</code>. <code>TensorBoard</code> is not supported.</p>",
+        "CreateAppRequest$AppType": "<p>The type of app.</p>",
         "DeleteAppRequest$AppType": "<p>The type of app.</p>",
         "DescribeAppRequest$AppType": "<p>The type of app.</p>",
         "DescribeAppResponse$AppType": "<p>The type of app.</p>"
@@ -1102,6 +1103,13 @@
         "HumanLoopRequestSource$AwsManagedHumanLoopRequestSource": "<p>Specifies whether Amazon Rekognition or Amazon Textract are used as the integration source. The default field settings and JSON parsing rules are different based on the integration source. Valid values:</p>"
       }
     },
+    "BatchDataCaptureConfig": {
+      "base": "<p>Configuration to control how SageMaker captures inference data for batch transform jobs.</p>",
+      "refs": {
+        "CreateTransformJobRequest$DataCaptureConfig": "<p>Configuration to control how SageMaker captures inference data.</p>",
+        "DescribeTransformJobResponse$DataCaptureConfig": "<p>Configuration to control how SageMaker captures inference data.</p>"
+      }
+    },
     "BatchDescribeModelPackageError": {
       "base": "<p>The error code and error description associated with the resource.</p>",
       "refs": {
@@ -1139,6 +1147,16 @@
         "TransformJobDefinition$BatchStrategy": "<p>A string that determines the number of records included in a single mini-batch.</p> <p> <code>SingleRecord</code> means only one record is used per mini-batch. <code>MultiRecord</code> means a mini-batch is set to contain as many records that can fit within the <code>MaxPayloadInMB</code> limit.</p>"
       }
     },
+    "BatchTransformInput": {
+      "base": "<p>Input object for the batch transform job.</p>",
+      "refs": {
+        "DataQualityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "ModelBiasJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "ModelExplainabilityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "ModelQualityJobInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>",
+        "MonitoringInput$BatchTransformInput": "<p>Input object for the batch transform job.</p>"
+      }
+    },
     "Bias": {
       "base": "<p>Contains bias metrics for a model.</p>",
       "refs": {
@@ -1169,6 +1187,7 @@
       "refs": {
         "AlgorithmSpecification$EnableSageMakerMetricsTimeSeries": "<p>To generate and save time-series metrics during training, set to <code>true</code>. The default is <code>false</code> and time-series metrics aren't generated except in the following cases:</p> <ul> <li> <p>You use one of the SageMaker built-in algorithms</p> </li> <li> <p>You use one of the following <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pre-built-containers-frameworks-deep-learning.html\">Prebuilt SageMaker Docker Images</a>:</p> <ul> <li> <p>Tensorflow (version &gt;= 1.15)</p> </li> <li> <p>MXNet (version &gt;= 1.6)</p> </li> <li> <p>PyTorch (version &gt;= 1.3)</p> </li> </ul> </li> <li> <p>You specify at least one <a>MetricDefinition</a> </p> </li> </ul>",
         "AutoMLSecurityConfig$EnableInterContainerTrafficEncryption": "<p>Whether to use traffic encryption between the container layers.</p>",
+        "BatchDataCaptureConfig$GenerateInferenceId": "<p>Flag that indicates whether to append inference id to the output.</p>",
         "ChannelSpecification$IsRequired": "<p>Indicates whether the channel is required by the algorithm.</p>",
         "ClarifyCheckStepMetadata$SkipCheck": "<p>This flag indicates if the drift check against the previous baseline will be skipped or not. If it is set to <code>False</code>, the previous baseline of the configured check type must be available.</p>",
         "ClarifyCheckStepMetadata$RegisterNewBaseline": "<p>This flag indicates if a newly calculated baseline can be accessed through step properties <code>BaselineUsedForDriftCheckConstraints</code> and <code>BaselineUsedForDriftCheckStatistics</code>. If it is set to <code>False</code>, the previous baseline of the configured check type must also be available. These can be accessed through the <code>BaselineUsedForDriftCheckConstraints</code> property. </p>",
@@ -1186,6 +1205,8 @@
         "HyperParameterTrainingJobDefinition$EnableInterContainerTrafficEncryption": "<p>To encrypt all communications between ML compute instances in distributed training, choose <code>True</code>. Encryption provides greater security for distributed training, but training might take longer. How long it takes depends on the amount of communication between compute instances, especially if you use a deep learning algorithm in distributed training.</p>",
         "HyperParameterTrainingJobDefinition$EnableManagedSpotTraining": "<p>A Boolean indicating whether managed spot training is enabled (<code>True</code>) or not (<code>False</code>).</p>",
         "ListStageDevicesRequest$ExcludeDevicesDeployedInOtherStage": "<p>Toggle for excluding devices deployed in other stages.</p>",
+        "MonitoringCsvDatasetFormat$Header": "<p>Indicates if the CSV data has a header.</p>",
+        "MonitoringJsonDatasetFormat$Line": "<p>Indicates if the file should be read as a json object per line. </p>",
         "MonitoringNetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between the instances used for the monitoring jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed jobs, but the processing might take longer.</p>",
         "MonitoringNetworkConfig$EnableNetworkIsolation": "<p>Whether to allow inbound and outbound network calls to and from the containers used for the monitoring job.</p>",
         "NetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between distributed processing jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.</p>",
@@ -1301,6 +1322,12 @@
       "base": null,
       "refs": {
         "AutoMLCandidate$CandidateSteps": "<p>Information about the candidate's steps.</p>"
+      }
+    },
+    "CanvasAppSettings": {
+      "base": "<p>The SageMaker Canvas app settings.</p>",
+      "refs": {
+        "UserSettings$CanvasAppSettings": "<p>The Canvas app settings.</p>"
       }
     },
     "CapacitySize": {
@@ -1460,6 +1487,163 @@
       "base": "<p>The container for the metadata for the ClarifyCheck step. For more information, see the topic on <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/build-and-manage-steps.html#step-type-clarify-check\">ClarifyCheck step</a> in the <i>Amazon SageMaker Developer Guide</i>. </p>",
       "refs": {
         "PipelineExecutionStepMetadata$ClarifyCheck": "<p>Container for the metadata for a Clarify check step. The configurations and outcomes of the check step execution. This includes: </p> <ul> <li> <p>The type of the check conducted,</p> </li> <li> <p>The Amazon S3 URIs of baseline constraints and statistics files to be used for the drift check.</p> </li> <li> <p>The Amazon S3 URIs of newly calculated baseline constraints and statistics.</p> </li> <li> <p>The model package group name provided.</p> </li> <li> <p>The Amazon S3 URI of the violation report if violations detected.</p> </li> <li> <p>The Amazon Resource Name (ARN) of check processing job initiated by the step execution.</p> </li> <li> <p>The boolean flags indicating if the drift check is skipped.</p> </li> <li> <p>If step property <code>BaselineUsedForDriftCheck</code> is set the same as <code>CalculatedBaseline</code>.</p> </li> </ul>"
+      }
+    },
+    "ClarifyContentTemplate": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$ContentTemplate": "<p>A template string used to format a JSON record into an acceptable model container input. For example, a <code>ContentTemplate</code> string <code>'{\"myfeatures\":$features}'</code> will format a list of features <code>[1,2,3]</code> into the record string <code>'{\"myfeatures\":[1,2,3]}'</code>. Required only when the model container input is in JSON Lines format.</p>"
+      }
+    },
+    "ClarifyEnableExplanations": {
+      "base": null,
+      "refs": {
+        "ClarifyExplainerConfig$EnableExplanations": "<p>A JMESPath boolean expression used to filter which records to explain. Explanations are activated by default. See <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable\"> <code>EnableExplanations</code> </a>for additional information.</p>"
+      }
+    },
+    "ClarifyExplainerConfig": {
+      "base": "<p>The configuration parameters for the SageMaker Clarify explainer.</p>",
+      "refs": {
+        "ExplainerConfig$ClarifyExplainerConfig": "<p>A member of <code>ExplainerConfig</code> that contains configuration parameters for the SageMaker Clarify explainer.</p>"
+      }
+    },
+    "ClarifyFeatureHeaders": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$FeatureHeaders": "<p>The names of the features. If provided, these are included in the endpoint response payload to help readability of the <code>InvokeEndpoint</code> output. See the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response\">Response</a> section under <b>Invoke the endpoint</b> in the Developer Guide for more information.</p>"
+      }
+    },
+    "ClarifyFeatureType": {
+      "base": null,
+      "refs": {
+        "ClarifyFeatureTypes$member": null
+      }
+    },
+    "ClarifyFeatureTypes": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$FeatureTypes": "<p>A list of data types of the features (optional). Applicable only to NLP explainability. If provided, <code>FeatureTypes</code> must have at least one <code>'text'</code> string (for example, <code>['text']</code>). If <code>FeatureTypes</code> is not provided, the explainer infers the feature types based on the baseline data. The feature types are included in the endpoint response payload. For additional information see the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response\">response</a> section under <b>Invoke the endpoint</b> in the Developer Guide for more information.</p>"
+      }
+    },
+    "ClarifyFeaturesAttribute": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$FeaturesAttribute": "<p>Provides the JMESPath expression to extract the features from a model container input in JSON Lines format. For example, if <code>FeaturesAttribute</code> is the JMESPath expression <code>'myfeatures'</code>, it extracts a list of features <code>[1,2,3]</code> from request data <code>'{\"myfeatures\":[1,2,3]}'</code>.</p>"
+      }
+    },
+    "ClarifyHeader": {
+      "base": null,
+      "refs": {
+        "ClarifyFeatureHeaders$member": null,
+        "ClarifyLabelHeaders$member": null
+      }
+    },
+    "ClarifyInferenceConfig": {
+      "base": "<p>The inference configuration parameter for the model container.</p>",
+      "refs": {
+        "ClarifyExplainerConfig$InferenceConfig": "<p>The inference configuration parameter for the model container.</p>"
+      }
+    },
+    "ClarifyLabelAttribute": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$LabelAttribute": "<p>A JMESPath expression used to locate the list of label headers in the model container output.</p> <p> <b>Example</b>: If the model container output of a batch request is <code>'{\"labels\":[\"cat\",\"dog\",\"fish\"],\"probability\":[0.6,0.3,0.1]}'</code>, then set <code>LabelAttribute</code> to <code>'labels'</code> to extract the list of label headers <code>[\"cat\",\"dog\",\"fish\"]</code> </p>"
+      }
+    },
+    "ClarifyLabelHeaders": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$LabelHeaders": "<p>For multiclass classification problems, the label headers are the names of the classes. Otherwise, the label header is the name of the predicted label. These are used to help readability for the output of the <code>InvokeEndpoint</code> API. See the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-invoke-endpoint.html#clarify-online-explainability-response\">response</a> section under <b>Invoke the endpoint</b> in the Developer Guide for more information. If there are no label headers in the model container output, provide them manually using this parameter.</p>"
+      }
+    },
+    "ClarifyLabelIndex": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$LabelIndex": "<p>A zero-based index used to extract a label header or list of label headers from model container output in CSV format.</p> <p> <b>Example for a multiclass model:</b> If the model container output consists of label headers followed by probabilities: <code>'\"[\\'cat\\',\\'dog\\',\\'fish\\']\",\"[0.1,0.6,0.3]\"'</code>, set <code>LabelIndex</code> to <code>0</code> to select the label headers <code>['cat','dog','fish']</code>.</p>"
+      }
+    },
+    "ClarifyMaxPayloadInMB": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$MaxPayloadInMB": "<p>The maximum payload size (MB) allowed of a request from the explainer to the model container. Defaults to <code>6</code> MB.</p>"
+      }
+    },
+    "ClarifyMaxRecordCount": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$MaxRecordCount": "<p>The maximum number of records in a request that the model container can process when querying the model container for the predictions of a <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-synthetic\">synthetic dataset</a>. A record is a unit of input data that inference can be made on, for example, a single line in CSV data. If <code>MaxRecordCount</code> is <code>1</code>, the model container expects one record per request. A value of 2 or greater means that the model expects batch requests, which can reduce overhead and speed up the inferencing process. If this parameter is not provided, the explainer will tune the record count per request according to the model container's capacity at runtime.</p>"
+      }
+    },
+    "ClarifyMimeType": {
+      "base": null,
+      "refs": {
+        "ClarifyShapBaselineConfig$MimeType": "<p>The MIME type of the baseline data. Choose from <code>'text/csv'</code> or <code>'application/jsonlines'</code>. Defaults to <code>'text/csv'</code>.</p>"
+      }
+    },
+    "ClarifyProbabilityAttribute": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$ProbabilityAttribute": "<p>A JMESPath expression used to extract the probability (or score) from the model container output if the model container is in JSON Lines format.</p> <p> <b>Example</b>: If the model container output of a single request is <code>'{\"predicted_label\":1,\"probability\":0.6}'</code>, then set <code>ProbabilityAttribute</code> to <code>'probability'</code>.</p>"
+      }
+    },
+    "ClarifyProbabilityIndex": {
+      "base": null,
+      "refs": {
+        "ClarifyInferenceConfig$ProbabilityIndex": "<p>A zero-based index used to extract a probability value (score) or list from model container output in CSV format. If this value is not provided, the entire model container output will be treated as a probability value (score) or list.</p> <p> <b>Example for a single class model:</b> If the model container output consists of a string-formatted prediction label followed by its probability: <code>'1,0.6'</code>, set <code>ProbabilityIndex</code> to <code>1</code> to select the probability value <code>0.6</code>.</p> <p> <b>Example for a multiclass model:</b> If the model container output consists of a string-formatted prediction label followed by its probability: <code>'\"[\\'cat\\',\\'dog\\',\\'fish\\']\",\"[0.1,0.6,0.3]\"'</code>, set <code>ProbabilityIndex</code> to <code>1</code> to select the probability values <code>[0.1,0.6,0.3]</code>.</p>"
+      }
+    },
+    "ClarifyShapBaseline": {
+      "base": null,
+      "refs": {
+        "ClarifyShapBaselineConfig$ShapBaseline": "<p>The inline SHAP baseline data in string format. <code>ShapBaseline</code> can have one or multiple records to be used as the baseline dataset. The format of the SHAP baseline file should be the same format as the training dataset. For example, if the training dataset is in CSV format and each record contains four features, and all features are numerical, then the format of the baseline data should also share these characteristics. For natural language processing (NLP) of text columns, the baseline value should be the value used to replace the unit of text specified by the <code>Granularity</code> of the <code>TextConfig</code> parameter. The size limit for <code>ShapBasline</code> is 4 KB. Use the <code>ShapBaselineUri</code> parameter if you want to provide more than 4 KB of baseline data.</p>"
+      }
+    },
+    "ClarifyShapBaselineConfig": {
+      "base": "<p>The configuration for the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-feature-attribute-shap-baselines.html\">SHAP baseline</a> (also called the background or reference dataset) of the Kernal SHAP algorithm.</p> <note> <ul> <li> <p>The number of records in the baseline data determines the size of the synthetic dataset, which has an impact on latency of explainability requests. For more information, see the <b>Synthetic data</b> of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html\">Configure and create an endpoint</a>.</p> </li> <li> <p> <code>ShapBaseline</code> and <code>ShapBaselineUri</code> are mutually exclusive parameters. One or the either is required to configure a SHAP baseline. </p> </li> </ul> </note>",
+      "refs": {
+        "ClarifyShapConfig$ShapBaselineConfig": "<p>The configuration for the SHAP baseline of the Kernal SHAP algorithm.</p>"
+      }
+    },
+    "ClarifyShapConfig": {
+      "base": "<p>The configuration for SHAP analysis using SageMaker Clarify Explainer.</p>",
+      "refs": {
+        "ClarifyExplainerConfig$ShapConfig": "<p>The configuration for SHAP analysis.</p>"
+      }
+    },
+    "ClarifyShapNumberOfSamples": {
+      "base": null,
+      "refs": {
+        "ClarifyShapConfig$NumberOfSamples": "<p>The number of samples to be used for analysis by the Kernal SHAP algorithm. </p> <note> <p>The number of samples determines the size of the synthetic dataset, which has an impact on latency of explainability requests. For more information, see the <b>Synthetic data</b> of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html\">Configure and create an endpoint</a>.</p> </note>"
+      }
+    },
+    "ClarifyShapSeed": {
+      "base": null,
+      "refs": {
+        "ClarifyShapConfig$Seed": "<p>The starting value used to initialize the random number generator in the explainer. Provide a value for this parameter to obtain a deterministic SHAP result.</p>"
+      }
+    },
+    "ClarifyShapUseLogit": {
+      "base": null,
+      "refs": {
+        "ClarifyShapConfig$UseLogit": "<p>A Boolean toggle to indicate if you want to use the logit function (true) or log-odds units (false) for model predictions. Defaults to false.</p>"
+      }
+    },
+    "ClarifyTextConfig": {
+      "base": "<p>A parameter used to configure the SageMaker Clarify explainer to treat text features as text so that explanations are provided for individual units of text. Required only for natural language processing (NLP) explainability. </p>",
+      "refs": {
+        "ClarifyShapConfig$TextConfig": "<p>A parameter that indicates if text features are treated as text and explanations are provided for individual units of text. Required for natural language processing (NLP) explainability only.</p>"
+      }
+    },
+    "ClarifyTextGranularity": {
+      "base": null,
+      "refs": {
+        "ClarifyTextConfig$Granularity": "<p>The unit of granularity for the analysis of text features. For example, if the unit is <code>'token'</code>, then each token (like a word in English) of the text is treated as a feature. SHAP values are computed for each unit/feature.</p>"
+      }
+    },
+    "ClarifyTextLanguage": {
+      "base": null,
+      "refs": {
+        "ClarifyTextConfig$Language": "<p>Specifies the language of the text features in <a href=\" https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a> or <a href=\"https://en.wikipedia.org/wiki/ISO_639-3\">ISO 639-3</a> code of a supported language. </p> <note> <p>For a mix of multiple languages, use code <code>'xx'</code>.</p> </note>"
       }
     },
     "ClientId": {
@@ -3396,6 +3580,7 @@
       "base": null,
       "refs": {
         "AsyncInferenceOutputConfig$S3OutputPath": "<p>The Amazon S3 location to upload inference responses to.</p>",
+        "BatchTransformInput$DataCapturedDestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
         "DataCaptureConfig$DestinationS3Uri": "<p>The Amazon S3 location used to capture the data.</p>",
         "DataCaptureConfigSummary$DestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
         "ProductionVariantCoreDumpConfig$DestinationS3Uri": "<p>The Amazon S3 bucket to send the core dump to.</p>"
@@ -4006,6 +4191,13 @@
         "ListEndpointConfigsOutput$EndpointConfigs": "<p>An array of endpoint configurations.</p>"
       }
     },
+    "EndpointInfo": {
+      "base": "<p>Details about a customer endpoint that was compared in an Inference Recommender job.</p>",
+      "refs": {
+        "EndpointPerformance$EndpointInfo": null,
+        "Endpoints$member": null
+      }
+    },
     "EndpointInput": {
       "base": "<p>Input object for the endpoint</p>",
       "refs": {
@@ -4037,6 +4229,7 @@
         "DescribeEndpointOutput$EndpointName": "<p>Name of the endpoint.</p>",
         "DescribeMonitoringScheduleResponse$EndpointName": "<p> The name of the endpoint for the monitoring job.</p>",
         "Endpoint$EndpointName": "<p>The name of the endpoint.</p>",
+        "EndpointInfo$EndpointName": "<p>The name of a customer's endpoint.</p>",
         "EndpointInput$EndpointName": "<p>An endpoint in customer's account which has enabled <code>DataCaptureConfig</code> enabled.</p>",
         "EndpointSummary$EndpointName": "<p>The name of the endpoint.</p>",
         "ListDataQualityJobDefinitionsRequest$EndpointName": "<p>A filter that lists the data quality job definitions associated with the specified endpoint.</p>",
@@ -4064,7 +4257,20 @@
     "EndpointOutputConfiguration": {
       "base": "<p>The endpoint configuration made by Inference Recommender during a recommendation job.</p>",
       "refs": {
-        "InferenceRecommendation$EndpointConfiguration": "<p>Defines the endpoint configuration parameters.</p>"
+        "InferenceRecommendation$EndpointConfiguration": "<p>Defines the endpoint configuration parameters.</p>",
+        "RecommendationJobInferenceBenchmark$EndpointConfiguration": null
+      }
+    },
+    "EndpointPerformance": {
+      "base": "<p>The performance results from running an Inference Recommender job on an existing endpoint.</p>",
+      "refs": {
+        "EndpointPerformances$member": null
+      }
+    },
+    "EndpointPerformances": {
+      "base": null,
+      "refs": {
+        "DescribeInferenceRecommendationsJobResponse$EndpointPerformances": "<p>The performance results from running an Inference Recommender job on an existing endpoint.</p>"
       }
     },
     "EndpointSortKey": {
@@ -4092,6 +4298,12 @@
       "base": null,
       "refs": {
         "ListEndpointsOutput$Endpoints": "<p> An array or endpoint objects. </p>"
+      }
+    },
+    "Endpoints": {
+      "base": null,
+      "refs": {
+        "RecommendationJobInputConfig$Endpoints": "<p>Existing customer endpoints on which to run an Inference Recommender job.</p>"
       }
     },
     "EntityDescription": {
@@ -4258,8 +4470,8 @@
     "ExecutionRoleIdentityConfig": {
       "base": null,
       "refs": {
-        "DomainSettings$ExecutionRoleIdentityConfig": "<p>The configuration for attaching a SageMaker user profile name to the execution role as a <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\"> <code>sts:SourceIdentity</code> key</a>.</p>",
-        "DomainSettingsForUpdate$ExecutionRoleIdentityConfig": "<p>The configuration for attaching a SageMaker user profile name to the execution role as a <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\"> <code>sts:SourceIdentity</code> key</a>. This configuration can only be modified if there are no apps in the <code>InService</code> or <code>Pending</code> state.</p>"
+        "DomainSettings$ExecutionRoleIdentityConfig": "<p>The configuration for attaching a SageMaker user profile name to the execution role as a <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">sts:SourceIdentity key</a>.</p>",
+        "DomainSettingsForUpdate$ExecutionRoleIdentityConfig": "<p>The configuration for attaching a SageMaker user profile name to the execution role as a <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">sts:SourceIdentity key</a>. This configuration can only be modified if there are no apps in the <code>InService</code> or <code>Pending</code> state.</p>"
       }
     },
     "ExecutionStatus": {
@@ -4454,6 +4666,14 @@
       "base": null,
       "refs": {
         "CandidateArtifactLocations$Explainability": "<p>The Amazon S3 prefix to the explainability artifacts generated for the AutoML candidate.</p>"
+      }
+    },
+    "ExplainerConfig": {
+      "base": "<p>A parameter to activate explainers.</p>",
+      "refs": {
+        "CreateEndpointConfigInput$ExplainerConfig": "<p>A member of <code>CreateEndpointConfig</code> that enables explainers.</p>",
+        "DescribeEndpointConfigOutput$ExplainerConfig": "<p>The configuration parameters for an explainer.</p>",
+        "DescribeEndpointOutput$ExplainerConfig": "<p>The configuration parameters for an explainer.</p>"
       }
     },
     "FailStepMetadata": {
@@ -4682,6 +4902,12 @@
         "FeatureMetadata$Parameters": "<p>Optional key-value pairs that you specify to better describe the feature.</p>"
       }
     },
+    "FeatureStatus": {
+      "base": null,
+      "refs": {
+        "TimeSeriesForecastingSettings$Status": "<p>Describes whether time series forecasting is enabled or disabled in the Canvas app.</p>"
+      }
+    },
     "FeatureType": {
       "base": null,
       "refs": {
@@ -4869,8 +5095,7 @@
     "FrameworkVersion": {
       "base": null,
       "refs": {
-        "InputConfig$FrameworkVersion": "<p>Specifies the framework version to use. This API field is only supported for the PyTorch and TensorFlow frameworks.</p> <p>For information about framework versions supported for cloud targets and edge devices, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html\">Cloud Supported Instance Types and Frameworks</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html\">Edge Supported Frameworks</a>.</p>",
-        "ModelPackageContainerDefinition$FrameworkVersion": "<p>The framework version of the Model Package Container Image.</p>"
+        "InputConfig$FrameworkVersion": "<p>Specifies the framework version to use. This API field is only supported for the MXNet, PyTorch, TensorFlow and TensorFlow Lite frameworks.</p> <p>For information about framework versions supported for cloud targets and edge devices, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-cloud.html\">Cloud Supported Instance Types and Frameworks</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-supported-devices-edge-frameworks.html\">Edge Supported Frameworks</a>.</p>"
       }
     },
     "GenerateCandidateDefinitionsOnly": {
@@ -5192,7 +5417,7 @@
       }
     },
     "HyperParameterTuningJobSearchEntity": {
-      "base": "<p>An entity having characteristics over which a user can search for a hyperparameter tuning job.</p>",
+      "base": "<p>An entity returned by the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_SearchRecord.html\">SearchRecord</a> API containing the properties of a hyperparameter tuning job.</p>",
       "refs": {
         "SearchRecord$HyperParameterTuningJob": "<p>The properties of a hyperparameter tuning job.</p>"
       }
@@ -5212,11 +5437,17 @@
         "ListHyperParameterTuningJobsRequest$StatusEquals": "<p>A filter that returns only tuning jobs with the specified status.</p>"
       }
     },
+    "HyperParameterTuningJobStrategyConfig": {
+      "base": "<p>The configuration for a training job launched by a hyperparameter tuning job. Choose <code>Bayesian</code> for Bayesian optimization, and <code>Random</code> for random search optimization. For more advanced use cases, use <code>Hyperband</code>, which evaluates objective metrics for training jobs after every epoch. For more information about strategies, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html\">How Hyperparameter Tuning Works</a>.</p>",
+      "refs": {
+        "HyperParameterTuningJobConfig$StrategyConfig": "<p>The configuration for the <code>Hyperband</code> optimization strategy. This parameter should be provided only if <code>Hyperband</code> is selected as the strategy for <code>HyperParameterTuningJobConfig</code>.</p>"
+      }
+    },
     "HyperParameterTuningJobStrategyType": {
       "base": "<p>The strategy hyperparameter tuning uses to find the best combination of hyperparameters for your model. Currently, the only supported value is <code>Bayesian</code>.</p>",
       "refs": {
-        "HyperParameterTuningJobConfig$Strategy": "<p>Specifies how hyperparameter tuning chooses the combinations of hyperparameter values to use for the training job it launches. To use the Bayesian search strategy, set this to <code>Bayesian</code>. To randomly search, set it to <code>Random</code>. For information about search strategies, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html\">How Hyperparameter Tuning Works</a>.</p>",
-        "HyperParameterTuningJobSummary$Strategy": "<p>Specifies the search strategy hyperparameter tuning uses to choose which hyperparameters to use for each iteration. Currently, the only valid value is Bayesian.</p>"
+        "HyperParameterTuningJobConfig$Strategy": "<p>Specifies how hyperparameter tuning chooses the combinations of hyperparameter values to use for the training job it launches. For information about search strategies, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-how-it-works.html\">How Hyperparameter Tuning Works</a>.</p>",
+        "HyperParameterTuningJobSummary$Strategy": "<p>Specifies the search strategy hyperparameter tuning uses to choose which hyperparameters to evaluate at each iteration.</p>"
       }
     },
     "HyperParameterTuningJobSummaries": {
@@ -5261,12 +5492,30 @@
     "HyperParameters": {
       "base": null,
       "refs": {
-        "CreateTrainingJobRequest$HyperParameters": "<p>Algorithm-specific parameters that influence the quality of the model. You set hyperparameters before you start the learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html\">Algorithms</a>. </p> <p>You can specify a maximum of 100 hyperparameters. Each hyperparameter is a key-value pair. Each key and value is limited to 256 characters, as specified by the <code>Length Constraint</code>. </p> <important> <p>You must not include any security-sensitive information, such as account access IDs, secrets, and tokens, in the dictionary for configuring hyperparameters. SageMaker rejects the training job request and returns an exception error for detected credentials, if such user input is found.</p> </important>",
+        "CreateTrainingJobRequest$HyperParameters": "<p>Algorithm-specific parameters that influence the quality of the model. You set hyperparameters before you start the learning process. For a list of hyperparameters for each training algorithm provided by SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/algos.html\">Algorithms</a>. </p> <p>You can specify a maximum of 100 hyperparameters. Each hyperparameter is a key-value pair. Each key and value is limited to 256 characters, as specified by the <code>Length Constraint</code>. </p> <important> <p>Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.</p> </important>",
         "DescribeTrainingJobResponse$HyperParameters": "<p>Algorithm-specific parameters. </p>",
         "HyperParameterTrainingJobDefinition$StaticHyperParameters": "<p>Specifies the values of hyperparameters that do not change for the tuning job.</p>",
         "HyperParameterTrainingJobSummary$TunedHyperParameters": "<p>A list of the hyperparameters for which you specified ranges to search.</p>",
         "TrainingJob$HyperParameters": "<p>Algorithm-specific parameters.</p>",
         "TrainingJobDefinition$HyperParameters": "<p>The hyperparameters used for the training job.</p>"
+      }
+    },
+    "HyperbandStrategyConfig": {
+      "base": "<p>The configuration for <code>Hyperband</code>, a multi-fidelity based hyperparameter tuning strategy. <code>Hyperband</code> uses the final and intermediate results of a training job to dynamically allocate resources to utilized hyperparameter configurations while automatically stopping under-performing configurations. This parameter should be provided only if <code>Hyperband</code> is selected as the <code>StrategyConfig</code> under the <code>HyperParameterTuningJobConfig</code> API.</p>",
+      "refs": {
+        "HyperParameterTuningJobStrategyConfig$HyperbandStrategyConfig": "<p>The configuration for the object that specifies the <code>Hyperband</code> strategy. This parameter is only supported for the <code>Hyperband</code> selection for <code>Strategy</code> within the <code>HyperParameterTuningJobConfig</code> API.</p>"
+      }
+    },
+    "HyperbandStrategyMaxResource": {
+      "base": null,
+      "refs": {
+        "HyperbandStrategyConfig$MaxResource": "<p>The maximum number of resources (such as epochs) that can be used by a training job launched by a hyperparameter tuning job. Once a job reaches the <code>MaxResource</code> value, it is stopped. If a value for <code>MaxResource</code> is not provided, and <code>Hyperband</code> is selected as the hyperparameter tuning strategy, <code>HyperbandTrainingJ</code> attempts to infer <code>MaxResource</code> from the following keys (if present) in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_HyperParameterTrainingJobDefinition.html#sagemaker-Type-HyperParameterTrainingJobDefinition-StaticHyperParameters\">StaticsHyperParameters</a>:</p> <ul> <li> <p> <code>epochs</code> </p> </li> <li> <p> <code>numepochs</code> </p> </li> <li> <p> <code>n-epochs</code> </p> </li> <li> <p> <code>n_epochs</code> </p> </li> <li> <p> <code>num_epochs</code> </p> </li> </ul> <p>If <code>HyperbandStrategyConfig</code> is unable to infer a value for <code>MaxResource</code>, it generates a validation error. The maximum value is 20,000 epochs. All metrics that correspond to an objective metric are used to derive <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html\">early stopping decisions</a>. For <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-training.html\">distributive</a> training jobs, ensure that duplicate metrics are not printed in the logs across the individual nodes in a training job. If multiple nodes are publishing duplicate or incorrect metrics, training jobs may make an incorrect stopping decision and stop the job prematurely. </p>"
+      }
+    },
+    "HyperbandStrategyMinResource": {
+      "base": null,
+      "refs": {
+        "HyperbandStrategyConfig$MinResource": "<p>The minimum number of resources (such as epochs) that can be used by a training job launched by a hyperparameter tuning job. If the value for <code>MinResource</code> has not been reached, the training job will not be stopped by <code>Hyperband</code>.</p>"
       }
     },
     "IdempotencyToken": {
@@ -5482,6 +5731,12 @@
         "DescribeCompilationJobResponse$InferenceImage": "<p>The inference image to use when compiling a model. Specify an image only if the target device is a cloud instance.</p>"
       }
     },
+    "InferenceMetrics": {
+      "base": "<p>The metrics for an existing endpoint compared in an Inference Recommender job.</p>",
+      "refs": {
+        "EndpointPerformance$Metrics": "<p>The metrics for an existing endpoint.</p>"
+      }
+    },
     "InferenceRecommendation": {
       "base": "<p>A list of recommendations made by Amazon SageMaker Inference Recommender.</p>",
       "refs": {
@@ -5498,6 +5753,18 @@
       "base": "<p>A structure that contains a list of recommendation jobs.</p>",
       "refs": {
         "InferenceRecommendationsJobs$member": null
+      }
+    },
+    "InferenceRecommendationsJobStep": {
+      "base": "<p>A returned array object for the <code>Steps</code> response field in the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_InferenceRecommendationsJobStep.html\">ListInferenceRecommendationsJobSteps</a> API command.</p>",
+      "refs": {
+        "InferenceRecommendationsJobSteps$member": null
+      }
+    },
+    "InferenceRecommendationsJobSteps": {
+      "base": null,
+      "refs": {
+        "ListInferenceRecommendationsJobStepsResponse$Steps": "<p>A list of all subtask details in Inference Recommender.</p>"
       }
     },
     "InferenceRecommendationsJobs": {
@@ -5622,6 +5889,8 @@
         "EdgeDeploymentStatus$EdgeDeploymentPendingInStage": "<p>The number of edge devices yet to pick up the deployment in current stage, or in progress.</p>",
         "EdgeDeploymentStatus$EdgeDeploymentFailedInStage": "<p>The number of edge devices that failed the deployment in current stage.</p>",
         "EndpointOutputConfiguration$InitialInstanceCount": "<p>The number of instances recommended to launch initially.</p>",
+        "InferenceMetrics$MaxInvocations": "<p>The expected maximum number of requests per minute for the instance.</p>",
+        "InferenceMetrics$ModelLatency": "<p>The expected model latency at maximum invocations per minute for the instance.</p>",
         "ModelLatencyThreshold$ValueInMilliseconds": "<p>The model latency percentile value in milliseconds.</p>",
         "RecommendationJobStoppingConditions$MaxInvocations": "<p>The maximum number of requests per minute expected for the endpoint.</p>",
         "RecommendationMetrics$MaxInvocations": "<p>The expected maximum number of requests per minute for the instance.</p>",
@@ -5720,6 +5989,13 @@
         "UserSettings$JupyterServerAppSettings": "<p>The Jupyter server's app settings.</p>"
       }
     },
+    "KeepAlivePeriodInSeconds": {
+      "base": null,
+      "refs": {
+        "ResourceConfig$KeepAlivePeriodInSeconds": "<p>The duration of time in seconds to retain configured resources in a warm pool for subsequent training jobs.</p>",
+        "ResourceConfigForUpdate$KeepAlivePeriodInSeconds": "<p>The <code>KeepAlivePeriodInSeconds</code> value specified in the <code>ResourceConfig</code> to update.</p>"
+      }
+    },
     "KernelDisplayName": {
       "base": null,
       "refs": {
@@ -5772,6 +6048,7 @@
         "AthenaDatasetDefinition$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data generated from an Athena query execution.</p>",
         "AutoMLOutputDataConfig$KmsKeyId": "<p>The Amazon Web Services KMS encryption key ID.</p>",
         "AutoMLSecurityConfig$VolumeKmsKeyId": "<p>The key used to encrypt stored data.</p>",
+        "BatchDataCaptureConfig$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the batch transform job.</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
         "CreateDomainRequest$HomeEfsFileSystemKmsKeyId": "<p>Use <code>KmsKeyId</code>.</p>",
         "CreateDomainRequest$KmsKeyId": "<p>SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached to the domain with an Amazon Web Services managed key by default. For more control, specify a customer managed key.</p>",
         "CreateEdgePackagingJobRequest$ResourceKey": "<p>The Amazon Web Services KMS key to use when encrypting the EBS volume the edge packaging job runs on.</p>",
@@ -6369,6 +6646,16 @@
       "refs": {
       }
     },
+    "ListInferenceRecommendationsJobStepsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInferenceRecommendationsJobStepsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListInferenceRecommendationsJobsRequest": {
       "base": null,
       "refs": {
@@ -6788,7 +7075,7 @@
     "MaxConcurrentTaskCount": {
       "base": null,
       "refs": {
-        "HumanTaskConfig$MaxConcurrentTaskCount": "<p>Defines the maximum number of data objects that can be labeled by human workers at the same time. Also referred to as batch size. Each object may have more than one worker at one time. The default value is 1000 objects.</p>"
+        "HumanTaskConfig$MaxConcurrentTaskCount": "<p>Defines the maximum number of data objects that can be labeled by human workers at the same time. Also referred to as batch size. Each object may have more than one worker at one time. The default value is 1000 objects. To increase the maximum value to 5000 objects, contact Amazon Web Services Support.</p>"
       }
     },
     "MaxConcurrentTransforms": {
@@ -6873,6 +7160,7 @@
         "ListHyperParameterTuningJobsRequest$MaxResults": "<p>The maximum number of tuning jobs to return. The default value is 10.</p>",
         "ListImageVersionsRequest$MaxResults": "<p>The maximum number of versions to return in the response. The default value is 10. </p>",
         "ListImagesRequest$MaxResults": "<p>The maximum number of images to return in the response. The default value is 10. </p>",
+        "ListInferenceRecommendationsJobStepsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListInferenceRecommendationsJobsRequest$MaxResults": "<p>The maximum number of recommendations to return in the response.</p>",
         "ListLabelingJobsForWorkteamRequest$MaxResults": "<p>The maximum number of labeling jobs to return in each page of the response.</p>",
         "ListLabelingJobsRequest$MaxResults": "<p>The maximum number of labeling jobs to return in each page of the response.</p>",
@@ -7139,7 +7427,8 @@
     "ModelConfiguration": {
       "base": "<p>Defines the model configuration. Includes the specification name and environment parameters.</p>",
       "refs": {
-        "InferenceRecommendation$ModelConfiguration": "<p>Defines the model configuration.</p>"
+        "InferenceRecommendation$ModelConfiguration": "<p>Defines the model configuration.</p>",
+        "RecommendationJobInferenceBenchmark$ModelConfiguration": null
       }
     },
     "ModelDataQuality": {
@@ -7317,6 +7606,12 @@
       "refs": {
         "AdditionalInferenceSpecificationDefinition$Containers": "<p>The Amazon ECR registry path of the Docker image that contains the inference code.</p>",
         "InferenceSpecification$Containers": "<p>The Amazon ECR registry path of the Docker image that contains the inference code.</p>"
+      }
+    },
+    "ModelPackageFrameworkVersion": {
+      "base": null,
+      "refs": {
+        "ModelPackageContainerDefinition$FrameworkVersion": "<p>The framework version of the Model Package Container Image.</p>"
       }
     },
     "ModelPackageGroup": {
@@ -7536,6 +7831,18 @@
         "MonitoringAppSpecification$ContainerArguments": "<p>An array of arguments for the container used to run the monitoring job.</p>"
       }
     },
+    "MonitoringCsvDatasetFormat": {
+      "base": "<p>Represents the CSV dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "MonitoringDatasetFormat$Csv": "<p>The CSV dataset used in the monitoring job.</p>"
+      }
+    },
+    "MonitoringDatasetFormat": {
+      "base": "<p>Represents the dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "BatchTransformInput$DatasetFormat": "<p>The dataset format for your batch transform job.</p>"
+      }
+    },
     "MonitoringEnvironmentMap": {
       "base": null,
       "refs": {
@@ -7656,6 +7963,12 @@
         "ListModelQualityJobDefinitionsResponse$JobDefinitionSummaries": "<p>A list of summaries of model quality monitoring job definitions.</p>"
       }
     },
+    "MonitoringJsonDatasetFormat": {
+      "base": "<p>Represents the JSON dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "MonitoringDatasetFormat$Json": "<p>The JSON dataset used in the monitoring job</p>"
+      }
+    },
     "MonitoringMaxRuntimeInSeconds": {
       "base": null,
       "refs": {
@@ -7699,6 +8012,12 @@
       "base": null,
       "refs": {
         "MonitoringOutputConfig$MonitoringOutputs": "<p>Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.</p>"
+      }
+    },
+    "MonitoringParquetDatasetFormat": {
+      "base": "<p>Represents the Parquet dataset format used when running a monitoring job.</p>",
+      "refs": {
+        "MonitoringDatasetFormat$Parquet": "<p>The Parquet dataset used in the monitoring job</p>"
       }
     },
     "MonitoringProblemType": {
@@ -7825,6 +8144,8 @@
     "MonitoringTimeOffsetString": {
       "base": null,
       "refs": {
+        "BatchTransformInput$StartTimeOffset": "<p>If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
+        "BatchTransformInput$EndTimeOffset": "<p>If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
         "EndpointInput$StartTimeOffset": "<p>If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
         "EndpointInput$EndTimeOffset": "<p>If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>"
       }
@@ -7992,6 +8313,8 @@
         "ListImageVersionsResponse$NextToken": "<p>A token for getting the next set of versions, if there are any.</p>",
         "ListImagesRequest$NextToken": "<p>If the previous call to <code>ListImages</code> didn't return the full set of images, the call returns a token for getting the next set of images.</p>",
         "ListImagesResponse$NextToken": "<p>A token for getting the next set of images, if there are any.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$NextToken": "<p>A token that you can specify to return more results from the list. Specify this field if you have a token that was returned from a previous request.</p>",
+        "ListInferenceRecommendationsJobStepsResponse$NextToken": "<p>A token that you can specify in your next request to return more results from the list.</p>",
         "ListInferenceRecommendationsJobsRequest$NextToken": "<p>If the response to a previous <code>ListInferenceRecommendationsJobsRequest</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of recommendations, use the token in the next request.</p>",
         "ListInferenceRecommendationsJobsResponse$NextToken": "<p>A token for getting the next set of recommendations, if there are any.</p>",
         "ListLabelingJobsForWorkteamRequest$NextToken": "<p>If the result of the previous <code>ListLabelingJobsForWorkteam</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of labeling jobs, use the token in the next request.</p>",
@@ -8791,6 +9114,7 @@
     "ProbabilityThresholdAttribute": {
       "base": null,
       "refs": {
+        "BatchTransformInput$ProbabilityThresholdAttribute": "<p>The threshold for the class probability to be evaluated as a positive result.</p>",
         "EndpointInput$ProbabilityThresholdAttribute": "<p>The threshold for the class probability to be evaluated as a positive result.</p>"
       }
     },
@@ -8931,6 +9255,7 @@
     "ProcessingLocalPath": {
       "base": null,
       "refs": {
+        "BatchTransformInput$LocalPath": "<p>Path to the filesystem where the batch transform data is available to the container.</p>",
         "DatasetDefinition$LocalPath": "<p>The local path where you want Amazon SageMaker to download the Dataset Definition inputs to run a processing job. <code>LocalPath</code> is an absolute path to the input data. This is a required parameter when <code>AppManaged</code> is <code>False</code> (default).</p>",
         "EndpointInput$LocalPath": "<p>Path to the filesystem where the endpoint data is available to the container.</p>",
         "MonitoringS3Output$LocalPath": "<p>The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.</p>",
@@ -8981,6 +9306,7 @@
     "ProcessingS3DataDistributionType": {
       "base": null,
       "refs": {
+        "BatchTransformInput$S3DataDistributionType": "<p>Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defaults to <code>FullyReplicated</code> </p>",
         "EndpointInput$S3DataDistributionType": "<p>Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defaults to <code>FullyReplicated</code> </p>",
         "ProcessingS3Input$S3DataDistributionType": "<p>Whether to distribute the data from Amazon S3 to all processing instances with <code>FullyReplicated</code>, or whether the data from Amazon S3 is shared by Amazon S3 key, downloading one shard of data to each processing instance.</p>"
       }
@@ -9000,6 +9326,7 @@
     "ProcessingS3InputMode": {
       "base": null,
       "refs": {
+        "BatchTransformInput$S3InputMode": "<p>Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transferring data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.</p>",
         "EndpointInput$S3InputMode": "<p>Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transferring data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.</p>",
         "ProcessingS3Input$S3InputMode": "<p>Whether to use <code>File</code> or <code>Pipe</code> input mode. In File mode, Amazon SageMaker copies the data from the input source onto the local ML storage volume before starting your processing container. This is the most commonly used input mode. In <code>Pipe</code> mode, Amazon SageMaker streams input data from the source directly to your processing container into named pipes without using the ML storage volume.</p>"
       }
@@ -9437,6 +9764,12 @@
         "InferenceSpecification$SupportedRealtimeInferenceInstanceTypes": "<p>A list of the instance types that are used to generate inferences in real-time.</p> <p>This parameter is required for unversioned models, and optional for versioned models.</p>"
       }
     },
+    "RecommendationFailureReason": {
+      "base": null,
+      "refs": {
+        "RecommendationJobInferenceBenchmark$FailureReason": "<p>The reason why a benchmark failed.</p>"
+      }
+    },
     "RecommendationJobArn": {
       "base": null,
       "refs": {
@@ -9465,6 +9798,12 @@
         "InferenceRecommendationsJob$JobDescription": "<p>The job description.</p>"
       }
     },
+    "RecommendationJobInferenceBenchmark": {
+      "base": "<p>The details for a specific benchmark from an Inference Recommender job.</p>",
+      "refs": {
+        "InferenceRecommendationsJobStep$InferenceBenchmark": "<p>The details for a specific benchmark.</p>"
+      }
+    },
     "RecommendationJobInputConfig": {
       "base": "<p>The input configuration of the recommendation job.</p>",
       "refs": {
@@ -9479,6 +9818,8 @@
         "DescribeInferenceRecommendationsJobRequest$JobName": "<p>The name of the job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.</p>",
         "DescribeInferenceRecommendationsJobResponse$JobName": "<p>The name of the job. The name must be unique within an Amazon Web Services Region in the Amazon Web Services account.</p>",
         "InferenceRecommendationsJob$JobName": "<p>The name of the job.</p>",
+        "InferenceRecommendationsJobStep$JobName": "<p>The name of the Inference Recommender job.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$JobName": "<p>The name for the Inference Recommender job.</p>",
         "StopInferenceRecommendationsJobRequest$JobName": "<p>The name of the job you want to stop.</p>"
       }
     },
@@ -9505,6 +9846,8 @@
       "refs": {
         "DescribeInferenceRecommendationsJobResponse$Status": "<p>The status of the job.</p>",
         "InferenceRecommendationsJob$Status": "<p>The status of the job.</p>",
+        "InferenceRecommendationsJobStep$Status": "<p>The current status of the benchmark.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$Status": "<p>A filter to return benchmarks of a specified status. If this field is left empty, then all benchmarks are returned.</p>",
         "ListInferenceRecommendationsJobsRequest$StatusEquals": "<p>A filter that retrieves only inference recommendations jobs with a specific status.</p>"
       }
     },
@@ -9538,7 +9881,15 @@
     "RecommendationMetrics": {
       "base": "<p>The metrics of recommendations.</p>",
       "refs": {
-        "InferenceRecommendation$Metrics": "<p>The metrics used to decide what recommendation to make.</p>"
+        "InferenceRecommendation$Metrics": "<p>The metrics used to decide what recommendation to make.</p>",
+        "RecommendationJobInferenceBenchmark$Metrics": null
+      }
+    },
+    "RecommendationStepType": {
+      "base": null,
+      "refs": {
+        "InferenceRecommendationsJobStep$StepType": "<p>The type of the subtask.</p> <p> <code>BENCHMARK</code>: Evaluate the performance of your model on different instance types.</p>",
+        "ListInferenceRecommendationsJobStepsRequest$StepType": "<p>A filter to return details about the specified type of subtask.</p> <p> <code>BENCHMARK</code>: Evaluate the performance of your model on different instance types.</p>"
       }
     },
     "RecordWrapper": {
@@ -9670,6 +10021,12 @@
         "TrainingJobDefinition$ResourceConfig": "<p>The resources, including the ML compute instances and ML storage volumes, to use for model training.</p>"
       }
     },
+    "ResourceConfigForUpdate": {
+      "base": "<p>The <code>ResourceConfig</code> to update <code>KeepAlivePeriodInSeconds</code>. Other fields in the <code>ResourceConfig</code> cannot be updated.</p>",
+      "refs": {
+        "UpdateTrainingJobRequest$ResourceConfig": "<p>The training job <code>ResourceConfig</code> to update warm pool retention length.</p>"
+      }
+    },
     "ResourceId": {
       "base": null,
       "refs": {
@@ -9711,6 +10068,12 @@
         "NestedFilters$NestedPropertyName": "<p>The name of the property to use in the nested filters. The value must match a listed property name, such as <code>InputDataConfig</code>.</p>",
         "PropertyNameSuggestion$PropertyName": "<p>A suggested property name based on what you entered in the search textbox in the Amazon SageMaker console.</p>",
         "SearchRequest$SortBy": "<p>The name of the resource property used to sort the <code>SearchResults</code>. The default is <code>LastModifiedTime</code>.</p>"
+      }
+    },
+    "ResourceRetainedBillableTimeInSeconds": {
+      "base": null,
+      "refs": {
+        "WarmPoolStatus$ResourceRetainedBillableTimeInSeconds": "<p>The billable time in seconds used by the warm pool. Billable time refers to the absolute wall-clock time.</p> <p>Multiply <code>ResourceRetainedBillableTimeInSeconds</code> by the number of instances (<code>InstanceCount</code>) in your training cluster to get the total compute time SageMaker bills you if you run warm pool training. The formula is as follows: <code>ResourceRetainedBillableTimeInSeconds * InstanceCount</code>.</p>"
       }
     },
     "ResourceSpec": {
@@ -9829,6 +10192,7 @@
         "RStudioServerProDomainSettingsForUpdate$DomainExecutionRoleArn": "<p>The execution role for the <code>RStudioServerPro</code> Domain-level app.</p>",
         "RedshiftDatasetDefinition$ClusterRoleArn": "<p>The IAM role attached to your Redshift cluster that Amazon SageMaker uses to generate datasets.</p>",
         "RenderUiTemplateRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to the S3 objects that are used by the template.</p>",
+        "TimeSeriesForecastingSettings$AmazonForecastRoleArn": "<p>The IAM role that Canvas passes to Amazon Forecast for time series forecasting. By default, Canvas uses the execution role specified in the <code>UserProfile</code> that launches the Canvas app. If an execution role is not specified in the <code>UserProfile</code>, Canvas uses the execution role specified in the Domain that owns the <code>UserProfile</code>. To allow time series forecasting, this IAM role should have the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess\"> AmazonSageMakerCanvasForecastAccess</a> policy attached and <code>forecast.amazonaws.com</code> added in the trust relationship as a service principal.</p>",
         "TrainingJob$RoleArn": "<p>The Amazon Web Services Identity and Access Management (IAM) role configured for the training job.</p>",
         "UpdateDeviceFleetRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the device.</p>",
         "UpdateImageRequest$RoleArn": "<p>The new Amazon Resource Name (ARN) for the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
@@ -9897,9 +10261,10 @@
       "base": null,
       "refs": {
         "AthenaDatasetDefinition$OutputS3Uri": "<p>The location in Amazon S3 where Athena query results are stored.</p>",
-        "AutoMLCandidateGenerationConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing selected features from the input data source to run an Autopilot job (optional). This file should be in json format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>[\"col1\", \"col2\", ...]</code> is case sensitive and should be a list of strings containing unique values that are a subset of the column names in the input data. The list of columns provided must not include the target column.</p>",
+        "AutoMLCandidateGenerationConfig$FeatureSpecificationS3Uri": "<p>A URL to the Amazon S3 data source containing selected features from the input data source to run an Autopilot job. You can input <code>FeatureAttributeNames</code> (optional) in JSON format as shown below: </p> <p> <code>{ \"FeatureAttributeNames\":[\"col1\", \"col2\", ...] }</code>.</p> <p>You can also specify the data type of the feature (optional) in the format shown below:</p> <p> <code>{ \"FeatureDataTypes\":{\"col1\":\"numeric\", \"col2\":\"categorical\" ... } }</code> </p> <note> <p>These column keys may not include the target column.</p> </note> <p>In ensembling mode, Autopilot will only support the following data types: <code>numeric</code>, <code>categorical</code>, <code>text</code> and <code>datetime</code>. In HPO mode, Autopilot can support <code>numeric</code>, <code>categorical</code>, <code>text</code>, <code>datetime</code> and <code>sequence</code>.</p> <p>If only <code>FeatureDataTypes</code> is provided, the column keys (<code>col1</code>, <code>col2</code>,..) should be a subset of the column names in the input data. </p> <p>If both <code>FeatureDataTypes</code> and <code>FeatureAttributeNames</code> are provided, then the column keys should be a subset of the column names provided in <code>FeatureAttributeNames</code>. </p> <p>The key name <code>FeatureAttributeNames</code> is fixed. The values listed in <code>[\"col1\", \"col2\", ...]</code> is case sensitive and should be a list of strings containing unique values that are a subset of the column names in the input data. The list of columns provided must not include the target column.</p>",
         "AutoMLOutputDataConfig$S3OutputPath": "<p>The Amazon S3 output path. Must be 128 characters or less.</p>",
         "AutoMLS3DataSource$S3Uri": "<p>The URL to the Amazon S3 data source.</p>",
+        "BatchDataCaptureConfig$DestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
         "CheckpointConfig$S3Uri": "<p>Identifies the S3 path where you want SageMaker to store checkpoints. For example, <code>s3://bucket-name/key-name-prefix</code>.</p>",
         "CreateLabelingJobRequest$LabelCategoryConfigS3Uri": "<p>The S3 URI of the file, referred to as a <i>label category configuration file</i>, that defines the categories used to label the data objects.</p> <p>For 3D point cloud and video frame task types, you can add label category attributes and frame attributes to your label category configuration file. To learn how, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-label-category-config.html\">Create a Labeling Category Configuration File for 3D Point Cloud Labeling Jobs</a>. </p> <p>For named entity recognition jobs, in addition to <code>\"labels\"</code>, you must provide worker instructions in the label category configuration file using the <code>\"instructions\"</code> parameter: <code>\"instructions\": {\"shortInstruction\":\"&lt;h1&gt;Add header&lt;/h1&gt;&lt;p&gt;Add Instructions&lt;/p&gt;\", \"fullInstruction\":\"&lt;p&gt;Add additional instructions.&lt;/p&gt;\"}</code>. For details and an example, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-named-entity-recg.html#sms-creating-ner-api\">Create a Named Entity Recognition Labeling Job (API) </a>.</p> <p>For all other <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html\">built-in task types</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates.html\">custom tasks</a>, your label category configuration file must be a JSON file in the following format. Identify the labels you want to use by replacing <code>label_1</code>, <code>label_2</code>,<code>...</code>,<code>label_n</code> with your label categories.</p> <p> <code>{ </code> </p> <p> <code>\"document-version\": \"2018-11-28\",</code> </p> <p> <code>\"labels\": [{\"label\": \"label_1\"},{\"label\": \"label_2\"},...{\"label\": \"label_n\"}]</code> </p> <p> <code>}</code> </p> <p>Note the following about the label category configuration file:</p> <ul> <li> <p>For image classification and text classification (single and multi-label) you must specify at least two label categories. For all other task types, the minimum number of label categories required is one. </p> </li> <li> <p>Each label category must be unique, you cannot specify duplicate label categories.</p> </li> <li> <p>If you create a 3D point cloud or video frame adjustment or verification labeling job, you must include <code>auditLabelAttributeName</code> in the label category configuration. Use this parameter to enter the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html#sagemaker-CreateLabelingJob-request-LabelAttributeName\"> <code>LabelAttributeName</code> </a> of the labeling job you want to adjust or verify annotations of.</p> </li> </ul>",
         "CreateModelPackageInput$SamplePayloadUrl": "<p>The Amazon Simple Storage Service (Amazon S3) path where the sample payload are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p>",
@@ -10156,8 +10521,8 @@
     "SingleSignOnUserIdentifier": {
       "base": null,
       "refs": {
-        "CreateUserProfileRequest$SingleSignOnUserIdentifier": "<p>A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is \"UserName\". If the Domain's AuthMode is Amazon Web Services SSO, this field is required. If the Domain's AuthMode is not Amazon Web Services SSO, this field cannot be specified. </p>",
-        "DescribeUserProfileResponse$SingleSignOnUserIdentifier": "<p>The Amazon Web Services SSO user identifier.</p>"
+        "CreateUserProfileRequest$SingleSignOnUserIdentifier": "<p>A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is \"UserName\". If the Domain's AuthMode is IAM Identity Center, this field is required. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified. </p>",
+        "DescribeUserProfileResponse$SingleSignOnUserIdentifier": "<p>The IAM Identity Center user identifier.</p>"
       }
     },
     "SnsTopicArn": {
@@ -10495,6 +10860,9 @@
         "AlgorithmStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
         "BatchDescribeModelPackageError$ErrorCode": "<p/>",
         "BatchDescribeModelPackageError$ErrorResponse": "<p/>",
+        "BatchTransformInput$FeaturesAttribute": "<p>The attributes of the input data that are the input features.</p>",
+        "BatchTransformInput$InferenceAttribute": "<p>The attribute of the input data that represents the ground truth label.</p>",
+        "BatchTransformInput$ProbabilityAttribute": "<p>In a classification problem, the attribute that represents the class probability.</p>",
         "CreateModelPackageInput$Domain": "<p>The machine learning domain of your model package and its components. Common machine learning domains include computer vision and natural language processing.</p>",
         "CreateModelPackageInput$Task": "<p>The machine learning task your model package accomplishes. Common machine learning tasks include object detection and image classification. The following tasks are supported by Inference Recommender: <code>\"IMAGE_CLASSIFICATION\"</code> | <code>\"OBJECT_DETECTION\"</code> | <code>\"TEXT_GENERATION\"</code> |<code>\"IMAGE_SEGMENTATION\"</code> | <code>\"FILL_MASK\"</code> | <code>\"CLASSIFICATION\"</code> | <code>\"REGRESSION\"</code> | <code>\"OTHER\"</code>.</p> <p>Specify \"OTHER\" if none of the tasks listed fit your use case.</p>",
         "DescribeEdgePackagingJobResponse$EdgePackagingJobStatusMessage": "<p>Returns a message describing the job status and error messages.</p>",
@@ -10613,12 +10981,12 @@
         "CreateActionRequest$ActionType": "<p>The action type.</p>",
         "CreateArtifactRequest$ArtifactType": "<p>The artifact type.</p>",
         "CreateContextRequest$ContextType": "<p>The context type.</p>",
-        "CreateUserProfileRequest$SingleSignOnUserValue": "<p>The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is Amazon Web Services SSO, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not Amazon Web Services SSO, this field cannot be specified. </p>",
+        "CreateUserProfileRequest$SingleSignOnUserValue": "<p>The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified. </p>",
         "DescribeActionResponse$ActionType": "<p>The type of the action.</p>",
         "DescribeArtifactResponse$ArtifactType": "<p>The type of the artifact.</p>",
         "DescribeContextResponse$ContextType": "<p>The type of the context.</p>",
-        "DescribeDomainResponse$SingleSignOnManagedApplicationInstanceId": "<p>The Amazon Web Services SSO managed application instance ID.</p>",
-        "DescribeUserProfileResponse$SingleSignOnUserValue": "<p>The Amazon Web Services SSO user value.</p>",
+        "DescribeDomainResponse$SingleSignOnManagedApplicationInstanceId": "<p>The IAM Identity Center managed application instance ID.</p>",
+        "DescribeUserProfileResponse$SingleSignOnUserValue": "<p>The IAM Identity Center user value.</p>",
         "EMRStepMetadata$ClusterId": "<p>The identifier of the EMR cluster.</p>",
         "EMRStepMetadata$StepId": "<p>The identifier of the EMR cluster step.</p>",
         "EMRStepMetadata$StepName": "<p>The name of the EMR cluster step.</p>",
@@ -11024,6 +11392,12 @@
         "DeviceSummary$IotThingName": "<p>The Amazon Web Services Internet of Things (IoT) object thing name associated with the device..</p>"
       }
     },
+    "TimeSeriesForecastingSettings": {
+      "base": "<p>Time series forecast settings for the SageMaker Canvas app.</p>",
+      "refs": {
+        "CanvasAppSettings$TimeSeriesForecastingSettings": "<p>Time series forecast settings for the Canvas app.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -11386,6 +11760,30 @@
         "TrafficPattern$TrafficType": "<p>Defines the traffic patterns.</p>"
       }
     },
+    "TrainingContainerArgument": {
+      "base": null,
+      "refs": {
+        "TrainingContainerArguments$member": null
+      }
+    },
+    "TrainingContainerArguments": {
+      "base": null,
+      "refs": {
+        "AlgorithmSpecification$ContainerArguments": "<p>The arguments for a container used to run a training job. See <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html\">How Amazon SageMaker Runs Your Training Image</a> for additional information.</p>"
+      }
+    },
+    "TrainingContainerEntrypoint": {
+      "base": null,
+      "refs": {
+        "AlgorithmSpecification$ContainerEntrypoint": "<p>The <a href=\"https://docs.docker.com/engine/reference/builder/\">entrypoint script for a Docker container</a> used to run a training job. This script takes precedence over the default train processing instructions. See <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-dockerfile.html\">How Amazon SageMaker Runs Your Training Image</a> for more information.</p>"
+      }
+    },
+    "TrainingContainerEntrypointString": {
+      "base": null,
+      "refs": {
+        "TrainingContainerEntrypoint$member": null
+      }
+    },
     "TrainingEnvironmentKey": {
       "base": null,
       "refs": {
@@ -11471,7 +11869,7 @@
     "TrainingJobEarlyStoppingType": {
       "base": null,
       "refs": {
-        "HyperParameterTuningJobConfig$TrainingJobEarlyStoppingType": "<p>Specifies whether to use early stopping for training jobs launched by the hyperparameter tuning job. This can be one of the following values (the default value is <code>OFF</code>):</p> <dl> <dt>OFF</dt> <dd> <p>Training jobs launched by the hyperparameter tuning job do not use early stopping.</p> </dd> <dt>AUTO</dt> <dd> <p>SageMaker stops training jobs launched by the hyperparameter tuning job when they are unlikely to perform better than previously completed training jobs. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html\">Stop Training Jobs Early</a>.</p> </dd> </dl>"
+        "HyperParameterTuningJobConfig$TrainingJobEarlyStoppingType": "<p>Specifies whether to use early stopping for training jobs launched by the hyperparameter tuning job. Because the <code>Hyperband</code> strategy has its own advanced internal early stopping mechanism, <code>TrainingJobEarlyStoppingType</code> must be <code>OFF</code> to use <code>Hyperband</code>. This parameter can take on one of the following values (the default value is <code>OFF</code>):</p> <dl> <dt>OFF</dt> <dd> <p>Training jobs launched by the hyperparameter tuning job do not use early stopping.</p> </dd> <dt>AUTO</dt> <dd> <p>SageMaker stops training jobs launched by the hyperparameter tuning job when they are unlikely to perform better than previously completed training jobs. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-early-stopping.html\">Stop Training Jobs Early</a>.</p> </dd> </dl>"
       }
     },
     "TrainingJobName": {
@@ -11484,7 +11882,8 @@
         "StopTrainingJobRequest$TrainingJobName": "<p>The name of the training job to stop.</p>",
         "TrainingJob$TrainingJobName": "<p>The name of the training job.</p>",
         "TrainingJobSummary$TrainingJobName": "<p>The name of the training job that you want a summary for.</p>",
-        "UpdateTrainingJobRequest$TrainingJobName": "<p>The name of a training job to update the Debugger profiling configuration.</p>"
+        "UpdateTrainingJobRequest$TrainingJobName": "<p>The name of a training job to update the Debugger profiling configuration.</p>",
+        "WarmPoolStatus$ReusedByJob": "<p>The name of the matching training job that reused the warm pool.</p>"
       }
     },
     "TrainingJobSortByOptions": {
@@ -11593,7 +11992,7 @@
     "TransformInstanceCount": {
       "base": null,
       "refs": {
-        "TransformResources$InstanceCount": "<p>The number of ML compute instances to use in the transform job. For distributed transform jobs, specify a value greater than 1. The default value is <code>1</code>.</p>"
+        "TransformResources$InstanceCount": "<p>The number of ML compute instances to use in the transform job. The default value is <code>1</code>, and the maximum is <code>100</code>. For distributed transform jobs, specify a value greater than <code>1</code>.</p>"
       }
     },
     "TransformInstanceType": {
@@ -12191,6 +12590,7 @@
       "base": null,
       "refs": {
         "AutoMLContainerDefinition$ModelDataUrl": "<p>The location of the model artifacts. For more information, see .</p>",
+        "ClarifyShapBaselineConfig$ShapBaselineUri": "<p>The uniform resource identifier (URI) of the S3 bucket where the SHAP baseline file is stored. The format of the SHAP baseline file should be the same format as the format of the training dataset. For example, if the training dataset is in CSV format, and each record in the training dataset has four features, and all features are numerical, then the baseline file should also have this same format. Each record should contain only the features. If you are using a virtual private cloud (VPC), the <code>ShapBaselineUri</code> should be accessible to the VPC. For more information about setting up endpoints with Amazon Virtual Private Cloud, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/infrastructure-give-access.html\">Give SageMaker access to Resources in your Amazon Virtual Private Cloud</a>.</p>",
         "ContainerDefinition$ModelDataUrl": "<p>The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for SageMaker built-in algorithms, but not if you use your own algorithms. For more information on built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Common Parameters</a>. </p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model or endpoint you are creating.</p> </note> <p>If you provide a value for this parameter, SageMaker uses Amazon Web Services Security Token Service to download model artifacts from the S3 path you provide. Amazon Web Services STS is activated in your IAM user account by default. If you previously deactivated Amazon Web Services STS for a region, you need to reactivate Amazon Web Services STS for that region. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and Deactivating Amazon Web Services STS in an Amazon Web Services Region</a> in the <i>Amazon Web Services Identity and Access Management User Guide</i>.</p> <important> <p>If you use a built-in algorithm to create a model, SageMaker requires that you provide a S3 path to the model artifacts in <code>ModelDataUrl</code>.</p> </important>",
         "ModelPackageContainerDefinition$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model package.</p> </note>",
         "SourceAlgorithm$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the algorithm.</p> </note>"
@@ -12427,6 +12827,20 @@
       "base": null,
       "refs": {
         "TrafficRoutingConfig$WaitIntervalInSeconds": "<p>The waiting time (in seconds) between incremental steps to turn on traffic on the new endpoint fleet.</p>"
+      }
+    },
+    "WarmPoolResourceStatus": {
+      "base": null,
+      "refs": {
+        "ListTrainingJobsRequest$WarmPoolStatusEquals": "<p>A filter that retrieves only training jobs with a specific warm pool status.</p>",
+        "WarmPoolStatus$Status": "<p>The status of the warm pool.</p> <ul> <li> <p> <code>InUse</code>: The warm pool is in use for the training job.</p> </li> <li> <p> <code>Available</code>: The warm pool is available to reuse for a matching training job.</p> </li> <li> <p> <code>Reused</code>: The warm pool moved to a matching training job for reuse.</p> </li> <li> <p> <code>Terminated</code>: The warm pool is no longer available. Warm pools are unavailable if they are terminated by a user, terminated for a patch update, or terminated for exceeding the specified <code>KeepAlivePeriodInSeconds</code>.</p> </li> </ul>"
+      }
+    },
+    "WarmPoolStatus": {
+      "base": "<p>Status and billing information about the warm pool.</p>",
+      "refs": {
+        "DescribeTrainingJobResponse$WarmPoolStatus": "<p>The status of the warm pool associated with the training job.</p>",
+        "TrainingJobSummary$WarmPoolStatus": "<p>The status of the warm pool associated with the training job.</p>"
       }
     },
     "Workforce": {

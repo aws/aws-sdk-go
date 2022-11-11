@@ -2316,6 +2316,7 @@
       "errors":[
         {"shape":"DBSnapshotNotFoundFault"},
         {"shape":"DBClusterSnapshotNotFoundFault"},
+        {"shape":"DBClusterNotFoundFault"},
         {"shape":"ExportTaskAlreadyExistsFault"},
         {"shape":"InvalidS3BucketFault"},
         {"shape":"IamRoleNotFoundFault"},
@@ -3082,7 +3083,8 @@
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
         "BackupTarget":{"shape":"String"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -3125,7 +3127,8 @@
         "ReplicaMode":{"shape":"ReplicaMode"},
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{
@@ -3970,7 +3973,8 @@
         "CustomIamInstanceProfile":{"shape":"String"},
         "BackupTarget":{"shape":"String"},
         "NetworkType":{"shape":"String"},
-        "ActivityStreamPolicyStatus":{"shape":"ActivityStreamPolicyStatus"}
+        "ActivityStreamPolicyStatus":{"shape":"ActivityStreamPolicyStatus"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       },
       "wrapper":true
     },
@@ -4014,7 +4018,8 @@
         "BackupRetentionPeriod":{"shape":"IntegerOptional"},
         "DBInstanceAutomatedBackupsArn":{"shape":"String"},
         "DBInstanceAutomatedBackupsReplications":{"shape":"DBInstanceAutomatedBackupsReplicationList"},
-        "BackupTarget":{"shape":"String"}
+        "BackupTarget":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       },
       "wrapper":true
     },
@@ -4590,7 +4595,8 @@
         "TagList":{"shape":"TagList"},
         "OriginalSnapshotCreateTime":{"shape":"TStamp"},
         "SnapshotDatabaseTime":{"shape":"TStamp"},
-        "SnapshotTarget":{"shape":"String"}
+        "SnapshotTarget":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       },
       "wrapper":true
     },
@@ -5311,7 +5317,8 @@
         "SourceArn":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "Marker":{"shape":"String"},
-        "MaxRecords":{"shape":"MaxRecords"}
+        "MaxRecords":{"shape":"MaxRecords"},
+        "SourceType":{"shape":"ExportSourceType"}
       }
     },
     "DescribeGlobalClustersMessage":{
@@ -5528,7 +5535,8 @@
       "type":"string",
       "enum":[
         "MYSQL",
-        "POSTGRESQL"
+        "POSTGRESQL",
+        "SQLSERVER"
       ]
     },
     "EngineModeList":{
@@ -5629,6 +5637,13 @@
         "Events":{"shape":"EventList"}
       }
     },
+    "ExportSourceType":{
+      "type":"string",
+      "enum":[
+        "SNAPSHOT",
+        "CLUSTER"
+      ]
+    },
     "ExportTask":{
       "type":"structure",
       "members":{
@@ -5646,7 +5661,8 @@
         "PercentProgress":{"shape":"Integer"},
         "TotalExtractedDataInGB":{"shape":"Integer"},
         "FailureCause":{"shape":"String"},
-        "WarningMessage":{"shape":"String"}
+        "WarningMessage":{"shape":"String"},
+        "SourceType":{"shape":"ExportSourceType"}
       }
     },
     "ExportTaskAlreadyExistsFault":{
@@ -5853,7 +5869,8 @@
       "type":"string",
       "enum":[
         "DISABLED",
-        "REQUIRED"
+        "REQUIRED",
+        "ENABLED"
       ]
     },
     "IPRange":{
@@ -6471,7 +6488,8 @@
         "AwsBackupRecoveryPointArn":{"shape":"AwsBackupRecoveryPointArn"},
         "AutomationMode":{"shape":"AutomationMode"},
         "ResumeFullAutomationModeMinutes":{"shape":"IntegerOptional"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       }
     },
     "ModifyDBInstanceResult":{
@@ -6919,7 +6937,12 @@
         "SupportedActivityStreamModes":{"shape":"ActivityStreamModeList"},
         "SupportsGlobalDatabases":{"shape":"Boolean"},
         "SupportsClusters":{"shape":"Boolean"},
-        "SupportedNetworkTypes":{"shape":"StringList"}
+        "SupportedNetworkTypes":{"shape":"StringList"},
+        "SupportsStorageThroughput":{"shape":"Boolean"},
+        "MinStorageThroughputPerDbInstance":{"shape":"IntegerOptional"},
+        "MaxStorageThroughputPerDbInstance":{"shape":"IntegerOptional"},
+        "MinStorageThroughputPerIops":{"shape":"DoubleOptional"},
+        "MaxStorageThroughputPerIops":{"shape":"DoubleOptional"}
       },
       "wrapper":true
     },
@@ -7025,7 +7048,8 @@
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "IAMDatabaseAuthenticationEnabled":{"shape":"BooleanOptional"},
         "AutomationMode":{"shape":"AutomationMode"},
-        "ResumeFullAutomationModeTime":{"shape":"TStamp"}
+        "ResumeFullAutomationModeTime":{"shape":"TStamp"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       }
     },
     "PointInTimeRestoreNotEnabledFault":{
@@ -7604,7 +7628,8 @@
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
         "BackupTarget":{"shape":"String"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
@@ -7669,7 +7694,8 @@
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBInstanceFromS3Result":{
@@ -7718,7 +7744,8 @@
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
         "BackupTarget":{"shape":"String"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "StorageThroughput":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{
@@ -8300,7 +8327,9 @@
         "StorageSize":{"shape":"RangeList"},
         "ProvisionedIops":{"shape":"RangeList"},
         "IopsToStorageRatio":{"shape":"DoubleRangeList"},
-        "SupportsStorageAutoscaling":{"shape":"Boolean"}
+        "SupportsStorageAutoscaling":{"shape":"Boolean"},
+        "ProvisionedStorageThroughput":{"shape":"RangeList"},
+        "StorageThroughputToIopsRatio":{"shape":"DoubleRangeList"}
       }
     },
     "ValidStorageOptionsList":{

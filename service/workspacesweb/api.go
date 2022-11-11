@@ -292,6 +292,100 @@ func (c *WorkSpacesWeb) AssociateTrustStoreWithContext(ctx aws.Context, input *A
 	return out, req.Send()
 }
 
+const opAssociateUserAccessLoggingSettings = "AssociateUserAccessLoggingSettings"
+
+// AssociateUserAccessLoggingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateUserAccessLoggingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateUserAccessLoggingSettings for more information on using the AssociateUserAccessLoggingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateUserAccessLoggingSettingsRequest method.
+//	req, resp := client.AssociateUserAccessLoggingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) AssociateUserAccessLoggingSettingsRequest(input *AssociateUserAccessLoggingSettingsInput) (req *request.Request, output *AssociateUserAccessLoggingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opAssociateUserAccessLoggingSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/portals/{portalArn+}/userAccessLoggingSettings",
+	}
+
+	if input == nil {
+		input = &AssociateUserAccessLoggingSettingsInput{}
+	}
+
+	output = &AssociateUserAccessLoggingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateUserAccessLoggingSettings API operation for Amazon WorkSpaces Web.
+//
+// Associates a user access logging settings resource with a web portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation AssociateUserAccessLoggingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) AssociateUserAccessLoggingSettings(input *AssociateUserAccessLoggingSettingsInput) (*AssociateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.AssociateUserAccessLoggingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// AssociateUserAccessLoggingSettingsWithContext is the same as AssociateUserAccessLoggingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateUserAccessLoggingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) AssociateUserAccessLoggingSettingsWithContext(ctx aws.Context, input *AssociateUserAccessLoggingSettingsInput, opts ...request.Option) (*AssociateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.AssociateUserAccessLoggingSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateUserSettings = "AssociateUserSettings"
 
 // AssociateUserSettingsRequest generates a "aws/request.Request" representing the
@@ -875,6 +969,101 @@ func (c *WorkSpacesWeb) CreateTrustStoreWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreateUserAccessLoggingSettings = "CreateUserAccessLoggingSettings"
+
+// CreateUserAccessLoggingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUserAccessLoggingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUserAccessLoggingSettings for more information on using the CreateUserAccessLoggingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateUserAccessLoggingSettingsRequest method.
+//	req, resp := client.CreateUserAccessLoggingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) CreateUserAccessLoggingSettingsRequest(input *CreateUserAccessLoggingSettingsInput) (req *request.Request, output *CreateUserAccessLoggingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opCreateUserAccessLoggingSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/userAccessLoggingSettings",
+	}
+
+	if input == nil {
+		input = &CreateUserAccessLoggingSettingsInput{}
+	}
+
+	output = &CreateUserAccessLoggingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUserAccessLoggingSettings API operation for Amazon WorkSpaces Web.
+//
+// Creates a user access logging settings resource that can be associated with
+// a web portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation CreateUserAccessLoggingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) CreateUserAccessLoggingSettings(input *CreateUserAccessLoggingSettingsInput) (*CreateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.CreateUserAccessLoggingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// CreateUserAccessLoggingSettingsWithContext is the same as CreateUserAccessLoggingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUserAccessLoggingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) CreateUserAccessLoggingSettingsWithContext(ctx aws.Context, input *CreateUserAccessLoggingSettingsInput, opts ...request.Option) (*CreateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.CreateUserAccessLoggingSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateUserSettings = "CreateUserSettings"
 
 // CreateUserSettingsRequest generates a "aws/request.Request" representing the
@@ -1431,6 +1620,98 @@ func (c *WorkSpacesWeb) DeleteTrustStoreWithContext(ctx aws.Context, input *Dele
 	return out, req.Send()
 }
 
+const opDeleteUserAccessLoggingSettings = "DeleteUserAccessLoggingSettings"
+
+// DeleteUserAccessLoggingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUserAccessLoggingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUserAccessLoggingSettings for more information on using the DeleteUserAccessLoggingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteUserAccessLoggingSettingsRequest method.
+//	req, resp := client.DeleteUserAccessLoggingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteUserAccessLoggingSettings
+func (c *WorkSpacesWeb) DeleteUserAccessLoggingSettingsRequest(input *DeleteUserAccessLoggingSettingsInput) (req *request.Request, output *DeleteUserAccessLoggingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUserAccessLoggingSettings,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+	}
+
+	if input == nil {
+		input = &DeleteUserAccessLoggingSettingsInput{}
+	}
+
+	output = &DeleteUserAccessLoggingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteUserAccessLoggingSettings API operation for Amazon WorkSpaces Web.
+//
+// Deletes user access logging settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation DeleteUserAccessLoggingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+//   - ConflictException
+//     There is a conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteUserAccessLoggingSettings
+func (c *WorkSpacesWeb) DeleteUserAccessLoggingSettings(input *DeleteUserAccessLoggingSettingsInput) (*DeleteUserAccessLoggingSettingsOutput, error) {
+	req, out := c.DeleteUserAccessLoggingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUserAccessLoggingSettingsWithContext is the same as DeleteUserAccessLoggingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUserAccessLoggingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) DeleteUserAccessLoggingSettingsWithContext(ctx aws.Context, input *DeleteUserAccessLoggingSettingsInput, opts ...request.Option) (*DeleteUserAccessLoggingSettingsOutput, error) {
+	req, out := c.DeleteUserAccessLoggingSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUserSettings = "DeleteUserSettings"
 
 // DeleteUserSettingsRequest generates a "aws/request.Request" representing the
@@ -1794,6 +2075,98 @@ func (c *WorkSpacesWeb) DisassociateTrustStore(input *DisassociateTrustStoreInpu
 // for more information on using Contexts.
 func (c *WorkSpacesWeb) DisassociateTrustStoreWithContext(ctx aws.Context, input *DisassociateTrustStoreInput, opts ...request.Option) (*DisassociateTrustStoreOutput, error) {
 	req, out := c.DisassociateTrustStoreRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateUserAccessLoggingSettings = "DisassociateUserAccessLoggingSettings"
+
+// DisassociateUserAccessLoggingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateUserAccessLoggingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateUserAccessLoggingSettings for more information on using the DisassociateUserAccessLoggingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateUserAccessLoggingSettingsRequest method.
+//	req, resp := client.DisassociateUserAccessLoggingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) DisassociateUserAccessLoggingSettingsRequest(input *DisassociateUserAccessLoggingSettingsInput) (req *request.Request, output *DisassociateUserAccessLoggingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateUserAccessLoggingSettings,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/portals/{portalArn+}/userAccessLoggingSettings",
+	}
+
+	if input == nil {
+		input = &DisassociateUserAccessLoggingSettingsInput{}
+	}
+
+	output = &DisassociateUserAccessLoggingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateUserAccessLoggingSettings API operation for Amazon WorkSpaces Web.
+//
+// Disassociates user access logging settings from a web portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation DisassociateUserAccessLoggingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) DisassociateUserAccessLoggingSettings(input *DisassociateUserAccessLoggingSettingsInput) (*DisassociateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.DisassociateUserAccessLoggingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateUserAccessLoggingSettingsWithContext is the same as DisassociateUserAccessLoggingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateUserAccessLoggingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) DisassociateUserAccessLoggingSettingsWithContext(ctx aws.Context, input *DisassociateUserAccessLoggingSettingsInput, opts ...request.Option) (*DisassociateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.DisassociateUserAccessLoggingSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2523,6 +2896,97 @@ func (c *WorkSpacesWeb) GetTrustStoreCertificate(input *GetTrustStoreCertificate
 // for more information on using Contexts.
 func (c *WorkSpacesWeb) GetTrustStoreCertificateWithContext(ctx aws.Context, input *GetTrustStoreCertificateInput, opts ...request.Option) (*GetTrustStoreCertificateOutput, error) {
 	req, out := c.GetTrustStoreCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetUserAccessLoggingSettings = "GetUserAccessLoggingSettings"
+
+// GetUserAccessLoggingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetUserAccessLoggingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetUserAccessLoggingSettings for more information on using the GetUserAccessLoggingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetUserAccessLoggingSettingsRequest method.
+//	req, resp := client.GetUserAccessLoggingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetUserAccessLoggingSettings
+func (c *WorkSpacesWeb) GetUserAccessLoggingSettingsRequest(input *GetUserAccessLoggingSettingsInput) (req *request.Request, output *GetUserAccessLoggingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opGetUserAccessLoggingSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+	}
+
+	if input == nil {
+		input = &GetUserAccessLoggingSettingsInput{}
+	}
+
+	output = &GetUserAccessLoggingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetUserAccessLoggingSettings API operation for Amazon WorkSpaces Web.
+//
+// Gets user access logging settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation GetUserAccessLoggingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetUserAccessLoggingSettings
+func (c *WorkSpacesWeb) GetUserAccessLoggingSettings(input *GetUserAccessLoggingSettingsInput) (*GetUserAccessLoggingSettingsOutput, error) {
+	req, out := c.GetUserAccessLoggingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// GetUserAccessLoggingSettingsWithContext is the same as GetUserAccessLoggingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetUserAccessLoggingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) GetUserAccessLoggingSettingsWithContext(ctx aws.Context, input *GetUserAccessLoggingSettingsInput, opts ...request.Option) (*GetUserAccessLoggingSettingsOutput, error) {
+	req, out := c.GetUserAccessLoggingSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3583,6 +4047,151 @@ func (c *WorkSpacesWeb) ListTrustStoresPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListUserAccessLoggingSettings = "ListUserAccessLoggingSettings"
+
+// ListUserAccessLoggingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListUserAccessLoggingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUserAccessLoggingSettings for more information on using the ListUserAccessLoggingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUserAccessLoggingSettingsRequest method.
+//	req, resp := client.ListUserAccessLoggingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListUserAccessLoggingSettings
+func (c *WorkSpacesWeb) ListUserAccessLoggingSettingsRequest(input *ListUserAccessLoggingSettingsInput) (req *request.Request, output *ListUserAccessLoggingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opListUserAccessLoggingSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/userAccessLoggingSettings",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListUserAccessLoggingSettingsInput{}
+	}
+
+	output = &ListUserAccessLoggingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUserAccessLoggingSettings API operation for Amazon WorkSpaces Web.
+//
+// Retrieves a list of user access logging settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation ListUserAccessLoggingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListUserAccessLoggingSettings
+func (c *WorkSpacesWeb) ListUserAccessLoggingSettings(input *ListUserAccessLoggingSettingsInput) (*ListUserAccessLoggingSettingsOutput, error) {
+	req, out := c.ListUserAccessLoggingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// ListUserAccessLoggingSettingsWithContext is the same as ListUserAccessLoggingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUserAccessLoggingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) ListUserAccessLoggingSettingsWithContext(ctx aws.Context, input *ListUserAccessLoggingSettingsInput, opts ...request.Option) (*ListUserAccessLoggingSettingsOutput, error) {
+	req, out := c.ListUserAccessLoggingSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListUserAccessLoggingSettingsPages iterates over the pages of a ListUserAccessLoggingSettings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUserAccessLoggingSettings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListUserAccessLoggingSettings operation.
+//	pageNum := 0
+//	err := client.ListUserAccessLoggingSettingsPages(params,
+//	    func(page *workspacesweb.ListUserAccessLoggingSettingsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *WorkSpacesWeb) ListUserAccessLoggingSettingsPages(input *ListUserAccessLoggingSettingsInput, fn func(*ListUserAccessLoggingSettingsOutput, bool) bool) error {
+	return c.ListUserAccessLoggingSettingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUserAccessLoggingSettingsPagesWithContext same as ListUserAccessLoggingSettingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) ListUserAccessLoggingSettingsPagesWithContext(ctx aws.Context, input *ListUserAccessLoggingSettingsInput, fn func(*ListUserAccessLoggingSettingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUserAccessLoggingSettingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUserAccessLoggingSettingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUserAccessLoggingSettingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListUserSettings = "ListUserSettings"
 
 // ListUserSettingsRequest generates a "aws/request.Request" representing the
@@ -4373,6 +4982,97 @@ func (c *WorkSpacesWeb) UpdateTrustStoreWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdateUserAccessLoggingSettings = "UpdateUserAccessLoggingSettings"
+
+// UpdateUserAccessLoggingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateUserAccessLoggingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateUserAccessLoggingSettings for more information on using the UpdateUserAccessLoggingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateUserAccessLoggingSettingsRequest method.
+//	req, resp := client.UpdateUserAccessLoggingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) UpdateUserAccessLoggingSettingsRequest(input *UpdateUserAccessLoggingSettingsInput) (req *request.Request, output *UpdateUserAccessLoggingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateUserAccessLoggingSettings,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/userAccessLoggingSettings/{userAccessLoggingSettingsArn+}",
+	}
+
+	if input == nil {
+		input = &UpdateUserAccessLoggingSettingsInput{}
+	}
+
+	output = &UpdateUserAccessLoggingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateUserAccessLoggingSettings API operation for Amazon WorkSpaces Web.
+//
+// Updates the user access logging settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces Web's
+// API operation UpdateUserAccessLoggingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     There is an internal server error.
+//
+//   - ResourceNotFoundException
+//     The resource cannot be found.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     There is a throttling error.
+//
+//   - ValidationException
+//     There is a validation error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateUserAccessLoggingSettings
+func (c *WorkSpacesWeb) UpdateUserAccessLoggingSettings(input *UpdateUserAccessLoggingSettingsInput) (*UpdateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.UpdateUserAccessLoggingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateUserAccessLoggingSettingsWithContext is the same as UpdateUserAccessLoggingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateUserAccessLoggingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpacesWeb) UpdateUserAccessLoggingSettingsWithContext(ctx aws.Context, input *UpdateUserAccessLoggingSettingsInput, opts ...request.Option) (*UpdateUserAccessLoggingSettingsOutput, error) {
+	req, out := c.UpdateUserAccessLoggingSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUserSettings = "UpdateUserSettings"
 
 // UpdateUserSettingsRequest generates a "aws/request.Request" representing the
@@ -4855,6 +5555,116 @@ func (s *AssociateTrustStoreOutput) SetPortalArn(v string) *AssociateTrustStoreO
 // SetTrustStoreArn sets the TrustStoreArn field's value.
 func (s *AssociateTrustStoreOutput) SetTrustStoreArn(v string) *AssociateTrustStoreOutput {
 	s.TrustStoreArn = &v
+	return s
+}
+
+type AssociateUserAccessLoggingSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the web portal.
+	//
+	// PortalArn is a required field
+	PortalArn *string `location:"uri" locationName:"portalArn" min:"20" type:"string" required:"true"`
+
+	// The ARN of the user access logging settings.
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `location:"querystring" locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserAccessLoggingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserAccessLoggingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateUserAccessLoggingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateUserAccessLoggingSettingsInput"}
+	if s.PortalArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortalArn"))
+	}
+	if s.PortalArn != nil && len(*s.PortalArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PortalArn", 20))
+	}
+	if s.UserAccessLoggingSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAccessLoggingSettingsArn"))
+	}
+	if s.UserAccessLoggingSettingsArn != nil && len(*s.UserAccessLoggingSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("UserAccessLoggingSettingsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPortalArn sets the PortalArn field's value.
+func (s *AssociateUserAccessLoggingSettingsInput) SetPortalArn(v string) *AssociateUserAccessLoggingSettingsInput {
+	s.PortalArn = &v
+	return s
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *AssociateUserAccessLoggingSettingsInput) SetUserAccessLoggingSettingsArn(v string) *AssociateUserAccessLoggingSettingsInput {
+	s.UserAccessLoggingSettingsArn = &v
+	return s
+}
+
+type AssociateUserAccessLoggingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the web portal.
+	//
+	// PortalArn is a required field
+	PortalArn *string `locationName:"portalArn" min:"20" type:"string" required:"true"`
+
+	// The ARN of the user access logging settings.
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserAccessLoggingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserAccessLoggingSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetPortalArn sets the PortalArn field's value.
+func (s *AssociateUserAccessLoggingSettingsOutput) SetPortalArn(v string) *AssociateUserAccessLoggingSettingsOutput {
+	s.PortalArn = &v
+	return s
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *AssociateUserAccessLoggingSettingsOutput) SetUserAccessLoggingSettingsArn(v string) *AssociateUserAccessLoggingSettingsOutput {
+	s.UserAccessLoggingSettingsArn = &v
 	return s
 }
 
@@ -6019,6 +6829,126 @@ func (s *CreateTrustStoreOutput) SetTrustStoreArn(v string) *CreateTrustStoreOut
 	return s
 }
 
+type CreateUserAccessLoggingSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. Idempotency ensures that an API request completes only once.
+	// With an idempotent request, if the original request completes successfully,
+	// subsequent retries with the same client token returns the result from the
+	// original successful request.
+	//
+	// If you do not specify a client token, one is automatically generated by the
+	// AWS SDK.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ARN of the Kinesis stream.
+	//
+	// KinesisStreamArn is a required field
+	KinesisStreamArn *string `locationName:"kinesisStreamArn" min:"20" type:"string" required:"true"`
+
+	// The tags to add to the user settings resource. A tag is a key-value pair.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserAccessLoggingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserAccessLoggingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserAccessLoggingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserAccessLoggingSettingsInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.KinesisStreamArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("KinesisStreamArn"))
+	}
+	if s.KinesisStreamArn != nil && len(*s.KinesisStreamArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KinesisStreamArn", 20))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateUserAccessLoggingSettingsInput) SetClientToken(v string) *CreateUserAccessLoggingSettingsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetKinesisStreamArn sets the KinesisStreamArn field's value.
+func (s *CreateUserAccessLoggingSettingsInput) SetKinesisStreamArn(v string) *CreateUserAccessLoggingSettingsInput {
+	s.KinesisStreamArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateUserAccessLoggingSettingsInput) SetTags(v []*Tag) *CreateUserAccessLoggingSettingsInput {
+	s.Tags = v
+	return s
+}
+
+type CreateUserAccessLoggingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the user access logging settings.
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserAccessLoggingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUserAccessLoggingSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *CreateUserAccessLoggingSettingsOutput) SetUserAccessLoggingSettingsArn(v string) *CreateUserAccessLoggingSettingsOutput {
+	s.UserAccessLoggingSettingsArn = &v
+	return s
+}
+
 type CreateUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6573,6 +7503,77 @@ func (s DeleteTrustStoreOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteUserAccessLoggingSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the user access logging settings.
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `location:"uri" locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserAccessLoggingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserAccessLoggingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserAccessLoggingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserAccessLoggingSettingsInput"}
+	if s.UserAccessLoggingSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAccessLoggingSettingsArn"))
+	}
+	if s.UserAccessLoggingSettingsArn != nil && len(*s.UserAccessLoggingSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("UserAccessLoggingSettingsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *DeleteUserAccessLoggingSettingsInput) SetUserAccessLoggingSettingsArn(v string) *DeleteUserAccessLoggingSettingsInput {
+	s.UserAccessLoggingSettingsArn = &v
+	return s
+}
+
+type DeleteUserAccessLoggingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserAccessLoggingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUserAccessLoggingSettingsOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteUserSettingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6854,6 +7855,77 @@ func (s DisassociateTrustStoreOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DisassociateTrustStoreOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateUserAccessLoggingSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the web portal.
+	//
+	// PortalArn is a required field
+	PortalArn *string `location:"uri" locationName:"portalArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserAccessLoggingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserAccessLoggingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateUserAccessLoggingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateUserAccessLoggingSettingsInput"}
+	if s.PortalArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortalArn"))
+	}
+	if s.PortalArn != nil && len(*s.PortalArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PortalArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPortalArn sets the PortalArn field's value.
+func (s *DisassociateUserAccessLoggingSettingsInput) SetPortalArn(v string) *DisassociateUserAccessLoggingSettingsInput {
+	s.PortalArn = &v
+	return s
+}
+
+type DisassociateUserAccessLoggingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserAccessLoggingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserAccessLoggingSettingsOutput) GoString() string {
 	return s.String()
 }
 
@@ -7522,6 +8594,86 @@ func (s GetTrustStoreOutput) GoString() string {
 // SetTrustStore sets the TrustStore field's value.
 func (s *GetTrustStoreOutput) SetTrustStore(v *TrustStore) *GetTrustStoreOutput {
 	s.TrustStore = v
+	return s
+}
+
+type GetUserAccessLoggingSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the user access logging settings.
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `location:"uri" locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserAccessLoggingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserAccessLoggingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetUserAccessLoggingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetUserAccessLoggingSettingsInput"}
+	if s.UserAccessLoggingSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAccessLoggingSettingsArn"))
+	}
+	if s.UserAccessLoggingSettingsArn != nil && len(*s.UserAccessLoggingSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("UserAccessLoggingSettingsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *GetUserAccessLoggingSettingsInput) SetUserAccessLoggingSettingsArn(v string) *GetUserAccessLoggingSettingsInput {
+	s.UserAccessLoggingSettingsArn = &v
+	return s
+}
+
+type GetUserAccessLoggingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The user access logging settings.
+	UserAccessLoggingSettings *UserAccessLoggingSettings `locationName:"userAccessLoggingSettings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserAccessLoggingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetUserAccessLoggingSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetUserAccessLoggingSettings sets the UserAccessLoggingSettings field's value.
+func (s *GetUserAccessLoggingSettingsOutput) SetUserAccessLoggingSettings(v *UserAccessLoggingSettings) *GetUserAccessLoggingSettingsOutput {
+	s.UserAccessLoggingSettings = v
 	return s
 }
 
@@ -8510,6 +9662,102 @@ func (s *ListTrustStoresOutput) SetTrustStores(v []*TrustStoreSummary) *ListTrus
 	return s
 }
 
+type ListUserAccessLoggingSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to be included in the next page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserAccessLoggingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserAccessLoggingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserAccessLoggingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserAccessLoggingSettingsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUserAccessLoggingSettingsInput) SetMaxResults(v int64) *ListUserAccessLoggingSettingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUserAccessLoggingSettingsInput) SetNextToken(v string) *ListUserAccessLoggingSettingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListUserAccessLoggingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token used to retrieve the next page of results for this operation.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The user access logging settings.
+	UserAccessLoggingSettings []*UserAccessLoggingSettingsSummary `locationName:"userAccessLoggingSettings" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserAccessLoggingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserAccessLoggingSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUserAccessLoggingSettingsOutput) SetNextToken(v string) *ListUserAccessLoggingSettingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserAccessLoggingSettings sets the UserAccessLoggingSettings field's value.
+func (s *ListUserAccessLoggingSettingsOutput) SetUserAccessLoggingSettings(v []*UserAccessLoggingSettingsSummary) *ListUserAccessLoggingSettingsOutput {
+	s.UserAccessLoggingSettings = v
+	return s
+}
+
 type ListUserSettingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8764,7 +10012,11 @@ type Portal struct {
 	// The ARN of the trust store that is associated with the web portal.
 	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string"`
 
-	// The ARN of the trust store that is associated with the web portal.
+	// The ARN of the user access logging settings that is associated with the web
+	// portal.
+	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string"`
+
+	// The ARN of the user settings that is associated with the web portal.
 	UserSettingsArn *string `locationName:"userSettingsArn" min:"20" type:"string"`
 }
 
@@ -8852,6 +10104,12 @@ func (s *Portal) SetTrustStoreArn(v string) *Portal {
 	return s
 }
 
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *Portal) SetUserAccessLoggingSettingsArn(v string) *Portal {
+	s.UserAccessLoggingSettingsArn = &v
+	return s
+}
+
 // SetUserSettingsArn sets the UserSettingsArn field's value.
 func (s *Portal) SetUserSettingsArn(v string) *Portal {
 	s.UserSettingsArn = &v
@@ -8896,6 +10154,10 @@ type PortalSummary struct {
 
 	// The ARN of the trust that is associated with this web portal.
 	TrustStoreArn *string `locationName:"trustStoreArn" min:"20" type:"string"`
+
+	// The ARN of the user access logging settings that is associated with the web
+	// portal.
+	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string"`
 
 	// The ARN of the user settings that is associated with the web portal.
 	UserSettingsArn *string `locationName:"userSettingsArn" min:"20" type:"string"`
@@ -8976,6 +10238,12 @@ func (s *PortalSummary) SetRendererType(v string) *PortalSummary {
 // SetTrustStoreArn sets the TrustStoreArn field's value.
 func (s *PortalSummary) SetTrustStoreArn(v string) *PortalSummary {
 	s.TrustStoreArn = &v
+	return s
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *PortalSummary) SetUserAccessLoggingSettingsArn(v string) *PortalSummary {
+	s.UserAccessLoggingSettingsArn = &v
 	return s
 }
 
@@ -10250,6 +11518,119 @@ func (s *UpdateTrustStoreOutput) SetTrustStoreArn(v string) *UpdateTrustStoreOut
 	return s
 }
 
+type UpdateUserAccessLoggingSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. Idempotency ensures that an API request completes only once.
+	// With an idempotent request, if the original request completes successfully,
+	// subsequent retries with the same client token return the result from the
+	// original successful request.
+	//
+	// If you do not specify a client token, one is automatically generated by the
+	// AWS SDK.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ARN of the Kinesis stream.
+	KinesisStreamArn *string `locationName:"kinesisStreamArn" min:"20" type:"string"`
+
+	// The ARN of the user access logging settings.
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `location:"uri" locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserAccessLoggingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserAccessLoggingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserAccessLoggingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserAccessLoggingSettingsInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.KinesisStreamArn != nil && len(*s.KinesisStreamArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KinesisStreamArn", 20))
+	}
+	if s.UserAccessLoggingSettingsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAccessLoggingSettingsArn"))
+	}
+	if s.UserAccessLoggingSettingsArn != nil && len(*s.UserAccessLoggingSettingsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("UserAccessLoggingSettingsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateUserAccessLoggingSettingsInput) SetClientToken(v string) *UpdateUserAccessLoggingSettingsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetKinesisStreamArn sets the KinesisStreamArn field's value.
+func (s *UpdateUserAccessLoggingSettingsInput) SetKinesisStreamArn(v string) *UpdateUserAccessLoggingSettingsInput {
+	s.KinesisStreamArn = &v
+	return s
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *UpdateUserAccessLoggingSettingsInput) SetUserAccessLoggingSettingsArn(v string) *UpdateUserAccessLoggingSettingsInput {
+	s.UserAccessLoggingSettingsArn = &v
+	return s
+}
+
+type UpdateUserAccessLoggingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The user access logging settings.
+	//
+	// UserAccessLoggingSettings is a required field
+	UserAccessLoggingSettings *UserAccessLoggingSettings `locationName:"userAccessLoggingSettings" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserAccessLoggingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserAccessLoggingSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetUserAccessLoggingSettings sets the UserAccessLoggingSettings field's value.
+func (s *UpdateUserAccessLoggingSettingsOutput) SetUserAccessLoggingSettings(v *UserAccessLoggingSettings) *UpdateUserAccessLoggingSettingsOutput {
+	s.UserAccessLoggingSettings = v
+	return s
+}
+
 type UpdateUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10419,6 +11800,101 @@ func (s UpdateUserSettingsOutput) GoString() string {
 // SetUserSettings sets the UserSettings field's value.
 func (s *UpdateUserSettingsOutput) SetUserSettings(v *UserSettings) *UpdateUserSettingsOutput {
 	s.UserSettings = v
+	return s
+}
+
+// A user access logging settings resource that can be associated with a web
+// portal.
+type UserAccessLoggingSettings struct {
+	_ struct{} `type:"structure"`
+
+	// A list of web portal ARNs that this user access logging settings is associated
+	// with.
+	AssociatedPortalArns []*string `locationName:"associatedPortalArns" type:"list"`
+
+	// The ARN of the Kinesis stream.
+	KinesisStreamArn *string `locationName:"kinesisStreamArn" min:"20" type:"string"`
+
+	// The ARN of the user access logging settings.
+	//
+	// UserAccessLoggingSettingsArn is a required field
+	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserAccessLoggingSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserAccessLoggingSettings) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedPortalArns sets the AssociatedPortalArns field's value.
+func (s *UserAccessLoggingSettings) SetAssociatedPortalArns(v []*string) *UserAccessLoggingSettings {
+	s.AssociatedPortalArns = v
+	return s
+}
+
+// SetKinesisStreamArn sets the KinesisStreamArn field's value.
+func (s *UserAccessLoggingSettings) SetKinesisStreamArn(v string) *UserAccessLoggingSettings {
+	s.KinesisStreamArn = &v
+	return s
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *UserAccessLoggingSettings) SetUserAccessLoggingSettingsArn(v string) *UserAccessLoggingSettings {
+	s.UserAccessLoggingSettingsArn = &v
+	return s
+}
+
+// The summary of user access logging settings.
+type UserAccessLoggingSettingsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Kinesis stream.
+	KinesisStreamArn *string `locationName:"kinesisStreamArn" min:"20" type:"string"`
+
+	// The ARN of the user access logging settings.
+	UserAccessLoggingSettingsArn *string `locationName:"userAccessLoggingSettingsArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserAccessLoggingSettingsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserAccessLoggingSettingsSummary) GoString() string {
+	return s.String()
+}
+
+// SetKinesisStreamArn sets the KinesisStreamArn field's value.
+func (s *UserAccessLoggingSettingsSummary) SetKinesisStreamArn(v string) *UserAccessLoggingSettingsSummary {
+	s.KinesisStreamArn = &v
+	return s
+}
+
+// SetUserAccessLoggingSettingsArn sets the UserAccessLoggingSettingsArn field's value.
+func (s *UserAccessLoggingSettingsSummary) SetUserAccessLoggingSettingsArn(v string) *UserAccessLoggingSettingsSummary {
+	s.UserAccessLoggingSettingsArn = &v
 	return s
 }
 

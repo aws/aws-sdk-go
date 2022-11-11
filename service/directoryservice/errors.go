@@ -72,6 +72,12 @@ const (
 	// The specified directory does not exist in the system.
 	ErrCodeDirectoryDoesNotExistException = "DirectoryDoesNotExistException"
 
+	// ErrCodeDirectoryInDesiredStateException for service response error code
+	// "DirectoryInDesiredStateException".
+	//
+	// The directory is already updated to desired update type settings.
+	ErrCodeDirectoryInDesiredStateException = "DirectoryInDesiredStateException"
+
 	// ErrCodeDirectoryLimitExceededException for service response error code
 	// "DirectoryLimitExceededException".
 	//
@@ -252,6 +258,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"DirectoryAlreadyInRegionException":      newErrorDirectoryAlreadyInRegionException,
 	"DirectoryAlreadySharedException":        newErrorDirectoryAlreadySharedException,
 	"DirectoryDoesNotExistException":         newErrorDirectoryDoesNotExistException,
+	"DirectoryInDesiredStateException":       newErrorDirectoryInDesiredStateException,
 	"DirectoryLimitExceededException":        newErrorDirectoryLimitExceededException,
 	"DirectoryNotSharedException":            newErrorDirectoryNotSharedException,
 	"DirectoryUnavailableException":          newErrorDirectoryUnavailableException,

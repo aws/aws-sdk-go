@@ -3,7 +3,7 @@
   "service": "<p><fullname>AWS Panorama</fullname> <p> <b>Overview</b> </p> <p>This is the <i>AWS Panorama API Reference</i>. For an introduction to the service, see <a href=\"https://docs.aws.amazon.com/panorama/latest/dev/panorama-welcome.html\">What is AWS Panorama?</a> in the <i>AWS Panorama Developer Guide</i>.</p></p>",
   "operations": {
     "CreateApplicationInstance": "<p>Creates an application instance and deploys it to a device.</p>",
-    "CreateJobForDevices": "<p>Creates a job to run on one or more devices.</p>",
+    "CreateJobForDevices": "<p>Creates a job to run on one or more devices. A job can update a device's software or reboot it.</p>",
     "CreateNodeFromTemplateJob": "<p>Creates a camera stream node.</p>",
     "CreatePackage": "<p>Creates a package and storage location in an Amazon S3 access point.</p>",
     "CreatePackageImportJob": "<p>Imports a node package.</p>",
@@ -32,6 +32,7 @@
     "ProvisionDevice": "<p>Creates a device and returns a configuration archive. The configuration archive is a ZIP file that contains a provisioning certificate that is valid for 5 minutes. Name the configuration archive <code>certificates-omni_<i>device-name</i>.zip</code> and transfer it to the device within 5 minutes. Use the included USB storage device and connect it to the USB 3.0 port next to the HDMI output.</p>",
     "RegisterPackageVersion": "<p>Registers a package version.</p>",
     "RemoveApplicationInstance": "<p>Removes an application instance.</p>",
+    "SignalApplicationInstanceNodeInstances": "<p>Signal camera nodes to stop or resume.</p>",
     "TagResource": "<p>Tags a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateDeviceMetadata": "<p>Updates a device's metadata.</p>"
@@ -88,7 +89,9 @@
         "DescribeApplicationInstanceResponse$ApplicationInstanceIdToReplace": "<p>The ID of the application instance that this instance replaced.</p>",
         "ListApplicationInstanceDependenciesRequest$ApplicationInstanceId": "<p>The application instance's ID.</p>",
         "ListApplicationInstanceNodeInstancesRequest$ApplicationInstanceId": "<p>The node instances' application instance ID.</p>",
-        "RemoveApplicationInstanceRequest$ApplicationInstanceId": "<p>An application instance ID.</p>"
+        "RemoveApplicationInstanceRequest$ApplicationInstanceId": "<p>An application instance ID.</p>",
+        "SignalApplicationInstanceNodeInstancesRequest$ApplicationInstanceId": "<p>An application instance ID.</p>",
+        "SignalApplicationInstanceNodeInstancesResponse$ApplicationInstanceId": "<p>An application instance ID.</p>"
       }
     },
     "ApplicationInstanceName": {
@@ -399,6 +402,12 @@
         "UpdateDeviceMetadataRequest$Description": "<p>A description for the device.</p>"
       }
     },
+    "DesiredState": {
+      "base": null,
+      "refs": {
+        "ReportedRuntimeContextState$DesiredState": "<p>The application's desired state.</p>"
+      }
+    },
     "Device": {
       "base": "<p>A device.</p>",
       "refs": {
@@ -468,7 +477,7 @@
     "DeviceJobConfig": {
       "base": "<p>A job's configuration.</p>",
       "refs": {
-        "CreateJobForDevicesRequest$DeviceJobConfig": "<p>Configuration settings for the job.</p>"
+        "CreateJobForDevicesRequest$DeviceJobConfig": "<p>Configuration settings for a software update job.</p>"
       }
     },
     "DeviceJobList": {
@@ -493,6 +502,12 @@
         "Device$Name": "<p>The device's name.</p>",
         "DeviceJob$DeviceName": "<p>The name of the target device</p>",
         "ProvisionDeviceRequest$Name": "<p>A name for the device.</p>"
+      }
+    },
+    "DeviceReportedStatus": {
+      "base": null,
+      "refs": {
+        "ReportedRuntimeContextState$DeviceReportedStatus": "<p>The application's reported status.</p>"
       }
     },
     "DeviceSerialNumber": {
@@ -641,7 +656,10 @@
     "JobType": {
       "base": null,
       "refs": {
-        "CreateJobForDevicesRequest$JobType": "<p>The type of job to run.</p>"
+        "CreateJobForDevicesRequest$JobType": "<p>The type of job to run.</p>",
+        "DescribeDeviceJobResponse$JobType": "<p>The job's type.</p>",
+        "DeviceJob$JobType": "<p>The job's type.</p>",
+        "LatestDeviceJob$JobType": "<p>The job's type.</p>"
       }
     },
     "LastUpdatedTime": {
@@ -961,7 +979,8 @@
     "NodeInstanceId": {
       "base": null,
       "refs": {
-        "NodeInstance$NodeInstanceId": "<p>The instance's ID.</p>"
+        "NodeInstance$NodeInstanceId": "<p>The instance's ID.</p>",
+        "NodeSignal$NodeInstanceId": "<p>The camera node's name, from the application manifest.</p>"
       }
     },
     "NodeInstanceStatus": {
@@ -1076,6 +1095,24 @@
         "PackageObject$PackageVersion": "<p>The object's package version.</p>",
         "PackageVersionOutputConfig$PackageVersion": "<p>The output's package version.</p>",
         "RegisterPackageVersionRequest$PackageVersion": "<p>A package version.</p>"
+      }
+    },
+    "NodeSignal": {
+      "base": "<p>A signal to a camera node to start or stop processing video.</p>",
+      "refs": {
+        "NodeSignalList$member": null
+      }
+    },
+    "NodeSignalList": {
+      "base": null,
+      "refs": {
+        "SignalApplicationInstanceNodeInstancesRequest$NodeSignals": "<p>A list of signals.</p>"
+      }
+    },
+    "NodeSignalValue": {
+      "base": null,
+      "refs": {
+        "NodeSignal$Signal": "<p>The signal value.</p>"
       }
     },
     "NodesList": {
@@ -1326,6 +1363,19 @@
       "refs": {
       }
     },
+    "ReportedRuntimeContextState": {
+      "base": "<p>An application instance's state.</p>",
+      "refs": {
+        "ReportedRuntimeContextStates$member": null
+      }
+    },
+    "ReportedRuntimeContextStates": {
+      "base": null,
+      "refs": {
+        "ApplicationInstance$RuntimeContextStates": "<p>The application's state.</p>",
+        "DescribeApplicationInstanceResponse$RuntimeContextStates": "<p>The application instance's state.</p>"
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -1345,6 +1395,12 @@
         "InternalServerException$RetryAfterSeconds": "<p>The number of seconds a client should wait before retrying the call.</p>"
       }
     },
+    "RuntimeContextName": {
+      "base": null,
+      "refs": {
+        "ReportedRuntimeContextState$RuntimeContextName": "<p>The device's name.</p>"
+      }
+    },
     "RuntimeRoleArn": {
       "base": null,
       "refs": {
@@ -1360,6 +1416,16 @@
     },
     "ServiceQuotaExceededException": {
       "base": "<p>The request would cause a limit to be exceeded.</p>",
+      "refs": {
+      }
+    },
+    "SignalApplicationInstanceNodeInstancesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SignalApplicationInstanceNodeInstancesResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1500,7 +1566,8 @@
         "DescribePackageResponse$CreatedTime": "<p>When the package was created.</p>",
         "DescribePackageVersionResponse$RegisteredTime": "<p>The version's registered time.</p>",
         "Node$CreatedTime": "<p>When the node was created.</p>",
-        "PackageListItem$CreatedTime": "<p>When the package was created.</p>"
+        "PackageListItem$CreatedTime": "<p>When the package was created.</p>",
+        "ReportedRuntimeContextState$DeviceReportedTime": "<p>When the device reported the application's state.</p>"
       }
     },
     "Token": {

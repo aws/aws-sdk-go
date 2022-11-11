@@ -13,6 +13,98 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opBatchGetMetricData = "BatchGetMetricData"
+
+// BatchGetMetricDataRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetMetricData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetMetricData for more information on using the BatchGetMetricData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetMetricDataRequest method.
+//	req, resp := client.BatchGetMetricDataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/BatchGetMetricData
+func (c *SESV2) BatchGetMetricDataRequest(input *BatchGetMetricDataInput) (req *request.Request, output *BatchGetMetricDataOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetMetricData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/metrics/batch",
+	}
+
+	if input == nil {
+		input = &BatchGetMetricDataInput{}
+	}
+
+	output = &BatchGetMetricDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetMetricData API operation for Amazon Simple Email Service.
+//
+// Retrieves batches of metric data collected based on your sending activity.
+//
+// You can execute this operation no more than 16 times per second, and with
+// at most 160 queries from the batches per second (cumulative).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation BatchGetMetricData for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - InternalServiceErrorException
+//     The request couldn't be processed because an error occurred with the Amazon
+//     SES API v2.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/BatchGetMetricData
+func (c *SESV2) BatchGetMetricData(input *BatchGetMetricDataInput) (*BatchGetMetricDataOutput, error) {
+	req, out := c.BatchGetMetricDataRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetMetricDataWithContext is the same as BatchGetMetricData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetMetricData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) BatchGetMetricDataWithContext(ctx aws.Context, input *BatchGetMetricDataInput, opts ...request.Option) (*BatchGetMetricDataOutput, error) {
+	req, out := c.BatchGetMetricDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateConfigurationSet = "CreateConfigurationSet"
 
 // CreateConfigurationSetRequest generates a "aws/request.Request" representing the
@@ -437,7 +529,7 @@ func (c *SESV2) CreateCustomVerificationEmailTemplateRequest(input *CreateCustom
 // Creates a new custom verification email template.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -1510,7 +1602,7 @@ func (c *SESV2) DeleteCustomVerificationEmailTemplateRequest(input *DeleteCustom
 // Deletes an existing custom verification email template.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -2577,7 +2669,7 @@ func (c *SESV2) GetCustomVerificationEmailTemplateRequest(input *GetCustomVerifi
 // specify.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -2704,6 +2796,91 @@ func (c *SESV2) GetDedicatedIp(input *GetDedicatedIpInput) (*GetDedicatedIpOutpu
 // for more information on using Contexts.
 func (c *SESV2) GetDedicatedIpWithContext(ctx aws.Context, input *GetDedicatedIpInput, opts ...request.Option) (*GetDedicatedIpOutput, error) {
 	req, out := c.GetDedicatedIpRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDedicatedIpPool = "GetDedicatedIpPool"
+
+// GetDedicatedIpPoolRequest generates a "aws/request.Request" representing the
+// client's request for the GetDedicatedIpPool operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDedicatedIpPool for more information on using the GetDedicatedIpPool
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDedicatedIpPoolRequest method.
+//	req, resp := client.GetDedicatedIpPoolRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDedicatedIpPool
+func (c *SESV2) GetDedicatedIpPoolRequest(input *GetDedicatedIpPoolInput) (req *request.Request, output *GetDedicatedIpPoolOutput) {
+	op := &request.Operation{
+		Name:       opGetDedicatedIpPool,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/dedicated-ip-pools/{PoolName}",
+	}
+
+	if input == nil {
+		input = &GetDedicatedIpPoolInput{}
+	}
+
+	output = &GetDedicatedIpPoolOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDedicatedIpPool API operation for Amazon Simple Email Service.
+//
+// Retrieve information about the dedicated pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetDedicatedIpPool for usage and error information.
+//
+// Returned Error Types:
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDedicatedIpPool
+func (c *SESV2) GetDedicatedIpPool(input *GetDedicatedIpPoolInput) (*GetDedicatedIpPoolOutput, error) {
+	req, out := c.GetDedicatedIpPoolRequest(input)
+	return out, req.Send()
+}
+
+// GetDedicatedIpPoolWithContext is the same as GetDedicatedIpPool with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDedicatedIpPool for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetDedicatedIpPoolWithContext(ctx aws.Context, input *GetDedicatedIpPoolInput, opts ...request.Option) (*GetDedicatedIpPoolOutput, error) {
+	req, out := c.GetDedicatedIpPoolRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4128,7 +4305,7 @@ func (c *SESV2) ListCustomVerificationEmailTemplatesRequest(input *ListCustomVer
 // the current Amazon Web Services Region.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -5074,6 +5251,151 @@ func (c *SESV2) ListImportJobsPagesWithContext(ctx aws.Context, input *ListImpor
 	return p.Err()
 }
 
+const opListRecommendations = "ListRecommendations"
+
+// ListRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRecommendations for more information on using the ListRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRecommendationsRequest method.
+//	req, resp := client.ListRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListRecommendations
+func (c *SESV2) ListRecommendationsRequest(input *ListRecommendationsInput) (req *request.Request, output *ListRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opListRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/vdm/recommendations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRecommendationsInput{}
+	}
+
+	output = &ListRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRecommendations API operation for Amazon Simple Email Service.
+//
+// Lists the recommendations present in your Amazon SES account in the current
+// Amazon Web Services Region.
+//
+// You can execute this operation no more than once per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListRecommendations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListRecommendations
+func (c *SESV2) ListRecommendations(input *ListRecommendationsInput) (*ListRecommendationsOutput, error) {
+	req, out := c.ListRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ListRecommendationsWithContext is the same as ListRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListRecommendationsWithContext(ctx aws.Context, input *ListRecommendationsInput, opts ...request.Option) (*ListRecommendationsOutput, error) {
+	req, out := c.ListRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRecommendationsPages iterates over the pages of a ListRecommendations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRecommendations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRecommendations operation.
+//	pageNum := 0
+//	err := client.ListRecommendationsPages(params,
+//	    func(page *sesv2.ListRecommendationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SESV2) ListRecommendationsPages(input *ListRecommendationsInput, fn func(*ListRecommendationsOutput, bool) bool) error {
+	return c.ListRecommendationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRecommendationsPagesWithContext same as ListRecommendationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListRecommendationsPagesWithContext(ctx aws.Context, input *ListRecommendationsInput, fn func(*ListRecommendationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRecommendationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRecommendationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRecommendationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSuppressedDestinations = "ListSuppressedDestinations"
 
 // ListSuppressedDestinationsRequest generates a "aws/request.Request" representing the
@@ -5642,6 +5964,91 @@ func (c *SESV2) PutAccountSuppressionAttributesWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opPutAccountVdmAttributes = "PutAccountVdmAttributes"
+
+// PutAccountVdmAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccountVdmAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccountVdmAttributes for more information on using the PutAccountVdmAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutAccountVdmAttributesRequest method.
+//	req, resp := client.PutAccountVdmAttributesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutAccountVdmAttributes
+func (c *SESV2) PutAccountVdmAttributesRequest(input *PutAccountVdmAttributesInput) (req *request.Request, output *PutAccountVdmAttributesOutput) {
+	op := &request.Operation{
+		Name:       opPutAccountVdmAttributes,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/account/vdm",
+	}
+
+	if input == nil {
+		input = &PutAccountVdmAttributesInput{}
+	}
+
+	output = &PutAccountVdmAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutAccountVdmAttributes API operation for Amazon Simple Email Service.
+//
+// Update your Amazon SES account VDM attributes.
+//
+// You can execute this operation no more than once per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutAccountVdmAttributes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutAccountVdmAttributes
+func (c *SESV2) PutAccountVdmAttributes(input *PutAccountVdmAttributesInput) (*PutAccountVdmAttributesOutput, error) {
+	req, out := c.PutAccountVdmAttributesRequest(input)
+	return out, req.Send()
+}
+
+// PutAccountVdmAttributesWithContext is the same as PutAccountVdmAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccountVdmAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutAccountVdmAttributesWithContext(ctx aws.Context, input *PutAccountVdmAttributesInput, opts ...request.Option) (*PutAccountVdmAttributesOutput, error) {
+	req, out := c.PutAccountVdmAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutConfigurationSetDeliveryOptions = "PutConfigurationSetDeliveryOptions"
 
 // PutConfigurationSetDeliveryOptionsRequest generates a "aws/request.Request" representing the
@@ -6072,6 +6479,94 @@ func (c *SESV2) PutConfigurationSetTrackingOptions(input *PutConfigurationSetTra
 // for more information on using Contexts.
 func (c *SESV2) PutConfigurationSetTrackingOptionsWithContext(ctx aws.Context, input *PutConfigurationSetTrackingOptionsInput, opts ...request.Option) (*PutConfigurationSetTrackingOptionsOutput, error) {
 	req, out := c.PutConfigurationSetTrackingOptionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutConfigurationSetVdmOptions = "PutConfigurationSetVdmOptions"
+
+// PutConfigurationSetVdmOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the PutConfigurationSetVdmOptions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutConfigurationSetVdmOptions for more information on using the PutConfigurationSetVdmOptions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutConfigurationSetVdmOptionsRequest method.
+//	req, resp := client.PutConfigurationSetVdmOptionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetVdmOptions
+func (c *SESV2) PutConfigurationSetVdmOptionsRequest(input *PutConfigurationSetVdmOptionsInput) (req *request.Request, output *PutConfigurationSetVdmOptionsOutput) {
+	op := &request.Operation{
+		Name:       opPutConfigurationSetVdmOptions,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/configuration-sets/{ConfigurationSetName}/vdm-options",
+	}
+
+	if input == nil {
+		input = &PutConfigurationSetVdmOptionsInput{}
+	}
+
+	output = &PutConfigurationSetVdmOptionsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutConfigurationSetVdmOptions API operation for Amazon Simple Email Service.
+//
+// Specify VDM preferences for email that you send using the configuration set.
+//
+// You can execute this operation no more than once per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutConfigurationSetVdmOptions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     The resource you attempted to access doesn't exist.
+//
+//   - TooManyRequestsException
+//     Too many requests have been made to the operation.
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetVdmOptions
+func (c *SESV2) PutConfigurationSetVdmOptions(input *PutConfigurationSetVdmOptionsInput) (*PutConfigurationSetVdmOptionsOutput, error) {
+	req, out := c.PutConfigurationSetVdmOptionsRequest(input)
+	return out, req.Send()
+}
+
+// PutConfigurationSetVdmOptionsWithContext is the same as PutConfigurationSetVdmOptions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutConfigurationSetVdmOptions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutConfigurationSetVdmOptionsWithContext(ctx aws.Context, input *PutConfigurationSetVdmOptionsInput, opts ...request.Option) (*PutConfigurationSetVdmOptionsOutput, error) {
+	req, out := c.PutConfigurationSetVdmOptionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7044,7 +7539,7 @@ func (c *SESV2) SendCustomVerificationEmailRequest(input *SendCustomVerification
 //
 // To use this operation, you must first create a custom verification email
 // template. For more information about creating and using custom verification
-// email templates, see Using Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// email templates, see Using custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -7812,7 +8307,7 @@ func (c *SESV2) UpdateCustomVerificationEmailTemplateRequest(input *UpdateCustom
 // Updates an existing custom verification email template.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// custom verification email templates (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -8336,6 +8831,269 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Represents a request to retrieve a batch of metric data.
+type BatchGetMetricDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of queries for metrics to be retrieved.
+	//
+	// Queries is a required field
+	Queries []*BatchGetMetricDataQuery `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMetricDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMetricDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetMetricDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetMetricDataInput"}
+	if s.Queries == nil {
+		invalidParams.Add(request.NewErrParamRequired("Queries"))
+	}
+	if s.Queries != nil && len(s.Queries) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Queries", 1))
+	}
+	if s.Queries != nil {
+		for i, v := range s.Queries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Queries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueries sets the Queries field's value.
+func (s *BatchGetMetricDataInput) SetQueries(v []*BatchGetMetricDataQuery) *BatchGetMetricDataInput {
+	s.Queries = v
+	return s
+}
+
+// Represents the result of processing your metric data batch request
+type BatchGetMetricDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of MetricDataError encountered while processing your metric data batch
+	// request.
+	Errors []*MetricDataError `type:"list"`
+
+	// A list of successfully retrieved MetricDataResult.
+	Results []*MetricDataResult `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMetricDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMetricDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetMetricDataOutput) SetErrors(v []*MetricDataError) *BatchGetMetricDataOutput {
+	s.Errors = v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *BatchGetMetricDataOutput) SetResults(v []*MetricDataResult) *BatchGetMetricDataOutput {
+	s.Results = v
+	return s
+}
+
+// Represents a single metric data query to include in a batch.
+type BatchGetMetricDataQuery struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains mapping between MetricDimensionName and MetricDimensionValue
+	// to filter metrics by.
+	Dimensions map[string]*string `min:"1" type:"map"`
+
+	// Represents the end date for the query interval.
+	//
+	// EndDate is a required field
+	EndDate *time.Time `type:"timestamp" required:"true"`
+
+	// The query identifier.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The queried metric. This can be one of the following:
+	//
+	//    * SEND – Emails sent eligible for tracking in the VDM dashboard. This
+	//    excludes emails sent to the mailbox simulator and emails addressed to
+	//    more than one recipient.
+	//
+	//    * COMPLAINT – Complaints received for your account. This excludes complaints
+	//    from the mailbox simulator, those originating from your account-level
+	//    suppression list (if enabled), and those for emails addressed to more
+	//    than one recipient
+	//
+	//    * PERMANENT_BOUNCE – Permanent bounces - i.e. feedback received for
+	//    emails sent to non-existent mailboxes. Excludes bounces from the mailbox
+	//    simulator, those originating from your account-level suppression list
+	//    (if enabled), and those for emails addressed to more than one recipient.
+	//
+	//    * TRANSIENT_BOUNCE – Transient bounces - i.e. feedback received for
+	//    delivery failures excluding issues with non-existent mailboxes. Excludes
+	//    bounces from the mailbox simulator, and those for emails addressed to
+	//    more than one recipient.
+	//
+	//    * OPEN – Unique open events for emails including open trackers. Excludes
+	//    opens for emails addressed to more than one recipient.
+	//
+	//    * CLICK – Unique click events for emails including wrapped links. Excludes
+	//    clicks for emails addressed to more than one recipient.
+	//
+	//    * DELIVERY – Successful deliveries for email sending attempts. Excludes
+	//    deliveries to the mailbox simulator and for emails addressed to more than
+	//    one recipient.
+	//
+	//    * DELIVERY_OPEN – Successful deliveries for email sending attempts.
+	//    Excludes deliveries to the mailbox simulator, for emails addressed to
+	//    more than one recipient, and emails without open trackers.
+	//
+	//    * DELIVERY_CLICK – Successful deliveries for email sending attempts.
+	//    Excludes deliveries to the mailbox simulator, for emails addressed to
+	//    more than one recipient, and emails without click trackers.
+	//
+	//    * DELIVERY_COMPLAINT – Successful deliveries for email sending attempts.
+	//    Excludes deliveries to the mailbox simulator, for emails addressed to
+	//    more than one recipient, and emails addressed to recipients hosted by
+	//    ISPs with which Amazon SES does not have a feedback loop agreement.
+	//
+	// Metric is a required field
+	Metric *string `type:"string" required:"true" enum:"Metric"`
+
+	// The query namespace - e.g. VDM
+	//
+	// Namespace is a required field
+	Namespace *string `type:"string" required:"true" enum:"MetricNamespace"`
+
+	// Represents the start date for the query interval.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMetricDataQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetMetricDataQuery) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetMetricDataQuery) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetMetricDataQuery"}
+	if s.Dimensions != nil && len(s.Dimensions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Dimensions", 1))
+	}
+	if s.EndDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndDate"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Metric == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metric"))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.StartDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartDate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *BatchGetMetricDataQuery) SetDimensions(v map[string]*string) *BatchGetMetricDataQuery {
+	s.Dimensions = v
+	return s
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *BatchGetMetricDataQuery) SetEndDate(v time.Time) *BatchGetMetricDataQuery {
+	s.EndDate = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *BatchGetMetricDataQuery) SetId(v string) *BatchGetMetricDataQuery {
+	s.Id = &v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *BatchGetMetricDataQuery) SetMetric(v string) *BatchGetMetricDataQuery {
+	s.Metric = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *BatchGetMetricDataQuery) SetNamespace(v string) *BatchGetMetricDataQuery {
+	s.Namespace = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *BatchGetMetricDataQuery) SetStartDate(v time.Time) *BatchGetMetricDataQuery {
+	s.StartDate = &v
+	return s
+}
+
 // An object that contains information about a blacklisting event that impacts
 // one of the dedicated IP addresses that is associated with your account.
 type BlacklistEntry struct {
@@ -8345,7 +9103,7 @@ type BlacklistEntry struct {
 	// maintainer.
 	Description *string `type:"string"`
 
-	// The time when the blacklisting event occurred, shown in Unix time format.
+	// The time when the blacklisting event occurred.
 	ListingTime *time.Time `type:"timestamp"`
 
 	// The name of the blacklist that the IP address appears on.
@@ -8751,8 +9509,8 @@ type CloudWatchDimensionConfiguration struct {
 	// if you don't provide the value of the dimension when you send an email. This
 	// value has to meet the following criteria:
 	//
-	//    * It can only contain ASCII letters (a–z, A–Z), numbers (0–9), underscores
-	//    (_), or dashes (-).
+	//    * Can only contain ASCII letters (a–z, A–Z), numbers (0–9), underscores
+	//    (_), or dashes (-), at signs (@), and periods (.).
 	//
 	//    * It can contain no more than 256 characters.
 	//
@@ -9341,6 +10099,10 @@ type CreateConfigurationSetInput struct {
 	// An object that defines the open and click tracking options for emails that
 	// you send using the configuration set.
 	TrackingOptions *TrackingOptions `type:"structure"`
+
+	// An object that defines the VDM options for emails that you send using the
+	// configuration set.
+	VdmOptions *VdmOptions `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9428,6 +10190,12 @@ func (s *CreateConfigurationSetInput) SetTags(v []*Tag) *CreateConfigurationSetI
 // SetTrackingOptions sets the TrackingOptions field's value.
 func (s *CreateConfigurationSetInput) SetTrackingOptions(v *TrackingOptions) *CreateConfigurationSetInput {
 	s.TrackingOptions = v
+	return s
+}
+
+// SetVdmOptions sets the VdmOptions field's value.
+func (s *CreateConfigurationSetInput) SetVdmOptions(v *VdmOptions) *CreateConfigurationSetInput {
+	s.VdmOptions = v
 	return s
 }
 
@@ -9717,8 +10485,8 @@ type CreateCustomVerificationEmailTemplateInput struct {
 
 	// The content of the custom verification email. The total size of the email
 	// must be less than 10 MB. The message body may contain HTML, with some limitations.
-	// For more information, see Custom Verification Email Frequently Asked Questions
-	// (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html#custom-verification-emails-faq)
+	// For more information, see Custom verification email frequently asked questions
+	// (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom-faq)
 	// in the Amazon SES Developer Guide.
 	//
 	// TemplateContent is a required field
@@ -9853,6 +10621,9 @@ type CreateDedicatedIpPoolInput struct {
 	// PoolName is a required field
 	PoolName *string `type:"string" required:"true"`
 
+	// The type of scaling mode.
+	ScalingMode *string `type:"string" enum:"ScalingMode"`
+
 	// An object that defines the tags (keys and values) that you want to associate
 	// with the pool.
 	Tags []*Tag `type:"list"`
@@ -9902,6 +10673,12 @@ func (s *CreateDedicatedIpPoolInput) Validate() error {
 // SetPoolName sets the PoolName field's value.
 func (s *CreateDedicatedIpPoolInput) SetPoolName(v string) *CreateDedicatedIpPoolInput {
 	s.PoolName = &v
+	return s
+}
+
+// SetScalingMode sets the ScalingMode field's value.
+func (s *CreateDedicatedIpPoolInput) SetScalingMode(v string) *CreateDedicatedIpPoolInput {
+	s.ScalingMode = &v
 	return s
 }
 
@@ -10681,6 +11458,84 @@ func (s *DailyVolume) SetVolumeStatistics(v *VolumeStatistics) *DailyVolume {
 	return s
 }
 
+// An object containing additional settings for your VDM configuration as applicable
+// to the Dashboard.
+type DashboardAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the status of your VDM engagement metrics collection. Can be one
+	// of the following:
+	//
+	//    * ENABLED – Amazon SES enables engagement metrics for your account.
+	//
+	//    * DISABLED – Amazon SES disables engagement metrics for your account.
+	EngagementMetrics *string `type:"string" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashboardAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashboardAttributes) GoString() string {
+	return s.String()
+}
+
+// SetEngagementMetrics sets the EngagementMetrics field's value.
+func (s *DashboardAttributes) SetEngagementMetrics(v string) *DashboardAttributes {
+	s.EngagementMetrics = &v
+	return s
+}
+
+// An object containing additional settings for your VDM configuration as applicable
+// to the Dashboard.
+type DashboardOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the status of your VDM engagement metrics collection. Can be one
+	// of the following:
+	//
+	//    * ENABLED – Amazon SES enables engagement metrics for the configuration
+	//    set.
+	//
+	//    * DISABLED – Amazon SES disables engagement metrics for the configuration
+	//    set.
+	EngagementMetrics *string `type:"string" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashboardOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashboardOptions) GoString() string {
+	return s.String()
+}
+
+// SetEngagementMetrics sets the EngagementMetrics field's value.
+func (s *DashboardOptions) SetEngagementMetrics(v string) *DashboardOptions {
+	s.EngagementMetrics = &v
+	return s
+}
+
 // Contains information about a dedicated IP address that is associated with
 // your Amazon SES account.
 //
@@ -10757,6 +11612,57 @@ func (s *DedicatedIp) SetWarmupPercentage(v int64) *DedicatedIp {
 // SetWarmupStatus sets the WarmupStatus field's value.
 func (s *DedicatedIp) SetWarmupStatus(v string) *DedicatedIp {
 	s.WarmupStatus = &v
+	return s
+}
+
+// Contains information about a dedicated IP pool.
+type DedicatedIpPool struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dedicated IP pool.
+	//
+	// PoolName is a required field
+	PoolName *string `type:"string" required:"true"`
+
+	// The type of the dedicated IP pool.
+	//
+	//    * STANDARD – A dedicated IP pool where the customer can control which
+	//    IPs are part of the pool.
+	//
+	//    * MANAGED – A dedicated IP pool where the reputation and number of IPs
+	//    is automatically managed by Amazon SES.
+	//
+	// ScalingMode is a required field
+	ScalingMode *string `type:"string" required:"true" enum:"ScalingMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DedicatedIpPool) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DedicatedIpPool) GoString() string {
+	return s.String()
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *DedicatedIpPool) SetPoolName(v string) *DedicatedIpPool {
+	s.PoolName = &v
+	return s
+}
+
+// SetScalingMode sets the ScalingMode field's value.
+func (s *DedicatedIpPool) SetScalingMode(v string) *DedicatedIpPool {
+	s.ScalingMode = &v
 	return s
 }
 
@@ -11561,8 +12467,7 @@ func (s DeleteSuppressedDestinationOutput) GoString() string {
 type DeliverabilityTestReport struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time when the predictive inbox placement test was created, in
-	// Unix time format.
+	// The date and time when the predictive inbox placement test was created.
 	CreateDate *time.Time `type:"timestamp"`
 
 	// The status of the predictive inbox placement test. If the status is IN_PROGRESS,
@@ -11977,9 +12882,9 @@ type DomainDeliverabilityCampaign struct {
 	// The major email providers who handled the email message.
 	Esps []*string `type:"list"`
 
-	// The first time, in Unix time format, when the email message was delivered
-	// to any recipient's inbox. This value can help you determine how long it took
-	// for a campaign to deliver an email message.
+	// The first time when the email message was delivered to any recipient's inbox.
+	// This value can help you determine how long it took for a campaign to deliver
+	// an email message.
 	FirstSeenDateTime *time.Time `type:"timestamp"`
 
 	// The verified email address that the email message was sent from.
@@ -11992,9 +12897,9 @@ type DomainDeliverabilityCampaign struct {
 	// The number of email messages that were delivered to recipients’ inboxes.
 	InboxCount *int64 `type:"long"`
 
-	// The last time, in Unix time format, when the email message was delivered
-	// to any recipient's inbox. This value can help you determine how long it took
-	// for a campaign to deliver an email message.
+	// The last time when the email message was delivered to any recipient's inbox.
+	// This value can help you determine how long it took for a campaign to deliver
+	// an email message.
 	LastSeenDateTime *time.Time `type:"timestamp"`
 
 	// The projected number of recipients that the email message was sent to.
@@ -12139,8 +13044,7 @@ type DomainDeliverabilityTrackingOption struct {
 	// for the domain.
 	InboxPlacementTrackingOption *InboxPlacementTrackingOption `type:"structure"`
 
-	// The date, in Unix time format, when you enabled the Deliverability dashboard
-	// for the domain.
+	// The date when you enabled the Deliverability dashboard for the domain.
 	SubscriptionStartDate *time.Time `type:"timestamp"`
 }
 
@@ -12792,6 +13696,9 @@ type GetAccountOutput struct {
 	// An object that contains information about the email address suppression preferences
 	// for your account in the current Amazon Web Services Region.
 	SuppressionAttributes *SuppressionAttributes `type:"structure"`
+
+	// The VDM attributes that apply to your Amazon SES account.
+	VdmAttributes *VdmAttributes `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12851,6 +13758,12 @@ func (s *GetAccountOutput) SetSendingEnabled(v bool) *GetAccountOutput {
 // SetSuppressionAttributes sets the SuppressionAttributes field's value.
 func (s *GetAccountOutput) SetSuppressionAttributes(v *SuppressionAttributes) *GetAccountOutput {
 	s.SuppressionAttributes = v
+	return s
+}
+
+// SetVdmAttributes sets the VdmAttributes field's value.
+func (s *GetAccountOutput) SetVdmAttributes(v *VdmAttributes) *GetAccountOutput {
+	s.VdmAttributes = v
 	return s
 }
 
@@ -13103,6 +14016,10 @@ type GetConfigurationSetOutput struct {
 	// An object that defines the open and click tracking options for emails that
 	// you send using the configuration set.
 	TrackingOptions *TrackingOptions `type:"structure"`
+
+	// An object that contains information about the VDM preferences for your configuration
+	// set.
+	VdmOptions *VdmOptions `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13162,6 +14079,12 @@ func (s *GetConfigurationSetOutput) SetTags(v []*Tag) *GetConfigurationSetOutput
 // SetTrackingOptions sets the TrackingOptions field's value.
 func (s *GetConfigurationSetOutput) SetTrackingOptions(v *TrackingOptions) *GetConfigurationSetOutput {
 	s.TrackingOptions = v
+	return s
+}
+
+// SetVdmOptions sets the VdmOptions field's value.
+func (s *GetConfigurationSetOutput) SetVdmOptions(v *VdmOptions) *GetConfigurationSetOutput {
+	s.VdmOptions = v
 	return s
 }
 
@@ -13665,6 +14588,88 @@ func (s *GetDedicatedIpOutput) SetDedicatedIp(v *DedicatedIp) *GetDedicatedIpOut
 	return s
 }
 
+// A request to obtain more information about a dedicated IP pool.
+type GetDedicatedIpPoolInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the dedicated IP pool to retrieve.
+	//
+	// PoolName is a required field
+	PoolName *string `location:"uri" locationName:"PoolName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDedicatedIpPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDedicatedIpPoolInput"}
+	if s.PoolName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolName"))
+	}
+	if s.PoolName != nil && len(*s.PoolName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PoolName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPoolName sets the PoolName field's value.
+func (s *GetDedicatedIpPoolInput) SetPoolName(v string) *GetDedicatedIpPoolInput {
+	s.PoolName = &v
+	return s
+}
+
+// The following element is returned by the service.
+type GetDedicatedIpPoolOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information about a dedicated IP pool.
+	DedicatedIpPool *DedicatedIpPool `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDedicatedIpPoolOutput) GoString() string {
+	return s.String()
+}
+
+// SetDedicatedIpPool sets the DedicatedIpPool field's value.
+func (s *GetDedicatedIpPoolOutput) SetDedicatedIpPool(v *DedicatedIpPool) *GetDedicatedIpPoolOutput {
+	s.DedicatedIpPool = v
+	return s
+}
+
 // A request to obtain more information about dedicated IP pools.
 type GetDedicatedIpsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -13822,10 +14827,10 @@ type GetDeliverabilityDashboardOptionsOutput struct {
 	// scheduled to expire at the end of the current calendar month.
 	PendingExpirationSubscribedDomains []*DomainDeliverabilityTrackingOption `type:"list"`
 
-	// The date, in Unix time format, when your current subscription to the Deliverability
-	// dashboard is scheduled to expire, if your subscription is scheduled to expire
-	// at the end of the current calendar month. This value is null if you have
-	// an active subscription that isn’t due to expire at the end of the month.
+	// The date when your current subscription to the Deliverability dashboard is
+	// scheduled to expire, if your subscription is scheduled to expire at the end
+	// of the current calendar month. This value is null if you have an active subscription
+	// that isn’t due to expire at the end of the month.
 	SubscriptionExpiryDate *time.Time `type:"timestamp"`
 }
 
@@ -14313,6 +15318,22 @@ type GetEmailIdentityOutput struct {
 	// with the email identity.
 	Tags []*Tag `type:"list"`
 
+	// The verification status of the identity. The status can be one of the following:
+	//
+	//    * PENDING – The verification process was initiated, but Amazon SES hasn't
+	//    yet been able to verify the identity.
+	//
+	//    * SUCCESS – The verification process completed successfully.
+	//
+	//    * FAILED – The verification process failed.
+	//
+	//    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon SES from
+	//    determining the verification status of the identity.
+	//
+	//    * NOT_STARTED – The verification process hasn't been initiated for the
+	//    identity.
+	VerificationStatus *string `type:"string" enum:"VerificationStatus"`
+
 	// Specifies whether or not the identity is verified. You can only send email
 	// from verified email addresses or domains. For more information about verifying
 	// identities, see the Amazon Pinpoint User Guide (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html).
@@ -14376,6 +15397,12 @@ func (s *GetEmailIdentityOutput) SetPolicies(v map[string]*string) *GetEmailIden
 // SetTags sets the Tags field's value.
 func (s *GetEmailIdentityOutput) SetTags(v []*Tag) *GetEmailIdentityOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVerificationStatus sets the VerificationStatus field's value.
+func (s *GetEmailIdentityOutput) SetVerificationStatus(v string) *GetEmailIdentityOutput {
+	s.VerificationStatus = &v
 	return s
 }
 
@@ -14806,6 +15833,85 @@ func (s *GetSuppressedDestinationOutput) SetSuppressedDestination(v *SuppressedD
 	return s
 }
 
+// An object containing additional settings for your VDM configuration as applicable
+// to the Guardian.
+type GuardianAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the status of your VDM optimized shared delivery. Can be one of
+	// the following:
+	//
+	//    * ENABLED – Amazon SES enables optimized shared delivery for your account.
+	//
+	//    * DISABLED – Amazon SES disables optimized shared delivery for your
+	//    account.
+	OptimizedSharedDelivery *string `type:"string" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardianAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardianAttributes) GoString() string {
+	return s.String()
+}
+
+// SetOptimizedSharedDelivery sets the OptimizedSharedDelivery field's value.
+func (s *GuardianAttributes) SetOptimizedSharedDelivery(v string) *GuardianAttributes {
+	s.OptimizedSharedDelivery = &v
+	return s
+}
+
+// An object containing additional settings for your VDM configuration as applicable
+// to the Guardian.
+type GuardianOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the status of your VDM optimized shared delivery. Can be one of
+	// the following:
+	//
+	//    * ENABLED – Amazon SES enables optimized shared delivery for the configuration
+	//    set.
+	//
+	//    * DISABLED – Amazon SES disables optimized shared delivery for the configuration
+	//    set.
+	OptimizedSharedDelivery *string `type:"string" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardianOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardianOptions) GoString() string {
+	return s.String()
+}
+
+// SetOptimizedSharedDelivery sets the OptimizedSharedDelivery field's value.
+func (s *GuardianOptions) SetOptimizedSharedDelivery(v string) *GuardianOptions {
+	s.OptimizedSharedDelivery = &v
+	return s
+}
+
 // Information about an email identity.
 type IdentityInfo struct {
 	_ struct{} `type:"structure"`
@@ -14823,6 +15929,22 @@ type IdentityInfo struct {
 	// you can send email from an identity, you have to demostrate that you own
 	// the identity, and that you authorize Amazon SES to send email from that identity.
 	SendingEnabled *bool `type:"boolean"`
+
+	// The verification status of the identity. The status can be one of the following:
+	//
+	//    * PENDING – The verification process was initiated, but Amazon SES hasn't
+	//    yet been able to verify the identity.
+	//
+	//    * SUCCESS – The verification process completed successfully.
+	//
+	//    * FAILED – The verification process failed.
+	//
+	//    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon SES from
+	//    determining the verification status of the identity.
+	//
+	//    * NOT_STARTED – The verification process hasn't been initiated for the
+	//    identity.
+	VerificationStatus *string `type:"string" enum:"VerificationStatus"`
 }
 
 // String returns the string representation.
@@ -14858,6 +15980,12 @@ func (s *IdentityInfo) SetIdentityType(v string) *IdentityInfo {
 // SetSendingEnabled sets the SendingEnabled field's value.
 func (s *IdentityInfo) SetSendingEnabled(v bool) *IdentityInfo {
 	s.SendingEnabled = &v
+	return s
+}
+
+// SetVerificationStatus sets the VerificationStatus field's value.
+func (s *IdentityInfo) SetVerificationStatus(v string) *IdentityInfo {
+	s.VerificationStatus = &v
 	return s
 }
 
@@ -14992,6 +16120,10 @@ type ImportJobSummary struct {
 	// The date and time when the import job was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
+	// The number of records that failed processing because of invalid input or
+	// other reasons.
+	FailedRecordsCount *int64 `type:"integer"`
+
 	// An object that contains details about the resource destination the import
 	// job is going to target.
 	ImportDestination *ImportDestination `type:"structure"`
@@ -15001,6 +16133,9 @@ type ImportJobSummary struct {
 
 	// The status of the import job.
 	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The current number of records processed.
+	ProcessedRecordsCount *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -15027,6 +16162,12 @@ func (s *ImportJobSummary) SetCreatedTimestamp(v time.Time) *ImportJobSummary {
 	return s
 }
 
+// SetFailedRecordsCount sets the FailedRecordsCount field's value.
+func (s *ImportJobSummary) SetFailedRecordsCount(v int64) *ImportJobSummary {
+	s.FailedRecordsCount = &v
+	return s
+}
+
 // SetImportDestination sets the ImportDestination field's value.
 func (s *ImportJobSummary) SetImportDestination(v *ImportDestination) *ImportJobSummary {
 	s.ImportDestination = v
@@ -15042,6 +16183,12 @@ func (s *ImportJobSummary) SetJobId(v string) *ImportJobSummary {
 // SetJobStatus sets the JobStatus field's value.
 func (s *ImportJobSummary) SetJobStatus(v string) *ImportJobSummary {
 	s.JobStatus = &v
+	return s
+}
+
+// SetProcessedRecordsCount sets the ProcessedRecordsCount field's value.
+func (s *ImportJobSummary) SetProcessedRecordsCount(v int64) *ImportJobSummary {
+	s.ProcessedRecordsCount = &v
 	return s
 }
 
@@ -15088,6 +16235,71 @@ func (s *InboxPlacementTrackingOption) SetGlobal(v bool) *InboxPlacementTracking
 func (s *InboxPlacementTrackingOption) SetTrackedIsps(v []*string) *InboxPlacementTrackingOption {
 	s.TrackedIsps = v
 	return s
+}
+
+// The request couldn't be processed because an error occurred with the Amazon
+// SES API v2.
+type InternalServiceErrorException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServiceErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServiceErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServiceErrorException(v protocol.ResponseMetadata) error {
+	return &InternalServiceErrorException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalServiceErrorException) Code() string {
+	return "InternalServiceErrorException"
+}
+
+// Message returns the exception's message.
+func (s *InternalServiceErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalServiceErrorException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalServiceErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalServiceErrorException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalServiceErrorException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The specified request includes an invalid or expired token.
@@ -15952,9 +17164,9 @@ func (s *ListDeliverabilityTestReportsOutput) SetNextToken(v string) *ListDelive
 type ListDomainDeliverabilityCampaignsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The last day, in Unix time format, that you want to obtain deliverability
-	// data for. This value has to be less than or equal to 30 days after the value
-	// of the StartDate parameter.
+	// The last day that you want to obtain deliverability data for. This value
+	// has to be less than or equal to 30 days after the value of the StartDate
+	// parameter.
 	//
 	// EndDate is a required field
 	EndDate *time.Time `location:"querystring" locationName:"EndDate" type:"timestamp" required:"true"`
@@ -15970,8 +17182,7 @@ type ListDomainDeliverabilityCampaignsInput struct {
 	// includes a NextToken element, which you can use to obtain additional results.
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 
-	// The first day, in Unix time format, that you want to obtain deliverability
-	// data for.
+	// The first day that you want to obtain deliverability data for.
 	//
 	// StartDate is a required field
 	StartDate *time.Time `location:"querystring" locationName:"StartDate" type:"timestamp" required:"true"`
@@ -16447,14 +17658,128 @@ func (s *ListManagementOptions) SetTopicName(v string) *ListManagementOptions {
 	return s
 }
 
+// Represents a request to list the existing recommendations for your account.
+type ListRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters applied when retrieving recommendations. Can eiter be an individual
+	// filter, or combinations of STATUS and IMPACT or STATUS and TYPE
+	Filter map[string]*string `min:"1" type:"map"`
+
+	// A token returned from a previous call to ListRecommendations to indicate
+	// the position in the list of recommendations.
+	NextToken *string `type:"string"`
+
+	// The number of results to show in a single call to ListRecommendations. If
+	// the number of results is larger than the number you specified in this parameter,
+	// then the response includes a NextToken element, which you can use to obtain
+	// additional results.
+	//
+	// The value you specify has to be at least 1, and can be no more than 100.
+	PageSize *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRecommendationsInput"}
+	if s.Filter != nil && len(s.Filter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListRecommendationsInput) SetFilter(v map[string]*string) *ListRecommendationsInput {
+	s.Filter = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendationsInput) SetNextToken(v string) *ListRecommendationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListRecommendationsInput) SetPageSize(v int64) *ListRecommendationsInput {
+	s.PageSize = &v
+	return s
+}
+
+// Contains the response to your request to retrieve the list of recommendations
+// for your account.
+type ListRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A string token indicating that there might be additional recommendations
+	// available to be listed. Use the token provided in the ListRecommendationsResponse
+	// to use in the subsequent call to ListRecommendations with the same parameters
+	// to retrieve the next page of recommendations.
+	NextToken *string `type:"string"`
+
+	// The recommendations applicable to your account.
+	Recommendations []*Recommendation `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendationsOutput) SetNextToken(v string) *ListRecommendationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendations sets the Recommendations field's value.
+func (s *ListRecommendationsOutput) SetRecommendations(v []*Recommendation) *ListRecommendationsOutput {
+	s.Recommendations = v
+	return s
+}
+
 // A request to obtain a list of email destinations that are on the suppression
 // list for your account.
 type ListSuppressedDestinationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Used to filter the list of suppressed email destinations so that it only
-	// includes addresses that were added to the list before a specific date. The
-	// date that you specify should be in Unix time format.
+	// includes addresses that were added to the list before a specific date.
 	EndDate *time.Time `location:"querystring" locationName:"EndDate" type:"timestamp"`
 
 	// A token returned from a previous call to ListSuppressedDestinations to indicate
@@ -16471,8 +17796,7 @@ type ListSuppressedDestinationsInput struct {
 	Reasons []*string `location:"querystring" locationName:"Reason" type:"list" enum:"SuppressionListReason"`
 
 	// Used to filter the list of suppressed email destinations so that it only
-	// includes addresses that were added to the list after a specific date. The
-	// date that you specify should be in Unix time format.
+	// includes addresses that were added to the list after a specific date.
 	StartDate *time.Time `location:"querystring" locationName:"StartDate" type:"timestamp"`
 }
 
@@ -16654,8 +17978,8 @@ type MailFromAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// The action to take if the required MX record can't be found when you send
-	// an email. When you set this value to UseDefaultValue, the mail is sent using
-	// amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage,
+	// an email. When you set this value to USE_DEFAULT_VALUE, the mail is sent
+	// using amazonses.com as the MAIL FROM domain. When you set this value to REJECT_MESSAGE,
 	// the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't
 	// attempt to deliver the email.
 	//
@@ -16997,6 +18321,112 @@ func (s *MessageTag) SetName(v string) *MessageTag {
 // SetValue sets the Value field's value.
 func (s *MessageTag) SetValue(v string) *MessageTag {
 	s.Value = &v
+	return s
+}
+
+// An error corresponding to the unsuccessful processing of a single metric
+// data query.
+type MetricDataError struct {
+	_ struct{} `type:"structure"`
+
+	// The query error code. Can be one of:
+	//
+	//    * INTERNAL_FAILURE – Amazon SES has failed to process one of the queries.
+	//
+	//    * ACCESS_DENIED – You have insufficient access to retrieve metrics based
+	//    on the given query.
+	Code *string `type:"string" enum:"QueryErrorCode"`
+
+	// The query identifier.
+	Id *string `min:"1" type:"string"`
+
+	// The error message associated with the current query error.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDataError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDataError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *MetricDataError) SetCode(v string) *MetricDataError {
+	s.Code = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *MetricDataError) SetId(v string) *MetricDataError {
+	s.Id = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *MetricDataError) SetMessage(v string) *MetricDataError {
+	s.Message = &v
+	return s
+}
+
+// The result of a single metric data query.
+type MetricDataResult struct {
+	_ struct{} `type:"structure"`
+
+	// The query identifier.
+	Id *string `min:"1" type:"string"`
+
+	// A list of timestamps for the metric data results.
+	Timestamps []*time.Time `type:"list"`
+
+	// A list of values (cumulative / sum) for the metric data results.
+	Values []*int64 `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDataResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricDataResult) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *MetricDataResult) SetId(v string) *MetricDataResult {
+	s.Id = &v
+	return s
+}
+
+// SetTimestamps sets the Timestamps field's value.
+func (s *MetricDataResult) SetTimestamps(v []*time.Time) *MetricDataResult {
+	s.Timestamps = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *MetricDataResult) SetValues(v []*int64) *MetricDataResult {
+	s.Values = v
 	return s
 }
 
@@ -17573,6 +19003,80 @@ func (s PutAccountSuppressionAttributesOutput) GoString() string {
 	return s.String()
 }
 
+// A request to submit new account VDM attributes.
+type PutAccountVdmAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The VDM attributes that you wish to apply to your Amazon SES account.
+	//
+	// VdmAttributes is a required field
+	VdmAttributes *VdmAttributes `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccountVdmAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccountVdmAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccountVdmAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccountVdmAttributesInput"}
+	if s.VdmAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("VdmAttributes"))
+	}
+	if s.VdmAttributes != nil {
+		if err := s.VdmAttributes.Validate(); err != nil {
+			invalidParams.AddNested("VdmAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVdmAttributes sets the VdmAttributes field's value.
+func (s *PutAccountVdmAttributesInput) SetVdmAttributes(v *VdmAttributes) *PutAccountVdmAttributesInput {
+	s.VdmAttributes = v
+	return s
+}
+
+type PutAccountVdmAttributesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccountVdmAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccountVdmAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // A request to associate a configuration set with a dedicated IP pool.
 type PutConfigurationSetDeliveryOptionsInput struct {
 	_ struct{} `type:"structure"`
@@ -18014,6 +19518,89 @@ func (s PutConfigurationSetTrackingOptionsOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s PutConfigurationSetTrackingOptionsOutput) GoString() string {
+	return s.String()
+}
+
+// A request to add specific VDM settings to a configuration set.
+type PutConfigurationSetVdmOptionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
+
+	// The VDM options to apply to the configuration set.
+	VdmOptions *VdmOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationSetVdmOptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationSetVdmOptionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutConfigurationSetVdmOptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutConfigurationSetVdmOptionsInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *PutConfigurationSetVdmOptionsInput) SetConfigurationSetName(v string) *PutConfigurationSetVdmOptionsInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetVdmOptions sets the VdmOptions field's value.
+func (s *PutConfigurationSetVdmOptionsInput) SetVdmOptions(v *VdmOptions) *PutConfigurationSetVdmOptionsInput {
+	s.VdmOptions = v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type PutConfigurationSetVdmOptionsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationSetVdmOptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationSetVdmOptionsOutput) GoString() string {
 	return s.String()
 }
 
@@ -18980,6 +20567,93 @@ func (s *RawMessage) SetData(v []byte) *RawMessage {
 	return s
 }
 
+// A recommendation generated for your account.
+type Recommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The first time this issue was encountered and the recommendation was generated.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The recommendation description / disambiguator - e.g. DKIM1 and DKIM2 are
+	// different recommendations about your DKIM setup.
+	Description *string `type:"string"`
+
+	// The recommendation impact, with values like HIGH or LOW.
+	Impact *string `type:"string" enum:"RecommendationImpact"`
+
+	// The last time the recommendation was updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The resource affected by the recommendation, with values like arn:aws:ses:us-east-1:123456789012:identity/example.com.
+	ResourceArn *string `type:"string"`
+
+	// The recommendation status, with values like OPEN or FIXED.
+	Status *string `type:"string" enum:"RecommendationStatus"`
+
+	// The recommendation type, with values like DKIM, SPF or DMARC.
+	Type *string `type:"string" enum:"RecommendationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *Recommendation) SetCreatedTimestamp(v time.Time) *Recommendation {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Recommendation) SetDescription(v string) *Recommendation {
+	s.Description = &v
+	return s
+}
+
+// SetImpact sets the Impact field's value.
+func (s *Recommendation) SetImpact(v string) *Recommendation {
+	s.Impact = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *Recommendation) SetLastUpdatedTimestamp(v time.Time) *Recommendation {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *Recommendation) SetResourceArn(v string) *Recommendation {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Recommendation) SetStatus(v string) *Recommendation {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Recommendation) SetType(v string) *Recommendation {
+	s.Type = &v
+	return s
+}
+
 // The ReplaceEmailContent object to be used for a specific BulkEmailEntry.
 // The ReplacementTemplate can be specified within this object.
 type ReplacementEmailContent struct {
@@ -19691,8 +21365,8 @@ type SendQuota struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of emails that you can send in the current Amazon Web
-	// Services Region over a 24-hour period. This value is also called your sending
-	// quota.
+	// Services Region over a 24-hour period. A value of -1 signifies an unlimited
+	// quota. (This value is also referred to as your sending quota.)
 	Max24HourSend *float64 `type:"double"`
 
 	// The maximum number of emails that you can send per second in the current
@@ -21315,8 +22989,8 @@ type UpdateCustomVerificationEmailTemplateInput struct {
 
 	// The content of the custom verification email. The total size of the email
 	// must be less than 10 MB. The message body may contain HTML, with some limitations.
-	// For more information, see Custom Verification Email Frequently Asked Questions
-	// (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html#custom-verification-emails-faq)
+	// For more information, see Custom verification email frequently asked questions
+	// (https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom-faq)
 	// in the Amazon SES Developer Guide.
 	//
 	// TemplateContent is a required field
@@ -21647,6 +23321,121 @@ func (s UpdateEmailTemplateOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateEmailTemplateOutput) GoString() string {
 	return s.String()
+}
+
+// The VDM attributes that apply to your Amazon SES account.
+type VdmAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies additional settings for your VDM configuration as applicable to
+	// the Dashboard.
+	DashboardAttributes *DashboardAttributes `type:"structure"`
+
+	// Specifies additional settings for your VDM configuration as applicable to
+	// the Guardian.
+	GuardianAttributes *GuardianAttributes `type:"structure"`
+
+	// Specifies the status of your VDM configuration. Can be one of the following:
+	//
+	//    * ENABLED – Amazon SES enables VDM for your account.
+	//
+	//    * DISABLED – Amazon SES disables VDM for your account.
+	//
+	// VdmEnabled is a required field
+	VdmEnabled *string `type:"string" required:"true" enum:"FeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VdmAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VdmAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VdmAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VdmAttributes"}
+	if s.VdmEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("VdmEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDashboardAttributes sets the DashboardAttributes field's value.
+func (s *VdmAttributes) SetDashboardAttributes(v *DashboardAttributes) *VdmAttributes {
+	s.DashboardAttributes = v
+	return s
+}
+
+// SetGuardianAttributes sets the GuardianAttributes field's value.
+func (s *VdmAttributes) SetGuardianAttributes(v *GuardianAttributes) *VdmAttributes {
+	s.GuardianAttributes = v
+	return s
+}
+
+// SetVdmEnabled sets the VdmEnabled field's value.
+func (s *VdmAttributes) SetVdmEnabled(v string) *VdmAttributes {
+	s.VdmEnabled = &v
+	return s
+}
+
+// An object that defines the VDM settings that apply to emails that you send
+// using the configuration set.
+type VdmOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies additional settings for your VDM configuration as applicable to
+	// the Dashboard.
+	DashboardOptions *DashboardOptions `type:"structure"`
+
+	// Specifies additional settings for your VDM configuration as applicable to
+	// the Guardian.
+	GuardianOptions *GuardianOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VdmOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VdmOptions) GoString() string {
+	return s.String()
+}
+
+// SetDashboardOptions sets the DashboardOptions field's value.
+func (s *VdmOptions) SetDashboardOptions(v *DashboardOptions) *VdmOptions {
+	s.DashboardOptions = v
+	return s
+}
+
+// SetGuardianOptions sets the GuardianOptions field's value.
+func (s *VdmOptions) SetGuardianOptions(v *GuardianOptions) *VdmOptions {
+	s.GuardianOptions = v
+	return s
 }
 
 // An object that contains information about the amount of email that was delivered
@@ -22046,6 +23835,22 @@ func EventType_Values() []string {
 }
 
 const (
+	// FeatureStatusEnabled is a FeatureStatus enum value
+	FeatureStatusEnabled = "ENABLED"
+
+	// FeatureStatusDisabled is a FeatureStatus enum value
+	FeatureStatusDisabled = "DISABLED"
+)
+
+// FeatureStatus_Values returns all elements of the FeatureStatus enum
+func FeatureStatus_Values() []string {
+	return []string{
+		FeatureStatusEnabled,
+		FeatureStatusDisabled,
+	}
+}
+
+const (
 	// IdentityTypeEmailAddress is a IdentityType enum value
 	IdentityTypeEmailAddress = "EMAIL_ADDRESS"
 
@@ -22108,6 +23913,40 @@ func JobStatus_Values() []string {
 	}
 }
 
+// The ListRecommendations filter type. This can be one of the following:
+//
+//   - TYPE – The recommendation type, with values like DKIM, SPF or DMARC.
+//
+//   - IMPACT – The recommendation impact, with values like HIGH or LOW.
+//
+//   - STATUS – The recommendation status, with values like OPEN or FIXED.
+//
+//   - RESOURCE_ARN – The resource affected by the recommendation, with values
+//     like arn:aws:ses:us-east-1:123456789012:identity/example.com.
+const (
+	// ListRecommendationsFilterKeyType is a ListRecommendationsFilterKey enum value
+	ListRecommendationsFilterKeyType = "TYPE"
+
+	// ListRecommendationsFilterKeyImpact is a ListRecommendationsFilterKey enum value
+	ListRecommendationsFilterKeyImpact = "IMPACT"
+
+	// ListRecommendationsFilterKeyStatus is a ListRecommendationsFilterKey enum value
+	ListRecommendationsFilterKeyStatus = "STATUS"
+
+	// ListRecommendationsFilterKeyResourceArn is a ListRecommendationsFilterKey enum value
+	ListRecommendationsFilterKeyResourceArn = "RESOURCE_ARN"
+)
+
+// ListRecommendationsFilterKey_Values returns all elements of the ListRecommendationsFilterKey enum
+func ListRecommendationsFilterKey_Values() []string {
+	return []string{
+		ListRecommendationsFilterKeyType,
+		ListRecommendationsFilterKeyImpact,
+		ListRecommendationsFilterKeyStatus,
+		ListRecommendationsFilterKeyResourceArn,
+	}
+}
+
 // The status of the MAIL FROM domain. This status can have the following values:
 //
 //   - PENDING – Amazon SES hasn't started searching for the MX record yet.
@@ -22161,6 +24000,162 @@ func MailType_Values() []string {
 }
 
 const (
+	// MetricSend is a Metric enum value
+	MetricSend = "SEND"
+
+	// MetricComplaint is a Metric enum value
+	MetricComplaint = "COMPLAINT"
+
+	// MetricPermanentBounce is a Metric enum value
+	MetricPermanentBounce = "PERMANENT_BOUNCE"
+
+	// MetricTransientBounce is a Metric enum value
+	MetricTransientBounce = "TRANSIENT_BOUNCE"
+
+	// MetricOpen is a Metric enum value
+	MetricOpen = "OPEN"
+
+	// MetricClick is a Metric enum value
+	MetricClick = "CLICK"
+
+	// MetricDelivery is a Metric enum value
+	MetricDelivery = "DELIVERY"
+
+	// MetricDeliveryOpen is a Metric enum value
+	MetricDeliveryOpen = "DELIVERY_OPEN"
+
+	// MetricDeliveryClick is a Metric enum value
+	MetricDeliveryClick = "DELIVERY_CLICK"
+
+	// MetricDeliveryComplaint is a Metric enum value
+	MetricDeliveryComplaint = "DELIVERY_COMPLAINT"
+)
+
+// Metric_Values returns all elements of the Metric enum
+func Metric_Values() []string {
+	return []string{
+		MetricSend,
+		MetricComplaint,
+		MetricPermanentBounce,
+		MetricTransientBounce,
+		MetricOpen,
+		MetricClick,
+		MetricDelivery,
+		MetricDeliveryOpen,
+		MetricDeliveryClick,
+		MetricDeliveryComplaint,
+	}
+}
+
+// The BatchGetMetricDataQuery dimension name. This can be one of the following:
+//
+//   - EMAIL_IDENTITY – The email identity used when sending messages.
+//
+//   - CONFIGURATION_SET – The configuration set used when sending messages
+//     (if one was used).
+//
+//   - ISP – The recipient ISP (e.g. Gmail, Yahoo, etc.).
+const (
+	// MetricDimensionNameEmailIdentity is a MetricDimensionName enum value
+	MetricDimensionNameEmailIdentity = "EMAIL_IDENTITY"
+
+	// MetricDimensionNameConfigurationSet is a MetricDimensionName enum value
+	MetricDimensionNameConfigurationSet = "CONFIGURATION_SET"
+
+	// MetricDimensionNameIsp is a MetricDimensionName enum value
+	MetricDimensionNameIsp = "ISP"
+)
+
+// MetricDimensionName_Values returns all elements of the MetricDimensionName enum
+func MetricDimensionName_Values() []string {
+	return []string{
+		MetricDimensionNameEmailIdentity,
+		MetricDimensionNameConfigurationSet,
+		MetricDimensionNameIsp,
+	}
+}
+
+const (
+	// MetricNamespaceVdm is a MetricNamespace enum value
+	MetricNamespaceVdm = "VDM"
+)
+
+// MetricNamespace_Values returns all elements of the MetricNamespace enum
+func MetricNamespace_Values() []string {
+	return []string{
+		MetricNamespaceVdm,
+	}
+}
+
+const (
+	// QueryErrorCodeInternalFailure is a QueryErrorCode enum value
+	QueryErrorCodeInternalFailure = "INTERNAL_FAILURE"
+
+	// QueryErrorCodeAccessDenied is a QueryErrorCode enum value
+	QueryErrorCodeAccessDenied = "ACCESS_DENIED"
+)
+
+// QueryErrorCode_Values returns all elements of the QueryErrorCode enum
+func QueryErrorCode_Values() []string {
+	return []string{
+		QueryErrorCodeInternalFailure,
+		QueryErrorCodeAccessDenied,
+	}
+}
+
+const (
+	// RecommendationImpactLow is a RecommendationImpact enum value
+	RecommendationImpactLow = "LOW"
+
+	// RecommendationImpactHigh is a RecommendationImpact enum value
+	RecommendationImpactHigh = "HIGH"
+)
+
+// RecommendationImpact_Values returns all elements of the RecommendationImpact enum
+func RecommendationImpact_Values() []string {
+	return []string{
+		RecommendationImpactLow,
+		RecommendationImpactHigh,
+	}
+}
+
+const (
+	// RecommendationStatusOpen is a RecommendationStatus enum value
+	RecommendationStatusOpen = "OPEN"
+
+	// RecommendationStatusFixed is a RecommendationStatus enum value
+	RecommendationStatusFixed = "FIXED"
+)
+
+// RecommendationStatus_Values returns all elements of the RecommendationStatus enum
+func RecommendationStatus_Values() []string {
+	return []string{
+		RecommendationStatusOpen,
+		RecommendationStatusFixed,
+	}
+}
+
+const (
+	// RecommendationTypeDkim is a RecommendationType enum value
+	RecommendationTypeDkim = "DKIM"
+
+	// RecommendationTypeDmarc is a RecommendationType enum value
+	RecommendationTypeDmarc = "DMARC"
+
+	// RecommendationTypeSpf is a RecommendationType enum value
+	RecommendationTypeSpf = "SPF"
+)
+
+// RecommendationType_Values returns all elements of the RecommendationType enum
+func RecommendationType_Values() []string {
+	return []string{
+		RecommendationTypeDkim,
+		RecommendationTypeDmarc,
+		RecommendationTypeSpf,
+	}
+}
+
+const (
 	// ReviewStatusPending is a ReviewStatus enum value
 	ReviewStatusPending = "PENDING"
 
@@ -22181,6 +24176,22 @@ func ReviewStatus_Values() []string {
 		ReviewStatusFailed,
 		ReviewStatusGranted,
 		ReviewStatusDenied,
+	}
+}
+
+const (
+	// ScalingModeStandard is a ScalingMode enum value
+	ScalingModeStandard = "STANDARD"
+
+	// ScalingModeManaged is a ScalingMode enum value
+	ScalingModeManaged = "MANAGED"
+)
+
+// ScalingMode_Values returns all elements of the ScalingMode enum
+func ScalingMode_Values() []string {
+	return []string{
+		ScalingModeStandard,
+		ScalingModeManaged,
 	}
 }
 
@@ -22264,6 +24275,34 @@ func TlsPolicy_Values() []string {
 	return []string{
 		TlsPolicyRequire,
 		TlsPolicyOptional,
+	}
+}
+
+const (
+	// VerificationStatusPending is a VerificationStatus enum value
+	VerificationStatusPending = "PENDING"
+
+	// VerificationStatusSuccess is a VerificationStatus enum value
+	VerificationStatusSuccess = "SUCCESS"
+
+	// VerificationStatusFailed is a VerificationStatus enum value
+	VerificationStatusFailed = "FAILED"
+
+	// VerificationStatusTemporaryFailure is a VerificationStatus enum value
+	VerificationStatusTemporaryFailure = "TEMPORARY_FAILURE"
+
+	// VerificationStatusNotStarted is a VerificationStatus enum value
+	VerificationStatusNotStarted = "NOT_STARTED"
+)
+
+// VerificationStatus_Values returns all elements of the VerificationStatus enum
+func VerificationStatus_Values() []string {
+	return []string{
+		VerificationStatusPending,
+		VerificationStatusSuccess,
+		VerificationStatusFailed,
+		VerificationStatusTemporaryFailure,
+		VerificationStatusNotStarted,
 	}
 }
 

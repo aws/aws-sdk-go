@@ -2107,7 +2107,8 @@
         "MATH_OPERATION_FIELDS_ORDER",
         "CONCAT_FORMAT",
         "SUBFIELD_CATEGORY_MAP",
-        "EXCLUDE_SOURCE_FIELDS_LIST"
+        "EXCLUDE_SOURCE_FIELDS_LIST",
+        "INCLUDE_NEW_FIELDS"
       ]
     },
     "Operators":{
@@ -2521,6 +2522,18 @@
         "isSandboxEnvironment":{"shape":"Boolean"}
       }
     },
+    "SalesforceDataTransferApi":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "BULKV2",
+        "REST_SYNC"
+      ]
+    },
+    "SalesforceDataTransferApiList":{
+      "type":"list",
+      "member":{"shape":"SalesforceDataTransferApi"}
+    },
     "SalesforceDestinationProperties":{
       "type":"structure",
       "required":["object"],
@@ -2528,13 +2541,15 @@
         "object":{"shape":"Object"},
         "idFieldNames":{"shape":"IdFieldNameList"},
         "errorHandlingConfig":{"shape":"ErrorHandlingConfig"},
-        "writeOperationType":{"shape":"WriteOperationType"}
+        "writeOperationType":{"shape":"WriteOperationType"},
+        "dataTransferApi":{"shape":"SalesforceDataTransferApi"}
       }
     },
     "SalesforceMetadata":{
       "type":"structure",
       "members":{
-        "oAuthScopes":{"shape":"OAuthScopeList"}
+        "oAuthScopes":{"shape":"OAuthScopeList"},
+        "dataTransferApis":{"shape":"SalesforceDataTransferApiList"}
       }
     },
     "SalesforceSourceProperties":{
@@ -2543,7 +2558,8 @@
       "members":{
         "object":{"shape":"Object"},
         "enableDynamicFieldUpdate":{"shape":"Boolean"},
-        "includeDeletedRecords":{"shape":"Boolean"}
+        "includeDeletedRecords":{"shape":"Boolean"},
+        "dataTransferApi":{"shape":"SalesforceDataTransferApi"}
       }
     },
     "ScheduleExpression":{

@@ -130,7 +130,8 @@
       "output":{"shape":"SubscribeResult"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConfigurationException"}
       ]
     },
     "TagResource":{
@@ -143,6 +144,7 @@
       "output":{"shape":"TagResourceResult"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ValidationException"},
         {"shape":"ConcurrentModificationException"}
       ]
@@ -163,12 +165,13 @@
       "name":"UntagResource",
       "http":{
         "method":"POST",
-        "requestUri":"/untagResource"
+        "requestUri":"/untagResource/{resourceArn}"
       },
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResult"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ValidationException"},
         {"shape":"ConcurrentModificationException"}
       ]
@@ -183,7 +186,8 @@
       "output":{"shape":"UpdateNotificationRuleResult"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConfigurationException"}
       ]
     }
   },
@@ -407,7 +411,10 @@
         "TARGET_ADDRESS"
       ]
     },
-    "ListNotificationRulesFilterValue":{"type":"string"},
+    "ListNotificationRulesFilterValue":{
+      "type":"string",
+      "max":2048
+    },
     "ListNotificationRulesFilters":{
       "type":"list",
       "member":{"shape":"ListNotificationRulesFilter"}
@@ -462,7 +469,10 @@
         "TARGET_STATUS"
       ]
     },
-    "ListTargetsFilterValue":{"type":"string"},
+    "ListTargetsFilterValue":{
+      "type":"string",
+      "max":2048
+    },
     "ListTargetsFilters":{
       "type":"list",
       "member":{"shape":"ListTargetsFilter"}
@@ -686,8 +696,16 @@
         "TagKeys"
       ],
       "members":{
-        "Arn":{"shape":"NotificationRuleArn"},
-        "TagKeys":{"shape":"TagKeys"}
+        "Arn":{
+          "shape":"NotificationRuleArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeys",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
       }
     },
     "UntagResourceResult":{
