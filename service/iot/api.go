@@ -17304,6 +17304,116 @@ func (c *IoT) ListProvisioningTemplatesPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListRelatedResourcesForAuditFinding = "ListRelatedResourcesForAuditFinding"
+
+// ListRelatedResourcesForAuditFindingRequest generates a "aws/request.Request" representing the
+// client's request for the ListRelatedResourcesForAuditFinding operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRelatedResourcesForAuditFinding for more information on using the ListRelatedResourcesForAuditFinding
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRelatedResourcesForAuditFindingRequest method.
+//	req, resp := client.ListRelatedResourcesForAuditFindingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) ListRelatedResourcesForAuditFindingRequest(input *ListRelatedResourcesForAuditFindingInput) (req *request.Request, output *ListRelatedResourcesForAuditFindingOutput) {
+	op := &request.Operation{
+		Name:       opListRelatedResourcesForAuditFinding,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/relatedResources",
+	}
+
+	if input == nil {
+		input = &ListRelatedResourcesForAuditFindingInput{}
+	}
+
+	output = &ListRelatedResourcesForAuditFindingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRelatedResourcesForAuditFinding API operation for AWS IoT.
+//
+// The related resources of an Audit finding. The following resources can be
+// returned from calling this API:
+//
+//   - DEVICE_CERTIFICATE
+//
+//   - CA_CERTIFICATE
+//
+//   - IOT_POLICY
+//
+//   - COGNITO_IDENTITY_POOL
+//
+//   - CLIENT_ID
+//
+//   - ACCOUNT_SETTINGS
+//
+//   - ROLE_ALIAS
+//
+//   - IAM_ROLE
+//
+//   - ISSUER_CERTIFICATE
+//
+// This API is similar to DescribeAuditFinding's RelatedResources (https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeAuditFinding.html)
+// but provides pagination and is not limited to 10 resources. When calling
+// DescribeAuditFinding (https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeAuditFinding.html)
+// for the intermediate CA revoked for active device certificates check, RelatedResources
+// will not be populated. You must use this API, ListRelatedResourcesForAuditFinding,
+// to list the certificates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListRelatedResourcesForAuditFinding for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - InternalFailureException
+//     An unexpected error has occurred.
+func (c *IoT) ListRelatedResourcesForAuditFinding(input *ListRelatedResourcesForAuditFindingInput) (*ListRelatedResourcesForAuditFindingOutput, error) {
+	req, out := c.ListRelatedResourcesForAuditFindingRequest(input)
+	return out, req.Send()
+}
+
+// ListRelatedResourcesForAuditFindingWithContext is the same as ListRelatedResourcesForAuditFinding with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRelatedResourcesForAuditFinding for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListRelatedResourcesForAuditFindingWithContext(ctx aws.Context, input *ListRelatedResourcesForAuditFindingInput, opts ...request.Option) (*ListRelatedResourcesForAuditFindingOutput, error) {
+	req, out := c.ListRelatedResourcesForAuditFindingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListRoleAliases = "ListRoleAliases"
 
 // ListRoleAliasesRequest generates a "aws/request.Request" representing the
@@ -19394,7 +19504,9 @@ func (c *IoT) ListThingsRequest(input *ListThingsInput) (req *request.Request, o
 // Lists your things. Use the attributeName and attributeValue parameters to
 // filter your things. For example, calling ListThings with attributeName=Color
 // and attributeValue=Red retrieves all things in the registry that contain
-// an attribute Color with the value Red.
+// an attribute Color with the value Red. For more information, see List Things
+// (https://docs.aws.amazon.com/iot/latest/developerguide/thing-registry.html#list-things)
+// from the Amazon Web Services IoT Core Developer Guide.
 //
 // Requires permission to access the ListThings (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -46679,6 +46791,56 @@ func (s *IotSiteWiseAction) SetRoleArn(v string) *IotSiteWiseAction {
 	return s
 }
 
+// The certificate issuer indentifier.
+type IssuerCertificateIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The issuer certificate serial number.
+	IssuerCertificateSerialNumber *string `locationName:"issuerCertificateSerialNumber" type:"string"`
+
+	// The subject of the issuer certificate.
+	IssuerCertificateSubject *string `locationName:"issuerCertificateSubject" type:"string"`
+
+	// The issuer ID.
+	IssuerId *string `locationName:"issuerId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IssuerCertificateIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IssuerCertificateIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetIssuerCertificateSerialNumber sets the IssuerCertificateSerialNumber field's value.
+func (s *IssuerCertificateIdentifier) SetIssuerCertificateSerialNumber(v string) *IssuerCertificateIdentifier {
+	s.IssuerCertificateSerialNumber = &v
+	return s
+}
+
+// SetIssuerCertificateSubject sets the IssuerCertificateSubject field's value.
+func (s *IssuerCertificateIdentifier) SetIssuerCertificateSubject(v string) *IssuerCertificateIdentifier {
+	s.IssuerCertificateSubject = &v
+	return s
+}
+
+// SetIssuerId sets the IssuerId field's value.
+func (s *IssuerCertificateIdentifier) SetIssuerId(v string) *IssuerCertificateIdentifier {
+	s.IssuerId = &v
+	return s
+}
+
 // The Job object contains details about a job.
 type Job struct {
 	_ struct{} `type:"structure"`
@@ -52169,6 +52331,118 @@ func (s *ListProvisioningTemplatesOutput) SetNextToken(v string) *ListProvisioni
 // SetTemplates sets the Templates field's value.
 func (s *ListProvisioningTemplatesOutput) SetTemplates(v []*ProvisioningTemplateSummary) *ListProvisioningTemplatesOutput {
 	s.Templates = v
+	return s
+}
+
+type ListRelatedResourcesForAuditFindingInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The finding Id.
+	//
+	// FindingId is a required field
+	FindingId *string `location:"querystring" locationName:"findingId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return at one time.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token that can be used to retrieve the next set of results, or null if
+	// there are no additional results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRelatedResourcesForAuditFindingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRelatedResourcesForAuditFindingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRelatedResourcesForAuditFindingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRelatedResourcesForAuditFindingInput"}
+	if s.FindingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingId"))
+	}
+	if s.FindingId != nil && len(*s.FindingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingId sets the FindingId field's value.
+func (s *ListRelatedResourcesForAuditFindingInput) SetFindingId(v string) *ListRelatedResourcesForAuditFindingInput {
+	s.FindingId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRelatedResourcesForAuditFindingInput) SetMaxResults(v int64) *ListRelatedResourcesForAuditFindingInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRelatedResourcesForAuditFindingInput) SetNextToken(v string) *ListRelatedResourcesForAuditFindingInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRelatedResourcesForAuditFindingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that can be used to retrieve the next set of results, or null for
+	// the first API call.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The related resources.
+	RelatedResources []*RelatedResource `locationName:"relatedResources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRelatedResourcesForAuditFindingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRelatedResourcesForAuditFindingOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRelatedResourcesForAuditFindingOutput) SetNextToken(v string) *ListRelatedResourcesForAuditFindingOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRelatedResources sets the RelatedResources field's value.
+func (s *ListRelatedResourcesForAuditFindingOutput) SetRelatedResources(v []*RelatedResource) *ListRelatedResourcesForAuditFindingOutput {
+	s.RelatedResources = v
 	return s
 }
 
@@ -58344,11 +58618,17 @@ type ResourceIdentifier struct {
 	// The ID of the Amazon Cognito identity pool.
 	CognitoIdentityPoolId *string `locationName:"cognitoIdentityPoolId" type:"string"`
 
+	// The ARN of the identified device certificate.
+	DeviceCertificateArn *string `locationName:"deviceCertificateArn" type:"string"`
+
 	// The ID of the certificate attached to the resource.
 	DeviceCertificateId *string `locationName:"deviceCertificateId" min:"64" type:"string"`
 
 	// The ARN of the IAM role that has overly permissive actions.
 	IamRoleArn *string `locationName:"iamRoleArn" min:"20" type:"string"`
+
+	// The issuer certificate identifier.
+	IssuerCertificateIdentifier *IssuerCertificateIdentifier `locationName:"issuerCertificateIdentifier" type:"structure"`
 
 	// The version of the policy associated with the resource.
 	PolicyVersionIdentifier *PolicyVersionIdentifier `locationName:"policyVersionIdentifier" type:"structure"`
@@ -58429,6 +58709,12 @@ func (s *ResourceIdentifier) SetCognitoIdentityPoolId(v string) *ResourceIdentif
 	return s
 }
 
+// SetDeviceCertificateArn sets the DeviceCertificateArn field's value.
+func (s *ResourceIdentifier) SetDeviceCertificateArn(v string) *ResourceIdentifier {
+	s.DeviceCertificateArn = &v
+	return s
+}
+
 // SetDeviceCertificateId sets the DeviceCertificateId field's value.
 func (s *ResourceIdentifier) SetDeviceCertificateId(v string) *ResourceIdentifier {
 	s.DeviceCertificateId = &v
@@ -58438,6 +58724,12 @@ func (s *ResourceIdentifier) SetDeviceCertificateId(v string) *ResourceIdentifie
 // SetIamRoleArn sets the IamRoleArn field's value.
 func (s *ResourceIdentifier) SetIamRoleArn(v string) *ResourceIdentifier {
 	s.IamRoleArn = &v
+	return s
+}
+
+// SetIssuerCertificateIdentifier sets the IssuerCertificateIdentifier field's value.
+func (s *ResourceIdentifier) SetIssuerCertificateIdentifier(v *IssuerCertificateIdentifier) *ResourceIdentifier {
+	s.IssuerCertificateIdentifier = v
 	return s
 }
 
@@ -69398,6 +69690,9 @@ const (
 
 	// ResourceTypeIamRole is a ResourceType enum value
 	ResourceTypeIamRole = "IAM_ROLE"
+
+	// ResourceTypeIssuerCertificate is a ResourceType enum value
+	ResourceTypeIssuerCertificate = "ISSUER_CERTIFICATE"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -69411,6 +69706,7 @@ func ResourceType_Values() []string {
 		ResourceTypeAccountSettings,
 		ResourceTypeRoleAlias,
 		ResourceTypeIamRole,
+		ResourceTypeIssuerCertificate,
 	}
 }
 

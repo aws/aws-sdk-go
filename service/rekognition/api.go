@@ -2580,20 +2580,79 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // For an example, see Analyzing images stored in an Amazon S3 bucket in the
 // Amazon Rekognition Developer Guide.
 //
-// DetectLabels does not support the detection of activities. However, activity
-// detection is supported for label detection in videos. For more information,
-// see StartLabelDetection in the Amazon Rekognition Developer Guide.
-//
 // You pass the input image as base64-encoded image bytes or as a reference
 // to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
 // Rekognition operations, passing image bytes is not supported. The image must
 // be either a PNG or JPEG formatted file.
 //
-// For each object, scene, and concept the API returns one or more labels. Each
-// label provides the object name, and the level of confidence that the image
-// contains the object. For example, suppose the input image has a lighthouse,
-// the sea, and a rock. The response includes all three labels, one for each
-// object.
+// # Optional Parameters
+//
+// You can specify one or both of the GENERAL_LABELS and IMAGE_PROPERTIES feature
+// types when calling the DetectLabels API. Including GENERAL_LABELS will ensure
+// the response includes the labels detected in the input image, while including
+// IMAGE_PROPERTIES will ensure the response includes information about the
+// image quality and color.
+//
+// When using GENERAL_LABELS and/or IMAGE_PROPERTIES you can provide filtering
+// criteria to the Settings parameter. You can filter with sets of individual
+// labels or with label categories. You can specify inclusive filters, exclusive
+// filters, or a combination of inclusive and exclusive filters. For more information
+// on filtering see Detecting Labels in an Image (https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html).
+//
+// You can specify MinConfidence to control the confidence threshold for the
+// labels returned. The default is 55%. You can also add the MaxLabels parameter
+// to limit the number of labels returned. The default and upper limit is 1000
+// labels.
+//
+// # Response Elements
+//
+// For each object, scene, and concept the API returns one or more labels. The
+// API returns the following types of information regarding labels:
+//
+//   - Name - The name of the detected label.
+//
+//   - Confidence - The level of confidence in the label assigned to a detected
+//     object.
+//
+//   - Parents - The ancestor labels for a detected label. DetectLabels returns
+//     a hierarchical taxonomy of detected labels. For example, a detected car
+//     might be assigned the label car. The label car has two parent labels:
+//     Vehicle (its parent) and Transportation (its grandparent). The response
+//     includes the all ancestors for a label, where every ancestor is a unique
+//     label. In the previous example, Car, Vehicle, and Transportation are returned
+//     as unique labels in the response.
+//
+//   - Aliases - Possible Aliases for the label.
+//
+//   - Categories - The label categories that the detected label belongs to.
+//     A given label can belong to more than one category.
+//
+//   - BoundingBox — Bounding boxes are described for all instances of detected
+//     common object labels, returned in an array of Instance objects. An Instance
+//     object contains a BoundingBox object, describing the location of the label
+//     on the input image. It also includes the confidence for the accuracy of
+//     the detected bounding box.
+//
+// The API returns the following information regarding the image, as part of
+// the ImageProperties structure:
+//
+//   - Quality - Information about the Sharpness, Brightness, and Contrast
+//     of the input image, scored between 0 to 100. Image quality is returned
+//     for the entire image, as well as the background and the foreground.
+//
+//   - Dominant Color - An array of the dominant colors in the image.
+//
+//   - Foreground - Information about the Sharpness and Brightness of the input
+//     image’s foreground.
+//
+//   - Background - Information about the Sharpness and Brightness of the input
+//     image’s background.
+//
+// The list of returned labels will include at least one label for every detected
+// object, along with information about that label. In the following example,
+// suppose the input image has a lighthouse, the sea, and a rock. The response
+// includes all three labels, one for each object, as well as the confidence
+// in the label:
 //
 // {Name: lighthouse, Confidence: 98.4629}
 //
@@ -2601,10 +2660,9 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 //
 // {Name: sea,Confidence: 75.061}
 //
-// In the preceding example, the operation returns one label for each of the
-// three objects. The operation can also return multiple labels for the same
-// object in the image. For example, if the input image shows a flower (for
-// example, a tulip), the operation might return the following three labels.
+// The list of labels can include multiple labels for the same object. For example,
+// if the input image shows a flower (for example, a tulip), the operation might
+// return the following three labels.
 //
 // {Name: flower,Confidence: 99.0562}
 //
@@ -2615,26 +2673,8 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // In this example, the detection algorithm more precisely identifies the flower
 // as a tulip.
 //
-// In response, the API returns an array of labels. In addition, the response
-// also includes the orientation correction. Optionally, you can specify MinConfidence
-// to control the confidence threshold for the labels returned. The default
-// is 55%. You can also add the MaxLabels parameter to limit the number of labels
-// returned.
-//
 // If the object detected is a person, the operation doesn't provide the same
 // facial details that the DetectFaces operation provides.
-//
-// DetectLabels returns bounding boxes for instances of common object labels
-// in an array of Instance objects. An Instance object contains a BoundingBox
-// object, for the location of the label on the image. It also includes the
-// confidence by which the bounding box was detected.
-//
-// DetectLabels also returns a hierarchical taxonomy of detected labels. For
-// example, a detected car might be assigned the label car. The label car has
-// two parent labels: Vehicle (its parent) and Transportation (its grandparent).
-// The response returns the entire list of ancestors for a label. Each ancestor
-// is a unique label in the response. In the previous example, Car, Vehicle,
-// and Transportation are returned as unique labels in the response.
 //
 // This is a stateless API operation. That is, the operation does not persist
 // any data.
@@ -8984,7 +9024,8 @@ type CelebrityRecognition struct {
 	Celebrity *CelebrityDetail `type:"structure"`
 
 	// The time, in milliseconds from the start of the video, that the celebrity
-	// was recognized.
+	// was recognized. Note that Timestamp is not guaranteed to be accurate to the
+	// individual frame where the celebrity first appears.
 	Timestamp *int64 `type:"long"`
 }
 
@@ -9540,7 +9581,8 @@ type ContentModerationDetection struct {
 	ModerationLabel *ModerationLabel `type:"structure"`
 
 	// Time, in milliseconds from the beginning of the video, that the content moderation
-	// label was detected.
+	// label was detected. Note that Timestamp is not guaranteed to be accurate
+	// to the individual frame where the moderated content first appears.
 	Timestamp *int64 `type:"long"`
 }
 
@@ -12551,8 +12593,252 @@ func (s *DetectFacesOutput) SetOrientationCorrection(v string) *DetectFacesOutpu
 	return s
 }
 
+// The background of the image with regard to image quality and dominant colors.
+type DetectLabelsImageBackground struct {
+	_ struct{} `type:"structure"`
+
+	// The dominant colors found in the background of an image, defined with RGB
+	// values, CSS color name, simplified color name, and PixelPercentage (the percentage
+	// of image pixels that have a particular color).
+	DominantColors []*DominantColor `type:"list"`
+
+	// The quality of the image background as defined by brightness and sharpness.
+	Quality *DetectLabelsImageQuality `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageBackground) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageBackground) GoString() string {
+	return s.String()
+}
+
+// SetDominantColors sets the DominantColors field's value.
+func (s *DetectLabelsImageBackground) SetDominantColors(v []*DominantColor) *DetectLabelsImageBackground {
+	s.DominantColors = v
+	return s
+}
+
+// SetQuality sets the Quality field's value.
+func (s *DetectLabelsImageBackground) SetQuality(v *DetectLabelsImageQuality) *DetectLabelsImageBackground {
+	s.Quality = v
+	return s
+}
+
+// The foreground of the image with regard to image quality and dominant colors.
+type DetectLabelsImageForeground struct {
+	_ struct{} `type:"structure"`
+
+	// The dominant colors found in the foreground of an image, defined with RGB
+	// values, CSS color name, simplified color name, and PixelPercentage (the percentage
+	// of image pixels that have a particular color).
+	DominantColors []*DominantColor `type:"list"`
+
+	// The quality of the image foreground as defined by brightness and sharpness.
+	Quality *DetectLabelsImageQuality `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageForeground) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageForeground) GoString() string {
+	return s.String()
+}
+
+// SetDominantColors sets the DominantColors field's value.
+func (s *DetectLabelsImageForeground) SetDominantColors(v []*DominantColor) *DetectLabelsImageForeground {
+	s.DominantColors = v
+	return s
+}
+
+// SetQuality sets the Quality field's value.
+func (s *DetectLabelsImageForeground) SetQuality(v *DetectLabelsImageQuality) *DetectLabelsImageForeground {
+	s.Quality = v
+	return s
+}
+
+// Information about the quality and dominant colors of an input image. Quality
+// and color information is returned for the entire image, foreground, and background.
+type DetectLabelsImageProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the properties of an image’s background, including the
+	// background’s quality and dominant colors, including the quality and dominant
+	// colors of the image.
+	Background *DetectLabelsImageBackground `type:"structure"`
+
+	// Information about the dominant colors found in an image, described with RGB
+	// values, CSS color name, simplified color name, and PixelPercentage (the percentage
+	// of image pixels that have a particular color).
+	DominantColors []*DominantColor `type:"list"`
+
+	// Information about the properties of an image’s foreground, including the
+	// foreground’s quality and dominant colors, including the quality and dominant
+	// colors of the image.
+	Foreground *DetectLabelsImageForeground `type:"structure"`
+
+	// Information about the quality of the image foreground as defined by brightness,
+	// sharpness, and contrast. The higher the value the greater the brightness,
+	// sharpness, and contrast respectively.
+	Quality *DetectLabelsImageQuality `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageProperties) GoString() string {
+	return s.String()
+}
+
+// SetBackground sets the Background field's value.
+func (s *DetectLabelsImageProperties) SetBackground(v *DetectLabelsImageBackground) *DetectLabelsImageProperties {
+	s.Background = v
+	return s
+}
+
+// SetDominantColors sets the DominantColors field's value.
+func (s *DetectLabelsImageProperties) SetDominantColors(v []*DominantColor) *DetectLabelsImageProperties {
+	s.DominantColors = v
+	return s
+}
+
+// SetForeground sets the Foreground field's value.
+func (s *DetectLabelsImageProperties) SetForeground(v *DetectLabelsImageForeground) *DetectLabelsImageProperties {
+	s.Foreground = v
+	return s
+}
+
+// SetQuality sets the Quality field's value.
+func (s *DetectLabelsImageProperties) SetQuality(v *DetectLabelsImageQuality) *DetectLabelsImageProperties {
+	s.Quality = v
+	return s
+}
+
+// Settings for the IMAGE_PROPERTIES feature type.
+type DetectLabelsImagePropertiesSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of dominant colors to return when detecting labels in
+	// an image. The default value is 10.
+	MaxDominantColors *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImagePropertiesSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImagePropertiesSettings) GoString() string {
+	return s.String()
+}
+
+// SetMaxDominantColors sets the MaxDominantColors field's value.
+func (s *DetectLabelsImagePropertiesSettings) SetMaxDominantColors(v int64) *DetectLabelsImagePropertiesSettings {
+	s.MaxDominantColors = &v
+	return s
+}
+
+// The quality of an image provided for label detection, with regard to brightness,
+// sharpness, and contrast.
+type DetectLabelsImageQuality struct {
+	_ struct{} `type:"structure"`
+
+	// The brightness of an image provided for label detection.
+	Brightness *float64 `type:"float"`
+
+	// The contrast of an image provided for label detection.
+	Contrast *float64 `type:"float"`
+
+	// The sharpness of an image provided for label detection.
+	Sharpness *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageQuality) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsImageQuality) GoString() string {
+	return s.String()
+}
+
+// SetBrightness sets the Brightness field's value.
+func (s *DetectLabelsImageQuality) SetBrightness(v float64) *DetectLabelsImageQuality {
+	s.Brightness = &v
+	return s
+}
+
+// SetContrast sets the Contrast field's value.
+func (s *DetectLabelsImageQuality) SetContrast(v float64) *DetectLabelsImageQuality {
+	s.Contrast = &v
+	return s
+}
+
+// SetSharpness sets the Sharpness field's value.
+func (s *DetectLabelsImageQuality) SetSharpness(v float64) *DetectLabelsImageQuality {
+	s.Sharpness = &v
+	return s
+}
+
 type DetectLabelsInput struct {
 	_ struct{} `type:"structure"`
+
+	// A list of the types of analysis to perform. Specifying GENERAL_LABELS uses
+	// the label detection feature, while specifying IMAGE_PROPERTIES returns information
+	// regarding image color and quality. If no option is specified GENERAL_LABELS
+	// is used by default.
+	Features []*string `type:"list" enum:"DetectLabelsFeatureName"`
 
 	// The input image as base64-encoded bytes or an S3 object. If you use the AWS
 	// CLI to call Amazon Rekognition operations, passing image bytes is not supported.
@@ -12575,6 +12861,13 @@ type DetectLabelsInput struct {
 	// If MinConfidence is not specified, the operation returns labels with a confidence
 	// values greater than or equal to 55 percent.
 	MinConfidence *float64 `type:"float"`
+
+	// A list of the filters to be applied to returned detected labels and image
+	// properties. Specified filters can be inclusive, exclusive, or a combination
+	// of both. Filters can be used for individual labels or label categories. The
+	// exact label names or label categories must be supplied. For a full list of
+	// labels and label categories, see LINK HERE.
+	Settings *DetectLabelsSettings `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12613,6 +12906,12 @@ func (s *DetectLabelsInput) Validate() error {
 	return nil
 }
 
+// SetFeatures sets the Features field's value.
+func (s *DetectLabelsInput) SetFeatures(v []*string) *DetectLabelsInput {
+	s.Features = v
+	return s
+}
+
 // SetImage sets the Image field's value.
 func (s *DetectLabelsInput) SetImage(v *Image) *DetectLabelsInput {
 	s.Image = v
@@ -12631,8 +12930,18 @@ func (s *DetectLabelsInput) SetMinConfidence(v float64) *DetectLabelsInput {
 	return s
 }
 
+// SetSettings sets the Settings field's value.
+func (s *DetectLabelsInput) SetSettings(v *DetectLabelsSettings) *DetectLabelsInput {
+	s.Settings = v
+	return s
+}
+
 type DetectLabelsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the properties of the input image, such as brightness,
+	// sharpness, contrast, and dominant colors.
+	ImageProperties *DetectLabelsImageProperties `type:"structure"`
 
 	// Version number of the label detection model that was used to detect labels.
 	LabelModelVersion *string `type:"string"`
@@ -12674,6 +12983,12 @@ func (s DetectLabelsOutput) GoString() string {
 	return s.String()
 }
 
+// SetImageProperties sets the ImageProperties field's value.
+func (s *DetectLabelsOutput) SetImageProperties(v *DetectLabelsImageProperties) *DetectLabelsOutput {
+	s.ImageProperties = v
+	return s
+}
+
 // SetLabelModelVersion sets the LabelModelVersion field's value.
 func (s *DetectLabelsOutput) SetLabelModelVersion(v string) *DetectLabelsOutput {
 	s.LabelModelVersion = &v
@@ -12689,6 +13004,50 @@ func (s *DetectLabelsOutput) SetLabels(v []*Label) *DetectLabelsOutput {
 // SetOrientationCorrection sets the OrientationCorrection field's value.
 func (s *DetectLabelsOutput) SetOrientationCorrection(v string) *DetectLabelsOutput {
 	s.OrientationCorrection = &v
+	return s
+}
+
+// Settings for the DetectLabels request. Settings can include filters for both
+// GENERAL_LABELS and IMAGE_PROPERTIES. GENERAL_LABELS filters can be inclusive
+// or exclusive and applied to individual labels or label categories. IMAGE_PROPERTIES
+// filters allow specification of a maximum number of dominant colors.
+type DetectLabelsSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the specified filters for GENERAL_LABELS.
+	GeneralLabels *GeneralLabelsSettings `type:"structure"`
+
+	// Contains the chosen number of maximum dominant colors in an image.
+	ImageProperties *DetectLabelsImagePropertiesSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectLabelsSettings) GoString() string {
+	return s.String()
+}
+
+// SetGeneralLabels sets the GeneralLabels field's value.
+func (s *DetectLabelsSettings) SetGeneralLabels(v *GeneralLabelsSettings) *DetectLabelsSettings {
+	s.GeneralLabels = v
+	return s
+}
+
+// SetImageProperties sets the ImageProperties field's value.
+func (s *DetectLabelsSettings) SetImageProperties(v *DetectLabelsImagePropertiesSettings) *DetectLabelsSettings {
+	s.ImageProperties = v
 	return s
 }
 
@@ -13289,6 +13648,92 @@ func (s DistributeDatasetEntriesOutput) GoString() string {
 	return s.String()
 }
 
+// A description of the dominant colors in an image.
+type DominantColor struct {
+	_ struct{} `type:"structure"`
+
+	// The Blue RGB value for a dominant color.
+	Blue *int64 `type:"integer"`
+
+	// The CSS color name of a dominant color.
+	CSSColor *string `type:"string"`
+
+	// The Green RGB value for a dominant color.
+	Green *int64 `type:"integer"`
+
+	// The Hex code equivalent of the RGB values for a dominant color.
+	HexCode *string `type:"string"`
+
+	// The percentage of image pixels that have a given dominant color.
+	PixelPercent *float64 `type:"float"`
+
+	// The Red RGB value for a dominant color.
+	Red *int64 `type:"integer"`
+
+	// One of 12 simplified color names applied to a dominant color.
+	SimplifiedColor *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DominantColor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DominantColor) GoString() string {
+	return s.String()
+}
+
+// SetBlue sets the Blue field's value.
+func (s *DominantColor) SetBlue(v int64) *DominantColor {
+	s.Blue = &v
+	return s
+}
+
+// SetCSSColor sets the CSSColor field's value.
+func (s *DominantColor) SetCSSColor(v string) *DominantColor {
+	s.CSSColor = &v
+	return s
+}
+
+// SetGreen sets the Green field's value.
+func (s *DominantColor) SetGreen(v int64) *DominantColor {
+	s.Green = &v
+	return s
+}
+
+// SetHexCode sets the HexCode field's value.
+func (s *DominantColor) SetHexCode(v string) *DominantColor {
+	s.HexCode = &v
+	return s
+}
+
+// SetPixelPercent sets the PixelPercent field's value.
+func (s *DominantColor) SetPixelPercent(v float64) *DominantColor {
+	s.PixelPercent = &v
+	return s
+}
+
+// SetRed sets the Red field's value.
+func (s *DominantColor) SetRed(v int64) *DominantColor {
+	s.Red = &v
+	return s
+}
+
+// SetSimplifiedColor sets the SimplifiedColor field's value.
+func (s *DominantColor) SetSimplifiedColor(v string) *DominantColor {
+	s.SimplifiedColor = &v
+	return s
+}
+
 // The emotions that appear to be expressed on the face, and the confidence
 // level in the determination. The API is only making a determination of the
 // physical appearance of a person's face. It is not a determination of the
@@ -13806,6 +14251,8 @@ type FaceDetection struct {
 	Face *FaceDetail `type:"structure"`
 
 	// Time, in milliseconds from the start of the video, that the face was detected.
+	// Note that Timestamp is not guaranteed to be accurate to the individual frame
+	// where the face first appears.
 	Timestamp *int64 `type:"long"`
 }
 
@@ -14038,6 +14485,67 @@ func (s *Gender) SetConfidence(v float64) *Gender {
 // SetValue sets the Value field's value.
 func (s *Gender) SetValue(v string) *Gender {
 	s.Value = &v
+	return s
+}
+
+// Contains filters for the object labels returned by DetectLabels. Filters
+// can be inclusive, exclusive, or a combination of both and can be applied
+// to individual l abels or entire label categories.
+type GeneralLabelsSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The label categories that should be excluded from the return from DetectLabels.
+	LabelCategoryExclusionFilters []*string `type:"list"`
+
+	// The label categories that should be included in the return from DetectLabels.
+	LabelCategoryInclusionFilters []*string `type:"list"`
+
+	// The labels that should be excluded from the return from DetectLabels.
+	LabelExclusionFilters []*string `type:"list"`
+
+	// The labels that should be included in the return from DetectLabels.
+	LabelInclusionFilters []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneralLabelsSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneralLabelsSettings) GoString() string {
+	return s.String()
+}
+
+// SetLabelCategoryExclusionFilters sets the LabelCategoryExclusionFilters field's value.
+func (s *GeneralLabelsSettings) SetLabelCategoryExclusionFilters(v []*string) *GeneralLabelsSettings {
+	s.LabelCategoryExclusionFilters = v
+	return s
+}
+
+// SetLabelCategoryInclusionFilters sets the LabelCategoryInclusionFilters field's value.
+func (s *GeneralLabelsSettings) SetLabelCategoryInclusionFilters(v []*string) *GeneralLabelsSettings {
+	s.LabelCategoryInclusionFilters = v
+	return s
+}
+
+// SetLabelExclusionFilters sets the LabelExclusionFilters field's value.
+func (s *GeneralLabelsSettings) SetLabelExclusionFilters(v []*string) *GeneralLabelsSettings {
+	s.LabelExclusionFilters = v
+	return s
+}
+
+// SetLabelInclusionFilters sets the LabelInclusionFilters field's value.
+func (s *GeneralLabelsSettings) SetLabelInclusionFilters(v []*string) *GeneralLabelsSettings {
+	s.LabelInclusionFilters = v
 	return s
 }
 
@@ -16265,6 +16773,9 @@ type Instance struct {
 	// The confidence that Amazon Rekognition has in the accuracy of the bounding
 	// box.
 	Confidence *float64 `type:"float"`
+
+	// The dominant colors found in an individual instance of a label.
+	DominantColors []*DominantColor `type:"list"`
 }
 
 // String returns the string representation.
@@ -16294,6 +16805,12 @@ func (s *Instance) SetBoundingBox(v *BoundingBox) *Instance {
 // SetConfidence sets the Confidence field's value.
 func (s *Instance) SetConfidence(v float64) *Instance {
 	s.Confidence = &v
+	return s
+}
+
+// SetDominantColors sets the DominantColors field's value.
+func (s *Instance) SetDominantColors(v []*DominantColor) *Instance {
+	s.DominantColors = v
 	return s
 }
 
@@ -16751,8 +17268,10 @@ func (s *KinesisVideoStream) SetArn(v string) *KinesisVideoStream {
 }
 
 // Specifies the starting point in a Kinesis stream to start processing. You
-// can use the producer timestamp or the fragment number. For more information,
-// see Fragment (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html).
+// can use the producer timestamp or the fragment number. One of either producer
+// timestamp or fragment number is required. If you use the producer timestamp,
+// you must put the time in milliseconds. For more information about fragment
+// numbers, see Fragment (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html).
 type KinesisVideoStreamStartSelector struct {
 	_ struct{} `type:"structure"`
 
@@ -16760,7 +17279,8 @@ type KinesisVideoStreamStartSelector struct {
 	// based on the ingestion order.
 	FragmentNumber *string `min:"1" type:"string"`
 
-	// The timestamp from the producer corresponding to the fragment.
+	// The timestamp from the producer corresponding to the fragment, in milliseconds,
+	// expressed in unix time format.
 	ProducerTimestamp *int64 `type:"long"`
 }
 
@@ -16845,6 +17365,12 @@ func (s *KnownGender) SetType(v string) *KnownGender {
 type Label struct {
 	_ struct{} `type:"structure"`
 
+	// A list of potential aliases for a given label.
+	Aliases []*LabelAlias `type:"list"`
+
+	// A list of the categories associated with a given label.
+	Categories []*LabelCategory `type:"list"`
+
 	// Level of confidence.
 	Confidence *float64 `type:"float"`
 
@@ -16878,6 +17404,18 @@ func (s Label) GoString() string {
 	return s.String()
 }
 
+// SetAliases sets the Aliases field's value.
+func (s *Label) SetAliases(v []*LabelAlias) *Label {
+	s.Aliases = v
+	return s
+}
+
+// SetCategories sets the Categories field's value.
+func (s *Label) SetCategories(v []*LabelCategory) *Label {
+	s.Categories = v
+	return s
+}
+
 // SetConfidence sets the Confidence field's value.
 func (s *Label) SetConfidence(v float64) *Label {
 	s.Confidence = &v
@@ -16902,6 +17440,70 @@ func (s *Label) SetParents(v []*Parent) *Label {
 	return s
 }
 
+// A potential alias of for a given label.
+type LabelAlias struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an alias for a given label.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelAlias) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelAlias) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LabelAlias) SetName(v string) *LabelAlias {
+	s.Name = &v
+	return s
+}
+
+// The category that applies to a given label.
+type LabelCategory struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a category that applies to a given label.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelCategory) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelCategory) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LabelCategory) SetName(v string) *LabelCategory {
+	s.Name = &v
+	return s
+}
+
 // Information about a label detected in a video analysis request and the time
 // the label was detected in the video.
 type LabelDetection struct {
@@ -16911,6 +17513,8 @@ type LabelDetection struct {
 	Label *Label `type:"structure"`
 
 	// Time, in milliseconds from the start of the video, that the label was detected.
+	// Note that Timestamp is not guaranteed to be accurate to the individual frame
+	// where the label first appears.
 	Timestamp *int64 `type:"long"`
 }
 
@@ -18293,7 +18897,8 @@ type PersonDetection struct {
 	Person *PersonDetail `type:"structure"`
 
 	// The time, in milliseconds from the start of the video, that the person's
-	// path was tracked.
+	// path was tracked. Note that Timestamp is not guaranteed to be accurate to
+	// the individual frame where the person's path first appears.
 	Timestamp *int64 `type:"long"`
 }
 
@@ -21728,8 +22333,9 @@ type StartStreamProcessorInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Specifies the starting point in the Kinesis stream to start processing. You
-	// can use the producer timestamp or the fragment number. For more information,
-	// see Fragment (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html).
+	// can use the producer timestamp or the fragment number. If you use the producer
+	// timestamp, you must put the time in milliseconds. For more information about
+	// fragment numbers, see Fragment (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html).
 	//
 	// This is a required parameter for label detection stream processors and should
 	// not be used to start a face search stream processor.
@@ -22244,11 +22850,13 @@ func (s StopStreamProcessorOutput) GoString() string {
 	return s.String()
 }
 
+// This is a required parameter for label detection stream processors and should
+// not be used to start a face search stream processor.
 type StreamProcessingStartSelector struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the starting point in the stream to start processing. This can
-	// be done with a timestamp or a fragment number in a Kinesis stream.
+	// be done with a producer timestamp or a fragment number in a Kinesis stream.
 	KVSStreamStartSelector *KinesisVideoStreamStartSelector `type:"structure"`
 }
 
@@ -23141,7 +23749,8 @@ type TextDetectionResult struct {
 	TextDetection *TextDetection `type:"structure"`
 
 	// The time, in milliseconds from the start of the video, that the text was
-	// detected.
+	// detected. Note that Timestamp is not guaranteed to be accurate to the individual
+	// frame where the text first appears.
 	Timestamp *int64 `type:"long"`
 }
 
@@ -24104,6 +24713,22 @@ func DatasetType_Values() []string {
 	return []string{
 		DatasetTypeTrain,
 		DatasetTypeTest,
+	}
+}
+
+const (
+	// DetectLabelsFeatureNameGeneralLabels is a DetectLabelsFeatureName enum value
+	DetectLabelsFeatureNameGeneralLabels = "GENERAL_LABELS"
+
+	// DetectLabelsFeatureNameImageProperties is a DetectLabelsFeatureName enum value
+	DetectLabelsFeatureNameImageProperties = "IMAGE_PROPERTIES"
+)
+
+// DetectLabelsFeatureName_Values returns all elements of the DetectLabelsFeatureName enum
+func DetectLabelsFeatureName_Values() []string {
+	return []string{
+		DetectLabelsFeatureNameGeneralLabels,
+		DetectLabelsFeatureNameImageProperties,
 	}
 }
 

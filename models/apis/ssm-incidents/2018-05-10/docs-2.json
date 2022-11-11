@@ -71,6 +71,7 @@
         "DeleteResourcePolicyInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource you're deleting the policy from.</p>",
         "DeleteResponsePlanInput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
         "DeleteTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>",
+        "EventReference$resource": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services resource referenced in a <code>TimelineEvent</code>.</p>",
         "EventSummary$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the event happened during.</p>",
         "GetIncidentRecordInput$arn": "<p>The Amazon Resource Name (ARN) of the incident record.</p>",
         "GetReplicationSetInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you want to retrieve.</p>",
@@ -306,6 +307,21 @@
         "UpdateTimelineEventInput$eventData": "<p>A short description of the event.</p>"
       }
     },
+    "EventReference": {
+      "base": "<p>An item referenced in a <code>TimelineEvent</code> that is involved in or somehow associated with an incident. You can specify an Amazon Resource Name (ARN) for an Amazon Web Services resource or a <code>RelatedItem</code> ID.</p>",
+      "refs": {
+        "EventReferenceList$member": null
+      }
+    },
+    "EventReferenceList": {
+      "base": null,
+      "refs": {
+        "CreateTimelineEventInput$eventReferences": "<p>Adds one or more references to the <code>TimelineEvent</code>. A reference can be an Amazon Web Services resource involved in the incident or in some way associated with it. When you specify a reference, you enter the Amazon Resource Name (ARN) of the resource. You can also specify a related item. As an example, you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table for this example is the resource. You could also specify a Amazon CloudWatch metric for that table. The metric is the related item.</p>",
+        "EventSummary$eventReferences": "<p>A list of references in a <code>TimelineEvent</code>.</p>",
+        "TimelineEvent$eventReferences": "<p>A list of references in a <code>TimelineEvent</code>.</p>",
+        "UpdateTimelineEventInput$eventReferences": "<p>Updates all existing references in a <code>TimelineEvent</code>. A reference can be an Amazon Web Services resource involved in the incident or in some way associated with it. When you specify a reference, you enter the Amazon Resource Name (ARN) of the resource. You can also specify a related item. As an example, you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table for this example is the resource. You could also specify a Amazon CloudWatch metric for that table. The metric is the related item.</p> <important> <p>This update action overrides all existing references. If you want to keep existing references, you must specify them in the call. If you don't, this action removes them and enters only new references.</p> </important>"
+      }
+    },
     "EventSummary": {
       "base": "<p>Details about a timeline event during an incident.</p>",
       "refs": {
@@ -347,6 +363,13 @@
       "refs": {
         "ListIncidentRecordsInput$filters": "<p>Filters the list of incident records through which you are searching. You can filter on the following keys:</p> <ul> <li> <p> <code>creationTime</code> </p> </li> <li> <p> <code>impact</code> </p> </li> <li> <p> <code>status</code> </p> </li> <li> <p> <code>createdBy</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all incident records.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns incident records that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns incident records that match any of the values provided.</p> </li> </ul>",
         "ListTimelineEventsInput$filters": "<p>Filters the timeline events based on the provided conditional values. You can filter timeline events using the following keys:</p> <ul> <li> <p> <code>eventTime</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all timeline events.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns timeline events that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns timeline events that match any of the values provided.</p> </li> </ul>"
+      }
+    },
+    "GeneratedId": {
+      "base": null,
+      "refs": {
+        "EventReference$relatedItemId": "<p>The ID of a <code>RelatedItem</code> referenced in a <code>TimelineEvent</code>.</p>",
+        "RelatedItem$generatedId": "<p>A unique ID for a <code>RelatedItem</code>.</p> <important> <p>Don't specify this parameter when you add a <code>RelatedItem</code> by using the <a>UpdateRelatedItems</a> API action.</p> </important>"
       }
     },
     "GetIncidentRecordInput": {

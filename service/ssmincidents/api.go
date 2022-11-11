@@ -3812,6 +3812,15 @@ type CreateTimelineEventInput struct {
 	// EventData is a required field
 	EventData *string `locationName:"eventData" type:"string" required:"true"`
 
+	// Adds one or more references to the TimelineEvent. A reference can be an Amazon
+	// Web Services resource involved in the incident or in some way associated
+	// with it. When you specify a reference, you enter the Amazon Resource Name
+	// (ARN) of the resource. You can also specify a related item. As an example,
+	// you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table
+	// for this example is the resource. You could also specify a Amazon CloudWatch
+	// metric for that table. The metric is the related item.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
+
 	// The time that the event occurred.
 	//
 	// EventTime is a required field
@@ -3878,6 +3887,12 @@ func (s *CreateTimelineEventInput) SetClientToken(v string) *CreateTimelineEvent
 // SetEventData sets the EventData field's value.
 func (s *CreateTimelineEventInput) SetEventData(v string) *CreateTimelineEventInput {
 	s.EventData = &v
+	return s
+}
+
+// SetEventReferences sets the EventReferences field's value.
+func (s *CreateTimelineEventInput) SetEventReferences(v []*EventReference) *CreateTimelineEventInput {
+	s.EventReferences = v
 	return s
 }
 
@@ -4418,6 +4433,50 @@ func (s EmptyChatChannel) GoString() string {
 	return s.String()
 }
 
+// An item referenced in a TimelineEvent that is involved in or somehow associated
+// with an incident. You can specify an Amazon Resource Name (ARN) for an Amazon
+// Web Services resource or a RelatedItem ID.
+type EventReference struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a RelatedItem referenced in a TimelineEvent.
+	RelatedItemId *string `locationName:"relatedItemId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services resource referenced
+	// in a TimelineEvent.
+	Resource *string `locationName:"resource" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventReference) GoString() string {
+	return s.String()
+}
+
+// SetRelatedItemId sets the RelatedItemId field's value.
+func (s *EventReference) SetRelatedItemId(v string) *EventReference {
+	s.RelatedItemId = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *EventReference) SetResource(v string) *EventReference {
+	s.Resource = &v
+	return s
+}
+
 // Details about a timeline event during an incident.
 type EventSummary struct {
 	_ struct{} `type:"structure"`
@@ -4426,6 +4485,9 @@ type EventSummary struct {
 	//
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
+
+	// A list of references in a TimelineEvent.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
 
 	// The time that the event occurred.
 	//
@@ -4469,6 +4531,12 @@ func (s EventSummary) GoString() string {
 // SetEventId sets the EventId field's value.
 func (s *EventSummary) SetEventId(v string) *EventSummary {
 	s.EventId = &v
+	return s
+}
+
+// SetEventReferences sets the EventReferences field's value.
+func (s *EventSummary) SetEventReferences(v []*EventReference) *EventSummary {
+	s.EventReferences = v
 	return s
 }
 
@@ -6582,6 +6650,12 @@ func (s *RegionMapInputValue) SetSseKmsKeyId(v string) *RegionMapInputValue {
 type RelatedItem struct {
 	_ struct{} `type:"structure"`
 
+	// A unique ID for a RelatedItem.
+	//
+	// Don't specify this parameter when you add a RelatedItem by using the UpdateRelatedItems
+	// API action.
+	GeneratedId *string `locationName:"generatedId" type:"string"`
+
 	// Details about the related item.
 	//
 	// Identifier is a required field
@@ -6625,6 +6699,12 @@ func (s *RelatedItem) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGeneratedId sets the GeneratedId field's value.
+func (s *RelatedItem) SetGeneratedId(v string) *RelatedItem {
+	s.GeneratedId = &v
+	return s
 }
 
 // SetIdentifier sets the Identifier field's value.
@@ -7520,6 +7600,9 @@ type TimelineEvent struct {
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
+	// A list of references in a TimelineEvent.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
+
 	// The time that the event occurred.
 	//
 	// EventTime is a required field
@@ -7569,6 +7652,12 @@ func (s *TimelineEvent) SetEventData(v string) *TimelineEvent {
 // SetEventId sets the EventId field's value.
 func (s *TimelineEvent) SetEventId(v string) *TimelineEvent {
 	s.EventId = &v
+	return s
+}
+
+// SetEventReferences sets the EventReferences field's value.
+func (s *TimelineEvent) SetEventReferences(v []*EventReference) *TimelineEvent {
+	s.EventReferences = v
 	return s
 }
 
@@ -8507,6 +8596,19 @@ type UpdateTimelineEventInput struct {
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
+	// Updates all existing references in a TimelineEvent. A reference can be an
+	// Amazon Web Services resource involved in the incident or in some way associated
+	// with it. When you specify a reference, you enter the Amazon Resource Name
+	// (ARN) of the resource. You can also specify a related item. As an example,
+	// you could specify the ARN of an Amazon DynamoDB (DynamoDB) table. The table
+	// for this example is the resource. You could also specify a Amazon CloudWatch
+	// metric for that table. The metric is the related item.
+	//
+	// This update action overrides all existing references. If you want to keep
+	// existing references, you must specify them in the call. If you don't, this
+	// action removes them and enters only new references.
+	EventReferences []*EventReference `locationName:"eventReferences" type:"list"`
+
 	// The time that the event occurred.
 	EventTime *time.Time `locationName:"eventTime" type:"timestamp"`
 
@@ -8569,6 +8671,12 @@ func (s *UpdateTimelineEventInput) SetEventData(v string) *UpdateTimelineEventIn
 // SetEventId sets the EventId field's value.
 func (s *UpdateTimelineEventInput) SetEventId(v string) *UpdateTimelineEventInput {
 	s.EventId = &v
+	return s
+}
+
+// SetEventReferences sets the EventReferences field's value.
+func (s *UpdateTimelineEventInput) SetEventReferences(v []*EventReference) *UpdateTimelineEventInput {
+	s.EventReferences = v
 	return s
 }
 

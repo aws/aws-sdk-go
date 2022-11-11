@@ -9311,7 +9311,8 @@ func (s *AwsBackupBackupPlanLifecycleDetails) SetMoveToColdStorageAfterDays(v in
 	return s
 }
 
-// An array of CopyAction objects, which contains the details of the copy operation.
+// An array of CopyAction objects, each of which contains details of the copy
+// operation.
 type AwsBackupBackupPlanRuleCopyActionsDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -9368,7 +9369,8 @@ type AwsBackupBackupPlanRuleDetails struct {
 	// be completed, or it is canceled by Backup.
 	CompletionWindowMinutes *int64 `type:"long"`
 
-	// An array of CopyAction objects, which contains the details of the copy operation.
+	// An array of CopyAction objects, each of which contains details of the copy
+	// operation.
 	CopyActions []*AwsBackupBackupPlanRuleCopyActionsDetails `type:"list"`
 
 	// Specifies whether Backup creates continuous backups capable of point-in-time
@@ -36315,10 +36317,10 @@ type CreateFindingAggregatorInput struct {
 	// RegionLinkingMode is a required field
 	RegionLinkingMode *string `type:"string" required:"true"`
 
-	// If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a comma-separated
+	// If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a space-separated
 	// list of Regions that do not aggregate findings to the aggregation Region.
 	//
-	// If RegionLinkingMode is SPECIFIED_REGIONS, then this is a comma-separated
+	// If RegionLinkingMode is SPECIFIED_REGIONS, then this is a space-separated
 	// list of Regions that do aggregate findings to the aggregation Region.
 	Regions []*string `type:"list"`
 }
@@ -46532,10 +46534,10 @@ type UpdateFindingAggregatorInput struct {
 	// RegionLinkingMode is a required field
 	RegionLinkingMode *string `type:"string" required:"true"`
 
-	// If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a comma-separated
+	// If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a space-separated
 	// list of Regions that do not aggregate findings to the aggregation Region.
 	//
-	// If RegionLinkingMode is SPECIFIED_REGIONS, then this is a comma-separated
+	// If RegionLinkingMode is SPECIFIED_REGIONS, then this is a space-separated
 	// list of Regions that do aggregate findings to the aggregation Region.
 	Regions []*string `type:"list"`
 }

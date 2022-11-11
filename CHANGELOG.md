@@ -1,3 +1,18 @@
+Release v1.44.136 (2022-11-11)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service documentation
+  * Added links related to enabling job bookmarks.
+* `service/iot`: Updates service API and documentation
+  * This release add new api listRelatedResourcesForAuditFinding and new member type IssuerCertificates for Iot device device defender Audit.
+* `service/license-manager`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/rekognition`: Updates service API and documentation
+  * Adding support for ImageProperties feature to detect dominant colors and image brightness, sharpness, and contrast, inclusion and exclusion filters for labels and label categories, new fields to the API response, "aliases" and "categories"
+* `service/securityhub`: Updates service documentation
+* `service/ssm-incidents`: Updates service API and documentation
+
 Release v1.44.135 (2022-11-10)
 ===
 

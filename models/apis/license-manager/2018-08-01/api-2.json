@@ -649,6 +649,24 @@
         {"shape":"RateLimitExceededException"}
       ]
     },
+    "ListReceivedGrantsForOrganization":{
+      "name":"ListReceivedGrantsForOrganization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReceivedGrantsForOrganizationRequest"},
+      "output":{"shape":"ListReceivedGrantsForOrganizationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"AuthorizationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"RateLimitExceededException"}
+      ]
+    },
     "ListReceivedLicenses":{
       "name":"ListReceivedLicenses",
       "http":{
@@ -657,6 +675,24 @@
       },
       "input":{"shape":"ListReceivedLicensesRequest"},
       "output":{"shape":"ListReceivedLicensesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"AuthorizationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"RateLimitExceededException"}
+      ]
+    },
+    "ListReceivedLicensesForOrganization":{
+      "name":"ListReceivedLicensesForOrganization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReceivedLicensesForOrganizationRequest"},
+      "output":{"shape":"ListReceivedLicensesForOrganizationResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InvalidParameterValueException"},
@@ -2123,6 +2159,23 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListReceivedGrantsForOrganizationRequest":{
+      "type":"structure",
+      "required":["LicenseArn"],
+      "members":{
+        "LicenseArn":{"shape":"Arn"},
+        "Filters":{"shape":"FilterList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxSize100"}
+      }
+    },
+    "ListReceivedGrantsForOrganizationResponse":{
+      "type":"structure",
+      "members":{
+        "Grants":{"shape":"GrantList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListReceivedGrantsRequest":{
       "type":"structure",
       "members":{
@@ -2136,6 +2189,21 @@
       "type":"structure",
       "members":{
         "Grants":{"shape":"GrantList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListReceivedLicensesForOrganizationRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxSize100"}
+      }
+    },
+    "ListReceivedLicensesForOrganizationResponse":{
+      "type":"structure",
+      "members":{
+        "Licenses":{"shape":"GrantedLicenseList"},
         "NextToken":{"shape":"String"}
       }
     },
