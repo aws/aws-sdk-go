@@ -690,6 +690,7 @@
           "idempotencyToken":true
         },
         "eventData":{"shape":"EventData"},
+        "eventReferences":{"shape":"EventReferenceList"},
         "eventTime":{"shape":"Timestamp"},
         "eventType":{"shape":"TimelineEventType"},
         "incidentRecordArn":{"shape":"Arn"}
@@ -822,7 +823,21 @@
     },
     "EventData":{
       "type":"string",
-      "max":6000,
+      "max":12000,
+      "min":0
+    },
+    "EventReference":{
+      "type":"structure",
+      "members":{
+        "relatedItemId":{"shape":"GeneratedId"},
+        "resource":{"shape":"Arn"}
+      },
+      "union":true
+    },
+    "EventReferenceList":{
+      "type":"list",
+      "member":{"shape":"EventReference"},
+      "max":10,
       "min":0
     },
     "EventSummary":{
@@ -836,6 +851,7 @@
       ],
       "members":{
         "eventId":{"shape":"UUID"},
+        "eventReferences":{"shape":"EventReferenceList"},
         "eventTime":{"shape":"Timestamp"},
         "eventType":{"shape":"TimelineEventType"},
         "eventUpdatedTime":{"shape":"Timestamp"},
@@ -870,6 +886,12 @@
       "member":{"shape":"Filter"},
       "max":5,
       "min":0
+    },
+    "GeneratedId":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":"^related-item/(ANALYSIS|INCIDENT|METRIC|PARENT|ATTACHMENT|OTHER|AUTOMATION|INVOLVED_RESOURCE|TASK)/([0-9]|[A-F]){32}$"
     },
     "GetIncidentRecordInput":{
       "type":"structure",
@@ -1360,6 +1382,7 @@
       "type":"structure",
       "required":["identifier"],
       "members":{
+        "generatedId":{"shape":"GeneratedId"},
         "identifier":{"shape":"ItemIdentifier"},
         "title":{"shape":"RelatedItemTitleString"}
       }
@@ -1720,6 +1743,7 @@
       "members":{
         "eventData":{"shape":"EventData"},
         "eventId":{"shape":"UUID"},
+        "eventReferences":{"shape":"EventReferenceList"},
         "eventTime":{"shape":"Timestamp"},
         "eventType":{"shape":"TimelineEventType"},
         "eventUpdatedTime":{"shape":"Timestamp"},
@@ -1913,6 +1937,7 @@
         },
         "eventData":{"shape":"EventData"},
         "eventId":{"shape":"UUID"},
+        "eventReferences":{"shape":"EventReferenceList"},
         "eventTime":{"shape":"Timestamp"},
         "eventType":{"shape":"TimelineEventType"},
         "incidentRecordArn":{"shape":"Arn"}

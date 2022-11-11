@@ -7,7 +7,10 @@
     "DescribeEntity": "<p>Returns the metadata and content of the entity.</p>",
     "ListChangeSets": "<p>Returns the list of change sets owned by the account being used to make the call. You can filter this list by providing any combination of <code>entityId</code>, <code>ChangeSetName</code>, and status. If you provide more than one filter, the API operation applies a logical AND between the filters.</p> <p>You can describe a change during the 60-day request history retention period for API calls.</p>",
     "ListEntities": "<p>Provides the list of entities of a given type.</p>",
-    "StartChangeSet": "<p>This operation allows you to request changes for your entities. Within a single ChangeSet, you cannot start the same change type against the same entity multiple times. Additionally, when a ChangeSet is running, all the entities targeted by the different changes are locked until the ChangeSet has completed (either succeeded, cancelled, or failed). If you try to start a ChangeSet containing a change against an entity that is already locked, you will receive a <code>ResourceInUseException</code>.</p> <p>For example, you cannot start the ChangeSet described in the <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples\">example</a> later in this topic, because it contains two changes to execute the same change type (<code>AddRevisions</code>) against the same entity (<code>entity-id@1)</code>.</p> <p>For more information about working with change sets, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\"> Working with change sets</a>.</p>"
+    "ListTagsForResource": "<p>Lists all tags that have been added to a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>",
+    "StartChangeSet": "<p>Allows you to request changes for your entities. Within a single <code>ChangeSet</code>, you can't start the same change type against the same entity multiple times. Additionally, when a <code>ChangeSet</code> is running, all the entities targeted by the different changes are locked until the change set has completed (either succeeded, cancelled, or failed). If you try to start a change set containing a change against an entity that is already locked, you will receive a <code>ResourceInUseException</code> error.</p> <p>For example, you can't start the <code>ChangeSet</code> described in the <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples\">example</a> later in this topic because it contains two changes to run the same change type (<code>AddRevisions</code>) against the same entity (<code>entity-id@1</code>).</p> <p>For more information about working with change sets, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\"> Working with change sets</a>.</p>",
+    "TagResource": "<p>Tags a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>",
+    "UntagResource": "<p>Removes a tag or list of tags from a resource (either an <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#catalog-api-entities\">entity</a> or <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets\">change set</a>).</p>"
   },
   "shapes": {
     "ARN": {
@@ -282,6 +285,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResultInteger": {
       "base": null,
       "refs": {
@@ -302,6 +315,15 @@
       "base": null,
       "refs": {
         "StartChangeSetRequest$ChangeSet": "<p>Array of <code>change</code> object.</p>"
+      }
+    },
+    "ResourceARN": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to list tags on.</p>",
+        "ListTagsForResourceResponse$ResourceArn": "<p>Required. The ARN associated with the resource you want to list tags on.</p>",
+        "TagResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to tag.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>Required. The Amazon Resource Name (ARN) associated with the resource you want to remove the tag from.</p>"
       }
     },
     "ResourceId": {
@@ -373,8 +395,62 @@
       "refs": {
       }
     },
+    "Tag": {
+      "base": "<p>A list of objects specifying each key name and value.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The key associated with the tag.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>Required. A list of key names of tags to be removed. Number of strings allowed: 0-256.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "Change$EntityTags": "<p>The tags associated with the change.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>Required. A list of objects specifying each key name and value. Number of objects allowed: 1-50.</p>",
+        "StartChangeSetRequest$ChangeSetTags": "<p>A list of objects specifying each key name and value for the <code>ChangeSetTags</code> property.</p>",
+        "TagResourceRequest$Tags": "<p>Required. A list of objects specifying each key name and value. Number of objects allowed: 1-50.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The value associated with the tag.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>Too many requests.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },

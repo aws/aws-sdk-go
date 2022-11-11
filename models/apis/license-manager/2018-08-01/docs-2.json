@@ -5,7 +5,7 @@
     "AcceptGrant": "<p>Accepts the specified grant.</p>",
     "CheckInLicense": "<p>Checks in the specified license. Check in a license when it is no longer in use.</p>",
     "CheckoutBorrowLicense": "<p>Checks out the specified license for offline use.</p>",
-    "CheckoutLicense": "<p>Checks out the specified license.</p>",
+    "CheckoutLicense": "<p>Checks out the specified license.</p> <note> <p>If the account that created the license is the same that is performing the check out, you must specify the account as the beneficiary.</p> </note>",
     "CreateGrant": "<p>Creates a grant for the specified license. A grant shares the use of license entitlements with specific Amazon Web Services accounts.</p>",
     "CreateGrantVersion": "<p>Creates a new version of the specified grant.</p>",
     "CreateLicense": "<p>Creates a license.</p>",
@@ -38,7 +38,9 @@
     "ListLicenseVersions": "<p>Lists all versions of the specified license.</p>",
     "ListLicenses": "<p>Lists the licenses for your account.</p>",
     "ListReceivedGrants": "<p>Lists grants that are received but not accepted.</p>",
+    "ListReceivedGrantsForOrganization": "<p>Lists the grants received for all accounts in the organization.</p>",
     "ListReceivedLicenses": "<p>Lists received licenses.</p>",
+    "ListReceivedLicensesForOrganization": "<p>Lists the licenses received for all accounts in the organization.</p>",
     "ListResourceInventory": "<p>Lists resources managed using Systems Manager inventory.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified license configuration.</p>",
     "ListTokens": "<p>Lists your tokens.</p>",
@@ -112,6 +114,7 @@
         "GrantedLicense$LicenseArn": "<p>Amazon Resource Name (ARN) of the license.</p>",
         "License$LicenseArn": "<p>Amazon Resource Name (ARN) of the license.</p>",
         "ListLicenseVersionsRequest$LicenseArn": "<p>Amazon Resource Name (ARN) of the license.</p>",
+        "ListReceivedGrantsForOrganizationRequest$LicenseArn": "<p>The Amazon Resource Name (ARN) of the received license.</p>",
         "PrincipalArnList$member": null,
         "RejectGrantRequest$GrantArn": "<p>Amazon Resource Name (ARN) of the grant.</p>",
         "RejectGrantResponse$GrantArn": "<p>Grant ARN.</p>"
@@ -536,7 +539,9 @@
         "ListDistributedGrantsRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>LicenseArn</code> </p> </li> <li> <p> <code>GrantStatus</code> </p> </li> <li> <p> <code>GranteePrincipalARN</code> </p> </li> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>LicenseIssuerName</code> </p> </li> </ul>",
         "ListLicenseManagerReportGeneratorsRequest$Filters": "<p>Filters to scope the results. The following filters are supported: </p> <ul> <li> <p> <code>LicenseConfigurationArn</code> </p> </li> </ul>",
         "ListLicensesRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>Beneficiary</code> </p> </li> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>Fingerprint</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
+        "ListReceivedGrantsForOrganizationRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>ParentArn</code> </p> </li> <li> <p> <code>GranteePrincipalArn</code> </p> </li> </ul>",
         "ListReceivedGrantsRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>LicenseIssuerName</code> </p> </li> <li> <p> <code>LicenseArn</code> </p> </li> <li> <p> <code>GrantStatus</code> </p> </li> <li> <p> <code>GranterAccountId</code> </p> </li> </ul>",
+        "ListReceivedLicensesForOrganizationRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>Beneficiary</code> </p> </li> <li> <p> <code>ProductSKU</code> </p> </li> </ul>",
         "ListReceivedLicensesRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Fingerprint</code> </p> </li> <li> <p> <code>IssuerName</code> </p> </li> <li> <p> <code>Beneficiary</code> </p> </li> </ul>",
         "ListTokensRequest$Filters": "<p>Filters to scope the results. The following filter is supported:</p> <ul> <li> <p> <code>LicenseArns</code> </p> </li> </ul>"
       }
@@ -658,6 +663,7 @@
       "base": null,
       "refs": {
         "ListDistributedGrantsResponse$Grants": "<p>Distributed grant details.</p>",
+        "ListReceivedGrantsForOrganizationResponse$Grants": "<p>Lists the grants the organization has received.</p>",
         "ListReceivedGrantsResponse$Grants": "<p>Received grant details.</p>"
       }
     },
@@ -682,6 +688,7 @@
     "GrantedLicenseList": {
       "base": null,
       "refs": {
+        "ListReceivedLicensesForOrganizationResponse$Licenses": "<p>Lists the licenses the organization has received.</p>",
         "ListReceivedLicensesResponse$Licenses": "<p>Received license details.</p>"
       }
     },
@@ -802,8 +809,8 @@
     "LicenseConversionContext": {
       "base": "<p>Information about a license type conversion task.</p>",
       "refs": {
-        "CreateLicenseConversionTaskForResourceRequest$SourceLicenseContext": "<p>Information that identifies the license type you are converting from. For the structure of the source license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the AWS CLI</a> in the <i>License Manager User Guide</i>.</p>",
-        "CreateLicenseConversionTaskForResourceRequest$DestinationLicenseContext": "<p>Information that identifies the license type you are converting to. For the structure of the destination license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the AWS CLI</a> in the <i>License Manager User Guide</i>.</p>",
+        "CreateLicenseConversionTaskForResourceRequest$SourceLicenseContext": "<p>Information that identifies the license type you are converting from. For the structure of the source license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the Amazon Web Services CLI</a> in the <i>License Manager User Guide</i>.</p>",
+        "CreateLicenseConversionTaskForResourceRequest$DestinationLicenseContext": "<p>Information that identifies the license type you are converting to. For the structure of the destination license, see <a href=\"https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli\">Convert a license type using the Amazon Web Services CLI</a> in the <i>License Manager User Guide</i>.</p>",
         "GetLicenseConversionTaskResponse$SourceLicenseContext": "<p>Information about the license type converted from.</p>",
         "GetLicenseConversionTaskResponse$DestinationLicenseContext": "<p>Information about the license type converted to.</p>",
         "LicenseConversionTask$SourceLicenseContext": "<p>Information about the license type this conversion task converted from.</p>",
@@ -996,12 +1003,32 @@
       "refs": {
       }
     },
+    "ListReceivedGrantsForOrganizationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReceivedGrantsForOrganizationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListReceivedGrantsRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListReceivedGrantsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReceivedLicensesForOrganizationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReceivedLicensesForOrganizationResponse": {
       "base": null,
       "refs": {
       }
@@ -1088,7 +1115,9 @@
         "ListLicenseManagerReportGeneratorsRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListLicenseVersionsRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListLicensesRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
+        "ListReceivedGrantsForOrganizationRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListReceivedGrantsRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
+        "ListReceivedLicensesForOrganizationRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListReceivedLicensesRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListTokensRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>"
       }
@@ -1156,7 +1185,7 @@
     "PrincipalArnList": {
       "base": null,
       "refs": {
-        "CreateGrantRequest$Principals": "<p>The grant principals.</p>"
+        "CreateGrantRequest$Principals": "<p>The grant principals. This value should be specified as an Amazon Resource Name (ARN).</p>"
       }
     },
     "ProductInformation": {
@@ -1480,8 +1509,12 @@
         "ListLicenseVersionsResponse$NextToken": "<p>Token for the next set of results.</p>",
         "ListLicensesRequest$NextToken": "<p>Token for the next set of results.</p>",
         "ListLicensesResponse$NextToken": "<p>Token for the next set of results.</p>",
+        "ListReceivedGrantsForOrganizationRequest$NextToken": "<p>Token for the next set of results.</p>",
+        "ListReceivedGrantsForOrganizationResponse$NextToken": "<p>Token for the next set of results.</p>",
         "ListReceivedGrantsRequest$NextToken": "<p>Token for the next set of results.</p>",
         "ListReceivedGrantsResponse$NextToken": "<p>Token for the next set of results.</p>",
+        "ListReceivedLicensesForOrganizationRequest$NextToken": "<p>Token for the next set of results.</p>",
+        "ListReceivedLicensesForOrganizationResponse$NextToken": "<p>Token for the next set of results.</p>",
         "ListReceivedLicensesRequest$NextToken": "<p>Token for the next set of results.</p>",
         "ListReceivedLicensesResponse$NextToken": "<p>Token for the next set of results.</p>",
         "ListResourceInventoryRequest$NextToken": "<p>Token for the next set of results.</p>",

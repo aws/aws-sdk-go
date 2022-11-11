@@ -2682,6 +2682,21 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "ListRelatedResourcesForAuditFinding":{
+      "name":"ListRelatedResourcesForAuditFinding",
+      "http":{
+        "method":"GET",
+        "requestUri":"/audit/relatedResources"
+      },
+      "input":{"shape":"ListRelatedResourcesForAuditFindingRequest"},
+      "output":{"shape":"ListRelatedResourcesForAuditFindingResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListRoleAliases":{
       "name":"ListRoleAliases",
       "http":{
@@ -8494,6 +8509,29 @@
     "IsDefaultVersion":{"type":"boolean"},
     "IsDisabled":{"type":"boolean"},
     "IsSuppressed":{"type":"boolean"},
+    "IssuerCertificateIdentifier":{
+      "type":"structure",
+      "members":{
+        "issuerCertificateSubject":{"shape":"IssuerCertificateSubject"},
+        "issuerId":{"shape":"IssuerId"},
+        "issuerCertificateSerialNumber":{"shape":"IssuerCertificateSerialNumber"}
+      }
+    },
+    "IssuerCertificateSerialNumber":{
+      "type":"string",
+      "max":20,
+      "pattern":"[a-fA-F0-9:]+"
+    },
+    "IssuerCertificateSubject":{
+      "type":"string",
+      "max":1000,
+      "pattern":"[\\p{Graph}\\x20]*"
+    },
+    "IssuerId":{
+      "type":"string",
+      "max":64,
+      "pattern":"(0x)?[a-fA-F0-9]+"
+    },
     "Job":{
       "type":"structure",
       "members":{
@@ -9873,6 +9911,34 @@
       "type":"structure",
       "members":{
         "templates":{"shape":"ProvisioningTemplateListing"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRelatedResourcesForAuditFindingRequest":{
+      "type":"structure",
+      "required":["findingId"],
+      "members":{
+        "findingId":{
+          "shape":"FindingId",
+          "location":"querystring",
+          "locationName":"findingId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListRelatedResourcesForAuditFindingResponse":{
+      "type":"structure",
+      "members":{
+        "relatedResources":{"shape":"RelatedResources"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -11576,7 +11642,9 @@
         "policyVersionIdentifier":{"shape":"PolicyVersionIdentifier"},
         "account":{"shape":"AwsAccountId"},
         "iamRoleArn":{"shape":"RoleArn"},
-        "roleAliasArn":{"shape":"RoleAliasArn"}
+        "roleAliasArn":{"shape":"RoleAliasArn"},
+        "issuerCertificateIdentifier":{"shape":"IssuerCertificateIdentifier"},
+        "deviceCertificateArn":{"shape":"CertificateArn"}
       }
     },
     "ResourceLogicalId":{"type":"string"},
@@ -11606,7 +11674,8 @@
         "CLIENT_ID",
         "ACCOUNT_SETTINGS",
         "ROLE_ALIAS",
-        "IAM_ROLE"
+        "IAM_ROLE",
+        "ISSUER_CERTIFICATE"
       ]
     },
     "Resources":{

@@ -426,7 +426,7 @@
       }
     },
     "AwsBackupBackupPlanRuleCopyActionsDetails": {
-      "base": "<p>An array of <code>CopyAction</code> objects, which contains the details of the copy operation. </p>",
+      "base": "<p>An array of <code>CopyAction</code> objects, each of which contains details of the copy operation. </p>",
       "refs": {
         "AwsBackupBackupPlanRuleCopyActionsList$member": null
       }
@@ -434,7 +434,7 @@
     "AwsBackupBackupPlanRuleCopyActionsList": {
       "base": null,
       "refs": {
-        "AwsBackupBackupPlanRuleDetails$CopyActions": "<p>An array of <code>CopyAction</code> objects, which contains the details of the copy operation. </p>"
+        "AwsBackupBackupPlanRuleDetails$CopyActions": "<p>An array of <code>CopyAction</code> objects, each of which contains details of the copy operation. </p>"
       }
     },
     "AwsBackupBackupPlanRuleDetails": {
@@ -6828,11 +6828,11 @@
         "AwsRdsPendingCloudWatchLogsExports$LogTypesToEnable": "<p>A list of log types that are being enabled.</p>",
         "AwsRdsPendingCloudWatchLogsExports$LogTypesToDisable": "<p>A list of log types that are being disabled.</p>",
         "AwsRedshiftClusterDetails$PendingActions": "<p>A list of cluster operations that are waiting to start.</p>",
-        "CreateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a comma-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a comma-separated list of Regions that do aggregate findings to the aggregation Region. </p>",
+        "CreateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region. </p>",
         "CreateFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
         "GetFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
         "NetworkPathComponentDetails$Address": "<p>The IP addresses of the destination.</p>",
-        "UpdateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a comma-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a comma-separated list of Regions that do aggregate findings to the aggregation Region.</p>",
+        "UpdateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a space-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a space-separated list of Regions that do aggregate findings to the aggregation Region.</p>",
         "UpdateFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
         "Vulnerability$RelatedVulnerabilities": "<p>List of vulnerabilities that are related to this vulnerability.</p>",
         "Vulnerability$ReferenceUrls": "<p>A list of URLs that provide additional information about the vulnerability.</p>"

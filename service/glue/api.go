@@ -7792,7 +7792,7 @@ func (c *Glue) GetDevEndpointsRequest(input *GetDevEndpointsInput) (req *request
 
 // GetDevEndpoints API operation for AWS Glue.
 //
-// Retrieves all the development endpoints in this AWS account.
+// Retrieves all the development endpoints in this Amazon Web Services account.
 //
 // When you create a development endpoint in a virtual private cloud (VPC),
 // Glue returns only a private IP address and the public IP address field is
@@ -8025,6 +8025,14 @@ func (c *Glue) GetJobBookmarkRequest(input *GetJobBookmarkInput) (req *request.R
 // GetJobBookmark API operation for AWS Glue.
 //
 // Returns information on a job bookmark entry.
+//
+// For more information about enabling and using job bookmarks, see:
+//
+//   - Tracking processed data using job bookmarks (https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html)
+//
+//   - Job parameters used by Glue (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html)
+//
+//   - Job structure (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html#aws-glue-api-jobs-job-Job)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15112,6 +15120,14 @@ func (c *Glue) ResetJobBookmarkRequest(input *ResetJobBookmarkInput) (req *reque
 // ResetJobBookmark API operation for AWS Glue.
 //
 // Resets a bookmark entry.
+//
+// For more information about enabling and using job bookmarks, see:
+//
+//   - Tracking processed data using job bookmarks (https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html)
+//
+//   - Job parameters used by Glue (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html)
+//
+//   - Job structure (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html#aws-glue-api-jobs-job-Job)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -27529,7 +27545,7 @@ type CreateDevEndpointOutput struct {
 	// APIs. If no arguments are provided, the version defaults to Python 2.
 	Arguments map[string]*string `type:"map"`
 
-	// The AWS Availability Zone where this DevEndpoint is located.
+	// The Amazon Web Services Availability Zone where this DevEndpoint is located.
 	AvailabilityZone *string `type:"string"`
 
 	// The point in time at which this DevEndpoint was created.
@@ -33662,7 +33678,7 @@ type DevEndpoint struct {
 	// APIs. If no arguments are provided, the version defaults to Python 2.
 	Arguments map[string]*string `type:"map"`
 
-	// The AWS Availability Zone where this DevEndpoint is located.
+	// The Amazon Web Services Availability Zone where this DevEndpoint is located.
 	AvailabilityZone *string `type:"string"`
 
 	// The point in time at which this DevEndpoint was created.

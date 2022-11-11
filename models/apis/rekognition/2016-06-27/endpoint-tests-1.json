@@ -4,7 +4,7 @@
             "documentation": "For region ap-south-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-south-1.api.aws"
+                    "url": "https://rekognition-fips.ap-south-1.api.aws"
                 }
             },
             "params": {
@@ -17,7 +17,7 @@
             "documentation": "For region ap-south-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-south-1.amazonaws.com"
+                    "url": "https://rekognition-fips.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +30,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-south-1.api.aws"
+                    "url": "https://rekognition.ap-south-1.api.aws"
                 }
             },
             "params": {
@@ -43,7 +43,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-south-1.amazonaws.com"
+                    "url": "https://rekognition.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +56,7 @@
             "documentation": "For region ca-central-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ca-central-1.api.aws"
+                    "url": "https://rekognition-fips.ca-central-1.api.aws"
                 }
             },
             "params": {
@@ -69,7 +69,7 @@
             "documentation": "For region ca-central-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ca-central-1.amazonaws.com"
+                    "url": "https://rekognition-fips.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +82,7 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ca-central-1.api.aws"
+                    "url": "https://rekognition.ca-central-1.api.aws"
                 }
             },
             "params": {
@@ -95,7 +95,7 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ca-central-1.amazonaws.com"
+                    "url": "https://rekognition.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -108,7 +108,7 @@
             "documentation": "For region eu-central-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-central-1.api.aws"
+                    "url": "https://rekognition-fips.eu-central-1.api.aws"
                 }
             },
             "params": {
@@ -121,7 +121,7 @@
             "documentation": "For region eu-central-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-central-1.amazonaws.com"
+                    "url": "https://rekognition-fips.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -134,7 +134,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.eu-central-1.api.aws"
+                    "url": "https://rekognition.eu-central-1.api.aws"
                 }
             },
             "params": {
@@ -147,7 +147,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.eu-central-1.amazonaws.com"
+                    "url": "https://rekognition.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -160,7 +160,7 @@
             "documentation": "For region us-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-west-1.api.aws"
+                    "url": "https://rekognition-fips.us-west-1.api.aws"
                 }
             },
             "params": {
@@ -173,7 +173,7 @@
             "documentation": "For region us-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-west-1.amazonaws.com"
+                    "url": "https://rekognition-fips.us-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +186,7 @@
             "documentation": "For region us-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-west-1.api.aws"
+                    "url": "https://rekognition.us-west-1.api.aws"
                 }
             },
             "params": {
@@ -199,7 +199,7 @@
             "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-west-1.amazonaws.com"
+                    "url": "https://rekognition.us-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -212,7 +212,7 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-west-2.api.aws"
+                    "url": "https://rekognition-fips.us-west-2.api.aws"
                 }
             },
             "params": {
@@ -225,7 +225,7 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-west-2.amazonaws.com"
+                    "url": "https://rekognition-fips.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -238,7 +238,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-west-2.api.aws"
+                    "url": "https://rekognition.us-west-2.api.aws"
                 }
             },
             "params": {
@@ -251,7 +251,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-west-2.amazonaws.com"
+                    "url": "https://rekognition.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -261,114 +261,10 @@
             }
         },
         {
-            "documentation": "For region eu-north-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-north-1.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": true,
-                "Region": "eu-north-1"
-            }
-        },
-        {
-            "documentation": "For region eu-north-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-north-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": true,
-                "Region": "eu-north-1"
-            }
-        },
-        {
-            "documentation": "For region eu-north-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents.eu-north-1.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": false,
-                "Region": "eu-north-1"
-            }
-        },
-        {
-            "documentation": "For region eu-north-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents.eu-north-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": false,
-                "Region": "eu-north-1"
-            }
-        },
-        {
-            "documentation": "For region eu-west-3 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-west-3.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": true,
-                "Region": "eu-west-3"
-            }
-        },
-        {
-            "documentation": "For region eu-west-3 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-west-3.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": true,
-                "Region": "eu-west-3"
-            }
-        },
-        {
-            "documentation": "For region eu-west-3 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents.eu-west-3.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": false,
-                "Region": "eu-west-3"
-            }
-        },
-        {
-            "documentation": "For region eu-west-3 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://ssm-incidents.eu-west-3.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": false,
-                "Region": "eu-west-3"
-            }
-        },
-        {
             "documentation": "For region eu-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-west-2.api.aws"
+                    "url": "https://rekognition-fips.eu-west-2.api.aws"
                 }
             },
             "params": {
@@ -381,7 +277,7 @@
             "documentation": "For region eu-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-west-2.amazonaws.com"
+                    "url": "https://rekognition-fips.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -394,7 +290,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.eu-west-2.api.aws"
+                    "url": "https://rekognition.eu-west-2.api.aws"
                 }
             },
             "params": {
@@ -407,7 +303,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.eu-west-2.amazonaws.com"
+                    "url": "https://rekognition.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -420,7 +316,7 @@
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-west-1.api.aws"
+                    "url": "https://rekognition-fips.eu-west-1.api.aws"
                 }
             },
             "params": {
@@ -433,7 +329,7 @@
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.eu-west-1.amazonaws.com"
+                    "url": "https://rekognition-fips.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -446,7 +342,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.eu-west-1.api.aws"
+                    "url": "https://rekognition.eu-west-1.api.aws"
                 }
             },
             "params": {
@@ -459,7 +355,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.eu-west-1.amazonaws.com"
+                    "url": "https://rekognition.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -472,7 +368,7 @@
             "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-northeast-2.api.aws"
+                    "url": "https://rekognition-fips.ap-northeast-2.api.aws"
                 }
             },
             "params": {
@@ -485,7 +381,7 @@
             "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-northeast-2.amazonaws.com"
+                    "url": "https://rekognition-fips.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -498,7 +394,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-northeast-2.api.aws"
+                    "url": "https://rekognition.ap-northeast-2.api.aws"
                 }
             },
             "params": {
@@ -511,7 +407,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-northeast-2.amazonaws.com"
+                    "url": "https://rekognition.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -524,7 +420,7 @@
             "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-northeast-1.api.aws"
+                    "url": "https://rekognition-fips.ap-northeast-1.api.aws"
                 }
             },
             "params": {
@@ -537,7 +433,7 @@
             "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-northeast-1.amazonaws.com"
+                    "url": "https://rekognition-fips.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -550,7 +446,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-northeast-1.api.aws"
+                    "url": "https://rekognition.ap-northeast-1.api.aws"
                 }
             },
             "params": {
@@ -563,7 +459,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-northeast-1.amazonaws.com"
+                    "url": "https://rekognition.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -573,62 +469,62 @@
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS enabled and DualStack enabled",
+            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.sa-east-1.api.aws"
+                    "url": "https://rekognition-fips.us-gov-west-1.api.aws"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": true,
-                "Region": "sa-east-1"
+                "Region": "us-gov-west-1"
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS enabled and DualStack disabled",
+            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.sa-east-1.amazonaws.com"
+                    "url": "https://rekognition-fips.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": true,
-                "Region": "sa-east-1"
+                "Region": "us-gov-west-1"
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS disabled and DualStack enabled",
+            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.sa-east-1.api.aws"
+                    "url": "https://rekognition.us-gov-west-1.api.aws"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": false,
-                "Region": "sa-east-1"
+                "Region": "us-gov-west-1"
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.sa-east-1.amazonaws.com"
+                    "url": "https://rekognition.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": false,
-                "Region": "sa-east-1"
+                "Region": "us-gov-west-1"
             }
         },
         {
             "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-southeast-1.api.aws"
+                    "url": "https://rekognition-fips.ap-southeast-1.api.aws"
                 }
             },
             "params": {
@@ -641,7 +537,7 @@
             "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-southeast-1.amazonaws.com"
+                    "url": "https://rekognition-fips.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -654,7 +550,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-southeast-1.api.aws"
+                    "url": "https://rekognition.ap-southeast-1.api.aws"
                 }
             },
             "params": {
@@ -667,7 +563,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-southeast-1.amazonaws.com"
+                    "url": "https://rekognition.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -680,7 +576,7 @@
             "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-southeast-2.api.aws"
+                    "url": "https://rekognition-fips.ap-southeast-2.api.aws"
                 }
             },
             "params": {
@@ -693,7 +589,7 @@
             "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.ap-southeast-2.amazonaws.com"
+                    "url": "https://rekognition-fips.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -706,7 +602,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-southeast-2.api.aws"
+                    "url": "https://rekognition.ap-southeast-2.api.aws"
                 }
             },
             "params": {
@@ -719,7 +615,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.ap-southeast-2.amazonaws.com"
+                    "url": "https://rekognition.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -732,7 +628,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-east-1.api.aws"
+                    "url": "https://rekognition-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -745,7 +641,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-east-1.amazonaws.com"
+                    "url": "https://rekognition-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -758,7 +654,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-east-1.api.aws"
+                    "url": "https://rekognition.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -771,7 +667,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-east-1.amazonaws.com"
+                    "url": "https://rekognition.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -784,7 +680,7 @@
             "documentation": "For region us-east-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-east-2.api.aws"
+                    "url": "https://rekognition-fips.us-east-2.api.aws"
                 }
             },
             "params": {
@@ -797,7 +693,7 @@
             "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents-fips.us-east-2.amazonaws.com"
+                    "url": "https://rekognition-fips.us-east-2.amazonaws.com"
                 }
             },
             "params": {
@@ -810,7 +706,7 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-east-2.api.aws"
+                    "url": "https://rekognition.us-east-2.api.aws"
                 }
             },
             "params": {
@@ -823,7 +719,7 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://ssm-incidents.us-east-2.amazonaws.com"
+                    "url": "https://rekognition.us-east-2.amazonaws.com"
                 }
             },
             "params": {
