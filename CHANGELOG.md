@@ -1,3 +1,18 @@
+Release v1.44.137 (2022-11-14)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Updates service API and documentation
+* `service/lakeformation`: Updates service API and documentation
+* `service/managedblockchain`: Updates service documentation
+* `service/proton`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for restoring an RDS Multi-AZ DB cluster snapshot to a Single-AZ deployment or a Multi-AZ DB instance deployment.
+* `service/workdocs`: Updates service API and documentation
+  * Added 2 new document related operations, DeleteDocumentVersion and RestoreDocumentVersions.
+* `service/xray`: Updates service API and documentation
+  * This release enhances GetServiceGraph API to support new type of edge to represent links between SQS and Lambda in event-driven applications.
+
 Release v1.44.136 (2022-11-11)
 ===
 

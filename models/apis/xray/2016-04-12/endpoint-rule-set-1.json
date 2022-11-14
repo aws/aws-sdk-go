@@ -175,7 +175,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://managedblockchain-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://xray-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -231,7 +231,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://managedblockchain-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://xray-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -285,7 +285,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://managedblockchain.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://xray.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -303,7 +303,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://managedblockchain.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://xray.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

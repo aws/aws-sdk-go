@@ -540,7 +540,9 @@
         "EndTime":{"shape":"Timestamp"},
         "SummaryStatistics":{"shape":"EdgeStatistics"},
         "ResponseTimeHistogram":{"shape":"Histogram"},
-        "Aliases":{"shape":"AliasList"}
+        "Aliases":{"shape":"AliasList"},
+        "EdgeType":{"shape":"String"},
+        "ReceivedEventAgeHistogram":{"shape":"Histogram"}
       }
     },
     "EdgeList":{

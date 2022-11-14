@@ -101,7 +101,8 @@ const (
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
-	// The maximum of 100,000 folders under the parent folder has been exceeded.
+	// The maximum of 100,000 files and folders under the parent folder has been
+	// exceeded.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeProhibitedStateException for service response error code

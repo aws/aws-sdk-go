@@ -6551,8 +6551,7 @@ type DataLakeSettings struct {
 	AuthorizedSessionTagValueList []*string `type:"list"`
 
 	// Specifies whether access control on newly created database is managed by
-	// Lake Formation permissions or exclusively by IAM permissions. You can override
-	// this default setting when you create a database.
+	// Lake Formation permissions or exclusively by IAM permissions.
 	//
 	// A null value indicates access control by Lake Formation permissions. A value
 	// that assigns ALL to IAM_ALLOWED_PRINCIPALS indicates access control by IAM
@@ -6590,6 +6589,11 @@ type DataLakeSettings struct {
 	// A list of the account IDs of Amazon Web Services accounts with Amazon EMR
 	// clusters that are to perform data filtering.>
 	ExternalDataFilteringAllowList []*DataLakePrincipal `type:"list"`
+
+	// A key-value map that provides an additional configuration on your data lake.
+	// CrossAccountVersion is the key you can configure in the Parameters field.
+	// Accepted values for the CrossAccountVersion key are 1, 2, and 3.
+	Parameters map[string]*string `type:"map"`
 
 	// A list of the resource-owning account IDs that the caller's account can use
 	// to share their user access details (user ARNs). The user ARNs can be logged
@@ -6701,6 +6705,12 @@ func (s *DataLakeSettings) SetDataLakeAdmins(v []*DataLakePrincipal) *DataLakeSe
 // SetExternalDataFilteringAllowList sets the ExternalDataFilteringAllowList field's value.
 func (s *DataLakeSettings) SetExternalDataFilteringAllowList(v []*DataLakePrincipal) *DataLakeSettings {
 	s.ExternalDataFilteringAllowList = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *DataLakeSettings) SetParameters(v map[string]*string) *DataLakeSettings {
+	s.Parameters = v
 	return s
 }
 
@@ -11320,7 +11330,7 @@ type RegisterResourceInput struct {
 	// registering this role with the Data Catalog. A service-linked role is a unique
 	// type of IAM role that is linked directly to Lake Formation.
 	//
-	// For more information, see Using Service-Linked Roles for Lake Formation (https://docs-aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html).
+	// For more information, see Using Service-Linked Roles for Lake Formation (https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html).
 	UseServiceLinkedRole *bool `type:"boolean"`
 }
 

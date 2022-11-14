@@ -695,12 +695,17 @@ func (c *Proton) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *r
 //
 // You can provision environments using the following methods:
 //
-//   - Amazon Web Services-managed provisioning: Proton makes direct calls
+//   - Amazon Web Services-managed provisioning – Proton makes direct calls
 //     to provision your resources.
 //
-//   - Self-managed provisioning: Proton makes pull requests on your repository
+//   - Self-managed provisioning – Proton makes pull requests on your repository
 //     to provide compiled infrastructure as code (IaC) files that your IaC engine
 //     uses to provision resources.
+//
+//   - CodeBuild-based provisioning – Proton uses CodeBuild to run shell
+//     commands that you provide. Your commands can read inputs that Proton provides,
+//     and are responsible for provisioning or deprovisioning infrastructure
+//     and generating output values.
 //
 // For more information, see Environments (https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html)
 // and Provisioning methods (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html)
@@ -6909,11 +6914,11 @@ func (c *Proton) NotifyResourceDeploymentStatusChangeRequest(input *NotifyResour
 
 // NotifyResourceDeploymentStatusChange API operation for AWS Proton.
 //
-// Notify Proton of status changes to a provisioned resource when you use self-managed
-// provisioning.
+// Notify Proton of the following information related to a provisioned resource
+// (environment, service instance, or service pipeline):
 //
-// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
-// in the Proton User Guide.
+//   - For CodeBuild-based provisioning (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-codebuild),
+//     provide your provisioned resource output values to Proton.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7521,8 +7526,8 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // Update an environment.
 //
 // If the environment is associated with an environment account connection,
-// don't update or include the protonServiceRoleArn and provisioningRepository
-// parameter to update or connect to an environment account connection.
+// don't update or include the protonServiceRoleArn, codebuildRoleArn, and provisioningRepository
+// parameters.
 //
 // You can only update to a new environment account connection if that connection
 // was created in the same environment account that the current environment
@@ -7534,15 +7539,15 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // can't update or connect the environment to an environment account connection
 // if it isn't already associated with an environment connection.
 //
-// You can update either the environmentAccountConnectionId or protonServiceRoleArn
-// parameter and value. You can’t update both.
+// You can update either environmentAccountConnectionId or one or more of protonServiceRoleArn,
+// codebuildRoleArn, and provisioningRepository.
 //
-// If the environment was configured for Amazon Web Services-managed provisioning,
-// omit the provisioningRepository parameter.
+// If the environment was configured for Amazon Web Services-managed or CodeBuild-based
+// provisioning, omit the provisioningRepository parameter.
 //
 // If the environment was configured for self-managed provisioning, specify
-// the provisioningRepository parameter and omit the protonServiceRoleArn and
-// environmentAccountConnectionId parameters.
+// the provisioningRepository parameter and omit the protonServiceRoleArn, codebuildRoleArn,
+// and provisioningRepository parameters.
 //
 // For more information, see Environments (https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html)
 // and Provisioning methods (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html)
@@ -8693,15 +8698,18 @@ func (s *AccessDeniedException) RequestID() string {
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the service role that Proton uses for provisioning
+	// pipelines. Proton assumes this role for CodeBuild-based provisioning.
+	PipelineCodebuildRoleArn *string `locationName:"pipelineCodebuildRoleArn" type:"string"`
+
 	// The linked repository for pipeline provisioning. Required if you have environments
 	// configured for self-managed provisioning with services that include pipelines.
 	// A linked repository is a repository that has been registered with Proton.
 	// For more information, see CreateRepository.
 	PipelineProvisioningRepository *RepositoryBranch `locationName:"pipelineProvisioningRepository" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
-	// pipelines. Assumed by Proton for Amazon Web Services-managed provisioning,
-	// and by customer-owned automation for self-managed provisioning.
+	// The Amazon Resource Name (ARN) of the service role that Proton uses for provisioning
+	// pipelines. Proton assumes this role for Amazon Web Services-managed provisioning.
 	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" type:"string"`
 }
 
@@ -8721,6 +8729,12 @@ func (s AccountSettings) String() string {
 // value will be replaced with "sensitive".
 func (s AccountSettings) GoString() string {
 	return s.String()
+}
+
+// SetPipelineCodebuildRoleArn sets the PipelineCodebuildRoleArn field's value.
+func (s *AccountSettings) SetPipelineCodebuildRoleArn(v string) *AccountSettings {
+	s.PipelineCodebuildRoleArn = &v
+	return s
 }
 
 // SetPipelineProvisioningRepository sets the PipelineProvisioningRepository field's value.
@@ -9805,10 +9819,15 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// created.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
-	// provisioning directly defined components in the associated environment account.
-	// It determines the scope of infrastructure that a component can provision
-	// in the account.
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// CodeBuild-based provisioning in the associated environment account.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision directly defined components in
+	// the associated environment account. It determines the scope of infrastructure
+	// that a component can provision in the account.
 	//
 	// You must specify componentRoleArn to allow directly defined components to
 	// be associated with any environments running in this account.
@@ -9832,9 +9851,10 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// ManagementAccountId is a required field
 	ManagementAccountId *string `locationName:"managementAccountId" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM service role that's created in
-	// the environment account. Proton uses this role to provision infrastructure
-	// resources in the associated environment account.
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// Amazon Web Services-managed provisioning and CloudFormation in the associated
+	// environment account.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
@@ -9868,6 +9888,9 @@ func (s CreateEnvironmentAccountConnectionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateEnvironmentAccountConnectionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEnvironmentAccountConnectionInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -9906,6 +9929,12 @@ func (s *CreateEnvironmentAccountConnectionInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateEnvironmentAccountConnectionInput) SetClientToken(v string) *CreateEnvironmentAccountConnectionInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *CreateEnvironmentAccountConnectionInput) SetCodebuildRoleArn(v string) *CreateEnvironmentAccountConnectionInput {
+	s.CodebuildRoleArn = &v
 	return s
 }
 
@@ -9975,6 +10004,14 @@ func (s *CreateEnvironmentAccountConnectionOutput) SetEnvironmentAccountConnecti
 type CreateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using CodeBuild-based provisioning on your behalf.
+	//
+	// To use CodeBuild-based provisioning for the environment or for any service
+	// instance running in the environment, specify either the environmentAccountConnectionId
+	// or codebuildRoleArn parameter.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in this environment. It determines
 	// the scope of infrastructure that a component can provision.
@@ -9993,14 +10030,14 @@ type CreateEnvironmentInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The ID of the environment account connection that you provide if you're provisioning
-	// your environment infrastructure resources to an environment account. For
+	// The ID of the environment account connection that you provide if you want
+	// Proton to provision infrastructure resources for your environment or for
+	// any of the service instances running in it in an environment account. For
 	// more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
 	// in the Proton User guide.
 	//
-	// To use Amazon Web Services-managed provisioning for the environment, specify
-	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
-	// and omit the provisioningRepository parameter.
+	// If you specify the environmentAccountConnectionId parameter, don't specify
+	// protonServiceRoleArn, codebuildRoleArn, or provisioningRepository.
 	EnvironmentAccountConnectionId *string `locationName:"environmentAccountConnectionId" type:"string"`
 
 	// The name of the environment.
@@ -10008,20 +10045,21 @@ type CreateEnvironmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
-	// to make calls to other services on your behalf.
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using Amazon Web Services-managed provisioning
+	// and CloudFormation on your behalf.
 	//
-	// To use Amazon Web Services-managed provisioning for the environment, specify
-	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
-	// and omit the provisioningRepository parameter.
+	// To use Amazon Web Services-managed provisioning for the environment or for
+	// any service instance running in the environment, specify either the environmentAccountConnectionId
+	// or protonServiceRoleArn parameter.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// The linked repository that you use to host your rendered infrastructure templates
 	// for self-managed provisioning. A linked repository is a repository that has
 	// been registered with Proton. For more information, see CreateRepository.
 	//
-	// To use self-managed provisioning for the environment, specify this parameter
-	// and omit the environmentAccountConnectionId and protonServiceRoleArn parameters.
+	// To use self-managed provisioning for the environment or for any service instance
+	// running in the environment, specify this parameter.
 	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
 	// A YAML formatted string that provides inputs as defined in the environment
@@ -10079,6 +10117,9 @@ func (s CreateEnvironmentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateEnvironmentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEnvironmentInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -10132,6 +10173,12 @@ func (s *CreateEnvironmentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *CreateEnvironmentInput) SetCodebuildRoleArn(v string) *CreateEnvironmentInput {
+	s.CodebuildRoleArn = &v
+	return s
 }
 
 // SetComponentRoleArn sets the ComponentRoleArn field's value.
@@ -12358,6 +12405,10 @@ type Environment struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using CodeBuild-based provisioning on your behalf.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in this environment. It determines
 	// the scope of infrastructure that a component can provision.
@@ -12393,8 +12444,8 @@ type Environment struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The ID of the environment account connection that's used to provision infrastructure
-	// resources in an environment account.
+	// The ID of the environment account connection that Proton uses to provision
+	// infrastructure resources in an environment account.
 	EnvironmentAccountConnectionId *string `locationName:"environmentAccountConnectionId" type:"string"`
 
 	// The ID of the environment account that the environment infrastructure resources
@@ -12416,8 +12467,9 @@ type Environment struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
-	// to make calls to other services on your behalf.
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using Amazon Web Services-managed provisioning
+	// and CloudFormation on your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// When included, indicates that the environment template is for customer provisioned
@@ -12473,6 +12525,12 @@ func (s Environment) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *Environment) SetArn(v string) *Environment {
 	s.Arn = &v
+	return s
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *Environment) SetCodebuildRoleArn(v string) *Environment {
+	s.CodebuildRoleArn = &v
 	return s
 }
 
@@ -12587,6 +12645,11 @@ type EnvironmentAccountConnection struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// CodeBuild-based provisioning in the associated environment account.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in the associated environment account.
 	// It determines the scope of infrastructure that a component can provision
@@ -12632,7 +12695,10 @@ type EnvironmentAccountConnection struct {
 	// RequestedAt is a required field
 	RequestedAt *time.Time `locationName:"requestedAt" type:"timestamp" required:"true"`
 
-	// The IAM service role that's associated with the environment account connection.
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// Amazon Web Services-managed provisioning and CloudFormation in the associated
+	// environment account.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
@@ -12664,6 +12730,12 @@ func (s EnvironmentAccountConnection) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *EnvironmentAccountConnection) SetArn(v string) *EnvironmentAccountConnection {
 	s.Arn = &v
+	return s
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *EnvironmentAccountConnection) SetCodebuildRoleArn(v string) *EnvironmentAccountConnection {
+	s.CodebuildRoleArn = &v
 	return s
 }
 
@@ -17301,21 +17373,21 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type NotifyResourceDeploymentStatusChangeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The deployment ID for your provisioned resource.
+	// The deployment ID for your provisioned resource. Proton uses it to disambiguate
+	// different deployments of the resource. Applicable to self-managed provisioning
+	// (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self).
 	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
-	// The provisioned resource state change detail data that's returned by Proton.
+	// The output values generated by your provisioned resource.
 	Outputs []*Output_ `locationName:"outputs" type:"list"`
 
-	// The provisioned resource Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of your provisioned resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// The status of your provisioned resource.
-	//
-	// Status is a required field
-	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceDeploymentStatus"`
+	Status *string `locationName:"status" type:"string" enum:"ResourceDeploymentStatus"`
 
 	// The deployment status message for your provisioned resource.
 	//
@@ -17351,9 +17423,6 @@ func (s *NotifyResourceDeploymentStatusChangeInput) Validate() error {
 	}
 	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
-	}
-	if s.Status == nil {
-		invalidParams.Add(request.NewErrParamRequired("Status"))
 	}
 	if s.Outputs != nil {
 		for i, v := range s.Outputs {
@@ -20272,6 +20341,10 @@ type UpdateAccountSettingsInput struct {
 	// Don't set this field if you are updating the configured pipeline repository.
 	DeletePipelineProvisioningRepository *bool `locationName:"deletePipelineProvisioningRepository" type:"boolean"`
 
+	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
+	// pipelines. Proton assumes this role for CodeBuild-based provisioning.
+	PipelineCodebuildRoleArn *string `locationName:"pipelineCodebuildRoleArn" type:"string"`
+
 	// A linked repository for pipeline provisioning. Specify it if you have environments
 	// configured for self-managed provisioning with services that include pipelines.
 	// A linked repository is a repository that has been registered with Proton.
@@ -20325,6 +20398,12 @@ func (s *UpdateAccountSettingsInput) Validate() error {
 // SetDeletePipelineProvisioningRepository sets the DeletePipelineProvisioningRepository field's value.
 func (s *UpdateAccountSettingsInput) SetDeletePipelineProvisioningRepository(v bool) *UpdateAccountSettingsInput {
 	s.DeletePipelineProvisioningRepository = &v
+	return s
+}
+
+// SetPipelineCodebuildRoleArn sets the PipelineCodebuildRoleArn field's value.
+func (s *UpdateAccountSettingsInput) SetPipelineCodebuildRoleArn(v string) *UpdateAccountSettingsInput {
+	s.PipelineCodebuildRoleArn = &v
 	return s
 }
 
@@ -20560,6 +20639,11 @@ func (s *UpdateComponentOutput) SetComponent(v *Component) *UpdateComponentOutpu
 type UpdateEnvironmentAccountConnectionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// CodeBuild-based provisioning in the associated environment account.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in the associated environment account.
 	// It determines the scope of infrastructure that a component can provision
@@ -20578,8 +20662,10 @@ type UpdateEnvironmentAccountConnectionInput struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM service role that's associated
-	// with the environment account connection to update.
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// Amazon Web Services-managed provisioning and CloudFormation in the associated
+	// environment account.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 }
 
@@ -20604,6 +20690,9 @@ func (s UpdateEnvironmentAccountConnectionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateEnvironmentAccountConnectionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateEnvironmentAccountConnectionInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -20618,6 +20707,12 @@ func (s *UpdateEnvironmentAccountConnectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *UpdateEnvironmentAccountConnectionInput) SetCodebuildRoleArn(v string) *UpdateEnvironmentAccountConnectionInput {
+	s.CodebuildRoleArn = &v
+	return s
 }
 
 // SetComponentRoleArn sets the ComponentRoleArn field's value.
@@ -20674,6 +20769,10 @@ func (s *UpdateEnvironmentAccountConnectionOutput) SetEnvironmentAccountConnecti
 type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using CodeBuild-based provisioning on your behalf.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in this environment. It determines
 	// the scope of infrastructure that a component can provision.
@@ -20723,7 +20822,11 @@ type UpdateEnvironmentInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The ID of the environment account connection.
+	// The ID of the environment account connection that you provide if you want
+	// Proton to provision infrastructure resources for your environment or for
+	// any of the service instances running in it in an environment account. For
+	// more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
+	// in the Proton User guide.
 	//
 	// You can only update to a new environment account connection if it was created
 	// in the same environment account that the current environment account connection
@@ -20735,8 +20838,9 @@ type UpdateEnvironmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
-	// to make API calls to other services your behalf.
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using Amazon Web Services-managed provisioning
+	// and CloudFormation on your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// The linked repository that you use to host your rendered infrastructure templates
@@ -20779,6 +20883,9 @@ func (s UpdateEnvironmentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateEnvironmentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateEnvironmentInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -20813,6 +20920,12 @@ func (s *UpdateEnvironmentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *UpdateEnvironmentInput) SetCodebuildRoleArn(v string) *UpdateEnvironmentInput {
+	s.CodebuildRoleArn = &v
+	return s
 }
 
 // SetComponentRoleArn sets the ComponentRoleArn field's value.

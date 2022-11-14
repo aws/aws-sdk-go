@@ -740,6 +740,12 @@
       "refs": {
       }
     },
+    "KeyString": {
+      "base": null,
+      "refs": {
+        "ParametersMap$key": null
+      }
+    },
     "LFTag": {
       "base": "<p>A structure that allows an admin to grant user permissions on certain conditions. For example, granting a role access to all columns that do not have the LF-tag 'PII' in tables that have the LF-tag 'Prod'.</p>",
       "refs": {
@@ -940,7 +946,7 @@
       "base": null,
       "refs": {
         "DataLakeSettings$AllowExternalDataFiltering": "<p>Whether to allow Amazon EMR clusters to access data managed by Lake Formation. </p> <p>If true, you allow Amazon EMR clusters to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>If false or null, no Amazon EMR clusters will be able to access data in Amazon S3 locations that are registered with Lake Formation.</p> <p>For more information, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/getting-started-setup.html#emr-switch\">(Optional) Allow Data Filtering on Amazon EMR</a>.</p>",
-        "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates an Identity and Access Management (IAM) service-linked role by registering this role with the Data Catalog. A service-linked role is a unique type of IAM role that is linked directly to Lake Formation.</p> <p>For more information, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html\">Using Service-Linked Roles for Lake Formation</a>.</p>"
+        "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates an Identity and Access Management (IAM) service-linked role by registering this role with the Data Catalog. A service-linked role is a unique type of IAM role that is linked directly to Lake Formation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html\">Using Service-Linked Roles for Lake Formation</a>.</p>"
       }
     },
     "NumberOfBytes": {
@@ -995,9 +1001,19 @@
         "ListPermissionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListResourcesRequest$MaxResults": "<p>The maximum number of resource results.</p>",
         "ListTableStorageOptimizersRequest$MaxResults": "<p>The number of storage optimizers to return on each call.</p>",
-        "ListTransactionsRequest$MaxResults": "<p>The maximum number of transactions to return in a single call.</p>",
-        "SearchDatabasesByLFTagsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
-        "SearchTablesByLFTagsRequest$MaxResults": "<p>The maximum number of results to return.</p>"
+        "ListTransactionsRequest$MaxResults": "<p>The maximum number of transactions to return in a single call.</p>"
+      }
+    },
+    "ParametersMap": {
+      "base": null,
+      "refs": {
+        "DataLakeSettings$Parameters": "<p>A key-value map that provides an additional configuration on your data lake. CrossAccountVersion is the key you can configure in the Parameters field. Accepted values for the CrossAccountVersion key are 1, 2, and 3.</p>"
+      }
+    },
+    "ParametersMapValue": {
+      "base": null,
+      "refs": {
+        "ParametersMap$value": null
       }
     },
     "PartitionObjects": {
@@ -1094,7 +1110,7 @@
     "PrincipalPermissionsList": {
       "base": null,
       "refs": {
-        "DataLakeSettings$CreateDatabaseDefaultPermissions": "<p>Specifies whether access control on newly created database is managed by Lake Formation permissions or exclusively by IAM permissions. You can override this default setting when you create a database.</p> <p>A null value indicates access control by Lake Formation permissions. A value that assigns ALL to IAM_ALLOWED_PRINCIPALS indicates access control by IAM permissions. This is referred to as the setting \"Use only IAM access control,\" and is for backward compatibility with the Glue permission model implemented by IAM permissions.</p> <p>The only permitted values are an empty array or an array that contains a single JSON object that grants ALL to IAM_ALLOWED_PRINCIPALS.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/change-settings.html\">Changing the Default Security Settings for Your Data Lake</a>.</p>",
+        "DataLakeSettings$CreateDatabaseDefaultPermissions": "<p>Specifies whether access control on newly created database is managed by Lake Formation permissions or exclusively by IAM permissions.</p> <p>A null value indicates access control by Lake Formation permissions. A value that assigns ALL to IAM_ALLOWED_PRINCIPALS indicates access control by IAM permissions. This is referred to as the setting \"Use only IAM access control,\" and is for backward compatibility with the Glue permission model implemented by IAM permissions.</p> <p>The only permitted values are an empty array or an array that contains a single JSON object that grants ALL to IAM_ALLOWED_PRINCIPALS.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/change-settings.html\">Changing the Default Security Settings for Your Data Lake</a>.</p>",
         "DataLakeSettings$CreateTableDefaultPermissions": "<p>Specifies whether access control on newly created table is managed by Lake Formation permissions or exclusively by IAM permissions.</p> <p>A null value indicates access control by Lake Formation permissions. A value that assigns ALL to IAM_ALLOWED_PRINCIPALS indicates access control by IAM permissions. This is referred to as the setting \"Use only IAM access control,\" and is for backward compatibility with the Glue permission model implemented by IAM permissions.</p> <p>The only permitted values are an empty array or an array that contains a single JSON object that grants ALL to IAM_ALLOWED_PRINCIPALS.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/change-settings.html\">Changing the Default Security Settings for Your Data Lake</a>.</p>"
       }
     },
@@ -1288,6 +1304,13 @@
     "SearchDatabasesByLFTagsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "SearchPageSize": {
+      "base": null,
+      "refs": {
+        "SearchDatabasesByLFTagsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "SearchTablesByLFTagsRequest$MaxResults": "<p>The maximum number of results to return.</p>"
       }
     },
     "SearchTablesByLFTagsRequest": {

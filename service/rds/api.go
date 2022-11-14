@@ -13684,6 +13684,9 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //     The network type is invalid for the DB instance. Valid nework type values
 //     are IPV4 and DUAL.
 //
+//   - ErrCodeDBClusterSnapshotNotFoundFault "DBClusterSnapshotNotFoundFault"
+//     DBClusterSnapshotIdentifier doesn't refer to an existing DB cluster snapshot.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceFromDBSnapshot
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
@@ -20773,6 +20776,8 @@ type CreateDBInstanceInput struct {
 
 	// Specifies the storage throughput value for the DB instance.
 	//
+	// This setting applies only to the gp3 storage type.
+	//
 	// This setting doesn't apply to RDS Custom or Amazon Aurora.
 	StorageThroughput *int64 `type:"integer"`
 
@@ -25566,6 +25571,8 @@ type DBInstance struct {
 	StorageEncrypted *bool `type:"boolean"`
 
 	// Specifies the storage throughput for the DB instance.
+	//
+	// This setting applies only to the gp3 storage type.
 	StorageThroughput *int64 `type:"integer"`
 
 	// Specifies the storage type associated with the DB instance.
@@ -39871,6 +39878,8 @@ type ModifyDBInstanceInput struct {
 
 	// Specifies the storage throughput value for the DB instance.
 	//
+	// This setting applies only to the gp3 storage type.
+	//
 	// This setting doesn't apply to RDS Custom or Amazon Aurora.
 	StorageThroughput *int64 `type:"integer"`
 
@@ -46765,6 +46774,30 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
 
+	// The identifier for the RDS for MySQL Multi-AZ DB cluster snapshot to restore
+	// from.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing Multi-AZ DB cluster snapshot.
+	//
+	//    * Can't be specified when DBSnapshotIdentifier is specified.
+	//
+	//    * Must be specified when DBSnapshotIdentifier isn't specified.
+	//
+	//    * If you are restoring from a shared manual Multi-AZ DB cluster snapshot,
+	//    the DBClusterSnapshotIdentifier must be the ARN of the shared snapshot.
+	//
+	//    * Can't be the identifier of an Aurora DB cluster snapshot.
+	//
+	//    * Can't be the identifier of an RDS for PostgreSQL Multi-AZ DB cluster
+	//    snapshot.
+	DBClusterSnapshotIdentifier *string `type:"string"`
+
 	// The compute and memory capacity of the Amazon RDS DB instance, for example
 	// db.m4.large. Not all DB instance classes are available in all Amazon Web
 	// Services Regions, or for all database engines. For the full list of DB instance
@@ -46820,11 +46853,13 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	//    * Must match the identifier of an existing DBSnapshot.
 	//
+	//    * Can't be specified when DBClusterSnapshotIdentifier is specified.
+	//
+	//    * Must be specified when DBClusterSnapshotIdentifier isn't specified.
+	//
 	//    * If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
 	//    must be the ARN of the shared DB snapshot.
-	//
-	// DBSnapshotIdentifier is a required field
-	DBSnapshotIdentifier *string `type:"string" required:"true"`
+	DBSnapshotIdentifier *string `type:"string"`
 
 	// The DB subnet group name to use for the new instance.
 	//
@@ -47076,9 +47111,6 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) Validate() error {
 	if s.DBInstanceIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
 	}
-	if s.DBSnapshotIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("DBSnapshotIdentifier"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -47113,6 +47145,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetCopyTagsToSnapshot(v bool) *Re
 // SetCustomIamInstanceProfile sets the CustomIamInstanceProfile field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetCustomIamInstanceProfile(v string) *RestoreDBInstanceFromDBSnapshotInput {
 	s.CustomIamInstanceProfile = &v
+	return s
+}
+
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBClusterSnapshotIdentifier(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DBClusterSnapshotIdentifier = &v
 	return s
 }
 

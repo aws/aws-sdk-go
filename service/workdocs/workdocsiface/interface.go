@@ -112,6 +112,10 @@ type WorkDocsAPI interface {
 	DeleteDocumentWithContext(aws.Context, *workdocs.DeleteDocumentInput, ...request.Option) (*workdocs.DeleteDocumentOutput, error)
 	DeleteDocumentRequest(*workdocs.DeleteDocumentInput) (*request.Request, *workdocs.DeleteDocumentOutput)
 
+	DeleteDocumentVersion(*workdocs.DeleteDocumentVersionInput) (*workdocs.DeleteDocumentVersionOutput, error)
+	DeleteDocumentVersionWithContext(aws.Context, *workdocs.DeleteDocumentVersionInput, ...request.Option) (*workdocs.DeleteDocumentVersionOutput, error)
+	DeleteDocumentVersionRequest(*workdocs.DeleteDocumentVersionInput) (*request.Request, *workdocs.DeleteDocumentVersionOutput)
+
 	DeleteFolder(*workdocs.DeleteFolderInput) (*workdocs.DeleteFolderOutput, error)
 	DeleteFolderWithContext(aws.Context, *workdocs.DeleteFolderInput, ...request.Option) (*workdocs.DeleteFolderOutput, error)
 	DeleteFolderRequest(*workdocs.DeleteFolderInput) (*request.Request, *workdocs.DeleteFolderOutput)
@@ -216,6 +220,10 @@ type WorkDocsAPI interface {
 	RemoveResourcePermission(*workdocs.RemoveResourcePermissionInput) (*workdocs.RemoveResourcePermissionOutput, error)
 	RemoveResourcePermissionWithContext(aws.Context, *workdocs.RemoveResourcePermissionInput, ...request.Option) (*workdocs.RemoveResourcePermissionOutput, error)
 	RemoveResourcePermissionRequest(*workdocs.RemoveResourcePermissionInput) (*request.Request, *workdocs.RemoveResourcePermissionOutput)
+
+	RestoreDocumentVersions(*workdocs.RestoreDocumentVersionsInput) (*workdocs.RestoreDocumentVersionsOutput, error)
+	RestoreDocumentVersionsWithContext(aws.Context, *workdocs.RestoreDocumentVersionsInput, ...request.Option) (*workdocs.RestoreDocumentVersionsOutput, error)
+	RestoreDocumentVersionsRequest(*workdocs.RestoreDocumentVersionsInput) (*request.Request, *workdocs.RestoreDocumentVersionsOutput)
 
 	UpdateDocument(*workdocs.UpdateDocumentInput) (*workdocs.UpdateDocumentOutput, error)
 	UpdateDocumentWithContext(aws.Context, *workdocs.UpdateDocumentInput, ...request.Option) (*workdocs.UpdateDocumentOutput, error)

@@ -1307,14 +1307,16 @@
     "AccountSettings":{
       "type":"structure",
       "members":{
+        "pipelineCodebuildRoleArn":{"shape":"RoleArnOrEmptyString"},
         "pipelineProvisioningRepository":{"shape":"RepositoryBranch"},
-        "pipelineServiceRoleArn":{"shape":"PipelineRoleArn"}
+        "pipelineServiceRoleArn":{"shape":"RoleArnOrEmptyString"}
       }
     },
     "Arn":{
       "type":"string",
       "max":200,
-      "min":1
+      "min":1,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov):[a-zA-Z0-9-]+:[a-zA-Z0-9-]*:\\d{12}:([\\w+=,.@-]+[/:])*[\\w+=,.@-]+$"
     },
     "AwsAccountId":{
       "type":"string",
@@ -1530,10 +1532,11 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "componentRoleArn":{"shape":"Arn"},
+        "codebuildRoleArn":{"shape":"RoleArn"},
+        "componentRoleArn":{"shape":"RoleArn"},
         "environmentName":{"shape":"ResourceName"},
         "managementAccountId":{"shape":"AwsAccountId"},
-        "roleArn":{"shape":"Arn"},
+        "roleArn":{"shape":"RoleArn"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -1553,7 +1556,8 @@
         "templateName"
       ],
       "members":{
-        "componentRoleArn":{"shape":"Arn"},
+        "codebuildRoleArn":{"shape":"RoleArn"},
+        "componentRoleArn":{"shape":"RoleArn"},
         "description":{"shape":"Description"},
         "environmentAccountConnectionId":{"shape":"EnvironmentAccountConnectionId"},
         "name":{"shape":"ResourceName"},
@@ -1946,7 +1950,8 @@
       ],
       "members":{
         "arn":{"shape":"EnvironmentArn"},
-        "componentRoleArn":{"shape":"Arn"},
+        "codebuildRoleArn":{"shape":"RoleArn"},
+        "componentRoleArn":{"shape":"RoleArn"},
         "createdAt":{"shape":"Timestamp"},
         "deploymentStatus":{"shape":"DeploymentStatus"},
         "deploymentStatusMessage":{"shape":"StatusMessage"},
@@ -1980,7 +1985,8 @@
       ],
       "members":{
         "arn":{"shape":"EnvironmentAccountConnectionArn"},
-        "componentRoleArn":{"shape":"Arn"},
+        "codebuildRoleArn":{"shape":"RoleArn"},
+        "componentRoleArn":{"shape":"RoleArn"},
         "environmentAccountId":{"shape":"AwsAccountId"},
         "environmentName":{"shape":"ResourceName"},
         "id":{"shape":"EnvironmentAccountConnectionId"},
@@ -2800,10 +2806,7 @@
     },
     "NotifyResourceDeploymentStatusChangeInput":{
       "type":"structure",
-      "required":[
-        "resourceArn",
-        "status"
-      ],
+      "required":["resourceArn"],
       "members":{
         "deploymentId":{"shape":"DeploymentId"},
         "outputs":{"shape":"NotifyResourceDeploymentStatusChangeInputOutputsList"},
@@ -2850,12 +2853,6 @@
     "OutputsList":{
       "type":"list",
       "member":{"shape":"Output"}
-    },
-    "PipelineRoleArn":{
-      "type":"string",
-      "max":2048,
-      "min":0,
-      "pattern":"(^$)|(^arn:[a-zA-Z-]+:[a-zA-Z0-9-]+:[a-zA-Z0-9-]*:\\d*:[\\w+=\\/:,\\.@-]*)"
     },
     "ProvisionedResource":{
       "type":"structure",
@@ -3135,6 +3132,18 @@
         "repositoryProvider":{"shape":"RepositoryProvider"},
         "sha":{"shape":"SHA"}
       }
+    },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov):iam::\\d{12}:role/([\\w+=,.@-]{1,512}[/:])*([\\w+=,.@-]{1,64})$"
+    },
+    "RoleArnOrEmptyString":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"(^$)|(^arn:(aws|aws-cn|aws-us-gov):iam::\\d{12}:role/([\\w+=,.@-]{1,512}[/:])*([\\w+=,.@-]{1,64})$)"
     },
     "S3Bucket":{
       "type":"string",
@@ -3607,8 +3616,9 @@
       "type":"structure",
       "members":{
         "deletePipelineProvisioningRepository":{"shape":"Boolean"},
+        "pipelineCodebuildRoleArn":{"shape":"RoleArnOrEmptyString"},
         "pipelineProvisioningRepository":{"shape":"RepositoryBranchInput"},
-        "pipelineServiceRoleArn":{"shape":"PipelineRoleArn"}
+        "pipelineServiceRoleArn":{"shape":"RoleArnOrEmptyString"}
       }
     },
     "UpdateAccountSettingsOutput":{
@@ -3645,9 +3655,10 @@
       "type":"structure",
       "required":["id"],
       "members":{
-        "componentRoleArn":{"shape":"Arn"},
+        "codebuildRoleArn":{"shape":"RoleArn"},
+        "componentRoleArn":{"shape":"RoleArn"},
         "id":{"shape":"EnvironmentAccountConnectionId"},
-        "roleArn":{"shape":"Arn"}
+        "roleArn":{"shape":"RoleArn"}
       }
     },
     "UpdateEnvironmentAccountConnectionOutput":{
@@ -3664,7 +3675,8 @@
         "name"
       ],
       "members":{
-        "componentRoleArn":{"shape":"Arn"},
+        "codebuildRoleArn":{"shape":"RoleArn"},
+        "componentRoleArn":{"shape":"RoleArn"},
         "deploymentType":{"shape":"DeploymentUpdateType"},
         "description":{"shape":"Description"},
         "environmentAccountConnectionId":{"shape":"EnvironmentAccountConnectionId"},

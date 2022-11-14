@@ -3191,8 +3191,13 @@ func (c *CustomerProfiles) SearchProfilesRequest(input *SearchProfilesInput) (re
 
 // SearchProfiles API operation for Amazon Connect Customer Profiles.
 //
-// Searches for profiles within a specific domain name using name, phone number,
-// email address, account number, or a custom defined index.
+// Searches for profiles within a specific domain using one or more predefined
+// search keys (e.g., _fullName, _phone, _email, _account, etc.) and/or custom-defined
+// search keys. A search key is a data type pair that consists of a KeyName
+// and Values list.
+//
+// This operation supports searching for profiles with a minimum of 1 key-value(s)
+// pair and up to 5 key-value(s) pairs using either AND or OR logic.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3830,6 +3835,74 @@ func (s *AddProfileKeyOutput) SetKeyName(v string) *AddProfileKeyOutput {
 
 // SetValues sets the Values field's value.
 func (s *AddProfileKeyOutput) SetValues(v []*string) *AddProfileKeyOutput {
+	s.Values = v
+	return s
+}
+
+// A data type pair that consists of a KeyName and Values list that is used
+// in conjunction with the KeyName (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html#customerprofiles-SearchProfiles-request-KeyName)
+// and Values (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html#customerprofiles-SearchProfiles-request-Values)
+// parameters to search for profiles using the SearchProfiles (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html)
+// API.
+type AdditionalSearchKey struct {
+	_ struct{} `type:"structure"`
+
+	// A searchable identifier of a customer profile.
+	//
+	// KeyName is a required field
+	KeyName *string `min:"1" type:"string" required:"true"`
+
+	// A list of key values.
+	//
+	// Values is a required field
+	Values []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdditionalSearchKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdditionalSearchKey) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdditionalSearchKey) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdditionalSearchKey"}
+	if s.KeyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyName"))
+	}
+	if s.KeyName != nil && len(*s.KeyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyName", 1))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *AdditionalSearchKey) SetKeyName(v string) *AdditionalSearchKey {
+	s.KeyName = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AdditionalSearchKey) SetValues(v []*string) *AdditionalSearchKey {
 	s.Values = v
 	return s
 }
@@ -6645,6 +6718,49 @@ func (s *FlowDefinition) SetTasks(v []*Task) *FlowDefinition {
 // SetTriggerConfig sets the TriggerConfig field's value.
 func (s *FlowDefinition) SetTriggerConfig(v *TriggerConfig) *FlowDefinition {
 	s.TriggerConfig = v
+	return s
+}
+
+// A data type pair that consists of a KeyName and Values list that were used
+// to find a profile returned in response to a SearchProfiles (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html)
+// request.
+type FoundByKeyValue struct {
+	_ struct{} `type:"structure"`
+
+	// A searchable identifier of a customer profile.
+	KeyName *string `min:"1" type:"string"`
+
+	// A list of key values.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FoundByKeyValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FoundByKeyValue) GoString() string {
+	return s.String()
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *FoundByKeyValue) SetKeyName(v string) *FoundByKeyValue {
+	s.KeyName = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *FoundByKeyValue) SetValues(v []*string) *FoundByKeyValue {
+	s.Values = v
 	return s
 }
 
@@ -10634,6 +10750,29 @@ type Profile struct {
 	// The customer’s first name.
 	FirstName *string `min:"1" type:"string"`
 
+	// A list of items used to find a profile returned in a SearchProfiles (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html)
+	// response. An item is a key-value(s) pair that matches an attribute in the
+	// profile.
+	//
+	// If the optional AdditionalSearchKeys parameter was included in the SearchProfiles
+	// (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html)
+	// request, the FoundByItems list should be interpreted based on the LogicalOperator
+	// used in the request:
+	//
+	//    * AND - The profile included in the response matched all of the search
+	//    keys specified in the request. The FoundByItems will include all of the
+	//    key-value(s) pairs that were specified in the request (as this is a requirement
+	//    of AND search logic).
+	//
+	//    * OR - The profile included in the response matched at least one of the
+	//    search keys specified in the request. The FoundByItems will include each
+	//    of the key-value(s) pairs that the profile was found by.
+	//
+	// The OR relationship is the default behavior if the LogicalOperator parameter
+	// is not included in the SearchProfiles (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html)
+	// request.
+	FoundByItems []*FoundByKeyValue `min:"1" type:"list"`
+
 	// The gender with which the customer identifies.
 	Gender *string `type:"string" enum:"Gender"`
 
@@ -10750,6 +10889,12 @@ func (s *Profile) SetEmailAddress(v string) *Profile {
 // SetFirstName sets the FirstName field's value.
 func (s *Profile) SetFirstName(v string) *Profile {
 	s.FirstName = &v
+	return s
+}
+
+// SetFoundByItems sets the FoundByItems field's value.
+func (s *Profile) SetFoundByItems(v []*FoundByKeyValue) *Profile {
+	s.FoundByItems = v
 	return s
 }
 
@@ -11900,6 +12045,14 @@ func (s *ScheduledTriggerProperties) SetTimezone(v string) *ScheduledTriggerProp
 type SearchProfilesInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of AdditionalSearchKey objects that are each searchable identifiers
+	// of a profile. Each AdditionalSearchKey object contains a KeyName and a list
+	// of Values associated with that specific key (i.e., a key-value(s) pair).
+	// These additional search keys will be used in conjunction with the LogicalOperator
+	// and the required KeyName and Values parameters to search for profiles that
+	// satisfy the search criteria.
+	AdditionalSearchKeys []*AdditionalSearchKey `min:"1" type:"list"`
+
 	// The unique name of the domain.
 	//
 	// DomainName is a required field
@@ -11915,7 +12068,26 @@ type SearchProfilesInput struct {
 	// KeyName is a required field
 	KeyName *string `min:"1" type:"string" required:"true"`
 
+	// Relationship between all specified search keys that will be used to search
+	// for profiles. This includes the required KeyName and Values parameters as
+	// well as any key-value(s) pairs specified in the AdditionalSearchKeys list.
+	//
+	// This parameter influences which profiles will be returned in the response
+	// in the following manner:
+	//
+	//    * AND - The response only includes profiles that match all of the search
+	//    keys.
+	//
+	//    * OR - The response includes profiles that match at least one of the search
+	//    keys.
+	//
+	// The OR relationship is the default behavior if this parameter is not included
+	// in the request.
+	LogicalOperator *string `type:"string" enum:"LogicalOperator"`
+
 	// The maximum number of objects returned per page.
+	//
+	// The default is 20 if this parameter is not included in the request.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
 	// The pagination token from the previous SearchProfiles API call.
@@ -11948,6 +12120,9 @@ func (s SearchProfilesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SearchProfilesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SearchProfilesInput"}
+	if s.AdditionalSearchKeys != nil && len(s.AdditionalSearchKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalSearchKeys", 1))
+	}
 	if s.DomainName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DomainName"))
 	}
@@ -11969,11 +12144,27 @@ func (s *SearchProfilesInput) Validate() error {
 	if s.Values == nil {
 		invalidParams.Add(request.NewErrParamRequired("Values"))
 	}
+	if s.AdditionalSearchKeys != nil {
+		for i, v := range s.AdditionalSearchKeys {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdditionalSearchKeys", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalSearchKeys sets the AdditionalSearchKeys field's value.
+func (s *SearchProfilesInput) SetAdditionalSearchKeys(v []*AdditionalSearchKey) *SearchProfilesInput {
+	s.AdditionalSearchKeys = v
+	return s
 }
 
 // SetDomainName sets the DomainName field's value.
@@ -11985,6 +12176,12 @@ func (s *SearchProfilesInput) SetDomainName(v string) *SearchProfilesInput {
 // SetKeyName sets the KeyName field's value.
 func (s *SearchProfilesInput) SetKeyName(v string) *SearchProfilesInput {
 	s.KeyName = &v
+	return s
+}
+
+// SetLogicalOperator sets the LogicalOperator field's value.
+func (s *SearchProfilesInput) SetLogicalOperator(v string) *SearchProfilesInput {
+	s.LogicalOperator = &v
 	return s
 }
 
@@ -12009,7 +12206,7 @@ func (s *SearchProfilesInput) SetValues(v []*string) *SearchProfilesInput {
 type SearchProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of SearchProfiles instances.
+	// The list of Profiles matching the search criteria.
 	Items []*Profile `type:"list"`
 
 	// The pagination token from the previous SearchProfiles API call.
@@ -13654,6 +13851,22 @@ func JobScheduleDayOfTheWeek_Values() []string {
 		JobScheduleDayOfTheWeekThursday,
 		JobScheduleDayOfTheWeekFriday,
 		JobScheduleDayOfTheWeekSaturday,
+	}
+}
+
+const (
+	// LogicalOperatorAnd is a LogicalOperator enum value
+	LogicalOperatorAnd = "AND"
+
+	// LogicalOperatorOr is a LogicalOperator enum value
+	LogicalOperatorOr = "OR"
+)
+
+// LogicalOperator_Values returns all elements of the LogicalOperator enum
+func LogicalOperator_Values() []string {
+	return []string{
+		LogicalOperatorAnd,
+		LogicalOperatorOr,
 	}
 }
 

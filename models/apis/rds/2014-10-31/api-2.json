@@ -2132,7 +2132,8 @@
         {"shape":"DomainNotFoundFault"},
         {"shape":"DBParameterGroupNotFoundFault"},
         {"shape":"BackupPolicyNotFoundFault"},
-        {"shape":"NetworkTypeNotSupported"}
+        {"shape":"NetworkTypeNotSupported"},
+        {"shape":"DBClusterSnapshotNotFoundFault"}
       ]
     },
     "RestoreDBInstanceFromS3":{
@@ -7592,10 +7593,7 @@
     },
     "RestoreDBInstanceFromDBSnapshotMessage":{
       "type":"structure",
-      "required":[
-        "DBInstanceIdentifier",
-        "DBSnapshotIdentifier"
-      ],
+      "required":["DBInstanceIdentifier"],
       "members":{
         "DBInstanceIdentifier":{"shape":"String"},
         "DBSnapshotIdentifier":{"shape":"String"},
@@ -7629,7 +7627,8 @@
         "CustomIamInstanceProfile":{"shape":"String"},
         "BackupTarget":{"shape":"String"},
         "NetworkType":{"shape":"String"},
-        "StorageThroughput":{"shape":"IntegerOptional"}
+        "StorageThroughput":{"shape":"IntegerOptional"},
+        "DBClusterSnapshotIdentifier":{"shape":"String"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
