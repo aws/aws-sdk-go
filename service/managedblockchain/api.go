@@ -611,7 +611,7 @@ func (c *ManagedBlockchain) DeleteAccessorRequest(input *DeleteAccessorInput) (r
 // to your Ethereum nodes including, the BILLING_TOKEN. After an accessor is
 // deleted, the status of the accessor changes from AVAILABLE to PENDING_DELETION.
 // An accessor in the PENDING_DELETION state can’t be used for new WebSocket
-// requests or HTTP requests. However, WebSocket connections that are initiated
+// requests or HTTP requests. However, WebSocket connections that were initiated
 // while the accessor was in the AVAILABLE state remain open until they expire
 // (up to 2 hours).
 //
@@ -3955,6 +3955,8 @@ type CreateNodeInput struct {
 	//
 	//    * n-ethereum-mainnet
 	//
+	//    * n-ethereum-goerli
+	//
 	//    * n-ethereum-rinkeby
 	//
 	//    * n-ethereum-ropsten
@@ -4426,6 +4428,8 @@ type DeleteNodeInput struct {
 	// Ethereum public networks have the following NetworkIds:
 	//
 	//    * n-ethereum-mainnet
+	//
+	//    * n-ethereum-goerli
 	//
 	//    * n-ethereum-rinkeby
 	//
@@ -7140,6 +7144,8 @@ type NetworkEthereumAttributes struct {
 	//
 	//    * mainnet = 1
 	//
+	//    * goerli = 5
+	//
 	//    * rinkeby = 4
 	//
 	//    * ropsten = 3
@@ -7731,9 +7737,9 @@ type NodeEthereumAttributes struct {
 	HttpEndpoint *string `type:"string"`
 
 	// The endpoint on which the Ethereum node listens to run Ethereum JSON-RPC
-	// methods over WebSockets connections from a client. Use this endpoint in client
-	// code for smart contracts when using a WebSockets connection. Connections
-	// to this endpoint are authenticated using Signature Version 4 (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+	// methods over WebSocket connections from a client. Use this endpoint in client
+	// code for smart contracts when using a WebSocket connection. Connections to
+	// this endpoint are authenticated using Signature Version 4 (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 	WebSocketEndpoint *string `type:"string"`
 }
 

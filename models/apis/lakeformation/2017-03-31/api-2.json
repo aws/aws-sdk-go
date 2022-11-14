@@ -1070,6 +1070,7 @@
         "DataLakeAdmins":{"shape":"DataLakePrincipalList"},
         "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"},
         "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
+        "Parameters":{"shape":"ParametersMap"},
         "TrustedResourceOwners":{"shape":"TrustedResourceOwners"},
         "AllowExternalDataFiltering":{"shape":"NullableBoolean"},
         "ExternalDataFilteringAllowList":{"shape":"DataLakePrincipalList"},
@@ -1580,6 +1581,12 @@
       },
       "exception":true
     },
+    "KeyString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
     "LFTag":{
       "type":"structure",
       "required":[
@@ -1795,6 +1802,15 @@
       "box":true,
       "max":1000,
       "min":1
+    },
+    "ParametersMap":{
+      "type":"map",
+      "key":{"shape":"KeyString"},
+      "value":{"shape":"ParametersMapValue"}
+    },
+    "ParametersMapValue":{
+      "type":"string",
+      "max":512000
     },
     "PartitionObjects":{
       "type":"structure",
@@ -2084,7 +2100,7 @@
       "required":["Expression"],
       "members":{
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"PageSize"},
+        "MaxResults":{"shape":"SearchPageSize"},
         "CatalogId":{"shape":"CatalogIdString"},
         "Expression":{"shape":"Expression"}
       }
@@ -2096,12 +2112,18 @@
         "DatabaseList":{"shape":"DatabaseLFTagsList"}
       }
     },
+    "SearchPageSize":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "SearchTablesByLFTagsRequest":{
       "type":"structure",
       "required":["Expression"],
       "members":{
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"PageSize"},
+        "MaxResults":{"shape":"SearchPageSize"},
         "CatalogId":{"shape":"CatalogIdString"},
         "Expression":{"shape":"Expression"}
       }

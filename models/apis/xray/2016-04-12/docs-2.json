@@ -205,7 +205,7 @@
       }
     },
     "Edge": {
-      "base": "<p>Information about a connection between two services.</p>",
+      "base": "<p>Information about a connection between two services. An edge can be a synchronous connection, such as typical call between client and service, or an asynchronous link, such as a Lambda function which retrieves an event from an SNS queue.</p>",
       "refs": {
         "EdgeList$member": null
       }
@@ -592,7 +592,8 @@
     "Histogram": {
       "base": null,
       "refs": {
-        "Edge$ResponseTimeHistogram": "<p>A histogram that maps the spread of client response times on an edge.</p>",
+        "Edge$ResponseTimeHistogram": "<p>A histogram that maps the spread of client response times on an edge. Only populated for synchronous edges.</p>",
+        "Edge$ReceivedEventAgeHistogram": "<p>A histogram that maps the spread of event age when received by consumers. Age is calculated each time an event is received. Only populated when <i>EdgeType</i> is <code>link</code>.</p>",
         "Service$DurationHistogram": "<p>A histogram that maps the spread of service durations.</p>",
         "Service$ResponseTimeHistogram": "<p>A histogram that maps the spread of service response times.</p>",
         "TimeSeriesServiceStatistics$ResponseTimeHistogram": "<p>The response time histogram for the selected entities.</p>"
@@ -780,7 +781,7 @@
         "ResponseTimeRootCauseEntity$Remote": "<p>A flag that denotes a remote subsegment.</p>",
         "ResponseTimeRootCauseService$Inferred": "<p>A Boolean value indicating if the service is inferred from the trace.</p>",
         "Service$Root": "<p>Indicates that the service was the first service to process a request.</p>",
-        "Trace$LimitExceeded": "<p>LimitExceeded is set to true when the trace has exceeded one of the defined quotas. For more information about quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/xray.html\">Amazon Web Services X-Ray endpoints and quotas</a>.</p>",
+        "Trace$LimitExceeded": "<p>LimitExceeded is set to true when the trace has exceeded the <code>Trace document size</code> limit. For more information about this limit and other X-Ray limits and quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/xray.html\">Amazon Web Services X-Ray endpoints and quotas</a>.</p>",
         "TraceSummary$HasFault": "<p>The root segment document has a 500 series error.</p>",
         "TraceSummary$HasError": "<p>The root segment document has a 400 series error.</p>",
         "TraceSummary$HasThrottle": "<p>One or more of the segment documents has a 429 throttling error.</p>",
@@ -1167,6 +1168,7 @@
         "BatchGetTracesResult$NextToken": "<p>Pagination token.</p>",
         "DeleteSamplingRuleRequest$RuleName": "<p>The name of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
         "DeleteSamplingRuleRequest$RuleARN": "<p>The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.</p>",
+        "Edge$EdgeType": "<p>Describes an asynchronous connection, with a value of <code>link</code>.</p>",
         "EncryptionConfig$KeyId": "<p>The ID of the KMS key used for encryption, if applicable.</p>",
         "ErrorRootCauseEntity$Name": "<p>The name of the entity.</p>",
         "ErrorRootCauseService$Name": "<p>The service name.</p>",

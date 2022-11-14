@@ -1,62 +1,62 @@
 {
     "testCases": [
         {
-            "documentation": "For region eu-west-2 with FIPS enabled and DualStack enabled",
+            "documentation": "For region us-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.eu-west-2.api.aws"
+                    "url": "https://workdocs-fips.us-west-2.api.aws"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": true,
-                "Region": "eu-west-2"
+                "Region": "us-west-2"
             }
         },
         {
-            "documentation": "For region eu-west-2 with FIPS enabled and DualStack disabled",
+            "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.eu-west-2.amazonaws.com"
+                    "url": "https://workdocs-fips.us-west-2.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": true,
-                "Region": "eu-west-2"
+                "Region": "us-west-2"
             }
         },
         {
-            "documentation": "For region eu-west-2 with FIPS disabled and DualStack enabled",
+            "documentation": "For region us-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.eu-west-2.api.aws"
+                    "url": "https://workdocs.us-west-2.api.aws"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": false,
-                "Region": "eu-west-2"
+                "Region": "us-west-2"
             }
         },
         {
-            "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.eu-west-2.amazonaws.com"
+                    "url": "https://workdocs.us-west-2.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": false,
-                "Region": "eu-west-2"
+                "Region": "us-west-2"
             }
         },
         {
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.eu-west-1.api.aws"
+                    "url": "https://workdocs-fips.eu-west-1.api.aws"
                 }
             },
             "params": {
@@ -69,7 +69,7 @@
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.eu-west-1.amazonaws.com"
+                    "url": "https://workdocs-fips.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +82,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.eu-west-1.api.aws"
+                    "url": "https://workdocs.eu-west-1.api.aws"
                 }
             },
             "params": {
@@ -95,7 +95,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.eu-west-1.amazonaws.com"
+                    "url": "https://workdocs.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -105,62 +105,10 @@
             }
         },
         {
-            "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain-fips.ap-northeast-2.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": true,
-                "Region": "ap-northeast-2"
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain-fips.ap-northeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": true,
-                "Region": "ap-northeast-2"
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain.ap-northeast-2.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": false,
-                "Region": "ap-northeast-2"
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain.ap-northeast-2.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": false,
-                "Region": "ap-northeast-2"
-            }
-        },
-        {
             "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.ap-northeast-1.api.aws"
+                    "url": "https://workdocs-fips.ap-northeast-1.api.aws"
                 }
             },
             "params": {
@@ -173,7 +121,7 @@
             "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.ap-northeast-1.amazonaws.com"
+                    "url": "https://workdocs-fips.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -186,7 +134,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.ap-northeast-1.api.aws"
+                    "url": "https://workdocs.ap-northeast-1.api.aws"
                 }
             },
             "params": {
@@ -199,7 +147,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.ap-northeast-1.amazonaws.com"
+                    "url": "https://workdocs.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -209,62 +157,10 @@
             }
         },
         {
-            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain-fips.us-gov-west-1.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": true,
-                "Region": "us-gov-west-1"
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain-fips.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": true,
-                "Region": "us-gov-west-1"
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain.us-gov-west-1.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": false,
-                "Region": "us-gov-west-1"
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://managedblockchain.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": false,
-                "Region": "us-gov-west-1"
-            }
-        },
-        {
             "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.ap-southeast-1.api.aws"
+                    "url": "https://workdocs-fips.ap-southeast-1.api.aws"
                 }
             },
             "params": {
@@ -277,7 +173,7 @@
             "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.ap-southeast-1.amazonaws.com"
+                    "url": "https://workdocs-fips.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -290,7 +186,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.ap-southeast-1.api.aws"
+                    "url": "https://workdocs.ap-southeast-1.api.aws"
                 }
             },
             "params": {
@@ -303,7 +199,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.ap-southeast-1.amazonaws.com"
+                    "url": "https://workdocs.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -313,10 +209,62 @@
             }
         },
         {
+            "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://workdocs-fips.ap-southeast-2.api.aws"
+                }
+            },
+            "params": {
+                "UseDualStack": true,
+                "UseFIPS": true,
+                "Region": "ap-southeast-2"
+            }
+        },
+        {
+            "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://workdocs-fips.ap-southeast-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseDualStack": false,
+                "UseFIPS": true,
+                "Region": "ap-southeast-2"
+            }
+        },
+        {
+            "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://workdocs.ap-southeast-2.api.aws"
+                }
+            },
+            "params": {
+                "UseDualStack": true,
+                "UseFIPS": false,
+                "Region": "ap-southeast-2"
+            }
+        },
+        {
+            "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://workdocs.ap-southeast-2.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseDualStack": false,
+                "UseFIPS": false,
+                "Region": "ap-southeast-2"
+            }
+        },
+        {
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.us-east-1.api.aws"
+                    "url": "https://workdocs-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -329,7 +277,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain-fips.us-east-1.amazonaws.com"
+                    "url": "https://workdocs-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -342,7 +290,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.us-east-1.api.aws"
+                    "url": "https://workdocs.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -355,7 +303,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://managedblockchain.us-east-1.amazonaws.com"
+                    "url": "https://workdocs.us-east-1.amazonaws.com"
                 }
             },
             "params": {

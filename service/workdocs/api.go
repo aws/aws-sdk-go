@@ -90,6 +90,9 @@ func (c *WorkDocs) AbortDocumentVersionUploadRequest(input *AbortDocumentVersion
 //   - ServiceUnavailableException
 //     One or more of the dependencies is unavailable.
 //
+//   - ConcurrentModificationException
+//     The resource hierarchy is changing.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AbortDocumentVersionUpload
 func (c *WorkDocs) AbortDocumentVersionUpload(input *AbortDocumentVersionUploadInput) (*AbortDocumentVersionUploadOutput, error) {
 	req, out := c.AbortDocumentVersionUploadRequest(input)
@@ -273,6 +276,9 @@ func (c *WorkDocs) AddResourcePermissionsRequest(input *AddResourcePermissionsIn
 //
 //   - ServiceUnavailableException
 //     One or more of the dependencies is unavailable.
+//
+//   - ProhibitedStateException
+//     The specified document version is not in the INITIALIZED state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/AddResourcePermissions
 func (c *WorkDocs) AddResourcePermissions(input *AddResourcePermissionsInput) (*AddResourcePermissionsOutput, error) {
@@ -568,8 +574,12 @@ func (c *WorkDocs) CreateFolderRequest(input *CreateFolderInput) (req *request.R
 //     Another operation is in progress on the resource that conflicts with the
 //     current operation.
 //
+//   - ConcurrentModificationException
+//     The resource hierarchy is changing.
+//
 //   - LimitExceededException
-//     The maximum of 100,000 folders under the parent folder has been exceeded.
+//     The maximum of 100,000 files and folders under the parent folder has been
+//     exceeded.
 //
 //   - UnauthorizedOperationException
 //     The operation is not permitted.
@@ -750,7 +760,8 @@ func (c *WorkDocs) CreateNotificationSubscriptionRequest(input *CreateNotificati
 // Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives
 // a confirmation message, and must confirm the subscription.
 //
-// For more information, see Subscribe to Notifications (https://docs.aws.amazon.com/workdocs/latest/developerguide/subscribe-notifications.html)
+// For more information, see Setting up notifications for an IAM user or role
+// (https://docs.aws.amazon.com/workdocs/latest/developerguide/manage-notifications.html)
 // in the Amazon WorkDocs Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -771,6 +782,9 @@ func (c *WorkDocs) CreateNotificationSubscriptionRequest(input *CreateNotificati
 //
 //   - ServiceUnavailableException
 //     One or more of the dependencies is unavailable.
+//
+//   - InvalidArgumentException
+//     The pagination marker or limit fields are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/CreateNotificationSubscription
 func (c *WorkDocs) CreateNotificationSubscription(input *CreateNotificationSubscriptionInput) (*CreateNotificationSubscriptionOutput, error) {
@@ -1239,6 +1253,10 @@ func (c *WorkDocs) DeleteDocumentRequest(input *DeleteDocumentInput) (req *reque
 //   - EntityNotExistsException
 //     The resource does not exist.
 //
+//   - LimitExceededException
+//     The maximum of 100,000 files and folders under the parent folder has been
+//     exceeded.
+//
 //   - ProhibitedStateException
 //     The specified document version is not in the INITIALIZED state.
 //
@@ -1280,6 +1298,111 @@ func (c *WorkDocs) DeleteDocument(input *DeleteDocumentInput) (*DeleteDocumentOu
 // for more information on using Contexts.
 func (c *WorkDocs) DeleteDocumentWithContext(ctx aws.Context, input *DeleteDocumentInput, opts ...request.Option) (*DeleteDocumentOutput, error) {
 	req, out := c.DeleteDocumentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDocumentVersion = "DeleteDocumentVersion"
+
+// DeleteDocumentVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDocumentVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDocumentVersion for more information on using the DeleteDocumentVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDocumentVersionRequest method.
+//	req, resp := client.DeleteDocumentVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocumentVersion
+func (c *WorkDocs) DeleteDocumentVersionRequest(input *DeleteDocumentVersionInput) (req *request.Request, output *DeleteDocumentVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDocumentVersion,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/api/v1/documentVersions/{DocumentId}/versions/{VersionId}",
+	}
+
+	if input == nil {
+		input = &DeleteDocumentVersionInput{}
+	}
+
+	output = &DeleteDocumentVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDocumentVersion API operation for Amazon WorkDocs.
+//
+// Deletes a version of an Amazon WorkDocs document. Use the DeletePriorVersions
+// parameter to delete prior versions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkDocs's
+// API operation DeleteDocumentVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotExistsException
+//     The resource does not exist.
+//
+//   - ProhibitedStateException
+//     The specified document version is not in the INITIALIZED state.
+//
+//   - ConflictingOperationException
+//     Another operation is in progress on the resource that conflicts with the
+//     current operation.
+//
+//   - ConcurrentModificationException
+//     The resource hierarchy is changing.
+//
+//   - UnauthorizedResourceAccessException
+//     The caller does not have access to perform the action on the resource.
+//
+//   - FailedDependencyException
+//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     under the control of the organization is failing, such as a connected Active
+//     Directory.
+//
+//   - InvalidOperationException
+//     The operation is invalid.
+//
+//   - UnauthorizedOperationException
+//     The operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteDocumentVersion
+func (c *WorkDocs) DeleteDocumentVersion(input *DeleteDocumentVersionInput) (*DeleteDocumentVersionOutput, error) {
+	req, out := c.DeleteDocumentVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDocumentVersionWithContext is the same as DeleteDocumentVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDocumentVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkDocs) DeleteDocumentVersionWithContext(ctx aws.Context, input *DeleteDocumentVersionInput, opts ...request.Option) (*DeleteDocumentVersionOutput, error) {
+	req, out := c.DeleteDocumentVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1342,6 +1465,10 @@ func (c *WorkDocs) DeleteFolderRequest(input *DeleteFolderInput) (req *request.R
 //
 //   - EntityNotExistsException
 //     The resource does not exist.
+//
+//   - LimitExceededException
+//     The maximum of 100,000 files and folders under the parent folder has been
+//     exceeded.
 //
 //   - ProhibitedStateException
 //     The specified document version is not in the INITIALIZED state.
@@ -1561,6 +1688,9 @@ func (c *WorkDocs) DeleteLabelsRequest(input *DeleteLabelsInput) (req *request.R
 //
 //   - ServiceUnavailableException
 //     One or more of the dependencies is unavailable.
+//
+//   - ProhibitedStateException
+//     The specified document version is not in the INITIALIZED state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DeleteLabels
 func (c *WorkDocs) DeleteLabels(input *DeleteLabelsInput) (*DeleteLabelsOutput, error) {
@@ -2041,6 +2171,9 @@ func (c *WorkDocs) DescribeDocumentVersionsRequest(input *DescribeDocumentVersio
 //   - ProhibitedStateException
 //     The specified document version is not in the INITIALIZED state.
 //
+//   - InvalidPasswordException
+//     The password is invalid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/DescribeDocumentVersions
 func (c *WorkDocs) DescribeDocumentVersions(input *DescribeDocumentVersionsInput) (*DescribeDocumentVersionsOutput, error) {
 	req, out := c.DescribeDocumentVersionsRequest(input)
@@ -2502,6 +2635,9 @@ func (c *WorkDocs) DescribeResourcePermissionsRequest(input *DescribeResourcePer
 // API operation DescribeResourcePermissions for usage and error information.
 //
 // Returned Error Types:
+//
+//   - InvalidArgumentException
+//     The pagination marker or limit fields are not valid.
 //
 //   - UnauthorizedOperationException
 //     The operation is not permitted.
@@ -3563,6 +3699,10 @@ func (c *WorkDocs) InitiateDocumentVersionUploadRequest(input *InitiateDocumentV
 //   - StorageLimitWillExceedException
 //     The storage limit will be exceeded.
 //
+//   - LimitExceededException
+//     The maximum of 100,000 files and folders under the parent folder has been
+//     exceeded.
+//
 //   - ProhibitedStateException
 //     The specified document version is not in the INITIALIZED state.
 //
@@ -3586,6 +3726,9 @@ func (c *WorkDocs) InitiateDocumentVersionUploadRequest(input *InitiateDocumentV
 //
 //   - ResourceAlreadyCheckedOutException
 //     The resource is already checked out.
+//
+//   - InvalidPasswordException
+//     The password is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/InitiateDocumentVersionUpload
 func (c *WorkDocs) InitiateDocumentVersionUpload(input *InitiateDocumentVersionUploadInput) (*InitiateDocumentVersionUploadOutput, error) {
@@ -3791,6 +3934,110 @@ func (c *WorkDocs) RemoveResourcePermissionWithContext(ctx aws.Context, input *R
 	return out, req.Send()
 }
 
+const opRestoreDocumentVersions = "RestoreDocumentVersions"
+
+// RestoreDocumentVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the RestoreDocumentVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RestoreDocumentVersions for more information on using the RestoreDocumentVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RestoreDocumentVersionsRequest method.
+//	req, resp := client.RestoreDocumentVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RestoreDocumentVersions
+func (c *WorkDocs) RestoreDocumentVersionsRequest(input *RestoreDocumentVersionsInput) (req *request.Request, output *RestoreDocumentVersionsOutput) {
+	op := &request.Operation{
+		Name:       opRestoreDocumentVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/api/v1/documentVersions/restore/{DocumentId}",
+	}
+
+	if input == nil {
+		input = &RestoreDocumentVersionsInput{}
+	}
+
+	output = &RestoreDocumentVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RestoreDocumentVersions API operation for Amazon WorkDocs.
+//
+// Recovers a deleted version of an Amazon WorkDocs document.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkDocs's
+// API operation RestoreDocumentVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotExistsException
+//     The resource does not exist.
+//
+//   - ProhibitedStateException
+//     The specified document version is not in the INITIALIZED state.
+//
+//   - ConflictingOperationException
+//     Another operation is in progress on the resource that conflicts with the
+//     current operation.
+//
+//   - ConcurrentModificationException
+//     The resource hierarchy is changing.
+//
+//   - UnauthorizedResourceAccessException
+//     The caller does not have access to perform the action on the resource.
+//
+//   - FailedDependencyException
+//     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
+//     under the control of the organization is failing, such as a connected Active
+//     Directory.
+//
+//   - InvalidOperationException
+//     The operation is invalid.
+//
+//   - UnauthorizedOperationException
+//     The operation is not permitted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01/RestoreDocumentVersions
+func (c *WorkDocs) RestoreDocumentVersions(input *RestoreDocumentVersionsInput) (*RestoreDocumentVersionsOutput, error) {
+	req, out := c.RestoreDocumentVersionsRequest(input)
+	return out, req.Send()
+}
+
+// RestoreDocumentVersionsWithContext is the same as RestoreDocumentVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RestoreDocumentVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkDocs) RestoreDocumentVersionsWithContext(ctx aws.Context, input *RestoreDocumentVersionsInput, opts ...request.Option) (*RestoreDocumentVersionsOutput, error) {
+	req, out := c.RestoreDocumentVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDocument = "UpdateDocument"
 
 // UpdateDocumentRequest generates a "aws/request.Request" representing the
@@ -3854,7 +4101,8 @@ func (c *WorkDocs) UpdateDocumentRequest(input *UpdateDocumentInput) (req *reque
 //     The resource already exists.
 //
 //   - LimitExceededException
-//     The maximum of 100,000 folders under the parent folder has been exceeded.
+//     The maximum of 100,000 files and folders under the parent folder has been
+//     exceeded.
 //
 //   - ProhibitedStateException
 //     The specified document version is not in the INITIALIZED state.
@@ -4082,7 +4330,8 @@ func (c *WorkDocs) UpdateFolderRequest(input *UpdateFolderInput) (req *request.R
 //     The resource hierarchy is changing.
 //
 //   - LimitExceededException
-//     The maximum of 100,000 folders under the parent folder has been exceeded.
+//     The maximum of 100,000 files and folders under the parent folder has been
+//     exceeded.
 //
 //   - UnauthorizedOperationException
 //     The operation is not permitted.
@@ -4186,6 +4435,9 @@ func (c *WorkDocs) UpdateUserRequest(input *UpdateUserInput) (req *request.Reque
 //
 //   - IllegalUserStateException
 //     The user is undergoing transfer of ownership.
+//
+//   - ProhibitedStateException
+//     The specified document version is not in the INITIALIZED state.
 //
 //   - FailedDependencyException
 //     The AWS Directory Service cannot reach an on-premises instance. Or a dependency
@@ -5624,7 +5876,11 @@ type CreateUserInput struct {
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The email address of the user.
-	EmailAddress *string `min:"1" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	EmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The given name of the user.
 	//
@@ -6353,6 +6609,126 @@ func (s DeleteDocumentOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteDocumentOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteDocumentVersionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
+	//
+	// AuthenticationToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DeleteDocumentVersionInput's
+	// String and GoString methods.
+	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
+
+	// When set to TRUE, deletes the specified version and all prior versions of
+	// a document.
+	//
+	// DeletePriorVersions is a required field
+	DeletePriorVersions *bool `location:"querystring" locationName:"deletePriorVersions" type:"boolean" required:"true"`
+
+	// The ID of a document.
+	//
+	// DocumentId is a required field
+	DocumentId *string `location:"uri" locationName:"DocumentId" min:"1" type:"string" required:"true"`
+
+	// The version ID of a document.
+	//
+	// VersionId is a required field
+	VersionId *string `location:"uri" locationName:"VersionId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDocumentVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDocumentVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDocumentVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDocumentVersionInput"}
+	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
+	}
+	if s.DeletePriorVersions == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeletePriorVersions"))
+	}
+	if s.DocumentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentId"))
+	}
+	if s.DocumentId != nil && len(*s.DocumentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentId", 1))
+	}
+	if s.VersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionId"))
+	}
+	if s.VersionId != nil && len(*s.VersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationToken sets the AuthenticationToken field's value.
+func (s *DeleteDocumentVersionInput) SetAuthenticationToken(v string) *DeleteDocumentVersionInput {
+	s.AuthenticationToken = &v
+	return s
+}
+
+// SetDeletePriorVersions sets the DeletePriorVersions field's value.
+func (s *DeleteDocumentVersionInput) SetDeletePriorVersions(v bool) *DeleteDocumentVersionInput {
+	s.DeletePriorVersions = &v
+	return s
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *DeleteDocumentVersionInput) SetDocumentId(v string) *DeleteDocumentVersionInput {
+	s.DocumentId = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *DeleteDocumentVersionInput) SetVersionId(v string) *DeleteDocumentVersionInput {
+	s.VersionId = &v
+	return s
+}
+
+type DeleteDocumentVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDocumentVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDocumentVersionOutput) GoString() string {
 	return s.String()
 }
 
@@ -8054,7 +8430,23 @@ type DescribeUsersInput struct {
 	// The ID of the organization.
 	OrganizationId *string `location:"querystring" locationName:"organizationId" min:"1" type:"string"`
 
-	// A query to filter users by user name.
+	// A query to filter users by user name. Remember the following about the Userids
+	// and Query parameters:
+	//
+	//    * If you don't use either parameter, the API returns a paginated list
+	//    of all users on the site.
+	//
+	//    * If you use both parameters, the API ignores the Query parameter.
+	//
+	//    * The Userid parameter only returns user names that match a corresponding
+	//    user ID.
+	//
+	//    * The Query parameter runs a "prefix" search for users by the GivenName,
+	//    SurName, or UserName fields included in a CreateUser (https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateUser.html)
+	//    API call. For example, querying on Ma returns Márcia Oliveira, María
+	//    García, and Mateo Jackson. If you use multiple characters, the API only
+	//    returns data that matches all characters. For example, querying on Ma
+	//    J only returns Mateo Jackson.
 	//
 	// Query is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DescribeUsersInput's
@@ -8663,6 +9055,7 @@ type EntityNotExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The IDs of the non-existent resources.
 	EntityIds []*string `type:"list"`
 
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9920,9 +10313,7 @@ type InitiateDocumentVersionUploadInput struct {
 	Name *string `min:"1" type:"string"`
 
 	// The ID of the parent folder.
-	//
-	// ParentFolderId is a required field
-	ParentFolderId *string `min:"1" type:"string" required:"true"`
+	ParentFolderId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9957,9 +10348,6 @@ func (s *InitiateDocumentVersionUploadInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.ParentFolderId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ParentFolderId"))
 	}
 	if s.ParentFolderId != nil && len(*s.ParentFolderId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ParentFolderId", 1))
@@ -10315,7 +10703,8 @@ func (s *InvalidPasswordException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The maximum of 100,000 folders under the parent folder has been exceeded.
+// The maximum of 100,000 files and folders under the parent folder has been
+// exceeded.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11109,6 +11498,94 @@ func (s *ResourcePathComponent) SetId(v string) *ResourcePathComponent {
 func (s *ResourcePathComponent) SetName(v string) *ResourcePathComponent {
 	s.Name = &v
 	return s
+}
+
+type RestoreDocumentVersionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
+	//
+	// AuthenticationToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RestoreDocumentVersionsInput's
+	// String and GoString methods.
+	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
+
+	// The ID of the document.
+	//
+	// DocumentId is a required field
+	DocumentId *string `location:"uri" locationName:"DocumentId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreDocumentVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreDocumentVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RestoreDocumentVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RestoreDocumentVersionsInput"}
+	if s.AuthenticationToken != nil && len(*s.AuthenticationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthenticationToken", 1))
+	}
+	if s.DocumentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentId"))
+	}
+	if s.DocumentId != nil && len(*s.DocumentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationToken sets the AuthenticationToken field's value.
+func (s *RestoreDocumentVersionsInput) SetAuthenticationToken(v string) *RestoreDocumentVersionsInput {
+	s.AuthenticationToken = &v
+	return s
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *RestoreDocumentVersionsInput) SetDocumentId(v string) *RestoreDocumentVersionsInput {
+	s.DocumentId = &v
+	return s
+}
+
+type RestoreDocumentVersionsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreDocumentVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreDocumentVersionsOutput) GoString() string {
+	return s.String()
 }
 
 // One or more of the dependencies is unavailable.
@@ -12389,7 +12866,11 @@ type User struct {
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// The email address of the user.
-	EmailAddress *string `min:"1" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by User's
+	// String and GoString methods.
+	EmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The given name of the user.
 	GivenName *string `min:"1" type:"string"`
@@ -12544,7 +13025,11 @@ type UserMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The email address of the user.
-	EmailAddress *string `min:"1" type:"string"`
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserMetadata's
+	// String and GoString methods.
+	EmailAddress *string `min:"1" type:"string" sensitive:"true"`
 
 	// The given name of the user before a rename operation.
 	GivenName *string `min:"1" type:"string"`
@@ -13163,12 +13648,16 @@ func StorageType_Values() []string {
 const (
 	// SubscriptionProtocolTypeHttps is a SubscriptionProtocolType enum value
 	SubscriptionProtocolTypeHttps = "HTTPS"
+
+	// SubscriptionProtocolTypeSqs is a SubscriptionProtocolType enum value
+	SubscriptionProtocolTypeSqs = "SQS"
 )
 
 // SubscriptionProtocolType_Values returns all elements of the SubscriptionProtocolType enum
 func SubscriptionProtocolType_Values() []string {
 	return []string{
 		SubscriptionProtocolTypeHttps,
+		SubscriptionProtocolTypeSqs,
 	}
 }
 

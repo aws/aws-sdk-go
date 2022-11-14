@@ -175,7 +175,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://managedblockchain-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://profile-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -231,7 +231,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://managedblockchain-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://profile-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -285,7 +285,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://managedblockchain.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://profile.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -303,7 +303,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://managedblockchain.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://profile.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },
