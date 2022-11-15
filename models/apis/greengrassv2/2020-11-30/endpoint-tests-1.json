@@ -4,7 +4,7 @@
             "documentation": "For region ap-south-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-south-1.api.aws"
+                    "url": "https://greengrass-fips.ap-south-1.api.aws"
                 }
             },
             "params": {
@@ -17,7 +17,7 @@
             "documentation": "For region ap-south-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-south-1.amazonaws.com"
+                    "url": "https://greengrass-fips.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +30,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-south-1.api.aws"
+                    "url": "https://greengrass.ap-south-1.api.aws"
                 }
             },
             "params": {
@@ -43,7 +43,7 @@
             "documentation": "For region ap-south-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-south-1.amazonaws.com"
+                    "url": "https://greengrass.ap-south-1.amazonaws.com"
                 }
             },
             "params": {
@@ -53,10 +53,62 @@
             }
         },
         {
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://greengrass-fips.us-gov-east-1.api.aws"
+                }
+            },
+            "params": {
+                "UseDualStack": true,
+                "UseFIPS": true,
+                "Region": "us-gov-east-1"
+            }
+        },
+        {
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://greengrass-fips.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseDualStack": false,
+                "UseFIPS": true,
+                "Region": "us-gov-east-1"
+            }
+        },
+        {
+            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://greengrass.us-gov-east-1.api.aws"
+                }
+            },
+            "params": {
+                "UseDualStack": true,
+                "UseFIPS": false,
+                "Region": "us-gov-east-1"
+            }
+        },
+        {
+            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://greengrass.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseDualStack": false,
+                "UseFIPS": false,
+                "Region": "us-gov-east-1"
+            }
+        },
+        {
             "documentation": "For region ca-central-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ca-central-1.api.aws"
+                    "url": "https://greengrass-fips.ca-central-1.api.aws"
                 }
             },
             "params": {
@@ -69,7 +121,7 @@
             "documentation": "For region ca-central-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ca-central-1.amazonaws.com"
+                    "url": "https://greengrass-fips.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -82,7 +134,7 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ca-central-1.api.aws"
+                    "url": "https://greengrass.ca-central-1.api.aws"
                 }
             },
             "params": {
@@ -95,7 +147,7 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ca-central-1.amazonaws.com"
+                    "url": "https://greengrass.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -108,7 +160,7 @@
             "documentation": "For region eu-central-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.eu-central-1.api.aws"
+                    "url": "https://greengrass-fips.eu-central-1.api.aws"
                 }
             },
             "params": {
@@ -121,7 +173,7 @@
             "documentation": "For region eu-central-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.eu-central-1.amazonaws.com"
+                    "url": "https://greengrass-fips.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -134,7 +186,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.eu-central-1.api.aws"
+                    "url": "https://greengrass.eu-central-1.api.aws"
                 }
             },
             "params": {
@@ -147,7 +199,7 @@
             "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.eu-central-1.amazonaws.com"
+                    "url": "https://greengrass.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
@@ -157,58 +209,62 @@
             }
         },
         {
-            "documentation": "For region us-iso-west-1 with FIPS enabled and DualStack enabled",
+            "documentation": "For region us-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
-                "error": "FIPS and DualStack are enabled, but this partition does not support one or both"
+                "endpoint": {
+                    "url": "https://greengrass-fips.us-west-1.api.aws"
+                }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": true,
-                "Region": "us-iso-west-1"
+                "Region": "us-west-1"
             }
         },
         {
-            "documentation": "For region us-iso-west-1 with FIPS enabled and DualStack disabled",
+            "documentation": "For region us-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-iso-west-1.c2s.ic.gov"
+                    "url": "https://greengrass-fips.us-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": true,
-                "Region": "us-iso-west-1"
+                "Region": "us-west-1"
             }
         },
         {
-            "documentation": "For region us-iso-west-1 with FIPS disabled and DualStack enabled",
+            "documentation": "For region us-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
-                "error": "DualStack is enabled but this partition does not support DualStack"
+                "endpoint": {
+                    "url": "https://greengrass.us-west-1.api.aws"
+                }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": false,
-                "Region": "us-iso-west-1"
+                "Region": "us-west-1"
             }
         },
         {
-            "documentation": "For region us-iso-west-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-iso-west-1.c2s.ic.gov"
+                    "url": "https://greengrass.us-west-1.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": false,
-                "Region": "us-iso-west-1"
+                "Region": "us-west-1"
             }
         },
         {
             "documentation": "For region us-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-west-2.api.aws"
+                    "url": "https://greengrass-fips.us-west-2.api.aws"
                 }
             },
             "params": {
@@ -221,7 +277,7 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-west-2.amazonaws.com"
+                    "url": "https://greengrass-fips.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -234,7 +290,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-west-2.api.aws"
+                    "url": "https://greengrass.us-west-2.api.aws"
                 }
             },
             "params": {
@@ -247,7 +303,7 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-west-2.amazonaws.com"
+                    "url": "https://greengrass.us-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -257,62 +313,10 @@
             }
         },
         {
-            "documentation": "For region af-south-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://workspaces-fips.af-south-1.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": true,
-                "Region": "af-south-1"
-            }
-        },
-        {
-            "documentation": "For region af-south-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://workspaces-fips.af-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": true,
-                "Region": "af-south-1"
-            }
-        },
-        {
-            "documentation": "For region af-south-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://workspaces.af-south-1.api.aws"
-                }
-            },
-            "params": {
-                "UseDualStack": true,
-                "UseFIPS": false,
-                "Region": "af-south-1"
-            }
-        },
-        {
-            "documentation": "For region af-south-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://workspaces.af-south-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": false,
-                "Region": "af-south-1"
-            }
-        },
-        {
             "documentation": "For region eu-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.eu-west-2.api.aws"
+                    "url": "https://greengrass-fips.eu-west-2.api.aws"
                 }
             },
             "params": {
@@ -325,7 +329,7 @@
             "documentation": "For region eu-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.eu-west-2.amazonaws.com"
+                    "url": "https://greengrass-fips.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -338,7 +342,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.eu-west-2.api.aws"
+                    "url": "https://greengrass.eu-west-2.api.aws"
                 }
             },
             "params": {
@@ -351,7 +355,7 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.eu-west-2.amazonaws.com"
+                    "url": "https://greengrass.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
@@ -364,7 +368,7 @@
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.eu-west-1.api.aws"
+                    "url": "https://greengrass-fips.eu-west-1.api.aws"
                 }
             },
             "params": {
@@ -377,7 +381,7 @@
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.eu-west-1.amazonaws.com"
+                    "url": "https://greengrass-fips.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -390,7 +394,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.eu-west-1.api.aws"
+                    "url": "https://greengrass.eu-west-1.api.aws"
                 }
             },
             "params": {
@@ -403,7 +407,7 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.eu-west-1.amazonaws.com"
+                    "url": "https://greengrass.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -416,7 +420,7 @@
             "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-northeast-2.api.aws"
+                    "url": "https://greengrass-fips.ap-northeast-2.api.aws"
                 }
             },
             "params": {
@@ -429,7 +433,7 @@
             "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-northeast-2.amazonaws.com"
+                    "url": "https://greengrass-fips.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -442,7 +446,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-northeast-2.api.aws"
+                    "url": "https://greengrass.ap-northeast-2.api.aws"
                 }
             },
             "params": {
@@ -455,7 +459,7 @@
             "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-northeast-2.amazonaws.com"
+                    "url": "https://greengrass.ap-northeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -468,7 +472,7 @@
             "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-northeast-1.api.aws"
+                    "url": "https://greengrass-fips.ap-northeast-1.api.aws"
                 }
             },
             "params": {
@@ -481,7 +485,7 @@
             "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-northeast-1.amazonaws.com"
+                    "url": "https://greengrass-fips.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -494,7 +498,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-northeast-1.api.aws"
+                    "url": "https://greengrass.ap-northeast-1.api.aws"
                 }
             },
             "params": {
@@ -507,7 +511,7 @@
             "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-northeast-1.amazonaws.com"
+                    "url": "https://greengrass.ap-northeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -517,62 +521,62 @@
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS enabled and DualStack enabled",
+            "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.sa-east-1.api.aws"
+                    "url": "https://greengrass-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": true,
-                "Region": "sa-east-1"
+                "Region": "cn-north-1"
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS enabled and DualStack disabled",
+            "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.sa-east-1.amazonaws.com"
+                    "url": "https://greengrass-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": true,
-                "Region": "sa-east-1"
+                "Region": "cn-north-1"
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS disabled and DualStack enabled",
+            "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.sa-east-1.api.aws"
+                    "url": "https://greengrass.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": false,
-                "Region": "sa-east-1"
+                "Region": "cn-north-1"
             }
         },
         {
-            "documentation": "For region sa-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.sa-east-1.amazonaws.com"
+                    "url": "https://greengrass.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": false,
-                "Region": "sa-east-1"
+                "Region": "cn-north-1"
             }
         },
         {
             "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-gov-west-1.api.aws"
+                    "url": "https://greengrass-fips.us-gov-west-1.api.aws"
                 }
             },
             "params": {
@@ -585,7 +589,7 @@
             "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-gov-west-1.amazonaws.com"
+                    "url": "https://greengrass-fips.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -598,7 +602,7 @@
             "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-gov-west-1.api.aws"
+                    "url": "https://greengrass.us-gov-west-1.api.aws"
                 }
             },
             "params": {
@@ -611,7 +615,7 @@
             "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-gov-west-1.amazonaws.com"
+                    "url": "https://greengrass.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
@@ -624,7 +628,7 @@
             "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-southeast-1.api.aws"
+                    "url": "https://greengrass-fips.ap-southeast-1.api.aws"
                 }
             },
             "params": {
@@ -637,7 +641,7 @@
             "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-southeast-1.amazonaws.com"
+                    "url": "https://greengrass-fips.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -650,7 +654,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-southeast-1.api.aws"
+                    "url": "https://greengrass.ap-southeast-1.api.aws"
                 }
             },
             "params": {
@@ -663,7 +667,7 @@
             "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-southeast-1.amazonaws.com"
+                    "url": "https://greengrass.ap-southeast-1.amazonaws.com"
                 }
             },
             "params": {
@@ -676,7 +680,7 @@
             "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-southeast-2.api.aws"
+                    "url": "https://greengrass-fips.ap-southeast-2.api.aws"
                 }
             },
             "params": {
@@ -689,7 +693,7 @@
             "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.ap-southeast-2.amazonaws.com"
+                    "url": "https://greengrass-fips.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -702,7 +706,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-southeast-2.api.aws"
+                    "url": "https://greengrass.ap-southeast-2.api.aws"
                 }
             },
             "params": {
@@ -715,7 +719,7 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.ap-southeast-2.amazonaws.com"
+                    "url": "https://greengrass.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
@@ -739,7 +743,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://greengrass-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -763,7 +767,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://greengrass.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -776,7 +780,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-east-1.api.aws"
+                    "url": "https://greengrass-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -789,7 +793,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-east-1.amazonaws.com"
+                    "url": "https://greengrass-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -802,7 +806,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-east-1.api.aws"
+                    "url": "https://greengrass.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -815,7 +819,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-east-1.amazonaws.com"
+                    "url": "https://greengrass.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -825,55 +829,55 @@
             }
         },
         {
-            "documentation": "For region cn-northwest-1 with FIPS enabled and DualStack enabled",
+            "documentation": "For region us-east-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.cn-northwest-1.api.amazonwebservices.com.cn"
+                    "url": "https://greengrass-fips.us-east-2.api.aws"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": true,
-                "Region": "cn-northwest-1"
+                "Region": "us-east-2"
             }
         },
         {
-            "documentation": "For region cn-northwest-1 with FIPS enabled and DualStack disabled",
+            "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.cn-northwest-1.amazonaws.com.cn"
+                    "url": "https://greengrass-fips.us-east-2.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": true,
-                "Region": "cn-northwest-1"
+                "Region": "us-east-2"
             }
         },
         {
-            "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack enabled",
+            "documentation": "For region us-east-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.cn-northwest-1.api.amazonwebservices.com.cn"
+                    "url": "https://greengrass.us-east-2.api.aws"
                 }
             },
             "params": {
                 "UseDualStack": true,
                 "UseFIPS": false,
-                "Region": "cn-northwest-1"
+                "Region": "us-east-2"
             }
         },
         {
-            "documentation": "For region cn-northwest-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.cn-northwest-1.amazonaws.com.cn"
+                    "url": "https://greengrass.us-east-2.amazonaws.com"
                 }
             },
             "params": {
                 "UseDualStack": false,
                 "UseFIPS": false,
-                "Region": "cn-northwest-1"
+                "Region": "us-east-2"
             }
         },
         {
@@ -891,7 +895,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://greengrass-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -915,7 +919,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://workspaces.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://greengrass.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

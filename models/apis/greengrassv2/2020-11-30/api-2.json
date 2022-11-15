@@ -877,6 +877,7 @@
         "components":{"shape":"ComponentDeploymentSpecifications"},
         "iotJobConfiguration":{"shape":"DeploymentIoTJobConfiguration"},
         "deploymentPolicies":{"shape":"DeploymentPolicies"},
+        "parentTargetArn":{"shape":"ThingGroupARN"},
         "tags":{"shape":"TagMap"},
         "clientToken":{
           "shape":"ClientTokenString",
@@ -939,7 +940,8 @@
         "deploymentName":{"shape":"NonEmptyString"},
         "creationTimestamp":{"shape":"Timestamp"},
         "deploymentStatus":{"shape":"DeploymentStatus"},
-        "isLatestForTarget":{"shape":"IsLatestForTarget"}
+        "isLatestForTarget":{"shape":"IsLatestForTarget"},
+        "parentTargetArn":{"shape":"ThingGroupARN"}
       }
     },
     "DeploymentComponentUpdatePolicy":{
@@ -1292,6 +1294,7 @@
         "iotJobConfiguration":{"shape":"DeploymentIoTJobConfiguration"},
         "creationTimestamp":{"shape":"Timestamp"},
         "isLatestForTarget":{"shape":"IsLatestForTarget"},
+        "parentTargetArn":{"shape":"ThingGroupARN"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -1804,6 +1807,11 @@
           "shape":"DeploymentHistoryFilter",
           "location":"querystring",
           "locationName":"historyFilter"
+        },
+        "parentTargetArn":{
+          "shape":"ThingGroupARN",
+          "location":"querystring",
+          "locationName":"parentTargetArn"
         },
         "maxResults":{
           "shape":"DefaultMaxResults",

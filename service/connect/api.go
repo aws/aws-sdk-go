@@ -47416,6 +47416,9 @@ const (
 
 	// InstanceAttributeTypeHighVolumeOutbound is a InstanceAttributeType enum value
 	InstanceAttributeTypeHighVolumeOutbound = "HIGH_VOLUME_OUTBOUND"
+
+	// InstanceAttributeTypeEnhancedContactMonitoring is a InstanceAttributeType enum value
+	InstanceAttributeTypeEnhancedContactMonitoring = "ENHANCED_CONTACT_MONITORING"
 )
 
 // InstanceAttributeType_Values returns all elements of the InstanceAttributeType enum
@@ -47430,6 +47433,7 @@ func InstanceAttributeType_Values() []string {
 		InstanceAttributeTypeEarlyMedia,
 		InstanceAttributeTypeMultiPartyConference,
 		InstanceAttributeTypeHighVolumeOutbound,
+		InstanceAttributeTypeEnhancedContactMonitoring,
 	}
 }
 
