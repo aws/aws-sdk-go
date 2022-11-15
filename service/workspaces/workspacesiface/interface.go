@@ -241,6 +241,10 @@ type WorkSpacesAPI interface {
 	ModifyAccountWithContext(aws.Context, *workspaces.ModifyAccountInput, ...request.Option) (*workspaces.ModifyAccountOutput, error)
 	ModifyAccountRequest(*workspaces.ModifyAccountInput) (*request.Request, *workspaces.ModifyAccountOutput)
 
+	ModifyCertificateBasedAuthProperties(*workspaces.ModifyCertificateBasedAuthPropertiesInput) (*workspaces.ModifyCertificateBasedAuthPropertiesOutput, error)
+	ModifyCertificateBasedAuthPropertiesWithContext(aws.Context, *workspaces.ModifyCertificateBasedAuthPropertiesInput, ...request.Option) (*workspaces.ModifyCertificateBasedAuthPropertiesOutput, error)
+	ModifyCertificateBasedAuthPropertiesRequest(*workspaces.ModifyCertificateBasedAuthPropertiesInput) (*request.Request, *workspaces.ModifyCertificateBasedAuthPropertiesOutput)
+
 	ModifyClientProperties(*workspaces.ModifyClientPropertiesInput) (*workspaces.ModifyClientPropertiesOutput, error)
 	ModifyClientPropertiesWithContext(aws.Context, *workspaces.ModifyClientPropertiesInput, ...request.Option) (*workspaces.ModifyClientPropertiesOutput, error)
 	ModifyClientPropertiesRequest(*workspaces.ModifyClientPropertiesInput) (*request.Request, *workspaces.ModifyClientPropertiesOutput)

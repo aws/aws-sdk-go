@@ -645,6 +645,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ModifyCertificateBasedAuthProperties":{
+      "name":"ModifyCertificateBasedAuthProperties",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyCertificateBasedAuthPropertiesRequest"},
+      "output":{"shape":"ModifyCertificateBasedAuthPropertiesResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ModifyClientProperties":{
       "name":"ModifyClientProperties",
       "http":{
@@ -1066,6 +1081,26 @@
       "member":{"shape":"WorkspaceBundle"}
     },
     "BundleOwner":{"type":"string"},
+    "CertificateAuthorityArn":{
+      "type":"string",
+      "max":200,
+      "min":5,
+      "pattern":"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+    },
+    "CertificateBasedAuthProperties":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"CertificateBasedAuthStatusEnum"},
+        "CertificateAuthorityArn":{"shape":"CertificateAuthorityArn"}
+      }
+    },
+    "CertificateBasedAuthStatusEnum":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "ClientDeviceType":{
       "type":"string",
       "enum":[
@@ -1482,6 +1517,14 @@
         "UserEnabledAsLocalAdministrator":{"shape":"BooleanObject"},
         "EnableMaintenanceMode":{"shape":"BooleanObject"}
       }
+    },
+    "DeletableCertificateBasedAuthPropertiesList":{
+      "type":"list",
+      "member":{"shape":"DeletableCertificateBasedAuthProperty"}
+    },
+    "DeletableCertificateBasedAuthProperty":{
+      "type":"string",
+      "enum":["CERTIFICATE_BASED_AUTH_PROPERTIES_CERTIFICATE_AUTHORITY_ARN"]
     },
     "DeletableSamlPropertiesList":{
       "type":"list",
@@ -2179,6 +2222,20 @@
       }
     },
     "ModifyAccountResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ModifyCertificateBasedAuthPropertiesRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"DirectoryId"},
+        "CertificateBasedAuthProperties":{"shape":"CertificateBasedAuthProperties"},
+        "PropertiesToDelete":{"shape":"DeletableCertificateBasedAuthPropertiesList"}
+      }
+    },
+    "ModifyCertificateBasedAuthPropertiesResult":{
       "type":"structure",
       "members":{
       }
@@ -2923,7 +2980,8 @@
         "WorkspaceAccessProperties":{"shape":"WorkspaceAccessProperties"},
         "Tenancy":{"shape":"Tenancy"},
         "SelfservicePermissions":{"shape":"SelfservicePermissions"},
-        "SamlProperties":{"shape":"SamlProperties"}
+        "SamlProperties":{"shape":"SamlProperties"},
+        "CertificateBasedAuthProperties":{"shape":"CertificateBasedAuthProperties"}
       }
     },
     "WorkspaceDirectoryState":{

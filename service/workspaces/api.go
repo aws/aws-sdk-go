@@ -4108,6 +4108,96 @@ func (c *WorkSpaces) ModifyAccountWithContext(ctx aws.Context, input *ModifyAcco
 	return out, req.Send()
 }
 
+const opModifyCertificateBasedAuthProperties = "ModifyCertificateBasedAuthProperties"
+
+// ModifyCertificateBasedAuthPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyCertificateBasedAuthProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyCertificateBasedAuthProperties for more information on using the ModifyCertificateBasedAuthProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyCertificateBasedAuthPropertiesRequest method.
+//	req, resp := client.ModifyCertificateBasedAuthPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyCertificateBasedAuthProperties
+func (c *WorkSpaces) ModifyCertificateBasedAuthPropertiesRequest(input *ModifyCertificateBasedAuthPropertiesInput) (req *request.Request, output *ModifyCertificateBasedAuthPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opModifyCertificateBasedAuthProperties,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyCertificateBasedAuthPropertiesInput{}
+	}
+
+	output = &ModifyCertificateBasedAuthPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ModifyCertificateBasedAuthProperties API operation for Amazon WorkSpaces.
+//
+// Modifies the properties of the certificate-based authentication you want
+// to use with your WorkSpaces.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation ModifyCertificateBasedAuthProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyCertificateBasedAuthProperties
+func (c *WorkSpaces) ModifyCertificateBasedAuthProperties(input *ModifyCertificateBasedAuthPropertiesInput) (*ModifyCertificateBasedAuthPropertiesOutput, error) {
+	req, out := c.ModifyCertificateBasedAuthPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// ModifyCertificateBasedAuthPropertiesWithContext is the same as ModifyCertificateBasedAuthProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyCertificateBasedAuthProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) ModifyCertificateBasedAuthPropertiesWithContext(ctx aws.Context, input *ModifyCertificateBasedAuthPropertiesInput, opts ...request.Option) (*ModifyCertificateBasedAuthPropertiesOutput, error) {
+	req, out := c.ModifyCertificateBasedAuthPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyClientProperties = "ModifyClientProperties"
 
 // ModifyClientPropertiesRequest generates a "aws/request.Request" representing the
@@ -6359,6 +6449,62 @@ func (s AuthorizeIpRulesOutput) String() string {
 // value will be replaced with "sensitive".
 func (s AuthorizeIpRulesOutput) GoString() string {
 	return s.String()
+}
+
+// Describes the properties of the certificate-based authentication you want
+// to use with your WorkSpaces.
+type CertificateBasedAuthProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager
+	// Private CA resource.
+	CertificateAuthorityArn *string `min:"5" type:"string"`
+
+	// The status of the certificate-based authentication properties.
+	Status *string `type:"string" enum:"CertificateBasedAuthStatusEnum"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateBasedAuthProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateBasedAuthProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CertificateBasedAuthProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CertificateBasedAuthProperties"}
+	if s.CertificateAuthorityArn != nil && len(*s.CertificateAuthorityArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateAuthorityArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *CertificateBasedAuthProperties) SetCertificateAuthorityArn(v string) *CertificateBasedAuthProperties {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CertificateBasedAuthProperties) SetStatus(v string) *CertificateBasedAuthProperties {
+	s.Status = &v
+	return s
 }
 
 // Describes an Amazon WorkSpaces client.
@@ -12038,6 +12184,100 @@ func (s ModifyAccountOutput) GoString() string {
 	return s.String()
 }
 
+type ModifyCertificateBasedAuthPropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the certificate-based authentication.
+	CertificateBasedAuthProperties *CertificateBasedAuthProperties `type:"structure"`
+
+	// The properties of the certificate-based authentication you want to delete.
+	PropertiesToDelete []*string `type:"list" enum:"DeletableCertificateBasedAuthProperty"`
+
+	// The resource identifiers, in the form of directory IDs.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyCertificateBasedAuthPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyCertificateBasedAuthPropertiesInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+	if s.CertificateBasedAuthProperties != nil {
+		if err := s.CertificateBasedAuthProperties.Validate(); err != nil {
+			invalidParams.AddNested("CertificateBasedAuthProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateBasedAuthProperties sets the CertificateBasedAuthProperties field's value.
+func (s *ModifyCertificateBasedAuthPropertiesInput) SetCertificateBasedAuthProperties(v *CertificateBasedAuthProperties) *ModifyCertificateBasedAuthPropertiesInput {
+	s.CertificateBasedAuthProperties = v
+	return s
+}
+
+// SetPropertiesToDelete sets the PropertiesToDelete field's value.
+func (s *ModifyCertificateBasedAuthPropertiesInput) SetPropertiesToDelete(v []*string) *ModifyCertificateBasedAuthPropertiesInput {
+	s.PropertiesToDelete = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ModifyCertificateBasedAuthPropertiesInput) SetResourceId(v string) *ModifyCertificateBasedAuthPropertiesInput {
+	s.ResourceId = &v
+	return s
+}
+
+type ModifyCertificateBasedAuthPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesOutput) GoString() string {
+	return s.String()
+}
+
 type ModifyClientPropertiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15672,6 +15912,11 @@ type WorkspaceDirectory struct {
 	// The directory alias.
 	Alias *string `type:"string"`
 
+	// The certificate-based authentication properties used to authenticate SAML
+	// 2.0 Identity Provider (IdP) user identities to Active Directory for WorkSpaces
+	// login.
+	CertificateBasedAuthProperties *CertificateBasedAuthProperties `type:"structure"`
+
 	// The user name for the service account.
 	CustomerUserName *string `min:"1" type:"string"`
 
@@ -15753,6 +15998,12 @@ func (s WorkspaceDirectory) GoString() string {
 // SetAlias sets the Alias field's value.
 func (s *WorkspaceDirectory) SetAlias(v string) *WorkspaceDirectory {
 	s.Alias = &v
+	return s
+}
+
+// SetCertificateBasedAuthProperties sets the CertificateBasedAuthProperties field's value.
+func (s *WorkspaceDirectory) SetCertificateBasedAuthProperties(v *CertificateBasedAuthProperties) *WorkspaceDirectory {
+	s.CertificateBasedAuthProperties = v
 	return s
 }
 
@@ -16338,6 +16589,22 @@ func AssociationStatus_Values() []string {
 }
 
 const (
+	// CertificateBasedAuthStatusEnumDisabled is a CertificateBasedAuthStatusEnum enum value
+	CertificateBasedAuthStatusEnumDisabled = "DISABLED"
+
+	// CertificateBasedAuthStatusEnumEnabled is a CertificateBasedAuthStatusEnum enum value
+	CertificateBasedAuthStatusEnumEnabled = "ENABLED"
+)
+
+// CertificateBasedAuthStatusEnum_Values returns all elements of the CertificateBasedAuthStatusEnum enum
+func CertificateBasedAuthStatusEnum_Values() []string {
+	return []string{
+		CertificateBasedAuthStatusEnumDisabled,
+		CertificateBasedAuthStatusEnumEnabled,
+	}
+}
+
+const (
 	// ClientDeviceTypeDeviceTypeWindows is a ClientDeviceType enum value
 	ClientDeviceTypeDeviceTypeWindows = "DeviceTypeWindows"
 
@@ -16498,6 +16765,18 @@ func DedicatedTenancySupportResultEnum_Values() []string {
 	return []string{
 		DedicatedTenancySupportResultEnumEnabled,
 		DedicatedTenancySupportResultEnumDisabled,
+	}
+}
+
+const (
+	// DeletableCertificateBasedAuthPropertyCertificateBasedAuthPropertiesCertificateAuthorityArn is a DeletableCertificateBasedAuthProperty enum value
+	DeletableCertificateBasedAuthPropertyCertificateBasedAuthPropertiesCertificateAuthorityArn = "CERTIFICATE_BASED_AUTH_PROPERTIES_CERTIFICATE_AUTHORITY_ARN"
+)
+
+// DeletableCertificateBasedAuthProperty_Values returns all elements of the DeletableCertificateBasedAuthProperty enum
+func DeletableCertificateBasedAuthProperty_Values() []string {
+	return []string{
+		DeletableCertificateBasedAuthPropertyCertificateBasedAuthPropertiesCertificateAuthorityArn,
 	}
 }
 

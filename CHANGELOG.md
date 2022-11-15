@@ -1,3 +1,15 @@
+Release v1.44.138 (2022-11-15)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/greengrassv2`: Updates service API and documentation
+* `service/route53`: Updates service API
+  * Amazon Route 53 now supports the Europe (Spain) Region (eu-south-2) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/ssmsap`: Updates service API, documentation, paginators, and examples
+* `service/workspaces`: Updates service API and documentation
+  * This release introduces ModifyCertificateBasedAuthProperties, a new API that allows control of certificate-based auth properties associated with a WorkSpaces directory. The DescribeWorkspaceDirectories API will now additionally return certificate-based auth properties in its responses.
+
 Release v1.44.137 (2022-11-14)
 ===
 
