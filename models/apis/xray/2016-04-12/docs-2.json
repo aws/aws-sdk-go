@@ -6,6 +6,7 @@
     "CreateGroup": "<p>Creates a group resource with a name and a filter expression. </p>",
     "CreateSamplingRule": "<p>Creates a rule to control sampling behavior for instrumented applications. Services retrieve rules with <a href=\"https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingRules.html\">GetSamplingRules</a>, and evaluate each rule in ascending order of <i>priority</i> for each request. If a rule matches, the service records a trace, borrowing it from the reservoir size. After 10 seconds, the service reports back to X-Ray with <a href=\"https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingTargets.html\">GetSamplingTargets</a> to get updated versions of each in-use rule. The updated rule contains a trace quota that the service can use instead of borrowing from the reservoir.</p>",
     "DeleteGroup": "<p>Deletes a group resource.</p>",
+    "DeleteResourcePolicy": "<p>Deletes a resource policy from the target Amazon Web Services account.</p>",
     "DeleteSamplingRule": "<p>Deletes a sampling rule.</p>",
     "GetEncryptionConfig": "<p>Retrieves the current encryption configuration for X-Ray data.</p>",
     "GetGroup": "<p>Retrieves group resource details.</p>",
@@ -21,8 +22,10 @@
     "GetTimeSeriesServiceStatistics": "<p>Get an aggregation of service statistics defined by a specific time range.</p>",
     "GetTraceGraph": "<p>Retrieves a service graph for one or more specific trace IDs.</p>",
     "GetTraceSummaries": "<p>Retrieves IDs and annotations for traces available for a specified time frame using an optional filter. To get the full traces, pass the trace IDs to <code>BatchGetTraces</code>.</p> <p>A filter expression can target traced requests that hit specific service nodes or edges, have errors, or come from a known user. For example, the following filter expression targets traces that pass through <code>api.example.com</code>:</p> <p> <code>service(\"api.example.com\")</code> </p> <p>This filter expression finds traces that have an annotation named <code>account</code> with the value <code>12345</code>:</p> <p> <code>annotation.account = \"12345\"</code> </p> <p>For a full list of indexed fields and keywords that you can use in filter expressions, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html\">Using Filter Expressions</a> in the <i>Amazon Web Services X-Ray Developer Guide</i>.</p>",
+    "ListResourcePolicies": "<p>Returns the list of resource policies in the target Amazon Web Services account.</p>",
     "ListTagsForResource": "<p>Returns a list of tags that are applied to the specified Amazon Web Services X-Ray group or sampling rule.</p>",
     "PutEncryptionConfig": "<p>Updates the encryption configuration for X-Ray data.</p>",
+    "PutResourcePolicy": "<p> Sets the resource policy to grant one or more Amazon Web Services services and accounts permissions to access X-Ray. Each resource policy will be associated with a specific Amazon Web Services account. Each Amazon Web Services account can have a maximum of 5 resource policies, and each policy name must be unique within that account. The maximum size of each resource policy is 5KB. </p>",
     "PutTelemetryRecords": "<p>Used by the Amazon Web Services X-Ray daemon to upload telemetry.</p>",
     "PutTraceSegments": "<p>Uploads segment documents to Amazon Web Services X-Ray. The <a href=\"https://docs.aws.amazon.com/xray/index.html\">X-Ray SDK</a> generates segment documents and sends them to the X-Ray daemon, which uploads them in batches. A segment document can be a completed segment, an in-progress segment, or an array of subsegments.</p> <p>Segments must include the following fields. For the full segment document schema, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html\">Amazon Web Services X-Ray Segment Documents</a> in the <i>Amazon Web Services X-Ray Developer Guide</i>.</p> <p class=\"title\"> <b>Required segment document fields</b> </p> <ul> <li> <p> <code>name</code> - The name of the service that handled the request.</p> </li> <li> <p> <code>id</code> - A 64-bit identifier for the segment, unique among segments in the same trace, in 16 hexadecimal digits.</p> </li> <li> <p> <code>trace_id</code> - A unique identifier that connects all segments and subsegments originating from a single client request.</p> </li> <li> <p> <code>start_time</code> - Time the segment or subsegment was created, in floating point seconds in epoch time, accurate to milliseconds. For example, <code>1480615200.010</code> or <code>1.480615200010E9</code>.</p> </li> <li> <p> <code>end_time</code> - Time the segment or subsegment was closed. For example, <code>1480615200.090</code> or <code>1.480615200090E9</code>. Specify either an <code>end_time</code> or <code>in_progress</code>.</p> </li> <li> <p> <code>in_progress</code> - Set to <code>true</code> instead of specifying an <code>end_time</code> to record that a segment has been started, but is not complete. Send an in-progress segment when your application receives a request that will take a long time to serve, to trace that the request was received. When the response is sent, send the complete segment to overwrite the in-progress segment.</p> </li> </ul> <p>A <code>trace_id</code> consists of three numbers separated by hyphens. For example, 1-58406520-a006649127e371903a2de979. This includes:</p> <p class=\"title\"> <b>Trace ID Format</b> </p> <ul> <li> <p>The version number, for instance, <code>1</code>.</p> </li> <li> <p>The time of the original request, in Unix epoch time, in 8 hexadecimal digits. For example, 10:00AM December 2nd, 2016 PST in epoch time is <code>1480615200</code> seconds, or <code>58406520</code> in hexadecimal.</p> </li> <li> <p>A 96-bit identifier for the trace, globally unique, in 24 hexadecimal digits.</p> </li> </ul>",
     "TagResource": "<p>Applies tags to an existing Amazon Web Services X-Ray group or sampling rule.</p>",
@@ -136,7 +139,8 @@
       "base": null,
       "refs": {
         "GetServiceGraphResult$ContainsOldGroupVersions": "<p>A flag indicating whether the group's filter expression has been consistent, or if the returned service graph may show traces from an older version of the group's filter expression.</p>",
-        "GetTimeSeriesServiceStatisticsResult$ContainsOldGroupVersions": "<p>A flag indicating whether or not a group's filter expression has been consistent, or if a returned aggregation might show statistics from an older version of the group's filter expression.</p>"
+        "GetTimeSeriesServiceStatisticsResult$ContainsOldGroupVersions": "<p>A flag indicating whether or not a group's filter expression has been consistent, or if a returned aggregation might show statistics from an older version of the group's filter expression.</p>",
+        "PutResourcePolicyRequest$BypassPolicyLockoutCheck": "<p>A flag to indicate whether to bypass the resource policy lockout safety check.</p> <important> <p>Setting this value to true increases the risk that the policy becomes unmanageable. Do not set this value to true indiscriminately.</p> </important> <p>Use this parameter only when you include a policy in the request and you intend to prevent the principal that is making the request from making a subsequent <code>PutResourcePolicy</code> request.</p> <p>The default value is false.</p>"
       }
     },
     "BorrowCount": {
@@ -177,6 +181,16 @@
       }
     },
     "DeleteGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyResult": {
       "base": null,
       "refs": {
       }
@@ -258,7 +272,12 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
+        "InvalidPolicyRevisionIdException$Message": null,
         "InvalidRequestException$Message": null,
+        "LockoutPreventionException$Message": null,
+        "MalformedPolicyDocumentException$Message": null,
+        "PolicyCountLimitExceededException$Message": null,
+        "PolicySizeLimitExceededException$Message": null,
         "ResourceNotFoundException$Message": null,
         "RuleLimitExceededException$Message": null,
         "ThrottledException$Message": null,
@@ -726,10 +745,10 @@
     "InsightsConfiguration": {
       "base": "<p>The structure containing configurations related to insights.</p>",
       "refs": {
-        "CreateGroupRequest$InsightsConfiguration": "<p>The structure containing configurations related to insights.</p> <ul> <li> <p>The InsightsEnabled boolean can be set to true to enable insights for the new group or false to disable insights for the new group.</p> </li> <li> <p>The NotifcationsEnabled boolean can be set to true to enable insights notifications for the new group. Notifications may only be enabled on a group with InsightsEnabled set to true.</p> </li> </ul>",
+        "CreateGroupRequest$InsightsConfiguration": "<p>The structure containing configurations related to insights.</p> <ul> <li> <p>The InsightsEnabled boolean can be set to true to enable insights for the new group or false to disable insights for the new group.</p> </li> <li> <p>The NotificationsEnabled boolean can be set to true to enable insights notifications for the new group. Notifications may only be enabled on a group with InsightsEnabled set to true.</p> </li> </ul>",
         "Group$InsightsConfiguration": "<p>The structure containing configurations related to insights.</p> <ul> <li> <p>The InsightsEnabled boolean can be set to true to enable insights for the group or false to disable insights for the group.</p> </li> <li> <p>The NotificationsEnabled boolean can be set to true to enable insights notifications through Amazon EventBridge for the group.</p> </li> </ul>",
         "GroupSummary$InsightsConfiguration": "<p>The structure containing configurations related to insights.</p> <ul> <li> <p>The InsightsEnabled boolean can be set to true to enable insights for the group or false to disable insights for the group.</p> </li> <li> <p>The NotificationsEnabled boolean can be set to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.</p> </li> </ul>",
-        "UpdateGroupRequest$InsightsConfiguration": "<p>The structure containing configurations related to insights.</p> <ul> <li> <p>The InsightsEnabled boolean can be set to true to enable insights for the group or false to disable insights for the group.</p> </li> <li> <p>The NotifcationsEnabled boolean can be set to true to enable insights notifications for the group. Notifications can only be enabled on a group with InsightsEnabled set to true.</p> </li> </ul>"
+        "UpdateGroupRequest$InsightsConfiguration": "<p>The structure containing configurations related to insights.</p> <ul> <li> <p>The InsightsEnabled boolean can be set to true to enable insights for the group or false to disable insights for the group.</p> </li> <li> <p>The NotificationsEnabled boolean can be set to true to enable insights notifications for the group. Notifications can only be enabled on a group with InsightsEnabled set to true.</p> </li> </ul>"
       }
     },
     "InstanceIdDetail": {
@@ -748,8 +767,23 @@
         "TraceSummary$Revision": "<p>The revision number of a trace.</p>"
       }
     },
+    "InvalidPolicyRevisionIdException": {
+      "base": "<p>A policy revision id was provided which does not match the latest policy revision. This exception is also if a policy revision id of 0 is provided via <code>PutResourcePolicy</code> and a policy with the same name already exists.</p>",
+      "refs": {
+      }
+    },
     "InvalidRequestException": {
       "base": "<p>The request is missing required parameters or has invalid parameters.</p>",
+      "refs": {
+      }
+    },
+    "ListResourcePoliciesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourcePoliciesResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -760,6 +794,16 @@
     },
     "ListTagsForResourceResponse": {
       "base": null,
+      "refs": {
+      }
+    },
+    "LockoutPreventionException": {
+      "base": "<p>The provided resource policy would prevent the caller of this request from calling PutResourcePolicy in the future.</p>",
+      "refs": {
+      }
+    },
+    "MalformedPolicyDocumentException": {
+      "base": "<p>Invalid policy document provided in request.</p>",
       "refs": {
       }
     },
@@ -847,6 +891,39 @@
         "ServiceStatistics$TotalCount": "<p>The total number of completed requests.</p>"
       }
     },
+    "PolicyCountLimitExceededException": {
+      "base": "<p>Exceeded the maximum number of resource policies for a target Amazon Web Services account.</p>",
+      "refs": {
+      }
+    },
+    "PolicyDocument": {
+      "base": null,
+      "refs": {
+        "PutResourcePolicyRequest$PolicyDocument": "<p>The resource policy document, which can be up to 5kb in size.</p>",
+        "ResourcePolicy$PolicyDocument": "<p>The resource policy document, which can be up to 5kb in size.</p>"
+      }
+    },
+    "PolicyName": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePolicyRequest$PolicyName": "<p>The name of the resource policy to delete.</p>",
+        "PutResourcePolicyRequest$PolicyName": "<p>The name of the resource policy. Must be unique within a specific Amazon Web Services account.</p>",
+        "ResourcePolicy$PolicyName": "<p>The name of the resource policy. Must be unique within a specific Amazon Web Services account.</p>"
+      }
+    },
+    "PolicyRevisionId": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePolicyRequest$PolicyRevisionId": "<p>Specifies a specific policy revision to delete. Provide a <code>PolicyRevisionId</code> to ensure an atomic delete operation. If the provided revision id does not match the latest policy revision id, an <code>InvalidPolicyRevisionIdException</code> exception is returned. </p>",
+        "PutResourcePolicyRequest$PolicyRevisionId": "<p>Specifies a specific policy revision, to ensure an atomic create operation. By default the resource policy is created if it does not exist, or updated with an incremented revision id. The revision id is unique to each policy in the account.</p> <p>If the policy revision id does not match the latest revision id, the operation will fail with an <code>InvalidPolicyRevisionIdException</code> exception. You can also provide a <code>PolicyRevisionId</code> of 0. In this case, the operation will fail with an <code>InvalidPolicyRevisionIdException</code> exception if a resource policy with the same name already exists. </p>",
+        "ResourcePolicy$PolicyRevisionId": "<p>Returns the current policy revision id for this policy name.</p>"
+      }
+    },
+    "PolicySizeLimitExceededException": {
+      "base": "<p>Exceeded the maximum size for a resource policy.</p>",
+      "refs": {
+      }
+    },
     "Priority": {
       "base": null,
       "refs": {
@@ -859,6 +936,16 @@
       }
     },
     "PutEncryptionConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePolicyResult": {
       "base": null,
       "refs": {
       }
@@ -923,6 +1010,26 @@
     "ResourceNotFoundException": {
       "base": "<p>The resource was not found. Verify that the name or Amazon Resource Name (ARN) of the resource is correct.</p>",
       "refs": {
+      }
+    },
+    "ResourcePolicy": {
+      "base": "<p>A resource policy grants one or more Amazon Web Services services and accounts permissions to access X-Ray. Each resource policy is associated with a specific Amazon Web Services account.</p>",
+      "refs": {
+        "PutResourcePolicyResult$ResourcePolicy": "<p>The resource policy document, as provided in the <code>PutResourcePolicyRequest</code>.</p>",
+        "ResourcePolicyList$member": null
+      }
+    },
+    "ResourcePolicyList": {
+      "base": null,
+      "refs": {
+        "ListResourcePoliciesResult$ResourcePolicies": "<p>The list of resource policies in the target Amazon Web Services account.</p>"
+      }
+    },
+    "ResourcePolicyNextToken": {
+      "base": null,
+      "refs": {
+        "ListResourcePoliciesRequest$NextToken": "<p>Not currently supported.</p>",
+        "ListResourcePoliciesResult$NextToken": "<p>Pagination token. Not currently supported.</p>"
       }
     },
     "ResponseTimeRootCause": {
@@ -1343,6 +1450,7 @@
         "InsightSummary$StartTime": "<p>The time, in Unix seconds, at which the insight began.</p>",
         "InsightSummary$EndTime": "<p>The time, in Unix seconds, at which the insight ended.</p>",
         "InsightSummary$LastUpdateTime": "<p>The time, in Unix seconds, that the insight was last updated.</p>",
+        "ResourcePolicy$LastUpdatedTime": "<p>When the policy was last updated, in Unix time seconds.</p>",
         "SamplingRuleRecord$CreatedAt": "<p>When the rule was created.</p>",
         "SamplingRuleRecord$ModifiedAt": "<p>When the rule was last modified.</p>",
         "SamplingStatisticSummary$Timestamp": "<p>The start time of the reporting window.</p>",

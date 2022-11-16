@@ -732,6 +732,10 @@
         "FailedDisassociatedResources":{"shape":"DisassociateResourcesResponseList"}
       }
     },
+    "BillingEntity":{
+      "type":"string",
+      "pattern":"[a-zA-Z0-9 ]+"
+    },
     "BillingGroupArn":{
       "type":"string",
       "pattern":"(arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}"
@@ -947,7 +951,8 @@
         "Type":{"shape":"PricingRuleType"},
         "ModifierPercentage":{"shape":"ModifierPercentage"},
         "Service":{"shape":"Service"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "BillingEntity":{"shape":"BillingEntity"}
       }
     },
     "CreatePricingRuleOutput":{
@@ -1646,7 +1651,8 @@
         "Service":{"shape":"Service"},
         "AssociatedPricingPlanCount":{"shape":"NumberOfPricingPlansAssociatedWith"},
         "CreationTime":{"shape":"Instant"},
-        "LastModifiedTime":{"shape":"Instant"}
+        "LastModifiedTime":{"shape":"Instant"},
+        "BillingEntity":{"shape":"BillingEntity"}
       }
     },
     "PricingRuleName":{
@@ -1660,7 +1666,8 @@
       "type":"string",
       "enum":[
         "GLOBAL",
-        "SERVICE"
+        "SERVICE",
+        "BILLING_ENTITY"
       ]
     },
     "PricingRuleType":{
@@ -1912,7 +1919,8 @@
         "ModifierPercentage":{"shape":"ModifierPercentage"},
         "Service":{"shape":"Service"},
         "AssociatedPricingPlanCount":{"shape":"NumberOfPricingPlansAssociatedWith"},
-        "LastModifiedTime":{"shape":"Instant"}
+        "LastModifiedTime":{"shape":"Instant"},
+        "BillingEntity":{"shape":"BillingEntity"}
       }
     },
     "ValidationException":{
@@ -1993,8 +2001,10 @@
         "MULTIPLE_PRICING_PLAN_ARN",
         "ILLEGAL_CHILD_ASSOCIATE_RESOURCE",
         "CUSTOM_LINE_ITEM_ASSOCIATION_EXISTS",
+        "INVALID_BILLING_GROUP",
         "INVALID_BILLING_PERIOD_FOR_OPERATION",
-        "INVALID_BILLING_GROUP"
+        "ILLEGAL_BILLING_ENTITY",
+        "ILLEGAL_MODIFIER_PERCENTAGE"
       ]
     }
   }

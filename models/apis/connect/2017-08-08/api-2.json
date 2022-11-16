@@ -1721,6 +1721,24 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "MonitorContact":{
+      "name":"MonitorContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/monitor"
+      },
+      "input":{"shape":"MonitorContactRequest"},
+      "output":{"shape":"MonitorContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotencyException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "PutUserStatus":{
       "name":"PutUserStatus",
       "http":{
@@ -2737,6 +2755,11 @@
       "type":"string",
       "max":100,
       "min":1
+    },
+    "AllowedMonitorCapabilities":{
+      "type":"list",
+      "member":{"shape":"MonitorCapability"},
+      "max":2
     },
     "AnswerMachineDetectionConfig":{
       "type":"structure",
@@ -6701,6 +6724,38 @@
       "type":"integer",
       "max":59,
       "min":0
+    },
+    "MonitorCapability":{
+      "type":"string",
+      "enum":[
+        "SILENT_MONITOR",
+        "BARGE"
+      ]
+    },
+    "MonitorContactRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "UserId"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "UserId":{"shape":"AgentResourceId"},
+        "AllowedMonitorCapabilities":{"shape":"AllowedMonitorCapabilities"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "MonitorContactResponse":{
+      "type":"structure",
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "ContactArn":{"shape":"ARN"}
+      }
     },
     "Name":{
       "type":"string",

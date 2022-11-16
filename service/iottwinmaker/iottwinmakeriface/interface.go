@@ -96,6 +96,13 @@ type IoTTwinMakerAPI interface {
 	DeleteWorkspaceWithContext(aws.Context, *iottwinmaker.DeleteWorkspaceInput, ...request.Option) (*iottwinmaker.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceRequest(*iottwinmaker.DeleteWorkspaceInput) (*request.Request, *iottwinmaker.DeleteWorkspaceOutput)
 
+	ExecuteQuery(*iottwinmaker.ExecuteQueryInput) (*iottwinmaker.ExecuteQueryOutput, error)
+	ExecuteQueryWithContext(aws.Context, *iottwinmaker.ExecuteQueryInput, ...request.Option) (*iottwinmaker.ExecuteQueryOutput, error)
+	ExecuteQueryRequest(*iottwinmaker.ExecuteQueryInput) (*request.Request, *iottwinmaker.ExecuteQueryOutput)
+
+	ExecuteQueryPages(*iottwinmaker.ExecuteQueryInput, func(*iottwinmaker.ExecuteQueryOutput, bool) bool) error
+	ExecuteQueryPagesWithContext(aws.Context, *iottwinmaker.ExecuteQueryInput, func(*iottwinmaker.ExecuteQueryOutput, bool) bool, ...request.Option) error
+
 	GetComponentType(*iottwinmaker.GetComponentTypeInput) (*iottwinmaker.GetComponentTypeOutput, error)
 	GetComponentTypeWithContext(aws.Context, *iottwinmaker.GetComponentTypeInput, ...request.Option) (*iottwinmaker.GetComponentTypeOutput, error)
 	GetComponentTypeRequest(*iottwinmaker.GetComponentTypeInput) (*request.Request, *iottwinmaker.GetComponentTypeOutput)
@@ -104,9 +111,16 @@ type IoTTwinMakerAPI interface {
 	GetEntityWithContext(aws.Context, *iottwinmaker.GetEntityInput, ...request.Option) (*iottwinmaker.GetEntityOutput, error)
 	GetEntityRequest(*iottwinmaker.GetEntityInput) (*request.Request, *iottwinmaker.GetEntityOutput)
 
+	GetPricingPlan(*iottwinmaker.GetPricingPlanInput) (*iottwinmaker.GetPricingPlanOutput, error)
+	GetPricingPlanWithContext(aws.Context, *iottwinmaker.GetPricingPlanInput, ...request.Option) (*iottwinmaker.GetPricingPlanOutput, error)
+	GetPricingPlanRequest(*iottwinmaker.GetPricingPlanInput) (*request.Request, *iottwinmaker.GetPricingPlanOutput)
+
 	GetPropertyValue(*iottwinmaker.GetPropertyValueInput) (*iottwinmaker.GetPropertyValueOutput, error)
 	GetPropertyValueWithContext(aws.Context, *iottwinmaker.GetPropertyValueInput, ...request.Option) (*iottwinmaker.GetPropertyValueOutput, error)
 	GetPropertyValueRequest(*iottwinmaker.GetPropertyValueInput) (*request.Request, *iottwinmaker.GetPropertyValueOutput)
+
+	GetPropertyValuePages(*iottwinmaker.GetPropertyValueInput, func(*iottwinmaker.GetPropertyValueOutput, bool) bool) error
+	GetPropertyValuePagesWithContext(aws.Context, *iottwinmaker.GetPropertyValueInput, func(*iottwinmaker.GetPropertyValueOutput, bool) bool, ...request.Option) error
 
 	GetPropertyValueHistory(*iottwinmaker.GetPropertyValueHistoryInput) (*iottwinmaker.GetPropertyValueHistoryOutput, error)
 	GetPropertyValueHistoryWithContext(aws.Context, *iottwinmaker.GetPropertyValueHistoryInput, ...request.Option) (*iottwinmaker.GetPropertyValueHistoryOutput, error)
@@ -170,6 +184,10 @@ type IoTTwinMakerAPI interface {
 	UpdateEntity(*iottwinmaker.UpdateEntityInput) (*iottwinmaker.UpdateEntityOutput, error)
 	UpdateEntityWithContext(aws.Context, *iottwinmaker.UpdateEntityInput, ...request.Option) (*iottwinmaker.UpdateEntityOutput, error)
 	UpdateEntityRequest(*iottwinmaker.UpdateEntityInput) (*request.Request, *iottwinmaker.UpdateEntityOutput)
+
+	UpdatePricingPlan(*iottwinmaker.UpdatePricingPlanInput) (*iottwinmaker.UpdatePricingPlanOutput, error)
+	UpdatePricingPlanWithContext(aws.Context, *iottwinmaker.UpdatePricingPlanInput, ...request.Option) (*iottwinmaker.UpdatePricingPlanOutput, error)
+	UpdatePricingPlanRequest(*iottwinmaker.UpdatePricingPlanInput) (*request.Request, *iottwinmaker.UpdatePricingPlanOutput)
 
 	UpdateScene(*iottwinmaker.UpdateSceneInput) (*iottwinmaker.UpdateSceneOutput, error)
 	UpdateSceneWithContext(aws.Context, *iottwinmaker.UpdateSceneInput, ...request.Option) (*iottwinmaker.UpdateSceneOutput, error)

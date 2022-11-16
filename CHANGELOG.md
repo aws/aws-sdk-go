@@ -1,3 +1,30 @@
+Release v1.44.139 (2022-11-16)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service documentation
+  * Documentation updates related to Batch on EKS
+* `service/billingconductor`: Updates service API and documentation
+* `service/cloudformation`: Updates service API
+  * Added UnsupportedTarget HandlerErrorCode for use with CFN Resource Hooks
+* `service/comprehendmedical`: Updates service API
+* `service/connect`: Updates service API and documentation
+* `service/eks`: Updates service API and documentation
+* `service/elasticache`: Updates service API and documentation
+  * for Redis now supports AWS Identity and Access Management authentication access to Redis clusters starting with redis-engine version 7.0
+* `service/iottwinmaker`: Updates service API, documentation, and paginators
+* `service/personalize-events`: Updates service API and documentation
+* `service/proton`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for container databases (CDBs) to Amazon RDS Custom for Oracle. A CDB contains one PDB at creation. You can add more PDBs using Oracle SQL. You can also customize your database installation by setting the Oracle base, Oracle home, and the OS user name and group.
+* `service/ssm`: Updates service API, documentation, and paginators
+  * This release adds support for cross account access in CreateOpsItem, UpdateOpsItem and GetOpsItem. It introduces new APIs to setup resource policies for SSM resources: PutResourcePolicy, GetResourcePolicies and DeleteResourcePolicy.
+* `service/ssm-incidents`: Updates service API and documentation
+* `service/transfer`: Updates service API
+  * Allow additional operations to throw ThrottlingException
+* `service/xray`: Updates service API, documentation, and paginators
+  * This release adds new APIs - PutResourcePolicy, DeleteResourcePolicy, ListResourcePolicies for supporting resource based policies for AWS X-Ray.
+
 Release v1.44.138 (2022-11-15)
 ===
 

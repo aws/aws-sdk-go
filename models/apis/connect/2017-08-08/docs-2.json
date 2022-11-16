@@ -108,6 +108,7 @@
     "ListUseCases": "<p>Lists the use cases for the integration association. </p>",
     "ListUserHierarchyGroups": "<p>Provides summary information about the hierarchy groups for the specified Amazon Connect instance.</p> <p>For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListUsers": "<p>Provides summary information about the users for the specified Amazon Connect instance.</p>",
+    "MonitorContact": "<p>Initiates silent monitoring of a contact. The Contact Control Panel (CCP) of the user specified by <i>userId</i> will be set to silent monitoring mode on the contact.</p>",
     "PutUserStatus": "<p>Changes the current status of a user or agent in Amazon Connect. If the agent is currently handling a contact, this sets the agent's next status.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-agent-status.html\">Agent status</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-next-status.html\">Set your next status</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance or traffic distribution group. You can call this API only in the Amazon Web Services Region where the number was claimed.</p> <important> <p>To release phone numbers from a traffic distribution group, use the <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.</p> <p>After releasing a phone number, the phone number enters into a cooldown period of 30 days. It cannot be searched for or claimed again until the period has ended. If you accidentally release a phone number, contact Amazon Web Services Support.</p> </important>",
     "ReplicateInstance": "<p>Replicates an Amazon Connect instance in the specified Amazon Web Services Region.</p> <p>For more information about replicating an Amazon Connect instance, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html\">Create a replica of your existing Amazon Connect instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -216,6 +217,7 @@
         "ListPhoneNumbersSummary$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone numbers are claimed to.</p>",
         "ListPhoneNumbersV2Request$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone numbers are claimed to. If <code>TargetArn</code> input is not provided, this API lists numbers claimed to all the Amazon Connect instances belonging to your account in the same Amazon Web Services Region as the request.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "MonitorContactResponse$ContactArn": "<p>The ARN of the contact.</p>",
         "PhoneNumberSummary$Arn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
         "PromptSummary$Arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>",
         "Queue$QueueArn": "<p>The Amazon Resource Name (ARN) for the queue.</p>",
@@ -295,6 +297,7 @@
       "refs": {
         "AgentInfo$Id": "<p>The identifier of the agent who accepted the contact.</p>",
         "GetFederationTokenResponse$UserId": "<p>The identifier for the user.</p>",
+        "MonitorContactRequest$UserId": "<p>The identifier of the user account.</p>",
         "TransferContactRequest$UserId": "<p>The identifier for the user.</p>"
       }
     },
@@ -392,6 +395,12 @@
       "base": null,
       "refs": {
         "LexV2Bot$AliasArn": "<p>The Amazon Resource Name (ARN) of the Amazon Lex V2 bot.</p>"
+      }
+    },
+    "AllowedMonitorCapabilities": {
+      "base": null,
+      "refs": {
+        "MonitorContactRequest$AllowedMonitorCapabilities": "<p>Specify which monitoring actions the user is allowed to take. For example, whether the user is allowed to escalate from silent monitoring to barge.</p>"
       }
     },
     "AnswerMachineDetectionConfig": {
@@ -668,6 +677,7 @@
         "CreateTaskTemplateRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateTrafficDistributionGroupRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateVocabularyRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>. If a create request is received more than once with same client token, subsequent requests return the previous response without creating a vocabulary again.</p>",
+        "MonitorContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "ReleasePhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "ReplicateInstanceRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "StartChatContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
@@ -892,6 +902,8 @@
         "DismissUserContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "GetContactAttributesRequest$InitialContactId": "<p>The identifier of the initial contact.</p>",
         "ListContactReferencesRequest$ContactId": "<p>The identifier of the initial contact.</p>",
+        "MonitorContactRequest$ContactId": "<p>The identifier of the contact.</p>",
+        "MonitorContactResponse$ContactId": "<p>The identifier of the contact.</p>",
         "ResumeContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "ResumeContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "StartChatContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance. </p>",
@@ -922,7 +934,7 @@
       }
     },
     "ContactNotFoundException": {
-      "base": "<p>The contact with the specified ID is not active or does not exist.</p>",
+      "base": "<p>The contact with the specified ID is not active or does not exist. Applies to Voice calls only, not to Chat, Task, or Voice Callback.</p>",
       "refs": {
       }
     },
@@ -1716,7 +1728,7 @@
     "Groupings": {
       "base": null,
       "refs": {
-        "GetCurrentMetricDataRequest$Groupings": "<p>The grouping applied to the metrics returned. For example, when grouped by <code>QUEUE</code>, the metrics returned apply to each queue rather than aggregated for all queues. If you group by <code>CHANNEL</code>, you should include a Channels filter. VOICE, CHAT, and TASK channels are supported.</p> <p>If no <code>Grouping</code> is included in the request, a summary of metrics is returned.</p>",
+        "GetCurrentMetricDataRequest$Groupings": "<p>The grouping applied to the metrics returned. For example, when grouped by <code>QUEUE</code>, the metrics returned apply to each queue rather than aggregated for all queues. </p> <ul> <li> <p>If you group by <code>CHANNEL</code>, you should include a Channels filter. VOICE, CHAT, and TASK channels are supported.</p> </li> <li> <p>If you group by <code>ROUTING_PROFILE</code>, you must include either a queue or routing profile filter.</p> </li> <li> <p>If no <code>Grouping</code> is included in the request, a summary of metrics is returned.</p> </li> </ul>",
         "GetMetricDataRequest$Groupings": "<p>The grouping applied to the metrics returned. For example, when results are grouped by queue, the metrics returned are grouped by queue. The values returned apply to the metrics for each queue rather than aggregated for all queues.</p> <p>If no grouping is specified, a summary of metrics for all queues is returned.</p>"
       }
     },
@@ -2121,6 +2133,7 @@
         "ListUseCasesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListUserHierarchyGroupsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "MonitorContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "PutUserStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ReplicateInstanceResponse$Id": "<p>The identifier of the replicated instance. You can find the <code>instanceId</code> in the ARN of the instance. The replicated instance has the same identifier as the instance it was replicated from.</p>",
         "ResumeContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2838,6 +2851,22 @@
         "HoursOfOperationTimeSlice$Minutes": "<p>The minutes.</p>"
       }
     },
+    "MonitorCapability": {
+      "base": null,
+      "refs": {
+        "AllowedMonitorCapabilities$member": null
+      }
+    },
+    "MonitorContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MonitorContactResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Name": {
       "base": null,
       "refs": {
@@ -3324,10 +3353,10 @@
       }
     },
     "QueueSearchCriteria": {
-      "base": "<p>The search criteria to be used to return queues.</p>",
+      "base": "<p>The search criteria to be used to return queues.</p> <note> <p>The <code>name</code> and <code>description</code> fields support \"contains\" queries with a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths outside of this range will throw invalid results. </p> </note>",
       "refs": {
         "QueueSearchConditionList$member": null,
-        "SearchQueuesRequest$SearchCriteria": "<p>The search criteria to be used to return queues.</p>"
+        "SearchQueuesRequest$SearchCriteria": "<p>The search criteria to be used to return queues.</p> <note> <p>The <code>name</code> and <code>description</code> fields support \"contains\" queries with a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths outside of this range will throw invalid results. </p> </note>"
       }
     },
     "QueueSearchFilter": {
@@ -3700,10 +3729,10 @@
       }
     },
     "RoutingProfileSearchCriteria": {
-      "base": "<p>The search criteria to be used to return routing profiles.</p>",
+      "base": "<p>The search criteria to be used to return routing profiles.</p> <note> <p>The <code>name</code> and <code>description</code> fields support \"contains\" queries with a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths outside of this range will throw invalid results. </p> </note>",
       "refs": {
         "RoutingProfileSearchConditionList$member": null,
-        "SearchRoutingProfilesRequest$SearchCriteria": "<p>The search criteria to be used to return routing profiles.</p>"
+        "SearchRoutingProfilesRequest$SearchCriteria": "<p>The search criteria to be used to return routing profiles.</p> <note> <p>The <code>name</code> and <code>description</code> fields support \"contains\" queries with a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths outside of this range will throw invalid results. </p> </note>"
       }
     },
     "RoutingProfileSearchFilter": {
@@ -3869,9 +3898,9 @@
       }
     },
     "SecurityProfileSearchCriteria": {
-      "base": "<p>The search criteria to be used to return security profiles.</p>",
+      "base": "<p>The search criteria to be used to return security profiles.</p> <note> <p>The <code>name</code> field support \"contains\" queries with a minimum of 2 characters and maximum of 25 characters. Any queries with character lengths outside of this range will throw invalid results.</p> </note>",
       "refs": {
-        "SearchSecurityProfilesRequest$SearchCriteria": "<p>The search criteria to be used to return security profiles. </p> <note> <p>The currently supported value for <code>FieldName</code>: <code>name</code> </p> </note>",
+        "SearchSecurityProfilesRequest$SearchCriteria": "<p>The search criteria to be used to return security profiles. </p> <note> <p>The <code>name</code> field support \"contains\" queries with a minimum of 2 characters and maximum of 25 characters. Any queries with character lengths outside of this range will throw invalid results.</p> </note> <note> <p>The currently supported value for <code>FieldName</code>: <code>name</code> </p> </note>",
         "SecurityProfileSearchConditionList$member": null
       }
     },
@@ -4820,7 +4849,7 @@
       }
     },
     "UserSearchCriteria": {
-      "base": "<p>The search criteria to be used to return users.</p> <note> <p>The <code>Username</code>, <code>Firstname</code>, and <code>Lastname</code> fields support \"contains\" queries with a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths outside of this range result in empty results. </p> </note>",
+      "base": "<p>The search criteria to be used to return users.</p> <note> <p>The <code>name</code> and <code>description</code> fields support \"contains\" queries with a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths outside of this range will throw invalid results. </p> </note>",
       "refs": {
         "SearchUsersRequest$SearchCriteria": null,
         "UserSearchConditionList$member": null

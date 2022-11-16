@@ -23,7 +23,8 @@ const (
 	// ErrCodeContactNotFoundException for service response error code
 	// "ContactNotFoundException".
 	//
-	// The contact with the specified ID is not active or does not exist.
+	// The contact with the specified ID is not active or does not exist. Applies
+	// to Voice calls only, not to Chat, Task, or Voice Callback.
 	ErrCodeContactNotFoundException = "ContactNotFoundException"
 
 	// ErrCodeDestinationNotAllowedException for service response error code

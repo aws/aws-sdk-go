@@ -1,28 +1,6 @@
 {
     "testCases": [
         {
-            "documentation": "For region aws-global with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "properties": {
-                        "authSchemes": [
-                            {
-                                "name": "sigv4",
-                                "signingRegion": "us-east-1",
-                                "signingName": "billingconductor"
-                            }
-                        ]
-                    },
-                    "url": "https://billingconductor.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "Region": "aws-global",
-                "UseDualStack": false
-            }
-        },
-        {
             "documentation": "For custom endpoint with fips disabled and dualstack disabled",
             "expect": {
                 "endpoint": {
@@ -30,9 +8,9 @@
                 }
             },
             "params": {
+                "UseDualStack": false,
                 "UseFIPS": false,
                 "Region": "us-east-1",
-                "UseDualStack": false,
                 "Endpoint": "https://example.com"
             }
         },
@@ -42,9 +20,9 @@
                 "error": "Invalid Configuration: FIPS and custom endpoint are not supported"
             },
             "params": {
+                "UseDualStack": false,
                 "UseFIPS": true,
                 "Region": "us-east-1",
-                "UseDualStack": false,
                 "Endpoint": "https://example.com"
             }
         },
@@ -54,9 +32,9 @@
                 "error": "Invalid Configuration: Dualstack and custom endpoint are not supported"
             },
             "params": {
+                "UseDualStack": true,
                 "UseFIPS": false,
                 "Region": "us-east-1",
-                "UseDualStack": true,
                 "Endpoint": "https://example.com"
             }
         }

@@ -7728,6 +7728,21 @@ const (
 
 	// AttributeNameNegation is a AttributeName enum value
 	AttributeNameNegation = "NEGATION"
+
+	// AttributeNamePertainsToFamily is a AttributeName enum value
+	AttributeNamePertainsToFamily = "PERTAINS_TO_FAMILY"
+
+	// AttributeNameHypothetical is a AttributeName enum value
+	AttributeNameHypothetical = "HYPOTHETICAL"
+
+	// AttributeNameLowConfidence is a AttributeName enum value
+	AttributeNameLowConfidence = "LOW_CONFIDENCE"
+
+	// AttributeNamePastHistory is a AttributeName enum value
+	AttributeNamePastHistory = "PAST_HISTORY"
+
+	// AttributeNameFuture is a AttributeName enum value
+	AttributeNameFuture = "FUTURE"
 )
 
 // AttributeName_Values returns all elements of the AttributeName enum
@@ -7737,6 +7752,11 @@ func AttributeName_Values() []string {
 		AttributeNameSymptom,
 		AttributeNameDiagnosis,
 		AttributeNameNegation,
+		AttributeNamePertainsToFamily,
+		AttributeNameHypothetical,
+		AttributeNameLowConfidence,
+		AttributeNamePastHistory,
+		AttributeNameFuture,
 	}
 }
 
@@ -7854,6 +7874,27 @@ const (
 
 	// EntitySubTypeTimeToTreatmentName is a EntitySubType enum value
 	EntitySubTypeTimeToTreatmentName = "TIME_TO_TREATMENT_NAME"
+
+	// EntitySubTypeAmount is a EntitySubType enum value
+	EntitySubTypeAmount = "AMOUNT"
+
+	// EntitySubTypeGender is a EntitySubType enum value
+	EntitySubTypeGender = "GENDER"
+
+	// EntitySubTypeRaceEthnicity is a EntitySubType enum value
+	EntitySubTypeRaceEthnicity = "RACE_ETHNICITY"
+
+	// EntitySubTypeAllergies is a EntitySubType enum value
+	EntitySubTypeAllergies = "ALLERGIES"
+
+	// EntitySubTypeTobaccoUse is a EntitySubType enum value
+	EntitySubTypeTobaccoUse = "TOBACCO_USE"
+
+	// EntitySubTypeAlcoholConsumption is a EntitySubType enum value
+	EntitySubTypeAlcoholConsumption = "ALCOHOL_CONSUMPTION"
+
+	// EntitySubTypeRecDrugUse is a EntitySubType enum value
+	EntitySubTypeRecDrugUse = "REC_DRUG_USE"
 )
 
 // EntitySubType_Values returns all elements of the EntitySubType enum
@@ -7897,6 +7938,13 @@ func EntitySubType_Values() []string {
 		EntitySubTypeTimeToTestName,
 		EntitySubTypeTimeToProcedureName,
 		EntitySubTypeTimeToTreatmentName,
+		EntitySubTypeAmount,
+		EntitySubTypeGender,
+		EntitySubTypeRaceEthnicity,
+		EntitySubTypeAllergies,
+		EntitySubTypeTobaccoUse,
+		EntitySubTypeAlcoholConsumption,
+		EntitySubTypeRecDrugUse,
 	}
 }
 
@@ -7918,6 +7966,9 @@ const (
 
 	// EntityTypeTimeExpression is a EntityType enum value
 	EntityTypeTimeExpression = "TIME_EXPRESSION"
+
+	// EntityTypeBehavioralEnvironmentalSocial is a EntityType enum value
+	EntityTypeBehavioralEnvironmentalSocial = "BEHAVIORAL_ENVIRONMENTAL_SOCIAL"
 )
 
 // EntityType_Values returns all elements of the EntityType enum
@@ -7929,6 +7980,7 @@ func EntityType_Values() []string {
 		EntityTypeTestTreatmentProcedure,
 		EntityTypeAnatomy,
 		EntityTypeTimeExpression,
+		EntityTypeBehavioralEnvironmentalSocial,
 	}
 }
 
@@ -8024,6 +8076,15 @@ const (
 
 	// ICD10CMTraitNameSymptom is a ICD10CMTraitName enum value
 	ICD10CMTraitNameSymptom = "SYMPTOM"
+
+	// ICD10CMTraitNamePertainsToFamily is a ICD10CMTraitName enum value
+	ICD10CMTraitNamePertainsToFamily = "PERTAINS_TO_FAMILY"
+
+	// ICD10CMTraitNameHypothetical is a ICD10CMTraitName enum value
+	ICD10CMTraitNameHypothetical = "HYPOTHETICAL"
+
+	// ICD10CMTraitNameLowConfidence is a ICD10CMTraitName enum value
+	ICD10CMTraitNameLowConfidence = "LOW_CONFIDENCE"
 )
 
 // ICD10CMTraitName_Values returns all elements of the ICD10CMTraitName enum
@@ -8033,6 +8094,9 @@ func ICD10CMTraitName_Values() []string {
 		ICD10CMTraitNameDiagnosis,
 		ICD10CMTraitNameSign,
 		ICD10CMTraitNameSymptom,
+		ICD10CMTraitNamePertainsToFamily,
+		ICD10CMTraitNameHypothetical,
+		ICD10CMTraitNameLowConfidence,
 	}
 }
 
@@ -8141,6 +8205,9 @@ const (
 
 	// RelationshipTypeSystemOrganSite is a RelationshipType enum value
 	RelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// RelationshipTypeAmount is a RelationshipType enum value
+	RelationshipTypeAmount = "AMOUNT"
 )
 
 // RelationshipType_Values returns all elements of the RelationshipType enum
@@ -8165,6 +8232,7 @@ func RelationshipType_Values() []string {
 		RelationshipTypeTestUnit,
 		RelationshipTypeDirection,
 		RelationshipTypeSystemOrganSite,
+		RelationshipTypeAmount,
 	}
 }
 
@@ -8364,6 +8432,21 @@ const (
 
 	// SNOMEDCTTraitNameSymptom is a SNOMEDCTTraitName enum value
 	SNOMEDCTTraitNameSymptom = "SYMPTOM"
+
+	// SNOMEDCTTraitNamePertainsToFamily is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNamePertainsToFamily = "PERTAINS_TO_FAMILY"
+
+	// SNOMEDCTTraitNameHypothetical is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameHypothetical = "HYPOTHETICAL"
+
+	// SNOMEDCTTraitNameLowConfidence is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameLowConfidence = "LOW_CONFIDENCE"
+
+	// SNOMEDCTTraitNamePastHistory is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNamePastHistory = "PAST_HISTORY"
+
+	// SNOMEDCTTraitNameFuture is a SNOMEDCTTraitName enum value
+	SNOMEDCTTraitNameFuture = "FUTURE"
 )
 
 // SNOMEDCTTraitName_Values returns all elements of the SNOMEDCTTraitName enum
@@ -8373,5 +8456,10 @@ func SNOMEDCTTraitName_Values() []string {
 		SNOMEDCTTraitNameDiagnosis,
 		SNOMEDCTTraitNameSign,
 		SNOMEDCTTraitNameSymptom,
+		SNOMEDCTTraitNamePertainsToFamily,
+		SNOMEDCTTraitNameHypothetical,
+		SNOMEDCTTraitNameLowConfidence,
+		SNOMEDCTTraitNamePastHistory,
+		SNOMEDCTTraitNameFuture,
 	}
 }

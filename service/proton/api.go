@@ -695,17 +695,12 @@ func (c *Proton) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *r
 //
 // You can provision environments using the following methods:
 //
-//   - Amazon Web Services-managed provisioning – Proton makes direct calls
+//   - Amazon Web Services-managed provisioning: Proton makes direct calls
 //     to provision your resources.
 //
-//   - Self-managed provisioning – Proton makes pull requests on your repository
+//   - Self-managed provisioning: Proton makes pull requests on your repository
 //     to provide compiled infrastructure as code (IaC) files that your IaC engine
 //     uses to provision resources.
-//
-//   - CodeBuild-based provisioning – Proton uses CodeBuild to run shell
-//     commands that you provide. Your commands can read inputs that Proton provides,
-//     and are responsible for provisioning or deprovisioning infrastructure
-//     and generating output values.
 //
 // For more information, see Environments (https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html)
 // and Provisioning methods (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html)
@@ -5880,7 +5875,8 @@ func (c *Proton) ListServiceInstancesRequest(input *ListServiceInstancesInput) (
 
 // ListServiceInstances API operation for AWS Proton.
 //
-// List service instances with summary data.
+// List service instances with summary data. This action lists service instances
+// of all services in the Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6914,11 +6910,11 @@ func (c *Proton) NotifyResourceDeploymentStatusChangeRequest(input *NotifyResour
 
 // NotifyResourceDeploymentStatusChange API operation for AWS Proton.
 //
-// Notify Proton of the following information related to a provisioned resource
-// (environment, service instance, or service pipeline):
+// Notify Proton of status changes to a provisioned resource when you use self-managed
+// provisioning.
 //
-//   - For CodeBuild-based provisioning (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-codebuild),
-//     provide your provisioned resource output values to Proton.
+// For more information, see Self-managed provisioning (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7526,8 +7522,8 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // Update an environment.
 //
 // If the environment is associated with an environment account connection,
-// don't update or include the protonServiceRoleArn, codebuildRoleArn, and provisioningRepository
-// parameters.
+// don't update or include the protonServiceRoleArn and provisioningRepository
+// parameter to update or connect to an environment account connection.
 //
 // You can only update to a new environment account connection if that connection
 // was created in the same environment account that the current environment
@@ -7539,15 +7535,15 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // can't update or connect the environment to an environment account connection
 // if it isn't already associated with an environment connection.
 //
-// You can update either environmentAccountConnectionId or one or more of protonServiceRoleArn,
-// codebuildRoleArn, and provisioningRepository.
+// You can update either the environmentAccountConnectionId or protonServiceRoleArn
+// parameter and value. You can’t update both.
 //
-// If the environment was configured for Amazon Web Services-managed or CodeBuild-based
-// provisioning, omit the provisioningRepository parameter.
+// If the environment was configured for Amazon Web Services-managed provisioning,
+// omit the provisioningRepository parameter.
 //
 // If the environment was configured for self-managed provisioning, specify
-// the provisioningRepository parameter and omit the protonServiceRoleArn, codebuildRoleArn,
-// and provisioningRepository parameters.
+// the provisioningRepository parameter and omit the protonServiceRoleArn and
+// environmentAccountConnectionId parameters.
 //
 // For more information, see Environments (https://docs.aws.amazon.com/proton/latest/userguide/ag-environments.html)
 // and Provisioning methods (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html)
@@ -8708,8 +8704,9 @@ type AccountSettings struct {
 	// For more information, see CreateRepository.
 	PipelineProvisioningRepository *RepositoryBranch `locationName:"pipelineProvisioningRepository" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the service role that Proton uses for provisioning
-	// pipelines. Proton assumes this role for Amazon Web Services-managed provisioning.
+	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
+	// pipelines. Assumed by Proton for Amazon Web Services-managed provisioning,
+	// and by customer-owned automation for self-managed provisioning.
 	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" type:"string"`
 }
 
@@ -9824,10 +9821,10 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// CodeBuild-based provisioning in the associated environment account.
 	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of an IAM service role in the environment
-	// account. Proton uses this role to provision directly defined components in
-	// the associated environment account. It determines the scope of infrastructure
-	// that a component can provision in the account.
+	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
+	// provisioning directly defined components in the associated environment account.
+	// It determines the scope of infrastructure that a component can provision
+	// in the account.
 	//
 	// You must specify componentRoleArn to allow directly defined components to
 	// be associated with any environments running in this account.
@@ -9851,10 +9848,9 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// ManagementAccountId is a required field
 	ManagementAccountId *string `locationName:"managementAccountId" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM service role in the environment
-	// account. Proton uses this role to provision infrastructure resources using
-	// Amazon Web Services-managed provisioning and CloudFormation in the associated
-	// environment account.
+	// The Amazon Resource Name (ARN) of the IAM service role that's created in
+	// the environment account. Proton uses this role to provision infrastructure
+	// resources in the associated environment account.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
@@ -10030,14 +10026,14 @@ type CreateEnvironmentInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The ID of the environment account connection that you provide if you want
-	// Proton to provision infrastructure resources for your environment or for
-	// any of the service instances running in it in an environment account. For
+	// The ID of the environment account connection that you provide if you're provisioning
+	// your environment infrastructure resources to an environment account. For
 	// more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
 	// in the Proton User guide.
 	//
-	// If you specify the environmentAccountConnectionId parameter, don't specify
-	// protonServiceRoleArn, codebuildRoleArn, or provisioningRepository.
+	// To use Amazon Web Services-managed provisioning for the environment, specify
+	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
+	// and omit the provisioningRepository parameter.
 	EnvironmentAccountConnectionId *string `locationName:"environmentAccountConnectionId" type:"string"`
 
 	// The name of the environment.
@@ -10045,21 +10041,20 @@ type CreateEnvironmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
-	// to provision infrastructure using Amazon Web Services-managed provisioning
-	// and CloudFormation on your behalf.
+	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
+	// to make calls to other services on your behalf.
 	//
-	// To use Amazon Web Services-managed provisioning for the environment or for
-	// any service instance running in the environment, specify either the environmentAccountConnectionId
-	// or protonServiceRoleArn parameter.
+	// To use Amazon Web Services-managed provisioning for the environment, specify
+	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
+	// and omit the provisioningRepository parameter.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// The linked repository that you use to host your rendered infrastructure templates
 	// for self-managed provisioning. A linked repository is a repository that has
 	// been registered with Proton. For more information, see CreateRepository.
 	//
-	// To use self-managed provisioning for the environment or for any service instance
-	// running in the environment, specify this parameter.
+	// To use self-managed provisioning for the environment, specify this parameter
+	// and omit the environmentAccountConnectionId and protonServiceRoleArn parameters.
 	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
 	// A YAML formatted string that provides inputs as defined in the environment
@@ -12444,8 +12439,8 @@ type Environment struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The ID of the environment account connection that Proton uses to provision
-	// infrastructure resources in an environment account.
+	// The ID of the environment account connection that's used to provision infrastructure
+	// resources in an environment account.
 	EnvironmentAccountConnectionId *string `locationName:"environmentAccountConnectionId" type:"string"`
 
 	// The ID of the environment account that the environment infrastructure resources
@@ -12467,9 +12462,8 @@ type Environment struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
-	// to provision infrastructure using Amazon Web Services-managed provisioning
-	// and CloudFormation on your behalf.
+	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
+	// to make calls to other services on your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// When included, indicates that the environment template is for customer provisioned
@@ -12695,10 +12689,7 @@ type EnvironmentAccountConnection struct {
 	// RequestedAt is a required field
 	RequestedAt *time.Time `locationName:"requestedAt" type:"timestamp" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM service role in the environment
-	// account. Proton uses this role to provision infrastructure resources using
-	// Amazon Web Services-managed provisioning and CloudFormation in the associated
-	// environment account.
+	// The IAM service role that's associated with the environment account connection.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
@@ -16616,8 +16607,58 @@ func (s *ListServiceInstanceProvisionedResourcesOutput) SetProvisionedResources(
 	return s
 }
 
+// A filtering criterion to scope down the result list of the ListServiceInstances
+// action.
+type ListServiceInstancesFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a filtering criterion.
+	Key *string `locationName:"key" type:"string" enum:"ListServiceInstancesFilterBy"`
+
+	// A value to filter by.
+	//
+	// With the date/time keys (*At{Before,After}), the value is a valid RFC 3339
+	// (https://datatracker.ietf.org/doc/html/rfc3339.html) string with no UTC offset
+	// and with an optional fractional precision (for example, 1985-04-12T23:20:50.52Z).
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstancesFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstancesFilter) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *ListServiceInstancesFilter) SetKey(v string) *ListServiceInstancesFilter {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ListServiceInstancesFilter) SetValue(v string) *ListServiceInstancesFilter {
+	s.Value = &v
+	return s
+}
+
 type ListServiceInstancesInput struct {
 	_ struct{} `type:"structure"`
+
+	// An array of filtering criteria that scope down the result list. By default,
+	// all service instances in the Amazon Web Services account are returned.
+	Filters []*ListServiceInstancesFilter `locationName:"filters" type:"list"`
 
 	// The maximum number of service instances to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -16628,6 +16669,19 @@ type ListServiceInstancesInput struct {
 
 	// The name of the service that the service instance belongs to.
 	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
+
+	// The field that the result list is sorted by.
+	//
+	// When you choose to sort by serviceName, service instances within each service
+	// are sorted by service instance name.
+	//
+	// Default: serviceName
+	SortBy *string `locationName:"sortBy" type:"string" enum:"ListServiceInstancesSortBy"`
+
+	// Result list sort order.
+	//
+	// Default: ASCENDING
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
 }
 
 // String returns the string representation.
@@ -16664,6 +16718,12 @@ func (s *ListServiceInstancesInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *ListServiceInstancesInput) SetFilters(v []*ListServiceInstancesFilter) *ListServiceInstancesInput {
+	s.Filters = v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListServiceInstancesInput) SetMaxResults(v int64) *ListServiceInstancesInput {
 	s.MaxResults = &v
@@ -16679,6 +16739,18 @@ func (s *ListServiceInstancesInput) SetNextToken(v string) *ListServiceInstances
 // SetServiceName sets the ServiceName field's value.
 func (s *ListServiceInstancesInput) SetServiceName(v string) *ListServiceInstancesInput {
 	s.ServiceName = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListServiceInstancesInput) SetSortBy(v string) *ListServiceInstancesInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListServiceInstancesInput) SetSortOrder(v string) *ListServiceInstancesInput {
+	s.SortOrder = &v
 	return s
 }
 
@@ -17373,15 +17445,13 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type NotifyResourceDeploymentStatusChangeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The deployment ID for your provisioned resource. Proton uses it to disambiguate
-	// different deployments of the resource. Applicable to self-managed provisioning
-	// (https://docs.aws.amazon.com/proton/latest/userguide/ag-works-prov-methods.html#ag-works-prov-methods-self).
+	// The deployment ID for your provisioned resource.
 	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
-	// The output values generated by your provisioned resource.
+	// The provisioned resource state change detail data that's returned by Proton.
 	Outputs []*Output_ `locationName:"outputs" type:"list"`
 
-	// The Amazon Resource Name (ARN) of your provisioned resource.
+	// The provisioned resource Amazon Resource Name (ARN).
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -20662,10 +20732,8 @@ type UpdateEnvironmentAccountConnectionInput struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM service role in the environment
-	// account. Proton uses this role to provision infrastructure resources using
-	// Amazon Web Services-managed provisioning and CloudFormation in the associated
-	// environment account.
+	// The Amazon Resource Name (ARN) of the IAM service role that's associated
+	// with the environment account connection to update.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 }
 
@@ -20822,11 +20890,7 @@ type UpdateEnvironmentInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// The ID of the environment account connection that you provide if you want
-	// Proton to provision infrastructure resources for your environment or for
-	// any of the service instances running in it in an environment account. For
-	// more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/userguide/ag-env-account-connections.html)
-	// in the Proton User guide.
+	// The ID of the environment account connection.
 	//
 	// You can only update to a new environment account connection if it was created
 	// in the same environment account that the current environment account connection
@@ -20838,9 +20902,8 @@ type UpdateEnvironmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
-	// to provision infrastructure using Amazon Web Services-managed provisioning
-	// and CloudFormation on your behalf.
+	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
+	// to make API calls to other services your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// The linked repository that you use to host your rendered infrastructure templates
@@ -22366,6 +22429,90 @@ func EnvironmentAccountConnectionStatus_Values() []string {
 	}
 }
 
+const (
+	// ListServiceInstancesFilterByName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByName = "name"
+
+	// ListServiceInstancesFilterByDeploymentStatus is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByDeploymentStatus = "deploymentStatus"
+
+	// ListServiceInstancesFilterByTemplateName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByTemplateName = "templateName"
+
+	// ListServiceInstancesFilterByServiceName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByServiceName = "serviceName"
+
+	// ListServiceInstancesFilterByDeployedTemplateVersionStatus is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByDeployedTemplateVersionStatus = "deployedTemplateVersionStatus"
+
+	// ListServiceInstancesFilterByEnvironmentName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByEnvironmentName = "environmentName"
+
+	// ListServiceInstancesFilterByLastDeploymentAttemptedAtBefore is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByLastDeploymentAttemptedAtBefore = "lastDeploymentAttemptedAtBefore"
+
+	// ListServiceInstancesFilterByLastDeploymentAttemptedAtAfter is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByLastDeploymentAttemptedAtAfter = "lastDeploymentAttemptedAtAfter"
+
+	// ListServiceInstancesFilterByCreatedAtBefore is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByCreatedAtBefore = "createdAtBefore"
+
+	// ListServiceInstancesFilterByCreatedAtAfter is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByCreatedAtAfter = "createdAtAfter"
+)
+
+// ListServiceInstancesFilterBy_Values returns all elements of the ListServiceInstancesFilterBy enum
+func ListServiceInstancesFilterBy_Values() []string {
+	return []string{
+		ListServiceInstancesFilterByName,
+		ListServiceInstancesFilterByDeploymentStatus,
+		ListServiceInstancesFilterByTemplateName,
+		ListServiceInstancesFilterByServiceName,
+		ListServiceInstancesFilterByDeployedTemplateVersionStatus,
+		ListServiceInstancesFilterByEnvironmentName,
+		ListServiceInstancesFilterByLastDeploymentAttemptedAtBefore,
+		ListServiceInstancesFilterByLastDeploymentAttemptedAtAfter,
+		ListServiceInstancesFilterByCreatedAtBefore,
+		ListServiceInstancesFilterByCreatedAtAfter,
+	}
+}
+
+const (
+	// ListServiceInstancesSortByName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByName = "name"
+
+	// ListServiceInstancesSortByDeploymentStatus is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByDeploymentStatus = "deploymentStatus"
+
+	// ListServiceInstancesSortByTemplateName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByTemplateName = "templateName"
+
+	// ListServiceInstancesSortByServiceName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByServiceName = "serviceName"
+
+	// ListServiceInstancesSortByEnvironmentName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByEnvironmentName = "environmentName"
+
+	// ListServiceInstancesSortByLastDeploymentAttemptedAt is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByLastDeploymentAttemptedAt = "lastDeploymentAttemptedAt"
+
+	// ListServiceInstancesSortByCreatedAt is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByCreatedAt = "createdAt"
+)
+
+// ListServiceInstancesSortBy_Values returns all elements of the ListServiceInstancesSortBy enum
+func ListServiceInstancesSortBy_Values() []string {
+	return []string{
+		ListServiceInstancesSortByName,
+		ListServiceInstancesSortByDeploymentStatus,
+		ListServiceInstancesSortByTemplateName,
+		ListServiceInstancesSortByServiceName,
+		ListServiceInstancesSortByEnvironmentName,
+		ListServiceInstancesSortByLastDeploymentAttemptedAt,
+		ListServiceInstancesSortByCreatedAt,
+	}
+}
+
 // List of provisioning engines
 const (
 	// ProvisionedResourceEngineCloudformation is a ProvisionedResourceEngine enum value
@@ -22561,6 +22708,22 @@ const (
 func ServiceTemplateSupportedComponentSourceType_Values() []string {
 	return []string{
 		ServiceTemplateSupportedComponentSourceTypeDirectlyDefined,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }
 

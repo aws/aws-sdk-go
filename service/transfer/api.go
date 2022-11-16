@@ -191,6 +191,9 @@ func (c *Transfer) CreateAgreementRequest(input *CreateAgreementInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAgreement
 func (c *Transfer) CreateAgreement(input *CreateAgreementInput) (*CreateAgreementOutput, error) {
 	req, out := c.CreateAgreementRequest(input)
@@ -288,6 +291,9 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateConnector
 func (c *Transfer) CreateConnector(input *CreateConnectorInput) (*CreateConnectorOutput, error) {
 	req, out := c.CreateConnectorRequest(input)
@@ -378,6 +384,9 @@ func (c *Transfer) CreateProfileRequest(input *CreateProfileInput) (req *request
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateProfile
 func (c *Transfer) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
@@ -5492,6 +5501,9 @@ func (c *Transfer) UpdateAccessRequest(input *UpdateAccessInput) (req *request.R
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAccess
 func (c *Transfer) UpdateAccess(input *UpdateAccessInput) (*UpdateAccessOutput, error) {
 	req, out := c.UpdateAccessRequest(input)
@@ -5588,6 +5600,9 @@ func (c *Transfer) UpdateAgreementRequest(input *UpdateAgreementInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAgreement
 func (c *Transfer) UpdateAgreement(input *UpdateAgreementInput) (*UpdateAgreementOutput, error) {
 	req, out := c.UpdateAgreementRequest(input)
@@ -5678,6 +5693,9 @@ func (c *Transfer) UpdateCertificateRequest(input *UpdateCertificateInput) (req 
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateCertificate
 func (c *Transfer) UpdateCertificate(input *UpdateCertificateInput) (*UpdateCertificateOutput, error) {
@@ -5774,6 +5792,9 @@ func (c *Transfer) UpdateConnectorRequest(input *UpdateConnectorInput) (req *req
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateConnector
 func (c *Transfer) UpdateConnector(input *UpdateConnectorInput) (*UpdateConnectorOutput, error) {
@@ -5962,6 +5983,9 @@ func (c *Transfer) UpdateProfileRequest(input *UpdateProfileInput) (req *request
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateProfile
 func (c *Transfer) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {

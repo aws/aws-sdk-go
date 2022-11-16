@@ -176,7 +176,8 @@
         {"shape":"InternalServerError"},
         {"shape":"OpsItemAlreadyExistsException"},
         {"shape":"OpsItemLimitExceededException"},
-        {"shape":"OpsItemInvalidParameterException"}
+        {"shape":"OpsItemInvalidParameterException"},
+        {"shape":"OpsItemAccessDeniedException"}
       ]
     },
     "CreateOpsMetadata":{
@@ -362,6 +363,20 @@
         {"shape":"InternalServerError"},
         {"shape":"ResourceDataSyncNotFoundException"},
         {"shape":"ResourceDataSyncInvalidConfigurationException"}
+      ]
+    },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "output":{"shape":"DeleteResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ResourcePolicyInvalidParameterException"},
+        {"shape":"ResourcePolicyConflictException"}
       ]
     },
     "DeregisterManagedInstance":{
@@ -1074,7 +1089,8 @@
       "output":{"shape":"GetOpsItemResponse"},
       "errors":[
         {"shape":"InternalServerError"},
-        {"shape":"OpsItemNotFoundException"}
+        {"shape":"OpsItemNotFoundException"},
+        {"shape":"OpsItemAccessDeniedException"}
       ]
     },
     "GetOpsMetadata":{
@@ -1192,6 +1208,19 @@
       "output":{"shape":"GetPatchBaselineForPatchGroupResult"},
       "errors":[
         {"shape":"InternalServerError"}
+      ]
+    },
+    "GetResourcePolicies":{
+      "name":"GetResourcePolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcePoliciesRequest"},
+      "output":{"shape":"GetResourcePoliciesResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ResourcePolicyInvalidParameterException"}
       ]
     },
     "GetServiceSetting":{
@@ -1535,6 +1564,21 @@
         {"shape":"InvalidPolicyTypeException"},
         {"shape":"InvalidPolicyAttributeException"},
         {"shape":"IncompatiblePolicyException"}
+      ]
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"ResourcePolicyInvalidParameterException"},
+        {"shape":"ResourcePolicyLimitExceededException"},
+        {"shape":"ResourcePolicyConflictException"}
       ]
     },
     "RegisterDefaultPatchBaseline":{
@@ -1938,7 +1982,8 @@
         {"shape":"OpsItemNotFoundException"},
         {"shape":"OpsItemAlreadyExistsException"},
         {"shape":"OpsItemLimitExceededException"},
-        {"shape":"OpsItemInvalidParameterException"}
+        {"shape":"OpsItemInvalidParameterException"},
+        {"shape":"OpsItemAccessDeniedException"}
       ]
     },
     "UpdateOpsMetadata":{
@@ -3531,13 +3576,15 @@
         "ActualStartTime":{"shape":"DateTime"},
         "ActualEndTime":{"shape":"DateTime"},
         "PlannedStartTime":{"shape":"DateTime"},
-        "PlannedEndTime":{"shape":"DateTime"}
+        "PlannedEndTime":{"shape":"DateTime"},
+        "AccountId":{"shape":"OpsItemAccountId"}
       }
     },
     "CreateOpsItemResponse":{
       "type":"structure",
       "members":{
-        "OpsItemId":{"shape":"String"}
+        "OpsItemId":{"shape":"String"},
+        "OpsItemArn":{"shape":"OpsItemArn"}
       }
     },
     "CreateOpsMetadataRequest":{
@@ -3751,6 +3798,24 @@
       }
     },
     "DeleteResourceDataSyncResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "PolicyId",
+        "PolicyHash"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArnString"},
+        "PolicyId":{"shape":"PolicyId"},
+        "PolicyHash":{"shape":"PolicyHash"}
+      }
+    },
+    "DeleteResourcePolicyResponse":{
       "type":"structure",
       "members":{
       }
@@ -5314,7 +5379,8 @@
       "type":"structure",
       "required":["OpsItemId"],
       "members":{
-        "OpsItemId":{"shape":"OpsItemId"}
+        "OpsItemId":{"shape":"OpsItemId"},
+        "OpsItemArn":{"shape":"OpsItemArn"}
       }
     },
     "GetOpsItemResponse":{
@@ -5504,6 +5570,34 @@
         "ModifiedDate":{"shape":"DateTime"},
         "Description":{"shape":"BaselineDescription"},
         "Sources":{"shape":"PatchSourceList"}
+      }
+    },
+    "GetResourcePoliciesRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArnString"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"ResourcePolicyMaxResults"}
+      }
+    },
+    "GetResourcePoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "Policies":{"shape":"GetResourcePoliciesResponseEntries"}
+      }
+    },
+    "GetResourcePoliciesResponseEntries":{
+      "type":"list",
+      "member":{"shape":"GetResourcePoliciesResponseEntry"}
+    },
+    "GetResourcePoliciesResponseEntry":{
+      "type":"structure",
+      "members":{
+        "PolicyId":{"shape":"PolicyId"},
+        "PolicyHash":{"shape":"PolicyHash"},
+        "Policy":{"shape":"Policy"}
       }
     },
     "GetServiceSettingRequest":{
@@ -7590,8 +7684,20 @@
         "ActualStartTime":{"shape":"DateTime"},
         "ActualEndTime":{"shape":"DateTime"},
         "PlannedStartTime":{"shape":"DateTime"},
-        "PlannedEndTime":{"shape":"DateTime"}
+        "PlannedEndTime":{"shape":"DateTime"},
+        "OpsItemArn":{"shape":"OpsItemArn"}
       }
+    },
+    "OpsItemAccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "OpsItemAccountId":{
+      "type":"string",
+      "pattern":"^[0-9]{12}$"
     },
     "OpsItemAlreadyExistsException":{
       "type":"structure",
@@ -7600,6 +7706,12 @@
         "OpsItemId":{"shape":"String"}
       },
       "exception":true
+    },
+    "OpsItemArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:ssm:[a-z0-9-\\.]{0,63}:[0-9]{12}:opsitem.*"
     },
     "OpsItemCategory":{
       "type":"string",
@@ -7735,7 +7847,8 @@
         "ChangeRequestByApproverName",
         "ChangeRequestByTemplate",
         "ChangeRequestByTargetsResourceGroup",
-        "InsightByType"
+        "InsightByType",
+        "AccountId"
       ]
     },
     "OpsItemFilterOperator":{
@@ -8805,6 +8918,12 @@
       },
       "exception":true
     },
+    "Policy":{
+      "type":"string",
+      "pattern":"\\S+"
+    },
+    "PolicyHash":{"type":"string"},
+    "PolicyId":{"type":"string"},
     "Product":{"type":"string"},
     "ProgressCounters":{
       "type":"structure",
@@ -8889,6 +9008,26 @@
       "members":{
         "Version":{"shape":"PSParameterVersion"},
         "Tier":{"shape":"ParameterTier"}
+      }
+    },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Policy"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArnString"},
+        "Policy":{"shape":"Policy"},
+        "PolicyId":{"shape":"PolicyId"},
+        "PolicyHash":{"shape":"PolicyHash"}
+      }
+    },
+    "PutResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyId":{"shape":"PolicyId"},
+        "PolicyHash":{"shape":"PolicyHash"}
       }
     },
     "RebootOption":{
@@ -9098,6 +9237,11 @@
         "ParameterValues":{"shape":"TargetParameterList"},
         "Truncated":{"shape":"Boolean"}
       }
+    },
+    "ResourceArnString":{
+      "type":"string",
+      "max":2048,
+      "min":20
     },
     "ResourceComplianceSummaryItem":{
       "type":"structure",
@@ -9329,6 +9473,39 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "ResourcePolicyConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourcePolicyInvalidParameterException":{
+      "type":"structure",
+      "members":{
+        "ParameterNames":{"shape":"ResourcePolicyParameterNamesList"},
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourcePolicyLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Limit":{"shape":"Integer"},
+        "LimitType":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ResourcePolicyMaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "ResourcePolicyParameterNamesList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "ResourceType":{
       "type":"string",
@@ -10546,7 +10723,8 @@
         "ActualStartTime":{"shape":"DateTime"},
         "ActualEndTime":{"shape":"DateTime"},
         "PlannedStartTime":{"shape":"DateTime"},
-        "PlannedEndTime":{"shape":"DateTime"}
+        "PlannedEndTime":{"shape":"DateTime"},
+        "OpsItemArn":{"shape":"OpsItemArn"}
       }
     },
     "UpdateOpsItemResponse":{

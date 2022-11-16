@@ -127,6 +127,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "PagerDutyIncidentDetail$autoResolve": "<p>Indicates whether to resolve the PagerDuty incident when you resolve the associated Incident Manager incident.</p>",
         "ReplicationSet$deletionProtected": "<p>Determines if the replication set deletion protection is enabled or not. If deletion protection is enabled, you can't delete the last Amazon Web Services Region in the replication set. </p>",
         "UpdateDeletionProtectionInput$deletionProtected": "<p>Specifies if deletion protection is turned on or off in your account. </p>"
       }
@@ -512,6 +513,20 @@
         "AttributeValueList$integerValues": "<p>The list of integer values that the filter matches.</p>"
       }
     },
+    "Integration": {
+      "base": "<p>Information about third-party services integrated into a response plan.</p>",
+      "refs": {
+        "Integrations$member": null
+      }
+    },
+    "Integrations": {
+      "base": null,
+      "refs": {
+        "CreateResponsePlanInput$integrations": "<p>Information about third-party services integrated into the response plan.</p>",
+        "GetResponsePlanOutput$integrations": "<p>Information about third-party services integrated into the Incident Manager response plan.</p>",
+        "UpdateResponsePlanInput$integrations": "<p>Information about third-party services integrated into the response plan.</p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>The request processing has failed because of an unknown error, exception or failure.</p>",
       "refs": {
@@ -643,6 +658,54 @@
         "IncidentTemplate$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>",
         "UpdateIncidentRecordInput$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p> <p>Using multiple SNS topics creates redundancy in the event that a Region is down during the incident.</p>",
         "UpdateResponsePlanInput$incidentTemplateNotificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>"
+      }
+    },
+    "PagerDutyConfiguration": {
+      "base": "<p>Details about the PagerDuty configuration for a response plan.</p>",
+      "refs": {
+        "Integration$pagerDutyConfiguration": "<p>Information about the PagerDuty service where the response plan creates an incident.</p>"
+      }
+    },
+    "PagerDutyConfigurationNameString": {
+      "base": null,
+      "refs": {
+        "PagerDutyConfiguration$name": "<p>The name of the PagerDuty configuration.</p>"
+      }
+    },
+    "PagerDutyConfigurationSecretIdString": {
+      "base": null,
+      "refs": {
+        "PagerDutyConfiguration$secretId": "<p>The ID of the Amazon Web Services Secrets Manager secret that stores your PagerDuty key, either a General Access REST API Key or User Token REST API Key, and other user credentials.</p>"
+      }
+    },
+    "PagerDutyIncidentConfiguration": {
+      "base": "<p>Details about the PagerDuty service where the response plan creates an incident.</p>",
+      "refs": {
+        "PagerDutyConfiguration$pagerDutyIncidentConfiguration": "<p>Details about the PagerDuty service associated with the configuration.</p>"
+      }
+    },
+    "PagerDutyIncidentConfigurationServiceIdString": {
+      "base": null,
+      "refs": {
+        "PagerDutyIncidentConfiguration$serviceId": "<p>The ID of the PagerDuty service that the response plan associates with an incident when it launches.</p>"
+      }
+    },
+    "PagerDutyIncidentDetail": {
+      "base": "<p>Details about the PagerDuty incident associated with an incident created by an Incident Manager response plan.</p>",
+      "refs": {
+        "ItemValue$pagerDutyIncidentDetail": "<p>Details about an incident that is associated with a PagerDuty incident.</p>"
+      }
+    },
+    "PagerDutyIncidentDetailIdString": {
+      "base": null,
+      "refs": {
+        "PagerDutyIncidentDetail$id": "<p>The ID of the incident associated with the PagerDuty service for the response plan.</p>"
+      }
+    },
+    "PagerDutyIncidentDetailSecretIdString": {
+      "base": null,
+      "refs": {
+        "PagerDutyIncidentDetail$secretId": "<p>The ID of the Amazon Web Services Secrets Manager secret that stores your PagerDuty key, either a General Access REST API Key or User Token REST API Key, and other user credentials.</p>"
       }
     },
     "Policy": {
