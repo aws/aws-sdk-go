@@ -1335,11 +1335,19 @@
         "PasswordCount":{"shape":"IntegerOptional"}
       }
     },
+    "AuthenticationMode":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"InputAuthenticationType"},
+        "Passwords":{"shape":"PasswordListInput"}
+      }
+    },
     "AuthenticationType":{
       "type":"string",
       "enum":[
         "password",
-        "no-password"
+        "no-password",
+        "iam"
       ]
     },
     "AuthorizationAlreadyExistsFault":{
@@ -2144,7 +2152,8 @@
         "Passwords":{"shape":"PasswordListInput"},
         "AccessString":{"shape":"AccessString"},
         "NoPasswordRequired":{"shape":"BooleanOptional"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "AuthenticationMode":{"shape":"AuthenticationMode"}
       }
     },
     "CustomerNodeEndpoint":{
@@ -2812,6 +2821,14 @@
         "ReplicationGroup":{"shape":"ReplicationGroup"}
       }
     },
+    "InputAuthenticationType":{
+      "type":"string",
+      "enum":[
+        "password",
+        "no-password-required",
+        "iam"
+      ]
+    },
     "InsufficientCacheClusterCapacityFault":{
       "type":"structure",
       "members":{
@@ -3234,7 +3251,8 @@
         "AccessString":{"shape":"AccessString"},
         "AppendAccessString":{"shape":"AccessString"},
         "Passwords":{"shape":"PasswordListInput"},
-        "NoPasswordRequired":{"shape":"BooleanOptional"}
+        "NoPasswordRequired":{"shape":"BooleanOptional"},
+        "AuthenticationMode":{"shape":"AuthenticationMode"}
       }
     },
     "MultiAZStatus":{

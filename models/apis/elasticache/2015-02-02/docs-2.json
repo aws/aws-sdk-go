@@ -130,6 +130,13 @@
         "User$Authentication": "<p>Denotes whether the user requires a password to authenticate.</p>"
       }
     },
+    "AuthenticationMode": {
+      "base": "<p>Specifies the authentication mode to use.</p>",
+      "refs": {
+        "CreateUserMessage$AuthenticationMode": "<p>Specifies how to authenticate the user.</p>",
+        "ModifyUserMessage$AuthenticationMode": "<p>Specifies how to authenticate the user.</p>"
+      }
+    },
     "AuthenticationType": {
       "base": null,
       "refs": {
@@ -1102,6 +1109,12 @@
       "refs": {
       }
     },
+    "InputAuthenticationType": {
+      "base": null,
+      "refs": {
+        "AuthenticationMode$Type": "<p>Specifies the authentication type. Possible options are IAM authentication, password and no password.</p>"
+      }
+    },
     "InsufficientCacheClusterCapacityFault": {
       "base": "<p>The requested cache node type is not available in the specified Availability Zone. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ErrorMessages.html#ErrorMessages.INSUFFICIENT_CACHE_CLUSTER_CAPACITY\">InsufficientCacheClusterCapacity</a> in the ElastiCache User Guide.</p>",
       "refs": {
@@ -1587,6 +1600,7 @@
     "PasswordListInput": {
       "base": null,
       "refs": {
+        "AuthenticationMode$Passwords": "<p>Specifies the passwords to use for authentication if <code>Type</code> is set to <code>password</code>.</p>",
         "CreateUserMessage$Passwords": "<p>Passwords used for this user. You can create up to two passwords for each user.</p>",
         "ModifyUserMessage$Passwords": "<p>The passwords belonging to the user. You are allowed up to two.</p>"
       }

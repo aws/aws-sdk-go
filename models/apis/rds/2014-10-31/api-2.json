@@ -2764,7 +2764,10 @@
         "DBClusterIdentifier":{"shape":"String"},
         "MasterUserPassword":{"shape":"String"},
         "IAMDatabaseAuthenticationEnabled":{"shape":"BooleanOptional"},
-        "EngineVersion":{"shape":"String"}
+        "EngineVersion":{"shape":"String"},
+        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
+        "AllocatedStorage":{"shape":"IntegerOptional"},
+        "Iops":{"shape":"IntegerOptional"}
       }
     },
     "ConnectionPoolConfiguration":{
@@ -2979,7 +2982,8 @@
         "PerformanceInsightsKMSKeyId":{"shape":"String"},
         "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"},
         "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "DBSystemId":{"shape":"String"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -3473,7 +3477,8 @@
         "PerformanceInsightsKMSKeyId":{"shape":"String"},
         "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"},
         "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfigurationInfo"},
-        "NetworkType":{"shape":"String"}
+        "NetworkType":{"shape":"String"},
+        "DBSystemId":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3789,7 +3794,8 @@
         "DBClusterSnapshotArn":{"shape":"String"},
         "SourceDBClusterSnapshotArn":{"shape":"String"},
         "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
-        "TagList":{"shape":"TagList"}
+        "TagList":{"shape":"TagList"},
+        "DBSystemId":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3879,7 +3885,8 @@
         "KMSKeyId":{"shape":"String"},
         "CreateTime":{"shape":"TStamp"},
         "TagList":{"shape":"TagList"},
-        "SupportsBabelfish":{"shape":"Boolean"}
+        "SupportsBabelfish":{"shape":"Boolean"},
+        "CustomDBEngineVersionManifest":{"shape":"CustomDBEngineVersionManifest"}
       }
     },
     "DBEngineVersionList":{
@@ -3975,7 +3982,8 @@
         "BackupTarget":{"shape":"String"},
         "NetworkType":{"shape":"String"},
         "ActivityStreamPolicyStatus":{"shape":"ActivityStreamPolicyStatus"},
-        "StorageThroughput":{"shape":"IntegerOptional"}
+        "StorageThroughput":{"shape":"IntegerOptional"},
+        "DBSystemId":{"shape":"String"}
       },
       "wrapper":true
     },

@@ -11974,6 +11974,105 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 	return p.Err()
 }
 
+const opMonitorContact = "MonitorContact"
+
+// MonitorContactRequest generates a "aws/request.Request" representing the
+// client's request for the MonitorContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See MonitorContact for more information on using the MonitorContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the MonitorContactRequest method.
+//	req, resp := client.MonitorContactRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/MonitorContact
+func (c *Connect) MonitorContactRequest(input *MonitorContactInput) (req *request.Request, output *MonitorContactOutput) {
+	op := &request.Operation{
+		Name:       opMonitorContact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/monitor",
+	}
+
+	if input == nil {
+		input = &MonitorContactInput{}
+	}
+
+	output = &MonitorContactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// MonitorContact API operation for Amazon Connect Service.
+//
+// Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+// of the user specified by userId will be set to silent monitoring mode on
+// the contact.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation MonitorContact for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - IdempotencyException
+//     An entity with the same name already exists.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/MonitorContact
+func (c *Connect) MonitorContact(input *MonitorContactInput) (*MonitorContactOutput, error) {
+	req, out := c.MonitorContactRequest(input)
+	return out, req.Send()
+}
+
+// MonitorContactWithContext is the same as MonitorContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See MonitorContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) MonitorContactWithContext(ctx aws.Context, input *MonitorContactInput, opts ...request.Option) (*MonitorContactOutput, error) {
+	req, out := c.MonitorContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutUserStatus = "PutUserStatus"
 
 // PutUserStatusRequest generates a "aws/request.Request" representing the
@@ -13861,7 +13960,8 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 //     The request is not valid.
 //
 //   - ContactNotFoundException
-//     The contact with the specified ID is not active or does not exist.
+//     The contact with the specified ID is not active or does not exist. Applies
+//     to Voice calls only, not to Chat, Task, or Voice Callback.
 //
 //   - InvalidParameterException
 //     One or more of the specified parameters are not valid.
@@ -20278,7 +20378,8 @@ func (s *ContactFlowSummary) SetName(v string) *ContactFlowSummary {
 	return s
 }
 
-// The contact with the specified ID is not active or does not exist.
+// The contact with the specified ID is not active or does not exist. Applies
+// to Voice calls only, not to Chat, Task, or Voice Callback.
 type ContactNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -27838,10 +27939,15 @@ type GetCurrentMetricDataInput struct {
 
 	// The grouping applied to the metrics returned. For example, when grouped by
 	// QUEUE, the metrics returned apply to each queue rather than aggregated for
-	// all queues. If you group by CHANNEL, you should include a Channels filter.
-	// VOICE, CHAT, and TASK channels are supported.
+	// all queues.
 	//
-	// If no Grouping is included in the request, a summary of metrics is returned.
+	//    * If you group by CHANNEL, you should include a Channels filter. VOICE,
+	//    CHAT, and TASK channels are supported.
+	//
+	//    * If you group by ROUTING_PROFILE, you must include either a queue or
+	//    routing profile filter.
+	//
+	//    * If no Grouping is included in the request, a summary of metrics is returned.
 	Groupings []*string `type:"list" enum:"Grouping"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
@@ -35108,6 +35214,152 @@ func (s *MediaConcurrency) SetConcurrency(v int64) *MediaConcurrency {
 	return s
 }
 
+type MonitorContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify which monitoring actions the user is allowed to take. For example,
+	// whether the user is allowed to escalate from silent monitoring to barge.
+	AllowedMonitorCapabilities []*string `type:"list" enum:"MonitorCapability"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the user account.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MonitorContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MonitorContactInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedMonitorCapabilities sets the AllowedMonitorCapabilities field's value.
+func (s *MonitorContactInput) SetAllowedMonitorCapabilities(v []*string) *MonitorContactInput {
+	s.AllowedMonitorCapabilities = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *MonitorContactInput) SetClientToken(v string) *MonitorContactInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *MonitorContactInput) SetContactId(v string) *MonitorContactInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *MonitorContactInput) SetInstanceId(v string) *MonitorContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *MonitorContactInput) SetUserId(v string) *MonitorContactInput {
+	s.UserId = &v
+	return s
+}
+
+type MonitorContactOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the contact.
+	ContactArn *string `type:"string"`
+
+	// The identifier of the contact.
+	ContactId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorContactOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactArn sets the ContactArn field's value.
+func (s *MonitorContactOutput) SetContactArn(v string) *MonitorContactOutput {
+	s.ContactArn = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *MonitorContactOutput) SetContactId(v string) *MonitorContactOutput {
+	s.ContactId = &v
+	return s
+}
+
 // Information about a reference when the referenceType is NUMBER. Otherwise,
 // null.
 type NumberReference struct {
@@ -36061,6 +36313,10 @@ func (s *QueueReference) SetId(v string) *QueueReference {
 }
 
 // The search criteria to be used to return queues.
+//
+// The name and description fields support "contains" queries with a minimum
+// of 2 characters and a maximum of 25 characters. Any queries with character
+// lengths outside of this range will throw invalid results.
 type QueueSearchCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -37687,6 +37943,10 @@ func (s *RoutingProfileReference) SetId(v string) *RoutingProfileReference {
 }
 
 // The search criteria to be used to return routing profiles.
+//
+// The name and description fields support "contains" queries with a minimum
+// of 2 characters and a maximum of 25 characters. Any queries with character
+// lengths outside of this range will throw invalid results.
 type RoutingProfileSearchCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -38075,6 +38335,10 @@ type SearchQueuesInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The search criteria to be used to return queues.
+	//
+	// The name and description fields support "contains" queries with a minimum
+	// of 2 characters and a maximum of 25 characters. Any queries with character
+	// lengths outside of this range will throw invalid results.
 	SearchCriteria *QueueSearchCriteria `type:"structure"`
 
 	// Filters to be applied to search results.
@@ -38217,6 +38481,10 @@ type SearchRoutingProfilesInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The search criteria to be used to return routing profiles.
+	//
+	// The name and description fields support "contains" queries with a minimum
+	// of 2 characters and a maximum of 25 characters. Any queries with character
+	// lengths outside of this range will throw invalid results.
 	SearchCriteria *RoutingProfileSearchCriteria `type:"structure"`
 
 	// Filters to be applied to search results.
@@ -38360,6 +38628,10 @@ type SearchSecurityProfilesInput struct {
 
 	// The search criteria to be used to return security profiles.
 	//
+	// The name field support "contains" queries with a minimum of 2 characters
+	// and maximum of 25 characters. Any queries with character lengths outside
+	// of this range will throw invalid results.
+	//
 	// The currently supported value for FieldName: name
 	SearchCriteria *SecurityProfileSearchCriteria `type:"structure"`
 
@@ -38502,9 +38774,9 @@ type SearchUsersInput struct {
 
 	// The search criteria to be used to return users.
 	//
-	// The Username, Firstname, and Lastname fields support "contains" queries with
-	// a minimum of 2 characters and a maximum of 25 characters. Any queries with
-	// character lengths outside of this range result in empty results.
+	// The name and description fields support "contains" queries with a minimum
+	// of 2 characters and a maximum of 25 characters. Any queries with character
+	// lengths outside of this range will throw invalid results.
 	SearchCriteria *UserSearchCriteria `type:"structure"`
 
 	// Filters to be applied to search results.
@@ -38903,6 +39175,10 @@ func (s *SecurityProfile) SetTags(v map[string]*string) *SecurityProfile {
 }
 
 // The search criteria to be used to return security profiles.
+//
+// The name field support "contains" queries with a minimum of 2 characters
+// and maximum of 25 characters. Any queries with character lengths outside
+// of this range will throw invalid results.
 type SecurityProfileSearchCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -46367,9 +46643,9 @@ func (s *UserReference) SetId(v string) *UserReference {
 
 // The search criteria to be used to return users.
 //
-// The Username, Firstname, and Lastname fields support "contains" queries with
-// a minimum of 2 characters and a maximum of 25 characters. Any queries with
-// character lengths outside of this range result in empty results.
+// The name and description fields support "contains" queries with a minimum
+// of 2 characters and a maximum of 25 characters. Any queries with character
+// lengths outside of this range will throw invalid results.
 type UserSearchCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -47538,6 +47814,22 @@ func LexVersion_Values() []string {
 	return []string{
 		LexVersionV1,
 		LexVersionV2,
+	}
+}
+
+const (
+	// MonitorCapabilitySilentMonitor is a MonitorCapability enum value
+	MonitorCapabilitySilentMonitor = "SILENT_MONITOR"
+
+	// MonitorCapabilityBarge is a MonitorCapability enum value
+	MonitorCapabilityBarge = "BARGE"
+)
+
+// MonitorCapability_Values returns all elements of the MonitorCapability enum
+func MonitorCapability_Values() []string {
+	return []string{
+		MonitorCapabilitySilentMonitor,
+		MonitorCapabilityBarge,
 	}
 }
 

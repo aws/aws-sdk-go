@@ -269,7 +269,7 @@ func (c *PersonalizeEvents) PutUsersWithContext(ctx aws.Context, input *PutUsers
 
 // Represents user interaction event information sent using the PutEvents API.
 type Event struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// An ID associated with the event. If an event ID is not provided, Amazon Personalize
 	// generates a unique ID for the event. An event ID is not used as an input
@@ -290,12 +290,23 @@ type Event struct {
 	EventValue *float64 `locationName:"eventValue" type:"float"`
 
 	// A list of item IDs that represents the sequence of items you have shown the
-	// user. For example, ["itemId1", "itemId2", "itemId3"].
+	// user. For example, ["itemId1", "itemId2", "itemId3"]. Provide a list of items
+	// to manually record impressions data for an event. For more information on
+	// recording impressions data, see Recording impressions data (https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html#putevents-including-impressions-data).
 	Impression []*string `locationName:"impression" min:"1" type:"list"`
 
 	// The item ID key that corresponds to the ITEM_ID field of the Interactions
 	// schema.
-	ItemId *string `locationName:"itemId" min:"1" type:"string"`
+	//
+	// ItemId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Event's
+	// String and GoString methods.
+	ItemId *string `locationName:"itemId" min:"1" type:"string" sensitive:"true"`
+
+	// Contains information about the metric attribution associated with an event.
+	// For more information about metric attributions, see Measuring impact of recommendations
+	// (https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html).
+	MetricAttribution *MetricAttribution `locationName:"metricAttribution" type:"structure"`
 
 	// A string map of event-specific data that you might choose to record. For
 	// example, if a user rates a movie on your site, other than movie ID (itemId)
@@ -311,7 +322,16 @@ type Event struct {
 	// field defined in the Interactions schema.
 	Properties aws.JSONValue `locationName:"properties" type:"jsonvalue"`
 
-	// The ID of the recommendation.
+	// The ID of the list of recommendations that contains the item the user interacted
+	// with. Provide a recommendationId to have Amazon Personalize implicitly record
+	// the recommendations you show your user as impressions data. Or provide a
+	// recommendationId if you use a metric attribution to measure the impact of
+	// recommendations.
+	//
+	// For more information on recording impressions data, see Recording impressions
+	// data (https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html#putevents-including-impressions-data).
+	// For more information on creating a metric attribution see Measuring impact
+	// of recommendations (https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html).
 	RecommendationId *string `locationName:"recommendationId" min:"1" type:"string"`
 
 	// The timestamp (in Unix time) on the client side when the event occurred.
@@ -362,6 +382,11 @@ func (s *Event) Validate() error {
 	if s.SentAt == nil {
 		invalidParams.Add(request.NewErrParamRequired("SentAt"))
 	}
+	if s.MetricAttribution != nil {
+		if err := s.MetricAttribution.Validate(); err != nil {
+			invalidParams.AddNested("MetricAttribution", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -396,6 +421,12 @@ func (s *Event) SetImpression(v []*string) *Event {
 // SetItemId sets the ItemId field's value.
 func (s *Event) SetItemId(v string) *Event {
 	s.ItemId = &v
+	return s
+}
+
+// SetMetricAttribution sets the MetricAttribution field's value.
+func (s *Event) SetMetricAttribution(v *MetricAttribution) *Event {
+	s.MetricAttribution = v
 	return s
 }
 
@@ -548,6 +579,55 @@ func (s *Item) SetProperties(v aws.JSONValue) *Item {
 	return s
 }
 
+// Contains information about a metric attribution associated with an event.
+// For more information about metric attributions, see Measuring impact of recommendations
+// (https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html).
+type MetricAttribution struct {
+	_ struct{} `type:"structure"`
+
+	// The source of the event, such as a third party.
+	//
+	// EventAttributionSource is a required field
+	EventAttributionSource *string `locationName:"eventAttributionSource" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttribution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricAttribution) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricAttribution) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricAttribution"}
+	if s.EventAttributionSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventAttributionSource"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventAttributionSource sets the EventAttributionSource field's value.
+func (s *MetricAttribution) SetEventAttributionSource(v string) *MetricAttribution {
+	s.EventAttributionSource = &v
+	return s
+}
+
 type PutEventsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -572,7 +652,11 @@ type PutEventsInput struct {
 	TrackingId *string `locationName:"trackingId" min:"1" type:"string" required:"true"`
 
 	// The user associated with the event.
-	UserId *string `locationName:"userId" min:"1" type:"string"`
+	//
+	// UserId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PutEventsInput's
+	// String and GoString methods.
+	UserId *string `locationName:"userId" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.

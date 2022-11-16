@@ -583,6 +583,10 @@ type ConnectAPI interface {
 	ListUsersPages(*connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool) error
 	ListUsersPagesWithContext(aws.Context, *connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool, ...request.Option) error
 
+	MonitorContact(*connect.MonitorContactInput) (*connect.MonitorContactOutput, error)
+	MonitorContactWithContext(aws.Context, *connect.MonitorContactInput, ...request.Option) (*connect.MonitorContactOutput, error)
+	MonitorContactRequest(*connect.MonitorContactInput) (*request.Request, *connect.MonitorContactOutput)
+
 	PutUserStatus(*connect.PutUserStatusInput) (*connect.PutUserStatusOutput, error)
 	PutUserStatusWithContext(aws.Context, *connect.PutUserStatusInput, ...request.Option) (*connect.PutUserStatusOutput, error)
 	PutUserStatusRequest(*connect.PutUserStatusInput) (*request.Request, *connect.PutUserStatusOutput)

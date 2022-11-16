@@ -2681,12 +2681,42 @@
         "provisionedResources":{"shape":"ProvisionedResourceList"}
       }
     },
+    "ListServiceInstancesFilter":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"ListServiceInstancesFilterBy"},
+        "value":{"shape":"ListServiceInstancesFilterValue"}
+      }
+    },
+    "ListServiceInstancesFilterBy":{
+      "type":"string",
+      "enum":[
+        "name",
+        "deploymentStatus",
+        "templateName",
+        "serviceName",
+        "deployedTemplateVersionStatus",
+        "environmentName",
+        "lastDeploymentAttemptedAtBefore",
+        "lastDeploymentAttemptedAtAfter",
+        "createdAtBefore",
+        "createdAtAfter"
+      ]
+    },
+    "ListServiceInstancesFilterList":{
+      "type":"list",
+      "member":{"shape":"ListServiceInstancesFilter"}
+    },
+    "ListServiceInstancesFilterValue":{"type":"string"},
     "ListServiceInstancesInput":{
       "type":"structure",
       "members":{
+        "filters":{"shape":"ListServiceInstancesFilterList"},
         "maxResults":{"shape":"MaxPageResults"},
         "nextToken":{"shape":"NextToken"},
-        "serviceName":{"shape":"ResourceName"}
+        "serviceName":{"shape":"ResourceName"},
+        "sortBy":{"shape":"ListServiceInstancesSortBy"},
+        "sortOrder":{"shape":"SortOrder"}
       }
     },
     "ListServiceInstancesOutput":{
@@ -2696,6 +2726,18 @@
         "nextToken":{"shape":"NextToken"},
         "serviceInstances":{"shape":"ServiceInstanceSummaryList"}
       }
+    },
+    "ListServiceInstancesSortBy":{
+      "type":"string",
+      "enum":[
+        "name",
+        "deploymentStatus",
+        "templateName",
+        "serviceName",
+        "environmentName",
+        "lastDeploymentAttemptedAt",
+        "createdAt"
+      ]
     },
     "ListServicePipelineOutputsInput":{
       "type":"structure",
@@ -3451,6 +3493,13 @@
     "ServiceTemplateVersionSummaryList":{
       "type":"list",
       "member":{"shape":"ServiceTemplateVersionSummary"}
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
     },
     "SpecContents":{
       "type":"string",

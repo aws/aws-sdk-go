@@ -4,12 +4,12 @@
             "documentation": "For region ca-central-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.ca-central-1.api.aws"
+                    "url": "https://comprehendmedical-fips.ca-central-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "ca-central-1",
+                "UseFIPS": true,
                 "UseDualStack": true
             }
         },
@@ -17,12 +17,12 @@
             "documentation": "For region ca-central-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.ca-central-1.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "ca-central-1",
+                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -30,12 +30,12 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.ca-central-1.api.aws"
+                    "url": "https://comprehendmedical.ca-central-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "ca-central-1",
+                "UseFIPS": false,
                 "UseDualStack": true
             }
         },
@@ -43,64 +43,12 @@
             "documentation": "For region ca-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.ca-central-1.amazonaws.com"
+                    "url": "https://comprehendmedical.ca-central-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "ca-central-1",
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-central-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton-fips.eu-central-1.api.aws"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "Region": "eu-central-1",
-                "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region eu-central-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton-fips.eu-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "Region": "eu-central-1",
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region eu-central-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton.eu-central-1.api.aws"
-                }
-            },
-            "params": {
                 "UseFIPS": false,
-                "Region": "eu-central-1",
-                "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton.eu-central-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "Region": "eu-central-1",
                 "UseDualStack": false
             }
         },
@@ -108,12 +56,12 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.us-west-2.api.aws"
+                    "url": "https://comprehendmedical-fips.us-west-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "us-west-2",
+                "UseFIPS": true,
                 "UseDualStack": true
             }
         },
@@ -121,12 +69,12 @@
             "documentation": "For region us-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.us-west-2.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.us-west-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "us-west-2",
+                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -134,12 +82,12 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.us-west-2.api.aws"
+                    "url": "https://comprehendmedical.us-west-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-west-2",
+                "UseFIPS": false,
                 "UseDualStack": true
             }
         },
@@ -147,12 +95,12 @@
             "documentation": "For region us-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.us-west-2.amazonaws.com"
+                    "url": "https://comprehendmedical.us-west-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-west-2",
+                "UseFIPS": false,
                 "UseDualStack": false
             }
         },
@@ -160,12 +108,12 @@
             "documentation": "For region eu-west-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.eu-west-2.api.aws"
+                    "url": "https://comprehendmedical-fips.eu-west-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "eu-west-2",
+                "UseFIPS": true,
                 "UseDualStack": true
             }
         },
@@ -173,12 +121,12 @@
             "documentation": "For region eu-west-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.eu-west-2.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "eu-west-2",
+                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -186,12 +134,12 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.eu-west-2.api.aws"
+                    "url": "https://comprehendmedical.eu-west-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "eu-west-2",
+                "UseFIPS": false,
                 "UseDualStack": true
             }
         },
@@ -199,12 +147,12 @@
             "documentation": "For region eu-west-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.eu-west-2.amazonaws.com"
+                    "url": "https://comprehendmedical.eu-west-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "eu-west-2",
+                "UseFIPS": false,
                 "UseDualStack": false
             }
         },
@@ -212,12 +160,12 @@
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.eu-west-1.api.aws"
+                    "url": "https://comprehendmedical-fips.eu-west-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "eu-west-1",
+                "UseFIPS": true,
                 "UseDualStack": true
             }
         },
@@ -225,12 +173,12 @@
             "documentation": "For region eu-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.eu-west-1.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "eu-west-1",
+                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -238,12 +186,12 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.eu-west-1.api.aws"
+                    "url": "https://comprehendmedical.eu-west-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "eu-west-1",
+                "UseFIPS": false,
                 "UseDualStack": true
             }
         },
@@ -251,168 +199,64 @@
             "documentation": "For region eu-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.eu-west-1.amazonaws.com"
+                    "url": "https://comprehendmedical.eu-west-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "eu-west-1",
+                "UseFIPS": false,
                 "UseDualStack": false
             }
         },
         {
-            "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack enabled",
+            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.ap-northeast-2.api.aws"
+                    "url": "https://comprehendmedical-fips.us-gov-west-1.api.aws"
                 }
             },
             "params": {
+                "Region": "us-gov-west-1",
                 "UseFIPS": true,
-                "Region": "ap-northeast-2",
                 "UseDualStack": true
             }
         },
         {
-            "documentation": "For region ap-northeast-2 with FIPS enabled and DualStack disabled",
+            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.ap-northeast-2.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
+                "Region": "us-gov-west-1",
                 "UseFIPS": true,
-                "Region": "ap-northeast-2",
                 "UseDualStack": false
             }
         },
         {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack enabled",
+            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.ap-northeast-2.api.aws"
+                    "url": "https://comprehendmedical.us-gov-west-1.api.aws"
                 }
             },
             "params": {
+                "Region": "us-gov-west-1",
                 "UseFIPS": false,
-                "Region": "ap-northeast-2",
                 "UseDualStack": true
             }
         },
         {
-            "documentation": "For region ap-northeast-2 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.ap-northeast-2.amazonaws.com"
+                    "url": "https://comprehendmedical.us-gov-west-1.amazonaws.com"
                 }
             },
             "params": {
+                "Region": "us-gov-west-1",
                 "UseFIPS": false,
-                "Region": "ap-northeast-2",
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton-fips.ap-northeast-1.api.aws"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "Region": "ap-northeast-1",
-                "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton-fips.ap-northeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "Region": "ap-northeast-1",
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton.ap-northeast-1.api.aws"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "Region": "ap-northeast-1",
-                "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region ap-northeast-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton.ap-northeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "Region": "ap-northeast-1",
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton-fips.ap-southeast-1.api.aws"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "Region": "ap-southeast-1",
-                "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton-fips.ap-southeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": true,
-                "Region": "ap-southeast-1",
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton.ap-southeast-1.api.aws"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "Region": "ap-southeast-1",
-                "UseDualStack": true
-            }
-        },
-        {
-            "documentation": "For region ap-southeast-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://proton.ap-southeast-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseFIPS": false,
-                "Region": "ap-southeast-1",
                 "UseDualStack": false
             }
         },
@@ -420,12 +264,12 @@
             "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.ap-southeast-2.api.aws"
+                    "url": "https://comprehendmedical-fips.ap-southeast-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "ap-southeast-2",
+                "UseFIPS": true,
                 "UseDualStack": true
             }
         },
@@ -433,12 +277,12 @@
             "documentation": "For region ap-southeast-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.ap-southeast-2.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "ap-southeast-2",
+                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -446,12 +290,12 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.ap-southeast-2.api.aws"
+                    "url": "https://comprehendmedical.ap-southeast-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "ap-southeast-2",
+                "UseFIPS": false,
                 "UseDualStack": true
             }
         },
@@ -459,12 +303,12 @@
             "documentation": "For region ap-southeast-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.ap-southeast-2.amazonaws.com"
+                    "url": "https://comprehendmedical.ap-southeast-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "ap-southeast-2",
+                "UseFIPS": false,
                 "UseDualStack": false
             }
         },
@@ -472,12 +316,12 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.us-east-1.api.aws"
+                    "url": "https://comprehendmedical-fips.us-east-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "us-east-1",
+                "UseFIPS": true,
                 "UseDualStack": true
             }
         },
@@ -485,12 +329,12 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.us-east-1.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "us-east-1",
+                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -498,12 +342,12 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.us-east-1.api.aws"
+                    "url": "https://comprehendmedical.us-east-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-east-1",
+                "UseFIPS": false,
                 "UseDualStack": true
             }
         },
@@ -511,12 +355,12 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.us-east-1.amazonaws.com"
+                    "url": "https://comprehendmedical.us-east-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-east-1",
+                "UseFIPS": false,
                 "UseDualStack": false
             }
         },
@@ -524,12 +368,12 @@
             "documentation": "For region us-east-2 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.us-east-2.api.aws"
+                    "url": "https://comprehendmedical-fips.us-east-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "us-east-2",
+                "UseFIPS": true,
                 "UseDualStack": true
             }
         },
@@ -537,12 +381,12 @@
             "documentation": "For region us-east-2 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton-fips.us-east-2.amazonaws.com"
+                    "url": "https://comprehendmedical-fips.us-east-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "us-east-2",
+                "UseFIPS": true,
                 "UseDualStack": false
             }
         },
@@ -550,12 +394,12 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.us-east-2.api.aws"
+                    "url": "https://comprehendmedical.us-east-2.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-east-2",
+                "UseFIPS": false,
                 "UseDualStack": true
             }
         },
@@ -563,12 +407,12 @@
             "documentation": "For region us-east-2 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://proton.us-east-2.amazonaws.com"
+                    "url": "https://comprehendmedical.us-east-2.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-east-2",
+                "UseFIPS": false,
                 "UseDualStack": false
             }
         },
@@ -580,8 +424,8 @@
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-east-1",
+                "UseFIPS": false,
                 "UseDualStack": false,
                 "Endpoint": "https://example.com"
             }
@@ -592,8 +436,8 @@
                 "error": "Invalid Configuration: FIPS and custom endpoint are not supported"
             },
             "params": {
-                "UseFIPS": true,
                 "Region": "us-east-1",
+                "UseFIPS": true,
                 "UseDualStack": false,
                 "Endpoint": "https://example.com"
             }
@@ -604,8 +448,8 @@
                 "error": "Invalid Configuration: Dualstack and custom endpoint are not supported"
             },
             "params": {
-                "UseFIPS": false,
                 "Region": "us-east-1",
+                "UseFIPS": false,
                 "UseDualStack": true,
                 "Endpoint": "https://example.com"
             }

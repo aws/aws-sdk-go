@@ -25,6 +25,7 @@
     "DeleteParameters": "<p>Delete a list of parameters. After deleting a parameter, wait for at least 30 seconds to create a parameter with the same name.</p>",
     "DeletePatchBaseline": "<p>Deletes a patch baseline.</p>",
     "DeleteResourceDataSync": "<p>Deletes a resource data sync configuration. After the configuration is deleted, changes to data on managed nodes are no longer synced to or from the target. Deleting a sync configuration doesn't delete data.</p>",
+    "DeleteResourcePolicy": "<p>Deletes a Systems Manager resource policy. A resource policy helps you to define the IAM entity (for example, an Amazon Web Services account) that can manage your Systems Manager resources. Currently, <code>OpsItemGroup</code> is the only resource that supports Systems Manager resource policies. The resource policy for <code>OpsItemGroup</code> enables Amazon Web Services accounts to view and interact with OpsCenter operational work items (OpsItems).</p>",
     "DeregisterManagedInstance": "<p>Removes the server or virtual machine from the list of registered servers. You can reregister the node again at any time. If you don't plan to use Run Command on the server, we suggest uninstalling SSM Agent first.</p>",
     "DeregisterPatchBaselineForPatchGroup": "<p>Removes a patch group from a patch baseline.</p>",
     "DeregisterTargetFromMaintenanceWindow": "<p>Removes a target from a maintenance window.</p>",
@@ -85,6 +86,7 @@
     "GetParametersByPath": "<p>Retrieve information about one or more parameters in a specific hierarchy. </p> <p>Request results are returned on a best-effort basis. If you specify <code>MaxResults</code> in the request, the response includes information up to the limit specified. The number of items returned, however, can be between zero and the value of <code>MaxResults</code>. If the service reaches an internal limit while processing the results, it stops the operation and returns the matching values up to that point and a <code>NextToken</code>. You can specify the <code>NextToken</code> in a subsequent call to get the next set of results.</p>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
     "GetPatchBaselineForPatchGroup": "<p>Retrieves the patch baseline that should be used for the specified patch group.</p>",
+    "GetResourcePolicies": "<p>Returns an array of the <code>Policy</code> object.</p>",
     "GetServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an Amazon Web Services service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an Amazon Web Services service charges money to the account based on feature or service usage, then the Amazon Web Services service team might create a default setting of <code>false</code>. This means the user can't use this feature unless they change the setting to <code>true</code> and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. Amazon Web Services services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>UpdateServiceSetting</a> API operation to change the default setting. Or use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the Amazon Web Services service team.</p> <p>Query the current service setting for the Amazon Web Services account. </p>",
     "LabelParameterVersion": "<p>A parameter label is a user-defined alias to help you manage different versions of a parameter. When you modify a parameter, Amazon Web Services Systems Manager automatically saves a new version and increments the version number by one. A label can help you remember the purpose of a parameter when there are multiple versions. </p> <p>Parameter labels have the following requirements and restrictions.</p> <ul> <li> <p>A version of a parameter can have a maximum of 10 labels.</p> </li> <li> <p>You can't attach the same label to different versions of the same parameter. For example, if version 1 has the label Production, then you can't attach Production to version 2.</p> </li> <li> <p>You can move a label from one version of a parameter to another.</p> </li> <li> <p>You can't create a label when you create a new parameter. You must attach a label to a specific version of a parameter.</p> </li> <li> <p>If you no longer want to use a parameter label, then you can either delete it or move it to a different version of a parameter.</p> </li> <li> <p>A label can have a maximum of 100 characters.</p> </li> <li> <p>Labels can contain letters (case sensitive), numbers, periods (.), hyphens (-), or underscores (_).</p> </li> <li> <p>Labels can't begin with a number, \"<code>aws</code>\" or \"<code>ssm</code>\" (not case sensitive). If a label fails to meet these requirements, then the label isn't associated with a parameter and the system displays it in the list of InvalidLabels.</p> </li> </ul>",
     "ListAssociationVersions": "<p>Retrieves all versions of an association for a specific association ID.</p>",
@@ -107,6 +109,7 @@
     "PutComplianceItems": "<p>Registers a compliance type and other compliance details on a designated resource. This operation lets you register custom compliance details with a resource. This call overwrites existing compliance information on the resource, so you must provide a full list of compliance items each time that you send the request.</p> <p>ComplianceType can be one of the following:</p> <ul> <li> <p>ExecutionId: The execution ID when the patch, association, or custom compliance item was applied.</p> </li> <li> <p>ExecutionType: Specify patch, association, or Custom:<code>string</code>.</p> </li> <li> <p>ExecutionTime. The time the patch, association, or custom compliance item was applied to the managed node.</p> </li> <li> <p>Id: The patch, association, or custom compliance ID.</p> </li> <li> <p>Title: A title.</p> </li> <li> <p>Status: The status of the compliance item. For example, <code>approved</code> for patches, or <code>Failed</code> for associations.</p> </li> <li> <p>Severity: A patch severity. For example, <code>Critical</code>.</p> </li> <li> <p>DocumentName: An SSM document name. For example, <code>AWS-RunPatchBaseline</code>.</p> </li> <li> <p>DocumentVersion: An SSM document version number. For example, 4.</p> </li> <li> <p>Classification: A patch classification. For example, <code>security updates</code>.</p> </li> <li> <p>PatchBaselineId: A patch baseline ID.</p> </li> <li> <p>PatchSeverity: A patch severity. For example, <code>Critical</code>.</p> </li> <li> <p>PatchState: A patch state. For example, <code>InstancesWithFailedPatches</code>.</p> </li> <li> <p>PatchGroup: The name of a patch group.</p> </li> <li> <p>InstalledTime: The time the association, patch, or custom compliance item was applied to the resource. Specify the time by using the following format: yyyy-MM-dd'T'HH:mm:ss'Z'</p> </li> </ul>",
     "PutInventory": "<p>Bulk update custom inventory items on one or more managed nodes. The request adds an inventory item, if it doesn't already exist, or updates an inventory item, if it does exist.</p>",
     "PutParameter": "<p>Add a parameter to the system.</p>",
+    "PutResourcePolicy": "<p>Creates or updates a Systems Manager resource policy. A resource policy helps you to define the IAM entity (for example, an Amazon Web Services account) that can manage your Systems Manager resources. Currently, <code>OpsItemGroup</code> is the only resource that supports Systems Manager resource policies. The resource policy for <code>OpsItemGroup</code> enables Amazon Web Services accounts to view and interact with OpsCenter operational work items (OpsItems).</p>",
     "RegisterDefaultPatchBaseline": "<p>Defines the default patch baseline for the relevant operating system.</p> <p>To reset the Amazon Web Services-predefined patch baseline as the default, specify the full patch baseline Amazon Resource Name (ARN) as the baseline ID value. For example, for CentOS, specify <code>arn:aws:ssm:us-east-2:733109147000:patchbaseline/pb-0574b43a65ea646ed</code> instead of <code>pb-0574b43a65ea646ed</code>.</p>",
     "RegisterPatchBaselineForPatchGroup": "<p>Registers a patch baseline for a patch group.</p>",
     "RegisterTargetWithMaintenanceWindow": "<p>Registers a target with a maintenance window.</p>",
@@ -1772,6 +1775,16 @@
       "refs": {
       }
     },
+    "DeleteResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeliveryTimedOutCount": {
       "base": null,
       "refs": {
@@ -2974,6 +2987,28 @@
       "refs": {
       }
     },
+    "GetResourcePoliciesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePoliciesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePoliciesResponseEntries": {
+      "base": null,
+      "refs": {
+        "GetResourcePoliciesResponse$Policies": "<p>An array of the <code>Policy</code> object.</p>"
+      }
+    },
+    "GetResourcePoliciesResponseEntry": {
+      "base": "<p>A resource policy helps you to define the IAM entity (for example, an Amazon Web Services account) that can manage your Systems Manager resources. Currently, <code>OpsItemGroup</code> is the only resource that supports Systems Manager resource policies. The resource policy for <code>OpsItemGroup</code> enables Amazon Web Services accounts to view and interact with OpsCenter operational work items (OpsItems).</p>",
+      "refs": {
+        "GetResourcePoliciesResponseEntries$member": null
+      }
+    },
     "GetServiceSettingRequest": {
       "base": "<p>The request body of the GetServiceSetting API operation.</p>",
       "refs": {
@@ -3012,9 +3047,9 @@
       "base": null,
       "refs": {
         "Activation$IamRole": "<p>The Identity and Access Management (IAM) role to assign to the managed node.</p>",
-        "CreateActivationRequest$IamRole": "<p>The name of the Identity and Access Management (IAM) role that you want to assign to the managed node. This IAM role must provide AssumeRole permissions for the Amazon Web Services Systems Manager service principal <code>ssm.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html\">Create an IAM service role for a hybrid environment</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>",
+        "CreateActivationRequest$IamRole": "<p>The name of the Identity and Access Management (IAM) role that you want to assign to the managed node. This IAM role must provide AssumeRole permissions for the Amazon Web Services Systems Manager service principal <code>ssm.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html\">Create an IAM service role for a hybrid environment</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> <note> <p>You can't specify an IAM service-linked role for this parameter. You must create a unique role.</p> </note>",
         "InstanceInformation$IamRole": "<p>The Identity and Access Management (IAM) role assigned to the on-premises Systems Manager managed node. This call doesn't return the IAM role for Amazon Elastic Compute Cloud (Amazon EC2) instances. To retrieve the IAM role for an EC2 instance, use the Amazon EC2 <code>DescribeInstances</code> operation. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\">DescribeInstances</a> in the <i>Amazon EC2 API Reference</i> or <a href=\"https://docs.aws.amazon.com/cli/latest/ec2/describe-instances.html\">describe-instances</a> in the <i>Amazon Web Services CLI Command Reference</i>.</p>",
-        "UpdateManagedInstanceRoleRequest$IamRole": "<p>The IAM role you want to assign or change.</p>"
+        "UpdateManagedInstanceRoleRequest$IamRole": "<p>The name of the Identity and Access Management (IAM) role that you want to assign to the managed node. This IAM role must provide AssumeRole permissions for the Amazon Web Services Systems Manager service principal <code>ssm.amazonaws.com</code>. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html\">Create an IAM service role for a hybrid environment</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p> <note> <p>You can't specify an IAM service-linked role for this parameter. You must create a unique role.</p> </note>"
       }
     },
     "IdempotencyToken": {
@@ -3292,6 +3327,7 @@
         "ProgressCounters$FailedSteps": "<p>The total number of steps that failed to run in all specified Amazon Web Services Regions and Amazon Web Services accounts for the current Automation execution.</p>",
         "ProgressCounters$CancelledSteps": "<p>The total number of steps that the system cancelled in all specified Amazon Web Services Regions and Amazon Web Services accounts for the current Automation execution.</p>",
         "ProgressCounters$TimedOutSteps": "<p>The total number of steps that timed out in all specified Amazon Web Services Regions and Amazon Web Services accounts for the current Automation execution.</p>",
+        "ResourcePolicyLimitExceededException$Limit": null,
         "StepExecution$MaxAttempts": "<p>The maximum number of tries to run the action of the step. The default value is <code>1</code>.</p>"
       }
     },
@@ -5103,9 +5139,29 @@
         "GetOpsItemResponse$OpsItem": "<p>The OpsItem.</p>"
       }
     },
+    "OpsItemAccessDeniedException": {
+      "base": "<p>You don't have permission to view OpsItems in the specified account. Verify that your account is configured either as a Systems Manager delegated administrator or that you are logged into the Organizations management account.</p>",
+      "refs": {
+      }
+    },
+    "OpsItemAccountId": {
+      "base": null,
+      "refs": {
+        "CreateOpsItemRequest$AccountId": "<p>The target Amazon Web Services account where you want to create an OpsItem. To make this call, your account must be configured to work with OpsItems across accounts. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-OpsCenter-multiple-accounts.html\">Setting up OpsCenter to work with OpsItems across accounts</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>"
+      }
+    },
     "OpsItemAlreadyExistsException": {
       "base": "<p>The OpsItem already exists.</p>",
       "refs": {
+      }
+    },
+    "OpsItemArn": {
+      "base": null,
+      "refs": {
+        "CreateOpsItemResponse$OpsItemArn": "<p>The OpsItem Amazon Resource Name (ARN).</p>",
+        "GetOpsItemRequest$OpsItemArn": "<p>The OpsItem Amazon Resource Name (ARN).</p>",
+        "OpsItem$OpsItemArn": "<p>The OpsItem Amazon Resource Name (ARN).</p>",
+        "UpdateOpsItemRequest$OpsItemArn": "<p>The OpsItem Amazon Resource Name (ARN).</p>"
       }
     },
     "OpsItemCategory": {
@@ -5470,9 +5526,9 @@
     "OpsItemType": {
       "base": null,
       "refs": {
-        "CreateOpsItemRequest$OpsItemType": "<p>The type of OpsItem to create. Currently, the only valid values are <code>/aws/changerequest</code> and <code>/aws/issue</code>.</p>",
-        "OpsItem$OpsItemType": "<p>The type of OpsItem. Currently, the only valid values are <code>/aws/changerequest</code> and <code>/aws/issue</code>.</p>",
-        "OpsItemSummary$OpsItemType": "<p>The type of OpsItem. Currently, the only valid values are <code>/aws/changerequest</code> and <code>/aws/issue</code>.</p>"
+        "CreateOpsItemRequest$OpsItemType": "<p>The type of OpsItem to create. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insights</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>",
+        "OpsItem$OpsItemType": "<p>The type of OpsItem. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insights</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>",
+        "OpsItemSummary$OpsItemType": "<p>The type of OpsItem. Systems Manager supports the following types of OpsItems:</p> <ul> <li> <p> <code>/aws/issue</code> </p> <p>This type of OpsItem is used for default OpsItems created by OpsCenter. </p> </li> <li> <p> <code>/aws/changerequest</code> </p> <p>This type of OpsItem is used by Change Manager for reviewing and approving or rejecting change requests. </p> </li> <li> <p> <code>/aws/insights</code> </p> <p>This type of OpsItem is used by OpsCenter for aggregating and reporting on duplicate OpsItems. </p> </li> </ul>"
       }
     },
     "OpsMetadata": {
@@ -6480,6 +6536,31 @@
       "refs": {
       }
     },
+    "Policy": {
+      "base": null,
+      "refs": {
+        "GetResourcePoliciesResponseEntry$Policy": "<p>A resource policy helps you to define the IAM entity (for example, an Amazon Web Services account) that can manage your Systems Manager resources. Currently, <code>OpsItemGroup</code> is the only resource that supports Systems Manager resource policies. The resource policy for <code>OpsItemGroup</code> enables Amazon Web Services accounts to view and interact with OpsCenter operational work items (OpsItems).</p>",
+        "PutResourcePolicyRequest$Policy": "<p>A policy you want to associate with a resource.</p>"
+      }
+    },
+    "PolicyHash": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePolicyRequest$PolicyHash": "<p>ID of the current policy version. The hash helps to prevent multiple calls from attempting to overwrite a policy.</p>",
+        "GetResourcePoliciesResponseEntry$PolicyHash": "<p>ID of the current policy version. The hash helps to prevent a situation where multiple users attempt to overwrite a policy. You must provide this hash when updating or deleting a policy.</p>",
+        "PutResourcePolicyRequest$PolicyHash": "<p>ID of the current policy version. The hash helps to prevent a situation where multiple users attempt to overwrite a policy.</p>",
+        "PutResourcePolicyResponse$PolicyHash": "<p>ID of the current policy version. The hash helps to prevent a situation where multiple users attempt to overwrite a policy. You must provide this hash when updating or deleting a policy.</p>"
+      }
+    },
+    "PolicyId": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePolicyRequest$PolicyId": "<p>The policy ID.</p>",
+        "GetResourcePoliciesResponseEntry$PolicyId": "<p>A policy ID.</p>",
+        "PutResourcePolicyRequest$PolicyId": "<p>The policy ID.</p>",
+        "PutResourcePolicyResponse$PolicyId": "<p>The policy ID. To update a policy, you must specify <code>PolicyId</code> and <code>PolicyHash</code>.</p>"
+      }
+    },
     "Product": {
       "base": null,
       "refs": {
@@ -6524,6 +6605,16 @@
       }
     },
     "PutParameterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePolicyResponse": {
       "base": null,
       "refs": {
       }
@@ -6669,6 +6760,14 @@
       "refs": {
         "AutomationExecution$ResolvedTargets": "<p>A list of resolved targets in the rate control execution.</p>",
         "AutomationExecutionMetadata$ResolvedTargets": "<p>A list of targets that resolved during the execution.</p>"
+      }
+    },
+    "ResourceArnString": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePolicyRequest$ResourceArn": "<p>Amazon Resource Name (ARN) of the resource to which the policies are attached.</p>",
+        "GetResourcePoliciesRequest$ResourceArn": "<p>Amazon Resource Name (ARN) of the resource to which the policies are attached.</p>",
+        "PutResourcePolicyRequest$ResourceArn": "<p>Amazon Resource Name (ARN) of the resource to which the policies are attached.</p>"
       }
     },
     "ResourceComplianceSummaryItem": {
@@ -6916,6 +7015,33 @@
     "ResourceLimitExceededException": {
       "base": "<p>Error returned when the caller has exceeded the default resource quotas. For example, too many maintenance windows or patch baselines have been created.</p> <p>For information about resource quotas in Systems Manager, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/ssm.html#limits_ssm\">Systems Manager service quotas</a> in the <i>Amazon Web Services General Reference</i>.</p>",
       "refs": {
+      }
+    },
+    "ResourcePolicyConflictException": {
+      "base": "<p>The hash provided in the call doesn't match the stored hash. This exception is thrown when trying to update an obsolete policy version or when multiple requests to update a policy are sent.</p>",
+      "refs": {
+      }
+    },
+    "ResourcePolicyInvalidParameterException": {
+      "base": "<p>One or more parameters specified for the call aren't valid. Verify the parameters and their values and try again.</p>",
+      "refs": {
+      }
+    },
+    "ResourcePolicyLimitExceededException": {
+      "base": "<p>The <a>PutResourcePolicy</a> API action enforces two limits. A policy can't be greater than 1024 bytes in size. And only one policy can be attached to <code>OpsItemGroup</code>. Verify these limits and try again.</p>",
+      "refs": {
+      }
+    },
+    "ResourcePolicyMaxResults": {
+      "base": null,
+      "refs": {
+        "GetResourcePoliciesRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+      }
+    },
+    "ResourcePolicyParameterNamesList": {
+      "base": null,
+      "refs": {
+        "ResourcePolicyInvalidParameterException$ParameterNames": null
       }
     },
     "ResourceType": {
@@ -7531,6 +7657,8 @@
         "FailureDetails$FailureStage": "<p>The stage of the Automation execution when the failure occurred. The stages include the following: InputValidation, PreVerification, Invocation, PostVerification.</p>",
         "FailureDetails$FailureType": "<p>The type of Automation failure. Failure types include the following: Action, Permission, Throttling, Verification, Internal.</p>",
         "FeatureNotAvailableException$Message": null,
+        "GetResourcePoliciesRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results.</p>",
+        "GetResourcePoliciesResponse$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "HierarchyLevelLimitExceededException$message": "<p>A hierarchy can have a maximum of 15 levels. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html\">Requirements and constraints for parameter names</a> in the <i>Amazon Web Services Systems Manager User Guide</i>. </p>",
         "HierarchyTypeMismatchException$message": "<p>Parameter Store doesn't support changing a parameter type in a hierarchy. For example, you can't change a parameter from a <code>String</code> type to a <code>SecureString</code> type. You must create a new, unique parameter.</p>",
         "IdempotentParameterMismatch$Message": null,
@@ -7593,6 +7721,7 @@
         "OpsItem$CreatedBy": "<p>The ARN of the Amazon Web Services account that created the OpsItem.</p>",
         "OpsItem$LastModifiedBy": "<p>The ARN of the Amazon Web Services account that last updated the OpsItem.</p>",
         "OpsItem$Version": "<p>The version of this OpsItem. Each time the OpsItem is edited the version number increments by one.</p>",
+        "OpsItemAccessDeniedException$Message": null,
         "OpsItemAlreadyExistsException$Message": null,
         "OpsItemAlreadyExistsException$OpsItemId": null,
         "OpsItemEventSummary$OpsItemId": "<p>The ID of the OpsItem.</p>",
@@ -7641,6 +7770,11 @@
         "ResourceDataSyncNotFoundException$Message": null,
         "ResourceInUseException$Message": null,
         "ResourceLimitExceededException$Message": null,
+        "ResourcePolicyConflictException$Message": null,
+        "ResourcePolicyInvalidParameterException$Message": null,
+        "ResourcePolicyLimitExceededException$LimitType": null,
+        "ResourcePolicyLimitExceededException$Message": null,
+        "ResourcePolicyParameterNamesList$member": null,
         "ServiceSetting$LastModifiedUser": "<p>The ARN of the last modified user. This field is populated only if the setting value was overwritten.</p>",
         "ServiceSetting$ARN": "<p>The ARN of the service setting.</p>",
         "ServiceSetting$Status": "<p>The status of the service setting. The value can be Default, Customized or PendingUpdate.</p> <ul> <li> <p>Default: The current setting uses a default value provisioned by the Amazon Web Services service team.</p> </li> <li> <p>Customized: The current setting use a custom value specified by the customer.</p> </li> <li> <p>PendingUpdate: The current setting uses a default or custom value, but a setting change request is pending approval.</p> </li> </ul>",

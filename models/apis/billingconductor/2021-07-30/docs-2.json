@@ -175,6 +175,14 @@
       "refs": {
       }
     },
+    "BillingEntity": {
+      "base": null,
+      "refs": {
+        "CreatePricingRuleInput$BillingEntity": "<p> The seller of services provided by Amazon Web Services, their affiliates, or third-party providers selling services via Amazon Web Services Marketplace. </p>",
+        "PricingRuleListElement$BillingEntity": "<p> The seller of services provided by Amazon Web Services, their affiliates, or third-party providers selling services via Amazon Web Services Marketplace. </p>",
+        "UpdatePricingRuleOutput$BillingEntity": "<p> The seller of services provided by Amazon Web Services, their affiliates, or third-party providers selling services via Amazon Web Services Marketplace. </p>"
+      }
+    },
     "BillingGroupArn": {
       "base": null,
       "refs": {

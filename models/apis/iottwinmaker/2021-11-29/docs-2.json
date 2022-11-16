@@ -11,8 +11,10 @@
     "DeleteEntity": "<p>Deletes an entity.</p>",
     "DeleteScene": "<p>Deletes a scene.</p>",
     "DeleteWorkspace": "<p>Deletes a workspace.</p>",
+    "ExecuteQuery": "<p>Run queries to access information from your knowledge graph of entities within individual workspaces.</p>",
     "GetComponentType": "<p>Retrieves information about a component type.</p>",
     "GetEntity": "<p>Retrieves information about an entity.</p>",
+    "GetPricingPlan": "<p>Gets the pricing plan.</p>",
     "GetPropertyValue": "<p>Gets the property values for a component, component type, entity, or workspace.</p> <p>You must specify a value for either <code>componentName</code>, <code>componentTypeId</code>, <code>entityId</code>, or <code>workspaceId</code>.</p>",
     "GetPropertyValueHistory": "<p>Retrieves information about the history of a time series property value for a component, component type, entity, or workspace.</p> <p>You must specify a value for <code>workspaceId</code>. For entity-specific queries, specify values for <code>componentName</code> and <code>entityId</code>. For cross-entity quries, specify a value for <code>componentTypeId</code>.</p>",
     "GetScene": "<p>Retrieves information about a scene.</p>",
@@ -26,6 +28,7 @@
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateComponentType": "<p>Updates information in a component type.</p>",
     "UpdateEntity": "<p>Updates an entity.</p>",
+    "UpdatePricingPlan": "<p>Update the pricing plan.</p>",
     "UpdateScene": "<p>Updates a scene.</p>",
     "UpdateWorkspace": "<p>Updates a workspace.</p>"
   },
@@ -60,29 +63,92 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "ComponentPropertyGroupResponse$isInherited": "<p>A Boolean value that specifies whether the property group is inherited from a parent entity</p>",
         "CreateComponentTypeRequest$isSingleton": "<p>A Boolean value that specifies whether an entity can have more than one component of this type.</p>",
         "DataConnector$isNative": "<p>A Boolean value that specifies whether the data connector is native to IoT TwinMaker.</p>",
         "DataValue$booleanValue": "<p>A Boolean value.</p>",
         "DeleteEntityRequest$isRecursive": "<p>A Boolean value that specifies whether the operation deletes child entities.</p>",
         "EntitySummary$hasChildEntities": "<p>A Boolean value that specifies whether the entity has child entities or not.</p>",
         "FunctionResponse$isInherited": "<p>Indicates whether this function is inherited.</p>",
+        "GetComponentTypeResponse$isSingleton": "<p>A Boolean value that specifies whether an entity can have more than one component of this type.</p>",
         "GetComponentTypeResponse$isAbstract": "<p>A Boolean value that specifies whether the component type is abstract.</p>",
         "GetComponentTypeResponse$isSchemaInitialized": "<p>A Boolean value that specifies whether the component type has a schema initializer and that the schema initializer has run.</p>",
-        "GetComponentTypeResponse$isSingleton": "<p>A Boolean value that specifies whether an entity can have more than one component of this type.</p>",
         "GetEntityResponse$hasChildEntities": "<p>A Boolean value that specifies whether the entity has associated child entities.</p>",
         "ListComponentTypesFilter$isAbstract": "<p>A Boolean value that specifies whether the component types in the list are abstract.</p>",
-        "PropertyDefinitionRequest$isExternalId": "<p>A Boolean value that specifies whether the property ID comes from an external data store.</p>",
         "PropertyDefinitionRequest$isRequiredInEntity": "<p>A Boolean value that specifies whether the property is required.</p>",
+        "PropertyDefinitionRequest$isExternalId": "<p>A Boolean value that specifies whether the property ID comes from an external data store.</p>",
         "PropertyDefinitionRequest$isStoredExternally": "<p>A Boolean value that specifies whether the property is stored externally.</p>",
         "PropertyDefinitionRequest$isTimeSeries": "<p>A Boolean value that specifies whether the property consists of time series data.</p>",
-        "PropertyDefinitionResponse$isExternalId": "<p>A Boolean value that specifies whether the property ID comes from an external data store.</p>",
-        "PropertyDefinitionResponse$isFinal": "<p>A Boolean value that specifies whether the property definition can be updated.</p>",
-        "PropertyDefinitionResponse$isImported": "<p>A Boolean value that specifies whether the property definition is imported from an external data store.</p>",
-        "PropertyDefinitionResponse$isInherited": "<p>A Boolean value that specifies whether the property definition is inherited from a parent entity.</p>",
-        "PropertyDefinitionResponse$isRequiredInEntity": "<p>A Boolean value that specifies whether the property is required in an entity.</p>",
-        "PropertyDefinitionResponse$isStoredExternally": "<p>A Boolean value that specifies whether the property is stored externally.</p>",
         "PropertyDefinitionResponse$isTimeSeries": "<p>A Boolean value that specifies whether the property consists of time series data.</p>",
+        "PropertyDefinitionResponse$isRequiredInEntity": "<p>A Boolean value that specifies whether the property is required in an entity.</p>",
+        "PropertyDefinitionResponse$isExternalId": "<p>A Boolean value that specifies whether the property ID comes from an external data store.</p>",
+        "PropertyDefinitionResponse$isStoredExternally": "<p>A Boolean value that specifies whether the property is stored externally.</p>",
+        "PropertyDefinitionResponse$isImported": "<p>A Boolean value that specifies whether the property definition is imported from an external data store.</p>",
+        "PropertyDefinitionResponse$isFinal": "<p>A Boolean value that specifies whether the property definition can be updated.</p>",
+        "PropertyDefinitionResponse$isInherited": "<p>A Boolean value that specifies whether the property definition is inherited from a parent entity.</p>",
+        "PropertyGroupResponse$isInherited": "<p>A Boolean value that specifies whether the property group is inherited from a parent entity</p>",
         "UpdateComponentTypeRequest$isSingleton": "<p>A Boolean value that specifies whether an entity can have more than one component of this type.</p>"
+      }
+    },
+    "BundleInformation": {
+      "base": "<p>Information about pricing bundle.</p>",
+      "refs": {
+        "PricingPlan$bundleInformation": "<p>The pricing plan's bundle information.</p>"
+      }
+    },
+    "BundleName": {
+      "base": null,
+      "refs": {
+        "PricingBundles$member": null
+      }
+    },
+    "ColumnDescription": {
+      "base": "<p>A description of the column in the query results.</p>",
+      "refs": {
+        "ColumnDescriptions$member": null
+      }
+    },
+    "ColumnDescriptions": {
+      "base": null,
+      "refs": {
+        "ExecuteQueryResponse$columnDescriptions": "<p>A list of ColumnDescription objects.</p>"
+      }
+    },
+    "ColumnName": {
+      "base": null,
+      "refs": {
+        "ColumnDescription$name": "<p>The name of the column description.</p>"
+      }
+    },
+    "ColumnType": {
+      "base": null,
+      "refs": {
+        "ColumnDescription$type": "<p>The type of the column description.</p>"
+      }
+    },
+    "ComponentPropertyGroupRequest": {
+      "base": "<p/>",
+      "refs": {
+        "ComponentPropertyGroupRequests$value": null
+      }
+    },
+    "ComponentPropertyGroupRequests": {
+      "base": null,
+      "refs": {
+        "ComponentRequest$propertyGroups": "<p>The property groups.</p>",
+        "ComponentUpdateRequest$propertyGroupUpdates": "<p>The property group updates.</p>"
+      }
+    },
+    "ComponentPropertyGroupResponse": {
+      "base": "<p>The component property group response.</p>",
+      "refs": {
+        "ComponentPropertyGroupResponses$value": null
+      }
+    },
+    "ComponentPropertyGroupResponses": {
+      "base": null,
+      "refs": {
+        "ComponentResponse$propertyGroups": "<p>The property groups.</p>"
       }
     },
     "ComponentRequest": {
@@ -248,6 +314,7 @@
         "PropertyLatestValue$propertyValue": "<p>The value of the property.</p>",
         "PropertyRequest$value": "<p>The value of the property.</p>",
         "PropertyResponse$value": "<p>The value of the property.</p>",
+        "PropertyTableValue$value": null,
         "PropertyValue$value": "<p>An object that specifies a value for a time series property.</p>"
       }
     },
@@ -412,6 +479,7 @@
         "ConnectorTimeoutException$message": null,
         "ErrorDetails$message": "<p>The error message.</p>",
         "InternalServerException$message": null,
+        "QueryTimeoutException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
@@ -428,6 +496,16 @@
       "base": null,
       "refs": {
         "TooManyTagsException$message": null
+      }
+    },
+    "ExecuteQueryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExecuteQueryResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Expression": {
@@ -495,6 +573,16 @@
       "refs": {
       }
     },
+    "GetPricingPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPricingPlanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetPropertyValueHistoryRequest": {
       "base": null,
       "refs": {
@@ -535,30 +623,40 @@
       "refs": {
       }
     },
+    "GroupType": {
+      "base": null,
+      "refs": {
+        "ComponentPropertyGroupRequest$groupType": "<p>The group type.</p>",
+        "ComponentPropertyGroupResponse$groupType": "<p>The group type.</p>",
+        "PropertyGroupRequest$groupType": "<p>The group type.</p>",
+        "PropertyGroupResponse$groupType": "<p>The group types.</p>"
+      }
+    },
     "Id": {
       "base": null,
       "refs": {
         "BatchPutPropertyValuesRequest$workspaceId": "<p>The ID of the workspace that contains the properties to set.</p>",
         "CreateComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "CreateEntityRequest$workspaceId": "<p>The ID of the workspace that contains the entity.</p>",
-        "CreateSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "CreateSceneRequest$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
+        "CreateSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "CreateWorkspaceRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "DeleteComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "DeleteEntityRequest$workspaceId": "<p>The ID of the workspace that contains the entity to delete.</p>",
-        "DeleteSceneRequest$sceneId": "<p>The ID of the scene to delete.</p>",
         "DeleteSceneRequest$workspaceId": "<p>The ID of the workspace.</p>",
+        "DeleteSceneRequest$sceneId": "<p>The ID of the scene to delete.</p>",
         "DeleteWorkspaceRequest$workspaceId": "<p>The ID of the workspace to delete.</p>",
+        "ExecuteQueryRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "GetComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "GetComponentTypeResponse$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "GetEntityRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "GetEntityResponse$workspaceId": "<p>The ID of the workspace.</p>",
         "GetPropertyValueHistoryRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "GetPropertyValueRequest$workspaceId": "<p>The ID of the workspace whose values the operation returns.</p>",
-        "GetSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "GetSceneRequest$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
-        "GetSceneResponse$sceneId": "<p>The ID of the scene.</p>",
+        "GetSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "GetSceneResponse$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
+        "GetSceneResponse$sceneId": "<p>The ID of the scene.</p>",
         "GetWorkspaceResponse$workspaceId": "<p>The ID of the workspace.</p>",
         "ListComponentTypesRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "ListComponentTypesResponse$workspaceId": "<p>The ID of the workspace.</p>",
@@ -568,8 +666,8 @@
         "UpdateComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "UpdateComponentTypeResponse$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "UpdateEntityRequest$workspaceId": "<p>The ID of the workspace that contains the entity.</p>",
-        "UpdateSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "UpdateSceneRequest$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
+        "UpdateSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "UpdateWorkspaceRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "WorkspaceSummary$workspaceId": "<p>The ID of the workspace.</p>"
       }
@@ -698,24 +796,28 @@
     "Long": {
       "base": null,
       "refs": {
-        "DataValue$longValue": "<p>A long value.</p>"
+        "DataValue$longValue": "<p>A long value.</p>",
+        "PricingPlan$billableEntityCount": "<p>The billable entity count.</p>"
       }
     },
     "MaxResults": {
       "base": null,
       "refs": {
-        "GetPropertyValueHistoryRequest$maxResults": "<p>The maximum number of results to return.</p>",
-        "ListComponentTypesRequest$maxResults": "<p>The maximum number of results to display.</p>",
+        "GetPropertyValueHistoryRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
+        "GetPropertyValueRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
+        "ListComponentTypesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
         "ListComponentTypesResponse$maxResults": "<p>Specifies the maximum number of results to display.</p>",
-        "ListEntitiesRequest$maxResults": "<p>The maximum number of results to display.</p>",
+        "ListEntitiesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
         "ListScenesRequest$maxResults": "<p>Specifies the maximum number of results to display.</p>",
-        "ListTagsForResourceRequest$maxResults": "<p>The maximum number of results to display.</p>",
-        "ListWorkspacesRequest$maxResults": "<p>The maximum number of results to display.</p>"
+        "ListTagsForResourceRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
+        "ListWorkspacesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>"
       }
     },
     "Name": {
       "base": null,
       "refs": {
+        "ComponentPropertyGroupRequests$key": null,
+        "ComponentPropertyGroupResponses$key": null,
         "ComponentResponse$componentName": "<p>The name of the component.</p>",
         "ComponentUpdatesMapRequest$key": null,
         "ComponentsMap$key": null,
@@ -727,11 +829,16 @@
         "FunctionsResponse$key": null,
         "GetPropertyValueHistoryRequest$componentName": "<p>The name of the component.</p>",
         "GetPropertyValueRequest$componentName": "<p>The name of the component whose property values the operation returns.</p>",
+        "GetPropertyValueRequest$propertyGroupName": "<p>The property group name.</p>",
         "PropertyDefinitionsRequest$key": null,
         "PropertyDefinitionsResponse$key": null,
+        "PropertyGroupsRequest$key": null,
+        "PropertyGroupsResponse$key": null,
         "PropertyLatestValueMap$key": null,
+        "PropertyNames$member": null,
         "PropertyRequests$key": null,
         "PropertyResponses$key": null,
+        "PropertyTableValue$key": null,
         "RelationshipValue$targetComponentName": "<p>The name of the target component associated with the relationship value.</p>",
         "RequiredProperties$member": null
       }
@@ -739,8 +846,12 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ExecuteQueryRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ExecuteQueryResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "GetPropertyValueHistoryRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "GetPropertyValueHistoryResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "GetPropertyValueRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "GetPropertyValueResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListComponentTypesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListComponentTypesResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListEntitiesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
@@ -751,6 +862,24 @@
         "ListTagsForResourceResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListWorkspacesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListWorkspacesResponse$nextToken": "<p>The string that specifies the next page of results.</p>"
+      }
+    },
+    "Order": {
+      "base": null,
+      "refs": {
+        "OrderBy$order": "<p>The set order that filters results.</p>"
+      }
+    },
+    "OrderBy": {
+      "base": "<p>Filter criteria that orders the return output. It can be sorted in ascending or descending order.</p>",
+      "refs": {
+        "OrderByList$member": null
+      }
+    },
+    "OrderByList": {
+      "base": null,
+      "refs": {
+        "TabularConditions$orderBy": "<p>Filter criteria that orders the output. It can be sorted in ascending or descending order.</p>"
       }
     },
     "OrderByTime": {
@@ -779,6 +908,35 @@
       "base": null,
       "refs": {
         "ParentEntityUpdateRequest$updateType": "<p>The type of the update.</p>"
+      }
+    },
+    "PricingBundles": {
+      "base": null,
+      "refs": {
+        "BundleInformation$bundleNames": "<p>The bundle names.</p>",
+        "UpdatePricingPlanRequest$bundleNames": "<p>The bundle names.</p>"
+      }
+    },
+    "PricingMode": {
+      "base": null,
+      "refs": {
+        "PricingPlan$pricingMode": "<p>The pricing mode.</p>",
+        "UpdatePricingPlanRequest$pricingMode": "<p>The pricing mode.</p>"
+      }
+    },
+    "PricingPlan": {
+      "base": "<p>The pricing plan.</p>",
+      "refs": {
+        "GetPricingPlanResponse$currentPricingPlan": "<p>The chosen pricing plan for the current billing cycle.</p>",
+        "GetPricingPlanResponse$pendingPricingPlan": "<p>The pending pricing plan.</p>",
+        "UpdatePricingPlanResponse$currentPricingPlan": "<p>Update the current pricing plan.</p>",
+        "UpdatePricingPlanResponse$pendingPricingPlan": "<p>Update the pending pricing plan.</p>"
+      }
+    },
+    "PricingTier": {
+      "base": null,
+      "refs": {
+        "BundleInformation$pricingTier": "<p>The pricing tier.</p>"
       }
     },
     "PropertyDefinitionRequest": {
@@ -817,7 +975,39 @@
     "PropertyFilters": {
       "base": null,
       "refs": {
-        "GetPropertyValueHistoryRequest$propertyFilters": "<p>A list of objects that filter the property value history request.</p>"
+        "GetPropertyValueHistoryRequest$propertyFilters": "<p>A list of objects that filter the property value history request.</p>",
+        "TabularConditions$propertyFilters": "<p>You can filter the request using various logical operators and a key-value format. For example:</p> <p> <code>{\"key\": \"serverType\", \"value\": \"webServer\"}</code> </p>"
+      }
+    },
+    "PropertyGroupRequest": {
+      "base": "<p/>",
+      "refs": {
+        "PropertyGroupsRequest$value": null
+      }
+    },
+    "PropertyGroupResponse": {
+      "base": "<p>The property group response</p>",
+      "refs": {
+        "PropertyGroupsResponse$value": null
+      }
+    },
+    "PropertyGroupUpdateType": {
+      "base": null,
+      "refs": {
+        "ComponentPropertyGroupRequest$updateType": "<p>The update type.</p>"
+      }
+    },
+    "PropertyGroupsRequest": {
+      "base": null,
+      "refs": {
+        "CreateComponentTypeRequest$propertyGroups": "<p/>",
+        "UpdateComponentTypeRequest$propertyGroups": "<p>The property groups</p>"
+      }
+    },
+    "PropertyGroupsResponse": {
+      "base": null,
+      "refs": {
+        "GetComponentTypeResponse$propertyGroups": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>"
       }
     },
     "PropertyLatestValue": {
@@ -830,6 +1020,15 @@
       "base": null,
       "refs": {
         "GetPropertyValueResponse$propertyValues": "<p>An object that maps strings to the properties and latest property values in the response. Each string in the mapping must be unique to this object.</p>"
+      }
+    },
+    "PropertyNames": {
+      "base": null,
+      "refs": {
+        "ComponentPropertyGroupRequest$propertyNames": "<p>The property names.</p>",
+        "ComponentPropertyGroupResponse$propertyNames": "<p>The names of properties</p>",
+        "PropertyGroupRequest$propertyNames": "<p>The names of properties.</p>",
+        "PropertyGroupResponse$propertyNames": "<p>The names of properties.</p>"
       }
     },
     "PropertyRequest": {
@@ -855,6 +1054,12 @@
       "base": null,
       "refs": {
         "ComponentResponse$properties": "<p>An object that maps strings to the properties to set in the component type. Each string in the mapping must be unique to this object.</p>"
+      }
+    },
+    "PropertyTableValue": {
+      "base": null,
+      "refs": {
+        "TabularPropertyValue$member": null
       }
     },
     "PropertyUpdateType": {
@@ -895,6 +1100,29 @@
         "PropertyValueEntry$propertyValues": "<p>A list of objects that specify time series property values.</p>"
       }
     },
+    "QueryResultValue": {
+      "base": null,
+      "refs": {
+        "RowData$member": null
+      }
+    },
+    "QueryServiceMaxResults": {
+      "base": null,
+      "refs": {
+        "ExecuteQueryRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>"
+      }
+    },
+    "QueryStatement": {
+      "base": null,
+      "refs": {
+        "ExecuteQueryRequest$queryStatement": "<p>The query statement.</p>"
+      }
+    },
+    "QueryTimeoutException": {
+      "base": "<p>The query timeout exception.</p>",
+      "refs": {
+      }
+    },
     "Relationship": {
       "base": "<p>An object that specifies a relationship with another component type.</p>",
       "refs": {
@@ -925,6 +1153,24 @@
         "CreateWorkspaceRequest$role": "<p>The ARN of the execution role associated with the workspace.</p>",
         "GetWorkspaceResponse$role": "<p>The ARN of the execution role associated with the workspace.</p>",
         "UpdateWorkspaceRequest$role": "<p>The ARN of the execution role associated with the workspace.</p>"
+      }
+    },
+    "Row": {
+      "base": "<p>Represents a single row in the query results.</p>",
+      "refs": {
+        "Rows$member": null
+      }
+    },
+    "RowData": {
+      "base": null,
+      "refs": {
+        "Row$rowData": "<p>The data in a row of query results.</p>"
+      }
+    },
+    "Rows": {
+      "base": null,
+      "refs": {
+        "ExecuteQueryResponse$rows": "<p>Represents a single row in the query results.</p>"
       }
     },
     "S3Location": {
@@ -1023,10 +1269,29 @@
         "ExternalIdProperty$value": null,
         "ListComponentTypesFilter$namespace": "<p>The namespace to which the component types in the list belong.</p>",
         "ListEntitiesFilter$externalId": "<p>The external-Id property of a component. The external-Id property is the primary key of an external storage system.</p>",
-        "PropertyFilter$operator": "<p>The operator associated with this property filter.</p>",
+        "OrderBy$propertyName": "<p>The property name.</p>",
         "PropertyFilter$propertyName": "<p>The property name associated with this property filter.</p>",
+        "PropertyFilter$operator": "<p>The operator associated with this property filter.</p>",
         "Relationship$relationshipType": "<p>The type of the relationship.</p>",
         "SelectedPropertyList$member": null
+      }
+    },
+    "TabularConditions": {
+      "base": "<p>The tabular conditions.</p>",
+      "refs": {
+        "GetPropertyValueRequest$tabularConditions": "<p>The tabular conditions.</p>"
+      }
+    },
+    "TabularPropertyValue": {
+      "base": null,
+      "refs": {
+        "TabularPropertyValues$member": null
+      }
+    },
+    "TabularPropertyValues": {
+      "base": null,
+      "refs": {
+        "GetPropertyValueResponse$tabularPropertyValues": "<p>A table of property values.</p>"
       }
     },
     "TagKey": {
@@ -1077,8 +1342,8 @@
     "Time": {
       "base": "<p>Timestamp represented in ISO 8601 format</p>",
       "refs": {
-        "GetPropertyValueHistoryRequest$endTime": "<p>The ISO8601 DateTime of the latest property value to return.</p> <p>For more information about the ISO8601 DateTime format, see the data type <a href=\"https://docs.aws.amazon.com/roci/latest/roci-api/API_PropertyValue.html\">PropertyValue</a>.</p>",
-        "GetPropertyValueHistoryRequest$startTime": "<p>The ISO8601 DateTime of the earliest property value to return.</p> <p>For more information about the ISO8601 DateTime format, see the data type <a href=\"https://docs.aws.amazon.com/roci/latest/roci-api/API_PropertyValue.html\">PropertyValue</a>.</p>",
+        "GetPropertyValueHistoryRequest$startTime": "<p>The ISO8601 DateTime of the earliest property value to return.</p> <p>For more information about the ISO8601 DateTime format, see the data type <a href=\"https://docs.aws.amazon.com/iot-twinmaker/latest/apireference/API_PropertyValue.html\">PropertyValue</a>.</p>",
+        "GetPropertyValueHistoryRequest$endTime": "<p>The ISO8601 DateTime of the latest property value to return.</p> <p>For more information about the ISO8601 DateTime format, see the data type <a href=\"https://docs.aws.amazon.com/iot-twinmaker/latest/apireference/API_PropertyValue.html\">PropertyValue</a>.</p>",
         "PropertyValue$time": "<p>ISO8601 DateTime of a value for a time series property.</p> <p>The time for when the property value was recorded in ISO 8601 format: <i>YYYY-MM-DDThh:mm:ss[.SSSSSSSSS][Z/±HH:mm]</i>.</p> <ul> <li> <p> <i>[YYYY]</i>: year</p> </li> <li> <p> <i>[MM]</i>: month</p> </li> <li> <p> <i>[DD]</i>: day</p> </li> <li> <p> <i>[hh]</i>: hour</p> </li> <li> <p> <i>[mm]</i>: minute</p> </li> <li> <p> <i>[ss]</i>: seconds</p> </li> <li> <p> <i>[.SSSSSSSSS]</i>: additional precision, where precedence is maintained. For example: [.573123] is equal to 573123000 nanoseconds.</p> </li> <li> <p> <i>Z</i>: default timezone UTC</p> </li> <li> <p> <i>± HH:mm</i>: time zone offset in Hours and Minutes.</p> </li> </ul> <p> <i>Required sub-fields</i>: YYYY-MM-DDThh:mm:ss and [Z/±HH:mm]</p>"
       }
     },
@@ -1097,12 +1362,14 @@
         "GetComponentTypeResponse$updateDateTime": "<p>The date and time when the component was last updated.</p>",
         "GetEntityResponse$creationDateTime": "<p>The date and time when the entity was created.</p>",
         "GetEntityResponse$updateDateTime": "<p>The date and time when the entity was last updated.</p>",
-        "GetPropertyValueHistoryRequest$endDateTime": "<p>The date and time of the latest property value to return.</p>",
         "GetPropertyValueHistoryRequest$startDateTime": "<p>The date and time of the earliest property value to return.</p>",
+        "GetPropertyValueHistoryRequest$endDateTime": "<p>The date and time of the latest property value to return.</p>",
         "GetSceneResponse$creationDateTime": "<p>The date and time when the scene was created.</p>",
         "GetSceneResponse$updateDateTime": "<p>The date and time when the scene was last updated.</p>",
         "GetWorkspaceResponse$creationDateTime": "<p>The date and time when the workspace was created.</p>",
         "GetWorkspaceResponse$updateDateTime": "<p>The date and time when the workspace was last updated.</p>",
+        "PricingPlan$effectiveDateTime": "<p>The effective date and time of the pricing plan.</p>",
+        "PricingPlan$updateDateTime": "<p>The set date and time for updating a pricing plan.</p>",
         "PropertyValue$timestamp": "<p>The timestamp of a value for a time series property.</p>",
         "SceneSummary$creationDateTime": "<p>The date and time when the scene was created.</p>",
         "SceneSummary$updateDateTime": "<p>The date and time when the scene was last updated.</p>",
@@ -1173,6 +1440,22 @@
     "UpdateEntityResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdatePricingPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePricingPlanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateReason": {
+      "base": null,
+      "refs": {
+        "PricingPlan$updateReason": "<p>The update reason, for changing a pricing plan.</p>"
       }
     },
     "UpdateSceneRequest": {

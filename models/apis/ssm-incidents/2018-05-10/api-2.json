@@ -665,6 +665,7 @@
         "displayName":{"shape":"ResponsePlanDisplayName"},
         "engagements":{"shape":"EngagementSet"},
         "incidentTemplate":{"shape":"IncidentTemplate"},
+        "integrations":{"shape":"Integrations"},
         "name":{"shape":"ResponsePlanName"},
         "tags":{"shape":"TagMap"}
       }
@@ -975,6 +976,7 @@
         "displayName":{"shape":"ResponsePlanDisplayName"},
         "engagements":{"shape":"EngagementSet"},
         "incidentTemplate":{"shape":"IncidentTemplate"},
+        "integrations":{"shape":"Integrations"},
         "name":{"shape":"ResponsePlanName"}
       }
     },
@@ -1126,6 +1128,19 @@
       "max":100,
       "min":0
     },
+    "Integration":{
+      "type":"structure",
+      "members":{
+        "pagerDutyConfiguration":{"shape":"PagerDutyConfiguration"}
+      },
+      "union":true
+    },
+    "Integrations":{
+      "type":"list",
+      "member":{"shape":"Integration"},
+      "max":1,
+      "min":0
+    },
     "InternalServerException":{
       "type":"structure",
       "required":["message"],
@@ -1166,6 +1181,7 @@
       "members":{
         "arn":{"shape":"Arn"},
         "metricDefinition":{"shape":"MetricDefinition"},
+        "pagerDutyIncidentDetail":{"shape":"PagerDutyIncidentDetail"},
         "url":{"shape":"Url"}
       },
       "union":true
@@ -1299,6 +1315,60 @@
       "member":{"shape":"NotificationTargetItem"},
       "max":10,
       "min":0
+    },
+    "PagerDutyConfiguration":{
+      "type":"structure",
+      "required":[
+        "name",
+        "pagerDutyIncidentConfiguration",
+        "secretId"
+      ],
+      "members":{
+        "name":{"shape":"PagerDutyConfigurationNameString"},
+        "pagerDutyIncidentConfiguration":{"shape":"PagerDutyIncidentConfiguration"},
+        "secretId":{"shape":"PagerDutyConfigurationSecretIdString"}
+      }
+    },
+    "PagerDutyConfigurationNameString":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "PagerDutyConfigurationSecretIdString":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
+    "PagerDutyIncidentConfiguration":{
+      "type":"structure",
+      "required":["serviceId"],
+      "members":{
+        "serviceId":{"shape":"PagerDutyIncidentConfigurationServiceIdString"}
+      }
+    },
+    "PagerDutyIncidentConfigurationServiceIdString":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "PagerDutyIncidentDetail":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "autoResolve":{"shape":"Boolean"},
+        "id":{"shape":"PagerDutyIncidentDetailIdString"},
+        "secretId":{"shape":"PagerDutyIncidentDetailSecretIdString"}
+      }
+    },
+    "PagerDutyIncidentDetailIdString":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "PagerDutyIncidentDetailSecretIdString":{
+      "type":"string",
+      "max":512,
+      "min":1
     },
     "Policy":{
       "type":"string",
@@ -1916,7 +1986,8 @@
         "incidentTemplateNotificationTargets":{"shape":"NotificationTargetSet"},
         "incidentTemplateSummary":{"shape":"IncidentSummary"},
         "incidentTemplateTags":{"shape":"TagMapUpdate"},
-        "incidentTemplateTitle":{"shape":"IncidentTitle"}
+        "incidentTemplateTitle":{"shape":"IncidentTitle"},
+        "integrations":{"shape":"Integrations"}
       }
     },
     "UpdateResponsePlanOutput":{

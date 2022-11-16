@@ -5012,6 +5012,10 @@ func (s *CreatePricingPlanOutput) SetArn(v string) *CreatePricingPlanOutput {
 type CreatePricingRuleInput struct {
 	_ struct{} `type:"structure"`
 
+	// The seller of services provided by Amazon Web Services, their affiliates,
+	// or third-party providers selling services via Amazon Web Services Marketplace.
+	BillingEntity *string `type:"string"`
+
 	// The token that's needed to support idempotency. Idempotency isn't currently
 	// supported, but will be implemented in a future update.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
@@ -5107,6 +5111,12 @@ func (s *CreatePricingRuleInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBillingEntity sets the BillingEntity field's value.
+func (s *CreatePricingRuleInput) SetBillingEntity(v string) *CreatePricingRuleInput {
+	s.BillingEntity = &v
+	return s
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -8323,6 +8333,10 @@ type PricingRuleListElement struct {
 	// The pricing plans count that this pricing rule is associated with.
 	AssociatedPricingPlanCount *int64 `type:"long"`
 
+	// The seller of services provided by Amazon Web Services, their affiliates,
+	// or third-party providers selling services via Amazon Web Services Marketplace.
+	BillingEntity *string `type:"string"`
+
 	// The time when the pricing rule was created.
 	CreationTime *int64 `type:"long"`
 
@@ -8385,6 +8399,12 @@ func (s *PricingRuleListElement) SetArn(v string) *PricingRuleListElement {
 // SetAssociatedPricingPlanCount sets the AssociatedPricingPlanCount field's value.
 func (s *PricingRuleListElement) SetAssociatedPricingPlanCount(v int64) *PricingRuleListElement {
 	s.AssociatedPricingPlanCount = &v
+	return s
+}
+
+// SetBillingEntity sets the BillingEntity field's value.
+func (s *PricingRuleListElement) SetBillingEntity(v string) *PricingRuleListElement {
+	s.BillingEntity = &v
 	return s
 }
 
@@ -9660,6 +9680,10 @@ type UpdatePricingRuleOutput struct {
 	// The pricing plans count that this pricing rule is associated with.
 	AssociatedPricingPlanCount *int64 `type:"long"`
 
+	// The seller of services provided by Amazon Web Services, their affiliates,
+	// or third-party providers selling services via Amazon Web Services Marketplace.
+	BillingEntity *string `type:"string"`
+
 	// The new description for the pricing rule.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -9720,6 +9744,12 @@ func (s *UpdatePricingRuleOutput) SetArn(v string) *UpdatePricingRuleOutput {
 // SetAssociatedPricingPlanCount sets the AssociatedPricingPlanCount field's value.
 func (s *UpdatePricingRuleOutput) SetAssociatedPricingPlanCount(v int64) *UpdatePricingRuleOutput {
 	s.AssociatedPricingPlanCount = &v
+	return s
+}
+
+// SetBillingEntity sets the BillingEntity field's value.
+func (s *UpdatePricingRuleOutput) SetBillingEntity(v string) *UpdatePricingRuleOutput {
+	s.BillingEntity = &v
 	return s
 }
 
@@ -10007,6 +10037,9 @@ const (
 
 	// PricingRuleScopeService is a PricingRuleScope enum value
 	PricingRuleScopeService = "SERVICE"
+
+	// PricingRuleScopeBillingEntity is a PricingRuleScope enum value
+	PricingRuleScopeBillingEntity = "BILLING_ENTITY"
 )
 
 // PricingRuleScope_Values returns all elements of the PricingRuleScope enum
@@ -10014,6 +10047,7 @@ func PricingRuleScope_Values() []string {
 	return []string{
 		PricingRuleScopeGlobal,
 		PricingRuleScopeService,
+		PricingRuleScopeBillingEntity,
 	}
 }
 
@@ -10172,11 +10206,17 @@ const (
 	// ValidationExceptionReasonCustomLineItemAssociationExists is a ValidationExceptionReason enum value
 	ValidationExceptionReasonCustomLineItemAssociationExists = "CUSTOM_LINE_ITEM_ASSOCIATION_EXISTS"
 
+	// ValidationExceptionReasonInvalidBillingGroup is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidBillingGroup = "INVALID_BILLING_GROUP"
+
 	// ValidationExceptionReasonInvalidBillingPeriodForOperation is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidBillingPeriodForOperation = "INVALID_BILLING_PERIOD_FOR_OPERATION"
 
-	// ValidationExceptionReasonInvalidBillingGroup is a ValidationExceptionReason enum value
-	ValidationExceptionReasonInvalidBillingGroup = "INVALID_BILLING_GROUP"
+	// ValidationExceptionReasonIllegalBillingEntity is a ValidationExceptionReason enum value
+	ValidationExceptionReasonIllegalBillingEntity = "ILLEGAL_BILLING_ENTITY"
+
+	// ValidationExceptionReasonIllegalModifierPercentage is a ValidationExceptionReason enum value
+	ValidationExceptionReasonIllegalModifierPercentage = "ILLEGAL_MODIFIER_PERCENTAGE"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -10228,7 +10268,9 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonMultiplePricingPlanArn,
 		ValidationExceptionReasonIllegalChildAssociateResource,
 		ValidationExceptionReasonCustomLineItemAssociationExists,
-		ValidationExceptionReasonInvalidBillingPeriodForOperation,
 		ValidationExceptionReasonInvalidBillingGroup,
+		ValidationExceptionReasonInvalidBillingPeriodForOperation,
+		ValidationExceptionReasonIllegalBillingEntity,
+		ValidationExceptionReasonIllegalModifierPercentage,
 	}
 }

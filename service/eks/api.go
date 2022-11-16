@@ -271,12 +271,9 @@ func (c *EKS) CreateAddonRequest(input *CreateAddonInput) (req *request.Request,
 // Creates an Amazon EKS add-on.
 //
 // Amazon EKS add-ons help to automate the provisioning and lifecycle management
-// of common operational software for Amazon EKS clusters. Amazon EKS add-ons
-// require clusters running version 1.18 or later because Amazon EKS add-ons
-// rely on the Server-side Apply Kubernetes feature, which is only available
-// in Kubernetes 1.18 and later. For more information, see Amazon EKS add-ons
-// (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html) in the
-// Amazon EKS User Guide.
+// of common operational software for Amazon EKS clusters. For more information,
+// see Amazon EKS add-ons (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
+// in the Amazon EKS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5206,6 +5203,77 @@ func (s *ConnectorConfigResponse) SetRoleArn(v string) *ConnectorConfigResponse 
 	return s
 }
 
+// The placement configuration for all the control plane instance of your local
+// Amazon EKS cluster on an Amazon Web Services Outpost. For more information,
+// see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
+// in the Amazon EKS User Guide
+type ControlPlanePlacementRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the placement group for the Kubernetes control plane instances.
+	// This setting can't be changed after cluster creation.
+	GroupName *string `locationName:"groupName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlanePlacementRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlanePlacementRequest) GoString() string {
+	return s.String()
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *ControlPlanePlacementRequest) SetGroupName(v string) *ControlPlanePlacementRequest {
+	s.GroupName = &v
+	return s
+}
+
+// The placement configuration for all the control plane instance of your local
+// Amazon EKS cluster on an Amazon Web Services Outpost. For more information,
+// see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
+// in the Amazon EKS User Guide.
+type ControlPlanePlacementResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the placement group for the Kubernetes control plane instances.
+	GroupName *string `locationName:"groupName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlanePlacementResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlanePlacementResponse) GoString() string {
+	return s.String()
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *ControlPlanePlacementResponse) SetGroupName(v string) *ControlPlanePlacementResponse {
+	s.GroupName = &v
+	return s
+}
+
 type CreateAddonInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5414,8 +5482,8 @@ type CreateClusterInput struct {
 
 	// An object representing the configuration of your local Amazon EKS cluster
 	// on an Amazon Web Services Outpost. Before creating a local cluster on an
-	// Outpost, review Creating an Amazon EKS cluster on an Amazon Web Services
-	// Outpost (https://docs.aws.amazon.com/eks/latest/userguide/create-cluster-outpost.html)
+	// Outpost, review Local clusters for Amazon EKS on Amazon Web Services Outposts
+	// (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-overview.html)
 	// in the Amazon EKS User Guide. This object isn't available for creating Amazon
 	// EKS clusters on the Amazon Web Services cloud.
 	OutpostConfig *OutpostConfigRequest `locationName:"outpostConfig" type:"structure"`
@@ -8190,15 +8258,8 @@ type LaunchTemplateSpecification struct {
 	// in the request, but not both.
 	Name *string `locationName:"name" type:"string"`
 
-	// The launch template version number, $Latest, or $Default.
-	//
-	// If the value is $Latest, Amazon EKS uses the latest version of the launch
-	// template.
-	//
-	// If the value is $Default, Amazon EKS uses the default version of the launch
-	// template.
-	//
-	// Default: The default version of the launch template.
+	// The version number of the launch template to use. If no version is specified,
+	// then the template's default version is used.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -10020,32 +10081,30 @@ func (s *OidcIdentityProviderConfigRequest) SetUsernamePrefix(v string) *OidcIde
 
 // The configuration of your local Amazon EKS cluster on an Amazon Web Services
 // Outpost. Before creating a cluster on an Outpost, review Creating a local
-// Amazon EKS cluster on an Amazon Web Services Outpost (https://docs.aws.amazon.com/eks/latest/userguide/create-cluster-outpost.html)
+// cluster on an Outpost (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-local-cluster-create.html)
 // in the Amazon EKS User Guide. This API isn't available for Amazon EKS clusters
 // on the Amazon Web Services cloud.
 type OutpostConfigRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon EC2 instance type that you want to use for your local Amazon EKS
-	// cluster on Outposts. The instance type that you specify is used for all Kubernetes
-	// control plane instances. The instance type can't be changed after cluster
-	// creation.
+	// cluster on Outposts. Choose an instance type based on the number of nodes
+	// that your cluster will have. For more information, see Capacity considerations
+	// (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
+	// in the Amazon EKS User Guide.
 	//
-	// Choose an instance type based on the number of nodes that your cluster will
-	// have. If your cluster will have:
-	//
-	//    * 1–20 nodes, then we recommend specifying a large instance type.
-	//
-	//    * 21–100 nodes, then we recommend specifying an xlarge instance type.
-	//
-	//    * 101–250 nodes, then we recommend specifying a 2xlarge instance type.
-	//
-	// For a list of the available Amazon EC2 instance types, see Compute and storage
-	// in Outposts rack features (http://aws.amazon.com/outposts/rack/features/).
-	// The control plane is not automatically scaled by Amazon EKS.
+	// The instance type that you specify is used for all Kubernetes control plane
+	// instances. The instance type can't be changed after cluster creation. The
+	// control plane is not automatically scaled by Amazon EKS.
 	//
 	// ControlPlaneInstanceType is a required field
 	ControlPlaneInstanceType *string `locationName:"controlPlaneInstanceType" type:"string" required:"true"`
+
+	// An object representing the placement configuration for all the control plane
+	// instance of your local Amazon EKS cluster on an Amazon Web Services Outpost.
+	// For more information, see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
+	// in the Amazon EKS User Guide.
+	ControlPlanePlacement *ControlPlanePlacementRequest `locationName:"controlPlanePlacement" type:"structure"`
 
 	// The ARN of the Outpost that you want to use for your local Amazon EKS cluster
 	// on Outposts. Only a single Outpost ARN is supported.
@@ -10094,6 +10153,12 @@ func (s *OutpostConfigRequest) SetControlPlaneInstanceType(v string) *OutpostCon
 	return s
 }
 
+// SetControlPlanePlacement sets the ControlPlanePlacement field's value.
+func (s *OutpostConfigRequest) SetControlPlanePlacement(v *ControlPlanePlacementRequest) *OutpostConfigRequest {
+	s.ControlPlanePlacement = v
+	return s
+}
+
 // SetOutpostArns sets the OutpostArns field's value.
 func (s *OutpostConfigRequest) SetOutpostArns(v []*string) *OutpostConfigRequest {
 	s.OutpostArns = v
@@ -10111,6 +10176,12 @@ type OutpostConfigResponse struct {
 	//
 	// ControlPlaneInstanceType is a required field
 	ControlPlaneInstanceType *string `locationName:"controlPlaneInstanceType" type:"string" required:"true"`
+
+	// An object representing the placement configuration for all the control plane
+	// instance of your local Amazon EKS cluster on an Amazon Web Services Outpost.
+	// For more information, see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
+	// in the Amazon EKS User Guide.
+	ControlPlanePlacement *ControlPlanePlacementResponse `locationName:"controlPlanePlacement" type:"structure"`
 
 	// The ARN of the Outpost that you specified for use with your local Amazon
 	// EKS cluster on Outposts.
@@ -10140,6 +10211,12 @@ func (s OutpostConfigResponse) GoString() string {
 // SetControlPlaneInstanceType sets the ControlPlaneInstanceType field's value.
 func (s *OutpostConfigResponse) SetControlPlaneInstanceType(v string) *OutpostConfigResponse {
 	s.ControlPlaneInstanceType = &v
+	return s
+}
+
+// SetControlPlanePlacement sets the ControlPlanePlacement field's value.
+func (s *OutpostConfigResponse) SetControlPlanePlacement(v *ControlPlanePlacementResponse) *OutpostConfigResponse {
+	s.ControlPlanePlacement = v
 	return s
 }
 
@@ -12073,13 +12150,8 @@ type VpcConfigRequest struct {
 	// interfaces that Amazon EKS creates to use that allow communication between
 	// your nodes and the Kubernetes control plane. If you don't specify any security
 	// groups, then familiarize yourself with the difference between Amazon EKS
-	// defaults for clusters deployed with Kubernetes:
-	//
-	//    * 1.14 Amazon EKS platform version eks.2 and earlier
-	//
-	//    * 1.14 Amazon EKS platform version eks.3 and later
-	//
-	// For more information, see Amazon EKS security group considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html)
+	// defaults for clusters deployed with Kubernetes. For more information, see
+	// Amazon EKS security group considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html)
 	// in the Amazon EKS User Guide .
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
 

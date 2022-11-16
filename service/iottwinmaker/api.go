@@ -861,6 +861,160 @@ func (c *IoTTwinMaker) DeleteWorkspaceWithContext(ctx aws.Context, input *Delete
 	return out, req.Send()
 }
 
+const opExecuteQuery = "ExecuteQuery"
+
+// ExecuteQueryRequest generates a "aws/request.Request" representing the
+// client's request for the ExecuteQuery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExecuteQuery for more information on using the ExecuteQuery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ExecuteQueryRequest method.
+//	req, resp := client.ExecuteQueryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/ExecuteQuery
+func (c *IoTTwinMaker) ExecuteQueryRequest(input *ExecuteQueryInput) (req *request.Request, output *ExecuteQueryOutput) {
+	op := &request.Operation{
+		Name:       opExecuteQuery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queries/execution",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ExecuteQueryInput{}
+	}
+
+	output = &ExecuteQueryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ExecuteQuery API operation for AWS IoT TwinMaker.
+//
+// Run queries to access information from your knowledge graph of entities within
+// individual workspaces.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation ExecuteQuery for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - QueryTimeoutException
+//     The query timeout exception.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+//   - ServiceQuotaExceededException
+//     The service quota was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/ExecuteQuery
+func (c *IoTTwinMaker) ExecuteQuery(input *ExecuteQueryInput) (*ExecuteQueryOutput, error) {
+	req, out := c.ExecuteQueryRequest(input)
+	return out, req.Send()
+}
+
+// ExecuteQueryWithContext is the same as ExecuteQuery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExecuteQuery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) ExecuteQueryWithContext(ctx aws.Context, input *ExecuteQueryInput, opts ...request.Option) (*ExecuteQueryOutput, error) {
+	req, out := c.ExecuteQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteQueryPages iterates over the pages of a ExecuteQuery operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ExecuteQuery method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ExecuteQuery operation.
+//	pageNum := 0
+//	err := client.ExecuteQueryPages(params,
+//	    func(page *iottwinmaker.ExecuteQueryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoTTwinMaker) ExecuteQueryPages(input *ExecuteQueryInput, fn func(*ExecuteQueryOutput, bool) bool) error {
+	return c.ExecuteQueryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ExecuteQueryPagesWithContext same as ExecuteQueryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) ExecuteQueryPagesWithContext(ctx aws.Context, input *ExecuteQueryInput, fn func(*ExecuteQueryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ExecuteQueryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ExecuteQueryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ExecuteQueryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetComponentType = "GetComponentType"
 
 // GetComponentTypeRequest generates a "aws/request.Request" representing the
@@ -928,6 +1082,9 @@ func (c *IoTTwinMaker) GetComponentTypeRequest(input *GetComponentTypeInput) (re
 //
 //   - ThrottlingException
 //     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/GetComponentType
 func (c *IoTTwinMaker) GetComponentType(input *GetComponentTypeInput) (*GetComponentTypeOutput, error) {
@@ -1044,6 +1201,96 @@ func (c *IoTTwinMaker) GetEntityWithContext(ctx aws.Context, input *GetEntityInp
 	return out, req.Send()
 }
 
+const opGetPricingPlan = "GetPricingPlan"
+
+// GetPricingPlanRequest generates a "aws/request.Request" representing the
+// client's request for the GetPricingPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPricingPlan for more information on using the GetPricingPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPricingPlanRequest method.
+//	req, resp := client.GetPricingPlanRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/GetPricingPlan
+func (c *IoTTwinMaker) GetPricingPlanRequest(input *GetPricingPlanInput) (req *request.Request, output *GetPricingPlanOutput) {
+	op := &request.Operation{
+		Name:       opGetPricingPlan,
+		HTTPMethod: "GET",
+		HTTPPath:   "/pricingplan",
+	}
+
+	if input == nil {
+		input = &GetPricingPlanInput{}
+	}
+
+	output = &GetPricingPlanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetPricingPlan API operation for AWS IoT TwinMaker.
+//
+// Gets the pricing plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation GetPricingPlan for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/GetPricingPlan
+func (c *IoTTwinMaker) GetPricingPlan(input *GetPricingPlanInput) (*GetPricingPlanOutput, error) {
+	req, out := c.GetPricingPlanRequest(input)
+	return out, req.Send()
+}
+
+// GetPricingPlanWithContext is the same as GetPricingPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPricingPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) GetPricingPlanWithContext(ctx aws.Context, input *GetPricingPlanInput, opts ...request.Option) (*GetPricingPlanOutput, error) {
+	req, out := c.GetPricingPlanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPropertyValue = "GetPropertyValue"
 
 // GetPropertyValueRequest generates a "aws/request.Request" representing the
@@ -1074,6 +1321,12 @@ func (c *IoTTwinMaker) GetPropertyValueRequest(input *GetPropertyValueInput) (re
 		Name:       opGetPropertyValue,
 		HTTPMethod: "POST",
 		HTTPPath:   "/workspaces/{workspaceId}/entity-properties/value",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1144,6 +1397,57 @@ func (c *IoTTwinMaker) GetPropertyValueWithContext(ctx aws.Context, input *GetPr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetPropertyValuePages iterates over the pages of a GetPropertyValue operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetPropertyValue method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetPropertyValue operation.
+//	pageNum := 0
+//	err := client.GetPropertyValuePages(params,
+//	    func(page *iottwinmaker.GetPropertyValueOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoTTwinMaker) GetPropertyValuePages(input *GetPropertyValueInput, fn func(*GetPropertyValueOutput, bool) bool) error {
+	return c.GetPropertyValuePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetPropertyValuePagesWithContext same as GetPropertyValuePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) GetPropertyValuePagesWithContext(ctx aws.Context, input *GetPropertyValueInput, fn func(*GetPropertyValueOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetPropertyValueInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetPropertyValueRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetPropertyValueOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetPropertyValueHistory = "GetPropertyValueHistory"
@@ -2533,6 +2837,96 @@ func (c *IoTTwinMaker) UpdateEntityWithContext(ctx aws.Context, input *UpdateEnt
 	return out, req.Send()
 }
 
+const opUpdatePricingPlan = "UpdatePricingPlan"
+
+// UpdatePricingPlanRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePricingPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePricingPlan for more information on using the UpdatePricingPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePricingPlanRequest method.
+//	req, resp := client.UpdatePricingPlanRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/UpdatePricingPlan
+func (c *IoTTwinMaker) UpdatePricingPlanRequest(input *UpdatePricingPlanInput) (req *request.Request, output *UpdatePricingPlanOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePricingPlan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/pricingplan",
+	}
+
+	if input == nil {
+		input = &UpdatePricingPlanInput{}
+	}
+
+	output = &UpdatePricingPlanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdatePricingPlan API operation for AWS IoT TwinMaker.
+//
+// Update the pricing plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation UpdatePricingPlan for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/UpdatePricingPlan
+func (c *IoTTwinMaker) UpdatePricingPlan(input *UpdatePricingPlanInput) (*UpdatePricingPlanOutput, error) {
+	req, out := c.UpdatePricingPlanRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePricingPlanWithContext is the same as UpdatePricingPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePricingPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) UpdatePricingPlanWithContext(ctx aws.Context, input *UpdatePricingPlanInput, opts ...request.Option) (*UpdatePricingPlanOutput, error) {
+	req, out := c.UpdatePricingPlanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateScene = "UpdateScene"
 
 // UpdateSceneRequest generates a "aws/request.Request" representing the
@@ -2989,6 +3383,196 @@ func (s *BatchPutPropertyValuesOutput) SetErrorEntries(v []*BatchPutPropertyErro
 	return s
 }
 
+// Information about pricing bundle.
+type BundleInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The bundle names.
+	//
+	// BundleNames is a required field
+	BundleNames []*string `locationName:"bundleNames" min:"1" type:"list" required:"true"`
+
+	// The pricing tier.
+	PricingTier *string `locationName:"pricingTier" type:"string" enum:"PricingTier"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BundleInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BundleInformation) GoString() string {
+	return s.String()
+}
+
+// SetBundleNames sets the BundleNames field's value.
+func (s *BundleInformation) SetBundleNames(v []*string) *BundleInformation {
+	s.BundleNames = v
+	return s
+}
+
+// SetPricingTier sets the PricingTier field's value.
+func (s *BundleInformation) SetPricingTier(v string) *BundleInformation {
+	s.PricingTier = &v
+	return s
+}
+
+// A description of the column in the query results.
+type ColumnDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the column description.
+	Name *string `locationName:"name" type:"string"`
+
+	// The type of the column description.
+	Type *string `locationName:"type" type:"string" enum:"ColumnType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnDescription) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ColumnDescription) SetName(v string) *ColumnDescription {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ColumnDescription) SetType(v string) *ColumnDescription {
+	s.Type = &v
+	return s
+}
+
+type ComponentPropertyGroupRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The group type.
+	GroupType *string `locationName:"groupType" type:"string" enum:"GroupType"`
+
+	// The property names.
+	PropertyNames []*string `locationName:"propertyNames" type:"list"`
+
+	// The update type.
+	UpdateType *string `locationName:"updateType" type:"string" enum:"PropertyGroupUpdateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentPropertyGroupRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentPropertyGroupRequest) GoString() string {
+	return s.String()
+}
+
+// SetGroupType sets the GroupType field's value.
+func (s *ComponentPropertyGroupRequest) SetGroupType(v string) *ComponentPropertyGroupRequest {
+	s.GroupType = &v
+	return s
+}
+
+// SetPropertyNames sets the PropertyNames field's value.
+func (s *ComponentPropertyGroupRequest) SetPropertyNames(v []*string) *ComponentPropertyGroupRequest {
+	s.PropertyNames = v
+	return s
+}
+
+// SetUpdateType sets the UpdateType field's value.
+func (s *ComponentPropertyGroupRequest) SetUpdateType(v string) *ComponentPropertyGroupRequest {
+	s.UpdateType = &v
+	return s
+}
+
+// The component property group response.
+type ComponentPropertyGroupResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The group type.
+	//
+	// GroupType is a required field
+	GroupType *string `locationName:"groupType" type:"string" required:"true" enum:"GroupType"`
+
+	// A Boolean value that specifies whether the property group is inherited from
+	// a parent entity
+	//
+	// IsInherited is a required field
+	IsInherited *bool `locationName:"isInherited" type:"boolean" required:"true"`
+
+	// The names of properties
+	//
+	// PropertyNames is a required field
+	PropertyNames []*string `locationName:"propertyNames" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentPropertyGroupResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentPropertyGroupResponse) GoString() string {
+	return s.String()
+}
+
+// SetGroupType sets the GroupType field's value.
+func (s *ComponentPropertyGroupResponse) SetGroupType(v string) *ComponentPropertyGroupResponse {
+	s.GroupType = &v
+	return s
+}
+
+// SetIsInherited sets the IsInherited field's value.
+func (s *ComponentPropertyGroupResponse) SetIsInherited(v bool) *ComponentPropertyGroupResponse {
+	s.IsInherited = &v
+	return s
+}
+
+// SetPropertyNames sets the PropertyNames field's value.
+func (s *ComponentPropertyGroupResponse) SetPropertyNames(v []*string) *ComponentPropertyGroupResponse {
+	s.PropertyNames = v
+	return s
+}
+
 // An object that sets information about a component type create or update request.
 type ComponentRequest struct {
 	_ struct{} `type:"structure"`
@@ -3002,6 +3586,9 @@ type ComponentRequest struct {
 	// An object that maps strings to the properties to set in the component type.
 	// Each string in the mapping must be unique to this object.
 	Properties map[string]*PropertyRequest `locationName:"properties" type:"map"`
+
+	// The property groups.
+	PropertyGroups map[string]*ComponentPropertyGroupRequest `locationName:"propertyGroups" type:"map"`
 }
 
 // String returns the string representation.
@@ -3063,6 +3650,12 @@ func (s *ComponentRequest) SetProperties(v map[string]*PropertyRequest) *Compone
 	return s
 }
 
+// SetPropertyGroups sets the PropertyGroups field's value.
+func (s *ComponentRequest) SetPropertyGroups(v map[string]*ComponentPropertyGroupRequest) *ComponentRequest {
+	s.PropertyGroups = v
+	return s
+}
+
 // An object that returns information about a component type create or update
 // request.
 type ComponentResponse struct {
@@ -3083,6 +3676,9 @@ type ComponentResponse struct {
 	// An object that maps strings to the properties to set in the component type.
 	// Each string in the mapping must be unique to this object.
 	Properties map[string]*PropertyResponse `locationName:"properties" type:"map"`
+
+	// The property groups.
+	PropertyGroups map[string]*ComponentPropertyGroupResponse `locationName:"propertyGroups" type:"map"`
 
 	// The status of the component type.
 	Status *Status `locationName:"status" type:"structure"`
@@ -3133,6 +3729,12 @@ func (s *ComponentResponse) SetDescription(v string) *ComponentResponse {
 // SetProperties sets the Properties field's value.
 func (s *ComponentResponse) SetProperties(v map[string]*PropertyResponse) *ComponentResponse {
 	s.Properties = v
+	return s
+}
+
+// SetPropertyGroups sets the PropertyGroups field's value.
+func (s *ComponentResponse) SetPropertyGroups(v map[string]*ComponentPropertyGroupResponse) *ComponentResponse {
+	s.PropertyGroups = v
 	return s
 }
 
@@ -3237,6 +3839,9 @@ type ComponentUpdateRequest struct {
 	// The description of the component type.
 	Description *string `locationName:"description" type:"string"`
 
+	// The property group updates.
+	PropertyGroupUpdates map[string]*ComponentPropertyGroupRequest `locationName:"propertyGroupUpdates" type:"map"`
+
 	// An object that maps strings to the properties to set in the component type
 	// update. Each string in the mapping must be unique to this object.
 	PropertyUpdates map[string]*PropertyRequest `locationName:"propertyUpdates" type:"map"`
@@ -3295,6 +3900,12 @@ func (s *ComponentUpdateRequest) SetComponentTypeId(v string) *ComponentUpdateRe
 // SetDescription sets the Description field's value.
 func (s *ComponentUpdateRequest) SetDescription(v string) *ComponentUpdateRequest {
 	s.Description = &v
+	return s
+}
+
+// SetPropertyGroupUpdates sets the PropertyGroupUpdates field's value.
+func (s *ComponentUpdateRequest) SetPropertyGroupUpdates(v map[string]*ComponentPropertyGroupRequest) *ComponentUpdateRequest {
+	s.PropertyGroupUpdates = v
 	return s
 }
 
@@ -3528,6 +4139,8 @@ type CreateComponentTypeInput struct {
 	// type. Each string in the mapping must be unique to this object.
 	PropertyDefinitions map[string]*PropertyDefinitionRequest `locationName:"propertyDefinitions" type:"map"`
 
+	PropertyGroups map[string]*PropertyGroupRequest `locationName:"propertyGroups" type:"map"`
+
 	// Metadata that you can use to manage the component type.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
@@ -3630,6 +4243,12 @@ func (s *CreateComponentTypeInput) SetIsSingleton(v bool) *CreateComponentTypeIn
 // SetPropertyDefinitions sets the PropertyDefinitions field's value.
 func (s *CreateComponentTypeInput) SetPropertyDefinitions(v map[string]*PropertyDefinitionRequest) *CreateComponentTypeInput {
 	s.PropertyDefinitions = v
+	return s
+}
+
+// SetPropertyGroups sets the PropertyGroups field's value.
+func (s *CreateComponentTypeInput) SetPropertyGroups(v map[string]*PropertyGroupRequest) *CreateComponentTypeInput {
+	s.PropertyGroups = v
 	return s
 }
 
@@ -5103,6 +5722,144 @@ func (s *ErrorDetails) SetMessage(v string) *ErrorDetails {
 	return s
 }
 
+type ExecuteQueryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The query statement.
+	//
+	// QueryStatement is a required field
+	QueryStatement *string `locationName:"queryStatement" min:"1" type:"string" required:"true"`
+
+	// The ID of the workspace.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecuteQueryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecuteQueryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExecuteQueryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExecuteQueryInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.QueryStatement == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryStatement"))
+	}
+	if s.QueryStatement != nil && len(*s.QueryStatement) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryStatement", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ExecuteQueryInput) SetMaxResults(v int64) *ExecuteQueryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ExecuteQueryInput) SetNextToken(v string) *ExecuteQueryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQueryStatement sets the QueryStatement field's value.
+func (s *ExecuteQueryInput) SetQueryStatement(v string) *ExecuteQueryInput {
+	s.QueryStatement = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *ExecuteQueryInput) SetWorkspaceId(v string) *ExecuteQueryInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type ExecuteQueryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ColumnDescription objects.
+	ColumnDescriptions []*ColumnDescription `locationName:"columnDescriptions" type:"list"`
+
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Represents a single row in the query results.
+	Rows []*Row `locationName:"rows" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecuteQueryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecuteQueryOutput) GoString() string {
+	return s.String()
+}
+
+// SetColumnDescriptions sets the ColumnDescriptions field's value.
+func (s *ExecuteQueryOutput) SetColumnDescriptions(v []*ColumnDescription) *ExecuteQueryOutput {
+	s.ColumnDescriptions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ExecuteQueryOutput) SetNextToken(v string) *ExecuteQueryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRows sets the Rows field's value.
+func (s *ExecuteQueryOutput) SetRows(v []*Row) *ExecuteQueryOutput {
+	s.Rows = v
+	return s
+}
+
 // The function request body.
 type FunctionRequest struct {
 	_ struct{} `type:"structure"`
@@ -5336,6 +6093,11 @@ type GetComponentTypeOutput struct {
 	// type. Each string in the mapping must be unique to this object.
 	PropertyDefinitions map[string]*PropertyDefinitionResponse `locationName:"propertyDefinitions" type:"map"`
 
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
+	PropertyGroups map[string]*PropertyGroupResponse `locationName:"propertyGroups" type:"map"`
+
 	// The current status of the component type.
 	Status *Status `locationName:"status" type:"structure"`
 
@@ -5425,6 +6187,12 @@ func (s *GetComponentTypeOutput) SetIsSingleton(v bool) *GetComponentTypeOutput 
 // SetPropertyDefinitions sets the PropertyDefinitions field's value.
 func (s *GetComponentTypeOutput) SetPropertyDefinitions(v map[string]*PropertyDefinitionResponse) *GetComponentTypeOutput {
 	s.PropertyDefinitions = v
+	return s
+}
+
+// SetPropertyGroups sets the PropertyGroups field's value.
+func (s *GetComponentTypeOutput) SetPropertyGroups(v map[string]*PropertyGroupResponse) *GetComponentTypeOutput {
+	s.PropertyGroups = v
 	return s
 }
 
@@ -5652,6 +6420,70 @@ func (s *GetEntityOutput) SetWorkspaceId(v string) *GetEntityOutput {
 	return s
 }
 
+type GetPricingPlanInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPricingPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPricingPlanInput) GoString() string {
+	return s.String()
+}
+
+type GetPricingPlanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The chosen pricing plan for the current billing cycle.
+	//
+	// CurrentPricingPlan is a required field
+	CurrentPricingPlan *PricingPlan `locationName:"currentPricingPlan" type:"structure" required:"true"`
+
+	// The pending pricing plan.
+	PendingPricingPlan *PricingPlan `locationName:"pendingPricingPlan" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPricingPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPricingPlanOutput) GoString() string {
+	return s.String()
+}
+
+// SetCurrentPricingPlan sets the CurrentPricingPlan field's value.
+func (s *GetPricingPlanOutput) SetCurrentPricingPlan(v *PricingPlan) *GetPricingPlanOutput {
+	s.CurrentPricingPlan = v
+	return s
+}
+
+// SetPendingPricingPlan sets the PendingPricingPlan field's value.
+func (s *GetPricingPlanOutput) SetPendingPricingPlan(v *PricingPlan) *GetPricingPlanOutput {
+	s.PendingPricingPlan = v
+	return s
+}
+
 type GetPropertyValueHistoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5669,7 +6501,7 @@ type GetPropertyValueHistoryInput struct {
 	// The ISO8601 DateTime of the latest property value to return.
 	//
 	// For more information about the ISO8601 DateTime format, see the data type
-	// PropertyValue (https://docs.aws.amazon.com/roci/latest/roci-api/API_PropertyValue.html).
+	// PropertyValue (https://docs.aws.amazon.com/iot-twinmaker/latest/apireference/API_PropertyValue.html).
 	EndTime *string `locationName:"endTime" min:"20" type:"string"`
 
 	// The ID of the entity.
@@ -5679,7 +6511,9 @@ type GetPropertyValueHistoryInput struct {
 	// to interpolate data.
 	Interpolation *InterpolationParameters `locationName:"interpolation" type:"structure"`
 
-	// The maximum number of results to return.
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The string that specifies the next page of results.
@@ -5704,7 +6538,7 @@ type GetPropertyValueHistoryInput struct {
 	// The ISO8601 DateTime of the earliest property value to return.
 	//
 	// For more information about the ISO8601 DateTime format, see the data type
-	// PropertyValue (https://docs.aws.amazon.com/roci/latest/roci-api/API_PropertyValue.html).
+	// PropertyValue (https://docs.aws.amazon.com/iot-twinmaker/latest/apireference/API_PropertyValue.html).
 	StartTime *string `locationName:"startTime" min:"20" type:"string"`
 
 	// The ID of the workspace.
@@ -5920,10 +6754,24 @@ type GetPropertyValueInput struct {
 	// The ID of the entity whose property values the operation returns.
 	EntityId *string `locationName:"entityId" min:"1" type:"string"`
 
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The property group name.
+	PropertyGroupName *string `locationName:"propertyGroupName" min:"1" type:"string"`
+
 	// The properties whose values the operation returns.
 	//
 	// SelectedProperties is a required field
 	SelectedProperties []*string `locationName:"selectedProperties" min:"1" type:"list" required:"true"`
+
+	// The tabular conditions.
+	TabularConditions *TabularConditions `locationName:"tabularConditions" type:"structure"`
 
 	// The ID of the workspace whose values the operation returns.
 	//
@@ -5961,6 +6809,9 @@ func (s *GetPropertyValueInput) Validate() error {
 	if s.EntityId != nil && len(*s.EntityId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
 	}
+	if s.PropertyGroupName != nil && len(*s.PropertyGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyGroupName", 1))
+	}
 	if s.SelectedProperties == nil {
 		invalidParams.Add(request.NewErrParamRequired("SelectedProperties"))
 	}
@@ -5972,6 +6823,11 @@ func (s *GetPropertyValueInput) Validate() error {
 	}
 	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+	if s.TabularConditions != nil {
+		if err := s.TabularConditions.Validate(); err != nil {
+			invalidParams.AddNested("TabularConditions", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5998,9 +6854,33 @@ func (s *GetPropertyValueInput) SetEntityId(v string) *GetPropertyValueInput {
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetPropertyValueInput) SetMaxResults(v int64) *GetPropertyValueInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetPropertyValueInput) SetNextToken(v string) *GetPropertyValueInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPropertyGroupName sets the PropertyGroupName field's value.
+func (s *GetPropertyValueInput) SetPropertyGroupName(v string) *GetPropertyValueInput {
+	s.PropertyGroupName = &v
+	return s
+}
+
 // SetSelectedProperties sets the SelectedProperties field's value.
 func (s *GetPropertyValueInput) SetSelectedProperties(v []*string) *GetPropertyValueInput {
 	s.SelectedProperties = v
+	return s
+}
+
+// SetTabularConditions sets the TabularConditions field's value.
+func (s *GetPropertyValueInput) SetTabularConditions(v *TabularConditions) *GetPropertyValueInput {
+	s.TabularConditions = v
 	return s
 }
 
@@ -6013,11 +6893,15 @@ func (s *GetPropertyValueInput) SetWorkspaceId(v string) *GetPropertyValueInput 
 type GetPropertyValueOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
 	// An object that maps strings to the properties and latest property values
 	// in the response. Each string in the mapping must be unique to this object.
-	//
-	// PropertyValues is a required field
-	PropertyValues map[string]*PropertyLatestValue `locationName:"propertyValues" type:"map" required:"true"`
+	PropertyValues map[string]*PropertyLatestValue `locationName:"propertyValues" type:"map"`
+
+	// A table of property values.
+	TabularPropertyValues [][]map[string]*DataValue `locationName:"tabularPropertyValues" type:"list"`
 }
 
 // String returns the string representation.
@@ -6038,9 +6922,21 @@ func (s GetPropertyValueOutput) GoString() string {
 	return s.String()
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *GetPropertyValueOutput) SetNextToken(v string) *GetPropertyValueOutput {
+	s.NextToken = &v
+	return s
+}
+
 // SetPropertyValues sets the PropertyValues field's value.
 func (s *GetPropertyValueOutput) SetPropertyValues(v map[string]*PropertyLatestValue) *GetPropertyValueOutput {
 	s.PropertyValues = v
+	return s
+}
+
+// SetTabularPropertyValues sets the TabularPropertyValues field's value.
+func (s *GetPropertyValueOutput) SetTabularPropertyValues(v [][]map[string]*DataValue) *GetPropertyValueOutput {
+	s.TabularPropertyValues = v
 	return s
 }
 
@@ -6593,7 +7489,9 @@ type ListComponentTypesInput struct {
 	// A list of objects that filter the request.
 	Filters []*ListComponentTypesFilter `locationName:"filters" type:"list"`
 
-	// The maximum number of results to display.
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The string that specifies the next page of results.
@@ -6813,7 +7711,9 @@ type ListEntitiesInput struct {
 	// Only one object is accepted as a valid input.
 	Filters []*ListEntitiesFilter `locationName:"filters" type:"list"`
 
-	// The maximum number of results to display.
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The string that specifies the next page of results.
@@ -7043,7 +7943,9 @@ func (s *ListScenesOutput) SetSceneSummaries(v []*SceneSummary) *ListScenesOutpu
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to display.
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The string that specifies the next page of results.
@@ -7150,7 +8052,9 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to display.
+	// The maximum number of results to return at one time. The default is 25.
+	//
+	// Valid Range: Minimum value of 1. Maximum value of 250.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The string that specifies the next page of results.
@@ -7227,6 +8131,66 @@ func (s *ListWorkspacesOutput) SetWorkspaceSummaries(v []*WorkspaceSummary) *Lis
 	return s
 }
 
+// Filter criteria that orders the return output. It can be sorted in ascending
+// or descending order.
+type OrderBy struct {
+	_ struct{} `type:"structure"`
+
+	// The set order that filters results.
+	Order *string `locationName:"order" type:"string" enum:"Order"`
+
+	// The property name.
+	//
+	// PropertyName is a required field
+	PropertyName *string `locationName:"propertyName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrderBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrderBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OrderBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OrderBy"}
+	if s.PropertyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PropertyName"))
+	}
+	if s.PropertyName != nil && len(*s.PropertyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrder sets the Order field's value.
+func (s *OrderBy) SetOrder(v string) *OrderBy {
+	s.Order = &v
+	return s
+}
+
+// SetPropertyName sets the PropertyName field's value.
+func (s *OrderBy) SetPropertyName(v string) *OrderBy {
+	s.PropertyName = &v
+	return s
+}
+
 // The parent entity update request.
 type ParentEntityUpdateRequest struct {
 	_ struct{} `type:"structure"`
@@ -7283,6 +8247,91 @@ func (s *ParentEntityUpdateRequest) SetParentEntityId(v string) *ParentEntityUpd
 // SetUpdateType sets the UpdateType field's value.
 func (s *ParentEntityUpdateRequest) SetUpdateType(v string) *ParentEntityUpdateRequest {
 	s.UpdateType = &v
+	return s
+}
+
+// The pricing plan.
+type PricingPlan struct {
+	_ struct{} `type:"structure"`
+
+	// The billable entity count.
+	BillableEntityCount *int64 `locationName:"billableEntityCount" type:"long"`
+
+	// The pricing plan's bundle information.
+	BundleInformation *BundleInformation `locationName:"bundleInformation" type:"structure"`
+
+	// The effective date and time of the pricing plan.
+	//
+	// EffectiveDateTime is a required field
+	EffectiveDateTime *time.Time `locationName:"effectiveDateTime" type:"timestamp" required:"true"`
+
+	// The pricing mode.
+	//
+	// PricingMode is a required field
+	PricingMode *string `locationName:"pricingMode" type:"string" required:"true" enum:"PricingMode"`
+
+	// The set date and time for updating a pricing plan.
+	//
+	// UpdateDateTime is a required field
+	UpdateDateTime *time.Time `locationName:"updateDateTime" type:"timestamp" required:"true"`
+
+	// The update reason, for changing a pricing plan.
+	//
+	// UpdateReason is a required field
+	UpdateReason *string `locationName:"updateReason" type:"string" required:"true" enum:"UpdateReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PricingPlan) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PricingPlan) GoString() string {
+	return s.String()
+}
+
+// SetBillableEntityCount sets the BillableEntityCount field's value.
+func (s *PricingPlan) SetBillableEntityCount(v int64) *PricingPlan {
+	s.BillableEntityCount = &v
+	return s
+}
+
+// SetBundleInformation sets the BundleInformation field's value.
+func (s *PricingPlan) SetBundleInformation(v *BundleInformation) *PricingPlan {
+	s.BundleInformation = v
+	return s
+}
+
+// SetEffectiveDateTime sets the EffectiveDateTime field's value.
+func (s *PricingPlan) SetEffectiveDateTime(v time.Time) *PricingPlan {
+	s.EffectiveDateTime = &v
+	return s
+}
+
+// SetPricingMode sets the PricingMode field's value.
+func (s *PricingPlan) SetPricingMode(v string) *PricingPlan {
+	s.PricingMode = &v
+	return s
+}
+
+// SetUpdateDateTime sets the UpdateDateTime field's value.
+func (s *PricingPlan) SetUpdateDateTime(v time.Time) *PricingPlan {
+	s.UpdateDateTime = &v
+	return s
+}
+
+// SetUpdateReason sets the UpdateReason field's value.
+func (s *PricingPlan) SetUpdateReason(v string) *PricingPlan {
+	s.UpdateReason = &v
 	return s
 }
 
@@ -7597,6 +8646,103 @@ func (s *PropertyFilter) SetPropertyName(v string) *PropertyFilter {
 // SetValue sets the Value field's value.
 func (s *PropertyFilter) SetValue(v *DataValue) *PropertyFilter {
 	s.Value = v
+	return s
+}
+
+type PropertyGroupRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The group type.
+	GroupType *string `locationName:"groupType" type:"string" enum:"GroupType"`
+
+	// The names of properties.
+	PropertyNames []*string `locationName:"propertyNames" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyGroupRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyGroupRequest) GoString() string {
+	return s.String()
+}
+
+// SetGroupType sets the GroupType field's value.
+func (s *PropertyGroupRequest) SetGroupType(v string) *PropertyGroupRequest {
+	s.GroupType = &v
+	return s
+}
+
+// SetPropertyNames sets the PropertyNames field's value.
+func (s *PropertyGroupRequest) SetPropertyNames(v []*string) *PropertyGroupRequest {
+	s.PropertyNames = v
+	return s
+}
+
+// The property group response
+type PropertyGroupResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The group types.
+	//
+	// GroupType is a required field
+	GroupType *string `locationName:"groupType" type:"string" required:"true" enum:"GroupType"`
+
+	// A Boolean value that specifies whether the property group is inherited from
+	// a parent entity
+	//
+	// IsInherited is a required field
+	IsInherited *bool `locationName:"isInherited" type:"boolean" required:"true"`
+
+	// The names of properties.
+	//
+	// PropertyNames is a required field
+	PropertyNames []*string `locationName:"propertyNames" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyGroupResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PropertyGroupResponse) GoString() string {
+	return s.String()
+}
+
+// SetGroupType sets the GroupType field's value.
+func (s *PropertyGroupResponse) SetGroupType(v string) *PropertyGroupResponse {
+	s.GroupType = &v
+	return s
+}
+
+// SetIsInherited sets the IsInherited field's value.
+func (s *PropertyGroupResponse) SetIsInherited(v bool) *PropertyGroupResponse {
+	s.IsInherited = &v
+	return s
+}
+
+// SetPropertyNames sets the PropertyNames field's value.
+func (s *PropertyGroupResponse) SetPropertyNames(v []*string) *PropertyGroupResponse {
+	s.PropertyNames = v
 	return s
 }
 
@@ -7972,6 +9118,70 @@ func (s *PropertyValueHistory) SetValues(v []*PropertyValue) *PropertyValueHisto
 	return s
 }
 
+// The query timeout exception.
+type QueryTimeoutException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryTimeoutException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryTimeoutException) GoString() string {
+	return s.String()
+}
+
+func newErrorQueryTimeoutException(v protocol.ResponseMetadata) error {
+	return &QueryTimeoutException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *QueryTimeoutException) Code() string {
+	return "QueryTimeoutException"
+}
+
+// Message returns the exception's message.
+func (s *QueryTimeoutException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *QueryTimeoutException) OrigErr() error {
+	return nil
+}
+
+func (s *QueryTimeoutException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *QueryTimeoutException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *QueryTimeoutException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // An object that specifies a relationship with another component type.
 type Relationship struct {
 	_ struct{} `type:"structure"`
@@ -8148,6 +9358,29 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Represents a single row in the query results.
+type Row struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Row) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Row) GoString() string {
+	return s.String()
 }
 
 // An object that contains information about a scene.
@@ -8340,6 +9573,87 @@ func (s *Status) SetError(v *ErrorDetails) *Status {
 // SetState sets the State field's value.
 func (s *Status) SetState(v string) *Status {
 	s.State = &v
+	return s
+}
+
+// The tabular conditions.
+type TabularConditions struct {
+	_ struct{} `type:"structure"`
+
+	// Filter criteria that orders the output. It can be sorted in ascending or
+	// descending order.
+	OrderBy []*OrderBy `locationName:"orderBy" min:"1" type:"list"`
+
+	// You can filter the request using various logical operators and a key-value
+	// format. For example:
+	//
+	// {"key": "serverType", "value": "webServer"}
+	PropertyFilters []*PropertyFilter `locationName:"propertyFilters" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TabularConditions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TabularConditions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TabularConditions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TabularConditions"}
+	if s.OrderBy != nil && len(s.OrderBy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrderBy", 1))
+	}
+	if s.PropertyFilters != nil && len(s.PropertyFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyFilters", 1))
+	}
+	if s.OrderBy != nil {
+		for i, v := range s.OrderBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OrderBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PropertyFilters != nil {
+		for i, v := range s.PropertyFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PropertyFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrderBy sets the OrderBy field's value.
+func (s *TabularConditions) SetOrderBy(v []*OrderBy) *TabularConditions {
+	s.OrderBy = v
+	return s
+}
+
+// SetPropertyFilters sets the PropertyFilters field's value.
+func (s *TabularConditions) SetPropertyFilters(v []*PropertyFilter) *TabularConditions {
+	s.PropertyFilters = v
 	return s
 }
 
@@ -8668,6 +9982,9 @@ type UpdateComponentTypeInput struct {
 	// type. Each string in the mapping must be unique to this object.
 	PropertyDefinitions map[string]*PropertyDefinitionRequest `locationName:"propertyDefinitions" type:"map"`
 
+	// The property groups
+	PropertyGroups map[string]*PropertyGroupRequest `locationName:"propertyGroups" type:"map"`
+
 	// The ID of the workspace that contains the component type.
 	//
 	// WorkspaceId is a required field
@@ -8767,6 +10084,12 @@ func (s *UpdateComponentTypeInput) SetIsSingleton(v bool) *UpdateComponentTypeIn
 // SetPropertyDefinitions sets the PropertyDefinitions field's value.
 func (s *UpdateComponentTypeInput) SetPropertyDefinitions(v map[string]*PropertyDefinitionRequest) *UpdateComponentTypeInput {
 	s.PropertyDefinitions = v
+	return s
+}
+
+// SetPropertyGroups sets the PropertyGroups field's value.
+func (s *UpdateComponentTypeInput) SetPropertyGroups(v map[string]*PropertyGroupRequest) *UpdateComponentTypeInput {
+	s.PropertyGroups = v
 	return s
 }
 
@@ -9004,6 +10327,106 @@ func (s *UpdateEntityOutput) SetState(v string) *UpdateEntityOutput {
 // SetUpdateDateTime sets the UpdateDateTime field's value.
 func (s *UpdateEntityOutput) SetUpdateDateTime(v time.Time) *UpdateEntityOutput {
 	s.UpdateDateTime = &v
+	return s
+}
+
+type UpdatePricingPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The bundle names.
+	BundleNames []*string `locationName:"bundleNames" min:"1" type:"list"`
+
+	// The pricing mode.
+	//
+	// PricingMode is a required field
+	PricingMode *string `locationName:"pricingMode" type:"string" required:"true" enum:"PricingMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePricingPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePricingPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePricingPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePricingPlanInput"}
+	if s.BundleNames != nil && len(s.BundleNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BundleNames", 1))
+	}
+	if s.PricingMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PricingMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBundleNames sets the BundleNames field's value.
+func (s *UpdatePricingPlanInput) SetBundleNames(v []*string) *UpdatePricingPlanInput {
+	s.BundleNames = v
+	return s
+}
+
+// SetPricingMode sets the PricingMode field's value.
+func (s *UpdatePricingPlanInput) SetPricingMode(v string) *UpdatePricingPlanInput {
+	s.PricingMode = &v
+	return s
+}
+
+type UpdatePricingPlanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Update the current pricing plan.
+	//
+	// CurrentPricingPlan is a required field
+	CurrentPricingPlan *PricingPlan `locationName:"currentPricingPlan" type:"structure" required:"true"`
+
+	// Update the pending pricing plan.
+	PendingPricingPlan *PricingPlan `locationName:"pendingPricingPlan" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePricingPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePricingPlanOutput) GoString() string {
+	return s.String()
+}
+
+// SetCurrentPricingPlan sets the CurrentPricingPlan field's value.
+func (s *UpdatePricingPlanOutput) SetCurrentPricingPlan(v *PricingPlan) *UpdatePricingPlanOutput {
+	s.CurrentPricingPlan = v
+	return s
+}
+
+// SetPendingPricingPlan sets the PendingPricingPlan field's value.
+func (s *UpdatePricingPlanOutput) SetPendingPricingPlan(v *PricingPlan) *UpdatePricingPlanOutput {
+	s.PendingPricingPlan = v
 	return s
 }
 
@@ -9377,6 +10800,26 @@ func (s *WorkspaceSummary) SetWorkspaceId(v string) *WorkspaceSummary {
 }
 
 const (
+	// ColumnTypeNode is a ColumnType enum value
+	ColumnTypeNode = "NODE"
+
+	// ColumnTypeEdge is a ColumnType enum value
+	ColumnTypeEdge = "EDGE"
+
+	// ColumnTypeValue is a ColumnType enum value
+	ColumnTypeValue = "VALUE"
+)
+
+// ColumnType_Values returns all elements of the ColumnType enum
+func ColumnType_Values() []string {
+	return []string{
+		ColumnTypeNode,
+		ColumnTypeEdge,
+		ColumnTypeValue,
+	}
+}
+
+const (
 	// ComponentUpdateTypeCreate is a ComponentUpdateType enum value
 	ComponentUpdateTypeCreate = "CREATE"
 
@@ -9413,6 +10856,18 @@ func ErrorCode_Values() []string {
 }
 
 const (
+	// GroupTypeTabular is a GroupType enum value
+	GroupTypeTabular = "TABULAR"
+)
+
+// GroupType_Values returns all elements of the GroupType enum
+func GroupType_Values() []string {
+	return []string{
+		GroupTypeTabular,
+	}
+}
+
+const (
 	// InterpolationTypeLinear is a InterpolationType enum value
 	InterpolationTypeLinear = "LINEAR"
 )
@@ -9421,6 +10876,22 @@ const (
 func InterpolationType_Values() []string {
 	return []string{
 		InterpolationTypeLinear,
+	}
+}
+
+const (
+	// OrderAscending is a Order enum value
+	OrderAscending = "ASCENDING"
+
+	// OrderDescending is a Order enum value
+	OrderDescending = "DESCENDING"
+)
+
+// Order_Values returns all elements of the Order enum
+func Order_Values() []string {
+	return []string{
+		OrderAscending,
+		OrderDescending,
 	}
 }
 
@@ -9453,6 +10924,70 @@ func ParentEntityUpdateType_Values() []string {
 	return []string{
 		ParentEntityUpdateTypeUpdate,
 		ParentEntityUpdateTypeDelete,
+	}
+}
+
+const (
+	// PricingModeBasic is a PricingMode enum value
+	PricingModeBasic = "BASIC"
+
+	// PricingModeStandard is a PricingMode enum value
+	PricingModeStandard = "STANDARD"
+
+	// PricingModeTieredBundle is a PricingMode enum value
+	PricingModeTieredBundle = "TIERED_BUNDLE"
+)
+
+// PricingMode_Values returns all elements of the PricingMode enum
+func PricingMode_Values() []string {
+	return []string{
+		PricingModeBasic,
+		PricingModeStandard,
+		PricingModeTieredBundle,
+	}
+}
+
+const (
+	// PricingTierTier1 is a PricingTier enum value
+	PricingTierTier1 = "TIER_1"
+
+	// PricingTierTier2 is a PricingTier enum value
+	PricingTierTier2 = "TIER_2"
+
+	// PricingTierTier3 is a PricingTier enum value
+	PricingTierTier3 = "TIER_3"
+
+	// PricingTierTier4 is a PricingTier enum value
+	PricingTierTier4 = "TIER_4"
+)
+
+// PricingTier_Values returns all elements of the PricingTier enum
+func PricingTier_Values() []string {
+	return []string{
+		PricingTierTier1,
+		PricingTierTier2,
+		PricingTierTier3,
+		PricingTierTier4,
+	}
+}
+
+const (
+	// PropertyGroupUpdateTypeUpdate is a PropertyGroupUpdateType enum value
+	PropertyGroupUpdateTypeUpdate = "UPDATE"
+
+	// PropertyGroupUpdateTypeDelete is a PropertyGroupUpdateType enum value
+	PropertyGroupUpdateTypeDelete = "DELETE"
+
+	// PropertyGroupUpdateTypeCreate is a PropertyGroupUpdateType enum value
+	PropertyGroupUpdateTypeCreate = "CREATE"
+)
+
+// PropertyGroupUpdateType_Values returns all elements of the PropertyGroupUpdateType enum
+func PropertyGroupUpdateType_Values() []string {
+	return []string{
+		PropertyGroupUpdateTypeUpdate,
+		PropertyGroupUpdateTypeDelete,
+		PropertyGroupUpdateTypeCreate,
 	}
 }
 
@@ -9557,5 +11092,33 @@ func Type_Values() []string {
 		TypeDouble,
 		TypeList,
 		TypeMap,
+	}
+}
+
+const (
+	// UpdateReasonDefault is a UpdateReason enum value
+	UpdateReasonDefault = "DEFAULT"
+
+	// UpdateReasonPricingTierUpdate is a UpdateReason enum value
+	UpdateReasonPricingTierUpdate = "PRICING_TIER_UPDATE"
+
+	// UpdateReasonEntityCountUpdate is a UpdateReason enum value
+	UpdateReasonEntityCountUpdate = "ENTITY_COUNT_UPDATE"
+
+	// UpdateReasonPricingModeUpdate is a UpdateReason enum value
+	UpdateReasonPricingModeUpdate = "PRICING_MODE_UPDATE"
+
+	// UpdateReasonOverwritten is a UpdateReason enum value
+	UpdateReasonOverwritten = "OVERWRITTEN"
+)
+
+// UpdateReason_Values returns all elements of the UpdateReason enum
+func UpdateReason_Values() []string {
+	return []string{
+		UpdateReasonDefault,
+		UpdateReasonPricingTierUpdate,
+		UpdateReasonEntityCountUpdate,
+		UpdateReasonPricingModeUpdate,
+		UpdateReasonOverwritten,
 	}
 }
