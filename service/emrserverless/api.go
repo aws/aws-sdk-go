@@ -1428,6 +1428,9 @@ type Application struct {
 	// ApplicationId is a required field
 	ApplicationId *string `locationName:"applicationId" min:"1" type:"string" required:"true"`
 
+	// The CPU architecture of an application.
+	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
+
 	// The ARN of the application.
 	//
 	// Arn is a required field
@@ -1507,6 +1510,12 @@ func (s Application) GoString() string {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *Application) SetApplicationId(v string) *Application {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *Application) SetArchitecture(v string) *Application {
+	s.Architecture = &v
 	return s
 }
 
@@ -1598,6 +1607,9 @@ func (s *Application) SetUpdatedAt(v time.Time) *Application {
 type ApplicationSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The CPU architecture of an application.
+	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
+
 	// The ARN of the application.
 	//
 	// Arn is a required field
@@ -1656,6 +1668,12 @@ func (s ApplicationSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ApplicationSummary) GoString() string {
 	return s.String()
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *ApplicationSummary) SetArchitecture(v string) *ApplicationSummary {
+	s.Architecture = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -2131,6 +2149,9 @@ func (s *ConflictException) RequestID() string {
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The CPU architecture of an application.
+	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
+
 	// The configuration for an application to automatically start on job submission.
 	AutoStartConfiguration *AutoStartConfig `locationName:"autoStartConfiguration" type:"structure"`
 
@@ -2235,6 +2256,12 @@ func (s *CreateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *CreateApplicationInput) SetArchitecture(v string) *CreateApplicationInput {
+	s.Architecture = &v
+	return s
 }
 
 // SetAutoStartConfiguration sets the AutoStartConfiguration field's value.
@@ -4746,6 +4773,9 @@ type UpdateApplicationInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" min:"1" type:"string" required:"true"`
 
+	// The CPU architecture of an application.
+	Architecture *string `locationName:"architecture" type:"string" enum:"Architecture"`
+
 	// The configuration for an application to automatically start on job submission.
 	AutoStartConfiguration *AutoStartConfig `locationName:"autoStartConfiguration" type:"structure"`
 
@@ -4830,6 +4860,12 @@ func (s *UpdateApplicationInput) Validate() error {
 // SetApplicationId sets the ApplicationId field's value.
 func (s *UpdateApplicationInput) SetApplicationId(v string) *UpdateApplicationInput {
 	s.ApplicationId = &v
+	return s
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *UpdateApplicationInput) SetArchitecture(v string) *UpdateApplicationInput {
+	s.Architecture = &v
 	return s
 }
 
@@ -5079,6 +5115,22 @@ func ApplicationState_Values() []string {
 		ApplicationStateStopping,
 		ApplicationStateStopped,
 		ApplicationStateTerminated,
+	}
+}
+
+const (
+	// ArchitectureArm64 is a Architecture enum value
+	ArchitectureArm64 = "ARM64"
+
+	// ArchitectureX8664 is a Architecture enum value
+	ArchitectureX8664 = "X86_64"
+)
+
+// Architecture_Values returns all elements of the Architecture enum
+func Architecture_Values() []string {
+	return []string{
+		ArchitectureArm64,
+		ArchitectureX8664,
 	}
 }
 

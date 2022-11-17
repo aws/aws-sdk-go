@@ -167,6 +167,22 @@
         {"shape":"TooManyTagsException"}
       ]
     },
+    "CreateMetricAttribution":{
+      "name":"CreateMetricAttribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateMetricAttributionRequest"},
+      "output":{"shape":"CreateMetricAttributionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreateRecommender":{
       "name":"CreateRecommender",
       "http":{
@@ -230,7 +246,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"ResourceAlreadyExistsException"}
       ]
     },
     "DeleteCampaign":{
@@ -301,6 +318,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"}
       ]
+    },
+    "DeleteMetricAttribution":{
+      "name":"DeleteMetricAttribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMetricAttributionRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
     },
     "DeleteRecommender":{
       "name":"DeleteRecommender",
@@ -497,6 +528,19 @@
         {"shape":"ResourceNotFoundException"}
       ],
       "idempotent":true
+    },
+    "DescribeMetricAttribution":{
+      "name":"DescribeMetricAttribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeMetricAttributionRequest"},
+      "output":{"shape":"DescribeMetricAttributionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     },
     "DescribeRecipe":{
       "name":"DescribeRecipe",
@@ -707,6 +751,34 @@
       ],
       "idempotent":true
     },
+    "ListMetricAttributionMetrics":{
+      "name":"ListMetricAttributionMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMetricAttributionMetricsRequest"},
+      "output":{"shape":"ListMetricAttributionMetricsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidNextTokenException"}
+      ],
+      "idempotent":true
+    },
+    "ListMetricAttributions":{
+      "name":"ListMetricAttributions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMetricAttributionsRequest"},
+      "output":{"shape":"ListMetricAttributionsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidNextTokenException"}
+      ],
+      "idempotent":true
+    },
     "ListRecipes":{
       "name":"ListRecipes",
       "http":{
@@ -880,6 +952,21 @@
         {"shape":"ResourceInUseException"}
       ],
       "idempotent":true
+    },
+    "UpdateMetricAttribution":{
+      "name":"UpdateMetricAttribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateMetricAttributionRequest"},
+      "output":{"shape":"UpdateMetricAttributionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceAlreadyExistsException"}
+      ]
     },
     "UpdateRecommender":{
       "name":"UpdateRecommender",
@@ -1275,7 +1362,8 @@
         "dataSource":{"shape":"DataSource"},
         "roleArn":{"shape":"RoleArn"},
         "tags":{"shape":"Tags"},
-        "importMode":{"shape":"ImportMode"}
+        "importMode":{"shape":"ImportMode"},
+        "publishAttributionMetricsToS3":{"shape":"Boolean"}
       }
     },
     "CreateDatasetImportJobResponse":{
@@ -1345,6 +1433,27 @@
         "filterArn":{"shape":"Arn"}
       }
     },
+    "CreateMetricAttributionRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "datasetGroupArn",
+        "metrics",
+        "metricsOutputConfig"
+      ],
+      "members":{
+        "name":{"shape":"Name"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "metrics":{"shape":"MetricAttributes"},
+        "metricsOutputConfig":{"shape":"MetricAttributionOutput"}
+      }
+    },
+    "CreateMetricAttributionResponse":{
+      "type":"structure",
+      "members":{
+        "metricAttributionArn":{"shape":"Arn"}
+      }
+    },
     "CreateRecommenderRequest":{
       "type":"structure",
       "required":[
@@ -1411,6 +1520,7 @@
       "type":"structure",
       "required":["solutionArn"],
       "members":{
+        "name":{"shape":"Name"},
         "solutionArn":{"shape":"Arn"},
         "trainingMode":{"shape":"TrainingMode"},
         "tags":{"shape":"Tags"}
@@ -1522,7 +1632,8 @@
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
         "failureReason":{"shape":"FailureReason"},
-        "importMode":{"shape":"ImportMode"}
+        "importMode":{"shape":"ImportMode"},
+        "publishAttributionMetricsToS3":{"shape":"Boolean"}
       }
     },
     "DatasetImportJobSummary":{
@@ -1666,6 +1777,13 @@
       "required":["filterArn"],
       "members":{
         "filterArn":{"shape":"Arn"}
+      }
+    },
+    "DeleteMetricAttributionRequest":{
+      "type":"structure",
+      "required":["metricAttributionArn"],
+      "members":{
+        "metricAttributionArn":{"shape":"Arn"}
       }
     },
     "DeleteRecommenderRequest":{
@@ -1830,6 +1948,19 @@
       "type":"structure",
       "members":{
         "filter":{"shape":"Filter"}
+      }
+    },
+    "DescribeMetricAttributionRequest":{
+      "type":"structure",
+      "required":["metricAttributionArn"],
+      "members":{
+        "metricAttributionArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeMetricAttributionResponse":{
+      "type":"structure",
+      "members":{
+        "metricAttribution":{"shape":"MetricAttribution"}
       }
     },
     "DescribeRecipeRequest":{
@@ -2266,6 +2397,36 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListMetricAttributionMetricsRequest":{
+      "type":"structure",
+      "members":{
+        "metricAttributionArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListMetricAttributionMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "metrics":{"shape":"MetricAttributes"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListMetricAttributionsRequest":{
+      "type":"structure",
+      "members":{
+        "datasetGroupArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListMetricAttributionsResponse":{
+      "type":"structure",
+      "members":{
+        "metricAttributions":{"shape":"MetricAttributions"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListRecipesRequest":{
       "type":"structure",
       "members":{
@@ -2358,6 +2519,70 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "MetricAttribute":{
+      "type":"structure",
+      "required":[
+        "eventType",
+        "metricName",
+        "expression"
+      ],
+      "members":{
+        "eventType":{"shape":"EventType"},
+        "metricName":{"shape":"MetricName"},
+        "expression":{"shape":"MetricExpression"}
+      }
+    },
+    "MetricAttributes":{
+      "type":"list",
+      "member":{"shape":"MetricAttribute"},
+      "max":10
+    },
+    "MetricAttributesNamesList":{
+      "type":"list",
+      "member":{"shape":"MetricName"},
+      "max":10
+    },
+    "MetricAttribution":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "metricAttributionArn":{"shape":"Arn"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "metricsOutputConfig":{"shape":"MetricAttributionOutput"},
+        "status":{"shape":"Status"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "MetricAttributionOutput":{
+      "type":"structure",
+      "required":["roleArn"],
+      "members":{
+        "s3DataDestination":{"shape":"S3DataConfig"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "MetricAttributionSummary":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "metricAttributionArn":{"shape":"Arn"},
+        "status":{"shape":"Status"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "MetricAttributions":{
+      "type":"list",
+      "member":{"shape":"MetricAttributionSummary"},
+      "max":100
+    },
+    "MetricExpression":{
+      "type":"string",
+      "max":256
     },
     "MetricName":{
       "type":"string",
@@ -2586,12 +2811,14 @@
         "solutionArn":{"shape":"Arn"},
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
-        "lastUpdatedDateTime":{"shape":"Date"}
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "recipeArn":{"shape":"Arn"}
       }
     },
     "SolutionVersion":{
       "type":"structure",
       "members":{
+        "name":{"shape":"Name"},
         "solutionVersionArn":{"shape":"Arn"},
         "solutionArn":{"shape":"Arn"},
         "performHPO":{"shape":"PerformHPO"},
@@ -2791,6 +3018,21 @@
       "type":"structure",
       "members":{
         "campaignArn":{"shape":"Arn"}
+      }
+    },
+    "UpdateMetricAttributionRequest":{
+      "type":"structure",
+      "members":{
+        "addMetrics":{"shape":"MetricAttributes"},
+        "removeMetrics":{"shape":"MetricAttributesNamesList"},
+        "metricsOutputConfig":{"shape":"MetricAttributionOutput"},
+        "metricAttributionArn":{"shape":"Arn"}
+      }
+    },
+    "UpdateMetricAttributionResponse":{
+      "type":"structure",
+      "members":{
+        "metricAttributionArn":{"shape":"Arn"}
       }
     },
     "UpdateRecommenderRequest":{

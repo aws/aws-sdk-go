@@ -1224,7 +1224,8 @@
         "KmsKeyId":{"shape":"String"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "DnsNameServers":{"shape":"String"},
-        "ResourceIdentifier":{"shape":"String"}
+        "ResourceIdentifier":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "CreateReplicationInstanceResponse":{
@@ -2468,7 +2469,8 @@
         "EngineVersion":{"shape":"String"},
         "AllowMajorVersionUpgrade":{"shape":"Boolean"},
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
-        "ReplicationInstanceIdentifier":{"shape":"String"}
+        "ReplicationInstanceIdentifier":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "ModifyReplicationInstanceResponse":{
@@ -2905,11 +2907,17 @@
         },
         "ReplicationInstancePublicIpAddresses":{"shape":"ReplicationInstancePublicIpAddressList"},
         "ReplicationInstancePrivateIpAddresses":{"shape":"ReplicationInstancePrivateIpAddressList"},
+        "ReplicationInstanceIpv6Addresses":{"shape":"ReplicationInstanceIpv6AddressList"},
         "PubliclyAccessible":{"shape":"Boolean"},
         "SecondaryAvailabilityZone":{"shape":"String"},
         "FreeUntil":{"shape":"TStamp"},
-        "DnsNameServers":{"shape":"String"}
+        "DnsNameServers":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
+    },
+    "ReplicationInstanceIpv6AddressList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "ReplicationInstanceList":{
       "type":"list",
@@ -2941,7 +2949,8 @@
         "ReplicationInstanceClass":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "MultiAZ":{"shape":"BooleanOptional"},
-        "EngineVersion":{"shape":"String"}
+        "EngineVersion":{"shape":"String"},
+        "NetworkType":{"shape":"String"}
       }
     },
     "ReplicationSubnetGroup":{
@@ -2951,7 +2960,8 @@
         "ReplicationSubnetGroupDescription":{"shape":"String"},
         "VpcId":{"shape":"String"},
         "SubnetGroupStatus":{"shape":"String"},
-        "Subnets":{"shape":"SubnetList"}
+        "Subnets":{"shape":"SubnetList"},
+        "SupportedNetworkTypes":{"shape":"StringList"}
       }
     },
     "ReplicationSubnetGroupDoesNotCoverEnoughAZs":{
@@ -3395,6 +3405,10 @@
         "Deletes":{"shape":"Long"},
         "Updates":{"shape":"Long"},
         "Ddls":{"shape":"Long"},
+        "AppliedInserts":{"shape":"LongOptional"},
+        "AppliedDeletes":{"shape":"LongOptional"},
+        "AppliedUpdates":{"shape":"LongOptional"},
+        "AppliedDdls":{"shape":"LongOptional"},
         "FullLoadRows":{"shape":"Long"},
         "FullLoadCondtnlChkFailedRows":{"shape":"Long"},
         "FullLoadErrorRows":{"shape":"Long"},

@@ -3413,7 +3413,10 @@ type App struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The platform for the Amplify app.
+	// The platform for the Amplify app. For a static app, set the platform type
+	// to WEB. For a dynamic server-side rendered (SSR) app, set the platform type
+	// to WEB_COMPUTE. For an app requiring Amplify Hosting's original SSR support
+	// only, set the platform type to WEB_DYNAMIC.
 	//
 	// Platform is a required field
 	Platform *string `locationName:"platform" type:"string" required:"true" enum:"Platform"`
@@ -4360,7 +4363,10 @@ type CreateAppInput struct {
 	// String and GoString methods.
 	OauthToken *string `locationName:"oauthToken" type:"string" sensitive:"true"`
 
-	// The platform or framework for an Amplify app.
+	// The platform for the Amplify app. For a static app, set the platform type
+	// to WEB. For a dynamic server-side rendered (SSR) app, set the platform type
+	// to WEB_COMPUTE. For an app requiring Amplify Hosting's original SSR support
+	// only, set the platform type to WEB_DYNAMIC.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
 	// The repository for an Amplify app.
@@ -9436,7 +9442,10 @@ type UpdateAppInput struct {
 	// String and GoString methods.
 	OauthToken *string `locationName:"oauthToken" type:"string" sensitive:"true"`
 
-	// The platform for an Amplify app.
+	// The platform for the Amplify app. For a static app, set the platform type
+	// to WEB. For a dynamic server-side rendered (SSR) app, set the platform type
+	// to WEB_COMPUTE. For an app requiring Amplify Hosting's original SSR support
+	// only, set the platform type to WEB_DYNAMIC.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
 	// The name of the repository for an Amplify app
@@ -10362,6 +10371,9 @@ const (
 
 	// PlatformWebDynamic is a Platform enum value
 	PlatformWebDynamic = "WEB_DYNAMIC"
+
+	// PlatformWebCompute is a Platform enum value
+	PlatformWebCompute = "WEB_COMPUTE"
 )
 
 // Platform_Values returns all elements of the Platform enum
@@ -10369,6 +10381,7 @@ func Platform_Values() []string {
 	return []string{
 		PlatformWeb,
 		PlatformWebDynamic,
+		PlatformWebCompute,
 	}
 }
 

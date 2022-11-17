@@ -3774,7 +3774,9 @@
         "Timeout":{"shape":"Integer"},
         "TracingConfig":{"shape":"AwsLambdaFunctionTracingConfig"},
         "VpcConfig":{"shape":"AwsLambdaFunctionVpcConfig"},
-        "Version":{"shape":"NonEmptyString"}
+        "Version":{"shape":"NonEmptyString"},
+        "Architectures":{"shape":"NonEmptyStringList"},
+        "PackageType":{"shape":"NonEmptyString"}
       }
     },
     "AwsLambdaFunctionEnvironment":{
@@ -7366,7 +7368,9 @@
         "PackageManager":{"shape":"NonEmptyString"},
         "FilePath":{"shape":"NonEmptyString"},
         "FixedInVersion":{"shape":"NonEmptyString"},
-        "Remediation":{"shape":"NonEmptyString"}
+        "Remediation":{"shape":"NonEmptyString"},
+        "SourceLayerHash":{"shape":"NonEmptyString"},
+        "SourceLayerArn":{"shape":"NonEmptyString"}
       }
     },
     "SoftwarePackageList":{

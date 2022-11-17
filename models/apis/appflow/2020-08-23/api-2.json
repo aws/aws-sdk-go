@@ -374,7 +374,8 @@
     "AggregationConfig":{
       "type":"structure",
       "members":{
-        "aggregationType":{"shape":"AggregationType"}
+        "aggregationType":{"shape":"AggregationType"},
+        "targetFileSize":{"shape":"Long"}
       }
     },
     "AggregationType":{
@@ -537,6 +538,10 @@
       "type":"string",
       "max":512,
       "pattern":".*"
+    },
+    "CatalogType":{
+      "type":"string",
+      "enum":["GLUE"]
     },
     "ClientCredentialsArn":{
       "type":"string",
@@ -991,7 +996,8 @@
         "sourceFlowConfig":{"shape":"SourceFlowConfig"},
         "destinationFlowConfigList":{"shape":"DestinationFlowConfigList"},
         "tasks":{"shape":"Tasks"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "metadataCatalogConfig":{"shape":"MetadataCatalogConfig"}
       }
     },
     "CreateFlowResponse":{
@@ -1317,7 +1323,10 @@
         "lastUpdatedAt":{"shape":"Date"},
         "createdBy":{"shape":"CreatedBy"},
         "lastUpdatedBy":{"shape":"UpdatedBy"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "metadataCatalogConfig":{"shape":"MetadataCatalogConfig"},
+        "lastRunMetadataCatalogDetails":{"shape":"MetadataCatalogDetails"},
+        "schemaVersion":{"shape":"Long"}
       }
     },
     "Description":{
@@ -1503,7 +1512,8 @@
         "startedAt":{"shape":"Date"},
         "lastUpdatedAt":{"shape":"Date"},
         "dataPullStartTime":{"shape":"Date"},
-        "dataPullEndTime":{"shape":"Date"}
+        "dataPullEndTime":{"shape":"Date"},
+        "metadataCatalogDetails":{"shape":"MetadataCatalogDetails"}
       }
     },
     "ExecutionResult":{
@@ -1615,6 +1625,34 @@
       "type":"string",
       "max":2048,
       "pattern":"[\\s\\w/!@#+=.-]*"
+    },
+    "GlueDataCatalogConfig":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "databaseName",
+        "tablePrefix"
+      ],
+      "members":{
+        "roleArn":{"shape":"GlueDataCatalogIAMRole"},
+        "databaseName":{"shape":"GlueDataCatalogDatabaseName"},
+        "tablePrefix":{"shape":"GlueDataCatalogTablePrefix"}
+      }
+    },
+    "GlueDataCatalogDatabaseName":{
+      "type":"string",
+      "max":255,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "GlueDataCatalogIAMRole":{
+      "type":"string",
+      "max":512,
+      "pattern":"arn:aws:iam:.*:[0-9]+:.*"
+    },
+    "GlueDataCatalogTablePrefix":{
+      "type":"string",
+      "max":128,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
     "GoogleAnalyticsConnectorOperator":{
       "type":"string",
@@ -1937,6 +1975,25 @@
       "max":100,
       "min":1
     },
+    "MetadataCatalogConfig":{
+      "type":"structure",
+      "members":{
+        "glueDataCatalog":{"shape":"GlueDataCatalogConfig"}
+      }
+    },
+    "MetadataCatalogDetail":{
+      "type":"structure",
+      "members":{
+        "catalogType":{"shape":"CatalogType"},
+        "tableName":{"shape":"String"},
+        "tableRegistrationOutput":{"shape":"RegistrationOutput"},
+        "partitionRegistrationOutput":{"shape":"RegistrationOutput"}
+      }
+    },
+    "MetadataCatalogDetails":{
+      "type":"list",
+      "member":{"shape":"MetadataCatalogDetail"}
+    },
     "MostRecentExecutionMessage":{
       "type":"string",
       "max":2048,
@@ -2108,7 +2165,8 @@
         "CONCAT_FORMAT",
         "SUBFIELD_CATEGORY_MAP",
         "EXCLUDE_SOURCE_FIELDS_LIST",
-        "INCLUDE_NEW_FIELDS"
+        "INCLUDE_NEW_FIELDS",
+        "ORDERED_PARTITION_KEYS_LIST"
       ]
     },
     "Operators":{
@@ -2143,6 +2201,17 @@
       "pattern":".*",
       "sensitive":true
     },
+    "PathPrefix":{
+      "type":"string",
+      "enum":[
+        "EXECUTION_ID",
+        "SCHEMA_VERSION"
+      ]
+    },
+    "PathPrefixHierarchy":{
+      "type":"list",
+      "member":{"shape":"PathPrefix"}
+    },
     "PortNumber":{
       "type":"integer",
       "max":65535,
@@ -2152,7 +2221,8 @@
       "type":"structure",
       "members":{
         "prefixType":{"shape":"PrefixType"},
-        "prefixFormat":{"shape":"PrefixFormat"}
+        "prefixFormat":{"shape":"PrefixFormat"},
+        "pathPrefixHierarchy":{"shape":"PathPrefixHierarchy"}
       }
     },
     "PrefixFormat":{
@@ -2320,6 +2390,14 @@
       "type":"string",
       "max":512,
       "pattern":"\\S+"
+    },
+    "RegistrationOutput":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"},
+        "result":{"shape":"String"},
+        "status":{"shape":"ExecutionStatus"}
+      }
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -3019,7 +3097,8 @@
         "Merge",
         "Passthrough",
         "Truncate",
-        "Validate"
+        "Validate",
+        "Partition"
       ]
     },
     "Tasks":{
@@ -3203,7 +3282,8 @@
         "triggerConfig":{"shape":"TriggerConfig"},
         "sourceFlowConfig":{"shape":"SourceFlowConfig"},
         "destinationFlowConfigList":{"shape":"DestinationFlowConfigList"},
-        "tasks":{"shape":"Tasks"}
+        "tasks":{"shape":"Tasks"},
+        "metadataCatalogConfig":{"shape":"MetadataCatalogConfig"}
       }
     },
     "UpdateFlowResponse":{

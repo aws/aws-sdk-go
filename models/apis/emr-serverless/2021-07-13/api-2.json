@@ -272,7 +272,8 @@
         "tags":{"shape":"TagMap"},
         "autoStartConfiguration":{"shape":"AutoStartConfig"},
         "autoStopConfiguration":{"shape":"AutoStopConfig"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"}
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "architecture":{"shape":"Architecture"}
       }
     },
     "ApplicationArn":{
@@ -335,8 +336,16 @@
         "state":{"shape":"ApplicationState"},
         "stateDetails":{"shape":"String256"},
         "createdAt":{"shape":"Date"},
-        "updatedAt":{"shape":"Date"}
+        "updatedAt":{"shape":"Date"},
+        "architecture":{"shape":"Architecture"}
       }
+    },
+    "Architecture":{
+      "type":"string",
+      "enum":[
+        "ARM64",
+        "X86_64"
+      ]
     },
     "AutoStartConfig":{
       "type":"structure",
@@ -457,7 +466,8 @@
         "tags":{"shape":"TagMap"},
         "autoStartConfiguration":{"shape":"AutoStartConfig"},
         "autoStopConfiguration":{"shape":"AutoStopConfig"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"}
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "architecture":{"shape":"Architecture"}
       }
     },
     "CreateApplicationResponse":{
@@ -1200,7 +1210,8 @@
         "maximumCapacity":{"shape":"MaximumAllowedResources"},
         "autoStartConfiguration":{"shape":"AutoStartConfig"},
         "autoStopConfiguration":{"shape":"AutoStopConfig"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"}
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "architecture":{"shape":"Architecture"}
       }
     },
     "UpdateApplicationResponse":{

@@ -998,6 +998,84 @@ func (c *AppRegistry) GetAttributeGroupWithContext(ctx aws.Context, input *GetAt
 	return out, req.Send()
 }
 
+const opGetConfiguration = "GetConfiguration"
+
+// GetConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConfiguration for more information on using the GetConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetConfigurationRequest method.
+//	req, resp := client.GetConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetConfiguration
+func (c *AppRegistry) GetConfigurationRequest(input *GetConfigurationInput) (req *request.Request, output *GetConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/configuration",
+	}
+
+	if input == nil {
+		input = &GetConfigurationInput{}
+	}
+
+	output = &GetConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConfiguration API operation for AWS Service Catalog App Registry.
+//
+// Retrieves a TagKey configuration from an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog App Registry's
+// API operation GetConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   - InternalServerException
+//     The service is experiencing internal problems.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetConfiguration
+func (c *AppRegistry) GetConfiguration(input *GetConfigurationInput) (*GetConfigurationOutput, error) {
+	req, out := c.GetConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetConfigurationWithContext is the same as GetConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRegistry) GetConfigurationWithContext(ctx aws.Context, input *GetConfigurationInput, opts ...request.Option) (*GetConfigurationOutput, error) {
+	req, out := c.GetConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListApplications = "ListApplications"
 
 // ListApplicationsRequest generates a "aws/request.Request" representing the
@@ -1329,8 +1407,13 @@ func (c *AppRegistry) ListAssociatedResourcesRequest(input *ListAssociatedResour
 
 // ListAssociatedResources API operation for AWS Service Catalog App Registry.
 //
-// Lists all resources that are associated with specified application. Results
-// are paginated.
+// Lists all of the resources that are associated with the specified application.
+// Results are paginated.
+//
+// If you share an application, and a consumer account associates a tag query
+// to the application, all of the users who can access the application can also
+// view the tag values in all accounts that are associated with it using this
+// API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1790,6 +1873,93 @@ func (c *AppRegistry) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opPutConfiguration = "PutConfiguration"
+
+// PutConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutConfiguration for more information on using the PutConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutConfigurationRequest method.
+//	req, resp := client.PutConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/PutConfiguration
+func (c *AppRegistry) PutConfigurationRequest(input *PutConfigurationInput) (req *request.Request, output *PutConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/configuration",
+	}
+
+	if input == nil {
+		input = &PutConfigurationInput{}
+	}
+
+	output = &PutConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutConfiguration API operation for AWS Service Catalog App Registry.
+//
+// Associates a TagKey configuration to an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog App Registry's
+// API operation PutConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     There was a conflict when processing the request (for example, a resource
+//     with the given name already exists within the account).
+//
+//   - InternalServerException
+//     The service is experiencing internal problems.
+//
+//   - ValidationException
+//     The request has invalid or missing parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/PutConfiguration
+func (c *AppRegistry) PutConfiguration(input *PutConfigurationInput) (*PutConfigurationOutput, error) {
+	req, out := c.PutConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutConfigurationWithContext is the same as PutConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRegistry) PutConfigurationWithContext(ctx aws.Context, input *PutConfigurationInput, opts ...request.Option) (*PutConfigurationOutput, error) {
+	req, out := c.PutConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSyncResource = "SyncResource"
 
 // SyncResourceRequest generates a "aws/request.Request" representing the
@@ -2121,11 +2291,11 @@ func (c *AppRegistry) UpdateApplicationRequest(input *UpdateApplicationInput) (r
 //     There was a conflict when processing the request (for example, a resource
 //     with the given name already exists within the account).
 //
-//   - InternalServerException
-//     The service is experiencing internal problems.
-//
 //   - ValidationException
 //     The request has invalid or missing parameters.
+//
+//   - InternalServerException
+//     The service is experiencing internal problems.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/UpdateApplication
 func (c *AppRegistry) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -2236,6 +2406,38 @@ func (c *AppRegistry) UpdateAttributeGroupWithContext(ctx aws.Context, input *Up
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Includes all of the Service Catalog AppRegistry settings.
+type AppRegistryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Includes the definition of a tagQuery.
+	TagQueryConfiguration *TagQueryConfiguration `locationName:"tagQueryConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppRegistryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppRegistryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTagQueryConfiguration sets the TagQueryConfiguration field's value.
+func (s *AppRegistryConfiguration) SetTagQueryConfiguration(v *TagQueryConfiguration) *AppRegistryConfiguration {
+	s.TagQueryConfiguration = v
+	return s
 }
 
 // Represents a Amazon Web Services Service Catalog AppRegistry application
@@ -2739,8 +2941,14 @@ type AttributeGroupDetails struct {
 	// The unique identifier of the attribute group.
 	Id *string `locationName:"id" min:"26" type:"string"`
 
+	//
+	// This field is no longer supported. We recommend you don't use the field when
+	// using ListAttributeGroupsForApplication.
+	//
 	// The name of the attribute group.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Deprecated: This field is deprecated. We recommend not using the field when using ListAttributeGroupsForApplication.
+	Name *string `locationName:"name" min:"1" deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.
@@ -3979,6 +4187,59 @@ func (s *GetAttributeGroupOutput) SetTags(v map[string]*string) *GetAttributeGro
 	return s
 }
 
+type GetConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Retrieves TagKey configuration from an account.
+	Configuration *AppRegistryConfiguration `locationName:"configuration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *GetConfigurationOutput) SetConfiguration(v *AppRegistryConfiguration) *GetConfigurationOutput {
+	s.Configuration = v
+	return s
+}
+
 // The information about the service integration.
 type Integrations struct {
 	_ struct{} `type:"structure"`
@@ -4477,7 +4738,7 @@ func (s *ListAttributeGroupsForApplicationInput) SetNextToken(v string) *ListAtt
 type ListAttributeGroupsForApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The details related to a specific AttributeGroup.
+	// The details related to a specific attribute group.
 	AttributeGroupsDetails []*AttributeGroupDetails `locationName:"attributeGroupsDetails" type:"list"`
 
 	// The token to use to get the next page of results after a previous API call.
@@ -4691,6 +4952,74 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type PutConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Associates a TagKey configuration to an account.
+	//
+	// Configuration is a required field
+	Configuration *AppRegistryConfiguration `locationName:"configuration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutConfigurationInput"}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *PutConfigurationInput) SetConfiguration(v *AppRegistryConfiguration) *PutConfigurationInput {
+	s.Configuration = v
+	return s
+}
+
+type PutConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 // The information about the resource.
 type Resource struct {
 	_ struct{} `type:"structure"`
@@ -4747,6 +5076,38 @@ func (s *Resource) SetIntegrations(v *ResourceIntegrations) *Resource {
 // SetName sets the Name field's value.
 func (s *Resource) SetName(v string) *Resource {
 	s.Name = &v
+	return s
+}
+
+// The details related to the resource.
+type ResourceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the tag.
+	TagValue *string `locationName:"tagValue" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDetails) GoString() string {
+	return s.String()
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *ResourceDetails) SetTagValue(v string) *ResourceDetails {
+	s.TagValue = &v
 	return s
 }
 
@@ -4818,10 +5179,16 @@ type ResourceInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon resource name (ARN) that specifies the resource across services.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The name of the resource.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The details related to the resource.
+	ResourceDetails *ResourceDetails `locationName:"resourceDetails" type:"structure"`
+
+	// Provides information about the Service Catalog App Registry resource type.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
 // String returns the string representation.
@@ -4851,6 +5218,18 @@ func (s *ResourceInfo) SetArn(v string) *ResourceInfo {
 // SetName sets the Name field's value.
 func (s *ResourceInfo) SetName(v string) *ResourceInfo {
 	s.Name = &v
+	return s
+}
+
+// SetResourceDetails sets the ResourceDetails field's value.
+func (s *ResourceInfo) SetResourceDetails(v *ResourceDetails) *ResourceInfo {
+	s.ResourceDetails = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceInfo) SetResourceType(v string) *ResourceInfo {
+	s.ResourceType = &v
 	return s
 }
 
@@ -5129,6 +5508,39 @@ func (s *SyncResourceOutput) SetApplicationArn(v string) *SyncResourceOutput {
 // SetResourceArn sets the ResourceArn field's value.
 func (s *SyncResourceOutput) SetResourceArn(v string) *SyncResourceOutput {
 	s.ResourceArn = &v
+	return s
+}
+
+// The definition of tagQuery. Specifies which resources are associated with
+// an application.
+type TagQueryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Condition in the IAM policy that associates resources to an application.
+	TagKey *string `locationName:"tagKey" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagQueryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagQueryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *TagQueryConfiguration) SetTagKey(v string) *TagQueryConfiguration {
+	s.TagKey = &v
 	return s
 }
 
@@ -5625,12 +6037,16 @@ func ResourceGroupState_Values() []string {
 const (
 	// ResourceTypeCfnStack is a ResourceType enum value
 	ResourceTypeCfnStack = "CFN_STACK"
+
+	// ResourceTypeResourceTagValue is a ResourceType enum value
+	ResourceTypeResourceTagValue = "RESOURCE_TAG_VALUE"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
 func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeCfnStack,
+		ResourceTypeResourceTagValue,
 	}
 }
 

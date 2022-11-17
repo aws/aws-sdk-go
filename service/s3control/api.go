@@ -3590,6 +3590,8 @@ func (c *S3Control) GetStorageLensConfigurationRequest(input *GetStorageLensConf
 //
 // Gets the Amazon S3 Storage Lens configuration. For more information, see
 // Assessing your storage activity and usage with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
+// see S3 Storage Lens metrics glossary (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)
 // in the Amazon S3 User Guide.
 //
 // To use this action, you must have permission to perform the s3:GetStorageLensConfiguration
@@ -5702,6 +5704,8 @@ func (c *S3Control) PutStorageLensConfigurationRequest(input *PutStorageLensConf
 //
 // Puts an Amazon S3 Storage Lens configuration. For more information about
 // S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
+// see S3 Storage Lens metrics glossary (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)
 // in the Amazon S3 User Guide.
 //
 // To use this action, you must have permission to perform the s3:PutStorageLensConfiguration
@@ -6144,17 +6148,32 @@ func (s *AccessPoint) SetVpcConfiguration(v *VpcConfiguration) *AccessPoint {
 	return s
 }
 
-// A container for the account level Amazon S3 Storage Lens configuration.
+// A container for the account-level Amazon S3 Storage Lens configuration.
+//
+// For more information about S3 Storage Lens, see Assessing your storage activity
+// and usage with S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
+// in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
+// see S3 Storage Lens metrics glossary (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)
+// in the Amazon S3 User Guide.
 type AccountLevel struct {
 	_ struct{} `type:"structure"`
 
-	// A container for the S3 Storage Lens activity metrics.
+	// A container for S3 Storage Lens activity metrics.
 	ActivityMetrics *ActivityMetrics `type:"structure"`
+
+	// A container for S3 Storage Lens advanced cost-optimization metrics.
+	AdvancedCostOptimizationMetrics *AdvancedCostOptimizationMetrics `type:"structure"`
+
+	// A container for S3 Storage Lens advanced data-protection metrics.
+	AdvancedDataProtectionMetrics *AdvancedDataProtectionMetrics `type:"structure"`
 
 	// A container for the S3 Storage Lens bucket-level configuration.
 	//
 	// BucketLevel is a required field
 	BucketLevel *BucketLevel `type:"structure" required:"true"`
+
+	// A container for detailed status code metrics.
+	DetailedStatusCodesMetrics *DetailedStatusCodesMetrics `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6199,17 +6218,44 @@ func (s *AccountLevel) SetActivityMetrics(v *ActivityMetrics) *AccountLevel {
 	return s
 }
 
+// SetAdvancedCostOptimizationMetrics sets the AdvancedCostOptimizationMetrics field's value.
+func (s *AccountLevel) SetAdvancedCostOptimizationMetrics(v *AdvancedCostOptimizationMetrics) *AccountLevel {
+	s.AdvancedCostOptimizationMetrics = v
+	return s
+}
+
+// SetAdvancedDataProtectionMetrics sets the AdvancedDataProtectionMetrics field's value.
+func (s *AccountLevel) SetAdvancedDataProtectionMetrics(v *AdvancedDataProtectionMetrics) *AccountLevel {
+	s.AdvancedDataProtectionMetrics = v
+	return s
+}
+
 // SetBucketLevel sets the BucketLevel field's value.
 func (s *AccountLevel) SetBucketLevel(v *BucketLevel) *AccountLevel {
 	s.BucketLevel = v
 	return s
 }
 
-// A container for the activity metrics.
+// SetDetailedStatusCodesMetrics sets the DetailedStatusCodesMetrics field's value.
+func (s *AccountLevel) SetDetailedStatusCodesMetrics(v *DetailedStatusCodesMetrics) *AccountLevel {
+	s.DetailedStatusCodesMetrics = v
+	return s
+}
+
+// The container element for Amazon S3 Storage Lens activity metrics. Activity
+// metrics show details about how your storage is requested, such as requests
+// (for example, All requests, Get requests, Put requests), bytes uploaded or
+// downloaded, and errors.
+//
+// For more information about S3 Storage Lens, see Assessing your storage activity
+// and usage with S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
+// in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
+// see S3 Storage Lens metrics glossary (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)
+// in the Amazon S3 User Guide.
 type ActivityMetrics struct {
 	_ struct{} `type:"structure"`
 
-	// A container for whether the activity metrics are enabled.
+	// A container that indicates whether activity metrics are enabled.
 	IsEnabled *bool `type:"boolean"`
 }
 
@@ -6233,6 +6279,89 @@ func (s ActivityMetrics) GoString() string {
 
 // SetIsEnabled sets the IsEnabled field's value.
 func (s *ActivityMetrics) SetIsEnabled(v bool) *ActivityMetrics {
+	s.IsEnabled = &v
+	return s
+}
+
+// The container element for Amazon S3 Storage Lens advanced cost-optimization
+// metrics. Advanced cost-optimization metrics provide insights that you can
+// use to manage and optimize your storage costs, for example, lifecycle rule
+// counts for transitions, expirations, and incomplete multipart uploads.
+//
+// For more information about S3 Storage Lens, see Assessing your storage activity
+// and usage with S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
+// in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
+// see S3 Storage Lens metrics glossary (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)
+// in the Amazon S3 User Guide.
+type AdvancedCostOptimizationMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container that indicates whether advanced cost-optimization metrics are
+	// enabled.
+	IsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdvancedCostOptimizationMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdvancedCostOptimizationMetrics) GoString() string {
+	return s.String()
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *AdvancedCostOptimizationMetrics) SetIsEnabled(v bool) *AdvancedCostOptimizationMetrics {
+	s.IsEnabled = &v
+	return s
+}
+
+// The container element for Amazon S3 Storage Lens advanced data-protection
+// metrics. Advanced data-protection metrics provide insights that you can use
+// to perform audits and protect your data, for example replication rule counts
+// within and across Regions.
+//
+// For more information about S3 Storage Lens, see Assessing your storage activity
+// and usage with S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
+// in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
+// see S3 Storage Lens metrics glossary (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)
+// in the Amazon S3 User Guide.
+type AdvancedDataProtectionMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container that indicates whether advanced data-protection metrics are enabled.
+	IsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdvancedDataProtectionMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdvancedDataProtectionMetrics) GoString() string {
+	return s.String()
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *AdvancedDataProtectionMetrics) SetIsEnabled(v bool) *AdvancedDataProtectionMetrics {
 	s.IsEnabled = &v
 	return s
 }
@@ -6529,14 +6658,30 @@ func (s *AwsLambdaTransformation) SetFunctionPayload(v string) *AwsLambdaTransfo
 	return s
 }
 
-// A container for the bucket-level configuration.
+// A container for the bucket-level configuration for Amazon S3 Storage Lens.
+//
+// For more information about S3 Storage Lens, see Assessing your storage activity
+// and usage with S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
+// in the Amazon S3 User Guide.
 type BucketLevel struct {
 	_ struct{} `type:"structure"`
 
-	// A container for the bucket-level activity metrics for Amazon S3 Storage Lens
+	// A container for the bucket-level activity metrics for S3 Storage Lens.
 	ActivityMetrics *ActivityMetrics `type:"structure"`
 
-	// A container for the bucket-level prefix-level metrics for S3 Storage Lens
+	// A container for bucket-level advanced cost-optimization metrics for S3 Storage
+	// Lens.
+	AdvancedCostOptimizationMetrics *AdvancedCostOptimizationMetrics `type:"structure"`
+
+	// A container for bucket-level advanced data-protection metrics for S3 Storage
+	// Lens.
+	AdvancedDataProtectionMetrics *AdvancedDataProtectionMetrics `type:"structure"`
+
+	// A container for bucket-level detailed status code metrics for S3 Storage
+	// Lens.
+	DetailedStatusCodesMetrics *DetailedStatusCodesMetrics `type:"structure"`
+
+	// A container for the prefix-level metrics for S3 Storage Lens.
 	PrefixLevel *PrefixLevel `type:"structure"`
 }
 
@@ -6576,6 +6721,24 @@ func (s *BucketLevel) Validate() error {
 // SetActivityMetrics sets the ActivityMetrics field's value.
 func (s *BucketLevel) SetActivityMetrics(v *ActivityMetrics) *BucketLevel {
 	s.ActivityMetrics = v
+	return s
+}
+
+// SetAdvancedCostOptimizationMetrics sets the AdvancedCostOptimizationMetrics field's value.
+func (s *BucketLevel) SetAdvancedCostOptimizationMetrics(v *AdvancedCostOptimizationMetrics) *BucketLevel {
+	s.AdvancedCostOptimizationMetrics = v
+	return s
+}
+
+// SetAdvancedDataProtectionMetrics sets the AdvancedDataProtectionMetrics field's value.
+func (s *BucketLevel) SetAdvancedDataProtectionMetrics(v *AdvancedDataProtectionMetrics) *BucketLevel {
+	s.AdvancedDataProtectionMetrics = v
+	return s
+}
+
+// SetDetailedStatusCodesMetrics sets the DetailedStatusCodesMetrics field's value.
+func (s *BucketLevel) SetDetailedStatusCodesMetrics(v *DetailedStatusCodesMetrics) *BucketLevel {
+	s.DetailedStatusCodesMetrics = v
 	return s
 }
 
@@ -7575,7 +7738,7 @@ type CreateMultiRegionAccessPointInput_ struct {
 	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 	// in the Amazon S3 User Guide.
 	//
-	// This is not supported for Amazon S3 on Outposts.
+	// This data type is not supported for Amazon S3 on Outposts.
 	PublicAccessBlock *PublicAccessBlockConfiguration `type:"structure"`
 
 	// The buckets in different Regions that are associated with the Multi-Region
@@ -9483,6 +9646,46 @@ func (s *DescribeMultiRegionAccessPointOperationOutput) SetAsyncOperation(v *Asy
 	return s
 }
 
+// The container element for Amazon S3 Storage Lens detailed status code metrics.
+// Detailed status code metrics generate metrics for HTTP status codes, such
+// as 200 OK, 403 Forbidden, 503 Service Unavailable and others.
+//
+// For more information about S3 Storage Lens, see Assessing your storage activity
+// and usage with S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)
+// in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
+// see S3 Storage Lens metrics glossary (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)
+// in the Amazon S3 User Guide.
+type DetailedStatusCodesMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container that indicates whether detailed status code metrics are enabled.
+	IsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetailedStatusCodesMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetailedStatusCodesMetrics) GoString() string {
+	return s.String()
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *DetailedStatusCodesMetrics) SetIsEnabled(v bool) *DetailedStatusCodesMetrics {
+	s.IsEnabled = &v
+	return s
+}
+
 // The last established access control policy for a Multi-Region Access Point.
 //
 // When you update the policy, the update is first listed as the proposed policy.
@@ -10007,7 +10210,7 @@ type GetAccessPointOutput struct {
 	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 	// in the Amazon S3 User Guide.
 	//
-	// This is not supported for Amazon S3 on Outposts.
+	// This data type is not supported for Amazon S3 on Outposts.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 
 	// Contains the virtual private cloud (VPC) configuration for the specified
@@ -12810,8 +13013,8 @@ type JobOperation struct {
 	// object in the manifest.
 	S3InitiateRestoreObject *S3InitiateRestoreObjectOperation `type:"structure"`
 
-	// Directs the specified job to run a PUT Object acl call on every object in
-	// the manifest.
+	// Directs the specified job to run a PutObjectAcl call on every object in the
+	// manifest.
 	S3PutObjectAcl *S3SetObjectAclOperation `type:"structure"`
 
 	// Directs the specified job to run a PUT Copy object call on every object in
@@ -13517,6 +13720,7 @@ type LifecycleRuleFilter struct {
 	// related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
 	Prefix *string `type:"string"`
 
+	// A container for a key-value name pair.
 	Tag *S3Tag `type:"structure"`
 }
 
@@ -14581,7 +14785,7 @@ type MultiRegionAccessPointReport struct {
 	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 	// in the Amazon S3 User Guide.
 	//
-	// This is not supported for Amazon S3 on Outposts.
+	// This data type is not supported for Amazon S3 on Outposts.
 	PublicAccessBlock *PublicAccessBlockConfiguration `type:"structure"`
 
 	// A collection of the Regions and buckets associated with the Multi-Region
@@ -15218,7 +15422,7 @@ func (s *ProposedMultiRegionAccessPointPolicy) SetPolicy(v string) *ProposedMult
 // see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 // in the Amazon S3 User Guide.
 //
-// This is not supported for Amazon S3 on Outposts.
+// This data type is not supported for Amazon S3 on Outposts.
 type PublicAccessBlockConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -15226,8 +15430,7 @@ type PublicAccessBlockConfiguration struct {
 	// for buckets in this account. Setting this element to TRUE causes the following
 	// behavior:
 	//
-	//    * PUT Bucket acl and PUT Object acl calls fail if the specified ACL is
-	//    public.
+	//    * PutBucketAcl and PutObjectAcl calls fail if the specified ACL is public.
 	//
 	//    * PUT Object calls fail if the request includes a public ACL.
 	//
@@ -15235,7 +15438,7 @@ type PublicAccessBlockConfiguration struct {
 	//
 	// Enabling this setting doesn't affect existing policies or ACLs.
 	//
-	// This is not supported for Amazon S3 on Outposts.
+	// This property is not supported for Amazon S3 on Outposts.
 	BlockPublicAcls *bool `locationName:"BlockPublicAcls" type:"boolean"`
 
 	// Specifies whether Amazon S3 should block public bucket policies for buckets
@@ -15244,7 +15447,7 @@ type PublicAccessBlockConfiguration struct {
 	//
 	// Enabling this setting doesn't affect existing bucket policies.
 	//
-	// This is not supported for Amazon S3 on Outposts.
+	// This property is not supported for Amazon S3 on Outposts.
 	BlockPublicPolicy *bool `locationName:"BlockPublicPolicy" type:"boolean"`
 
 	// Specifies whether Amazon S3 should ignore public ACLs for buckets in this
@@ -15254,7 +15457,7 @@ type PublicAccessBlockConfiguration struct {
 	// Enabling this setting doesn't affect the persistence of any existing ACLs
 	// and doesn't prevent new public ACLs from being set.
 	//
-	// This is not supported for Amazon S3 on Outposts.
+	// This property is not supported for Amazon S3 on Outposts.
 	IgnorePublicAcls *bool `locationName:"IgnorePublicAcls" type:"boolean"`
 
 	// Specifies whether Amazon S3 should restrict public bucket policies for buckets
@@ -15266,7 +15469,7 @@ type PublicAccessBlockConfiguration struct {
 	// that public and cross-account access within any public bucket policy, including
 	// non-public delegation to specific accounts, is blocked.
 	//
-	// This is not supported for Amazon S3 on Outposts.
+	// This property is not supported for Amazon S3 on Outposts.
 	RestrictPublicBuckets *bool `locationName:"RestrictPublicBuckets" type:"boolean"`
 }
 
@@ -17450,8 +17653,8 @@ type S3CopyObjectOperation struct {
 	TargetKeyPrefix *string `min:"1" type:"string"`
 
 	// Specifies the destination bucket ARN for the batch copy operation. For example,
-	// to copy objects to a bucket named "destinationBucket", set the TargetResource
-	// to "arn:aws:s3:::destinationBucket".
+	// to copy objects to a bucket named destinationBucket, set the TargetResource
+	// property to arn:aws:s3:::destinationBucket.
 	TargetResource *string `min:"1" type:"string"`
 
 	UnModifiedSinceConstraint *time.Time `type:"timestamp"`
@@ -18387,9 +18590,9 @@ func (s *S3Retention) SetRetainUntilDate(v time.Time) *S3Retention {
 }
 
 // Contains the configuration parameters for a Set Object ACL operation. S3
-// Batch Operations passes every object to the underlying PUT Object acl API.
-// For more information about the parameters for this operation, see PUT Object
-// acl (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTacl.html).
+// Batch Operations passes every object to the underlying PutObjectAcl API.
+// For more information about the parameters for this operation, see PutObjectAcl
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTacl.html).
 type S3SetObjectAclOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -18610,12 +18813,17 @@ func (s *S3SetObjectTaggingOperation) SetTagSet(v []*S3Tag) *S3SetObjectTaggingO
 	return s
 }
 
+// A container for a key-value name pair.
 type S3Tag struct {
 	_ struct{} `type:"structure"`
 
+	// Key of the tag
+	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
+	// Value of the tag
+	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }

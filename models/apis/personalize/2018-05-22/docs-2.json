@@ -11,6 +11,7 @@
     "CreateDatasetImportJob": "<p>Creates a job that imports training data from your data source (an Amazon S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize to import the training data, you must specify an IAM service role that has permission to read from the data source, as Amazon Personalize makes a copy of your data and processes it internally. For information on granting access to your Amazon S3 bucket, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html\">Giving Amazon Personalize Access to Amazon S3 Resources</a>. </p> <important> <p>By default, a dataset import job replaces any existing data in the dataset that you imported in bulk. To add new records without replacing existing data, specify INCREMENTAL for the import mode in the CreateDatasetImportJob operation.</p> </important> <p> <b>Status</b> </p> <p>A dataset import job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul> <p>To get the status of the import job, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html\">DescribeDatasetImportJob</a>, providing the Amazon Resource Name (ARN) of the dataset import job. The dataset import is complete when the status shows as ACTIVE. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed.</p> <note> <p>Importing takes time. You must wait until the status shows as ACTIVE before training a model using the dataset.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetImportJobs.html\">ListDatasetImportJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html\">DescribeDatasetImportJob</a> </p> </li> </ul>",
     "CreateEventTracker": "<p>Creates an event tracker that you use when adding event data to a specified dataset group using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html\">PutEvents</a> API.</p> <note> <p>Only one event tracker can be associated with a dataset group. You will get an error if you call <code>CreateEventTracker</code> using the same dataset group as an existing event tracker.</p> </note> <p>When you create an event tracker, the response includes a tracking ID, which you pass as a parameter when you use the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html\">PutEvents</a> operation. Amazon Personalize then appends the event data to the Interactions dataset of the dataset group you specify in your event tracker. </p> <p>The event tracker can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the event tracker, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html\">DescribeEventTracker</a>.</p> <note> <p>The event tracker must be in the ACTIVE state before using the tracking ID.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListEventTrackers.html\">ListEventTrackers</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html\">DescribeEventTracker</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteEventTracker.html\">DeleteEventTracker</a> </p> </li> </ul>",
     "CreateFilter": "<p>Creates a recommendation filter. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/filter.html\">Filtering recommendations and user segments</a>.</p>",
+    "CreateMetricAttribution": "<p>Creates a metric attribution. A metric attribution creates reports on the data that you import into Amazon Personalize. Depending on how you imported the data, you can view reports in Amazon CloudWatch or Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html\">Measuring impact of recommendations</a>.</p>",
     "CreateRecommender": "<p>Creates a recommender with the recipe (a Domain dataset group use case) you specify. You create recommenders for a Domain dataset group and specify the recommender's Amazon Resource Name (ARN) when you make a <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> request. </p> <p> <b>Minimum recommendation requests per second</b> </p> <p>When you create a recommender, you can configure the recommender's minimum recommendation requests per second. The minimum recommendation requests per second (<code>minRecommendationRequestsPerSecond</code>) specifies the baseline recommendation request throughput provisioned by Amazon Personalize. The default minRecommendationRequestsPerSecond is <code>1</code>. A recommendation request is a single <code>GetRecommendations</code> operation. Request throughput is measured in requests per second and Amazon Personalize uses your requests per second to derive your requests per hour and the price of your recommender usage. </p> <p> If your requests per second increases beyond <code>minRecommendationRequestsPerSecond</code>, Amazon Personalize auto-scales the provisioned capacity up and down, but never below <code>minRecommendationRequestsPerSecond</code>. There's a short time delay while the capacity is increased that might cause loss of requests.</p> <p> Your bill is the greater of either the minimum requests per hour (based on minRecommendationRequestsPerSecond) or the actual number of requests. The actual request throughput used is calculated as the average requests/second within a one-hour window. We recommend starting with the default <code>minRecommendationRequestsPerSecond</code>, track your usage using Amazon CloudWatch metrics, and then increase the <code>minRecommendationRequestsPerSecond</code> as necessary. </p> <p> <b>Status</b> </p> <p>A recommender can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>STOP PENDING &gt; STOP IN_PROGRESS &gt; INACTIVE &gt; START PENDING &gt; START IN_PROGRESS &gt; ACTIVE</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the recommender status, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html\">DescribeRecommender</a>.</p> <note> <p>Wait until the <code>status</code> of the recommender is <code>ACTIVE</code> before asking the recommender for recommendations.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListRecommenders.html\">ListRecommenders</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecommender.html\">DescribeRecommender</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateRecommender.html\">UpdateRecommender</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteRecommender.html\">DeleteRecommender</a> </p> </li> </ul>",
     "CreateSchema": "<p>Creates an Amazon Personalize schema from the specified schema string. The schema you create must be in Avro JSON format.</p> <p>Amazon Personalize recognizes three schema variants. Each schema is associated with a dataset type and has a set of required field and keywords. If you are creating a schema for a dataset in a Domain dataset group, you provide the domain of the Domain dataset group. You specify a schema when you call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html\">CreateDataset</a>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListSchemas.html\">ListSchemas</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html\">DescribeSchema</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSchema.html\">DeleteSchema</a> </p> </li> </ul>",
     "CreateSolution": "<p>Creates the configuration for training a model. A trained model is known as a solution. After the configuration is created, you train the model (create a solution) by calling the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html\">CreateSolutionVersion</a> operation. Every time you call <code>CreateSolutionVersion</code>, a new version of the solution is created.</p> <p>After creating a solution version, you check its accuracy by calling <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_GetSolutionMetrics.html\">GetSolutionMetrics</a>. When you are satisfied with the version, you deploy it using <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html\">CreateCampaign</a>. The campaign provides recommendations to a client through the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> API.</p> <p>To train a model, Amazon Personalize requires training data and a recipe. The training data comes from the dataset group that you provide in the request. A recipe specifies the training algorithm and a feature transformation. You can specify one of the predefined recipes provided by Amazon Personalize. Alternatively, you can specify <code>performAutoML</code> and Amazon Personalize will analyze your data and select the optimum USER_PERSONALIZATION recipe for you.</p> <note> <p>Amazon Personalize doesn't support configuring the <code>hpoObjective</code> for solution hyperparameter optimization at this time.</p> </note> <p> <b>Status</b> </p> <p>A solution can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the solution, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html\">DescribeSolution</a>. Wait until the status shows as ACTIVE before calling <code>CreateSolutionVersion</code>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html\">ListSolutions</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html\">CreateSolutionVersion</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html\">DescribeSolution</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html\">DeleteSolution</a> </p> </li> </ul> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html\">ListSolutionVersions</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html\">DescribeSolutionVersion</a> </p> </li> </ul>",
@@ -20,6 +21,7 @@
     "DeleteDatasetGroup": "<p>Deletes a dataset group. Before you delete a dataset group, you must delete the following:</p> <ul> <li> <p>All associated event trackers.</p> </li> <li> <p>All associated solutions.</p> </li> <li> <p>All datasets in the dataset group.</p> </li> </ul>",
     "DeleteEventTracker": "<p>Deletes the event tracker. Does not delete the event-interactions dataset from the associated dataset group. For more information on event trackers, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html\">CreateEventTracker</a>.</p>",
     "DeleteFilter": "<p>Deletes a filter.</p>",
+    "DeleteMetricAttribution": "<p>Deletes a metric attribution.</p>",
     "DeleteRecommender": "<p>Deactivates and removes a recommender. A deleted recommender can no longer be specified in a <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> request.</p>",
     "DeleteSchema": "<p>Deletes a schema. Before deleting a schema, you must delete all datasets referencing the schema. For more information on schemas, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html\">CreateSchema</a>.</p>",
     "DeleteSolution": "<p>Deletes all versions of a solution and the <code>Solution</code> object itself. Before deleting a solution, you must delete all campaigns based on the solution. To determine what campaigns are using the solution, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html\">ListCampaigns</a> and supply the Amazon Resource Name (ARN) of the solution. You can't delete a solution if an associated <code>SolutionVersion</code> is in the CREATE PENDING or IN PROGRESS state. For more information on solutions, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html\">CreateSolution</a>.</p>",
@@ -34,6 +36,7 @@
     "DescribeEventTracker": "<p>Describes an event tracker. The response includes the <code>trackingId</code> and <code>status</code> of the event tracker. For more information on event trackers, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html\">CreateEventTracker</a>.</p>",
     "DescribeFeatureTransformation": "<p>Describes the given feature transformation.</p>",
     "DescribeFilter": "<p>Describes a filter's properties.</p>",
+    "DescribeMetricAttribution": "<p>Describes a metric attribution.</p>",
     "DescribeRecipe": "<p>Describes a recipe.</p> <p>A recipe contains three items:</p> <ul> <li> <p>An algorithm that trains a model.</p> </li> <li> <p>Hyperparameters that govern the training.</p> </li> <li> <p>Feature transformation information for modifying the input data before training.</p> </li> </ul> <p>Amazon Personalize provides a set of predefined recipes. You specify a recipe when you create a solution with the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html\">CreateSolution</a> API. <code>CreateSolution</code> trains a model by using the algorithm in the specified recipe and a training dataset. The solution, when deployed as a campaign, can provide recommendations using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> API.</p>",
     "DescribeRecommender": "<p>Describes the given recommender, including its status.</p> <p>A recommender can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>STOP PENDING &gt; STOP IN_PROGRESS &gt; INACTIVE &gt; START PENDING &gt; START IN_PROGRESS &gt; ACTIVE</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>When the <code>status</code> is <code>CREATE FAILED</code>, the response includes the <code>failureReason</code> key, which describes why.</p> <p>The <code>modelMetrics</code> key is null when the recommender is being created or deleted.</p> <p>For more information on recommenders, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateRecommender.html\">CreateRecommender</a>.</p>",
     "DescribeSchema": "<p>Describes a schema. For more information on schemas, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html\">CreateSchema</a>.</p>",
@@ -49,6 +52,8 @@
     "ListDatasets": "<p>Returns the list of datasets contained in the given dataset group. The response provides the properties for each dataset, including the Amazon Resource Name (ARN). For more information on datasets, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html\">CreateDataset</a>.</p>",
     "ListEventTrackers": "<p>Returns the list of event trackers associated with the account. The response provides the properties for each event tracker, including the Amazon Resource Name (ARN) and tracking ID. For more information on event trackers, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html\">CreateEventTracker</a>.</p>",
     "ListFilters": "<p>Lists all filters that belong to a given dataset group.</p>",
+    "ListMetricAttributionMetrics": "<p>Lists the metrics for the metric attribution.</p>",
+    "ListMetricAttributions": "<p>Lists metric attributions.</p>",
     "ListRecipes": "<p>Returns a list of available recipes. The response provides the properties for each recipe, including the recipe's Amazon Resource Name (ARN).</p>",
     "ListRecommenders": "<p>Returns a list of recommenders in a given Domain dataset group. When a Domain dataset group is not specified, all the recommenders associated with the account are listed. The response provides the properties for each recommender, including the Amazon Resource Name (ARN). For more information on recommenders, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateRecommender.html\">CreateRecommender</a>.</p>",
     "ListSchemas": "<p>Returns the list of schemas associated with the account. The response provides the properties for each schema, including the Amazon Resource Name (ARN). For more information on schemas, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html\">CreateSchema</a>.</p>",
@@ -61,6 +66,7 @@
     "TagResource": "<p>Add a list of tags to a resource.</p>",
     "UntagResource": "<p>Remove <a href=\"https://docs.aws.amazon.com/personalize/latest/dev/tagging-resources.html\">tags</a> that are attached to a resource.</p>",
     "UpdateCampaign": "<p>Updates a campaign by either deploying a new solution or changing the value of the campaign's <code>minProvisionedTPS</code> parameter.</p> <p>To update a campaign, the campaign status must be ACTIVE or CREATE FAILED. Check the campaign status using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html\">DescribeCampaign</a> operation.</p> <note> <p>You can still get recommendations from a campaign while an update is in progress. The campaign will use the previous solution version and campaign configuration to generate recommendations until the latest campaign update status is <code>Active</code>. </p> </note> <p>For more information on campaigns, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html\">CreateCampaign</a>.</p>",
+    "UpdateMetricAttribution": "<p>Updates a metric attribution.</p>",
     "UpdateRecommender": "<p>Updates the recommender to modify the recommender configuration.</p>"
   },
   "shapes": {
@@ -123,6 +129,8 @@
         "CreateEventTrackerResponse$eventTrackerArn": "<p>The ARN of the event tracker.</p>",
         "CreateFilterRequest$datasetGroupArn": "<p>The ARN of the dataset group that the filter will belong to.</p>",
         "CreateFilterResponse$filterArn": "<p>The ARN of the new filter.</p>",
+        "CreateMetricAttributionRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the destination dataset group for the metric attribution.</p>",
+        "CreateMetricAttributionResponse$metricAttributionArn": "<p>The Amazon Resource Name (ARN) for the new metric attribution.</p>",
         "CreateRecommenderRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the destination domain dataset group for the recommender.</p>",
         "CreateRecommenderRequest$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe that the recommender will use. For a recommender, a recipe is a Domain dataset group use case. Only Domain dataset group use cases can be used to create a recommender. For information about use cases see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/domain-use-cases.html\">Choosing recommender use cases</a>. </p>",
         "CreateRecommenderResponse$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender.</p>",
@@ -153,6 +161,7 @@
         "DeleteDatasetRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to delete.</p>",
         "DeleteEventTrackerRequest$eventTrackerArn": "<p>The Amazon Resource Name (ARN) of the event tracker to delete.</p>",
         "DeleteFilterRequest$filterArn": "<p>The ARN of the filter to delete.</p>",
+        "DeleteMetricAttributionRequest$metricAttributionArn": "<p>The metric attribution's Amazon Resource Name (ARN).</p>",
         "DeleteRecommenderRequest$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender to delete.</p>",
         "DeleteSchemaRequest$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema to delete.</p>",
         "DeleteSolutionRequest$solutionArn": "<p>The ARN of the solution to delete.</p>",
@@ -167,6 +176,7 @@
         "DescribeEventTrackerRequest$eventTrackerArn": "<p>The Amazon Resource Name (ARN) of the event tracker to describe.</p>",
         "DescribeFeatureTransformationRequest$featureTransformationArn": "<p>The Amazon Resource Name (ARN) of the feature transformation to describe.</p>",
         "DescribeFilterRequest$filterArn": "<p>The ARN of the filter to describe.</p>",
+        "DescribeMetricAttributionRequest$metricAttributionArn": "<p>The metric attribution's Amazon Resource Name (ARN).</p>",
         "DescribeRecipeRequest$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe to describe.</p>",
         "DescribeRecommenderRequest$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender to describe.</p>",
         "DescribeSchemaRequest$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema to retrieve.</p>",
@@ -190,10 +200,15 @@
         "ListDatasetsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that contains the datasets to list.</p>",
         "ListEventTrackersRequest$datasetGroupArn": "<p>The ARN of a dataset group used to filter the response.</p>",
         "ListFiltersRequest$datasetGroupArn": "<p>The ARN of the dataset group that contains the filters.</p>",
+        "ListMetricAttributionMetricsRequest$metricAttributionArn": "<p>The Amazon Resource Name (ARN) of the metric attribution to retrieve attributes for.</p>",
+        "ListMetricAttributionsRequest$datasetGroupArn": "<p>The metric attributions' dataset group Amazon Resource Name (ARN).</p>",
         "ListRecommendersRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the Domain dataset group to list the recommenders for. When a Domain dataset group is not specified, all the recommenders associated with the account are listed.</p>",
         "ListSolutionVersionsRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution.</p>",
         "ListSolutionsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The resource's Amazon Resource Name.</p>",
+        "MetricAttribution$metricAttributionArn": "<p>The metric attribution's Amazon Resource Name (ARN).</p>",
+        "MetricAttribution$datasetGroupArn": "<p>The metric attribution's dataset group Amazon Resource Name (ARN).</p>",
+        "MetricAttributionSummary$metricAttributionArn": "<p>The metric attribution's Amazon Resource Name (ARN).</p>",
         "Recipe$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe.</p>",
         "Recipe$algorithmArn": "<p>The Amazon Resource Name (ARN) of the algorithm that Amazon Personalize uses to train the model.</p>",
         "Recipe$featureTransformationArn": "<p>The ARN of the FeatureTransformation object.</p>",
@@ -208,6 +223,7 @@
         "Solution$recipeArn": "<p>The ARN of the recipe used to create the solution.</p>",
         "Solution$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that provides the training data.</p>",
         "SolutionSummary$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution.</p>",
+        "SolutionSummary$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe used by the solution.</p>",
         "SolutionVersion$solutionVersionArn": "<p>The ARN of the solution version.</p>",
         "SolutionVersion$solutionArn": "<p>The ARN of the solution.</p>",
         "SolutionVersion$recipeArn": "<p>The ARN of the recipe used in the solution.</p>",
@@ -223,6 +239,8 @@
         "UpdateCampaignRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "UpdateCampaignRequest$solutionVersionArn": "<p>The ARN of a new solution version to deploy.</p>",
         "UpdateCampaignResponse$campaignArn": "<p>The same campaign ARN as given in the request.</p>",
+        "UpdateMetricAttributionRequest$metricAttributionArn": "<p>The Amazon Resource Name (ARN) for the metric attribution to update.</p>",
+        "UpdateMetricAttributionResponse$metricAttributionArn": "<p>The Amazon Resource Name (ARN) for the metric attribution that you updated.</p>",
         "UpdateRecommenderRequest$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender to modify.</p>",
         "UpdateRecommenderResponse$recommenderArn": "<p>The same recommender Amazon Resource Name (ARN) as given in the request.</p>"
       }
@@ -326,7 +344,9 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "CreateSolutionRequest$performHPO": "<p>Whether to perform hyperparameter optimization (HPO) on the specified or selected recipe. The default is <code>false</code>.</p> <p>When performing AutoML, this parameter is always <code>true</code> and you should not set it to <code>false</code>.</p>"
+        "CreateDatasetImportJobRequest$publishAttributionMetricsToS3": "<p>If you created a metric attribution, specify whether to publish metrics for this import job to Amazon S3</p>",
+        "CreateSolutionRequest$performHPO": "<p>Whether to perform hyperparameter optimization (HPO) on the specified or selected recipe. The default is <code>false</code>.</p> <p>When performing AutoML, this parameter is always <code>true</code> and you should not set it to <code>false</code>.</p>",
+        "DatasetImportJob$publishAttributionMetricsToS3": "<p>Whether the job publishes metrics to Amazon S3 for a metric attribution.</p>"
       }
     },
     "Campaign": {
@@ -499,6 +519,16 @@
       }
     },
     "CreateFilterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMetricAttributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMetricAttributionResponse": {
       "base": null,
       "refs": {
       }
@@ -698,6 +728,10 @@
         "Filter$lastUpdatedDateTime": "<p>The time at which the filter was last updated.</p>",
         "FilterSummary$creationDateTime": "<p>The time at which the filter was created.</p>",
         "FilterSummary$lastUpdatedDateTime": "<p>The time at which the filter was last updated.</p>",
+        "MetricAttribution$creationDateTime": "<p>The metric attribution's creation date time.</p>",
+        "MetricAttribution$lastUpdatedDateTime": "<p>The metric attribution's last updated date time.</p>",
+        "MetricAttributionSummary$creationDateTime": "<p>The metric attribution's creation date time.</p>",
+        "MetricAttributionSummary$lastUpdatedDateTime": "<p>The metric attribution's last updated date time.</p>",
         "Recipe$creationDateTime": "<p>The date and time (in Unix format) that the recipe was created.</p>",
         "Recipe$lastUpdatedDateTime": "<p>The date and time (in Unix format) that the recipe was last updated.</p>",
         "RecipeSummary$creationDateTime": "<p>The date and time (in Unix time) that the recipe was created.</p>",
@@ -781,6 +815,11 @@
       }
     },
     "DeleteFilterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMetricAttributionRequest": {
       "base": null,
       "refs": {
       }
@@ -910,6 +949,16 @@
       "refs": {
       }
     },
+    "DescribeMetricAttributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeMetricAttributionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeRecipeRequest": {
       "base": null,
       "refs": {
@@ -1021,6 +1070,7 @@
       "base": null,
       "refs": {
         "CreateSolutionRequest$eventType": "<p>When your have multiple event types (using an <code>EVENT_TYPE</code> schema field), this parameter specifies which event type (for example, 'click' or 'like') is used for training the model.</p> <p>If you do not provide an <code>eventType</code>, Amazon Personalize will use all interactions for training with equal weight regardless of type.</p>",
+        "MetricAttribute$eventType": "<p>The metric's event type.</p>",
         "Solution$eventType": "<p>The event type (for example, 'click' or 'like') that is used for training the model. If no <code>eventType</code> is provided, Amazon Personalize uses all interactions for training with equal weight regardless of type.</p>",
         "SolutionVersion$eventType": "<p>The event type (for example, 'click' or 'like') that is used for training the model.</p>"
       }
@@ -1049,6 +1099,8 @@
         "DatasetImportJobSummary$failureReason": "<p>If a dataset import job fails, the reason behind the failure.</p>",
         "Filter$failureReason": "<p>If the filter failed, the reason for its failure.</p>",
         "FilterSummary$failureReason": "<p>If the filter failed, the reason for the failure.</p>",
+        "MetricAttribution$failureReason": "<p>The metric attribution's failure reason.</p>",
+        "MetricAttributionSummary$failureReason": "<p>The metric attribution's failure reason.</p>",
         "Recommender$failureReason": "<p>If a recommender fails, the reason behind the failure.</p>",
         "RecommenderUpdateSummary$failureReason": "<p>If a recommender update fails, the reason behind the failure.</p>",
         "SolutionVersion$failureReason": "<p>If training a solution version fails, the reason for the failure.</p>",
@@ -1316,6 +1368,26 @@
       "refs": {
       }
     },
+    "ListMetricAttributionMetricsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMetricAttributionMetricsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMetricAttributionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMetricAttributionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListRecipesRequest": {
       "base": null,
       "refs": {
@@ -1388,6 +1460,8 @@
         "ListDatasetsRequest$maxResults": "<p>The maximum number of datasets to return.</p>",
         "ListEventTrackersRequest$maxResults": "<p>The maximum number of event trackers to return.</p>",
         "ListFiltersRequest$maxResults": "<p>The maximum number of filters to return.</p>",
+        "ListMetricAttributionMetricsRequest$maxResults": "<p>The maximum number of metrics to return in one page of results.</p>",
+        "ListMetricAttributionsRequest$maxResults": "<p>The maximum number of metric attributions to return in one page of results.</p>",
         "ListRecipesRequest$maxResults": "<p>The maximum number of recipes to return.</p>",
         "ListRecommendersRequest$maxResults": "<p>The maximum number of recommenders to return.</p>",
         "ListSchemasRequest$maxResults": "<p>The maximum number of schemas to return.</p>",
@@ -1395,11 +1469,65 @@
         "ListSolutionsRequest$maxResults": "<p>The maximum number of solutions to return.</p>"
       }
     },
+    "MetricAttribute": {
+      "base": "<p>Contains information on a metric that a metric attribution reports on. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html\">Measuring impact of recommendations</a>.</p>",
+      "refs": {
+        "MetricAttributes$member": null
+      }
+    },
+    "MetricAttributes": {
+      "base": null,
+      "refs": {
+        "CreateMetricAttributionRequest$metrics": "<p>A list of metric attributes for the metric attribution. Each metric attribute specifies an event type to track and a function. Available functions are <code>SUM()</code> or <code>SAMPLECOUNT()</code>. For SUM() functions, provide the dataset type (either Interactions or Items) and column to sum as a parameter. For example SUM(Items.PRICE).</p>",
+        "ListMetricAttributionMetricsResponse$metrics": "<p>The metrics for the specified metric attribution.</p>",
+        "UpdateMetricAttributionRequest$addMetrics": "<p>Add new metric attributes to the metric attribution.</p>"
+      }
+    },
+    "MetricAttributesNamesList": {
+      "base": null,
+      "refs": {
+        "UpdateMetricAttributionRequest$removeMetrics": "<p>Remove metric attributes from the metric attribution.</p>"
+      }
+    },
+    "MetricAttribution": {
+      "base": "<p>Contains information on a metric attribution. A metric attribution creates reports on the data that you import into Amazon Personalize. Depending on how you import the data, you can view reports in Amazon CloudWatch or Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html\">Measuring impact of recommendations</a>.</p>",
+      "refs": {
+        "DescribeMetricAttributionResponse$metricAttribution": "<p>The details of the metric attribution.</p>"
+      }
+    },
+    "MetricAttributionOutput": {
+      "base": "<p>The output configuration details for a metric attribution.</p>",
+      "refs": {
+        "CreateMetricAttributionRequest$metricsOutputConfig": "<p>The output configuration details for the metric attribution.</p>",
+        "MetricAttribution$metricsOutputConfig": "<p>The metric attribution's output configuration.</p>",
+        "UpdateMetricAttributionRequest$metricsOutputConfig": "<p>An output config for the metric attribution.</p>"
+      }
+    },
+    "MetricAttributionSummary": {
+      "base": "<p>Provides a summary of the properties of a metric attribution. For a complete listing, call the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeMetricAttribution.html\">DescribeMetricAttribution</a>.</p>",
+      "refs": {
+        "MetricAttributions$member": null
+      }
+    },
+    "MetricAttributions": {
+      "base": null,
+      "refs": {
+        "ListMetricAttributionsResponse$metricAttributions": "<p>The list of metric attributions.</p>"
+      }
+    },
+    "MetricExpression": {
+      "base": null,
+      "refs": {
+        "MetricAttribute$expression": "<p>The attribute's expression. Available functions are <code>SUM()</code> or <code>SAMPLECOUNT()</code>. For SUM() functions, provide the dataset type (either Interactions or Items) and column to sum as a parameter. For example SUM(Items.PRICE).</p>"
+      }
+    },
     "MetricName": {
       "base": null,
       "refs": {
         "AutoMLConfig$metricName": "<p>The metric to optimize.</p>",
         "HPOObjective$metricName": "<p>The name of the metric.</p>",
+        "MetricAttribute$metricName": "<p>The metric's name. The name helps you identify the metric in Amazon CloudWatch or Amazon S3.</p>",
+        "MetricAttributesNamesList$member": null,
         "Metrics$key": null
       }
     },
@@ -1442,9 +1570,11 @@
         "CreateDatasetRequest$name": "<p>The name for the dataset.</p>",
         "CreateEventTrackerRequest$name": "<p>The name for the event tracker.</p>",
         "CreateFilterRequest$name": "<p>The name of the filter to create.</p>",
+        "CreateMetricAttributionRequest$name": "<p>A name for the metric attribution.</p>",
         "CreateRecommenderRequest$name": "<p>The name of the recommender.</p>",
         "CreateSchemaRequest$name": "<p>The name for the schema.</p>",
         "CreateSolutionRequest$name": "<p>The name for the solution.</p>",
+        "CreateSolutionVersionRequest$name": "<p>The name of the solution version.</p>",
         "Dataset$name": "<p>The name of the dataset.</p>",
         "DatasetExportJob$jobName": "<p>The name of the export job.</p>",
         "DatasetExportJobSummary$jobName": "<p>The name of the dataset export job.</p>",
@@ -1460,12 +1590,15 @@
         "FeatureTransformation$name": "<p>The name of the feature transformation.</p>",
         "Filter$name": "<p>The name of the filter.</p>",
         "FilterSummary$name": "<p>The name of the filter.</p>",
+        "MetricAttribution$name": "<p>The metric attribution's name.</p>",
+        "MetricAttributionSummary$name": "<p>The name of the metric attribution.</p>",
         "Recipe$name": "<p>The name of the recipe.</p>",
         "RecipeSummary$name": "<p>The name of the recipe.</p>",
         "Recommender$name": "<p>The name of the recommender.</p>",
         "RecommenderSummary$name": "<p>The name of the recommender.</p>",
         "Solution$name": "<p>The name of the solution.</p>",
-        "SolutionSummary$name": "<p>The name of the solution.</p>"
+        "SolutionSummary$name": "<p>The name of the solution.</p>",
+        "SolutionVersion$name": "<p>The name of the solution version.</p>"
       }
     },
     "NextToken": {
@@ -1489,6 +1622,10 @@
         "ListEventTrackersResponse$nextToken": "<p>A token for getting the next set of event trackers (if they exist).</p>",
         "ListFiltersRequest$nextToken": "<p>A token returned from the previous call to <code>ListFilters</code> for getting the next set of filters (if they exist).</p>",
         "ListFiltersResponse$nextToken": "<p>A token for getting the next set of filters (if they exist).</p>",
+        "ListMetricAttributionMetricsRequest$nextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
+        "ListMetricAttributionMetricsResponse$nextToken": "<p>Specify the pagination token from a previous <code>ListMetricAttributionMetricsResponse</code> request to retrieve the next page of results.</p>",
+        "ListMetricAttributionsRequest$nextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
+        "ListMetricAttributionsResponse$nextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
         "ListRecipesRequest$nextToken": "<p>A token returned from the previous call to <code>ListRecipes</code> for getting the next set of recipes (if they exist).</p>",
         "ListRecipesResponse$nextToken": "<p>A token for getting the next set of recipes.</p>",
         "ListRecommendersRequest$nextToken": "<p>A token returned from the previous call to <code>ListRecommenders</code> for getting the next set of recommenders (if they exist).</p>",
@@ -1656,7 +1793,8 @@
         "CreateDatasetExportJobRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that has permissions to add data to your output Amazon S3 bucket.</p>",
         "CreateDatasetGroupRequest$roleArn": "<p>The ARN of the Identity and Access Management (IAM) role that has permissions to access the Key Management Service (KMS) key. Supplying an IAM role is only valid when also specifying a KMS key.</p>",
         "CreateDatasetImportJobRequest$roleArn": "<p>The ARN of the IAM role that has permissions to read from the Amazon S3 data source.</p>",
-        "DatasetGroup$roleArn": "<p>The ARN of the IAM role that has permissions to create the dataset group.</p>"
+        "DatasetGroup$roleArn": "<p>The ARN of the IAM role that has permissions to create the dataset group.</p>",
+        "MetricAttributionOutput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that has permissions to add data to your output Amazon S3 bucket and add metrics to Amazon CloudWatch. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html\">Measuring impact of recommendations</a>.</p>"
       }
     },
     "S3DataConfig": {
@@ -1666,7 +1804,8 @@
         "BatchInferenceJobOutput$s3DataDestination": "<p>Information on the Amazon S3 bucket in which the batch inference job's output is stored.</p>",
         "BatchSegmentJobInput$s3DataSource": null,
         "BatchSegmentJobOutput$s3DataDestination": null,
-        "DatasetExportJobOutput$s3DataDestination": null
+        "DatasetExportJobOutput$s3DataDestination": null,
+        "MetricAttributionOutput$s3DataDestination": null
       }
     },
     "S3Location": {
@@ -1760,6 +1899,8 @@
         "FeatureTransformation$status": "<p>The status of the feature transformation.</p> <p>A feature transformation can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
         "Filter$status": "<p>The status of the filter.</p>",
         "FilterSummary$status": "<p>The status of the filter.</p>",
+        "MetricAttribution$status": "<p>The metric attribution's status.</p>",
+        "MetricAttributionSummary$status": "<p>The metric attribution's status.</p>",
         "Recipe$status": "<p>The status of the recipe.</p>",
         "RecipeSummary$status": "<p>The status of the recipe.</p>",
         "Recommender$status": "<p>The status of the recommender.</p> <p>A recommender can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>STOP PENDING &gt; STOP IN_PROGRESS &gt; INACTIVE &gt; START PENDING &gt; START IN_PROGRESS &gt; ACTIVE</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
@@ -1916,6 +2057,16 @@
       }
     },
     "UpdateCampaignResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMetricAttributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMetricAttributionResponse": {
       "base": null,
       "refs": {
       }

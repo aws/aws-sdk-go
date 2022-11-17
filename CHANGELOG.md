@@ -1,3 +1,35 @@
+Release v1.44.140 (2022-11-17)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/appflow`: Updates service API and documentation
+* `service/appsync`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Adds support for Internet Protocol Version 6 (IPv6) on DMS Replication Instances
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new optional parameter "privateIpAddress" for the CreateNatGateway API. PrivateIPAddress will allow customers to select a custom Private IPv4 address instead of having it be auto-assigned.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/emr-serverless`: Updates service API and documentation
+* `service/ivschat`: Updates service API, documentation, and paginators
+* `service/lambda`: Updates service API and documentation
+  * Add Node 18 (nodejs18.x) support to AWS Lambda.
+* `service/personalize`: Updates service API, documentation, and paginators
+* `service/polly`: Updates service API
+  * Add two new neural voices - Ola (pl-PL) and Hala (ar-AE).
+* `service/rum`: Updates service API and documentation
+* `service/s3control`: Updates service API and documentation
+  * Added 34 new S3 Storage Lens metrics to support additional customer use cases.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager.
+* `service/securityhub`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+* `service/textract`: Updates service API and documentation
+* `service/workspaces`: Updates service API and documentation
+  * The release introduces CreateStandbyWorkspaces, an API that allows you to create standby WorkSpaces associated with a primary WorkSpace in another Region. DescribeWorkspaces now includes related WorkSpaces properties. DescribeWorkspaceBundles and CreateWorkspaceBundle now return more bundle details.
+
 Release v1.44.139 (2022-11-16)
 ===
 

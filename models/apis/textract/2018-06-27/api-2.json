@@ -330,7 +330,8 @@
         "MERGED_CELL",
         "TITLE",
         "QUERY",
-        "QUERY_RESULT"
+        "QUERY_RESULT",
+        "SIGNATURE"
       ]
     },
     "BoundingBox":{
@@ -485,7 +486,8 @@
       "enum":[
         "TABLES",
         "FORMS",
-        "QUERIES"
+        "QUERIES",
+        "SIGNATURES"
       ]
     },
     "FeatureTypes":{
