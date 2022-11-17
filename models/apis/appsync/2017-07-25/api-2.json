@@ -137,7 +137,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "CreateType":{
@@ -263,7 +264,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "DeleteType":{
@@ -296,6 +298,20 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"InternalFailureException"},
         {"shape":"NotFoundException"}
+      ]
+    },
+    "EvaluateCode":{
+      "name":"EvaluateCode",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/dataplane-evaluatecode"
+      },
+      "input":{"shape":"EvaluateCodeRequest"},
+      "output":{"shape":"EvaluateCodeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "EvaluateMappingTemplate":{
@@ -775,7 +791,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "UpdateType":{
@@ -911,6 +928,17 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "AppSyncRuntime":{
+      "type":"structure",
+      "required":[
+        "name",
+        "runtimeVersion"
+      ],
+      "members":{
+        "name":{"shape":"RuntimeName"},
+        "runtimeVersion":{"shape":"String"}
+      }
+    },
     "AssociateApiRequest":{
       "type":"structure",
       "required":[
@@ -969,13 +997,25 @@
         "signingServiceName":{"shape":"String"}
       }
     },
+    "BadRequestDetail":{
+      "type":"structure",
+      "members":{
+        "codeErrors":{"shape":"CodeErrors"}
+      }
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "reason":{"shape":"BadRequestReason"},
+        "detail":{"shape":"BadRequestDetail"}
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "BadRequestReason":{
+      "type":"string",
+      "enum":["CODE_ERROR"]
     },
     "Blob":{"type":"blob"},
     "Boolean":{"type":"boolean"},
@@ -997,6 +1037,34 @@
       "max":2048,
       "min":20,
       "pattern":"^arn:[a-z-]*:(acm|iam):[a-z0-9-]*:\\d{12}:(certificate|server-certificate)/[0-9A-Za-z_/-]*$"
+    },
+    "Code":{
+      "type":"string",
+      "max":32768,
+      "min":1
+    },
+    "CodeError":{
+      "type":"structure",
+      "members":{
+        "errorType":{"shape":"String"},
+        "value":{"shape":"String"},
+        "location":{"shape":"CodeErrorLocation"}
+      }
+    },
+    "CodeErrorColumn":{"type":"integer"},
+    "CodeErrorLine":{"type":"integer"},
+    "CodeErrorLocation":{
+      "type":"structure",
+      "members":{
+        "line":{"shape":"CodeErrorLine"},
+        "column":{"shape":"CodeErrorColumn"},
+        "span":{"shape":"CodeErrorSpan"}
+      }
+    },
+    "CodeErrorSpan":{"type":"integer"},
+    "CodeErrors":{
+      "type":"list",
+      "member":{"shape":"CodeError"}
     },
     "CognitoUserPoolConfig":{
       "type":"structure",
@@ -1140,8 +1208,7 @@
       "required":[
         "apiId",
         "name",
-        "dataSourceName",
-        "functionVersion"
+        "dataSourceName"
       ],
       "members":{
         "apiId":{
@@ -1156,7 +1223,9 @@
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "functionVersion":{"shape":"String"},
         "syncConfig":{"shape":"SyncConfig"},
-        "maxBatchSize":{"shape":"MaxBatchSize"}
+        "maxBatchSize":{"shape":"MaxBatchSize"},
+        "runtime":{"shape":"AppSyncRuntime"},
+        "code":{"shape":"Code"}
       }
     },
     "CreateFunctionResponse":{
@@ -1215,7 +1284,9 @@
         "pipelineConfig":{"shape":"PipelineConfig"},
         "syncConfig":{"shape":"SyncConfig"},
         "cachingConfig":{"shape":"CachingConfig"},
-        "maxBatchSize":{"shape":"MaxBatchSize"}
+        "maxBatchSize":{"shape":"MaxBatchSize"},
+        "runtime":{"shape":"AppSyncRuntime"},
+        "code":{"shape":"Code"}
       }
     },
     "CreateResolverResponse":{
@@ -1542,6 +1613,35 @@
       }
     },
     "ErrorMessage":{"type":"string"},
+    "EvaluateCodeErrorDetail":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"},
+        "codeErrors":{"shape":"CodeErrors"}
+      }
+    },
+    "EvaluateCodeRequest":{
+      "type":"structure",
+      "required":[
+        "runtime",
+        "code",
+        "context"
+      ],
+      "members":{
+        "runtime":{"shape":"AppSyncRuntime"},
+        "code":{"shape":"Code"},
+        "context":{"shape":"Context"},
+        "function":{"shape":"String"}
+      }
+    },
+    "EvaluateCodeResponse":{
+      "type":"structure",
+      "members":{
+        "evaluationResult":{"shape":"EvaluationResult"},
+        "error":{"shape":"EvaluateCodeErrorDetail"},
+        "logs":{"shape":"Logs"}
+      }
+    },
     "EvaluateMappingTemplateRequest":{
       "type":"structure",
       "required":[
@@ -1557,7 +1657,8 @@
       "type":"structure",
       "members":{
         "evaluationResult":{"shape":"EvaluationResult"},
-        "error":{"shape":"ErrorDetail"}
+        "error":{"shape":"ErrorDetail"},
+        "logs":{"shape":"Logs"}
       }
     },
     "EvaluationResult":{
@@ -1602,7 +1703,9 @@
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "functionVersion":{"shape":"String"},
         "syncConfig":{"shape":"SyncConfig"},
-        "maxBatchSize":{"shape":"MaxBatchSize"}
+        "maxBatchSize":{"shape":"MaxBatchSize"},
+        "runtime":{"shape":"AppSyncRuntime"},
+        "code":{"shape":"Code"}
       }
     },
     "Functions":{
@@ -2183,6 +2286,10 @@
         "excludeVerboseContent":{"shape":"Boolean"}
       }
     },
+    "Logs":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Long":{"type":"long"},
     "MapOfStringToString":{
       "type":"map",
@@ -2287,7 +2394,9 @@
         "pipelineConfig":{"shape":"PipelineConfig"},
         "syncConfig":{"shape":"SyncConfig"},
         "cachingConfig":{"shape":"CachingConfig"},
-        "maxBatchSize":{"shape":"MaxBatchSize"}
+        "maxBatchSize":{"shape":"MaxBatchSize"},
+        "runtime":{"shape":"AppSyncRuntime"},
+        "code":{"shape":"Code"}
       }
     },
     "ResolverKind":{
@@ -2312,6 +2421,10 @@
       "max":65536,
       "min":1,
       "pattern":"[_A-Za-z][_0-9A-Za-z]*"
+    },
+    "RuntimeName":{
+      "type":"string",
+      "enum":["APPSYNC_JS"]
     },
     "SchemaStatus":{
       "type":"string",
@@ -2573,8 +2686,7 @@
         "apiId",
         "name",
         "functionId",
-        "dataSourceName",
-        "functionVersion"
+        "dataSourceName"
       ],
       "members":{
         "apiId":{
@@ -2594,7 +2706,9 @@
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "functionVersion":{"shape":"String"},
         "syncConfig":{"shape":"SyncConfig"},
-        "maxBatchSize":{"shape":"MaxBatchSize"}
+        "maxBatchSize":{"shape":"MaxBatchSize"},
+        "runtime":{"shape":"AppSyncRuntime"},
+        "code":{"shape":"Code"}
       }
     },
     "UpdateFunctionResponse":{
@@ -2661,7 +2775,9 @@
         "pipelineConfig":{"shape":"PipelineConfig"},
         "syncConfig":{"shape":"SyncConfig"},
         "cachingConfig":{"shape":"CachingConfig"},
-        "maxBatchSize":{"shape":"MaxBatchSize"}
+        "maxBatchSize":{"shape":"MaxBatchSize"},
+        "runtime":{"shape":"AppSyncRuntime"},
+        "code":{"shape":"Code"}
       }
     },
     "UpdateResolverResponse":{

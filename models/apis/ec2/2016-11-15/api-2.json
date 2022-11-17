@@ -10072,7 +10072,8 @@
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
         },
-        "ConnectivityType":{"shape":"ConnectivityType"}
+        "ConnectivityType":{"shape":"ConnectivityType"},
+        "PrivateIpAddress":{"shape":"String"}
       }
     },
     "CreateNatGatewayResult":{

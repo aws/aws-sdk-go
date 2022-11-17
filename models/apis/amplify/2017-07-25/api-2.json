@@ -1938,7 +1938,8 @@
       "type":"string",
       "enum":[
         "WEB",
-        "WEB_DYNAMIC"
+        "WEB_DYNAMIC",
+        "WEB_COMPUTE"
       ]
     },
     "ProductionBranch":{
@@ -2186,12 +2187,12 @@
     "SubDomainSettings":{
       "type":"list",
       "member":{"shape":"SubDomainSetting"},
-      "max":255
+      "max":500
     },
     "SubDomains":{
       "type":"list",
       "member":{"shape":"SubDomain"},
-      "max":255
+      "max":500
     },
     "TTL":{
       "type":"string",

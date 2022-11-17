@@ -2200,7 +2200,7 @@
       }
     },
     "AwsLambdaFunctionDetails": {
-      "base": "<p>Details about a function's configuration.</p>",
+      "base": "<p>Details about an Lambda function's configuration.</p>",
       "refs": {
         "ResourceDetails$AwsLambdaFunction": "<p>Details about a Lambda function.</p>"
       }
@@ -5376,6 +5376,7 @@
         "AwsLambdaFunctionDetails$Role": "<p>The function's execution role.</p>",
         "AwsLambdaFunctionDetails$Runtime": "<p>The runtime environment for the Lambda function.</p>",
         "AwsLambdaFunctionDetails$Version": "<p>The version of the Lambda function.</p>",
+        "AwsLambdaFunctionDetails$PackageType": "<p>The type of deployment package that's used to deploy the function code to Lambda. Set to <code>Image</code> for a container image and <code>Zip</code> for a .zip file archive. </p>",
         "AwsLambdaFunctionEnvironmentError$ErrorCode": "<p>The error code.</p>",
         "AwsLambdaFunctionEnvironmentError$Message": "<p>The error message.</p>",
         "AwsLambdaFunctionLayer$Arn": "<p>The ARN of the function layer.</p>",
@@ -5945,6 +5946,8 @@
         "SoftwarePackage$FilePath": "<p>The file system path to the package manager inventory file.</p>",
         "SoftwarePackage$FixedInVersion": "<p>The version of the software package in which the vulnerability has been resolved. </p>",
         "SoftwarePackage$Remediation": "<p>Describes the actions a customer can take to resolve the vulnerability in the software package. </p>",
+        "SoftwarePackage$SourceLayerHash": "<p>The source layer hash of the vulnerable package. </p>",
+        "SoftwarePackage$SourceLayerArn": "<p>The Amazon Resource Name (ARN) of the source layer. </p>",
         "SortCriterion$Field": "<p>The finding attribute used to sort findings.</p>",
         "Standard$StandardsArn": "<p>The ARN of a standard.</p>",
         "Standard$Name": "<p>The name of the standard.</p>",
@@ -6054,6 +6057,7 @@
         "AwsElasticsearchDomainVPCOptions$AvailabilityZones": "<p>The list of Availability Zones associated with the VPC subnets.</p>",
         "AwsElasticsearchDomainVPCOptions$SecurityGroupIds": "<p>The list of security group IDs associated with the VPC endpoints for the domain.</p>",
         "AwsElasticsearchDomainVPCOptions$SubnetIds": "<p>A list of subnet IDs associated with the VPC endpoints for the domain.</p>",
+        "AwsLambdaFunctionDetails$Architectures": "<p>The instruction set architecture that the function uses. Valid values are <code>x86_64</code> or <code>arm64</code>.</p>",
         "AwsLambdaFunctionVpcConfig$SecurityGroupIds": "<p>A list of VPC security groups IDs.</p>",
         "AwsLambdaFunctionVpcConfig$SubnetIds": "<p>A list of VPC subnet IDs.</p>",
         "AwsLambdaLayerVersionDetails$CompatibleRuntimes": "<p>The layer's compatible runtimes. Maximum number of five items.</p> <p>Valid values: <code>nodejs10.x</code> | <code>nodejs12.x</code> | <code>java8</code> | <code>java11</code> | <code>python2.7</code> | <code>python3.6</code> | <code>python3.7</code> | <code>python3.8</code> | <code>dotnetcore1.0</code> | <code>dotnetcore2.1</code> | <code>go1.x</code> | <code>ruby2.5</code> | <code>provided</code> </p>",

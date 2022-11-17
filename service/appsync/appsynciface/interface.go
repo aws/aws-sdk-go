@@ -132,6 +132,10 @@ type AppSyncAPI interface {
 	DisassociateApiWithContext(aws.Context, *appsync.DisassociateApiInput, ...request.Option) (*appsync.DisassociateApiOutput, error)
 	DisassociateApiRequest(*appsync.DisassociateApiInput) (*request.Request, *appsync.DisassociateApiOutput)
 
+	EvaluateCode(*appsync.EvaluateCodeInput) (*appsync.EvaluateCodeOutput, error)
+	EvaluateCodeWithContext(aws.Context, *appsync.EvaluateCodeInput, ...request.Option) (*appsync.EvaluateCodeOutput, error)
+	EvaluateCodeRequest(*appsync.EvaluateCodeInput) (*request.Request, *appsync.EvaluateCodeOutput)
+
 	EvaluateMappingTemplate(*appsync.EvaluateMappingTemplateInput) (*appsync.EvaluateMappingTemplateOutput, error)
 	EvaluateMappingTemplateWithContext(aws.Context, *appsync.EvaluateMappingTemplateInput, ...request.Option) (*appsync.EvaluateMappingTemplateOutput, error)
 	EvaluateMappingTemplateRequest(*appsync.EvaluateMappingTemplateInput) (*request.Request, *appsync.EvaluateMappingTemplateOutput)

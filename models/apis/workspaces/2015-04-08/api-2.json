@@ -129,6 +129,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateStandbyWorkspaces":{
+      "name":"CreateStandbyWorkspaces",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateStandbyWorkspacesRequest"},
+      "output":{"shape":"CreateStandbyWorkspacesResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceLimitExceededException"}
+      ]
+    },
     "CreateTags":{
       "name":"CreateTags",
       "http":{
@@ -760,7 +776,8 @@
       "errors":[
         {"shape":"InvalidParameterValuesException"},
         {"shape":"InvalidResourceStateException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "RebootWorkspaces":{
@@ -770,7 +787,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"RebootWorkspacesRequest"},
-      "output":{"shape":"RebootWorkspacesResult"}
+      "output":{"shape":"RebootWorkspacesResult"},
+      "errors":[
+        {"shape":"OperationNotSupportedException"}
+      ]
     },
     "RebuildWorkspaces":{
       "name":"RebuildWorkspaces",
@@ -779,7 +799,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"RebuildWorkspacesRequest"},
-      "output":{"shape":"RebuildWorkspacesResult"}
+      "output":{"shape":"RebuildWorkspacesResult"},
+      "errors":[
+        {"shape":"OperationNotSupportedException"}
+      ]
     },
     "RegisterWorkspaceDirectory":{
       "name":"RegisterWorkspaceDirectory",
@@ -811,7 +834,8 @@
       "errors":[
         {"shape":"InvalidParameterValuesException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "RevokeIpRules":{
@@ -916,7 +940,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidParameterValuesException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ResourceUnavailableException"}
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "UpdateWorkspaceImagePermission":{
@@ -1081,6 +1106,13 @@
       "member":{"shape":"WorkspaceBundle"}
     },
     "BundleOwner":{"type":"string"},
+    "BundleType":{
+      "type":"string",
+      "enum":[
+        "REGULAR",
+        "STANDBY"
+      ]
+    },
     "CertificateAuthorityArn":{
       "type":"string",
       "max":200,
@@ -1350,6 +1382,24 @@
       "type":"structure",
       "members":{
         "GroupId":{"shape":"IpGroupId"}
+      }
+    },
+    "CreateStandbyWorkspacesRequest":{
+      "type":"structure",
+      "required":[
+        "PrimaryRegion",
+        "StandbyWorkspaces"
+      ],
+      "members":{
+        "PrimaryRegion":{"shape":"Region"},
+        "StandbyWorkspaces":{"shape":"StandbyWorkspacesList"}
+      }
+    },
+    "CreateStandbyWorkspacesResult":{
+      "type":"structure",
+      "members":{
+        "FailedStandbyRequests":{"shape":"FailedCreateStandbyWorkspacesRequestList"},
+        "PendingStandbyRequests":{"shape":"PendingCreateStandbyWorkspacesRequestList"}
       }
     },
     "CreateTagsRequest":{
@@ -1943,6 +1993,18 @@
     "ErrorType":{"type":"string"},
     "ExceptionErrorCode":{"type":"string"},
     "ExceptionMessage":{"type":"string"},
+    "FailedCreateStandbyWorkspacesRequest":{
+      "type":"structure",
+      "members":{
+        "StandbyWorkspaceRequest":{"shape":"StandbyWorkspace"},
+        "ErrorCode":{"shape":"WorkspaceErrorCode"},
+        "ErrorMessage":{"shape":"Description"}
+      }
+    },
+    "FailedCreateStandbyWorkspacesRequestList":{
+      "type":"list",
+      "member":{"shape":"FailedCreateStandbyWorkspacesRequest"}
+    },
     "FailedCreateWorkspaceRequest":{
       "type":"structure",
       "members":{
@@ -2387,6 +2449,19 @@
       "max":2048,
       "min":1
     },
+    "PendingCreateStandbyWorkspacesRequest":{
+      "type":"structure",
+      "members":{
+        "UserName":{"shape":"UserName"},
+        "DirectoryId":{"shape":"DirectoryId"},
+        "State":{"shape":"WorkspaceState"},
+        "WorkspaceId":{"shape":"WorkspaceId"}
+      }
+    },
+    "PendingCreateStandbyWorkspacesRequestList":{
+      "type":"list",
+      "member":{"shape":"PendingCreateStandbyWorkspacesRequest"}
+    },
     "Protocol":{
       "type":"string",
       "enum":[
@@ -2487,6 +2562,19 @@
       "type":"string",
       "max":20,
       "min":1
+    },
+    "RelatedWorkspaceProperties":{
+      "type":"structure",
+      "members":{
+        "WorkspaceId":{"shape":"WorkspaceId"},
+        "Region":{"shape":"Region"},
+        "State":{"shape":"WorkspaceState"},
+        "Type":{"shape":"StandbyWorkspaceRelationshipType"}
+      }
+    },
+    "RelatedWorkspaces":{
+      "type":"list",
+      "member":{"shape":"RelatedWorkspaceProperties"}
     },
     "ResourceAlreadyExistsException":{
       "type":"structure",
@@ -2629,6 +2717,30 @@
     "SnapshotList":{
       "type":"list",
       "member":{"shape":"Snapshot"}
+    },
+    "StandbyWorkspace":{
+      "type":"structure",
+      "required":[
+        "PrimaryWorkspaceId",
+        "DirectoryId"
+      ],
+      "members":{
+        "PrimaryWorkspaceId":{"shape":"WorkspaceId"},
+        "VolumeEncryptionKey":{"shape":"VolumeEncryptionKey"},
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "StandbyWorkspaceRelationshipType":{
+      "type":"string",
+      "enum":[
+        "PRIMARY",
+        "STANDBY"
+      ]
+    },
+    "StandbyWorkspacesList":{
+      "type":"list",
+      "member":{"shape":"StandbyWorkspace"}
     },
     "StartRequest":{
       "type":"structure",
@@ -2894,7 +3006,8 @@
         "UserVolumeEncryptionEnabled":{"shape":"BooleanObject"},
         "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"},
         "WorkspaceProperties":{"shape":"WorkspaceProperties"},
-        "ModificationStates":{"shape":"ModificationStateList"}
+        "ModificationStates":{"shape":"ModificationStateList"},
+        "RelatedWorkspaces":{"shape":"RelatedWorkspaces"}
       }
     },
     "WorkspaceAccessProperties":{
@@ -2922,7 +3035,9 @@
         "UserStorage":{"shape":"UserStorage"},
         "ComputeType":{"shape":"ComputeType"},
         "LastUpdatedTime":{"shape":"Timestamp"},
-        "CreationTime":{"shape":"Timestamp"}
+        "CreationTime":{"shape":"Timestamp"},
+        "State":{"shape":"WorkspaceBundleState"},
+        "BundleType":{"shape":"BundleType"}
       }
     },
     "WorkspaceBundleDescription":{
@@ -2936,6 +3051,14 @@
       "max":64,
       "min":1,
       "pattern":"^[a-zA-Z0-9_./()\\\\-]+$"
+    },
+    "WorkspaceBundleState":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "PENDING",
+        "ERROR"
+      ]
     },
     "WorkspaceConnectionStatus":{
       "type":"structure",

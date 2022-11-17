@@ -178,6 +178,17 @@
         {"shape":"ConflictException"}
       ]
     },
+    "GetConfiguration":{
+      "name":"GetConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/configuration"
+      },
+      "output":{"shape":"GetConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListApplications":{
       "name":"ListApplications",
       "http":{
@@ -265,6 +276,19 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "PutConfiguration":{
+      "name":"PutConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/configuration"
+      },
+      "input":{"shape":"PutConfigurationRequest"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "SyncResource":{
       "name":"SyncResource",
       "http":{
@@ -318,8 +342,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "UpdateAttributeGroup":{
@@ -339,6 +363,12 @@
     }
   },
   "shapes":{
+    "AppRegistryConfiguration":{
+      "type":"structure",
+      "members":{
+        "tagQueryConfiguration":{"shape":"TagQueryConfiguration"}
+      }
+    },
     "Application":{
       "type":"structure",
       "members":{
@@ -471,7 +501,11 @@
       "members":{
         "id":{"shape":"AttributeGroupId"},
         "arn":{"shape":"AttributeGroupArn"},
-        "name":{"shape":"Name"}
+        "name":{
+          "shape":"Name",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated. We recommend not using the field when using ListAttributeGroupsForApplication."
+        }
       }
     },
     "AttributeGroupDetailsList":{
@@ -751,6 +785,12 @@
         "tags":{"shape":"Tags"}
       }
     },
+    "GetConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "configuration":{"shape":"AppRegistryConfiguration"}
+      }
+    },
     "Integrations":{
       "type":"structure",
       "members":{
@@ -918,7 +958,7 @@
     },
     "MaxResults":{
       "type":"integer",
-      "max":25,
+      "max":100,
       "min":1
     },
     "Name":{
@@ -933,6 +973,13 @@
       "min":1,
       "pattern":"[A-Za-z0-9+/=]+"
     },
+    "PutConfigurationRequest":{
+      "type":"structure",
+      "required":["configuration"],
+      "members":{
+        "configuration":{"shape":"AppRegistryConfiguration"}
+      }
+    },
     "Resource":{
       "type":"structure",
       "members":{
@@ -940,6 +987,12 @@
         "arn":{"shape":"StackArn"},
         "associationTime":{"shape":"Timestamp"},
         "integrations":{"shape":"ResourceIntegrations"}
+      }
+    },
+    "ResourceDetails":{
+      "type":"structure",
+      "members":{
+        "tagValue":{"shape":"TagValue"}
       }
     },
     "ResourceGroup":{
@@ -965,7 +1018,9 @@
       "type":"structure",
       "members":{
         "name":{"shape":"ResourceSpecifier"},
-        "arn":{"shape":"StackArn"}
+        "arn":{"shape":"Arn"},
+        "resourceType":{"shape":"ResourceType"},
+        "resourceDetails":{"shape":"ResourceDetails"}
       }
     },
     "ResourceIntegrations":{
@@ -990,7 +1045,10 @@
     },
     "ResourceType":{
       "type":"string",
-      "enum":["CFN_STACK"]
+      "enum":[
+        "CFN_STACK",
+        "RESOURCE_TAG_VALUE"
+      ]
     },
     "Resources":{
       "type":"list",
@@ -1047,13 +1105,25 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"(?!aws:)[a-zA-Z+-=._:/]+"
+      "pattern":"[a-zA-Z+-=._:/]+"
+    },
+    "TagKeyConfig":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^(?!\\s+$)[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*"
     },
     "TagKeys":{
       "type":"list",
       "member":{"shape":"TagKey"},
       "max":50,
       "min":0
+    },
+    "TagQueryConfiguration":{
+      "type":"structure",
+      "members":{
+        "tagKey":{"shape":"TagKeyConfig"}
+      }
     },
     "TagResourceRequest":{
       "type":"structure",

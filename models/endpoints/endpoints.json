@@ -4506,6 +4506,7 @@
             "deprecated" : true,
             "hostname" : "ds-fips.us-west-2.amazonaws.com"
           },
+          "me-central-1" : { },
           "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : {
@@ -14628,18 +14629,28 @@
           "eu-central-1" : { },
           "eu-west-2" : { },
           "fips-us-east-1" : {
-            "deprecated" : true
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "voiceid-fips.us-east-1.amazonaws.com"
           },
           "fips-us-west-2" : {
-            "deprecated" : true
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "deprecated" : true,
+            "hostname" : "voiceid-fips.us-west-2.amazonaws.com"
           },
           "us-east-1" : {
             "variants" : [ {
+              "hostname" : "voiceid-fips.us-east-1.amazonaws.com",
               "tags" : [ "fips" ]
             } ]
           },
           "us-west-2" : {
             "variants" : [ {
+              "hostname" : "voiceid-fips.us-west-2.amazonaws.com",
               "tags" : [ "fips" ]
             } ]
           }
@@ -18674,6 +18685,11 @@
               "tags" : [ "fips" ]
             } ]
           }
+        }
+      },
+      "ingest.timestream" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
         }
       },
       "inspector" : {

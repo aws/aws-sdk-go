@@ -24329,9 +24329,13 @@ func (s *AwsLambdaFunctionDeadLetterConfig) SetTargetArn(v string) *AwsLambdaFun
 	return s
 }
 
-// Details about a function's configuration.
+// Details about an Lambda function's configuration.
 type AwsLambdaFunctionDetails struct {
 	_ struct{} `type:"structure"`
+
+	// The instruction set architecture that the function uses. Valid values are
+	// x86_64 or arm64.
+	Architectures []*string `type:"list"`
 
 	// An AwsLambdaFunctionCode object.
 	Code *AwsLambdaFunctionCode `type:"structure"`
@@ -24372,6 +24376,10 @@ type AwsLambdaFunctionDetails struct {
 	// The memory that is allocated to the function.
 	MemorySize *int64 `type:"integer"`
 
+	// The type of deployment package that's used to deploy the function code to
+	// Lambda. Set to Image for a container image and Zip for a .zip file archive.
+	PackageType *string `type:"string"`
+
 	// The latest updated revision of the function or alias.
 	RevisionId *string `type:"string"`
 
@@ -24410,6 +24418,12 @@ func (s AwsLambdaFunctionDetails) String() string {
 // value will be replaced with "sensitive".
 func (s AwsLambdaFunctionDetails) GoString() string {
 	return s.String()
+}
+
+// SetArchitectures sets the Architectures field's value.
+func (s *AwsLambdaFunctionDetails) SetArchitectures(v []*string) *AwsLambdaFunctionDetails {
+	s.Architectures = v
+	return s
 }
 
 // SetCode sets the Code field's value.
@@ -24475,6 +24489,12 @@ func (s *AwsLambdaFunctionDetails) SetMasterArn(v string) *AwsLambdaFunctionDeta
 // SetMemorySize sets the MemorySize field's value.
 func (s *AwsLambdaFunctionDetails) SetMemorySize(v int64) *AwsLambdaFunctionDetails {
 	s.MemorySize = &v
+	return s
+}
+
+// SetPackageType sets the PackageType field's value.
+func (s *AwsLambdaFunctionDetails) SetPackageType(v string) *AwsLambdaFunctionDetails {
+	s.PackageType = &v
 	return s
 }
 
@@ -45355,6 +45375,12 @@ type SoftwarePackage struct {
 	// the software package.
 	Remediation *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the source layer.
+	SourceLayerArn *string `type:"string"`
+
+	// The source layer hash of the vulnerable package.
+	SourceLayerHash *string `type:"string"`
+
 	// The version of the software package.
 	Version *string `type:"string"`
 }
@@ -45422,6 +45448,18 @@ func (s *SoftwarePackage) SetRelease(v string) *SoftwarePackage {
 // SetRemediation sets the Remediation field's value.
 func (s *SoftwarePackage) SetRemediation(v string) *SoftwarePackage {
 	s.Remediation = &v
+	return s
+}
+
+// SetSourceLayerArn sets the SourceLayerArn field's value.
+func (s *SoftwarePackage) SetSourceLayerArn(v string) *SoftwarePackage {
+	s.SourceLayerArn = &v
+	return s
+}
+
+// SetSourceLayerHash sets the SourceLayerHash field's value.
+func (s *SoftwarePackage) SetSourceLayerHash(v string) *SoftwarePackage {
+	s.SourceLayerHash = &v
 	return s
 }
 

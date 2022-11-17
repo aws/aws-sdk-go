@@ -73,15 +73,19 @@ func (c *CloudWatchRUM) BatchCreateRumMetricDefinitionsRequest(input *BatchCreat
 // The maximum number of metric definitions that you can specify in one BatchCreateRumMetricDefinitions
 // operation is 200.
 //
-//	<p>The maximum number of metric definitions that one destination can contain
-//	is 2000.</p> <p>Extended metrics sent are charged as CloudWatch custom
-//	metrics. Each combination of additional dimension name and dimension value
-//	counts as a custom metric. For more information, see <a href="https://aws.amazon.com/cloudwatch/pricing/">Amazon
-//	CloudWatch Pricing</a>.</p> <p>You must have already created a destination
-//	for the metrics before you send them. For more information, see <a href="https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_PutRumMetricsDestination.html">PutRumMetricsDestination</a>.</p>
-//	<p>If some metric definitions specified in a <code>BatchCreateRumMetricDefinitions</code>
-//	operations are not valid, those metric definitions fail and return errors,
-//	but all valid metric definitions in the same operation still succeed.</p>
+// The maximum number of metric definitions that one destination can contain
+// is 2000.
+//
+// Extended metrics sent are charged as CloudWatch custom metrics. Each combination
+// of additional dimension name and dimension value counts as a custom metric.
+// For more information, see Amazon CloudWatch Pricing (https://aws.amazon.com/cloudwatch/pricing/).
+//
+// You must have already created a destination for the metrics before you send
+// them. For more information, see PutRumMetricsDestination (https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_PutRumMetricsDestination.html).
+//
+// If some metric definitions specified in a BatchCreateRumMetricDefinitions
+// operations are not valid, those metric definitions fail and return errors,
+// but all valid metric definitions in the same operation still succeed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1972,6 +1976,12 @@ type AppMonitor struct {
 	// The date and time that this app monitor was created.
 	Created *string `min:"19" type:"string"`
 
+	// Specifies whether this app monitor allows the web client to define and send
+	// custom events.
+	//
+	// For more information about custom events, see Send custom events (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-custom-events.html).
+	CustomEvents *CustomEvents `type:"structure"`
+
 	// A structure that contains information about whether this app monitor stores
 	// a copy of the telemetry data that RUM collects using CloudWatch Logs.
 	DataStorage *DataStorage `type:"structure"`
@@ -2023,6 +2033,12 @@ func (s *AppMonitor) SetAppMonitorConfiguration(v *AppMonitorConfiguration) *App
 // SetCreated sets the Created field's value.
 func (s *AppMonitor) SetCreated(v string) *AppMonitor {
 	s.Created = &v
+	return s
+}
+
+// SetCustomEvents sets the CustomEvents field's value.
+func (s *AppMonitor) SetCustomEvents(v *CustomEvents) *AppMonitor {
+	s.CustomEvents = v
 	return s
 }
 
@@ -2106,8 +2122,7 @@ type AppMonitorConfiguration struct {
 	// If this app monitor is to collect data from only certain pages in your application,
 	// this structure lists those pages.
 	//
-	//    <p>You can't include both <code>ExcludedPages</code> and <code>IncludedPages</code>
-	//    in the same operation.</p>
+	// You can't include both ExcludedPages and IncludedPages in the same operation.
 	IncludedPages []*string `type:"list"`
 
 	// Specifies the portion of user sessions to use for RUM data collection. Choosing
@@ -2967,6 +2982,12 @@ type CreateAppMonitorInput struct {
 	// the user sessions.
 	AppMonitorConfiguration *AppMonitorConfiguration `type:"structure"`
 
+	// Specifies whether this app monitor allows the web client to define and send
+	// custom events. If you omit this parameter, custom events are DISABLED.
+	//
+	// For more information about custom events, see Send custom events (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-custom-events.html).
+	CustomEvents *CustomEvents `type:"structure"`
+
 	// Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter
 	// specifies whether RUM sends a copy of this telemetry data to Amazon CloudWatch
 	// Logs in your account. This enables you to keep the telemetry data for more
@@ -2995,9 +3016,9 @@ type CreateAppMonitorInput struct {
 	// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
 	// strictly as strings of characters.
 	//
-	//    <p>You can associate as many as 50 tags with an app monitor.</p> <p>For
-	//    more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-	//    Amazon Web Services resources</a>.</p>
+	// You can associate as many as 50 tags with an app monitor.
+	//
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags map[string]*string `type:"map"`
 }
 
@@ -3049,6 +3070,12 @@ func (s *CreateAppMonitorInput) Validate() error {
 // SetAppMonitorConfiguration sets the AppMonitorConfiguration field's value.
 func (s *CreateAppMonitorInput) SetAppMonitorConfiguration(v *AppMonitorConfiguration) *CreateAppMonitorInput {
 	s.AppMonitorConfiguration = v
+	return s
+}
+
+// SetCustomEvents sets the CustomEvents field's value.
+func (s *CreateAppMonitorInput) SetCustomEvents(v *CustomEvents) *CreateAppMonitorInput {
+	s.CustomEvents = v
 	return s
 }
 
@@ -3104,6 +3131,39 @@ func (s CreateAppMonitorOutput) GoString() string {
 // SetId sets the Id field's value.
 func (s *CreateAppMonitorOutput) SetId(v string) *CreateAppMonitorOutput {
 	s.Id = &v
+	return s
+}
+
+// A structure that contains information about custom events for this app monitor.
+type CustomEvents struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether this app monitor allows the web client to define and send
+	// custom events. The default is for custom events to be DISABLED.
+	Status *string `type:"string" enum:"CustomEventsStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomEvents) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomEvents) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *CustomEvents) SetStatus(v string) *CustomEvents {
+	s.Status = &v
 	return s
 }
 
@@ -4104,7 +4164,7 @@ type MetricDefinitionRequest struct {
 	//
 	//    * "event_details.fileType": "FileType"
 	//
-	//    <p> All dimensions listed in this field must also be included in <code>EventPattern</code>.</p>
+	// All dimensions listed in this field must also be included in EventPattern.
 	DimensionKeys map[string]*string `type:"map"`
 
 	// The pattern that defines the metric, specified as a JSON object. RUM checks
@@ -5153,6 +5213,12 @@ type UpdateAppMonitorInput struct {
 	// Authorize your application to send data to Amazon Web Services (https://docs.aws.amazon.com/monitoring/CloudWatch-RUM-get-started-authorization.html).
 	AppMonitorConfiguration *AppMonitorConfiguration `type:"structure"`
 
+	// Specifies whether this app monitor allows the web client to define and send
+	// custom events. The default is for custom events to be DISABLED.
+	//
+	// For more information about custom events, see Send custom events (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-custom-events.html).
+	CustomEvents *CustomEvents `type:"structure"`
+
 	// Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter
 	// specifies whether RUM sends a copy of this telemetry data to Amazon CloudWatch
 	// Logs in your account. This enables you to keep the telemetry data for more
@@ -5214,6 +5280,12 @@ func (s *UpdateAppMonitorInput) Validate() error {
 // SetAppMonitorConfiguration sets the AppMonitorConfiguration field's value.
 func (s *UpdateAppMonitorInput) SetAppMonitorConfiguration(v *AppMonitorConfiguration) *UpdateAppMonitorInput {
 	s.AppMonitorConfiguration = v
+	return s
+}
+
+// SetCustomEvents sets the CustomEvents field's value.
+func (s *UpdateAppMonitorInput) SetCustomEvents(v *CustomEvents) *UpdateAppMonitorInput {
+	s.CustomEvents = v
 	return s
 }
 
@@ -5501,6 +5573,22 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// CustomEventsStatusEnabled is a CustomEventsStatus enum value
+	CustomEventsStatusEnabled = "ENABLED"
+
+	// CustomEventsStatusDisabled is a CustomEventsStatus enum value
+	CustomEventsStatusDisabled = "DISABLED"
+)
+
+// CustomEventsStatus_Values returns all elements of the CustomEventsStatus enum
+func CustomEventsStatus_Values() []string {
+	return []string{
+		CustomEventsStatusEnabled,
+		CustomEventsStatusDisabled,
+	}
 }
 
 const (

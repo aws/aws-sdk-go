@@ -88,6 +88,10 @@ type WorkSpacesAPI interface {
 	CreateIpGroupWithContext(aws.Context, *workspaces.CreateIpGroupInput, ...request.Option) (*workspaces.CreateIpGroupOutput, error)
 	CreateIpGroupRequest(*workspaces.CreateIpGroupInput) (*request.Request, *workspaces.CreateIpGroupOutput)
 
+	CreateStandbyWorkspaces(*workspaces.CreateStandbyWorkspacesInput) (*workspaces.CreateStandbyWorkspacesOutput, error)
+	CreateStandbyWorkspacesWithContext(aws.Context, *workspaces.CreateStandbyWorkspacesInput, ...request.Option) (*workspaces.CreateStandbyWorkspacesOutput, error)
+	CreateStandbyWorkspacesRequest(*workspaces.CreateStandbyWorkspacesInput) (*request.Request, *workspaces.CreateStandbyWorkspacesOutput)
+
 	CreateTags(*workspaces.CreateTagsInput) (*workspaces.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *workspaces.CreateTagsInput, ...request.Option) (*workspaces.CreateTagsOutput, error)
 	CreateTagsRequest(*workspaces.CreateTagsInput) (*request.Request, *workspaces.CreateTagsOutput)

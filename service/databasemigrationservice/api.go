@@ -8052,8 +8052,9 @@ type CreateEndpointInput struct {
 
 	// The type of engine for the endpoint. Valid values, depending on the EndpointType
 	// value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "opensearch", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb",
-	// "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", and "neptune".
+	// "opensearch", "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb",
+	// "mongodb", "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", "neptune",
+	// and "babelfish".
 	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
@@ -8845,6 +8846,11 @@ type CreateReplicationInstanceInput struct {
 	// to true.
 	MultiAZ *bool `type:"boolean"`
 
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
+
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
@@ -8985,6 +8991,12 @@ func (s *CreateReplicationInstanceInput) SetKmsKeyId(v string) *CreateReplicatio
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *CreateReplicationInstanceInput) SetMultiAZ(v bool) *CreateReplicationInstanceInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateReplicationInstanceInput) SetNetworkType(v string) *CreateReplicationInstanceInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -14039,13 +14051,14 @@ type Endpoint struct {
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
 	// The expanded name for the engine name. For example, if the EngineName parameter
-	// is "aurora," this value would be "Amazon Aurora MySQL."
+	// is "aurora", this value would be "Amazon Aurora MySQL".
 	EngineDisplayName *string `type:"string"`
 
 	// The database engine name. Valid values, depending on the EndpointType, include
 	// "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "opensearch", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb",
-	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune".
+	// "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", "neptune",
+	// and "babelfish".
 	EngineName *string `type:"string"`
 
 	// Value returned by a call to CreateEndpoint that can be used for cross-account
@@ -16862,10 +16875,11 @@ type ModifyEndpointInput struct {
 	// The type of endpoint. Valid values are source and target.
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
-	// The type of engine for the endpoint. Valid values, depending on the EndpointType,
-	// include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "opensearch", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb",
-	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune".
+	// The database engine name. Valid values, depending on the EndpointType, include
+	// "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
+	// "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", "neptune",
+	// and "babelfish".
 	EngineName *string `type:"string"`
 
 	// If this attribute is Y, the current call to ModifyEndpoint replaces all existing
@@ -17448,6 +17462,11 @@ type ModifyReplicationInstanceInput struct {
 	// to true.
 	MultiAZ *bool `type:"boolean"`
 
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
+
 	// The weekly time range (in UTC) during which system maintenance can occur,
 	// which might result in an outage. Changing this parameter does not result
 	// in an outage, except in the following situation, and the change is asynchronously
@@ -17552,6 +17571,12 @@ func (s *ModifyReplicationInstanceInput) SetEngineVersion(v string) *ModifyRepli
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *ModifyReplicationInstanceInput) SetMultiAZ(v bool) *ModifyReplicationInstanceInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *ModifyReplicationInstanceInput) SetNetworkType(v string) *ModifyReplicationInstanceInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -18552,8 +18577,8 @@ type OracleSettings struct {
 	ArchivedLogDestId *int64 `type:"integer"`
 
 	// When this field is set to Y, DMS only accesses the archived redo logs. If
-	// the archived redo logs are stored on Oracle ASM only, the DMS user account
-	// needs to be granted ASM privileges.
+	// the archived redo logs are stored on Automatic Storage Management (ASM) only,
+	// the DMS user account needs to be granted ASM privileges.
 	ArchivedLogsOnly *bool `type:"boolean"`
 
 	// For an Oracle source endpoint, your Oracle Automatic Storage Management (ASM)
@@ -18701,7 +18726,7 @@ type OracleSettings struct {
 	// in the Database Migration Service User Guide.
 	SecretsManagerAccessRoleArn *string `type:"string"`
 
-	// Required only if your Oracle endpoint uses Advanced Storage Manager (ASM).
+	// Required only if your Oracle endpoint uses Automatic Storage Management (ASM).
 	// The full ARN of the IAM role that specifies DMS as the trusted entity and
 	// grants the required permissions to access the SecretsManagerOracleAsmSecret.
 	// This SecretsManagerOracleAsmSecret has the secret value that allows access
@@ -18717,7 +18742,7 @@ type OracleSettings struct {
 	// in the Database Migration Service User Guide.
 	SecretsManagerOracleAsmAccessRoleArn *string `type:"string"`
 
-	// Required only if your Oracle endpoint uses Advanced Storage Manager (ASM).
+	// Required only if your Oracle endpoint uses Automatic Storage Management (ASM).
 	// The full ARN, partial ARN, or friendly name of the SecretsManagerOracleAsmSecret
 	// that contains the Oracle ASM connection details for the Oracle endpoint.
 	SecretsManagerOracleAsmSecretId *string `type:"string"`
@@ -20557,6 +20582,11 @@ type ReplicationInstance struct {
 	// to true.
 	MultiAZ *bool `type:"boolean"`
 
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
+
 	// The pending modification values.
 	PendingModifiedValues *ReplicationPendingModifiedValues `type:"structure"`
 
@@ -20594,6 +20624,9 @@ type ReplicationInstance struct {
 	//
 	// Example: myrepinstance
 	ReplicationInstanceIdentifier *string `type:"string"`
+
+	// One or more IPv6 addresses for the replication instance.
+	ReplicationInstanceIpv6Addresses []*string `type:"list"`
 
 	// The private IP address of the replication instance.
 	//
@@ -20722,6 +20755,12 @@ func (s *ReplicationInstance) SetMultiAZ(v bool) *ReplicationInstance {
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *ReplicationInstance) SetNetworkType(v string) *ReplicationInstance {
+	s.NetworkType = &v
+	return s
+}
+
 // SetPendingModifiedValues sets the PendingModifiedValues field's value.
 func (s *ReplicationInstance) SetPendingModifiedValues(v *ReplicationPendingModifiedValues) *ReplicationInstance {
 	s.PendingModifiedValues = v
@@ -20755,6 +20794,12 @@ func (s *ReplicationInstance) SetReplicationInstanceClass(v string) *Replication
 // SetReplicationInstanceIdentifier sets the ReplicationInstanceIdentifier field's value.
 func (s *ReplicationInstance) SetReplicationInstanceIdentifier(v string) *ReplicationInstance {
 	s.ReplicationInstanceIdentifier = &v
+	return s
+}
+
+// SetReplicationInstanceIpv6Addresses sets the ReplicationInstanceIpv6Addresses field's value.
+func (s *ReplicationInstance) SetReplicationInstanceIpv6Addresses(v []*string) *ReplicationInstance {
+	s.ReplicationInstanceIpv6Addresses = v
 	return s
 }
 
@@ -20874,6 +20919,11 @@ type ReplicationPendingModifiedValues struct {
 	// to true.
 	MultiAZ *bool `type:"boolean"`
 
+	// The type of IP address protocol used by a replication instance, such as IPv4
+	// only or Dual-stack that supports both IPv4 and IPv6 addressing. IPv6 only
+	// is not yet supported.
+	NetworkType *string `type:"string"`
+
 	// The compute and memory capacity of the replication instance as defined for
 	// the specified replication instance class.
 	//
@@ -20919,6 +20969,12 @@ func (s *ReplicationPendingModifiedValues) SetMultiAZ(v bool) *ReplicationPendin
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *ReplicationPendingModifiedValues) SetNetworkType(v string) *ReplicationPendingModifiedValues {
+	s.NetworkType = &v
+	return s
+}
+
 // SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
 func (s *ReplicationPendingModifiedValues) SetReplicationInstanceClass(v string) *ReplicationPendingModifiedValues {
 	s.ReplicationInstanceClass = &v
@@ -20941,6 +20997,11 @@ type ReplicationSubnetGroup struct {
 
 	// The subnets that are in the subnet group.
 	Subnets []*Subnet `type:"list"`
+
+	// The IP addressing protocol supported by the subnet group. This is used by
+	// a replication instance with values such as IPv4 only or Dual-stack that supports
+	// both IPv4 and IPv6 addressing. IPv6 only is not yet supported.
+	SupportedNetworkTypes []*string `type:"list"`
 
 	// The ID of the VPC.
 	VpcId *string `type:"string"`
@@ -20985,6 +21046,12 @@ func (s *ReplicationSubnetGroup) SetSubnetGroupStatus(v string) *ReplicationSubn
 // SetSubnets sets the Subnets field's value.
 func (s *ReplicationSubnetGroup) SetSubnets(v []*Subnet) *ReplicationSubnetGroup {
 	s.Subnets = v
+	return s
+}
+
+// SetSupportedNetworkTypes sets the SupportedNetworkTypes field's value.
+func (s *ReplicationSubnetGroup) SetSupportedNetworkTypes(v []*string) *ReplicationSubnetGroup {
+	s.SupportedNetworkTypes = v
 	return s
 }
 
@@ -22414,7 +22481,7 @@ type S3Settings struct {
 	// The default value is 60 seconds.
 	CdcMaxBatchInterval *int64 `type:"integer"`
 
-	// Minimum file size, defined in megabytes, to reach for a file output to Amazon
+	// Minimum file size, defined in kilobytes, to reach for a file output to Amazon
 	// S3.
 	//
 	// When CdcMinFileSize and CdcMaxBatchInterval are both specified, the file
@@ -24049,13 +24116,14 @@ type SupportedEndpointType struct {
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
 	// The expanded name for the engine name. For example, if the EngineName parameter
-	// is "aurora," this value would be "Amazon Aurora MySQL."
+	// is "aurora", this value would be "Amazon Aurora MySQL".
 	EngineDisplayName *string `type:"string"`
 
 	// The database engine name. Valid values, depending on the EndpointType, include
 	// "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune".
+	// "redshift", "s3", "db2", "db2-zos", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", "neptune",
+	// and "babelfish".
 	EngineName *string `type:"string"`
 
 	// The earliest DMS engine version that supports this endpoint engine. Note
@@ -24224,6 +24292,19 @@ func (s *SybaseSettings) SetUsername(v string) *SybaseSettings {
 type TableStatistics struct {
 	_ struct{} `type:"structure"`
 
+	// The number of data definition language (DDL) statements used to build and
+	// modify the structure of your tables applied on the target.
+	AppliedDdls *int64 `type:"long"`
+
+	// The number of delete actions applied on a target table.
+	AppliedDeletes *int64 `type:"long"`
+
+	// The number of insert actions applied on a target table.
+	AppliedInserts *int64 `type:"long"`
+
+	// The number of update actions applied on a target table.
+	AppliedUpdates *int64 `type:"long"`
+
 	// The data definition language (DDL) used to build and modify the structure
 	// of your tables.
 	Ddls *int64 `type:"long"`
@@ -24336,6 +24417,30 @@ func (s TableStatistics) String() string {
 // value will be replaced with "sensitive".
 func (s TableStatistics) GoString() string {
 	return s.String()
+}
+
+// SetAppliedDdls sets the AppliedDdls field's value.
+func (s *TableStatistics) SetAppliedDdls(v int64) *TableStatistics {
+	s.AppliedDdls = &v
+	return s
+}
+
+// SetAppliedDeletes sets the AppliedDeletes field's value.
+func (s *TableStatistics) SetAppliedDeletes(v int64) *TableStatistics {
+	s.AppliedDeletes = &v
+	return s
+}
+
+// SetAppliedInserts sets the AppliedInserts field's value.
+func (s *TableStatistics) SetAppliedInserts(v int64) *TableStatistics {
+	s.AppliedInserts = &v
+	return s
+}
+
+// SetAppliedUpdates sets the AppliedUpdates field's value.
+func (s *TableStatistics) SetAppliedUpdates(v int64) *TableStatistics {
+	s.AppliedUpdates = &v
+	return s
 }
 
 // SetDdls sets the Ddls field's value.

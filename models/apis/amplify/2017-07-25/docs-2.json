@@ -1069,9 +1069,9 @@
     "Platform": {
       "base": null,
       "refs": {
-        "App$platform": "<p> The platform for the Amplify app. </p>",
-        "CreateAppRequest$platform": "<p> The platform or framework for an Amplify app. </p>",
-        "UpdateAppRequest$platform": "<p> The platform for an Amplify app. </p>"
+        "App$platform": "<p> The platform for the Amplify app. For a static app, set the platform type to <code>WEB</code>. For a dynamic server-side rendered (SSR) app, set the platform type to <code>WEB_COMPUTE</code>. For an app requiring Amplify Hosting's original SSR support only, set the platform type to <code>WEB_DYNAMIC</code>.</p>",
+        "CreateAppRequest$platform": "<p> The platform for the Amplify app. For a static app, set the platform type to <code>WEB</code>. For a dynamic server-side rendered (SSR) app, set the platform type to <code>WEB_COMPUTE</code>. For an app requiring Amplify Hosting's original SSR support only, set the platform type to <code>WEB_DYNAMIC</code>.</p>",
+        "UpdateAppRequest$platform": "<p> The platform for the Amplify app. For a static app, set the platform type to <code>WEB</code>. For a dynamic server-side rendered (SSR) app, set the platform type to <code>WEB_COMPUTE</code>. For an app requiring Amplify Hosting's original SSR support only, set the platform type to <code>WEB_DYNAMIC</code>.</p>"
       }
     },
     "ProductionBranch": {

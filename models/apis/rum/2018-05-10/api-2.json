@@ -332,6 +332,7 @@
       "members":{
         "AppMonitorConfiguration":{"shape":"AppMonitorConfiguration"},
         "Created":{"shape":"ISOTimestampString"},
+        "CustomEvents":{"shape":"CustomEvents"},
         "DataStorage":{"shape":"DataStorage"},
         "Domain":{"shape":"AppMonitorDomain"},
         "Id":{"shape":"AppMonitorId"},
@@ -567,6 +568,7 @@
       ],
       "members":{
         "AppMonitorConfiguration":{"shape":"AppMonitorConfiguration"},
+        "CustomEvents":{"shape":"CustomEvents"},
         "CwLogEnabled":{"shape":"Boolean"},
         "Domain":{"shape":"AppMonitorDomain"},
         "Name":{"shape":"AppMonitorName"},
@@ -578,6 +580,19 @@
       "members":{
         "Id":{"shape":"AppMonitorId"}
       }
+    },
+    "CustomEvents":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"CustomEventsStatus"}
+      }
+    },
+    "CustomEventsStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "CwLog":{
       "type":"structure",
@@ -1162,6 +1177,7 @@
       "required":["Name"],
       "members":{
         "AppMonitorConfiguration":{"shape":"AppMonitorConfiguration"},
+        "CustomEvents":{"shape":"CustomEvents"},
         "CwLogEnabled":{"shape":"Boolean"},
         "Domain":{"shape":"AppMonitorDomain"},
         "Name":{
