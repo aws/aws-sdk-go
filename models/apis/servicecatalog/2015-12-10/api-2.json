@@ -1388,6 +1388,27 @@
       "type":"list",
       "member":{"shape":"CloudWatchDashboard"}
     },
+    "CodeStarConnectionArn":{
+      "type":"string",
+      "max":1224,
+      "min":1,
+      "pattern":"arn:[a-z0-9][-.a-z0-9]{0,62}:codestar-connections:([a-z0-9][-.a-z0-9]{0,62})?:([a-z0-9][-.a-z0-9]{0,62})?:[^/].{0,1023}$"
+    },
+    "CodeStarParameters":{
+      "type":"structure",
+      "required":[
+        "ConnectionArn",
+        "Repository",
+        "Branch",
+        "ArtifactPath"
+      ],
+      "members":{
+        "ConnectionArn":{"shape":"CodeStarConnectionArn"},
+        "Repository":{"shape":"Repository"},
+        "Branch":{"shape":"RepositoryBranch"},
+        "ArtifactPath":{"shape":"RepositoryArtifactPath"}
+      }
+    },
     "ConstraintDescription":{
       "type":"string",
       "max":2000
@@ -1529,7 +1550,8 @@
         "PortfolioId":{"shape":"Id"},
         "AccountId":{"shape":"AccountId"},
         "OrganizationNode":{"shape":"OrganizationNode"},
-        "ShareTagOptions":{"shape":"Boolean"}
+        "ShareTagOptions":{"shape":"Boolean"},
+        "SharePrincipals":{"shape":"Boolean"}
       }
     },
     "CreatePortfolioShareOutput":{
@@ -1544,7 +1566,6 @@
         "Name",
         "Owner",
         "ProductType",
-        "ProvisioningArtifactParameters",
         "IdempotencyToken"
       ],
       "members":{
@@ -1562,7 +1583,8 @@
         "IdempotencyToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
-        }
+        },
+        "SourceConnection":{"shape":"SourceConnection"}
       }
     },
     "CreateProductOutput":{
@@ -2118,7 +2140,8 @@
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "PortfolioId":{"shape":"Id"},
-        "PrincipalARN":{"shape":"PrincipalARN"}
+        "PrincipalARN":{"shape":"PrincipalARN"},
+        "PrincipalType":{"shape":"PrincipalType"}
       }
     },
     "DisassociatePrincipalFromPortfolioOutput":{
@@ -2389,6 +2412,26 @@
       "exception":true
     },
     "LastRequestId":{"type":"string"},
+    "LastSuccessfulSyncTime":{"type":"timestamp"},
+    "LastSync":{
+      "type":"structure",
+      "members":{
+        "LastSyncTime":{"shape":"LastSyncTime"},
+        "LastSyncStatus":{"shape":"LastSyncStatus"},
+        "LastSyncStatusMessage":{"shape":"LastSyncStatusMessage"},
+        "LastSuccessfulSyncTime":{"shape":"LastSuccessfulSyncTime"},
+        "LastSuccessfulSyncProvisioningArtifactId":{"shape":"Id"}
+      }
+    },
+    "LastSyncStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "LastSyncStatusMessage":{"type":"string"},
+    "LastSyncTime":{"type":"timestamp"},
     "LaunchPath":{
       "type":"structure",
       "members":{
@@ -2879,7 +2922,8 @@
         "PrincipalId":{"shape":"Id"},
         "Type":{"shape":"DescribePortfolioShareType"},
         "Accepted":{"shape":"Boolean"},
-        "ShareTagOptions":{"shape":"Boolean"}
+        "ShareTagOptions":{"shape":"Boolean"},
+        "SharePrincipals":{"shape":"Boolean"}
       }
     },
     "PortfolioShareDetails":{
@@ -2908,7 +2952,10 @@
     },
     "PrincipalType":{
       "type":"string",
-      "enum":["IAM"]
+      "enum":[
+        "IAM",
+        "IAM_PATTERN"
+      ]
     },
     "Principals":{
       "type":"list",
@@ -2955,7 +3002,8 @@
         "ProductViewSummary":{"shape":"ProductViewSummary"},
         "Status":{"shape":"Status"},
         "ProductARN":{"shape":"ResourceARN"},
-        "CreatedTime":{"shape":"CreatedTime"}
+        "CreatedTime":{"shape":"CreatedTime"},
+        "SourceConnection":{"shape":"SourceConnectionDetail"}
       }
     },
     "ProductViewDetails":{
@@ -3246,7 +3294,8 @@
         "Type":{"shape":"ProvisioningArtifactType"},
         "CreatedTime":{"shape":"CreationTime"},
         "Active":{"shape":"ProvisioningArtifactActive"},
-        "Guidance":{"shape":"ProvisioningArtifactGuidance"}
+        "Guidance":{"shape":"ProvisioningArtifactGuidance"},
+        "SourceRevision":{"shape":"SourceRevision"}
       }
     },
     "ProvisioningArtifactDetails":{
@@ -3315,7 +3364,6 @@
     },
     "ProvisioningArtifactProperties":{
       "type":"structure",
-      "required":["Info"],
       "members":{
         "Name":{"shape":"ProvisioningArtifactName"},
         "Description":{"shape":"ProvisioningArtifactDescription"},
@@ -3491,6 +3539,21 @@
         "FALSE",
         "CONDITIONAL"
       ]
+    },
+    "Repository":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "RepositoryArtifactPath":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
+    "RepositoryBranch":{
+      "type":"string",
+      "max":250,
+      "min":1
     },
     "RequiresRecreation":{
       "type":"string",
@@ -3804,6 +3867,28 @@
         "DESCENDING"
       ]
     },
+    "SourceConnection":{
+      "type":"structure",
+      "required":["ConnectionParameters"],
+      "members":{
+        "Type":{"shape":"SourceType"},
+        "ConnectionParameters":{"shape":"SourceConnectionParameters"}
+      }
+    },
+    "SourceConnectionDetail":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"SourceType"},
+        "ConnectionParameters":{"shape":"SourceConnectionParameters"},
+        "LastSync":{"shape":"LastSync"}
+      }
+    },
+    "SourceConnectionParameters":{
+      "type":"structure",
+      "members":{
+        "CodeStar":{"shape":"CodeStarParameters"}
+      }
+    },
     "SourceProvisioningArtifactProperties":{
       "type":"list",
       "member":{"shape":"SourceProvisioningArtifactPropertiesMap"}
@@ -3812,6 +3897,15 @@
       "type":"map",
       "key":{"shape":"ProvisioningArtifactPropertyName"},
       "value":{"shape":"ProvisioningArtifactPropertyValue"}
+    },
+    "SourceRevision":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
+    "SourceType":{
+      "type":"string",
+      "enum":["CODESTAR"]
     },
     "StackInstance":{
       "type":"structure",
@@ -4050,7 +4144,8 @@
         "PortfolioId":{"shape":"Id"},
         "AccountId":{"shape":"AccountId"},
         "OrganizationNode":{"shape":"OrganizationNode"},
-        "ShareTagOptions":{"shape":"NullableBoolean"}
+        "ShareTagOptions":{"shape":"NullableBoolean"},
+        "SharePrincipals":{"shape":"NullableBoolean"}
       }
     },
     "UpdatePortfolioShareOutput":{
@@ -4074,7 +4169,8 @@
         "SupportEmail":{"shape":"SupportEmail"},
         "SupportUrl":{"shape":"SupportUrl"},
         "AddTags":{"shape":"AddTags"},
-        "RemoveTags":{"shape":"TagKeys"}
+        "RemoveTags":{"shape":"TagKeys"},
+        "SourceConnection":{"shape":"SourceConnection"}
       }
     },
     "UpdateProductOutput":{

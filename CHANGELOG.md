@@ -1,3 +1,33 @@
+Release v1.44.141 (2022-11-18)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/auditmanager`: Updates service API and documentation
+* `service/chime-sdk-voice`: Adds new service
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront API support for staging distributions and associated traffic management policies.
+* `service/connect`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Updated minor fixes for DynamoDB documentation.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for copying an Amazon Machine Image's tags when copying an AMI.
+* `service/glue`: Updates service API and documentation
+  * AWSGlue Crawler - Adding support for Table and Column level Comments with database level datatypes for JDBC based crawler.
+* `service/iot-roborunner`: Adds new service
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * This release adds the following: 1) Asset management for centralized assets governance 2) QuickSight Q now supports public embedding 3) New Termination protection flag to mitigate accidental deletes 4) Athena data sources now accept a custom IAM role 5) QuickSight supports connectivity to Databricks
+* `service/sagemaker`: Updates service API and documentation
+  * Added DisableProfiler flag as a new field in ProfilerConfig
+* `service/servicecatalog`: Updates service API and documentation
+  * This release 1. adds support for Principal Name Sharing with Service Catalog portfolio sharing. 2. Introduces repo sourced products which are created and managed with existing SC APIs. These products are synced to external repos and auto create new product versions based on changes in the repo.
+* `service/ssm-sap`: Updates service API, documentation, paginators, and examples
+* `service/states`: Updates service API and documentation
+  * This release adds support for using Step Functions service integrations to invoke any cross-account AWS resource, even if that service doesn't support resource-based policies or cross-account calls. See https://docs.aws.amazon.com/step-functions/latest/dg/concepts-access-cross-acct-resources.html
+* `service/streams.dynamodb`: Updates service documentation
+* `service/transfer`: Updates service API and documentation
+  * Adds a NONE encryption algorithm type to AS2 connectors, providing support for skipping encryption of the AS2 message body when a HTTPS URL is also specified.
+
 Release v1.44.140 (2022-11-17)
 ===
 

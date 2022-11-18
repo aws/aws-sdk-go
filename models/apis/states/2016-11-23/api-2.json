@@ -986,7 +986,8 @@
         "timeoutInSeconds":{
           "shape":"TimeoutInSeconds",
           "box":true
-        }
+        },
+        "taskCredentials":{"shape":"TaskCredentials"}
       }
     },
     "LambdaFunctionStartFailedEventDetails":{
@@ -1102,6 +1103,11 @@
         "includeExecutionData":{"shape":"IncludeExecutionData"},
         "destinations":{"shape":"LogDestinationList"}
       }
+    },
+    "LongArn":{
+      "type":"string",
+      "max":1600,
+      "min":1
     },
     "MapIterationEventDetails":{
       "type":"structure",
@@ -1418,6 +1424,12 @@
       "max":256,
       "min":0
     },
+    "TaskCredentials":{
+      "type":"structure",
+      "members":{
+        "roleArn":{"shape":"LongArn"}
+      }
+    },
     "TaskDoesNotExist":{
       "type":"structure",
       "members":{
@@ -1458,7 +1470,8 @@
         "heartbeatInSeconds":{
           "shape":"TimeoutInSeconds",
           "box":true
-        }
+        },
+        "taskCredentials":{"shape":"TaskCredentials"}
       }
     },
     "TaskStartFailedEventDetails":{
