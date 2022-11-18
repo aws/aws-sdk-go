@@ -118,6 +118,316 @@ func (c *CloudFront) AssociateAliasWithContext(ctx aws.Context, input *Associate
 	return out, req.Send()
 }
 
+const opCopyDistribution = "CopyDistribution2020_05_31"
+
+// CopyDistributionRequest generates a "aws/request.Request" representing the
+// client's request for the CopyDistribution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CopyDistribution for more information on using the CopyDistribution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CopyDistributionRequest method.
+//	req, resp := client.CopyDistributionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CopyDistribution
+func (c *CloudFront) CopyDistributionRequest(input *CopyDistributionInput) (req *request.Request, output *CopyDistributionOutput) {
+	op := &request.Operation{
+		Name:       opCopyDistribution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/distribution/{PrimaryDistributionId}/copy",
+	}
+
+	if input == nil {
+		input = &CopyDistributionInput{}
+	}
+
+	output = &CopyDistributionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CopyDistribution API operation for Amazon CloudFront.
+//
+// Creates a staging distribution using the configuration of the provided primary
+// distribution. A staging distribution is a copy of an existing distribution
+// (called the primary distribution) that you can use in a continuous deployment
+// workflow.
+//
+// After you create a staging distribution, you can use UpdateDistribution to
+// modify the staging distribution’s configuration. Then you can use CreateContinuousDeploymentPolicy
+// to incrementally move traffic to the staging distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CopyDistribution for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
+//     The CNAME specified is already defined for CloudFront.
+//
+//   - ErrCodeDistributionAlreadyExists "DistributionAlreadyExists"
+//     The caller reference you attempted to create the distribution with is associated
+//     with another distribution.
+//
+//   - ErrCodeInvalidOrigin "InvalidOrigin"
+//     The Amazon S3 origin server specified does not refer to a valid Amazon S3
+//     bucket.
+//
+//   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
+//     The origin access identity is not valid or doesn't exist.
+//
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
+//
+//   - ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//     The If-Match version is missing or not valid.
+//
+//   - ErrCodeNoSuchDistribution "NoSuchDistribution"
+//     The specified distribution does not exist.
+//
+//   - ErrCodePreconditionFailed "PreconditionFailed"
+//     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+//   - ErrCodeTooManyTrustedSigners "TooManyTrustedSigners"
+//     Your request contains more trusted signers than are allowed per distribution.
+//
+//   - ErrCodeTrustedSignerDoesNotExist "TrustedSignerDoesNotExist"
+//     One or more of your trusted signers don't exist.
+//
+//   - ErrCodeInvalidViewerCertificate "InvalidViewerCertificate"
+//     A viewer certificate specified is not valid.
+//
+//   - ErrCodeInvalidMinimumProtocolVersion "InvalidMinimumProtocolVersion"
+//     The minimum protocol version specified is not valid.
+//
+//   - ErrCodeMissingBody "MissingBody"
+//     This operation requires a body. Ensure that the body is present and the Content-Type
+//     header is set.
+//
+//   - ErrCodeTooManyDistributionCNAMEs "TooManyDistributionCNAMEs"
+//     Your request contains more CNAMEs than are allowed per distribution.
+//
+//   - ErrCodeTooManyDistributions "TooManyDistributions"
+//     Processing your request would cause you to exceed the maximum number of distributions
+//     allowed.
+//
+//   - ErrCodeInvalidDefaultRootObject "InvalidDefaultRootObject"
+//     The default root object file name is too big or contains an invalid character.
+//
+//   - ErrCodeInvalidRelativePath "InvalidRelativePath"
+//     The relative path is too big, is not URL-encoded, or does not begin with
+//     a slash (/).
+//
+//   - ErrCodeInvalidErrorCode "InvalidErrorCode"
+//     An invalid error code was specified.
+//
+//   - ErrCodeInvalidResponseCode "InvalidResponseCode"
+//     A response code is not valid.
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+//   - ErrCodeInvalidRequiredProtocol "InvalidRequiredProtocol"
+//     This operation requires the HTTPS protocol. Ensure that you specify the HTTPS
+//     protocol in your request, or omit the RequiredProtocols element from your
+//     distribution configuration.
+//
+//   - ErrCodeNoSuchOrigin "NoSuchOrigin"
+//     No origin exists with the specified Origin Id.
+//
+//   - ErrCodeTooManyOrigins "TooManyOrigins"
+//     You cannot create more origins for the distribution.
+//
+//   - ErrCodeTooManyOriginGroupsPerDistribution "TooManyOriginGroupsPerDistribution"
+//     Processing your request would cause you to exceed the maximum number of origin
+//     groups allowed.
+//
+//   - ErrCodeTooManyCacheBehaviors "TooManyCacheBehaviors"
+//     You cannot create more cache behaviors for the distribution.
+//
+//   - ErrCodeTooManyCookieNamesInWhiteList "TooManyCookieNamesInWhiteList"
+//     Your request contains more cookie names in the whitelist than are allowed
+//     per cache behavior.
+//
+//   - ErrCodeInvalidForwardCookies "InvalidForwardCookies"
+//     Your request contains forward cookies option which doesn't match with the
+//     expectation for the whitelisted list of cookie names. Either list of cookie
+//     names has been specified when not allowed or list of cookie names is missing
+//     when expected.
+//
+//   - ErrCodeTooManyHeadersInForwardedValues "TooManyHeadersInForwardedValues"
+//     Your request contains too many headers in forwarded values.
+//
+//   - ErrCodeInvalidHeadersForS3Origin "InvalidHeadersForS3Origin"
+//     The headers specified are not valid for an Amazon S3 origin.
+//
+//   - ErrCodeInconsistentQuantities "InconsistentQuantities"
+//     The value of Quantity and the size of Items don't match.
+//
+//   - ErrCodeTooManyCertificates "TooManyCertificates"
+//     You cannot create anymore custom SSL/TLS certificates.
+//
+//   - ErrCodeInvalidLocationCode "InvalidLocationCode"
+//     The location code specified is not valid.
+//
+//   - ErrCodeInvalidGeoRestrictionParameter "InvalidGeoRestrictionParameter"
+//     The specified geo restriction parameter is not valid.
+//
+//   - ErrCodeInvalidProtocolSettings "InvalidProtocolSettings"
+//     You cannot specify SSLv3 as the minimum protocol version if you only want
+//     to support only clients that support Server Name Indication (SNI).
+//
+//   - ErrCodeInvalidTTLOrder "InvalidTTLOrder"
+//     The TTL order specified is not valid.
+//
+//   - ErrCodeInvalidWebACLId "InvalidWebACLId"
+//     A web ACL ID specified is not valid. To specify a web ACL created using the
+//     latest version of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+//     To specify a web ACL created using WAF Classic, use the ACL ID, for example
+//     473e64fd-f30b-4765-81a0-62ad96dd167a.
+//
+//   - ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
+//     Your request contains too many origin custom headers.
+//
+//   - ErrCodeTooManyQueryStringParameters "TooManyQueryStringParameters"
+//     Your request contains too many query string parameters.
+//
+//   - ErrCodeInvalidQueryStringParameters "InvalidQueryStringParameters"
+//     The query string parameters specified are not valid.
+//
+//   - ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
+//     Processing your request would cause the maximum number of distributions with
+//     Lambda@Edge function associations per owner to be exceeded.
+//
+//   - ErrCodeTooManyDistributionsWithSingleFunctionARN "TooManyDistributionsWithSingleFunctionARN"
+//     The maximum number of distributions have been associated with the specified
+//     Lambda@Edge function.
+//
+//   - ErrCodeTooManyLambdaFunctionAssociations "TooManyLambdaFunctionAssociations"
+//     Your request contains more Lambda@Edge function associations than are allowed
+//     per distribution.
+//
+//   - ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
+//     The specified Lambda@Edge function association is invalid.
+//
+//   - ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
+//     You have reached the maximum number of distributions that are associated
+//     with a CloudFront function. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyFunctionAssociations "TooManyFunctionAssociations"
+//     You have reached the maximum number of CloudFront function associations for
+//     this distribution. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeInvalidFunctionAssociation "InvalidFunctionAssociation"
+//     A CloudFront function association is invalid.
+//
+//   - ErrCodeInvalidOriginReadTimeout "InvalidOriginReadTimeout"
+//     The read timeout specified for the origin is not valid.
+//
+//   - ErrCodeInvalidOriginKeepaliveTimeout "InvalidOriginKeepaliveTimeout"
+//     The keep alive timeout specified for the origin is not valid.
+//
+//   - ErrCodeNoSuchFieldLevelEncryptionConfig "NoSuchFieldLevelEncryptionConfig"
+//     The specified configuration for field-level encryption doesn't exist.
+//
+//   - ErrCodeIllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"
+//     The specified configuration for field-level encryption can't be associated
+//     with the specified cache behavior.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToFieldLevelEncryptionConfig "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"
+//     The maximum number of distributions have been associated with the specified
+//     configuration for field-level encryption.
+//
+//   - ErrCodeNoSuchCachePolicy "NoSuchCachePolicy"
+//     The cache policy does not exist.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToCachePolicy "TooManyDistributionsAssociatedToCachePolicy"
+//     The maximum number of distributions have been associated with the specified
+//     cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//     The response headers policy does not exist.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToResponseHeadersPolicy "TooManyDistributionsAssociatedToResponseHeadersPolicy"
+//     The maximum number of distributions have been associated with the specified
+//     response headers policy.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeNoSuchOriginRequestPolicy "NoSuchOriginRequestPolicy"
+//     The origin request policy does not exist.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToOriginRequestPolicy "TooManyDistributionsAssociatedToOriginRequestPolicy"
+//     The maximum number of distributions have been associated with the specified
+//     origin request policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToKeyGroup "TooManyDistributionsAssociatedToKeyGroup"
+//     The number of distributions that reference this key group is more than the
+//     maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyKeyGroupsAssociatedToDistribution "TooManyKeyGroupsAssociatedToDistribution"
+//     The number of key groups referenced by this distribution is more than the
+//     maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
+//     The specified key group does not exist.
+//
+//   - ErrCodeNoSuchRealtimeLogConfig "NoSuchRealtimeLogConfig"
+//     The real-time log configuration does not exist.
+//
+//   - ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
+//     The specified real-time log configuration belongs to a different Amazon Web
+//     Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CopyDistribution
+func (c *CloudFront) CopyDistribution(input *CopyDistributionInput) (*CopyDistributionOutput, error) {
+	req, out := c.CopyDistributionRequest(input)
+	return out, req.Send()
+}
+
+// CopyDistributionWithContext is the same as CopyDistribution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CopyDistribution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) CopyDistributionWithContext(ctx aws.Context, input *CopyDistributionInput, opts ...request.Option) (*CopyDistributionOutput, error) {
+	req, out := c.CopyDistributionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCachePolicy = "CreateCachePolicy2020_05_31"
 
 // CreateCachePolicyRequest generates a "aws/request.Request" representing the
@@ -350,6 +660,104 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opCreateContinuousDeploymentPolicy = "CreateContinuousDeploymentPolicy2020_05_31"
+
+// CreateContinuousDeploymentPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContinuousDeploymentPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContinuousDeploymentPolicy for more information on using the CreateContinuousDeploymentPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateContinuousDeploymentPolicyRequest method.
+//	req, resp := client.CreateContinuousDeploymentPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateContinuousDeploymentPolicy
+func (c *CloudFront) CreateContinuousDeploymentPolicyRequest(input *CreateContinuousDeploymentPolicyInput) (req *request.Request, output *CreateContinuousDeploymentPolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreateContinuousDeploymentPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/continuous-deployment-policy",
+	}
+
+	if input == nil {
+		input = &CreateContinuousDeploymentPolicyInput{}
+	}
+
+	output = &CreateContinuousDeploymentPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContinuousDeploymentPolicy API operation for Amazon CloudFront.
+//
+// Creates a continuous deployment policy that distributes traffic for a custom
+// domain name to two different CloudFront distributions.
+//
+// To use a continuous deployment policy, first use CopyDistribution to create
+// a staging distribution, then use UpdateDistribution to modify the staging
+// distribution’s configuration.
+//
+// After you create and update a staging distribution, you can use a continuous
+// deployment policy to incrementally move traffic to the staging distribution.
+// This workflow enables you to test changes to a distribution’s configuration
+// before moving all of your domain’s production traffic to the new configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateContinuousDeploymentPolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+//   - ErrCodeInconsistentQuantities "InconsistentQuantities"
+//     The value of Quantity and the size of Items don't match.
+//
+//   - ErrCodeStagingDistributionInUse "StagingDistributionInUse"
+//     A continuous deployment policy for this staging distribution already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateContinuousDeploymentPolicy
+func (c *CloudFront) CreateContinuousDeploymentPolicy(input *CreateContinuousDeploymentPolicyInput) (*CreateContinuousDeploymentPolicyOutput, error) {
+	req, out := c.CreateContinuousDeploymentPolicyRequest(input)
+	return out, req.Send()
+}
+
+// CreateContinuousDeploymentPolicyWithContext is the same as CreateContinuousDeploymentPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContinuousDeploymentPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) CreateContinuousDeploymentPolicyWithContext(ctx aws.Context, input *CreateContinuousDeploymentPolicyInput, opts ...request.Option) (*CreateContinuousDeploymentPolicyOutput, error) {
+	req, out := c.CreateContinuousDeploymentPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDistribution = "CreateDistribution2020_05_31"
 
 // CreateDistributionRequest generates a "aws/request.Request" representing the
@@ -393,19 +801,7 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 
 // CreateDistribution API operation for Amazon CloudFront.
 //
-// Creates a new web distribution. You create a CloudFront distribution to tell
-// CloudFront where you want content to be delivered from, and the details about
-// how to track and manage content delivery. Send a POST request to the /CloudFront
-// API version/distribution/distribution ID resource.
-//
-// When you update a distribution, there are more required fields than when
-// you create a distribution. When you update your distribution by using UpdateDistribution
-// (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html),
-// follow the steps included in the documentation to get the current configuration
-// and then make your updates. This helps to make sure that you include all
-// of the required fields. To view a summary, see Required Fields for Create
-// Distribution and Update Distribution (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-overview-required-fields.html)
-// in the Amazon CloudFront Developer Guide.
+// Creates a CloudFront distribution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2562,6 +2958,99 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opDeleteContinuousDeploymentPolicy = "DeleteContinuousDeploymentPolicy2020_05_31"
+
+// DeleteContinuousDeploymentPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContinuousDeploymentPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContinuousDeploymentPolicy for more information on using the DeleteContinuousDeploymentPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteContinuousDeploymentPolicyRequest method.
+//	req, resp := client.DeleteContinuousDeploymentPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteContinuousDeploymentPolicy
+func (c *CloudFront) DeleteContinuousDeploymentPolicyRequest(input *DeleteContinuousDeploymentPolicyInput) (req *request.Request, output *DeleteContinuousDeploymentPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContinuousDeploymentPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-05-31/continuous-deployment-policy/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteContinuousDeploymentPolicyInput{}
+	}
+
+	output = &DeleteContinuousDeploymentPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContinuousDeploymentPolicy API operation for Amazon CloudFront.
+//
+// Deletes a continuous deployment policy.
+//
+// You cannot delete a continuous deployment policy that’s attached to a primary
+// distribution. First update your distribution to remove the continuous deployment
+// policy, then you can delete the policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteContinuousDeploymentPolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//     The If-Match version is missing or not valid.
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+//   - ErrCodePreconditionFailed "PreconditionFailed"
+//     The precondition in one or more of the request fields evaluated to false.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteContinuousDeploymentPolicy
+func (c *CloudFront) DeleteContinuousDeploymentPolicy(input *DeleteContinuousDeploymentPolicyInput) (*DeleteContinuousDeploymentPolicyOutput, error) {
+	req, out := c.DeleteContinuousDeploymentPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContinuousDeploymentPolicyWithContext is the same as DeleteContinuousDeploymentPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContinuousDeploymentPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) DeleteContinuousDeploymentPolicyWithContext(ctx aws.Context, input *DeleteContinuousDeploymentPolicyInput, opts ...request.Option) (*DeleteContinuousDeploymentPolicyOutput, error) {
+	req, out := c.DeleteContinuousDeploymentPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDistribution = "DeleteDistribution2020_05_31"
 
 // DeleteDistributionRequest generates a "aws/request.Request" representing the
@@ -4174,6 +4663,163 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFron
 // for more information on using Contexts.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigWithContext(ctx aws.Context, input *GetCloudFrontOriginAccessIdentityConfigInput, opts ...request.Option) (*GetCloudFrontOriginAccessIdentityConfigOutput, error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContinuousDeploymentPolicy = "GetContinuousDeploymentPolicy2020_05_31"
+
+// GetContinuousDeploymentPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetContinuousDeploymentPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContinuousDeploymentPolicy for more information on using the GetContinuousDeploymentPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetContinuousDeploymentPolicyRequest method.
+//	req, resp := client.GetContinuousDeploymentPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicy
+func (c *CloudFront) GetContinuousDeploymentPolicyRequest(input *GetContinuousDeploymentPolicyInput) (req *request.Request, output *GetContinuousDeploymentPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetContinuousDeploymentPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/continuous-deployment-policy/{Id}",
+	}
+
+	if input == nil {
+		input = &GetContinuousDeploymentPolicyInput{}
+	}
+
+	output = &GetContinuousDeploymentPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContinuousDeploymentPolicy API operation for Amazon CloudFront.
+//
+// Gets a continuous deployment policy, including metadata (the policy’s identifier
+// and the date and time when the policy was last modified).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetContinuousDeploymentPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicy
+func (c *CloudFront) GetContinuousDeploymentPolicy(input *GetContinuousDeploymentPolicyInput) (*GetContinuousDeploymentPolicyOutput, error) {
+	req, out := c.GetContinuousDeploymentPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetContinuousDeploymentPolicyWithContext is the same as GetContinuousDeploymentPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContinuousDeploymentPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetContinuousDeploymentPolicyWithContext(ctx aws.Context, input *GetContinuousDeploymentPolicyInput, opts ...request.Option) (*GetContinuousDeploymentPolicyOutput, error) {
+	req, out := c.GetContinuousDeploymentPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContinuousDeploymentPolicyConfig = "GetContinuousDeploymentPolicyConfig2020_05_31"
+
+// GetContinuousDeploymentPolicyConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetContinuousDeploymentPolicyConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContinuousDeploymentPolicyConfig for more information on using the GetContinuousDeploymentPolicyConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetContinuousDeploymentPolicyConfigRequest method.
+//	req, resp := client.GetContinuousDeploymentPolicyConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicyConfig
+func (c *CloudFront) GetContinuousDeploymentPolicyConfigRequest(input *GetContinuousDeploymentPolicyConfigInput) (req *request.Request, output *GetContinuousDeploymentPolicyConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetContinuousDeploymentPolicyConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/continuous-deployment-policy/{Id}/config",
+	}
+
+	if input == nil {
+		input = &GetContinuousDeploymentPolicyConfigInput{}
+	}
+
+	output = &GetContinuousDeploymentPolicyConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContinuousDeploymentPolicyConfig API operation for Amazon CloudFront.
+//
+// Gets configuration information about a continuous deployment policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetContinuousDeploymentPolicyConfig for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicyConfig
+func (c *CloudFront) GetContinuousDeploymentPolicyConfig(input *GetContinuousDeploymentPolicyConfigInput) (*GetContinuousDeploymentPolicyConfigOutput, error) {
+	req, out := c.GetContinuousDeploymentPolicyConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetContinuousDeploymentPolicyConfigWithContext is the same as GetContinuousDeploymentPolicyConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContinuousDeploymentPolicyConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetContinuousDeploymentPolicyConfigWithContext(ctx aws.Context, input *GetContinuousDeploymentPolicyConfigInput, opts ...request.Option) (*GetContinuousDeploymentPolicyConfigOutput, error) {
+	req, out := c.GetContinuousDeploymentPolicyConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6373,6 +7019,95 @@ func (c *CloudFront) ListConflictingAliases(input *ListConflictingAliasesInput) 
 // for more information on using Contexts.
 func (c *CloudFront) ListConflictingAliasesWithContext(ctx aws.Context, input *ListConflictingAliasesInput, opts ...request.Option) (*ListConflictingAliasesOutput, error) {
 	req, out := c.ListConflictingAliasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListContinuousDeploymentPolicies = "ListContinuousDeploymentPolicies2020_05_31"
+
+// ListContinuousDeploymentPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListContinuousDeploymentPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContinuousDeploymentPolicies for more information on using the ListContinuousDeploymentPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListContinuousDeploymentPoliciesRequest method.
+//	req, resp := client.ListContinuousDeploymentPoliciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListContinuousDeploymentPolicies
+func (c *CloudFront) ListContinuousDeploymentPoliciesRequest(input *ListContinuousDeploymentPoliciesInput) (req *request.Request, output *ListContinuousDeploymentPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListContinuousDeploymentPolicies,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/continuous-deployment-policy",
+	}
+
+	if input == nil {
+		input = &ListContinuousDeploymentPoliciesInput{}
+	}
+
+	output = &ListContinuousDeploymentPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContinuousDeploymentPolicies API operation for Amazon CloudFront.
+//
+// Gets a list of the continuous deployment policies in your Amazon Web Services
+// account.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send a subsequent request that specifies the NextMarker
+// value from the current response as the Marker value in the subsequent request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListContinuousDeploymentPolicies for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListContinuousDeploymentPolicies
+func (c *CloudFront) ListContinuousDeploymentPolicies(input *ListContinuousDeploymentPoliciesInput) (*ListContinuousDeploymentPoliciesOutput, error) {
+	req, out := c.ListContinuousDeploymentPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListContinuousDeploymentPoliciesWithContext is the same as ListContinuousDeploymentPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContinuousDeploymentPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListContinuousDeploymentPoliciesWithContext(ctx aws.Context, input *ListContinuousDeploymentPoliciesInput, opts ...request.Option) (*ListContinuousDeploymentPoliciesOutput, error) {
+	req, out := c.ListContinuousDeploymentPoliciesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8805,6 +9540,117 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opUpdateContinuousDeploymentPolicy = "UpdateContinuousDeploymentPolicy2020_05_31"
+
+// UpdateContinuousDeploymentPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContinuousDeploymentPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContinuousDeploymentPolicy for more information on using the UpdateContinuousDeploymentPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateContinuousDeploymentPolicyRequest method.
+//	req, resp := client.UpdateContinuousDeploymentPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateContinuousDeploymentPolicy
+func (c *CloudFront) UpdateContinuousDeploymentPolicyRequest(input *UpdateContinuousDeploymentPolicyInput) (req *request.Request, output *UpdateContinuousDeploymentPolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContinuousDeploymentPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-05-31/continuous-deployment-policy/{Id}",
+	}
+
+	if input == nil {
+		input = &UpdateContinuousDeploymentPolicyInput{}
+	}
+
+	output = &UpdateContinuousDeploymentPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateContinuousDeploymentPolicy API operation for Amazon CloudFront.
+//
+// Updates a continuous deployment policy. You can update a continuous deployment
+// policy to enable or disable it, to change the percentage of traffic that
+// it sends to the staging distribution, or to change the staging distribution
+// that it sends traffic to.
+//
+// When you update a continuous deployment policy configuration, all the fields
+// are updated with the values that are provided in the request. You cannot
+// update some fields independent of others. To update a continuous deployment
+// policy configuration:
+//
+// Use GetContinuousDeploymentPolicyConfig to get the current configuration.
+//
+// Locally modify the fields in the continuous deployment policy configuration
+// that you want to update.
+//
+// Use UpdateContinuousDeploymentPolicy, providing the entire continuous deployment
+// policy configuration, including the fields that you modified and those that
+// you didn’t.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateContinuousDeploymentPolicy for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//     The If-Match version is missing or not valid.
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+//   - ErrCodeInconsistentQuantities "InconsistentQuantities"
+//     The value of Quantity and the size of Items don't match.
+//
+//   - ErrCodePreconditionFailed "PreconditionFailed"
+//     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeStagingDistributionInUse "StagingDistributionInUse"
+//     A continuous deployment policy for this staging distribution already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateContinuousDeploymentPolicy
+func (c *CloudFront) UpdateContinuousDeploymentPolicy(input *UpdateContinuousDeploymentPolicyInput) (*UpdateContinuousDeploymentPolicyOutput, error) {
+	req, out := c.UpdateContinuousDeploymentPolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContinuousDeploymentPolicyWithContext is the same as UpdateContinuousDeploymentPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContinuousDeploymentPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) UpdateContinuousDeploymentPolicyWithContext(ctx aws.Context, input *UpdateContinuousDeploymentPolicyInput, opts ...request.Option) (*UpdateContinuousDeploymentPolicyOutput, error) {
+	req, out := c.UpdateContinuousDeploymentPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDistribution = "UpdateDistribution2020_05_31"
 
 // UpdateDistributionRequest generates a "aws/request.Request" representing the
@@ -8848,70 +9694,30 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 
 // UpdateDistribution API operation for Amazon CloudFront.
 //
-// Updates the configuration for a web distribution.
-//
-// When you update a distribution, there are more required fields than when
-// you create a distribution. When you update your distribution by using this
-// API action, follow the steps here to get the current configuration and then
-// make your updates, to make sure that you include all of the required fields.
-// To view a summary, see Required Fields for Create Distribution and Update
-// Distribution (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-overview-required-fields.html)
-// in the Amazon CloudFront Developer Guide.
+// Updates the configuration for a CloudFront distribution.
 //
 // The update process includes getting the current distribution configuration,
-// updating the XML document that is returned to make your changes, and then
-// submitting an UpdateDistribution request to make the updates.
-//
-// For information about updating a distribution using the CloudFront console
-// instead, see Creating a Distribution (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-creating-console.html)
-// in the Amazon CloudFront Developer Guide.
+// updating it to make your changes, and then submitting an UpdateDistribution
+// request to make the updates.
 //
 // # To update a web distribution using the CloudFront API
 //
-// Submit a GetDistributionConfig (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistributionConfig.html)
-// request to get the current configuration and an Etag header for the distribution.
+// Use GetDistributionConfig to get the current configuration, including the
+// version identifier (ETag).
 //
-// If you update the distribution again, you must get a new Etag header.
+// Update the distribution configuration that was returned in the response.
+// Note the following important requirements and restrictions:
 //
-// Update the XML document that was returned in the response to your GetDistributionConfig
-// request to include your changes.
+//   - You must rename the ETag field to IfMatch, leaving the value unchanged.
+//     (Set the value of IfMatch to the value of ETag, then remove the ETag field.)
 //
-// When you edit the XML file, be aware of the following:
+//   - You can’t change the value of CallerReference.
 //
-//   - You must strip out the ETag parameter that is returned.
-//
-//   - Additional fields are required when you update a distribution. There
-//     may be fields included in the XML file for features that you haven't configured
-//     for your distribution. This is expected and required to successfully update
-//     the distribution.
-//
-//   - You can't change the value of CallerReference. If you try to change
-//     this value, CloudFront returns an IllegalUpdate error.
-//
-//   - The new configuration replaces the existing configuration; the values
-//     that you specify in an UpdateDistribution request are not merged into
-//     your existing configuration. When you add, delete, or replace values in
-//     an element that allows multiple values (for example, CNAME), you must
-//     specify all of the values that you want to appear in the updated distribution.
-//     In addition, you must update the corresponding Quantity element.
-//
-// Submit an UpdateDistribution request to update the configuration for your
-// distribution:
-//
-//   - In the request body, include the XML document that you updated in Step
-//     2. The request body must include an XML document with a DistributionConfig
-//     element.
-//
-//   - Set the value of the HTTP If-Match header to the value of the ETag header
-//     that CloudFront returned when you submitted the GetDistributionConfig
-//     request in Step 1.
-//
-// Review the response to the UpdateDistribution request to confirm that the
-// configuration was successfully updated.
-//
-// Optional: Submit a GetDistribution (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistribution.html)
-// request to confirm that your changes have propagated. When propagation is
-// complete, the value of Status is Deployed.
+// Submit an UpdateDistribution request, providing the distribution configuration.
+// The new configuration replaces the existing configuration. The values that
+// you specify in an UpdateDistribution request are not merged into your existing
+// configuration. Make sure to include all fields: the ones that you modified
+// and also the ones that you didn’t.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9135,6 +9941,9 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   - ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
 //     The specified real-time log configuration belongs to a different Amazon Web
 //     Services account.
+//
+//   - ErrCodeStagingDistributionInUse "StagingDistributionInUse"
+//     A continuous deployment policy for this staging distribution already exists.
 //
 //   - ErrCodeIllegalOriginAccessConfiguration "IllegalOriginAccessConfiguration"
 //     An origin cannot contain both an origin access control (OAC) and an origin
@@ -12177,6 +12986,377 @@ func (s *ContentTypeProfiles) SetQuantity(v int64) *ContentTypeProfiles {
 	return s
 }
 
+// A continuous deployment policy.
+type ContinuousDeploymentPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the configuration for a continuous deployment policy.
+	//
+	// ContinuousDeploymentPolicyConfig is a required field
+	ContinuousDeploymentPolicyConfig *ContinuousDeploymentPolicyConfig `type:"structure" required:"true"`
+
+	// The identifier of the continuous deployment policy.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The date and time the continuous deployment policy was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicy) GoString() string {
+	return s.String()
+}
+
+// SetContinuousDeploymentPolicyConfig sets the ContinuousDeploymentPolicyConfig field's value.
+func (s *ContinuousDeploymentPolicy) SetContinuousDeploymentPolicyConfig(v *ContinuousDeploymentPolicyConfig) *ContinuousDeploymentPolicy {
+	s.ContinuousDeploymentPolicyConfig = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContinuousDeploymentPolicy) SetId(v string) *ContinuousDeploymentPolicy {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ContinuousDeploymentPolicy) SetLastModifiedTime(v time.Time) *ContinuousDeploymentPolicy {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// Contains the configuration for a continuous deployment policy.
+type ContinuousDeploymentPolicyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean that indicates whether this continuous deployment policy is enabled
+	// (in effect). When this value is true, this policy is enabled and in effect.
+	// When this value is false, this policy is not enabled and has no effect.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// The CloudFront domain name of the staging distribution. For example: d111111abcdef8.cloudfront.net.
+	//
+	// StagingDistributionDnsNames is a required field
+	StagingDistributionDnsNames *StagingDistributionDnsNames `type:"structure" required:"true"`
+
+	// Contains the parameters for routing production traffic from your primary
+	// to staging distributions.
+	TrafficConfig *TrafficConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContinuousDeploymentPolicyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContinuousDeploymentPolicyConfig"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.StagingDistributionDnsNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("StagingDistributionDnsNames"))
+	}
+	if s.StagingDistributionDnsNames != nil {
+		if err := s.StagingDistributionDnsNames.Validate(); err != nil {
+			invalidParams.AddNested("StagingDistributionDnsNames", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TrafficConfig != nil {
+		if err := s.TrafficConfig.Validate(); err != nil {
+			invalidParams.AddNested("TrafficConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ContinuousDeploymentPolicyConfig) SetEnabled(v bool) *ContinuousDeploymentPolicyConfig {
+	s.Enabled = &v
+	return s
+}
+
+// SetStagingDistributionDnsNames sets the StagingDistributionDnsNames field's value.
+func (s *ContinuousDeploymentPolicyConfig) SetStagingDistributionDnsNames(v *StagingDistributionDnsNames) *ContinuousDeploymentPolicyConfig {
+	s.StagingDistributionDnsNames = v
+	return s
+}
+
+// SetTrafficConfig sets the TrafficConfig field's value.
+func (s *ContinuousDeploymentPolicyConfig) SetTrafficConfig(v *TrafficConfig) *ContinuousDeploymentPolicyConfig {
+	s.TrafficConfig = v
+	return s
+}
+
+// Contains a list of continuous deployment policies.
+type ContinuousDeploymentPolicyList struct {
+	_ struct{} `type:"structure"`
+
+	// A list of continuous deployment policy items.
+	Items []*ContinuousDeploymentPolicySummary `locationNameList:"ContinuousDeploymentPolicySummary" type:"list"`
+
+	// The maximum number of continuous deployment policies that were specified
+	// in your request.
+	//
+	// MaxItems is a required field
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// Indicates the next page of continuous deployment policies. To get the next
+	// page of the list, use this value in the Marker field of your request.
+	NextMarker *string `type:"string"`
+
+	// The total number of continuous deployment policies in your Amazon Web Services
+	// account, regardless of the MaxItems value.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicyList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicyList) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ContinuousDeploymentPolicyList) SetItems(v []*ContinuousDeploymentPolicySummary) *ContinuousDeploymentPolicyList {
+	s.Items = v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ContinuousDeploymentPolicyList) SetMaxItems(v int64) *ContinuousDeploymentPolicyList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ContinuousDeploymentPolicyList) SetNextMarker(v string) *ContinuousDeploymentPolicyList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ContinuousDeploymentPolicyList) SetQuantity(v int64) *ContinuousDeploymentPolicyList {
+	s.Quantity = &v
+	return s
+}
+
+// A summary of the information about your continuous deployment policies.
+type ContinuousDeploymentPolicySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The continuous deployment policy.
+	//
+	// ContinuousDeploymentPolicy is a required field
+	ContinuousDeploymentPolicy *ContinuousDeploymentPolicy `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentPolicySummary) GoString() string {
+	return s.String()
+}
+
+// SetContinuousDeploymentPolicy sets the ContinuousDeploymentPolicy field's value.
+func (s *ContinuousDeploymentPolicySummary) SetContinuousDeploymentPolicy(v *ContinuousDeploymentPolicy) *ContinuousDeploymentPolicySummary {
+	s.ContinuousDeploymentPolicy = v
+	return s
+}
+
+// This configuration determines which HTTP requests are sent to the staging
+// distribution. If the HTTP request contains a header and value that matches
+// what you specify here, the request is sent to the staging distribution. Otherwise
+// the request is sent to the primary distribution.
+type ContinuousDeploymentSingleHeaderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The request header name that you want CloudFront to send to your staging
+	// distribution.
+	//
+	// Header is a required field
+	Header *string `type:"string" required:"true"`
+
+	// The request header value.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentSingleHeaderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentSingleHeaderConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContinuousDeploymentSingleHeaderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContinuousDeploymentSingleHeaderConfig"}
+	if s.Header == nil {
+		invalidParams.Add(request.NewErrParamRequired("Header"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHeader sets the Header field's value.
+func (s *ContinuousDeploymentSingleHeaderConfig) SetHeader(v string) *ContinuousDeploymentSingleHeaderConfig {
+	s.Header = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ContinuousDeploymentSingleHeaderConfig) SetValue(v string) *ContinuousDeploymentSingleHeaderConfig {
+	s.Value = &v
+	return s
+}
+
+// Contains the percentage of traffic to send to a staging distribution, expressed
+// as a decimal number between 0 and 1.
+type ContinuousDeploymentSingleWeightConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Session stickiness provides the ability to define multiple requests from
+	// a single viewer as a single session. This prevents the potentially inconsistent
+	// experience of sending some of a given user's requests to your staging distribution,
+	// while others are sent to your primary distribution. Define the session duration
+	// using TTL values.
+	SessionStickinessConfig *SessionStickinessConfig `type:"structure"`
+
+	// The percentage of traffic to send to the staging distribution, expressed
+	// as a decimal number between 0 and 1.
+	//
+	// Weight is a required field
+	Weight *float64 `type:"float" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentSingleWeightConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContinuousDeploymentSingleWeightConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContinuousDeploymentSingleWeightConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContinuousDeploymentSingleWeightConfig"}
+	if s.Weight == nil {
+		invalidParams.Add(request.NewErrParamRequired("Weight"))
+	}
+	if s.SessionStickinessConfig != nil {
+		if err := s.SessionStickinessConfig.Validate(); err != nil {
+			invalidParams.AddNested("SessionStickinessConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionStickinessConfig sets the SessionStickinessConfig field's value.
+func (s *ContinuousDeploymentSingleWeightConfig) SetSessionStickinessConfig(v *SessionStickinessConfig) *ContinuousDeploymentSingleWeightConfig {
+	s.SessionStickinessConfig = v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *ContinuousDeploymentSingleWeightConfig) SetWeight(v float64) *ContinuousDeploymentSingleWeightConfig {
+	s.Weight = &v
+	return s
+}
+
 // Contains a list of cookie names.
 type CookieNames struct {
 	_ struct{} `type:"structure"`
@@ -12344,6 +13524,144 @@ func (s *CookiePreference) SetForward(v string) *CookiePreference {
 // SetWhitelistedNames sets the WhitelistedNames field's value.
 func (s *CookiePreference) SetWhitelistedNames(v *CookieNames) *CookiePreference {
 	s.WhitelistedNames = v
+	return s
+}
+
+type CopyDistributionInput struct {
+	_ struct{} `locationName:"CopyDistributionRequest" type:"structure" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+
+	// A value that uniquely identifies a request to create a resource. This helps
+	// to prevent CloudFront from creating a duplicate resource if you accidentally
+	// resubmit an identical request.
+	//
+	// CallerReference is a required field
+	CallerReference *string `type:"string" required:"true"`
+
+	// The version identifier of the primary distribution whose configuration you
+	// are copying. This is the ETag value returned in the response to GetDistribution
+	// and GetDistributionConfig.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// The identifier of the primary distribution whose configuration you are copying.
+	// To get a distribution ID, use ListDistributions.
+	//
+	// PrimaryDistributionId is a required field
+	PrimaryDistributionId *string `location:"uri" locationName:"PrimaryDistributionId" type:"string" required:"true"`
+
+	// The type of distribution that your primary distribution will be copied to.
+	// The only valid value is True, indicating that you are copying to a staging
+	// distribution.
+	Staging *bool `location:"header" locationName:"Staging" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyDistributionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyDistributionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopyDistributionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopyDistributionInput"}
+	if s.CallerReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("CallerReference"))
+	}
+	if s.PrimaryDistributionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryDistributionId"))
+	}
+	if s.PrimaryDistributionId != nil && len(*s.PrimaryDistributionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrimaryDistributionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallerReference sets the CallerReference field's value.
+func (s *CopyDistributionInput) SetCallerReference(v string) *CopyDistributionInput {
+	s.CallerReference = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *CopyDistributionInput) SetIfMatch(v string) *CopyDistributionInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetPrimaryDistributionId sets the PrimaryDistributionId field's value.
+func (s *CopyDistributionInput) SetPrimaryDistributionId(v string) *CopyDistributionInput {
+	s.PrimaryDistributionId = &v
+	return s
+}
+
+// SetStaging sets the Staging field's value.
+func (s *CopyDistributionInput) SetStaging(v bool) *CopyDistributionInput {
+	s.Staging = &v
+	return s
+}
+
+type CopyDistributionOutput struct {
+	_ struct{} `type:"structure" payload:"Distribution"`
+
+	// A distribution tells CloudFront where you want content to be delivered from,
+	// and the details about how to track and manage content delivery.
+	Distribution *Distribution `type:"structure"`
+
+	// The version identifier for the current version of the staging distribution.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The URL of the staging distribution.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyDistributionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyDistributionOutput) GoString() string {
+	return s.String()
+}
+
+// SetDistribution sets the Distribution field's value.
+func (s *CopyDistributionOutput) SetDistribution(v *Distribution) *CopyDistributionOutput {
+	s.Distribution = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CopyDistributionOutput) SetETag(v string) *CopyDistributionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CopyDistributionOutput) SetLocation(v string) *CopyDistributionOutput {
+	s.Location = &v
 	return s
 }
 
@@ -12550,6 +13868,107 @@ func (s *CreateCloudFrontOriginAccessIdentityOutput) SetETag(v string) *CreateCl
 
 // SetLocation sets the Location field's value.
 func (s *CreateCloudFrontOriginAccessIdentityOutput) SetLocation(v string) *CreateCloudFrontOriginAccessIdentityOutput {
+	s.Location = &v
+	return s
+}
+
+type CreateContinuousDeploymentPolicyInput struct {
+	_ struct{} `locationName:"CreateContinuousDeploymentPolicyRequest" type:"structure" payload:"ContinuousDeploymentPolicyConfig"`
+
+	// Contains the configuration for a continuous deployment policy.
+	//
+	// ContinuousDeploymentPolicyConfig is a required field
+	ContinuousDeploymentPolicyConfig *ContinuousDeploymentPolicyConfig `locationName:"ContinuousDeploymentPolicyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContinuousDeploymentPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContinuousDeploymentPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContinuousDeploymentPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContinuousDeploymentPolicyInput"}
+	if s.ContinuousDeploymentPolicyConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContinuousDeploymentPolicyConfig"))
+	}
+	if s.ContinuousDeploymentPolicyConfig != nil {
+		if err := s.ContinuousDeploymentPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContinuousDeploymentPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContinuousDeploymentPolicyConfig sets the ContinuousDeploymentPolicyConfig field's value.
+func (s *CreateContinuousDeploymentPolicyInput) SetContinuousDeploymentPolicyConfig(v *ContinuousDeploymentPolicyConfig) *CreateContinuousDeploymentPolicyInput {
+	s.ContinuousDeploymentPolicyConfig = v
+	return s
+}
+
+type CreateContinuousDeploymentPolicyOutput struct {
+	_ struct{} `type:"structure" payload:"ContinuousDeploymentPolicy"`
+
+	// A continuous deployment policy.
+	ContinuousDeploymentPolicy *ContinuousDeploymentPolicy `type:"structure"`
+
+	// The version identifier for the current version of the continuous deployment
+	// policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The location of the continuous deployment policy.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContinuousDeploymentPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContinuousDeploymentPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetContinuousDeploymentPolicy sets the ContinuousDeploymentPolicy field's value.
+func (s *CreateContinuousDeploymentPolicyOutput) SetContinuousDeploymentPolicy(v *ContinuousDeploymentPolicy) *CreateContinuousDeploymentPolicyOutput {
+	s.ContinuousDeploymentPolicy = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateContinuousDeploymentPolicyOutput) SetETag(v string) *CreateContinuousDeploymentPolicyOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateContinuousDeploymentPolicyOutput) SetLocation(v string) *CreateContinuousDeploymentPolicyOutput {
 	s.Location = &v
 	return s
 }
@@ -15121,6 +16540,87 @@ func (s DeleteCloudFrontOriginAccessIdentityOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteContinuousDeploymentPolicyInput struct {
+	_ struct{} `locationName:"DeleteContinuousDeploymentPolicyRequest" type:"structure"`
+
+	// The identifier of the continuous deployment policy that you are deleting.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The current version (ETag value) of the continuous deployment policy that
+	// you are deleting.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContinuousDeploymentPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContinuousDeploymentPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContinuousDeploymentPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContinuousDeploymentPolicyInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteContinuousDeploymentPolicyInput) SetId(v string) *DeleteContinuousDeploymentPolicyInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteContinuousDeploymentPolicyInput) SetIfMatch(v string) *DeleteContinuousDeploymentPolicyInput {
+	s.IfMatch = &v
+	return s
+}
+
+type DeleteContinuousDeploymentPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContinuousDeploymentPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContinuousDeploymentPolicyOutput) GoString() string {
+	return s.String()
+}
+
 // This action deletes a web distribution. To delete a web distribution using
 // the CloudFront API, perform the following steps.
 //
@@ -16215,8 +17715,7 @@ func (s *DescribeFunctionOutput) SetFunctionSummary(v *FunctionSummary) *Describ
 type Distribution struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your Amazon Web Services account ID.
+	// The distribution’s Amazon Resource Name (ARN).
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
@@ -16249,18 +17748,17 @@ type Distribution struct {
 	// in Getting Started with Amazon Web Services services in China.
 	AliasICPRecordals []*AliasICPRecordal `locationNameList:"AliasICPRecordal" type:"list"`
 
-	// The current configuration information for the distribution. Send a GET request
-	// to the /CloudFront API version/distribution ID/config resource.
+	// The distribution’s configuration.
 	//
 	// DistributionConfig is a required field
 	DistributionConfig *DistributionConfig `type:"structure" required:"true"`
 
-	// The domain name corresponding to the distribution, for example, d111111abcdef8.cloudfront.net.
+	// The distribution’s CloudFront domain name. For example: d111111abcdef8.cloudfront.net.
 	//
 	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
-	// The identifier for the distribution. For example: EDFDVBD632BHDS5.
+	// The distribution’s identifier. For example: E1U5RQF7T870K0.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -16270,14 +17768,13 @@ type Distribution struct {
 	// InProgressInvalidationBatches is a required field
 	InProgressInvalidationBatches *int64 `type:"integer" required:"true"`
 
-	// The date and time the distribution was last modified.
+	// The date and time when the distribution was last modified.
 	//
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
-	// This response element indicates the current status of the distribution. When
-	// the status is Deployed, the distribution's information is fully propagated
-	// to all CloudFront edge locations.
+	// The distribution’s status. When the status is Deployed, the distribution’s
+	// information is fully propagated to all CloudFront edge locations.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true"`
@@ -16415,8 +17912,8 @@ type DistributionConfig struct {
 	DefaultCacheBehavior *DefaultCacheBehavior `type:"structure" required:"true"`
 
 	// The object that you want CloudFront to request from your origin (for example,
-	// index.html) when a viewer requests the root URL for your distribution (http://www.example.com)
-	// instead of an object in your distribution (http://www.example.com/product-description.html).
+	// index.html) when a viewer requests the root URL for your distribution (https://www.example.com)
+	// instead of an object in your distribution (https://www.example.com/product-description.html).
 	// Specifying a default root object avoids exposing the contents of your distribution.
 	//
 	// Specify only the object name, for example, index.html. Don't add a / before
@@ -19146,6 +20643,187 @@ func (s *GetCloudFrontOriginAccessIdentityOutput) SetCloudFrontOriginAccessIdent
 
 // SetETag sets the ETag field's value.
 func (s *GetCloudFrontOriginAccessIdentityOutput) SetETag(v string) *GetCloudFrontOriginAccessIdentityOutput {
+	s.ETag = &v
+	return s
+}
+
+type GetContinuousDeploymentPolicyConfigInput struct {
+	_ struct{} `locationName:"GetContinuousDeploymentPolicyConfigRequest" type:"structure"`
+
+	// The identifier of the continuous deployment policy whose configuration you
+	// are getting.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContinuousDeploymentPolicyConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContinuousDeploymentPolicyConfigInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetContinuousDeploymentPolicyConfigInput) SetId(v string) *GetContinuousDeploymentPolicyConfigInput {
+	s.Id = &v
+	return s
+}
+
+type GetContinuousDeploymentPolicyConfigOutput struct {
+	_ struct{} `type:"structure" payload:"ContinuousDeploymentPolicyConfig"`
+
+	// Contains the configuration for a continuous deployment policy.
+	ContinuousDeploymentPolicyConfig *ContinuousDeploymentPolicyConfig `type:"structure"`
+
+	// The version identifier for the current version of the continuous deployment
+	// policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetContinuousDeploymentPolicyConfig sets the ContinuousDeploymentPolicyConfig field's value.
+func (s *GetContinuousDeploymentPolicyConfigOutput) SetContinuousDeploymentPolicyConfig(v *ContinuousDeploymentPolicyConfig) *GetContinuousDeploymentPolicyConfigOutput {
+	s.ContinuousDeploymentPolicyConfig = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetContinuousDeploymentPolicyConfigOutput) SetETag(v string) *GetContinuousDeploymentPolicyConfigOutput {
+	s.ETag = &v
+	return s
+}
+
+type GetContinuousDeploymentPolicyInput struct {
+	_ struct{} `locationName:"GetContinuousDeploymentPolicyRequest" type:"structure"`
+
+	// The identifier of the continuous deployment policy that you are getting.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContinuousDeploymentPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContinuousDeploymentPolicyInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetContinuousDeploymentPolicyInput) SetId(v string) *GetContinuousDeploymentPolicyInput {
+	s.Id = &v
+	return s
+}
+
+type GetContinuousDeploymentPolicyOutput struct {
+	_ struct{} `type:"structure" payload:"ContinuousDeploymentPolicy"`
+
+	// A continuous deployment policy.
+	ContinuousDeploymentPolicy *ContinuousDeploymentPolicy `type:"structure"`
+
+	// The version identifier for the current version of the continuous deployment
+	// policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetContinuousDeploymentPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetContinuousDeploymentPolicy sets the ContinuousDeploymentPolicy field's value.
+func (s *GetContinuousDeploymentPolicyOutput) SetContinuousDeploymentPolicy(v *ContinuousDeploymentPolicy) *GetContinuousDeploymentPolicyOutput {
+	s.ContinuousDeploymentPolicy = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetContinuousDeploymentPolicyOutput) SetETag(v string) *GetContinuousDeploymentPolicyOutput {
 	s.ETag = &v
 	return s
 }
@@ -22343,6 +24021,82 @@ func (s *ListConflictingAliasesOutput) SetConflictingAliasesList(v *ConflictingA
 	return s
 }
 
+type ListContinuousDeploymentPoliciesInput struct {
+	_ struct{} `locationName:"ListContinuousDeploymentPoliciesRequest" type:"structure"`
+
+	// Use this field when paginating results to indicate where to begin in your
+	// list of continuous deployment policies. The response includes policies in
+	// the list that occur after the marker. To get the next page of the list, set
+	// this field’s value to the value of NextMarker from the current page’s
+	// response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of continuous deployment policies that you want returned
+	// in the response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContinuousDeploymentPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContinuousDeploymentPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListContinuousDeploymentPoliciesInput) SetMarker(v string) *ListContinuousDeploymentPoliciesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListContinuousDeploymentPoliciesInput) SetMaxItems(v int64) *ListContinuousDeploymentPoliciesInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListContinuousDeploymentPoliciesOutput struct {
+	_ struct{} `type:"structure" payload:"ContinuousDeploymentPolicyList"`
+
+	// A list of continuous deployment policies.
+	ContinuousDeploymentPolicyList *ContinuousDeploymentPolicyList `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContinuousDeploymentPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContinuousDeploymentPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetContinuousDeploymentPolicyList sets the ContinuousDeploymentPolicyList field's value.
+func (s *ListContinuousDeploymentPoliciesOutput) SetContinuousDeploymentPolicyList(v *ContinuousDeploymentPolicyList) *ListContinuousDeploymentPoliciesOutput {
+	s.ContinuousDeploymentPolicyList = v
+	return s
+}
+
 type ListDistributionsByCachePolicyIdInput struct {
 	_ struct{} `locationName:"ListDistributionsByCachePolicyIdRequest" type:"structure"`
 
@@ -24420,9 +26174,7 @@ type OriginAccessControlConfig struct {
 	_ struct{} `type:"structure"`
 
 	// A description of the origin access control.
-	//
-	// Description is a required field
-	Description *string `type:"string" required:"true"`
+	Description *string `type:"string"`
 
 	// A name to identify the origin access control.
 	//
@@ -24489,9 +26241,6 @@ func (s OriginAccessControlConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *OriginAccessControlConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "OriginAccessControlConfig"}
-	if s.Description == nil {
-		invalidParams.Add(request.NewErrParamRequired("Description"))
-	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -29164,6 +30913,77 @@ func (s *S3OriginConfig) SetOriginAccessIdentity(v string) *S3OriginConfig {
 	return s
 }
 
+// Session stickiness provides the ability to define multiple requests from
+// a single viewer as a single session. This prevents the potentially inconsistent
+// experience of sending some of a given user's requests to your staging distribution,
+// while others are sent to your primary distribution. Define the session duration
+// using TTL values.
+type SessionStickinessConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time after which you want sessions to cease if no requests
+	// are received. Allowed values are 300–3600 seconds (5–60 minutes).
+	//
+	// The value must be less than or equal to MaximumTTL.
+	//
+	// IdleTTL is a required field
+	IdleTTL *int64 `type:"integer" required:"true"`
+
+	// The maximum amount of time to consider requests from the viewer as being
+	// part of the same session. Allowed values are 300–3600 seconds (5–60 minutes).
+	//
+	// The value must be less than or equal to IdleTTL.
+	//
+	// MaximumTTL is a required field
+	MaximumTTL *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionStickinessConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionStickinessConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SessionStickinessConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SessionStickinessConfig"}
+	if s.IdleTTL == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdleTTL"))
+	}
+	if s.MaximumTTL == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaximumTTL"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdleTTL sets the IdleTTL field's value.
+func (s *SessionStickinessConfig) SetIdleTTL(v int64) *SessionStickinessConfig {
+	s.IdleTTL = &v
+	return s
+}
+
+// SetMaximumTTL sets the MaximumTTL field's value.
+func (s *SessionStickinessConfig) SetMaximumTTL(v int64) *SessionStickinessConfig {
+	s.MaximumTTL = &v
+	return s
+}
+
 // A list of Amazon Web Services accounts and the active CloudFront key pairs
 // in each account that CloudFront can use to verify the signatures of signed
 // URLs and signed cookies.
@@ -29208,6 +31028,62 @@ func (s *Signer) SetAwsAccountNumber(v string) *Signer {
 // SetKeyPairIds sets the KeyPairIds field's value.
 func (s *Signer) SetKeyPairIds(v *KeyPairIds) *Signer {
 	s.KeyPairIds = v
+	return s
+}
+
+// The CloudFront domain name of the staging distribution.
+type StagingDistributionDnsNames struct {
+	_ struct{} `type:"structure"`
+
+	// The CloudFront domain name of the staging distribution.
+	Items []*string `locationNameList:"DnsName" type:"list"`
+
+	// The number of CloudFront domain names in your staging distribution.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StagingDistributionDnsNames) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StagingDistributionDnsNames) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StagingDistributionDnsNames) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StagingDistributionDnsNames"}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *StagingDistributionDnsNames) SetItems(v []*string) *StagingDistributionDnsNames {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *StagingDistributionDnsNames) SetQuantity(v int64) *StagingDistributionDnsNames {
+	s.Quantity = &v
 	return s
 }
 
@@ -30422,6 +32298,81 @@ func (s *TestResult) SetFunctionSummary(v *FunctionSummary) *TestResult {
 	return s
 }
 
+// The traffic configuration of your continuous deployment.
+type TrafficConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Determines which HTTP requests are sent to the staging distribution.
+	SingleHeaderConfig *ContinuousDeploymentSingleHeaderConfig `type:"structure"`
+
+	// Contains the percentage of traffic to send to the staging distribution.
+	SingleWeightConfig *ContinuousDeploymentSingleWeightConfig `type:"structure"`
+
+	// The type of traffic configuration.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ContinuousDeploymentPolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrafficConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrafficConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TrafficConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TrafficConfig"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.SingleHeaderConfig != nil {
+		if err := s.SingleHeaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("SingleHeaderConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SingleWeightConfig != nil {
+		if err := s.SingleWeightConfig.Validate(); err != nil {
+			invalidParams.AddNested("SingleWeightConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSingleHeaderConfig sets the SingleHeaderConfig field's value.
+func (s *TrafficConfig) SetSingleHeaderConfig(v *ContinuousDeploymentSingleHeaderConfig) *TrafficConfig {
+	s.SingleHeaderConfig = v
+	return s
+}
+
+// SetSingleWeightConfig sets the SingleWeightConfig field's value.
+func (s *TrafficConfig) SetSingleWeightConfig(v *ContinuousDeploymentSingleWeightConfig) *TrafficConfig {
+	s.SingleWeightConfig = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TrafficConfig) SetType(v string) *TrafficConfig {
+	s.Type = &v
+	return s
+}
+
 // A list of key groups whose public keys CloudFront can use to verify the signatures
 // of signed URLs and signed cookies.
 type TrustedKeyGroups struct {
@@ -30887,6 +32838,125 @@ func (s *UpdateCloudFrontOriginAccessIdentityOutput) SetCloudFrontOriginAccessId
 
 // SetETag sets the ETag field's value.
 func (s *UpdateCloudFrontOriginAccessIdentityOutput) SetETag(v string) *UpdateCloudFrontOriginAccessIdentityOutput {
+	s.ETag = &v
+	return s
+}
+
+type UpdateContinuousDeploymentPolicyInput struct {
+	_ struct{} `locationName:"UpdateContinuousDeploymentPolicyRequest" type:"structure" payload:"ContinuousDeploymentPolicyConfig"`
+
+	// The continuous deployment policy configuration.
+	//
+	// ContinuousDeploymentPolicyConfig is a required field
+	ContinuousDeploymentPolicyConfig *ContinuousDeploymentPolicyConfig `locationName:"ContinuousDeploymentPolicyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+
+	// The identifier of the continuous deployment policy that you are updating.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The current version (ETag value) of the continuous deployment policy that
+	// you are updating.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContinuousDeploymentPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContinuousDeploymentPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContinuousDeploymentPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContinuousDeploymentPolicyInput"}
+	if s.ContinuousDeploymentPolicyConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContinuousDeploymentPolicyConfig"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.ContinuousDeploymentPolicyConfig != nil {
+		if err := s.ContinuousDeploymentPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContinuousDeploymentPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContinuousDeploymentPolicyConfig sets the ContinuousDeploymentPolicyConfig field's value.
+func (s *UpdateContinuousDeploymentPolicyInput) SetContinuousDeploymentPolicyConfig(v *ContinuousDeploymentPolicyConfig) *UpdateContinuousDeploymentPolicyInput {
+	s.ContinuousDeploymentPolicyConfig = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateContinuousDeploymentPolicyInput) SetId(v string) *UpdateContinuousDeploymentPolicyInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateContinuousDeploymentPolicyInput) SetIfMatch(v string) *UpdateContinuousDeploymentPolicyInput {
+	s.IfMatch = &v
+	return s
+}
+
+type UpdateContinuousDeploymentPolicyOutput struct {
+	_ struct{} `type:"structure" payload:"ContinuousDeploymentPolicy"`
+
+	// A continuous deployment policy.
+	ContinuousDeploymentPolicy *ContinuousDeploymentPolicy `type:"structure"`
+
+	// The version identifier for the current version of the continuous deployment
+	// policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContinuousDeploymentPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContinuousDeploymentPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetContinuousDeploymentPolicy sets the ContinuousDeploymentPolicy field's value.
+func (s *UpdateContinuousDeploymentPolicyOutput) SetContinuousDeploymentPolicy(v *ContinuousDeploymentPolicy) *UpdateContinuousDeploymentPolicyOutput {
+	s.ContinuousDeploymentPolicy = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateContinuousDeploymentPolicyOutput) SetETag(v string) *UpdateContinuousDeploymentPolicyOutput {
 	s.ETag = &v
 	return s
 }
@@ -32533,6 +34603,22 @@ func CertificateSource_Values() []string {
 		CertificateSourceCloudfront,
 		CertificateSourceIam,
 		CertificateSourceAcm,
+	}
+}
+
+const (
+	// ContinuousDeploymentPolicyTypeSingleWeight is a ContinuousDeploymentPolicyType enum value
+	ContinuousDeploymentPolicyTypeSingleWeight = "SingleWeight"
+
+	// ContinuousDeploymentPolicyTypeSingleHeader is a ContinuousDeploymentPolicyType enum value
+	ContinuousDeploymentPolicyTypeSingleHeader = "SingleHeader"
+)
+
+// ContinuousDeploymentPolicyType_Values returns all elements of the ContinuousDeploymentPolicyType enum
+func ContinuousDeploymentPolicyType_Values() []string {
+	return []string{
+		ContinuousDeploymentPolicyTypeSingleWeight,
+		ContinuousDeploymentPolicyTypeSingleHeader,
 	}
 }
 

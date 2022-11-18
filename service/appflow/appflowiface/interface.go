@@ -159,6 +159,10 @@ type AppflowAPI interface {
 	UpdateConnectorProfileWithContext(aws.Context, *appflow.UpdateConnectorProfileInput, ...request.Option) (*appflow.UpdateConnectorProfileOutput, error)
 	UpdateConnectorProfileRequest(*appflow.UpdateConnectorProfileInput) (*request.Request, *appflow.UpdateConnectorProfileOutput)
 
+	UpdateConnectorRegistration(*appflow.UpdateConnectorRegistrationInput) (*appflow.UpdateConnectorRegistrationOutput, error)
+	UpdateConnectorRegistrationWithContext(aws.Context, *appflow.UpdateConnectorRegistrationInput, ...request.Option) (*appflow.UpdateConnectorRegistrationOutput, error)
+	UpdateConnectorRegistrationRequest(*appflow.UpdateConnectorRegistrationInput) (*request.Request, *appflow.UpdateConnectorRegistrationOutput)
+
 	UpdateFlow(*appflow.UpdateFlowInput) (*appflow.UpdateFlowOutput, error)
 	UpdateFlowWithContext(aws.Context, *appflow.UpdateFlowInput, ...request.Option) (*appflow.UpdateFlowOutput, error)
 	UpdateFlowRequest(*appflow.UpdateFlowInput) (*request.Request, *appflow.UpdateFlowOutput)

@@ -25599,8 +25599,8 @@ type Crawler struct {
 	Classifiers []*string `type:"list"`
 
 	// Crawler configuration information. This versioned JSON string allows users
-	// to specify aspects of a crawler's behavior. For more information, see Include
-	// and Exclude Patterns (https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude).
+	// to specify aspects of a crawler's behavior. For more information, see Setting
+	// crawler configuration options (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
 	Configuration *string `type:"string"`
 
 	// If the crawler is running, contains the total time elapsed since the last
@@ -26741,8 +26741,8 @@ type CreateCrawlerInput struct {
 	Classifiers []*string `type:"list"`
 
 	// Crawler configuration information. This versioned JSON string allows users
-	// to specify aspects of a crawler's behavior. For more information, see Configuring
-	// a Crawler (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
+	// to specify aspects of a crawler's behavior. For more information, see Setting
+	// crawler configuration options (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
 	Configuration *string `type:"string"`
 
 	// The name of the SecurityConfiguration structure to be used by this crawler.
@@ -44653,6 +44653,13 @@ type JdbcTarget struct {
 	// The name of the connection to use to connect to the JDBC target.
 	ConnectionName *string `type:"string"`
 
+	// Specify a value of RAWTYPES or COMMENTS to enable additional metadata in
+	// table responses. RAWTYPES provides the native-level datatype. COMMENTS provides
+	// comments associated with a column or table in the database.
+	//
+	// If you do not need additional metadata, keep the field empty.
+	EnableAdditionalMetadata []*string `type:"list" enum:"JdbcMetadataEntry"`
+
 	// A list of glob patterns used to exclude from the crawl. For more information,
 	// see Catalog Tables with a Crawler (https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
 	Exclusions []*string `type:"list"`
@@ -44682,6 +44689,12 @@ func (s JdbcTarget) GoString() string {
 // SetConnectionName sets the ConnectionName field's value.
 func (s *JdbcTarget) SetConnectionName(v string) *JdbcTarget {
 	s.ConnectionName = &v
+	return s
+}
+
+// SetEnableAdditionalMetadata sets the EnableAdditionalMetadata field's value.
+func (s *JdbcTarget) SetEnableAdditionalMetadata(v []*string) *JdbcTarget {
+	s.EnableAdditionalMetadata = v
 	return s
 }
 
@@ -61514,8 +61527,8 @@ type UpdateCrawlerInput struct {
 	Classifiers []*string `type:"list"`
 
 	// Crawler configuration information. This versioned JSON string allows users
-	// to specify aspects of a crawler's behavior. For more information, see Configuring
-	// a Crawler (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
+	// to specify aspects of a crawler's behavior. For more information, see Setting
+	// crawler configuration options (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
 	Configuration *string `type:"string"`
 
 	// The name of the SecurityConfiguration structure to be used by this crawler.
@@ -65710,6 +65723,22 @@ func JDBCDataType_Values() []string {
 		JDBCDataTypeTinyint,
 		JDBCDataTypeVarbinary,
 		JDBCDataTypeVarchar,
+	}
+}
+
+const (
+	// JdbcMetadataEntryComments is a JdbcMetadataEntry enum value
+	JdbcMetadataEntryComments = "COMMENTS"
+
+	// JdbcMetadataEntryRawtypes is a JdbcMetadataEntry enum value
+	JdbcMetadataEntryRawtypes = "RAWTYPES"
+)
+
+// JdbcMetadataEntry_Values returns all elements of the JdbcMetadataEntry enum
+func JdbcMetadataEntry_Values() []string {
+	return []string{
+		JdbcMetadataEntryComments,
+		JdbcMetadataEntryRawtypes,
 	}
 }
 

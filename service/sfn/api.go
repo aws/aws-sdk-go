@@ -57,7 +57,7 @@ func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Re
 // CreateActivity API operation for AWS Step Functions.
 //
 // Creates an activity. An activity is a task that you write in any programming
-// language and host on any machine that has access to AWS Step Functions. Activities
+// language and host on any machine that has access to Step Functions. Activities
 // must poll Step Functions using the GetActivityTask API action and respond
 // using SendTask* API actions. This function lets Step Functions know the existence
 // of your activity and returns an identifier for use in a state machine and
@@ -92,7 +92,7 @@ func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Re
 //   - TooManyTags
 //     You've exceeded the number of tags allowed for a resource. See the Limits
 //     Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
-//     in the AWS Step Functions Developer Guide.
+//     in the Step Functions Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateActivity
 func (c *SFN) CreateActivity(input *CreateActivityInput) (*CreateActivityOutput, error) {
@@ -164,7 +164,7 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 // (Choice states), stop an execution with an error (Fail states), and so on.
 // State machines are specified using a JSON-based, structured language. For
 // more information, see Amazon States Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)
-// in the AWS Step Functions User Guide.
+// in the Step Functions User Guide.
 //
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
@@ -217,7 +217,7 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 //   - TooManyTags
 //     You've exceeded the number of tags allowed for a resource. See the Limits
 //     Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
-//     in the AWS Step Functions Developer Guide.
+//     in the Step Functions Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachine
 func (c *SFN) CreateStateMachine(input *CreateStateMachineInput) (*CreateStateMachineOutput, error) {
@@ -367,8 +367,8 @@ func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *re
 // Deletes a state machine. This is an asynchronous operation: It sets the state
 // machine's status to DELETING and begins the deletion process.
 //
-// For EXPRESSstate machines, the deletion will happen eventually (usually less
-// than a minute). Running executions may emit logs after DeleteStateMachine
+// For EXPRESS state machines, the deletion will happen eventually (usually
+// less than a minute). Running executions may emit logs after DeleteStateMachine
 // API is called.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -798,6 +798,8 @@ func (c *SFN) GetActivityTaskRequest(input *GetActivityTaskInput) (req *request.
 // type is needed.) The maximum time the service holds on to the request before
 // responding is 60 seconds. If no task is available within 60 seconds, the
 // poll returns a taskToken with a null string.
+//
+// This API action isn't logged in CloudTrail.
 //
 // Workers should set their client side socket timeout to at least 65 seconds
 // (5 seconds higher than the maximum time the service may hold the poll request).
@@ -1845,11 +1847,13 @@ func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Re
 //
 // Starts a state machine execution.
 //
-// StartExecution is idempotent. If StartExecution is called with the same name
-// and input as a running execution, the call will succeed and return the same
-// response as the original request. If the execution is closed or if the input
-// is different, it will return a 400 ExecutionAlreadyExists error. Names can
-// be reused after 90 days.
+// StartExecution is idempotent for STANDARD workflows. For a STANDARD workflow,
+// if StartExecution is called with the same name and input as a running execution,
+// the call will succeed and return the same response as the original request.
+// If the execution is closed or if the input is different, it will return a
+// 400 ExecutionAlreadyExists error. Names can be reused after 90 days.
+//
+// StartExecution is not idempotent for EXPRESS workflows.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1951,7 +1955,16 @@ func (c *SFN) StartSyncExecutionRequest(input *StartSyncExecutionInput) (req *re
 
 // StartSyncExecution API operation for AWS Step Functions.
 //
-// Starts a Synchronous Express state machine execution.
+// Starts a Synchronous Express state machine execution. StartSyncExecution
+// is not available for STANDARD workflows.
+//
+// StartSyncExecution will return a 200 OK response, even if your execution
+// fails, because the status code in the API response doesn't reflect function
+// errors. Error codes are reserved for errors that prevent your execution from
+// running, such as permissions errors, limit errors, or issues with your state
+// machine code and configuration.
+//
+// This API action isn't logged in CloudTrail.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2133,8 +2146,8 @@ func (c *SFN) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //
 // An array of key-value pairs. For more information, see Using Cost Allocation
 // Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-// in the AWS Billing and Cost Management User Guide, and Controlling Access
-// Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
+// in the Amazon Web Services Billing and Cost Management User Guide, and Controlling
+// Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
 //
 // Tags may only contain Unicode letters, digits, white space, or these symbols:
 // _ . : / = + - @.
@@ -2158,7 +2171,7 @@ func (c *SFN) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //   - TooManyTags
 //     You've exceeded the number of tags allowed for a resource. See the Limits
 //     Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
-//     in the AWS Step Functions Developer Guide.
+//     in the Step Functions Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/TagResource
 func (c *SFN) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3061,10 +3074,10 @@ func (s *CloudWatchLogsLogGroup) SetLogGroupArn(v string) *CloudWatchLogsLogGrou
 type CreateActivityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the activity to create. This name must be unique for your AWS
-	// account and region for 90 days. For more information, see Limits Related
-	// to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
-	// in the AWS Step Functions Developer Guide.
+	// The name of the activity to create. This name must be unique for your Amazon
+	// Web Services account and region for 90 days. For more information, see Limits
+	// Related to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
+	// in the Step Functions Developer Guide.
 	//
 	// A name must not contain:
 	//
@@ -3088,8 +3101,8 @@ type CreateActivityInput struct {
 	//
 	// An array of key-value pairs. For more information, see Using Cost Allocation
 	// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-	// in the AWS Billing and Cost Management User Guide, and Controlling Access
-	// Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
+	// in the Amazon Web Services Billing and Cost Management User Guide, and Controlling
+	// Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
 	//
 	// Tags may only contain Unicode letters, digits, white space, or these symbols:
 	// _ . : / = + - @.
@@ -3213,7 +3226,7 @@ type CreateStateMachineInput struct {
 	//
 	// By default, the level is set to OFF. For more information see Log Levels
 	// (https://docs.aws.amazon.com/step-functions/latest/dg/cloudwatch-log-level.html)
-	// in the AWS Step Functions User Guide.
+	// in the Step Functions User Guide.
 	LoggingConfiguration *LoggingConfiguration `locationName:"loggingConfiguration" type:"structure"`
 
 	// The name of the state machine.
@@ -3245,14 +3258,14 @@ type CreateStateMachineInput struct {
 	//
 	// An array of key-value pairs. For more information, see Using Cost Allocation
 	// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-	// in the AWS Billing and Cost Management User Guide, and Controlling Access
-	// Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
+	// in the Amazon Web Services Billing and Cost Management User Guide, and Controlling
+	// Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
 	//
 	// Tags may only contain Unicode letters, digits, white space, or these symbols:
 	// _ . : / = + - @.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// Selects whether AWS X-Ray tracing is enabled.
+	// Selects whether X-Ray tracing is enabled.
 	TracingConfiguration *TracingConfiguration `locationName:"tracingConfiguration" type:"structure"`
 
 	// Determines whether a Standard or Express state machine is created. The default
@@ -3787,7 +3800,7 @@ type DescribeExecutionOutput struct {
 	// If the execution has already ended, the date the execution stopped.
 	StopDate *time.Time `locationName:"stopDate" type:"timestamp"`
 
-	// The AWS X-Ray trace header that was passed to the execution.
+	// The X-Ray trace header that was passed to the execution.
 	TraceHeader *string `locationName:"traceHeader" type:"string"`
 }
 
@@ -3957,7 +3970,7 @@ type DescribeStateMachineForExecutionOutput struct {
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
 
-	// Selects whether AWS X-Ray tracing is enabled.
+	// Selects whether X-Ray tracing is enabled.
 	TracingConfiguration *TracingConfiguration `locationName:"tracingConfiguration" type:"structure"`
 
 	// The date and time the state machine associated with an execution was updated.
@@ -4119,7 +4132,7 @@ type DescribeStateMachineOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role used when creating this state
 	// machine. (The IAM role maintains security by granting Step Functions access
-	// to AWS resources.)
+	// to Amazon Web Services resources.)
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
@@ -4132,7 +4145,7 @@ type DescribeStateMachineOutput struct {
 	// The current status of the state machine.
 	Status *string `locationName:"status" type:"string" enum:"StateMachineStatus"`
 
-	// Selects whether AWS X-Ray tracing is enabled.
+	// Selects whether X-Ray tracing is enabled.
 	TracingConfiguration *TracingConfiguration `locationName:"tracingConfiguration" type:"structure"`
 
 	// The type of the state machine (STANDARD or EXPRESS).
@@ -4623,7 +4636,7 @@ type ExecutionStartedEventDetails struct {
 	// Contains details about the input for an execution history event.
 	InputDetails *HistoryEventExecutionDataDetails `locationName:"inputDetails" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the IAM role used for executing AWS Lambda
+	// The Amazon Resource Name (ARN) of the IAM role used for executing Lambda
 	// tasks.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 }
@@ -5057,24 +5070,24 @@ type HistoryEvent struct {
 	// Id is a required field
 	Id *int64 `locationName:"id" type:"long" required:"true"`
 
-	// Contains details about a lambda function that failed during an execution.
+	// Contains details about a Lambda function that failed during an execution.
 	LambdaFunctionFailedEventDetails *LambdaFunctionFailedEventDetails `locationName:"lambdaFunctionFailedEventDetails" type:"structure"`
 
-	// Contains details about a failed lambda function schedule event that occurred
+	// Contains details about a failed Lambda function schedule event that occurred
 	// during an execution.
 	LambdaFunctionScheduleFailedEventDetails *LambdaFunctionScheduleFailedEventDetails `locationName:"lambdaFunctionScheduleFailedEventDetails" type:"structure"`
 
-	// Contains details about a lambda function scheduled during an execution.
+	// Contains details about a Lambda function scheduled during an execution.
 	LambdaFunctionScheduledEventDetails *LambdaFunctionScheduledEventDetails `locationName:"lambdaFunctionScheduledEventDetails" type:"structure"`
 
 	// Contains details about a lambda function that failed to start during an execution.
 	LambdaFunctionStartFailedEventDetails *LambdaFunctionStartFailedEventDetails `locationName:"lambdaFunctionStartFailedEventDetails" type:"structure"`
 
-	// Contains details about a lambda function that terminated successfully during
+	// Contains details about a Lambda function that terminated successfully during
 	// an execution.
 	LambdaFunctionSucceededEventDetails *LambdaFunctionSucceededEventDetails `locationName:"lambdaFunctionSucceededEventDetails" type:"structure"`
 
-	// Contains details about a lambda function timeout that occurred during an
+	// Contains details about a Lambda function timeout that occurred during an
 	// execution.
 	LambdaFunctionTimedOutEventDetails *LambdaFunctionTimedOutEventDetails `locationName:"lambdaFunctionTimedOutEventDetails" type:"structure"`
 
@@ -5916,7 +5929,7 @@ func (s *InvalidTracingConfiguration) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains details about a lambda function that failed during an execution.
+// Contains details about a Lambda function that failed during an execution.
 type LambdaFunctionFailedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -5965,7 +5978,7 @@ func (s *LambdaFunctionFailedEventDetails) SetError(v string) *LambdaFunctionFai
 	return s
 }
 
-// Contains details about a failed lambda function schedule event that occurred
+// Contains details about a failed Lambda function schedule event that occurred
 // during an execution.
 type LambdaFunctionScheduleFailedEventDetails struct {
 	_ struct{} `type:"structure"`
@@ -6015,11 +6028,11 @@ func (s *LambdaFunctionScheduleFailedEventDetails) SetError(v string) *LambdaFun
 	return s
 }
 
-// Contains details about a lambda function scheduled during an execution.
+// Contains details about a Lambda function scheduled during an execution.
 type LambdaFunctionScheduledEventDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The JSON data input to the lambda function. Length constraints apply to the
+	// The JSON data input to the Lambda function. Length constraints apply to the
 	// payload size, and are expressed as bytes in UTF-8 encoding.
 	//
 	// Input is a sensitive parameter and its value will be
@@ -6030,12 +6043,15 @@ type LambdaFunctionScheduledEventDetails struct {
 	// Contains details about input for an execution history event.
 	InputDetails *HistoryEventExecutionDataDetails `locationName:"inputDetails" type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the scheduled lambda function.
+	// The Amazon Resource Name (ARN) of the scheduled Lambda function.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The maximum allowed duration of the lambda function.
+	// The credentials that Step Functions uses for the task.
+	TaskCredentials *TaskCredentials `locationName:"taskCredentials" type:"structure"`
+
+	// The maximum allowed duration of the Lambda function.
 	TimeoutInSeconds *int64 `locationName:"timeoutInSeconds" type:"long"`
 }
 
@@ -6072,6 +6088,12 @@ func (s *LambdaFunctionScheduledEventDetails) SetInputDetails(v *HistoryEventExe
 // SetResource sets the Resource field's value.
 func (s *LambdaFunctionScheduledEventDetails) SetResource(v string) *LambdaFunctionScheduledEventDetails {
 	s.Resource = &v
+	return s
+}
+
+// SetTaskCredentials sets the TaskCredentials field's value.
+func (s *LambdaFunctionScheduledEventDetails) SetTaskCredentials(v *TaskCredentials) *LambdaFunctionScheduledEventDetails {
+	s.TaskCredentials = v
 	return s
 }
 
@@ -6130,12 +6152,12 @@ func (s *LambdaFunctionStartFailedEventDetails) SetError(v string) *LambdaFuncti
 	return s
 }
 
-// Contains details about a lambda function that successfully terminated during
+// Contains details about a Lambda function that successfully terminated during
 // an execution.
 type LambdaFunctionSucceededEventDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The JSON data output by the lambda function. Length constraints apply to
+	// The JSON data output by the Lambda function. Length constraints apply to
 	// the payload size, and are expressed as bytes in UTF-8 encoding.
 	//
 	// Output is a sensitive parameter and its value will be
@@ -6177,7 +6199,7 @@ func (s *LambdaFunctionSucceededEventDetails) SetOutputDetails(v *HistoryEventEx
 	return s
 }
 
-// Contains details about a lambda function timeout that occurred during an
+// Contains details about a Lambda function timeout that occurred during an
 // execution.
 type LambdaFunctionTimedOutEventDetails struct {
 	_ struct{} `type:"structure"`
@@ -6661,7 +6683,7 @@ type LogDestination struct {
 
 	// An object describing a CloudWatch log group. For more information, see AWS::Logs::LogGroup
 	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html)
-	// in the AWS CloudFormation User Guide.
+	// in the CloudFormation User Guide.
 	CloudWatchLogsLogGroup *CloudWatchLogsLogGroup `locationName:"cloudWatchLogsLogGroup" type:"structure"`
 }
 
@@ -7263,10 +7285,10 @@ type StartExecutionInput struct {
 	// String and GoString methods.
 	Input *string `locationName:"input" type:"string" sensitive:"true"`
 
-	// The name of the execution. This name must be unique for your AWS account,
-	// region, and state machine for 90 days. For more information, see Limits Related
-	// to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
-	// in the AWS Step Functions Developer Guide.
+	// The name of the execution. This name must be unique for your Amazon Web Services
+	// account, region, and state machine for 90 days. For more information, see
+	// Limits Related to State Machine Executions (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions)
+	// in the Step Functions Developer Guide.
 	//
 	// A name must not contain:
 	//
@@ -7289,8 +7311,8 @@ type StartExecutionInput struct {
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
 
-	// Passes the AWS X-Ray trace header. The trace header can also be passed in
-	// the request payload.
+	// Passes the X-Ray trace header. The trace header can also be passed in the
+	// request payload.
 	TraceHeader *string `locationName:"traceHeader" type:"string"`
 }
 
@@ -7425,8 +7447,8 @@ type StartSyncExecutionInput struct {
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
 
-	// Passes the AWS X-Ray trace header. The trace header can also be passed in
-	// the request payload.
+	// Passes the X-Ray trace header. The trace header can also be passed in the
+	// request payload.
 	TraceHeader *string `locationName:"traceHeader" type:"string"`
 }
 
@@ -7563,7 +7585,7 @@ type StartSyncExecutionOutput struct {
 	// StopDate is a required field
 	StopDate *time.Time `locationName:"stopDate" type:"timestamp" required:"true"`
 
-	// The AWS X-Ray trace header that was passed to the execution.
+	// The X-Ray trace header that was passed to the execution.
 	TraceHeader *string `locationName:"traceHeader" type:"string"`
 }
 
@@ -8312,8 +8334,8 @@ func (s *StopExecutionOutput) SetStopDate(v time.Time) *StopExecutionOutput {
 //
 // An array of key-value pairs. For more information, see Using Cost Allocation
 // Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-// in the AWS Billing and Cost Management User Guide, and Controlling Access
-// Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
+// in the Amazon Web Services Billing and Cost Management User Guide, and Controlling
+// Access Using IAM Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html).
 //
 // Tags may only contain Unicode letters, digits, white space, or these symbols:
 // _ . : / = + - @.
@@ -8468,6 +8490,39 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains details about the credentials that Step Functions uses for a task.
+type TaskCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of an IAM role that Step Functions assumes for the task. The role
+	// can allow cross-account access to resources.
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskCredentials) GoString() string {
+	return s.String()
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TaskCredentials) SetRoleArn(v string) *TaskCredentials {
+	s.RoleArn = &v
+	return s
+}
+
 type TaskDoesNotExist struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8549,12 +8604,12 @@ type TaskFailedEventDetails struct {
 	// String and GoString methods.
 	Error *string `locationName:"error" type:"string" sensitive:"true"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -8624,15 +8679,18 @@ type TaskScheduledEventDetails struct {
 	// Region is a required field
 	Region *string `locationName:"region" min:"1" type:"string" required:"true"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
+
+	// The credentials that Step Functions uses for the task.
+	TaskCredentials *TaskCredentials `locationName:"taskCredentials" type:"structure"`
 
 	// The maximum allowed duration of the task.
 	TimeoutInSeconds *int64 `locationName:"timeoutInSeconds" type:"long"`
@@ -8686,6 +8744,12 @@ func (s *TaskScheduledEventDetails) SetResourceType(v string) *TaskScheduledEven
 	return s
 }
 
+// SetTaskCredentials sets the TaskCredentials field's value.
+func (s *TaskScheduledEventDetails) SetTaskCredentials(v *TaskCredentials) *TaskScheduledEventDetails {
+	s.TaskCredentials = v
+	return s
+}
+
 // SetTimeoutInSeconds sets the TimeoutInSeconds field's value.
 func (s *TaskScheduledEventDetails) SetTimeoutInSeconds(v int64) *TaskScheduledEventDetails {
 	s.TimeoutInSeconds = &v
@@ -8710,12 +8774,12 @@ type TaskStartFailedEventDetails struct {
 	// String and GoString methods.
 	Error *string `locationName:"error" type:"string" sensitive:"true"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -8767,12 +8831,12 @@ func (s *TaskStartFailedEventDetails) SetResourceType(v string) *TaskStartFailed
 type TaskStartedEventDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -8826,12 +8890,12 @@ type TaskSubmitFailedEventDetails struct {
 	// String and GoString methods.
 	Error *string `locationName:"error" type:"string" sensitive:"true"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -8894,12 +8958,12 @@ type TaskSubmittedEventDetails struct {
 	// Contains details about the output of an execution history event.
 	OutputDetails *HistoryEventExecutionDataDetails `locationName:"outputDetails" type:"structure"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -8963,12 +9027,12 @@ type TaskSucceededEventDetails struct {
 	// Contains details about the output of an execution history event.
 	OutputDetails *HistoryEventExecutionDataDetails `locationName:"outputDetails" type:"structure"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -9097,12 +9161,12 @@ type TaskTimedOutEventDetails struct {
 	// String and GoString methods.
 	Error *string `locationName:"error" type:"string" sensitive:"true"`
 
-	// The service name of the resource in a task state.
+	// The action of the resource called by a task state.
 	//
 	// Resource is a required field
 	Resource *string `locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The action of the resource called by a task state.
+	// The service name of the resource in a task state.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -9152,7 +9216,7 @@ func (s *TaskTimedOutEventDetails) SetResourceType(v string) *TaskTimedOutEventD
 
 // You've exceeded the number of tags allowed for a resource. See the Limits
 // Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
-// in the AWS Step Functions Developer Guide.
+// in the Step Functions Developer Guide.
 type TooManyTags struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9218,12 +9282,12 @@ func (s *TooManyTags) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Selects whether or not the state machine's AWS X-Ray tracing is enabled.
-// Default is false
+// Selects whether or not the state machine's X-Ray tracing is enabled. Default
+// is false
 type TracingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// When set to true, AWS X-Ray tracing is enabled.
+	// When set to true, X-Ray tracing is enabled.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 }
 
@@ -9358,7 +9422,7 @@ type UpdateStateMachineInput struct {
 	// StateMachineArn is a required field
 	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
 
-	// Selects whether AWS X-Ray tracing is enabled.
+	// Selects whether X-Ray tracing is enabled.
 	TracingConfiguration *TracingConfiguration `locationName:"tracingConfiguration" type:"structure"`
 }
 

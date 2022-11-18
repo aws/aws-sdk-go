@@ -6289,6 +6289,9 @@ type As2ConnectorConfig struct {
 	Compression *string `type:"string" enum:"CompressionEnum"`
 
 	// The algorithm that is used to encrypt the file.
+	//
+	// You can only specify NONE if the URL for your connector uses HTTPS. This
+	// ensures that no traffic is sent in clear text.
 	EncryptionAlgorithm *string `type:"string" enum:"EncryptionAlg"`
 
 	// A unique identifier for the AS2 local profile.
@@ -6306,7 +6309,7 @@ type As2ConnectorConfig struct {
 
 	// The signing algorithm for the MDN response.
 	//
-	// If set to DEFAULT (or not set at all), the value for SigningAlogorithm is
+	// If set to DEFAULT (or not set at all), the value for SigningAlgorithm is
 	// used.
 	MdnSigningAlgorithm *string `type:"string" enum:"MdnSigningAlg"`
 
@@ -7535,10 +7538,10 @@ type CreateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -7816,7 +7819,17 @@ type CreateUserInput struct {
 	// The public portion of the Secure Shell (SSH) key used to authenticate the
 	// user to the server.
 	//
+	// The three standard SSH public key format elements are <key type>, <body base64>,
+	// and an optional <comment>, with spaces between each element.
+	//
 	// Transfer Family accepts RSA, ECDSA, and ED25519 keys.
+	//
+	//    * For RSA keys, the key type is ssh-rsa.
+	//
+	//    * For ED25519 keys, the key type is ssh-ed25519.
+	//
+	//    * For ECDSA keys, the key type is either ecdsa-sha2-nistp256, ecdsa-sha2-nistp384,
+	//    or ecdsa-sha2-nistp521, depending on the size of the key you generated.
 	SshPublicKeyBody *string `type:"string"`
 
 	// Key-value pairs that can be used to group and search for users. Tags are
@@ -11227,10 +11240,10 @@ type DescribedServer struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -17899,10 +17912,10 @@ type UpdateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	//
 	// To remove an associated workflow from a server, you can provide an empty
 	// OnUpload object, as in the following example.
@@ -18386,10 +18399,10 @@ func (s *UserDetails) SetUserName(v string) *UserDetails {
 // Specifies the workflow ID for the workflow to assign and the execution role
 // that's used for executing the workflow.
 //
-// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-// can also contain a workflow ID (and execution role) for a workflow to execute
-// on partial upload. A partial upload occurs when a file is open when the session
-// disconnects.
+// In addition to a workflow to execute when a file is uploaded completely,
+// WorkflowDetails can also contain a workflow ID (and execution role) for a
+// workflow to execute on partial upload. A partial upload occurs when a file
+// is open when the session disconnects.
 type WorkflowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -18792,6 +18805,9 @@ const (
 
 	// EncryptionAlgAes256Cbc is a EncryptionAlg enum value
 	EncryptionAlgAes256Cbc = "AES256_CBC"
+
+	// EncryptionAlgNone is a EncryptionAlg enum value
+	EncryptionAlgNone = "NONE"
 )
 
 // EncryptionAlg_Values returns all elements of the EncryptionAlg enum
@@ -18800,6 +18816,7 @@ func EncryptionAlg_Values() []string {
 		EncryptionAlgAes128Cbc,
 		EncryptionAlgAes192Cbc,
 		EncryptionAlgAes256Cbc,
+		EncryptionAlgNone,
 	}
 }
 
