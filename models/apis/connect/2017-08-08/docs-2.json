@@ -397,6 +397,14 @@
         "LexV2Bot$AliasArn": "<p>The Amazon Resource Name (ARN) of the Amazon Lex V2 bot.</p>"
       }
     },
+    "AllowedAccessControlTags": {
+      "base": null,
+      "refs": {
+        "CreateSecurityProfileRequest$AllowedAccessControlTags": "<p>The list of tags that a security profile uses to restrict access to resources in Amazon Connect.</p>",
+        "SecurityProfile$AllowedAccessControlTags": "<p>The list of tags that a security profile uses to restrict access to resources in Amazon Connect.</p>",
+        "UpdateSecurityProfileRequest$AllowedAccessControlTags": "<p>The list of tags that a security profile uses to restrict access to resources in Amazon Connect.</p>"
+      }
+    },
     "AllowedMonitorCapabilities": {
       "base": null,
       "refs": {
@@ -1055,6 +1063,12 @@
     "CreateRoutingProfileResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateSecurityProfileName": {
+      "base": null,
+      "refs": {
+        "CreateSecurityProfileRequest$SecurityProfileName": "<p>The name of the security profile.</p>"
       }
     },
     "CreateSecurityProfileRequest": {
@@ -3878,7 +3892,6 @@
     "SecurityProfileName": {
       "base": null,
       "refs": {
-        "CreateSecurityProfileRequest$SecurityProfileName": "<p>The name of the security profile.</p>",
         "SecurityProfile$SecurityProfileName": "<p>The name for the security profile.</p>",
         "SecurityProfileSearchSummary$SecurityProfileName": "<p>The name of the security profile.</p>",
         "SecurityProfileSummary$Name": "<p>The name of the security profile.</p>"
@@ -3888,6 +3901,18 @@
       "base": null,
       "refs": {
         "PermissionsList$member": null
+      }
+    },
+    "SecurityProfilePolicyKey": {
+      "base": null,
+      "refs": {
+        "AllowedAccessControlTags$key": null
+      }
+    },
+    "SecurityProfilePolicyValue": {
+      "base": null,
+      "refs": {
+        "AllowedAccessControlTags$value": null
       }
     },
     "SecurityProfileSearchConditionList": {
@@ -4200,6 +4225,20 @@
     "TagResourceRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "TagRestrictedResourceList": {
+      "base": null,
+      "refs": {
+        "CreateSecurityProfileRequest$TagRestrictedResources": "<p>The list of resources that a security profile applies tag restrictions to in Amazon Connect.</p>",
+        "SecurityProfile$TagRestrictedResources": "<p>The list of resources that a security profile applies tag restrictions to in Amazon Connect.</p>",
+        "UpdateSecurityProfileRequest$TagRestrictedResources": "<p>The list of resources that a security profile applies tag restrictions to in Amazon Connect.</p>"
+      }
+    },
+    "TagRestrictedResourceName": {
+      "base": null,
+      "refs": {
+        "TagRestrictedResourceList$member": null
       }
     },
     "TagValue": {

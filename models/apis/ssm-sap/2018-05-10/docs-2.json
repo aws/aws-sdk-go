@@ -1,0 +1,608 @@
+{
+  "version": "2.0",
+  "service": "<p>This API reference provides descriptions, syntax, and other details about each of the actions and data types for AWS Systems Manager for SAP. The topic for each action shows the API request parameters and responses. </p>",
+  "operations": {
+    "DeleteResourcePermission": "<p>Removes permissions associated with the target database.</p>",
+    "DeregisterApplication": "<p>Deregister an SAP application with AWS Systems Manager for SAP. This action does not aﬀect the existing setup of your SAP workloads on Amazon EC2.</p>",
+    "GetApplication": "<p>Gets an application registered with AWS Systems Manager for SAP. It also returns the components of the application.</p>",
+    "GetComponent": "<p>Gets the component of an application registered with AWS Systems Manager for SAP.</p>",
+    "GetDatabase": "<p>Gets the SAP HANA database of an application registered with AWS Systems Manager for SAP.</p>",
+    "GetOperation": "<p>Gets the details of an operation by specifying the operation ID.</p>",
+    "GetResourcePermission": "<p>Gets permissions associated with the target database.</p>",
+    "ListApplications": "<p>Lists all the applications registered with AWS Systems Manager for SAP.</p>",
+    "ListComponents": "<p>Lists all the components registered with AWS Systems Manager for SAP.</p>",
+    "ListDatabases": "<p>Lists the SAP HANA databases of an application registered with AWS Systems Manager for SAP.</p>",
+    "ListTagsForResource": "<p>Lists all tags on an SAP HANA application and/or database registered with AWS Systems Manager for SAP.</p>",
+    "PutResourcePermission": "<p>Adds permissions to the target database.</p>",
+    "RegisterApplication": "<p>Register an SAP application with AWS Systems Manager for SAP. You must meet the following requirements before registering. </p> <p>The SAP application you want to register with AWS Systems Manager for SAP is running on Amazon EC2.</p> <p>AWS Systems Manager Agent must be setup on an Amazon EC2 instance along with the required IAM permissions.</p> <p>Amazon EC2 instance(s) must have access to the secrets created in AWS Secrets Manager to manage SAP applications and components.</p>",
+    "TagResource": "<p>Creates tag for a resource by specifying the ARN.</p>",
+    "UntagResource": "<p>Delete the tags for a resource.</p>",
+    "UpdateApplicationSettings": "<p/>"
+  },
+  "shapes": {
+    "AppRegistryArn": {
+      "base": null,
+      "refs": {
+        "Application$AppRegistryArn": "<p/>"
+      }
+    },
+    "Application": {
+      "base": "<p/>",
+      "refs": {
+        "GetApplicationOutput$Application": "<p/>",
+        "RegisterApplicationOutput$Application": "<p/>"
+      }
+    },
+    "ApplicationCredential": {
+      "base": "<p/>",
+      "refs": {
+        "ApplicationCredentialList$member": null
+      }
+    },
+    "ApplicationCredentialList": {
+      "base": null,
+      "refs": {
+        "Database$Credentials": "<p/>",
+        "RegisterApplicationInput$Credentials": "<p/>",
+        "UpdateApplicationSettingsInput$CredentialsToAddOrUpdate": "<p/>",
+        "UpdateApplicationSettingsInput$CredentialsToRemove": "<p/>"
+      }
+    },
+    "ApplicationId": {
+      "base": null,
+      "refs": {
+        "Application$Id": "<p/>",
+        "ApplicationSummary$Id": "<p/>",
+        "Component$ApplicationId": "<p/>",
+        "ComponentSummary$ApplicationId": "<p/>",
+        "Database$ApplicationId": "<p/>",
+        "DatabaseSummary$ApplicationId": "<p/>",
+        "DeregisterApplicationInput$ApplicationId": "<p/>",
+        "GetApplicationInput$ApplicationId": "<p/>",
+        "GetComponentInput$ApplicationId": "<p/>",
+        "GetDatabaseInput$ApplicationId": "<p/>",
+        "ListComponentsInput$ApplicationId": "<p/>",
+        "ListDatabasesInput$ApplicationId": "<p/>",
+        "RegisterApplicationInput$ApplicationId": "<p/>",
+        "UpdateApplicationSettingsInput$ApplicationId": "<p/>"
+      }
+    },
+    "ApplicationStatus": {
+      "base": null,
+      "refs": {
+        "Application$Status": "<p/>"
+      }
+    },
+    "ApplicationSummary": {
+      "base": "<p/>",
+      "refs": {
+        "ApplicationSummaryList$member": null
+      }
+    },
+    "ApplicationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListApplicationsOutput$Applications": "<p/>"
+      }
+    },
+    "ApplicationType": {
+      "base": null,
+      "refs": {
+        "Application$Type": "<p/>",
+        "ApplicationSummary$Type": "<p/>",
+        "RegisterApplicationInput$ApplicationType": "<p/>"
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePermissionInput$SourceResourceArn": "<p/>",
+        "DeleteResourcePermissionInput$ResourceArn": "<p/>",
+        "GetResourcePermissionInput$ResourceArn": "<p/>",
+        "Operation$ResourceArn": "<p/>",
+        "PutResourcePermissionInput$SourceResourceArn": "<p/>",
+        "PutResourcePermissionInput$ResourceArn": "<p/>"
+      }
+    },
+    "Component": {
+      "base": "<p/>",
+      "refs": {
+        "GetComponentOutput$Component": "<p/>"
+      }
+    },
+    "ComponentId": {
+      "base": null,
+      "refs": {
+        "Component$ComponentId": "<p/>",
+        "ComponentIdList$member": null,
+        "ComponentSummary$ComponentId": "<p/>",
+        "Database$ComponentId": "<p/>",
+        "DatabaseSummary$ComponentId": "<p/>",
+        "GetComponentInput$ComponentId": "<p/>",
+        "GetDatabaseInput$ComponentId": "<p/>",
+        "ListDatabasesInput$ComponentId": "<p/>"
+      }
+    },
+    "ComponentIdList": {
+      "base": null,
+      "refs": {
+        "Application$Components": "<p/>"
+      }
+    },
+    "ComponentStatus": {
+      "base": null,
+      "refs": {
+        "Component$Status": "<p/>"
+      }
+    },
+    "ComponentSummary": {
+      "base": "<p/>",
+      "refs": {
+        "ComponentSummaryList$member": null
+      }
+    },
+    "ComponentSummaryList": {
+      "base": null,
+      "refs": {
+        "ListComponentsOutput$Components": "<p/>"
+      }
+    },
+    "ComponentType": {
+      "base": null,
+      "refs": {
+        "Component$ComponentType": "<p/>",
+        "ComponentSummary$ComponentType": "<p/>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "CredentialType": {
+      "base": null,
+      "refs": {
+        "ApplicationCredential$CredentialType": "<p/>"
+      }
+    },
+    "Database": {
+      "base": "<p/>",
+      "refs": {
+        "GetDatabaseOutput$Database": "<p/>"
+      }
+    },
+    "DatabaseId": {
+      "base": null,
+      "refs": {
+        "Database$DatabaseId": "<p/>",
+        "DatabaseIdList$member": null,
+        "DatabaseSummary$DatabaseId": "<p/>",
+        "GetDatabaseInput$DatabaseId": "<p/>"
+      }
+    },
+    "DatabaseIdList": {
+      "base": null,
+      "refs": {
+        "Component$Databases": "<p/>"
+      }
+    },
+    "DatabaseName": {
+      "base": null,
+      "refs": {
+        "ApplicationCredential$DatabaseName": "<p/>"
+      }
+    },
+    "DatabaseStatus": {
+      "base": null,
+      "refs": {
+        "Database$Status": "<p/>"
+      }
+    },
+    "DatabaseSummary": {
+      "base": "<p/>",
+      "refs": {
+        "DatabaseSummaryList$member": null
+      }
+    },
+    "DatabaseSummaryList": {
+      "base": null,
+      "refs": {
+        "ListDatabasesOutput$Databases": "<p/>"
+      }
+    },
+    "DatabaseType": {
+      "base": null,
+      "refs": {
+        "Database$DatabaseType": "<p/>",
+        "DatabaseSummary$DatabaseType": "<p/>"
+      }
+    },
+    "DeleteResourcePermissionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePermissionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterApplicationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterApplicationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetApplicationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetApplicationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetComponentInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetComponentOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatabaseInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatabaseOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOperationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOperationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePermissionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePermissionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Host": {
+      "base": "<p/>",
+      "refs": {
+        "HostList$member": null
+      }
+    },
+    "HostList": {
+      "base": null,
+      "refs": {
+        "Component$Hosts": "<p/>"
+      }
+    },
+    "HostRole": {
+      "base": null,
+      "refs": {
+        "Host$HostRole": "<p/>"
+      }
+    },
+    "InstanceId": {
+      "base": null,
+      "refs": {
+        "InstanceList$member": null
+      }
+    },
+    "InstanceList": {
+      "base": null,
+      "refs": {
+        "RegisterApplicationInput$Instances": "<p/>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "Database$SQLPort": "<p/>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ListApplicationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApplicationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListComponentsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDatabasesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDatabasesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListApplicationsInput$MaxResults": "<p/>",
+        "ListComponentsInput$MaxResults": "<p/>",
+        "ListDatabasesInput$MaxResults": "<p/>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListApplicationsInput$NextToken": "<p/>",
+        "ListApplicationsOutput$NextToken": "<p/>",
+        "ListComponentsInput$NextToken": "<p/>",
+        "ListComponentsOutput$NextToken": "<p/>",
+        "ListDatabasesInput$NextToken": "<p/>",
+        "ListDatabasesOutput$NextToken": "<p/>"
+      }
+    },
+    "Operation": {
+      "base": "<p/>",
+      "refs": {
+        "GetOperationOutput$Operation": "<p/>"
+      }
+    },
+    "OperationId": {
+      "base": null,
+      "refs": {
+        "GetOperationInput$OperationId": "<p/>",
+        "Operation$Id": "<p/>",
+        "OperationIdList$member": null,
+        "RegisterApplicationOutput$OperationId": "<p/>"
+      }
+    },
+    "OperationIdList": {
+      "base": null,
+      "refs": {
+        "UpdateApplicationSettingsOutput$OperationIds": "<p/>"
+      }
+    },
+    "OperationProperties": {
+      "base": null,
+      "refs": {
+        "Operation$Properties": "<p/>"
+      }
+    },
+    "OperationStatus": {
+      "base": null,
+      "refs": {
+        "Operation$Status": "<p/>"
+      }
+    },
+    "OperationType": {
+      "base": null,
+      "refs": {
+        "Operation$Type": "<p/>"
+      }
+    },
+    "PermissionActionType": {
+      "base": null,
+      "refs": {
+        "DeleteResourcePermissionInput$ActionType": "<p/>",
+        "GetResourcePermissionInput$ActionType": "<p/>",
+        "PutResourcePermissionInput$ActionType": "<p/>"
+      }
+    },
+    "PutResourcePermissionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutResourcePermissionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterApplicationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterApplicationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResourceId": {
+      "base": null,
+      "refs": {
+        "Operation$ResourceId": "<p/>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "Operation$ResourceType": "<p/>"
+      }
+    },
+    "SAPInstanceNumber": {
+      "base": null,
+      "refs": {
+        "RegisterApplicationInput$SapInstanceNumber": "<p/>"
+      }
+    },
+    "SID": {
+      "base": null,
+      "refs": {
+        "RegisterApplicationInput$Sid": "<p/>"
+      }
+    },
+    "SecretId": {
+      "base": null,
+      "refs": {
+        "ApplicationCredential$SecretId": "<p/>"
+      }
+    },
+    "SsmSapArn": {
+      "base": null,
+      "refs": {
+        "Application$Arn": "<p/>",
+        "ApplicationSummary$Arn": "<p/>",
+        "Database$Arn": "<p/>",
+        "DatabaseSummary$Arn": "<p/>",
+        "GetApplicationInput$ApplicationArn": "<p/>",
+        "GetDatabaseInput$DatabaseArn": "<p/>",
+        "ListTagsForResourceRequest$resourceArn": "<p/>",
+        "TagResourceRequest$resourceArn": "<p/>",
+        "UntagResourceRequest$resourceArn": "<p/>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "Application$StatusMessage": "<p/>",
+        "Component$PrimaryHost": "<p/>",
+        "ConflictException$Message": null,
+        "Database$DatabaseName": "<p/>",
+        "Database$PrimaryHost": "<p/>",
+        "DeleteResourcePermissionOutput$Policy": "<p/>",
+        "GetResourcePermissionOutput$Policy": "<p/>",
+        "Host$HostName": "<p/>",
+        "Host$HostIp": "<p/>",
+        "Host$InstanceId": "<p/>",
+        "InternalServerException$Message": null,
+        "Operation$StatusMessage": "<p/>",
+        "OperationProperties$key": null,
+        "OperationProperties$value": null,
+        "PutResourcePermissionOutput$Policy": "<p/>",
+        "ResourceNotFoundException$Message": null,
+        "UpdateApplicationSettingsOutput$Message": "<p/>",
+        "ValidationException$Message": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>Adds/updates or removes credentials for applications registered with AWS Systems Manager for SAP.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "ApplicationSummary$Tags": "<p/>",
+        "ComponentSummary$Tags": "<p/>",
+        "DatabaseSummary$Tags": "<p/>",
+        "GetApplicationOutput$Tags": "<p/>",
+        "GetDatabaseOutput$Tags": "<p/>",
+        "ListTagsForResourceResponse$tags": "<p/>",
+        "RegisterApplicationInput$Tags": "<p/>",
+        "TagResourceRequest$tags": "<p/>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "Application$LastUpdated": "<p/>",
+        "Component$LastUpdated": "<p/>",
+        "Database$LastUpdated": "<p/>",
+        "Operation$StartTime": "<p/>",
+        "Operation$EndTime": "<p/>",
+        "Operation$LastUpdatedTime": "<p/>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApplicationSettingsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApplicationSettingsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    }
+  }
+}

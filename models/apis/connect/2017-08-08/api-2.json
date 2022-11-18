@@ -2756,6 +2756,12 @@
       "max":100,
       "min":1
     },
+    "AllowedAccessControlTags":{
+      "type":"map",
+      "key":{"shape":"SecurityProfilePolicyKey"},
+      "value":{"shape":"SecurityProfilePolicyValue"},
+      "max":2
+    },
     "AllowedMonitorCapabilities":{
       "type":"list",
       "member":{"shape":"MonitorCapability"},
@@ -3609,6 +3615,12 @@
         "RoutingProfileId":{"shape":"RoutingProfileId"}
       }
     },
+    "CreateSecurityProfileName":{
+      "type":"string",
+      "max":127,
+      "min":1,
+      "pattern":"^[ a-zA-Z0-9_@-]+$"
+    },
     "CreateSecurityProfileRequest":{
       "type":"structure",
       "required":[
@@ -3616,7 +3628,7 @@
         "InstanceId"
       ],
       "members":{
-        "SecurityProfileName":{"shape":"SecurityProfileName"},
+        "SecurityProfileName":{"shape":"CreateSecurityProfileName"},
         "Description":{"shape":"SecurityProfileDescription"},
         "Permissions":{"shape":"PermissionsList"},
         "InstanceId":{
@@ -3624,7 +3636,9 @@
           "location":"uri",
           "locationName":"InstanceId"
         },
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "AllowedAccessControlTags":{"shape":"AllowedAccessControlTags"},
+        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"}
       }
     },
     "CreateSecurityProfileResponse":{
@@ -7956,7 +7970,9 @@
         "Arn":{"shape":"ARN"},
         "SecurityProfileName":{"shape":"SecurityProfileName"},
         "Description":{"shape":"SecurityProfileDescription"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "AllowedAccessControlTags":{"shape":"AllowedAccessControlTags"},
+        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"}
       }
     },
     "SecurityProfileDescription":{
@@ -7975,6 +7991,15 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "SecurityProfilePolicyKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "SecurityProfilePolicyValue":{
+      "type":"string",
+      "max":256
     },
     "SecurityProfileSearchConditionList":{
       "type":"list",
@@ -8356,6 +8381,16 @@
         },
         "tags":{"shape":"TagMap"}
       }
+    },
+    "TagRestrictedResourceList":{
+      "type":"list",
+      "member":{"shape":"TagRestrictedResourceName"},
+      "max":10
+    },
+    "TagRestrictedResourceName":{
+      "type":"string",
+      "max":128,
+      "min":1
     },
     "TagValue":{
       "type":"string",
@@ -9200,7 +9235,9 @@
           "shape":"InstanceId",
           "location":"uri",
           "locationName":"InstanceId"
-        }
+        },
+        "AllowedAccessControlTags":{"shape":"AllowedAccessControlTags"},
+        "TagRestrictedResources":{"shape":"TagRestrictedResourceList"}
       }
     },
     "UpdateTaskTemplateRequest":{

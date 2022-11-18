@@ -1377,9 +1377,9 @@
     "CrawlerConfiguration": {
       "base": null,
       "refs": {
-        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude\">Include and Exclude Patterns</a>.</p>",
-        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
+        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Setting crawler configuration options</a>.</p>",
+        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Setting crawler configuration options</a>.</p>",
+        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Setting crawler configuration options</a>.</p>"
       }
     },
     "CrawlerHistory": {
@@ -2348,6 +2348,12 @@
       "base": null,
       "refs": {
         "WorkflowGraph$Edges": "<p>A list of all the directed connections between the nodes belonging to the workflow.</p>"
+      }
+    },
+    "EnableAdditionalMetadata": {
+      "base": null,
+      "refs": {
+        "JdbcTarget$EnableAdditionalMetadata": "<p>Specify a value of <code>RAWTYPES</code> or <code>COMMENTS</code> to enable additional metadata in table responses. <code>RAWTYPES</code> provides the native-level datatype. <code>COMMENTS</code> provides comments associated with a column or table in the database.</p> <p>If you do not need additional metadata, keep the field empty.</p>"
       }
     },
     "EnableHybridValues": {
@@ -3879,6 +3885,12 @@
       "base": null,
       "refs": {
         "JDBCConnectorOptions$DataTypeMapping": "<p>Custom data type mapping that builds a mapping from a JDBC data type to an Glue data type. For example, the option <code>\"dataTypeMapping\":{\"FLOAT\":\"STRING\"}</code> maps data fields of JDBC type <code>FLOAT</code> into the Java <code>String</code> type by calling the <code>ResultSet.getString()</code> method of the driver, and uses it to build the Glue record. The <code>ResultSet</code> object is implemented by each driver, so the behavior is specific to the driver you use. Refer to the documentation for your JDBC driver to understand how the driver performs the conversions.</p>"
+      }
+    },
+    "JdbcMetadataEntry": {
+      "base": null,
+      "refs": {
+        "EnableAdditionalMetadata$member": null
       }
     },
     "JdbcTarget": {

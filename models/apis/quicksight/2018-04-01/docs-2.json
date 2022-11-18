@@ -21,6 +21,7 @@
     "CreateTheme": "<p>Creates a theme.</p> <p>A <i>theme</i> is set of configuration options for color and layout. Themes apply to analyses and dashboards. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "CreateThemeAlias": "<p>Creates a theme alias for a theme.</p>",
     "DeleteAccountCustomization": "<p>Deletes all Amazon QuickSight customizations in this Amazon Web Services Region for the specified Amazon Web Services account and Amazon QuickSight namespace.</p>",
+    "DeleteAccountSubscription": "<p>Use the <code>DeleteAccountSubscription</code> operation to delete an Amazon QuickSight account. This operation will result in an error message if you have configured your account termination protection settings to <code>True</code>. To change this setting and delete your account, call the <code>UpdateAccountSettings</code> API and set the value of the <code>TerminationProtectionEnabled</code> parameter to <code>False</code>, then make another call to the <code>DeleteAccountSubscription</code> API.</p>",
     "DeleteAnalysis": "<p>Deletes an analysis from Amazon QuickSight. You can optionally include a recovery window during which you can restore the analysis. If you don't specify a recovery window value, the operation defaults to 30 days. Amazon QuickSight attaches a <code>DeletionTime</code> stamp to the response that specifies the end of the recovery window. At the end of the recovery window, Amazon QuickSight deletes the analysis permanently.</p> <p>At any time before recovery window ends, you can use the <code>RestoreAnalysis</code> API operation to remove the <code>DeletionTime</code> stamp and cancel the deletion of the analysis. The analysis remains visible in the API until it's deleted, so you can describe it but you can't make a template from it.</p> <p>An analysis that's scheduled for deletion isn't accessible in the Amazon QuickSight console. To access it in the console, restore it. Deleting an analysis doesn't delete the dashboards that you publish from it.</p>",
     "DeleteDashboard": "<p>Deletes a dashboard.</p>",
     "DeleteDataSet": "<p>Deletes a dataset.</p>",
@@ -39,7 +40,7 @@
     "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
     "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions and Amazon Web Services Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region. </p> </li> <li> <p> <code>Amazon Web Services Region</code> - In each Amazon Web Services Region where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region, you change your Region settings. If you're using the CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region. To apply them in other Amazon Web Services Regions, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region where you want to apply the same customizations. </p> </li> </ul>",
     "DescribeAccountSettings": "<p>Describes the settings that were used when your Amazon QuickSight subscription was first created in this Amazon Web Services account.</p>",
-    "DescribeAccountSubscription": "<p>Use the DescribeAccountSubscription operation to receive a description of a Amazon QuickSight account's subscription. A successful API call returns an <code>AccountInfo</code> object that includes an account's name, subscription status, authentication type, edition, and notification email address.</p>",
+    "DescribeAccountSubscription": "<p>Use the DescribeAccountSubscription operation to receive a description of an Amazon QuickSight account's subscription. A successful API call returns an <code>AccountInfo</code> object that includes an account's name, subscription status, authentication type, edition, and notification email address.</p>",
     "DescribeAnalysis": "<p>Provides a summary of the metadata for an analysis.</p>",
     "DescribeAnalysisPermissions": "<p>Provides the read and write permissions for an analysis.</p>",
     "DescribeDashboard": "<p>Provides a summary for a dashboard.</p>",
@@ -94,6 +95,8 @@
     "RestoreAnalysis": "<p>Restores an analysis.</p>",
     "SearchAnalyses": "<p>Searches for analyses that belong to the user specified in the filter.</p> <note> <p>This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.</p> </note>",
     "SearchDashboards": "<p>Searches for dashboards that belong to a user. </p> <note> <p>This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.</p> </note>",
+    "SearchDataSets": "<p>Use the <code>SearchDataSets</code> operation to search for datasets that belong to an account.</p>",
+    "SearchDataSources": "<p>Use the <code>SearchDataSources</code> operation to search for data sources that belong to an account.</p>",
     "SearchFolders": "<p>Searches the subfolders in a folder.</p>",
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
@@ -240,7 +243,7 @@
     "AnalysisFilterAttribute": {
       "base": null,
       "refs": {
-        "AnalysisSearchFilter$Name": "<p>The name of the value that you want to use as a filter, for example <code>\"Name\": \"QUICKSIGHT_USER\"</code>.</p>"
+        "AnalysisSearchFilter$Name": "<p>The name of the value that you want to use as a filter, for example <code>\"Name\": \"QUICKSIGHT_OWNER\"</code>.</p> <p>Valid values are defined as follows:</p> <ul> <li> <p> <code>QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any analyses with that ARN listed as one of the analysis' owners or viewers are returned. Implicit permissions from folders or groups are considered. </p> </li> <li> <p> <code>QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any analyses with that ARN listed as one of the owners of the analyses are returned. Implicit permissions from folders or groups are considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_SOLE_OWNER</code>: Provide an ARN of a user or group, and any analyses with that ARN listed as the only owner of the analysis are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any analyses with that ARN listed as one of the owners of the analyses are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any analyses with that ARN listed as one of the owners or viewers of the analyses are returned. Implicit permissions from folders or groups are not considered. </p> </li> <li> <p> <code>ANALYSIS_NAME</code>: Any analyses whose names have a substring match to this value will be returned.</p> </li> </ul>"
       }
     },
     "AnalysisName": {
@@ -308,6 +311,12 @@
         "GenerateEmbedUrlForAnonymousUserRequest$ExperienceConfiguration": "<p>The configuration of the experience that you are embedding.</p>"
       }
     },
+    "AnonymousUserQSearchBarEmbeddingConfiguration": {
+      "base": "<p>The settings that you want to use with the Q search bar.</p>",
+      "refs": {
+        "AnonymousUserEmbeddingExperienceConfiguration$QSearchBar": "<p>The Q search bar that you want to use for anonymous user embedding.</p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
@@ -353,6 +362,7 @@
         "DataSetReference$DataSetArn": "<p>Dataset Amazon Resource Name (ARN).</p>",
         "DataSetSummary$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DataSource$Arn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
+        "DataSourceSummary$Arn": "<p>The arn of the datasource.</p>",
         "DeleteAnalysisResponse$Arn": "<p>The Amazon Resource Name (ARN) of the deleted analysis.</p>",
         "DeleteDashboardResponse$Arn": "<p>The Secure Socket Layer (SSL) properties that apply for the resource.</p>",
         "DeleteDataSetResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
@@ -373,6 +383,7 @@
         "DescribeThemePermissionsResponse$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
         "Folder$Arn": "<p>The Amazon Resource Name (ARN) for the folder.</p>",
         "FolderSummary$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
+        "GenerateEmbedUrlForAnonymousUserResponse$AnonymousUserArn": "<p>The Amazon Resource Name (ARN) to use for the anonymous Amazon QuickSight user.</p>",
         "GenerateEmbedUrlForRegisteredUserRequest$UserArn": "<p>The Amazon Resource Name for the registered user.</p>",
         "GetDashboardEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:</p> <ul> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>IAM users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation.</p> </li> </ul> <p>Omit this parameter for users in the third group – IAM users and IAM role-based sessions.</p>",
         "GetSessionEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any type of Amazon QuickSight users in your account (readers, authors, or admins). They need to be authenticated as one of the following:</p> <ol> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>Identity and Access Management (IAM) users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation</p> </li> </ol> <p>Omit this parameter for users in the third group, IAM users and IAM role-based sessions.</p>",
@@ -497,6 +508,7 @@
         "CreateThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme for the new theme alias.</p>",
         "CreateThemeRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to store the new theme. </p>",
         "DeleteAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete Amazon QuickSight customizations from in this Amazon Web Services Region.</p>",
+        "DeleteAccountSubscriptionRequest$AwsAccountId": "<p>The Amazon Web Services account ID of the account that you want to delete.</p>",
         "DeleteAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to delete an analysis.</p>",
         "DeleteDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're deleting.</p>",
         "DeleteDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -571,6 +583,8 @@
         "RestoreAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis.</p>",
         "SearchAnalysesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analyses that you're searching for.</p>",
         "SearchDashboardsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the user whose dashboards you're searching for. </p>",
+        "SearchDataSetsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "SearchDataSourcesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "SearchFoldersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "SearchGroupsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "UpdateAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
@@ -617,6 +631,7 @@
       "base": null,
       "refs": {
         "AccountSettings$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account. For more information about turning on public sharing, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html\">UpdatePublicSharingSettings</a>.</p>",
+        "AccountSettings$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubsctiption</code> request. A <code>False</code> value will allow the ccount to be deleted. </p>",
         "DataSetSummary$RowLevelPermissionTagConfigurationApplied": "<p>Whether or not the row level permission tags are applied.</p>",
         "DataSetSummary$ColumnLevelPermissionRulesApplied": "<p>A value that indicates if the dataset has column level permission configured.</p>",
         "DataSetUsageConfiguration$DisableUseAsDirectQuerySource": "<p>An option that controls whether a child dataset of a direct query can use this dataset as a source.</p>",
@@ -627,6 +642,7 @@
         "JoinKeyProperties$UniqueKey": "<p>A value that indicates that a row in a table is uniquely identified by the columns in a join key. This is used by Amazon QuickSight to optimize query performance.</p>",
         "SignupResponse$IAMUser": "<p>A Boolean that is <code>TRUE</code> if the Amazon QuickSight uses IAM as an authentication method.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
+        "UpdateAccountSettingsRequest$TerminationProtectionEnabled": "<p>A boolean value that determines whether or not an Amazon QuickSight account can be deleted. A <code>True</code> value doesn't allow the account to be deleted and results in an error message if a user tries to make a <code>DeleteAccountSubscription</code> request. A <code>False</code> value will allow the account to be deleted.</p>",
         "UpdatePublicSharingSettingsRequest$PublicSharingEnabled": "<p>A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account.</p>",
         "UpdateUserRequest$UnapplyCustomPermissions": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>",
         "UploadSettings$ContainsHeader": "<p>Whether the file has a header row, or the files each have a header row.</p>",
@@ -1082,7 +1098,7 @@
     "DashboardFilterAttribute": {
       "base": null,
       "refs": {
-        "DashboardSearchFilter$Name": "<p>The name of the value that you want to use as a filter, for example, <code>\"Name\": \"QUICKSIGHT_USER\"</code>. </p>"
+        "DashboardSearchFilter$Name": "<p>The name of the value that you want to use as a filter, for example, <code>\"Name\": \"QUICKSIGHT_OWNER\"</code>.</p> <p>Valid values are defined as follows:</p> <ul> <li> <p> <code>QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any dashboards with that ARN listed as one of the dashboards's owners or viewers are returned. Implicit permissions from folders or groups are considered.</p> </li> <li> <p> <code>QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any dashboards with that ARN listed as one of the owners of the dashboards are returned. Implicit permissions from folders or groups are considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_SOLE_OWNER</code>: Provide an ARN of a user or group, and any dashboards with that ARN listed as the only owner of the dashboard are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any dashboards with that ARN listed as one of the owners of the dashboards are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any dashboards with that ARN listed as one of the owners or viewers of the dashboards are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DASHBOARD_NAME</code>: Any dashboards whose names have a substring match to this value will be returned.</p> </li> </ul>"
       }
     },
     "DashboardName": {
@@ -1201,6 +1217,12 @@
         "TemplateVersion$DataSetConfigurations": "<p>Schema of the dataset identified by the placeholder. Any dashboard created from this template should be bound to new datasets matching the same schema described through this API operation.</p>"
       }
     },
+    "DataSetFilterAttribute": {
+      "base": null,
+      "refs": {
+        "DataSetSearchFilter$Name": "<p>The name of the value that you want to use as a filter, for example, <code>\"Name\": \"QUICKSIGHT_OWNER\"</code>.</p> <p>Valid values are defined as follows:</p> <ul> <li> <p> <code>QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any datasets with that ARN listed as one of the dataset owners or viewers are returned. Implicit permissions from folders or groups are considered.</p> </li> <li> <p> <code>QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any datasets with that ARN listed as one of the owners of the dataset are returned. Implicit permissions from folders or groups are considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_SOLE_OWNER</code>: Provide an ARN of a user or group, and any datasets with that ARN listed as the only owner of the dataset are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any datasets with that ARN listed as one of the owners if the dataset are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any datasets with that ARN listed as one of the owners or viewers of the dataset are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DATASET_NAME</code>: Any datasets whose names have a substring match to this value will be returned.</p> </li> </ul>"
+      }
+    },
     "DataSetImportMode": {
       "base": null,
       "refs": {
@@ -1236,6 +1258,18 @@
         "DataSetConfiguration$DataSetSchema": "<p>Dataset schema.</p>"
       }
     },
+    "DataSetSearchFilter": {
+      "base": "<p>A filter that you apply when searching for datasets.</p>",
+      "refs": {
+        "DataSetSearchFilterList$member": null
+      }
+    },
+    "DataSetSearchFilterList": {
+      "base": null,
+      "refs": {
+        "SearchDataSetsRequest$Filters": "<p>The filters to apply to the search.</p>"
+      }
+    },
     "DataSetSummary": {
       "base": "<p>Dataset summary.</p>",
       "refs": {
@@ -1245,7 +1279,8 @@
     "DataSetSummaryList": {
       "base": null,
       "refs": {
-        "ListDataSetsResponse$DataSetSummaries": "<p>The list of dataset summaries.</p>"
+        "ListDataSetsResponse$DataSetSummaries": "<p>The list of dataset summaries.</p>",
+        "SearchDataSetsResponse$DataSetSummaries": "<p>A <code>DataSetSummaries</code> object that returns a summary of a dataset.</p>"
       }
     },
     "DataSetUsageConfiguration": {
@@ -1282,6 +1317,12 @@
         "DataSourceErrorInfo$Type": "<p>Error type.</p>"
       }
     },
+    "DataSourceFilterAttribute": {
+      "base": null,
+      "refs": {
+        "DataSourceSearchFilter$Name": "<p>The name of the value that you want to use as a filter, for example, <code>\"Name\": \"DIRECT_QUICKSIGHT_OWNER\"</code>.</p> <p>Valid values are defined as follows:</p> <ul> <li> <p> <code>DIRECT_QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any data sources with that ARN listed as one of the owners or viewers of the data sources are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any data sources with that ARN listed as one of the owners if the data source are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_SOLE_OWNER</code>: Provide an ARN of a user or group, and any data sources with that ARN listed as the only owner of the data source are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DATASOURCE_NAME</code>: Any data sources whose names have a substring match to the provided value are returned.</p> </li> </ul>"
+      }
+    },
     "DataSourceList": {
       "base": null,
       "refs": {
@@ -1304,11 +1345,36 @@
         "DataSource$AlternateDataSourceParameters": "<p>A set of alternate data source parameters that you want to share for the credentials stored with this data source. The credentials are applied in tandem with the data source parameters when you copy a data source by using a create or update request. The API operation compares the <code>DataSourceParameters</code> structure that's in the request with the structures in the <code>AlternateDataSourceParameters</code> allow list. If the structures are an exact match, the request is allowed to use the credentials from this existing data source. If the <code>AlternateDataSourceParameters</code> list is null, the <code>Credentials</code> originally used with this <code>DataSourceParameters</code> are automatically allowed.</p>"
       }
     },
+    "DataSourceSearchFilter": {
+      "base": "<p>A filter that you apply when searching for data sources.</p>",
+      "refs": {
+        "DataSourceSearchFilterList$member": null
+      }
+    },
+    "DataSourceSearchFilterList": {
+      "base": null,
+      "refs": {
+        "SearchDataSourcesRequest$Filters": "<p>The filters to apply to the search.</p>"
+      }
+    },
+    "DataSourceSummary": {
+      "base": "<p>A <code>DataSourceSummary</code> object that returns a summary of a data source.</p>",
+      "refs": {
+        "DataSourceSummaryList$member": null
+      }
+    },
+    "DataSourceSummaryList": {
+      "base": null,
+      "refs": {
+        "SearchDataSourcesResponse$DataSourceSummaries": "<p>A <code>DataSourceSummaries</code> object that returns a summary of a data source.</p>"
+      }
+    },
     "DataSourceType": {
       "base": null,
       "refs": {
         "CreateDataSourceRequest$Type": "<p>The type of the data source. To return a list of all data sources, use <code>ListDataSources</code>.</p> <p>Use <code>AMAZON_ELASTICSEARCH</code> for Amazon OpenSearch Service.</p>",
-        "DataSource$Type": "<p>The type of the data source. This type indicates which database engine the data source connects to.</p>"
+        "DataSource$Type": "<p>The type of the data source. This type indicates which database engine the data source connects to.</p>",
+        "DataSourceSummary$Type": "<p>The type of the data source.</p>"
       }
     },
     "Database": {
@@ -1325,6 +1391,12 @@
         "SnowflakeParameters$Database": "<p>Database.</p>",
         "SqlServerParameters$Database": "<p>Database.</p>",
         "TeradataParameters$Database": "<p>Database.</p>"
+      }
+    },
+    "DatabricksParameters": {
+      "base": "<p>The required parameters that are needed to connect to a Databricks data source.</p>",
+      "refs": {
+        "DataSourceParameters$DatabricksParameters": "<p>The required parameters that are needed to connect to a Databricks data source.</p>"
       }
     },
     "DateTimeParameter": {
@@ -1357,6 +1429,16 @@
       }
     },
     "DeleteAccountCustomizationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccountSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccountSubscriptionResponse": {
       "base": null,
       "refs": {
       }
@@ -1931,9 +2013,11 @@
     "FilterOperator": {
       "base": null,
       "refs": {
-        "AnalysisSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StringEquals\"</code>.</p>",
-        "DashboardSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example, <code>\"Operator\": \"StringEquals\"</code>.</p>",
-        "FolderSearchFilter$Operator": "<p>The comparison operator that you want to use in the filter. For example, <code>\"Operator\": \"StringEquals\"</code>.</p>"
+        "AnalysisSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StringEquals\"</code>. Valid values are <code>\"StringEquals\"</code> and <code>\"StringLike\"</code>.</p> <p>If you set the operator value to <code>\"StringEquals\"</code>, you need to provide an ownership related filter in the <code>\"NAME\"</code> field and the arn of the user or group whose folders you want to search in the <code>\"Value\"</code> field. For example, <code>\"Name\":\"DIRECT_QUICKSIGHT_OWNER\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p> <p>If you set the value to <code>\"StringLike\"</code>, you need to provide the name of the folders you are searching for. For example, <code>\"Name\":\"ANALYSIS_NAME\", \"Operator\": \"StringLike\", \"Value\": \"Test\"</code>. The <code>\"StringLike\"</code> operator only supports the <code>NAME</code> value <code>ANALYSIS_NAME</code>.</p>",
+        "DashboardSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StringEquals\"</code>. Valid values are <code>\"StringEquals\"</code> and <code>\"StringLike\"</code>.</p> <p>If you set the operator value to <code>\"StringEquals\"</code>, you need to provide an ownership related filter in the <code>\"NAME\"</code> field and the arn of the user or group whose folders you want to search in the <code>\"Value\"</code> field. For example, <code>\"Name\":\"DIRECT_QUICKSIGHT_OWNER\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p> <p>If you set the value to <code>\"StringLike\"</code>, you need to provide the name of the folders you are searching for. For example, <code>\"Name\":\"DASHBOARD_NAME\", \"Operator\": \"StringLike\", \"Value\": \"Test\"</code>. The <code>\"StringLike\"</code> operator only supports the <code>NAME</code> value <code>DASHBOARD_NAME</code>.</p>",
+        "DataSetSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StringEquals\"</code>. Valid values are <code>\"StringEquals\"</code> and <code>\"StringLike\"</code>.</p> <p>If you set the operator value to <code>\"StringEquals\"</code>, you need to provide an ownership related filter in the <code>\"NAME\"</code> field and the arn of the user or group whose datasets you want to search in the <code>\"Value\"</code> field. For example, <code>\"Name\":\"QUICKSIGHT_OWNER\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east- 1:1:user/default/UserName1\"</code>.</p> <p>If you set the value to <code>\"StringLike\"</code>, you need to provide the name of the datasets you are searching for. For example, <code>\"Name\":\"DATASET_NAME\", \"Operator\": \"StringLike\", \"Value\": \"Test\"</code>. The <code>\"StringLike\"</code> operator only supports the <code>NAME</code> value <code>DATASET_NAME</code>.</p>",
+        "DataSourceSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StringEquals\"</code>. Valid values are <code>\"StringEquals\"</code> and <code>\"StringLike\"</code>.</p> <p>If you set the operator value to <code>\"StringEquals\"</code>, you need to provide an ownership related filter in the <code>\"NAME\"</code> field and the arn of the user or group whose data sources you want to search in the <code>\"Value\"</code> field. For example, <code>\"Name\":\"DIRECT_QUICKSIGHT_OWNER\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p> <p>If you set the value to <code>\"StringLike\"</code>, you need to provide the name of the data sources you are searching for. For example, <code>\"Name\":\"DATASOURCE_NAME\", \"Operator\": \"StringLike\", \"Value\": \"Test\"</code>. The <code>\"StringLike\"</code> operator only supports the <code>NAME</code> value <code>DATASOURCE_NAME</code>.</p>",
+        "FolderSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StringEquals\"</code>. Valid values are <code>\"StringEquals\"</code> and <code>\"StringLike\"</code>.</p> <p>If you set the operator value to <code>\"StringEquals\"</code>, you need to provide an ownership related filter in the <code>\"NAME\"</code> field and the arn of the user or group whose folders you want to search in the <code>\"Value\"</code> field. For example, <code>\"Name\":\"DIRECT_QUICKSIGHT_OWNER\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p> <p>If you set the value to <code>\"StringLike\"</code>, you need to provide the name of the folders you are searching for. For example, <code>\"Name\":\"FOLDER_NAME\", \"Operator\": \"StringLike\", \"Value\": \"Test\"</code>. The <code>\"StringLike\"</code> operator only supports the <code>NAME</code> value <code>FOLDER_NAME</code>.</p>"
       }
     },
     "Folder": {
@@ -1951,7 +2035,7 @@
     "FolderFilterAttribute": {
       "base": null,
       "refs": {
-        "FolderSearchFilter$Name": "<p>The name of a value that you want to use in the filter. For example, <code>\"Name\": \"PARENT_FOLDER_ARN\"</code>.</p>"
+        "FolderSearchFilter$Name": "<p>The name of a value that you want to use in the filter. For example, <code>\"Name\": \"QUICKSIGHT_OWNER\"</code>.</p> <p>Valid values are defined as follows:</p> <ul> <li> <p> <code>QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any folders with that ARN listed as one of the folder's owners or viewers are returned. Implicit permissions from folders or groups are considered.</p> </li> <li> <p> <code>QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any folders with that ARN listed as one of the owners of the folders are returned. Implicit permissions from folders or groups are considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_SOLE_OWNER</code>: Provide an ARN of a user or group, and any folders with that ARN listed as the only owner of the folder are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_OWNER</code>: Provide an ARN of a user or group, and any folders with that ARN listed as one of the owners of the folders are returned. Implicit permissions from folders or groups are not considered.</p> </li> <li> <p> <code>DIRECT_QUICKSIGHT_VIEWER_OR_OWNER</code>: Provide an ARN of a user or group, and any folders with that ARN listed as one of the owners or viewers of the folders are returned. Implicit permissions from folders or groups are not considered. </p> </li> <li> <p> <code>FOLDER_NAME</code>: Any folders whose names have a substring match to this value will be returned.</p> </li> <li> <p> <code>PARENT_FOLDER_ARN</code>: Provide an ARN of a folder, and any folders that are directly under that parent folder are returned. If you choose to use this option and leave the value blank, all root-level folders in the account are returned. </p> </li> </ul>"
       }
     },
     "FolderMember": {
@@ -1976,7 +2060,7 @@
       }
     },
     "FolderSearchFilter": {
-      "base": "<p>A filter to use to search a Amazon QuickSight folder.</p>",
+      "base": "<p>A filter to use to search an Amazon QuickSight folder.</p>",
       "refs": {
         "FolderSearchFilterList$member": null
       }
@@ -2194,6 +2278,7 @@
       "refs": {
         "AuroraParameters$Host": "<p>Host.</p>",
         "AuroraPostgreSqlParameters$Host": "<p>The Amazon Aurora PostgreSQL-Compatible host to connect to.</p>",
+        "DatabricksParameters$Host": "<p>The host name of the Databricks data source.</p>",
         "ExasolParameters$Host": "<p>The hostname or IP address of the Exasol data source.</p>",
         "MariaDbParameters$Host": "<p>Host.</p>",
         "MySqlParameters$Host": "<p>Host.</p>",
@@ -2393,6 +2478,11 @@
     },
     "InvalidParameterValueException": {
       "base": "<p>One or more parameters has a value that isn't valid.</p>",
+      "refs": {
+      }
+    },
+    "InvalidRequestException": {
+      "base": "<p>You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.</p>",
       "refs": {
       }
     },
@@ -2761,6 +2851,8 @@
         "ListUsersRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>",
         "SearchAnalysesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "SearchDashboardsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "SearchDataSetsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "SearchDataSourcesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "SearchFoldersRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "SearchGroupsRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>"
       }
@@ -2961,6 +3053,7 @@
       "refs": {
         "AuroraParameters$Port": "<p>Port.</p>",
         "AuroraPostgreSqlParameters$Port": "<p>The port that Amazon Aurora PostgreSQL is listening on.</p>",
+        "DatabricksParameters$Port": "<p>The port for the Databricks data source.</p>",
         "ExasolParameters$Port": "<p>The port for the Exasol data source.</p>",
         "MariaDbParameters$Port": "<p>Port.</p>",
         "MySqlParameters$Port": "<p>Port.</p>",
@@ -3141,6 +3234,7 @@
         "DataSet$DataSetId": "<p>The ID of the dataset.</p>",
         "DataSetSummary$DataSetId": "<p>The ID of the dataset.</p>",
         "DataSource$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DataSourceSummary$DataSourceId": "<p>The unique ID of the data source.</p>",
         "DeleteDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DeleteDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DeleteDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
@@ -3170,6 +3264,7 @@
         "DataSet$Name": "<p>A display name for the dataset.</p>",
         "DataSetSummary$Name": "<p>A display name for the dataset.</p>",
         "DataSource$Name": "<p>A display name for the data source.</p>",
+        "DataSourceSummary$Name": "<p>The name of the data source.</p>",
         "UpdateDataSetRequest$Name": "<p>The display name for the dataset.</p>",
         "UpdateDataSourceRequest$Name": "<p>A display name for the data source.</p>"
       }
@@ -3265,6 +3360,7 @@
         "Analysis$AnalysisId": "<p>The ID of the analysis.</p>",
         "AnalysisSummary$AnalysisId": "<p>The ID of the analysis. This ID displays in the URL.</p>",
         "AnonymousUserDashboardEmbeddingConfiguration$InitialDashboardId": "<p>The dashboard ID for the dashboard that you want the user to see first. This ID is included in the output URL. When the URL in response is accessed, Amazon QuickSight renders this dashboard.</p> <p>The Amazon Resource Name (ARN) of this dashboard must be included in the <code>AuthorizedResourceArns</code> parameter. Otherwise, the request will fail with <code>InvalidParameterValueException</code>.</p>",
+        "AnonymousUserQSearchBarEmbeddingConfiguration$InitialTopicId": "<p>The QuickSight Q topic ID of the topic that you want the anonymous user to see first. This ID is included in the output URL. When the URL in response is accessed, Amazon QuickSight renders the Q search bar with this topic pre-selected.</p> <p>The Amazon Resource Name (ARN) of this Q topic must be included in the <code>AuthorizedResourceArns</code> parameter. Otherwise, the request will fail with <code>InvalidParameterValueException</code>.</p>",
         "CreateAnalysisRequest$AnalysisId": "<p>The ID for the analysis that you're creating. This ID displays in the URL of the analysis.</p>",
         "CreateAnalysisResponse$AnalysisId": "<p>The ID of the analysis.</p>",
         "CreateDashboardRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAM policy.</p>",
@@ -3366,6 +3462,12 @@
         "UpdateThemeRequest$ThemeId": "<p>The ID for the theme.</p>",
         "UpdateThemeRequest$BaseThemeId": "<p>The theme ID, defined by Amazon QuickSight, that a custom theme inherits from. All themes initially inherit from a default Amazon QuickSight theme.</p>",
         "UpdateThemeResponse$ThemeId": "<p>The ID for the theme.</p>"
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "AthenaParameters$RoleArn": "<p>Use the <code>RoleArn</code> structure to override an account-wide role for a specific Athena data source. For example, say an account administrator has turned off all Athena access with an account-wide role. The administrator can then use <code>RoleArn</code> to bypass the account-wide role and allow Athena access for the single Athena data source that is specified in the structure, even if the account-wide role forbidding Athena access is still active.</p>"
       }
     },
     "RoleName": {
@@ -3475,6 +3577,26 @@
       }
     },
     "SearchDashboardsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchDataSetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchDataSetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchDataSourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchDataSourcesResponse": {
       "base": null,
       "refs": {
       }
@@ -3603,6 +3725,12 @@
         "DataSourceParameters$SparkParameters": "<p>The parameters for Spark.</p>"
       }
     },
+    "SqlEndpointPath": {
+      "base": null,
+      "refs": {
+        "DatabricksParameters$SqlEndpointPath": "<p>The HTTP path of the Databricks data source.</p>"
+      }
+    },
     "SqlQuery": {
       "base": null,
       "refs": {
@@ -3652,6 +3780,7 @@
         "CreateThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateThemeResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteAccountSubscriptionResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3725,6 +3854,8 @@
         "RestoreAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchAnalysesResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchDashboardsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "SearchDataSetsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "SearchDataSourcesResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchFoldersResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "TagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3811,8 +3942,11 @@
         "CreateThemeResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DashboardSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>. </p>",
         "DataSetConfiguration$Placeholder": "<p>Placeholder.</p>",
+        "DataSetSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_OWNER</code>, that you want to use as a filter, for example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
         "DataSourceErrorInfo$Message": "<p>Error message.</p>",
+        "DataSourceSearchFilter$Value": "<p>The value of the named item, for example <code>DIRECT_QUICKSIGHT_OWNER</code>, that you want to use as a filter, for example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
         "DeleteAccountCustomizationResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteAccountSubscriptionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3880,6 +4014,8 @@
         "InvalidNextTokenException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "InvalidParameterValueException$Message": null,
         "InvalidParameterValueException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
+        "InvalidRequestException$Message": null,
+        "InvalidRequestException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "LimitExceededException$Message": null,
         "LimitExceededException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "ListAnalysesRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
@@ -3978,6 +4114,12 @@
         "SearchDashboardsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "SearchDashboardsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "SearchDashboardsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "SearchDataSetsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "SearchDataSetsResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "SearchDataSetsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "SearchDataSourcesRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "SearchDataSourcesResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "SearchDataSourcesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "SearchFoldersRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "SearchFoldersResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "SearchFoldersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -4352,6 +4494,8 @@
         "DataSetSummary$LastUpdatedTime": "<p>The last time that this dataset was updated.</p>",
         "DataSource$CreatedTime": "<p>The time that this data source was created.</p>",
         "DataSource$LastUpdatedTime": "<p>The last time that this data source was updated.</p>",
+        "DataSourceSummary$CreatedTime": "<p>The date and time that the data source was created. This value is expressed in MM-DD-YYYY HH:MM:SS format.</p>",
+        "DataSourceSummary$LastUpdatedTime": "<p>The date and time the data source was last updated. This value is expressed in MM-DD-YYYY HH:MM:SS format.</p>",
         "DeleteAnalysisResponse$DeletionTime": "<p>The date and time that the analysis is scheduled to be deleted.</p>",
         "Folder$CreatedTime": "<p>The time that the folder was created.</p>",
         "Folder$LastUpdatedTime": "<p>The time that the folder was last updated.</p>",

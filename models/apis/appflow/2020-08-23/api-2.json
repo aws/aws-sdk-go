@@ -321,6 +321,26 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "UpdateConnectorRegistration":{
+      "name":"UpdateConnectorRegistration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/update-connector-registration"
+      },
+      "input":{"shape":"UpdateConnectorRegistrationRequest"},
+      "output":{"shape":"UpdateConnectorRegistrationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConnectorServerException"},
+        {"shape":"ConnectorAuthenticationException"}
+      ]
+    },
     "UpdateFlow":{
       "name":"UpdateFlow",
       "http":{
@@ -3265,6 +3285,21 @@
       "type":"structure",
       "members":{
         "connectorProfileArn":{"shape":"ConnectorProfileArn"}
+      }
+    },
+    "UpdateConnectorRegistrationRequest":{
+      "type":"structure",
+      "required":["connectorLabel"],
+      "members":{
+        "connectorLabel":{"shape":"ConnectorLabel"},
+        "description":{"shape":"Description"},
+        "connectorProvisioningConfig":{"shape":"ConnectorProvisioningConfig"}
+      }
+    },
+    "UpdateConnectorRegistrationResponse":{
+      "type":"structure",
+      "members":{
+        "connectorArn":{"shape":"ARN"}
       }
     },
     "UpdateFlowRequest":{

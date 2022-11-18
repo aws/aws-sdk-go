@@ -8955,7 +8955,8 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "CopyImageTags":{"shape":"Boolean"}
       }
     },
     "CopyImageResult":{

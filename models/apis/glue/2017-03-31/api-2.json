@@ -5727,6 +5727,10 @@
       "type":"list",
       "member":{"shape":"Edge"}
     },
+    "EnableAdditionalMetadata":{
+      "type":"list",
+      "member":{"shape":"JdbcMetadataEntry"}
+    },
     "EnableHybridValues":{
       "type":"string",
       "enum":[
@@ -7441,12 +7445,20 @@
       "key":{"shape":"JDBCDataType"},
       "value":{"shape":"GlueRecordType"}
     },
+    "JdbcMetadataEntry":{
+      "type":"string",
+      "enum":[
+        "COMMENTS",
+        "RAWTYPES"
+      ]
+    },
     "JdbcTarget":{
       "type":"structure",
       "members":{
         "ConnectionName":{"shape":"ConnectionName"},
         "Path":{"shape":"Path"},
-        "Exclusions":{"shape":"PathList"}
+        "Exclusions":{"shape":"PathList"},
+        "EnableAdditionalMetadata":{"shape":"EnableAdditionalMetadata"}
       }
     },
     "JdbcTargetList":{

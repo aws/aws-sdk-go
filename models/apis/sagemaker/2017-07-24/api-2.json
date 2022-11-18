@@ -14810,11 +14810,11 @@
     },
     "ProfilerConfig":{
       "type":"structure",
-      "required":["S3OutputPath"],
       "members":{
         "S3OutputPath":{"shape":"S3Uri"},
         "ProfilingIntervalInMilliseconds":{"shape":"ProfilingIntervalInMilliseconds"},
-        "ProfilingParameters":{"shape":"ProfilingParameters"}
+        "ProfilingParameters":{"shape":"ProfilingParameters"},
+        "DisableProfiler":{"shape":"DisableProfiler"}
       }
     },
     "ProfilerConfigForUpdate":{
