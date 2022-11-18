@@ -2101,6 +2101,112 @@ func (c *QuickSight) DeleteAccountCustomizationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDeleteAccountSubscription = "DeleteAccountSubscription"
+
+// DeleteAccountSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccountSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccountSubscription for more information on using the DeleteAccountSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccountSubscriptionRequest method.
+//	req, resp := client.DeleteAccountSubscriptionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteAccountSubscription
+func (c *QuickSight) DeleteAccountSubscriptionRequest(input *DeleteAccountSubscriptionInput) (req *request.Request, output *DeleteAccountSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccountSubscription,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/account/{AwsAccountId}",
+	}
+
+	if input == nil {
+		input = &DeleteAccountSubscriptionInput{}
+	}
+
+	output = &DeleteAccountSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteAccountSubscription API operation for Amazon QuickSight.
+//
+// Use the DeleteAccountSubscription operation to delete an Amazon QuickSight
+// account. This operation will result in an error message if you have configured
+// your account termination protection settings to True. To change this setting
+// and delete your account, call the UpdateAccountSettings API and set the value
+// of the TerminationProtectionEnabled parameter to False, then make another
+// call to the DeleteAccountSubscription API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteAccountSubscription for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     access keys.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - PreconditionNotMetException
+//     One or more preconditions aren't met.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+//   - ResourceUnavailableException
+//     This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteAccountSubscription
+func (c *QuickSight) DeleteAccountSubscription(input *DeleteAccountSubscriptionInput) (*DeleteAccountSubscriptionOutput, error) {
+	req, out := c.DeleteAccountSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccountSubscriptionWithContext is the same as DeleteAccountSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccountSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteAccountSubscriptionWithContext(ctx aws.Context, input *DeleteAccountSubscriptionInput, opts ...request.Option) (*DeleteAccountSubscriptionOutput, error) {
+	req, out := c.DeleteAccountSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAnalysis = "DeleteAnalysis"
 
 // DeleteAnalysisRequest generates a "aws/request.Request" representing the
@@ -4004,7 +4110,7 @@ func (c *QuickSight) DescribeAccountSubscriptionRequest(input *DescribeAccountSu
 // DescribeAccountSubscription API operation for Amazon QuickSight.
 //
 // Use the DescribeAccountSubscription operation to receive a description of
-// a Amazon QuickSight account's subscription. A successful API call returns
+// an Amazon QuickSight account's subscription. A successful API call returns
 // an AccountInfo object that includes an account's name, subscription status,
 // authentication type, edition, and notification email address.
 //
@@ -10398,6 +10504,318 @@ func (c *QuickSight) SearchDashboardsPagesWithContext(ctx aws.Context, input *Se
 	return p.Err()
 }
 
+const opSearchDataSets = "SearchDataSets"
+
+// SearchDataSetsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchDataSets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchDataSets for more information on using the SearchDataSets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchDataSetsRequest method.
+//	req, resp := client.SearchDataSetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchDataSets
+func (c *QuickSight) SearchDataSetsRequest(input *SearchDataSetsInput) (req *request.Request, output *SearchDataSetsOutput) {
+	op := &request.Operation{
+		Name:       opSearchDataSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/search/data-sets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchDataSetsInput{}
+	}
+
+	output = &SearchDataSetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchDataSets API operation for Amazon QuickSight.
+//
+// Use the SearchDataSets operation to search for datasets that belong to an
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation SearchDataSets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     access keys.
+//
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchDataSets
+func (c *QuickSight) SearchDataSets(input *SearchDataSetsInput) (*SearchDataSetsOutput, error) {
+	req, out := c.SearchDataSetsRequest(input)
+	return out, req.Send()
+}
+
+// SearchDataSetsWithContext is the same as SearchDataSets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchDataSets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchDataSetsWithContext(ctx aws.Context, input *SearchDataSetsInput, opts ...request.Option) (*SearchDataSetsOutput, error) {
+	req, out := c.SearchDataSetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchDataSetsPages iterates over the pages of a SearchDataSets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchDataSets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchDataSets operation.
+//	pageNum := 0
+//	err := client.SearchDataSetsPages(params,
+//	    func(page *quicksight.SearchDataSetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) SearchDataSetsPages(input *SearchDataSetsInput, fn func(*SearchDataSetsOutput, bool) bool) error {
+	return c.SearchDataSetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchDataSetsPagesWithContext same as SearchDataSetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchDataSetsPagesWithContext(ctx aws.Context, input *SearchDataSetsInput, fn func(*SearchDataSetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchDataSetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchDataSetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchDataSetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchDataSources = "SearchDataSources"
+
+// SearchDataSourcesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchDataSources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchDataSources for more information on using the SearchDataSources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchDataSourcesRequest method.
+//	req, resp := client.SearchDataSourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchDataSources
+func (c *QuickSight) SearchDataSourcesRequest(input *SearchDataSourcesInput) (req *request.Request, output *SearchDataSourcesOutput) {
+	op := &request.Operation{
+		Name:       opSearchDataSources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/search/data-sources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchDataSourcesInput{}
+	}
+
+	output = &SearchDataSourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchDataSources API operation for Amazon QuickSight.
+//
+// Use the SearchDataSources operation to search for data sources that belong
+// to an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation SearchDataSources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     access keys.
+//
+//   - InvalidNextTokenException
+//     The NextToken value isn't valid.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchDataSources
+func (c *QuickSight) SearchDataSources(input *SearchDataSourcesInput) (*SearchDataSourcesOutput, error) {
+	req, out := c.SearchDataSourcesRequest(input)
+	return out, req.Send()
+}
+
+// SearchDataSourcesWithContext is the same as SearchDataSources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchDataSources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchDataSourcesWithContext(ctx aws.Context, input *SearchDataSourcesInput, opts ...request.Option) (*SearchDataSourcesOutput, error) {
+	req, out := c.SearchDataSourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchDataSourcesPages iterates over the pages of a SearchDataSources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchDataSources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchDataSources operation.
+//	pageNum := 0
+//	err := client.SearchDataSourcesPages(params,
+//	    func(page *quicksight.SearchDataSourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *QuickSight) SearchDataSourcesPages(input *SearchDataSourcesInput, fn func(*SearchDataSourcesOutput, bool) bool) error {
+	return c.SearchDataSourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchDataSourcesPagesWithContext same as SearchDataSourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchDataSourcesPagesWithContext(ctx aws.Context, input *SearchDataSourcesInput, fn func(*SearchDataSourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchDataSourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchDataSourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchDataSourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchFolders = "SearchFolders"
 
 // SearchFoldersRequest generates a "aws/request.Request" representing the
@@ -10476,6 +10894,10 @@ func (c *QuickSight) SearchFoldersRequest(input *SearchFoldersInput) (req *reque
 //     subscription where the edition doesn't include support for that operation.
 //     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //     Not every operation and capability is available in every edition.
+//
+//   - InvalidRequestException
+//     You don't have this feature activated for your account. To fix this issue,
+//     contact Amazon Web Services support.
 //
 //   - InternalFailureException
 //     An internal failure occurred.
@@ -13502,6 +13924,12 @@ type AccountSettings struct {
 	// Amazon QuickSight account. For more information about turning on public sharing,
 	// see UpdatePublicSharingSettings (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdatePublicSharingSettings.html).
 	PublicSharingEnabled *bool `type:"boolean"`
+
+	// A boolean value that determines whether or not an Amazon QuickSight account
+	// can be deleted. A True value doesn't allow the account to be deleted and
+	// results in an error message if a user tries to make a DeleteAccountSubsctiption
+	// request. A False value will allow the ccount to be deleted.
+	TerminationProtectionEnabled *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -13549,6 +13977,12 @@ func (s *AccountSettings) SetNotificationEmail(v string) *AccountSettings {
 // SetPublicSharingEnabled sets the PublicSharingEnabled field's value.
 func (s *AccountSettings) SetPublicSharingEnabled(v bool) *AccountSettings {
 	s.PublicSharingEnabled = &v
+	return s
+}
+
+// SetTerminationProtectionEnabled sets the TerminationProtectionEnabled field's value.
+func (s *AccountSettings) SetTerminationProtectionEnabled(v bool) *AccountSettings {
+	s.TerminationProtectionEnabled = &v
 	return s
 }
 
@@ -13885,11 +14319,47 @@ type AnalysisSearchFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the value that you want to use as a filter, for example "Name":
-	// "QUICKSIGHT_USER".
+	// "QUICKSIGHT_OWNER".
+	//
+	// Valid values are defined as follows:
+	//
+	//    * QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group, and any
+	//    analyses with that ARN listed as one of the analysis' owners or viewers
+	//    are returned. Implicit permissions from folders or groups are considered.
+	//
+	//    * QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any analyses
+	//    with that ARN listed as one of the owners of the analyses are returned.
+	//    Implicit permissions from folders or groups are considered.
+	//
+	//    * DIRECT_QUICKSIGHT_SOLE_OWNER: Provide an ARN of a user or group, and
+	//    any analyses with that ARN listed as the only owner of the analysis are
+	//    returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any
+	//    analyses with that ARN listed as one of the owners of the analyses are
+	//    returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group,
+	//    and any analyses with that ARN listed as one of the owners or viewers
+	//    of the analyses are returned. Implicit permissions from folders or groups
+	//    are not considered.
+	//
+	//    * ANALYSIS_NAME: Any analyses whose names have a substring match to this
+	//    value will be returned.
 	Name *string `type:"string" enum:"AnalysisFilterAttribute"`
 
 	// The comparison operator that you want to use as a filter, for example "Operator":
-	// "StringEquals".
+	// "StringEquals". Valid values are "StringEquals" and "StringLike".
+	//
+	// If you set the operator value to "StringEquals", you need to provide an ownership
+	// related filter in the "NAME" field and the arn of the user or group whose
+	// folders you want to search in the "Value" field. For example, "Name":"DIRECT_QUICKSIGHT_OWNER",
+	// "Operator": "StringEquals", "Value": "arn:aws:quicksight:us-east-1:1:user/default/UserName1".
+	//
+	// If you set the value to "StringLike", you need to provide the name of the
+	// folders you are searching for. For example, "Name":"ANALYSIS_NAME", "Operator":
+	// "StringLike", "Value": "Test". The "StringLike" operator only supports the
+	// NAME value ANALYSIS_NAME.
 	Operator *string `type:"string" enum:"FilterOperator"`
 
 	// The value of the named item, in this case QUICKSIGHT_USER, that you want
@@ -14256,6 +14726,9 @@ type AnonymousUserEmbeddingExperienceConfiguration struct {
 
 	// The type of embedding experience. In this case, Amazon QuickSight visuals.
 	DashboardVisual *AnonymousUserDashboardVisualEmbeddingConfiguration `type:"structure"`
+
+	// The Q search bar that you want to use for anonymous user embedding.
+	QSearchBar *AnonymousUserQSearchBarEmbeddingConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14289,6 +14762,11 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) Validate() error {
 			invalidParams.AddNested("DashboardVisual", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.QSearchBar != nil {
+		if err := s.QSearchBar.Validate(); err != nil {
+			invalidParams.AddNested("QSearchBar", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14308,9 +14786,78 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) SetDashboardVisual(v *An
 	return s
 }
 
+// SetQSearchBar sets the QSearchBar field's value.
+func (s *AnonymousUserEmbeddingExperienceConfiguration) SetQSearchBar(v *AnonymousUserQSearchBarEmbeddingConfiguration) *AnonymousUserEmbeddingExperienceConfiguration {
+	s.QSearchBar = v
+	return s
+}
+
+// The settings that you want to use with the Q search bar.
+type AnonymousUserQSearchBarEmbeddingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The QuickSight Q topic ID of the topic that you want the anonymous user to
+	// see first. This ID is included in the output URL. When the URL in response
+	// is accessed, Amazon QuickSight renders the Q search bar with this topic pre-selected.
+	//
+	// The Amazon Resource Name (ARN) of this Q topic must be included in the AuthorizedResourceArns
+	// parameter. Otherwise, the request will fail with InvalidParameterValueException.
+	//
+	// InitialTopicId is a required field
+	InitialTopicId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserQSearchBarEmbeddingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserQSearchBarEmbeddingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnonymousUserQSearchBarEmbeddingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnonymousUserQSearchBarEmbeddingConfiguration"}
+	if s.InitialTopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialTopicId"))
+	}
+	if s.InitialTopicId != nil && len(*s.InitialTopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialTopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialTopicId sets the InitialTopicId field's value.
+func (s *AnonymousUserQSearchBarEmbeddingConfiguration) SetInitialTopicId(v string) *AnonymousUserQSearchBarEmbeddingConfiguration {
+	s.InitialTopicId = &v
+	return s
+}
+
 // Parameters for Amazon Athena.
 type AthenaParameters struct {
 	_ struct{} `type:"structure"`
+
+	// Use the RoleArn structure to override an account-wide role for a specific
+	// Athena data source. For example, say an account administrator has turned
+	// off all Athena access with an account-wide role. The administrator can then
+	// use RoleArn to bypass the account-wide role and allow Athena access for the
+	// single Athena data source that is specified in the structure, even if the
+	// account-wide role forbidding Athena access is still active.
+	RoleArn *string `min:"20" type:"string"`
 
 	// The workgroup that Amazon Athena uses.
 	WorkGroup *string `min:"1" type:"string"`
@@ -14337,6 +14884,9 @@ func (s AthenaParameters) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AthenaParameters) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AthenaParameters"}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
 	if s.WorkGroup != nil && len(*s.WorkGroup) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkGroup", 1))
 	}
@@ -14345,6 +14895,12 @@ func (s *AthenaParameters) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AthenaParameters) SetRoleArn(v string) *AthenaParameters {
+	s.RoleArn = &v
+	return s
 }
 
 // SetWorkGroup sets the WorkGroup field's value.
@@ -19467,11 +20023,47 @@ type DashboardSearchFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the value that you want to use as a filter, for example, "Name":
-	// "QUICKSIGHT_USER".
+	// "QUICKSIGHT_OWNER".
+	//
+	// Valid values are defined as follows:
+	//
+	//    * QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group, and any
+	//    dashboards with that ARN listed as one of the dashboards's owners or viewers
+	//    are returned. Implicit permissions from folders or groups are considered.
+	//
+	//    * QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any dashboards
+	//    with that ARN listed as one of the owners of the dashboards are returned.
+	//    Implicit permissions from folders or groups are considered.
+	//
+	//    * DIRECT_QUICKSIGHT_SOLE_OWNER: Provide an ARN of a user or group, and
+	//    any dashboards with that ARN listed as the only owner of the dashboard
+	//    are returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any
+	//    dashboards with that ARN listed as one of the owners of the dashboards
+	//    are returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group,
+	//    and any dashboards with that ARN listed as one of the owners or viewers
+	//    of the dashboards are returned. Implicit permissions from folders or groups
+	//    are not considered.
+	//
+	//    * DASHBOARD_NAME: Any dashboards whose names have a substring match to
+	//    this value will be returned.
 	Name *string `type:"string" enum:"DashboardFilterAttribute"`
 
-	// The comparison operator that you want to use as a filter, for example, "Operator":
-	// "StringEquals".
+	// The comparison operator that you want to use as a filter, for example "Operator":
+	// "StringEquals". Valid values are "StringEquals" and "StringLike".
+	//
+	// If you set the operator value to "StringEquals", you need to provide an ownership
+	// related filter in the "NAME" field and the arn of the user or group whose
+	// folders you want to search in the "Value" field. For example, "Name":"DIRECT_QUICKSIGHT_OWNER",
+	// "Operator": "StringEquals", "Value": "arn:aws:quicksight:us-east-1:1:user/default/UserName1".
+	//
+	// If you set the value to "StringLike", you need to provide the name of the
+	// folders you are searching for. For example, "Name":"DASHBOARD_NAME", "Operator":
+	// "StringLike", "Value": "Test". The "StringLike" operator only supports the
+	// NAME value DASHBOARD_NAME.
 	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"FilterOperator"`
@@ -20400,6 +20992,120 @@ func (s *DataSetSchema) SetColumnSchemaList(v []*ColumnSchema) *DataSetSchema {
 	return s
 }
 
+// A filter that you apply when searching for datasets.
+type DataSetSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the value that you want to use as a filter, for example, "Name":
+	// "QUICKSIGHT_OWNER".
+	//
+	// Valid values are defined as follows:
+	//
+	//    * QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group, and any
+	//    datasets with that ARN listed as one of the dataset owners or viewers
+	//    are returned. Implicit permissions from folders or groups are considered.
+	//
+	//    * QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any datasets
+	//    with that ARN listed as one of the owners of the dataset are returned.
+	//    Implicit permissions from folders or groups are considered.
+	//
+	//    * DIRECT_QUICKSIGHT_SOLE_OWNER: Provide an ARN of a user or group, and
+	//    any datasets with that ARN listed as the only owner of the dataset are
+	//    returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any
+	//    datasets with that ARN listed as one of the owners if the dataset are
+	//    returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group,
+	//    and any datasets with that ARN listed as one of the owners or viewers
+	//    of the dataset are returned. Implicit permissions from folders or groups
+	//    are not considered.
+	//
+	//    * DATASET_NAME: Any datasets whose names have a substring match to this
+	//    value will be returned.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"DataSetFilterAttribute"`
+
+	// The comparison operator that you want to use as a filter, for example "Operator":
+	// "StringEquals". Valid values are "StringEquals" and "StringLike".
+	//
+	// If you set the operator value to "StringEquals", you need to provide an ownership
+	// related filter in the "NAME" field and the arn of the user or group whose
+	// datasets you want to search in the "Value" field. For example, "Name":"QUICKSIGHT_OWNER",
+	// "Operator": "StringEquals", "Value": "arn:aws:quicksight:us-east- 1:1:user/default/UserName1".
+	//
+	// If you set the value to "StringLike", you need to provide the name of the
+	// datasets you are searching for. For example, "Name":"DATASET_NAME", "Operator":
+	// "StringLike", "Value": "Test". The "StringLike" operator only supports the
+	// NAME value DATASET_NAME.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"FilterOperator"`
+
+	// The value of the named item, in this case QUICKSIGHT_OWNER, that you want
+	// to use as a filter, for example, "Value": "arn:aws:quicksight:us-east-1:1:user/default/UserName1".
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSetSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSetSearchFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSetSearchFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSetSearchFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DataSetSearchFilter) SetName(v string) *DataSetSearchFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *DataSetSearchFilter) SetOperator(v string) *DataSetSearchFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DataSetSearchFilter) SetValue(v string) *DataSetSearchFilter {
+	s.Value = &v
+	return s
+}
+
 // Dataset summary.
 type DataSetSummary struct {
 	_ struct{} `type:"structure"`
@@ -20842,6 +21548,9 @@ type DataSourceParameters struct {
 	// The parameters for IoT Analytics.
 	AwsIotAnalyticsParameters *AwsIotAnalyticsParameters `type:"structure"`
 
+	// The required parameters that are needed to connect to a Databricks data source.
+	DatabricksParameters *DatabricksParameters `type:"structure"`
+
 	// The parameters for Exasol.
 	ExasolParameters *ExasolParameters `type:"structure"`
 
@@ -20940,6 +21649,11 @@ func (s *DataSourceParameters) Validate() error {
 	if s.AwsIotAnalyticsParameters != nil {
 		if err := s.AwsIotAnalyticsParameters.Validate(); err != nil {
 			invalidParams.AddNested("AwsIotAnalyticsParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DatabricksParameters != nil {
+		if err := s.DatabricksParameters.Validate(); err != nil {
+			invalidParams.AddNested("DatabricksParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.ExasolParameters != nil {
@@ -21065,6 +21779,12 @@ func (s *DataSourceParameters) SetAwsIotAnalyticsParameters(v *AwsIotAnalyticsPa
 	return s
 }
 
+// SetDatabricksParameters sets the DatabricksParameters field's value.
+func (s *DataSourceParameters) SetDatabricksParameters(v *DatabricksParameters) *DataSourceParameters {
+	s.DatabricksParameters = v
+	return s
+}
+
 // SetExasolParameters sets the ExasolParameters field's value.
 func (s *DataSourceParameters) SetExasolParameters(v *ExasolParameters) *DataSourceParameters {
 	s.ExasolParameters = v
@@ -21158,6 +21878,275 @@ func (s *DataSourceParameters) SetTeradataParameters(v *TeradataParameters) *Dat
 // SetTwitterParameters sets the TwitterParameters field's value.
 func (s *DataSourceParameters) SetTwitterParameters(v *TwitterParameters) *DataSourceParameters {
 	s.TwitterParameters = v
+	return s
+}
+
+// A filter that you apply when searching for data sources.
+type DataSourceSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the value that you want to use as a filter, for example, "Name":
+	// "DIRECT_QUICKSIGHT_OWNER".
+	//
+	// Valid values are defined as follows:
+	//
+	//    * DIRECT_QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group,
+	//    and any data sources with that ARN listed as one of the owners or viewers
+	//    of the data sources are returned. Implicit permissions from folders or
+	//    groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any
+	//    data sources with that ARN listed as one of the owners if the data source
+	//    are returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_SOLE_OWNER: Provide an ARN of a user or group, and
+	//    any data sources with that ARN listed as the only owner of the data source
+	//    are returned. Implicit permissions from folders or groups are not considered.
+	//
+	//    * DATASOURCE_NAME: Any data sources whose names have a substring match
+	//    to the provided value are returned.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"DataSourceFilterAttribute"`
+
+	// The comparison operator that you want to use as a filter, for example "Operator":
+	// "StringEquals". Valid values are "StringEquals" and "StringLike".
+	//
+	// If you set the operator value to "StringEquals", you need to provide an ownership
+	// related filter in the "NAME" field and the arn of the user or group whose
+	// data sources you want to search in the "Value" field. For example, "Name":"DIRECT_QUICKSIGHT_OWNER",
+	// "Operator": "StringEquals", "Value": "arn:aws:quicksight:us-east-1:1:user/default/UserName1".
+	//
+	// If you set the value to "StringLike", you need to provide the name of the
+	// data sources you are searching for. For example, "Name":"DATASOURCE_NAME",
+	// "Operator": "StringLike", "Value": "Test". The "StringLike" operator only
+	// supports the NAME value DATASOURCE_NAME.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"FilterOperator"`
+
+	// The value of the named item, for example DIRECT_QUICKSIGHT_OWNER, that you
+	// want to use as a filter, for example, "Value": "arn:aws:quicksight:us-east-1:1:user/default/UserName1".
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceSearchFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSourceSearchFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSourceSearchFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DataSourceSearchFilter) SetName(v string) *DataSourceSearchFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *DataSourceSearchFilter) SetOperator(v string) *DataSourceSearchFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DataSourceSearchFilter) SetValue(v string) *DataSourceSearchFilter {
+	s.Value = &v
+	return s
+}
+
+// A DataSourceSummary object that returns a summary of a data source.
+type DataSourceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The arn of the datasource.
+	Arn *string `type:"string"`
+
+	// The date and time that the data source was created. This value is expressed
+	// in MM-DD-YYYY HH:MM:SS format.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The unique ID of the data source.
+	DataSourceId *string `type:"string"`
+
+	// The date and time the data source was last updated. This value is expressed
+	// in MM-DD-YYYY HH:MM:SS format.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The name of the data source.
+	Name *string `min:"1" type:"string"`
+
+	// The type of the data source.
+	Type *string `type:"string" enum:"DataSourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DataSourceSummary) SetArn(v string) *DataSourceSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DataSourceSummary) SetCreatedTime(v time.Time) *DataSourceSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *DataSourceSummary) SetDataSourceId(v string) *DataSourceSummary {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *DataSourceSummary) SetLastUpdatedTime(v time.Time) *DataSourceSummary {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataSourceSummary) SetName(v string) *DataSourceSummary {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DataSourceSummary) SetType(v string) *DataSourceSummary {
+	s.Type = &v
+	return s
+}
+
+// The required parameters that are needed to connect to a Databricks data source.
+type DatabricksParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The host name of the Databricks data source.
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port for the Databricks data source.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+
+	// The HTTP path of the Databricks data source.
+	//
+	// SqlEndpointPath is a required field
+	SqlEndpointPath *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabricksParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabricksParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatabricksParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatabricksParameters"}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+	if s.SqlEndpointPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("SqlEndpointPath"))
+	}
+	if s.SqlEndpointPath != nil && len(*s.SqlEndpointPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SqlEndpointPath", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHost sets the Host field's value.
+func (s *DatabricksParameters) SetHost(v string) *DatabricksParameters {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DatabricksParameters) SetPort(v int64) *DatabricksParameters {
+	s.Port = &v
+	return s
+}
+
+// SetSqlEndpointPath sets the SqlEndpointPath field's value.
+func (s *DatabricksParameters) SetSqlEndpointPath(v string) *DatabricksParameters {
+	s.SqlEndpointPath = &v
 	return s
 }
 
@@ -21378,6 +22367,95 @@ func (s *DeleteAccountCustomizationOutput) SetRequestId(v string) *DeleteAccount
 
 // SetStatus sets the Status field's value.
 func (s *DeleteAccountCustomizationOutput) SetStatus(v int64) *DeleteAccountCustomizationOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteAccountSubscriptionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID of the account that you want to delete.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccountSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccountSubscriptionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteAccountSubscriptionInput) SetAwsAccountId(v string) *DeleteAccountSubscriptionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+type DeleteAccountSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteAccountSubscriptionOutput) SetRequestId(v string) *DeleteAccountSubscriptionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteAccountSubscriptionOutput) SetStatus(v int64) *DeleteAccountSubscriptionOutput {
 	s.Status = &v
 	return s
 }
@@ -27504,16 +28582,57 @@ func (s *FolderMember) SetMemberType(v string) *FolderMember {
 	return s
 }
 
-// A filter to use to search a Amazon QuickSight folder.
+// A filter to use to search an Amazon QuickSight folder.
 type FolderSearchFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of a value that you want to use in the filter. For example, "Name":
-	// "PARENT_FOLDER_ARN".
+	// "QUICKSIGHT_OWNER".
+	//
+	// Valid values are defined as follows:
+	//
+	//    * QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group, and any
+	//    folders with that ARN listed as one of the folder's owners or viewers
+	//    are returned. Implicit permissions from folders or groups are considered.
+	//
+	//    * QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any folders
+	//    with that ARN listed as one of the owners of the folders are returned.
+	//    Implicit permissions from folders or groups are considered.
+	//
+	//    * DIRECT_QUICKSIGHT_SOLE_OWNER: Provide an ARN of a user or group, and
+	//    any folders with that ARN listed as the only owner of the folder are returned.
+	//    Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_OWNER: Provide an ARN of a user or group, and any
+	//    folders with that ARN listed as one of the owners of the folders are returned.
+	//    Implicit permissions from folders or groups are not considered.
+	//
+	//    * DIRECT_QUICKSIGHT_VIEWER_OR_OWNER: Provide an ARN of a user or group,
+	//    and any folders with that ARN listed as one of the owners or viewers of
+	//    the folders are returned. Implicit permissions from folders or groups
+	//    are not considered.
+	//
+	//    * FOLDER_NAME: Any folders whose names have a substring match to this
+	//    value will be returned.
+	//
+	//    * PARENT_FOLDER_ARN: Provide an ARN of a folder, and any folders that
+	//    are directly under that parent folder are returned. If you choose to use
+	//    this option and leave the value blank, all root-level folders in the account
+	//    are returned.
 	Name *string `type:"string" enum:"FolderFilterAttribute"`
 
-	// The comparison operator that you want to use in the filter. For example,
-	// "Operator": "StringEquals".
+	// The comparison operator that you want to use as a filter, for example "Operator":
+	// "StringEquals". Valid values are "StringEquals" and "StringLike".
+	//
+	// If you set the operator value to "StringEquals", you need to provide an ownership
+	// related filter in the "NAME" field and the arn of the user or group whose
+	// folders you want to search in the "Value" field. For example, "Name":"DIRECT_QUICKSIGHT_OWNER",
+	// "Operator": "StringEquals", "Value": "arn:aws:quicksight:us-east-1:1:user/default/UserName1".
+	//
+	// If you set the value to "StringLike", you need to provide the name of the
+	// folders you are searching for. For example, "Name":"FOLDER_NAME", "Operator":
+	// "StringLike", "Value": "Test". The "StringLike" operator only supports the
+	// NAME value FOLDER_NAME.
 	Operator *string `type:"string" enum:"FilterOperator"`
 
 	// The value of the named item (in this example, PARENT_FOLDER_ARN), that you
@@ -27798,6 +28917,12 @@ func (s *GenerateEmbedUrlForAnonymousUserInput) SetSessionTags(v []*SessionTag) 
 type GenerateEmbedUrlForAnonymousUserOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) to use for the anonymous Amazon QuickSight
+	// user.
+	//
+	// AnonymousUserArn is a required field
+	AnonymousUserArn *string `type:"string" required:"true"`
+
 	// The embed URL for the dashboard.
 	//
 	// EmbedUrl is a sensitive parameter and its value will be
@@ -27834,6 +28959,12 @@ func (s GenerateEmbedUrlForAnonymousUserOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForAnonymousUserOutput) GoString() string {
 	return s.String()
+}
+
+// SetAnonymousUserArn sets the AnonymousUserArn field's value.
+func (s *GenerateEmbedUrlForAnonymousUserOutput) SetAnonymousUserArn(v string) *GenerateEmbedUrlForAnonymousUserOutput {
+	s.AnonymousUserArn = &v
+	return s
 }
 
 // SetEmbedUrl sets the EmbedUrl field's value.
@@ -29357,6 +30488,74 @@ func (s *InvalidParameterValueException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidParameterValueException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// You don't have this feature activated for your account. To fix this issue,
+// contact Amazon Web Services support.
+type InvalidRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The Amazon Web Services request ID for this request.
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -36178,6 +37377,316 @@ func (s *SearchDashboardsOutput) SetStatus(v int64) *SearchDashboardsOutput {
 	return s
 }
 
+type SearchDataSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The filters to apply to the search.
+	//
+	// Filters is a required field
+	Filters []*DataSetSearchFilter `min:"1" type:"list" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchDataSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchDataSetsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *SearchDataSetsInput) SetAwsAccountId(v string) *SearchDataSetsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchDataSetsInput) SetFilters(v []*DataSetSearchFilter) *SearchDataSetsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchDataSetsInput) SetMaxResults(v int64) *SearchDataSetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchDataSetsInput) SetNextToken(v string) *SearchDataSetsInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchDataSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A DataSetSummaries object that returns a summary of a dataset.
+	DataSetSummaries []*DataSetSummary `type:"list"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataSetSummaries sets the DataSetSummaries field's value.
+func (s *SearchDataSetsOutput) SetDataSetSummaries(v []*DataSetSummary) *SearchDataSetsOutput {
+	s.DataSetSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchDataSetsOutput) SetNextToken(v string) *SearchDataSetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *SearchDataSetsOutput) SetRequestId(v string) *SearchDataSetsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SearchDataSetsOutput) SetStatus(v int64) *SearchDataSetsOutput {
+	s.Status = &v
+	return s
+}
+
+type SearchDataSourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The filters to apply to the search.
+	//
+	// Filters is a required field
+	Filters []*DataSourceSearchFilter `min:"1" type:"list" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchDataSourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchDataSourcesInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *SearchDataSourcesInput) SetAwsAccountId(v string) *SearchDataSourcesInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchDataSourcesInput) SetFilters(v []*DataSourceSearchFilter) *SearchDataSourcesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchDataSourcesInput) SetMaxResults(v int64) *SearchDataSourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchDataSourcesInput) SetNextToken(v string) *SearchDataSourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchDataSourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A DataSourceSummaries object that returns a summary of a data source.
+	DataSourceSummaries []*DataSourceSummary `type:"list"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchDataSourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataSourceSummaries sets the DataSourceSummaries field's value.
+func (s *SearchDataSourcesOutput) SetDataSourceSummaries(v []*DataSourceSummary) *SearchDataSourcesOutput {
+	s.DataSourceSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchDataSourcesOutput) SetNextToken(v string) *SearchDataSourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *SearchDataSourcesOutput) SetRequestId(v string) *SearchDataSourcesOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SearchDataSourcesOutput) SetStatus(v int64) *SearchDataSourcesOutput {
+	s.Status = &v
+	return s
+}
+
 type SearchFoldersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -39629,6 +41138,12 @@ type UpdateAccountSettingsInput struct {
 	// The email address that you want Amazon QuickSight to send notifications to
 	// regarding your Amazon Web Services account or Amazon QuickSight subscription.
 	NotificationEmail *string `type:"string"`
+
+	// A boolean value that determines whether or not an Amazon QuickSight account
+	// can be deleted. A True value doesn't allow the account to be deleted and
+	// results in an error message if a user tries to make a DeleteAccountSubscription
+	// request. A False value will allow the account to be deleted.
+	TerminationProtectionEnabled *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -39683,6 +41198,12 @@ func (s *UpdateAccountSettingsInput) SetDefaultNamespace(v string) *UpdateAccoun
 // SetNotificationEmail sets the NotificationEmail field's value.
 func (s *UpdateAccountSettingsInput) SetNotificationEmail(v string) *UpdateAccountSettingsInput {
 	s.NotificationEmail = &v
+	return s
+}
+
+// SetTerminationProtectionEnabled sets the TerminationProtectionEnabled field's value.
+func (s *UpdateAccountSettingsInput) SetTerminationProtectionEnabled(v bool) *UpdateAccountSettingsInput {
+	s.TerminationProtectionEnabled = &v
 	return s
 }
 
@@ -44183,12 +45704,36 @@ func AnalysisErrorType_Values() []string {
 const (
 	// AnalysisFilterAttributeQuicksightUser is a AnalysisFilterAttribute enum value
 	AnalysisFilterAttributeQuicksightUser = "QUICKSIGHT_USER"
+
+	// AnalysisFilterAttributeQuicksightViewerOrOwner is a AnalysisFilterAttribute enum value
+	AnalysisFilterAttributeQuicksightViewerOrOwner = "QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// AnalysisFilterAttributeDirectQuicksightViewerOrOwner is a AnalysisFilterAttribute enum value
+	AnalysisFilterAttributeDirectQuicksightViewerOrOwner = "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// AnalysisFilterAttributeQuicksightOwner is a AnalysisFilterAttribute enum value
+	AnalysisFilterAttributeQuicksightOwner = "QUICKSIGHT_OWNER"
+
+	// AnalysisFilterAttributeDirectQuicksightOwner is a AnalysisFilterAttribute enum value
+	AnalysisFilterAttributeDirectQuicksightOwner = "DIRECT_QUICKSIGHT_OWNER"
+
+	// AnalysisFilterAttributeDirectQuicksightSoleOwner is a AnalysisFilterAttribute enum value
+	AnalysisFilterAttributeDirectQuicksightSoleOwner = "DIRECT_QUICKSIGHT_SOLE_OWNER"
+
+	// AnalysisFilterAttributeAnalysisName is a AnalysisFilterAttribute enum value
+	AnalysisFilterAttributeAnalysisName = "ANALYSIS_NAME"
 )
 
 // AnalysisFilterAttribute_Values returns all elements of the AnalysisFilterAttribute enum
 func AnalysisFilterAttribute_Values() []string {
 	return []string{
 		AnalysisFilterAttributeQuicksightUser,
+		AnalysisFilterAttributeQuicksightViewerOrOwner,
+		AnalysisFilterAttributeDirectQuicksightViewerOrOwner,
+		AnalysisFilterAttributeQuicksightOwner,
+		AnalysisFilterAttributeDirectQuicksightOwner,
+		AnalysisFilterAttributeDirectQuicksightSoleOwner,
+		AnalysisFilterAttributeAnalysisName,
 	}
 }
 
@@ -44339,12 +45884,36 @@ func DashboardErrorType_Values() []string {
 const (
 	// DashboardFilterAttributeQuicksightUser is a DashboardFilterAttribute enum value
 	DashboardFilterAttributeQuicksightUser = "QUICKSIGHT_USER"
+
+	// DashboardFilterAttributeQuicksightViewerOrOwner is a DashboardFilterAttribute enum value
+	DashboardFilterAttributeQuicksightViewerOrOwner = "QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// DashboardFilterAttributeDirectQuicksightViewerOrOwner is a DashboardFilterAttribute enum value
+	DashboardFilterAttributeDirectQuicksightViewerOrOwner = "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// DashboardFilterAttributeQuicksightOwner is a DashboardFilterAttribute enum value
+	DashboardFilterAttributeQuicksightOwner = "QUICKSIGHT_OWNER"
+
+	// DashboardFilterAttributeDirectQuicksightOwner is a DashboardFilterAttribute enum value
+	DashboardFilterAttributeDirectQuicksightOwner = "DIRECT_QUICKSIGHT_OWNER"
+
+	// DashboardFilterAttributeDirectQuicksightSoleOwner is a DashboardFilterAttribute enum value
+	DashboardFilterAttributeDirectQuicksightSoleOwner = "DIRECT_QUICKSIGHT_SOLE_OWNER"
+
+	// DashboardFilterAttributeDashboardName is a DashboardFilterAttribute enum value
+	DashboardFilterAttributeDashboardName = "DASHBOARD_NAME"
 )
 
 // DashboardFilterAttribute_Values returns all elements of the DashboardFilterAttribute enum
 func DashboardFilterAttribute_Values() []string {
 	return []string{
 		DashboardFilterAttributeQuicksightUser,
+		DashboardFilterAttributeQuicksightViewerOrOwner,
+		DashboardFilterAttributeDirectQuicksightViewerOrOwner,
+		DashboardFilterAttributeQuicksightOwner,
+		DashboardFilterAttributeDirectQuicksightOwner,
+		DashboardFilterAttributeDirectQuicksightSoleOwner,
+		DashboardFilterAttributeDashboardName,
 	}
 }
 
@@ -44361,6 +45930,38 @@ func DashboardUIState_Values() []string {
 	return []string{
 		DashboardUIStateExpanded,
 		DashboardUIStateCollapsed,
+	}
+}
+
+const (
+	// DataSetFilterAttributeQuicksightViewerOrOwner is a DataSetFilterAttribute enum value
+	DataSetFilterAttributeQuicksightViewerOrOwner = "QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// DataSetFilterAttributeQuicksightOwner is a DataSetFilterAttribute enum value
+	DataSetFilterAttributeQuicksightOwner = "QUICKSIGHT_OWNER"
+
+	// DataSetFilterAttributeDirectQuicksightViewerOrOwner is a DataSetFilterAttribute enum value
+	DataSetFilterAttributeDirectQuicksightViewerOrOwner = "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// DataSetFilterAttributeDirectQuicksightOwner is a DataSetFilterAttribute enum value
+	DataSetFilterAttributeDirectQuicksightOwner = "DIRECT_QUICKSIGHT_OWNER"
+
+	// DataSetFilterAttributeDirectQuicksightSoleOwner is a DataSetFilterAttribute enum value
+	DataSetFilterAttributeDirectQuicksightSoleOwner = "DIRECT_QUICKSIGHT_SOLE_OWNER"
+
+	// DataSetFilterAttributeDatasetName is a DataSetFilterAttribute enum value
+	DataSetFilterAttributeDatasetName = "DATASET_NAME"
+)
+
+// DataSetFilterAttribute_Values returns all elements of the DataSetFilterAttribute enum
+func DataSetFilterAttribute_Values() []string {
+	return []string{
+		DataSetFilterAttributeQuicksightViewerOrOwner,
+		DataSetFilterAttributeQuicksightOwner,
+		DataSetFilterAttributeDirectQuicksightViewerOrOwner,
+		DataSetFilterAttributeDirectQuicksightOwner,
+		DataSetFilterAttributeDirectQuicksightSoleOwner,
+		DataSetFilterAttributeDatasetName,
 	}
 }
 
@@ -44417,6 +46018,30 @@ func DataSourceErrorInfoType_Values() []string {
 		DataSourceErrorInfoTypeGenericSqlFailure,
 		DataSourceErrorInfoTypeConflict,
 		DataSourceErrorInfoTypeUnknown,
+	}
+}
+
+const (
+	// DataSourceFilterAttributeDirectQuicksightViewerOrOwner is a DataSourceFilterAttribute enum value
+	DataSourceFilterAttributeDirectQuicksightViewerOrOwner = "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// DataSourceFilterAttributeDirectQuicksightOwner is a DataSourceFilterAttribute enum value
+	DataSourceFilterAttributeDirectQuicksightOwner = "DIRECT_QUICKSIGHT_OWNER"
+
+	// DataSourceFilterAttributeDirectQuicksightSoleOwner is a DataSourceFilterAttribute enum value
+	DataSourceFilterAttributeDirectQuicksightSoleOwner = "DIRECT_QUICKSIGHT_SOLE_OWNER"
+
+	// DataSourceFilterAttributeDatasourceName is a DataSourceFilterAttribute enum value
+	DataSourceFilterAttributeDatasourceName = "DATASOURCE_NAME"
+)
+
+// DataSourceFilterAttribute_Values returns all elements of the DataSourceFilterAttribute enum
+func DataSourceFilterAttribute_Values() []string {
+	return []string{
+		DataSourceFilterAttributeDirectQuicksightViewerOrOwner,
+		DataSourceFilterAttributeDirectQuicksightOwner,
+		DataSourceFilterAttributeDirectQuicksightSoleOwner,
+		DataSourceFilterAttributeDatasourceName,
 	}
 }
 
@@ -44495,6 +46120,9 @@ const (
 
 	// DataSourceTypeExasol is a DataSourceType enum value
 	DataSourceTypeExasol = "EXASOL"
+
+	// DataSourceTypeDatabricks is a DataSourceType enum value
+	DataSourceTypeDatabricks = "DATABRICKS"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -44525,6 +46153,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeTimestream,
 		DataSourceTypeAmazonOpensearch,
 		DataSourceTypeExasol,
+		DataSourceTypeDatabricks,
 	}
 }
 
@@ -44647,24 +46276,52 @@ func FileFormat_Values() []string {
 const (
 	// FilterOperatorStringEquals is a FilterOperator enum value
 	FilterOperatorStringEquals = "StringEquals"
+
+	// FilterOperatorStringLike is a FilterOperator enum value
+	FilterOperatorStringLike = "StringLike"
 )
 
 // FilterOperator_Values returns all elements of the FilterOperator enum
 func FilterOperator_Values() []string {
 	return []string{
 		FilterOperatorStringEquals,
+		FilterOperatorStringLike,
 	}
 }
 
 const (
 	// FolderFilterAttributeParentFolderArn is a FolderFilterAttribute enum value
 	FolderFilterAttributeParentFolderArn = "PARENT_FOLDER_ARN"
+
+	// FolderFilterAttributeDirectQuicksightOwner is a FolderFilterAttribute enum value
+	FolderFilterAttributeDirectQuicksightOwner = "DIRECT_QUICKSIGHT_OWNER"
+
+	// FolderFilterAttributeDirectQuicksightSoleOwner is a FolderFilterAttribute enum value
+	FolderFilterAttributeDirectQuicksightSoleOwner = "DIRECT_QUICKSIGHT_SOLE_OWNER"
+
+	// FolderFilterAttributeDirectQuicksightViewerOrOwner is a FolderFilterAttribute enum value
+	FolderFilterAttributeDirectQuicksightViewerOrOwner = "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// FolderFilterAttributeQuicksightOwner is a FolderFilterAttribute enum value
+	FolderFilterAttributeQuicksightOwner = "QUICKSIGHT_OWNER"
+
+	// FolderFilterAttributeQuicksightViewerOrOwner is a FolderFilterAttribute enum value
+	FolderFilterAttributeQuicksightViewerOrOwner = "QUICKSIGHT_VIEWER_OR_OWNER"
+
+	// FolderFilterAttributeFolderName is a FolderFilterAttribute enum value
+	FolderFilterAttributeFolderName = "FOLDER_NAME"
 )
 
 // FolderFilterAttribute_Values returns all elements of the FolderFilterAttribute enum
 func FolderFilterAttribute_Values() []string {
 	return []string{
 		FolderFilterAttributeParentFolderArn,
+		FolderFilterAttributeDirectQuicksightOwner,
+		FolderFilterAttributeDirectQuicksightSoleOwner,
+		FolderFilterAttributeDirectQuicksightViewerOrOwner,
+		FolderFilterAttributeQuicksightOwner,
+		FolderFilterAttributeQuicksightViewerOrOwner,
+		FolderFilterAttributeFolderName,
 	}
 }
 

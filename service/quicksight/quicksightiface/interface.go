@@ -136,6 +136,10 @@ type QuickSightAPI interface {
 	DeleteAccountCustomizationWithContext(aws.Context, *quicksight.DeleteAccountCustomizationInput, ...request.Option) (*quicksight.DeleteAccountCustomizationOutput, error)
 	DeleteAccountCustomizationRequest(*quicksight.DeleteAccountCustomizationInput) (*request.Request, *quicksight.DeleteAccountCustomizationOutput)
 
+	DeleteAccountSubscription(*quicksight.DeleteAccountSubscriptionInput) (*quicksight.DeleteAccountSubscriptionOutput, error)
+	DeleteAccountSubscriptionWithContext(aws.Context, *quicksight.DeleteAccountSubscriptionInput, ...request.Option) (*quicksight.DeleteAccountSubscriptionOutput, error)
+	DeleteAccountSubscriptionRequest(*quicksight.DeleteAccountSubscriptionInput) (*request.Request, *quicksight.DeleteAccountSubscriptionOutput)
+
 	DeleteAnalysis(*quicksight.DeleteAnalysisInput) (*quicksight.DeleteAnalysisOutput, error)
 	DeleteAnalysisWithContext(aws.Context, *quicksight.DeleteAnalysisInput, ...request.Option) (*quicksight.DeleteAnalysisOutput, error)
 	DeleteAnalysisRequest(*quicksight.DeleteAnalysisInput) (*request.Request, *quicksight.DeleteAnalysisOutput)
@@ -469,6 +473,20 @@ type QuickSightAPI interface {
 
 	SearchDashboardsPages(*quicksight.SearchDashboardsInput, func(*quicksight.SearchDashboardsOutput, bool) bool) error
 	SearchDashboardsPagesWithContext(aws.Context, *quicksight.SearchDashboardsInput, func(*quicksight.SearchDashboardsOutput, bool) bool, ...request.Option) error
+
+	SearchDataSets(*quicksight.SearchDataSetsInput) (*quicksight.SearchDataSetsOutput, error)
+	SearchDataSetsWithContext(aws.Context, *quicksight.SearchDataSetsInput, ...request.Option) (*quicksight.SearchDataSetsOutput, error)
+	SearchDataSetsRequest(*quicksight.SearchDataSetsInput) (*request.Request, *quicksight.SearchDataSetsOutput)
+
+	SearchDataSetsPages(*quicksight.SearchDataSetsInput, func(*quicksight.SearchDataSetsOutput, bool) bool) error
+	SearchDataSetsPagesWithContext(aws.Context, *quicksight.SearchDataSetsInput, func(*quicksight.SearchDataSetsOutput, bool) bool, ...request.Option) error
+
+	SearchDataSources(*quicksight.SearchDataSourcesInput) (*quicksight.SearchDataSourcesOutput, error)
+	SearchDataSourcesWithContext(aws.Context, *quicksight.SearchDataSourcesInput, ...request.Option) (*quicksight.SearchDataSourcesOutput, error)
+	SearchDataSourcesRequest(*quicksight.SearchDataSourcesInput) (*request.Request, *quicksight.SearchDataSourcesOutput)
+
+	SearchDataSourcesPages(*quicksight.SearchDataSourcesInput, func(*quicksight.SearchDataSourcesOutput, bool) bool) error
+	SearchDataSourcesPagesWithContext(aws.Context, *quicksight.SearchDataSourcesInput, func(*quicksight.SearchDataSourcesOutput, bool) bool, ...request.Option) error
 
 	SearchFolders(*quicksight.SearchFoldersInput) (*quicksight.SearchFoldersOutput, error)
 	SearchFoldersWithContext(aws.Context, *quicksight.SearchFoldersInput, ...request.Option) (*quicksight.SearchFoldersOutput, error)

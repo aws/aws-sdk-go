@@ -1610,8 +1610,9 @@ func (c *Appflow) RegisterConnectorRequest(input *RegisterConnectorInput) (req *
 
 // RegisterConnector API operation for Amazon Appflow.
 //
-// Registers a new connector with your Amazon Web Services account. Before you
-// can register the connector, you must deploy lambda in your account.
+// Registers a new custom connector with your Amazon Web Services account. Before
+// you can register the connector, you must deploy the associated AWS lambda
+// function in your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1999,7 +2000,7 @@ func (c *Appflow) UnregisterConnectorRequest(input *UnregisterConnectorInput) (r
 // UnregisterConnector API operation for Amazon Appflow.
 //
 // Unregisters the custom connector registered in your account that matches
-// the connectorLabel provided in the request.
+// the connector label provided in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2223,6 +2224,121 @@ func (c *Appflow) UpdateConnectorProfile(input *UpdateConnectorProfileInput) (*U
 // for more information on using Contexts.
 func (c *Appflow) UpdateConnectorProfileWithContext(ctx aws.Context, input *UpdateConnectorProfileInput, opts ...request.Option) (*UpdateConnectorProfileOutput, error) {
 	req, out := c.UpdateConnectorProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateConnectorRegistration = "UpdateConnectorRegistration"
+
+// UpdateConnectorRegistrationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnectorRegistration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnectorRegistration for more information on using the UpdateConnectorRegistration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateConnectorRegistrationRequest method.
+//	req, resp := client.UpdateConnectorRegistrationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/UpdateConnectorRegistration
+func (c *Appflow) UpdateConnectorRegistrationRequest(input *UpdateConnectorRegistrationInput) (req *request.Request, output *UpdateConnectorRegistrationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnectorRegistration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/update-connector-registration",
+	}
+
+	if input == nil {
+		input = &UpdateConnectorRegistrationInput{}
+	}
+
+	output = &UpdateConnectorRegistrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnectorRegistration API operation for Amazon Appflow.
+//
+// Updates a custom connector that you've previously registered. This operation
+// updates the connector with one of the following:
+//
+//   - The latest version of the AWS Lambda function that's assigned to the
+//     connector
+//
+//   - A new AWS Lambda function that you specify
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Appflow's
+// API operation UpdateConnectorRegistration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has invalid or missing parameters.
+//
+//   - ConflictException
+//     There was a conflict when processing the request (for example, a flow with
+//     the given name already exists within the account. Check for conflicting resource
+//     names and try again.
+//
+//   - AccessDeniedException
+//     AppFlow/Requester has invalid or missing permissions.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request (such as the source or destination
+//     connector profile) is not found.
+//
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota (such as the number of flows) to
+//     be exceeded.
+//
+//   - ThrottlingException
+//     API calls have exceeded the maximum allowed API request rate per account
+//     and per Region.
+//
+//   - InternalServerException
+//     An internal service error occurred during the processing of your request.
+//     Try again later.
+//
+//   - ConnectorServerException
+//     An error occurred when retrieving data from the connector endpoint.
+//
+//   - ConnectorAuthenticationException
+//     An error occurred when authenticating with the connector endpoint.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/UpdateConnectorRegistration
+func (c *Appflow) UpdateConnectorRegistration(input *UpdateConnectorRegistrationInput) (*UpdateConnectorRegistrationOutput, error) {
+	req, out := c.UpdateConnectorRegistrationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectorRegistrationWithContext is the same as UpdateConnectorRegistration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnectorRegistration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Appflow) UpdateConnectorRegistrationWithContext(ctx aws.Context, input *UpdateConnectorRegistrationInput, opts ...request.Option) (*UpdateConnectorRegistrationOutput, error) {
+	req, out := c.UpdateConnectorRegistrationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11860,7 +11976,7 @@ type SalesforceSourceProperties struct {
 	// ensure that your flow writes consistent output, but you decrease performance
 	// for large data transfers that are better suited for Bulk API 2.0. In some
 	// cases, if your flow attempts to transfer a vary large set of data, it might
-	// fail with a timed out error.
+	// fail wituh a timed out error.
 	DataTransferApi *string `locationName:"dataTransferApi" type:"string" enum:"SalesforceDataTransferApi"`
 
 	// The flag that enables dynamic fetching of new (recently added) fields in
@@ -14486,6 +14602,107 @@ func (s UpdateConnectorProfileOutput) GoString() string {
 // SetConnectorProfileArn sets the ConnectorProfileArn field's value.
 func (s *UpdateConnectorProfileOutput) SetConnectorProfileArn(v string) *UpdateConnectorProfileOutput {
 	s.ConnectorProfileArn = &v
+	return s
+}
+
+type UpdateConnectorRegistrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connector. The name is unique for each connector registration
+	// in your AWS account.
+	//
+	// ConnectorLabel is a required field
+	ConnectorLabel *string `locationName:"connectorLabel" type:"string" required:"true"`
+
+	// Contains information about the configuration of the connector being registered.
+	ConnectorProvisioningConfig *ConnectorProvisioningConfig `locationName:"connectorProvisioningConfig" type:"structure"`
+
+	// A description about the update that you're applying to the connector.
+	Description *string `locationName:"description" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectorRegistrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorRegistrationInput"}
+	if s.ConnectorLabel == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorLabel"))
+	}
+	if s.ConnectorProvisioningConfig != nil {
+		if err := s.ConnectorProvisioningConfig.Validate(); err != nil {
+			invalidParams.AddNested("ConnectorProvisioningConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorLabel sets the ConnectorLabel field's value.
+func (s *UpdateConnectorRegistrationInput) SetConnectorLabel(v string) *UpdateConnectorRegistrationInput {
+	s.ConnectorLabel = &v
+	return s
+}
+
+// SetConnectorProvisioningConfig sets the ConnectorProvisioningConfig field's value.
+func (s *UpdateConnectorRegistrationInput) SetConnectorProvisioningConfig(v *ConnectorProvisioningConfig) *UpdateConnectorRegistrationInput {
+	s.ConnectorProvisioningConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateConnectorRegistrationInput) SetDescription(v string) *UpdateConnectorRegistrationInput {
+	s.Description = &v
+	return s
+}
+
+type UpdateConnectorRegistrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the connector being updated.
+	ConnectorArn *string `locationName:"connectorArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectorArn sets the ConnectorArn field's value.
+func (s *UpdateConnectorRegistrationOutput) SetConnectorArn(v string) *UpdateConnectorRegistrationOutput {
+	s.ConnectorArn = &v
 	return s
 }
 

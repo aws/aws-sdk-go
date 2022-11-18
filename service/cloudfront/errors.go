@@ -530,6 +530,12 @@ const (
 	// more cache behaviors in a CloudFront distribution.
 	ErrCodeResponseHeadersPolicyInUse = "ResponseHeadersPolicyInUse"
 
+	// ErrCodeStagingDistributionInUse for service response error code
+	// "StagingDistributionInUse".
+	//
+	// A continuous deployment policy for this staging distribution already exists.
+	ErrCodeStagingDistributionInUse = "StagingDistributionInUse"
+
 	// ErrCodeStreamingDistributionAlreadyExists for service response error code
 	// "StreamingDistributionAlreadyExists".
 	//

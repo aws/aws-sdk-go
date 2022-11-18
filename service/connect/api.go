@@ -22001,6 +22001,10 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutin
 type CreateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of tags that a security profile uses to restrict access to resources
+	// in Amazon Connect.
+	AllowedAccessControlTags map[string]*string `type:"map"`
+
 	// The description of the security profile.
 	Description *string `type:"string"`
 
@@ -22017,7 +22021,11 @@ type CreateSecurityProfileInput struct {
 	// The name of the security profile.
 	//
 	// SecurityProfileName is a required field
-	SecurityProfileName *string `type:"string" required:"true"`
+	SecurityProfileName *string `min:"1" type:"string" required:"true"`
+
+	// The list of resources that a security profile applies tag restrictions to
+	// in Amazon Connect.
+	TagRestrictedResources []*string `type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
 	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
@@ -22054,6 +22062,9 @@ func (s *CreateSecurityProfileInput) Validate() error {
 	if s.SecurityProfileName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecurityProfileName"))
 	}
+	if s.SecurityProfileName != nil && len(*s.SecurityProfileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileName", 1))
+	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
@@ -22062,6 +22073,12 @@ func (s *CreateSecurityProfileInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
+func (s *CreateSecurityProfileInput) SetAllowedAccessControlTags(v map[string]*string) *CreateSecurityProfileInput {
+	s.AllowedAccessControlTags = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -22085,6 +22102,12 @@ func (s *CreateSecurityProfileInput) SetPermissions(v []*string) *CreateSecurity
 // SetSecurityProfileName sets the SecurityProfileName field's value.
 func (s *CreateSecurityProfileInput) SetSecurityProfileName(v string) *CreateSecurityProfileInput {
 	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTagRestrictedResources sets the TagRestrictedResources field's value.
+func (s *CreateSecurityProfileInput) SetTagRestrictedResources(v []*string) *CreateSecurityProfileInput {
+	s.TagRestrictedResources = v
 	return s
 }
 
@@ -39100,6 +39123,10 @@ func (s *SecurityKey) SetKey(v string) *SecurityKey {
 type SecurityProfile struct {
 	_ struct{} `type:"structure"`
 
+	// The list of tags that a security profile uses to restrict access to resources
+	// in Amazon Connect.
+	AllowedAccessControlTags map[string]*string `type:"map"`
+
 	// The Amazon Resource Name (ARN) for the secruity profile.
 	Arn *string `type:"string"`
 
@@ -39114,6 +39141,10 @@ type SecurityProfile struct {
 
 	// The name for the security profile.
 	SecurityProfileName *string `type:"string"`
+
+	// The list of resources that a security profile applies tag restrictions to
+	// in Amazon Connect.
+	TagRestrictedResources []*string `type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
 	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
@@ -39136,6 +39167,12 @@ func (s SecurityProfile) String() string {
 // value will be replaced with "sensitive".
 func (s SecurityProfile) GoString() string {
 	return s.String()
+}
+
+// SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
+func (s *SecurityProfile) SetAllowedAccessControlTags(v map[string]*string) *SecurityProfile {
+	s.AllowedAccessControlTags = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -39165,6 +39202,12 @@ func (s *SecurityProfile) SetOrganizationResourceId(v string) *SecurityProfile {
 // SetSecurityProfileName sets the SecurityProfileName field's value.
 func (s *SecurityProfile) SetSecurityProfileName(v string) *SecurityProfile {
 	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTagRestrictedResources sets the TagRestrictedResources field's value.
+func (s *SecurityProfile) SetTagRestrictedResources(v []*string) *SecurityProfile {
+	s.TagRestrictedResources = v
 	return s
 }
 
@@ -44697,6 +44740,10 @@ func (s UpdateRoutingProfileQueuesOutput) GoString() string {
 type UpdateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of tags that a security profile uses to restrict access to resources
+	// in Amazon Connect.
+	AllowedAccessControlTags map[string]*string `type:"map"`
+
 	// The description of the security profile.
 	Description *string `type:"string"`
 
@@ -44714,6 +44761,10 @@ type UpdateSecurityProfileInput struct {
 	//
 	// SecurityProfileId is a required field
 	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+
+	// The list of resources that a security profile applies tag restrictions to
+	// in Amazon Connect.
+	TagRestrictedResources []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -44756,6 +44807,12 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 	return nil
 }
 
+// SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
+func (s *UpdateSecurityProfileInput) SetAllowedAccessControlTags(v map[string]*string) *UpdateSecurityProfileInput {
+	s.AllowedAccessControlTags = v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *UpdateSecurityProfileInput) SetDescription(v string) *UpdateSecurityProfileInput {
 	s.Description = &v
@@ -44777,6 +44834,12 @@ func (s *UpdateSecurityProfileInput) SetPermissions(v []*string) *UpdateSecurity
 // SetSecurityProfileId sets the SecurityProfileId field's value.
 func (s *UpdateSecurityProfileInput) SetSecurityProfileId(v string) *UpdateSecurityProfileInput {
 	s.SecurityProfileId = &v
+	return s
+}
+
+// SetTagRestrictedResources sets the TagRestrictedResources field's value.
+func (s *UpdateSecurityProfileInput) SetTagRestrictedResources(v []*string) *UpdateSecurityProfileInput {
+	s.TagRestrictedResources = v
 	return s
 }
 
