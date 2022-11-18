@@ -30,9 +30,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "SsmSap"  // Name of service.
+	ServiceName = "Ssm Sap" // Name of service.
 	EndpointsID = "ssm-sap" // ID to lookup a service endpoint with.
-	ServiceID   = "SsmSap"  // ServiceID is a unique identifier of a specific service.
+	ServiceID   = "Ssm Sap" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the SsmSap client with a session.
