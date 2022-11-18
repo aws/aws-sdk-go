@@ -37,7 +37,7 @@ const opDeleteResourcePermission = "DeleteResourcePermission"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/DeleteResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/DeleteResourcePermission
 func (c *SsmSap) DeleteResourcePermissionRequest(input *DeleteResourcePermissionInput) (req *request.Request, output *DeleteResourcePermissionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteResourcePermission,
@@ -56,6 +56,8 @@ func (c *SsmSap) DeleteResourcePermissionRequest(input *DeleteResourcePermission
 
 // DeleteResourcePermission API operation for AWS Systems Manager for SAP.
 //
+// Removes permissions associated with the target database.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -71,7 +73,7 @@ func (c *SsmSap) DeleteResourcePermissionRequest(input *DeleteResourcePermission
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/DeleteResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/DeleteResourcePermission
 func (c *SsmSap) DeleteResourcePermission(input *DeleteResourcePermissionInput) (*DeleteResourcePermissionOutput, error) {
 	req, out := c.DeleteResourcePermissionRequest(input)
 	return out, req.Send()
@@ -117,7 +119,7 @@ const opDeregisterApplication = "DeregisterApplication"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/DeregisterApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/DeregisterApplication
 func (c *SsmSap) DeregisterApplicationRequest(input *DeregisterApplicationInput) (req *request.Request, output *DeregisterApplicationOutput) {
 	op := &request.Operation{
 		Name:       opDeregisterApplication,
@@ -137,6 +139,9 @@ func (c *SsmSap) DeregisterApplicationRequest(input *DeregisterApplicationInput)
 
 // DeregisterApplication API operation for AWS Systems Manager for SAP.
 //
+// Deregister an SAP application with AWS Systems Manager for SAP. This action
+// does not aﬀect the existing setup of your SAP workloads on Amazon EC2.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -150,7 +155,7 @@ func (c *SsmSap) DeregisterApplicationRequest(input *DeregisterApplicationInput)
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/DeregisterApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/DeregisterApplication
 func (c *SsmSap) DeregisterApplication(input *DeregisterApplicationInput) (*DeregisterApplicationOutput, error) {
 	req, out := c.DeregisterApplicationRequest(input)
 	return out, req.Send()
@@ -196,7 +201,7 @@ const opGetApplication = "GetApplication"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetApplication
 func (c *SsmSap) GetApplicationRequest(input *GetApplicationInput) (req *request.Request, output *GetApplicationOutput) {
 	op := &request.Operation{
 		Name:       opGetApplication,
@@ -215,6 +220,9 @@ func (c *SsmSap) GetApplicationRequest(input *GetApplicationInput) (req *request
 
 // GetApplication API operation for AWS Systems Manager for SAP.
 //
+// Gets an application registered with AWS Systems Manager for SAP. It also
+// returns the components of the application.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -228,7 +236,7 @@ func (c *SsmSap) GetApplicationRequest(input *GetApplicationInput) (req *request
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetApplication
 func (c *SsmSap) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
 	req, out := c.GetApplicationRequest(input)
 	return out, req.Send()
@@ -274,7 +282,7 @@ const opGetComponent = "GetComponent"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetComponent
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetComponent
 func (c *SsmSap) GetComponentRequest(input *GetComponentInput) (req *request.Request, output *GetComponentOutput) {
 	op := &request.Operation{
 		Name:       opGetComponent,
@@ -293,6 +301,9 @@ func (c *SsmSap) GetComponentRequest(input *GetComponentInput) (req *request.Req
 
 // GetComponent API operation for AWS Systems Manager for SAP.
 //
+// Gets the component of an application registered with AWS Systems Manager
+// for SAP.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -306,7 +317,7 @@ func (c *SsmSap) GetComponentRequest(input *GetComponentInput) (req *request.Req
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetComponent
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetComponent
 func (c *SsmSap) GetComponent(input *GetComponentInput) (*GetComponentOutput, error) {
 	req, out := c.GetComponentRequest(input)
 	return out, req.Send()
@@ -352,7 +363,7 @@ const opGetDatabase = "GetDatabase"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetDatabase
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetDatabase
 func (c *SsmSap) GetDatabaseRequest(input *GetDatabaseInput) (req *request.Request, output *GetDatabaseOutput) {
 	op := &request.Operation{
 		Name:       opGetDatabase,
@@ -371,6 +382,9 @@ func (c *SsmSap) GetDatabaseRequest(input *GetDatabaseInput) (req *request.Reque
 
 // GetDatabase API operation for AWS Systems Manager for SAP.
 //
+// Gets the SAP HANA database of an application registered with AWS Systems
+// Manager for SAP.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -384,7 +398,7 @@ func (c *SsmSap) GetDatabaseRequest(input *GetDatabaseInput) (req *request.Reque
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetDatabase
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetDatabase
 func (c *SsmSap) GetDatabase(input *GetDatabaseInput) (*GetDatabaseOutput, error) {
 	req, out := c.GetDatabaseRequest(input)
 	return out, req.Send()
@@ -430,7 +444,7 @@ const opGetOperation = "GetOperation"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetOperation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetOperation
 func (c *SsmSap) GetOperationRequest(input *GetOperationInput) (req *request.Request, output *GetOperationOutput) {
 	op := &request.Operation{
 		Name:       opGetOperation,
@@ -449,6 +463,8 @@ func (c *SsmSap) GetOperationRequest(input *GetOperationInput) (req *request.Req
 
 // GetOperation API operation for AWS Systems Manager for SAP.
 //
+// Gets the details of an operation by specifying the operation ID.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -462,7 +478,7 @@ func (c *SsmSap) GetOperationRequest(input *GetOperationInput) (req *request.Req
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetOperation
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetOperation
 func (c *SsmSap) GetOperation(input *GetOperationInput) (*GetOperationOutput, error) {
 	req, out := c.GetOperationRequest(input)
 	return out, req.Send()
@@ -508,7 +524,7 @@ const opGetResourcePermission = "GetResourcePermission"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetResourcePermission
 func (c *SsmSap) GetResourcePermissionRequest(input *GetResourcePermissionInput) (req *request.Request, output *GetResourcePermissionOutput) {
 	op := &request.Operation{
 		Name:       opGetResourcePermission,
@@ -527,6 +543,8 @@ func (c *SsmSap) GetResourcePermissionRequest(input *GetResourcePermissionInput)
 
 // GetResourcePermission API operation for AWS Systems Manager for SAP.
 //
+// Gets permissions associated with the target database.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -542,7 +560,7 @@ func (c *SsmSap) GetResourcePermissionRequest(input *GetResourcePermissionInput)
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/GetResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/GetResourcePermission
 func (c *SsmSap) GetResourcePermission(input *GetResourcePermissionInput) (*GetResourcePermissionOutput, error) {
 	req, out := c.GetResourcePermissionRequest(input)
 	return out, req.Send()
@@ -588,7 +606,7 @@ const opListApplications = "ListApplications"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListApplications
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListApplications
 func (c *SsmSap) ListApplicationsRequest(input *ListApplicationsInput) (req *request.Request, output *ListApplicationsOutput) {
 	op := &request.Operation{
 		Name:       opListApplications,
@@ -613,6 +631,8 @@ func (c *SsmSap) ListApplicationsRequest(input *ListApplicationsInput) (req *req
 
 // ListApplications API operation for AWS Systems Manager for SAP.
 //
+// Lists all the applications registered with AWS Systems Manager for SAP.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -628,7 +648,7 @@ func (c *SsmSap) ListApplicationsRequest(input *ListApplicationsInput) (req *req
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListApplications
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListApplications
 func (c *SsmSap) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
 	req, out := c.ListApplicationsRequest(input)
 	return out, req.Send()
@@ -725,7 +745,7 @@ const opListComponents = "ListComponents"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListComponents
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListComponents
 func (c *SsmSap) ListComponentsRequest(input *ListComponentsInput) (req *request.Request, output *ListComponentsOutput) {
 	op := &request.Operation{
 		Name:       opListComponents,
@@ -750,6 +770,8 @@ func (c *SsmSap) ListComponentsRequest(input *ListComponentsInput) (req *request
 
 // ListComponents API operation for AWS Systems Manager for SAP.
 //
+// Lists all the components registered with AWS Systems Manager for SAP.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -765,7 +787,7 @@ func (c *SsmSap) ListComponentsRequest(input *ListComponentsInput) (req *request
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListComponents
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListComponents
 func (c *SsmSap) ListComponents(input *ListComponentsInput) (*ListComponentsOutput, error) {
 	req, out := c.ListComponentsRequest(input)
 	return out, req.Send()
@@ -862,7 +884,7 @@ const opListDatabases = "ListDatabases"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListDatabases
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListDatabases
 func (c *SsmSap) ListDatabasesRequest(input *ListDatabasesInput) (req *request.Request, output *ListDatabasesOutput) {
 	op := &request.Operation{
 		Name:       opListDatabases,
@@ -887,6 +909,9 @@ func (c *SsmSap) ListDatabasesRequest(input *ListDatabasesInput) (req *request.R
 
 // ListDatabases API operation for AWS Systems Manager for SAP.
 //
+// Lists the SAP HANA databases of an application registered with AWS Systems
+// Manager for SAP.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -902,7 +927,7 @@ func (c *SsmSap) ListDatabasesRequest(input *ListDatabasesInput) (req *request.R
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListDatabases
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListDatabases
 func (c *SsmSap) ListDatabases(input *ListDatabasesInput) (*ListDatabasesOutput, error) {
 	req, out := c.ListDatabasesRequest(input)
 	return out, req.Send()
@@ -999,7 +1024,7 @@ const opListTagsForResource = "ListTagsForResource"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListTagsForResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListTagsForResource
 func (c *SsmSap) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
@@ -1018,6 +1043,9 @@ func (c *SsmSap) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 
 // ListTagsForResource API operation for AWS Systems Manager for SAP.
 //
+// Lists all tags on an SAP HANA application and/or database registered with
+// AWS Systems Manager for SAP.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1033,7 +1061,7 @@ func (c *SsmSap) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 //
 //   - ConflictException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/ListTagsForResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/ListTagsForResource
 func (c *SsmSap) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	return out, req.Send()
@@ -1079,7 +1107,7 @@ const opPutResourcePermission = "PutResourcePermission"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/PutResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/PutResourcePermission
 func (c *SsmSap) PutResourcePermissionRequest(input *PutResourcePermissionInput) (req *request.Request, output *PutResourcePermissionOutput) {
 	op := &request.Operation{
 		Name:       opPutResourcePermission,
@@ -1098,6 +1126,8 @@ func (c *SsmSap) PutResourcePermissionRequest(input *PutResourcePermissionInput)
 
 // PutResourcePermission API operation for AWS Systems Manager for SAP.
 //
+// Adds permissions to the target database.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1113,7 +1143,7 @@ func (c *SsmSap) PutResourcePermissionRequest(input *PutResourcePermissionInput)
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/PutResourcePermission
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/PutResourcePermission
 func (c *SsmSap) PutResourcePermission(input *PutResourcePermissionInput) (*PutResourcePermissionOutput, error) {
 	req, out := c.PutResourcePermissionRequest(input)
 	return out, req.Send()
@@ -1159,7 +1189,7 @@ const opRegisterApplication = "RegisterApplication"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/RegisterApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/RegisterApplication
 func (c *SsmSap) RegisterApplicationRequest(input *RegisterApplicationInput) (req *request.Request, output *RegisterApplicationOutput) {
 	op := &request.Operation{
 		Name:       opRegisterApplication,
@@ -1178,6 +1208,18 @@ func (c *SsmSap) RegisterApplicationRequest(input *RegisterApplicationInput) (re
 
 // RegisterApplication API operation for AWS Systems Manager for SAP.
 //
+// Register an SAP application with AWS Systems Manager for SAP. You must meet
+// the following requirements before registering.
+//
+// The SAP application you want to register with AWS Systems Manager for SAP
+// is running on Amazon EC2.
+//
+// AWS Systems Manager Agent must be setup on an Amazon EC2 instance along with
+// the required IAM permissions.
+//
+// Amazon EC2 instance(s) must have access to the secrets created in AWS Secrets
+// Manager to manage SAP applications and components.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1193,7 +1235,7 @@ func (c *SsmSap) RegisterApplicationRequest(input *RegisterApplicationInput) (re
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/RegisterApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/RegisterApplication
 func (c *SsmSap) RegisterApplication(input *RegisterApplicationInput) (*RegisterApplicationOutput, error) {
 	req, out := c.RegisterApplicationRequest(input)
 	return out, req.Send()
@@ -1239,7 +1281,7 @@ const opTagResource = "TagResource"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/TagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/TagResource
 func (c *SsmSap) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
 	op := &request.Operation{
 		Name:       opTagResource,
@@ -1259,6 +1301,8 @@ func (c *SsmSap) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 
 // TagResource API operation for AWS Systems Manager for SAP.
 //
+// Creates tag for a resource by specifying the ARN.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1274,7 +1318,7 @@ func (c *SsmSap) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 //
 //   - ConflictException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/TagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/TagResource
 func (c *SsmSap) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
 	return out, req.Send()
@@ -1320,7 +1364,7 @@ const opUntagResource = "UntagResource"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/UntagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/UntagResource
 func (c *SsmSap) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
 	op := &request.Operation{
 		Name:       opUntagResource,
@@ -1340,6 +1384,8 @@ func (c *SsmSap) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for AWS Systems Manager for SAP.
 //
+// Delete the tags for a resource.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1355,7 +1401,7 @@ func (c *SsmSap) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 //
 //   - ConflictException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/UntagResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/UntagResource
 func (c *SsmSap) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
 	return out, req.Send()
@@ -1401,7 +1447,7 @@ const opUpdateApplicationSettings = "UpdateApplicationSettings"
 //	    fmt.Println(resp)
 //	}
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/UpdateApplicationSettings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/UpdateApplicationSettings
 func (c *SsmSap) UpdateApplicationSettingsRequest(input *UpdateApplicationSettingsInput) (req *request.Request, output *UpdateApplicationSettingsOutput) {
 	op := &request.Operation{
 		Name:       opUpdateApplicationSettings,
@@ -1435,7 +1481,7 @@ func (c *SsmSap) UpdateApplicationSettingsRequest(input *UpdateApplicationSettin
 //
 //   - InternalServerException
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10/UpdateApplicationSettings
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10/UpdateApplicationSettings
 func (c *SsmSap) UpdateApplicationSettings(input *UpdateApplicationSettingsInput) (*UpdateApplicationSettingsOutput, error) {
 	req, out := c.UpdateApplicationSettingsRequest(input)
 	return out, req.Send()
@@ -3624,6 +3670,9 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
+	// Adds/updates or removes credentials for applications registered with AWS
+	// Systems Manager for SAP.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }

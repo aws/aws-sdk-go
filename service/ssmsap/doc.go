@@ -3,7 +3,11 @@
 // Package ssmsap provides the client and types for making API
 // requests to AWS Systems Manager for SAP.
 //
-// See https://docs.aws.amazon.com/goto/WebAPI/ssmsap-2018-05-10 for more information on this service.
+// This API reference provides descriptions, syntax, and other details about
+// each of the actions and data types for AWS Systems Manager for SAP. The topic
+// for each action shows the API request parameters and responses.
+//
+// See https://docs.aws.amazon.com/goto/WebAPI/ssm-sap-2018-05-10 for more information on this service.
 //
 // See ssmsap package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/ssmsap/
