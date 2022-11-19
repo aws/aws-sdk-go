@@ -35,8 +35,8 @@ func NewUnmarshalTypedError(exceptions map[string]func(protocol.ResponseMetadata
 
 func NewUnmarshalTypedErrorWithOptions(exceptions map[string]func(protocol.ResponseMetadata) error, optFns ...func(*UnmarshalTypedError)) *UnmarshalTypedError {
 	err := NewUnmarshalTypedError(exceptions)
-	if len(optFns) == 1 {
-		optFns[0](err)
+	for _, fn := range optFns {
+		fn(err)
 	}
 	return err
 }
