@@ -34,11 +34,11 @@ func NewUnmarshalTypedError(exceptions map[string]func(protocol.ResponseMetadata
 }
 
 func NewUnmarshalTypedErrorWithOptions(exceptions map[string]func(protocol.ResponseMetadata) error, optFns ...func(*UnmarshalTypedError)) *UnmarshalTypedError {
-	err := NewUnmarshalTypedError(exceptions)
+	unmarshaledError := NewUnmarshalTypedError(exceptions)
 	for _, fn := range optFns {
-		fn(err)
+		fn(unmarshaledError)
 	}
-	return err
+	return unmarshaledError
 }
 
 func WithQueryCompatibility() func(*UnmarshalTypedError) {
