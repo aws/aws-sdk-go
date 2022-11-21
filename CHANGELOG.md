@@ -1,3 +1,10 @@
+Release v1.44.143 (2022-11-21)
+===
+
+### Service Client Updates
+* `service/route53`: Updates service API
+  * Amazon Route 53 now supports the Asia Pacific (Hyderabad) Region (ap-south-2) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+
 Release v1.44.142 (2022-11-18)
 ===
 
