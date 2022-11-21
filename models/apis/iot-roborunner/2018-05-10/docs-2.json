@@ -1,0 +1,696 @@
+{
+  "version": "2.0",
+  "service": "<p>An example service, deployed with the Octane Service creator, which will echo the string</p>",
+  "operations": {
+    "CreateDestination": "<p>Grants permission to create a destination</p>",
+    "CreateSite": "<p>Grants permission to create a site</p>",
+    "CreateWorker": "<p>Grants permission to create a worker</p>",
+    "CreateWorkerFleet": "<p>Grants permission to create a worker fleet</p>",
+    "DeleteDestination": "<p>Grants permission to delete a destination</p>",
+    "DeleteSite": "<p>Grants permission to delete a site</p>",
+    "DeleteWorker": "<p>Grants permission to delete a worker</p>",
+    "DeleteWorkerFleet": "<p>Grants permission to delete a worker fleet</p>",
+    "GetDestination": "<p>Grants permission to get a destination</p>",
+    "GetSite": "<p>Grants permission to get a site</p>",
+    "GetWorker": "<p>Grants permission to get a worker</p>",
+    "GetWorkerFleet": "<p>Grants permission to get a worker fleet</p>",
+    "ListDestinations": "<p>Grants permission to list destinations</p>",
+    "ListSites": "<p>Grants permission to list sites</p>",
+    "ListWorkerFleets": "<p>Grants permission to list worker fleets</p>",
+    "ListWorkers": "<p>Grants permission to list workers</p>",
+    "UpdateDestination": "<p>Grants permission to update a destination</p>",
+    "UpdateSite": "<p>Grants permission to update a site</p>",
+    "UpdateWorker": "<p>Grants permission to update a worker</p>",
+    "UpdateWorkerFleet": "<p>Grants permission to update a worker fleet</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>User does not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "CartesianCoordinates": {
+      "base": "<p>Cartesian coordinates in 3D space relative to the RoboRunner origin.</p>",
+      "refs": {
+        "PositionCoordinates$cartesianCoordinates": "<p>Cartesian coordinates.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Exception thrown if a resource in a create request already exists.</p>",
+      "refs": {
+      }
+    },
+    "CreateDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSiteRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSiteResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkerFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkerFleetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatedAtTimestamp": {
+      "base": "<p>Timestamp at which the resource was created.</p>",
+      "refs": {
+        "CreateDestinationResponse$createdAt": null,
+        "CreateSiteResponse$createdAt": null,
+        "CreateWorkerFleetResponse$createdAt": null,
+        "CreateWorkerResponse$createdAt": null,
+        "Destination$createdAt": null,
+        "GetDestinationResponse$createdAt": null,
+        "GetSiteResponse$createdAt": null,
+        "GetWorkerFleetResponse$createdAt": null,
+        "GetWorkerResponse$createdAt": null,
+        "Site$createdAt": null,
+        "Worker$createdAt": null,
+        "WorkerFleet$createdAt": null
+      }
+    },
+    "DeleteDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSiteRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSiteResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkerFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkerFleetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Destination": {
+      "base": "<p>Area within a facility where work can be performed.</p>",
+      "refs": {
+        "Destinations$member": null
+      }
+    },
+    "DestinationAdditionalFixedProperties": {
+      "base": "<p>JSON document containing additional fixed properties regarding the destination</p>",
+      "refs": {
+        "CreateDestinationRequest$additionalFixedProperties": null,
+        "Destination$additionalFixedProperties": null,
+        "GetDestinationResponse$additionalFixedProperties": null,
+        "UpdateDestinationRequest$additionalFixedProperties": null,
+        "UpdateDestinationResponse$additionalFixedProperties": null
+      }
+    },
+    "DestinationArn": {
+      "base": "<p>Destination ARN.</p>",
+      "refs": {
+        "CreateDestinationResponse$arn": null,
+        "Destination$arn": null,
+        "GetDestinationResponse$arn": null,
+        "UpdateDestinationResponse$arn": null
+      }
+    },
+    "DestinationGenericIdentifier": {
+      "base": "<p>Destination ARN.</p>",
+      "refs": {
+        "DeleteDestinationRequest$id": null,
+        "GetDestinationRequest$id": null,
+        "UpdateDestinationRequest$id": null
+      }
+    },
+    "DestinationId": {
+      "base": "<p>Filters access by the destination's identifier</p>",
+      "refs": {
+        "CreateDestinationResponse$id": null,
+        "Destination$id": null,
+        "GetDestinationResponse$id": null,
+        "UpdateDestinationResponse$id": null
+      }
+    },
+    "DestinationState": {
+      "base": "<p>State of the destination.</p>",
+      "refs": {
+        "CreateDestinationRequest$state": "<p>The state of the destination. Default used if not specified.</p>",
+        "CreateDestinationResponse$state": null,
+        "Destination$state": null,
+        "GetDestinationResponse$state": null,
+        "ListDestinationsRequest$state": null,
+        "UpdateDestinationRequest$state": null,
+        "UpdateDestinationResponse$state": null
+      }
+    },
+    "Destinations": {
+      "base": "<p>List of destinations.</p>",
+      "refs": {
+        "ListDestinationsResponse$destinations": null
+      }
+    },
+    "Double": {
+      "base": null,
+      "refs": {
+        "CartesianCoordinates$x": "<p>X coordinate.</p>",
+        "CartesianCoordinates$y": "<p>Y coordinate.</p>",
+        "CartesianCoordinates$z": "<p>Z coordinate.</p>"
+      }
+    },
+    "GetDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSiteRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSiteResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkerFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkerFleetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "IdempotencyToken": {
+      "base": "<p>Token used for detecting replayed requests. Replayed requests will not be performed multiple times.</p>",
+      "refs": {
+        "CreateDestinationRequest$clientToken": null,
+        "CreateSiteRequest$clientToken": null,
+        "CreateWorkerFleetRequest$clientToken": null,
+        "CreateWorkerRequest$clientToken": null
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>Exception thrown if something goes wrong within the service.</p>",
+      "refs": {
+      }
+    },
+    "ListDestinationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDestinationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSitesPageSize": {
+      "base": "<p>Maximum number of results to retrieve in a single ListSites call.</p>",
+      "refs": {
+        "ListSitesRequest$maxResults": null
+      }
+    },
+    "ListSitesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSitesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkerFleetsPageSize": {
+      "base": "<p>Maximum number of results to retrieve in a single ListWorkerFleets call.</p>",
+      "refs": {
+        "ListWorkerFleetsRequest$maxResults": null
+      }
+    },
+    "ListWorkerFleetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkerFleetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkersPageSize": {
+      "base": "<p>Maximum number of results to retrieve in a single ListWorkers call.</p>",
+      "refs": {
+        "ListWorkersRequest$maxResults": null
+      }
+    },
+    "ListWorkersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Name": {
+      "base": "<p>Human friendly name of the resource.</p>",
+      "refs": {
+        "CreateDestinationRequest$name": null,
+        "CreateSiteRequest$name": null,
+        "CreateWorkerFleetRequest$name": null,
+        "CreateWorkerRequest$name": null,
+        "Destination$name": null,
+        "GetDestinationResponse$name": null,
+        "GetSiteResponse$name": null,
+        "GetWorkerFleetResponse$name": null,
+        "GetWorkerResponse$name": null,
+        "Site$name": "<p>The name of the site. Mutable after creation and unique within a given account.</p>",
+        "UpdateDestinationRequest$name": null,
+        "UpdateDestinationResponse$name": null,
+        "UpdateSiteRequest$name": null,
+        "UpdateSiteResponse$name": null,
+        "UpdateWorkerFleetRequest$name": null,
+        "UpdateWorkerFleetResponse$name": null,
+        "UpdateWorkerRequest$name": null,
+        "UpdateWorkerResponse$name": null,
+        "Worker$name": null,
+        "WorkerFleet$name": null
+      }
+    },
+    "Orientation": {
+      "base": "<p>Worker orientation measured in units clockwise from north.</p>",
+      "refs": {
+        "CreateWorkerRequest$orientation": null,
+        "GetWorkerResponse$orientation": null,
+        "UpdateWorkerRequest$orientation": null,
+        "UpdateWorkerResponse$orientation": null,
+        "Worker$orientation": null
+      }
+    },
+    "OrientationDegreesDouble": {
+      "base": null,
+      "refs": {
+        "Orientation$degrees": "<p>Degrees, limited on [0, 360)</p>"
+      }
+    },
+    "PageSize": {
+      "base": "<p>Maximum number of results to retrieve in a single call.</p>",
+      "refs": {
+        "ListDestinationsRequest$maxResults": null
+      }
+    },
+    "PaginationToken": {
+      "base": "<p>Pagination token returned when another page of data exists. Provide it in your next call to the API to receive the next page.</p>",
+      "refs": {
+        "ListDestinationsRequest$nextToken": null,
+        "ListDestinationsResponse$nextToken": null,
+        "ListSitesRequest$nextToken": null,
+        "ListSitesResponse$nextToken": null,
+        "ListWorkerFleetsRequest$nextToken": null,
+        "ListWorkerFleetsResponse$nextToken": null,
+        "ListWorkersRequest$nextToken": null,
+        "ListWorkersResponse$nextToken": null
+      }
+    },
+    "PositionCoordinates": {
+      "base": "<p>Supported coordinates for worker position.</p>",
+      "refs": {
+        "CreateWorkerRequest$position": null,
+        "GetWorkerResponse$position": null,
+        "UpdateWorkerRequest$position": null,
+        "UpdateWorkerResponse$position": null,
+        "Worker$position": null
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>Exception thrown if a resource referenced in the request doesn't exist.</p>",
+      "refs": {
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>Exception thrown if the user's AWS account has reached a service limit and the operation cannot proceed.</p>",
+      "refs": {
+      }
+    },
+    "Site": {
+      "base": "<p>Facility containing destinations, workers, activities, and tasks.</p>",
+      "refs": {
+        "Sites$member": null
+      }
+    },
+    "SiteArn": {
+      "base": "<p>Site ARN.</p>",
+      "refs": {
+        "CreateSiteResponse$arn": null,
+        "CreateWorkerResponse$site": null,
+        "Destination$site": null,
+        "GetDestinationResponse$site": null,
+        "GetSiteResponse$arn": null,
+        "GetWorkerFleetResponse$site": null,
+        "GetWorkerResponse$site": null,
+        "Site$arn": null,
+        "UpdateSiteResponse$arn": null,
+        "Worker$site": null,
+        "WorkerFleet$site": null
+      }
+    },
+    "SiteCountryCode": {
+      "base": "<p>A valid ISO 3166-1 alpha-2 code for the country in which the site resides. e.g., US.</p>",
+      "refs": {
+        "CreateSiteRequest$countryCode": null,
+        "GetSiteResponse$countryCode": null,
+        "Site$countryCode": null,
+        "UpdateSiteRequest$countryCode": null,
+        "UpdateSiteResponse$countryCode": null
+      }
+    },
+    "SiteDescription": {
+      "base": "<p>A high-level description of the site.</p>",
+      "refs": {
+        "CreateSiteRequest$description": null,
+        "GetSiteResponse$description": null,
+        "UpdateSiteRequest$description": null,
+        "UpdateSiteResponse$description": null
+      }
+    },
+    "SiteGenericIdentifier": {
+      "base": "<p>Site ARN.</p>",
+      "refs": {
+        "CreateDestinationRequest$site": null,
+        "CreateWorkerFleetRequest$site": null,
+        "DeleteSiteRequest$id": null,
+        "GetSiteRequest$id": null,
+        "ListDestinationsRequest$site": null,
+        "ListWorkerFleetsRequest$site": null,
+        "ListWorkersRequest$site": null,
+        "UpdateSiteRequest$id": null
+      }
+    },
+    "SiteId": {
+      "base": "<p>Filters access by the site's identifier</p>",
+      "refs": {
+        "CreateSiteResponse$id": null,
+        "GetSiteResponse$id": null,
+        "UpdateSiteResponse$id": null
+      }
+    },
+    "Sites": {
+      "base": "<p>List of facilities.</p>",
+      "refs": {
+        "ListSitesResponse$sites": null
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": null,
+        "ConflictException$message": null,
+        "InternalServerException$message": null,
+        "ResourceNotFoundException$message": null,
+        "ServiceQuotaExceededException$message": null,
+        "ThrottlingException$message": null,
+        "ValidationException$message": null
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>Exception thrown if the api has been called too quickly be the client.</p>",
+      "refs": {
+      }
+    },
+    "UpdateDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSiteRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSiteResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkerFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkerFleetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatedAtTimestamp": {
+      "base": "<p>Timestamp at which the resource was last updated.</p>",
+      "refs": {
+        "CreateDestinationResponse$updatedAt": null,
+        "CreateSiteResponse$updatedAt": null,
+        "CreateWorkerFleetResponse$updatedAt": null,
+        "CreateWorkerResponse$updatedAt": null,
+        "Destination$updatedAt": null,
+        "GetDestinationResponse$updatedAt": null,
+        "GetSiteResponse$updatedAt": null,
+        "GetWorkerFleetResponse$updatedAt": null,
+        "GetWorkerResponse$updatedAt": null,
+        "UpdateDestinationResponse$updatedAt": null,
+        "UpdateSiteResponse$updatedAt": null,
+        "UpdateWorkerFleetResponse$updatedAt": null,
+        "UpdateWorkerResponse$updatedAt": null,
+        "Worker$updatedAt": null,
+        "WorkerFleet$updatedAt": null
+      }
+    },
+    "ValidationException": {
+      "base": "<p>Exception thrown if an invalid parameter is provided to an API.</p>",
+      "refs": {
+      }
+    },
+    "VendorAdditionalFixedPropertiesJson": {
+      "base": "<p>JSON blob containing unstructured vendor properties that are fixed and won't change during regular operation.</p>",
+      "refs": {
+        "VendorProperties$vendorAdditionalFixedProperties": null
+      }
+    },
+    "VendorAdditionalTransientPropertiesJson": {
+      "base": "<p>JSON blob containing unstructured vendor properties that are transient and may change during regular operation.</p>",
+      "refs": {
+        "VendorProperties$vendorAdditionalTransientProperties": null
+      }
+    },
+    "VendorProperties": {
+      "base": "<p>Properties of the worker that are provided by the vendor FMS.</p>",
+      "refs": {
+        "CreateWorkerRequest$vendorProperties": null,
+        "GetWorkerResponse$vendorProperties": null,
+        "UpdateWorkerRequest$vendorProperties": null,
+        "UpdateWorkerResponse$vendorProperties": null,
+        "Worker$vendorProperties": null
+      }
+    },
+    "VendorWorkerId": {
+      "base": "<p>The worker ID defined by the vendor FMS.</p>",
+      "refs": {
+        "VendorProperties$vendorWorkerId": null
+      }
+    },
+    "VendorWorkerIpAddress": {
+      "base": "<p>The worker IP address defined by the vendor FMS.</p>",
+      "refs": {
+        "VendorProperties$vendorWorkerIpAddress": null
+      }
+    },
+    "Worker": {
+      "base": "<p>A unit capable of performing tasks.</p>",
+      "refs": {
+        "Workers$member": null
+      }
+    },
+    "WorkerAdditionalFixedPropertiesJson": {
+      "base": "<p>JSON blob containing unstructured worker properties that are fixed and won't change during regular operation.</p>",
+      "refs": {
+        "CreateWorkerRequest$additionalFixedProperties": null,
+        "GetWorkerResponse$additionalFixedProperties": null,
+        "UpdateWorkerRequest$additionalFixedProperties": null,
+        "UpdateWorkerResponse$additionalFixedProperties": null,
+        "Worker$additionalFixedProperties": null
+      }
+    },
+    "WorkerAdditionalTransientPropertiesJson": {
+      "base": "<p>JSON blob containing unstructured worker properties that are transient and may change during regular operation.</p>",
+      "refs": {
+        "CreateWorkerRequest$additionalTransientProperties": null,
+        "GetWorkerResponse$additionalTransientProperties": null,
+        "UpdateWorkerRequest$additionalTransientProperties": null,
+        "UpdateWorkerResponse$additionalTransientProperties": null,
+        "Worker$additionalTransientProperties": null
+      }
+    },
+    "WorkerArn": {
+      "base": "<p>Full ARN of the worker.</p>",
+      "refs": {
+        "CreateWorkerResponse$arn": null,
+        "GetWorkerResponse$arn": null,
+        "UpdateWorkerResponse$arn": null,
+        "Worker$arn": null
+      }
+    },
+    "WorkerFleet": {
+      "base": "<p>A collection of workers organized within a facility.</p>",
+      "refs": {
+        "WorkerFleets$member": null
+      }
+    },
+    "WorkerFleetAdditionalFixedProperties": {
+      "base": "<p>JSON blob containing additional fixed properties regarding the worker fleet</p>",
+      "refs": {
+        "CreateWorkerFleetRequest$additionalFixedProperties": null,
+        "GetWorkerFleetResponse$additionalFixedProperties": null,
+        "UpdateWorkerFleetRequest$additionalFixedProperties": null,
+        "UpdateWorkerFleetResponse$additionalFixedProperties": null,
+        "WorkerFleet$additionalFixedProperties": null
+      }
+    },
+    "WorkerFleetArn": {
+      "base": "<p>Full ARN of the worker fleet.</p>",
+      "refs": {
+        "CreateWorkerFleetResponse$arn": null,
+        "GetWorkerFleetResponse$arn": null,
+        "GetWorkerResponse$fleet": null,
+        "UpdateWorkerFleetResponse$arn": null,
+        "UpdateWorkerResponse$fleet": null,
+        "Worker$fleet": null,
+        "WorkerFleet$arn": null
+      }
+    },
+    "WorkerFleetGenericIdentifier": {
+      "base": "<p>Full ARN of the worker fleet.</p>",
+      "refs": {
+        "CreateWorkerRequest$fleet": null,
+        "DeleteWorkerFleetRequest$id": null,
+        "GetWorkerFleetRequest$id": null,
+        "ListWorkersRequest$fleet": null,
+        "UpdateWorkerFleetRequest$id": null
+      }
+    },
+    "WorkerFleetId": {
+      "base": "<p>Filters access by the worker fleet's identifier</p>",
+      "refs": {
+        "CreateWorkerFleetResponse$id": null,
+        "GetWorkerFleetResponse$id": null,
+        "UpdateWorkerFleetResponse$id": null,
+        "WorkerFleet$id": null
+      }
+    },
+    "WorkerFleets": {
+      "base": "<p>List of worker fleets.</p>",
+      "refs": {
+        "ListWorkerFleetsResponse$workerFleets": null
+      }
+    },
+    "WorkerGenericIdentifier": {
+      "base": "<p>Full ARN of the worker.</p>",
+      "refs": {
+        "DeleteWorkerRequest$id": null,
+        "GetWorkerRequest$id": null,
+        "UpdateWorkerRequest$id": null
+      }
+    },
+    "WorkerId": {
+      "base": "<p>Filters access by the workers identifier</p>",
+      "refs": {
+        "CreateWorkerResponse$id": null,
+        "GetWorkerResponse$id": null,
+        "UpdateWorkerResponse$id": null,
+        "Worker$id": null
+      }
+    },
+    "Workers": {
+      "base": "<p>List of workers.</p>",
+      "refs": {
+        "ListWorkersResponse$workers": null
+      }
+    }
+  }
+}

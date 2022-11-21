@@ -13684,6 +13684,9 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //     The network type is invalid for the DB instance. Valid nework type values
 //     are IPV4 and DUAL.
 //
+//   - ErrCodeDBClusterSnapshotNotFoundFault "DBClusterSnapshotNotFoundFault"
+//     DBClusterSnapshotIdentifier doesn't refer to an existing DB cluster snapshot.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceFromDBSnapshot
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
@@ -16592,6 +16595,15 @@ func (s *CloudwatchLogsExportConfiguration) SetEnableLogTypes(v []*string) *Clou
 type ClusterPendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
+	// The allocated storage size in gibibytes (GiB) for all database engines except
+	// Amazon Aurora. For Aurora, AllocatedStorage always returns 1, because Aurora
+	// DB cluster storage size isn't fixed, but instead automatically adjusts as
+	// needed.
+	AllocatedStorage *int64 `type:"integer"`
+
+	// The number of days for which automatic DB snapshots are retained.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
 	// The DBClusterIdentifier value for the DB cluster.
 	DBClusterIdentifier *string `type:"string"`
 
@@ -16601,6 +16613,10 @@ type ClusterPendingModifiedValues struct {
 	// A value that indicates whether mapping of Amazon Web Services Identity and
 	// Access Management (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
+
+	// The Provisioned IOPS (I/O operations per second) value. This setting is only
+	// for non-Aurora Multi-AZ DB clusters.
+	Iops *int64 `type:"integer"`
 
 	// The master credentials for the DB cluster.
 	MasterUserPassword *string `type:"string"`
@@ -16628,6 +16644,18 @@ func (s ClusterPendingModifiedValues) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *ClusterPendingModifiedValues) SetAllocatedStorage(v int64) *ClusterPendingModifiedValues {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *ClusterPendingModifiedValues) SetBackupRetentionPeriod(v int64) *ClusterPendingModifiedValues {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *ClusterPendingModifiedValues) SetDBClusterIdentifier(v string) *ClusterPendingModifiedValues {
 	s.DBClusterIdentifier = &v
@@ -16643,6 +16671,12 @@ func (s *ClusterPendingModifiedValues) SetEngineVersion(v string) *ClusterPendin
 // SetIAMDatabaseAuthenticationEnabled sets the IAMDatabaseAuthenticationEnabled field's value.
 func (s *ClusterPendingModifiedValues) SetIAMDatabaseAuthenticationEnabled(v bool) *ClusterPendingModifiedValues {
 	s.IAMDatabaseAuthenticationEnabled = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *ClusterPendingModifiedValues) SetIops(v int64) *ClusterPendingModifiedValues {
+	s.Iops = &v
 	return s
 }
 
@@ -17987,6 +18021,14 @@ type CreateCustomDBEngineVersionOutput struct {
 	// The creation time of the DB engine version.
 	CreateTime *time.Time `type:"timestamp"`
 
+	// JSON string that lists the installation files and parameters that RDS Custom
+	// uses to create a custom engine version (CEV). RDS Custom applies the patches
+	// in the order in which they're listed in the manifest. You can set the Oracle
+	// home, Oracle base, and UNIX/Linux user and group using the installation parameters.
+	// For more information, see JSON fields in the CEV manifest (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.preparing.html#custom-cev.preparing.manifest.fields)
+	// in the Amazon RDS User Guide.
+	CustomDBEngineVersionManifest *string `min:"1" type:"string"`
+
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
@@ -18113,6 +18155,12 @@ func (s CreateCustomDBEngineVersionOutput) GoString() string {
 // SetCreateTime sets the CreateTime field's value.
 func (s *CreateCustomDBEngineVersionOutput) SetCreateTime(v time.Time) *CreateCustomDBEngineVersionOutput {
 	s.CreateTime = &v
+	return s
+}
+
+// SetCustomDBEngineVersionManifest sets the CustomDBEngineVersionManifest field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetCustomDBEngineVersionManifest(v string) *CreateCustomDBEngineVersionOutput {
+	s.CustomDBEngineVersionManifest = &v
 	return s
 }
 
@@ -18622,6 +18670,9 @@ type CreateDBClusterInput struct {
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
+
+	// Reserved for future use.
+	DBSystemId *string `type:"string"`
 
 	// The name for your database of up to 64 alphanumeric characters. If you do
 	// not provide a name, Amazon RDS doesn't create a database in the DB cluster
@@ -19277,6 +19328,12 @@ func (s *CreateDBClusterInput) SetDBClusterParameterGroupName(v string) *CreateD
 // SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
 func (s *CreateDBClusterInput) SetDBSubnetGroupName(v string) *CreateDBClusterInput {
 	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDBSystemId sets the DBSystemId field's value.
+func (s *CreateDBClusterInput) SetDBSystemId(v string) *CreateDBClusterInput {
+	s.DBSystemId = &v
 	return s
 }
 
@@ -20772,6 +20829,8 @@ type CreateDBInstanceInput struct {
 	StorageEncrypted *bool `type:"boolean"`
 
 	// Specifies the storage throughput value for the DB instance.
+	//
+	// This setting applies only to the gp3 storage type.
 	//
 	// This setting doesn't apply to RDS Custom or Amazon Aurora.
 	StorageThroughput *int64 `type:"integer"`
@@ -23443,6 +23502,9 @@ type DBCluster struct {
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *string `type:"string"`
 
+	// Reserved for future use.
+	DBSystemId *string `type:"string"`
+
 	// Contains the name of the initial database of this DB cluster that was provided
 	// at create time, if one was specified when the DB cluster was created. This
 	// same name is returned for the life of the DB cluster.
@@ -23868,6 +23930,12 @@ func (s *DBCluster) SetDBClusterParameterGroup(v string) *DBCluster {
 // SetDBSubnetGroup sets the DBSubnetGroup field's value.
 func (s *DBCluster) SetDBSubnetGroup(v string) *DBCluster {
 	s.DBSubnetGroup = &v
+	return s
+}
+
+// SetDBSystemId sets the DBSystemId field's value.
+func (s *DBCluster) SetDBSystemId(v string) *DBCluster {
+	s.DBSystemId = &v
 	return s
 }
 
@@ -24565,6 +24633,9 @@ type DBClusterSnapshot struct {
 	// Specifies the identifier for the DB cluster snapshot.
 	DBClusterSnapshotIdentifier *string `type:"string"`
 
+	// Reserved for future use.
+	DBSystemId *string `type:"string"`
+
 	// Specifies the name of the database engine for this DB cluster snapshot.
 	Engine *string `type:"string"`
 
@@ -24682,6 +24753,12 @@ func (s *DBClusterSnapshot) SetDBClusterSnapshotArn(v string) *DBClusterSnapshot
 // SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
 func (s *DBClusterSnapshot) SetDBClusterSnapshotIdentifier(v string) *DBClusterSnapshot {
 	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetDBSystemId sets the DBSystemId field's value.
+func (s *DBClusterSnapshot) SetDBSystemId(v string) *DBClusterSnapshot {
+	s.DBSystemId = &v
 	return s
 }
 
@@ -24890,6 +24967,14 @@ type DBEngineVersion struct {
 	// The creation time of the DB engine version.
 	CreateTime *time.Time `type:"timestamp"`
 
+	// JSON string that lists the installation files and parameters that RDS Custom
+	// uses to create a custom engine version (CEV). RDS Custom applies the patches
+	// in the order in which they're listed in the manifest. You can set the Oracle
+	// home, Oracle base, and UNIX/Linux user and group using the installation parameters.
+	// For more information, see JSON fields in the CEV manifest (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.preparing.html#custom-cev.preparing.manifest.fields)
+	// in the Amazon RDS User Guide.
+	CustomDBEngineVersionManifest *string `min:"1" type:"string"`
+
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
@@ -25016,6 +25101,12 @@ func (s DBEngineVersion) GoString() string {
 // SetCreateTime sets the CreateTime field's value.
 func (s *DBEngineVersion) SetCreateTime(v time.Time) *DBEngineVersion {
 	s.CreateTime = &v
+	return s
+}
+
+// SetCustomDBEngineVersionManifest sets the CustomDBEngineVersionManifest field's value.
+func (s *DBEngineVersion) SetCustomDBEngineVersionManifest(v string) *DBEngineVersion {
+	s.CustomDBEngineVersionManifest = &v
 	return s
 }
 
@@ -25335,6 +25426,10 @@ type DBInstance struct {
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
+	// The Oracle system ID (Oracle SID) for a container database (CDB). The Oracle
+	// SID is also the name of the CDB. This setting is valid for RDS Custom only.
+	DBSystemId *string `type:"string"`
+
 	// Specifies the port that the DB instance listens on. If the DB instance is
 	// part of a DB cluster, this can be a different port than the DB cluster port.
 	DbInstancePort *int64 `type:"integer"`
@@ -25566,6 +25661,8 @@ type DBInstance struct {
 	StorageEncrypted *bool `type:"boolean"`
 
 	// Specifies the storage throughput for the DB instance.
+	//
+	// This setting applies only to the gp3 storage type.
 	StorageThroughput *int64 `type:"integer"`
 
 	// Specifies the storage type associated with the DB instance.
@@ -25784,6 +25881,12 @@ func (s *DBInstance) SetDBSecurityGroups(v []*DBSecurityGroupMembership) *DBInst
 // SetDBSubnetGroup sets the DBSubnetGroup field's value.
 func (s *DBInstance) SetDBSubnetGroup(v *DBSubnetGroup) *DBInstance {
 	s.DBSubnetGroup = v
+	return s
+}
+
+// SetDBSystemId sets the DBSystemId field's value.
+func (s *DBInstance) SetDBSystemId(v string) *DBInstance {
+	s.DBSystemId = &v
 	return s
 }
 
@@ -27989,6 +28092,14 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// The creation time of the DB engine version.
 	CreateTime *time.Time `type:"timestamp"`
 
+	// JSON string that lists the installation files and parameters that RDS Custom
+	// uses to create a custom engine version (CEV). RDS Custom applies the patches
+	// in the order in which they're listed in the manifest. You can set the Oracle
+	// home, Oracle base, and UNIX/Linux user and group using the installation parameters.
+	// For more information, see JSON fields in the CEV manifest (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.preparing.html#custom-cev.preparing.manifest.fields)
+	// in the Amazon RDS User Guide.
+	CustomDBEngineVersionManifest *string `min:"1" type:"string"`
+
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
@@ -28115,6 +28226,12 @@ func (s DeleteCustomDBEngineVersionOutput) GoString() string {
 // SetCreateTime sets the CreateTime field's value.
 func (s *DeleteCustomDBEngineVersionOutput) SetCreateTime(v time.Time) *DeleteCustomDBEngineVersionOutput {
 	s.CreateTime = &v
+	return s
+}
+
+// SetCustomDBEngineVersionManifest sets the CustomDBEngineVersionManifest field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetCustomDBEngineVersionManifest(v string) *DeleteCustomDBEngineVersionOutput {
+	s.CustomDBEngineVersionManifest = &v
 	return s
 }
 
@@ -37760,6 +37877,14 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// The creation time of the DB engine version.
 	CreateTime *time.Time `type:"timestamp"`
 
+	// JSON string that lists the installation files and parameters that RDS Custom
+	// uses to create a custom engine version (CEV). RDS Custom applies the patches
+	// in the order in which they're listed in the manifest. You can set the Oracle
+	// home, Oracle base, and UNIX/Linux user and group using the installation parameters.
+	// For more information, see JSON fields in the CEV manifest (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.preparing.html#custom-cev.preparing.manifest.fields)
+	// in the Amazon RDS User Guide.
+	CustomDBEngineVersionManifest *string `min:"1" type:"string"`
+
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
@@ -37886,6 +38011,12 @@ func (s ModifyCustomDBEngineVersionOutput) GoString() string {
 // SetCreateTime sets the CreateTime field's value.
 func (s *ModifyCustomDBEngineVersionOutput) SetCreateTime(v time.Time) *ModifyCustomDBEngineVersionOutput {
 	s.CreateTime = &v
+	return s
+}
+
+// SetCustomDBEngineVersionManifest sets the CustomDBEngineVersionManifest field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetCustomDBEngineVersionManifest(v string) *ModifyCustomDBEngineVersionOutput {
+	s.CustomDBEngineVersionManifest = &v
 	return s
 }
 
@@ -39870,6 +40001,8 @@ type ModifyDBInstanceInput struct {
 	ResumeFullAutomationModeMinutes *int64 `type:"integer"`
 
 	// Specifies the storage throughput value for the DB instance.
+	//
+	// This setting applies only to the gp3 storage type.
 	//
 	// This setting doesn't apply to RDS Custom or Amazon Aurora.
 	StorageThroughput *int64 `type:"integer"`
@@ -46765,6 +46898,30 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
 
+	// The identifier for the RDS for MySQL Multi-AZ DB cluster snapshot to restore
+	// from.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing Multi-AZ DB cluster snapshot.
+	//
+	//    * Can't be specified when DBSnapshotIdentifier is specified.
+	//
+	//    * Must be specified when DBSnapshotIdentifier isn't specified.
+	//
+	//    * If you are restoring from a shared manual Multi-AZ DB cluster snapshot,
+	//    the DBClusterSnapshotIdentifier must be the ARN of the shared snapshot.
+	//
+	//    * Can't be the identifier of an Aurora DB cluster snapshot.
+	//
+	//    * Can't be the identifier of an RDS for PostgreSQL Multi-AZ DB cluster
+	//    snapshot.
+	DBClusterSnapshotIdentifier *string `type:"string"`
+
 	// The compute and memory capacity of the Amazon RDS DB instance, for example
 	// db.m4.large. Not all DB instance classes are available in all Amazon Web
 	// Services Regions, or for all database engines. For the full list of DB instance
@@ -46820,11 +46977,13 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	//    * Must match the identifier of an existing DBSnapshot.
 	//
+	//    * Can't be specified when DBClusterSnapshotIdentifier is specified.
+	//
+	//    * Must be specified when DBClusterSnapshotIdentifier isn't specified.
+	//
 	//    * If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
 	//    must be the ARN of the shared DB snapshot.
-	//
-	// DBSnapshotIdentifier is a required field
-	DBSnapshotIdentifier *string `type:"string" required:"true"`
+	DBSnapshotIdentifier *string `type:"string"`
 
 	// The DB subnet group name to use for the new instance.
 	//
@@ -47076,9 +47235,6 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) Validate() error {
 	if s.DBInstanceIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
 	}
-	if s.DBSnapshotIdentifier == nil {
-		invalidParams.Add(request.NewErrParamRequired("DBSnapshotIdentifier"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -47113,6 +47269,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetCopyTagsToSnapshot(v bool) *Re
 // SetCustomIamInstanceProfile sets the CustomIamInstanceProfile field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetCustomIamInstanceProfile(v string) *RestoreDBInstanceFromDBSnapshotInput {
 	s.CustomIamInstanceProfile = &v
+	return s
+}
+
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBClusterSnapshotIdentifier(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DBClusterSnapshotIdentifier = &v
 	return s
 }
 

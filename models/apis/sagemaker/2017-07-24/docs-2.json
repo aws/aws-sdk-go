@@ -3749,6 +3749,7 @@
     "DisableProfiler": {
       "base": null,
       "refs": {
+        "ProfilerConfig$DisableProfiler": "<p>To disable system monitoring and profiling, set to <code>True</code>.</p>",
         "ProfilerConfigForUpdate$DisableProfiler": "<p>To disable Debugger monitoring and profiling, set to <code>True</code>.</p>"
       }
     },

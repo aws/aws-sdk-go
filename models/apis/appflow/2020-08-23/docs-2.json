@@ -16,13 +16,14 @@
     "ListConnectors": "<p>Returns the list of all registered custom connectors in your Amazon Web Services account. This API lists only custom connectors registered in this account, not the Amazon Web Services authored connectors. </p>",
     "ListFlows": "<p> Lists all of the flows associated with your account. </p>",
     "ListTagsForResource": "<p> Retrieves the tags that are associated with a specified flow. </p>",
-    "RegisterConnector": "<p>Registers a new connector with your Amazon Web Services account. Before you can register the connector, you must deploy lambda in your account.</p>",
+    "RegisterConnector": "<p>Registers a new custom connector with your Amazon Web Services account. Before you can register the connector, you must deploy the associated AWS lambda function in your account.</p>",
     "StartFlow": "<p> Activates an existing flow. For on-demand flows, this operation runs the flow immediately. For schedule and event-triggered flows, this operation activates the flow. </p>",
     "StopFlow": "<p> Deactivates the existing flow. For on-demand flows, this operation returns an <code>unsupportedOperationException</code> error message. For schedule and event-triggered flows, this operation deactivates the flow. </p>",
     "TagResource": "<p> Applies a tag to the specified flow. </p>",
-    "UnregisterConnector": "<p>Unregisters the custom connector registered in your account that matches the connectorLabel provided in the request.</p>",
+    "UnregisterConnector": "<p>Unregisters the custom connector registered in your account that matches the connector label provided in the request.</p>",
     "UntagResource": "<p> Removes a tag from the specified flow. </p>",
     "UpdateConnectorProfile": "<p> Updates a given connector profile associated with your account. </p>",
+    "UpdateConnectorRegistration": "<p>Updates a custom connector that you've previously registered. This operation updates the connector with one of the following:</p> <ul> <li> <p>The latest version of the AWS Lambda function that's assigned to the connector</p> </li> <li> <p>A new AWS Lambda function that you specify</p> </li> </ul>",
     "UpdateFlow": "<p> Updates an existing flow. </p>"
   },
   "shapes": {
@@ -35,7 +36,8 @@
         "ListTagsForResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the specified flow. </p>",
         "RegisterConnectorResponse$connectorArn": "<p>The ARN of the connector being registered.</p>",
         "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the flow that you want to tag. </p>",
-        "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the flow that you want to untag. </p>"
+        "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the flow that you want to untag. </p>",
+        "UpdateConnectorRegistrationResponse$connectorArn": "<p>The ARN of the connector being updated.</p>"
       }
     },
     "AccessDeniedException": {
@@ -288,6 +290,12 @@
         "UpsolverDestinationProperties$bucketPrefix": "<p> The object key for the destination Upsolver Amazon S3 bucket in which Amazon AppFlow places the files. </p>"
       }
     },
+    "CatalogType": {
+      "base": null,
+      "refs": {
+        "MetadataCatalogDetail$catalogType": "<p>The type of metadata catalog that Amazon AppFlow used for the associated flow run. This parameter returns the following value:</p> <dl> <dt>GLUE</dt> <dd> <p>The metadata catalog is provided by the Glue Data Catalog. Glue includes the Glue Data Catalog as a component.</p> </dd> </dl>"
+      }
+    },
     "ClientCredentialsArn": {
       "base": null,
       "refs": {
@@ -408,7 +416,8 @@
         "FlowDefinition$sourceConnectorLabel": "<p>The label of the source connector in the flow.</p>",
         "FlowDefinition$destinationConnectorLabel": "<p>The label of the destination connector in the flow.</p>",
         "RegisterConnectorRequest$connectorLabel": "<p> The name of the connector. The name is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account.</p>",
-        "UnregisterConnectorRequest$connectorLabel": "<p>The label of the connector. The label is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account.</p>"
+        "UnregisterConnectorRequest$connectorLabel": "<p>The label of the connector. The label is unique for each <code>ConnectorRegistration</code> in your Amazon Web Services account.</p>",
+        "UpdateConnectorRegistrationRequest$connectorLabel": "<p>The name of the connector. The name is unique for each connector registration in your AWS account.</p>"
       }
     },
     "ConnectorList": {
@@ -534,7 +543,8 @@
       "base": "<p>Contains information about the configuration of the connector being registered.</p>",
       "refs": {
         "ConnectorConfiguration$connectorProvisioningConfig": "<p>The configuration required for registering the connector.</p>",
-        "RegisterConnectorRequest$connectorProvisioningConfig": "<p>The provisioning type of the connector. Currently the only supported value is LAMBDA.</p>"
+        "RegisterConnectorRequest$connectorProvisioningConfig": "<p>The provisioning type of the connector. Currently the only supported value is LAMBDA.</p>",
+        "UpdateConnectorRegistrationRequest$connectorProvisioningConfig": null
       }
     },
     "ConnectorProvisioningType": {
@@ -911,7 +921,8 @@
         "ConnectorEntityField$description": "<p> A description of the connector entity field. </p>",
         "ConnectorRuntimeSetting$description": "<p>A description about the connector runtime setting.</p>",
         "OAuth2CustomParameter$description": "<p>A description about the custom parameter used for OAuth 2.0 authentication.</p>",
-        "RegisterConnectorRequest$description": "<p>A description about the connector that's being registered.</p>"
+        "RegisterConnectorRequest$description": "<p>A description about the connector that's being registered.</p>",
+        "UpdateConnectorRegistrationRequest$description": "<p>A description about the update that you're applying to the connector.</p>"
       }
     },
     "DestinationConnectorProperties": {
@@ -1092,7 +1103,8 @@
       "base": null,
       "refs": {
         "ExecutionDetails$mostRecentExecutionStatus": "<p> Specifies the status of the most recent flow run. </p>",
-        "ExecutionRecord$executionStatus": "<p> Specifies the flow run status and whether it is in progress, has completed successfully, or has failed. </p>"
+        "ExecutionRecord$executionStatus": "<p> Specifies the flow run status and whether it is in progress, has completed successfully, or has failed. </p>",
+        "RegistrationOutput$status": "<p>Indicates the status of the registration attempt from Amazon AppFlow.</p>"
       }
     },
     "FieldType": {
@@ -1192,6 +1204,30 @@
       "base": null,
       "refs": {
         "DescribeFlowResponse$flowStatusMessage": "<p> Contains an error message if the flow status is in a suspended or error state. This applies only to scheduled or event-triggered flows. </p>"
+      }
+    },
+    "GlueDataCatalogConfig": {
+      "base": "<p>Specifies the configuration that Amazon AppFlow uses when it catalogs your data with the Glue Data Catalog. When Amazon AppFlow catalogs your data, it stores metadata in Data Catalog tables. This metadata represents the data that's transferred by the flow that you configure with these settings.</p> <note> <p>You can configure a flow with these settings only when the flow destination is Amazon S3.</p> </note>",
+      "refs": {
+        "MetadataCatalogConfig$glueDataCatalog": "<p>Specifies the configuration that Amazon AppFlow uses when it catalogs your data with the Glue Data Catalog.</p>"
+      }
+    },
+    "GlueDataCatalogDatabaseName": {
+      "base": null,
+      "refs": {
+        "GlueDataCatalogConfig$databaseName": "<p>The name of the Data Catalog database that stores the metadata tables that Amazon AppFlow creates in your Amazon Web Services account. These tables contain metadata for the data that's transferred by the flow that you configure with this parameter.</p> <note> <p>When you configure a new flow with this parameter, you must specify an existing database.</p> </note>"
+      }
+    },
+    "GlueDataCatalogIAMRole": {
+      "base": null,
+      "refs": {
+        "GlueDataCatalogConfig$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that grants Amazon AppFlow the permissions it needs to create Data Catalog tables, databases, and partitions.</p> <p>For an example IAM policy that has the required permissions, see <a href=\"https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_id-based-policy-examples.html\">Identity-based policy examples for Amazon AppFlow</a>.</p>"
+      }
+    },
+    "GlueDataCatalogTablePrefix": {
+      "base": null,
+      "refs": {
+        "GlueDataCatalogConfig$tablePrefix": "<p>A naming prefix for each Data Catalog table that Amazon AppFlow creates for the flow that you configure with this setting. Amazon AppFlow adds the prefix to the beginning of the each table name.</p>"
       }
     },
     "GoogleAnalyticsConnectorOperator": {
@@ -1420,6 +1456,8 @@
     "Long": {
       "base": null,
       "refs": {
+        "AggregationConfig$targetFileSize": "<p>The desired file size, in MB, for each output file that Amazon AppFlow writes to the flow destination. For each file, Amazon AppFlow attempts to achieve the size that you specify. The actual file sizes might differ from this target based on the number and size of the records that each file contains.</p>",
+        "DescribeFlowResponse$schemaVersion": "<p>The version number of your data schema. Amazon AppFlow assigns this version number. The version number increases by one when you change any of the following settings in your flow configuration:</p> <ul> <li> <p>Source-to-destination field mappings</p> </li> <li> <p>Field data types</p> </li> <li> <p>Partition keys</p> </li> </ul>",
         "ErrorInfo$putFailuresCount": "<p> Specifies the failure count for the attempted flow. </p>",
         "ExecutionResult$bytesProcessed": "<p> The total number of bytes processed by the flow run. </p>",
         "ExecutionResult$bytesWritten": "<p> The total number of bytes written as a result of the flow run. </p>",
@@ -1476,6 +1514,27 @@
         "DescribeFlowExecutionRecordsRequest$maxResults": "<p> Specifies the maximum number of items that should be returned in the result set. The default for <code>maxResults</code> is 20 (for all paginated API operations). </p>",
         "ListConnectorsRequest$maxResults": "<p>Specifies the maximum number of items that should be returned in the result set. The default for <code>maxResults</code> is 20 (for all paginated API operations).</p>",
         "ListFlowsRequest$maxResults": "<p> Specifies the maximum number of items that should be returned in the result set. </p>"
+      }
+    },
+    "MetadataCatalogConfig": {
+      "base": "<p>Specifies the configuration that Amazon AppFlow uses when it catalogs your data. When Amazon AppFlow catalogs your data, it stores metadata in a data catalog.</p>",
+      "refs": {
+        "CreateFlowRequest$metadataCatalogConfig": "<p>Specifies the configuration that Amazon AppFlow uses when it catalogs the data that's transferred by the associated flow. When Amazon AppFlow catalogs the data from a flow, it stores metadata in a data catalog.</p>",
+        "DescribeFlowResponse$metadataCatalogConfig": "<p>Specifies the configuration that Amazon AppFlow uses when it catalogs the data that's transferred by the associated flow. When Amazon AppFlow catalogs the data from a flow, it stores metadata in a data catalog.</p>",
+        "UpdateFlowRequest$metadataCatalogConfig": "<p>Specifies the configuration that Amazon AppFlow uses when it catalogs the data that's transferred by the associated flow. When Amazon AppFlow catalogs the data from a flow, it stores metadata in a data catalog.</p>"
+      }
+    },
+    "MetadataCatalogDetail": {
+      "base": "<p>Describes the metadata catalog, metadata table, and data partitions that Amazon AppFlow used for the associated flow run.</p>",
+      "refs": {
+        "MetadataCatalogDetails$member": null
+      }
+    },
+    "MetadataCatalogDetails": {
+      "base": null,
+      "refs": {
+        "DescribeFlowResponse$lastRunMetadataCatalogDetails": "<p>Describes the metadata catalog, metadata table, and data partitions that Amazon AppFlow used for the associated flow run.</p>",
+        "ExecutionRecord$metadataCatalogDetails": "<p>Describes the metadata catalog, metadata table, and data partitions that Amazon AppFlow used for the associated flow run.</p>"
       }
     },
     "MostRecentExecutionMessage": {
@@ -1647,6 +1706,18 @@
         "VeevaConnectorProfileCredentials$password": "<p> The password that corresponds to the user name. </p>"
       }
     },
+    "PathPrefix": {
+      "base": null,
+      "refs": {
+        "PathPrefixHierarchy$member": null
+      }
+    },
+    "PathPrefixHierarchy": {
+      "base": null,
+      "refs": {
+        "PrefixConfig$pathPrefixHierarchy": "<p>Specifies whether the destination file path includes either or both of the following elements:</p> <dl> <dt>EXECUTION_ID</dt> <dd> <p>The ID that Amazon AppFlow assigns to the flow run.</p> </dd> <dt>SCHEMA_VERSION</dt> <dd> <p>The version number of your data schema. Amazon AppFlow assigns this version number. The version number increases by one when you change any of the following settings in your flow configuration:</p> <ul> <li> <p>Source-to-destination field mappings</p> </li> <li> <p>Field data types</p> </li> <li> <p>Partition keys</p> </li> </ul> </dd> </dl>"
+      }
+    },
     "PortNumber": {
       "base": null,
       "refs": {
@@ -1654,7 +1725,7 @@
       }
     },
     "PrefixConfig": {
-      "base": "<p> Determines the prefix that Amazon AppFlow applies to the destination folder name. You can name your destination folders according to the flow frequency and date. </p>",
+      "base": "<p>Specifies elements that Amazon AppFlow includes in the file and folder names in the flow destination.</p>",
       "refs": {
         "S3OutputFormatConfig$prefixConfig": "<p> Determines the prefix that Amazon AppFlow applies to the folder name in the Amazon S3 bucket. You can name folders according to the flow frequency and date. </p>",
         "UpsolverS3OutputFormatConfig$prefixConfig": null
@@ -1663,13 +1734,13 @@
     "PrefixFormat": {
       "base": null,
       "refs": {
-        "PrefixConfig$prefixFormat": "<p> Determines the level of granularity that's included in the prefix. </p>"
+        "PrefixConfig$prefixFormat": "<p>Determines the level of granularity for the date and time that's included in the prefix. </p>"
       }
     },
     "PrefixType": {
       "base": null,
       "refs": {
-        "PrefixConfig$prefixType": "<p> Determines the format of the prefix, and whether it applies to the file name, file path, or both. </p>"
+        "PrefixConfig$prefixType": "<p>Determines the format of the prefix, and whether it applies to the file name, file path, or both. </p>"
       }
     },
     "PrivateConnectionProvisioningFailureCause": {
@@ -1804,6 +1875,13 @@
         "ConnectorDetail$registeredBy": "<p>The user who registered the connector.</p>"
       }
     },
+    "RegistrationOutput": {
+      "base": "<p>Describes the status of an attempt from Amazon AppFlow to register a resource.</p> <p>When you run a flow that you've configured to use a metadata catalog, Amazon AppFlow registers a metadata table and data partitions with that catalog. This operation provides the status of that registration attempt. The operation also indicates how many related resources Amazon AppFlow created or updated.</p>",
+      "refs": {
+        "MetadataCatalogDetail$tableRegistrationOutput": "<p>Describes the status of the attempt from Amazon AppFlow to register the metadata table with the metadata catalog. Amazon AppFlow creates or updates this table for the associated flow run.</p>",
+        "MetadataCatalogDetail$partitionRegistrationOutput": "<p>Describes the status of the attempt from Amazon AppFlow to register the data partitions with the metadata catalog. The data partitions organize the flow output into a hierarchical path, such as a folder path in an S3 bucket. Amazon AppFlow creates the partitions (if they don't already exist) based on your flow configuration.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p> The resource specified in the request (such as the source or destination connector profile) is not found. </p>",
       "refs": {
@@ -1916,7 +1994,7 @@
       "refs": {
         "SalesforceDataTransferApiList$member": null,
         "SalesforceDestinationProperties$dataTransferApi": "<p>Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers data to Salesforce.</p> <dl> <dt>AUTOMATIC</dt> <dd> <p>The default. Amazon AppFlow selects which API to use based on the number of records that your flow transfers to Salesforce. If your flow transfers fewer than 1,000 records, Amazon AppFlow uses Salesforce REST API. If your flow transfers 1,000 records or more, Amazon AppFlow uses Salesforce Bulk API 2.0.</p> <p>Each of these Salesforce APIs structures data differently. If Amazon AppFlow selects the API automatically, be aware that, for recurring flows, the data output might vary from one flow run to the next. For example, if a flow runs daily, it might use REST API on one day to transfer 900 records, and it might use Bulk API 2.0 on the next day to transfer 1,100 records. For each of these flow runs, the respective Salesforce API formats the data differently. Some of the differences include how dates are formatted and null values are represented. Also, Bulk API 2.0 doesn't transfer Salesforce compound fields.</p> <p>By choosing this option, you optimize flow performance for both small and large data transfers, but the tradeoff is inconsistent formatting in the output.</p> </dd> <dt>BULKV2</dt> <dd> <p>Amazon AppFlow uses only Salesforce Bulk API 2.0. This API runs asynchronous data transfers, and it's optimal for large sets of data. By choosing this option, you ensure that your flow writes consistent output, but you optimize performance only for large data transfers.</p> <p>Note that Bulk API 2.0 does not transfer Salesforce compound fields.</p> </dd> <dt>REST_SYNC</dt> <dd> <p>Amazon AppFlow uses only Salesforce REST API. By choosing this option, you ensure that your flow writes consistent output, but you decrease performance for large data transfers that are better suited for Bulk API 2.0. In some cases, if your flow attempts to transfer a vary large set of data, it might fail with a timed out error.</p> </dd> </dl>",
-        "SalesforceSourceProperties$dataTransferApi": "<p>Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers data from Salesforce.</p> <dl> <dt>AUTOMATIC</dt> <dd> <p>The default. Amazon AppFlow selects which API to use based on the number of records that your flow transfers from Salesforce. If your flow transfers fewer than 1,000,000 records, Amazon AppFlow uses Salesforce REST API. If your flow transfers 1,000,000 records or more, Amazon AppFlow uses Salesforce Bulk API 2.0.</p> <p>Each of these Salesforce APIs structures data differently. If Amazon AppFlow selects the API automatically, be aware that, for recurring flows, the data output might vary from one flow run to the next. For example, if a flow runs daily, it might use REST API on one day to transfer 900,000 records, and it might use Bulk API 2.0 on the next day to transfer 1,100,000 records. For each of these flow runs, the respective Salesforce API formats the data differently. Some of the differences include how dates are formatted and null values are represented. Also, Bulk API 2.0 doesn't transfer Salesforce compound fields.</p> <p>By choosing this option, you optimize flow performance for both small and large data transfers, but the tradeoff is inconsistent formatting in the output.</p> </dd> <dt>BULKV2</dt> <dd> <p>Amazon AppFlow uses only Salesforce Bulk API 2.0. This API runs asynchronous data transfers, and it's optimal for large sets of data. By choosing this option, you ensure that your flow writes consistent output, but you optimize performance only for large data transfers.</p> <p>Note that Bulk API 2.0 does not transfer Salesforce compound fields.</p> </dd> <dt>REST_SYNC</dt> <dd> <p>Amazon AppFlow uses only Salesforce REST API. By choosing this option, you ensure that your flow writes consistent output, but you decrease performance for large data transfers that are better suited for Bulk API 2.0. In some cases, if your flow attempts to transfer a vary large set of data, it might fail with a timed out error.</p> </dd> </dl>"
+        "SalesforceSourceProperties$dataTransferApi": "<p>Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers data from Salesforce.</p> <dl> <dt>AUTOMATIC</dt> <dd> <p>The default. Amazon AppFlow selects which API to use based on the number of records that your flow transfers from Salesforce. If your flow transfers fewer than 1,000,000 records, Amazon AppFlow uses Salesforce REST API. If your flow transfers 1,000,000 records or more, Amazon AppFlow uses Salesforce Bulk API 2.0.</p> <p>Each of these Salesforce APIs structures data differently. If Amazon AppFlow selects the API automatically, be aware that, for recurring flows, the data output might vary from one flow run to the next. For example, if a flow runs daily, it might use REST API on one day to transfer 900,000 records, and it might use Bulk API 2.0 on the next day to transfer 1,100,000 records. For each of these flow runs, the respective Salesforce API formats the data differently. Some of the differences include how dates are formatted and null values are represented. Also, Bulk API 2.0 doesn't transfer Salesforce compound fields.</p> <p>By choosing this option, you optimize flow performance for both small and large data transfers, but the tradeoff is inconsistent formatting in the output.</p> </dd> <dt>BULKV2</dt> <dd> <p>Amazon AppFlow uses only Salesforce Bulk API 2.0. This API runs asynchronous data transfers, and it's optimal for large sets of data. By choosing this option, you ensure that your flow writes consistent output, but you optimize performance only for large data transfers.</p> <p>Note that Bulk API 2.0 does not transfer Salesforce compound fields.</p> </dd> <dt>REST_SYNC</dt> <dd> <p>Amazon AppFlow uses only Salesforce REST API. By choosing this option, you ensure that your flow writes consistent output, but you decrease performance for large data transfers that are better suited for Bulk API 2.0. In some cases, if your flow attempts to transfer a vary large set of data, it might fail wituh a timed out error.</p> </dd> </dl>"
       }
     },
     "SalesforceDataTransferApiList": {
@@ -2156,6 +2234,9 @@
         "ConnectorEntityField$defaultValue": "<p>Default value that can be assigned to this field.</p>",
         "FieldTypeDetails$valueRegexPattern": "<p>The regular expression pattern for the field name.</p>",
         "FieldTypeDetails$supportedDateFormat": "<p>The date format that the field supports.</p>",
+        "MetadataCatalogDetail$tableName": "<p>The name of the table that stores the metadata for the associated flow run. The table stores metadata that represents the data that the flow transferred. Amazon AppFlow stores the table in the metadata catalog.</p>",
+        "RegistrationOutput$message": "<p>Explains the status of the registration attempt from Amazon AppFlow. If the attempt fails, the message explains why.</p>",
+        "RegistrationOutput$result": "<p>Indicates the number of resources that Amazon AppFlow created or updated. Possible resources include metadata tables and data partitions.</p>",
         "SourceFields$member": null
       }
     },
@@ -2387,6 +2468,16 @@
       }
     },
     "UpdateConnectorProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectorRegistrationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectorRegistrationResponse": {
       "base": null,
       "refs": {
       }

@@ -5875,7 +5875,8 @@ func (c *Proton) ListServiceInstancesRequest(input *ListServiceInstancesInput) (
 
 // ListServiceInstances API operation for AWS Proton.
 //
-// List service instances with summary data.
+// List service instances with summary data. This action lists service instances
+// of all services in the Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8693,6 +8694,10 @@ func (s *AccessDeniedException) RequestID() string {
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the service role that Proton uses for provisioning
+	// pipelines. Proton assumes this role for CodeBuild-based provisioning.
+	PipelineCodebuildRoleArn *string `locationName:"pipelineCodebuildRoleArn" type:"string"`
+
 	// The linked repository for pipeline provisioning. Required if you have environments
 	// configured for self-managed provisioning with services that include pipelines.
 	// A linked repository is a repository that has been registered with Proton.
@@ -8721,6 +8726,12 @@ func (s AccountSettings) String() string {
 // value will be replaced with "sensitive".
 func (s AccountSettings) GoString() string {
 	return s.String()
+}
+
+// SetPipelineCodebuildRoleArn sets the PipelineCodebuildRoleArn field's value.
+func (s *AccountSettings) SetPipelineCodebuildRoleArn(v string) *AccountSettings {
+	s.PipelineCodebuildRoleArn = &v
+	return s
 }
 
 // SetPipelineProvisioningRepository sets the PipelineProvisioningRepository field's value.
@@ -9805,6 +9816,11 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// created.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// CodeBuild-based provisioning in the associated environment account.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in the associated environment account.
 	// It determines the scope of infrastructure that a component can provision
@@ -9868,6 +9884,9 @@ func (s CreateEnvironmentAccountConnectionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateEnvironmentAccountConnectionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEnvironmentAccountConnectionInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -9906,6 +9925,12 @@ func (s *CreateEnvironmentAccountConnectionInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateEnvironmentAccountConnectionInput) SetClientToken(v string) *CreateEnvironmentAccountConnectionInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *CreateEnvironmentAccountConnectionInput) SetCodebuildRoleArn(v string) *CreateEnvironmentAccountConnectionInput {
+	s.CodebuildRoleArn = &v
 	return s
 }
 
@@ -9974,6 +9999,14 @@ func (s *CreateEnvironmentAccountConnectionOutput) SetEnvironmentAccountConnecti
 
 type CreateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using CodeBuild-based provisioning on your behalf.
+	//
+	// To use CodeBuild-based provisioning for the environment or for any service
+	// instance running in the environment, specify either the environmentAccountConnectionId
+	// or codebuildRoleArn parameter.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in this environment. It determines
@@ -10079,6 +10112,9 @@ func (s CreateEnvironmentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateEnvironmentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEnvironmentInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -10132,6 +10168,12 @@ func (s *CreateEnvironmentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *CreateEnvironmentInput) SetCodebuildRoleArn(v string) *CreateEnvironmentInput {
+	s.CodebuildRoleArn = &v
+	return s
 }
 
 // SetComponentRoleArn sets the ComponentRoleArn field's value.
@@ -12358,6 +12400,10 @@ type Environment struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using CodeBuild-based provisioning on your behalf.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in this environment. It determines
 	// the scope of infrastructure that a component can provision.
@@ -12476,6 +12522,12 @@ func (s *Environment) SetArn(v string) *Environment {
 	return s
 }
 
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *Environment) SetCodebuildRoleArn(v string) *Environment {
+	s.CodebuildRoleArn = &v
+	return s
+}
+
 // SetComponentRoleArn sets the ComponentRoleArn field's value.
 func (s *Environment) SetComponentRoleArn(v string) *Environment {
 	s.ComponentRoleArn = &v
@@ -12587,6 +12639,11 @@ type EnvironmentAccountConnection struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// CodeBuild-based provisioning in the associated environment account.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in the associated environment account.
 	// It determines the scope of infrastructure that a component can provision
@@ -12664,6 +12721,12 @@ func (s EnvironmentAccountConnection) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *EnvironmentAccountConnection) SetArn(v string) *EnvironmentAccountConnection {
 	s.Arn = &v
+	return s
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *EnvironmentAccountConnection) SetCodebuildRoleArn(v string) *EnvironmentAccountConnection {
+	s.CodebuildRoleArn = &v
 	return s
 }
 
@@ -16544,8 +16607,58 @@ func (s *ListServiceInstanceProvisionedResourcesOutput) SetProvisionedResources(
 	return s
 }
 
+// A filtering criterion to scope down the result list of the ListServiceInstances
+// action.
+type ListServiceInstancesFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a filtering criterion.
+	Key *string `locationName:"key" type:"string" enum:"ListServiceInstancesFilterBy"`
+
+	// A value to filter by.
+	//
+	// With the date/time keys (*At{Before,After}), the value is a valid RFC 3339
+	// (https://datatracker.ietf.org/doc/html/rfc3339.html) string with no UTC offset
+	// and with an optional fractional precision (for example, 1985-04-12T23:20:50.52Z).
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstancesFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstancesFilter) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *ListServiceInstancesFilter) SetKey(v string) *ListServiceInstancesFilter {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ListServiceInstancesFilter) SetValue(v string) *ListServiceInstancesFilter {
+	s.Value = &v
+	return s
+}
+
 type ListServiceInstancesInput struct {
 	_ struct{} `type:"structure"`
+
+	// An array of filtering criteria that scope down the result list. By default,
+	// all service instances in the Amazon Web Services account are returned.
+	Filters []*ListServiceInstancesFilter `locationName:"filters" type:"list"`
 
 	// The maximum number of service instances to list.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -16556,6 +16669,19 @@ type ListServiceInstancesInput struct {
 
 	// The name of the service that the service instance belongs to.
 	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
+
+	// The field that the result list is sorted by.
+	//
+	// When you choose to sort by serviceName, service instances within each service
+	// are sorted by service instance name.
+	//
+	// Default: serviceName
+	SortBy *string `locationName:"sortBy" type:"string" enum:"ListServiceInstancesSortBy"`
+
+	// Result list sort order.
+	//
+	// Default: ASCENDING
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
 }
 
 // String returns the string representation.
@@ -16592,6 +16718,12 @@ func (s *ListServiceInstancesInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *ListServiceInstancesInput) SetFilters(v []*ListServiceInstancesFilter) *ListServiceInstancesInput {
+	s.Filters = v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListServiceInstancesInput) SetMaxResults(v int64) *ListServiceInstancesInput {
 	s.MaxResults = &v
@@ -16607,6 +16739,18 @@ func (s *ListServiceInstancesInput) SetNextToken(v string) *ListServiceInstances
 // SetServiceName sets the ServiceName field's value.
 func (s *ListServiceInstancesInput) SetServiceName(v string) *ListServiceInstancesInput {
 	s.ServiceName = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListServiceInstancesInput) SetSortBy(v string) *ListServiceInstancesInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListServiceInstancesInput) SetSortOrder(v string) *ListServiceInstancesInput {
+	s.SortOrder = &v
 	return s
 }
 
@@ -17313,9 +17457,7 @@ type NotifyResourceDeploymentStatusChangeInput struct {
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// The status of your provisioned resource.
-	//
-	// Status is a required field
-	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceDeploymentStatus"`
+	Status *string `locationName:"status" type:"string" enum:"ResourceDeploymentStatus"`
 
 	// The deployment status message for your provisioned resource.
 	//
@@ -17351,9 +17493,6 @@ func (s *NotifyResourceDeploymentStatusChangeInput) Validate() error {
 	}
 	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
-	}
-	if s.Status == nil {
-		invalidParams.Add(request.NewErrParamRequired("Status"))
 	}
 	if s.Outputs != nil {
 		for i, v := range s.Outputs {
@@ -20272,6 +20411,10 @@ type UpdateAccountSettingsInput struct {
 	// Don't set this field if you are updating the configured pipeline repository.
 	DeletePipelineProvisioningRepository *bool `locationName:"deletePipelineProvisioningRepository" type:"boolean"`
 
+	// The Amazon Resource Name (ARN) of the service role you want to use for provisioning
+	// pipelines. Proton assumes this role for CodeBuild-based provisioning.
+	PipelineCodebuildRoleArn *string `locationName:"pipelineCodebuildRoleArn" type:"string"`
+
 	// A linked repository for pipeline provisioning. Specify it if you have environments
 	// configured for self-managed provisioning with services that include pipelines.
 	// A linked repository is a repository that has been registered with Proton.
@@ -20325,6 +20468,12 @@ func (s *UpdateAccountSettingsInput) Validate() error {
 // SetDeletePipelineProvisioningRepository sets the DeletePipelineProvisioningRepository field's value.
 func (s *UpdateAccountSettingsInput) SetDeletePipelineProvisioningRepository(v bool) *UpdateAccountSettingsInput {
 	s.DeletePipelineProvisioningRepository = &v
+	return s
+}
+
+// SetPipelineCodebuildRoleArn sets the PipelineCodebuildRoleArn field's value.
+func (s *UpdateAccountSettingsInput) SetPipelineCodebuildRoleArn(v string) *UpdateAccountSettingsInput {
+	s.PipelineCodebuildRoleArn = &v
 	return s
 }
 
@@ -20560,6 +20709,11 @@ func (s *UpdateComponentOutput) SetComponent(v *Component) *UpdateComponentOutpu
 type UpdateEnvironmentAccountConnectionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of an IAM service role in the environment
+	// account. Proton uses this role to provision infrastructure resources using
+	// CodeBuild-based provisioning in the associated environment account.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in the associated environment account.
 	// It determines the scope of infrastructure that a component can provision
@@ -20604,6 +20758,9 @@ func (s UpdateEnvironmentAccountConnectionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateEnvironmentAccountConnectionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateEnvironmentAccountConnectionInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -20618,6 +20775,12 @@ func (s *UpdateEnvironmentAccountConnectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *UpdateEnvironmentAccountConnectionInput) SetCodebuildRoleArn(v string) *UpdateEnvironmentAccountConnectionInput {
+	s.CodebuildRoleArn = &v
+	return s
 }
 
 // SetComponentRoleArn sets the ComponentRoleArn field's value.
@@ -20673,6 +20836,10 @@ func (s *UpdateEnvironmentAccountConnectionOutput) SetEnvironmentAccountConnecti
 
 type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the IAM service role that allows Proton
+	// to provision infrastructure using CodeBuild-based provisioning on your behalf.
+	CodebuildRoleArn *string `locationName:"codebuildRoleArn" min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM service role that Proton uses when
 	// provisioning directly defined components in this environment. It determines
@@ -20779,6 +20946,9 @@ func (s UpdateEnvironmentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateEnvironmentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateEnvironmentInput"}
+	if s.CodebuildRoleArn != nil && len(*s.CodebuildRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodebuildRoleArn", 1))
+	}
 	if s.ComponentRoleArn != nil && len(*s.ComponentRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ComponentRoleArn", 1))
 	}
@@ -20813,6 +20983,12 @@ func (s *UpdateEnvironmentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCodebuildRoleArn sets the CodebuildRoleArn field's value.
+func (s *UpdateEnvironmentInput) SetCodebuildRoleArn(v string) *UpdateEnvironmentInput {
+	s.CodebuildRoleArn = &v
+	return s
 }
 
 // SetComponentRoleArn sets the ComponentRoleArn field's value.
@@ -22253,6 +22429,90 @@ func EnvironmentAccountConnectionStatus_Values() []string {
 	}
 }
 
+const (
+	// ListServiceInstancesFilterByName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByName = "name"
+
+	// ListServiceInstancesFilterByDeploymentStatus is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByDeploymentStatus = "deploymentStatus"
+
+	// ListServiceInstancesFilterByTemplateName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByTemplateName = "templateName"
+
+	// ListServiceInstancesFilterByServiceName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByServiceName = "serviceName"
+
+	// ListServiceInstancesFilterByDeployedTemplateVersionStatus is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByDeployedTemplateVersionStatus = "deployedTemplateVersionStatus"
+
+	// ListServiceInstancesFilterByEnvironmentName is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByEnvironmentName = "environmentName"
+
+	// ListServiceInstancesFilterByLastDeploymentAttemptedAtBefore is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByLastDeploymentAttemptedAtBefore = "lastDeploymentAttemptedAtBefore"
+
+	// ListServiceInstancesFilterByLastDeploymentAttemptedAtAfter is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByLastDeploymentAttemptedAtAfter = "lastDeploymentAttemptedAtAfter"
+
+	// ListServiceInstancesFilterByCreatedAtBefore is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByCreatedAtBefore = "createdAtBefore"
+
+	// ListServiceInstancesFilterByCreatedAtAfter is a ListServiceInstancesFilterBy enum value
+	ListServiceInstancesFilterByCreatedAtAfter = "createdAtAfter"
+)
+
+// ListServiceInstancesFilterBy_Values returns all elements of the ListServiceInstancesFilterBy enum
+func ListServiceInstancesFilterBy_Values() []string {
+	return []string{
+		ListServiceInstancesFilterByName,
+		ListServiceInstancesFilterByDeploymentStatus,
+		ListServiceInstancesFilterByTemplateName,
+		ListServiceInstancesFilterByServiceName,
+		ListServiceInstancesFilterByDeployedTemplateVersionStatus,
+		ListServiceInstancesFilterByEnvironmentName,
+		ListServiceInstancesFilterByLastDeploymentAttemptedAtBefore,
+		ListServiceInstancesFilterByLastDeploymentAttemptedAtAfter,
+		ListServiceInstancesFilterByCreatedAtBefore,
+		ListServiceInstancesFilterByCreatedAtAfter,
+	}
+}
+
+const (
+	// ListServiceInstancesSortByName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByName = "name"
+
+	// ListServiceInstancesSortByDeploymentStatus is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByDeploymentStatus = "deploymentStatus"
+
+	// ListServiceInstancesSortByTemplateName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByTemplateName = "templateName"
+
+	// ListServiceInstancesSortByServiceName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByServiceName = "serviceName"
+
+	// ListServiceInstancesSortByEnvironmentName is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByEnvironmentName = "environmentName"
+
+	// ListServiceInstancesSortByLastDeploymentAttemptedAt is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByLastDeploymentAttemptedAt = "lastDeploymentAttemptedAt"
+
+	// ListServiceInstancesSortByCreatedAt is a ListServiceInstancesSortBy enum value
+	ListServiceInstancesSortByCreatedAt = "createdAt"
+)
+
+// ListServiceInstancesSortBy_Values returns all elements of the ListServiceInstancesSortBy enum
+func ListServiceInstancesSortBy_Values() []string {
+	return []string{
+		ListServiceInstancesSortByName,
+		ListServiceInstancesSortByDeploymentStatus,
+		ListServiceInstancesSortByTemplateName,
+		ListServiceInstancesSortByServiceName,
+		ListServiceInstancesSortByEnvironmentName,
+		ListServiceInstancesSortByLastDeploymentAttemptedAt,
+		ListServiceInstancesSortByCreatedAt,
+	}
+}
+
 // List of provisioning engines
 const (
 	// ProvisionedResourceEngineCloudformation is a ProvisionedResourceEngine enum value
@@ -22448,6 +22708,22 @@ const (
 func ServiceTemplateSupportedComponentSourceType_Values() []string {
 	return []string{
 		ServiceTemplateSupportedComponentSourceTypeDirectlyDefined,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }
 

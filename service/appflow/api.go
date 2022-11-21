@@ -1610,8 +1610,9 @@ func (c *Appflow) RegisterConnectorRequest(input *RegisterConnectorInput) (req *
 
 // RegisterConnector API operation for Amazon Appflow.
 //
-// Registers a new connector with your Amazon Web Services account. Before you
-// can register the connector, you must deploy lambda in your account.
+// Registers a new custom connector with your Amazon Web Services account. Before
+// you can register the connector, you must deploy the associated AWS lambda
+// function in your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1999,7 +2000,7 @@ func (c *Appflow) UnregisterConnectorRequest(input *UnregisterConnectorInput) (r
 // UnregisterConnector API operation for Amazon Appflow.
 //
 // Unregisters the custom connector registered in your account that matches
-// the connectorLabel provided in the request.
+// the connector label provided in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2228,6 +2229,121 @@ func (c *Appflow) UpdateConnectorProfileWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdateConnectorRegistration = "UpdateConnectorRegistration"
+
+// UpdateConnectorRegistrationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnectorRegistration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnectorRegistration for more information on using the UpdateConnectorRegistration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateConnectorRegistrationRequest method.
+//	req, resp := client.UpdateConnectorRegistrationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/UpdateConnectorRegistration
+func (c *Appflow) UpdateConnectorRegistrationRequest(input *UpdateConnectorRegistrationInput) (req *request.Request, output *UpdateConnectorRegistrationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnectorRegistration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/update-connector-registration",
+	}
+
+	if input == nil {
+		input = &UpdateConnectorRegistrationInput{}
+	}
+
+	output = &UpdateConnectorRegistrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnectorRegistration API operation for Amazon Appflow.
+//
+// Updates a custom connector that you've previously registered. This operation
+// updates the connector with one of the following:
+//
+//   - The latest version of the AWS Lambda function that's assigned to the
+//     connector
+//
+//   - A new AWS Lambda function that you specify
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Appflow's
+// API operation UpdateConnectorRegistration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has invalid or missing parameters.
+//
+//   - ConflictException
+//     There was a conflict when processing the request (for example, a flow with
+//     the given name already exists within the account. Check for conflicting resource
+//     names and try again.
+//
+//   - AccessDeniedException
+//     AppFlow/Requester has invalid or missing permissions.
+//
+//   - ResourceNotFoundException
+//     The resource specified in the request (such as the source or destination
+//     connector profile) is not found.
+//
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota (such as the number of flows) to
+//     be exceeded.
+//
+//   - ThrottlingException
+//     API calls have exceeded the maximum allowed API request rate per account
+//     and per Region.
+//
+//   - InternalServerException
+//     An internal service error occurred during the processing of your request.
+//     Try again later.
+//
+//   - ConnectorServerException
+//     An error occurred when retrieving data from the connector endpoint.
+//
+//   - ConnectorAuthenticationException
+//     An error occurred when authenticating with the connector endpoint.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appflow-2020-08-23/UpdateConnectorRegistration
+func (c *Appflow) UpdateConnectorRegistration(input *UpdateConnectorRegistrationInput) (*UpdateConnectorRegistrationOutput, error) {
+	req, out := c.UpdateConnectorRegistrationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectorRegistrationWithContext is the same as UpdateConnectorRegistration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnectorRegistration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Appflow) UpdateConnectorRegistrationWithContext(ctx aws.Context, input *UpdateConnectorRegistrationInput, opts ...request.Option) (*UpdateConnectorRegistrationOutput, error) {
+	req, out := c.UpdateConnectorRegistrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFlow = "UpdateFlow"
 
 // UpdateFlowRequest generates a "aws/request.Request" representing the
@@ -2402,6 +2518,12 @@ type AggregationConfig struct {
 	// Specifies whether Amazon AppFlow aggregates the flow records into a single
 	// file, or leave them unaggregated.
 	AggregationType *string `locationName:"aggregationType" type:"string" enum:"AggregationType"`
+
+	// The desired file size, in MB, for each output file that Amazon AppFlow writes
+	// to the flow destination. For each file, Amazon AppFlow attempts to achieve
+	// the size that you specify. The actual file sizes might differ from this target
+	// based on the number and size of the records that each file contains.
+	TargetFileSize *int64 `locationName:"targetFileSize" type:"long"`
 }
 
 // String returns the string representation.
@@ -2425,6 +2547,12 @@ func (s AggregationConfig) GoString() string {
 // SetAggregationType sets the AggregationType field's value.
 func (s *AggregationConfig) SetAggregationType(v string) *AggregationConfig {
 	s.AggregationType = &v
+	return s
+}
+
+// SetTargetFileSize sets the TargetFileSize field's value.
+func (s *AggregationConfig) SetTargetFileSize(v int64) *AggregationConfig {
+	s.TargetFileSize = &v
 	return s
 }
 
@@ -5098,6 +5226,11 @@ type CreateFlowInput struct {
 	// uses the Amazon AppFlow-managed KMS key.
 	KmsArn *string `locationName:"kmsArn" min:"20" type:"string"`
 
+	// Specifies the configuration that Amazon AppFlow uses when it catalogs the
+	// data that's transferred by the associated flow. When Amazon AppFlow catalogs
+	// the data from a flow, it stores metadata in a data catalog.
+	MetadataCatalogConfig *MetadataCatalogConfig `locationName:"metadataCatalogConfig" type:"structure"`
+
 	// The configuration that controls how Amazon AppFlow retrieves data from the
 	// source connector.
 	//
@@ -5168,6 +5301,11 @@ func (s *CreateFlowInput) Validate() error {
 			}
 		}
 	}
+	if s.MetadataCatalogConfig != nil {
+		if err := s.MetadataCatalogConfig.Validate(); err != nil {
+			invalidParams.AddNested("MetadataCatalogConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SourceFlowConfig != nil {
 		if err := s.SourceFlowConfig.Validate(); err != nil {
 			invalidParams.AddNested("SourceFlowConfig", err.(request.ErrInvalidParams))
@@ -5216,6 +5354,12 @@ func (s *CreateFlowInput) SetFlowName(v string) *CreateFlowInput {
 // SetKmsArn sets the KmsArn field's value.
 func (s *CreateFlowInput) SetKmsArn(v string) *CreateFlowInput {
 	s.KmsArn = &v
+	return s
+}
+
+// SetMetadataCatalogConfig sets the MetadataCatalogConfig field's value.
+func (s *CreateFlowInput) SetMetadataCatalogConfig(v *MetadataCatalogConfig) *CreateFlowInput {
+	s.MetadataCatalogConfig = v
 	return s
 }
 
@@ -6742,11 +6886,31 @@ type DescribeFlowOutput struct {
 	// Describes the details of the most recent flow run.
 	LastRunExecutionDetails *ExecutionDetails `locationName:"lastRunExecutionDetails" type:"structure"`
 
+	// Describes the metadata catalog, metadata table, and data partitions that
+	// Amazon AppFlow used for the associated flow run.
+	LastRunMetadataCatalogDetails []*MetadataCatalogDetail `locationName:"lastRunMetadataCatalogDetails" type:"list"`
+
 	// Specifies when the flow was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// Specifies the user name of the account that performed the most recent update.
 	LastUpdatedBy *string `locationName:"lastUpdatedBy" type:"string"`
+
+	// Specifies the configuration that Amazon AppFlow uses when it catalogs the
+	// data that's transferred by the associated flow. When Amazon AppFlow catalogs
+	// the data from a flow, it stores metadata in a data catalog.
+	MetadataCatalogConfig *MetadataCatalogConfig `locationName:"metadataCatalogConfig" type:"structure"`
+
+	// The version number of your data schema. Amazon AppFlow assigns this version
+	// number. The version number increases by one when you change any of the following
+	// settings in your flow configuration:
+	//
+	//    * Source-to-destination field mappings
+	//
+	//    * Field data types
+	//
+	//    * Partition keys
+	SchemaVersion *int64 `locationName:"schemaVersion" type:"long"`
 
 	// The configuration that controls how Amazon AppFlow retrieves data from the
 	// source connector.
@@ -6841,6 +7005,12 @@ func (s *DescribeFlowOutput) SetLastRunExecutionDetails(v *ExecutionDetails) *De
 	return s
 }
 
+// SetLastRunMetadataCatalogDetails sets the LastRunMetadataCatalogDetails field's value.
+func (s *DescribeFlowOutput) SetLastRunMetadataCatalogDetails(v []*MetadataCatalogDetail) *DescribeFlowOutput {
+	s.LastRunMetadataCatalogDetails = v
+	return s
+}
+
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *DescribeFlowOutput) SetLastUpdatedAt(v time.Time) *DescribeFlowOutput {
 	s.LastUpdatedAt = &v
@@ -6850,6 +7020,18 @@ func (s *DescribeFlowOutput) SetLastUpdatedAt(v time.Time) *DescribeFlowOutput {
 // SetLastUpdatedBy sets the LastUpdatedBy field's value.
 func (s *DescribeFlowOutput) SetLastUpdatedBy(v string) *DescribeFlowOutput {
 	s.LastUpdatedBy = &v
+	return s
+}
+
+// SetMetadataCatalogConfig sets the MetadataCatalogConfig field's value.
+func (s *DescribeFlowOutput) SetMetadataCatalogConfig(v *MetadataCatalogConfig) *DescribeFlowOutput {
+	s.MetadataCatalogConfig = v
+	return s
+}
+
+// SetSchemaVersion sets the SchemaVersion field's value.
+func (s *DescribeFlowOutput) SetSchemaVersion(v int64) *DescribeFlowOutput {
+	s.SchemaVersion = &v
 	return s
 }
 
@@ -7694,6 +7876,10 @@ type ExecutionRecord struct {
 	// Specifies the time of the most recent update.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
+	// Describes the metadata catalog, metadata table, and data partitions that
+	// Amazon AppFlow used for the associated flow run.
+	MetadataCatalogDetails []*MetadataCatalogDetail `locationName:"metadataCatalogDetails" type:"list"`
+
 	// Specifies the start time of the flow run.
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp"`
 }
@@ -7749,6 +7935,12 @@ func (s *ExecutionRecord) SetExecutionStatus(v string) *ExecutionRecord {
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *ExecutionRecord) SetLastUpdatedAt(v time.Time) *ExecutionRecord {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetMetadataCatalogDetails sets the MetadataCatalogDetails field's value.
+func (s *ExecutionRecord) SetMetadataCatalogDetails(v []*MetadataCatalogDetail) *ExecutionRecord {
+	s.MetadataCatalogDetails = v
 	return s
 }
 
@@ -8068,6 +8260,99 @@ func (s *FlowDefinition) SetTags(v map[string]*string) *FlowDefinition {
 // SetTriggerType sets the TriggerType field's value.
 func (s *FlowDefinition) SetTriggerType(v string) *FlowDefinition {
 	s.TriggerType = &v
+	return s
+}
+
+// Specifies the configuration that Amazon AppFlow uses when it catalogs your
+// data with the Glue Data Catalog. When Amazon AppFlow catalogs your data,
+// it stores metadata in Data Catalog tables. This metadata represents the data
+// that's transferred by the flow that you configure with these settings.
+//
+// You can configure a flow with these settings only when the flow destination
+// is Amazon S3.
+type GlueDataCatalogConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Data Catalog database that stores the metadata tables that
+	// Amazon AppFlow creates in your Amazon Web Services account. These tables
+	// contain metadata for the data that's transferred by the flow that you configure
+	// with this parameter.
+	//
+	// When you configure a new flow with this parameter, you must specify an existing
+	// database.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `locationName:"databaseName" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that grants Amazon AppFlow
+	// the permissions it needs to create Data Catalog tables, databases, and partitions.
+	//
+	// For an example IAM policy that has the required permissions, see Identity-based
+	// policy examples for Amazon AppFlow (https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_id-based-policy-examples.html).
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// A naming prefix for each Data Catalog table that Amazon AppFlow creates for
+	// the flow that you configure with this setting. Amazon AppFlow adds the prefix
+	// to the beginning of the each table name.
+	//
+	// TablePrefix is a required field
+	TablePrefix *string `locationName:"tablePrefix" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GlueDataCatalogConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GlueDataCatalogConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GlueDataCatalogConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GlueDataCatalogConfig"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.TablePrefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("TablePrefix"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GlueDataCatalogConfig) SetDatabaseName(v string) *GlueDataCatalogConfig {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GlueDataCatalogConfig) SetRoleArn(v string) *GlueDataCatalogConfig {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTablePrefix sets the TablePrefix field's value.
+func (s *GlueDataCatalogConfig) SetTablePrefix(v string) *GlueDataCatalogConfig {
+	s.TablePrefix = &v
 	return s
 }
 
@@ -9469,6 +9754,130 @@ func (s *MarketoSourceProperties) SetObject(v string) *MarketoSourceProperties {
 	return s
 }
 
+// Specifies the configuration that Amazon AppFlow uses when it catalogs your
+// data. When Amazon AppFlow catalogs your data, it stores metadata in a data
+// catalog.
+type MetadataCatalogConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the configuration that Amazon AppFlow uses when it catalogs your
+	// data with the Glue Data Catalog.
+	GlueDataCatalog *GlueDataCatalogConfig `locationName:"glueDataCatalog" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataCatalogConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataCatalogConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetadataCatalogConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetadataCatalogConfig"}
+	if s.GlueDataCatalog != nil {
+		if err := s.GlueDataCatalog.Validate(); err != nil {
+			invalidParams.AddNested("GlueDataCatalog", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlueDataCatalog sets the GlueDataCatalog field's value.
+func (s *MetadataCatalogConfig) SetGlueDataCatalog(v *GlueDataCatalogConfig) *MetadataCatalogConfig {
+	s.GlueDataCatalog = v
+	return s
+}
+
+// Describes the metadata catalog, metadata table, and data partitions that
+// Amazon AppFlow used for the associated flow run.
+type MetadataCatalogDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The type of metadata catalog that Amazon AppFlow used for the associated
+	// flow run. This parameter returns the following value:
+	//
+	// GLUE
+	//
+	// The metadata catalog is provided by the Glue Data Catalog. Glue includes
+	// the Glue Data Catalog as a component.
+	CatalogType *string `locationName:"catalogType" type:"string" enum:"CatalogType"`
+
+	// Describes the status of the attempt from Amazon AppFlow to register the data
+	// partitions with the metadata catalog. The data partitions organize the flow
+	// output into a hierarchical path, such as a folder path in an S3 bucket. Amazon
+	// AppFlow creates the partitions (if they don't already exist) based on your
+	// flow configuration.
+	PartitionRegistrationOutput *RegistrationOutput_ `locationName:"partitionRegistrationOutput" type:"structure"`
+
+	// The name of the table that stores the metadata for the associated flow run.
+	// The table stores metadata that represents the data that the flow transferred.
+	// Amazon AppFlow stores the table in the metadata catalog.
+	TableName *string `locationName:"tableName" type:"string"`
+
+	// Describes the status of the attempt from Amazon AppFlow to register the metadata
+	// table with the metadata catalog. Amazon AppFlow creates or updates this table
+	// for the associated flow run.
+	TableRegistrationOutput *RegistrationOutput_ `locationName:"tableRegistrationOutput" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataCatalogDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataCatalogDetail) GoString() string {
+	return s.String()
+}
+
+// SetCatalogType sets the CatalogType field's value.
+func (s *MetadataCatalogDetail) SetCatalogType(v string) *MetadataCatalogDetail {
+	s.CatalogType = &v
+	return s
+}
+
+// SetPartitionRegistrationOutput sets the PartitionRegistrationOutput field's value.
+func (s *MetadataCatalogDetail) SetPartitionRegistrationOutput(v *RegistrationOutput_) *MetadataCatalogDetail {
+	s.PartitionRegistrationOutput = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *MetadataCatalogDetail) SetTableName(v string) *MetadataCatalogDetail {
+	s.TableName = &v
+	return s
+}
+
+// SetTableRegistrationOutput sets the TableRegistrationOutput field's value.
+func (s *MetadataCatalogDetail) SetTableRegistrationOutput(v *RegistrationOutput_) *MetadataCatalogDetail {
+	s.TableRegistrationOutput = v
+	return s
+}
+
 // The OAuth 2.0 credentials required for OAuth 2.0 authentication.
 type OAuth2Credentials struct {
 	_ struct{} `type:"structure"`
@@ -9949,13 +10358,33 @@ func (s *OAuthProperties) SetTokenUrl(v string) *OAuthProperties {
 	return s
 }
 
-// Determines the prefix that Amazon AppFlow applies to the destination folder
-// name. You can name your destination folders according to the flow frequency
-// and date.
+// Specifies elements that Amazon AppFlow includes in the file and folder names
+// in the flow destination.
 type PrefixConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Determines the level of granularity that's included in the prefix.
+	// Specifies whether the destination file path includes either or both of the
+	// following elements:
+	//
+	// EXECUTION_ID
+	//
+	// The ID that Amazon AppFlow assigns to the flow run.
+	//
+	// SCHEMA_VERSION
+	//
+	// The version number of your data schema. Amazon AppFlow assigns this version
+	// number. The version number increases by one when you change any of the following
+	// settings in your flow configuration:
+	//
+	//    * Source-to-destination field mappings
+	//
+	//    * Field data types
+	//
+	//    * Partition keys
+	PathPrefixHierarchy []*string `locationName:"pathPrefixHierarchy" type:"list" enum:"PathPrefix"`
+
+	// Determines the level of granularity for the date and time that's included
+	// in the prefix.
 	PrefixFormat *string `locationName:"prefixFormat" type:"string" enum:"PrefixFormat"`
 
 	// Determines the format of the prefix, and whether it applies to the file name,
@@ -9979,6 +10408,12 @@ func (s PrefixConfig) String() string {
 // value will be replaced with "sensitive".
 func (s PrefixConfig) GoString() string {
 	return s.String()
+}
+
+// SetPathPrefixHierarchy sets the PathPrefixHierarchy field's value.
+func (s *PrefixConfig) SetPathPrefixHierarchy(v []*string) *PrefixConfig {
+	s.PathPrefixHierarchy = v
+	return s
 }
 
 // SetPrefixFormat sets the PrefixFormat field's value.
@@ -10457,6 +10892,63 @@ func (s RegisterConnectorOutput) GoString() string {
 // SetConnectorArn sets the ConnectorArn field's value.
 func (s *RegisterConnectorOutput) SetConnectorArn(v string) *RegisterConnectorOutput {
 	s.ConnectorArn = &v
+	return s
+}
+
+// Describes the status of an attempt from Amazon AppFlow to register a resource.
+//
+// When you run a flow that you've configured to use a metadata catalog, Amazon
+// AppFlow registers a metadata table and data partitions with that catalog.
+// This operation provides the status of that registration attempt. The operation
+// also indicates how many related resources Amazon AppFlow created or updated.
+type RegistrationOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Explains the status of the registration attempt from Amazon AppFlow. If the
+	// attempt fails, the message explains why.
+	Message *string `locationName:"message" type:"string"`
+
+	// Indicates the number of resources that Amazon AppFlow created or updated.
+	// Possible resources include metadata tables and data partitions.
+	Result *string `locationName:"result" type:"string"`
+
+	// Indicates the status of the registration attempt from Amazon AppFlow.
+	Status *string `locationName:"status" type:"string" enum:"ExecutionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegistrationOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegistrationOutput_) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *RegistrationOutput_) SetMessage(v string) *RegistrationOutput_ {
+	s.Message = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *RegistrationOutput_) SetResult(v string) *RegistrationOutput_ {
+	s.Result = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RegistrationOutput_) SetStatus(v string) *RegistrationOutput_ {
+	s.Status = &v
 	return s
 }
 
@@ -11484,7 +11976,7 @@ type SalesforceSourceProperties struct {
 	// ensure that your flow writes consistent output, but you decrease performance
 	// for large data transfers that are better suited for Bulk API 2.0. In some
 	// cases, if your flow attempts to transfer a vary large set of data, it might
-	// fail with a timed out error.
+	// fail wituh a timed out error.
 	DataTransferApi *string `locationName:"dataTransferApi" type:"string" enum:"SalesforceDataTransferApi"`
 
 	// The flag that enables dynamic fetching of new (recently added) fields in
@@ -14113,6 +14605,107 @@ func (s *UpdateConnectorProfileOutput) SetConnectorProfileArn(v string) *UpdateC
 	return s
 }
 
+type UpdateConnectorRegistrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connector. The name is unique for each connector registration
+	// in your AWS account.
+	//
+	// ConnectorLabel is a required field
+	ConnectorLabel *string `locationName:"connectorLabel" type:"string" required:"true"`
+
+	// Contains information about the configuration of the connector being registered.
+	ConnectorProvisioningConfig *ConnectorProvisioningConfig `locationName:"connectorProvisioningConfig" type:"structure"`
+
+	// A description about the update that you're applying to the connector.
+	Description *string `locationName:"description" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectorRegistrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectorRegistrationInput"}
+	if s.ConnectorLabel == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorLabel"))
+	}
+	if s.ConnectorProvisioningConfig != nil {
+		if err := s.ConnectorProvisioningConfig.Validate(); err != nil {
+			invalidParams.AddNested("ConnectorProvisioningConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorLabel sets the ConnectorLabel field's value.
+func (s *UpdateConnectorRegistrationInput) SetConnectorLabel(v string) *UpdateConnectorRegistrationInput {
+	s.ConnectorLabel = &v
+	return s
+}
+
+// SetConnectorProvisioningConfig sets the ConnectorProvisioningConfig field's value.
+func (s *UpdateConnectorRegistrationInput) SetConnectorProvisioningConfig(v *ConnectorProvisioningConfig) *UpdateConnectorRegistrationInput {
+	s.ConnectorProvisioningConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateConnectorRegistrationInput) SetDescription(v string) *UpdateConnectorRegistrationInput {
+	s.Description = &v
+	return s
+}
+
+type UpdateConnectorRegistrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the connector being updated.
+	ConnectorArn *string `locationName:"connectorArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectorRegistrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectorArn sets the ConnectorArn field's value.
+func (s *UpdateConnectorRegistrationOutput) SetConnectorArn(v string) *UpdateConnectorRegistrationOutput {
+	s.ConnectorArn = &v
+	return s
+}
+
 type UpdateFlowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14130,6 +14723,11 @@ type UpdateFlowInput struct {
 	//
 	// FlowName is a required field
 	FlowName *string `locationName:"flowName" type:"string" required:"true"`
+
+	// Specifies the configuration that Amazon AppFlow uses when it catalogs the
+	// data that's transferred by the associated flow. When Amazon AppFlow catalogs
+	// the data from a flow, it stores metadata in a data catalog.
+	MetadataCatalogConfig *MetadataCatalogConfig `locationName:"metadataCatalogConfig" type:"structure"`
 
 	// Contains information about the configuration of the source connector used
 	// in the flow.
@@ -14195,6 +14793,11 @@ func (s *UpdateFlowInput) Validate() error {
 			}
 		}
 	}
+	if s.MetadataCatalogConfig != nil {
+		if err := s.MetadataCatalogConfig.Validate(); err != nil {
+			invalidParams.AddNested("MetadataCatalogConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SourceFlowConfig != nil {
 		if err := s.SourceFlowConfig.Validate(); err != nil {
 			invalidParams.AddNested("SourceFlowConfig", err.(request.ErrInvalidParams))
@@ -14237,6 +14840,12 @@ func (s *UpdateFlowInput) SetDestinationFlowConfigList(v []*DestinationFlowConfi
 // SetFlowName sets the FlowName field's value.
 func (s *UpdateFlowInput) SetFlowName(v string) *UpdateFlowInput {
 	s.FlowName = &v
+	return s
+}
+
+// SetMetadataCatalogConfig sets the MetadataCatalogConfig field's value.
+func (s *UpdateFlowInput) SetMetadataCatalogConfig(v *MetadataCatalogConfig) *UpdateFlowInput {
+	s.MetadataCatalogConfig = v
 	return s
 }
 
@@ -14406,9 +15015,8 @@ type UpsolverS3OutputFormatConfig struct {
 	// S3 bucket.
 	FileType *string `locationName:"fileType" type:"string" enum:"FileType"`
 
-	// Determines the prefix that Amazon AppFlow applies to the destination folder
-	// name. You can name your destination folders according to the flow frequency
-	// and date.
+	// Specifies elements that Amazon AppFlow includes in the file and folder names
+	// in the flow destination.
 	//
 	// PrefixConfig is a required field
 	PrefixConfig *PrefixConfig `locationName:"prefixConfig" type:"structure" required:"true"`
@@ -15099,6 +15707,18 @@ func AuthenticationType_Values() []string {
 }
 
 const (
+	// CatalogTypeGlue is a CatalogType enum value
+	CatalogTypeGlue = "GLUE"
+)
+
+// CatalogType_Values returns all elements of the CatalogType enum
+func CatalogType_Values() []string {
+	return []string{
+		CatalogTypeGlue,
+	}
+}
+
+const (
 	// ConnectionModePublic is a ConnectionMode enum value
 	ConnectionModePublic = "Public"
 
@@ -15779,6 +16399,9 @@ const (
 
 	// OperatorPropertiesKeysIncludeNewFields is a OperatorPropertiesKeys enum value
 	OperatorPropertiesKeysIncludeNewFields = "INCLUDE_NEW_FIELDS"
+
+	// OperatorPropertiesKeysOrderedPartitionKeysList is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysOrderedPartitionKeysList = "ORDERED_PARTITION_KEYS_LIST"
 )
 
 // OperatorPropertiesKeys_Values returns all elements of the OperatorPropertiesKeys enum
@@ -15800,6 +16423,7 @@ func OperatorPropertiesKeys_Values() []string {
 		OperatorPropertiesKeysSubfieldCategoryMap,
 		OperatorPropertiesKeysExcludeSourceFieldsList,
 		OperatorPropertiesKeysIncludeNewFields,
+		OperatorPropertiesKeysOrderedPartitionKeysList,
 	}
 }
 
@@ -15892,6 +16516,22 @@ func Operators_Values() []string {
 		OperatorsValidateNonNegative,
 		OperatorsValidateNumeric,
 		OperatorsNoOp,
+	}
+}
+
+const (
+	// PathPrefixExecutionId is a PathPrefix enum value
+	PathPrefixExecutionId = "EXECUTION_ID"
+
+	// PathPrefixSchemaVersion is a PathPrefix enum value
+	PathPrefixSchemaVersion = "SCHEMA_VERSION"
+)
+
+// PathPrefix_Values returns all elements of the PathPrefix enum
+func PathPrefix_Values() []string {
+	return []string{
+		PathPrefixExecutionId,
+		PathPrefixSchemaVersion,
 	}
 }
 
@@ -16598,6 +17238,9 @@ const (
 
 	// TaskTypeValidate is a TaskType enum value
 	TaskTypeValidate = "Validate"
+
+	// TaskTypePartition is a TaskType enum value
+	TaskTypePartition = "Partition"
 )
 
 // TaskType_Values returns all elements of the TaskType enum
@@ -16612,6 +17255,7 @@ func TaskType_Values() []string {
 		TaskTypePassthrough,
 		TaskTypeTruncate,
 		TaskTypeValidate,
+		TaskTypePartition,
 	}
 }
 

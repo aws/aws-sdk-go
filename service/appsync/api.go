@@ -739,6 +739,10 @@ func (c *AppSync) CreateResolverRequest(input *CreateResolverInput) (req *reques
 //   - InternalFailureException
 //     An internal AppSync error occurred. Try your request again.
 //
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/CreateResolver
 func (c *AppSync) CreateResolver(input *CreateResolverInput) (*CreateResolverOutput, error) {
 	req, out := c.CreateResolverRequest(input)
@@ -1489,6 +1493,10 @@ func (c *AppSync) DeleteResolverRequest(input *DeleteResolverInput) (req *reques
 //   - InternalFailureException
 //     An internal AppSync error occurred. Try your request again.
 //
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteResolver
 func (c *AppSync) DeleteResolver(input *DeleteResolverInput) (*DeleteResolverOutput, error) {
 	req, out := c.DeleteResolverRequest(input)
@@ -1696,6 +1704,98 @@ func (c *AppSync) DisassociateApi(input *DisassociateApiInput) (*DisassociateApi
 // for more information on using Contexts.
 func (c *AppSync) DisassociateApiWithContext(ctx aws.Context, input *DisassociateApiInput, opts ...request.Option) (*DisassociateApiOutput, error) {
 	req, out := c.DisassociateApiRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opEvaluateCode = "EvaluateCode"
+
+// EvaluateCodeRequest generates a "aws/request.Request" representing the
+// client's request for the EvaluateCode operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See EvaluateCode for more information on using the EvaluateCode
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the EvaluateCodeRequest method.
+//	req, resp := client.EvaluateCodeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/EvaluateCode
+func (c *AppSync) EvaluateCodeRequest(input *EvaluateCodeInput) (req *request.Request, output *EvaluateCodeOutput) {
+	op := &request.Operation{
+		Name:       opEvaluateCode,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/dataplane-evaluatecode",
+	}
+
+	if input == nil {
+		input = &EvaluateCodeInput{}
+	}
+
+	output = &EvaluateCodeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// EvaluateCode API operation for AWS AppSync.
+//
+// Evaluates the given code and returns the response. The code definition requirements
+// depend on the specified runtime. For APPSYNC_JS runtimes, the code defines
+// the request and response functions. The request function takes the incoming
+// request after a GraphQL operation is parsed and converts it into a request
+// configuration for the selected data source operation. The response function
+// interprets responses from the data source and maps it to the shape of the
+// GraphQL field output type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation EvaluateCode for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to perform this operation on this resource.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/EvaluateCode
+func (c *AppSync) EvaluateCode(input *EvaluateCodeInput) (*EvaluateCodeOutput, error) {
+	req, out := c.EvaluateCodeRequest(input)
+	return out, req.Send()
+}
+
+// EvaluateCodeWithContext is the same as EvaluateCode with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EvaluateCode for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) EvaluateCodeWithContext(ctx aws.Context, input *EvaluateCodeInput, opts ...request.Option) (*EvaluateCodeOutput, error) {
+	req, out := c.EvaluateCodeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4539,6 +4639,10 @@ func (c *AppSync) UpdateResolverRequest(input *UpdateResolverInput) (req *reques
 //   - InternalFailureException
 //     An internal AppSync error occurred. Try your request again.
 //
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateResolver
 func (c *AppSync) UpdateResolver(input *UpdateResolverInput) (*UpdateResolverOutput, error) {
 	req, out := c.UpdateResolverRequest(input)
@@ -5299,6 +5403,70 @@ func (s *ApiLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync
+// function. Specifies the name and version of the runtime to use. Note that
+// if a runtime is specified, code must also be specified.
+type AppSyncRuntime struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the runtime to use. Currently, the only allowed value is APPSYNC_JS.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"RuntimeName"`
+
+	// The version of the runtime to use. Currently, the only allowed version is
+	// 1.0.0.
+	//
+	// RuntimeVersion is a required field
+	RuntimeVersion *string `locationName:"runtimeVersion" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppSyncRuntime) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppSyncRuntime) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AppSyncRuntime) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AppSyncRuntime"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.RuntimeVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuntimeVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AppSyncRuntime) SetName(v string) *AppSyncRuntime {
+	s.Name = &v
+	return s
+}
+
+// SetRuntimeVersion sets the RuntimeVersion field's value.
+func (s *AppSyncRuntime) SetRuntimeVersion(v string) *AppSyncRuntime {
+	s.RuntimeVersion = &v
+	return s
+}
+
 type AssociateApiInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5492,13 +5660,54 @@ func (s *AwsIamConfig) SetSigningServiceName(v string) *AwsIamConfig {
 	return s
 }
 
+// Provides further details for the reason behind the bad request. For reason
+// type CODE_ERROR, the detail will contain a list of code errors.
+type BadRequestDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the list of errors in the request.
+	CodeErrors []*CodeError `locationName:"codeErrors" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BadRequestDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BadRequestDetail) GoString() string {
+	return s.String()
+}
+
+// SetCodeErrors sets the CodeErrors field's value.
+func (s *BadRequestDetail) SetCodeErrors(v []*CodeError) *BadRequestDetail {
+	s.CodeErrors = v
+	return s
+}
+
 // The request is not well formed. For example, a value is invalid or a required
 // field is missing. Check the field values, and then try again.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Provides further details for the reason behind the bad request. For reason
+	// type CODE_ERROR, the detail will contain a list of code errors.
+	Detail *BadRequestDetail `locationName:"detail" type:"structure"`
+
 	Message_ *string `locationName:"message" type:"string"`
+
+	// Provides context for the cause of the bad request. The only supported value
+	// is CODE_ERROR.
+	Reason *string `locationName:"reason" type:"string" enum:"BadRequestReason"`
 }
 
 // String returns the string representation.
@@ -5544,7 +5753,7 @@ func (s *BadRequestException) OrigErr() error {
 }
 
 func (s *BadRequestException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -5615,6 +5824,111 @@ func (s *CachingConfig) SetCachingKeys(v []*string) *CachingConfig {
 // SetTtl sets the Ttl field's value.
 func (s *CachingConfig) SetTtl(v int64) *CachingConfig {
 	s.Ttl = &v
+	return s
+}
+
+// Describes an AppSync error.
+type CodeError struct {
+	_ struct{} `type:"structure"`
+
+	// The type of code error.
+	//
+	// Examples include, but aren't limited to: LINT_ERROR, PARSER_ERROR.
+	ErrorType *string `locationName:"errorType" type:"string"`
+
+	// The line, column, and span location of the error in the code.
+	Location *CodeErrorLocation `locationName:"location" type:"structure"`
+
+	// A user presentable error.
+	//
+	// Examples include, but aren't limited to: Parsing error: Unterminated string
+	// literal.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeError) GoString() string {
+	return s.String()
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *CodeError) SetErrorType(v string) *CodeError {
+	s.ErrorType = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CodeError) SetLocation(v *CodeErrorLocation) *CodeError {
+	s.Location = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CodeError) SetValue(v string) *CodeError {
+	s.Value = &v
+	return s
+}
+
+// Describes the location of the error in a code sample.
+type CodeErrorLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The column number in the code. Defaults to 0 if unknown.
+	Column *int64 `locationName:"column" type:"integer"`
+
+	// The line number in the code. Defaults to 0 if unknown.
+	Line *int64 `locationName:"line" type:"integer"`
+
+	// The span/length of the error. Defaults to -1 if unknown.
+	Span *int64 `locationName:"span" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeErrorLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CodeErrorLocation) GoString() string {
+	return s.String()
+}
+
+// SetColumn sets the Column field's value.
+func (s *CodeErrorLocation) SetColumn(v int64) *CodeErrorLocation {
+	s.Column = &v
+	return s
+}
+
+// SetLine sets the Line field's value.
+func (s *CodeErrorLocation) SetLine(v int64) *CodeErrorLocation {
+	s.Line = &v
+	return s
+}
+
+// SetSpan sets the Span field's value.
+func (s *CodeErrorLocation) SetSpan(v int64) *CodeErrorLocation {
+	s.Span = &v
 	return s
 }
 
@@ -6370,6 +6684,10 @@ type CreateFunctionInput struct {
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
 
+	// The function code that contains the request and response functions. When
+	// code is used, the runtime is required. The runtime value must be APPSYNC_JS.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
 	// The Function DataSource name.
 	//
 	// DataSourceName is a required field
@@ -6379,10 +6697,9 @@ type CreateFunctionInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The version of the request mapping template. Currently, the supported value
-	// is 2018-05-29.
-	//
-	// FunctionVersion is a required field
-	FunctionVersion *string `locationName:"functionVersion" type:"string" required:"true"`
+	// is 2018-05-29. Note that when using VTL and mapping templates, the functionVersion
+	// is required.
+	FunctionVersion *string `locationName:"functionVersion" type:"string"`
 
 	// The maximum batching size for a resolver.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
@@ -6398,6 +6715,11 @@ type CreateFunctionInput struct {
 
 	// The Function response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
+
+	// Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync
+	// function. Specifies the name and version of the runtime to use. Note that
+	// if a runtime is specified, code must also be specified.
+	Runtime *AppSyncRuntime `locationName:"runtime" type:"structure"`
 
 	// Describes a Sync configuration for a resolver.
 	//
@@ -6433,14 +6755,14 @@ func (s *CreateFunctionInput) Validate() error {
 	if s.ApiId != nil && len(*s.ApiId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
 	}
+	if s.Code != nil && len(*s.Code) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Code", 1))
+	}
 	if s.DataSourceName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataSourceName"))
 	}
 	if s.DataSourceName != nil && len(*s.DataSourceName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataSourceName", 1))
-	}
-	if s.FunctionVersion == nil {
-		invalidParams.Add(request.NewErrParamRequired("FunctionVersion"))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -6454,6 +6776,11 @@ func (s *CreateFunctionInput) Validate() error {
 	if s.ResponseMappingTemplate != nil && len(*s.ResponseMappingTemplate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResponseMappingTemplate", 1))
 	}
+	if s.Runtime != nil {
+		if err := s.Runtime.Validate(); err != nil {
+			invalidParams.AddNested("Runtime", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6464,6 +6791,12 @@ func (s *CreateFunctionInput) Validate() error {
 // SetApiId sets the ApiId field's value.
 func (s *CreateFunctionInput) SetApiId(v string) *CreateFunctionInput {
 	s.ApiId = &v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *CreateFunctionInput) SetCode(v string) *CreateFunctionInput {
+	s.Code = &v
 	return s
 }
 
@@ -6506,6 +6839,12 @@ func (s *CreateFunctionInput) SetRequestMappingTemplate(v string) *CreateFunctio
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *CreateFunctionInput) SetResponseMappingTemplate(v string) *CreateFunctionInput {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *CreateFunctionInput) SetRuntime(v *AppSyncRuntime) *CreateFunctionInput {
+	s.Runtime = v
 	return s
 }
 
@@ -6745,6 +7084,10 @@ type CreateResolverInput struct {
 	// The caching configuration for the resolver.
 	CachingConfig *CachingConfig `locationName:"cachingConfig" type:"structure"`
 
+	// The resolver code that contains the request and response functions. When
+	// code is used, the runtime is required. The runtime value must be APPSYNC_JS.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
 	// The name of the data source for which the resolver is being created.
 	DataSourceName *string `locationName:"dataSourceName" min:"1" type:"string"`
 
@@ -6784,6 +7127,11 @@ type CreateResolverInput struct {
 	// The mapping template to use for responses from the data source.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
 
+	// Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync
+	// function. Specifies the name and version of the runtime to use. Note that
+	// if a runtime is specified, code must also be specified.
+	Runtime *AppSyncRuntime `locationName:"runtime" type:"structure"`
+
 	// The SyncConfig for a resolver attached to a versioned data source.
 	SyncConfig *SyncConfig `locationName:"syncConfig" type:"structure"`
 
@@ -6820,6 +7168,9 @@ func (s *CreateResolverInput) Validate() error {
 	if s.ApiId != nil && len(*s.ApiId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
 	}
+	if s.Code != nil && len(*s.Code) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Code", 1))
+	}
 	if s.DataSourceName != nil && len(*s.DataSourceName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataSourceName", 1))
 	}
@@ -6846,6 +7197,11 @@ func (s *CreateResolverInput) Validate() error {
 			invalidParams.AddNested("CachingConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Runtime != nil {
+		if err := s.Runtime.Validate(); err != nil {
+			invalidParams.AddNested("Runtime", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6862,6 +7218,12 @@ func (s *CreateResolverInput) SetApiId(v string) *CreateResolverInput {
 // SetCachingConfig sets the CachingConfig field's value.
 func (s *CreateResolverInput) SetCachingConfig(v *CachingConfig) *CreateResolverInput {
 	s.CachingConfig = v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *CreateResolverInput) SetCode(v string) *CreateResolverInput {
+	s.Code = &v
 	return s
 }
 
@@ -6904,6 +7266,12 @@ func (s *CreateResolverInput) SetRequestMappingTemplate(v string) *CreateResolve
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *CreateResolverInput) SetResponseMappingTemplate(v string) *CreateResolverInput {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *CreateResolverInput) SetRuntime(v *AppSyncRuntime) *CreateResolverInput {
+	s.Runtime = v
 	return s
 }
 
@@ -8220,8 +8588,8 @@ func (s *ElasticsearchDataSourceConfig) SetEndpoint(v string) *ElasticsearchData
 	return s
 }
 
-// Contains the list of errors generated when attempting to evaluate a mapping
-// template.
+// Contains the list of errors generated. When using JavaScript, this will apply
+// to the request or response function evaluation.
 type ErrorDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -8250,6 +8618,195 @@ func (s ErrorDetail) GoString() string {
 // SetMessage sets the Message field's value.
 func (s *ErrorDetail) SetMessage(v string) *ErrorDetail {
 	s.Message = &v
+	return s
+}
+
+// Contains the list of errors from a code evaluation response.
+type EvaluateCodeErrorDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the list of CodeError objects.
+	CodeErrors []*CodeError `locationName:"codeErrors" type:"list"`
+
+	// The error payload.
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateCodeErrorDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateCodeErrorDetail) GoString() string {
+	return s.String()
+}
+
+// SetCodeErrors sets the CodeErrors field's value.
+func (s *EvaluateCodeErrorDetail) SetCodeErrors(v []*CodeError) *EvaluateCodeErrorDetail {
+	s.CodeErrors = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *EvaluateCodeErrorDetail) SetMessage(v string) *EvaluateCodeErrorDetail {
+	s.Message = &v
+	return s
+}
+
+type EvaluateCodeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The code definition to be evaluated. Note that code and runtime are both
+	// required for this action. The runtime value must be APPSYNC_JS.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" min:"1" type:"string" required:"true"`
+
+	// The map that holds all of the contextual information for your resolver invocation.
+	// A context is required for this action.
+	//
+	// Context is a required field
+	Context *string `locationName:"context" min:"2" type:"string" required:"true"`
+
+	// The function within the code to be evaluated. If provided, the valid values
+	// are request and response.
+	Function *string `locationName:"function" type:"string"`
+
+	// The runtime to be used when evaluating the code. Currently, only the APPSYNC_JS
+	// runtime is supported.
+	//
+	// Runtime is a required field
+	Runtime *AppSyncRuntime `locationName:"runtime" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateCodeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateCodeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluateCodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluateCodeInput"}
+	if s.Code == nil {
+		invalidParams.Add(request.NewErrParamRequired("Code"))
+	}
+	if s.Code != nil && len(*s.Code) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Code", 1))
+	}
+	if s.Context == nil {
+		invalidParams.Add(request.NewErrParamRequired("Context"))
+	}
+	if s.Context != nil && len(*s.Context) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Context", 2))
+	}
+	if s.Runtime == nil {
+		invalidParams.Add(request.NewErrParamRequired("Runtime"))
+	}
+	if s.Runtime != nil {
+		if err := s.Runtime.Validate(); err != nil {
+			invalidParams.AddNested("Runtime", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCode sets the Code field's value.
+func (s *EvaluateCodeInput) SetCode(v string) *EvaluateCodeInput {
+	s.Code = &v
+	return s
+}
+
+// SetContext sets the Context field's value.
+func (s *EvaluateCodeInput) SetContext(v string) *EvaluateCodeInput {
+	s.Context = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *EvaluateCodeInput) SetFunction(v string) *EvaluateCodeInput {
+	s.Function = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *EvaluateCodeInput) SetRuntime(v *AppSyncRuntime) *EvaluateCodeInput {
+	s.Runtime = v
+	return s
+}
+
+type EvaluateCodeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the payload of the response error.
+	Error *EvaluateCodeErrorDetail `locationName:"error" type:"structure"`
+
+	// The result of the evaluation operation.
+	EvaluationResult *string `locationName:"evaluationResult" type:"string"`
+
+	// A list of logs that were generated by calls to util.log.info and util.log.error
+	// in the evaluated code.
+	Logs []*string `locationName:"logs" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateCodeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateCodeOutput) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *EvaluateCodeOutput) SetError(v *EvaluateCodeErrorDetail) *EvaluateCodeOutput {
+	s.Error = v
+	return s
+}
+
+// SetEvaluationResult sets the EvaluationResult field's value.
+func (s *EvaluateCodeOutput) SetEvaluationResult(v string) *EvaluateCodeOutput {
+	s.EvaluationResult = &v
+	return s
+}
+
+// SetLogs sets the Logs field's value.
+func (s *EvaluateCodeOutput) SetLogs(v []*string) *EvaluateCodeOutput {
+	s.Logs = v
 	return s
 }
 
@@ -8329,6 +8886,10 @@ type EvaluateMappingTemplateOutput struct {
 
 	// The mapping template; this can be a request or response template.
 	EvaluationResult *string `locationName:"evaluationResult" type:"string"`
+
+	// A list of logs that were generated by calls to util.log.info and util.log.error
+	// in the evaluated code.
+	Logs []*string `locationName:"logs" type:"list"`
 }
 
 // String returns the string representation.
@@ -8358,6 +8919,12 @@ func (s *EvaluateMappingTemplateOutput) SetError(v *ErrorDetail) *EvaluateMappin
 // SetEvaluationResult sets the EvaluationResult field's value.
 func (s *EvaluateMappingTemplateOutput) SetEvaluationResult(v string) *EvaluateMappingTemplateOutput {
 	s.EvaluationResult = &v
+	return s
+}
+
+// SetLogs sets the Logs field's value.
+func (s *EvaluateMappingTemplateOutput) SetLogs(v []*string) *EvaluateMappingTemplateOutput {
+	s.Logs = v
 	return s
 }
 
@@ -8439,6 +9006,10 @@ func (s FlushApiCacheOutput) GoString() string {
 type FunctionConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The function code that contains the request and response functions. When
+	// code is used, the runtime is required. The runtime value must be APPSYNC_JS.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
 	// The name of the DataSource.
 	DataSourceName *string `locationName:"dataSourceName" min:"1" type:"string"`
 
@@ -8468,6 +9039,11 @@ type FunctionConfiguration struct {
 	// The Function response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
 
+	// Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync
+	// function. Specifies the name and version of the runtime to use. Note that
+	// if a runtime is specified, code must also be specified.
+	Runtime *AppSyncRuntime `locationName:"runtime" type:"structure"`
+
 	// Describes a Sync configuration for a resolver.
 	//
 	// Specifies which Conflict Detection strategy and Resolution strategy to use
@@ -8491,6 +9067,12 @@ func (s FunctionConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s FunctionConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *FunctionConfiguration) SetCode(v string) *FunctionConfiguration {
+	s.Code = &v
+	return s
 }
 
 // SetDataSourceName sets the DataSourceName field's value.
@@ -8544,6 +9126,12 @@ func (s *FunctionConfiguration) SetRequestMappingTemplate(v string) *FunctionCon
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *FunctionConfiguration) SetResponseMappingTemplate(v string) *FunctionConfiguration {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *FunctionConfiguration) SetRuntime(v *AppSyncRuntime) *FunctionConfiguration {
+	s.Runtime = v
 	return s
 }
 
@@ -11465,6 +12053,10 @@ type Resolver struct {
 	// The caching configuration for the resolver.
 	CachingConfig *CachingConfig `locationName:"cachingConfig" type:"structure"`
 
+	// The resolver code that contains the request and response functions. When
+	// code is used, the runtime is required. The runtime value must be APPSYNC_JS.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
 	// The resolver data source name.
 	DataSourceName *string `locationName:"dataSourceName" min:"1" type:"string"`
 
@@ -11497,6 +12089,11 @@ type Resolver struct {
 	// The response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
 
+	// Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync
+	// function. Specifies the name and version of the runtime to use. Note that
+	// if a runtime is specified, code must also be specified.
+	Runtime *AppSyncRuntime `locationName:"runtime" type:"structure"`
+
 	// The SyncConfig for a resolver attached to a versioned data source.
 	SyncConfig *SyncConfig `locationName:"syncConfig" type:"structure"`
 
@@ -11525,6 +12122,12 @@ func (s Resolver) GoString() string {
 // SetCachingConfig sets the CachingConfig field's value.
 func (s *Resolver) SetCachingConfig(v *CachingConfig) *Resolver {
 	s.CachingConfig = v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *Resolver) SetCode(v string) *Resolver {
+	s.Code = &v
 	return s
 }
 
@@ -11573,6 +12176,12 @@ func (s *Resolver) SetResolverArn(v string) *Resolver {
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *Resolver) SetResponseMappingTemplate(v string) *Resolver {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *Resolver) SetRuntime(v *AppSyncRuntime) *Resolver {
+	s.Runtime = v
 	return s
 }
 
@@ -12648,6 +13257,10 @@ type UpdateFunctionInput struct {
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
 
+	// The function code that contains the request and response functions. When
+	// code is used, the runtime is required. The runtime value must be APPSYNC_JS.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
 	// The Function DataSource name.
 	//
 	// DataSourceName is a required field
@@ -12662,10 +13275,9 @@ type UpdateFunctionInput struct {
 	FunctionId *string `location:"uri" locationName:"functionId" min:"1" type:"string" required:"true"`
 
 	// The version of the request mapping template. Currently, the supported value
-	// is 2018-05-29.
-	//
-	// FunctionVersion is a required field
-	FunctionVersion *string `locationName:"functionVersion" type:"string" required:"true"`
+	// is 2018-05-29. Note that when using VTL and mapping templates, the functionVersion
+	// is required.
+	FunctionVersion *string `locationName:"functionVersion" type:"string"`
 
 	// The maximum batching size for a resolver.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
@@ -12681,6 +13293,11 @@ type UpdateFunctionInput struct {
 
 	// The Function request mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
+
+	// Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync
+	// function. Specifies the name and version of the runtime to use. Note that
+	// if a runtime is specified, code must also be specified.
+	Runtime *AppSyncRuntime `locationName:"runtime" type:"structure"`
 
 	// Describes a Sync configuration for a resolver.
 	//
@@ -12716,6 +13333,9 @@ func (s *UpdateFunctionInput) Validate() error {
 	if s.ApiId != nil && len(*s.ApiId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
 	}
+	if s.Code != nil && len(*s.Code) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Code", 1))
+	}
 	if s.DataSourceName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataSourceName"))
 	}
@@ -12727,9 +13347,6 @@ func (s *UpdateFunctionInput) Validate() error {
 	}
 	if s.FunctionId != nil && len(*s.FunctionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionId", 1))
-	}
-	if s.FunctionVersion == nil {
-		invalidParams.Add(request.NewErrParamRequired("FunctionVersion"))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -12743,6 +13360,11 @@ func (s *UpdateFunctionInput) Validate() error {
 	if s.ResponseMappingTemplate != nil && len(*s.ResponseMappingTemplate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResponseMappingTemplate", 1))
 	}
+	if s.Runtime != nil {
+		if err := s.Runtime.Validate(); err != nil {
+			invalidParams.AddNested("Runtime", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12753,6 +13375,12 @@ func (s *UpdateFunctionInput) Validate() error {
 // SetApiId sets the ApiId field's value.
 func (s *UpdateFunctionInput) SetApiId(v string) *UpdateFunctionInput {
 	s.ApiId = &v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *UpdateFunctionInput) SetCode(v string) *UpdateFunctionInput {
+	s.Code = &v
 	return s
 }
 
@@ -12801,6 +13429,12 @@ func (s *UpdateFunctionInput) SetRequestMappingTemplate(v string) *UpdateFunctio
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *UpdateFunctionInput) SetResponseMappingTemplate(v string) *UpdateFunctionInput {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *UpdateFunctionInput) SetRuntime(v *AppSyncRuntime) *UpdateFunctionInput {
+	s.Runtime = v
 	return s
 }
 
@@ -13039,6 +13673,10 @@ type UpdateResolverInput struct {
 	// The caching configuration for the resolver.
 	CachingConfig *CachingConfig `locationName:"cachingConfig" type:"structure"`
 
+	// The resolver code that contains the request and response functions. When
+	// code is used, the runtime is required. The runtime value must be APPSYNC_JS.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
 	// The new data source name.
 	DataSourceName *string `locationName:"dataSourceName" min:"1" type:"string"`
 
@@ -13078,6 +13716,11 @@ type UpdateResolverInput struct {
 	// The new response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
 
+	// Describes a runtime used by an AWS AppSync pipeline resolver or AWS AppSync
+	// function. Specifies the name and version of the runtime to use. Note that
+	// if a runtime is specified, code must also be specified.
+	Runtime *AppSyncRuntime `locationName:"runtime" type:"structure"`
+
 	// The SyncConfig for a resolver attached to a versioned data source.
 	SyncConfig *SyncConfig `locationName:"syncConfig" type:"structure"`
 
@@ -13114,6 +13757,9 @@ func (s *UpdateResolverInput) Validate() error {
 	if s.ApiId != nil && len(*s.ApiId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
 	}
+	if s.Code != nil && len(*s.Code) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Code", 1))
+	}
 	if s.DataSourceName != nil && len(*s.DataSourceName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataSourceName", 1))
 	}
@@ -13140,6 +13786,11 @@ func (s *UpdateResolverInput) Validate() error {
 			invalidParams.AddNested("CachingConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Runtime != nil {
+		if err := s.Runtime.Validate(); err != nil {
+			invalidParams.AddNested("Runtime", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13156,6 +13807,12 @@ func (s *UpdateResolverInput) SetApiId(v string) *UpdateResolverInput {
 // SetCachingConfig sets the CachingConfig field's value.
 func (s *UpdateResolverInput) SetCachingConfig(v *CachingConfig) *UpdateResolverInput {
 	s.CachingConfig = v
+	return s
+}
+
+// SetCode sets the Code field's value.
+func (s *UpdateResolverInput) SetCode(v string) *UpdateResolverInput {
+	s.Code = &v
 	return s
 }
 
@@ -13198,6 +13855,12 @@ func (s *UpdateResolverInput) SetRequestMappingTemplate(v string) *UpdateResolve
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *UpdateResolverInput) SetResponseMappingTemplate(v string) *UpdateResolverInput {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *UpdateResolverInput) SetRuntime(v *AppSyncRuntime) *UpdateResolverInput {
+	s.Runtime = v
 	return s
 }
 
@@ -13623,6 +14286,20 @@ func AuthorizationType_Values() []string {
 	}
 }
 
+// Provides context for the cause of the bad request. The only supported value
+// is CODE_ERROR.
+const (
+	// BadRequestReasonCodeError is a BadRequestReason enum value
+	BadRequestReasonCodeError = "CODE_ERROR"
+)
+
+// BadRequestReason_Values returns all elements of the BadRequestReason enum
+func BadRequestReason_Values() []string {
+	return []string{
+		BadRequestReasonCodeError,
+	}
+}
+
 const (
 	// ConflictDetectionTypeVersion is a ConflictDetectionType enum value
 	ConflictDetectionTypeVersion = "VERSION"
@@ -13776,6 +14453,18 @@ func ResolverKind_Values() []string {
 	return []string{
 		ResolverKindUnit,
 		ResolverKindPipeline,
+	}
+}
+
+const (
+	// RuntimeNameAppsyncJs is a RuntimeName enum value
+	RuntimeNameAppsyncJs = "APPSYNC_JS"
+)
+
+// RuntimeName_Values returns all elements of the RuntimeName enum
+func RuntimeName_Values() []string {
+	return []string{
+		RuntimeNameAppsyncJs,
 	}
 }
 

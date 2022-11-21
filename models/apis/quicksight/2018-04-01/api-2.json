@@ -371,6 +371,24 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "DeleteAccountSubscription":{
+      "name":"DeleteAccountSubscription",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/account/{AwsAccountId}"
+      },
+      "input":{"shape":"DeleteAccountSubscriptionRequest"},
+      "output":{"shape":"DeleteAccountSubscriptionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "DeleteAnalysis":{
       "name":"DeleteAnalysis",
       "http":{
@@ -1641,6 +1659,40 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "SearchDataSets":{
+      "name":"SearchDataSets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/search/data-sets"
+      },
+      "input":{"shape":"SearchDataSetsRequest"},
+      "output":{"shape":"SearchDataSetsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "SearchDataSources":{
+      "name":"SearchDataSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/search/data-sources"
+      },
+      "input":{"shape":"SearchDataSourcesRequest"},
+      "output":{"shape":"SearchDataSourcesResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "SearchFolders":{
       "name":"SearchFolders",
       "http":{
@@ -1656,6 +1708,7 @@
         {"shape":"ThrottlingException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -2170,7 +2223,8 @@
         "Edition":{"shape":"Edition"},
         "DefaultNamespace":{"shape":"Namespace"},
         "NotificationEmail":{"shape":"String"},
-        "PublicSharingEnabled":{"shape":"Boolean"}
+        "PublicSharingEnabled":{"shape":"Boolean"},
+        "TerminationProtectionEnabled":{"shape":"Boolean"}
       }
     },
     "ActionList":{
@@ -2266,7 +2320,15 @@
     },
     "AnalysisFilterAttribute":{
       "type":"string",
-      "enum":["QUICKSIGHT_USER"]
+      "enum":[
+        "QUICKSIGHT_USER",
+        "QUICKSIGHT_VIEWER_OR_OWNER",
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER",
+        "QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_SOLE_OWNER",
+        "ANALYSIS_NAME"
+      ]
     },
     "AnalysisName":{
       "type":"string",
@@ -2338,7 +2400,15 @@
       "type":"structure",
       "members":{
         "Dashboard":{"shape":"AnonymousUserDashboardEmbeddingConfiguration"},
-        "DashboardVisual":{"shape":"AnonymousUserDashboardVisualEmbeddingConfiguration"}
+        "DashboardVisual":{"shape":"AnonymousUserDashboardVisualEmbeddingConfiguration"},
+        "QSearchBar":{"shape":"AnonymousUserQSearchBarEmbeddingConfiguration"}
+      }
+    },
+    "AnonymousUserQSearchBarEmbeddingConfiguration":{
+      "type":"structure",
+      "required":["InitialTopicId"],
+      "members":{
+        "InitialTopicId":{"shape":"RestrictiveResourceId"}
       }
     },
     "Arn":{"type":"string"},
@@ -2357,7 +2427,8 @@
     "AthenaParameters":{
       "type":"structure",
       "members":{
-        "WorkGroup":{"shape":"WorkGroup"}
+        "WorkGroup":{"shape":"WorkGroup"},
+        "RoleArn":{"shape":"RoleArn"}
       }
     },
     "AuroraParameters":{
@@ -3406,7 +3477,15 @@
     },
     "DashboardFilterAttribute":{
       "type":"string",
-      "enum":["QUICKSIGHT_USER"]
+      "enum":[
+        "QUICKSIGHT_USER",
+        "QUICKSIGHT_VIEWER_OR_OWNER",
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER",
+        "QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_SOLE_OWNER",
+        "DASHBOARD_NAME"
+      ]
     },
     "DashboardName":{
       "type":"string",
@@ -3568,6 +3647,17 @@
       "member":{"shape":"DataSetConfiguration"},
       "max":30
     },
+    "DataSetFilterAttribute":{
+      "type":"string",
+      "enum":[
+        "QUICKSIGHT_VIEWER_OR_OWNER",
+        "QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER",
+        "DIRECT_QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_SOLE_OWNER",
+        "DATASET_NAME"
+      ]
+    },
     "DataSetImportMode":{
       "type":"string",
       "enum":[
@@ -3601,6 +3691,25 @@
       "members":{
         "ColumnSchemaList":{"shape":"ColumnSchemaList"}
       }
+    },
+    "DataSetSearchFilter":{
+      "type":"structure",
+      "required":[
+        "Operator",
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Operator":{"shape":"FilterOperator"},
+        "Name":{"shape":"DataSetFilterAttribute"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "DataSetSearchFilterList":{
+      "type":"list",
+      "member":{"shape":"DataSetSearchFilter"},
+      "max":1,
+      "min":1
     },
     "DataSetSummary":{
       "type":"structure",
@@ -3674,6 +3783,15 @@
         "UNKNOWN"
       ]
     },
+    "DataSourceFilterAttribute":{
+      "type":"string",
+      "enum":[
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER",
+        "DIRECT_QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_SOLE_OWNER",
+        "DATASOURCE_NAME"
+      ]
+    },
     "DataSourceList":{
       "type":"list",
       "member":{"shape":"DataSource"}
@@ -3702,7 +3820,8 @@
         "TeradataParameters":{"shape":"TeradataParameters"},
         "TwitterParameters":{"shape":"TwitterParameters"},
         "AmazonOpenSearchParameters":{"shape":"AmazonOpenSearchParameters"},
-        "ExasolParameters":{"shape":"ExasolParameters"}
+        "ExasolParameters":{"shape":"ExasolParameters"},
+        "DatabricksParameters":{"shape":"DatabricksParameters"}
       }
     },
     "DataSourceParametersList":{
@@ -3710,6 +3829,40 @@
       "member":{"shape":"DataSourceParameters"},
       "max":50,
       "min":1
+    },
+    "DataSourceSearchFilter":{
+      "type":"structure",
+      "required":[
+        "Operator",
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Operator":{"shape":"FilterOperator"},
+        "Name":{"shape":"DataSourceFilterAttribute"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "DataSourceSearchFilterList":{
+      "type":"list",
+      "member":{"shape":"DataSourceSearchFilter"},
+      "max":1,
+      "min":1
+    },
+    "DataSourceSummary":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "DataSourceId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"},
+        "Type":{"shape":"DataSourceType"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "DataSourceSummaryList":{
+      "type":"list",
+      "member":{"shape":"DataSourceSummary"}
     },
     "DataSourceType":{
       "type":"string",
@@ -3738,13 +3891,27 @@
         "TWITTER",
         "TIMESTREAM",
         "AMAZON_OPENSEARCH",
-        "EXASOL"
+        "EXASOL",
+        "DATABRICKS"
       ]
     },
     "Database":{
       "type":"string",
       "max":128,
       "min":1
+    },
+    "DatabricksParameters":{
+      "type":"structure",
+      "required":[
+        "Host",
+        "Port",
+        "SqlEndpointPath"
+      ],
+      "members":{
+        "Host":{"shape":"Host"},
+        "Port":{"shape":"Port"},
+        "SqlEndpointPath":{"shape":"SqlEndpointPath"}
+      }
     },
     "DateTimeParameter":{
       "type":"structure",
@@ -3795,6 +3962,27 @@
       }
     },
     "DeleteAccountCustomizationResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "DeleteAccountSubscriptionRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        }
+      }
+    },
+    "DeleteAccountSubscriptionResponse":{
       "type":"structure",
       "members":{
         "RequestId":{"shape":"String"},
@@ -5398,7 +5586,10 @@
     },
     "FilterOperator":{
       "type":"string",
-      "enum":["StringEquals"]
+      "enum":[
+        "StringEquals",
+        "StringLike"
+      ]
     },
     "Folder":{
       "type":"structure",
@@ -5419,7 +5610,15 @@
     },
     "FolderFilterAttribute":{
       "type":"string",
-      "enum":["PARENT_FOLDER_ARN"]
+      "enum":[
+        "PARENT_FOLDER_ARN",
+        "DIRECT_QUICKSIGHT_OWNER",
+        "DIRECT_QUICKSIGHT_SOLE_OWNER",
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER",
+        "QUICKSIGHT_OWNER",
+        "QUICKSIGHT_VIEWER_OR_OWNER",
+        "FOLDER_NAME"
+      ]
     },
     "FolderMember":{
       "type":"structure",
@@ -5498,7 +5697,8 @@
       "required":[
         "EmbedUrl",
         "Status",
-        "RequestId"
+        "RequestId",
+        "AnonymousUserArn"
       ],
       "members":{
         "EmbedUrl":{"shape":"EmbeddingUrl"},
@@ -5506,7 +5706,8 @@
           "shape":"StatusCode",
           "location":"statusCode"
         },
-        "RequestId":{"shape":"String"}
+        "RequestId":{"shape":"String"},
+        "AnonymousUserArn":{"shape":"Arn"}
       }
     },
     "GenerateEmbedUrlForRegisteredUserRequest":{
@@ -6025,6 +6226,15 @@
       "exception":true
     },
     "InvalidParameterValueException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "RequestId":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidRequestException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"},
@@ -7538,6 +7748,11 @@
       "min":1,
       "pattern":"[\\w\\-]+"
     },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
     "RoleName":{
       "type":"string",
       "max":64,
@@ -7711,6 +7926,70 @@
       "type":"structure",
       "members":{
         "DashboardSummaryList":{"shape":"DashboardSummaryList"},
+        "NextToken":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "SearchDataSetsRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Filters"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Filters":{"shape":"DataSetSearchFilterList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        }
+      }
+    },
+    "SearchDataSetsResponse":{
+      "type":"structure",
+      "members":{
+        "DataSetSummaries":{"shape":"DataSetSummaryList"},
+        "NextToken":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "SearchDataSourcesRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Filters"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Filters":{"shape":"DataSourceSearchFilterList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        }
+      }
+    },
+    "SearchDataSourcesResponse":{
+      "type":"structure",
+      "members":{
+        "DataSourceSummaries":{"shape":"DataSourceSummaryList"},
         "NextToken":{"shape":"String"},
         "Status":{
           "shape":"StatusCode",
@@ -7912,6 +8191,11 @@
         "Host":{"shape":"Host"},
         "Port":{"shape":"Port"}
       }
+    },
+    "SqlEndpointPath":{
+      "type":"string",
+      "max":4096,
+      "min":1
     },
     "SqlQuery":{
       "type":"string",
@@ -8467,7 +8751,8 @@
           "locationName":"AwsAccountId"
         },
         "DefaultNamespace":{"shape":"Namespace"},
-        "NotificationEmail":{"shape":"String"}
+        "NotificationEmail":{"shape":"String"},
+        "TerminationProtectionEnabled":{"shape":"Boolean"}
       }
     },
     "UpdateAccountSettingsResponse":{

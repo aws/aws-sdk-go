@@ -890,6 +890,18 @@
         "roleArn":{"shape":"String"}
       }
     },
+    "ControlPlanePlacementRequest":{
+      "type":"structure",
+      "members":{
+        "groupName":{"shape":"String"}
+      }
+    },
+    "ControlPlanePlacementResponse":{
+      "type":"structure",
+      "members":{
+        "groupName":{"shape":"String"}
+      }
+    },
     "CreateAddonRequest":{
       "type":"structure",
       "required":[
@@ -1942,7 +1954,8 @@
       ],
       "members":{
         "outpostArns":{"shape":"StringList"},
-        "controlPlaneInstanceType":{"shape":"String"}
+        "controlPlaneInstanceType":{"shape":"String"},
+        "controlPlanePlacement":{"shape":"ControlPlanePlacementRequest"}
       }
     },
     "OutpostConfigResponse":{
@@ -1953,7 +1966,8 @@
       ],
       "members":{
         "outpostArns":{"shape":"StringList"},
-        "controlPlaneInstanceType":{"shape":"String"}
+        "controlPlaneInstanceType":{"shape":"String"},
+        "controlPlanePlacement":{"shape":"ControlPlanePlacementResponse"}
       }
     },
     "PercentCapacity":{

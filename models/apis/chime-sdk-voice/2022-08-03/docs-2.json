@@ -1,0 +1,1814 @@
+{
+  "version": "2.0",
+  "service": null,
+  "operations": {
+    "AssociatePhoneNumbersWithVoiceConnector": null,
+    "AssociatePhoneNumbersWithVoiceConnectorGroup": null,
+    "BatchDeletePhoneNumber": null,
+    "BatchUpdatePhoneNumber": null,
+    "CreatePhoneNumberOrder": null,
+    "CreateProxySession": null,
+    "CreateSipMediaApplication": null,
+    "CreateSipMediaApplicationCall": null,
+    "CreateSipRule": null,
+    "CreateVoiceConnector": null,
+    "CreateVoiceConnectorGroup": null,
+    "DeletePhoneNumber": null,
+    "DeleteProxySession": null,
+    "DeleteSipMediaApplication": null,
+    "DeleteSipRule": null,
+    "DeleteVoiceConnector": null,
+    "DeleteVoiceConnectorEmergencyCallingConfiguration": null,
+    "DeleteVoiceConnectorGroup": null,
+    "DeleteVoiceConnectorOrigination": null,
+    "DeleteVoiceConnectorProxy": null,
+    "DeleteVoiceConnectorStreamingConfiguration": null,
+    "DeleteVoiceConnectorTermination": null,
+    "DeleteVoiceConnectorTerminationCredentials": null,
+    "DisassociatePhoneNumbersFromVoiceConnector": null,
+    "DisassociatePhoneNumbersFromVoiceConnectorGroup": null,
+    "GetGlobalSettings": null,
+    "GetPhoneNumber": null,
+    "GetPhoneNumberOrder": null,
+    "GetPhoneNumberSettings": null,
+    "GetProxySession": null,
+    "GetSipMediaApplication": null,
+    "GetSipMediaApplicationAlexaSkillConfiguration": null,
+    "GetSipMediaApplicationLoggingConfiguration": null,
+    "GetSipRule": null,
+    "GetVoiceConnector": null,
+    "GetVoiceConnectorEmergencyCallingConfiguration": null,
+    "GetVoiceConnectorGroup": null,
+    "GetVoiceConnectorLoggingConfiguration": null,
+    "GetVoiceConnectorOrigination": null,
+    "GetVoiceConnectorProxy": null,
+    "GetVoiceConnectorStreamingConfiguration": null,
+    "GetVoiceConnectorTermination": null,
+    "GetVoiceConnectorTerminationHealth": null,
+    "ListAvailableVoiceConnectorRegions": null,
+    "ListPhoneNumberOrders": null,
+    "ListPhoneNumbers": null,
+    "ListProxySessions": null,
+    "ListSipMediaApplications": null,
+    "ListSipRules": null,
+    "ListSupportedPhoneNumberCountries": null,
+    "ListVoiceConnectorGroups": null,
+    "ListVoiceConnectorTerminationCredentials": null,
+    "ListVoiceConnectors": null,
+    "PutSipMediaApplicationAlexaSkillConfiguration": null,
+    "PutSipMediaApplicationLoggingConfiguration": null,
+    "PutVoiceConnectorEmergencyCallingConfiguration": null,
+    "PutVoiceConnectorLoggingConfiguration": null,
+    "PutVoiceConnectorOrigination": null,
+    "PutVoiceConnectorProxy": null,
+    "PutVoiceConnectorStreamingConfiguration": null,
+    "PutVoiceConnectorTermination": null,
+    "PutVoiceConnectorTerminationCredentials": null,
+    "RestorePhoneNumber": null,
+    "SearchAvailablePhoneNumbers": null,
+    "UpdateGlobalSettings": null,
+    "UpdatePhoneNumber": null,
+    "UpdatePhoneNumberSettings": null,
+    "UpdateProxySession": null,
+    "UpdateSipMediaApplication": null,
+    "UpdateSipMediaApplicationCall": null,
+    "UpdateSipRule": null,
+    "UpdateVoiceConnector": null,
+    "UpdateVoiceConnectorGroup": null,
+    "ValidateE911Address": null
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Address": {
+      "base": null,
+      "refs": {
+        "ValidateE911AddressResponse$Address": null
+      }
+    },
+    "AlexaSkillId": {
+      "base": null,
+      "refs": {
+        "AlexaSkillIdList$member": null
+      }
+    },
+    "AlexaSkillIdList": {
+      "base": null,
+      "refs": {
+        "SipMediaApplicationAlexaSkillConfiguration$AlexaSkillIds": null
+      }
+    },
+    "AlexaSkillStatus": {
+      "base": null,
+      "refs": {
+        "SipMediaApplicationAlexaSkillConfiguration$AlexaSkillStatus": null
+      }
+    },
+    "Alpha2CountryCode": {
+      "base": null,
+      "refs": {
+        "DNISEmergencyCallingConfiguration$CallingCountry": null,
+        "PhoneNumber$Country": null,
+        "PhoneNumberCountry$CountryCode": null,
+        "SearchAvailablePhoneNumbersRequest$Country": null
+      }
+    },
+    "AreaCode": {
+      "base": null,
+      "refs": {
+        "GeoMatchParams$AreaCode": null
+      }
+    },
+    "AssociatePhoneNumbersWithVoiceConnectorGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociatePhoneNumbersWithVoiceConnectorGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociatePhoneNumbersWithVoiceConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociatePhoneNumbersWithVoiceConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BadRequestException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeletePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeletePhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdatePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdatePhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "CreateVoiceConnectorRequest$RequireEncryption": null,
+        "LoggingConfiguration$EnableSIPLogs": null,
+        "Origination$Disabled": null,
+        "Proxy$Disabled": null,
+        "PutVoiceConnectorProxyRequest$Disabled": null,
+        "SipMediaApplicationLoggingConfiguration$EnableSipMediaApplicationMessageLogs": null,
+        "SipRule$Disabled": null,
+        "StreamingConfiguration$Disabled": null,
+        "Termination$Disabled": null,
+        "UpdateVoiceConnectorRequest$RequireEncryption": null,
+        "VoiceConnector$RequireEncryption": null
+      }
+    },
+    "CallingName": {
+      "base": null,
+      "refs": {
+        "GetPhoneNumberSettingsResponse$CallingName": null,
+        "PhoneNumber$CallingName": null,
+        "UpdatePhoneNumberRequest$CallingName": null,
+        "UpdatePhoneNumberRequestItem$CallingName": null,
+        "UpdatePhoneNumberSettingsRequest$CallingName": null
+      }
+    },
+    "CallingNameStatus": {
+      "base": null,
+      "refs": {
+        "PhoneNumber$CallingNameStatus": null
+      }
+    },
+    "CallingRegion": {
+      "base": null,
+      "refs": {
+        "CallingRegionList$member": null
+      }
+    },
+    "CallingRegionList": {
+      "base": null,
+      "refs": {
+        "Termination$CallingRegions": null
+      }
+    },
+    "CandidateAddress": {
+      "base": null,
+      "refs": {
+        "CandidateAddressList$member": null
+      }
+    },
+    "CandidateAddressList": {
+      "base": null,
+      "refs": {
+        "ValidateE911AddressResponse$CandidateAddressList": null
+      }
+    },
+    "Capability": {
+      "base": null,
+      "refs": {
+        "CapabilityList$member": null
+      }
+    },
+    "CapabilityList": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$Capabilities": null,
+        "ProxySession$Capabilities": null,
+        "UpdateProxySessionRequest$Capabilities": null
+      }
+    },
+    "ConflictException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Country": {
+      "base": null,
+      "refs": {
+        "CountryList$member": null,
+        "GeoMatchParams$Country": null
+      }
+    },
+    "CountryList": {
+      "base": null,
+      "refs": {
+        "PutVoiceConnectorProxyRequest$PhoneNumberPoolCountries": null
+      }
+    },
+    "CpsLimit": {
+      "base": null,
+      "refs": {
+        "Termination$CpsLimit": null
+      }
+    },
+    "CreatePhoneNumberOrderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePhoneNumberOrderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProxySessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationCallRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationCallResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVoiceConnectorGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVoiceConnectorGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVoiceConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVoiceConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Credential": {
+      "base": null,
+      "refs": {
+        "CredentialList$member": null
+      }
+    },
+    "CredentialList": {
+      "base": null,
+      "refs": {
+        "PutVoiceConnectorTerminationCredentialsRequest$Credentials": null
+      }
+    },
+    "DNISEmergencyCallingConfiguration": {
+      "base": null,
+      "refs": {
+        "DNISEmergencyCallingConfigurationList$member": null
+      }
+    },
+    "DNISEmergencyCallingConfigurationList": {
+      "base": null,
+      "refs": {
+        "EmergencyCallingConfiguration$DNIS": null
+      }
+    },
+    "DataRetentionInHours": {
+      "base": null,
+      "refs": {
+        "StreamingConfiguration$DataRetentionInHours": null
+      }
+    },
+    "DeletePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorEmergencyCallingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorOriginationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorStreamingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorTerminationCredentialsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorTerminationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociatePhoneNumbersFromVoiceConnectorGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociatePhoneNumbersFromVoiceConnectorGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociatePhoneNumbersFromVoiceConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociatePhoneNumbersFromVoiceConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "E164PhoneNumber": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationCallRequest$FromPhoneNumber": null,
+        "CreateSipMediaApplicationCallRequest$ToPhoneNumber": null,
+        "DNISEmergencyCallingConfiguration$EmergencyPhoneNumber": null,
+        "DNISEmergencyCallingConfiguration$TestPhoneNumber": null,
+        "E164PhoneNumberList$member": null,
+        "OrderedPhoneNumber$E164PhoneNumber": null,
+        "Participant$PhoneNumber": null,
+        "Participant$ProxyPhoneNumber": null,
+        "ParticipantPhoneNumberList$member": null,
+        "PhoneNumber$E164PhoneNumber": null,
+        "Proxy$FallBackPhoneNumber": null,
+        "PutVoiceConnectorProxyRequest$FallBackPhoneNumber": null,
+        "Termination$DefaultPhoneNumber": null
+      }
+    },
+    "E164PhoneNumberList": {
+      "base": null,
+      "refs": {
+        "AssociatePhoneNumbersWithVoiceConnectorGroupRequest$E164PhoneNumbers": null,
+        "AssociatePhoneNumbersWithVoiceConnectorRequest$E164PhoneNumbers": null,
+        "CreatePhoneNumberOrderRequest$E164PhoneNumbers": null,
+        "DisassociatePhoneNumbersFromVoiceConnectorGroupRequest$E164PhoneNumbers": null,
+        "DisassociatePhoneNumbersFromVoiceConnectorRequest$E164PhoneNumbers": null,
+        "SearchAvailablePhoneNumbersResponse$E164PhoneNumbers": null
+      }
+    },
+    "EmergencyCallingConfiguration": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorEmergencyCallingConfigurationResponse$EmergencyCallingConfiguration": null,
+        "PutVoiceConnectorEmergencyCallingConfigurationRequest$EmergencyCallingConfiguration": null,
+        "PutVoiceConnectorEmergencyCallingConfigurationResponse$EmergencyCallingConfiguration": null
+      }
+    },
+    "ErrorCode": {
+      "base": null,
+      "refs": {
+        "PhoneNumberError$ErrorCode": null
+      }
+    },
+    "ForbiddenException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "FunctionArn": {
+      "base": null,
+      "refs": {
+        "SipMediaApplicationEndpoint$LambdaArn": null
+      }
+    },
+    "GeoMatchLevel": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$GeoMatchLevel": null,
+        "ProxySession$GeoMatchLevel": null
+      }
+    },
+    "GeoMatchParams": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$GeoMatchParams": null,
+        "ProxySession$GeoMatchParams": null
+      }
+    },
+    "GetGlobalSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPhoneNumberOrderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPhoneNumberOrderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPhoneNumberSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetProxySessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationAlexaSkillConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationAlexaSkillConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationLoggingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationLoggingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorEmergencyCallingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorEmergencyCallingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorLoggingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorLoggingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorOriginationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorOriginationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorProxyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorStreamingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorStreamingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorTerminationHealthRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorTerminationHealthResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorTerminationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorTerminationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GuidString": {
+      "base": null,
+      "refs": {
+        "GetPhoneNumberOrderRequest$PhoneNumberOrderId": null,
+        "PhoneNumber$OrderId": null,
+        "PhoneNumberOrder$PhoneNumberOrderId": null,
+        "SipMediaApplicationCall$TransactionId": null
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "Proxy$DefaultSessionExpiryMinutes": null,
+        "PutVoiceConnectorProxyRequest$DefaultSessionExpiryMinutes": null
+      }
+    },
+    "Iso8601Timestamp": {
+      "base": null,
+      "refs": {
+        "GetPhoneNumberSettingsResponse$CallingNameUpdatedTimestamp": null,
+        "PhoneNumber$CreatedTimestamp": null,
+        "PhoneNumber$UpdatedTimestamp": null,
+        "PhoneNumber$DeletionTimestamp": null,
+        "PhoneNumberAssociation$AssociatedTimestamp": null,
+        "PhoneNumberOrder$CreatedTimestamp": null,
+        "PhoneNumberOrder$UpdatedTimestamp": null,
+        "ProxySession$CreatedTimestamp": null,
+        "ProxySession$UpdatedTimestamp": null,
+        "ProxySession$EndedTimestamp": null,
+        "SipMediaApplication$CreatedTimestamp": null,
+        "SipMediaApplication$UpdatedTimestamp": null,
+        "SipRule$CreatedTimestamp": null,
+        "SipRule$UpdatedTimestamp": null,
+        "TerminationHealth$Timestamp": null,
+        "VoiceConnector$CreatedTimestamp": null,
+        "VoiceConnector$UpdatedTimestamp": null,
+        "VoiceConnectorGroup$CreatedTimestamp": null,
+        "VoiceConnectorGroup$UpdatedTimestamp": null
+      }
+    },
+    "ListAvailableVoiceConnectorRegionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPhoneNumberOrdersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPhoneNumberOrdersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPhoneNumbersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPhoneNumbersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProxySessionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProxySessionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipMediaApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipMediaApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipRulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSupportedPhoneNumberCountriesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSupportedPhoneNumberCountriesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceConnectorGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceConnectorGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceConnectorTerminationCredentialsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceConnectorTerminationCredentialsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceConnectorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVoiceConnectorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LoggingConfiguration": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorLoggingConfigurationResponse$LoggingConfiguration": null,
+        "PutVoiceConnectorLoggingConfigurationRequest$LoggingConfiguration": null,
+        "PutVoiceConnectorLoggingConfigurationResponse$LoggingConfiguration": null
+      }
+    },
+    "NextTokenString": {
+      "base": null,
+      "refs": {
+        "ListProxySessionsRequest$NextToken": null,
+        "ListProxySessionsResponse$NextToken": null,
+        "ListSipMediaApplicationsRequest$NextToken": null,
+        "ListSipMediaApplicationsResponse$NextToken": null,
+        "ListSipRulesRequest$NextToken": null,
+        "ListSipRulesResponse$NextToken": null
+      }
+    },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "AssociatePhoneNumbersWithVoiceConnectorGroupRequest$VoiceConnectorGroupId": null,
+        "AssociatePhoneNumbersWithVoiceConnectorRequest$VoiceConnectorId": null,
+        "CreateSipMediaApplicationCallRequest$SipMediaApplicationId": null,
+        "CreateSipRuleRequest$TriggerValue": null,
+        "DeleteSipMediaApplicationRequest$SipMediaApplicationId": null,
+        "DeleteSipRuleRequest$SipRuleId": null,
+        "DeleteVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": null,
+        "DeleteVoiceConnectorGroupRequest$VoiceConnectorGroupId": null,
+        "DeleteVoiceConnectorOriginationRequest$VoiceConnectorId": null,
+        "DeleteVoiceConnectorRequest$VoiceConnectorId": null,
+        "DeleteVoiceConnectorStreamingConfigurationRequest$VoiceConnectorId": null,
+        "DeleteVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": null,
+        "DeleteVoiceConnectorTerminationRequest$VoiceConnectorId": null,
+        "DisassociatePhoneNumbersFromVoiceConnectorGroupRequest$VoiceConnectorGroupId": null,
+        "DisassociatePhoneNumbersFromVoiceConnectorRequest$VoiceConnectorId": null,
+        "GetSipMediaApplicationAlexaSkillConfigurationRequest$SipMediaApplicationId": null,
+        "GetSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": null,
+        "GetSipMediaApplicationRequest$SipMediaApplicationId": null,
+        "GetSipRuleRequest$SipRuleId": null,
+        "GetVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": null,
+        "GetVoiceConnectorGroupRequest$VoiceConnectorGroupId": null,
+        "GetVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": null,
+        "GetVoiceConnectorOriginationRequest$VoiceConnectorId": null,
+        "GetVoiceConnectorRequest$VoiceConnectorId": null,
+        "GetVoiceConnectorStreamingConfigurationRequest$VoiceConnectorId": null,
+        "GetVoiceConnectorTerminationHealthRequest$VoiceConnectorId": null,
+        "GetVoiceConnectorTerminationRequest$VoiceConnectorId": null,
+        "ListSipRulesRequest$SipMediaApplicationId": null,
+        "ListVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": null,
+        "PutSipMediaApplicationAlexaSkillConfigurationRequest$SipMediaApplicationId": null,
+        "PutSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": null,
+        "PutVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": null,
+        "PutVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": null,
+        "PutVoiceConnectorOriginationRequest$VoiceConnectorId": null,
+        "PutVoiceConnectorStreamingConfigurationRequest$VoiceConnectorId": null,
+        "PutVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": null,
+        "PutVoiceConnectorTerminationRequest$VoiceConnectorId": null,
+        "SipMediaApplication$SipMediaApplicationId": null,
+        "SipRule$SipRuleId": null,
+        "SipRule$TriggerValue": null,
+        "SipRuleTargetApplication$SipMediaApplicationId": null,
+        "UpdateSipMediaApplicationCallRequest$SipMediaApplicationId": null,
+        "UpdateSipMediaApplicationCallRequest$TransactionId": null,
+        "UpdateSipMediaApplicationRequest$SipMediaApplicationId": null,
+        "UpdateSipRuleRequest$SipRuleId": null,
+        "UpdateVoiceConnectorGroupRequest$VoiceConnectorGroupId": null,
+        "UpdateVoiceConnectorRequest$VoiceConnectorId": null,
+        "ValidateE911AddressRequest$AwsAccountId": null,
+        "VoiceConnector$VoiceConnectorId": null,
+        "VoiceConnector$VoiceConnectorArn": null,
+        "VoiceConnectorGroup$VoiceConnectorGroupId": null,
+        "VoiceConnectorGroup$VoiceConnectorGroupArn": null,
+        "VoiceConnectorItem$VoiceConnectorId": null
+      }
+    },
+    "NonEmptyString128": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$VoiceConnectorId": null,
+        "DeleteProxySessionRequest$VoiceConnectorId": null,
+        "DeleteProxySessionRequest$ProxySessionId": null,
+        "DeleteVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "GetProxySessionRequest$VoiceConnectorId": null,
+        "GetProxySessionRequest$ProxySessionId": null,
+        "GetVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "ListProxySessionsRequest$VoiceConnectorId": null,
+        "ProxySession$VoiceConnectorId": null,
+        "ProxySession$ProxySessionId": null,
+        "PutVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "UpdateProxySessionRequest$VoiceConnectorId": null,
+        "UpdateProxySessionRequest$ProxySessionId": null
+      }
+    },
+    "NonEmptyStringList": {
+      "base": null,
+      "refs": {
+        "BatchDeletePhoneNumberRequest$PhoneNumberIds": null
+      }
+    },
+    "NotFoundException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "NotificationTarget": {
+      "base": null,
+      "refs": {
+        "StreamingNotificationTarget$NotificationTarget": null
+      }
+    },
+    "NullableBoolean": {
+      "base": null,
+      "refs": {
+        "AssociatePhoneNumbersWithVoiceConnectorGroupRequest$ForceAssociate": null,
+        "AssociatePhoneNumbersWithVoiceConnectorRequest$ForceAssociate": null,
+        "CreateSipRuleRequest$Disabled": null,
+        "PhoneNumberCapabilities$InboundCall": null,
+        "PhoneNumberCapabilities$OutboundCall": null,
+        "PhoneNumberCapabilities$InboundSMS": null,
+        "PhoneNumberCapabilities$OutboundSMS": null,
+        "PhoneNumberCapabilities$InboundMMS": null,
+        "PhoneNumberCapabilities$OutboundMMS": null,
+        "UpdateSipRuleRequest$Disabled": null
+      }
+    },
+    "NumberSelectionBehavior": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$NumberSelectionBehavior": null,
+        "ProxySession$NumberSelectionBehavior": null
+      }
+    },
+    "OrderedPhoneNumber": {
+      "base": null,
+      "refs": {
+        "OrderedPhoneNumberList$member": null
+      }
+    },
+    "OrderedPhoneNumberList": {
+      "base": null,
+      "refs": {
+        "PhoneNumberOrder$OrderedPhoneNumbers": null
+      }
+    },
+    "OrderedPhoneNumberStatus": {
+      "base": null,
+      "refs": {
+        "OrderedPhoneNumber$Status": null
+      }
+    },
+    "Origination": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorOriginationResponse$Origination": null,
+        "PutVoiceConnectorOriginationRequest$Origination": null,
+        "PutVoiceConnectorOriginationResponse$Origination": null
+      }
+    },
+    "OriginationRoute": {
+      "base": null,
+      "refs": {
+        "OriginationRouteList$member": null
+      }
+    },
+    "OriginationRouteList": {
+      "base": null,
+      "refs": {
+        "Origination$Routes": null
+      }
+    },
+    "OriginationRoutePriority": {
+      "base": null,
+      "refs": {
+        "OriginationRoute$Priority": null
+      }
+    },
+    "OriginationRouteProtocol": {
+      "base": null,
+      "refs": {
+        "OriginationRoute$Protocol": null
+      }
+    },
+    "OriginationRouteWeight": {
+      "base": null,
+      "refs": {
+        "OriginationRoute$Weight": null
+      }
+    },
+    "Participant": {
+      "base": null,
+      "refs": {
+        "Participants$member": null
+      }
+    },
+    "ParticipantPhoneNumberList": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$ParticipantPhoneNumbers": null
+      }
+    },
+    "Participants": {
+      "base": null,
+      "refs": {
+        "ProxySession$Participants": null
+      }
+    },
+    "PhoneNumber": {
+      "base": null,
+      "refs": {
+        "GetPhoneNumberResponse$PhoneNumber": null,
+        "PhoneNumberList$member": null,
+        "RestorePhoneNumberResponse$PhoneNumber": null,
+        "UpdatePhoneNumberResponse$PhoneNumber": null
+      }
+    },
+    "PhoneNumberAssociation": {
+      "base": null,
+      "refs": {
+        "PhoneNumberAssociationList$member": null
+      }
+    },
+    "PhoneNumberAssociationList": {
+      "base": null,
+      "refs": {
+        "PhoneNumber$Associations": null
+      }
+    },
+    "PhoneNumberAssociationName": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumbersRequest$FilterName": null,
+        "PhoneNumberAssociation$Name": null
+      }
+    },
+    "PhoneNumberCapabilities": {
+      "base": null,
+      "refs": {
+        "PhoneNumber$Capabilities": null
+      }
+    },
+    "PhoneNumberCountriesList": {
+      "base": null,
+      "refs": {
+        "ListSupportedPhoneNumberCountriesResponse$PhoneNumberCountries": null
+      }
+    },
+    "PhoneNumberCountry": {
+      "base": null,
+      "refs": {
+        "PhoneNumberCountriesList$member": null
+      }
+    },
+    "PhoneNumberError": {
+      "base": null,
+      "refs": {
+        "PhoneNumberErrorList$member": null
+      }
+    },
+    "PhoneNumberErrorList": {
+      "base": null,
+      "refs": {
+        "AssociatePhoneNumbersWithVoiceConnectorGroupResponse$PhoneNumberErrors": null,
+        "AssociatePhoneNumbersWithVoiceConnectorResponse$PhoneNumberErrors": null,
+        "BatchDeletePhoneNumberResponse$PhoneNumberErrors": null,
+        "BatchUpdatePhoneNumberResponse$PhoneNumberErrors": null,
+        "DisassociatePhoneNumbersFromVoiceConnectorGroupResponse$PhoneNumberErrors": null,
+        "DisassociatePhoneNumbersFromVoiceConnectorResponse$PhoneNumberErrors": null
+      }
+    },
+    "PhoneNumberList": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumbersResponse$PhoneNumbers": null
+      }
+    },
+    "PhoneNumberMaxResults": {
+      "base": null,
+      "refs": {
+        "SearchAvailablePhoneNumbersRequest$MaxResults": null
+      }
+    },
+    "PhoneNumberOrder": {
+      "base": null,
+      "refs": {
+        "CreatePhoneNumberOrderResponse$PhoneNumberOrder": null,
+        "GetPhoneNumberOrderResponse$PhoneNumberOrder": null,
+        "PhoneNumberOrderList$member": null
+      }
+    },
+    "PhoneNumberOrderList": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumberOrdersResponse$PhoneNumberOrders": null
+      }
+    },
+    "PhoneNumberOrderStatus": {
+      "base": null,
+      "refs": {
+        "PhoneNumberOrder$Status": null
+      }
+    },
+    "PhoneNumberOrderType": {
+      "base": null,
+      "refs": {
+        "PhoneNumberOrder$OrderType": null
+      }
+    },
+    "PhoneNumberProductType": {
+      "base": null,
+      "refs": {
+        "CreatePhoneNumberOrderRequest$ProductType": null,
+        "ListPhoneNumbersRequest$ProductType": null,
+        "ListSupportedPhoneNumberCountriesRequest$ProductType": null,
+        "PhoneNumber$ProductType": null,
+        "PhoneNumberOrder$ProductType": null,
+        "UpdatePhoneNumberRequest$ProductType": null,
+        "UpdatePhoneNumberRequestItem$ProductType": null
+      }
+    },
+    "PhoneNumberStatus": {
+      "base": null,
+      "refs": {
+        "PhoneNumber$Status": null
+      }
+    },
+    "PhoneNumberType": {
+      "base": null,
+      "refs": {
+        "PhoneNumber$Type": null,
+        "PhoneNumberTypeList$member": null,
+        "SearchAvailablePhoneNumbersRequest$PhoneNumberType": null
+      }
+    },
+    "PhoneNumberTypeList": {
+      "base": null,
+      "refs": {
+        "PhoneNumberCountry$SupportedPhoneNumberTypes": null
+      }
+    },
+    "Port": {
+      "base": null,
+      "refs": {
+        "OriginationRoute$Port": null
+      }
+    },
+    "PositiveInteger": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$ExpiryMinutes": null,
+        "ProxySession$ExpiryMinutes": null,
+        "UpdateProxySessionRequest$ExpiryMinutes": null
+      }
+    },
+    "Proxy": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorProxyResponse$Proxy": null,
+        "PutVoiceConnectorProxyResponse$Proxy": null
+      }
+    },
+    "ProxySession": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionResponse$ProxySession": null,
+        "GetProxySessionResponse$ProxySession": null,
+        "ProxySessions$member": null,
+        "UpdateProxySessionResponse$ProxySession": null
+      }
+    },
+    "ProxySessionNameString": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$Name": null
+      }
+    },
+    "ProxySessionStatus": {
+      "base": null,
+      "refs": {
+        "ListProxySessionsRequest$Status": null,
+        "ProxySession$Status": null
+      }
+    },
+    "ProxySessions": {
+      "base": null,
+      "refs": {
+        "ListProxySessionsResponse$ProxySessions": null
+      }
+    },
+    "PutSipMediaApplicationAlexaSkillConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutSipMediaApplicationAlexaSkillConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutSipMediaApplicationLoggingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutSipMediaApplicationLoggingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorEmergencyCallingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorEmergencyCallingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorLoggingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorLoggingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorOriginationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorOriginationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorProxyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorStreamingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorStreamingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorTerminationCredentialsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorTerminationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorTerminationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResourceLimitExceededException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestorePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestorePhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResultMax": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumberOrdersRequest$MaxResults": null,
+        "ListPhoneNumbersRequest$MaxResults": null,
+        "ListProxySessionsRequest$MaxResults": null,
+        "ListSipMediaApplicationsRequest$MaxResults": null,
+        "ListSipRulesRequest$MaxResults": null,
+        "ListVoiceConnectorGroupsRequest$MaxResults": null,
+        "ListVoiceConnectorsRequest$MaxResults": null
+      }
+    },
+    "SMACreateCallArgumentsMap": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationCallRequest$ArgumentsMap": null
+      }
+    },
+    "SMAUpdateCallArgumentsMap": {
+      "base": null,
+      "refs": {
+        "UpdateSipMediaApplicationCallRequest$Arguments": null
+      }
+    },
+    "SearchAvailablePhoneNumbersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchAvailablePhoneNumbersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SensitiveNonEmptyString": {
+      "base": null,
+      "refs": {
+        "Address$streetName": null,
+        "Address$streetSuffix": null,
+        "Address$postDirectional": null,
+        "Address$preDirectional": null,
+        "Address$streetNumber": null,
+        "Address$city": null,
+        "Address$state": null,
+        "Address$postalCode": null,
+        "Address$postalCodePlus4": null,
+        "Address$country": null,
+        "CandidateAddress$streetInfo": null,
+        "CandidateAddress$streetNumber": null,
+        "CandidateAddress$city": null,
+        "CandidateAddress$state": null,
+        "CandidateAddress$postalCode": null,
+        "CandidateAddress$postalCodePlus4": null,
+        "CandidateAddress$country": null,
+        "DeletePhoneNumberRequest$PhoneNumberId": null,
+        "GetPhoneNumberRequest$PhoneNumberId": null,
+        "PhoneNumber$PhoneNumberId": null,
+        "PhoneNumberError$PhoneNumberId": null,
+        "RestorePhoneNumberRequest$PhoneNumberId": null,
+        "UpdatePhoneNumberRequest$PhoneNumberId": null,
+        "UpdatePhoneNumberRequestItem$PhoneNumberId": null,
+        "ValidateE911AddressRequest$StreetNumber": null,
+        "ValidateE911AddressRequest$StreetInfo": null,
+        "ValidateE911AddressRequest$City": null,
+        "ValidateE911AddressRequest$State": null,
+        "ValidateE911AddressRequest$Country": null,
+        "ValidateE911AddressRequest$PostalCode": null
+      }
+    },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "Credential$Username": null,
+        "Credential$Password": null,
+        "SMACreateCallArgumentsMap$key": null,
+        "SMACreateCallArgumentsMap$value": null,
+        "SMAUpdateCallArgumentsMap$key": null,
+        "SMAUpdateCallArgumentsMap$value": null,
+        "SensitiveStringList$member": null,
+        "SipHeadersMap$key": null,
+        "SipHeadersMap$value": null
+      }
+    },
+    "SensitiveStringList": {
+      "base": null,
+      "refs": {
+        "DeleteVoiceConnectorTerminationCredentialsRequest$Usernames": null,
+        "ListVoiceConnectorTerminationCredentialsResponse$Usernames": null
+      }
+    },
+    "ServiceFailureException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ServiceUnavailableException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SipApplicationPriority": {
+      "base": null,
+      "refs": {
+        "SipRuleTargetApplication$Priority": null
+      }
+    },
+    "SipHeadersMap": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationCallRequest$SipHeaders": null
+      }
+    },
+    "SipMediaApplication": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationResponse$SipMediaApplication": null,
+        "GetSipMediaApplicationResponse$SipMediaApplication": null,
+        "SipMediaApplicationList$member": null,
+        "UpdateSipMediaApplicationResponse$SipMediaApplication": null
+      }
+    },
+    "SipMediaApplicationAlexaSkillConfiguration": {
+      "base": null,
+      "refs": {
+        "GetSipMediaApplicationAlexaSkillConfigurationResponse$SipMediaApplicationAlexaSkillConfiguration": null,
+        "PutSipMediaApplicationAlexaSkillConfigurationRequest$SipMediaApplicationAlexaSkillConfiguration": null,
+        "PutSipMediaApplicationAlexaSkillConfigurationResponse$SipMediaApplicationAlexaSkillConfiguration": null
+      }
+    },
+    "SipMediaApplicationCall": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationCallResponse$SipMediaApplicationCall": null,
+        "UpdateSipMediaApplicationCallResponse$SipMediaApplicationCall": null
+      }
+    },
+    "SipMediaApplicationEndpoint": {
+      "base": null,
+      "refs": {
+        "SipMediaApplicationEndpointList$member": null
+      }
+    },
+    "SipMediaApplicationEndpointList": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationRequest$Endpoints": null,
+        "SipMediaApplication$Endpoints": null,
+        "UpdateSipMediaApplicationRequest$Endpoints": null
+      }
+    },
+    "SipMediaApplicationList": {
+      "base": null,
+      "refs": {
+        "ListSipMediaApplicationsResponse$SipMediaApplications": null
+      }
+    },
+    "SipMediaApplicationLoggingConfiguration": {
+      "base": null,
+      "refs": {
+        "GetSipMediaApplicationLoggingConfigurationResponse$SipMediaApplicationLoggingConfiguration": null,
+        "PutSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationLoggingConfiguration": null,
+        "PutSipMediaApplicationLoggingConfigurationResponse$SipMediaApplicationLoggingConfiguration": null
+      }
+    },
+    "SipMediaApplicationName": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationRequest$Name": null,
+        "SipMediaApplication$Name": null,
+        "UpdateSipMediaApplicationRequest$Name": null
+      }
+    },
+    "SipRule": {
+      "base": null,
+      "refs": {
+        "CreateSipRuleResponse$SipRule": null,
+        "GetSipRuleResponse$SipRule": null,
+        "SipRuleList$member": null,
+        "UpdateSipRuleResponse$SipRule": null
+      }
+    },
+    "SipRuleList": {
+      "base": null,
+      "refs": {
+        "ListSipRulesResponse$SipRules": null
+      }
+    },
+    "SipRuleName": {
+      "base": null,
+      "refs": {
+        "CreateSipRuleRequest$Name": null,
+        "SipRule$Name": null,
+        "UpdateSipRuleRequest$Name": null
+      }
+    },
+    "SipRuleTargetApplication": {
+      "base": null,
+      "refs": {
+        "SipRuleTargetApplicationList$member": null
+      }
+    },
+    "SipRuleTargetApplicationList": {
+      "base": null,
+      "refs": {
+        "CreateSipRuleRequest$TargetApplications": null,
+        "SipRule$TargetApplications": null,
+        "UpdateSipRuleRequest$TargetApplications": null
+      }
+    },
+    "SipRuleTriggerType": {
+      "base": null,
+      "refs": {
+        "CreateSipRuleRequest$TriggerType": null,
+        "SipRule$TriggerType": null
+      }
+    },
+    "StreamingConfiguration": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorStreamingConfigurationResponse$StreamingConfiguration": null,
+        "PutVoiceConnectorStreamingConfigurationRequest$StreamingConfiguration": null,
+        "PutVoiceConnectorStreamingConfigurationResponse$StreamingConfiguration": null
+      }
+    },
+    "StreamingNotificationTarget": {
+      "base": null,
+      "refs": {
+        "StreamingNotificationTargetList$member": null
+      }
+    },
+    "StreamingNotificationTargetList": {
+      "base": null,
+      "refs": {
+        "StreamingConfiguration$StreamingNotificationTargets": null
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationRequest$AwsRegion": null,
+        "ListPhoneNumberOrdersRequest$NextToken": null,
+        "ListPhoneNumberOrdersResponse$NextToken": null,
+        "ListPhoneNumbersRequest$Status": null,
+        "ListPhoneNumbersRequest$FilterValue": null,
+        "ListPhoneNumbersRequest$NextToken": null,
+        "ListPhoneNumbersResponse$NextToken": null,
+        "ListVoiceConnectorGroupsRequest$NextToken": null,
+        "ListVoiceConnectorGroupsResponse$NextToken": null,
+        "ListVoiceConnectorsRequest$NextToken": null,
+        "ListVoiceConnectorsResponse$NextToken": null,
+        "NonEmptyStringList$member": null,
+        "OriginationRoute$Host": null,
+        "PhoneNumberAssociation$Value": null,
+        "PhoneNumberError$ErrorMessage": null,
+        "SearchAvailablePhoneNumbersRequest$AreaCode": null,
+        "SearchAvailablePhoneNumbersRequest$City": null,
+        "SearchAvailablePhoneNumbersRequest$State": null,
+        "SearchAvailablePhoneNumbersRequest$NextToken": null,
+        "SearchAvailablePhoneNumbersResponse$NextToken": null,
+        "SipMediaApplication$AwsRegion": null,
+        "SipRuleTargetApplication$AwsRegion": null,
+        "StringList$member": null,
+        "TerminationHealth$Source": null,
+        "ValidateE911AddressResponse$AddressExternalId": null,
+        "VoiceConnector$OutboundHostName": null,
+        "VoiceConnectorSettings$CdrBucket": null
+      }
+    },
+    "String128": {
+      "base": null,
+      "refs": {
+        "ProxySession$Name": null
+      }
+    },
+    "StringList": {
+      "base": null,
+      "refs": {
+        "Proxy$PhoneNumberCountries": null,
+        "Termination$CidrAllowedList": null
+      }
+    },
+    "Termination": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorTerminationResponse$Termination": null,
+        "PutVoiceConnectorTerminationRequest$Termination": null,
+        "PutVoiceConnectorTerminationResponse$Termination": null
+      }
+    },
+    "TerminationHealth": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorTerminationHealthResponse$TerminationHealth": null
+      }
+    },
+    "ThrottledClientException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TollFreePrefix": {
+      "base": null,
+      "refs": {
+        "SearchAvailablePhoneNumbersRequest$TollFreePrefix": null
+      }
+    },
+    "UnauthorizedClientException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateGlobalSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePhoneNumberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePhoneNumberRequestItem": {
+      "base": null,
+      "refs": {
+        "UpdatePhoneNumberRequestItemList$member": null
+      }
+    },
+    "UpdatePhoneNumberRequestItemList": {
+      "base": null,
+      "refs": {
+        "BatchUpdatePhoneNumberRequest$UpdatePhoneNumberRequestItems": null
+      }
+    },
+    "UpdatePhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePhoneNumberSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProxySessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationCallRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationCallResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceConnectorGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceConnectorGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceConnectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVoiceConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidateE911AddressRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidateE911AddressResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationResult": {
+      "base": null,
+      "refs": {
+        "ValidateE911AddressResponse$ValidationResult": null
+      }
+    },
+    "VoiceConnector": {
+      "base": null,
+      "refs": {
+        "CreateVoiceConnectorResponse$VoiceConnector": null,
+        "GetVoiceConnectorResponse$VoiceConnector": null,
+        "UpdateVoiceConnectorResponse$VoiceConnector": null,
+        "VoiceConnectorList$member": null
+      }
+    },
+    "VoiceConnectorAwsRegion": {
+      "base": null,
+      "refs": {
+        "CreateVoiceConnectorRequest$AwsRegion": null,
+        "VoiceConnector$AwsRegion": null,
+        "VoiceConnectorAwsRegionList$member": null
+      }
+    },
+    "VoiceConnectorAwsRegionList": {
+      "base": null,
+      "refs": {
+        "ListAvailableVoiceConnectorRegionsResponse$VoiceConnectorRegions": null
+      }
+    },
+    "VoiceConnectorGroup": {
+      "base": null,
+      "refs": {
+        "CreateVoiceConnectorGroupResponse$VoiceConnectorGroup": null,
+        "GetVoiceConnectorGroupResponse$VoiceConnectorGroup": null,
+        "UpdateVoiceConnectorGroupResponse$VoiceConnectorGroup": null,
+        "VoiceConnectorGroupList$member": null
+      }
+    },
+    "VoiceConnectorGroupList": {
+      "base": null,
+      "refs": {
+        "ListVoiceConnectorGroupsResponse$VoiceConnectorGroups": null
+      }
+    },
+    "VoiceConnectorGroupName": {
+      "base": null,
+      "refs": {
+        "CreateVoiceConnectorGroupRequest$Name": null,
+        "UpdateVoiceConnectorGroupRequest$Name": null,
+        "VoiceConnectorGroup$Name": null
+      }
+    },
+    "VoiceConnectorItem": {
+      "base": null,
+      "refs": {
+        "VoiceConnectorItemList$member": null
+      }
+    },
+    "VoiceConnectorItemList": {
+      "base": null,
+      "refs": {
+        "CreateVoiceConnectorGroupRequest$VoiceConnectorItems": null,
+        "UpdateVoiceConnectorGroupRequest$VoiceConnectorItems": null,
+        "VoiceConnectorGroup$VoiceConnectorItems": null
+      }
+    },
+    "VoiceConnectorItemPriority": {
+      "base": null,
+      "refs": {
+        "VoiceConnectorItem$Priority": null
+      }
+    },
+    "VoiceConnectorList": {
+      "base": null,
+      "refs": {
+        "ListVoiceConnectorsResponse$VoiceConnectors": null
+      }
+    },
+    "VoiceConnectorName": {
+      "base": null,
+      "refs": {
+        "CreateVoiceConnectorRequest$Name": null,
+        "UpdateVoiceConnectorRequest$Name": null,
+        "VoiceConnector$Name": null
+      }
+    },
+    "VoiceConnectorSettings": {
+      "base": null,
+      "refs": {
+        "GetGlobalSettingsResponse$VoiceConnector": null,
+        "UpdateGlobalSettingsRequest$VoiceConnector": null
+      }
+    }
+  }
+}

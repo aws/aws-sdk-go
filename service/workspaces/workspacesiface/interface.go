@@ -88,6 +88,10 @@ type WorkSpacesAPI interface {
 	CreateIpGroupWithContext(aws.Context, *workspaces.CreateIpGroupInput, ...request.Option) (*workspaces.CreateIpGroupOutput, error)
 	CreateIpGroupRequest(*workspaces.CreateIpGroupInput) (*request.Request, *workspaces.CreateIpGroupOutput)
 
+	CreateStandbyWorkspaces(*workspaces.CreateStandbyWorkspacesInput) (*workspaces.CreateStandbyWorkspacesOutput, error)
+	CreateStandbyWorkspacesWithContext(aws.Context, *workspaces.CreateStandbyWorkspacesInput, ...request.Option) (*workspaces.CreateStandbyWorkspacesOutput, error)
+	CreateStandbyWorkspacesRequest(*workspaces.CreateStandbyWorkspacesInput) (*request.Request, *workspaces.CreateStandbyWorkspacesOutput)
+
 	CreateTags(*workspaces.CreateTagsInput) (*workspaces.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *workspaces.CreateTagsInput, ...request.Option) (*workspaces.CreateTagsOutput, error)
 	CreateTagsRequest(*workspaces.CreateTagsInput) (*request.Request, *workspaces.CreateTagsOutput)
@@ -240,6 +244,10 @@ type WorkSpacesAPI interface {
 	ModifyAccount(*workspaces.ModifyAccountInput) (*workspaces.ModifyAccountOutput, error)
 	ModifyAccountWithContext(aws.Context, *workspaces.ModifyAccountInput, ...request.Option) (*workspaces.ModifyAccountOutput, error)
 	ModifyAccountRequest(*workspaces.ModifyAccountInput) (*request.Request, *workspaces.ModifyAccountOutput)
+
+	ModifyCertificateBasedAuthProperties(*workspaces.ModifyCertificateBasedAuthPropertiesInput) (*workspaces.ModifyCertificateBasedAuthPropertiesOutput, error)
+	ModifyCertificateBasedAuthPropertiesWithContext(aws.Context, *workspaces.ModifyCertificateBasedAuthPropertiesInput, ...request.Option) (*workspaces.ModifyCertificateBasedAuthPropertiesOutput, error)
+	ModifyCertificateBasedAuthPropertiesRequest(*workspaces.ModifyCertificateBasedAuthPropertiesInput) (*request.Request, *workspaces.ModifyCertificateBasedAuthPropertiesOutput)
 
 	ModifyClientProperties(*workspaces.ModifyClientPropertiesInput) (*workspaces.ModifyClientPropertiesOutput, error)
 	ModifyClientPropertiesWithContext(aws.Context, *workspaces.ModifyClientPropertiesInput, ...request.Option) (*workspaces.ModifyClientPropertiesOutput, error)

@@ -13,12 +13,14 @@
     "GetApplication": "<p>Retrieves metadata information about one of your applications. The application can be specified either by its unique ID or by its name (which is unique within one account in one region at a given point in time). Specify by ID in automated workflows if you want to make sure that the exact same application is returned or a <code>ResourceNotFoundException</code> is thrown, avoiding the ABA addressing problem.</p>",
     "GetAssociatedResource": "<p>Gets the resource associated with the application.</p>",
     "GetAttributeGroup": "<p>Retrieves an attribute group, either by its name or its ID. The attribute group can be specified either by its unique ID or by its name.</p>",
+    "GetConfiguration": "<p> Retrieves a <code>TagKey</code> configuration from an account. </p>",
     "ListApplications": "<p>Retrieves a list of all of your applications. Results are paginated.</p>",
     "ListAssociatedAttributeGroups": "<p>Lists all attribute groups that are associated with specified application. Results are paginated.</p>",
-    "ListAssociatedResources": "<p>Lists all resources that are associated with specified application. Results are paginated.</p>",
+    "ListAssociatedResources": "<p> Lists all of the resources that are associated with the specified application. Results are paginated. </p> <note> <p> If you share an application, and a consumer account associates a tag query to the application, all of the users who can access the application can also view the tag values in all accounts that are associated with it using this API. </p> </note>",
     "ListAttributeGroups": "<p>Lists all attribute groups which you have access to. Results are paginated.</p>",
     "ListAttributeGroupsForApplication": "<p>Lists the details of all attribute groups associated with a specific application. The results display in pages.</p>",
     "ListTagsForResource": "<p>Lists all of the tags on the resource.</p>",
+    "PutConfiguration": "<p> Associates a <code>TagKey</code> configuration to an account. </p>",
     "SyncResource": "<p>Syncs the resource with current AppRegistry records.</p> <p>Specifically, the resource’s AppRegistry system tags sync with its associated application. We remove the resource's AppRegistry system tags if it does not associate with the application. The caller must have permissions to read and update the resource.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified resource.</p> <p>Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.</p> <p>This operation returns an empty response if the call was successful.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p> <p>This operation returns an empty response if the call was successful.</p>",
@@ -26,6 +28,13 @@
     "UpdateAttributeGroup": "<p>Updates an existing attribute group with new details. </p>"
   },
   "shapes": {
+    "AppRegistryConfiguration": {
+      "base": "<p> Includes all of the Service Catalog AppRegistry settings. </p>",
+      "refs": {
+        "GetConfigurationResponse$configuration": "<p> Retrieves <code>TagKey</code> configuration from an account. </p>",
+        "PutConfigurationRequest$configuration": "<p> Associates a <code>TagKey</code> configuration to an account. </p>"
+      }
+    },
     "Application": {
       "base": "<p>Represents a Amazon Web Services Service Catalog AppRegistry application that is the top-level node in a hierarchy of related cloud resource abstractions.</p>",
       "refs": {
@@ -90,6 +99,7 @@
         "DisassociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "ResourceGroup$arn": "<p>The Amazon resource name (ARN) of the resource group.</p>",
+        "ResourceInfo$arn": "<p>The Amazon resource name (ARN) that specifies the resource across services.</p>",
         "SyncResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>"
@@ -148,7 +158,7 @@
     "AttributeGroupDetailsList": {
       "base": null,
       "refs": {
-        "ListAttributeGroupsForApplicationResponse$attributeGroupsDetails": "<p> The details related to a specific AttributeGroup. </p>"
+        "ListAttributeGroupsForApplicationResponse$attributeGroupsDetails": "<p> The details related to a specific attribute group. </p>"
       }
     },
     "AttributeGroupId": {
@@ -315,10 +325,15 @@
       "refs": {
       }
     },
+    "GetConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Integrations": {
       "base": "<p> The information about the service integration.</p>",
       "refs": {
-        "GetApplicationResponse$integrations": "<p>The information about the integration of the application with other services, such as Resource Groups.</p>"
+        "GetApplicationResponse$integrations": "<p> The information about the integration of the application with other services, such as Resource Groups. </p>"
       }
     },
     "InternalServerException": {
@@ -402,7 +417,7 @@
         "Application$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
         "ApplicationSummary$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
         "AttributeGroup$name": "<p>The name of the attribute group.</p>",
-        "AttributeGroupDetails$name": "<p>The name of the attribute group. </p>",
+        "AttributeGroupDetails$name": "<important> <p> This field is no longer supported. We recommend you don't use the field when using <code>ListAttributeGroupsForApplication</code>. </p> </important> <p> The name of the attribute group. </p>",
         "AttributeGroupSummary$name": "<p>The name of the attribute group.</p>",
         "CreateApplicationRequest$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
         "CreateAttributeGroupRequest$name": "<p>The name of the attribute group.</p>",
@@ -427,10 +442,21 @@
         "ListAttributeGroupsResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>"
       }
     },
+    "PutConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Resource": {
       "base": "<p> The information about the resource.</p>",
       "refs": {
         "GetAssociatedResourceResponse$resource": "<p>The resource associated with the application.</p>"
+      }
+    },
+    "ResourceDetails": {
+      "base": "<p> The details related to the resource. </p>",
+      "refs": {
+        "ResourceInfo$resourceDetails": "<p> The details related to the resource. </p>"
       }
     },
     "ResourceGroup": {
@@ -480,6 +506,7 @@
         "AssociateResourceRequest$resourceType": "<p>The type of resource of which the application will be associated.</p>",
         "DisassociateResourceRequest$resourceType": "<p>The type of the resource that is being disassociated.</p>",
         "GetAssociatedResourceRequest$resourceType": "<p>The type of resource associated with the application.</p>",
+        "ResourceInfo$resourceType": "<p> Provides information about the Service Catalog App Registry resource type. </p>",
         "SyncResourceRequest$resourceType": "<p>The type of resource of which the application will be associated.</p>"
       }
     },
@@ -497,8 +524,7 @@
     "StackArn": {
       "base": null,
       "refs": {
-        "Resource$arn": "<p>The Amazon resource name (ARN) of the resource.</p>",
-        "ResourceInfo$arn": "<p>The Amazon resource name (ARN) that specifies the resource across services.</p>"
+        "Resource$arn": "<p>The Amazon resource name (ARN) of the resource.</p>"
       }
     },
     "String": {
@@ -535,10 +561,22 @@
         "Tags$key": null
       }
     },
+    "TagKeyConfig": {
+      "base": null,
+      "refs": {
+        "TagQueryConfiguration$tagKey": "<p> Condition in the IAM policy that associates resources to an application. </p>"
+      }
+    },
     "TagKeys": {
       "base": null,
       "refs": {
         "UntagResourceRequest$tagKeys": "<p>A list of the tag keys to remove from the specified resource.</p>"
+      }
+    },
+    "TagQueryConfiguration": {
+      "base": "<p> The definition of <code>tagQuery</code>. Specifies which resources are associated with an application. </p>",
+      "refs": {
+        "AppRegistryConfiguration$tagQueryConfiguration": "<p> Includes the definition of a <code>tagQuery</code>. </p>"
       }
     },
     "TagResourceRequest": {
@@ -554,6 +592,7 @@
     "TagValue": {
       "base": null,
       "refs": {
+        "ResourceDetails$tagValue": "<p>The value of the tag.</p>",
         "Tags$value": null
       }
     },

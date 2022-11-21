@@ -75,8 +75,15 @@
         },
         "sentAt":{"shape":"Date"},
         "recommendationId":{"shape":"RecommendationId"},
-        "impression":{"shape":"Impression"}
-      }
+        "impression":{"shape":"Impression"},
+        "metricAttribution":{"shape":"MetricAttribution"}
+      },
+      "sensitive":true
+    },
+    "EventAttributionSource":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[\\x20-\\x7E]*[\\x21-\\x7E]+[\\x20-\\x7E]*$"
     },
     "EventList":{
       "type":"list",
@@ -87,7 +94,8 @@
     "EventPropertiesJSON":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "FloatType":{"type":"float"},
     "Impression":{
@@ -118,7 +126,8 @@
     "ItemId":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "ItemList":{
       "type":"list",
@@ -129,7 +138,15 @@
     "ItemProperties":{
       "type":"string",
       "max":24262,
-      "min":1
+      "min":1,
+      "sensitive":true
+    },
+    "MetricAttribution":{
+      "type":"structure",
+      "required":["eventAttributionSource"],
+      "members":{
+        "eventAttributionSource":{"shape":"EventAttributionSource"}
+      }
     },
     "PutEventsRequest":{
       "type":"structure",
@@ -207,7 +224,8 @@
     "UserId":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "UserList":{
       "type":"list",
@@ -218,7 +236,8 @@
     "UserProperties":{
       "type":"string",
       "max":4096,
-      "min":1
+      "min":1,
+      "sensitive":true
     }
   }
 }

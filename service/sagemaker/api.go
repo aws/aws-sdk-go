@@ -39927,11 +39927,6 @@ func (s *CreateTrainingJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
-	if s.ProfilerConfig != nil {
-		if err := s.ProfilerConfig.Validate(); err != nil {
-			invalidParams.AddNested("ProfilerConfig", err.(request.ErrInvalidParams))
-		}
-	}
 	if s.ProfilerRuleConfigurations != nil {
 		for i, v := range s.ProfilerRuleConfigurations {
 			if v == nil {
@@ -85162,6 +85157,9 @@ func (s *ProductionVariantSummary) SetVariantStatus(v []*ProductionVariantStatus
 type ProfilerConfig struct {
 	_ struct{} `type:"structure"`
 
+	// To disable system monitoring and profiling, set to True.
+	DisableProfiler *bool `type:"boolean"`
+
 	// A time interval for capturing system metrics in milliseconds. Available values
 	// are 100, 200, 500, 1000 (1 second), 5000 (5 seconds), and 60000 (1 minute)
 	// milliseconds. The default value is 500 milliseconds.
@@ -85176,9 +85174,7 @@ type ProfilerConfig struct {
 	ProfilingParameters map[string]*string `type:"map"`
 
 	// Path to Amazon S3 storage location for system and framework metrics.
-	//
-	// S3OutputPath is a required field
-	S3OutputPath *string `type:"string" required:"true"`
+	S3OutputPath *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -85199,17 +85195,10 @@ func (s ProfilerConfig) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ProfilerConfig) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ProfilerConfig"}
-	if s.S3OutputPath == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3OutputPath"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
+// SetDisableProfiler sets the DisableProfiler field's value.
+func (s *ProfilerConfig) SetDisableProfiler(v bool) *ProfilerConfig {
+	s.DisableProfiler = &v
+	return s
 }
 
 // SetProfilingIntervalInMilliseconds sets the ProfilingIntervalInMilliseconds field's value.

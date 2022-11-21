@@ -1,3 +1,137 @@
+Release v1.44.142 (2022-11-18)
+===
+
+Release v1.44.141 (2022-11-18)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/auditmanager`: Updates service API and documentation
+* `service/chime-sdk-voice`: Adds new service
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront API support for staging distributions and associated traffic management policies.
+* `service/connect`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Updated minor fixes for DynamoDB documentation.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for copying an Amazon Machine Image's tags when copying an AMI.
+* `service/glue`: Updates service API and documentation
+  * AWSGlue Crawler - Adding support for Table and Column level Comments with database level datatypes for JDBC based crawler.
+* `service/iot-roborunner`: Adds new service
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * This release adds the following: 1) Asset management for centralized assets governance 2) QuickSight Q now supports public embedding 3) New Termination protection flag to mitigate accidental deletes 4) Athena data sources now accept a custom IAM role 5) QuickSight supports connectivity to Databricks
+* `service/sagemaker`: Updates service API and documentation
+  * Added DisableProfiler flag as a new field in ProfilerConfig
+* `service/servicecatalog`: Updates service API and documentation
+  * This release 1. adds support for Principal Name Sharing with Service Catalog portfolio sharing. 2. Introduces repo sourced products which are created and managed with existing SC APIs. These products are synced to external repos and auto create new product versions based on changes in the repo.
+* `service/ssm-sap`: Updates service API, documentation, paginators, and examples
+* `service/states`: Updates service API and documentation
+  * This release adds support for using Step Functions service integrations to invoke any cross-account AWS resource, even if that service doesn't support resource-based policies or cross-account calls. See https://docs.aws.amazon.com/step-functions/latest/dg/concepts-access-cross-acct-resources.html
+* `service/streams.dynamodb`: Updates service documentation
+* `service/transfer`: Updates service API and documentation
+  * Adds a NONE encryption algorithm type to AS2 connectors, providing support for skipping encryption of the AS2 message body when a HTTPS URL is also specified.
+
+Release v1.44.140 (2022-11-17)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/appflow`: Updates service API and documentation
+* `service/appsync`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Adds support for Internet Protocol Version 6 (IPv6) on DMS Replication Instances
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new optional parameter "privateIpAddress" for the CreateNatGateway API. PrivateIPAddress will allow customers to select a custom Private IPv4 address instead of having it be auto-assigned.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/emr-serverless`: Updates service API and documentation
+* `service/ivschat`: Updates service API, documentation, and paginators
+* `service/lambda`: Updates service API and documentation
+  * Add Node 18 (nodejs18.x) support to AWS Lambda.
+* `service/personalize`: Updates service API, documentation, and paginators
+* `service/polly`: Updates service API
+  * Add two new neural voices - Ola (pl-PL) and Hala (ar-AE).
+* `service/rum`: Updates service API and documentation
+* `service/s3control`: Updates service API and documentation
+  * Added 34 new S3 Storage Lens metrics to support additional customer use cases.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager.
+* `service/securityhub`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+* `service/textract`: Updates service API and documentation
+* `service/workspaces`: Updates service API and documentation
+  * The release introduces CreateStandbyWorkspaces, an API that allows you to create standby WorkSpaces associated with a primary WorkSpace in another Region. DescribeWorkspaces now includes related WorkSpaces properties. DescribeWorkspaceBundles and CreateWorkspaceBundle now return more bundle details.
+
+Release v1.44.139 (2022-11-16)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service documentation
+  * Documentation updates related to Batch on EKS
+* `service/billingconductor`: Updates service API and documentation
+* `service/cloudformation`: Updates service API
+  * Added UnsupportedTarget HandlerErrorCode for use with CFN Resource Hooks
+* `service/comprehendmedical`: Updates service API
+* `service/connect`: Updates service API and documentation
+* `service/eks`: Updates service API and documentation
+* `service/elasticache`: Updates service API and documentation
+  * for Redis now supports AWS Identity and Access Management authentication access to Redis clusters starting with redis-engine version 7.0
+* `service/iottwinmaker`: Updates service API, documentation, and paginators
+* `service/personalize-events`: Updates service API and documentation
+* `service/proton`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for container databases (CDBs) to Amazon RDS Custom for Oracle. A CDB contains one PDB at creation. You can add more PDBs using Oracle SQL. You can also customize your database installation by setting the Oracle base, Oracle home, and the OS user name and group.
+* `service/ssm`: Updates service API, documentation, and paginators
+  * This release adds support for cross account access in CreateOpsItem, UpdateOpsItem and GetOpsItem. It introduces new APIs to setup resource policies for SSM resources: PutResourcePolicy, GetResourcePolicies and DeleteResourcePolicy.
+* `service/ssm-incidents`: Updates service API and documentation
+* `service/transfer`: Updates service API
+  * Allow additional operations to throw ThrottlingException
+* `service/xray`: Updates service API, documentation, and paginators
+  * This release adds new APIs - PutResourcePolicy, DeleteResourcePolicy, ListResourcePolicies for supporting resource based policies for AWS X-Ray.
+
+Release v1.44.138 (2022-11-15)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/greengrassv2`: Updates service API and documentation
+* `service/route53`: Updates service API
+  * Amazon Route 53 now supports the Europe (Spain) Region (eu-south-2) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/ssmsap`: Updates service API, documentation, paginators, and examples
+* `service/workspaces`: Updates service API and documentation
+  * This release introduces ModifyCertificateBasedAuthProperties, a new API that allows control of certificate-based auth properties associated with a WorkSpaces directory. The DescribeWorkspaceDirectories API will now additionally return certificate-based auth properties in its responses.
+
+Release v1.44.137 (2022-11-14)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Updates service API and documentation
+* `service/lakeformation`: Updates service API and documentation
+* `service/managedblockchain`: Updates service documentation
+* `service/proton`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for restoring an RDS Multi-AZ DB cluster snapshot to a Single-AZ deployment or a Multi-AZ DB instance deployment.
+* `service/workdocs`: Updates service API and documentation
+  * Added 2 new document related operations, DeleteDocumentVersion and RestoreDocumentVersions.
+* `service/xray`: Updates service API and documentation
+  * This release enhances GetServiceGraph API to support new type of edge to represent links between SQS and Lambda in event-driven applications.
+
+Release v1.44.136 (2022-11-11)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service documentation
+  * Added links related to enabling job bookmarks.
+* `service/iot`: Updates service API and documentation
+  * This release add new api listRelatedResourcesForAuditFinding and new member type IssuerCertificates for Iot device device defender Audit.
+* `service/license-manager`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/rekognition`: Updates service API and documentation
+  * Adding support for ImageProperties feature to detect dominant colors and image brightness, sharpness, and contrast, inclusion and exclusion filters for labels and label categories, new fields to the API response, "aliases" and "categories"
+* `service/securityhub`: Updates service documentation
+* `service/ssm-incidents`: Updates service API and documentation
+
 Release v1.44.135 (2022-11-10)
 ===
 

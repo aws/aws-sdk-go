@@ -1544,6 +1544,7 @@
         "cn-north-1",
         "af-south-1",
         "eu-south-1",
+        "eu-south-2",
         "us-gov-west-1",
         "us-gov-east-1",
         "us-iso-east-1",
@@ -4143,7 +4144,8 @@
         "me-central-1",
         "ap-south-1",
         "af-south-1",
-        "eu-south-1"
+        "eu-south-1",
+        "eu-south-2"
       ],
       "max":64,
       "min":1
@@ -4759,7 +4761,8 @@
         "ca-central-1",
         "cn-north-1",
         "af-south-1",
-        "eu-south-1"
+        "eu-south-1",
+        "eu-south-2"
       ],
       "max":64,
       "min":1

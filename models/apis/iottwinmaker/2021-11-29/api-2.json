@@ -1,1880 +1,3423 @@
 {
-  "version":"2.0",
-  "metadata":{
-    "apiVersion":"2021-11-29",
-    "endpointPrefix":"iottwinmaker",
-    "jsonVersion":"1.1",
-    "protocol":"rest-json",
-    "serviceFullName":"AWS IoT TwinMaker",
-    "serviceId":"IoTTwinMaker",
-    "signatureVersion":"v4",
-    "signingName":"iottwinmaker",
-    "uid":"iottwinmaker-2021-11-29"
+  "metadata": {
+    "apiVersion": "2021-11-29",
+    "endpointPrefix": "iottwinmaker",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "AWS IoT TwinMaker",
+    "serviceId": "IoTTwinMaker",
+    "signatureVersion": "v4",
+    "signingName": "iottwinmaker",
+    "uid": "iottwinmaker-2021-11-29"
   },
-  "operations":{
-    "BatchPutPropertyValues":{
-      "name":"BatchPutPropertyValues",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/entity-properties",
-        "responseCode":200
+  "operations": {
+    "BatchPutPropertyValues": {
+      "endpoint": {
+        "hostPrefix": "data."
       },
-      "input":{"shape":"BatchPutPropertyValuesRequest"},
-      "output":{"shape":"BatchPutPropertyValuesResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"data."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/entity-properties",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "BatchPutPropertyValuesRequest"
+      },
+      "name": "BatchPutPropertyValues",
+      "output": {
+        "shape": "BatchPutPropertyValuesResponse"
+      }
     },
-    "CreateComponentType":{
-      "name":"CreateComponentType",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/component-types/{componentTypeId}",
-        "responseCode":200
+    "CreateComponentType": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"CreateComponentTypeRequest"},
-      "output":{"shape":"CreateComponentTypeResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConflictException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateComponentTypeRequest"
+      },
+      "name": "CreateComponentType",
+      "output": {
+        "shape": "CreateComponentTypeResponse"
+      }
     },
-    "CreateEntity":{
-      "name":"CreateEntity",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/entities",
-        "responseCode":200
+    "CreateEntity": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"CreateEntityRequest"},
-      "output":{"shape":"CreateEntityResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConflictException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/entities",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateEntityRequest"
+      },
+      "name": "CreateEntity",
+      "output": {
+        "shape": "CreateEntityResponse"
+      }
     },
-    "CreateScene":{
-      "name":"CreateScene",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/scenes",
-        "responseCode":200
+    "CreateScene": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"CreateSceneRequest"},
-      "output":{"shape":"CreateSceneResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConflictException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/scenes",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateSceneRequest"
+      },
+      "name": "CreateScene",
+      "output": {
+        "shape": "CreateSceneResponse"
+      }
     },
-    "CreateWorkspace":{
-      "name":"CreateWorkspace",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}",
-        "responseCode":200
+    "CreateWorkspace": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"CreateWorkspaceRequest"},
-      "output":{"shape":"CreateWorkspaceResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConflictException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateWorkspaceRequest"
+      },
+      "name": "CreateWorkspace",
+      "output": {
+        "shape": "CreateWorkspaceResponse"
+      }
     },
-    "DeleteComponentType":{
-      "name":"DeleteComponentType",
-      "http":{
-        "method":"DELETE",
-        "requestUri":"/workspaces/{workspaceId}/component-types/{componentTypeId}",
-        "responseCode":200
+    "DeleteComponentType": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"DeleteComponentTypeRequest"},
-      "output":{"shape":"DeleteComponentTypeResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteComponentTypeRequest"
+      },
+      "name": "DeleteComponentType",
+      "output": {
+        "shape": "DeleteComponentTypeResponse"
+      }
     },
-    "DeleteEntity":{
-      "name":"DeleteEntity",
-      "http":{
-        "method":"DELETE",
-        "requestUri":"/workspaces/{workspaceId}/entities/{entityId}",
-        "responseCode":200
+    "DeleteEntity": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"DeleteEntityRequest"},
-      "output":{"shape":"DeleteEntityResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/workspaces/{workspaceId}/entities/{entityId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteEntityRequest"
+      },
+      "name": "DeleteEntity",
+      "output": {
+        "shape": "DeleteEntityResponse"
+      }
     },
-    "DeleteScene":{
-      "name":"DeleteScene",
-      "http":{
-        "method":"DELETE",
-        "requestUri":"/workspaces/{workspaceId}/scenes/{sceneId}",
-        "responseCode":200
+    "DeleteScene": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"DeleteSceneRequest"},
-      "output":{"shape":"DeleteSceneResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/workspaces/{workspaceId}/scenes/{sceneId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteSceneRequest"
+      },
+      "name": "DeleteScene",
+      "output": {
+        "shape": "DeleteSceneResponse"
+      }
     },
-    "DeleteWorkspace":{
-      "name":"DeleteWorkspace",
-      "http":{
-        "method":"DELETE",
-        "requestUri":"/workspaces/{workspaceId}",
-        "responseCode":200
+    "DeleteWorkspace": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"DeleteWorkspaceRequest"},
-      "output":{"shape":"DeleteWorkspaceResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/workspaces/{workspaceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteWorkspaceRequest"
+      },
+      "name": "DeleteWorkspace",
+      "output": {
+        "shape": "DeleteWorkspaceResponse"
+      }
     },
-    "GetComponentType":{
-      "name":"GetComponentType",
-      "http":{
-        "method":"GET",
-        "requestUri":"/workspaces/{workspaceId}/component-types/{componentTypeId}",
-        "responseCode":200
+    "ExecuteQuery": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"GetComponentTypeRequest"},
-      "output":{"shape":"GetComponentTypeResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "QueryTimeoutException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/queries/execution",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ExecuteQueryRequest"
+      },
+      "name": "ExecuteQuery",
+      "output": {
+        "shape": "ExecuteQueryResponse"
+      }
     },
-    "GetEntity":{
-      "name":"GetEntity",
-      "http":{
-        "method":"GET",
-        "requestUri":"/workspaces/{workspaceId}/entities/{entityId}",
-        "responseCode":200
+    "GetComponentType": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"GetEntityRequest"},
-      "output":{"shape":"GetEntityResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "GET",
+        "requestUri": "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetComponentTypeRequest"
+      },
+      "name": "GetComponentType",
+      "output": {
+        "shape": "GetComponentTypeResponse"
+      }
     },
-    "GetPropertyValue":{
-      "name":"GetPropertyValue",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/entity-properties/value",
-        "responseCode":200
+    "GetEntity": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"GetPropertyValueRequest"},
-      "output":{"shape":"GetPropertyValueResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ConnectorFailureException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConnectorTimeoutException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"data."}
+      "http": {
+        "method": "GET",
+        "requestUri": "/workspaces/{workspaceId}/entities/{entityId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetEntityRequest"
+      },
+      "name": "GetEntity",
+      "output": {
+        "shape": "GetEntityResponse"
+      }
     },
-    "GetPropertyValueHistory":{
-      "name":"GetPropertyValueHistory",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/entity-properties/history",
-        "responseCode":200
+    "GetPricingPlan": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"GetPropertyValueHistoryRequest"},
-      "output":{"shape":"GetPropertyValueHistoryResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ConnectorFailureException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConnectorTimeoutException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"data."}
+      "http": {
+        "method": "GET",
+        "requestUri": "/pricingplan",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetPricingPlanRequest"
+      },
+      "name": "GetPricingPlan",
+      "output": {
+        "shape": "GetPricingPlanResponse"
+      }
     },
-    "GetScene":{
-      "name":"GetScene",
-      "http":{
-        "method":"GET",
-        "requestUri":"/workspaces/{workspaceId}/scenes/{sceneId}",
-        "responseCode":200
+    "GetPropertyValue": {
+      "endpoint": {
+        "hostPrefix": "data."
       },
-      "input":{"shape":"GetSceneRequest"},
-      "output":{"shape":"GetSceneResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ConnectorFailureException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConnectorTimeoutException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/entity-properties/value",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetPropertyValueRequest"
+      },
+      "name": "GetPropertyValue",
+      "output": {
+        "shape": "GetPropertyValueResponse"
+      }
     },
-    "GetWorkspace":{
-      "name":"GetWorkspace",
-      "http":{
-        "method":"GET",
-        "requestUri":"/workspaces/{workspaceId}",
-        "responseCode":200
+    "GetPropertyValueHistory": {
+      "endpoint": {
+        "hostPrefix": "data."
       },
-      "input":{"shape":"GetWorkspaceRequest"},
-      "output":{"shape":"GetWorkspaceResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ConnectorFailureException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConnectorTimeoutException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/entity-properties/history",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetPropertyValueHistoryRequest"
+      },
+      "name": "GetPropertyValueHistory",
+      "output": {
+        "shape": "GetPropertyValueHistoryResponse"
+      }
     },
-    "ListComponentTypes":{
-      "name":"ListComponentTypes",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/component-types-list",
-        "responseCode":200
+    "GetScene": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"ListComponentTypesRequest"},
-      "output":{"shape":"ListComponentTypesResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "GET",
+        "requestUri": "/workspaces/{workspaceId}/scenes/{sceneId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetSceneRequest"
+      },
+      "name": "GetScene",
+      "output": {
+        "shape": "GetSceneResponse"
+      }
     },
-    "ListEntities":{
-      "name":"ListEntities",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/entities-list",
-        "responseCode":200
+    "GetWorkspace": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"ListEntitiesRequest"},
-      "output":{"shape":"ListEntitiesResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "GET",
+        "requestUri": "/workspaces/{workspaceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetWorkspaceRequest"
+      },
+      "name": "GetWorkspace",
+      "output": {
+        "shape": "GetWorkspaceResponse"
+      }
     },
-    "ListScenes":{
-      "name":"ListScenes",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces/{workspaceId}/scenes-list",
-        "responseCode":200
+    "ListComponentTypes": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"ListScenesRequest"},
-      "output":{"shape":"ListScenesResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/component-types-list",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListComponentTypesRequest"
+      },
+      "name": "ListComponentTypes",
+      "output": {
+        "shape": "ListComponentTypesResponse"
+      }
     },
-    "ListTagsForResource":{
-      "name":"ListTagsForResource",
-      "http":{
-        "method":"POST",
-        "requestUri":"/tags-list",
-        "responseCode":200
+    "ListEntities": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"ListTagsForResourceRequest"},
-      "output":{"shape":"ListTagsForResourceResponse"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/entities-list",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListEntitiesRequest"
+      },
+      "name": "ListEntities",
+      "output": {
+        "shape": "ListEntitiesResponse"
+      }
     },
-    "ListWorkspaces":{
-      "name":"ListWorkspaces",
-      "http":{
-        "method":"POST",
-        "requestUri":"/workspaces-list",
-        "responseCode":200
+    "ListScenes": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"ListWorkspacesRequest"},
-      "output":{"shape":"ListWorkspacesResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/scenes-list",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListScenesRequest"
+      },
+      "name": "ListScenes",
+      "output": {
+        "shape": "ListScenesResponse"
+      }
     },
-    "TagResource":{
-      "name":"TagResource",
-      "http":{
-        "method":"POST",
-        "requestUri":"/tags",
-        "responseCode":200
+    "ListTagsForResource": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"TagResourceRequest"},
-      "output":{"shape":"TagResourceResponse"},
-      "errors":[
-        {"shape":"TooManyTagsException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags-list",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTagsForResourceRequest"
+      },
+      "name": "ListTagsForResource",
+      "output": {
+        "shape": "ListTagsForResourceResponse"
+      }
     },
-    "UntagResource":{
-      "name":"UntagResource",
-      "http":{
-        "method":"DELETE",
-        "requestUri":"/tags",
-        "responseCode":200
+    "ListWorkspaces": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"UntagResourceRequest"},
-      "output":{"shape":"UntagResourceResponse"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces-list",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListWorkspacesRequest"
+      },
+      "name": "ListWorkspaces",
+      "output": {
+        "shape": "ListWorkspacesResponse"
+      }
     },
-    "UpdateComponentType":{
-      "name":"UpdateComponentType",
-      "http":{
-        "method":"PUT",
-        "requestUri":"/workspaces/{workspaceId}/component-types/{componentTypeId}",
-        "responseCode":200
+    "TagResource": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"UpdateComponentTypeRequest"},
-      "output":{"shape":"UpdateComponentTypeResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "TooManyTagsException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "TagResourceRequest"
+      },
+      "name": "TagResource",
+      "output": {
+        "shape": "TagResourceResponse"
+      }
     },
-    "UpdateEntity":{
-      "name":"UpdateEntity",
-      "http":{
-        "method":"PUT",
-        "requestUri":"/workspaces/{workspaceId}/entities/{entityId}",
-        "responseCode":200
+    "UntagResource": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"UpdateEntityRequest"},
-      "output":{"shape":"UpdateEntityResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ConflictException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UntagResourceRequest"
+      },
+      "name": "UntagResource",
+      "output": {
+        "shape": "UntagResourceResponse"
+      }
     },
-    "UpdateScene":{
-      "name":"UpdateScene",
-      "http":{
-        "method":"PUT",
-        "requestUri":"/workspaces/{workspaceId}/scenes/{sceneId}",
-        "responseCode":200
+    "UpdateComponentType": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"UpdateSceneRequest"},
-      "output":{"shape":"UpdateSceneResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "PUT",
+        "requestUri": "/workspaces/{workspaceId}/component-types/{componentTypeId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateComponentTypeRequest"
+      },
+      "name": "UpdateComponentType",
+      "output": {
+        "shape": "UpdateComponentTypeResponse"
+      }
     },
-    "UpdateWorkspace":{
-      "name":"UpdateWorkspace",
-      "http":{
-        "method":"PUT",
-        "requestUri":"/workspaces/{workspaceId}",
-        "responseCode":200
+    "UpdateEntity": {
+      "endpoint": {
+        "hostPrefix": "api."
       },
-      "input":{"shape":"UpdateWorkspaceRequest"},
-      "output":{"shape":"UpdateWorkspaceResponse"},
-      "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"},
-        {"shape":"ServiceQuotaExceededException"}
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
       ],
-      "endpoint":{"hostPrefix":"api."}
+      "http": {
+        "method": "PUT",
+        "requestUri": "/workspaces/{workspaceId}/entities/{entityId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateEntityRequest"
+      },
+      "name": "UpdateEntity",
+      "output": {
+        "shape": "UpdateEntityResponse"
+      }
+    },
+    "UpdatePricingPlan": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/pricingplan",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdatePricingPlanRequest"
+      },
+      "name": "UpdatePricingPlan",
+      "output": {
+        "shape": "UpdatePricingPlanResponse"
+      }
+    },
+    "UpdateScene": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/workspaces/{workspaceId}/scenes/{sceneId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateSceneRequest"
+      },
+      "name": "UpdateScene",
+      "output": {
+        "shape": "UpdateSceneResponse"
+      }
+    },
+    "UpdateWorkspace": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/workspaces/{workspaceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateWorkspaceRequest"
+      },
+      "name": "UpdateWorkspace",
+      "output": {
+        "shape": "UpdateWorkspaceResponse"
+      }
     }
   },
-  "shapes":{
-    "AccessDeniedException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
+  "shapes": {
+    "AccessDeniedException": {
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":403,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "BatchPutPropertyError":{
-      "type":"structure",
-      "required":[
-        "entry",
-        "errorCode",
-        "errorMessage"
-      ],
-      "members":{
-        "entry":{"shape":"PropertyValueEntry"},
-        "errorCode":{"shape":"String"},
-        "errorMessage":{"shape":"String"}
-      }
-    },
-    "BatchPutPropertyErrorEntry":{
-      "type":"structure",
-      "required":["errors"],
-      "members":{
-        "errors":{"shape":"Errors"}
-      }
-    },
-    "BatchPutPropertyValuesRequest":{
-      "type":"structure",
-      "required":[
-        "entries",
-        "workspaceId"
-      ],
-      "members":{
-        "entries":{"shape":"Entries"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
         }
+      },
+      "type": "structure"
+    },
+    "BatchPutPropertyError": {
+      "members": {
+        "entry": {
+          "shape": "PropertyValueEntry"
+        },
+        "errorCode": {
+          "shape": "String"
+        },
+        "errorMessage": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "errorCode",
+        "errorMessage",
+        "entry"
+      ],
+      "type": "structure"
+    },
+    "BatchPutPropertyErrorEntry": {
+      "members": {
+        "errors": {
+          "shape": "Errors"
+        }
+      },
+      "required": [
+        "errors"
+      ],
+      "type": "structure"
+    },
+    "BatchPutPropertyValuesRequest": {
+      "members": {
+        "entries": {
+          "shape": "Entries"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "entries"
+      ],
+      "type": "structure"
+    },
+    "BatchPutPropertyValuesResponse": {
+      "members": {
+        "errorEntries": {
+          "shape": "ErrorEntries"
+        }
+      },
+      "required": [
+        "errorEntries"
+      ],
+      "type": "structure"
+    },
+    "Boolean": {
+      "box": true,
+      "type": "boolean"
+    },
+    "BundleInformation": {
+      "members": {
+        "bundleNames": {
+          "shape": "PricingBundles"
+        },
+        "pricingTier": {
+          "shape": "PricingTier"
+        }
+      },
+      "required": [
+        "bundleNames"
+      ],
+      "type": "structure"
+    },
+    "BundleName": {
+      "max": 256,
+      "min": 1,
+      "pattern": ".*",
+      "type": "string"
+    },
+    "ColumnDescription": {
+      "members": {
+        "name": {
+          "shape": "ColumnName"
+        },
+        "type": {
+          "shape": "ColumnType"
+        }
+      },
+      "type": "structure"
+    },
+    "ColumnDescriptions": {
+      "member": {
+        "shape": "ColumnDescription"
+      },
+      "type": "list"
+    },
+    "ColumnName": {
+      "pattern": ".*",
+      "type": "string"
+    },
+    "ColumnType": {
+      "enum": [
+        "NODE",
+        "EDGE",
+        "VALUE"
+      ],
+      "type": "string"
+    },
+    "ComponentPropertyGroupRequest": {
+      "members": {
+        "groupType": {
+          "shape": "GroupType"
+        },
+        "propertyNames": {
+          "shape": "PropertyNames"
+        },
+        "updateType": {
+          "shape": "PropertyGroupUpdateType"
+        }
+      },
+      "type": "structure"
+    },
+    "ComponentPropertyGroupRequests": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "ComponentPropertyGroupRequest"
       }
     },
-    "BatchPutPropertyValuesResponse":{
-      "type":"structure",
-      "required":["errorEntries"],
-      "members":{
-        "errorEntries":{"shape":"ErrorEntries"}
+    "ComponentPropertyGroupResponse": {
+      "members": {
+        "groupType": {
+          "shape": "GroupType"
+        },
+        "isInherited": {
+          "shape": "Boolean"
+        },
+        "propertyNames": {
+          "shape": "PropertyNames"
+        }
+      },
+      "required": [
+        "groupType",
+        "propertyNames",
+        "isInherited"
+      ],
+      "type": "structure"
+    },
+    "ComponentPropertyGroupResponses": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "ComponentPropertyGroupResponse"
       }
     },
-    "Boolean":{
-      "type":"boolean",
-      "box":true
+    "ComponentRequest": {
+      "members": {
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "properties": {
+          "shape": "PropertyRequests"
+        },
+        "propertyGroups": {
+          "shape": "ComponentPropertyGroupRequests"
+        }
+      },
+      "type": "structure"
     },
-    "ComponentRequest":{
-      "type":"structure",
-      "members":{
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "description":{"shape":"Description"},
-        "properties":{"shape":"PropertyRequests"}
-      }
+    "ComponentResponse": {
+      "members": {
+        "componentName": {
+          "shape": "Name"
+        },
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "definedIn": {
+          "shape": "String"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "properties": {
+          "shape": "PropertyResponses"
+        },
+        "propertyGroups": {
+          "shape": "ComponentPropertyGroupResponses"
+        },
+        "status": {
+          "shape": "Status"
+        }
+      },
+      "type": "structure"
     },
-    "ComponentResponse":{
-      "type":"structure",
-      "members":{
-        "componentName":{"shape":"Name"},
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "definedIn":{"shape":"String"},
-        "description":{"shape":"Description"},
-        "properties":{"shape":"PropertyResponses"},
-        "status":{"shape":"Status"}
-      }
+    "ComponentTypeId": {
+      "max": 256,
+      "min": 1,
+      "pattern": "[a-zA-Z_\\.\\-0-9:]+",
+      "type": "string"
     },
-    "ComponentTypeId":{
-      "type":"string",
-      "max":256,
-      "min":1,
-      "pattern":"[a-zA-Z_\\.\\-0-9:]+"
+    "ComponentTypeSummaries": {
+      "member": {
+        "shape": "ComponentTypeSummary"
+      },
+      "type": "list"
     },
-    "ComponentTypeSummaries":{
-      "type":"list",
-      "member":{"shape":"ComponentTypeSummary"}
-    },
-    "ComponentTypeSummary":{
-      "type":"structure",
-      "required":[
+    "ComponentTypeSummary": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "status": {
+          "shape": "Status"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "required": [
         "arn",
         "componentTypeId",
         "creationDateTime",
         "updateDateTime"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "status":{"shape":"Status"},
-        "updateDateTime":{"shape":"Timestamp"}
-      }
+      "type": "structure"
     },
-    "ComponentUpdateRequest":{
-      "type":"structure",
-      "members":{
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "description":{"shape":"Description"},
-        "propertyUpdates":{"shape":"PropertyRequests"},
-        "updateType":{"shape":"ComponentUpdateType"}
-      }
+    "ComponentUpdateRequest": {
+      "members": {
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "propertyGroupUpdates": {
+          "shape": "ComponentPropertyGroupRequests"
+        },
+        "propertyUpdates": {
+          "shape": "PropertyRequests"
+        },
+        "updateType": {
+          "shape": "ComponentUpdateType"
+        }
+      },
+      "type": "structure"
     },
-    "ComponentUpdateType":{
-      "type":"string",
-      "enum":[
+    "ComponentUpdateType": {
+      "enum": [
         "CREATE",
         "UPDATE",
         "DELETE"
-      ]
-    },
-    "ComponentUpdatesMapRequest":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"ComponentUpdateRequest"}
-    },
-    "ComponentsMap":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"ComponentResponse"}
-    },
-    "ComponentsMapRequest":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"ComponentRequest"}
-    },
-    "Configuration":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"Value"}
-    },
-    "ConflictException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
-      },
-      "error":{
-        "httpStatusCode":409,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "ConnectorFailureException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
-      },
-      "error":{
-        "httpStatusCode":424,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "ConnectorTimeoutException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
-      },
-      "error":{
-        "httpStatusCode":424,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "CreateComponentTypeRequest":{
-      "type":"structure",
-      "required":[
-        "componentTypeId",
-        "workspaceId"
       ],
-      "members":{
-        "componentTypeId":{
-          "shape":"ComponentTypeId",
-          "location":"uri",
-          "locationName":"componentTypeId"
+      "type": "string"
+    },
+    "ComponentUpdatesMapRequest": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "ComponentUpdateRequest"
+      }
+    },
+    "ComponentsMap": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "ComponentResponse"
+      }
+    },
+    "ComponentsMapRequest": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "ComponentRequest"
+      }
+    },
+    "Configuration": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "Value"
+      }
+    },
+    "ConflictException": {
+      "error": {
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "ConnectorFailureException": {
+      "error": {
+        "httpStatusCode": 424,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "ConnectorTimeoutException": {
+      "error": {
+        "httpStatusCode": 424,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "CreateComponentTypeRequest": {
+      "members": {
+        "componentTypeId": {
+          "location": "uri",
+          "locationName": "componentTypeId",
+          "shape": "ComponentTypeId"
         },
-        "description":{"shape":"Description"},
-        "extendsFrom":{"shape":"ExtendsFrom"},
-        "functions":{"shape":"FunctionsRequest"},
-        "isSingleton":{"shape":"Boolean"},
-        "propertyDefinitions":{"shape":"PropertyDefinitionsRequest"},
-        "tags":{"shape":"TagMap"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "description": {
+          "shape": "Description"
+        },
+        "extendsFrom": {
+          "shape": "ExtendsFrom"
+        },
+        "functions": {
+          "shape": "FunctionsRequest"
+        },
+        "isSingleton": {
+          "shape": "Boolean"
+        },
+        "propertyDefinitions": {
+          "shape": "PropertyDefinitionsRequest"
+        },
+        "propertyGroups": {
+          "shape": "PropertyGroupsRequest"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
         }
-      }
+      },
+      "required": [
+        "workspaceId",
+        "componentTypeId"
+      ],
+      "type": "structure"
     },
-    "CreateComponentTypeResponse":{
-      "type":"structure",
-      "required":[
+    "CreateComponentTypeResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "state": {
+          "shape": "State"
+        }
+      },
+      "required": [
         "arn",
         "creationDateTime",
         "state"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "state":{"shape":"State"}
-      }
+      "type": "structure"
     },
-    "CreateEntityRequest":{
-      "type":"structure",
-      "required":[
-        "entityName",
-        "workspaceId"
-      ],
-      "members":{
-        "components":{"shape":"ComponentsMapRequest"},
-        "description":{"shape":"Description"},
-        "entityId":{"shape":"EntityId"},
-        "entityName":{"shape":"EntityName"},
-        "parentEntityId":{"shape":"ParentEntityId"},
-        "tags":{"shape":"TagMap"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+    "CreateEntityRequest": {
+      "members": {
+        "components": {
+          "shape": "ComponentsMapRequest"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "entityId": {
+          "shape": "EntityId"
+        },
+        "entityName": {
+          "shape": "EntityName"
+        },
+        "parentEntityId": {
+          "shape": "ParentEntityId"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
         }
-      }
+      },
+      "required": [
+        "workspaceId",
+        "entityName"
+      ],
+      "type": "structure"
     },
-    "CreateEntityResponse":{
-      "type":"structure",
-      "required":[
-        "arn",
-        "creationDateTime",
+    "CreateEntityResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "entityId": {
+          "shape": "EntityId"
+        },
+        "state": {
+          "shape": "State"
+        }
+      },
+      "required": [
         "entityId",
+        "arn",
+        "creationDateTime",
         "state"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "entityId":{"shape":"EntityId"},
-        "state":{"shape":"State"}
-      }
+      "type": "structure"
     },
-    "CreateSceneRequest":{
-      "type":"structure",
-      "required":[
-        "contentLocation",
-        "sceneId",
-        "workspaceId"
-      ],
-      "members":{
-        "capabilities":{"shape":"SceneCapabilities"},
-        "contentLocation":{"shape":"S3Url"},
-        "description":{"shape":"Description"},
-        "sceneId":{"shape":"Id"},
-        "tags":{"shape":"TagMap"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+    "CreateSceneRequest": {
+      "members": {
+        "capabilities": {
+          "shape": "SceneCapabilities"
+        },
+        "contentLocation": {
+          "shape": "S3Url"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "sceneId": {
+          "shape": "Id"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
         }
-      }
+      },
+      "required": [
+        "workspaceId",
+        "sceneId",
+        "contentLocation"
+      ],
+      "type": "structure"
     },
-    "CreateSceneResponse":{
-      "type":"structure",
-      "required":[
+    "CreateSceneResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "required": [
         "arn",
         "creationDateTime"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "creationDateTime":{"shape":"Timestamp"}
-      }
+      "type": "structure"
     },
-    "CreateWorkspaceRequest":{
-      "type":"structure",
-      "required":[
-        "role",
+    "CreateWorkspaceRequest": {
+      "members": {
+        "description": {
+          "shape": "Description"
+        },
+        "role": {
+          "shape": "RoleArn"
+        },
+        "s3Location": {
+          "shape": "S3Location"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
         "s3Location",
-        "workspaceId"
+        "role"
       ],
-      "members":{
-        "description":{"shape":"Description"},
-        "role":{"shape":"RoleArn"},
-        "s3Location":{"shape":"S3Location"},
-        "tags":{"shape":"TagMap"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
-        }
-      }
+      "type": "structure"
     },
-    "CreateWorkspaceResponse":{
-      "type":"structure",
-      "required":[
+    "CreateWorkspaceResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "required": [
         "arn",
         "creationDateTime"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "creationDateTime":{"shape":"Timestamp"}
+      "type": "structure"
+    },
+    "DataConnector": {
+      "members": {
+        "isNative": {
+          "shape": "Boolean"
+        },
+        "lambda": {
+          "shape": "LambdaFunction"
+        }
+      },
+      "type": "structure"
+    },
+    "DataType": {
+      "members": {
+        "allowedValues": {
+          "shape": "DataValueList"
+        },
+        "nestedType": {
+          "shape": "DataType"
+        },
+        "relationship": {
+          "shape": "Relationship"
+        },
+        "type": {
+          "shape": "Type"
+        },
+        "unitOfMeasure": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "structure"
+    },
+    "DataValue": {
+      "members": {
+        "booleanValue": {
+          "shape": "Boolean"
+        },
+        "doubleValue": {
+          "shape": "Double"
+        },
+        "expression": {
+          "shape": "Expression"
+        },
+        "integerValue": {
+          "shape": "Integer"
+        },
+        "listValue": {
+          "shape": "DataValueList"
+        },
+        "longValue": {
+          "shape": "Long"
+        },
+        "mapValue": {
+          "shape": "DataValueMap"
+        },
+        "relationshipValue": {
+          "shape": "RelationshipValue"
+        },
+        "stringValue": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "DataValueList": {
+      "max": 50,
+      "member": {
+        "shape": "DataValue"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "DataValueMap": {
+      "key": {
+        "shape": "String"
+      },
+      "max": 50,
+      "min": 0,
+      "type": "map",
+      "value": {
+        "shape": "DataValue"
       }
     },
-    "DataConnector":{
-      "type":"structure",
-      "members":{
-        "isNative":{"shape":"Boolean"},
-        "lambda":{"shape":"LambdaFunction"}
-      }
+    "DeleteComponentTypeRequest": {
+      "members": {
+        "componentTypeId": {
+          "location": "uri",
+          "locationName": "componentTypeId",
+          "shape": "ComponentTypeId"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "componentTypeId"
+      ],
+      "type": "structure"
     },
-    "DataType":{
-      "type":"structure",
-      "required":["type"],
-      "members":{
-        "allowedValues":{"shape":"DataValueList"},
-        "nestedType":{"shape":"DataType"},
-        "relationship":{"shape":"Relationship"},
-        "type":{"shape":"Type"},
-        "unitOfMeasure":{"shape":"String"}
-      }
+    "DeleteComponentTypeResponse": {
+      "members": {
+        "state": {
+          "shape": "State"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "type": "structure"
     },
-    "DataValue":{
-      "type":"structure",
-      "members":{
-        "booleanValue":{"shape":"Boolean"},
-        "doubleValue":{"shape":"Double"},
-        "expression":{"shape":"Expression"},
-        "integerValue":{"shape":"Integer"},
-        "listValue":{"shape":"DataValueList"},
-        "longValue":{"shape":"Long"},
-        "mapValue":{"shape":"DataValueMap"},
-        "relationshipValue":{"shape":"RelationshipValue"},
-        "stringValue":{"shape":"String"}
-      }
+    "DeleteEntityRequest": {
+      "members": {
+        "entityId": {
+          "location": "uri",
+          "locationName": "entityId",
+          "shape": "EntityId"
+        },
+        "isRecursive": {
+          "location": "querystring",
+          "locationName": "isRecursive",
+          "shape": "Boolean"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "entityId"
+      ],
+      "type": "structure"
     },
-    "DataValueList":{
-      "type":"list",
-      "member":{"shape":"DataValue"},
-      "max":50,
-      "min":0
+    "DeleteEntityResponse": {
+      "members": {
+        "state": {
+          "shape": "State"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "type": "structure"
     },
-    "DataValueMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"DataValue"},
-      "max":50,
-      "min":0
+    "DeleteSceneRequest": {
+      "members": {
+        "sceneId": {
+          "location": "uri",
+          "locationName": "sceneId",
+          "shape": "Id"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "sceneId"
+      ],
+      "type": "structure"
     },
-    "DeleteComponentTypeRequest":{
-      "type":"structure",
-      "required":[
-        "componentTypeId",
+    "DeleteSceneResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "DeleteWorkspaceRequest": {
+      "members": {
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
         "workspaceId"
       ],
-      "members":{
-        "componentTypeId":{
-          "shape":"ComponentTypeId",
-          "location":"uri",
-          "locationName":"componentTypeId"
+      "type": "structure"
+    },
+    "DeleteWorkspaceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "Description": {
+      "max": 512,
+      "min": 0,
+      "pattern": ".*",
+      "type": "string"
+    },
+    "Double": {
+      "box": true,
+      "type": "double"
+    },
+    "EntityId": {
+      "max": 128,
+      "min": 1,
+      "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|^[a-zA-Z0-9][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9]+",
+      "type": "string"
+    },
+    "EntityName": {
+      "max": 256,
+      "min": 1,
+      "pattern": "[a-zA-Z_0-9-.][a-zA-Z_0-9-. ]*[a-zA-Z0-9]+",
+      "type": "string"
+    },
+    "EntityPropertyReference": {
+      "members": {
+        "componentName": {
+          "shape": "Name"
         },
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "entityId": {
+          "shape": "EntityId"
+        },
+        "externalIdProperty": {
+          "shape": "ExternalIdProperty"
+        },
+        "propertyName": {
+          "shape": "Name"
         }
-      }
-    },
-    "DeleteComponentTypeResponse":{
-      "type":"structure",
-      "required":["state"],
-      "members":{
-        "state":{"shape":"State"}
-      }
-    },
-    "DeleteEntityRequest":{
-      "type":"structure",
-      "required":[
-        "entityId",
-        "workspaceId"
+      },
+      "required": [
+        "propertyName"
       ],
-      "members":{
-        "entityId":{
-          "shape":"EntityId",
-          "location":"uri",
-          "locationName":"entityId"
+      "type": "structure"
+    },
+    "EntitySummaries": {
+      "member": {
+        "shape": "EntitySummary"
+      },
+      "type": "list"
+    },
+    "EntitySummary": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
         },
-        "isRecursive":{
-          "shape":"Boolean",
-          "location":"querystring",
-          "locationName":"isRecursive"
+        "creationDateTime": {
+          "shape": "Timestamp"
         },
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
-        }
-      }
-    },
-    "DeleteEntityResponse":{
-      "type":"structure",
-      "required":["state"],
-      "members":{
-        "state":{"shape":"State"}
-      }
-    },
-    "DeleteSceneRequest":{
-      "type":"structure",
-      "required":[
-        "sceneId",
-        "workspaceId"
-      ],
-      "members":{
-        "sceneId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"sceneId"
+        "description": {
+          "shape": "Description"
         },
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "entityId": {
+          "shape": "EntityId"
+        },
+        "entityName": {
+          "shape": "EntityName"
+        },
+        "hasChildEntities": {
+          "shape": "Boolean"
+        },
+        "parentEntityId": {
+          "shape": "ParentEntityId"
+        },
+        "status": {
+          "shape": "Status"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
         }
-      }
-    },
-    "DeleteSceneResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DeleteWorkspaceRequest":{
-      "type":"structure",
-      "required":["workspaceId"],
-      "members":{
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
-        }
-      }
-    },
-    "DeleteWorkspaceResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "Description":{
-      "type":"string",
-      "max":512,
-      "min":0,
-      "pattern":".*"
-    },
-    "Double":{
-      "type":"double",
-      "box":true
-    },
-    "EntityId":{
-      "type":"string",
-      "max":128,
-      "min":1,
-      "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|^[a-zA-Z0-9][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9]+"
-    },
-    "EntityName":{
-      "type":"string",
-      "max":256,
-      "min":1,
-      "pattern":"[a-zA-Z_0-9-.][a-zA-Z_0-9-. ]*[a-zA-Z0-9]+"
-    },
-    "EntityPropertyReference":{
-      "type":"structure",
-      "required":["propertyName"],
-      "members":{
-        "componentName":{"shape":"Name"},
-        "entityId":{"shape":"EntityId"},
-        "externalIdProperty":{"shape":"ExternalIdProperty"},
-        "propertyName":{"shape":"Name"}
-      }
-    },
-    "EntitySummaries":{
-      "type":"list",
-      "member":{"shape":"EntitySummary"}
-    },
-    "EntitySummary":{
-      "type":"structure",
-      "required":[
-        "arn",
-        "creationDateTime",
+      },
+      "required": [
         "entityId",
         "entityName",
+        "arn",
         "status",
+        "creationDateTime",
         "updateDateTime"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "entityId":{"shape":"EntityId"},
-        "entityName":{"shape":"EntityName"},
-        "hasChildEntities":{"shape":"Boolean"},
-        "parentEntityId":{"shape":"ParentEntityId"},
-        "status":{"shape":"Status"},
-        "updateDateTime":{"shape":"Timestamp"}
-      }
+      "type": "structure"
     },
-    "Entries":{
-      "type":"list",
-      "member":{"shape":"PropertyValueEntry"},
-      "max":10,
-      "min":1
+    "Entries": {
+      "max": 10,
+      "member": {
+        "shape": "PropertyValueEntry"
+      },
+      "min": 1,
+      "type": "list"
     },
-    "ErrorCode":{
-      "type":"string",
-      "enum":[
+    "ErrorCode": {
+      "enum": [
         "VALIDATION_ERROR",
         "INTERNAL_FAILURE"
-      ]
-    },
-    "ErrorDetails":{
-      "type":"structure",
-      "members":{
-        "code":{"shape":"ErrorCode"},
-        "message":{"shape":"ErrorMessage"}
-      }
-    },
-    "ErrorEntries":{
-      "type":"list",
-      "member":{"shape":"BatchPutPropertyErrorEntry"},
-      "max":10,
-      "min":1
-    },
-    "ErrorMessage":{
-      "type":"string",
-      "max":2048,
-      "min":0
-    },
-    "Errors":{
-      "type":"list",
-      "member":{"shape":"BatchPutPropertyError"},
-      "max":10,
-      "min":1
-    },
-    "ExceptionMessage":{"type":"string"},
-    "Expression":{
-      "type":"string",
-      "max":316,
-      "min":1,
-      "pattern":"(^\\$\\{Parameters\\.[a-zA-z]+([a-zA-z_0-9]*)}$)"
-    },
-    "ExtendsFrom":{
-      "type":"list",
-      "member":{"shape":"ComponentTypeId"}
-    },
-    "ExternalIdProperty":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"String"}
-    },
-    "FunctionRequest":{
-      "type":"structure",
-      "members":{
-        "implementedBy":{"shape":"DataConnector"},
-        "requiredProperties":{"shape":"RequiredProperties"},
-        "scope":{"shape":"Scope"}
-      }
-    },
-    "FunctionResponse":{
-      "type":"structure",
-      "members":{
-        "implementedBy":{"shape":"DataConnector"},
-        "isInherited":{"shape":"Boolean"},
-        "requiredProperties":{"shape":"RequiredProperties"},
-        "scope":{"shape":"Scope"}
-      }
-    },
-    "FunctionsRequest":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"FunctionRequest"}
-    },
-    "FunctionsResponse":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"FunctionResponse"}
-    },
-    "GetComponentTypeRequest":{
-      "type":"structure",
-      "required":[
-        "componentTypeId",
-        "workspaceId"
       ],
-      "members":{
-        "componentTypeId":{
-          "shape":"ComponentTypeId",
-          "location":"uri",
-          "locationName":"componentTypeId"
+      "type": "string"
+    },
+    "ErrorDetails": {
+      "members": {
+        "code": {
+          "shape": "ErrorCode"
         },
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "message": {
+          "shape": "ErrorMessage"
         }
+      },
+      "type": "structure"
+    },
+    "ErrorEntries": {
+      "max": 10,
+      "member": {
+        "shape": "BatchPutPropertyErrorEntry"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ErrorMessage": {
+      "max": 2048,
+      "min": 0,
+      "type": "string"
+    },
+    "Errors": {
+      "max": 10,
+      "member": {
+        "shape": "BatchPutPropertyError"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ExceptionMessage": {
+      "type": "string"
+    },
+    "ExecuteQueryRequest": {
+      "members": {
+        "maxResults": {
+          "shape": "QueryServiceMaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "queryStatement": {
+          "shape": "QueryStatement"
+        },
+        "workspaceId": {
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "queryStatement"
+      ],
+      "type": "structure"
+    },
+    "ExecuteQueryResponse": {
+      "members": {
+        "columnDescriptions": {
+          "shape": "ColumnDescriptions"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "rows": {
+          "shape": "Rows"
+        }
+      },
+      "type": "structure"
+    },
+    "Expression": {
+      "max": 316,
+      "min": 1,
+      "pattern": "(^\\$\\{Parameters\\.[a-zA-z]+([a-zA-z_0-9]*)}$)",
+      "type": "string"
+    },
+    "ExtendsFrom": {
+      "member": {
+        "shape": "ComponentTypeId"
+      },
+      "type": "list"
+    },
+    "ExternalIdProperty": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "String"
       }
     },
-    "GetComponentTypeResponse":{
-      "type":"structure",
-      "required":[
-        "arn",
+    "FunctionRequest": {
+      "members": {
+        "implementedBy": {
+          "shape": "DataConnector"
+        },
+        "requiredProperties": {
+          "shape": "RequiredProperties"
+        },
+        "scope": {
+          "shape": "Scope"
+        }
+      },
+      "type": "structure"
+    },
+    "FunctionResponse": {
+      "members": {
+        "implementedBy": {
+          "shape": "DataConnector"
+        },
+        "isInherited": {
+          "shape": "Boolean"
+        },
+        "requiredProperties": {
+          "shape": "RequiredProperties"
+        },
+        "scope": {
+          "shape": "Scope"
+        }
+      },
+      "type": "structure"
+    },
+    "FunctionsRequest": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "FunctionRequest"
+      }
+    },
+    "FunctionsResponse": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "FunctionResponse"
+      }
+    },
+    "GetComponentTypeRequest": {
+      "members": {
+        "componentTypeId": {
+          "location": "uri",
+          "locationName": "componentTypeId",
+          "shape": "ComponentTypeId"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "componentTypeId"
+      ],
+      "type": "structure"
+    },
+    "GetComponentTypeResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "extendsFrom": {
+          "shape": "ExtendsFrom"
+        },
+        "functions": {
+          "shape": "FunctionsResponse"
+        },
+        "isAbstract": {
+          "shape": "Boolean"
+        },
+        "isSchemaInitialized": {
+          "shape": "Boolean"
+        },
+        "isSingleton": {
+          "shape": "Boolean"
+        },
+        "propertyDefinitions": {
+          "shape": "PropertyDefinitionsResponse"
+        },
+        "propertyGroups": {
+          "shape": "PropertyGroupsResponse"
+        },
+        "status": {
+          "shape": "Status"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "workspaceId": {
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
         "componentTypeId",
         "creationDateTime",
         "updateDateTime",
-        "workspaceId"
+        "arn"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "extendsFrom":{"shape":"ExtendsFrom"},
-        "functions":{"shape":"FunctionsResponse"},
-        "isAbstract":{"shape":"Boolean"},
-        "isSchemaInitialized":{"shape":"Boolean"},
-        "isSingleton":{"shape":"Boolean"},
-        "propertyDefinitions":{"shape":"PropertyDefinitionsResponse"},
-        "status":{"shape":"Status"},
-        "updateDateTime":{"shape":"Timestamp"},
-        "workspaceId":{"shape":"Id"}
-      }
+      "type": "structure"
     },
-    "GetEntityRequest":{
-      "type":"structure",
-      "required":[
-        "entityId",
-        "workspaceId"
-      ],
-      "members":{
-        "entityId":{
-          "shape":"EntityId",
-          "location":"uri",
-          "locationName":"entityId"
+    "GetEntityRequest": {
+      "members": {
+        "entityId": {
+          "location": "uri",
+          "locationName": "entityId",
+          "shape": "EntityId"
         },
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
         }
-      }
+      },
+      "required": [
+        "workspaceId",
+        "entityId"
+      ],
+      "type": "structure"
     },
-    "GetEntityResponse":{
-      "type":"structure",
-      "required":[
-        "arn",
-        "creationDateTime",
+    "GetEntityResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "components": {
+          "shape": "ComponentsMap"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "entityId": {
+          "shape": "EntityId"
+        },
+        "entityName": {
+          "shape": "EntityName"
+        },
+        "hasChildEntities": {
+          "shape": "Boolean"
+        },
+        "parentEntityId": {
+          "shape": "ParentEntityId"
+        },
+        "status": {
+          "shape": "Status"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "workspaceId": {
+          "shape": "Id"
+        }
+      },
+      "required": [
         "entityId",
         "entityName",
-        "hasChildEntities",
-        "parentEntityId",
+        "arn",
         "status",
-        "updateDateTime",
-        "workspaceId"
+        "workspaceId",
+        "parentEntityId",
+        "hasChildEntities",
+        "creationDateTime",
+        "updateDateTime"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "components":{"shape":"ComponentsMap"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "entityId":{"shape":"EntityId"},
-        "entityName":{"shape":"EntityName"},
-        "hasChildEntities":{"shape":"Boolean"},
-        "parentEntityId":{"shape":"ParentEntityId"},
-        "status":{"shape":"Status"},
-        "updateDateTime":{"shape":"Timestamp"},
-        "workspaceId":{"shape":"Id"}
-      }
+      "type": "structure"
     },
-    "GetPropertyValueHistoryRequest":{
-      "type":"structure",
-      "required":[
+    "GetPricingPlanRequest": {
+      "members": {},
+      "type": "structure"
+    },
+    "GetPricingPlanResponse": {
+      "members": {
+        "currentPricingPlan": {
+          "shape": "PricingPlan"
+        },
+        "pendingPricingPlan": {
+          "shape": "PricingPlan"
+        }
+      },
+      "required": [
+        "currentPricingPlan"
+      ],
+      "type": "structure"
+    },
+    "GetPropertyValueHistoryRequest": {
+      "members": {
+        "componentName": {
+          "shape": "Name"
+        },
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "endDateTime": {
+          "deprecated": true,
+          "deprecatedMessage": "This field is deprecated and will throw an error in the future. Use endTime instead.",
+          "shape": "Timestamp"
+        },
+        "endTime": {
+          "shape": "Time"
+        },
+        "entityId": {
+          "shape": "EntityId"
+        },
+        "interpolation": {
+          "shape": "InterpolationParameters"
+        },
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "orderByTime": {
+          "shape": "OrderByTime"
+        },
+        "propertyFilters": {
+          "shape": "PropertyFilters"
+        },
+        "selectedProperties": {
+          "shape": "SelectedPropertyList"
+        },
+        "startDateTime": {
+          "deprecated": true,
+          "deprecatedMessage": "This field is deprecated and will throw an error in the future. Use startTime instead.",
+          "shape": "Timestamp"
+        },
+        "startTime": {
+          "shape": "Time"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "selectedProperties"
+      ],
+      "type": "structure"
+    },
+    "GetPropertyValueHistoryResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "propertyValues": {
+          "shape": "PropertyValueList"
+        }
+      },
+      "required": [
+        "propertyValues"
+      ],
+      "type": "structure"
+    },
+    "GetPropertyValueRequest": {
+      "members": {
+        "componentName": {
+          "shape": "Name"
+        },
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "entityId": {
+          "shape": "EntityId"
+        },
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "propertyGroupName": {
+          "shape": "Name"
+        },
+        "selectedProperties": {
+          "shape": "SelectedPropertyList"
+        },
+        "tabularConditions": {
+          "shape": "TabularConditions"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
         "selectedProperties",
         "workspaceId"
       ],
-      "members":{
-        "componentName":{"shape":"Name"},
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "endDateTime":{
-          "shape":"Timestamp",
-          "deprecated":true,
-          "deprecatedMessage":"This field is deprecated and will throw an error in the future. Use endTime instead."
+      "type": "structure"
+    },
+    "GetPropertyValueResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
         },
-        "endTime":{"shape":"Time"},
-        "entityId":{"shape":"EntityId"},
-        "interpolation":{"shape":"InterpolationParameters"},
-        "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"},
-        "orderByTime":{"shape":"OrderByTime"},
-        "propertyFilters":{"shape":"PropertyFilters"},
-        "selectedProperties":{"shape":"SelectedPropertyList"},
-        "startDateTime":{
-          "shape":"Timestamp",
-          "deprecated":true,
-          "deprecatedMessage":"This field is deprecated and will throw an error in the future. Use startTime instead."
+        "propertyValues": {
+          "shape": "PropertyLatestValueMap"
         },
-        "startTime":{"shape":"Time"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "tabularPropertyValues": {
+          "shape": "TabularPropertyValues"
         }
-      }
+      },
+      "type": "structure"
     },
-    "GetPropertyValueHistoryResponse":{
-      "type":"structure",
-      "required":["propertyValues"],
-      "members":{
-        "nextToken":{"shape":"NextToken"},
-        "propertyValues":{"shape":"PropertyValueList"}
-      }
-    },
-    "GetPropertyValueRequest":{
-      "type":"structure",
-      "required":[
-        "selectedProperties",
-        "workspaceId"
+    "GetSceneRequest": {
+      "members": {
+        "sceneId": {
+          "location": "uri",
+          "locationName": "sceneId",
+          "shape": "Id"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "sceneId"
       ],
-      "members":{
-        "componentName":{"shape":"Name"},
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "entityId":{"shape":"EntityId"},
-        "selectedProperties":{"shape":"SelectedPropertyList"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+      "type": "structure"
+    },
+    "GetSceneResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "capabilities": {
+          "shape": "SceneCapabilities"
+        },
+        "contentLocation": {
+          "shape": "S3Url"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "sceneId": {
+          "shape": "Id"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "workspaceId": {
+          "shape": "Id"
         }
-      }
-    },
-    "GetPropertyValueResponse":{
-      "type":"structure",
-      "required":["propertyValues"],
-      "members":{
-        "propertyValues":{"shape":"PropertyLatestValueMap"}
-      }
-    },
-    "GetSceneRequest":{
-      "type":"structure",
-      "required":[
+      },
+      "required": [
+        "workspaceId",
         "sceneId",
-        "workspaceId"
-      ],
-      "members":{
-        "sceneId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"sceneId"
-        },
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
-        }
-      }
-    },
-    "GetSceneResponse":{
-      "type":"structure",
-      "required":[
-        "arn",
         "contentLocation",
-        "creationDateTime",
-        "sceneId",
-        "updateDateTime",
-        "workspaceId"
-      ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "capabilities":{"shape":"SceneCapabilities"},
-        "contentLocation":{"shape":"S3Url"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "sceneId":{"shape":"Id"},
-        "updateDateTime":{"shape":"Timestamp"},
-        "workspaceId":{"shape":"Id"}
-      }
-    },
-    "GetWorkspaceRequest":{
-      "type":"structure",
-      "required":["workspaceId"],
-      "members":{
-        "workspaceId":{
-          "shape":"IdOrArn",
-          "location":"uri",
-          "locationName":"workspaceId"
-        }
-      }
-    },
-    "GetWorkspaceResponse":{
-      "type":"structure",
-      "required":[
         "arn",
         "creationDateTime",
-        "role",
+        "updateDateTime"
+      ],
+      "type": "structure"
+    },
+    "GetWorkspaceRequest": {
+      "members": {
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "IdOrArn"
+        }
+      },
+      "required": [
+        "workspaceId"
+      ],
+      "type": "structure"
+    },
+    "GetWorkspaceResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "role": {
+          "shape": "RoleArn"
+        },
+        "s3Location": {
+          "shape": "S3Location"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "workspaceId": {
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "arn",
         "s3Location",
-        "updateDateTime",
+        "role",
+        "creationDateTime",
+        "updateDateTime"
+      ],
+      "type": "structure"
+    },
+    "GroupType": {
+      "enum": [
+        "TABULAR"
+      ],
+      "type": "string"
+    },
+    "Id": {
+      "max": 128,
+      "min": 1,
+      "pattern": "[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+",
+      "type": "string"
+    },
+    "IdOrArn": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+$|^arn:((aws)|(aws-cn)|(aws-us-gov)):iottwinmaker:[a-z0-9-]+:[0-9]{12}:[\\/a-zA-Z0-9_-]+",
+      "type": "string"
+    },
+    "Integer": {
+      "box": true,
+      "type": "integer"
+    },
+    "InternalServerException": {
+      "error": {
+        "httpStatusCode": 500
+      },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "InterpolationParameters": {
+      "members": {
+        "interpolationType": {
+          "shape": "InterpolationType"
+        },
+        "intervalInSeconds": {
+          "shape": "IntervalInSeconds"
+        }
+      },
+      "type": "structure"
+    },
+    "InterpolationType": {
+      "enum": [
+        "LINEAR"
+      ],
+      "type": "string"
+    },
+    "IntervalInSeconds": {
+      "box": true,
+      "type": "long"
+    },
+    "LambdaArn": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "arn:((aws)|(aws-cn)|(aws-us-gov)):lambda:[a-z0-9-]+:[0-9]{12}:function:[\\/a-zA-Z0-9_-]+",
+      "type": "string"
+    },
+    "LambdaFunction": {
+      "members": {
+        "arn": {
+          "shape": "LambdaArn"
+        }
+      },
+      "required": [
+        "arn"
+      ],
+      "type": "structure"
+    },
+    "ListComponentTypesFilter": {
+      "members": {
+        "extendsFrom": {
+          "shape": "ComponentTypeId"
+        },
+        "isAbstract": {
+          "shape": "Boolean"
+        },
+        "namespace": {
+          "shape": "String"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ListComponentTypesFilters": {
+      "member": {
+        "shape": "ListComponentTypesFilter"
+      },
+      "type": "list"
+    },
+    "ListComponentTypesRequest": {
+      "members": {
+        "filters": {
+          "shape": "ListComponentTypesFilters"
+        },
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
         "workspaceId"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "role":{"shape":"RoleArn"},
-        "s3Location":{"shape":"S3Location"},
-        "updateDateTime":{"shape":"Timestamp"},
-        "workspaceId":{"shape":"Id"}
-      }
+      "type": "structure"
     },
-    "Id":{
-      "type":"string",
-      "max":128,
-      "min":1,
-      "pattern":"[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+"
-    },
-    "IdOrArn":{
-      "type":"string",
-      "max":2048,
-      "min":1,
-      "pattern":"[a-zA-Z_0-9][a-zA-Z_\\-0-9]*[a-zA-Z0-9]+$|^arn:((aws)|(aws-cn)|(aws-us-gov)):iottwinmaker:[a-z0-9-]+:[0-9]{12}:[\\/a-zA-Z0-9_-]+"
-    },
-    "Integer":{
-      "type":"integer",
-      "box":true
-    },
-    "InternalServerException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
-      },
-      "error":{"httpStatusCode":500},
-      "exception":true,
-      "fault":true
-    },
-    "InterpolationParameters":{
-      "type":"structure",
-      "members":{
-        "interpolationType":{"shape":"InterpolationType"},
-        "intervalInSeconds":{"shape":"IntervalInSeconds"}
-      }
-    },
-    "InterpolationType":{
-      "type":"string",
-      "enum":["LINEAR"]
-    },
-    "IntervalInSeconds":{
-      "type":"long",
-      "box":true
-    },
-    "LambdaArn":{
-      "type":"string",
-      "max":2048,
-      "min":20,
-      "pattern":"arn:((aws)|(aws-cn)|(aws-us-gov)):lambda:[a-z0-9-]+:[0-9]{12}:function:[\\/a-zA-Z0-9_-]+"
-    },
-    "LambdaFunction":{
-      "type":"structure",
-      "required":["arn"],
-      "members":{
-        "arn":{"shape":"LambdaArn"}
-      }
-    },
-    "ListComponentTypesFilter":{
-      "type":"structure",
-      "members":{
-        "extendsFrom":{"shape":"ComponentTypeId"},
-        "isAbstract":{"shape":"Boolean"},
-        "namespace":{"shape":"String"}
-      },
-      "union":true
-    },
-    "ListComponentTypesFilters":{
-      "type":"list",
-      "member":{"shape":"ListComponentTypesFilter"}
-    },
-    "ListComponentTypesRequest":{
-      "type":"structure",
-      "required":["workspaceId"],
-      "members":{
-        "filters":{"shape":"ListComponentTypesFilters"},
-        "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+    "ListComponentTypesResponse": {
+      "members": {
+        "componentTypeSummaries": {
+          "shape": "ComponentTypeSummaries"
+        },
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "workspaceId": {
+          "shape": "Id"
         }
-      }
+      },
+      "required": [
+        "workspaceId",
+        "componentTypeSummaries"
+      ],
+      "type": "structure"
     },
-    "ListComponentTypesResponse":{
-      "type":"structure",
-      "required":[
-        "componentTypeSummaries",
+    "ListEntitiesFilter": {
+      "members": {
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "externalId": {
+          "shape": "String"
+        },
+        "parentEntityId": {
+          "shape": "ParentEntityId"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "ListEntitiesFilters": {
+      "member": {
+        "shape": "ListEntitiesFilter"
+      },
+      "type": "list"
+    },
+    "ListEntitiesRequest": {
+      "members": {
+        "filters": {
+          "shape": "ListEntitiesFilters"
+        },
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
         "workspaceId"
       ],
-      "members":{
-        "componentTypeSummaries":{"shape":"ComponentTypeSummaries"},
-        "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"},
-        "workspaceId":{"shape":"Id"}
-      }
+      "type": "structure"
     },
-    "ListEntitiesFilter":{
-      "type":"structure",
-      "members":{
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "externalId":{"shape":"String"},
-        "parentEntityId":{"shape":"ParentEntityId"}
+    "ListEntitiesResponse": {
+      "members": {
+        "entitySummaries": {
+          "shape": "EntitySummaries"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        }
       },
-      "union":true
+      "type": "structure"
     },
-    "ListEntitiesFilters":{
-      "type":"list",
-      "member":{"shape":"ListEntitiesFilter"}
-    },
-    "ListEntitiesRequest":{
-      "type":"structure",
-      "required":["workspaceId"],
-      "members":{
-        "filters":{"shape":"ListEntitiesFilters"},
-        "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+    "ListScenesRequest": {
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
         }
-      }
+      },
+      "required": [
+        "workspaceId"
+      ],
+      "type": "structure"
     },
-    "ListEntitiesResponse":{
-      "type":"structure",
-      "members":{
-        "entitySummaries":{"shape":"EntitySummaries"},
-        "nextToken":{"shape":"NextToken"}
-      }
-    },
-    "ListScenesRequest":{
-      "type":"structure",
-      "required":["workspaceId"],
-      "members":{
-        "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+    "ListScenesResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "sceneSummaries": {
+          "shape": "SceneSummaries"
         }
-      }
+      },
+      "type": "structure"
     },
-    "ListScenesResponse":{
-      "type":"structure",
-      "members":{
-        "nextToken":{"shape":"NextToken"},
-        "sceneSummaries":{"shape":"SceneSummaries"}
-      }
+    "ListTagsForResourceRequest": {
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "resourceARN": {
+          "shape": "TwinMakerArn"
+        }
+      },
+      "required": [
+        "resourceARN"
+      ],
+      "type": "structure"
     },
-    "ListTagsForResourceRequest":{
-      "type":"structure",
-      "required":["resourceARN"],
-      "members":{
-        "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"},
-        "resourceARN":{"shape":"TwinMakerArn"}
-      }
+    "ListTagsForResourceResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "tags": {
+          "shape": "TagMap"
+        }
+      },
+      "type": "structure"
     },
-    "ListTagsForResourceResponse":{
-      "type":"structure",
-      "members":{
-        "nextToken":{"shape":"NextToken"},
-        "tags":{"shape":"TagMap"}
-      }
+    "ListWorkspacesRequest": {
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        }
+      },
+      "type": "structure"
     },
-    "ListWorkspacesRequest":{
-      "type":"structure",
-      "members":{
-        "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
-      }
+    "ListWorkspacesResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "workspaceSummaries": {
+          "shape": "WorkspaceSummaries"
+        }
+      },
+      "type": "structure"
     },
-    "ListWorkspacesResponse":{
-      "type":"structure",
-      "members":{
-        "nextToken":{"shape":"NextToken"},
-        "workspaceSummaries":{"shape":"WorkspaceSummaries"}
-      }
+    "Long": {
+      "box": true,
+      "type": "long"
     },
-    "Long":{
-      "type":"long",
-      "box":true
+    "MaxResults": {
+      "box": true,
+      "max": 200,
+      "min": 0,
+      "type": "integer"
     },
-    "MaxResults":{
-      "type":"integer",
-      "box":true,
-      "max":200,
-      "min":0
+    "Name": {
+      "max": 256,
+      "min": 1,
+      "pattern": "[a-zA-Z_\\-0-9]+",
+      "type": "string"
     },
-    "Name":{
-      "type":"string",
-      "max":256,
-      "min":1,
-      "pattern":"[a-zA-Z_\\-0-9]+"
+    "NextToken": {
+      "max": 17880,
+      "min": 0,
+      "pattern": ".*",
+      "type": "string"
     },
-    "NextToken":{
-      "type":"string",
-      "max":17880,
-      "min":0,
-      "pattern":".*"
-    },
-    "OrderByTime":{
-      "type":"string",
-      "enum":[
+    "Order": {
+      "enum": [
         "ASCENDING",
         "DESCENDING"
-      ]
+      ],
+      "type": "string"
     },
-    "ParentEntityId":{
-      "type":"string",
-      "max":128,
-      "min":1,
-      "pattern":"\\$ROOT|^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|^[a-zA-Z0-9][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9]+"
+    "OrderBy": {
+      "members": {
+        "order": {
+          "shape": "Order"
+        },
+        "propertyName": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "propertyName"
+      ],
+      "type": "structure"
     },
-    "ParentEntityUpdateRequest":{
-      "type":"structure",
-      "required":["updateType"],
-      "members":{
-        "parentEntityId":{"shape":"ParentEntityId"},
-        "updateType":{"shape":"ParentEntityUpdateType"}
-      }
+    "OrderByList": {
+      "max": 10,
+      "member": {
+        "shape": "OrderBy"
+      },
+      "min": 1,
+      "type": "list"
     },
-    "ParentEntityUpdateType":{
-      "type":"string",
-      "enum":[
+    "OrderByTime": {
+      "enum": [
+        "ASCENDING",
+        "DESCENDING"
+      ],
+      "type": "string"
+    },
+    "ParentEntityId": {
+      "max": 128,
+      "min": 1,
+      "pattern": "\\$ROOT|^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|^[a-zA-Z0-9][a-zA-Z_\\-0-9.:]*[a-zA-Z0-9]+",
+      "type": "string"
+    },
+    "ParentEntityUpdateRequest": {
+      "members": {
+        "parentEntityId": {
+          "shape": "ParentEntityId"
+        },
+        "updateType": {
+          "shape": "ParentEntityUpdateType"
+        }
+      },
+      "required": [
+        "updateType"
+      ],
+      "type": "structure"
+    },
+    "ParentEntityUpdateType": {
+      "enum": [
         "UPDATE",
         "DELETE"
-      ]
-    },
-    "PropertyDefinitionRequest":{
-      "type":"structure",
-      "members":{
-        "configuration":{"shape":"Configuration"},
-        "dataType":{"shape":"DataType"},
-        "defaultValue":{"shape":"DataValue"},
-        "isExternalId":{"shape":"Boolean"},
-        "isRequiredInEntity":{"shape":"Boolean"},
-        "isStoredExternally":{"shape":"Boolean"},
-        "isTimeSeries":{"shape":"Boolean"}
-      }
-    },
-    "PropertyDefinitionResponse":{
-      "type":"structure",
-      "required":[
-        "dataType",
-        "isExternalId",
-        "isFinal",
-        "isImported",
-        "isInherited",
-        "isRequiredInEntity",
-        "isStoredExternally",
-        "isTimeSeries"
       ],
-      "members":{
-        "configuration":{"shape":"Configuration"},
-        "dataType":{"shape":"DataType"},
-        "defaultValue":{"shape":"DataValue"},
-        "isExternalId":{"shape":"Boolean"},
-        "isFinal":{"shape":"Boolean"},
-        "isImported":{"shape":"Boolean"},
-        "isInherited":{"shape":"Boolean"},
-        "isRequiredInEntity":{"shape":"Boolean"},
-        "isStoredExternally":{"shape":"Boolean"},
-        "isTimeSeries":{"shape":"Boolean"}
+      "type": "string"
+    },
+    "PricingBundles": {
+      "max": 10,
+      "member": {
+        "shape": "BundleName"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "PricingMode": {
+      "enum": [
+        "BASIC",
+        "STANDARD",
+        "TIERED_BUNDLE"
+      ],
+      "type": "string"
+    },
+    "PricingPlan": {
+      "members": {
+        "billableEntityCount": {
+          "shape": "Long"
+        },
+        "bundleInformation": {
+          "shape": "BundleInformation"
+        },
+        "effectiveDateTime": {
+          "shape": "Timestamp"
+        },
+        "pricingMode": {
+          "shape": "PricingMode"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "updateReason": {
+          "shape": "UpdateReason"
+        }
+      },
+      "required": [
+        "effectiveDateTime",
+        "pricingMode",
+        "updateDateTime",
+        "updateReason"
+      ],
+      "type": "structure"
+    },
+    "PricingTier": {
+      "enum": [
+        "TIER_1",
+        "TIER_2",
+        "TIER_3",
+        "TIER_4"
+      ],
+      "type": "string"
+    },
+    "PropertyDefinitionRequest": {
+      "members": {
+        "configuration": {
+          "shape": "Configuration"
+        },
+        "dataType": {
+          "shape": "DataType"
+        },
+        "defaultValue": {
+          "shape": "DataValue"
+        },
+        "isExternalId": {
+          "shape": "Boolean"
+        },
+        "isRequiredInEntity": {
+          "shape": "Boolean"
+        },
+        "isStoredExternally": {
+          "shape": "Boolean"
+        },
+        "isTimeSeries": {
+          "shape": "Boolean"
+        }
+      },
+      "type": "structure"
+    },
+    "PropertyDefinitionResponse": {
+      "members": {
+        "configuration": {
+          "shape": "Configuration"
+        },
+        "dataType": {
+          "shape": "DataType"
+        },
+        "defaultValue": {
+          "shape": "DataValue"
+        },
+        "isExternalId": {
+          "shape": "Boolean"
+        },
+        "isFinal": {
+          "shape": "Boolean"
+        },
+        "isImported": {
+          "shape": "Boolean"
+        },
+        "isInherited": {
+          "shape": "Boolean"
+        },
+        "isRequiredInEntity": {
+          "shape": "Boolean"
+        },
+        "isStoredExternally": {
+          "shape": "Boolean"
+        },
+        "isTimeSeries": {
+          "shape": "Boolean"
+        }
+      },
+      "required": [
+        "dataType",
+        "isTimeSeries",
+        "isRequiredInEntity",
+        "isExternalId",
+        "isStoredExternally",
+        "isImported",
+        "isFinal",
+        "isInherited"
+      ],
+      "type": "structure"
+    },
+    "PropertyDefinitionsRequest": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "PropertyDefinitionRequest"
       }
     },
-    "PropertyDefinitionsRequest":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"PropertyDefinitionRequest"}
-    },
-    "PropertyDefinitionsResponse":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"PropertyDefinitionResponse"}
-    },
-    "PropertyFilter":{
-      "type":"structure",
-      "members":{
-        "operator":{"shape":"String"},
-        "propertyName":{"shape":"String"},
-        "value":{"shape":"DataValue"}
+    "PropertyDefinitionsResponse": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "PropertyDefinitionResponse"
       }
     },
-    "PropertyFilters":{
-      "type":"list",
-      "member":{"shape":"PropertyFilter"},
-      "max":10,
-      "min":1
+    "PropertyFilter": {
+      "members": {
+        "operator": {
+          "shape": "String"
+        },
+        "propertyName": {
+          "shape": "String"
+        },
+        "value": {
+          "shape": "DataValue"
+        }
+      },
+      "type": "structure"
     },
-    "PropertyLatestValue":{
-      "type":"structure",
-      "required":["propertyReference"],
-      "members":{
-        "propertyReference":{"shape":"EntityPropertyReference"},
-        "propertyValue":{"shape":"DataValue"}
-      }
+    "PropertyFilters": {
+      "max": 10,
+      "member": {
+        "shape": "PropertyFilter"
+      },
+      "min": 1,
+      "type": "list"
     },
-    "PropertyLatestValueMap":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"PropertyLatestValue"}
+    "PropertyGroupRequest": {
+      "members": {
+        "groupType": {
+          "shape": "GroupType"
+        },
+        "propertyNames": {
+          "shape": "PropertyNames"
+        }
+      },
+      "type": "structure"
     },
-    "PropertyRequest":{
-      "type":"structure",
-      "members":{
-        "definition":{"shape":"PropertyDefinitionRequest"},
-        "updateType":{"shape":"PropertyUpdateType"},
-        "value":{"shape":"DataValue"}
-      }
+    "PropertyGroupResponse": {
+      "members": {
+        "groupType": {
+          "shape": "GroupType"
+        },
+        "isInherited": {
+          "shape": "Boolean"
+        },
+        "propertyNames": {
+          "shape": "PropertyNames"
+        }
+      },
+      "required": [
+        "groupType",
+        "propertyNames",
+        "isInherited"
+      ],
+      "type": "structure"
     },
-    "PropertyRequests":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"PropertyRequest"}
-    },
-    "PropertyResponse":{
-      "type":"structure",
-      "members":{
-        "definition":{"shape":"PropertyDefinitionResponse"},
-        "value":{"shape":"DataValue"}
-      }
-    },
-    "PropertyResponses":{
-      "type":"map",
-      "key":{"shape":"Name"},
-      "value":{"shape":"PropertyResponse"}
-    },
-    "PropertyUpdateType":{
-      "type":"string",
-      "enum":[
+    "PropertyGroupUpdateType": {
+      "enum": [
         "UPDATE",
         "DELETE",
         "CREATE"
-      ]
+      ],
+      "type": "string"
     },
-    "PropertyValue":{
-      "type":"structure",
-      "required":["value"],
-      "members":{
-        "time":{"shape":"Time"},
-        "timestamp":{
-          "shape":"Timestamp",
-          "deprecated":true,
-          "deprecatedMessage":"This field is deprecated and will throw an error in the future. Use time instead."
+    "PropertyGroupsRequest": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "PropertyGroupRequest"
+      }
+    },
+    "PropertyGroupsResponse": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "PropertyGroupResponse"
+      }
+    },
+    "PropertyLatestValue": {
+      "members": {
+        "propertyReference": {
+          "shape": "EntityPropertyReference"
         },
-        "value":{"shape":"DataValue"}
-      }
-    },
-    "PropertyValueEntry":{
-      "type":"structure",
-      "required":["entityPropertyReference"],
-      "members":{
-        "entityPropertyReference":{"shape":"EntityPropertyReference"},
-        "propertyValues":{"shape":"PropertyValues"}
-      }
-    },
-    "PropertyValueHistory":{
-      "type":"structure",
-      "required":["entityPropertyReference"],
-      "members":{
-        "entityPropertyReference":{"shape":"EntityPropertyReference"},
-        "values":{"shape":"Values"}
-      }
-    },
-    "PropertyValueList":{
-      "type":"list",
-      "member":{"shape":"PropertyValueHistory"}
-    },
-    "PropertyValues":{
-      "type":"list",
-      "member":{"shape":"PropertyValue"},
-      "max":10,
-      "min":1
-    },
-    "Relationship":{
-      "type":"structure",
-      "members":{
-        "relationshipType":{"shape":"String"},
-        "targetComponentTypeId":{"shape":"ComponentTypeId"}
-      }
-    },
-    "RelationshipValue":{
-      "type":"structure",
-      "members":{
-        "targetComponentName":{"shape":"Name"},
-        "targetEntityId":{"shape":"EntityId"}
-      }
-    },
-    "RequiredProperties":{
-      "type":"list",
-      "member":{"shape":"Name"}
-    },
-    "ResourceNotFoundException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
+        "propertyValue": {
+          "shape": "DataValue"
+        }
       },
-      "error":{
-        "httpStatusCode":404,
-        "senderFault":true
+      "required": [
+        "propertyReference"
+      ],
+      "type": "structure"
+    },
+    "PropertyLatestValueMap": {
+      "key": {
+        "shape": "Name"
       },
-      "exception":true
+      "type": "map",
+      "value": {
+        "shape": "PropertyLatestValue"
+      }
     },
-    "RoleArn":{
-      "type":"string",
-      "max":2048,
-      "min":20,
-      "pattern":"arn:((aws)|(aws-cn)|(aws-us-gov)):iam::[0-9]{12}:role/.*"
+    "PropertyNames": {
+      "member": {
+        "shape": "Name"
+      },
+      "type": "list"
     },
-    "S3Location":{
-      "type":"string",
-      "max":1024,
-      "min":0,
-      "pattern":".*(^arn:((aws)|(aws-cn)|(aws-us-gov)):s3:::)([a-zA-Z0-9_-]+$).*"
+    "PropertyRequest": {
+      "members": {
+        "definition": {
+          "shape": "PropertyDefinitionRequest"
+        },
+        "updateType": {
+          "shape": "PropertyUpdateType"
+        },
+        "value": {
+          "shape": "DataValue"
+        }
+      },
+      "type": "structure"
     },
-    "S3Url":{
-      "type":"string",
-      "max":256,
-      "min":0,
-      "pattern":"[sS]3://[A-Za-z0-9._/-]+"
+    "PropertyRequests": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "PropertyRequest"
+      }
     },
-    "SceneCapabilities":{
-      "type":"list",
-      "member":{"shape":"SceneCapability"},
-      "max":50,
-      "min":0
+    "PropertyResponse": {
+      "members": {
+        "definition": {
+          "shape": "PropertyDefinitionResponse"
+        },
+        "value": {
+          "shape": "DataValue"
+        }
+      },
+      "type": "structure"
     },
-    "SceneCapability":{
-      "type":"string",
-      "max":256,
-      "min":0,
-      "pattern":".*"
+    "PropertyResponses": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "PropertyResponse"
+      }
     },
-    "SceneSummaries":{
-      "type":"list",
-      "member":{"shape":"SceneSummary"}
+    "PropertyTableValue": {
+      "key": {
+        "shape": "Name"
+      },
+      "type": "map",
+      "value": {
+        "shape": "DataValue"
+      }
     },
-    "SceneSummary":{
-      "type":"structure",
-      "required":[
-        "arn",
-        "contentLocation",
-        "creationDateTime",
+    "PropertyUpdateType": {
+      "enum": [
+        "UPDATE",
+        "DELETE",
+        "CREATE"
+      ],
+      "type": "string"
+    },
+    "PropertyValue": {
+      "members": {
+        "time": {
+          "shape": "Time"
+        },
+        "timestamp": {
+          "deprecated": true,
+          "deprecatedMessage": "This field is deprecated and will throw an error in the future. Use time instead.",
+          "shape": "Timestamp"
+        },
+        "value": {
+          "shape": "DataValue"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "structure"
+    },
+    "PropertyValueEntry": {
+      "members": {
+        "entityPropertyReference": {
+          "shape": "EntityPropertyReference"
+        },
+        "propertyValues": {
+          "shape": "PropertyValues"
+        }
+      },
+      "required": [
+        "entityPropertyReference"
+      ],
+      "type": "structure"
+    },
+    "PropertyValueHistory": {
+      "members": {
+        "entityPropertyReference": {
+          "shape": "EntityPropertyReference"
+        },
+        "values": {
+          "shape": "Values"
+        }
+      },
+      "required": [
+        "entityPropertyReference"
+      ],
+      "type": "structure"
+    },
+    "PropertyValueList": {
+      "member": {
+        "shape": "PropertyValueHistory"
+      },
+      "type": "list"
+    },
+    "PropertyValues": {
+      "max": 10,
+      "member": {
+        "shape": "PropertyValue"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "QueryServiceMaxResults": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "QueryStatement": {
+      "max": 1000,
+      "min": 1,
+      "pattern": "[\\s\\S]+",
+      "type": "string"
+    },
+    "QueryTimeoutException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "retryable": {
+        "throttling": false
+      },
+      "type": "structure"
+    },
+    "Relationship": {
+      "members": {
+        "relationshipType": {
+          "shape": "String"
+        },
+        "targetComponentTypeId": {
+          "shape": "ComponentTypeId"
+        }
+      },
+      "type": "structure"
+    },
+    "RelationshipValue": {
+      "members": {
+        "targetComponentName": {
+          "shape": "Name"
+        },
+        "targetEntityId": {
+          "shape": "EntityId"
+        }
+      },
+      "type": "structure"
+    },
+    "RequiredProperties": {
+      "member": {
+        "shape": "Name"
+      },
+      "type": "list"
+    },
+    "ResourceNotFoundException": {
+      "error": {
+        "httpStatusCode": 404,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "RoleArn": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "arn:((aws)|(aws-cn)|(aws-us-gov)):iam::[0-9]{12}:role/.*",
+      "type": "string"
+    },
+    "Row": {
+      "members": {},
+      "type": "structure"
+    },
+    "Rows": {
+      "member": {
+        "shape": "Row"
+      },
+      "type": "list"
+    },
+    "S3Location": {
+      "max": 1024,
+      "min": 0,
+      "pattern": ".*(^arn:((aws)|(aws-cn)|(aws-us-gov)):s3:::)([a-zA-Z0-9_-]+$).*",
+      "type": "string"
+    },
+    "S3Url": {
+      "max": 256,
+      "min": 0,
+      "pattern": "[sS]3://[A-Za-z0-9._/-]+",
+      "type": "string"
+    },
+    "SceneCapabilities": {
+      "max": 50,
+      "member": {
+        "shape": "SceneCapability"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "SceneCapability": {
+      "max": 256,
+      "min": 0,
+      "pattern": ".*",
+      "type": "string"
+    },
+    "SceneSummaries": {
+      "member": {
+        "shape": "SceneSummary"
+      },
+      "type": "list"
+    },
+    "SceneSummary": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "contentLocation": {
+          "shape": "S3Url"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "sceneId": {
+          "shape": "Id"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "required": [
         "sceneId",
+        "contentLocation",
+        "arn",
+        "creationDateTime",
         "updateDateTime"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "contentLocation":{"shape":"S3Url"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "sceneId":{"shape":"Id"},
-        "updateDateTime":{"shape":"Timestamp"}
-      }
+      "type": "structure"
     },
-    "Scope":{
-      "type":"string",
-      "enum":[
+    "Scope": {
+      "enum": [
         "ENTITY",
         "WORKSPACE"
-      ]
+      ],
+      "type": "string"
     },
-    "SelectedPropertyList":{
-      "type":"list",
-      "member":{"shape":"String"},
-      "max":10,
-      "min":1
-    },
-    "ServiceQuotaExceededException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
+    "SelectedPropertyList": {
+      "max": 10,
+      "member": {
+        "shape": "String"
       },
-      "error":{
-        "httpStatusCode":402,
-        "senderFault":true
-      },
-      "exception":true
+      "min": 1,
+      "type": "list"
     },
-    "State":{
-      "type":"string",
-      "enum":[
+    "ServiceQuotaExceededException": {
+      "error": {
+        "httpStatusCode": 402,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "State": {
+      "enum": [
         "CREATING",
         "UPDATING",
         "DELETING",
         "ACTIVE",
         "ERROR"
-      ]
+      ],
+      "type": "string"
     },
-    "Status":{
-      "type":"structure",
-      "members":{
-        "error":{"shape":"ErrorDetails"},
-        "state":{"shape":"State"}
+    "Status": {
+      "members": {
+        "error": {
+          "shape": "ErrorDetails"
+        },
+        "state": {
+          "shape": "State"
+        }
+      },
+      "type": "structure"
+    },
+    "String": {
+      "max": 256,
+      "min": 1,
+      "pattern": ".*",
+      "type": "string"
+    },
+    "TabularConditions": {
+      "members": {
+        "orderBy": {
+          "shape": "OrderByList"
+        },
+        "propertyFilters": {
+          "shape": "PropertyFilters"
+        }
+      },
+      "type": "structure"
+    },
+    "TabularPropertyValue": {
+      "member": {
+        "shape": "PropertyTableValue"
+      },
+      "type": "list"
+    },
+    "TabularPropertyValues": {
+      "member": {
+        "shape": "TabularPropertyValue"
+      },
+      "type": "list"
+    },
+    "TagKey": {
+      "max": 128,
+      "min": 1,
+      "pattern": "([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)",
+      "type": "string"
+    },
+    "TagKeyList": {
+      "max": 50,
+      "member": {
+        "shape": "TagKey"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "TagMap": {
+      "key": {
+        "shape": "TagKey"
+      },
+      "max": 50,
+      "min": 0,
+      "type": "map",
+      "value": {
+        "shape": "TagValue"
       }
     },
-    "String":{
-      "type":"string",
-      "max":256,
-      "min":1,
-      "pattern":".*"
-    },
-    "TagKey":{
-      "type":"string",
-      "max":128,
-      "min":1,
-      "pattern":"([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)"
-    },
-    "TagKeyList":{
-      "type":"list",
-      "member":{"shape":"TagKey"},
-      "max":50,
-      "min":0
-    },
-    "TagMap":{
-      "type":"map",
-      "key":{"shape":"TagKey"},
-      "value":{"shape":"TagValue"},
-      "max":50,
-      "min":0
-    },
-    "TagResourceRequest":{
-      "type":"structure",
-      "required":[
+    "TagResourceRequest": {
+      "members": {
+        "resourceARN": {
+          "shape": "TwinMakerArn"
+        },
+        "tags": {
+          "shape": "TagMap"
+        }
+      },
+      "required": [
         "resourceARN",
         "tags"
       ],
-      "members":{
-        "resourceARN":{"shape":"TwinMakerArn"},
-        "tags":{"shape":"TagMap"}
-      }
+      "type": "structure"
     },
-    "TagResourceResponse":{
-      "type":"structure",
-      "members":{
-      }
+    "TagResourceResponse": {
+      "members": {},
+      "type": "structure"
     },
-    "TagValue":{
-      "type":"string",
-      "max":256,
-      "min":1,
-      "pattern":".*"
+    "TagValue": {
+      "max": 256,
+      "min": 1,
+      "pattern": ".*",
+      "type": "string"
     },
-    "ThrottlingException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
+    "ThrottlingException": {
+      "error": {
+        "httpStatusCode": 429,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":429,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "Time":{
-      "type":"string",
-      "max":35,
-      "min":20
+    "Time": {
+      "max": 35,
+      "min": 20,
+      "type": "string"
     },
-    "Timestamp":{"type":"timestamp"},
-    "TooManyTagsException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ExceptionMessage"}
+    "Timestamp": {
+      "type": "timestamp"
+    },
+    "TooManyTagsException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ExceptionMessage"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "TwinMakerArn":{
-      "type":"string",
-      "max":2048,
-      "min":20,
-      "pattern":"arn:((aws)|(aws-cn)|(aws-us-gov)):iottwinmaker:[a-z0-9-]+:[0-9]{12}:[\\/a-zA-Z0-9_\\-\\.:]+"
+    "TwinMakerArn": {
+      "max": 2048,
+      "min": 20,
+      "pattern": "arn:((aws)|(aws-cn)|(aws-us-gov)):iottwinmaker:[a-z0-9-]+:[0-9]{12}:[\\/a-zA-Z0-9_\\-\\.:]+",
+      "type": "string"
     },
-    "Type":{
-      "type":"string",
-      "enum":[
+    "Type": {
+      "enum": [
         "RELATIONSHIP",
         "STRING",
         "LONG",
@@ -1883,192 +3426,300 @@
         "DOUBLE",
         "LIST",
         "MAP"
-      ]
+      ],
+      "type": "string"
     },
-    "UntagResourceRequest":{
-      "type":"structure",
-      "required":[
+    "UntagResourceRequest": {
+      "members": {
+        "resourceARN": {
+          "location": "querystring",
+          "locationName": "resourceARN",
+          "shape": "TwinMakerArn"
+        },
+        "tagKeys": {
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "TagKeyList"
+        }
+      },
+      "required": [
         "resourceARN",
         "tagKeys"
       ],
-      "members":{
-        "resourceARN":{
-          "shape":"TwinMakerArn",
-          "location":"querystring",
-          "locationName":"resourceARN"
+      "type": "structure"
+    },
+    "UntagResourceResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "UpdateComponentTypeRequest": {
+      "members": {
+        "componentTypeId": {
+          "location": "uri",
+          "locationName": "componentTypeId",
+          "shape": "ComponentTypeId"
         },
-        "tagKeys":{
-          "shape":"TagKeyList",
-          "location":"querystring",
-          "locationName":"tagKeys"
+        "description": {
+          "shape": "Description"
+        },
+        "extendsFrom": {
+          "shape": "ExtendsFrom"
+        },
+        "functions": {
+          "shape": "FunctionsRequest"
+        },
+        "isSingleton": {
+          "shape": "Boolean"
+        },
+        "propertyDefinitions": {
+          "shape": "PropertyDefinitionsRequest"
+        },
+        "propertyGroups": {
+          "shape": "PropertyGroupsRequest"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
         }
-      }
-    },
-    "UntagResourceResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "UpdateComponentTypeRequest":{
-      "type":"structure",
-      "required":[
-        "componentTypeId",
-        "workspaceId"
+      },
+      "required": [
+        "workspaceId",
+        "componentTypeId"
       ],
-      "members":{
-        "componentTypeId":{
-          "shape":"ComponentTypeId",
-          "location":"uri",
-          "locationName":"componentTypeId"
-        },
-        "description":{"shape":"Description"},
-        "extendsFrom":{"shape":"ExtendsFrom"},
-        "functions":{"shape":"FunctionsRequest"},
-        "isSingleton":{"shape":"Boolean"},
-        "propertyDefinitions":{"shape":"PropertyDefinitionsRequest"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
-        }
-      }
+      "type": "structure"
     },
-    "UpdateComponentTypeResponse":{
-      "type":"structure",
-      "required":[
+    "UpdateComponentTypeResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "componentTypeId": {
+          "shape": "ComponentTypeId"
+        },
+        "state": {
+          "shape": "State"
+        },
+        "workspaceId": {
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
         "arn",
         "componentTypeId",
-        "state",
-        "workspaceId"
+        "state"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "componentTypeId":{"shape":"ComponentTypeId"},
-        "state":{"shape":"State"},
-        "workspaceId":{"shape":"Id"}
-      }
+      "type": "structure"
     },
-    "UpdateEntityRequest":{
-      "type":"structure",
-      "required":[
-        "entityId",
-        "workspaceId"
-      ],
-      "members":{
-        "componentUpdates":{"shape":"ComponentUpdatesMapRequest"},
-        "description":{"shape":"Description"},
-        "entityId":{
-          "shape":"EntityId",
-          "location":"uri",
-          "locationName":"entityId"
+    "UpdateEntityRequest": {
+      "members": {
+        "componentUpdates": {
+          "shape": "ComponentUpdatesMapRequest"
         },
-        "entityName":{"shape":"EntityName"},
-        "parentEntityUpdate":{"shape":"ParentEntityUpdateRequest"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "description": {
+          "shape": "Description"
+        },
+        "entityId": {
+          "location": "uri",
+          "locationName": "entityId",
+          "shape": "EntityId"
+        },
+        "entityName": {
+          "shape": "EntityName"
+        },
+        "parentEntityUpdate": {
+          "shape": "ParentEntityUpdateRequest"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
         }
-      }
+      },
+      "required": [
+        "workspaceId",
+        "entityId"
+      ],
+      "type": "structure"
     },
-    "UpdateEntityResponse":{
-      "type":"structure",
-      "required":[
-        "state",
+    "UpdateEntityResponse": {
+      "members": {
+        "state": {
+          "shape": "State"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "required": [
+        "updateDateTime",
+        "state"
+      ],
+      "type": "structure"
+    },
+    "UpdatePricingPlanRequest": {
+      "members": {
+        "bundleNames": {
+          "shape": "PricingBundles"
+        },
+        "pricingMode": {
+          "shape": "PricingMode"
+        }
+      },
+      "required": [
+        "pricingMode"
+      ],
+      "type": "structure"
+    },
+    "UpdatePricingPlanResponse": {
+      "members": {
+        "currentPricingPlan": {
+          "shape": "PricingPlan"
+        },
+        "pendingPricingPlan": {
+          "shape": "PricingPlan"
+        }
+      },
+      "required": [
+        "currentPricingPlan"
+      ],
+      "type": "structure"
+    },
+    "UpdateReason": {
+      "enum": [
+        "DEFAULT",
+        "PRICING_TIER_UPDATE",
+        "ENTITY_COUNT_UPDATE",
+        "PRICING_MODE_UPDATE",
+        "OVERWRITTEN"
+      ],
+      "type": "string"
+    },
+    "UpdateSceneRequest": {
+      "members": {
+        "capabilities": {
+          "shape": "SceneCapabilities"
+        },
+        "contentLocation": {
+          "shape": "S3Url"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "sceneId": {
+          "location": "uri",
+          "locationName": "sceneId",
+          "shape": "Id"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "sceneId"
+      ],
+      "type": "structure"
+    },
+    "UpdateSceneResponse": {
+      "members": {
+        "updateDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "required": [
         "updateDateTime"
       ],
-      "members":{
-        "state":{"shape":"State"},
-        "updateDateTime":{"shape":"Timestamp"}
-      }
+      "type": "structure"
     },
-    "UpdateSceneRequest":{
-      "type":"structure",
-      "required":[
-        "sceneId",
+    "UpdateWorkspaceRequest": {
+      "members": {
+        "description": {
+          "shape": "Description"
+        },
+        "role": {
+          "shape": "RoleArn"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
         "workspaceId"
       ],
-      "members":{
-        "capabilities":{"shape":"SceneCapabilities"},
-        "contentLocation":{"shape":"S3Url"},
-        "description":{"shape":"Description"},
-        "sceneId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"sceneId"
+      "type": "structure"
+    },
+    "UpdateWorkspaceResponse": {
+      "members": {
+        "updateDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "required": [
+        "updateDateTime"
+      ],
+      "type": "structure"
+    },
+    "ValidationException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "ErrorMessage"
+        }
+      },
+      "type": "structure"
+    },
+    "Value": {
+      "pattern": ".*",
+      "type": "string"
+    },
+    "Values": {
+      "member": {
+        "shape": "PropertyValue"
+      },
+      "type": "list"
+    },
+    "WorkspaceSummaries": {
+      "member": {
+        "shape": "WorkspaceSummary"
+      },
+      "type": "list"
+    },
+    "WorkspaceSummary": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
         },
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "description": {
+          "shape": "Description"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "workspaceId": {
+          "shape": "Id"
         }
-      }
-    },
-    "UpdateSceneResponse":{
-      "type":"structure",
-      "required":["updateDateTime"],
-      "members":{
-        "updateDateTime":{"shape":"Timestamp"}
-      }
-    },
-    "UpdateWorkspaceRequest":{
-      "type":"structure",
-      "required":["workspaceId"],
-      "members":{
-        "description":{"shape":"Description"},
-        "role":{"shape":"RoleArn"},
-        "workspaceId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"workspaceId"
-        }
-      }
-    },
-    "UpdateWorkspaceResponse":{
-      "type":"structure",
-      "required":["updateDateTime"],
-      "members":{
-        "updateDateTime":{"shape":"Timestamp"}
-      }
-    },
-    "ValidationException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ErrorMessage"}
       },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "Value":{
-      "type":"string",
-      "pattern":".*"
-    },
-    "Values":{
-      "type":"list",
-      "member":{"shape":"PropertyValue"}
-    },
-    "WorkspaceSummaries":{
-      "type":"list",
-      "member":{"shape":"WorkspaceSummary"}
-    },
-    "WorkspaceSummary":{
-      "type":"structure",
-      "required":[
+      "required": [
+        "workspaceId",
         "arn",
         "creationDateTime",
-        "updateDateTime",
-        "workspaceId"
+        "updateDateTime"
       ],
-      "members":{
-        "arn":{"shape":"TwinMakerArn"},
-        "creationDateTime":{"shape":"Timestamp"},
-        "description":{"shape":"Description"},
-        "updateDateTime":{"shape":"Timestamp"},
-        "workspaceId":{"shape":"Id"}
-      }
+      "type": "structure"
     }
-  }
+  },
+  "version": "2.0"
 }

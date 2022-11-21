@@ -2907,6 +2907,8 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeBackupPolicyNotFoundFault, aerr.Error())
 			case rds.ErrCodeNetworkTypeNotSupported:
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
+			case rds.ErrCodeDBClusterSnapshotNotFoundFault:
+				fmt.Println(rds.ErrCodeDBClusterSnapshotNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

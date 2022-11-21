@@ -4959,13 +4959,18 @@ type CreateDeploymentInput struct {
 	// configuration.
 	IotJobConfiguration *DeploymentIoTJobConfiguration `locationName:"iotJobConfiguration" type:"structure"`
 
+	// The parent deployment's target ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// within a subdeployment.
+	ParentTargetArn *string `locationName:"parentTargetArn" type:"string"`
+
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the target IoT thing or thing group.
+	// of the target IoT thing or thing group. When creating a subdeployment, the
+	// targetARN can only be a thing group.
 	//
 	// TargetArn is a required field
 	TargetArn *string `locationName:"targetArn" type:"string" required:"true"`
@@ -5053,6 +5058,12 @@ func (s *CreateDeploymentInput) SetDeploymentPolicies(v *DeploymentPolicies) *Cr
 // SetIotJobConfiguration sets the IotJobConfiguration field's value.
 func (s *CreateDeploymentInput) SetIotJobConfiguration(v *DeploymentIoTJobConfiguration) *CreateDeploymentInput {
 	s.IotJobConfiguration = v
+	return s
+}
+
+// SetParentTargetArn sets the ParentTargetArn field's value.
+func (s *CreateDeploymentInput) SetParentTargetArn(v string) *CreateDeploymentInput {
+	s.ParentTargetArn = &v
 	return s
 }
 
@@ -5351,11 +5362,16 @@ type Deployment struct {
 	// Whether or not the deployment is the latest revision for its target.
 	IsLatestForTarget *bool `locationName:"isLatestForTarget" type:"boolean"`
 
+	// The parent deployment's target ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// within a subdeployment.
+	ParentTargetArn *string `locationName:"parentTargetArn" type:"string"`
+
 	// The revision number of the deployment.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the target IoT thing or thing group.
+	// of the target IoT thing or thing group. When creating a subdeployment, the
+	// targetARN can only be a thing group.
 	TargetArn *string `locationName:"targetArn" type:"string"`
 }
 
@@ -5404,6 +5420,12 @@ func (s *Deployment) SetDeploymentStatus(v string) *Deployment {
 // SetIsLatestForTarget sets the IsLatestForTarget field's value.
 func (s *Deployment) SetIsLatestForTarget(v bool) *Deployment {
 	s.IsLatestForTarget = &v
+	return s
+}
+
+// SetParentTargetArn sets the ParentTargetArn field's value.
+func (s *Deployment) SetParentTargetArn(v string) *Deployment {
+	s.ParentTargetArn = &v
 	return s
 }
 
@@ -6708,6 +6730,10 @@ type GetDeploymentOutput struct {
 	// Whether or not the deployment is the latest revision for its target.
 	IsLatestForTarget *bool `locationName:"isLatestForTarget" type:"boolean"`
 
+	// The parent deployment's target ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// within a subdeployment.
+	ParentTargetArn *string `locationName:"parentTargetArn" type:"string"`
+
 	// The revision number of the deployment.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
@@ -6796,6 +6822,12 @@ func (s *GetDeploymentOutput) SetIotJobId(v string) *GetDeploymentOutput {
 // SetIsLatestForTarget sets the IsLatestForTarget field's value.
 func (s *GetDeploymentOutput) SetIsLatestForTarget(v bool) *GetDeploymentOutput {
 	s.IsLatestForTarget = &v
+	return s
+}
+
+// SetParentTargetArn sets the ParentTargetArn field's value.
+func (s *GetDeploymentOutput) SetParentTargetArn(v string) *GetDeploymentOutput {
+	s.ParentTargetArn = &v
 	return s
 }
 
@@ -8639,6 +8671,10 @@ type ListDeploymentsInput struct {
 	// The token to be used for the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The parent deployment's target ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// within a subdeployment.
+	ParentTargetArn *string `location:"querystring" locationName:"parentTargetArn" type:"string"`
+
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the target IoT thing or thing group.
 	TargetArn *string `location:"querystring" locationName:"targetArn" type:"string"`
@@ -8690,6 +8726,12 @@ func (s *ListDeploymentsInput) SetMaxResults(v int64) *ListDeploymentsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListDeploymentsInput) SetNextToken(v string) *ListDeploymentsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetParentTargetArn sets the ParentTargetArn field's value.
+func (s *ListDeploymentsInput) SetParentTargetArn(v string) *ListDeploymentsInput {
+	s.ParentTargetArn = &v
 	return s
 }
 

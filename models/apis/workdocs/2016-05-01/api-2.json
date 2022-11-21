@@ -25,7 +25,8 @@
         {"shape":"UnauthorizedOperationException"},
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"FailedDependencyException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "ActivateUser":{
@@ -58,7 +59,8 @@
         {"shape":"UnauthorizedOperationException"},
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"FailedDependencyException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ProhibitedStateException"}
       ]
     },
     "CreateComment":{
@@ -114,6 +116,7 @@
         {"shape":"EntityAlreadyExistsException"},
         {"shape":"ProhibitedStateException"},
         {"shape":"ConflictingOperationException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"LimitExceededException"},
         {"shape":"UnauthorizedOperationException"},
         {"shape":"UnauthorizedResourceAccessException"},
@@ -151,7 +154,8 @@
       "errors":[
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"TooManySubscriptionsException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidArgumentException"}
       ]
     },
     "CreateUser":{
@@ -233,6 +237,7 @@
       "input":{"shape":"DeleteDocumentRequest"},
       "errors":[
         {"shape":"EntityNotExistsException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ProhibitedStateException"},
         {"shape":"ConflictingOperationException"},
         {"shape":"ConcurrentModificationException"},
@@ -240,6 +245,25 @@
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"FailedDependencyException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeleteDocumentVersion":{
+      "name":"DeleteDocumentVersion",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/api/v1/documentVersions/{DocumentId}/versions/{VersionId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteDocumentVersionRequest"},
+      "errors":[
+        {"shape":"EntityNotExistsException"},
+        {"shape":"ProhibitedStateException"},
+        {"shape":"ConflictingOperationException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"UnauthorizedResourceAccessException"},
+        {"shape":"FailedDependencyException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"UnauthorizedOperationException"}
       ]
     },
     "DeleteFolder":{
@@ -252,6 +276,7 @@
       "input":{"shape":"DeleteFolderRequest"},
       "errors":[
         {"shape":"EntityNotExistsException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ProhibitedStateException"},
         {"shape":"ConflictingOperationException"},
         {"shape":"ConcurrentModificationException"},
@@ -293,7 +318,8 @@
         {"shape":"UnauthorizedOperationException"},
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"FailedDependencyException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ProhibitedStateException"}
       ]
     },
     "DeleteNotificationSubscription":{
@@ -378,7 +404,8 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"FailedDependencyException"},
         {"shape":"ServiceUnavailableException"},
-        {"shape":"ProhibitedStateException"}
+        {"shape":"ProhibitedStateException"},
+        {"shape":"InvalidPasswordException"}
       ]
     },
     "DescribeFolderContents":{
@@ -440,6 +467,7 @@
       "input":{"shape":"DescribeResourcePermissionsRequest"},
       "output":{"shape":"DescribeResourcePermissionsResponse"},
       "errors":[
+        {"shape":"InvalidArgumentException"},
         {"shape":"UnauthorizedOperationException"},
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"FailedDependencyException"},
@@ -621,13 +649,15 @@
         {"shape":"EntityAlreadyExistsException"},
         {"shape":"StorageLimitExceededException"},
         {"shape":"StorageLimitWillExceedException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ProhibitedStateException"},
         {"shape":"UnauthorizedOperationException"},
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"FailedDependencyException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DraftUploadOutOfSyncException"},
-        {"shape":"ResourceAlreadyCheckedOutException"}
+        {"shape":"ResourceAlreadyCheckedOutException"},
+        {"shape":"InvalidPasswordException"}
       ]
     },
     "RemoveAllResourcePermissions":{
@@ -658,6 +688,25 @@
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"FailedDependencyException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "RestoreDocumentVersions":{
+      "name":"RestoreDocumentVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/api/v1/documentVersions/restore/{DocumentId}",
+        "responseCode":204
+      },
+      "input":{"shape":"RestoreDocumentVersionsRequest"},
+      "errors":[
+        {"shape":"EntityNotExistsException"},
+        {"shape":"ProhibitedStateException"},
+        {"shape":"ConflictingOperationException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"UnauthorizedResourceAccessException"},
+        {"shape":"FailedDependencyException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"UnauthorizedOperationException"}
       ]
     },
     "UpdateDocument":{
@@ -735,6 +784,7 @@
         {"shape":"UnauthorizedOperationException"},
         {"shape":"UnauthorizedResourceAccessException"},
         {"shape":"IllegalUserStateException"},
+        {"shape":"ProhibitedStateException"},
         {"shape":"FailedDependencyException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DeactivatingLastSystemUserException"},
@@ -1262,6 +1312,36 @@
         }
       }
     },
+    "DeleteDocumentVersionRequest":{
+      "type":"structure",
+      "required":[
+        "DocumentId",
+        "VersionId",
+        "DeletePriorVersions"
+      ],
+      "members":{
+        "AuthenticationToken":{
+          "shape":"AuthenticationHeaderType",
+          "location":"header",
+          "locationName":"Authentication"
+        },
+        "DocumentId":{
+          "shape":"ResourceIdType",
+          "location":"uri",
+          "locationName":"DocumentId"
+        },
+        "VersionId":{
+          "shape":"DocumentVersionIdType",
+          "location":"uri",
+          "locationName":"VersionId"
+        },
+        "DeletePriorVersions":{
+          "shape":"BooleanType",
+          "location":"querystring",
+          "locationName":"deletePriorVersions"
+        }
+      }
+    },
     "DeleteFolderContentsRequest":{
       "type":"structure",
       "required":["FolderId"],
@@ -1409,7 +1489,7 @@
           "locationName":"limit"
         },
         "Marker":{
-          "shape":"MarkerType",
+          "shape":"SearchMarkerType",
           "location":"querystring",
           "locationName":"marker"
         }
@@ -1419,7 +1499,7 @@
       "type":"structure",
       "members":{
         "UserActivities":{"shape":"UserActivities"},
-        "Marker":{"shape":"MarkerType"}
+        "Marker":{"shape":"SearchMarkerType"}
       }
     },
     "DescribeCommentsRequest":{
@@ -1864,7 +1944,8 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+      "pattern":"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+      "sensitive":true
     },
     "EntityAlreadyExistsException":{
       "type":"structure",
@@ -2201,7 +2282,6 @@
     },
     "InitiateDocumentVersionUploadRequest":{
       "type":"structure",
-      "required":["ParentFolderId"],
       "members":{
         "AuthenticationToken":{
           "shape":"AuthenticationHeaderType",
@@ -2512,6 +2592,22 @@
         "DOCUMENT"
       ]
     },
+    "RestoreDocumentVersionsRequest":{
+      "type":"structure",
+      "required":["DocumentId"],
+      "members":{
+        "AuthenticationToken":{
+          "shape":"AuthenticationHeaderType",
+          "location":"header",
+          "locationName":"Authentication"
+        },
+        "DocumentId":{
+          "shape":"ResourceIdType",
+          "location":"uri",
+          "locationName":"DocumentId"
+        }
+      }
+    },
     "RolePermissionType":{
       "type":"string",
       "enum":[
@@ -2527,6 +2623,12 @@
         "OWNER",
         "COOWNER"
       ]
+    },
+    "SearchMarkerType":{
+      "type":"string",
+      "max":12288,
+      "min":1,
+      "pattern":"[\\u0000-\\u00FF]+"
     },
     "SearchQueryType":{
       "type":"string",
@@ -2650,7 +2752,10 @@
     },
     "SubscriptionProtocolType":{
       "type":"string",
-      "enum":["HTTPS"]
+      "enum":[
+        "HTTPS",
+        "SQS"
+      ]
     },
     "SubscriptionType":{
       "type":"string",

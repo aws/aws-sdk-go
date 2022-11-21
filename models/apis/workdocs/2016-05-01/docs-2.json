@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The WorkDocs API is designed for the following use cases:</p> <ul> <li> <p>File Migration: File migration applications are supported for users who want to migrate their files from an on-premises or off-premises file system or service. Users can insert files into a user directory structure, as well as allow for basic metadata changes, such as modifications to the permissions of files.</p> </li> <li> <p>Security: Support security applications are supported for users who have additional security needs, such as antivirus or data loss prevention. The API actions, along with AWS CloudTrail, allow these applications to detect when changes occur in Amazon WorkDocs. Then, the application can take the necessary actions and replace the target file. If the target file violates the policy, the application can also choose to email the user.</p> </li> <li> <p>eDiscovery/Analytics: General administrative applications are supported, such as eDiscovery and analytics. These applications can choose to mimic or record the actions in an Amazon WorkDocs site, along with AWS CloudTrail, to replicate data for eDiscovery, backup, or analytical applications.</p> </li> </ul> <p>All Amazon WorkDocs API actions are Amazon authenticated and certificate-signed. They not only require the use of the AWS SDK, but also allow for the exclusive use of IAM users and roles to help facilitate access, trust, and permission policies. By creating a role and allowing an IAM user to access the Amazon WorkDocs site, the IAM user gains full administrative visibility into the entire Amazon WorkDocs site (or as set in the IAM policy). This includes, but is not limited to, the ability to modify file permissions and upload any file to any user. This allows developers to perform the three use cases above, as well as give users the ability to grant access on a selective basis using the IAM model.</p>",
+  "service": "<p>The WorkDocs API is designed for the following use cases:</p> <ul> <li> <p>File Migration: File migration applications are supported for users who want to migrate their files from an on-premises or off-premises file system or service. Users can insert files into a user directory structure, as well as allow for basic metadata changes, such as modifications to the permissions of files.</p> </li> <li> <p>Security: Support security applications are supported for users who have additional security needs, such as antivirus or data loss prevention. The API actions, along with AWS CloudTrail, allow these applications to detect when changes occur in Amazon WorkDocs. Then, the application can take the necessary actions and replace the target file. If the target file violates the policy, the application can also choose to email the user.</p> </li> <li> <p>eDiscovery/Analytics: General administrative applications are supported, such as eDiscovery and analytics. These applications can choose to mimic or record the actions in an Amazon WorkDocs site, along with AWS CloudTrail, to replicate data for eDiscovery, backup, or analytical applications.</p> </li> </ul> <p>All Amazon WorkDocs API actions are Amazon authenticated and certificate-signed. They not only require the use of the AWS SDK, but also allow for the exclusive use of IAM users and roles to help facilitate access, trust, and permission policies. By creating a role and allowing an IAM user to access the Amazon WorkDocs site, the IAM user gains full administrative visibility into the entire Amazon WorkDocs site (or as set in the IAM policy). This includes, but is not limited to, the ability to modify file permissions and upload any file to any user. This allows developers to perform the three use cases above, as well as give users the ability to grant access on a selective basis using the IAM model.</p> <note> <p>The pricing for Amazon WorkDocs APIs varies depending on the API call type for these actions:</p> <ul> <li> <p> <code>READ (Get*)</code> </p> </li> <li> <p> <code>WRITE (Activate*, Add*, Create*, Deactivate*, Initiate*, Update*)</code> </p> </li> <li> <p> <code>LIST (Describe*)</code> </p> </li> <li> <p> <code>DELETE*, CANCEL</code> </p> </li> </ul> <p>For information about Amazon WorkDocs API pricing, see <a href=\"https://aws.amazon.com/workdocs/pricing/\">Amazon WorkDocs Pricing</a>.</p> </note>",
   "operations": {
     "AbortDocumentVersionUpload": "<p>Aborts the upload of the specified document version that was previously initiated by <a>InitiateDocumentVersionUpload</a>. The client should make this call only when it no longer intends to upload the document version, or fails to do so.</p>",
     "ActivateUser": "<p>Activates the specified user. Only active users can access Amazon WorkDocs.</p>",
@@ -9,12 +9,13 @@
     "CreateCustomMetadata": "<p>Adds one or more custom properties to the specified resource (a folder, document, or version).</p>",
     "CreateFolder": "<p>Creates a folder with the specified name and parent folder.</p>",
     "CreateLabels": "<p>Adds the specified list of labels to the given resource (a document or folder)</p>",
-    "CreateNotificationSubscription": "<p>Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a confirmation message, and must confirm the subscription.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/workdocs/latest/developerguide/subscribe-notifications.html\">Subscribe to Notifications</a> in the <i>Amazon WorkDocs Developer Guide</i>.</p>",
+    "CreateNotificationSubscription": "<p>Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a confirmation message, and must confirm the subscription.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/workdocs/latest/developerguide/manage-notifications.html\">Setting up notifications for an IAM user or role</a> in the <i>Amazon WorkDocs Developer Guide</i>.</p>",
     "CreateUser": "<p>Creates a user in a Simple AD or Microsoft AD directory. The status of a newly created user is \"ACTIVE\". New users can access Amazon WorkDocs.</p>",
     "DeactivateUser": "<p>Deactivates the specified user, which revokes the user's access to Amazon WorkDocs.</p>",
     "DeleteComment": "<p>Deletes the specified comment from the document version.</p>",
     "DeleteCustomMetadata": "<p>Deletes custom metadata from the specified resource.</p>",
     "DeleteDocument": "<p>Permanently deletes the specified document and its associated metadata.</p>",
+    "DeleteDocumentVersion": "<p>Deletes a version of an Amazon WorkDocs document. Use the <code>DeletePriorVersions</code> parameter to delete prior versions.</p>",
     "DeleteFolder": "<p>Permanently deletes the specified folder and its contents.</p>",
     "DeleteFolderContents": "<p>Deletes the contents of the specified folder.</p>",
     "DeleteLabels": "<p>Deletes the specified list of labels from a resource.</p>",
@@ -39,6 +40,7 @@
     "InitiateDocumentVersionUpload": "<p>Creates a new document object and version object.</p> <p>The client specifies the parent folder ID and name of the document to upload. The ID is optionally specified when creating a new version of an existing document. This is the first step to upload a document. Next, upload the document to the URL returned from the call, and then call <a>UpdateDocumentVersion</a>.</p> <p>To cancel the document upload, call <a>AbortDocumentVersionUpload</a>.</p>",
     "RemoveAllResourcePermissions": "<p>Removes all the permissions from the specified resource.</p>",
     "RemoveResourcePermission": "<p>Removes the permission for the specified principal from the specified resource.</p>",
+    "RestoreDocumentVersions": "<p>Recovers a deleted version of an Amazon WorkDocs document.</p>",
     "UpdateDocument": "<p>Updates the specified attributes of a document. The user must have access to both the document and its parent folder, if applicable.</p>",
     "UpdateDocumentVersion": "<p>Changes the status of the document version to ACTIVE. </p> <p>Amazon WorkDocs also sets its document container to ACTIVE. This is the last step in a document upload, after the client uploads the document to an S3-presigned URL returned by <a>InitiateDocumentVersionUpload</a>. </p>",
     "UpdateFolder": "<p>Updates the specified attributes of the specified folder. The user must have access to both the folder and its parent folder, if applicable.</p>",
@@ -103,6 +105,7 @@
         "DeleteCommentRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "DeleteCustomMetadataRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "DeleteDocumentRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
+        "DeleteDocumentVersionRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "DeleteFolderContentsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "DeleteFolderRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "DeleteLabelsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
@@ -125,6 +128,7 @@
         "InitiateDocumentVersionUploadRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "RemoveAllResourcePermissionsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "RemoveResourcePermissionRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
+        "RestoreDocumentVersionsRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "UpdateDocumentRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "UpdateDocumentVersionRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
         "UpdateFolderRequest$AuthenticationToken": "<p>Amazon WorkDocs authentication token. Not required when using AWS administrator credentials to access the API.</p>",
@@ -143,6 +147,7 @@
         "Activity$IsIndirectActivity": "<p>Indicates whether an activity is indirect or direct. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity).</p>",
         "CreateCommentRequest$NotifyCollaborators": "<p>Set this parameter to TRUE to send an email out to the document collaborators after the comment is created.</p>",
         "DeleteCustomMetadataRequest$DeleteAll": "<p>Flag to indicate removal of all custom metadata properties from the specified resource.</p>",
+        "DeleteDocumentVersionRequest$DeletePriorVersions": "<p>When set to <code>TRUE</code>, deletes the specified version and <i>all prior versions</i> of a document.</p>",
         "DeleteLabelsRequest$DeleteAll": "<p>Flag to request removal of all labels from the specified resource.</p>",
         "DescribeActivitiesRequest$IncludeIndirectActivities": "<p>Includes indirect activities. An indirect activity results from a direct activity performed on a parent resource. For example, sharing a parent folder (the direct activity) shares all of the subfolders and documents within the parent folder (the indirect activity).</p>",
         "GetDocumentRequest$IncludeCustomMetadata": "<p>Set this to <code>TRUE</code> to include custom metadata in the response.</p>",
@@ -336,6 +341,11 @@
       "refs": {
       }
     },
+    "DeleteDocumentVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteFolderContentsRequest": {
       "base": null,
       "refs": {
@@ -521,6 +531,7 @@
         "CreateCustomMetadataRequest$VersionId": "<p>The ID of the version, if the custom metadata is being added to a document version.</p>",
         "DeleteCommentRequest$VersionId": "<p>The ID of the document version.</p>",
         "DeleteCustomMetadataRequest$VersionId": "<p>The ID of the version, if the custom metadata is being deleted from a document version.</p>",
+        "DeleteDocumentVersionRequest$VersionId": "<p>The version ID of a document.</p>",
         "DescribeCommentsRequest$VersionId": "<p>The ID of the document version.</p>",
         "DocumentVersionMetadata$Id": "<p>The ID of the version.</p>",
         "GetDocumentVersionRequest$VersionId": "<p>The version ID of the document.</p>",
@@ -569,7 +580,7 @@
     "EntityIdList": {
       "base": null,
       "refs": {
-        "EntityNotExistsException$EntityIds": null
+        "EntityNotExistsException$EntityIds": "<p>The IDs of the non-existent resources.</p>"
       }
     },
     "EntityNotExistsException": {
@@ -829,7 +840,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>The maximum of 100,000 folders under the parent folder has been exceeded.</p>",
+      "base": "<p>The maximum of 100,000 files and folders under the parent folder has been exceeded.</p>",
       "refs": {
       }
     },
@@ -859,8 +870,6 @@
     "MarkerType": {
       "base": null,
       "refs": {
-        "DescribeActivitiesRequest$Marker": "<p>The marker for the next set of results.</p>",
-        "DescribeActivitiesResponse$Marker": "<p>The marker for the next set of results.</p>",
         "DescribeCommentsRequest$Marker": "<p>The marker for the next set of results. This marker was received from a previous call.</p>",
         "DescribeCommentsResponse$Marker": "<p>The marker for the next set of results. This marker was received from a previous call.</p>",
         "DescribeGroupsRequest$Marker": "<p>The marker for the next set of results. (You received this marker from a previous call.)</p>",
@@ -1013,6 +1022,7 @@
         "DeleteCommentRequest$DocumentId": "<p>The ID of the document.</p>",
         "DeleteCustomMetadataRequest$ResourceId": "<p>The ID of the resource, either a document or folder.</p>",
         "DeleteDocumentRequest$DocumentId": "<p>The ID of the document.</p>",
+        "DeleteDocumentVersionRequest$DocumentId": "<p>The ID of a document.</p>",
         "DeleteFolderContentsRequest$FolderId": "<p>The ID of the folder.</p>",
         "DeleteFolderRequest$FolderId": "<p>The ID of the folder.</p>",
         "DeleteLabelsRequest$ResourceId": "<p>The ID of the resource.</p>",
@@ -1033,6 +1043,7 @@
         "RemoveResourcePermissionRequest$ResourceId": "<p>The ID of the resource.</p>",
         "ResourceMetadata$Id": "<p>The ID of the resource.</p>",
         "ResourceMetadata$ParentId": "<p>The parent ID of the resource before a rename operation.</p>",
+        "RestoreDocumentVersionsRequest$DocumentId": "<p>The ID of the document.</p>",
         "ShareResult$ShareId": "<p>The ID of the resource that was shared.</p>",
         "UpdateDocumentRequest$DocumentId": "<p>The ID of the document.</p>",
         "UpdateDocumentRequest$ParentFolderId": "<p>The ID of the parent folder.</p>",
@@ -1104,6 +1115,11 @@
         "ResourceMetadata$Type": "<p>The type of resource.</p>"
       }
     },
+    "RestoreDocumentVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RolePermissionType": {
       "base": null,
       "refs": {
@@ -1118,11 +1134,18 @@
         "ShareResult$Role": "<p>The role.</p>"
       }
     },
+    "SearchMarkerType": {
+      "base": null,
+      "refs": {
+        "DescribeActivitiesRequest$Marker": "<p>The marker for the next set of results.</p>",
+        "DescribeActivitiesResponse$Marker": "<p>The marker for the next set of results.</p>"
+      }
+    },
     "SearchQueryType": {
       "base": null,
       "refs": {
         "DescribeGroupsRequest$SearchQuery": "<p>A query to describe groups by group name.</p>",
-        "DescribeUsersRequest$Query": "<p>A query to filter users by user name.</p>"
+        "DescribeUsersRequest$Query": "<p>A query to filter users by user name. Remember the following about the <code>Userids</code> and <code>Query</code> parameters:</p> <ul> <li> <p>If you don't use either parameter, the API returns a paginated list of all users on the site.</p> </li> <li> <p>If you use both parameters, the API ignores the <code>Query</code> parameter.</p> </li> <li> <p>The <code>Userid</code> parameter only returns user names that match a corresponding user ID.</p> </li> <li> <p>The <code>Query</code> parameter runs a \"prefix\" search for users by the <code>GivenName</code>, <code>SurName</code>, or <code>UserName</code> fields included in a <a href=\"https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateUser.html\">CreateUser</a> API call. For example, querying on <code>Ma</code> returns Márcia Oliveira, María García, and Mateo Jackson. If you use multiple characters, the API only returns data that matches all characters. For example, querying on <code>Ma J</code> only returns Mateo Jackson.</p> </li> </ul>"
       }
     },
     "ServiceUnavailableException": {

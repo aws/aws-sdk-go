@@ -707,6 +707,97 @@ func (c *WorkSpaces) CreateIpGroupWithContext(ctx aws.Context, input *CreateIpGr
 	return out, req.Send()
 }
 
+const opCreateStandbyWorkspaces = "CreateStandbyWorkspaces"
+
+// CreateStandbyWorkspacesRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStandbyWorkspaces operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStandbyWorkspaces for more information on using the CreateStandbyWorkspaces
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateStandbyWorkspacesRequest method.
+//	req, resp := client.CreateStandbyWorkspacesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateStandbyWorkspaces
+func (c *WorkSpaces) CreateStandbyWorkspacesRequest(input *CreateStandbyWorkspacesInput) (req *request.Request, output *CreateStandbyWorkspacesOutput) {
+	op := &request.Operation{
+		Name:       opCreateStandbyWorkspaces,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateStandbyWorkspacesInput{}
+	}
+
+	output = &CreateStandbyWorkspacesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateStandbyWorkspaces API operation for Amazon WorkSpaces.
+//
+// Creates a Standby WorkSpace in a secondary region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation CreateStandbyWorkspaces for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ResourceLimitExceededException
+//     Your resource limits have been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateStandbyWorkspaces
+func (c *WorkSpaces) CreateStandbyWorkspaces(input *CreateStandbyWorkspacesInput) (*CreateStandbyWorkspacesOutput, error) {
+	req, out := c.CreateStandbyWorkspacesRequest(input)
+	return out, req.Send()
+}
+
+// CreateStandbyWorkspacesWithContext is the same as CreateStandbyWorkspaces with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStandbyWorkspaces for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) CreateStandbyWorkspacesWithContext(ctx aws.Context, input *CreateStandbyWorkspacesInput, opts ...request.Option) (*CreateStandbyWorkspacesOutput, error) {
+	req, out := c.CreateStandbyWorkspacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a "aws/request.Request" representing the
@@ -4108,6 +4199,96 @@ func (c *WorkSpaces) ModifyAccountWithContext(ctx aws.Context, input *ModifyAcco
 	return out, req.Send()
 }
 
+const opModifyCertificateBasedAuthProperties = "ModifyCertificateBasedAuthProperties"
+
+// ModifyCertificateBasedAuthPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyCertificateBasedAuthProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyCertificateBasedAuthProperties for more information on using the ModifyCertificateBasedAuthProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyCertificateBasedAuthPropertiesRequest method.
+//	req, resp := client.ModifyCertificateBasedAuthPropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyCertificateBasedAuthProperties
+func (c *WorkSpaces) ModifyCertificateBasedAuthPropertiesRequest(input *ModifyCertificateBasedAuthPropertiesInput) (req *request.Request, output *ModifyCertificateBasedAuthPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opModifyCertificateBasedAuthProperties,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyCertificateBasedAuthPropertiesInput{}
+	}
+
+	output = &ModifyCertificateBasedAuthPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ModifyCertificateBasedAuthProperties API operation for Amazon WorkSpaces.
+//
+// Modifies the properties of the certificate-based authentication you want
+// to use with your WorkSpaces.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation ModifyCertificateBasedAuthProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - InvalidParameterValuesException
+//     One or more parameter values are not valid.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyCertificateBasedAuthProperties
+func (c *WorkSpaces) ModifyCertificateBasedAuthProperties(input *ModifyCertificateBasedAuthPropertiesInput) (*ModifyCertificateBasedAuthPropertiesOutput, error) {
+	req, out := c.ModifyCertificateBasedAuthPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// ModifyCertificateBasedAuthPropertiesWithContext is the same as ModifyCertificateBasedAuthProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyCertificateBasedAuthProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) ModifyCertificateBasedAuthPropertiesWithContext(ctx aws.Context, input *ModifyCertificateBasedAuthPropertiesInput, opts ...request.Option) (*ModifyCertificateBasedAuthPropertiesOutput, error) {
+	req, out := c.ModifyCertificateBasedAuthPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyClientProperties = "ModifyClientProperties"
 
 // ModifyClientPropertiesRequest generates a "aws/request.Request" representing the
@@ -4723,6 +4904,9 @@ func (c *WorkSpaces) ModifyWorkspaceStateRequest(input *ModifyWorkspaceStateInpu
 //   - ResourceNotFoundException
 //     The resource could not be found.
 //
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyWorkspaceState
 func (c *WorkSpaces) ModifyWorkspaceState(input *ModifyWorkspaceStateInput) (*ModifyWorkspaceStateOutput, error) {
 	req, out := c.ModifyWorkspaceStateRequest(input)
@@ -4800,6 +4984,11 @@ func (c *WorkSpaces) RebootWorkspacesRequest(input *RebootWorkspacesInput) (req 
 //
 // See the AWS API reference guide for Amazon WorkSpaces's
 // API operation RebootWorkspaces for usage and error information.
+//
+// Returned Error Types:
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RebootWorkspaces
 func (c *WorkSpaces) RebootWorkspaces(input *RebootWorkspacesInput) (*RebootWorkspacesOutput, error) {
 	req, out := c.RebootWorkspacesRequest(input)
@@ -4882,6 +5071,11 @@ func (c *WorkSpaces) RebuildWorkspacesRequest(input *RebuildWorkspacesInput) (re
 //
 // See the AWS API reference guide for Amazon WorkSpaces's
 // API operation RebuildWorkspaces for usage and error information.
+//
+// Returned Error Types:
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RebuildWorkspaces
 func (c *WorkSpaces) RebuildWorkspaces(input *RebuildWorkspacesInput) (*RebuildWorkspacesOutput, error) {
 	req, out := c.RebuildWorkspacesRequest(input)
@@ -5087,6 +5281,9 @@ func (c *WorkSpaces) RestoreWorkspaceRequest(input *RestoreWorkspaceInput) (req 
 //
 //   - AccessDeniedException
 //     The user is not authorized to access a resource.
+//
+//   - OperationNotSupportedException
+//     This operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RestoreWorkspace
 func (c *WorkSpaces) RestoreWorkspace(input *RestoreWorkspaceInput) (*RestoreWorkspaceOutput, error) {
@@ -5815,6 +6012,9 @@ func (c *WorkSpaces) UpdateWorkspaceBundleRequest(input *UpdateWorkspaceBundleIn
 //   - ResourceUnavailableException
 //     The specified resource is not available.
 //
+//   - OperationNotSupportedException
+//     This operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateWorkspaceBundle
 func (c *WorkSpaces) UpdateWorkspaceBundle(input *UpdateWorkspaceBundleInput) (*UpdateWorkspaceBundleOutput, error) {
 	req, out := c.UpdateWorkspaceBundleRequest(input)
@@ -6359,6 +6559,62 @@ func (s AuthorizeIpRulesOutput) String() string {
 // value will be replaced with "sensitive".
 func (s AuthorizeIpRulesOutput) GoString() string {
 	return s.String()
+}
+
+// Describes the properties of the certificate-based authentication you want
+// to use with your WorkSpaces.
+type CertificateBasedAuthProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager
+	// Private CA resource.
+	CertificateAuthorityArn *string `min:"5" type:"string"`
+
+	// The status of the certificate-based authentication properties.
+	Status *string `type:"string" enum:"CertificateBasedAuthStatusEnum"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateBasedAuthProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateBasedAuthProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CertificateBasedAuthProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CertificateBasedAuthProperties"}
+	if s.CertificateAuthorityArn != nil && len(*s.CertificateAuthorityArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateAuthorityArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *CertificateBasedAuthProperties) SetCertificateAuthorityArn(v string) *CertificateBasedAuthProperties {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CertificateBasedAuthProperties) SetStatus(v string) *CertificateBasedAuthProperties {
+	s.Status = &v
+	return s
 }
 
 // Describes an Amazon WorkSpaces client.
@@ -7213,6 +7469,119 @@ func (s CreateIpGroupOutput) GoString() string {
 // SetGroupId sets the GroupId field's value.
 func (s *CreateIpGroupOutput) SetGroupId(v string) *CreateIpGroupOutput {
 	s.GroupId = &v
+	return s
+}
+
+type CreateStandbyWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Region of the primary WorkSpace.
+	//
+	// PrimaryRegion is a required field
+	PrimaryRegion *string `min:"1" type:"string" required:"true"`
+
+	// Information about the Standby WorkSpace to be created.
+	//
+	// StandbyWorkspaces is a required field
+	StandbyWorkspaces []*StandbyWorkspace `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStandbyWorkspacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStandbyWorkspacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStandbyWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStandbyWorkspacesInput"}
+	if s.PrimaryRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryRegion"))
+	}
+	if s.PrimaryRegion != nil && len(*s.PrimaryRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PrimaryRegion", 1))
+	}
+	if s.StandbyWorkspaces == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandbyWorkspaces"))
+	}
+	if s.StandbyWorkspaces != nil {
+		for i, v := range s.StandbyWorkspaces {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StandbyWorkspaces", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrimaryRegion sets the PrimaryRegion field's value.
+func (s *CreateStandbyWorkspacesInput) SetPrimaryRegion(v string) *CreateStandbyWorkspacesInput {
+	s.PrimaryRegion = &v
+	return s
+}
+
+// SetStandbyWorkspaces sets the StandbyWorkspaces field's value.
+func (s *CreateStandbyWorkspacesInput) SetStandbyWorkspaces(v []*StandbyWorkspace) *CreateStandbyWorkspacesInput {
+	s.StandbyWorkspaces = v
+	return s
+}
+
+type CreateStandbyWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the Standby WorkSpace that could not be created.
+	FailedStandbyRequests []*FailedCreateStandbyWorkspacesRequest `type:"list"`
+
+	// Information about the Standby WorkSpace that was created.
+	PendingStandbyRequests []*PendingCreateStandbyWorkspacesRequest `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStandbyWorkspacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateStandbyWorkspacesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedStandbyRequests sets the FailedStandbyRequests field's value.
+func (s *CreateStandbyWorkspacesOutput) SetFailedStandbyRequests(v []*FailedCreateStandbyWorkspacesRequest) *CreateStandbyWorkspacesOutput {
+	s.FailedStandbyRequests = v
+	return s
+}
+
+// SetPendingStandbyRequests sets the PendingStandbyRequests field's value.
+func (s *CreateStandbyWorkspacesOutput) SetPendingStandbyRequests(v []*PendingCreateStandbyWorkspacesRequest) *CreateStandbyWorkspacesOutput {
+	s.PendingStandbyRequests = v
 	return s
 }
 
@@ -10689,6 +11058,57 @@ func (s DisassociateIpGroupsOutput) GoString() string {
 	return s.String()
 }
 
+// Describes the Standby WorkSpace that could not be created.
+type FailedCreateStandbyWorkspacesRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The error code that is returned if the Standby WorkSpace could not be created.
+	ErrorCode *string `type:"string"`
+
+	// The text of the error message that is returned if the Standby WorkSpace could
+	// not be created.
+	ErrorMessage *string `type:"string"`
+
+	// Information about the Standby WorkSpace that could not be created.
+	StandbyWorkspaceRequest *StandbyWorkspace `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedCreateStandbyWorkspacesRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedCreateStandbyWorkspacesRequest) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *FailedCreateStandbyWorkspacesRequest) SetErrorCode(v string) *FailedCreateStandbyWorkspacesRequest {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedCreateStandbyWorkspacesRequest) SetErrorMessage(v string) *FailedCreateStandbyWorkspacesRequest {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetStandbyWorkspaceRequest sets the StandbyWorkspaceRequest field's value.
+func (s *FailedCreateStandbyWorkspacesRequest) SetStandbyWorkspaceRequest(v *StandbyWorkspace) *FailedCreateStandbyWorkspacesRequest {
+	s.StandbyWorkspaceRequest = v
+	return s
+}
+
 // Describes a WorkSpace that cannot be created.
 type FailedCreateWorkspaceRequest struct {
 	_ struct{} `type:"structure"`
@@ -12038,6 +12458,100 @@ func (s ModifyAccountOutput) GoString() string {
 	return s.String()
 }
 
+type ModifyCertificateBasedAuthPropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the certificate-based authentication.
+	CertificateBasedAuthProperties *CertificateBasedAuthProperties `type:"structure"`
+
+	// The properties of the certificate-based authentication you want to delete.
+	PropertiesToDelete []*string `type:"list" enum:"DeletableCertificateBasedAuthProperty"`
+
+	// The resource identifiers, in the form of directory IDs.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyCertificateBasedAuthPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyCertificateBasedAuthPropertiesInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 10))
+	}
+	if s.CertificateBasedAuthProperties != nil {
+		if err := s.CertificateBasedAuthProperties.Validate(); err != nil {
+			invalidParams.AddNested("CertificateBasedAuthProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateBasedAuthProperties sets the CertificateBasedAuthProperties field's value.
+func (s *ModifyCertificateBasedAuthPropertiesInput) SetCertificateBasedAuthProperties(v *CertificateBasedAuthProperties) *ModifyCertificateBasedAuthPropertiesInput {
+	s.CertificateBasedAuthProperties = v
+	return s
+}
+
+// SetPropertiesToDelete sets the PropertiesToDelete field's value.
+func (s *ModifyCertificateBasedAuthPropertiesInput) SetPropertiesToDelete(v []*string) *ModifyCertificateBasedAuthPropertiesInput {
+	s.PropertiesToDelete = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ModifyCertificateBasedAuthPropertiesInput) SetResourceId(v string) *ModifyCertificateBasedAuthPropertiesInput {
+	s.ResourceId = &v
+	return s
+}
+
+type ModifyCertificateBasedAuthPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCertificateBasedAuthPropertiesOutput) GoString() string {
+	return s.String()
+}
+
 type ModifyClientPropertiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12813,6 +13327,70 @@ func (s *OperationNotSupportedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about the Standby WorkSpace.
+type PendingCreateStandbyWorkspacesRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory for the Standby WorkSpace.
+	DirectoryId *string `min:"10" type:"string"`
+
+	// The operational state of the Standby WorkSpace.
+	State *string `type:"string" enum:"WorkspaceState"`
+
+	// Describes the Standby WorkSpace that was created.
+	//
+	// Because this operation is asynchronous, the identifier returned is not immediately
+	// available for use with other operations. For example, if you call DescribeWorkspaces
+	// (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html)
+	// before the WorkSpace is created, the information returned can be incomplete.
+	UserName *string `min:"1" type:"string"`
+
+	// The identifier of the Standby WorkSpace.
+	WorkspaceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingCreateStandbyWorkspacesRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingCreateStandbyWorkspacesRequest) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *PendingCreateStandbyWorkspacesRequest) SetDirectoryId(v string) *PendingCreateStandbyWorkspacesRequest {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *PendingCreateStandbyWorkspacesRequest) SetState(v string) *PendingCreateStandbyWorkspacesRequest {
+	s.State = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *PendingCreateStandbyWorkspacesRequest) SetUserName(v string) *PendingCreateStandbyWorkspacesRequest {
+	s.UserName = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *PendingCreateStandbyWorkspacesRequest) SetWorkspaceId(v string) *PendingCreateStandbyWorkspacesRequest {
+	s.WorkspaceId = &v
+	return s
+}
+
 // Describes the information used to reboot a WorkSpace.
 type RebootRequest struct {
 	_ struct{} `type:"structure"`
@@ -13232,6 +13810,66 @@ func (s RegisterWorkspaceDirectoryOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RegisterWorkspaceDirectoryOutput) GoString() string {
 	return s.String()
+}
+
+// Describes the related WorkSpace. The related WorkSpace could be a Standby
+// WorkSpace or Primary WorkSpace related to the specified WorkSpace.
+type RelatedWorkspaceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Region of the related WorkSpace.
+	Region *string `min:"1" type:"string"`
+
+	// Indicates the state of the WorkSpace.
+	State *string `type:"string" enum:"WorkspaceState"`
+
+	// Indicates the type of WorkSpace.
+	Type *string `type:"string" enum:"StandbyWorkspaceRelationshipType"`
+
+	// The identifier of the related WorkSpace.
+	WorkspaceId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RelatedWorkspaceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RelatedWorkspaceProperties) GoString() string {
+	return s.String()
+}
+
+// SetRegion sets the Region field's value.
+func (s *RelatedWorkspaceProperties) SetRegion(v string) *RelatedWorkspaceProperties {
+	s.Region = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RelatedWorkspaceProperties) SetState(v string) *RelatedWorkspaceProperties {
+	s.State = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RelatedWorkspaceProperties) SetType(v string) *RelatedWorkspaceProperties {
+	s.Type = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *RelatedWorkspaceProperties) SetWorkspaceId(v string) *RelatedWorkspaceProperties {
+	s.WorkspaceId = &v
+	return s
 }
 
 // The specified resource already exists.
@@ -14014,6 +14652,98 @@ func (s Snapshot) GoString() string {
 // SetSnapshotTime sets the SnapshotTime field's value.
 func (s *Snapshot) SetSnapshotTime(v time.Time) *Snapshot {
 	s.SnapshotTime = &v
+	return s
+}
+
+// Describes a Standby WorkSpace.
+type StandbyWorkspace struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory for the Standby WorkSpace.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `min:"10" type:"string" required:"true"`
+
+	// The identifier of the Standby WorkSpace.
+	//
+	// PrimaryWorkspaceId is a required field
+	PrimaryWorkspaceId *string `type:"string" required:"true"`
+
+	// The tags associated with the Standby WorkSpace.
+	Tags []*Tag `type:"list"`
+
+	// The volume encryption key of the Standby WorkSpace.
+	VolumeEncryptionKey *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandbyWorkspace) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandbyWorkspace) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StandbyWorkspace) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StandbyWorkspace"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.DirectoryId != nil && len(*s.DirectoryId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("DirectoryId", 10))
+	}
+	if s.PrimaryWorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryWorkspaceId"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *StandbyWorkspace) SetDirectoryId(v string) *StandbyWorkspace {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetPrimaryWorkspaceId sets the PrimaryWorkspaceId field's value.
+func (s *StandbyWorkspace) SetPrimaryWorkspaceId(v string) *StandbyWorkspace {
+	s.PrimaryWorkspaceId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StandbyWorkspace) SetTags(v []*Tag) *StandbyWorkspace {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeEncryptionKey sets the VolumeEncryptionKey field's value.
+func (s *StandbyWorkspace) SetVolumeEncryptionKey(v string) *StandbyWorkspace {
+	s.VolumeEncryptionKey = &v
 	return s
 }
 
@@ -15137,6 +15867,9 @@ type Workspace struct {
 	// The modification states of the WorkSpace.
 	ModificationStates []*ModificationState `type:"list"`
 
+	// The Standby WorkSpace or Primary WorkSpace related to the specified WorkSpace.
+	RelatedWorkspaces []*RelatedWorkspaceProperties `type:"list"`
+
 	// Indicates whether the data stored on the root volume is encrypted.
 	RootVolumeEncryptionEnabled *bool `type:"boolean"`
 
@@ -15227,6 +15960,12 @@ func (s *Workspace) SetIpAddress(v string) *Workspace {
 // SetModificationStates sets the ModificationStates field's value.
 func (s *Workspace) SetModificationStates(v []*ModificationState) *Workspace {
 	s.ModificationStates = v
+	return s
+}
+
+// SetRelatedWorkspaces sets the RelatedWorkspaces field's value.
+func (s *Workspace) SetRelatedWorkspaces(v []*RelatedWorkspaceProperties) *Workspace {
+	s.RelatedWorkspaces = v
 	return s
 }
 
@@ -15382,6 +16121,9 @@ type WorkspaceBundle struct {
 	// The identifier of the bundle.
 	BundleId *string `type:"string"`
 
+	// The type of WorkSpace bundle.
+	BundleType *string `type:"string" enum:"BundleType"`
+
 	// The compute type of the bundle. For more information, see Amazon WorkSpaces
 	// Bundles (http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles).
 	ComputeType *ComputeType `type:"structure"`
@@ -15408,6 +16150,9 @@ type WorkspaceBundle struct {
 	// The size of the root volume.
 	RootStorage *RootStorage `type:"structure"`
 
+	// The state of the WorkSpace bundle.
+	State *string `type:"string" enum:"WorkspaceBundleState"`
+
 	// The size of the user volume.
 	UserStorage *UserStorage `type:"structure"`
 }
@@ -15433,6 +16178,12 @@ func (s WorkspaceBundle) GoString() string {
 // SetBundleId sets the BundleId field's value.
 func (s *WorkspaceBundle) SetBundleId(v string) *WorkspaceBundle {
 	s.BundleId = &v
+	return s
+}
+
+// SetBundleType sets the BundleType field's value.
+func (s *WorkspaceBundle) SetBundleType(v string) *WorkspaceBundle {
+	s.BundleType = &v
 	return s
 }
 
@@ -15481,6 +16232,12 @@ func (s *WorkspaceBundle) SetOwner(v string) *WorkspaceBundle {
 // SetRootStorage sets the RootStorage field's value.
 func (s *WorkspaceBundle) SetRootStorage(v *RootStorage) *WorkspaceBundle {
 	s.RootStorage = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *WorkspaceBundle) SetState(v string) *WorkspaceBundle {
+	s.State = &v
 	return s
 }
 
@@ -15672,6 +16429,11 @@ type WorkspaceDirectory struct {
 	// The directory alias.
 	Alias *string `type:"string"`
 
+	// The certificate-based authentication properties used to authenticate SAML
+	// 2.0 Identity Provider (IdP) user identities to Active Directory for WorkSpaces
+	// login.
+	CertificateBasedAuthProperties *CertificateBasedAuthProperties `type:"structure"`
+
 	// The user name for the service account.
 	CustomerUserName *string `min:"1" type:"string"`
 
@@ -15753,6 +16515,12 @@ func (s WorkspaceDirectory) GoString() string {
 // SetAlias sets the Alias field's value.
 func (s *WorkspaceDirectory) SetAlias(v string) *WorkspaceDirectory {
 	s.Alias = &v
+	return s
+}
+
+// SetCertificateBasedAuthProperties sets the CertificateBasedAuthProperties field's value.
+func (s *WorkspaceDirectory) SetCertificateBasedAuthProperties(v *CertificateBasedAuthProperties) *WorkspaceDirectory {
+	s.CertificateBasedAuthProperties = v
 	return s
 }
 
@@ -16338,6 +17106,38 @@ func AssociationStatus_Values() []string {
 }
 
 const (
+	// BundleTypeRegular is a BundleType enum value
+	BundleTypeRegular = "REGULAR"
+
+	// BundleTypeStandby is a BundleType enum value
+	BundleTypeStandby = "STANDBY"
+)
+
+// BundleType_Values returns all elements of the BundleType enum
+func BundleType_Values() []string {
+	return []string{
+		BundleTypeRegular,
+		BundleTypeStandby,
+	}
+}
+
+const (
+	// CertificateBasedAuthStatusEnumDisabled is a CertificateBasedAuthStatusEnum enum value
+	CertificateBasedAuthStatusEnumDisabled = "DISABLED"
+
+	// CertificateBasedAuthStatusEnumEnabled is a CertificateBasedAuthStatusEnum enum value
+	CertificateBasedAuthStatusEnumEnabled = "ENABLED"
+)
+
+// CertificateBasedAuthStatusEnum_Values returns all elements of the CertificateBasedAuthStatusEnum enum
+func CertificateBasedAuthStatusEnum_Values() []string {
+	return []string{
+		CertificateBasedAuthStatusEnumDisabled,
+		CertificateBasedAuthStatusEnumEnabled,
+	}
+}
+
+const (
 	// ClientDeviceTypeDeviceTypeWindows is a ClientDeviceType enum value
 	ClientDeviceTypeDeviceTypeWindows = "DeviceTypeWindows"
 
@@ -16498,6 +17298,18 @@ func DedicatedTenancySupportResultEnum_Values() []string {
 	return []string{
 		DedicatedTenancySupportResultEnumEnabled,
 		DedicatedTenancySupportResultEnumDisabled,
+	}
+}
+
+const (
+	// DeletableCertificateBasedAuthPropertyCertificateBasedAuthPropertiesCertificateAuthorityArn is a DeletableCertificateBasedAuthProperty enum value
+	DeletableCertificateBasedAuthPropertyCertificateBasedAuthPropertiesCertificateAuthorityArn = "CERTIFICATE_BASED_AUTH_PROPERTIES_CERTIFICATE_AUTHORITY_ARN"
+)
+
+// DeletableCertificateBasedAuthProperty_Values returns all elements of the DeletableCertificateBasedAuthProperty enum
+func DeletableCertificateBasedAuthProperty_Values() []string {
+	return []string{
+		DeletableCertificateBasedAuthPropertyCertificateBasedAuthPropertiesCertificateAuthorityArn,
 	}
 }
 
@@ -16674,6 +17486,22 @@ func SamlStatusEnum_Values() []string {
 }
 
 const (
+	// StandbyWorkspaceRelationshipTypePrimary is a StandbyWorkspaceRelationshipType enum value
+	StandbyWorkspaceRelationshipTypePrimary = "PRIMARY"
+
+	// StandbyWorkspaceRelationshipTypeStandby is a StandbyWorkspaceRelationshipType enum value
+	StandbyWorkspaceRelationshipTypeStandby = "STANDBY"
+)
+
+// StandbyWorkspaceRelationshipType_Values returns all elements of the StandbyWorkspaceRelationshipType enum
+func StandbyWorkspaceRelationshipType_Values() []string {
+	return []string{
+		StandbyWorkspaceRelationshipTypePrimary,
+		StandbyWorkspaceRelationshipTypeStandby,
+	}
+}
+
+const (
 	// TargetWorkspaceStateAvailable is a TargetWorkspaceState enum value
 	TargetWorkspaceStateAvailable = "AVAILABLE"
 
@@ -16702,6 +17530,26 @@ func Tenancy_Values() []string {
 	return []string{
 		TenancyDedicated,
 		TenancyShared,
+	}
+}
+
+const (
+	// WorkspaceBundleStateAvailable is a WorkspaceBundleState enum value
+	WorkspaceBundleStateAvailable = "AVAILABLE"
+
+	// WorkspaceBundleStatePending is a WorkspaceBundleState enum value
+	WorkspaceBundleStatePending = "PENDING"
+
+	// WorkspaceBundleStateError is a WorkspaceBundleState enum value
+	WorkspaceBundleStateError = "ERROR"
+)
+
+// WorkspaceBundleState_Values returns all elements of the WorkspaceBundleState enum
+func WorkspaceBundleState_Values() []string {
+	return []string{
+		WorkspaceBundleStateAvailable,
+		WorkspaceBundleStatePending,
+		WorkspaceBundleStateError,
 	}
 }
 

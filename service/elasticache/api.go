@@ -7603,6 +7603,61 @@ func (s *Authentication) SetType(v string) *Authentication {
 	return s
 }
 
+// Specifies the authentication mode to use.
+type AuthenticationMode struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the passwords to use for authentication if Type is set to password.
+	Passwords []*string `min:"1" type:"list"`
+
+	// Specifies the authentication type. Possible options are IAM authentication,
+	// password and no password.
+	Type *string `type:"string" enum:"InputAuthenticationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationMode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthenticationMode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthenticationMode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthenticationMode"}
+	if s.Passwords != nil && len(s.Passwords) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Passwords", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPasswords sets the Passwords field's value.
+func (s *AuthenticationMode) SetPasswords(v []*string) *AuthenticationMode {
+	s.Passwords = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AuthenticationMode) SetType(v string) *AuthenticationMode {
+	s.Type = &v
+	return s
+}
+
 // Represents the input of an AuthorizeCacheSecurityGroupIngress operation.
 type AuthorizeCacheSecurityGroupIngressInput struct {
 	_ struct{} `type:"structure"`
@@ -11521,6 +11576,9 @@ type CreateUserInput struct {
 	// AccessString is a required field
 	AccessString *string `type:"string" required:"true"`
 
+	// Specifies how to authenticate the user.
+	AuthenticationMode *AuthenticationMode `type:"structure"`
+
 	// The current supported value is Redis.
 	//
 	// Engine is a required field
@@ -11590,6 +11648,11 @@ func (s *CreateUserInput) Validate() error {
 	if s.UserName != nil && len(*s.UserName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
 	}
+	if s.AuthenticationMode != nil {
+		if err := s.AuthenticationMode.Validate(); err != nil {
+			invalidParams.AddNested("AuthenticationMode", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11600,6 +11663,12 @@ func (s *CreateUserInput) Validate() error {
 // SetAccessString sets the AccessString field's value.
 func (s *CreateUserInput) SetAccessString(v string) *CreateUserInput {
 	s.AccessString = &v
+	return s
+}
+
+// SetAuthenticationMode sets the AuthenticationMode field's value.
+func (s *CreateUserInput) SetAuthenticationMode(v *AuthenticationMode) *CreateUserInput {
+	s.AuthenticationMode = v
 	return s
 }
 
@@ -18089,6 +18158,9 @@ type ModifyUserInput struct {
 	// Adds additional user permissions to the access string.
 	AppendAccessString *string `type:"string"`
 
+	// Specifies how to authenticate the user.
+	AuthenticationMode *AuthenticationMode `type:"structure"`
+
 	// Indicates no password is required for the user.
 	NoPasswordRequired *bool `type:"boolean"`
 
@@ -18131,6 +18203,11 @@ func (s *ModifyUserInput) Validate() error {
 	if s.UserId != nil && len(*s.UserId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
 	}
+	if s.AuthenticationMode != nil {
+		if err := s.AuthenticationMode.Validate(); err != nil {
+			invalidParams.AddNested("AuthenticationMode", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -18147,6 +18224,12 @@ func (s *ModifyUserInput) SetAccessString(v string) *ModifyUserInput {
 // SetAppendAccessString sets the AppendAccessString field's value.
 func (s *ModifyUserInput) SetAppendAccessString(v string) *ModifyUserInput {
 	s.AppendAccessString = &v
+	return s
+}
+
+// SetAuthenticationMode sets the AuthenticationMode field's value.
+func (s *ModifyUserInput) SetAuthenticationMode(v *AuthenticationMode) *ModifyUserInput {
+	s.AuthenticationMode = v
 	return s
 }
 
@@ -22272,6 +22355,9 @@ const (
 
 	// AuthenticationTypeNoPassword is a AuthenticationType enum value
 	AuthenticationTypeNoPassword = "no-password"
+
+	// AuthenticationTypeIam is a AuthenticationType enum value
+	AuthenticationTypeIam = "iam"
 )
 
 // AuthenticationType_Values returns all elements of the AuthenticationType enum
@@ -22279,6 +22365,7 @@ func AuthenticationType_Values() []string {
 	return []string{
 		AuthenticationTypePassword,
 		AuthenticationTypeNoPassword,
+		AuthenticationTypeIam,
 	}
 }
 
@@ -22351,6 +22438,26 @@ func DestinationType_Values() []string {
 	return []string{
 		DestinationTypeCloudwatchLogs,
 		DestinationTypeKinesisFirehose,
+	}
+}
+
+const (
+	// InputAuthenticationTypePassword is a InputAuthenticationType enum value
+	InputAuthenticationTypePassword = "password"
+
+	// InputAuthenticationTypeNoPasswordRequired is a InputAuthenticationType enum value
+	InputAuthenticationTypeNoPasswordRequired = "no-password-required"
+
+	// InputAuthenticationTypeIam is a InputAuthenticationType enum value
+	InputAuthenticationTypeIam = "iam"
+)
+
+// InputAuthenticationType_Values returns all elements of the InputAuthenticationType enum
+func InputAuthenticationType_Values() []string {
+	return []string{
+		InputAuthenticationTypePassword,
+		InputAuthenticationTypeNoPasswordRequired,
+		InputAuthenticationTypeIam,
 	}
 }
 

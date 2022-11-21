@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon Connect Customer Profiles</fullname> <p>Welcome to the Amazon Connect Customer Profiles API Reference. This guide provides information about the Amazon Connect Customer Profiles API, including supported operations, data types, parameters, and schemas.</p> <p>Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center.</p> <p>If you're new to Amazon Connect , you might find it helpful to also review the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/what-is-amazon-connect.html\">Amazon Connect Administrator Guide</a>.</p>",
+  "service": "<fullname>Amazon Connect Customer Profiles</fullname> <p>Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center. If you're new to Amazon Connect, you might find it helpful to review the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/\">Amazon Connect Administrator Guide</a>.</p>",
   "operations": {
     "AddProfileKey": "<p>Associates a new key value with a specific profile, such as a Contact Record ContactId.</p> <p>A profile object can have a single unique key and any number of additional keys that can be used to identify the profile that it belongs to.</p>",
     "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p>",
@@ -35,7 +35,7 @@
     "PutIntegration": "<p>Adds an integration between the service and a third-party service, which includes Amazon AppFlow and Amazon Connect.</p> <p>An integration can belong to only one domain.</p> <p>To add or remove tags on an existing Integration, see <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_TagResource.html\"> TagResource </a>/<a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UntagResource.html\"> UntagResource</a>.</p>",
     "PutProfileObject": "<p>Adds additional objects to customer profiles of a given ObjectType.</p> <p>When adding a specific profile object, like a Contact Record, an inferred profile can get created if it is not mapped to an existing profile. The resulting profile will only have a phone number populated in the standard ProfileObject. Any additional Contact Records with the same phone number will be mapped to the same inferred profile.</p> <p>When a ProfileObject is created and if a ProfileObjectType already exists for the ProfileObject, it will provide data to a standard profile depending on the ProfileObjectType definition.</p> <p>PutProfileObject needs an ObjectType, which can be created using PutProfileObjectType.</p>",
     "PutProfileObjectType": "<p>Defines a ProfileObjectType.</p> <p>To add or remove tags on an existing ObjectType, see <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_TagResource.html\"> TagResource</a>/<a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UntagResource.html\">UntagResource</a>.</p>",
-    "SearchProfiles": "<p>Searches for profiles within a specific domain name using name, phone number, email address, account number, or a custom defined index.</p>",
+    "SearchProfiles": "<p>Searches for profiles within a specific domain using one or more predefined search keys (e.g., _fullName, _phone, _email, _account, etc.) and/or custom-defined search keys. A search key is a data type pair that consists of a <code>KeyName</code> and <code>Values</code> list.</p> <p>This operation supports searching for profiles with a minimum of 1 key-value(s) pair and up to 5 key-value(s) pairs using either <code>AND</code> or <code>OR</code> logic.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon Connect Customer Profiles resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p> <p>Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.</p> <p>You can use the TagResource action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified Amazon Connect Customer Profiles resource. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p>",
     "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>After a domain is created, the name can’t be changed.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p> <p>To add or remove tags on an existing Domain, see <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_TagResource.html\">TagResource</a>/<a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UntagResource.html\">UntagResource</a>.</p>",
@@ -48,6 +48,7 @@
         "AddProfileKeyRequest$KeyName": "<p>A searchable identifier of a customer profile. The predefined keys you can use include: _account, _profileId, _assetId, _caseId, _orderId, _fullName, _phone, _email, _ctrContactId, _marketoLeadId, _salesforceAccountId, _salesforceContactId, _salesforceAssetId, _zendeskUserId, _zendeskExternalId, _zendeskTicketId, _serviceNowSystemId, _serviceNowIncidentId, _segmentUserId, _shopifyCustomerId, _shopifyOrderId.</p>",
         "AddProfileKeyRequest$DomainName": "<p>The unique name of the domain.</p>",
         "AddProfileKeyResponse$KeyName": "<p>A searchable identifier of a customer profile.</p>",
+        "AdditionalSearchKey$KeyName": "<p>A searchable identifier of a customer profile.</p>",
         "CreateDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "CreateDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
         "CreateIntegrationWorkflowRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -62,6 +63,7 @@
         "DeleteWorkflowRequest$DomainName": "<p>The unique name of the domain.</p>",
         "FieldMap$key": null,
         "FieldNameList$member": null,
+        "FoundByKeyValue$KeyName": "<p>A searchable identifier of a customer profile.</p>",
         "GetAutoMergingPreviewRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetAutoMergingPreviewResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -119,6 +121,12 @@
     "AddProfileKeyResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "AdditionalSearchKey": {
+      "base": "<p>A data type pair that consists of a <code>KeyName</code> and <code>Values</code> list that is used in conjunction with the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html#customerprofiles-SearchProfiles-request-KeyName\">KeyName</a> and <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html#customerprofiles-SearchProfiles-request-Values\">Values</a> parameters to search for profiles using the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html\">SearchProfiles</a> API.</p>",
+      "refs": {
+        "additionalSearchKeysList$member": null
       }
     },
     "Address": {
@@ -451,6 +459,12 @@
       "refs": {
         "AppflowIntegrationWorkflowStep$FlowName": "<p>Name of the flow created during execution of workflow step. <code>APPFLOW_INTEGRATION</code> workflow type creates an appflow flow during workflow step execution on the customers behalf.</p>",
         "FlowDefinition$FlowName": "<p>The specified name of the flow. Use underscores (_) or hyphens (-) only. Spaces are not allowed.</p>"
+      }
+    },
+    "FoundByKeyValue": {
+      "base": "<p>A data type pair that consists of a <code>KeyName</code> and <code>Values</code> list that were used to find a profile returned in response to a <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html\">SearchProfiles</a> request. </p>",
+      "refs": {
+        "foundByList$member": null
       }
     },
     "Gender": {
@@ -899,7 +913,7 @@
     "ProfileList": {
       "base": null,
       "refs": {
-        "SearchProfilesResponse$Items": "<p>The list of SearchProfiles instances.</p>"
+        "SearchProfilesResponse$Items": "<p>The list of Profiles matching the search criteria.</p>"
       }
     },
     "ProfileObjectList": {
@@ -1298,6 +1312,12 @@
         "SourceConnectorProperties$Zendesk": "<p>The properties that are applied when using Zendesk as a flow source.</p>"
       }
     },
+    "additionalSearchKeysList": {
+      "base": null,
+      "refs": {
+        "SearchProfilesRequest$AdditionalSearchKeys": "<p>A list of <code>AdditionalSearchKey</code> objects that are each searchable identifiers of a profile. Each <code>AdditionalSearchKey</code> object contains a <code>KeyName</code> and a list of <code>Values</code> associated with that specific key (i.e., a key-value(s) pair). These additional search keys will be used in conjunction with the <code>LogicalOperator</code> and the required <code>KeyName</code> and <code>Values</code> parameters to search for profiles that satisfy the search criteria. </p>"
+      }
+    },
     "boolean": {
       "base": null,
       "refs": {
@@ -1333,6 +1353,18 @@
         "PutProfileObjectTypeResponse$ExpirationDays": "<p>The number of days until the data in the object expires.</p>",
         "UpdateDomainRequest$DefaultExpirationDays": "<p>The default number of days until the data within the domain expires.</p>",
         "UpdateDomainResponse$DefaultExpirationDays": "<p>The default number of days until the data within the domain expires.</p>"
+      }
+    },
+    "foundByList": {
+      "base": null,
+      "refs": {
+        "Profile$FoundByItems": "<p>A list of items used to find a profile returned in a <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html\">SearchProfiles</a> response. An item is a key-value(s) pair that matches an attribute in the profile.</p> <p>If the optional <code>AdditionalSearchKeys</code> parameter was included in the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html\">SearchProfiles</a> request, the <code>FoundByItems</code> list should be interpreted based on the <code>LogicalOperator</code> used in the request:</p> <ul> <li> <p> <code>AND</code> - The profile included in the response matched all of the search keys specified in the request. The <code>FoundByItems</code> will include all of the key-value(s) pairs that were specified in the request (as this is a requirement of <code>AND</code> search logic).</p> </li> <li> <p> <code>OR</code> - The profile included in the response matched at least one of the search keys specified in the request. The <code>FoundByItems</code> will include each of the key-value(s) pairs that the profile was found by.</p> </li> </ul> <p>The <code>OR</code> relationship is the default behavior if the <code>LogicalOperator</code> parameter is not included in the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_SearchProfiles.html\">SearchProfiles</a> request.</p>"
+      }
+    },
+    "logicalOperator": {
+      "base": null,
+      "refs": {
+        "SearchProfilesRequest$LogicalOperator": "<p>Relationship between all specified search keys that will be used to search for profiles. This includes the required <code>KeyName</code> and <code>Values</code> parameters as well as any key-value(s) pairs specified in the <code>AdditionalSearchKeys</code> list.</p> <p>This parameter influences which profiles will be returned in the response in the following manner:</p> <ul> <li> <p> <code>AND</code> - The response only includes profiles that match all of the search keys.</p> </li> <li> <p> <code>OR</code> - The response includes profiles that match at least one of the search keys.</p> </li> </ul> <p>The <code>OR</code> relationship is the default behavior if this parameter is not included in the request.</p>"
       }
     },
     "long": {
@@ -1373,7 +1405,7 @@
         "ListProfileObjectTypesRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListProfileObjectsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListWorkflowsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
-        "SearchProfilesRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>"
+        "SearchProfilesRequest$MaxResults": "<p>The maximum number of objects returned per page.</p> <p>The default is 20 if this parameter is not included in the request.</p>"
       }
     },
     "message": {
@@ -1411,7 +1443,9 @@
       "refs": {
         "AddProfileKeyRequest$Values": "<p>A list of key values.</p>",
         "AddProfileKeyResponse$Values": "<p>A list of key values.</p>",
+        "AdditionalSearchKey$Values": "<p>A list of key values.</p>",
         "DeleteProfileKeyRequest$Values": "<p>A list of key values.</p>",
+        "FoundByKeyValue$Values": "<p>A list of key values.</p>",
         "ObjectFilter$Values": "<p>A list of key values.</p>",
         "SearchProfilesRequest$Values": "<p>A list of key values.</p>"
       }

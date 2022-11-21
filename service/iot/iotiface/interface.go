@@ -826,6 +826,10 @@ type IoTAPI interface {
 	ListProvisioningTemplatesPages(*iot.ListProvisioningTemplatesInput, func(*iot.ListProvisioningTemplatesOutput, bool) bool) error
 	ListProvisioningTemplatesPagesWithContext(aws.Context, *iot.ListProvisioningTemplatesInput, func(*iot.ListProvisioningTemplatesOutput, bool) bool, ...request.Option) error
 
+	ListRelatedResourcesForAuditFinding(*iot.ListRelatedResourcesForAuditFindingInput) (*iot.ListRelatedResourcesForAuditFindingOutput, error)
+	ListRelatedResourcesForAuditFindingWithContext(aws.Context, *iot.ListRelatedResourcesForAuditFindingInput, ...request.Option) (*iot.ListRelatedResourcesForAuditFindingOutput, error)
+	ListRelatedResourcesForAuditFindingRequest(*iot.ListRelatedResourcesForAuditFindingInput) (*request.Request, *iot.ListRelatedResourcesForAuditFindingOutput)
+
 	ListRoleAliases(*iot.ListRoleAliasesInput) (*iot.ListRoleAliasesOutput, error)
 	ListRoleAliasesWithContext(aws.Context, *iot.ListRoleAliasesInput, ...request.Option) (*iot.ListRoleAliasesOutput, error)
 	ListRoleAliasesRequest(*iot.ListRoleAliasesInput) (*request.Request, *iot.ListRoleAliasesOutput)

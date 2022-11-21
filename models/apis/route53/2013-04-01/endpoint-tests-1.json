@@ -17,9 +17,9 @@
                 }
             },
             "params": {
-                "Region": "aws-cn-global",
+                "UseDualStack": false,
                 "UseFIPS": false,
-                "UseDualStack": false
+                "Region": "aws-cn-global"
             }
         },
         {
@@ -39,9 +39,9 @@
                 }
             },
             "params": {
-                "Region": "aws-global",
+                "UseDualStack": false,
                 "UseFIPS": false,
-                "UseDualStack": false
+                "Region": "aws-global"
             }
         },
         {
@@ -61,9 +61,9 @@
                 }
             },
             "params": {
-                "Region": "aws-iso-global",
+                "UseDualStack": false,
                 "UseFIPS": false,
-                "UseDualStack": false
+                "Region": "aws-iso-global"
             }
         },
         {
@@ -83,9 +83,9 @@
                 }
             },
             "params": {
-                "Region": "aws-iso-b-global",
+                "UseDualStack": false,
                 "UseFIPS": false,
-                "UseDualStack": false
+                "Region": "aws-iso-b-global"
             }
         },
         {
@@ -105,9 +105,9 @@
                 }
             },
             "params": {
-                "Region": "aws-us-gov-global",
+                "UseDualStack": false,
                 "UseFIPS": false,
-                "UseDualStack": false
+                "Region": "aws-us-gov-global"
             }
         },
         {
@@ -118,9 +118,9 @@
                 }
             },
             "params": {
-                "Region": "us-east-1",
-                "UseFIPS": false,
                 "UseDualStack": false,
+                "UseFIPS": false,
+                "Region": "us-east-1",
                 "Endpoint": "https://example.com"
             }
         },
@@ -130,9 +130,9 @@
                 "error": "Invalid Configuration: FIPS and custom endpoint are not supported"
             },
             "params": {
-                "Region": "us-east-1",
-                "UseFIPS": true,
                 "UseDualStack": false,
+                "UseFIPS": true,
+                "Region": "us-east-1",
                 "Endpoint": "https://example.com"
             }
         },
@@ -142,9 +142,9 @@
                 "error": "Invalid Configuration: Dualstack and custom endpoint are not supported"
             },
             "params": {
-                "Region": "us-east-1",
-                "UseFIPS": false,
                 "UseDualStack": true,
+                "UseFIPS": false,
+                "Region": "us-east-1",
                 "Endpoint": "https://example.com"
             }
         }

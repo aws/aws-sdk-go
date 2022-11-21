@@ -91,6 +91,15 @@
         "ApplicationList$member": null
       }
     },
+    "Architecture": {
+      "base": null,
+      "refs": {
+        "Application$architecture": "<p>The CPU architecture of an application.</p>",
+        "ApplicationSummary$architecture": "<p>The CPU architecture of an application.</p>",
+        "CreateApplicationRequest$architecture": "<p>The CPU architecture of an application.</p>",
+        "UpdateApplicationRequest$architecture": "<p>The CPU architecture of an application.</p>"
+      }
+    },
     "AutoStartConfig": {
       "base": "<p>The configuration for an application to automatically start on job submission.</p>",
       "refs": {

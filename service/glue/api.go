@@ -7792,7 +7792,7 @@ func (c *Glue) GetDevEndpointsRequest(input *GetDevEndpointsInput) (req *request
 
 // GetDevEndpoints API operation for AWS Glue.
 //
-// Retrieves all the development endpoints in this AWS account.
+// Retrieves all the development endpoints in this Amazon Web Services account.
 //
 // When you create a development endpoint in a virtual private cloud (VPC),
 // Glue returns only a private IP address and the public IP address field is
@@ -8025,6 +8025,14 @@ func (c *Glue) GetJobBookmarkRequest(input *GetJobBookmarkInput) (req *request.R
 // GetJobBookmark API operation for AWS Glue.
 //
 // Returns information on a job bookmark entry.
+//
+// For more information about enabling and using job bookmarks, see:
+//
+//   - Tracking processed data using job bookmarks (https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html)
+//
+//   - Job parameters used by Glue (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html)
+//
+//   - Job structure (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html#aws-glue-api-jobs-job-Job)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15112,6 +15120,14 @@ func (c *Glue) ResetJobBookmarkRequest(input *ResetJobBookmarkInput) (req *reque
 // ResetJobBookmark API operation for AWS Glue.
 //
 // Resets a bookmark entry.
+//
+// For more information about enabling and using job bookmarks, see:
+//
+//   - Tracking processed data using job bookmarks (https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html)
+//
+//   - Job parameters used by Glue (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html)
+//
+//   - Job structure (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html#aws-glue-api-jobs-job-Job)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -25583,8 +25599,8 @@ type Crawler struct {
 	Classifiers []*string `type:"list"`
 
 	// Crawler configuration information. This versioned JSON string allows users
-	// to specify aspects of a crawler's behavior. For more information, see Include
-	// and Exclude Patterns (https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude).
+	// to specify aspects of a crawler's behavior. For more information, see Setting
+	// crawler configuration options (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
 	Configuration *string `type:"string"`
 
 	// If the crawler is running, contains the total time elapsed since the last
@@ -26725,8 +26741,8 @@ type CreateCrawlerInput struct {
 	Classifiers []*string `type:"list"`
 
 	// Crawler configuration information. This versioned JSON string allows users
-	// to specify aspects of a crawler's behavior. For more information, see Configuring
-	// a Crawler (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
+	// to specify aspects of a crawler's behavior. For more information, see Setting
+	// crawler configuration options (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
 	Configuration *string `type:"string"`
 
 	// The name of the SecurityConfiguration structure to be used by this crawler.
@@ -27529,7 +27545,7 @@ type CreateDevEndpointOutput struct {
 	// APIs. If no arguments are provided, the version defaults to Python 2.
 	Arguments map[string]*string `type:"map"`
 
-	// The AWS Availability Zone where this DevEndpoint is located.
+	// The Amazon Web Services Availability Zone where this DevEndpoint is located.
 	AvailabilityZone *string `type:"string"`
 
 	// The point in time at which this DevEndpoint was created.
@@ -33662,7 +33678,7 @@ type DevEndpoint struct {
 	// APIs. If no arguments are provided, the version defaults to Python 2.
 	Arguments map[string]*string `type:"map"`
 
-	// The AWS Availability Zone where this DevEndpoint is located.
+	// The Amazon Web Services Availability Zone where this DevEndpoint is located.
 	AvailabilityZone *string `type:"string"`
 
 	// The point in time at which this DevEndpoint was created.
@@ -44637,6 +44653,13 @@ type JdbcTarget struct {
 	// The name of the connection to use to connect to the JDBC target.
 	ConnectionName *string `type:"string"`
 
+	// Specify a value of RAWTYPES or COMMENTS to enable additional metadata in
+	// table responses. RAWTYPES provides the native-level datatype. COMMENTS provides
+	// comments associated with a column or table in the database.
+	//
+	// If you do not need additional metadata, keep the field empty.
+	EnableAdditionalMetadata []*string `type:"list" enum:"JdbcMetadataEntry"`
+
 	// A list of glob patterns used to exclude from the crawl. For more information,
 	// see Catalog Tables with a Crawler (https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
 	Exclusions []*string `type:"list"`
@@ -44666,6 +44689,12 @@ func (s JdbcTarget) GoString() string {
 // SetConnectionName sets the ConnectionName field's value.
 func (s *JdbcTarget) SetConnectionName(v string) *JdbcTarget {
 	s.ConnectionName = &v
+	return s
+}
+
+// SetEnableAdditionalMetadata sets the EnableAdditionalMetadata field's value.
+func (s *JdbcTarget) SetEnableAdditionalMetadata(v []*string) *JdbcTarget {
+	s.EnableAdditionalMetadata = v
 	return s
 }
 
@@ -61498,8 +61527,8 @@ type UpdateCrawlerInput struct {
 	Classifiers []*string `type:"list"`
 
 	// Crawler configuration information. This versioned JSON string allows users
-	// to specify aspects of a crawler's behavior. For more information, see Configuring
-	// a Crawler (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
+	// to specify aspects of a crawler's behavior. For more information, see Setting
+	// crawler configuration options (https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html).
 	Configuration *string `type:"string"`
 
 	// The name of the SecurityConfiguration structure to be used by this crawler.
@@ -65694,6 +65723,22 @@ func JDBCDataType_Values() []string {
 		JDBCDataTypeTinyint,
 		JDBCDataTypeVarbinary,
 		JDBCDataTypeVarchar,
+	}
+}
+
+const (
+	// JdbcMetadataEntryComments is a JdbcMetadataEntry enum value
+	JdbcMetadataEntryComments = "COMMENTS"
+
+	// JdbcMetadataEntryRawtypes is a JdbcMetadataEntry enum value
+	JdbcMetadataEntryRawtypes = "RAWTYPES"
+)
+
+// JdbcMetadataEntry_Values returns all elements of the JdbcMetadataEntry enum
+func JdbcMetadataEntry_Values() []string {
+	return []string{
+		JdbcMetadataEntryComments,
+		JdbcMetadataEntryRawtypes,
 	}
 }
 

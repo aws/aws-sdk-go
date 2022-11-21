@@ -83,9 +83,9 @@
     "GetDatabases": "<p>Retrieves all databases defined in a given Data Catalog.</p>",
     "GetDataflowGraph": "<p>Transforms a Python script into a directed acyclic graph (DAG). </p>",
     "GetDevEndpoint": "<p>Retrieves information about a specified development endpoint.</p> <note> <p>When you create a development endpoint in a virtual private cloud (VPC), Glue returns only a private IP address, and the public IP address field is not populated. When you create a non-VPC development endpoint, Glue returns only a public IP address.</p> </note>",
-    "GetDevEndpoints": "<p>Retrieves all the development endpoints in this AWS account.</p> <note> <p>When you create a development endpoint in a virtual private cloud (VPC), Glue returns only a private IP address and the public IP address field is not populated. When you create a non-VPC development endpoint, Glue returns only a public IP address.</p> </note>",
+    "GetDevEndpoints": "<p>Retrieves all the development endpoints in this Amazon Web Services account.</p> <note> <p>When you create a development endpoint in a virtual private cloud (VPC), Glue returns only a private IP address and the public IP address field is not populated. When you create a non-VPC development endpoint, Glue returns only a public IP address.</p> </note>",
     "GetJob": "<p>Retrieves an existing job definition.</p>",
-    "GetJobBookmark": "<p>Returns information on a job bookmark entry.</p>",
+    "GetJobBookmark": "<p>Returns information on a job bookmark entry.</p> <p>For more information about enabling and using job bookmarks, see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html\">Tracking processed data using job bookmarks</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html\">Job parameters used by Glue</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html#aws-glue-api-jobs-job-Job\">Job structure</a> </p> </li> </ul>",
     "GetJobRun": "<p>Retrieves the metadata for a given job run.</p>",
     "GetJobRuns": "<p>Retrieves metadata for all runs of a given job definition.</p>",
     "GetJobs": "<p>Retrieves all current job definitions.</p>",
@@ -147,7 +147,7 @@
     "QuerySchemaVersionMetadata": "<p>Queries for the schema version metadata information. </p>",
     "RegisterSchemaVersion": "<p>Adds a new version to the existing schema. Returns an error if new version of schema does not meet the compatibility requirements of the schema set. This API will not create a new schema set and will return a 404 error if the schema set is not already present in the Schema Registry.</p> <p>If this is the first schema definition to be registered in the Schema Registry, this API will store the schema version and return immediately. Otherwise, this call has the potential to run longer than other operations due to compatibility modes. You can call the <code>GetSchemaVersion</code> API with the <code>SchemaVersionId</code> to check compatibility modes.</p> <p>If the same schema definition is already stored in Schema Registry as a version, the schema ID of the existing schema is returned to the caller.</p>",
     "RemoveSchemaVersionMetadata": "<p>Removes a key value pair from the schema version metadata for the specified schema version ID.</p>",
-    "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
+    "ResetJobBookmark": "<p>Resets a bookmark entry.</p> <p>For more information about enabling and using job bookmarks, see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-continuations.html\">Tracking processed data using job bookmarks</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html\">Job parameters used by Glue</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html#aws-glue-api-jobs-job-Job\">Job structure</a> </p> </li> </ul>",
     "ResumeWorkflowRun": "<p>Restarts selected nodes of a previous partially completed workflow run and resumes the workflow run. The selected nodes and all nodes that are downstream from the selected nodes are run.</p>",
     "RunStatement": "<p>Executes the statement.</p>",
     "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
@@ -1377,9 +1377,9 @@
     "CrawlerConfiguration": {
       "base": null,
       "refs": {
-        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude\">Include and Exclude Patterns</a>.</p>",
-        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
+        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Setting crawler configuration options</a>.</p>",
+        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Setting crawler configuration options</a>.</p>",
+        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Setting crawler configuration options</a>.</p>"
       }
     },
     "CrawlerHistory": {
@@ -2350,6 +2350,12 @@
         "WorkflowGraph$Edges": "<p>A list of all the directed connections between the nodes belonging to the workflow.</p>"
       }
     },
+    "EnableAdditionalMetadata": {
+      "base": null,
+      "refs": {
+        "JdbcTarget$EnableAdditionalMetadata": "<p>Specify a value of <code>RAWTYPES</code> or <code>COMMENTS</code> to enable additional metadata in table responses. <code>RAWTYPES</code> provides the native-level datatype. <code>COMMENTS</code> provides comments associated with a column or table in the database.</p> <p>If you do not need additional metadata, keep the field empty.</p>"
+      }
+    },
     "EnableHybridValues": {
       "base": null,
       "refs": {
@@ -2808,7 +2814,7 @@
         "CreateDevEndpointResponse$Status": "<p>The current status of the new <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointResponse$SubnetId": "<p>The subnet ID assigned to the new <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointResponse$YarnEndpointAddress": "<p>The address of the YARN endpoint used by this <code>DevEndpoint</code>.</p>",
-        "CreateDevEndpointResponse$AvailabilityZone": "<p>The AWS Availability Zone where this <code>DevEndpoint</code> is located.</p>",
+        "CreateDevEndpointResponse$AvailabilityZone": "<p>The Amazon Web Services Availability Zone where this <code>DevEndpoint</code> is located.</p>",
         "CreateDevEndpointResponse$VpcId": "<p>The ID of the virtual private cloud (VPC) used by this <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointResponse$ExtraPythonLibsS3Path": "<p>The paths to one or more Python libraries in an S3 bucket that will be loaded in your <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointResponse$ExtraJarsS3Path": "<p>Path to one or more Java <code>.jar</code> files in an S3 bucket that will be loaded in your <code>DevEndpoint</code>.</p>",
@@ -2822,7 +2828,7 @@
         "DevEndpoint$PrivateAddress": "<p>A private IP address to access the <code>DevEndpoint</code> within a VPC if the <code>DevEndpoint</code> is created within one. The <code>PrivateAddress</code> field is present only when you create the <code>DevEndpoint</code> within your VPC.</p>",
         "DevEndpoint$PublicAddress": "<p>The public IP address used by this <code>DevEndpoint</code>. The <code>PublicAddress</code> field is present only when you create a non-virtual private cloud (VPC) <code>DevEndpoint</code>.</p>",
         "DevEndpoint$Status": "<p>The current status of this <code>DevEndpoint</code>.</p>",
-        "DevEndpoint$AvailabilityZone": "<p>The AWS Availability Zone where this <code>DevEndpoint</code> is located.</p>",
+        "DevEndpoint$AvailabilityZone": "<p>The Amazon Web Services Availability Zone where this <code>DevEndpoint</code> is located.</p>",
         "DevEndpoint$VpcId": "<p>The ID of the virtual private cloud (VPC) used by this <code>DevEndpoint</code>.</p>",
         "DevEndpoint$ExtraPythonLibsS3Path": "<p>The paths to one or more Python libraries in an Amazon S3 bucket that should be loaded in your <code>DevEndpoint</code>. Multiple values must be complete paths separated by a comma.</p> <note> <p>You can only use pure Python libraries with a <code>DevEndpoint</code>. Libraries that rely on C extensions, such as the <a href=\"http://pandas.pydata.org/\">pandas</a> Python data analysis library, are not currently supported.</p> </note>",
         "DevEndpoint$ExtraJarsS3Path": "<p>The path to one or more Java <code>.jar</code> files in an S3 bucket that should be loaded in your <code>DevEndpoint</code>.</p> <note> <p>You can only use pure Java/Scala libraries with a <code>DevEndpoint</code>.</p> </note>",
@@ -3879,6 +3885,12 @@
       "base": null,
       "refs": {
         "JDBCConnectorOptions$DataTypeMapping": "<p>Custom data type mapping that builds a mapping from a JDBC data type to an Glue data type. For example, the option <code>\"dataTypeMapping\":{\"FLOAT\":\"STRING\"}</code> maps data fields of JDBC type <code>FLOAT</code> into the Java <code>String</code> type by calling the <code>ResultSet.getString()</code> method of the driver, and uses it to build the Glue record. The <code>ResultSet</code> object is implemented by each driver, so the behavior is specific to the driver you use. Refer to the documentation for your JDBC driver to understand how the driver performs the conversions.</p>"
+      }
+    },
+    "JdbcMetadataEntry": {
+      "base": null,
+      "refs": {
+        "EnableAdditionalMetadata$member": null
       }
     },
     "JdbcTarget": {

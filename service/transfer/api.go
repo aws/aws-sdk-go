@@ -191,6 +191,9 @@ func (c *Transfer) CreateAgreementRequest(input *CreateAgreementInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAgreement
 func (c *Transfer) CreateAgreement(input *CreateAgreementInput) (*CreateAgreementOutput, error) {
 	req, out := c.CreateAgreementRequest(input)
@@ -288,6 +291,9 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateConnector
 func (c *Transfer) CreateConnector(input *CreateConnectorInput) (*CreateConnectorOutput, error) {
 	req, out := c.CreateConnectorRequest(input)
@@ -378,6 +384,9 @@ func (c *Transfer) CreateProfileRequest(input *CreateProfileInput) (req *request
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateProfile
 func (c *Transfer) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
@@ -5492,6 +5501,9 @@ func (c *Transfer) UpdateAccessRequest(input *UpdateAccessInput) (req *request.R
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAccess
 func (c *Transfer) UpdateAccess(input *UpdateAccessInput) (*UpdateAccessOutput, error) {
 	req, out := c.UpdateAccessRequest(input)
@@ -5588,6 +5600,9 @@ func (c *Transfer) UpdateAgreementRequest(input *UpdateAgreementInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAgreement
 func (c *Transfer) UpdateAgreement(input *UpdateAgreementInput) (*UpdateAgreementOutput, error) {
 	req, out := c.UpdateAgreementRequest(input)
@@ -5678,6 +5693,9 @@ func (c *Transfer) UpdateCertificateRequest(input *UpdateCertificateInput) (req 
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateCertificate
 func (c *Transfer) UpdateCertificate(input *UpdateCertificateInput) (*UpdateCertificateOutput, error) {
@@ -5774,6 +5792,9 @@ func (c *Transfer) UpdateConnectorRequest(input *UpdateConnectorInput) (req *req
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateConnector
 func (c *Transfer) UpdateConnector(input *UpdateConnectorInput) (*UpdateConnectorOutput, error) {
@@ -5962,6 +5983,9 @@ func (c *Transfer) UpdateProfileRequest(input *UpdateProfileInput) (req *request
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateProfile
 func (c *Transfer) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {
@@ -6265,6 +6289,9 @@ type As2ConnectorConfig struct {
 	Compression *string `type:"string" enum:"CompressionEnum"`
 
 	// The algorithm that is used to encrypt the file.
+	//
+	// You can only specify NONE if the URL for your connector uses HTTPS. This
+	// ensures that no traffic is sent in clear text.
 	EncryptionAlgorithm *string `type:"string" enum:"EncryptionAlg"`
 
 	// A unique identifier for the AS2 local profile.
@@ -6282,7 +6309,7 @@ type As2ConnectorConfig struct {
 
 	// The signing algorithm for the MDN response.
 	//
-	// If set to DEFAULT (or not set at all), the value for SigningAlogorithm is
+	// If set to DEFAULT (or not set at all), the value for SigningAlgorithm is
 	// used.
 	MdnSigningAlgorithm *string `type:"string" enum:"MdnSigningAlg"`
 
@@ -7511,10 +7538,10 @@ type CreateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -7792,7 +7819,17 @@ type CreateUserInput struct {
 	// The public portion of the Secure Shell (SSH) key used to authenticate the
 	// user to the server.
 	//
+	// The three standard SSH public key format elements are <key type>, <body base64>,
+	// and an optional <comment>, with spaces between each element.
+	//
 	// Transfer Family accepts RSA, ECDSA, and ED25519 keys.
+	//
+	//    * For RSA keys, the key type is ssh-rsa.
+	//
+	//    * For ED25519 keys, the key type is ssh-ed25519.
+	//
+	//    * For ECDSA keys, the key type is either ecdsa-sha2-nistp256, ecdsa-sha2-nistp384,
+	//    or ecdsa-sha2-nistp521, depending on the size of the key you generated.
 	SshPublicKeyBody *string `type:"string"`
 
 	// Key-value pairs that can be used to group and search for users. Tags are
@@ -11203,10 +11240,10 @@ type DescribedServer struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -17875,10 +17912,10 @@ type UpdateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-	// can also contain a workflow ID (and execution role) for a workflow to execute
-	// on partial upload. A partial upload occurs when a file is open when the session
-	// disconnects.
+	// In addition to a workflow to execute when a file is uploaded completely,
+	// WorkflowDetails can also contain a workflow ID (and execution role) for a
+	// workflow to execute on partial upload. A partial upload occurs when a file
+	// is open when the session disconnects.
 	//
 	// To remove an associated workflow from a server, you can provide an empty
 	// OnUpload object, as in the following example.
@@ -18362,10 +18399,10 @@ func (s *UserDetails) SetUserName(v string) *UserDetails {
 // Specifies the workflow ID for the workflow to assign and the execution role
 // that's used for executing the workflow.
 //
-// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
-// can also contain a workflow ID (and execution role) for a workflow to execute
-// on partial upload. A partial upload occurs when a file is open when the session
-// disconnects.
+// In addition to a workflow to execute when a file is uploaded completely,
+// WorkflowDetails can also contain a workflow ID (and execution role) for a
+// workflow to execute on partial upload. A partial upload occurs when a file
+// is open when the session disconnects.
 type WorkflowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -18768,6 +18805,9 @@ const (
 
 	// EncryptionAlgAes256Cbc is a EncryptionAlg enum value
 	EncryptionAlgAes256Cbc = "AES256_CBC"
+
+	// EncryptionAlgNone is a EncryptionAlg enum value
+	EncryptionAlgNone = "NONE"
 )
 
 // EncryptionAlg_Values returns all elements of the EncryptionAlg enum
@@ -18776,6 +18816,7 @@ func EncryptionAlg_Values() []string {
 		EncryptionAlgAes128Cbc,
 		EncryptionAlgAes192Cbc,
 		EncryptionAlgAes256Cbc,
+		EncryptionAlgNone,
 	}
 }
 

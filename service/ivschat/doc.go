@@ -25,7 +25,11 @@
 //
 // # Resources
 //
-// The following resource is part of Amazon IVS Chat:
+// The following resources are part of Amazon IVS Chat:
+//
+//   - LoggingConfiguration — A configuration that allows customers to store
+//     and record sent messages in a chat room. See the Logging Configuration
+//     endpoints for more information.
 //
 //   - Room — The central Amazon IVS Chat resource through which clients
 //     connect to and exchange chat messages. See the Room endpoints for more
@@ -114,10 +118,11 @@
 //
 // Chat Token Endpoint
 //
-//   - CreateChatToken — Creates an encrypted token that is used to establish
-//     an individual WebSocket connection to a room. The token is valid for one
-//     minute, and a connection (session) established with the token is valid
-//     for the specified duration.
+//   - CreateChatToken — Creates an encrypted token that is used by a chat
+//     participant to establish an individual WebSocket chat connection to a
+//     room. When the token is used to connect to chat, the connection is valid
+//     for the session duration specified in the request. The token becomes invalid
+//     at the token-expiration timestamp included in the response.
 //
 // Room Endpoints
 //
@@ -132,6 +137,20 @@
 //     region where the API request is processed.
 //
 //   - UpdateRoom — Updates a room’s configuration.
+//
+// Logging Configuration Endpoints
+//
+//   - CreateLoggingConfiguration — Creates a logging configuration that
+//     allows clients to store and record sent messages.
+//
+//   - DeleteLoggingConfiguration — Deletes the specified logging configuration.
+//
+//   - GetLoggingConfiguration — Gets the specified logging configuration.
+//
+//   - ListLoggingConfigurations — Gets summary information about all your
+//     logging configurations in the AWS region where the API request is processed.
+//
+//   - UpdateLoggingConfiguration — Updates a specified logging configuration.
 //
 // Tags Endpoints
 //

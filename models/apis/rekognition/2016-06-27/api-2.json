@@ -1953,13 +1953,70 @@
         "OrientationCorrection":{"shape":"OrientationCorrection"}
       }
     },
+    "DetectLabelsFeatureList":{
+      "type":"list",
+      "member":{"shape":"DetectLabelsFeatureName"},
+      "max":2,
+      "min":0
+    },
+    "DetectLabelsFeatureName":{
+      "type":"string",
+      "enum":[
+        "GENERAL_LABELS",
+        "IMAGE_PROPERTIES"
+      ]
+    },
+    "DetectLabelsImageBackground":{
+      "type":"structure",
+      "members":{
+        "Quality":{"shape":"DetectLabelsImageQuality"},
+        "DominantColors":{"shape":"DominantColors"}
+      }
+    },
+    "DetectLabelsImageForeground":{
+      "type":"structure",
+      "members":{
+        "Quality":{"shape":"DetectLabelsImageQuality"},
+        "DominantColors":{"shape":"DominantColors"}
+      }
+    },
+    "DetectLabelsImageProperties":{
+      "type":"structure",
+      "members":{
+        "Quality":{"shape":"DetectLabelsImageQuality"},
+        "DominantColors":{"shape":"DominantColors"},
+        "Foreground":{"shape":"DetectLabelsImageForeground"},
+        "Background":{"shape":"DetectLabelsImageBackground"}
+      }
+    },
+    "DetectLabelsImagePropertiesSettings":{
+      "type":"structure",
+      "members":{
+        "MaxDominantColors":{"shape":"DetectLabelsMaxDominantColors"}
+      }
+    },
+    "DetectLabelsImageQuality":{
+      "type":"structure",
+      "members":{
+        "Brightness":{"shape":"Float"},
+        "Sharpness":{"shape":"Float"},
+        "Contrast":{"shape":"Float"}
+      }
+    },
+    "DetectLabelsMaxDominantColors":{
+      "type":"integer",
+      "max":20,
+      "min":0
+    },
     "DetectLabelsRequest":{
       "type":"structure",
       "required":["Image"],
       "members":{
         "Image":{"shape":"Image"},
         "MaxLabels":{"shape":"UInteger"},
-        "MinConfidence":{"shape":"Percent"}
+        "MinConfidence":{"shape":"Percent"},
+        "Features":{"shape":"DetectLabelsFeatureList"},
+        "Settings":{"shape":"DetectLabelsSettings"}
       }
     },
     "DetectLabelsResponse":{
@@ -1967,7 +2024,15 @@
       "members":{
         "Labels":{"shape":"Labels"},
         "OrientationCorrection":{"shape":"OrientationCorrection"},
-        "LabelModelVersion":{"shape":"String"}
+        "LabelModelVersion":{"shape":"String"},
+        "ImageProperties":{"shape":"DetectLabelsImageProperties"}
+      }
+    },
+    "DetectLabelsSettings":{
+      "type":"structure",
+      "members":{
+        "GeneralLabels":{"shape":"GeneralLabelsSettings"},
+        "ImageProperties":{"shape":"DetectLabelsImagePropertiesSettings"}
       }
     },
     "DetectModerationLabelsRequest":{
@@ -2057,6 +2122,22 @@
       "member":{"shape":"DistributeDataset"},
       "max":2,
       "min":2
+    },
+    "DominantColor":{
+      "type":"structure",
+      "members":{
+        "Red":{"shape":"UInteger"},
+        "Blue":{"shape":"UInteger"},
+        "Green":{"shape":"UInteger"},
+        "HexCode":{"shape":"String"},
+        "CSSColor":{"shape":"String"},
+        "SimplifiedColor":{"shape":"String"},
+        "PixelPercent":{"shape":"Percent"}
+      }
+    },
+    "DominantColors":{
+      "type":"list",
+      "member":{"shape":"DominantColor"}
     },
     "Emotion":{
       "type":"structure",
@@ -2252,6 +2333,27 @@
         "Male",
         "Female"
       ]
+    },
+    "GeneralLabelsFilterList":{
+      "type":"list",
+      "member":{"shape":"GeneralLabelsFilterValue"},
+      "max":100,
+      "min":0
+    },
+    "GeneralLabelsFilterValue":{
+      "type":"string",
+      "max":50,
+      "min":0,
+      "pattern":"[A-Za-z0-9àâèçñó'-_(). ]*"
+    },
+    "GeneralLabelsSettings":{
+      "type":"structure",
+      "members":{
+        "LabelInclusionFilters":{"shape":"GeneralLabelsFilterList"},
+        "LabelExclusionFilters":{"shape":"GeneralLabelsFilterList"},
+        "LabelCategoryInclusionFilters":{"shape":"GeneralLabelsFilterList"},
+        "LabelCategoryExclusionFilters":{"shape":"GeneralLabelsFilterList"}
+      }
     },
     "Geometry":{
       "type":"structure",
@@ -2578,7 +2680,8 @@
       "type":"structure",
       "members":{
         "BoundingBox":{"shape":"BoundingBox"},
-        "Confidence":{"shape":"Percent"}
+        "Confidence":{"shape":"Percent"},
+        "DominantColors":{"shape":"DominantColors"}
       }
     },
     "Instances":{
@@ -2695,7 +2798,29 @@
         "Name":{"shape":"String"},
         "Confidence":{"shape":"Percent"},
         "Instances":{"shape":"Instances"},
-        "Parents":{"shape":"Parents"}
+        "Parents":{"shape":"Parents"},
+        "Aliases":{"shape":"LabelAliases"},
+        "Categories":{"shape":"LabelCategories"}
+      }
+    },
+    "LabelAlias":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"}
+      }
+    },
+    "LabelAliases":{
+      "type":"list",
+      "member":{"shape":"LabelAlias"}
+    },
+    "LabelCategories":{
+      "type":"list",
+      "member":{"shape":"LabelCategory"}
+    },
+    "LabelCategory":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"}
       }
     },
     "LabelDetection":{

@@ -35,6 +35,20 @@
 // above, as well as give users the ability to grant access on a selective basis
 // using the IAM model.
 //
+// The pricing for Amazon WorkDocs APIs varies depending on the API call type
+// for these actions:
+//
+//   - READ (Get*)
+//
+//   - WRITE (Activate*, Add*, Create*, Deactivate*, Initiate*, Update*)
+//
+//   - LIST (Describe*)
+//
+//   - DELETE*, CANCEL
+//
+// For information about Amazon WorkDocs API pricing, see Amazon WorkDocs Pricing
+// (https://aws.amazon.com/workdocs/pricing/).
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/workdocs-2016-05-01 for more information on this service.
 //
 // See workdocs package documentation for more information.

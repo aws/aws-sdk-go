@@ -656,6 +656,17 @@
         "Values":{"shape":"requestValueList"}
       }
     },
+    "AdditionalSearchKey":{
+      "type":"structure",
+      "required":[
+        "KeyName",
+        "Values"
+      ],
+      "members":{
+        "KeyName":{"shape":"name"},
+        "Values":{"shape":"requestValueList"}
+      }
+    },
     "Address":{
       "type":"structure",
       "members":{
@@ -1210,6 +1221,13 @@
       "type":"string",
       "max":256,
       "pattern":"[a-zA-Z0-9][\\w!@#.-]+"
+    },
+    "FoundByKeyValue":{
+      "type":"structure",
+      "members":{
+        "KeyName":{"shape":"name"},
+        "Values":{"shape":"requestValueList"}
+      }
     },
     "Gender":{
       "type":"string",
@@ -2127,7 +2145,8 @@
         "ShippingAddress":{"shape":"Address"},
         "MailingAddress":{"shape":"Address"},
         "BillingAddress":{"shape":"Address"},
-        "Attributes":{"shape":"Attributes"}
+        "Attributes":{"shape":"Attributes"},
+        "FoundByItems":{"shape":"foundByList"}
       }
     },
     "ProfileIdList":{
@@ -2416,7 +2435,9 @@
           "locationName":"DomainName"
         },
         "KeyName":{"shape":"name"},
-        "Values":{"shape":"requestValueList"}
+        "Values":{"shape":"requestValueList"},
+        "AdditionalSearchKeys":{"shape":"additionalSearchKeysList"},
+        "LogicalOperator":{"shape":"logicalOperator"}
       }
     },
     "SearchProfilesResponse":{
@@ -2820,6 +2841,12 @@
         "Object":{"shape":"Object"}
       }
     },
+    "additionalSearchKeysList":{
+      "type":"list",
+      "member":{"shape":"AdditionalSearchKey"},
+      "max":4,
+      "min":1
+    },
     "boolean":{"type":"boolean"},
     "encryptionKey":{
       "type":"string",
@@ -2830,6 +2857,19 @@
       "type":"integer",
       "max":1098,
       "min":1
+    },
+    "foundByList":{
+      "type":"list",
+      "member":{"shape":"FoundByKeyValue"},
+      "max":5,
+      "min":1
+    },
+    "logicalOperator":{
+      "type":"string",
+      "enum":[
+        "AND",
+        "OR"
+      ]
     },
     "long":{"type":"long"},
     "matchesNumber":{

@@ -28,6 +28,85 @@
         {"shape":"AccessDenied"}
       ]
     },
+    "CopyDistribution":{
+      "name":"CopyDistribution2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/distribution/{PrimaryDistributionId}/copy",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CopyDistributionRequest",
+        "locationName":"CopyDistributionRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"CopyDistributionResult"},
+      "errors":[
+        {"shape":"CNAMEAlreadyExists"},
+        {"shape":"DistributionAlreadyExists"},
+        {"shape":"InvalidOrigin"},
+        {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchDistribution"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"AccessDenied"},
+        {"shape":"TooManyTrustedSigners"},
+        {"shape":"TrustedSignerDoesNotExist"},
+        {"shape":"InvalidViewerCertificate"},
+        {"shape":"InvalidMinimumProtocolVersion"},
+        {"shape":"MissingBody"},
+        {"shape":"TooManyDistributionCNAMEs"},
+        {"shape":"TooManyDistributions"},
+        {"shape":"InvalidDefaultRootObject"},
+        {"shape":"InvalidRelativePath"},
+        {"shape":"InvalidErrorCode"},
+        {"shape":"InvalidResponseCode"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidRequiredProtocol"},
+        {"shape":"NoSuchOrigin"},
+        {"shape":"TooManyOrigins"},
+        {"shape":"TooManyOriginGroupsPerDistribution"},
+        {"shape":"TooManyCacheBehaviors"},
+        {"shape":"TooManyCookieNamesInWhiteList"},
+        {"shape":"InvalidForwardCookies"},
+        {"shape":"TooManyHeadersInForwardedValues"},
+        {"shape":"InvalidHeadersForS3Origin"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"TooManyCertificates"},
+        {"shape":"InvalidLocationCode"},
+        {"shape":"InvalidGeoRestrictionParameter"},
+        {"shape":"InvalidProtocolSettings"},
+        {"shape":"InvalidTTLOrder"},
+        {"shape":"InvalidWebACLId"},
+        {"shape":"TooManyOriginCustomHeaders"},
+        {"shape":"TooManyQueryStringParameters"},
+        {"shape":"InvalidQueryStringParameters"},
+        {"shape":"TooManyDistributionsWithLambdaAssociations"},
+        {"shape":"TooManyDistributionsWithSingleFunctionARN"},
+        {"shape":"TooManyLambdaFunctionAssociations"},
+        {"shape":"InvalidLambdaFunctionAssociation"},
+        {"shape":"TooManyDistributionsWithFunctionAssociations"},
+        {"shape":"TooManyFunctionAssociations"},
+        {"shape":"InvalidFunctionAssociation"},
+        {"shape":"InvalidOriginReadTimeout"},
+        {"shape":"InvalidOriginKeepaliveTimeout"},
+        {"shape":"NoSuchFieldLevelEncryptionConfig"},
+        {"shape":"IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"},
+        {"shape":"TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"},
+        {"shape":"NoSuchCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToResponseHeadersPolicy"},
+        {"shape":"NoSuchOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
+        {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
+        {"shape":"TrustedKeyGroupDoesNotExist"},
+        {"shape":"NoSuchRealtimeLogConfig"},
+        {"shape":"RealtimeLogConfigOwnerMismatch"}
+      ]
+    },
     "CreateCachePolicy":{
       "name":"CreateCachePolicy2020_05_31",
       "http":{
@@ -63,6 +142,22 @@
         {"shape":"TooManyCloudFrontOriginAccessIdentities"},
         {"shape":"InvalidArgument"},
         {"shape":"InconsistentQuantities"}
+      ]
+    },
+    "CreateContinuousDeploymentPolicy":{
+      "name":"CreateContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/continuous-deployment-policy",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateContinuousDeploymentPolicyRequest"},
+      "output":{"shape":"CreateContinuousDeploymentPolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"StagingDistributionInUse"}
       ]
     },
     "CreateDistribution":{
@@ -498,6 +593,21 @@
         {"shape":"CloudFrontOriginAccessIdentityInUse"}
       ]
     },
+    "DeleteContinuousDeploymentPolicy":{
+      "name":"DeleteContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteContinuousDeploymentPolicyRequest"},
+      "errors":[
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"},
+        {"shape":"PreconditionFailed"}
+      ]
+    },
     "DeleteDistribution":{
       "name":"DeleteDistribution2020_05_31",
       "http":{
@@ -755,6 +865,30 @@
       "output":{"shape":"GetCloudFrontOriginAccessIdentityConfigResult"},
       "errors":[
         {"shape":"NoSuchCloudFrontOriginAccessIdentity"},
+        {"shape":"AccessDenied"}
+      ]
+    },
+    "GetContinuousDeploymentPolicy":{
+      "name":"GetContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}"
+      },
+      "input":{"shape":"GetContinuousDeploymentPolicyRequest"},
+      "output":{"shape":"GetContinuousDeploymentPolicyResult"},
+      "errors":[
+        {"shape":"AccessDenied"}
+      ]
+    },
+    "GetContinuousDeploymentPolicyConfig":{
+      "name":"GetContinuousDeploymentPolicyConfig2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}/config"
+      },
+      "input":{"shape":"GetContinuousDeploymentPolicyConfigRequest"},
+      "output":{"shape":"GetContinuousDeploymentPolicyConfigResult"},
+      "errors":[
         {"shape":"AccessDenied"}
       ]
     },
@@ -1088,6 +1222,19 @@
       "errors":[
         {"shape":"InvalidArgument"},
         {"shape":"NoSuchDistribution"}
+      ]
+    },
+    "ListContinuousDeploymentPolicies":{
+      "name":"ListContinuousDeploymentPolicies2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/continuous-deployment-policy"
+      },
+      "input":{"shape":"ListContinuousDeploymentPoliciesRequest"},
+      "output":{"shape":"ListContinuousDeploymentPoliciesResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"}
       ]
     },
     "ListDistributions":{
@@ -1449,6 +1596,23 @@
         {"shape":"InconsistentQuantities"}
       ]
     },
+    "UpdateContinuousDeploymentPolicy":{
+      "name":"UpdateContinuousDeploymentPolicy2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/continuous-deployment-policy/{Id}"
+      },
+      "input":{"shape":"UpdateContinuousDeploymentPolicyRequest"},
+      "output":{"shape":"UpdateContinuousDeploymentPolicyResult"},
+      "errors":[
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"StagingDistributionInUse"}
+      ]
+    },
     "UpdateDistribution":{
       "name":"UpdateDistribution2020_05_31",
       "http":{
@@ -1518,6 +1682,7 @@
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
         {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"StagingDistributionInUse"},
         {"shape":"IllegalOriginAccessConfiguration"},
         {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
@@ -2225,6 +2390,84 @@
         "Items":{"shape":"ContentTypeProfileList"}
       }
     },
+    "ContinuousDeploymentPolicy":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "LastModifiedTime",
+        "ContinuousDeploymentPolicyConfig"
+      ],
+      "members":{
+        "Id":{"shape":"string"},
+        "LastModifiedTime":{"shape":"timestamp"},
+        "ContinuousDeploymentPolicyConfig":{"shape":"ContinuousDeploymentPolicyConfig"}
+      }
+    },
+    "ContinuousDeploymentPolicyConfig":{
+      "type":"structure",
+      "required":[
+        "StagingDistributionDnsNames",
+        "Enabled"
+      ],
+      "members":{
+        "StagingDistributionDnsNames":{"shape":"StagingDistributionDnsNames"},
+        "Enabled":{"shape":"boolean"},
+        "TrafficConfig":{"shape":"TrafficConfig"}
+      }
+    },
+    "ContinuousDeploymentPolicyList":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Quantity"
+      ],
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"ContinuousDeploymentPolicySummaryList"}
+      }
+    },
+    "ContinuousDeploymentPolicySummary":{
+      "type":"structure",
+      "required":["ContinuousDeploymentPolicy"],
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"}
+      }
+    },
+    "ContinuousDeploymentPolicySummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"ContinuousDeploymentPolicySummary",
+        "locationName":"ContinuousDeploymentPolicySummary"
+      }
+    },
+    "ContinuousDeploymentPolicyType":{
+      "type":"string",
+      "enum":[
+        "SingleWeight",
+        "SingleHeader"
+      ]
+    },
+    "ContinuousDeploymentSingleHeaderConfig":{
+      "type":"structure",
+      "required":[
+        "Header",
+        "Value"
+      ],
+      "members":{
+        "Header":{"shape":"string"},
+        "Value":{"shape":"string"}
+      }
+    },
+    "ContinuousDeploymentSingleWeightConfig":{
+      "type":"structure",
+      "required":["Weight"],
+      "members":{
+        "Weight":{"shape":"float"},
+        "SessionStickinessConfig":{"shape":"SessionStickinessConfig"}
+      }
+    },
     "CookieNameList":{
       "type":"list",
       "member":{
@@ -2247,6 +2490,48 @@
         "Forward":{"shape":"ItemSelection"},
         "WhitelistedNames":{"shape":"CookieNames"}
       }
+    },
+    "CopyDistributionRequest":{
+      "type":"structure",
+      "required":[
+        "PrimaryDistributionId",
+        "CallerReference"
+      ],
+      "members":{
+        "PrimaryDistributionId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"PrimaryDistributionId"
+        },
+        "Staging":{
+          "shape":"boolean",
+          "location":"header",
+          "locationName":"Staging"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        },
+        "CallerReference":{"shape":"string"}
+      }
+    },
+    "CopyDistributionResult":{
+      "type":"structure",
+      "members":{
+        "Distribution":{"shape":"Distribution"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"Distribution"
     },
     "CreateCachePolicyRequest":{
       "type":"structure",
@@ -2305,6 +2590,35 @@
         }
       },
       "payload":"CloudFrontOriginAccessIdentity"
+    },
+    "CreateContinuousDeploymentPolicyRequest":{
+      "type":"structure",
+      "required":["ContinuousDeploymentPolicyConfig"],
+      "members":{
+        "ContinuousDeploymentPolicyConfig":{
+          "shape":"ContinuousDeploymentPolicyConfig",
+          "locationName":"ContinuousDeploymentPolicyConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        }
+      },
+      "payload":"ContinuousDeploymentPolicyConfig"
+    },
+    "CreateContinuousDeploymentPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicy"
     },
     "CreateDistributionRequest":{
       "type":"structure",
@@ -2840,6 +3154,22 @@
       }
     },
     "DeleteCloudFrontOriginAccessIdentityRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
+    "DeleteContinuousDeploymentPolicyRequest":{
       "type":"structure",
       "required":["Id"],
       "members":{
@@ -3754,6 +4084,52 @@
         }
       },
       "payload":"CloudFrontOriginAccessIdentity"
+    },
+    "GetContinuousDeploymentPolicyConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetContinuousDeploymentPolicyConfigResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicyConfig":{"shape":"ContinuousDeploymentPolicyConfig"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicyConfig"
+    },
+    "GetContinuousDeploymentPolicyRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetContinuousDeploymentPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicy"
     },
     "GetDistributionConfigRequest":{
       "type":"structure",
@@ -4823,6 +5199,28 @@
       },
       "payload":"ConflictingAliasesList"
     },
+    "ListContinuousDeploymentPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListContinuousDeploymentPoliciesResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicyList":{"shape":"ContinuousDeploymentPolicyList"}
+      },
+      "payload":"ContinuousDeploymentPolicyList"
+    },
     "ListDistributionsByCachePolicyIdRequest":{
       "type":"structure",
       "required":["CachePolicyId"],
@@ -5525,7 +5923,6 @@
       "type":"structure",
       "required":[
         "Name",
-        "Description",
         "SigningProtocol",
         "SigningBehavior",
         "OriginAccessControlOriginType"
@@ -6502,6 +6899,17 @@
       "max":100.0,
       "min":0.0
     },
+    "SessionStickinessConfig":{
+      "type":"structure",
+      "required":[
+        "IdleTTL",
+        "MaximumTTL"
+      ],
+      "members":{
+        "IdleTTL":{"shape":"integer"},
+        "MaximumTTL":{"shape":"integer"}
+      }
+    },
     "Signer":{
       "type":"structure",
       "members":{
@@ -6531,6 +6939,29 @@
         "shape":"SslProtocol",
         "locationName":"SslProtocol"
       }
+    },
+    "StagingDistributionDnsNameList":{
+      "type":"list",
+      "member":{
+        "shape":"string",
+        "locationName":"DnsName"
+      }
+    },
+    "StagingDistributionDnsNames":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"StagingDistributionDnsNameList"}
+      }
+    },
+    "StagingDistributionInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "StatusCodeList":{
       "type":"list",
@@ -7197,6 +7628,15 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TrafficConfig":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "SingleWeightConfig":{"shape":"ContinuousDeploymentSingleWeightConfig"},
+        "SingleHeaderConfig":{"shape":"ContinuousDeploymentSingleHeaderConfig"},
+        "Type":{"shape":"ContinuousDeploymentPolicyType"}
+      }
+    },
     "TrustedKeyGroupDoesNotExist":{
       "type":"structure",
       "members":{
@@ -7345,6 +7785,43 @@
         }
       },
       "payload":"CloudFrontOriginAccessIdentity"
+    },
+    "UpdateContinuousDeploymentPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ContinuousDeploymentPolicyConfig",
+        "Id"
+      ],
+      "members":{
+        "ContinuousDeploymentPolicyConfig":{
+          "shape":"ContinuousDeploymentPolicyConfig",
+          "locationName":"ContinuousDeploymentPolicyConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        },
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicyConfig"
+    },
+    "UpdateContinuousDeploymentPolicyResult":{
+      "type":"structure",
+      "members":{
+        "ContinuousDeploymentPolicy":{"shape":"ContinuousDeploymentPolicy"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"ContinuousDeploymentPolicy"
     },
     "UpdateDistributionRequest":{
       "type":"structure",
@@ -7765,6 +8242,7 @@
       "type":"string",
       "max":25
     },
+    "float":{"type":"float"},
     "integer":{"type":"integer"},
     "listConflictingAliasesMaxItemsInteger":{
       "type":"integer",
