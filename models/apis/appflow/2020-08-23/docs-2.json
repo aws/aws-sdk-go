@@ -251,6 +251,7 @@
         "ErrorHandlingConfig$failOnFirstDestinationError": "<p> Specifies if the flow should fail after the first instance of a failure when attempting to place data in the destination. </p>",
         "OAuth2CustomParameter$isRequired": "<p>Indicates whether the custom parameter for OAuth 2.0 authentication is required.</p>",
         "OAuth2CustomParameter$isSensitiveField": "<p>Indicates whether this authentication custom parameter is a sensitive field.</p>",
+        "RedshiftConnectorProfileProperties$isRedshiftServerless": "<p>Indicates whether the connector profile defines a connection to an Amazon Redshift Serverless data warehouse.</p>",
         "SalesforceConnectorProfileProperties$isSandboxEnvironment": "<p> Indicates whether the connector profile applies to a sandbox or production environment. </p>",
         "SalesforceSourceProperties$enableDynamicFieldUpdate": "<p> The flag that enables dynamic fetching of new (recently added) fields in the Salesforce objects while running a flow. </p>",
         "SalesforceSourceProperties$includeDeletedRecords": "<p> Indicates whether Amazon AppFlow includes deleted files in the flow run. </p>",
@@ -328,6 +329,12 @@
         "OAuthCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
         "SlackConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
         "ZendeskConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>"
+      }
+    },
+    "ClusterIdentifier": {
+      "base": null,
+      "refs": {
+        "RedshiftConnectorProfileProperties$clusterIdentifier": "<p>The unique ID that's assigned to an Amazon Redshift cluster.</p>"
       }
     },
     "ConflictException": {
@@ -765,10 +772,22 @@
         "ConnectorMetadata$CustomerProfiles": "<p> The connector metadata specific to Amazon Connect Customer Profiles. </p>"
       }
     },
+    "DataApiRoleArn": {
+      "base": null,
+      "refs": {
+        "RedshiftConnectorProfileProperties$dataApiRoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that permits Amazon AppFlow to access your Amazon Redshift database through the Data API. For more information, and for the polices that you attach to this role, see <a href=\"https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_service-role-policies.html#access-redshift\">Allow Amazon AppFlow to access Amazon Redshift databases with the Data API</a>.</p>"
+      }
+    },
     "DataPullMode": {
       "base": null,
       "refs": {
         "ScheduledTriggerProperties$dataPullMode": "<p> Specifies whether a scheduled flow has an incremental data transfer or a complete data transfer for each flow run. </p>"
+      }
+    },
+    "DatabaseName": {
+      "base": null,
+      "refs": {
+        "RedshiftConnectorProfileProperties$databaseName": "<p>The name of an Amazon Redshift database.</p>"
       }
     },
     "DatabaseUrl": {
@@ -1890,7 +1909,7 @@
     "RoleArn": {
       "base": null,
       "refs": {
-        "RedshiftConnectorProfileProperties$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>"
+        "RedshiftConnectorProfileProperties$roleArn": "<p> The Amazon Resource Name (ARN) of IAM role that grants Amazon Redshift read-only access to Amazon S3. For more information, and for the polices that you attach to this role, see <a href=\"https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_service-role-policies.html#redshift-access-s3\">Allow Amazon Redshift to access your Amazon AppFlow data in Amazon S3</a>.</p>"
       }
     },
     "S3ConnectorOperator": {
@@ -2235,6 +2254,7 @@
         "FieldTypeDetails$valueRegexPattern": "<p>The regular expression pattern for the field name.</p>",
         "FieldTypeDetails$supportedDateFormat": "<p>The date format that the field supports.</p>",
         "MetadataCatalogDetail$tableName": "<p>The name of the table that stores the metadata for the associated flow run. The table stores metadata that represents the data that the flow transferred. Amazon AppFlow stores the table in the metadata catalog.</p>",
+        "RedshiftConnectorProfileCredentials$username": "<p> The name of the user. </p>",
         "RegistrationOutput$message": "<p>Explains the status of the registration attempt from Amazon AppFlow. If the attempt fails, the message explains why.</p>",
         "RegistrationOutput$result": "<p>Indicates the number of resources that Amazon AppFlow created or updated. Possible resources include metadata tables and data partitions.</p>",
         "SourceFields$member": null
@@ -2528,7 +2548,6 @@
       "refs": {
         "BasicAuthCredentials$username": "<p> The username to use to connect to a resource. </p>",
         "InforNexusConnectorProfileCredentials$userId": "<p> The identifier for the user. </p>",
-        "RedshiftConnectorProfileCredentials$username": "<p> The name of the user. </p>",
         "ServiceNowConnectorProfileCredentials$username": "<p> The name of the user. </p>",
         "SnowflakeConnectorProfileCredentials$username": "<p> The name of the user. </p>",
         "VeevaConnectorProfileCredentials$username": "<p> The name of the user. </p>"
@@ -2579,6 +2598,12 @@
       "base": null,
       "refs": {
         "SnowflakeConnectorProfileProperties$warehouse": "<p> The name of the Snowflake warehouse. </p>"
+      }
+    },
+    "WorkgroupName": {
+      "base": null,
+      "refs": {
+        "RedshiftConnectorProfileProperties$workgroupName": "<p>The name of an Amazon Redshift workgroup.</p>"
       }
     },
     "WriteOperationType": {

@@ -258,7 +258,8 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteApplicationVpcConfiguration":{
@@ -2289,7 +2290,8 @@
         "ZEPPELIN-FLINK-1_0",
         "FLINK-1_11",
         "FLINK-1_13",
-        "ZEPPELIN-FLINK-2_0"
+        "ZEPPELIN-FLINK-2_0",
+        "FLINK-1_15"
       ]
     },
     "S3ApplicationCodeLocationDescription":{
