@@ -1,3 +1,10 @@
+Release v1.44.144 (2022-11-22)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+
 Release v1.44.143 (2022-11-21)
 ===
 

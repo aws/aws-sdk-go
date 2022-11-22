@@ -587,6 +587,11 @@
       "pattern":"\\S+",
       "sensitive":true
     },
+    "ClusterIdentifier":{
+      "type":"string",
+      "max":512,
+      "pattern":"\\S+"
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -810,10 +815,7 @@
     },
     "ConnectorProfileConfig":{
       "type":"structure",
-      "required":[
-        "connectorProfileProperties",
-        "connectorProfileCredentials"
-      ],
+      "required":["connectorProfileProperties"],
       "members":{
         "connectorProfileProperties":{"shape":"ConnectorProfileProperties"},
         "connectorProfileCredentials":{"shape":"ConnectorProfileCredentials"}
@@ -1144,12 +1146,22 @@
       "members":{
       }
     },
+    "DataApiRoleArn":{
+      "type":"string",
+      "max":512,
+      "pattern":"arn:aws:iam:.*:[0-9]+:.*"
+    },
     "DataPullMode":{
       "type":"string",
       "enum":[
         "Incremental",
         "Complete"
       ]
+    },
+    "DatabaseName":{
+      "type":"string",
+      "max":512,
+      "pattern":"\\S+"
     },
     "DatabaseUrl":{
       "type":"string",
@@ -2336,19 +2348,14 @@
     },
     "RedshiftConnectorProfileCredentials":{
       "type":"structure",
-      "required":[
-        "username",
-        "password"
-      ],
       "members":{
-        "username":{"shape":"Username"},
+        "username":{"shape":"String"},
         "password":{"shape":"Password"}
       }
     },
     "RedshiftConnectorProfileProperties":{
       "type":"structure",
       "required":[
-        "databaseUrl",
         "bucketName",
         "roleArn"
       ],
@@ -2356,7 +2363,12 @@
         "databaseUrl":{"shape":"DatabaseUrl"},
         "bucketName":{"shape":"BucketName"},
         "bucketPrefix":{"shape":"BucketPrefix"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "dataApiRoleArn":{"shape":"DataApiRoleArn"},
+        "isRedshiftServerless":{"shape":"Boolean"},
+        "clusterIdentifier":{"shape":"ClusterIdentifier"},
+        "workgroupName":{"shape":"WorkgroupName"},
+        "databaseName":{"shape":"DatabaseName"}
       }
     },
     "RedshiftDestinationProperties":{
@@ -3446,6 +3458,11 @@
       "type":"string",
       "max":512,
       "pattern":"[\\s\\w/!@#+=.-]*"
+    },
+    "WorkgroupName":{
+      "type":"string",
+      "max":512,
+      "pattern":"\\S+"
     },
     "WriteOperationType":{
       "type":"string",

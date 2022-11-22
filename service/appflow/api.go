@@ -4247,9 +4247,7 @@ type ConnectorProfileConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The connector-specific credentials required by each connector.
-	//
-	// ConnectorProfileCredentials is a required field
-	ConnectorProfileCredentials *ConnectorProfileCredentials `locationName:"connectorProfileCredentials" type:"structure" required:"true"`
+	ConnectorProfileCredentials *ConnectorProfileCredentials `locationName:"connectorProfileCredentials" type:"structure"`
 
 	// The connector-specific properties of the profile configuration.
 	//
@@ -4278,9 +4276,6 @@ func (s ConnectorProfileConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ConnectorProfileConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ConnectorProfileConfig"}
-	if s.ConnectorProfileCredentials == nil {
-		invalidParams.Add(request.NewErrParamRequired("ConnectorProfileCredentials"))
-	}
 	if s.ConnectorProfileProperties == nil {
 		invalidParams.Add(request.NewErrParamRequired("ConnectorProfileProperties"))
 	}
@@ -4427,11 +4422,6 @@ func (s *ConnectorProfileCredentials) Validate() error {
 	if s.Marketo != nil {
 		if err := s.Marketo.Validate(); err != nil {
 			invalidParams.AddNested("Marketo", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.Redshift != nil {
-		if err := s.Redshift.Validate(); err != nil {
-			invalidParams.AddNested("Redshift", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SAPOData != nil {
@@ -10528,14 +10518,10 @@ type RedshiftConnectorProfileCredentials struct {
 	// Password is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RedshiftConnectorProfileCredentials's
 	// String and GoString methods.
-	//
-	// Password is a required field
-	Password *string `locationName:"password" type:"string" required:"true" sensitive:"true"`
+	Password *string `locationName:"password" type:"string" sensitive:"true"`
 
 	// The name of the user.
-	//
-	// Username is a required field
-	Username *string `locationName:"username" type:"string" required:"true"`
+	Username *string `locationName:"username" type:"string"`
 }
 
 // String returns the string representation.
@@ -10554,22 +10540,6 @@ func (s RedshiftConnectorProfileCredentials) String() string {
 // value will be replaced with "sensitive".
 func (s RedshiftConnectorProfileCredentials) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *RedshiftConnectorProfileCredentials) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "RedshiftConnectorProfileCredentials"}
-	if s.Password == nil {
-		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
-	if s.Username == nil {
-		invalidParams.Add(request.NewErrParamRequired("Username"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetPassword sets the Password field's value.
@@ -10597,15 +10567,35 @@ type RedshiftConnectorProfileProperties struct {
 	// the files.
 	BucketPrefix *string `locationName:"bucketPrefix" type:"string"`
 
-	// The JDBC URL of the Amazon Redshift cluster.
-	//
-	// DatabaseUrl is a required field
-	DatabaseUrl *string `locationName:"databaseUrl" type:"string" required:"true"`
+	// The unique ID that's assigned to an Amazon Redshift cluster.
+	ClusterIdentifier *string `locationName:"clusterIdentifier" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM role.
+	// The Amazon Resource Name (ARN) of an IAM role that permits Amazon AppFlow
+	// to access your Amazon Redshift database through the Data API. For more information,
+	// and for the polices that you attach to this role, see Allow Amazon AppFlow
+	// to access Amazon Redshift databases with the Data API (https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_service-role-policies.html#access-redshift).
+	DataApiRoleArn *string `locationName:"dataApiRoleArn" type:"string"`
+
+	// The name of an Amazon Redshift database.
+	DatabaseName *string `locationName:"databaseName" type:"string"`
+
+	// The JDBC URL of the Amazon Redshift cluster.
+	DatabaseUrl *string `locationName:"databaseUrl" type:"string"`
+
+	// Indicates whether the connector profile defines a connection to an Amazon
+	// Redshift Serverless data warehouse.
+	IsRedshiftServerless *bool `locationName:"isRedshiftServerless" type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of IAM role that grants Amazon Redshift read-only
+	// access to Amazon S3. For more information, and for the polices that you attach
+	// to this role, see Allow Amazon Redshift to access your Amazon AppFlow data
+	// in Amazon S3 (https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_service-role-policies.html#redshift-access-s3).
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The name of an Amazon Redshift workgroup.
+	WorkgroupName *string `locationName:"workgroupName" type:"string"`
 }
 
 // String returns the string representation.
@@ -10635,9 +10625,6 @@ func (s *RedshiftConnectorProfileProperties) Validate() error {
 	if s.BucketName != nil && len(*s.BucketName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
 	}
-	if s.DatabaseUrl == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseUrl"))
-	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
@@ -10660,15 +10647,45 @@ func (s *RedshiftConnectorProfileProperties) SetBucketPrefix(v string) *Redshift
 	return s
 }
 
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *RedshiftConnectorProfileProperties) SetClusterIdentifier(v string) *RedshiftConnectorProfileProperties {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDataApiRoleArn sets the DataApiRoleArn field's value.
+func (s *RedshiftConnectorProfileProperties) SetDataApiRoleArn(v string) *RedshiftConnectorProfileProperties {
+	s.DataApiRoleArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *RedshiftConnectorProfileProperties) SetDatabaseName(v string) *RedshiftConnectorProfileProperties {
+	s.DatabaseName = &v
+	return s
+}
+
 // SetDatabaseUrl sets the DatabaseUrl field's value.
 func (s *RedshiftConnectorProfileProperties) SetDatabaseUrl(v string) *RedshiftConnectorProfileProperties {
 	s.DatabaseUrl = &v
 	return s
 }
 
+// SetIsRedshiftServerless sets the IsRedshiftServerless field's value.
+func (s *RedshiftConnectorProfileProperties) SetIsRedshiftServerless(v bool) *RedshiftConnectorProfileProperties {
+	s.IsRedshiftServerless = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *RedshiftConnectorProfileProperties) SetRoleArn(v string) *RedshiftConnectorProfileProperties {
 	s.RoleArn = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *RedshiftConnectorProfileProperties) SetWorkgroupName(v string) *RedshiftConnectorProfileProperties {
+	s.WorkgroupName = &v
 	return s
 }
 
