@@ -248,7 +248,7 @@ func (c *ManagedGrafana) CreateWorkspaceApiKeyRequest(input *CreateWorkspaceApiK
 
 // CreateWorkspaceApiKey API operation for Amazon Managed Grafana.
 //
-// Creates an API key for the workspace. This key can be used to authenticate
+// Creates a Grafana API key for the workspace. This key can be used to authenticate
 // requests sent to the workspace's HTTP API. See https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html
 // (https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html)
 // for available APIs and example requests.
@@ -442,7 +442,7 @@ func (c *ManagedGrafana) DeleteWorkspaceApiKeyRequest(input *DeleteWorkspaceApiK
 
 // DeleteWorkspaceApiKey API operation for Amazon Managed Grafana.
 //
-// Deletes an API key for a workspace.
+// Deletes a Grafana API key for the workspace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -671,6 +671,94 @@ func (c *ManagedGrafana) DescribeWorkspaceAuthentication(input *DescribeWorkspac
 // for more information on using Contexts.
 func (c *ManagedGrafana) DescribeWorkspaceAuthenticationWithContext(ctx aws.Context, input *DescribeWorkspaceAuthenticationInput, opts ...request.Option) (*DescribeWorkspaceAuthenticationOutput, error) {
 	req, out := c.DescribeWorkspaceAuthenticationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeWorkspaceConfiguration = "DescribeWorkspaceConfiguration"
+
+// DescribeWorkspaceConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWorkspaceConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeWorkspaceConfiguration for more information on using the DescribeWorkspaceConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeWorkspaceConfigurationRequest method.
+//	req, resp := client.DescribeWorkspaceConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DescribeWorkspaceConfiguration
+func (c *ManagedGrafana) DescribeWorkspaceConfigurationRequest(input *DescribeWorkspaceConfigurationInput) (req *request.Request, output *DescribeWorkspaceConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeWorkspaceConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/workspaces/{workspaceId}/configuration",
+	}
+
+	if input == nil {
+		input = &DescribeWorkspaceConfigurationInput{}
+	}
+
+	output = &DescribeWorkspaceConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeWorkspaceConfiguration API operation for Amazon Managed Grafana.
+//
+// Gets the current configuration string for the given workspace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation DescribeWorkspaceConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The request references a resource that does not exist.
+//
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InternalServerException
+//     Unexpected error while processing the request. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DescribeWorkspaceConfiguration
+func (c *ManagedGrafana) DescribeWorkspaceConfiguration(input *DescribeWorkspaceConfigurationInput) (*DescribeWorkspaceConfigurationOutput, error) {
+	req, out := c.DescribeWorkspaceConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeWorkspaceConfigurationWithContext is the same as DescribeWorkspaceConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeWorkspaceConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) DescribeWorkspaceConfigurationWithContext(ctx aws.Context, input *DescribeWorkspaceConfigurationInput, opts ...request.Option) (*DescribeWorkspaceConfigurationOutput, error) {
+	req, out := c.DescribeWorkspaceConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1486,7 +1574,7 @@ func (c *ManagedGrafana) UpdateWorkspaceRequest(input *UpdateWorkspaceInput) (re
 // are not changed.
 //
 // To modify the user authentication methods that the workspace uses, such as
-// SAML or Amazon Web Services SSO, use UpdateWorkspaceAuthentication (https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspaceAuthentication.html).
+// SAML or IAM Identity Center, use UpdateWorkspaceAuthentication (https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspaceAuthentication.html).
 //
 // To modify which users in the workspace have the Admin and Editor Grafana
 // roles, use UpdatePermissions (https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html).
@@ -1632,6 +1720,101 @@ func (c *ManagedGrafana) UpdateWorkspaceAuthentication(input *UpdateWorkspaceAut
 // for more information on using Contexts.
 func (c *ManagedGrafana) UpdateWorkspaceAuthenticationWithContext(ctx aws.Context, input *UpdateWorkspaceAuthenticationInput, opts ...request.Option) (*UpdateWorkspaceAuthenticationOutput, error) {
 	req, out := c.UpdateWorkspaceAuthenticationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateWorkspaceConfiguration = "UpdateWorkspaceConfiguration"
+
+// UpdateWorkspaceConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateWorkspaceConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateWorkspaceConfiguration for more information on using the UpdateWorkspaceConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateWorkspaceConfigurationRequest method.
+//	req, resp := client.UpdateWorkspaceConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/UpdateWorkspaceConfiguration
+func (c *ManagedGrafana) UpdateWorkspaceConfigurationRequest(input *UpdateWorkspaceConfigurationInput) (req *request.Request, output *UpdateWorkspaceConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateWorkspaceConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/workspaces/{workspaceId}/configuration",
+	}
+
+	if input == nil {
+		input = &UpdateWorkspaceConfigurationInput{}
+	}
+
+	output = &UpdateWorkspaceConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateWorkspaceConfiguration API operation for Amazon Managed Grafana.
+//
+// # Updates the configuration string for the given workspace
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Grafana's
+// API operation UpdateWorkspaceConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The request references a resource that does not exist.
+//
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
+//
+//   - ConflictException
+//     A resource was in an inconsistent state during an update or a deletion.
+//
+//   - ValidationException
+//     The value of a parameter in the request caused an error.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InternalServerException
+//     Unexpected error while processing the request. Retry the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/UpdateWorkspaceConfiguration
+func (c *ManagedGrafana) UpdateWorkspaceConfiguration(input *UpdateWorkspaceConfigurationInput) (*UpdateWorkspaceConfigurationOutput, error) {
+	req, out := c.UpdateWorkspaceConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateWorkspaceConfigurationWithContext is the same as UpdateWorkspaceConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateWorkspaceConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedGrafana) UpdateWorkspaceConfigurationWithContext(ctx aws.Context, input *UpdateWorkspaceConfigurationInput, opts ...request.Option) (*UpdateWorkspaceConfigurationOutput, error) {
+	req, out := c.UpdateWorkspaceConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1917,11 +2100,11 @@ func (s *AssociateLicenseOutput) SetWorkspace(v *WorkspaceDescription) *Associat
 type AuthenticationDescription struct {
 	_ struct{} `type:"structure"`
 
-	// A structure containing information about how this workspace works with Amazon
-	// Web Services SSO.
+	// A structure containing information about how this workspace works with IAM
+	// Identity Center.
 	AwsSso *AwsSsoAuthentication `locationName:"awsSso" type:"structure"`
 
-	// Specifies whether this workspace uses Amazon Web Services SSO, SAML, or both
+	// Specifies whether this workspace uses IAM Identity Center, SAML, or both
 	// methods to authenticate users to use the Grafana console in the Amazon Managed
 	// Grafana workspace.
 	//
@@ -1970,14 +2153,14 @@ func (s *AuthenticationDescription) SetSaml(v *SamlAuthentication) *Authenticati
 	return s
 }
 
-// A structure that describes whether the workspace uses SAML, Amazon Web Services
-// SSO, or both methods for user authentication, and whether that authentication
+// A structure that describes whether the workspace uses SAML, IAM Identity
+// Center, or both methods for user authentication, and whether that authentication
 // is fully configured.
 type AuthenticationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the workspace uses SAML, Amazon Web Services SSO, or both
-	// methods for user authentication.
+	// Specifies whether the workspace uses SAML, IAM Identity Center, or both methods
+	// for user authentication.
 	//
 	// Providers is a required field
 	Providers []*string `locationName:"providers" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
@@ -2016,13 +2199,13 @@ func (s *AuthenticationSummary) SetSamlConfigurationStatus(v string) *Authentica
 	return s
 }
 
-// A structure containing information about how this workspace works with Amazon
-// Web Services SSO.
+// A structure containing information about how this workspace works with IAM
+// Identity Center.
 type AwsSsoAuthentication struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services SSO-managed application that is created
-	// by Amazon Managed Grafana.
+	// The ID of the IAM Identity Center-managed application that is created by
+	// Amazon Managed Grafana.
 	SsoClientId *string `locationName:"ssoClientId" type:"string"`
 }
 
@@ -2128,15 +2311,14 @@ func (s *ConflictException) RequestID() string {
 type CreateWorkspaceApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the name of the key to create. Key names must be unique to the
-	// workspace.
+	// Specifies the name of the key. Keynames must be unique to the workspace.
 	//
 	// KeyName is a required field
 	KeyName *string `locationName:"keyName" min:"1" type:"string" required:"true"`
 
 	// Specifies the permission level of the key.
 	//
-	// Valid Values: VIEWER | EDITOR | ADMIN
+	// Valid values: VIEWER|EDITOR|ADMIN
 	//
 	// KeyRole is a required field
 	KeyRole *string `locationName:"keyRole" type:"string" required:"true"`
@@ -2147,7 +2329,7 @@ type CreateWorkspaceApiKeyInput struct {
 	// SecondsToLive is a required field
 	SecondsToLive *int64 `locationName:"secondsToLive" min:"1" type:"integer" required:"true"`
 
-	// The ID of the workspace in which to create an API key.
+	// The ID of the workspace to create an API key.
 	//
 	// WorkspaceId is a required field
 	WorkspaceId *string `location:"uri" locationName:"workspaceId" type:"string" required:"true"`
@@ -2229,8 +2411,8 @@ func (s *CreateWorkspaceApiKeyInput) SetWorkspaceId(v string) *CreateWorkspaceAp
 type CreateWorkspaceApiKeyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The key token that was created. Use this value as a bearer token to authenticate
-	// HTTP requests to the workspace.
+	// The key token. Use this value as a bearer token to authenticate HTTP requests
+	// to the workspace.
 	//
 	// Key is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateWorkspaceApiKeyOutput's
@@ -2298,10 +2480,10 @@ type CreateWorkspaceInput struct {
 	// AccountAccessType is a required field
 	AccountAccessType *string `locationName:"accountAccessType" type:"string" required:"true" enum:"AccountAccessType"`
 
-	// Specifies whether this workspace uses SAML 2.0, Amazon Web Services Single
-	// Sign On, or both to authenticate users for using the Grafana console within
-	// a workspace. For more information, see User authentication in Amazon Managed
-	// Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
+	// Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor
+	// to Single Sign-On), or both to authenticate users for using the Grafana console
+	// within a workspace. For more information, see User authentication in Amazon
+	// Managed Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
 	//
 	// AuthenticationProviders is a required field
 	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
@@ -2309,6 +2491,11 @@ type CreateWorkspaceInput struct {
 	// A unique, case-sensitive, user-provided identifier to ensure the idempotency
 	// of the request.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// The configuration string for the workspace that you create. For more information
+	// about the format and configuration options available, see Working in your
+	// Grafana workspace (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html).
+	Configuration *string `locationName:"configuration" min:"2" type:"string"`
 
 	// The name of an IAM role that already exists to use with Organizations to
 	// access Amazon Web Services data sources and notification channels in other
@@ -2322,8 +2509,11 @@ type CreateWorkspaceInput struct {
 	// If you specify SERVICE_MANAGED on AWS Grafana console, Amazon Managed Grafana
 	// automatically creates the IAM roles and provisions the permissions that the
 	// workspace needs to use Amazon Web Services data sources and notification
-	// channels. In CLI mode, the permissionType SERVICE_MANAGED will not create
-	// the IAM role for you.
+	// channels. In the CLI mode, the permissionType SERVICE_MANAGED will not create
+	// the IAM role for you. The ability for the Amazon Managed Grafana to create
+	// the IAM role on behalf of the user is supported only in the Amazon Managed
+	// Grafana AWS console. Use only the CUSTOMER_MANAGED permission type when creating
+	// a workspace in the CLI.
 	//
 	// If you specify CUSTOMER_MANAGED, you will manage those roles and permissions
 	// yourself. If you are creating this workspace in a member account of an organization
@@ -2343,6 +2533,10 @@ type CreateWorkspaceInput struct {
 
 	// The list of tags associated with the workspace.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The configuration settings for an Amazon VPC that contains data sources for
+	// your Grafana workspace to connect to.
+	VpcConfiguration *VpcConfiguration `locationName:"vpcConfiguration" type:"structure"`
 
 	// Specify the Amazon Web Services data sources that you want to be queried
 	// in this workspace. Specifying these data sources here enables Amazon Managed
@@ -2425,6 +2619,9 @@ func (s *CreateWorkspaceInput) Validate() error {
 	if s.AuthenticationProviders == nil {
 		invalidParams.Add(request.NewErrParamRequired("AuthenticationProviders"))
 	}
+	if s.Configuration != nil && len(*s.Configuration) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Configuration", 2))
+	}
 	if s.OrganizationRoleName != nil && len(*s.OrganizationRoleName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OrganizationRoleName", 1))
 	}
@@ -2433,6 +2630,11 @@ func (s *CreateWorkspaceInput) Validate() error {
 	}
 	if s.WorkspaceRoleArn != nil && len(*s.WorkspaceRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkspaceRoleArn", 1))
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2459,6 +2661,12 @@ func (s *CreateWorkspaceInput) SetClientToken(v string) *CreateWorkspaceInput {
 	return s
 }
 
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateWorkspaceInput) SetConfiguration(v string) *CreateWorkspaceInput {
+	s.Configuration = &v
+	return s
+}
+
 // SetOrganizationRoleName sets the OrganizationRoleName field's value.
 func (s *CreateWorkspaceInput) SetOrganizationRoleName(v string) *CreateWorkspaceInput {
 	s.OrganizationRoleName = &v
@@ -2480,6 +2688,12 @@ func (s *CreateWorkspaceInput) SetStackSetName(v string) *CreateWorkspaceInput {
 // SetTags sets the Tags field's value.
 func (s *CreateWorkspaceInput) SetTags(v map[string]*string) *CreateWorkspaceInput {
 	s.Tags = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *CreateWorkspaceInput) SetVpcConfiguration(v *VpcConfiguration) *CreateWorkspaceInput {
+	s.VpcConfiguration = v
 	return s
 }
 
@@ -2621,7 +2835,7 @@ func (s *DeleteWorkspaceApiKeyInput) SetWorkspaceId(v string) *DeleteWorkspaceAp
 type DeleteWorkspaceApiKeyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the API key that was deleted.
+	// The name of the key that was deleted.
 	//
 	// KeyName is a required field
 	KeyName *string `locationName:"keyName" min:"1" type:"string" required:"true"`
@@ -2827,6 +3041,90 @@ func (s *DescribeWorkspaceAuthenticationOutput) SetAuthentication(v *Authenticat
 	return s
 }
 
+type DescribeWorkspaceConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the workspace to get configuration information for.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspaceConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspaceConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspaceConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspaceConfigurationInput"}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DescribeWorkspaceConfigurationInput) SetWorkspaceId(v string) *DescribeWorkspaceConfigurationInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type DescribeWorkspaceConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration string for the workspace that you requested. For more information
+	// about the format and configuration options available, see Working in your
+	// Grafana workspace (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html).
+	//
+	// Configuration is a required field
+	Configuration *string `locationName:"configuration" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspaceConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeWorkspaceConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *DescribeWorkspaceConfigurationOutput) SetConfiguration(v string) *DescribeWorkspaceConfigurationOutput {
+	s.Configuration = &v
+	return s
+}
+
 type DescribeWorkspaceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3011,14 +3309,15 @@ func (s *DisassociateLicenseOutput) SetWorkspace(v *WorkspaceDescription) *Disas
 // A structure containing the identity provider (IdP) metadata used to integrate
 // the identity provider with this workspace. You can specify the metadata either
 // by providing a URL to its location in the url parameter, or by specifying
-// the full metadata in XML format in the xml parameter.
+// the full metadata in XML format in the xml parameter. Specifying both will
+// cause an error.
 type IdpMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the location containing the metadata.
+	// The URL of the location containing the IdP metadata.
 	Url *string `locationName:"url" min:"1" type:"string"`
 
-	// The actual full metadata file, in XML format.
+	// The full IdP metadata, in XML format.
 	Xml *string `locationName:"xml" type:"string"`
 }
 
@@ -3149,9 +3448,9 @@ type ListPermissionsInput struct {
 	// (Optional) Limits the results to only the user that matches this ID.
 	UserId *string `location:"querystring" locationName:"userId" min:"1" type:"string"`
 
-	// (Optional) If you specify SSO_USER, then only the permissions of Amazon Web
-	// Services SSO users are returned. If you specify SSO_GROUP, only the permissions
-	// of Amazon Web Services SSO groups are returned.
+	// (Optional) If you specify SSO_USER, then only the permissions of IAM Identity
+	// Center users are returned. If you specify SSO_GROUP, only the permissions
+	// of IAM Identity Center groups are returned.
 	UserType *string `location:"querystring" locationName:"userType" type:"string" enum:"UserType"`
 
 	// The ID of the workspace to list permissions for. This parameter is required.
@@ -3459,12 +3758,12 @@ func (s *ListWorkspacesOutput) SetWorkspaces(v []*WorkspaceSummary) *ListWorkspa
 	return s
 }
 
-// A structure containing the identity of one user or group and the Admin or
-// Editor role that they have.
+// A structure containing the identity of one user or group and the Admin, Editor,
+// or Viewer role that they have.
 type PermissionEntry struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the user or group has the Admin or Editor role.
+	// Specifies whether the user or group has the Admin, Editor, or Viewer role.
 	//
 	// Role is a required field
 	Role *string `locationName:"role" type:"string" required:"true" enum:"Role"`
@@ -3582,6 +3881,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 
 // This structure defines which groups defined in the SAML assertion attribute
 // are to be mapped to the Grafana Admin and Editor roles in the workspace.
+// SAML authenticated users not part of Admin or Editor role groups have Viewer
+// permission over the workspace.
 type RoleValues struct {
 	_ struct{} `type:"structure"`
 
@@ -4352,10 +4653,10 @@ func (s *UpdatePermissionsOutput) SetErrors(v []*UpdateError) *UpdatePermissions
 type UpdateWorkspaceAuthenticationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether this workspace uses SAML 2.0, Amazon Web Services Single
-	// Sign On, or both to authenticate users for using the Grafana console within
-	// a workspace. For more information, see User authentication in Amazon Managed
-	// Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
+	// Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor
+	// to Single Sign-On), or both to authenticate users for using the Grafana console
+	// within a workspace. For more information, see User authentication in Amazon
+	// Managed Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
 	//
 	// AuthenticationProviders is a required field
 	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
@@ -4465,6 +4766,96 @@ func (s *UpdateWorkspaceAuthenticationOutput) SetAuthentication(v *Authenticatio
 	return s
 }
 
+type UpdateWorkspaceConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new configuration string for the workspace. For more information about
+	// the format and configuration options available, see Working in your Grafana
+	// workspace (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html).
+	//
+	// Configuration is a required field
+	Configuration *string `locationName:"configuration" min:"2" type:"string" required:"true"`
+
+	// The ID of the workspace to update.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspaceConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspaceConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateWorkspaceConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateWorkspaceConfigurationInput"}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.Configuration != nil && len(*s.Configuration) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Configuration", 2))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *UpdateWorkspaceConfigurationInput) SetConfiguration(v string) *UpdateWorkspaceConfigurationInput {
+	s.Configuration = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *UpdateWorkspaceConfigurationInput) SetWorkspaceId(v string) *UpdateWorkspaceConfigurationInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type UpdateWorkspaceConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspaceConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateWorkspaceConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateWorkspaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4497,9 +4888,19 @@ type UpdateWorkspaceInput struct {
 	// for Amazon Web Services data sources and notification channels (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html)
 	PermissionType *string `locationName:"permissionType" type:"string" enum:"PermissionType"`
 
+	// Whether to remove the VPC configuration from the workspace.
+	//
+	// Setting this to true and providing a vpcConfiguration to set will return
+	// an error.
+	RemoveVpcConfiguration *bool `locationName:"removeVpcConfiguration" type:"boolean"`
+
 	// The name of the CloudFormation stack set to use to generate IAM roles to
 	// be used for this workspace.
 	StackSetName *string `locationName:"stackSetName" type:"string"`
+
+	// The configuration settings for an Amazon VPC that contains data sources for
+	// your Grafana workspace to connect to.
+	VpcConfiguration *VpcConfiguration `locationName:"vpcConfiguration" type:"structure"`
 
 	// Specify the Amazon Web Services data sources that you want to be queried
 	// in this workspace. Specifying these data sources here enables Amazon Managed
@@ -4593,6 +4994,11 @@ func (s *UpdateWorkspaceInput) Validate() error {
 	if s.WorkspaceRoleArn != nil && len(*s.WorkspaceRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkspaceRoleArn", 1))
 	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4618,9 +5024,21 @@ func (s *UpdateWorkspaceInput) SetPermissionType(v string) *UpdateWorkspaceInput
 	return s
 }
 
+// SetRemoveVpcConfiguration sets the RemoveVpcConfiguration field's value.
+func (s *UpdateWorkspaceInput) SetRemoveVpcConfiguration(v bool) *UpdateWorkspaceInput {
+	s.RemoveVpcConfiguration = &v
+	return s
+}
+
 // SetStackSetName sets the StackSetName field's value.
 func (s *UpdateWorkspaceInput) SetStackSetName(v string) *UpdateWorkspaceInput {
 	s.StackSetName = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *UpdateWorkspaceInput) SetVpcConfiguration(v *VpcConfiguration) *UpdateWorkspaceInput {
+	s.VpcConfiguration = v
 	return s
 }
 
@@ -4884,6 +5302,76 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	return s
 }
 
+// The configuration settings for an Amazon VPC that contains data sources for
+// your Grafana workspace to connect to.
+type VpcConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Amazon EC2 security group IDs attached to the Amazon VPC for
+	// your Grafana workspace to connect.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `locationName:"securityGroupIds" min:"1" type:"list" required:"true"`
+
+	// The list of Amazon EC2 subnet IDs created in the Amazon VPC for your Grafana
+	// workspace to connect.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `locationName:"subnetIds" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcConfiguration"}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.SubnetIds != nil && len(s.SubnetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcConfiguration) SetSecurityGroupIds(v []*string) *VpcConfiguration {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcConfiguration) SetSubnetIds(v []*string) *VpcConfiguration {
+	s.SubnetIds = v
+	return s
+}
+
 // A structure containing information about an Amazon Managed Grafana workspace
 // in your account.
 type WorkspaceDescription struct {
@@ -4896,8 +5384,8 @@ type WorkspaceDescription struct {
 	// organizational units the workspace can access.
 	AccountAccessType *string `locationName:"accountAccessType" type:"string" enum:"AccountAccessType"`
 
-	// A structure that describes whether the workspace uses SAML, Amazon Web Services
-	// SSO, or both methods for user authentication.
+	// A structure that describes whether the workspace uses SAML, IAM Identity
+	// Center, or both methods for user authentication.
 	//
 	// Authentication is a required field
 	Authentication *AuthenticationSummary `locationName:"authentication" type:"structure" required:"true"`
@@ -5010,6 +5498,10 @@ type WorkspaceDescription struct {
 
 	// The list of tags associated with the workspace.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The configuration for connecting to data sources in a private VPC (Amazon
+	// Virtual Private Cloud).
+	VpcConfiguration *VpcConfiguration `locationName:"vpcConfiguration" type:"structure"`
 
 	// The IAM role that grants permissions to the Amazon Web Services resources
 	// that the workspace will view data from. This role must already exist.
@@ -5161,6 +5653,12 @@ func (s *WorkspaceDescription) SetStatus(v string) *WorkspaceDescription {
 // SetTags sets the Tags field's value.
 func (s *WorkspaceDescription) SetTags(v map[string]*string) *WorkspaceDescription {
 	s.Tags = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *WorkspaceDescription) SetVpcConfiguration(v *VpcConfiguration) *WorkspaceDescription {
+	s.VpcConfiguration = v
 	return s
 }
 
@@ -5373,6 +5871,9 @@ const (
 
 	// DataSourceTypeRedshift is a DataSourceType enum value
 	DataSourceTypeRedshift = "REDSHIFT"
+
+	// DataSourceTypeTwinmaker is a DataSourceType enum value
+	DataSourceTypeTwinmaker = "TWINMAKER"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -5386,6 +5887,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeSitewise,
 		DataSourceTypeAthena,
 		DataSourceTypeRedshift,
+		DataSourceTypeTwinmaker,
 	}
 }
 

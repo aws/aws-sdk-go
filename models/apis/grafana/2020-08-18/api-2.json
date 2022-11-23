@@ -138,6 +138,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeWorkspaceConfiguration":{
+      "name":"DescribeWorkspaceConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeWorkspaceConfigurationRequest"},
+      "output":{"shape":"DescribeWorkspaceConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DisassociateLicense":{
       "name":"DisassociateLicense",
       "http":{
@@ -283,6 +299,24 @@
       },
       "input":{"shape":"UpdateWorkspaceAuthenticationRequest"},
       "output":{"shape":"UpdateWorkspaceAuthenticationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateWorkspaceConfiguration":{
+      "name":"UpdateWorkspaceConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/workspaces/{workspaceId}/configuration",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateWorkspaceConfigurationRequest"},
+      "output":{"shape":"UpdateWorkspaceConfigurationResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -485,10 +519,15 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
+        "configuration":{
+          "shape":"OverridableConfigurationJson",
+          "jsonvalue":true
+        },
         "organizationRoleName":{"shape":"OrganizationRoleName"},
         "permissionType":{"shape":"PermissionType"},
         "stackSetName":{"shape":"StackSetName"},
         "tags":{"shape":"TagMap"},
+        "vpcConfiguration":{"shape":"VpcConfiguration"},
         "workspaceDataSources":{"shape":"DataSourceTypesList"},
         "workspaceDescription":{"shape":"Description"},
         "workspaceName":{"shape":"WorkspaceName"},
@@ -514,7 +553,8 @@
         "TIMESTREAM",
         "SITEWISE",
         "ATHENA",
-        "REDSHIFT"
+        "REDSHIFT",
+        "TWINMAKER"
       ]
     },
     "DataSourceTypesList":{
@@ -585,6 +625,27 @@
       "required":["authentication"],
       "members":{
         "authentication":{"shape":"AuthenticationDescription"}
+      }
+    },
+    "DescribeWorkspaceConfigurationRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DescribeWorkspaceConfigurationResponse":{
+      "type":"structure",
+      "required":["configuration"],
+      "members":{
+        "configuration":{
+          "shape":"OverridableConfigurationJson",
+          "jsonvalue":true
+        }
       }
     },
     "DescribeWorkspaceRequest":{
@@ -810,6 +871,11 @@
       "member":{"shape":"OrganizationalUnit"},
       "sensitive":true
     },
+    "OverridableConfigurationJson":{
+      "type":"string",
+      "max":65536,
+      "min":2
+    },
     "PaginationToken":{"type":"string"},
     "PermissionEntry":{
       "type":"structure",
@@ -902,6 +968,17 @@
         "NOT_CONFIGURED"
       ]
     },
+    "SecurityGroupId":{
+      "type":"string",
+      "max":255,
+      "min":0
+    },
+    "SecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"},
+      "max":100,
+      "min":1
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":[
@@ -931,6 +1008,17 @@
     },
     "StackSetName":{"type":"string"},
     "String":{"type":"string"},
+    "SubnetId":{
+      "type":"string",
+      "max":255,
+      "min":0
+    },
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"SubnetId"},
+      "max":100,
+      "min":1
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -1111,6 +1199,29 @@
         "authentication":{"shape":"AuthenticationDescription"}
       }
     },
+    "UpdateWorkspaceConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "configuration",
+        "workspaceId"
+      ],
+      "members":{
+        "configuration":{
+          "shape":"OverridableConfigurationJson",
+          "jsonvalue":true
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "UpdateWorkspaceConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateWorkspaceRequest":{
       "type":"structure",
       "required":["workspaceId"],
@@ -1118,7 +1229,9 @@
         "accountAccessType":{"shape":"AccountAccessType"},
         "organizationRoleName":{"shape":"OrganizationRoleName"},
         "permissionType":{"shape":"PermissionType"},
+        "removeVpcConfiguration":{"shape":"Boolean"},
         "stackSetName":{"shape":"StackSetName"},
+        "vpcConfiguration":{"shape":"VpcConfiguration"},
         "workspaceDataSources":{"shape":"DataSourceTypesList"},
         "workspaceDescription":{"shape":"Description"},
         "workspaceId":{
@@ -1202,6 +1315,17 @@
         "OTHER"
       ]
     },
+    "VpcConfiguration":{
+      "type":"structure",
+      "required":[
+        "securityGroupIds",
+        "subnetIds"
+      ],
+      "members":{
+        "securityGroupIds":{"shape":"SecurityGroupIds"},
+        "subnetIds":{"shape":"SubnetIds"}
+      }
+    },
     "WorkspaceDescription":{
       "type":"structure",
       "required":[
@@ -1236,6 +1360,7 @@
         "stackSetName":{"shape":"StackSetName"},
         "status":{"shape":"WorkspaceStatus"},
         "tags":{"shape":"TagMap"},
+        "vpcConfiguration":{"shape":"VpcConfiguration"},
         "workspaceRoleArn":{"shape":"IamRoleArn"}
       }
     },
