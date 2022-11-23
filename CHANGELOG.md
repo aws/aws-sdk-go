@@ -1,3 +1,10 @@
+Release v1.44.145 (2022-11-23)
+===
+
+### Service Client Updates
+* `service/grafana`: Updates service API and documentation
+* `service/rbin`: Updates service API and documentation
+
 Release v1.44.144 (2022-11-22)
 ===
 

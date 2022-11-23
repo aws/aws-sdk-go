@@ -39,7 +39,8 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "GetRule":{
@@ -86,6 +87,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "LockRule":{
+      "name":"LockRule",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/rules/{identifier}/lock",
+        "responseCode":200
+      },
+      "input":{"shape":"LockRuleRequest"},
+      "output":{"shape":"LockRuleResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -100,6 +117,22 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "UnlockRule":{
+      "name":"UnlockRule",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/rules/{identifier}/unlock",
+        "responseCode":200
+      },
+      "input":{"shape":"UnlockRuleRequest"},
+      "output":{"shape":"UnlockRuleResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "UntagResource":{
@@ -129,11 +162,25 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
       ]
     }
   },
   "shapes":{
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "Reason":{"shape":"ConflictExceptionReason"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "ConflictExceptionReason":{
+      "type":"string",
+      "enum":["INVALID_RULE_STATE"]
+    },
     "CreateRuleRequest":{
       "type":"structure",
       "required":[
@@ -145,7 +192,8 @@
         "Description":{"shape":"Description"},
         "Tags":{"shape":"TagList"},
         "ResourceType":{"shape":"ResourceType"},
-        "ResourceTags":{"shape":"ResourceTags"}
+        "ResourceTags":{"shape":"ResourceTags"},
+        "LockConfiguration":{"shape":"LockConfiguration"}
       }
     },
     "CreateRuleResponse":{
@@ -157,7 +205,9 @@
         "Tags":{"shape":"TagList"},
         "ResourceType":{"shape":"ResourceType"},
         "ResourceTags":{"shape":"ResourceTags"},
-        "Status":{"shape":"RuleStatus"}
+        "Status":{"shape":"RuleStatus"},
+        "LockConfiguration":{"shape":"LockConfiguration"},
+        "LockState":{"shape":"LockState"}
       }
     },
     "DeleteRuleRequest":{
@@ -200,7 +250,10 @@
         "ResourceType":{"shape":"ResourceType"},
         "RetentionPeriod":{"shape":"RetentionPeriod"},
         "ResourceTags":{"shape":"ResourceTags"},
-        "Status":{"shape":"RuleStatus"}
+        "Status":{"shape":"RuleStatus"},
+        "LockConfiguration":{"shape":"LockConfiguration"},
+        "LockState":{"shape":"LockState"},
+        "LockEndTime":{"shape":"TimeStamp"}
       }
     },
     "InternalServerException":{
@@ -219,7 +272,8 @@
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"NextToken"},
         "ResourceType":{"shape":"ResourceType"},
-        "ResourceTags":{"shape":"ResourceTags"}
+        "ResourceTags":{"shape":"ResourceTags"},
+        "LockState":{"shape":"LockState"}
       }
     },
     "ListRulesResponse":{
@@ -245,6 +299,49 @@
       "members":{
         "Tags":{"shape":"TagList"}
       }
+    },
+    "LockConfiguration":{
+      "type":"structure",
+      "required":["UnlockDelay"],
+      "members":{
+        "UnlockDelay":{"shape":"UnlockDelay"}
+      }
+    },
+    "LockRuleRequest":{
+      "type":"structure",
+      "required":[
+        "Identifier",
+        "LockConfiguration"
+      ],
+      "members":{
+        "Identifier":{
+          "shape":"RuleIdentifier",
+          "location":"uri",
+          "locationName":"identifier"
+        },
+        "LockConfiguration":{"shape":"LockConfiguration"}
+      }
+    },
+    "LockRuleResponse":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"RuleIdentifier"},
+        "Description":{"shape":"Description"},
+        "ResourceType":{"shape":"ResourceType"},
+        "RetentionPeriod":{"shape":"RetentionPeriod"},
+        "ResourceTags":{"shape":"ResourceTags"},
+        "Status":{"shape":"RuleStatus"},
+        "LockConfiguration":{"shape":"LockConfiguration"},
+        "LockState":{"shape":"LockState"}
+      }
+    },
+    "LockState":{
+      "type":"string",
+      "enum":[
+        "locked",
+        "pending_unlock",
+        "unlocked"
+      ]
     },
     "MaxResults":{
       "type":"integer",
@@ -339,7 +436,8 @@
       "members":{
         "Identifier":{"shape":"RuleIdentifier"},
         "Description":{"shape":"Description"},
-        "RetentionPeriod":{"shape":"RetentionPeriod"}
+        "RetentionPeriod":{"shape":"RetentionPeriod"},
+        "LockState":{"shape":"LockState"}
       }
     },
     "RuleSummaryList":{
@@ -414,6 +512,52 @@
       "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
+    "TimeStamp":{"type":"timestamp"},
+    "UnlockDelay":{
+      "type":"structure",
+      "required":[
+        "UnlockDelayValue",
+        "UnlockDelayUnit"
+      ],
+      "members":{
+        "UnlockDelayValue":{"shape":"UnlockDelayValue"},
+        "UnlockDelayUnit":{"shape":"UnlockDelayUnit"}
+      }
+    },
+    "UnlockDelayUnit":{
+      "type":"string",
+      "enum":["DAYS"]
+    },
+    "UnlockDelayValue":{
+      "type":"integer",
+      "max":30,
+      "min":7
+    },
+    "UnlockRuleRequest":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Identifier":{
+          "shape":"RuleIdentifier",
+          "location":"uri",
+          "locationName":"identifier"
+        }
+      }
+    },
+    "UnlockRuleResponse":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"RuleIdentifier"},
+        "Description":{"shape":"Description"},
+        "ResourceType":{"shape":"ResourceType"},
+        "RetentionPeriod":{"shape":"RetentionPeriod"},
+        "ResourceTags":{"shape":"ResourceTags"},
+        "Status":{"shape":"RuleStatus"},
+        "LockConfiguration":{"shape":"LockConfiguration"},
+        "LockState":{"shape":"LockState"},
+        "LockEndTime":{"shape":"TimeStamp"}
+      }
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -461,7 +605,9 @@
         "Description":{"shape":"Description"},
         "ResourceType":{"shape":"ResourceType"},
         "ResourceTags":{"shape":"ResourceTags"},
-        "Status":{"shape":"RuleStatus"}
+        "Status":{"shape":"RuleStatus"},
+        "LockState":{"shape":"LockState"},
+        "LockEndTime":{"shape":"TimeStamp"}
       }
     },
     "ValidationException":{

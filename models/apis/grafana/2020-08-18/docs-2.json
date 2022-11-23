@@ -4,11 +4,12 @@
   "operations": {
     "AssociateLicense": "<p>Assigns a Grafana Enterprise license to a workspace. Upgrading to Grafana Enterprise incurs additional fees. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html\">Upgrade a workspace to Grafana Enterprise</a>.</p>",
     "CreateWorkspace": "<p>Creates a <i>workspace</i>. In a workspace, you can create Grafana dashboards and visualizations to analyze your metrics, logs, and traces. You don't have to build, package, or deploy any hardware to run the Grafana server.</p> <p>Don't use <code>CreateWorkspace</code> to modify an existing workspace. Instead, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html\">UpdateWorkspace</a>.</p>",
-    "CreateWorkspaceApiKey": "<p>Creates an API key for the workspace. This key can be used to authenticate requests sent to the workspace's HTTP API. See <a href=\" https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html\"> https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html</a> for available APIs and example requests.</p>",
+    "CreateWorkspaceApiKey": "<p>Creates a Grafana API key for the workspace. This key can be used to authenticate requests sent to the workspace's HTTP API. See <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html\">https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html</a> for available APIs and example requests.</p>",
     "DeleteWorkspace": "<p>Deletes an Amazon Managed Grafana workspace.</p>",
-    "DeleteWorkspaceApiKey": "<p>Deletes an API key for a workspace.</p>",
+    "DeleteWorkspaceApiKey": "<p>Deletes a Grafana API key for the workspace.</p>",
     "DescribeWorkspace": "<p>Displays information about one Amazon Managed Grafana workspace.</p>",
     "DescribeWorkspaceAuthentication": "<p>Displays information about the authentication methods used in one Amazon Managed Grafana workspace.</p>",
+    "DescribeWorkspaceConfiguration": "<p>Gets the current configuration string for the given workspace.</p>",
     "DisassociateLicense": "<p>Removes the Grafana Enterprise license from a workspace.</p>",
     "ListPermissions": "<p>Lists the users and groups who have the Grafana <code>Admin</code> and <code>Editor</code> roles in this workspace. If you use this operation without specifying <code>userId</code> or <code>groupId</code>, the operation returns the roles of all users and groups. If you specify a <code>userId</code> or a <code>groupId</code>, only the roles for that user or group are returned. If you do this, you can specify only one <code>userId</code> or one <code>groupId</code>.</p>",
     "ListTagsForResource": "<p>The <code>ListTagsForResource</code> operation returns the tags that are associated with the Amazon Managed Service for Grafana resource specified by the <code>resourceArn</code>. Currently, the only resource that can be tagged is a workspace. </p>",
@@ -16,8 +17,9 @@
     "TagResource": "<p>The <code>TagResource</code> operation associates tags with an Amazon Managed Grafana resource. Currently, the only resource that can be tagged is workspaces. </p> <p>If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p>",
     "UntagResource": "<p>The <code>UntagResource</code> operation removes the association of the tag with the Amazon Managed Grafana resource. </p>",
     "UpdatePermissions": "<p>Updates which users in a workspace have the Grafana <code>Admin</code> or <code>Editor</code> roles.</p>",
-    "UpdateWorkspace": "<p>Modifies an existing Amazon Managed Grafana workspace. If you use this operation and omit any optional parameters, the existing values of those parameters are not changed.</p> <p>To modify the user authentication methods that the workspace uses, such as SAML or Amazon Web Services SSO, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspaceAuthentication.html\">UpdateWorkspaceAuthentication</a>.</p> <p>To modify which users in the workspace have the <code>Admin</code> and <code>Editor</code> Grafana roles, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html\">UpdatePermissions</a>.</p>",
-    "UpdateWorkspaceAuthentication": "<p>Use this operation to define the identity provider (IdP) that this workspace authenticates users from, using SAML. You can also map SAML assertion attributes to workspace user information and define which groups in the assertion attribute are to have the <code>Admin</code> and <code>Editor</code> roles in the workspace.</p>"
+    "UpdateWorkspace": "<p>Modifies an existing Amazon Managed Grafana workspace. If you use this operation and omit any optional parameters, the existing values of those parameters are not changed.</p> <p>To modify the user authentication methods that the workspace uses, such as SAML or IAM Identity Center, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspaceAuthentication.html\">UpdateWorkspaceAuthentication</a>.</p> <p>To modify which users in the workspace have the <code>Admin</code> and <code>Editor</code> Grafana roles, use <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html\">UpdatePermissions</a>.</p>",
+    "UpdateWorkspaceAuthentication": "<p>Use this operation to define the identity provider (IdP) that this workspace authenticates users from, using SAML. You can also map SAML assertion attributes to workspace user information and define which groups in the assertion attribute are to have the <code>Admin</code> and <code>Editor</code> roles in the workspace.</p>",
+    "UpdateWorkspaceConfiguration": "<p>Updates the configuration string for the given workspace</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -48,16 +50,16 @@
     "ApiKeyName": {
       "base": null,
       "refs": {
-        "CreateWorkspaceApiKeyRequest$keyName": "<p>Specifies the name of the key to create. Key names must be unique to the workspace.</p>",
+        "CreateWorkspaceApiKeyRequest$keyName": "<p>Specifies the name of the key. Keynames must be unique to the workspace.</p>",
         "CreateWorkspaceApiKeyResponse$keyName": "<p>The name of the key that was created.</p>",
         "DeleteWorkspaceApiKeyRequest$keyName": "<p>The name of the API key to delete.</p>",
-        "DeleteWorkspaceApiKeyResponse$keyName": "<p>The name of the API key that was deleted.</p>"
+        "DeleteWorkspaceApiKeyResponse$keyName": "<p>The name of the key that was deleted.</p>"
       }
     },
     "ApiKeyToken": {
       "base": null,
       "refs": {
-        "CreateWorkspaceApiKeyResponse$key": "<p>The key token that was created. Use this value as a bearer token to authenticate HTTP requests to the workspace.</p>"
+        "CreateWorkspaceApiKeyResponse$key": "<p>The key token. Use this value as a bearer token to authenticate HTTP requests to the workspace.</p>"
       }
     },
     "AssertionAttribute": {
@@ -103,28 +105,29 @@
     "AuthenticationProviders": {
       "base": null,
       "refs": {
-        "AuthenticationDescription$providers": "<p>Specifies whether this workspace uses Amazon Web Services SSO, SAML, or both methods to authenticate users to use the Grafana console in the Amazon Managed Grafana workspace.</p>",
-        "AuthenticationSummary$providers": "<p>Specifies whether the workspace uses SAML, Amazon Web Services SSO, or both methods for user authentication.</p>",
-        "CreateWorkspaceRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, Amazon Web Services Single Sign On, or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>",
-        "UpdateWorkspaceAuthenticationRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, Amazon Web Services Single Sign On, or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>"
+        "AuthenticationDescription$providers": "<p>Specifies whether this workspace uses IAM Identity Center, SAML, or both methods to authenticate users to use the Grafana console in the Amazon Managed Grafana workspace.</p>",
+        "AuthenticationSummary$providers": "<p>Specifies whether the workspace uses SAML, IAM Identity Center, or both methods for user authentication.</p>",
+        "CreateWorkspaceRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor to Single Sign-On), or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>",
+        "UpdateWorkspaceAuthenticationRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor to Single Sign-On), or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>"
       }
     },
     "AuthenticationSummary": {
-      "base": "<p>A structure that describes whether the workspace uses SAML, Amazon Web Services SSO, or both methods for user authentication, and whether that authentication is fully configured.</p>",
+      "base": "<p>A structure that describes whether the workspace uses SAML, IAM Identity Center, or both methods for user authentication, and whether that authentication is fully configured.</p>",
       "refs": {
-        "WorkspaceDescription$authentication": "<p>A structure that describes whether the workspace uses SAML, Amazon Web Services SSO, or both methods for user authentication.</p>",
+        "WorkspaceDescription$authentication": "<p>A structure that describes whether the workspace uses SAML, IAM Identity Center, or both methods for user authentication.</p>",
         "WorkspaceSummary$authentication": "<p>A structure containing information about the authentication methods used in the workspace.</p>"
       }
     },
     "AwsSsoAuthentication": {
-      "base": "<p>A structure containing information about how this workspace works with Amazon Web Services SSO. </p>",
+      "base": "<p>A structure containing information about how this workspace works with IAM Identity Center. </p>",
       "refs": {
-        "AuthenticationDescription$awsSso": "<p>A structure containing information about how this workspace works with Amazon Web Services SSO. </p>"
+        "AuthenticationDescription$awsSso": "<p>A structure containing information about how this workspace works with IAM Identity Center. </p>"
       }
     },
     "Boolean": {
       "base": null,
       "refs": {
+        "UpdateWorkspaceRequest$removeVpcConfiguration": "<p>Whether to remove the VPC configuration from the workspace.</p> <p>Setting this to <code>true</code> and providing a <code>vpcConfiguration</code> to set will return an error.</p>",
         "WorkspaceDescription$freeTrialConsumed": "<p>Specifies whether this workspace has already fully used its free trial for Grafana Enterprise.</p>"
       }
     },
@@ -209,6 +212,16 @@
       "refs": {
       }
     },
+    "DescribeWorkspaceConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkspaceConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeWorkspaceRequest": {
       "base": null,
       "refs": {
@@ -261,7 +274,7 @@
       }
     },
     "IdpMetadata": {
-      "base": "<p>A structure containing the identity provider (IdP) metadata used to integrate the identity provider with this workspace. You can specify the metadata either by providing a URL to its location in the <code>url</code> parameter, or by specifying the full metadata in XML format in the <code>xml</code> parameter.</p>",
+      "base": "<p>A structure containing the identity provider (IdP) metadata used to integrate the identity provider with this workspace. You can specify the metadata either by providing a URL to its location in the <code>url</code> parameter, or by specifying the full metadata in XML format in the <code>xml</code> parameter. Specifying both will cause an error.</p>",
       "refs": {
         "SamlConfiguration$idpMetadata": "<p>A structure containing the identity provider (IdP) metadata used to integrate the identity provider with this workspace.</p>"
       }
@@ -269,7 +282,7 @@
     "IdpMetadataUrl": {
       "base": null,
       "refs": {
-        "IdpMetadata$url": "<p>The URL of the location containing the metadata.</p>"
+        "IdpMetadata$url": "<p>The URL of the location containing the IdP metadata.</p>"
       }
     },
     "Integer": {
@@ -377,6 +390,14 @@
         "WorkspaceDescription$organizationalUnits": "<p>Specifies the organizational units that this workspace is allowed to use data sources from, if this workspace is in an account that is part of an organization.</p>"
       }
     },
+    "OverridableConfigurationJson": {
+      "base": null,
+      "refs": {
+        "CreateWorkspaceRequest$configuration": "<p>The configuration string for the workspace that you create. For more information about the format and configuration options available, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html\">Working in your Grafana workspace</a>.</p>",
+        "DescribeWorkspaceConfigurationResponse$configuration": "<p>The configuration string for the workspace that you requested. For more information about the format and configuration options available, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html\">Working in your Grafana workspace</a>.</p>",
+        "UpdateWorkspaceConfigurationRequest$configuration": "<p>The new configuration string for the workspace. For more information about the format and configuration options available, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html\">Working in your Grafana workspace</a>.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -387,7 +408,7 @@
       }
     },
     "PermissionEntry": {
-      "base": "<p>A structure containing the identity of one user or group and the <code>Admin</code> or <code>Editor</code> role that they have.</p>",
+      "base": "<p>A structure containing the identity of one user or group and the <code>Admin</code>, <code>Editor</code>, or <code>Viewer</code> role that they have.</p>",
       "refs": {
         "PermissionEntryList$member": null
       }
@@ -401,7 +422,7 @@
     "PermissionType": {
       "base": null,
       "refs": {
-        "CreateWorkspaceRequest$permissionType": "<p>If you specify <code>SERVICE_MANAGED</code> on AWS Grafana console, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels. In CLI mode, the permissionType <code>SERVICE_MANAGED</code> will not create the IAM role for you.</p> <p>If you specify <code>CUSTOMER_MANAGED</code>, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization that is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a>.</p>",
+        "CreateWorkspaceRequest$permissionType": "<p>If you specify <code>SERVICE_MANAGED</code> on AWS Grafana console, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels. In the CLI mode, the permissionType <code>SERVICE_MANAGED</code> will not create the IAM role for you. The ability for the Amazon Managed Grafana to create the IAM role on behalf of the user is supported only in the Amazon Managed Grafana AWS console. Use only the <code>CUSTOMER_MANAGED</code> permission type when creating a workspace in the CLI. </p> <p>If you specify <code>CUSTOMER_MANAGED</code>, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization that is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a>.</p>",
         "UpdateWorkspaceRequest$permissionType": "<p>If you specify <code>Service Managed</code>, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels.</p> <p>If you specify <code>CUSTOMER_MANAGED</code>, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization and that account is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a> </p>",
         "WorkspaceDescription$permissionType": "<p>If this is <code>Service Managed</code>, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels.</p> <p>If this is <code>CUSTOMER_MANAGED</code>, you manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization and that account is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose <code>CUSTOMER_MANAGED</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/AMG-manage-permissions.html\">Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels</a> </p>"
       }
@@ -414,7 +435,7 @@
     "Role": {
       "base": null,
       "refs": {
-        "PermissionEntry$role": "<p>Specifies whether the user or group has the <code>Admin</code> or <code>Editor</code> role.</p>",
+        "PermissionEntry$role": "<p>Specifies whether the user or group has the <code>Admin</code>, <code>Editor</code>, or <code>Viewer</code> role.</p>",
         "UpdateInstruction$role": "<p>The role to add or revoke for the user or the group specified in <code>users</code>.</p>"
       }
     },
@@ -432,7 +453,7 @@
       }
     },
     "RoleValues": {
-      "base": "<p>This structure defines which groups defined in the SAML assertion attribute are to be mapped to the Grafana <code>Admin</code> and <code>Editor</code> roles in the workspace.</p>",
+      "base": "<p>This structure defines which groups defined in the SAML assertion attribute are to be mapped to the Grafana <code>Admin</code> and <code>Editor</code> roles in the workspace. SAML authenticated users not part of <code>Admin</code> or <code>Editor</code> role groups have <code>Viewer</code> permission over the workspace.</p>",
       "refs": {
         "SamlConfiguration$roleValues": "<p>A structure containing arrays that map group names in the SAML assertion to the Grafana <code>Admin</code> and <code>Editor</code> roles in the workspace.</p>"
       }
@@ -440,7 +461,7 @@
     "SSOClientId": {
       "base": null,
       "refs": {
-        "AwsSsoAuthentication$ssoClientId": "<p>The ID of the Amazon Web Services SSO-managed application that is created by Amazon Managed Grafana.</p>"
+        "AwsSsoAuthentication$ssoClientId": "<p>The ID of the IAM Identity Center-managed application that is created by Amazon Managed Grafana.</p>"
       }
     },
     "SamlAuthentication": {
@@ -461,6 +482,18 @@
       "refs": {
         "AuthenticationSummary$samlConfigurationStatus": "<p>Specifies whether the workplace's user authentication method is fully configured.</p>",
         "SamlAuthentication$status": "<p>Specifies whether the workspace's SAML configuration is complete.</p>"
+      }
+    },
+    "SecurityGroupId": {
+      "base": null,
+      "refs": {
+        "SecurityGroupIds$member": null
+      }
+    },
+    "SecurityGroupIds": {
+      "base": null,
+      "refs": {
+        "VpcConfiguration$securityGroupIds": "<p>The list of Amazon EC2 security group IDs attached to the Amazon VPC for your Grafana workspace to connect.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -491,8 +524,8 @@
         "ConflictException$message": "<p>A description of the error.</p>",
         "ConflictException$resourceId": "<p>The ID of the resource that is associated with the error.</p>",
         "ConflictException$resourceType": "<p>The type of the resource that is associated with the error.</p>",
-        "CreateWorkspaceApiKeyRequest$keyRole": "<p>Specifies the permission level of the key.</p> <p>Valid Values: <code>VIEWER</code> | <code>EDITOR</code> | <code>ADMIN</code> </p>",
-        "IdpMetadata$xml": "<p>The actual full metadata file, in XML format.</p>",
+        "CreateWorkspaceApiKeyRequest$keyRole": "<p>Specifies the permission level of the key.</p> <p> Valid values: <code>VIEWER</code>|<code>EDITOR</code>|<code>ADMIN</code> </p>",
+        "IdpMetadata$xml": "<p>The full IdP metadata, in XML format.</p>",
         "InternalServerException$message": "<p>A description of the error.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource the list of tags are associated with.</p>",
         "ResourceNotFoundException$message": "<p>The value of a parameter in the request caused an error.</p>",
@@ -512,6 +545,18 @@
         "ValidationException$message": "<p>A description of the error.</p>",
         "ValidationExceptionField$message": "<p>A message describing why this field couldn't be validated.</p>",
         "ValidationExceptionField$name": "<p>The name of the field that caused the validation error.</p>"
+      }
+    },
+    "SubnetId": {
+      "base": null,
+      "refs": {
+        "SubnetIds$member": null
+      }
+    },
+    "SubnetIds": {
+      "base": null,
+      "refs": {
+        "VpcConfiguration$subnetIds": "<p>The list of Amazon EC2 subnet IDs created in the Amazon VPC for your Grafana workspace to connect.</p>"
       }
     },
     "TagKey": {
@@ -636,6 +681,16 @@
       "refs": {
       }
     },
+    "UpdateWorkspaceConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkspaceConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateWorkspaceRequest": {
       "base": null,
       "refs": {
@@ -662,7 +717,7 @@
     "UserType": {
       "base": null,
       "refs": {
-        "ListPermissionsRequest$userType": "<p>(Optional) If you specify <code>SSO_USER</code>, then only the permissions of Amazon Web Services SSO users are returned. If you specify <code>SSO_GROUP</code>, only the permissions of Amazon Web Services SSO groups are returned.</p>",
+        "ListPermissionsRequest$userType": "<p>(Optional) If you specify <code>SSO_USER</code>, then only the permissions of IAM Identity Center users are returned. If you specify <code>SSO_GROUP</code>, only the permissions of IAM Identity Center groups are returned.</p>",
         "User$type": "<p>Specifies whether this is a single user or a group.</p>"
       }
     },
@@ -689,6 +744,14 @@
         "ValidationException$reason": "<p>The reason that the operation failed.</p>"
       }
     },
+    "VpcConfiguration": {
+      "base": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p>",
+      "refs": {
+        "CreateWorkspaceRequest$vpcConfiguration": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p>",
+        "UpdateWorkspaceRequest$vpcConfiguration": "<p>The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to.</p>",
+        "WorkspaceDescription$vpcConfiguration": "<p>The configuration for connecting to data sources in a private VPC (Amazon Virtual Private Cloud).</p>"
+      }
+    },
     "WorkspaceDescription": {
       "base": "<p>A structure containing information about an Amazon Managed Grafana workspace in your account.</p>",
       "refs": {
@@ -704,17 +767,19 @@
       "base": null,
       "refs": {
         "AssociateLicenseRequest$workspaceId": "<p>The ID of the workspace to associate the license with.</p>",
-        "CreateWorkspaceApiKeyRequest$workspaceId": "<p>The ID of the workspace in which to create an API key.</p>",
+        "CreateWorkspaceApiKeyRequest$workspaceId": "<p>The ID of the workspace to create an API key.</p>",
         "CreateWorkspaceApiKeyResponse$workspaceId": "<p>The ID of the workspace that the key is valid for.</p>",
         "DeleteWorkspaceApiKeyRequest$workspaceId": "<p>The ID of the workspace to delete.</p>",
         "DeleteWorkspaceApiKeyResponse$workspaceId": "<p>The ID of the workspace where the key was deleted.</p>",
         "DeleteWorkspaceRequest$workspaceId": "<p>The ID of the workspace to delete.</p>",
         "DescribeWorkspaceAuthenticationRequest$workspaceId": "<p>The ID of the workspace to return authentication information about.</p>",
+        "DescribeWorkspaceConfigurationRequest$workspaceId": "<p>The ID of the workspace to get configuration information for.</p>",
         "DescribeWorkspaceRequest$workspaceId": "<p>The ID of the workspace to display information about.</p>",
         "DisassociateLicenseRequest$workspaceId": "<p>The ID of the workspace to remove the Grafana Enterprise license from.</p>",
         "ListPermissionsRequest$workspaceId": "<p>The ID of the workspace to list permissions for. This parameter is required.</p>",
         "UpdatePermissionsRequest$workspaceId": "<p>The ID of the workspace to update.</p>",
         "UpdateWorkspaceAuthenticationRequest$workspaceId": "<p>The ID of the workspace to update the authentication for.</p>",
+        "UpdateWorkspaceConfigurationRequest$workspaceId": "<p>The ID of the workspace to update.</p>",
         "UpdateWorkspaceRequest$workspaceId": "<p>The ID of the workspace to update.</p>",
         "WorkspaceDescription$id": "<p>The unique ID of this workspace.</p>",
         "WorkspaceSummary$id": "<p>The unique ID of the workspace.</p>"
