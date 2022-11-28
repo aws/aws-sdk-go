@@ -54,7 +54,7 @@ const (
 	// ErrCodeInvalidJobIdException for service response error code
 	// "InvalidJobIdException".
 	//
-	// An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
+	// An invalid job identifier was passed to an asynchronous analysis operation.
 	ErrCodeInvalidJobIdException = "InvalidJobIdException"
 
 	// ErrCodeInvalidKMSKeyException for service response error code

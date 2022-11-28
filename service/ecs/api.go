@@ -390,6 +390,9 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 //   - AccessDeniedException
 //     You don't have authorization to perform the requested action.
 //
+//   - NamespaceNotFoundException
+//     The specified namespace wasn't found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/CreateService
 func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, error) {
 	req, out := c.CreateServiceRequest(input)
@@ -506,6 +509,9 @@ func (c *ECS) CreateTaskSetRequest(input *CreateTaskSetInput) (req *request.Requ
 //   - ServiceNotActiveException
 //     The specified service isn't active. You can't update a service that's inactive.
 //     If you have previously deleted a service, you can re-create it with CreateService.
+//
+//   - NamespaceNotFoundException
+//     The specified namespace wasn't found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/CreateTaskSet
 func (c *ECS) CreateTaskSet(input *CreateTaskSetInput) (*CreateTaskSetOutput, error) {
@@ -2170,7 +2176,7 @@ func (c *ECS) ExecuteCommandRequest(input *ExecuteCommandInput) (req *request.Re
 //
 // If you use a condition key in your IAM policy to refine the conditions for
 // the policy statement, for example limit the actions to a specific cluster,
-// you recevie an AccessDeniedException when there is a mismatch between the
+// you receive an AccessDeniedException when there is a mismatch between the
 // condition key value and the corresponding parameter value.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3078,6 +3084,160 @@ func (c *ECS) ListServicesPagesWithContext(ctx aws.Context, input *ListServicesI
 
 	for p.Next() {
 		if !fn(p.Page().(*ListServicesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListServicesByNamespace = "ListServicesByNamespace"
+
+// ListServicesByNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the ListServicesByNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListServicesByNamespace for more information on using the ListServicesByNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListServicesByNamespaceRequest method.
+//	req, resp := client.ListServicesByNamespaceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListServicesByNamespace
+func (c *ECS) ListServicesByNamespaceRequest(input *ListServicesByNamespaceInput) (req *request.Request, output *ListServicesByNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opListServicesByNamespace,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListServicesByNamespaceInput{}
+	}
+
+	output = &ListServicesByNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListServicesByNamespace API operation for Amazon EC2 Container Service.
+//
+// This operation lists all of the services that are associated with a Cloud
+// Map namespace. This list might include services in different clusters. In
+// contrast, ListServices can only list services in one cluster at a time. If
+// you need to filter the list of services in a single cluster by various parameters,
+// use ListServices. For more information, see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+// in the Amazon Elastic Container Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Service's
+// API operation ListServicesByNamespace for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server issue.
+//
+//   - ClientException
+//     These errors are usually caused by a client action. This client action might
+//     be using an action or resource on behalf of a user that doesn't have permissions
+//     to use the action or resource,. Or, it might be specifying an identifier
+//     that isn't valid.
+//
+//   - InvalidParameterException
+//     The specified parameter isn't valid. Review the available parameters for
+//     the API request.
+//
+//   - NamespaceNotFoundException
+//     The specified namespace wasn't found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListServicesByNamespace
+func (c *ECS) ListServicesByNamespace(input *ListServicesByNamespaceInput) (*ListServicesByNamespaceOutput, error) {
+	req, out := c.ListServicesByNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// ListServicesByNamespaceWithContext is the same as ListServicesByNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServicesByNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ECS) ListServicesByNamespaceWithContext(ctx aws.Context, input *ListServicesByNamespaceInput, opts ...request.Option) (*ListServicesByNamespaceOutput, error) {
+	req, out := c.ListServicesByNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListServicesByNamespacePages iterates over the pages of a ListServicesByNamespace operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListServicesByNamespace method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListServicesByNamespace operation.
+//	pageNum := 0
+//	err := client.ListServicesByNamespacePages(params,
+//	    func(page *ecs.ListServicesByNamespaceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ECS) ListServicesByNamespacePages(input *ListServicesByNamespaceInput, fn func(*ListServicesByNamespaceOutput, bool) bool) error {
+	return c.ListServicesByNamespacePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListServicesByNamespacePagesWithContext same as ListServicesByNamespacePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ECS) ListServicesByNamespacePagesWithContext(ctx aws.Context, input *ListServicesByNamespaceInput, fn func(*ListServicesByNamespaceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListServicesByNamespaceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListServicesByNamespaceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListServicesByNamespaceOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5414,6 +5574,10 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 // information, see Updating the Amazon ECS container agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/agent-update-ecs-ami.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
+// Agent updates with the UpdateContainerAgent API operation do not apply to
+// Windows container instances. We recommend that you launch new container instances
+// to update the agent version in your Windows clusters.
+//
 // The UpdateContainerAgent API requires an Amazon ECS-optimized AMI or Amazon
 // Linux AMI with the ecs-init service installed and running. For help updating
 // the Amazon ECS container agent on other operating systems, see Manually updating
@@ -5818,6 +5982,9 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 //   - AccessDeniedException
 //     You don't have authorization to perform the requested action.
 //
+//   - NamespaceNotFoundException
+//     The specified namespace wasn't found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateService
 func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, error) {
 	req, out := c.UpdateServiceRequest(input)
@@ -6017,14 +6184,14 @@ func (c *ECS) UpdateTaskProtectionRequest(input *UpdateTaskProtectionInput) (req
 //
 // To learn more about Amazon ECS task protection, see Task scale-in protection
 // (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-scale-in-protection.html)
-// in the Amazon Elastic Container Service Developer Guide.
+// in the Amazon Elastic Container Service Developer Guide .
 //
 // This operation is only supported for tasks belonging to an Amazon ECS service.
 // Invoking this operation for a standalone task will result in an TASK_NOT_VALID
-// failure. For more information, see API failure reasons (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/api_failures_messages.html.html).
+// failure. For more information, see API failure reasons (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/api_failures_messages.html).
 //
 // If you prefer to set task protection from within the container, we recommend
-// using the Amazon ECS container agent endpoint (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-endpoint.html).
+// using the Task scale-in protection endpoint (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-scale-in-protection-endpoint.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6409,7 +6576,7 @@ type Attribute struct {
 	// The value of the attribute. The value must contain between 1 and 128 characters.
 	// It can contain letters (uppercase and lowercase), numbers, hyphens (-), underscores
 	// (_), periods (.), at signs (@), forward slashes (/), back slashes (\), colons
-	// (:), or spaces. The value can't can't start or end with a space.
+	// (:), or spaces. The value can't start or end with a space.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -7187,6 +7354,23 @@ type Cluster struct {
 	// The number of tasks in the cluster that are in the RUNNING state.
 	RunningTasksCount *int64 `locationName:"runningTasksCount" type:"integer"`
 
+	// Use this parameter to set a default Service Connect namespace. After you
+	// set a default Service Connect namespace, any new services with Service Connect
+	// turned on that are created in the cluster are added as client services in
+	// the namespace. This setting only applies to new services that set the enabled
+	// parameter to true in the ServiceConnectConfiguration. You can set the namespace
+	// of each service individually in the ServiceConnectConfiguration to override
+	// this default parameter.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	ServiceConnectDefaults *ClusterServiceConnectDefaults `locationName:"serviceConnectDefaults" type:"structure"`
+
 	// The settings for the cluster. This parameter indicates whether CloudWatch
 	// Container Insights is enabled or disabled for a cluster.
 	Settings []*ClusterSetting `locationName:"settings" type:"list"`
@@ -7351,6 +7535,12 @@ func (s *Cluster) SetRegisteredContainerInstancesCount(v int64) *Cluster {
 // SetRunningTasksCount sets the RunningTasksCount field's value.
 func (s *Cluster) SetRunningTasksCount(v int64) *Cluster {
 	s.RunningTasksCount = &v
+	return s
+}
+
+// SetServiceConnectDefaults sets the ServiceConnectDefaults field's value.
+func (s *Cluster) SetServiceConnectDefaults(v *ClusterServiceConnectDefaults) *Cluster {
+	s.ServiceConnectDefaults = v
 	return s
 }
 
@@ -7669,6 +7859,136 @@ func (s *ClusterNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ClusterNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Use this parameter to set a default Service Connect namespace. After you
+// set a default Service Connect namespace, any new services with Service Connect
+// turned on that are created in the cluster are added as client services in
+// the namespace. This setting only applies to new services that set the enabled
+// parameter to true in the ServiceConnectConfiguration. You can set the namespace
+// of each service individually in the ServiceConnectConfiguration to override
+// this default parameter.
+//
+// Tasks that run in a namespace can use short names to connect to services
+// in the namespace. Tasks can connect to services across all of the clusters
+// in the namespace. Tasks connect through a managed proxy container that collects
+// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+// services create are supported with Service Connect. For more information,
+// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+// in the Amazon Elastic Container Service Developer Guide.
+type ClusterServiceConnectDefaults struct {
+	_ struct{} `type:"structure"`
+
+	// The namespace name or full Amazon Resource Name (ARN) of the Cloud Map namespace.
+	// When you create a service and don't specify a Service Connect configuration,
+	// this namespace is used.
+	Namespace *string `locationName:"namespace" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterServiceConnectDefaults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterServiceConnectDefaults) GoString() string {
+	return s.String()
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ClusterServiceConnectDefaults) SetNamespace(v string) *ClusterServiceConnectDefaults {
+	s.Namespace = &v
+	return s
+}
+
+// Use this parameter to set a default Service Connect namespace. After you
+// set a default Service Connect namespace, any new services with Service Connect
+// turned on that are created in the cluster are added as client services in
+// the namespace. This setting only applies to new services that set the enabled
+// parameter to true in the ServiceConnectConfiguration. You can set the namespace
+// of each service individually in the ServiceConnectConfiguration to override
+// this default parameter.
+//
+// Tasks that run in a namespace can use short names to connect to services
+// in the namespace. Tasks can connect to services across all of the clusters
+// in the namespace. Tasks connect through a managed proxy container that collects
+// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+// services create are supported with Service Connect. For more information,
+// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+// in the Amazon Elastic Container Service Developer Guide.
+type ClusterServiceConnectDefaultsRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The namespace name or full Amazon Resource Name (ARN) of the Cloud Map namespace
+	// that's used when you create a service and don't specify a Service Connect
+	// configuration. Up to 1024 characters are allowed. The name is case-sensitive.
+	// The characters can't include hyphens (-), tilde (~), greater than (>), less
+	// than (<), or slash (/).
+	//
+	// If you enter an existing namespace name or ARN, then that namespace will
+	// be used. Any namespace type is supported. The namespace must be in this account
+	// and this Amazon Web Services Region.
+	//
+	// If you enter a new name, a Cloud Map namespace will be created. Amazon ECS
+	// creates a Cloud Map namespace with the "API calls" method of instance discovery
+	// only. This instance discovery method is the "HTTP" namespace type in the
+	// Command Line Interface. Other types of instance discovery aren't used by
+	// Service Connect.
+	//
+	// If you update the service with an empty string "" for the namespace name,
+	// the cluster configuration for Service Connect is removed. Note that the namespace
+	// will remain in Cloud Map and must be deleted separately.
+	//
+	// For more information about Cloud Map, see Working with Services (https://docs.aws.amazon.com/)
+	// in the Cloud Map Developer Guide.
+	//
+	// Namespace is a required field
+	Namespace *string `locationName:"namespace" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterServiceConnectDefaultsRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClusterServiceConnectDefaultsRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClusterServiceConnectDefaultsRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClusterServiceConnectDefaultsRequest"}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ClusterServiceConnectDefaultsRequest) SetNamespace(v string) *ClusterServiceConnectDefaultsRequest {
+	s.Namespace = &v
+	return s
 }
 
 // The settings to use when creating a cluster. This parameter is used to turn
@@ -9659,6 +9979,23 @@ type CreateClusterInput struct {
 	// API operation.
 	DefaultCapacityProviderStrategy []*CapacityProviderStrategyItem `locationName:"defaultCapacityProviderStrategy" type:"list"`
 
+	// Use this parameter to set a default Service Connect namespace. After you
+	// set a default Service Connect namespace, any new services with Service Connect
+	// turned on that are created in the cluster are added as client services in
+	// the namespace. This setting only applies to new services that set the enabled
+	// parameter to true in the ServiceConnectConfiguration. You can set the namespace
+	// of each service individually in the ServiceConnectConfiguration to override
+	// this default parameter.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	ServiceConnectDefaults *ClusterServiceConnectDefaultsRequest `locationName:"serviceConnectDefaults" type:"structure"`
+
 	// The setting to use when creating a cluster. This parameter is used to turn
 	// on CloudWatch Container Insights for a cluster. If this value is specified,
 	// it overrides the containerInsights value set with PutAccountSetting or PutAccountSettingDefault.
@@ -9723,6 +10060,11 @@ func (s *CreateClusterInput) Validate() error {
 			}
 		}
 	}
+	if s.ServiceConnectDefaults != nil {
+		if err := s.ServiceConnectDefaults.Validate(); err != nil {
+			invalidParams.AddNested("ServiceConnectDefaults", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -9761,6 +10103,12 @@ func (s *CreateClusterInput) SetConfiguration(v *ClusterConfiguration) *CreateCl
 // SetDefaultCapacityProviderStrategy sets the DefaultCapacityProviderStrategy field's value.
 func (s *CreateClusterInput) SetDefaultCapacityProviderStrategy(v []*CapacityProviderStrategyItem) *CreateClusterInput {
 	s.DefaultCapacityProviderStrategy = v
+	return s
+}
+
+// SetServiceConnectDefaults sets the ServiceConnectDefaults field's value.
+func (s *CreateClusterInput) SetServiceConnectDefaults(v *ClusterServiceConnectDefaultsRequest) *CreateClusterInput {
+	s.ServiceConnectDefaults = v
 	return s
 }
 
@@ -9860,8 +10208,8 @@ type CreateServiceInput struct {
 	// balancer. If your service has a load balancer defined and you don't specify
 	// a health check grace period value, the default value of 0 is used.
 	//
-	// If you do not use an Elastic Load Balancing, we recomend that you use the
-	// startPeriod in the task definition healtch check parameters. For more information,
+	// If you do not use an Elastic Load Balancing, we recommend that you use the
+	// startPeriod in the task definition health check parameters. For more information,
 	// see Health check (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html).
 	//
 	// If your service's tasks take a while to start and respond to Elastic Load
@@ -10019,6 +10367,18 @@ type CreateServiceInput struct {
 	//    don't support the DAEMON scheduling strategy.
 	SchedulingStrategy *string `locationName:"schedulingStrategy" type:"string" enum:"SchedulingStrategy"`
 
+	// The configuration for this service to discover and connect to services, and
+	// be discovered by, and connected from, other services within a namespace.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	ServiceConnectConfiguration *ServiceConnectConfiguration `locationName:"serviceConnectConfiguration" type:"structure"`
+
 	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,
 	// underscores, and hyphens are allowed. Service names must be unique within
 	// a cluster, but you can have similarly named services in multiple clusters
@@ -10118,6 +10478,11 @@ func (s *CreateServiceInput) Validate() error {
 	if s.NetworkConfiguration != nil {
 		if err := s.NetworkConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("NetworkConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServiceConnectConfiguration != nil {
+		if err := s.ServiceConnectConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceConnectConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -10242,6 +10607,12 @@ func (s *CreateServiceInput) SetRole(v string) *CreateServiceInput {
 // SetSchedulingStrategy sets the SchedulingStrategy field's value.
 func (s *CreateServiceInput) SetSchedulingStrategy(v string) *CreateServiceInput {
 	s.SchedulingStrategy = &v
+	return s
+}
+
+// SetServiceConnectConfiguration sets the ServiceConnectConfiguration field's value.
+func (s *CreateServiceInput) SetServiceConnectConfiguration(v *ServiceConnectConfiguration) *CreateServiceInput {
+	s.ServiceConnectConfiguration = v
 	return s
 }
 
@@ -11236,6 +11607,26 @@ type Deployment struct {
 	// The number of tasks in the deployment that are in the RUNNING status.
 	RunningCount *int64 `locationName:"runningCount" type:"integer"`
 
+	// The details of the Service Connect configuration that's used by this deployment.
+	// Compare the configuration between multiple deployments when troubleshooting
+	// issues with new deployments.
+	//
+	// The configuration for this service to discover and connect to services, and
+	// be discovered by, and connected from, other services within a namespace.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	ServiceConnectConfiguration *ServiceConnectConfiguration `locationName:"serviceConnectConfiguration" type:"structure"`
+
+	// The list of Service Connect resources that are associated with this deployment.
+	// Each list entry maps a discovery name to a Cloud Map service name.
+	ServiceConnectResources []*ServiceConnectServiceResource `locationName:"serviceConnectResources" type:"list"`
+
 	// The status of the deployment. The following describes each state.
 	//
 	// PRIMARY
@@ -11353,6 +11744,18 @@ func (s *Deployment) SetRolloutStateReason(v string) *Deployment {
 // SetRunningCount sets the RunningCount field's value.
 func (s *Deployment) SetRunningCount(v int64) *Deployment {
 	s.RunningCount = &v
+	return s
+}
+
+// SetServiceConnectConfiguration sets the ServiceConnectConfiguration field's value.
+func (s *Deployment) SetServiceConnectConfiguration(v *ServiceConnectConfiguration) *Deployment {
+	s.ServiceConnectConfiguration = v
+	return s
+}
+
+// SetServiceConnectResources sets the ServiceConnectResources field's value.
+func (s *Deployment) SetServiceConnectResources(v []*ServiceConnectServiceResource) *Deployment {
+	s.ServiceConnectResources = v
 	return s
 }
 
@@ -11976,7 +12379,7 @@ type DescribeClustersInput struct {
 	// the response. If this field is omitted, this information isn't included.
 	//
 	// If ATTACHMENTS is specified, the attachments for the container instances
-	// or tasks within the cluster are included.
+	// or tasks within the cluster are included, for example the capacity providers.
 	//
 	// If SETTINGS is specified, the settings for the cluster are included.
 	//
@@ -12752,6 +13155,11 @@ type DiscoverPollEndpointOutput struct {
 	// The endpoint for the Amazon ECS agent to poll.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
+	// The endpoint for the Amazon ECS agent to poll for Service Connect configuration.
+	// For more information, see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	ServiceConnectEndpoint *string `locationName:"serviceConnectEndpoint" type:"string"`
+
 	// The telemetry endpoint for the Amazon ECS agent.
 	TelemetryEndpoint *string `locationName:"telemetryEndpoint" type:"string"`
 }
@@ -12777,6 +13185,12 @@ func (s DiscoverPollEndpointOutput) GoString() string {
 // SetEndpoint sets the Endpoint field's value.
 func (s *DiscoverPollEndpointOutput) SetEndpoint(v string) *DiscoverPollEndpointOutput {
 	s.Endpoint = &v
+	return s
+}
+
+// SetServiceConnectEndpoint sets the ServiceConnectEndpoint field's value.
+func (s *DiscoverPollEndpointOutput) SetServiceConnectEndpoint(v string) *DiscoverPollEndpointOutput {
+	s.ServiceConnectEndpoint = &v
 	return s
 }
 
@@ -13883,8 +14297,8 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 //     container health check defined.
 //
 // The following describes the possible healthStatus values for a task. The
-// container health check status of nonessential containers do not have an effect
-// on the health status of a task.
+// container health check status of nonessential containers only affects the
+// health status of a task if no essential containers have health checks defined.
 //
 //   - HEALTHY-All essential containers within the task have passed their health
 //     checks.
@@ -13893,12 +14307,20 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 //     check.
 //
 //   - UNKNOWN-The essential containers within the task are still having their
-//     health checks evaluated or there are no container health checks defined.
+//     health checks evaluated or there are only nonessential containers with
+//     health checks defined.
 //
 // If a task is run manually, and not as part of a service, the task will continue
 // its lifecycle regardless of its health status. For tasks that are part of
 // a service, if the task reports as unhealthy then the task will be stopped
 // and the service scheduler will replace it.
+//
+// For tasks that are a part of a service and the service uses the ECS rolling
+// deployment type, the deployment is paused while the new tasks have the UNKNOWN
+// task health check status. For example, tasks that define health checks for
+// nonessential containers when no essential containers have health checks will
+// have the UNKNOWN health check status indefinitely which prevents the deployment
+// from completing.
 //
 // The following are notes about container health check support:
 //
@@ -15220,6 +15642,132 @@ func (s *ListContainerInstancesOutput) SetNextToken(v string) *ListContainerInst
 	return s
 }
 
+type ListServicesByNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of service results that ListServicesByNamespace returns
+	// in paginated output. When this parameter is used, ListServicesByNamespace
+	// only returns maxResults results in a single page along with a nextToken response
+	// element. The remaining results of the initial request can be seen by sending
+	// another ListServicesByNamespace request with the returned nextToken value.
+	// This value can be between 1 and 100. If this parameter isn't used, then ListServicesByNamespace
+	// returns up to 10 results and a nextToken value if applicable.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The namespace name or full Amazon Resource Name (ARN) of the Cloud Map namespace
+	// to list the services in.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	//
+	// Namespace is a required field
+	Namespace *string `locationName:"namespace" type:"string" required:"true"`
+
+	// The nextToken value that's returned from a ListServicesByNamespace request.
+	// It indicates that more results are available to fulfill the request and further
+	// calls are needed. If maxResults is returned, it is possible the number of
+	// results is less than maxResults.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesByNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesByNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListServicesByNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListServicesByNamespaceInput"}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListServicesByNamespaceInput) SetMaxResults(v int64) *ListServicesByNamespaceInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ListServicesByNamespaceInput) SetNamespace(v string) *ListServicesByNamespaceInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicesByNamespaceInput) SetNextToken(v string) *ListServicesByNamespaceInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListServicesByNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The nextToken value to include in a future ListServicesByNamespace request.
+	// When the results of a ListServicesByNamespace request exceed maxResults,
+	// this value can be used to retrieve the next page of results. When there are
+	// no more results to return, this value is null.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of full ARN entries for each service that's associated with the
+	// specified namespace.
+	ServiceArns []*string `locationName:"serviceArns" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesByNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicesByNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicesByNamespaceOutput) SetNextToken(v string) *ListServicesByNamespaceOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceArns sets the ServiceArns field's value.
+func (s *ListServicesByNamespaceOutput) SetServiceArns(v []*string) *ListServicesByNamespaceOutput {
+	s.ServiceArns = v
+	return s
+}
+
 type ListServicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15737,6 +16285,9 @@ type ListTasksInput struct {
 
 	// The startedBy value to filter the task results with. Specifying a startedBy
 	// value limits the results to tasks that were started with that value.
+	//
+	// When you specify startedBy as the filter, it must be the only filter that
+	// you use.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 }
 
@@ -16258,7 +16809,7 @@ type ManagedScaling struct {
 
 	// The maximum number of Amazon EC2 instances that Amazon ECS will scale out
 	// at one time. The scale in process is not affected by this parameter. If this
-	// parameter is omitted, the default value of 10000 is used.
+	// parameter is omitted, the default value of 1 is used.
 	MaximumScalingStepSize *int64 `locationName:"maximumScalingStepSize" min:"1" type:"integer"`
 
 	// The minimum number of Amazon EC2 instances that Amazon ECS will scale out
@@ -16469,6 +17020,70 @@ func (s *MountPoint) SetReadOnly(v bool) *MountPoint {
 func (s *MountPoint) SetSourceVolume(v string) *MountPoint {
 	s.SourceVolume = &v
 	return s
+}
+
+// The specified namespace wasn't found.
+type NamespaceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamespaceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamespaceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNamespaceNotFoundException(v protocol.ResponseMetadata) error {
+	return &NamespaceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *NamespaceNotFoundException) Code() string {
+	return "NamespaceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *NamespaceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *NamespaceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *NamespaceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *NamespaceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *NamespaceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Details on the network bindings between a container and its host container
@@ -17016,6 +17631,25 @@ func (s *PlatformUnknownException) RequestID() string {
 type PortMapping struct {
 	_ struct{} `type:"structure"`
 
+	// The application protocol that's used for the port mapping. This parameter
+	// only applies to Service Connect. We recommend that you set this parameter
+	// to be consistent with the protocol that your application uses. If you set
+	// this parameter, Amazon ECS adds protocol-specific connection handling to
+	// the Service Connect proxy. If you set this parameter, Amazon ECS adds protocol-specific
+	// telemetry in the Amazon ECS console and CloudWatch.
+	//
+	// If you don't set a value for this parameter, then TCP is used. However, Amazon
+	// ECS doesn't add protocol-specific telemetry for TCP.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	AppProtocol *string `locationName:"appProtocol" type:"string" enum:"ApplicationProtocol"`
+
 	// The port number on the container that's bound to the user-specified or automatically
 	// assigned host port.
 	//
@@ -17057,6 +17691,16 @@ type PortMapping struct {
 	// aren't included in the 100 reserved ports quota.
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
+	// The name that's used for the port mapping. This parameter only applies to
+	// Service Connect. This parameter is the name that you use in the serviceConnectConfiguration
+	// of a service. Up to 64 characters are allowed. The characters can include
+	// lowercase letters, numbers, underscores (_), and hyphens (-). A hyphen can't
+	// be the first character.
+	//
+	// For more information, see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	Name *string `locationName:"name" type:"string"`
+
 	// The protocol used for the port mapping. Valid values are tcp and udp. The
 	// default is tcp.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
@@ -17080,6 +17724,12 @@ func (s PortMapping) GoString() string {
 	return s.String()
 }
 
+// SetAppProtocol sets the AppProtocol field's value.
+func (s *PortMapping) SetAppProtocol(v string) *PortMapping {
+	s.AppProtocol = &v
+	return s
+}
+
 // SetContainerPort sets the ContainerPort field's value.
 func (s *PortMapping) SetContainerPort(v int64) *PortMapping {
 	s.ContainerPort = &v
@@ -17089,6 +17739,12 @@ func (s *PortMapping) SetContainerPort(v int64) *PortMapping {
 // SetHostPort sets the HostPort field's value.
 func (s *PortMapping) SetHostPort(v int64) *PortMapping {
 	s.HostPort = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PortMapping) SetName(v string) *PortMapping {
+	s.Name = &v
 	return s
 }
 
@@ -19141,7 +19797,7 @@ type RuntimePlatform struct {
 	// The CPU architecture.
 	//
 	// You can run your Linux tasks on an ARM-based platform by setting the value
-	// to ARM64. This option is avaiable for tasks that run on Linux Amazon EC2
+	// to ARM64. This option is available for tasks that run on Linux Amazon EC2
 	// instance or Linux containers on Fargate.
 	CpuArchitecture *string `locationName:"cpuArchitecture" type:"string" enum:"CPUArchitecture"`
 
@@ -19748,6 +20404,414 @@ func (s *Service) SetTaskDefinition(v string) *Service {
 // SetTaskSets sets the TaskSets field's value.
 func (s *Service) SetTaskSets(v []*TaskSet) *Service {
 	s.TaskSets = v
+	return s
+}
+
+// Each alias ("endpoint") is a fully-qualified name and port number that other
+// tasks ("clients") can use to connect to this service.
+//
+// Each name and port mapping must be unique within the namespace.
+//
+// Tasks that run in a namespace can use short names to connect to services
+// in the namespace. Tasks can connect to services across all of the clusters
+// in the namespace. Tasks connect through a managed proxy container that collects
+// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+// services create are supported with Service Connect. For more information,
+// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+// in the Amazon Elastic Container Service Developer Guide.
+type ServiceConnectClientAlias struct {
+	_ struct{} `type:"structure"`
+
+	// The dnsName is the name that you use in the applications of client tasks
+	// to connect to this service. The name must be a valid DNS name but doesn't
+	// need to be fully-qualified. Up to 127 characters are allowed. The characters
+	// can include lowercase letters, numbers, underscores (_), hyphens (-), and
+	// periods (.). A hyphen can't be the first character.
+	//
+	// If this parameter isn't specified, the default value of discoveryName.namespace
+	// is used. If the discoveryName isn't specified, the portName.namespace from
+	// the task definition is used.
+	//
+	// To avoid changing your applications in client Amazon ECS services, set this
+	// to the same name that the client application uses by default. For example,
+	// a few common names are database, db, or the lowercase name of a database,
+	// such as mysql or redis. For more information, see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	DnsName *string `locationName:"dnsName" type:"string"`
+
+	// The listening port number for the Service Connect proxy. This port is available
+	// inside of all of the tasks within the same namespace.
+	//
+	// To avoid changing your applications in client Amazon ECS services, set this
+	// to the same port that the client application uses by default. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	//
+	// Port is a required field
+	Port *int64 `locationName:"port" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectClientAlias) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectClientAlias) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceConnectClientAlias) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceConnectClientAlias"}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDnsName sets the DnsName field's value.
+func (s *ServiceConnectClientAlias) SetDnsName(v string) *ServiceConnectClientAlias {
+	s.DnsName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ServiceConnectClientAlias) SetPort(v int64) *ServiceConnectClientAlias {
+	s.Port = &v
+	return s
+}
+
+// The Service Connect configuration of your Amazon ECS service. The configuration
+// for this service to discover and connect to services, and be discovered by,
+// and connected from, other services within a namespace.
+//
+// Tasks that run in a namespace can use short names to connect to services
+// in the namespace. Tasks can connect to services across all of the clusters
+// in the namespace. Tasks connect through a managed proxy container that collects
+// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+// services create are supported with Service Connect. For more information,
+// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+// in the Amazon Elastic Container Service Developer Guide.
+type ServiceConnectConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to use Service Connect with this service.
+	//
+	// Enabled is a required field
+	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// The log configuration for the container. This parameter maps to LogConfig
+	// in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
+	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
+	// and the --log-driver option to docker run (https://docs.docker.com/engine/reference/commandline/run/).
+	//
+	// By default, containers use the same logging driver that the Docker daemon
+	// uses. However, the container might use a different logging driver than the
+	// Docker daemon by specifying a log driver configuration in the container definition.
+	// For more information about the options for different supported log drivers,
+	// see Configure logging drivers (https://docs.docker.com/engine/admin/logging/overview/)
+	// in the Docker documentation.
+	//
+	// Understand the following when specifying a log configuration for your containers.
+	//
+	//    * Amazon ECS currently supports a subset of the logging drivers available
+	//    to the Docker daemon (shown in the valid values below). Additional log
+	//    drivers may be available in future releases of the Amazon ECS container
+	//    agent.
+	//
+	//    * This parameter requires version 1.18 of the Docker Remote API or greater
+	//    on your container instance.
+	//
+	//    * For tasks that are hosted on Amazon EC2 instances, the Amazon ECS container
+	//    agent must register the available logging drivers with the ECS_AVAILABLE_LOGGING_DRIVERS
+	//    environment variable before containers placed on that instance can use
+	//    these log configuration options. For more information, see Amazon ECS
+	//    container agent configuration (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html)
+	//    in the Amazon Elastic Container Service Developer Guide.
+	//
+	//    * For tasks that are on Fargate, because you don't have access to the
+	//    underlying infrastructure your tasks are hosted on, any additional software
+	//    needed must be installed outside of the task. For example, the Fluentd
+	//    output aggregators or a remote host running Logstash to send Gelf logs
+	//    to.
+	LogConfiguration *LogConfiguration `locationName:"logConfiguration" type:"structure"`
+
+	// The namespace name or full Amazon Resource Name (ARN) of the Cloud Map namespace
+	// for use with Service Connect. The namespace must be in the same Amazon Web
+	// Services Region as the Amazon ECS service and cluster. The type of namespace
+	// doesn't affect Service Connect. For more information about Cloud Map, see
+	// Working with Services (https://docs.aws.amazon.com/) in the Cloud Map Developer
+	// Guide.
+	Namespace *string `locationName:"namespace" type:"string"`
+
+	// The list of Service Connect service objects. These are names and aliases
+	// (also known as endpoints) that are used by other Amazon ECS services to connect
+	// to this service. You can specify up to X (30?) objects per Amazon ECS service.
+	//
+	// This field is not required for a "client" Amazon ECS service that's a member
+	// of a namespace only to connect to other services within the namespace. An
+	// example of this would be a frontend application that accepts incoming requests
+	// from either a load balancer that's attached to the service or by other means.
+	//
+	// An object selects a port from the task definition, assigns a name for the
+	// Cloud Map service, and a list of aliases (endpoints) and ports for client
+	// applications to refer to this service.
+	Services []*ServiceConnectService `locationName:"services" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceConnectConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceConnectConfiguration"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.LogConfiguration != nil {
+		if err := s.LogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Services != nil {
+		for i, v := range s.Services {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Services", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ServiceConnectConfiguration) SetEnabled(v bool) *ServiceConnectConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *ServiceConnectConfiguration) SetLogConfiguration(v *LogConfiguration) *ServiceConnectConfiguration {
+	s.LogConfiguration = v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ServiceConnectConfiguration) SetNamespace(v string) *ServiceConnectConfiguration {
+	s.Namespace = &v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *ServiceConnectConfiguration) SetServices(v []*ServiceConnectService) *ServiceConnectConfiguration {
+	s.Services = v
+	return s
+}
+
+// The Service Connect service object configuration. For more information, see
+// Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+// in the Amazon Elastic Container Service Developer Guide.
+type ServiceConnectService struct {
+	_ struct{} `type:"structure"`
+
+	// The list of client aliases for this Service Connect service. You use these
+	// to assign names that can be used by client applications. The maximum number
+	// of client aliases that you can have in this list is 1.
+	//
+	// Each alias ("endpoint") is a fully-qualified name and port number that other
+	// Amazon ECS tasks ("clients") can use to connect to this service.
+	//
+	// Each name and port mapping must be unique within the namespace.
+	//
+	// For each ServiceConnectService, you must provide at least one clientAlias
+	// with one port.
+	ClientAliases []*ServiceConnectClientAlias `locationName:"clientAliases" type:"list"`
+
+	// The discoveryName is the name of the new Cloud Map service that Amazon ECS
+	// creates for this Amazon ECS service. This must be unique within the Cloud
+	// Map namespace. Up to 64 characters are allowed. The characters can include
+	// lowercase letters, numbers, underscores (_), and hyphens (-). A hyphen can't
+	// be the first character.
+	//
+	// If this field isn't specified, portName is used.
+	DiscoveryName *string `locationName:"discoveryName" type:"string"`
+
+	// The port number for the Service Connect proxy to listen on.
+	//
+	// Use the value of this field to bypass the proxy for traffic on the port number
+	// specified in the named portMapping in the task definition of this application,
+	// and then use it in your VPC security groups to allow traffic into the proxy
+	// for this Amazon ECS service.
+	//
+	// In awsvpc mode and Fargate, the default value is the container port number.
+	// The container port number is in the portMapping in the task definition. In
+	// bridge mode, the default value is the ephemeral port of the Service Connect
+	// proxy.
+	IngressPortOverride *int64 `locationName:"ingressPortOverride" type:"integer"`
+
+	// The portName must match the name of one of the portMappings from all the
+	// containers in the task definition of this Amazon ECS service.
+	//
+	// PortName is a required field
+	PortName *string `locationName:"portName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectService) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceConnectService) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceConnectService"}
+	if s.PortName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortName"))
+	}
+	if s.ClientAliases != nil {
+		for i, v := range s.ClientAliases {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ClientAliases", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientAliases sets the ClientAliases field's value.
+func (s *ServiceConnectService) SetClientAliases(v []*ServiceConnectClientAlias) *ServiceConnectService {
+	s.ClientAliases = v
+	return s
+}
+
+// SetDiscoveryName sets the DiscoveryName field's value.
+func (s *ServiceConnectService) SetDiscoveryName(v string) *ServiceConnectService {
+	s.DiscoveryName = &v
+	return s
+}
+
+// SetIngressPortOverride sets the IngressPortOverride field's value.
+func (s *ServiceConnectService) SetIngressPortOverride(v int64) *ServiceConnectService {
+	s.IngressPortOverride = &v
+	return s
+}
+
+// SetPortName sets the PortName field's value.
+func (s *ServiceConnectService) SetPortName(v string) *ServiceConnectService {
+	s.PortName = &v
+	return s
+}
+
+// The Service Connect resource. Each configuration maps a discovery name to
+// a Cloud Map service name. The data is stored in Cloud Map as part of the
+// Service Connect configuration for each discovery name of this Amazon ECS
+// service.
+//
+// A task can resolve the dnsName for each of the clientAliases of a service.
+// However a task can't resolve the discovery names. If you want to connect
+// to a service, refer to the ServiceConnectConfiguration of that service for
+// the list of clientAliases that you can use.
+type ServiceConnectServiceResource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the namespace in Cloud Map that matches
+	// the discovery name for this Service Connect resource. You can use this ARN
+	// in other integrations with Cloud Map. However, Service Connect can't ensure
+	// connectivity outside of Amazon ECS.
+	DiscoveryArn *string `locationName:"discoveryArn" type:"string"`
+
+	// The discovery name of this Service Connect resource.
+	//
+	// The discoveryName is the name of the new Cloud Map service that Amazon ECS
+	// creates for this Amazon ECS service. This must be unique within the Cloud
+	// Map namespace. Up to 64 characters are allowed. The characters can include
+	// lowercase letters, numbers, underscores (_), and hyphens (-). A hyphen can't
+	// be the first character.
+	//
+	// If this field isn't specified, portName is used.
+	DiscoveryName *string `locationName:"discoveryName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectServiceResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectServiceResource) GoString() string {
+	return s.String()
+}
+
+// SetDiscoveryArn sets the DiscoveryArn field's value.
+func (s *ServiceConnectServiceResource) SetDiscoveryArn(v string) *ServiceConnectServiceResource {
+	s.DiscoveryArn = &v
+	return s
+}
+
+// SetDiscoveryName sets the DiscoveryName field's value.
+func (s *ServiceConnectServiceResource) SetDiscoveryName(v string) *ServiceConnectServiceResource {
+	s.DiscoveryName = &v
 	return s
 }
 
@@ -22258,7 +23322,7 @@ type TaskOverride struct {
 	// One or more container overrides that are sent to a task.
 	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list"`
 
-	// The cpu override for the task.
+	// The CPU override for the task.
 	Cpu *string `locationName:"cpu" type:"string"`
 
 	// The ephemeral storage setting override for the task.
@@ -22456,7 +23520,7 @@ type TaskSet struct {
 	ServiceRegistries []*ServiceRegistry `locationName:"serviceRegistries" type:"list"`
 
 	// The stability status. This indicates whether the task set has reached a steady
-	// state. If the following conditions are met, the task set sre in STEADY_STATE:
+	// state. If the following conditions are met, the task set are in STEADY_STATE:
 	//
 	//    * The task runningCount is equal to the computedDesiredCount.
 	//
@@ -23174,6 +24238,23 @@ type UpdateClusterInput struct {
 	// The execute command configuration for the cluster.
 	Configuration *ClusterConfiguration `locationName:"configuration" type:"structure"`
 
+	// Use this parameter to set a default Service Connect namespace. After you
+	// set a default Service Connect namespace, any new services with Service Connect
+	// turned on that are created in the cluster are added as client services in
+	// the namespace. This setting only applies to new services that set the enabled
+	// parameter to true in the ServiceConnectConfiguration. You can set the namespace
+	// of each service individually in the ServiceConnectConfiguration to override
+	// this default parameter.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	ServiceConnectDefaults *ClusterServiceConnectDefaultsRequest `locationName:"serviceConnectDefaults" type:"structure"`
+
 	// The cluster settings for your cluster.
 	Settings []*ClusterSetting `locationName:"settings" type:"list"`
 }
@@ -23202,6 +24283,11 @@ func (s *UpdateClusterInput) Validate() error {
 	if s.Cluster == nil {
 		invalidParams.Add(request.NewErrParamRequired("Cluster"))
 	}
+	if s.ServiceConnectDefaults != nil {
+		if err := s.ServiceConnectDefaults.Validate(); err != nil {
+			invalidParams.AddNested("ServiceConnectDefaults", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -23218,6 +24304,12 @@ func (s *UpdateClusterInput) SetCluster(v string) *UpdateClusterInput {
 // SetConfiguration sets the Configuration field's value.
 func (s *UpdateClusterInput) SetConfiguration(v *ClusterConfiguration) *UpdateClusterInput {
 	s.Configuration = v
+	return s
+}
+
+// SetServiceConnectDefaults sets the ServiceConnectDefaults field's value.
+func (s *UpdateClusterInput) SetServiceConnectDefaults(v *ClusterServiceConnectDefaultsRequest) *UpdateClusterInput {
+	s.ServiceConnectDefaults = v
 	return s
 }
 
@@ -23269,6 +24361,12 @@ type UpdateClusterSettingsInput struct {
 	// The setting to use by default for a cluster. This parameter is used to turn
 	// on CloudWatch Container Insights for a cluster. If this value is specified,
 	// it overrides the containerInsights value set with PutAccountSetting or PutAccountSettingDefault.
+	//
+	// Currently, if you delete an existing cluster that does not have Container
+	// Insights turned on, and then create a new cluster with the same name with
+	// Container Insights tuned on, Container Insights will not actually be turned
+	// on. If you want to preserve the same name for your existing cluster and turn
+	// on Container Insights, you must wait 7 days before you can re-create it.
 	//
 	// Settings is a required field
 	Settings []*ClusterSetting `locationName:"settings" type:"list" required:"true"`
@@ -23771,6 +24869,18 @@ type UpdateServiceInput struct {
 	// Service is a required field
 	Service *string `locationName:"service" type:"string" required:"true"`
 
+	// The configuration for this service to discover and connect to services, and
+	// be discovered by, and connected from, other services within a namespace.
+	//
+	// Tasks that run in a namespace can use short names to connect to services
+	// in the namespace. Tasks can connect to services across all of the clusters
+	// in the namespace. Tasks connect through a managed proxy container that collects
+	// logs and metrics for increased visibility. Only the tasks that Amazon ECS
+	// services create are supported with Service Connect. For more information,
+	// see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
+	// in the Amazon Elastic Container Service Developer Guide.
+	ServiceConnectConfiguration *ServiceConnectConfiguration `locationName:"serviceConnectConfiguration" type:"structure"`
+
 	// The details for the service discovery registries to assign to this service.
 	// For more information, see Service Discovery (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html).
 	//
@@ -23831,6 +24941,11 @@ func (s *UpdateServiceInput) Validate() error {
 	if s.NetworkConfiguration != nil {
 		if err := s.NetworkConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("NetworkConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServiceConnectConfiguration != nil {
+		if err := s.ServiceConnectConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceConnectConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -23927,6 +25042,12 @@ func (s *UpdateServiceInput) SetPropagateTags(v string) *UpdateServiceInput {
 // SetService sets the Service field's value.
 func (s *UpdateServiceInput) SetService(v string) *UpdateServiceInput {
 	s.Service = &v
+	return s
+}
+
+// SetServiceConnectConfiguration sets the ServiceConnectConfiguration field's value.
+func (s *UpdateServiceInput) SetServiceConnectConfiguration(v *ServiceConnectConfiguration) *UpdateServiceInput {
+	s.ServiceConnectConfiguration = v
 	return s
 }
 
@@ -24053,7 +25174,7 @@ func (s *UpdateServicePrimaryTaskSetInput) SetService(v string) *UpdateServicePr
 type UpdateServicePrimaryTaskSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// etails about the task set.
+	// The details about the task set.
 	TaskSet *TaskSet `locationName:"taskSet" type:"structure"`
 }
 
@@ -24580,6 +25701,26 @@ func AgentUpdateStatus_Values() []string {
 		AgentUpdateStatusUpdating,
 		AgentUpdateStatusUpdated,
 		AgentUpdateStatusFailed,
+	}
+}
+
+const (
+	// ApplicationProtocolHttp is a ApplicationProtocol enum value
+	ApplicationProtocolHttp = "http"
+
+	// ApplicationProtocolHttp2 is a ApplicationProtocol enum value
+	ApplicationProtocolHttp2 = "http2"
+
+	// ApplicationProtocolGrpc is a ApplicationProtocol enum value
+	ApplicationProtocolGrpc = "grpc"
+)
+
+// ApplicationProtocol_Values returns all elements of the ApplicationProtocol enum
+func ApplicationProtocol_Values() []string {
+	return []string{
+		ApplicationProtocolHttp,
+		ApplicationProtocolHttp2,
+		ApplicationProtocolGrpc,
 	}
 }
 
@@ -25556,6 +26697,15 @@ const (
 
 	// TaskStopCodeUserInitiated is a TaskStopCode enum value
 	TaskStopCodeUserInitiated = "UserInitiated"
+
+	// TaskStopCodeServiceSchedulerInitiated is a TaskStopCode enum value
+	TaskStopCodeServiceSchedulerInitiated = "ServiceSchedulerInitiated"
+
+	// TaskStopCodeSpotInterruption is a TaskStopCode enum value
+	TaskStopCodeSpotInterruption = "SpotInterruption"
+
+	// TaskStopCodeTerminationNotice is a TaskStopCode enum value
+	TaskStopCodeTerminationNotice = "TerminationNotice"
 )
 
 // TaskStopCode_Values returns all elements of the TaskStopCode enum
@@ -25564,6 +26714,9 @@ func TaskStopCode_Values() []string {
 		TaskStopCodeTaskFailedToStart,
 		TaskStopCodeEssentialContainerExited,
 		TaskStopCodeUserInitiated,
+		TaskStopCodeServiceSchedulerInitiated,
+		TaskStopCodeSpotInterruption,
+		TaskStopCodeTerminationNotice,
 	}
 }
 

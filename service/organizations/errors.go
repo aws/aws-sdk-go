@@ -573,6 +573,12 @@ const (
 	// in the Organizations User Guide.
 	ErrCodePolicyTypeNotEnabledException = "PolicyTypeNotEnabledException"
 
+	// ErrCodeResourcePolicyNotFoundException for service response error code
+	// "ResourcePolicyNotFoundException".
+	//
+	// We can't find a resource policy request with the parameter that you specified.
+	ErrCodeResourcePolicyNotFoundException = "ResourcePolicyNotFoundException"
+
 	// ErrCodeRootNotFoundException for service response error code
 	// "RootNotFoundException".
 	//
@@ -657,6 +663,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"PolicyTypeAlreadyEnabledException":              newErrorPolicyTypeAlreadyEnabledException,
 	"PolicyTypeNotAvailableForOrganizationException": newErrorPolicyTypeNotAvailableForOrganizationException,
 	"PolicyTypeNotEnabledException":                  newErrorPolicyTypeNotEnabledException,
+	"ResourcePolicyNotFoundException":                newErrorResourcePolicyNotFoundException,
 	"RootNotFoundException":                          newErrorRootNotFoundException,
 	"ServiceException":                               newErrorServiceException,
 	"SourceParentNotFoundException":                  newErrorSourceParentNotFoundException,

@@ -88,6 +88,14 @@ type TextractAPI interface {
 	GetExpenseAnalysisWithContext(aws.Context, *textract.GetExpenseAnalysisInput, ...request.Option) (*textract.GetExpenseAnalysisOutput, error)
 	GetExpenseAnalysisRequest(*textract.GetExpenseAnalysisInput) (*request.Request, *textract.GetExpenseAnalysisOutput)
 
+	GetLendingAnalysis(*textract.GetLendingAnalysisInput) (*textract.GetLendingAnalysisOutput, error)
+	GetLendingAnalysisWithContext(aws.Context, *textract.GetLendingAnalysisInput, ...request.Option) (*textract.GetLendingAnalysisOutput, error)
+	GetLendingAnalysisRequest(*textract.GetLendingAnalysisInput) (*request.Request, *textract.GetLendingAnalysisOutput)
+
+	GetLendingAnalysisSummary(*textract.GetLendingAnalysisSummaryInput) (*textract.GetLendingAnalysisSummaryOutput, error)
+	GetLendingAnalysisSummaryWithContext(aws.Context, *textract.GetLendingAnalysisSummaryInput, ...request.Option) (*textract.GetLendingAnalysisSummaryOutput, error)
+	GetLendingAnalysisSummaryRequest(*textract.GetLendingAnalysisSummaryInput) (*request.Request, *textract.GetLendingAnalysisSummaryOutput)
+
 	StartDocumentAnalysis(*textract.StartDocumentAnalysisInput) (*textract.StartDocumentAnalysisOutput, error)
 	StartDocumentAnalysisWithContext(aws.Context, *textract.StartDocumentAnalysisInput, ...request.Option) (*textract.StartDocumentAnalysisOutput, error)
 	StartDocumentAnalysisRequest(*textract.StartDocumentAnalysisInput) (*request.Request, *textract.StartDocumentAnalysisOutput)
@@ -99,6 +107,10 @@ type TextractAPI interface {
 	StartExpenseAnalysis(*textract.StartExpenseAnalysisInput) (*textract.StartExpenseAnalysisOutput, error)
 	StartExpenseAnalysisWithContext(aws.Context, *textract.StartExpenseAnalysisInput, ...request.Option) (*textract.StartExpenseAnalysisOutput, error)
 	StartExpenseAnalysisRequest(*textract.StartExpenseAnalysisInput) (*request.Request, *textract.StartExpenseAnalysisOutput)
+
+	StartLendingAnalysis(*textract.StartLendingAnalysisInput) (*textract.StartLendingAnalysisOutput, error)
+	StartLendingAnalysisWithContext(aws.Context, *textract.StartLendingAnalysisInput, ...request.Option) (*textract.StartLendingAnalysisOutput, error)
+	StartLendingAnalysisRequest(*textract.StartLendingAnalysisInput) (*request.Request, *textract.StartLendingAnalysisOutput)
 }
 
 var _ TextractAPI = (*textract.Textract)(nil)

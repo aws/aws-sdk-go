@@ -229,6 +229,31 @@
         {"shape":"OptionGroupQuotaExceededFault"}
       ]
     },
+    "CreateBlueGreenDeployment":{
+      "name":"CreateBlueGreenDeployment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBlueGreenDeploymentRequest"},
+      "output":{
+        "shape":"CreateBlueGreenDeploymentResponse",
+        "resultWrapper":"CreateBlueGreenDeploymentResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"SourceDatabaseNotSupportedFault"},
+        {"shape":"SourceClusterNotSupportedFault"},
+        {"shape":"BlueGreenDeploymentAlreadyExistsFault"},
+        {"shape":"DBParameterGroupNotFoundFault"},
+        {"shape":"DBClusterParameterGroupNotFoundFault"},
+        {"shape":"InstanceQuotaExceededFault"},
+        {"shape":"DBClusterQuotaExceededFault"},
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"InvalidDBClusterStateFault"}
+      ]
+    },
     "CreateCustomDBEngineVersion":{
       "name":"CreateCustomDBEngineVersion",
       "http":{
@@ -562,6 +587,22 @@
         {"shape":"OptionGroupQuotaExceededFault"}
       ]
     },
+    "DeleteBlueGreenDeployment":{
+      "name":"DeleteBlueGreenDeployment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBlueGreenDeploymentRequest"},
+      "output":{
+        "shape":"DeleteBlueGreenDeploymentResponse",
+        "resultWrapper":"DeleteBlueGreenDeploymentResult"
+      },
+      "errors":[
+        {"shape":"BlueGreenDeploymentNotFoundFault"},
+        {"shape":"InvalidBlueGreenDeploymentStateFault"}
+      ]
+    },
     "DeleteCustomDBEngineVersion":{
       "name":"DeleteCustomDBEngineVersion",
       "http":{
@@ -836,6 +877,21 @@
         "shape":"AccountAttributesMessage",
         "resultWrapper":"DescribeAccountAttributesResult"
       }
+    },
+    "DescribeBlueGreenDeployments":{
+      "name":"DescribeBlueGreenDeployments",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBlueGreenDeploymentsRequest"},
+      "output":{
+        "shape":"DescribeBlueGreenDeploymentsResponse",
+        "resultWrapper":"DescribeBlueGreenDeploymentsResult"
+      },
+      "errors":[
+        {"shape":"BlueGreenDeploymentNotFoundFault"}
+      ]
     },
     "DescribeCertificates":{
       "name":"DescribeCertificates",
@@ -2398,6 +2454,22 @@
         {"shape":"InvalidDBInstanceStateFault"}
       ]
     },
+    "SwitchoverBlueGreenDeployment":{
+      "name":"SwitchoverBlueGreenDeployment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SwitchoverBlueGreenDeploymentRequest"},
+      "output":{
+        "shape":"SwitchoverBlueGreenDeploymentResponse",
+        "resultWrapper":"SwitchoverBlueGreenDeploymentResult"
+      },
+      "errors":[
+        {"shape":"BlueGreenDeploymentNotFoundFault"},
+        {"shape":"InvalidBlueGreenDeploymentStateFault"}
+      ]
+    },
     "SwitchoverReadReplica":{
       "name":"SwitchoverReadReplica",
       "http":{
@@ -2689,6 +2761,75 @@
       },
       "exception":true
     },
+    "BlueGreenDeployment":{
+      "type":"structure",
+      "members":{
+        "BlueGreenDeploymentIdentifier":{"shape":"BlueGreenDeploymentIdentifier"},
+        "BlueGreenDeploymentName":{"shape":"BlueGreenDeploymentName"},
+        "Source":{"shape":"DatabaseArn"},
+        "Target":{"shape":"DatabaseArn"},
+        "SwitchoverDetails":{"shape":"SwitchoverDetailList"},
+        "Tasks":{"shape":"BlueGreenDeploymentTaskList"},
+        "Status":{"shape":"BlueGreenDeploymentStatus"},
+        "StatusDetails":{"shape":"BlueGreenDeploymentStatusDetails"},
+        "CreateTime":{"shape":"TStamp"},
+        "DeleteTime":{"shape":"TStamp"},
+        "TagList":{"shape":"TagList"}
+      }
+    },
+    "BlueGreenDeploymentAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"BlueGreenDeploymentAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BlueGreenDeploymentIdentifier":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[A-Za-z][0-9A-Za-z-:._]*"
+    },
+    "BlueGreenDeploymentList":{
+      "type":"list",
+      "member":{"shape":"BlueGreenDeployment"}
+    },
+    "BlueGreenDeploymentName":{
+      "type":"string",
+      "max":60,
+      "min":1,
+      "pattern":"[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*"
+    },
+    "BlueGreenDeploymentNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"BlueGreenDeploymentNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BlueGreenDeploymentStatus":{"type":"string"},
+    "BlueGreenDeploymentStatusDetails":{"type":"string"},
+    "BlueGreenDeploymentTask":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"BlueGreenDeploymentTaskName"},
+        "Status":{"shape":"BlueGreenDeploymentTaskStatus"}
+      }
+    },
+    "BlueGreenDeploymentTaskList":{
+      "type":"list",
+      "member":{"shape":"BlueGreenDeploymentTask"}
+    },
+    "BlueGreenDeploymentTaskName":{"type":"string"},
+    "BlueGreenDeploymentTaskStatus":{"type":"string"},
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
     "BucketName":{
@@ -2892,6 +3033,27 @@
       "type":"structure",
       "members":{
         "OptionGroup":{"shape":"OptionGroup"}
+      }
+    },
+    "CreateBlueGreenDeploymentRequest":{
+      "type":"structure",
+      "required":[
+        "BlueGreenDeploymentName",
+        "Source"
+      ],
+      "members":{
+        "BlueGreenDeploymentName":{"shape":"BlueGreenDeploymentName"},
+        "Source":{"shape":"DatabaseArn"},
+        "TargetEngineVersion":{"shape":"TargetEngineVersion"},
+        "TargetDBParameterGroupName":{"shape":"TargetDBParameterGroupName"},
+        "TargetDBClusterParameterGroupName":{"shape":"TargetDBClusterParameterGroupName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateBlueGreenDeploymentResponse":{
+      "type":"structure",
+      "members":{
+        "BlueGreenDeployment":{"shape":"BlueGreenDeployment"}
       }
     },
     "CreateCustomDBEngineVersionMessage":{
@@ -4772,6 +4934,26 @@
       },
       "exception":true
     },
+    "DatabaseArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:[A-Za-z][0-9A-Za-z-:._]*"
+    },
+    "DeleteBlueGreenDeploymentRequest":{
+      "type":"structure",
+      "required":["BlueGreenDeploymentIdentifier"],
+      "members":{
+        "BlueGreenDeploymentIdentifier":{"shape":"BlueGreenDeploymentIdentifier"},
+        "DeleteTarget":{"shape":"BooleanOptional"}
+      }
+    },
+    "DeleteBlueGreenDeploymentResponse":{
+      "type":"structure",
+      "members":{
+        "BlueGreenDeployment":{"shape":"BlueGreenDeployment"}
+      }
+    },
     "DeleteCustomDBEngineVersionMessage":{
       "type":"structure",
       "required":[
@@ -4965,6 +5147,22 @@
     "DescribeAccountAttributesMessage":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeBlueGreenDeploymentsRequest":{
+      "type":"structure",
+      "members":{
+        "BlueGreenDeploymentIdentifier":{"shape":"BlueGreenDeploymentIdentifier"},
+        "Filters":{"shape":"FilterList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"MaxRecords"}
+      }
+    },
+    "DescribeBlueGreenDeploymentsResponse":{
+      "type":"structure",
+      "members":{
+        "BlueGreenDeployments":{"shape":"BlueGreenDeploymentList"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeCertificatesMessage":{
@@ -5975,6 +6173,17 @@
     },
     "Integer":{"type":"integer"},
     "IntegerOptional":{"type":"integer"},
+    "InvalidBlueGreenDeploymentStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidBlueGreenDeploymentStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidCustomDBEngineVersionStateFault":{
       "type":"structure",
       "members":{
@@ -7876,6 +8085,28 @@
       },
       "exception":true
     },
+    "SourceClusterNotSupportedFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SourceClusterNotSupportedFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SourceDatabaseNotSupportedFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SourceDatabaseNotSupportedFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "SourceIdsList":{
       "type":"list",
       "member":{
@@ -8187,6 +8418,33 @@
         "locationName":"Timezone"
       }
     },
+    "SwitchoverBlueGreenDeploymentRequest":{
+      "type":"structure",
+      "required":["BlueGreenDeploymentIdentifier"],
+      "members":{
+        "BlueGreenDeploymentIdentifier":{"shape":"BlueGreenDeploymentIdentifier"},
+        "SwitchoverTimeout":{"shape":"SwitchoverTimeout"}
+      }
+    },
+    "SwitchoverBlueGreenDeploymentResponse":{
+      "type":"structure",
+      "members":{
+        "BlueGreenDeployment":{"shape":"BlueGreenDeployment"}
+      }
+    },
+    "SwitchoverDetail":{
+      "type":"structure",
+      "members":{
+        "SourceMember":{"shape":"DatabaseArn"},
+        "TargetMember":{"shape":"DatabaseArn"},
+        "Status":{"shape":"SwitchoverDetailStatus"}
+      }
+    },
+    "SwitchoverDetailList":{
+      "type":"list",
+      "member":{"shape":"SwitchoverDetail"}
+    },
+    "SwitchoverDetailStatus":{"type":"string"},
     "SwitchoverReadReplicaMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],
@@ -8199,6 +8457,10 @@
       "members":{
         "DBInstance":{"shape":"DBInstance"}
       }
+    },
+    "SwitchoverTimeout":{
+      "type":"integer",
+      "min":30
     },
     "TStamp":{"type":"timestamp"},
     "Tag":{
@@ -8220,6 +8482,24 @@
       "members":{
         "TagList":{"shape":"TagList"}
       }
+    },
+    "TargetDBClusterParameterGroupName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[A-Za-z](?!.*--)[0-9A-Za-z-]*[^-]|^default(?!.*--)(?!.*\\.\\.)[0-9A-Za-z-.]*[^-]"
+    },
+    "TargetDBParameterGroupName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[A-Za-z](?!.*--)[0-9A-Za-z-]*[^-]|^default(?!.*--)(?!.*\\.\\.)[0-9A-Za-z-.]*[^-]"
+    },
+    "TargetEngineVersion":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[0-9A-Za-z-_.]+"
     },
     "TargetGroupList":{
       "type":"list",

@@ -47,10 +47,12 @@
     "GetMulticastGroupSession": "<p>Gets information about a multicast group session.</p>",
     "GetNetworkAnalyzerConfiguration": "<p>Get network analyzer configuration.</p>",
     "GetPartnerAccount": "<p>Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code> are <code>null</code>, returns all partner accounts.</p>",
-    "GetPosition": "<p>Get the position information for a given resource.</p>",
-    "GetPositionConfiguration": "<p>Get position configuration for a given resource.</p>",
+    "GetPosition": "<p>Get the position information for a given resource.</p> <important> <p>This action is no longer supported. Calls to retrieve the position information should use the <a href=\"https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_GetResourcePosition.html\">GetResourcePosition</a> API operation instead.</p> </important>",
+    "GetPositionConfiguration": "<p>Get position configuration for a given resource.</p> <important> <p>This action is no longer supported. Calls to retrieve the position configuration should use the <a href=\"https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_GetResourcePosition.html\">GetResourcePosition</a> API operation instead.</p> </important>",
+    "GetPositionEstimate": "<p>Get estimated position information as a payload in GeoJSON format. The payload measurement data is resolved using solvers that are provided by third-party vendors.</p>",
     "GetResourceEventConfiguration": "<p>Get the event configuration for a particular resource identifier.</p>",
     "GetResourceLogLevel": "<p>Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
+    "GetResourcePosition": "<p>Get the position information for a given wireless device or a wireless gateway resource. The postion information uses the <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\"> World Geodetic System (WGS84)</a>.</p>",
     "GetServiceEndpoint": "<p>Gets the account-specific endpoint for Configuration and Update Server (CUPS) protocol or LoRaWAN Network Server (LNS) connections.</p>",
     "GetServiceProfile": "<p>Gets information about a service profile.</p>",
     "GetWirelessDevice": "<p>Gets information about a wireless device.</p>",
@@ -69,14 +71,14 @@
     "ListMulticastGroupsByFuotaTask": "<p>List all multicast groups associated with a fuota task.</p>",
     "ListNetworkAnalyzerConfigurations": "<p>Lists the network analyzer configurations.</p>",
     "ListPartnerAccounts": "<p>Lists the partner accounts associated with your AWS account.</p>",
-    "ListPositionConfigurations": "<p>List position configurations for a given resource, such as positioning solvers.</p>",
+    "ListPositionConfigurations": "<p>List position configurations for a given resource, such as positioning solvers.</p> <important> <p>This action is no longer supported. Calls to retrieve position information should use the <a href=\"https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_GetResourcePosition.html\">GetResourcePosition</a> API operation instead.</p> </important>",
     "ListQueuedMessages": "<p>List queued messages in the downlink queue.</p>",
     "ListServiceProfiles": "<p>Lists the service profiles registered to your AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
     "ListWirelessDevices": "<p>Lists the wireless devices registered to your AWS account.</p>",
     "ListWirelessGatewayTaskDefinitions": "<p>List the wireless gateway tasks definitions registered to your AWS account.</p>",
     "ListWirelessGateways": "<p>Lists the wireless gateways registered to your AWS account.</p>",
-    "PutPositionConfiguration": "<p>Put position configuration for a given resource.</p>",
+    "PutPositionConfiguration": "<p>Put position configuration for a given resource.</p> <important> <p>This action is no longer supported. Calls to update the position configuration should use the <a href=\"https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_UpdateResourcePosition.html\">UpdateResourcePosition</a> API operation instead.</p> </important>",
     "PutResourceLogLevel": "<p>Sets the log-level override for a resource-ID and resource-type. This option can be specified for a wireless gateway or a wireless device. A limit of 200 log level override can be set per account.</p>",
     "ResetAllResourceLogLevels": "<p>Removes the log-level overrides for all resources; both wireless devices and wireless gateways.</p>",
     "ResetResourceLogLevel": "<p>Removes the log-level override, if any, for a specific resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
@@ -96,8 +98,9 @@
     "UpdateMulticastGroup": "<p>Updates properties of a multicast group session.</p>",
     "UpdateNetworkAnalyzerConfiguration": "<p>Update network analyzer configuration.</p>",
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
-    "UpdatePosition": "<p>Update the position information of a resource.</p>",
+    "UpdatePosition": "<p>Update the position information of a resource.</p> <important> <p>This action is no longer supported. Calls to update the position information should use the <a href=\"https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_UpdateResourcePosition.html\">UpdateResourcePosition</a> API operation instead.</p> </important>",
     "UpdateResourceEventConfiguration": "<p>Update the event configuration for a particular resource identifier.</p>",
+    "UpdateResourcePosition": "<p>Update the position information of a given wireless device or a wireless gateway resource. The postion coordinates are based on the <a href=\"https://gisgeography.com/wgs84-world-geodetic-system/\"> World Geodetic System (WGS84)</a>.</p>",
     "UpdateWirelessDevice": "<p>Updates properties of a wireless device.</p>",
     "UpdateWirelessGateway": "<p>Updates properties of a wireless gateway.</p>"
   },
@@ -134,7 +137,7 @@
     "AckModeRetryDurationSecs": {
       "base": null,
       "refs": {
-        "SidewalkSendDataToDevice$AckModeRetryDurationSecs": "<p>The duration of time in seconds for which you want to retry sending the ACK.</p>"
+        "SidewalkSendDataToDevice$AckModeRetryDurationSecs": "<p>The duration of time in seconds to retry sending the ACK.</p>"
       }
     },
     "AddGwMetadata": {
@@ -187,6 +190,31 @@
       "refs": {
         "SidewalkAccountInfo$AppServerPrivateKey": "<p>The Sidewalk application server private key.</p>",
         "SidewalkUpdateAccount$AppServerPrivateKey": "<p>The new Sidewalk application server private key.</p>"
+      }
+    },
+    "ApplicationConfig": {
+      "base": "<p>LoRaWAN application configuration, which can be used to perform geolocation.</p>",
+      "refs": {
+        "Applications$member": null
+      }
+    },
+    "ApplicationConfigType": {
+      "base": null,
+      "refs": {
+        "ApplicationConfig$Type": "<p>Application type, which can be specified to obtain real-time position information of your LoRaWAN device.</p>"
+      }
+    },
+    "Applications": {
+      "base": null,
+      "refs": {
+        "FPorts$Applications": "<p>Optional LoRaWAN application information, which can be used for geolocation.</p>",
+        "UpdateFPorts$Applications": "<p>LoRaWAN application, which can be used for geolocation by activating positioning.</p>"
+      }
+    },
+    "AssistPosition": {
+      "base": null,
+      "refs": {
+        "Gnss$AssistPosition": "<p>Optional assistance position information, specified using latitude and longitude values in degrees. The co-ordinates are inside the WGS84 reference frame.</p>"
       }
     },
     "AssociateAwsAccountWithPartnerAccountRequest": {
@@ -266,6 +294,39 @@
         "GetWirelessGatewayTaskDefinitionResponse$AutoCreateTasks": "<p>Whether to automatically create tasks using this task definition for all gateways with the specified current version. If <code>false</code>, the task must me created by calling <code>CreateWirelessGatewayTask</code>.</p>"
       }
     },
+    "BCCH": {
+      "base": null,
+      "refs": {
+        "GsmLocalId$Bcch": "<p>GSM broadcast control channel.</p>",
+        "GsmNmrObj$Bcch": "<p>GSM broadcast control channel.</p>"
+      }
+    },
+    "BSIC": {
+      "base": null,
+      "refs": {
+        "GsmLocalId$Bsic": "<p>GSM base station identity code (BSIC).</p>",
+        "GsmNmrObj$Bsic": "<p>GSM base station identity code (BSIC).</p>"
+      }
+    },
+    "BaseLat": {
+      "base": null,
+      "refs": {
+        "CdmaObj$BaseLat": "<p>CDMA base station latitude in degrees.</p>"
+      }
+    },
+    "BaseLng": {
+      "base": null,
+      "refs": {
+        "CdmaObj$BaseLng": "<p>CDMA base station longtitude in degrees.</p>"
+      }
+    },
+    "BaseStationId": {
+      "base": null,
+      "refs": {
+        "CdmaNmrObj$BaseStationId": "<p>CDMA base station ID (BSID).</p>",
+        "CdmaObj$BaseStationId": "<p>CDMA base station ID (BSID).</p>"
+      }
+    },
     "BatteryLevel": {
       "base": "<p>Sidewalk device battery level.</p>",
       "refs": {
@@ -304,6 +365,62 @@
     "CancelMulticastGroupSessionResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CaptureTimeAccuracy": {
+      "base": null,
+      "refs": {
+        "Gnss$CaptureTimeAccuracy": "<p>Optional value that gives the capture time estimate accuracy, in seconds. If capture time accuracy is not specified, default value of 300 is used.</p>"
+      }
+    },
+    "CdmaChannel": {
+      "base": null,
+      "refs": {
+        "CdmaLocalId$CdmaChannel": "<p>CDMA channel information.</p>",
+        "CdmaNmrObj$CdmaChannel": "<p>CDMA channel information.</p>"
+      }
+    },
+    "CdmaList": {
+      "base": null,
+      "refs": {
+        "CellTowers$Cdma": "<p>CDMA object information.</p>"
+      }
+    },
+    "CdmaLocalId": {
+      "base": "<p>CDMA local ID information, which corresponds to the local identification parameters of a CDMA cell.</p>",
+      "refs": {
+        "CdmaObj$CdmaLocalId": "<p>CDMA local identification (local ID) parameters.</p>"
+      }
+    },
+    "CdmaNmrList": {
+      "base": null,
+      "refs": {
+        "CdmaObj$CdmaNmr": "<p>CDMA network measurement reports.</p>"
+      }
+    },
+    "CdmaNmrObj": {
+      "base": "<p>CDMA object for network measurement reports.</p>",
+      "refs": {
+        "CdmaNmrList$member": null
+      }
+    },
+    "CdmaObj": {
+      "base": "<p>CDMA (Code-division multiple access) object.</p>",
+      "refs": {
+        "CdmaList$member": null
+      }
+    },
+    "CellParams": {
+      "base": null,
+      "refs": {
+        "TdscdmaLocalId$CellParams": "<p>Cell parameters for TD-SCDMA.</p>",
+        "TdscdmaNmrObj$CellParams": "<p>Cell parameters for TD-SCDMA network measurement reports object.</p>"
+      }
+    },
+    "CellTowers": {
+      "base": "<p>The cell towers that were used to perform the measurements.</p>",
+      "refs": {
+        "GetPositionEstimateRequest$CellTowers": "<p>Retrieves an estimated device position by resolving measurement data from cellular radio towers. The position is resolved using HERE's cellular-based solver.</p>"
       }
     },
     "CertificateList": {
@@ -381,6 +498,13 @@
       "refs": {
         "GetEventConfigurationByResourceTypesResponse$ConnectionStatus": "<p>Resource type event configuration for the connection status event.</p>",
         "UpdateEventConfigurationByResourceTypesRequest$ConnectionStatus": "<p>Connection status resource type event configuration object for enabling and disabling wireless gateway topic.</p>"
+      }
+    },
+    "Coordinate": {
+      "base": null,
+      "refs": {
+        "AssistPosition$member": null,
+        "Gnss$AssistAltitude": "<p>Optional assistance altitude, which is the altitude of the device at capture time, specified in meters above the WGS84 reference ellipsoid.</p>"
       }
     },
     "Crc": {
@@ -494,6 +618,12 @@
       "refs": {
         "GetFuotaTaskResponse$CreatedAt": null,
         "GetMulticastGroupResponse$CreatedAt": null
+      }
+    },
+    "CreationDate": {
+      "base": null,
+      "refs": {
+        "GetPositionEstimateRequest$Timestamp": "<p>Optional information that specifies the time when the position information will be resolved. It uses the UNIX timestamp format. If not specified, the time at which the request was received will be used.</p>"
       }
     },
     "DeleteDestinationRequest": {
@@ -648,6 +778,7 @@
     "DestinationName": {
       "base": null,
       "refs": {
+        "ApplicationConfig$DestinationName": "<p>The name of the position data destination that describes the AWS IoT rule that processes the device's position data for use by AWS IoT Core for LoRaWAN.</p>",
         "CreateDestinationRequest$Name": "<p>The name of the new resource.</p>",
         "CreateDestinationResponse$Name": "<p>The name of the new resource.</p>",
         "CreateWirelessDeviceRequest$DestinationName": "<p>The name of the destination to assign to the new wireless device.</p>",
@@ -923,10 +1054,24 @@
         "LoRaWANServiceProfile$DrMin": "<p>The DrMin value.</p>"
       }
     },
+    "EARFCN": {
+      "base": null,
+      "refs": {
+        "LteLocalId$Earfcn": "<p>Evolved universal terrestrial radio access (E-UTRA) absolute radio frequency channel number (FCN).</p>",
+        "LteNmrObj$Earfcn": "<p>E-UTRA (Evolved universal terrestrial Radio Access) absolute radio frequency channel Number (EARFCN).</p>"
+      }
+    },
     "EndPoint": {
       "base": null,
       "refs": {
         "GetServiceEndpointResponse$ServiceEndpoint": "<p>The service endpoint value.</p>"
+      }
+    },
+    "EutranCid": {
+      "base": null,
+      "refs": {
+        "LteNmrObj$EutranCid": "<p>E-UTRAN (Evolved Universal Terrestrial Radio Access Network) cell global identifier (EUTRANCID).</p>",
+        "LteObj$EutranCid": "<p>E-UTRAN (Evolved Universal Terrestrial Radio Access Network) Cell Global Identifier.</p>"
       }
     },
     "Event": {
@@ -977,7 +1122,7 @@
         "LoRaWANConnectionStatusResourceTypeEventConfiguration$WirelessGatewayEventTopic": "<p>Denotes whether the wireless gateway connection status event topic is enabled or disabled.</p>",
         "LoRaWANJoinEventNotificationConfigurations$DevEuiEventTopic": "<p>Denotes whether the Dev EUI join event topic is enabled or disabled.</p>",
         "LoRaWANJoinResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Denotes whether the wireless device join event topic is enabled or disabled.</p>",
-        "MessageDeliveryStatusEventConfiguration$WirelessDeviceIdEventTopic": "<p>Denotes whether the wireless device ID device registration state event topic is enabled or disabled.</p>",
+        "MessageDeliveryStatusEventConfiguration$WirelessDeviceIdEventTopic": "<p>Denotes whether the wireless device ID message delivery status event topic is enabled or disabled.</p>",
         "ProximityEventConfiguration$WirelessDeviceIdEventTopic": "<p>Denotes whether the wireless device ID proximity event topic is enabled or disabled.</p>",
         "SidewalkEventNotificationConfigurations$AmazonIdEventTopic": "<p>Denotes whether the Amazon ID event topic is enabled or disabled.</p>",
         "SidewalkResourceTypeEventConfiguration$WirelessDeviceEventTopic": "<p>Denotes whether the wireless device join event topic is enabled or disabled.</p>"
@@ -1019,6 +1164,7 @@
     "FPort": {
       "base": "<p>The Fport value.</p>",
       "refs": {
+        "ApplicationConfig$FPort": null,
         "FPorts$Fuota": null,
         "FPorts$Multicast": null,
         "FPorts$ClockSync": null,
@@ -1122,6 +1268,12 @@
         "GetFuotaTaskResponse$Status": null
       }
     },
+    "GPST": {
+      "base": null,
+      "refs": {
+        "Gnss$CaptureTime": "<p>Optional parameter that gives an estimate of the time when the GNSS scan information is taken, in seconds GPS time (GPST). If capture time is not specified, the local server time is used.</p>"
+      }
+    },
     "GatewayEui": {
       "base": null,
       "refs": {
@@ -1145,6 +1297,21 @@
       "base": null,
       "refs": {
         "OtaaV1_0_x$GenAppKey": "<p>The GenAppKey value.</p>"
+      }
+    },
+    "GeoJsonPayload": {
+      "base": null,
+      "refs": {
+        "GetPositionEstimateResponse$GeoJsonPayload": "<p>The position information of the resource, displayed as a JSON payload. The payload uses the GeoJSON format, which a format that's used to encode geographic data structures. For more information, see <a href=\"https://geojson.org/\">GeoJSON</a>.</p>",
+        "GetResourcePositionResponse$GeoJsonPayload": "<p>The position information of the resource, displayed as a JSON payload. The payload uses the GeoJSON format, which a format that's used to encode geographic data structures. For more information, see <a href=\"https://geojson.org/\">GeoJSON</a>.</p>",
+        "UpdateResourcePositionRequest$GeoJsonPayload": "<p>The position information of the resource, displayed as a JSON payload. The payload uses the GeoJSON format, which a format that's used to encode geographic data structures. For more information, see <a href=\"https://geojson.org/\">GeoJSON</a>.</p>"
+      }
+    },
+    "GeranCid": {
+      "base": null,
+      "refs": {
+        "GlobalIdentity$GeranCid": "<p>GERAN (GSM EDGE Radio Access Network) cell global identifier.</p>",
+        "GsmObj$GeranCid": "<p>GERAN (GSM EDGE Radio Access Network) Cell Global Identifier.</p>"
       }
     },
     "GetDestinationRequest": {
@@ -1247,6 +1414,16 @@
       "refs": {
       }
     },
+    "GetPositionEstimateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPositionEstimateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetPositionRequest": {
       "base": null,
       "refs": {
@@ -1273,6 +1450,16 @@
       }
     },
     "GetResourceLogLevelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePositionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePositionResponse": {
       "base": null,
       "refs": {
       }
@@ -1377,16 +1564,76 @@
       "refs": {
       }
     },
+    "GlobalIdentity": {
+      "base": "<p>Global identity information.</p>",
+      "refs": {
+        "GsmNmrObj$GlobalIdentity": "<p>Global identity information of the GSM object.</p>"
+      }
+    },
+    "Gnss": {
+      "base": "<p>Global navigation satellite system (GNSS) object used for positioning.</p>",
+      "refs": {
+        "GetPositionEstimateRequest$Gnss": "<p>Retrieves an estimated device position by resolving the global navigation satellite system (GNSS) scan data. The position is resolved using the GNSS solver powered by LoRa Cloud.</p>"
+      }
+    },
+    "GnssNav": {
+      "base": null,
+      "refs": {
+        "Gnss$Payload": "<p>Payload that contains the GNSS scan result, or NAV message, in hexadecimal notation.</p>"
+      }
+    },
+    "GsmList": {
+      "base": null,
+      "refs": {
+        "CellTowers$Gsm": "<p>GSM object information.</p>"
+      }
+    },
+    "GsmLocalId": {
+      "base": "<p>GSM local ID information, which corresponds to the local identification parameters of a GSM cell.</p>",
+      "refs": {
+        "GsmObj$GsmLocalId": "<p>GSM local identification (local ID) information.</p>"
+      }
+    },
+    "GsmNmrList": {
+      "base": null,
+      "refs": {
+        "GsmObj$GsmNmr": "<p>GSM object for network measurement reports.</p>"
+      }
+    },
+    "GsmNmrObj": {
+      "base": "<p>GSM object for network measurement reports.</p>",
+      "refs": {
+        "GsmNmrList$member": null
+      }
+    },
+    "GsmObj": {
+      "base": "<p>GSM object.</p>",
+      "refs": {
+        "GsmList$member": null
+      }
+    },
+    "GsmTimingAdvance": {
+      "base": null,
+      "refs": {
+        "GsmObj$GsmTimingAdvance": "<p>Timing advance value, which corresponds to the length of time a signal takes to reach the base station from a mobile phone.</p>"
+      }
+    },
     "HorizontalAccuracy": {
       "base": null,
       "refs": {
-        "Accuracy$HorizontalAccuracy": "<p>The horizontal accuracy of the estimated position in meters.</p>"
+        "Accuracy$HorizontalAccuracy": "<p>The horizontal accuracy of the estimated position, which is the difference between the estimated location and the actual device location.</p>"
       }
     },
     "HrAllowed": {
       "base": null,
       "refs": {
         "LoRaWANGetServiceProfileInfo$HrAllowed": "<p>The HRAllowed value that describes whether handover roaming is allowed.</p>"
+      }
+    },
+    "IPAddress": {
+      "base": null,
+      "refs": {
+        "Ip$IpAddress": "<p>IP address information.</p>"
       }
     },
     "ISODateTimeString": {
@@ -1444,6 +1691,12 @@
         "GetWirelessGatewayCertificateResponse$LoRaWANNetworkServerCertificateId": "<p>The ID of the certificate that is associated with the wireless gateway and used for the LoRaWANNetworkServer endpoint.</p>"
       }
     },
+    "Ip": {
+      "base": "<p>IP address used for resolving device location.</p>",
+      "refs": {
+        "GetPositionEstimateRequest$Ip": "<p>Retrieves an estimated device position by resolving the IP address information from the device. The position is resolved using MaxMind's IP-based solver.</p>"
+      }
+    },
     "JoinEui": {
       "base": null,
       "refs": {
@@ -1477,6 +1730,15 @@
       "refs": {
         "GetEventConfigurationByResourceTypesResponse$Join": "<p>Resource type event configuration for the join event.</p>",
         "UpdateEventConfigurationByResourceTypesRequest$Join": "<p>Join resource type event configuration object for enabling and disabling wireless device topic.</p>"
+      }
+    },
+    "LAC": {
+      "base": null,
+      "refs": {
+        "GlobalIdentity$Lac": "<p>Location area code of the global identity.</p>",
+        "GsmObj$Lac": "<p>Location area code.</p>",
+        "TdscdmaObj$Lac": "<p>Location Area Code.</p>",
+        "WcdmaObj$Lac": "<p>Location Area Code.</p>"
       }
     },
     "ListDestinationsRequest": {
@@ -1811,6 +2073,66 @@
         "WirelessGatewayLogOption$LogLevel": null
       }
     },
+    "LteList": {
+      "base": null,
+      "refs": {
+        "CellTowers$Lte": "<p>LTE object information.</p>"
+      }
+    },
+    "LteLocalId": {
+      "base": "<p>LTE local identification (local ID) information.</p>",
+      "refs": {
+        "LteObj$LteLocalId": "<p>LTE local identification (local ID) information.</p>"
+      }
+    },
+    "LteNmrList": {
+      "base": null,
+      "refs": {
+        "LteObj$LteNmr": "<p>LTE object for network measurement reports.</p>"
+      }
+    },
+    "LteNmrObj": {
+      "base": "<p>LTE object for network measurement reports.</p>",
+      "refs": {
+        "LteNmrList$member": null
+      }
+    },
+    "LteObj": {
+      "base": "<p>LTE object.</p>",
+      "refs": {
+        "LteList$member": null
+      }
+    },
+    "LteTimingAdvance": {
+      "base": null,
+      "refs": {
+        "LteObj$LteTimingAdvance": "<p>LTE timing advance.</p>"
+      }
+    },
+    "MCC": {
+      "base": null,
+      "refs": {
+        "GsmObj$Mcc": "<p>Mobile Country Code.</p>",
+        "LteObj$Mcc": "<p>Mobile Country Code.</p>",
+        "TdscdmaObj$Mcc": "<p>Mobile Country Code.</p>",
+        "WcdmaObj$Mcc": "<p>Mobile Country Code.</p>"
+      }
+    },
+    "MNC": {
+      "base": null,
+      "refs": {
+        "GsmObj$Mnc": "<p>Mobile Network Code.</p>",
+        "LteObj$Mnc": "<p>Mobile Network Code.</p>",
+        "TdscdmaObj$Mnc": "<p>Mobile Network Code.</p>",
+        "WcdmaObj$Mnc": "<p>Mobile Network Code.</p>"
+      }
+    },
+    "MacAddress": {
+      "base": null,
+      "refs": {
+        "WiFiAccessPoint$MacAddress": "<p>Wi-Fi MAC Address.</p>"
+      }
+    },
     "MacVersion": {
       "base": null,
       "refs": {
@@ -1995,6 +2317,12 @@
         "SendDataToMulticastGroupRequest$WirelessMetadata": null
       }
     },
+    "NRCapable": {
+      "base": null,
+      "refs": {
+        "LteObj$NrCapable": "<p>Parameter that determines whether the LTE object is capable of supporting NR (new radio).</p>"
+      }
+    },
     "NetId": {
       "base": "<p>LoRaWAN network ID.</p>",
       "refs": {
@@ -2038,6 +2366,12 @@
       "base": "<p>Network analyzer configurations.</p>",
       "refs": {
         "NetworkAnalyzerConfigurationList$member": null
+      }
+    },
+    "NetworkId": {
+      "base": null,
+      "refs": {
+        "CdmaObj$NetworkId": "<p>CDMA network ID (NID).</p>"
       }
     },
     "NextToken": {
@@ -2121,6 +2455,20 @@
         "LoRaWANDevice$OtaaV1_1": "<p>OTAA device object for v1.1 for create APIs</p>"
       }
     },
+    "PCI": {
+      "base": null,
+      "refs": {
+        "LteLocalId$Pci": "<p>Physical cell ID.</p>",
+        "LteNmrObj$Pci": "<p>Physical cell ID.</p>"
+      }
+    },
+    "PSC": {
+      "base": null,
+      "refs": {
+        "WcdmaLocalId$Psc": "<p>Primary Scrambling Code.</p>",
+        "WcdmaNmrObj$Psc": "<p>Primary Scrambling Code.</p>"
+      }
+    },
     "PackageVersion": {
       "base": null,
       "refs": {
@@ -2156,11 +2504,27 @@
         "UpdatePartnerAccountRequest$PartnerType": "<p>The partner type.</p>"
       }
     },
+    "PathLoss": {
+      "base": null,
+      "refs": {
+        "TdscdmaNmrObj$PathLoss": "<p>Path loss, or path attenuation, is the reduction in power density of an electromagnetic wave as it propagates through space.</p>",
+        "TdscdmaObj$PathLoss": "<p>Path loss, or path attenuation, is the reduction in power density of an electromagnetic wave as it propagates through space.</p>",
+        "WcdmaNmrObj$PathLoss": "<p>Path loss, or path attenuation, is the reduction in power density of an electromagnetic wave as it propagates through space.</p>",
+        "WcdmaObj$PathLoss": "<p>Path loss, or path attenuation, is the reduction in power density of an electromagnetic wave as it propagates through space.</p>"
+      }
+    },
     "PayloadData": {
       "base": "<p>The binary to be sent to the end device, encoded in base64.</p>",
       "refs": {
         "SendDataToMulticastGroupRequest$PayloadData": null,
         "SendDataToWirelessDeviceRequest$PayloadData": null
+      }
+    },
+    "PilotPower": {
+      "base": null,
+      "refs": {
+        "CdmaNmrObj$PilotPower": "<p>Transmit power level of the pilot signal, measured in dBm (decibel-milliwatts).</p>",
+        "CdmaObj$PilotPower": "<p>Transmit power level of the pilot signal, measured in dBm (decibel-milliwatts).</p>"
       }
     },
     "PingSlotDr": {
@@ -2179,6 +2543,13 @@
       "base": null,
       "refs": {
         "LoRaWANDeviceProfile$PingSlotPeriod": "<p>The PingSlotPeriod value.</p>"
+      }
+    },
+    "PnOffset": {
+      "base": null,
+      "refs": {
+        "CdmaLocalId$PnOffset": "<p>Pseudo-noise offset, which is a characteristic of the signal from a cell on a radio tower.</p>",
+        "CdmaNmrObj$PnOffset": "<p>Pseudo-noise offset, which is a characteristic of the signal from a cell on a radio tower.</p>"
       }
     },
     "PositionConfigurationFec": {
@@ -2225,9 +2596,11 @@
       "refs": {
         "GetPositionConfigurationRequest$ResourceIdentifier": "<p>Resource identifier used in a position configuration.</p>",
         "GetPositionRequest$ResourceIdentifier": "<p>Resource identifier used to retrieve the position information.</p>",
+        "GetResourcePositionRequest$ResourceIdentifier": "<p>The identifier of the resource for which position information is retrieved. It can be the wireless device ID or the wireless gateway ID depending on the resource type.</p>",
         "PositionConfigurationItem$ResourceIdentifier": "<p>Resource identifier for the position configuration.</p>",
         "PutPositionConfigurationRequest$ResourceIdentifier": "<p>Resource identifier used to update the position configuration.</p>",
-        "UpdatePositionRequest$ResourceIdentifier": "<p>Resource identifier of the resource for which position is updated.</p>"
+        "UpdatePositionRequest$ResourceIdentifier": "<p>Resource identifier of the resource for which position is updated.</p>",
+        "UpdateResourcePositionRequest$ResourceIdentifier": "<p>The identifier of the resource for which position information is updated. It can be the wireless device ID or the wireless gateway ID depending on the resource type.</p>"
       }
     },
     "PositionResourceType": {
@@ -2235,10 +2608,12 @@
       "refs": {
         "GetPositionConfigurationRequest$ResourceType": "<p>Resource type of the resource for which position configuration is retrieved.</p>",
         "GetPositionRequest$ResourceType": "<p>Resource type of the resource for which position information is retrieved.</p>",
+        "GetResourcePositionRequest$ResourceType": "<p>The type of resource for which position information is retrieved, which can be a wireless device or a wireless gateway.</p>",
         "ListPositionConfigurationsRequest$ResourceType": "<p>Resource type for which position configurations are listed.</p>",
         "PositionConfigurationItem$ResourceType": "<p>Resource type of the resource for the position configuration.</p>",
         "PutPositionConfigurationRequest$ResourceType": "<p>Resource type of the resource for which you want to update the position configuration.</p>",
-        "UpdatePositionRequest$ResourceType": "<p>Resource type of the resource for which position is updated.</p>"
+        "UpdatePositionRequest$ResourceType": "<p>Resource type of the resource for which position is updated.</p>",
+        "UpdateResourcePositionRequest$ResourceType": "<p>The type of resource for which position information is updated, which can be a wireless device or a wireless gateway.</p>"
       }
     },
     "PositionSolverConfigurations": {
@@ -2279,6 +2654,14 @@
       "refs": {
         "FPorts$Positioning": "<p>FPort values for the GNSS, stream, and ClockSync functions of the positioning information.</p>",
         "UpdateFPorts$Positioning": "<p>Positioning FPorts for the ClockSync, Stream, and GNSS functions.</p>"
+      }
+    },
+    "PositioningConfigStatus": {
+      "base": null,
+      "refs": {
+        "CreateWirelessDeviceRequest$Positioning": "<p>FPort values for the GNSS, stream, and ClockSync functions of the positioning information.</p>",
+        "GetWirelessDeviceResponse$Positioning": "<p>FPort values for the GNSS, stream, and ClockSync functions of the positioning information.</p>",
+        "UpdateWirelessDeviceRequest$Positioning": "<p>FPort values for the GNSS, stream, and ClockSync functions of the positioning information.</p>"
       }
     },
     "PrAllowed": {
@@ -2335,6 +2718,35 @@
         "StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest$QueryString": null
       }
     },
+    "RSCP": {
+      "base": null,
+      "refs": {
+        "TdscdmaNmrObj$Rscp": "<p>Code power of the received signal, measured in decibel-milliwatts (dBm).</p>",
+        "TdscdmaObj$Rscp": "<p>Signal power of the received signal (Received Signal Code Power), measured in decibel-milliwatts (dBm).</p>",
+        "WcdmaNmrObj$Rscp": "<p>Received Signal Code Power (signal power) (dBm)</p>",
+        "WcdmaObj$Rscp": "<p>Received Signal Code Power (signal power) (dBm).</p>"
+      }
+    },
+    "RSRP": {
+      "base": null,
+      "refs": {
+        "LteNmrObj$Rsrp": "<p>Signal power of the reference signal received, measured in dBm (decibel-milliwatts).</p>",
+        "LteObj$Rsrp": "<p>Signal power of the reference signal received, measured in dBm (decibel-milliwatts).</p>"
+      }
+    },
+    "RSRQ": {
+      "base": null,
+      "refs": {
+        "LteNmrObj$Rsrq": "<p>Signal quality of the reference Signal received, measured in decibels (dB).</p>",
+        "LteObj$Rsrq": "<p>Signal quality of the reference Signal received, measured in decibels (dB).</p>"
+      }
+    },
+    "RSS": {
+      "base": null,
+      "refs": {
+        "WiFiAccessPoint$Rss": "<p>Recived signal strength of the WLAN measurement data.</p>"
+      }
+    },
     "RaAllowed": {
       "base": null,
       "refs": {
@@ -2345,6 +2757,12 @@
       "base": null,
       "refs": {
         "LoRaWANDeviceProfile$RegParamsRevision": "<p>The version of regional parameters.</p>"
+      }
+    },
+    "RegistrationZone": {
+      "base": null,
+      "refs": {
+        "CdmaObj$RegistrationZone": "<p>CDMA registration zone (RZ).</p>"
       }
     },
     "ReportDevStatusBattery": {
@@ -2454,6 +2872,13 @@
       "base": null,
       "refs": {
         "LoRaWANDeviceProfile$RxFreq2": "<p>The RXFreq2 value.</p>"
+      }
+    },
+    "RxLevel": {
+      "base": null,
+      "refs": {
+        "GsmNmrObj$RxLevel": "<p>Rx level, which is the received signal power, measured in dBm (decibel-milliwatts).</p>",
+        "GsmObj$RxLevel": "<p>Rx level, which is the received signal power, measured in dBm (decibel-milliwatts).</p>"
       }
     },
     "SNwkSIntKey": {
@@ -2748,6 +3173,18 @@
         "LoRaWANDeviceProfile$SupportsJoin": "<p>The SupportsJoin value.</p>"
       }
     },
+    "SystemId": {
+      "base": null,
+      "refs": {
+        "CdmaObj$SystemId": "<p>CDMA system ID (SID).</p>"
+      }
+    },
+    "TAC": {
+      "base": null,
+      "refs": {
+        "LteObj$Tac": "<p>LTE tracking area code.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>A simple label consisting of a customer-defined key-value pair</p>",
       "refs": {
@@ -2808,6 +3245,42 @@
         "LoRaWANGetServiceProfileInfo$TargetPer": "<p>The TargetPER value.</p>"
       }
     },
+    "TdscdmaList": {
+      "base": null,
+      "refs": {
+        "CellTowers$Tdscdma": "<p>TD-SCDMA object information.</p>"
+      }
+    },
+    "TdscdmaLocalId": {
+      "base": "<p>TD-SCDMA local identification (local Id) information.</p>",
+      "refs": {
+        "TdscdmaObj$TdscdmaLocalId": "<p>TD-SCDMA local identification (local ID) information.</p>"
+      }
+    },
+    "TdscdmaNmrList": {
+      "base": null,
+      "refs": {
+        "TdscdmaObj$TdscdmaNmr": "<p>TD-SCDMA object for network measurement reports.</p>"
+      }
+    },
+    "TdscdmaNmrObj": {
+      "base": "<p>TD-SCDMA object for network measurement reports.</p>",
+      "refs": {
+        "TdscdmaNmrList$member": null
+      }
+    },
+    "TdscdmaObj": {
+      "base": "<p>TD-SCDMA object.</p>",
+      "refs": {
+        "TdscdmaList$member": null
+      }
+    },
+    "TdscdmaTimingAdvance": {
+      "base": null,
+      "refs": {
+        "TdscdmaObj$TdscdmaTimingAdvance": "<p>TD-SCDMA Timing advance.</p>"
+      }
+    },
     "TestWirelessDeviceRequest": {
       "base": null,
       "refs": {
@@ -2863,6 +3336,20 @@
       "refs": {
         "DownlinkQueueMessage$TransmitMode": "<p>The transmit mode to use for sending data to the wireless device. This can be <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>",
         "SendDataToWirelessDeviceRequest$TransmitMode": "<p>The transmit mode to use to send data to the wireless device. Can be: <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>"
+      }
+    },
+    "UARFCN": {
+      "base": null,
+      "refs": {
+        "TdscdmaLocalId$Uarfcn": "<p>TD-SCDMA UTRA (Universal Terrestrial Radio Access Network) absolute RF channel number (UARFCN).</p>",
+        "TdscdmaNmrObj$Uarfcn": "<p>TD-SCDMA UTRA (Universal Terrestrial Radio Access Network) absolute RF channel number.</p>"
+      }
+    },
+    "UARFCNDL": {
+      "base": null,
+      "refs": {
+        "WcdmaLocalId$Uarfcndl": "<p>WCDMA UTRA Absolute RF Channel Number downlink.</p>",
+        "WcdmaNmrObj$Uarfcndl": "<p>WCDMA UTRA Absolute RF Channel Number downlink.</p>"
       }
     },
     "UlBucketSize": {
@@ -3008,6 +3495,16 @@
       "refs": {
       }
     },
+    "UpdateResourcePositionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResourcePositionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateSignature": {
       "base": null,
       "refs": {
@@ -3047,6 +3544,21 @@
         "WirelessGatewayTaskDefinitionList$member": null
       }
     },
+    "Use2DSolver": {
+      "base": null,
+      "refs": {
+        "Gnss$Use2DSolver": "<p>Optional parameter that forces 2D solve, which modifies the positioning algorithm to a 2D solution problem. When this parameter is specified, the assistance altitude should have an accuracy of at least 10 meters.</p>"
+      }
+    },
+    "UtranCid": {
+      "base": null,
+      "refs": {
+        "TdscdmaNmrObj$UtranCid": "<p>UTRAN (UMTS Terrestrial Radio Access Network) cell global identifier.</p>",
+        "TdscdmaObj$UtranCid": "<p>UTRAN (UMTS Terrestrial Radio Access Network) Cell Global Identifier.</p>",
+        "WcdmaNmrObj$UtranCid": "<p>UTRAN (UMTS Terrestrial Radio Access Network) Cell Global Identifier.</p>",
+        "WcdmaObj$UtranCid": "<p>UTRAN (UMTS Terrestrial Radio Access Network) Cell Global Identifier.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>The input did not meet the specified constraints.</p>",
       "refs": {
@@ -3055,7 +3567,49 @@
     "VerticalAccuracy": {
       "base": null,
       "refs": {
-        "Accuracy$VerticalAccuracy": "<p>The vertical accuracy of the estimated position in meters.</p>"
+        "Accuracy$VerticalAccuracy": "<p>The vertical accuracy of the estimated position, which is the difference between the estimated altitude and actual device latitude in meters.</p>"
+      }
+    },
+    "WcdmaList": {
+      "base": null,
+      "refs": {
+        "CellTowers$Wcdma": "<p>WCDMA object information.</p>"
+      }
+    },
+    "WcdmaLocalId": {
+      "base": "<p>WCDMA local identification (local ID) information.</p>",
+      "refs": {
+        "WcdmaObj$WcdmaLocalId": "<p>WCDMA local ID information.</p>"
+      }
+    },
+    "WcdmaNmrList": {
+      "base": null,
+      "refs": {
+        "WcdmaObj$WcdmaNmr": "<p>WCDMA object for network measurement reports.</p>"
+      }
+    },
+    "WcdmaNmrObj": {
+      "base": "<p>Network Measurement Reports.</p>",
+      "refs": {
+        "WcdmaNmrList$member": null
+      }
+    },
+    "WcdmaObj": {
+      "base": "<p>WCDMA.</p>",
+      "refs": {
+        "WcdmaList$member": null
+      }
+    },
+    "WiFiAccessPoint": {
+      "base": "<p>Wi-Fi access point.</p>",
+      "refs": {
+        "WiFiAccessPoints$member": null
+      }
+    },
+    "WiFiAccessPoints": {
+      "base": null,
+      "refs": {
+        "GetPositionEstimateRequest$WiFiAccessPoints": "<p>Retrieves an estimated device position by resolving WLAN measurement data. The position is resolved using HERE's Wi-Fi based solver.</p>"
       }
     },
     "WirelessDeviceArn": {

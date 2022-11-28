@@ -89,6 +89,12 @@ const (
 	// instance is a previous or custom version that doesn't use our version information.
 	ErrCodeMissingVersionException = "MissingVersionException"
 
+	// ErrCodeNamespaceNotFoundException for service response error code
+	// "NamespaceNotFoundException".
+	//
+	// The specified namespace wasn't found.
+	ErrCodeNamespaceNotFoundException = "NamespaceNotFoundException"
+
 	// ErrCodeNoUpdateAvailableException for service response error code
 	// "NoUpdateAvailableException".
 	//
@@ -205,6 +211,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidParameterException":                      newErrorInvalidParameterException,
 	"LimitExceededException":                         newErrorLimitExceededException,
 	"MissingVersionException":                        newErrorMissingVersionException,
+	"NamespaceNotFoundException":                     newErrorNamespaceNotFoundException,
 	"NoUpdateAvailableException":                     newErrorNoUpdateAvailableException,
 	"PlatformTaskDefinitionIncompatibilityException": newErrorPlatformTaskDefinitionIncompatibilityException,
 	"PlatformUnknownException":                       newErrorPlatformUnknownException,

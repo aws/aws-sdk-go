@@ -1,3 +1,33 @@
+Release v1.44.146 (2022-11-28)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API, documentation, and paginators
+* `service/drs`: Updates service API and documentation
+* `service/ecs`: Updates service API, documentation, and paginators
+  * This release adds support for ECS Service Connect, a new capability that simplifies writing and operating resilient distributed applications. This release updates the TaskDefinition, Cluster, Service mutation APIs with Service connect constructs and also adds a new ListServicesByNamespace API.
+* `service/elasticfilesystem`: Updates service API and documentation
+  * This release adds elastic as a new ThroughputMode value for EFS file systems and adds AFTER_1_DAY as a value for TransitionToIARules.
+* `service/iot`: Updates service API and documentation
+  * Job scheduling enables the scheduled rollout of a Job with start and end times and a customizable end behavior when end time is reached. This is available for continuous and snapshot jobs. Added support for MQTT5 properties to AWS IoT TopicRule Republish Action.
+* `service/iot-data`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports preview of table information from HTML tables in the search results. The most relevant cells with their corresponding rows, columns are displayed as a preview in the search result. The most relevant table cell or cells are also highlighted in table preview.
+* `service/logs`: Updates service API and documentation
+  * Updates to support CloudWatch Logs data protection and CloudWatch cross-account observability
+* `service/mgn`: Updates service API, documentation, and paginators
+* `service/monitoring`: Updates service API, documentation, and paginators
+  * Adds cross-account support to the GetMetricData API. Adds cross-account support to the ListMetrics API through the usage of the IncludeLinkedAccounts flag and the new OwningAccounts field.
+* `service/oam`: Updates service API, documentation, paginators, and examples
+* `service/organizations`: Updates service API and documentation
+  * This release introduces delegated administrator for AWS Organizations, a new feature to help you delegate the management of your Organizations policies, enabling you to govern your AWS organization in a decentralized way. You can now allow member accounts to manage Organizations policies.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release enables new Aurora and RDS feature called Blue/Green Deployments that makes updates to databases safer, simpler and faster.
+* `service/textract`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.44.145 (2022-11-23)
 ===
 

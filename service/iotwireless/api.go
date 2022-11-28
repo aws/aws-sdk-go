@@ -4220,7 +4220,12 @@ const opGetPosition = "GetPosition"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPosition
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) GetPositionRequest(input *GetPositionInput) (req *request.Request, output *GetPositionOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetPosition, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetPosition,
 		HTTPMethod: "GET",
@@ -4239,6 +4244,10 @@ func (c *IoTWireless) GetPositionRequest(input *GetPositionInput) (req *request.
 // GetPosition API operation for AWS IoT Wireless.
 //
 // Get the position information for a given resource.
+//
+// This action is no longer supported. Calls to retrieve the position information
+// should use the GetResourcePosition (https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_GetResourcePosition.html)
+// API operation instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4265,6 +4274,8 @@ func (c *IoTWireless) GetPositionRequest(input *GetPositionInput) (req *request.
 //     An unexpected error occurred while processing a request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPosition
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) GetPosition(input *GetPositionInput) (*GetPositionOutput, error) {
 	req, out := c.GetPositionRequest(input)
 	return out, req.Send()
@@ -4279,6 +4290,8 @@ func (c *IoTWireless) GetPosition(input *GetPositionInput) (*GetPositionOutput, 
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) GetPositionWithContext(ctx aws.Context, input *GetPositionInput, opts ...request.Option) (*GetPositionOutput, error) {
 	req, out := c.GetPositionRequest(input)
 	req.SetContext(ctx)
@@ -4311,7 +4324,12 @@ const opGetPositionConfiguration = "GetPositionConfiguration"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPositionConfiguration
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) GetPositionConfigurationRequest(input *GetPositionConfigurationInput) (req *request.Request, output *GetPositionConfigurationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetPositionConfiguration, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetPositionConfiguration,
 		HTTPMethod: "GET",
@@ -4330,6 +4348,10 @@ func (c *IoTWireless) GetPositionConfigurationRequest(input *GetPositionConfigur
 // GetPositionConfiguration API operation for AWS IoT Wireless.
 //
 // Get position configuration for a given resource.
+//
+// This action is no longer supported. Calls to retrieve the position configuration
+// should use the GetResourcePosition (https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_GetResourcePosition.html)
+// API operation instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4356,6 +4378,8 @@ func (c *IoTWireless) GetPositionConfigurationRequest(input *GetPositionConfigur
 //     An unexpected error occurred while processing a request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPositionConfiguration
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) GetPositionConfiguration(input *GetPositionConfigurationInput) (*GetPositionConfigurationOutput, error) {
 	req, out := c.GetPositionConfigurationRequest(input)
 	return out, req.Send()
@@ -4370,8 +4394,103 @@ func (c *IoTWireless) GetPositionConfiguration(input *GetPositionConfigurationIn
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) GetPositionConfigurationWithContext(ctx aws.Context, input *GetPositionConfigurationInput, opts ...request.Option) (*GetPositionConfigurationOutput, error) {
 	req, out := c.GetPositionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPositionEstimate = "GetPositionEstimate"
+
+// GetPositionEstimateRequest generates a "aws/request.Request" representing the
+// client's request for the GetPositionEstimate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPositionEstimate for more information on using the GetPositionEstimate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPositionEstimateRequest method.
+//	req, resp := client.GetPositionEstimateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPositionEstimate
+func (c *IoTWireless) GetPositionEstimateRequest(input *GetPositionEstimateInput) (req *request.Request, output *GetPositionEstimateOutput) {
+	op := &request.Operation{
+		Name:       opGetPositionEstimate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/position-estimate",
+	}
+
+	if input == nil {
+		input = &GetPositionEstimateInput{}
+	}
+
+	output = &GetPositionEstimateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPositionEstimate API operation for AWS IoT Wireless.
+//
+// Get estimated position information as a payload in GeoJSON format. The payload
+// measurement data is resolved using solvers that are provided by third-party
+// vendors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetPositionEstimate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetPositionEstimate
+func (c *IoTWireless) GetPositionEstimate(input *GetPositionEstimateInput) (*GetPositionEstimateOutput, error) {
+	req, out := c.GetPositionEstimateRequest(input)
+	return out, req.Send()
+}
+
+// GetPositionEstimateWithContext is the same as GetPositionEstimate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPositionEstimate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetPositionEstimateWithContext(ctx aws.Context, input *GetPositionEstimateInput, opts ...request.Option) (*GetPositionEstimateOutput, error) {
+	req, out := c.GetPositionEstimateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4555,6 +4674,99 @@ func (c *IoTWireless) GetResourceLogLevel(input *GetResourceLogLevelInput) (*Get
 // for more information on using Contexts.
 func (c *IoTWireless) GetResourceLogLevelWithContext(ctx aws.Context, input *GetResourceLogLevelInput, opts ...request.Option) (*GetResourceLogLevelOutput, error) {
 	req, out := c.GetResourceLogLevelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResourcePosition = "GetResourcePosition"
+
+// GetResourcePositionRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePosition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePosition for more information on using the GetResourcePosition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourcePositionRequest method.
+//	req, resp := client.GetResourcePositionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetResourcePosition
+func (c *IoTWireless) GetResourcePositionRequest(input *GetResourcePositionInput) (req *request.Request, output *GetResourcePositionOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePosition,
+		HTTPMethod: "GET",
+		HTTPPath:   "/resource-positions/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetResourcePositionInput{}
+	}
+
+	output = &GetResourcePositionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePosition API operation for AWS IoT Wireless.
+//
+// Get the position information for a given wireless device or a wireless gateway
+// resource. The postion information uses the World Geodetic System (WGS84)
+// (https://gisgeography.com/wgs84-world-geodetic-system/).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetResourcePosition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetResourcePosition
+func (c *IoTWireless) GetResourcePosition(input *GetResourcePositionInput) (*GetResourcePositionOutput, error) {
+	req, out := c.GetResourcePositionRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePositionWithContext is the same as GetResourcePosition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePosition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetResourcePositionWithContext(ctx aws.Context, input *GetResourcePositionInput, opts ...request.Option) (*GetResourcePositionOutput, error) {
+	req, out := c.GetResourcePositionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6543,7 +6755,12 @@ const opListPositionConfigurations = "ListPositionConfigurations"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListPositionConfigurations
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) ListPositionConfigurationsRequest(input *ListPositionConfigurationsInput) (req *request.Request, output *ListPositionConfigurationsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, ListPositionConfigurations, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opListPositionConfigurations,
 		HTTPMethod: "GET",
@@ -6569,6 +6786,10 @@ func (c *IoTWireless) ListPositionConfigurationsRequest(input *ListPositionConfi
 //
 // List position configurations for a given resource, such as positioning solvers.
 //
+// This action is no longer supported. Calls to retrieve position information
+// should use the GetResourcePosition (https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_GetResourcePosition.html)
+// API operation instead.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6591,6 +6812,8 @@ func (c *IoTWireless) ListPositionConfigurationsRequest(input *ListPositionConfi
 //     An unexpected error occurred while processing a request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListPositionConfigurations
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) ListPositionConfigurations(input *ListPositionConfigurationsInput) (*ListPositionConfigurationsOutput, error) {
 	req, out := c.ListPositionConfigurationsRequest(input)
 	return out, req.Send()
@@ -6605,6 +6828,8 @@ func (c *IoTWireless) ListPositionConfigurations(input *ListPositionConfiguratio
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) ListPositionConfigurationsWithContext(ctx aws.Context, input *ListPositionConfigurationsInput, opts ...request.Option) (*ListPositionConfigurationsOutput, error) {
 	req, out := c.ListPositionConfigurationsRequest(input)
 	req.SetContext(ctx)
@@ -6628,6 +6853,8 @@ func (c *IoTWireless) ListPositionConfigurationsWithContext(ctx aws.Context, inp
 //	        fmt.Println(page)
 //	        return pageNum <= 3
 //	    })
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) ListPositionConfigurationsPages(input *ListPositionConfigurationsInput, fn func(*ListPositionConfigurationsOutput, bool) bool) error {
 	return c.ListPositionConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -6639,6 +6866,8 @@ func (c *IoTWireless) ListPositionConfigurationsPages(input *ListPositionConfigu
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) ListPositionConfigurationsPagesWithContext(ctx aws.Context, input *ListPositionConfigurationsInput, fn func(*ListPositionConfigurationsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -7450,7 +7679,12 @@ const opPutPositionConfiguration = "PutPositionConfiguration"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/PutPositionConfiguration
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) PutPositionConfigurationRequest(input *PutPositionConfigurationInput) (req *request.Request, output *PutPositionConfigurationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, PutPositionConfiguration, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opPutPositionConfiguration,
 		HTTPMethod: "PUT",
@@ -7470,6 +7704,10 @@ func (c *IoTWireless) PutPositionConfigurationRequest(input *PutPositionConfigur
 // PutPositionConfiguration API operation for AWS IoT Wireless.
 //
 // Put position configuration for a given resource.
+//
+// This action is no longer supported. Calls to update the position configuration
+// should use the UpdateResourcePosition (https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_UpdateResourcePosition.html)
+// API operation instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7496,6 +7734,8 @@ func (c *IoTWireless) PutPositionConfigurationRequest(input *PutPositionConfigur
 //     An unexpected error occurred while processing a request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/PutPositionConfiguration
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) PutPositionConfiguration(input *PutPositionConfigurationInput) (*PutPositionConfigurationOutput, error) {
 	req, out := c.PutPositionConfigurationRequest(input)
 	return out, req.Send()
@@ -7510,6 +7750,8 @@ func (c *IoTWireless) PutPositionConfiguration(input *PutPositionConfigurationIn
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) PutPositionConfigurationWithContext(ctx aws.Context, input *PutPositionConfigurationInput, opts ...request.Option) (*PutPositionConfigurationOutput, error) {
 	req, out := c.PutPositionConfigurationRequest(input)
 	req.SetContext(ctx)
@@ -9304,7 +9546,12 @@ const opUpdatePosition = "UpdatePosition"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdatePosition
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) UpdatePositionRequest(input *UpdatePositionInput) (req *request.Request, output *UpdatePositionOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, UpdatePosition, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opUpdatePosition,
 		HTTPMethod: "PATCH",
@@ -9324,6 +9571,10 @@ func (c *IoTWireless) UpdatePositionRequest(input *UpdatePositionInput) (req *re
 // UpdatePosition API operation for AWS IoT Wireless.
 //
 // Update the position information of a resource.
+//
+// This action is no longer supported. Calls to update the position information
+// should use the UpdateResourcePosition (https://docs.aws.amazon.com/iot-wireless/2020-11-22/apireference/API_UpdateResourcePosition.html)
+// API operation instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9350,6 +9601,8 @@ func (c *IoTWireless) UpdatePositionRequest(input *UpdatePositionInput) (req *re
 //     An unexpected error occurred while processing a request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdatePosition
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) UpdatePosition(input *UpdatePositionInput) (*UpdatePositionOutput, error) {
 	req, out := c.UpdatePositionRequest(input)
 	return out, req.Send()
@@ -9364,6 +9617,8 @@ func (c *IoTWireless) UpdatePosition(input *UpdatePositionInput) (*UpdatePositio
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This operation is no longer supported.
 func (c *IoTWireless) UpdatePositionWithContext(ctx aws.Context, input *UpdatePositionInput, opts ...request.Option) (*UpdatePositionOutput, error) {
 	req, out := c.UpdatePositionRequest(input)
 	req.SetContext(ctx)
@@ -9461,6 +9716,100 @@ func (c *IoTWireless) UpdateResourceEventConfiguration(input *UpdateResourceEven
 // for more information on using Contexts.
 func (c *IoTWireless) UpdateResourceEventConfigurationWithContext(ctx aws.Context, input *UpdateResourceEventConfigurationInput, opts ...request.Option) (*UpdateResourceEventConfigurationOutput, error) {
 	req, out := c.UpdateResourceEventConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateResourcePosition = "UpdateResourcePosition"
+
+// UpdateResourcePositionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResourcePosition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResourcePosition for more information on using the UpdateResourcePosition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateResourcePositionRequest method.
+//	req, resp := client.UpdateResourcePositionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateResourcePosition
+func (c *IoTWireless) UpdateResourcePositionRequest(input *UpdateResourcePositionInput) (req *request.Request, output *UpdateResourcePositionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResourcePosition,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/resource-positions/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateResourcePositionInput{}
+	}
+
+	output = &UpdateResourcePositionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateResourcePosition API operation for AWS IoT Wireless.
+//
+// Update the position information of a given wireless device or a wireless
+// gateway resource. The postion coordinates are based on the World Geodetic
+// System (WGS84) (https://gisgeography.com/wgs84-world-geodetic-system/).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateResourcePosition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateResourcePosition
+func (c *IoTWireless) UpdateResourcePosition(input *UpdateResourcePositionInput) (*UpdateResourcePositionOutput, error) {
+	req, out := c.UpdateResourcePositionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResourcePositionWithContext is the same as UpdateResourcePosition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResourcePosition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateResourcePositionWithContext(ctx aws.Context, input *UpdateResourcePositionInput, opts ...request.Option) (*UpdateResourcePositionOutput, error) {
+	req, out := c.UpdateResourcePositionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9821,10 +10170,12 @@ func (s *AccessDeniedException) RequestID() string {
 type Accuracy struct {
 	_ struct{} `type:"structure"`
 
-	// The horizontal accuracy of the estimated position in meters.
+	// The horizontal accuracy of the estimated position, which is the difference
+	// between the estimated location and the actual device location.
 	HorizontalAccuracy *float64 `type:"float"`
 
-	// The vertical accuracy of the estimated position in meters.
+	// The vertical accuracy of the estimated position, which is the difference
+	// between the estimated altitude and actual device latitude in meters.
 	VerticalAccuracy *float64 `type:"float"`
 }
 
@@ -9855,6 +10206,71 @@ func (s *Accuracy) SetHorizontalAccuracy(v float64) *Accuracy {
 // SetVerticalAccuracy sets the VerticalAccuracy field's value.
 func (s *Accuracy) SetVerticalAccuracy(v float64) *Accuracy {
 	s.VerticalAccuracy = &v
+	return s
+}
+
+// LoRaWAN application configuration, which can be used to perform geolocation.
+type ApplicationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the position data destination that describes the AWS IoT rule
+	// that processes the device's position data for use by AWS IoT Core for LoRaWAN.
+	DestinationName *string `type:"string"`
+
+	// The Fport value.
+	FPort *int64 `min:"1" type:"integer"`
+
+	// Application type, which can be specified to obtain real-time position information
+	// of your LoRaWAN device.
+	Type *string `type:"string" enum:"ApplicationConfigType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApplicationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApplicationConfig"}
+	if s.FPort != nil && *s.FPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *ApplicationConfig) SetDestinationName(v string) *ApplicationConfig {
+	s.DestinationName = &v
+	return s
+}
+
+// SetFPort sets the FPort field's value.
+func (s *ApplicationConfig) SetFPort(v int64) *ApplicationConfig {
+	s.FPort = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ApplicationConfig) SetType(v string) *ApplicationConfig {
+	s.Type = &v
 	return s
 }
 
@@ -10616,6 +11032,454 @@ func (s CancelMulticastGroupSessionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CancelMulticastGroupSessionOutput) GoString() string {
 	return s.String()
+}
+
+// CDMA local ID information, which corresponds to the local identification
+// parameters of a CDMA cell.
+type CdmaLocalId struct {
+	_ struct{} `type:"structure"`
+
+	// CDMA channel information.
+	//
+	// CdmaChannel is a required field
+	CdmaChannel *int64 `type:"integer" required:"true"`
+
+	// Pseudo-noise offset, which is a characteristic of the signal from a cell
+	// on a radio tower.
+	//
+	// PnOffset is a required field
+	PnOffset *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CdmaLocalId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CdmaLocalId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CdmaLocalId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CdmaLocalId"}
+	if s.CdmaChannel == nil {
+		invalidParams.Add(request.NewErrParamRequired("CdmaChannel"))
+	}
+	if s.PnOffset == nil {
+		invalidParams.Add(request.NewErrParamRequired("PnOffset"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCdmaChannel sets the CdmaChannel field's value.
+func (s *CdmaLocalId) SetCdmaChannel(v int64) *CdmaLocalId {
+	s.CdmaChannel = &v
+	return s
+}
+
+// SetPnOffset sets the PnOffset field's value.
+func (s *CdmaLocalId) SetPnOffset(v int64) *CdmaLocalId {
+	s.PnOffset = &v
+	return s
+}
+
+// CDMA object for network measurement reports.
+type CdmaNmrObj struct {
+	_ struct{} `type:"structure"`
+
+	// CDMA base station ID (BSID).
+	BaseStationId *int64 `type:"integer"`
+
+	// CDMA channel information.
+	//
+	// CdmaChannel is a required field
+	CdmaChannel *int64 `type:"integer" required:"true"`
+
+	// Transmit power level of the pilot signal, measured in dBm (decibel-milliwatts).
+	PilotPower *int64 `type:"integer"`
+
+	// Pseudo-noise offset, which is a characteristic of the signal from a cell
+	// on a radio tower.
+	//
+	// PnOffset is a required field
+	PnOffset *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CdmaNmrObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CdmaNmrObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CdmaNmrObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CdmaNmrObj"}
+	if s.CdmaChannel == nil {
+		invalidParams.Add(request.NewErrParamRequired("CdmaChannel"))
+	}
+	if s.PilotPower != nil && *s.PilotPower < -142 {
+		invalidParams.Add(request.NewErrParamMinValue("PilotPower", -142))
+	}
+	if s.PnOffset == nil {
+		invalidParams.Add(request.NewErrParamRequired("PnOffset"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseStationId sets the BaseStationId field's value.
+func (s *CdmaNmrObj) SetBaseStationId(v int64) *CdmaNmrObj {
+	s.BaseStationId = &v
+	return s
+}
+
+// SetCdmaChannel sets the CdmaChannel field's value.
+func (s *CdmaNmrObj) SetCdmaChannel(v int64) *CdmaNmrObj {
+	s.CdmaChannel = &v
+	return s
+}
+
+// SetPilotPower sets the PilotPower field's value.
+func (s *CdmaNmrObj) SetPilotPower(v int64) *CdmaNmrObj {
+	s.PilotPower = &v
+	return s
+}
+
+// SetPnOffset sets the PnOffset field's value.
+func (s *CdmaNmrObj) SetPnOffset(v int64) *CdmaNmrObj {
+	s.PnOffset = &v
+	return s
+}
+
+// CDMA (Code-division multiple access) object.
+type CdmaObj struct {
+	_ struct{} `type:"structure"`
+
+	// CDMA base station latitude in degrees.
+	BaseLat *float64 `type:"float"`
+
+	// CDMA base station longtitude in degrees.
+	BaseLng *float64 `type:"float"`
+
+	// CDMA base station ID (BSID).
+	//
+	// BaseStationId is a required field
+	BaseStationId *int64 `type:"integer" required:"true"`
+
+	// CDMA local identification (local ID) parameters.
+	CdmaLocalId *CdmaLocalId `type:"structure"`
+
+	// CDMA network measurement reports.
+	CdmaNmr []*CdmaNmrObj `min:"1" type:"list"`
+
+	// CDMA network ID (NID).
+	//
+	// NetworkId is a required field
+	NetworkId *int64 `type:"integer" required:"true"`
+
+	// Transmit power level of the pilot signal, measured in dBm (decibel-milliwatts).
+	PilotPower *int64 `type:"integer"`
+
+	// CDMA registration zone (RZ).
+	RegistrationZone *int64 `type:"integer"`
+
+	// CDMA system ID (SID).
+	//
+	// SystemId is a required field
+	SystemId *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CdmaObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CdmaObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CdmaObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CdmaObj"}
+	if s.BaseLat != nil && *s.BaseLat < -90 {
+		invalidParams.Add(request.NewErrParamMinValue("BaseLat", -90))
+	}
+	if s.BaseLng != nil && *s.BaseLng < -180 {
+		invalidParams.Add(request.NewErrParamMinValue("BaseLng", -180))
+	}
+	if s.BaseStationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BaseStationId"))
+	}
+	if s.CdmaNmr != nil && len(s.CdmaNmr) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CdmaNmr", 1))
+	}
+	if s.NetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkId"))
+	}
+	if s.PilotPower != nil && *s.PilotPower < -142 {
+		invalidParams.Add(request.NewErrParamMinValue("PilotPower", -142))
+	}
+	if s.SystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SystemId"))
+	}
+	if s.SystemId != nil && *s.SystemId < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SystemId", 1))
+	}
+	if s.CdmaLocalId != nil {
+		if err := s.CdmaLocalId.Validate(); err != nil {
+			invalidParams.AddNested("CdmaLocalId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CdmaNmr != nil {
+		for i, v := range s.CdmaNmr {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CdmaNmr", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseLat sets the BaseLat field's value.
+func (s *CdmaObj) SetBaseLat(v float64) *CdmaObj {
+	s.BaseLat = &v
+	return s
+}
+
+// SetBaseLng sets the BaseLng field's value.
+func (s *CdmaObj) SetBaseLng(v float64) *CdmaObj {
+	s.BaseLng = &v
+	return s
+}
+
+// SetBaseStationId sets the BaseStationId field's value.
+func (s *CdmaObj) SetBaseStationId(v int64) *CdmaObj {
+	s.BaseStationId = &v
+	return s
+}
+
+// SetCdmaLocalId sets the CdmaLocalId field's value.
+func (s *CdmaObj) SetCdmaLocalId(v *CdmaLocalId) *CdmaObj {
+	s.CdmaLocalId = v
+	return s
+}
+
+// SetCdmaNmr sets the CdmaNmr field's value.
+func (s *CdmaObj) SetCdmaNmr(v []*CdmaNmrObj) *CdmaObj {
+	s.CdmaNmr = v
+	return s
+}
+
+// SetNetworkId sets the NetworkId field's value.
+func (s *CdmaObj) SetNetworkId(v int64) *CdmaObj {
+	s.NetworkId = &v
+	return s
+}
+
+// SetPilotPower sets the PilotPower field's value.
+func (s *CdmaObj) SetPilotPower(v int64) *CdmaObj {
+	s.PilotPower = &v
+	return s
+}
+
+// SetRegistrationZone sets the RegistrationZone field's value.
+func (s *CdmaObj) SetRegistrationZone(v int64) *CdmaObj {
+	s.RegistrationZone = &v
+	return s
+}
+
+// SetSystemId sets the SystemId field's value.
+func (s *CdmaObj) SetSystemId(v int64) *CdmaObj {
+	s.SystemId = &v
+	return s
+}
+
+// The cell towers that were used to perform the measurements.
+type CellTowers struct {
+	_ struct{} `type:"structure"`
+
+	// CDMA object information.
+	Cdma []*CdmaObj `min:"1" type:"list"`
+
+	// GSM object information.
+	Gsm []*GsmObj `min:"1" type:"list"`
+
+	// LTE object information.
+	Lte []*LteObj `min:"1" type:"list"`
+
+	// TD-SCDMA object information.
+	Tdscdma []*TdscdmaObj `min:"1" type:"list"`
+
+	// WCDMA object information.
+	Wcdma []*WcdmaObj `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CellTowers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CellTowers) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CellTowers) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CellTowers"}
+	if s.Cdma != nil && len(s.Cdma) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Cdma", 1))
+	}
+	if s.Gsm != nil && len(s.Gsm) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Gsm", 1))
+	}
+	if s.Lte != nil && len(s.Lte) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Lte", 1))
+	}
+	if s.Tdscdma != nil && len(s.Tdscdma) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tdscdma", 1))
+	}
+	if s.Wcdma != nil && len(s.Wcdma) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Wcdma", 1))
+	}
+	if s.Cdma != nil {
+		for i, v := range s.Cdma {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Cdma", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Gsm != nil {
+		for i, v := range s.Gsm {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Gsm", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Lte != nil {
+		for i, v := range s.Lte {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Lte", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tdscdma != nil {
+		for i, v := range s.Tdscdma {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tdscdma", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Wcdma != nil {
+		for i, v := range s.Wcdma {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Wcdma", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCdma sets the Cdma field's value.
+func (s *CellTowers) SetCdma(v []*CdmaObj) *CellTowers {
+	s.Cdma = v
+	return s
+}
+
+// SetGsm sets the Gsm field's value.
+func (s *CellTowers) SetGsm(v []*GsmObj) *CellTowers {
+	s.Gsm = v
+	return s
+}
+
+// SetLte sets the Lte field's value.
+func (s *CellTowers) SetLte(v []*LteObj) *CellTowers {
+	s.Lte = v
+	return s
+}
+
+// SetTdscdma sets the Tdscdma field's value.
+func (s *CellTowers) SetTdscdma(v []*TdscdmaObj) *CellTowers {
+	s.Tdscdma = v
+	return s
+}
+
+// SetWcdma sets the Wcdma field's value.
+func (s *CellTowers) SetWcdma(v []*WcdmaObj) *CellTowers {
+	s.Wcdma = v
+	return s
 }
 
 // List of sidewalk certificates.
@@ -11733,6 +12597,10 @@ type CreateWirelessDeviceInput struct {
 	// The name of the new resource.
 	Name *string `type:"string"`
 
+	// FPort values for the GNSS, stream, and ClockSync functions of the positioning
+	// information.
+	Positioning *string `type:"string" enum:"PositioningConfigStatus"`
+
 	// The tags to attach to the new wireless device. Tags are metadata that you
 	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
@@ -11822,6 +12690,12 @@ func (s *CreateWirelessDeviceInput) SetLoRaWAN(v *LoRaWANDevice) *CreateWireless
 // SetName sets the Name field's value.
 func (s *CreateWirelessDeviceInput) SetName(v string) *CreateWirelessDeviceInput {
 	s.Name = &v
+	return s
+}
+
+// SetPositioning sets the Positioning field's value.
+func (s *CreateWirelessDeviceInput) SetPositioning(v string) *CreateWirelessDeviceInput {
+	s.Positioning = &v
 	return s
 }
 
@@ -14034,6 +14908,9 @@ func (s *EventNotificationItemConfigurations) SetProximity(v *ProximityEventConf
 type FPorts struct {
 	_ struct{} `type:"structure"`
 
+	// Optional LoRaWAN application information, which can be used for geolocation.
+	Applications []*ApplicationConfig `type:"list"`
+
 	// The Fport value.
 	ClockSync *int64 `min:"1" type:"integer"`
 
@@ -14078,6 +14955,16 @@ func (s *FPorts) Validate() error {
 	if s.Multicast != nil && *s.Multicast < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Multicast", 1))
 	}
+	if s.Applications != nil {
+		for i, v := range s.Applications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Applications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Positioning != nil {
 		if err := s.Positioning.Validate(); err != nil {
 			invalidParams.AddNested("Positioning", err.(request.ErrInvalidParams))
@@ -14088,6 +14975,12 @@ func (s *FPorts) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplications sets the Applications field's value.
+func (s *FPorts) SetApplications(v []*ApplicationConfig) *FPorts {
+	s.Applications = v
+	return s
 }
 
 // SetClockSync sets the ClockSync field's value.
@@ -15224,8 +16117,9 @@ func (s *GetPartnerAccountOutput) SetSidewalk(v *SidewalkAccountInfoWithFingerpr
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type GetPositionConfigurationInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
 
 	// Resource identifier used in a position configuration.
 	//
@@ -15287,8 +16181,9 @@ func (s *GetPositionConfigurationInput) SetResourceType(v string) *GetPositionCo
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type GetPositionConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The position data destination that describes the AWS IoT rule that processes
 	// the device's position data for use by AWS IoT Core for LoRaWAN.
@@ -15328,8 +16223,152 @@ func (s *GetPositionConfigurationOutput) SetSolvers(v *PositionSolverDetails) *G
 	return s
 }
 
+type GetPositionEstimateInput struct {
+	_ struct{} `type:"structure"`
+
+	// Retrieves an estimated device position by resolving measurement data from
+	// cellular radio towers. The position is resolved using HERE's cellular-based
+	// solver.
+	CellTowers *CellTowers `type:"structure"`
+
+	// Retrieves an estimated device position by resolving the global navigation
+	// satellite system (GNSS) scan data. The position is resolved using the GNSS
+	// solver powered by LoRa Cloud.
+	Gnss *Gnss `type:"structure"`
+
+	// Retrieves an estimated device position by resolving the IP address information
+	// from the device. The position is resolved using MaxMind's IP-based solver.
+	Ip *Ip `type:"structure"`
+
+	// Optional information that specifies the time when the position information
+	// will be resolved. It uses the UNIX timestamp format. If not specified, the
+	// time at which the request was received will be used.
+	Timestamp *time.Time `type:"timestamp"`
+
+	// Retrieves an estimated device position by resolving WLAN measurement data.
+	// The position is resolved using HERE's Wi-Fi based solver.
+	WiFiAccessPoints []*WiFiAccessPoint `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionEstimateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionEstimateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPositionEstimateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPositionEstimateInput"}
+	if s.CellTowers != nil {
+		if err := s.CellTowers.Validate(); err != nil {
+			invalidParams.AddNested("CellTowers", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Gnss != nil {
+		if err := s.Gnss.Validate(); err != nil {
+			invalidParams.AddNested("Gnss", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Ip != nil {
+		if err := s.Ip.Validate(); err != nil {
+			invalidParams.AddNested("Ip", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WiFiAccessPoints != nil {
+		for i, v := range s.WiFiAccessPoints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WiFiAccessPoints", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCellTowers sets the CellTowers field's value.
+func (s *GetPositionEstimateInput) SetCellTowers(v *CellTowers) *GetPositionEstimateInput {
+	s.CellTowers = v
+	return s
+}
+
+// SetGnss sets the Gnss field's value.
+func (s *GetPositionEstimateInput) SetGnss(v *Gnss) *GetPositionEstimateInput {
+	s.Gnss = v
+	return s
+}
+
+// SetIp sets the Ip field's value.
+func (s *GetPositionEstimateInput) SetIp(v *Ip) *GetPositionEstimateInput {
+	s.Ip = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *GetPositionEstimateInput) SetTimestamp(v time.Time) *GetPositionEstimateInput {
+	s.Timestamp = &v
+	return s
+}
+
+// SetWiFiAccessPoints sets the WiFiAccessPoints field's value.
+func (s *GetPositionEstimateInput) SetWiFiAccessPoints(v []*WiFiAccessPoint) *GetPositionEstimateInput {
+	s.WiFiAccessPoints = v
+	return s
+}
+
+type GetPositionEstimateOutput struct {
+	_ struct{} `type:"structure" payload:"GeoJsonPayload"`
+
+	// The position information of the resource, displayed as a JSON payload. The
+	// payload uses the GeoJSON format, which a format that's used to encode geographic
+	// data structures. For more information, see GeoJSON (https://geojson.org/).
+	GeoJsonPayload []byte `type:"blob"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionEstimateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPositionEstimateOutput) GoString() string {
+	return s.String()
+}
+
+// SetGeoJsonPayload sets the GeoJsonPayload field's value.
+func (s *GetPositionEstimateOutput) SetGeoJsonPayload(v []byte) *GetPositionEstimateOutput {
+	s.GeoJsonPayload = v
+	return s
+}
+
+// Deprecated: This operation is no longer supported.
 type GetPositionInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
 
 	// Resource identifier used to retrieve the position information.
 	//
@@ -15391,8 +16430,9 @@ func (s *GetPositionInput) SetResourceType(v string) *GetPositionInput {
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type GetPositionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The accuracy of the estimated position in meters. An empty value indicates
 	// that no position data is available. A value of ‘0.0’ value indicates
@@ -15706,6 +16746,105 @@ func (s *GetResourceLogLevelOutput) SetLogLevel(v string) *GetResourceLogLevelOu
 	return s
 }
 
+type GetResourcePositionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the resource for which position information is retrieved.
+	// It can be the wireless device ID or the wireless gateway ID depending on
+	// the resource type.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// The type of resource for which position information is retrieved, which can
+	// be a wireless device or a wireless gateway.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"PositionResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePositionInput"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *GetResourcePositionInput) SetResourceIdentifier(v string) *GetResourcePositionInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetResourcePositionInput) SetResourceType(v string) *GetResourcePositionInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetResourcePositionOutput struct {
+	_ struct{} `type:"structure" payload:"GeoJsonPayload"`
+
+	// The position information of the resource, displayed as a JSON payload. The
+	// payload uses the GeoJSON format, which a format that's used to encode geographic
+	// data structures. For more information, see GeoJSON (https://geojson.org/).
+	GeoJsonPayload []byte `type:"blob"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourcePositionOutput) GoString() string {
+	return s.String()
+}
+
+// SetGeoJsonPayload sets the GeoJsonPayload field's value.
+func (s *GetResourcePositionOutput) SetGeoJsonPayload(v []byte) *GetResourcePositionOutput {
+	s.GeoJsonPayload = v
+	return s
+}
+
 type GetServiceEndpointInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -15979,6 +17118,10 @@ type GetWirelessDeviceOutput struct {
 	// The name of the resource.
 	Name *string `type:"string"`
 
+	// FPort values for the GNSS, stream, and ClockSync functions of the positioning
+	// information.
+	Positioning *string `type:"string" enum:"PositioningConfigStatus"`
+
 	// Sidewalk device object.
 	Sidewalk *SidewalkDevice `type:"structure"`
 
@@ -16044,6 +17187,12 @@ func (s *GetWirelessDeviceOutput) SetLoRaWAN(v *LoRaWANDevice) *GetWirelessDevic
 // SetName sets the Name field's value.
 func (s *GetWirelessDeviceOutput) SetName(v string) *GetWirelessDeviceOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPositioning sets the Positioning field's value.
+func (s *GetWirelessDeviceOutput) SetPositioning(v string) *GetWirelessDeviceOutput {
+	s.Positioning = &v
 	return s
 }
 
@@ -16820,6 +17969,475 @@ func (s *GetWirelessGatewayTaskOutput) SetWirelessGatewayTaskDefinitionId(v stri
 	return s
 }
 
+// Global identity information.
+type GlobalIdentity struct {
+	_ struct{} `type:"structure"`
+
+	// GERAN (GSM EDGE Radio Access Network) cell global identifier.
+	//
+	// GeranCid is a required field
+	GeranCid *int64 `type:"integer" required:"true"`
+
+	// Location area code of the global identity.
+	//
+	// Lac is a required field
+	Lac *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GlobalIdentity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GlobalIdentity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GlobalIdentity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GlobalIdentity"}
+	if s.GeranCid == nil {
+		invalidParams.Add(request.NewErrParamRequired("GeranCid"))
+	}
+	if s.Lac == nil {
+		invalidParams.Add(request.NewErrParamRequired("Lac"))
+	}
+	if s.Lac != nil && *s.Lac < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Lac", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGeranCid sets the GeranCid field's value.
+func (s *GlobalIdentity) SetGeranCid(v int64) *GlobalIdentity {
+	s.GeranCid = &v
+	return s
+}
+
+// SetLac sets the Lac field's value.
+func (s *GlobalIdentity) SetLac(v int64) *GlobalIdentity {
+	s.Lac = &v
+	return s
+}
+
+// Global navigation satellite system (GNSS) object used for positioning.
+type Gnss struct {
+	_ struct{} `type:"structure"`
+
+	// Optional assistance altitude, which is the altitude of the device at capture
+	// time, specified in meters above the WGS84 reference ellipsoid.
+	AssistAltitude *float64 `type:"float"`
+
+	// Optional assistance position information, specified using latitude and longitude
+	// values in degrees. The co-ordinates are inside the WGS84 reference frame.
+	AssistPosition []*float64 `min:"2" type:"list"`
+
+	// Optional parameter that gives an estimate of the time when the GNSS scan
+	// information is taken, in seconds GPS time (GPST). If capture time is not
+	// specified, the local server time is used.
+	CaptureTime *float64 `type:"float"`
+
+	// Optional value that gives the capture time estimate accuracy, in seconds.
+	// If capture time accuracy is not specified, default value of 300 is used.
+	CaptureTimeAccuracy *float64 `type:"float"`
+
+	// Payload that contains the GNSS scan result, or NAV message, in hexadecimal
+	// notation.
+	//
+	// Payload is a required field
+	Payload *string `type:"string" required:"true"`
+
+	// Optional parameter that forces 2D solve, which modifies the positioning algorithm
+	// to a 2D solution problem. When this parameter is specified, the assistance
+	// altitude should have an accuracy of at least 10 meters.
+	Use2DSolver *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Gnss) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Gnss) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Gnss) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Gnss"}
+	if s.AssistPosition != nil && len(s.AssistPosition) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("AssistPosition", 2))
+	}
+	if s.Payload == nil {
+		invalidParams.Add(request.NewErrParamRequired("Payload"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssistAltitude sets the AssistAltitude field's value.
+func (s *Gnss) SetAssistAltitude(v float64) *Gnss {
+	s.AssistAltitude = &v
+	return s
+}
+
+// SetAssistPosition sets the AssistPosition field's value.
+func (s *Gnss) SetAssistPosition(v []*float64) *Gnss {
+	s.AssistPosition = v
+	return s
+}
+
+// SetCaptureTime sets the CaptureTime field's value.
+func (s *Gnss) SetCaptureTime(v float64) *Gnss {
+	s.CaptureTime = &v
+	return s
+}
+
+// SetCaptureTimeAccuracy sets the CaptureTimeAccuracy field's value.
+func (s *Gnss) SetCaptureTimeAccuracy(v float64) *Gnss {
+	s.CaptureTimeAccuracy = &v
+	return s
+}
+
+// SetPayload sets the Payload field's value.
+func (s *Gnss) SetPayload(v string) *Gnss {
+	s.Payload = &v
+	return s
+}
+
+// SetUse2DSolver sets the Use2DSolver field's value.
+func (s *Gnss) SetUse2DSolver(v bool) *Gnss {
+	s.Use2DSolver = &v
+	return s
+}
+
+// GSM local ID information, which corresponds to the local identification parameters
+// of a GSM cell.
+type GsmLocalId struct {
+	_ struct{} `type:"structure"`
+
+	// GSM broadcast control channel.
+	//
+	// Bcch is a required field
+	Bcch *int64 `type:"integer" required:"true"`
+
+	// GSM base station identity code (BSIC).
+	//
+	// Bsic is a required field
+	Bsic *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GsmLocalId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GsmLocalId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GsmLocalId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GsmLocalId"}
+	if s.Bcch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bcch"))
+	}
+	if s.Bsic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bsic"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBcch sets the Bcch field's value.
+func (s *GsmLocalId) SetBcch(v int64) *GsmLocalId {
+	s.Bcch = &v
+	return s
+}
+
+// SetBsic sets the Bsic field's value.
+func (s *GsmLocalId) SetBsic(v int64) *GsmLocalId {
+	s.Bsic = &v
+	return s
+}
+
+// GSM object for network measurement reports.
+type GsmNmrObj struct {
+	_ struct{} `type:"structure"`
+
+	// GSM broadcast control channel.
+	//
+	// Bcch is a required field
+	Bcch *int64 `type:"integer" required:"true"`
+
+	// GSM base station identity code (BSIC).
+	//
+	// Bsic is a required field
+	Bsic *int64 `type:"integer" required:"true"`
+
+	// Global identity information of the GSM object.
+	GlobalIdentity *GlobalIdentity `type:"structure"`
+
+	// Rx level, which is the received signal power, measured in dBm (decibel-milliwatts).
+	RxLevel *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GsmNmrObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GsmNmrObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GsmNmrObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GsmNmrObj"}
+	if s.Bcch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bcch"))
+	}
+	if s.Bsic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bsic"))
+	}
+	if s.RxLevel != nil && *s.RxLevel < -110 {
+		invalidParams.Add(request.NewErrParamMinValue("RxLevel", -110))
+	}
+	if s.GlobalIdentity != nil {
+		if err := s.GlobalIdentity.Validate(); err != nil {
+			invalidParams.AddNested("GlobalIdentity", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBcch sets the Bcch field's value.
+func (s *GsmNmrObj) SetBcch(v int64) *GsmNmrObj {
+	s.Bcch = &v
+	return s
+}
+
+// SetBsic sets the Bsic field's value.
+func (s *GsmNmrObj) SetBsic(v int64) *GsmNmrObj {
+	s.Bsic = &v
+	return s
+}
+
+// SetGlobalIdentity sets the GlobalIdentity field's value.
+func (s *GsmNmrObj) SetGlobalIdentity(v *GlobalIdentity) *GsmNmrObj {
+	s.GlobalIdentity = v
+	return s
+}
+
+// SetRxLevel sets the RxLevel field's value.
+func (s *GsmNmrObj) SetRxLevel(v int64) *GsmNmrObj {
+	s.RxLevel = &v
+	return s
+}
+
+// GSM object.
+type GsmObj struct {
+	_ struct{} `type:"structure"`
+
+	// GERAN (GSM EDGE Radio Access Network) Cell Global Identifier.
+	//
+	// GeranCid is a required field
+	GeranCid *int64 `type:"integer" required:"true"`
+
+	// GSM local identification (local ID) information.
+	GsmLocalId *GsmLocalId `type:"structure"`
+
+	// GSM object for network measurement reports.
+	GsmNmr []*GsmNmrObj `min:"1" type:"list"`
+
+	// Timing advance value, which corresponds to the length of time a signal takes
+	// to reach the base station from a mobile phone.
+	GsmTimingAdvance *int64 `type:"integer"`
+
+	// Location area code.
+	//
+	// Lac is a required field
+	Lac *int64 `min:"1" type:"integer" required:"true"`
+
+	// Mobile Country Code.
+	//
+	// Mcc is a required field
+	Mcc *int64 `min:"200" type:"integer" required:"true"`
+
+	// Mobile Network Code.
+	//
+	// Mnc is a required field
+	Mnc *int64 `type:"integer" required:"true"`
+
+	// Rx level, which is the received signal power, measured in dBm (decibel-milliwatts).
+	RxLevel *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GsmObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GsmObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GsmObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GsmObj"}
+	if s.GeranCid == nil {
+		invalidParams.Add(request.NewErrParamRequired("GeranCid"))
+	}
+	if s.GsmNmr != nil && len(s.GsmNmr) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GsmNmr", 1))
+	}
+	if s.Lac == nil {
+		invalidParams.Add(request.NewErrParamRequired("Lac"))
+	}
+	if s.Lac != nil && *s.Lac < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Lac", 1))
+	}
+	if s.Mcc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mcc"))
+	}
+	if s.Mcc != nil && *s.Mcc < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("Mcc", 200))
+	}
+	if s.Mnc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mnc"))
+	}
+	if s.RxLevel != nil && *s.RxLevel < -110 {
+		invalidParams.Add(request.NewErrParamMinValue("RxLevel", -110))
+	}
+	if s.GsmLocalId != nil {
+		if err := s.GsmLocalId.Validate(); err != nil {
+			invalidParams.AddNested("GsmLocalId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.GsmNmr != nil {
+		for i, v := range s.GsmNmr {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GsmNmr", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGeranCid sets the GeranCid field's value.
+func (s *GsmObj) SetGeranCid(v int64) *GsmObj {
+	s.GeranCid = &v
+	return s
+}
+
+// SetGsmLocalId sets the GsmLocalId field's value.
+func (s *GsmObj) SetGsmLocalId(v *GsmLocalId) *GsmObj {
+	s.GsmLocalId = v
+	return s
+}
+
+// SetGsmNmr sets the GsmNmr field's value.
+func (s *GsmObj) SetGsmNmr(v []*GsmNmrObj) *GsmObj {
+	s.GsmNmr = v
+	return s
+}
+
+// SetGsmTimingAdvance sets the GsmTimingAdvance field's value.
+func (s *GsmObj) SetGsmTimingAdvance(v int64) *GsmObj {
+	s.GsmTimingAdvance = &v
+	return s
+}
+
+// SetLac sets the Lac field's value.
+func (s *GsmObj) SetLac(v int64) *GsmObj {
+	s.Lac = &v
+	return s
+}
+
+// SetMcc sets the Mcc field's value.
+func (s *GsmObj) SetMcc(v int64) *GsmObj {
+	s.Mcc = &v
+	return s
+}
+
+// SetMnc sets the Mnc field's value.
+func (s *GsmObj) SetMnc(v int64) *GsmObj {
+	s.Mnc = &v
+	return s
+}
+
+// SetRxLevel sets the RxLevel field's value.
+func (s *GsmObj) SetRxLevel(v int64) *GsmObj {
+	s.RxLevel = &v
+	return s
+}
+
 // An unexpected error occurred while processing a request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -16882,6 +18500,53 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// IP address used for resolving device location.
+type Ip struct {
+	_ struct{} `type:"structure"`
+
+	// IP address information.
+	//
+	// IpAddress is a required field
+	IpAddress *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Ip) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Ip) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Ip) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Ip"}
+	if s.IpAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpAddress"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *Ip) SetIpAddress(v string) *Ip {
+	s.IpAddress = &v
+	return s
 }
 
 // Join event configuration object for enabling or disabling topic.
@@ -17666,8 +19331,9 @@ func (s *ListPartnerAccountsOutput) SetSidewalk(v []*SidewalkAccountInfoWithFing
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type ListPositionConfigurationsInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -17716,8 +19382,9 @@ func (s *ListPositionConfigurationsInput) SetResourceType(v string) *ListPositio
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type ListPositionConfigurationsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The token to use to get the next set of results, or null if there are no
 	// additional results.
@@ -19983,6 +21650,336 @@ func (s *LoRaWANUpdateGatewayTaskEntry) SetUpdateVersion(v *LoRaWANGatewayVersio
 	return s
 }
 
+// LTE local identification (local ID) information.
+type LteLocalId struct {
+	_ struct{} `type:"structure"`
+
+	// Evolved universal terrestrial radio access (E-UTRA) absolute radio frequency
+	// channel number (FCN).
+	//
+	// Earfcn is a required field
+	Earfcn *int64 `type:"integer" required:"true"`
+
+	// Physical cell ID.
+	//
+	// Pci is a required field
+	Pci *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteLocalId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteLocalId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LteLocalId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LteLocalId"}
+	if s.Earfcn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Earfcn"))
+	}
+	if s.Pci == nil {
+		invalidParams.Add(request.NewErrParamRequired("Pci"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEarfcn sets the Earfcn field's value.
+func (s *LteLocalId) SetEarfcn(v int64) *LteLocalId {
+	s.Earfcn = &v
+	return s
+}
+
+// SetPci sets the Pci field's value.
+func (s *LteLocalId) SetPci(v int64) *LteLocalId {
+	s.Pci = &v
+	return s
+}
+
+// LTE object for network measurement reports.
+type LteNmrObj struct {
+	_ struct{} `type:"structure"`
+
+	// E-UTRA (Evolved universal terrestrial Radio Access) absolute radio frequency
+	// channel Number (EARFCN).
+	//
+	// Earfcn is a required field
+	Earfcn *int64 `type:"integer" required:"true"`
+
+	// E-UTRAN (Evolved Universal Terrestrial Radio Access Network) cell global
+	// identifier (EUTRANCID).
+	//
+	// EutranCid is a required field
+	EutranCid *int64 `type:"integer" required:"true"`
+
+	// Physical cell ID.
+	//
+	// Pci is a required field
+	Pci *int64 `type:"integer" required:"true"`
+
+	// Signal power of the reference signal received, measured in dBm (decibel-milliwatts).
+	Rsrp *int64 `type:"integer"`
+
+	// Signal quality of the reference Signal received, measured in decibels (dB).
+	Rsrq *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteNmrObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteNmrObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LteNmrObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LteNmrObj"}
+	if s.Earfcn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Earfcn"))
+	}
+	if s.EutranCid == nil {
+		invalidParams.Add(request.NewErrParamRequired("EutranCid"))
+	}
+	if s.Pci == nil {
+		invalidParams.Add(request.NewErrParamRequired("Pci"))
+	}
+	if s.Rsrp != nil && *s.Rsrp < -140 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrp", -140))
+	}
+	if s.Rsrq != nil && *s.Rsrq < -19.5 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrq", -19.5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEarfcn sets the Earfcn field's value.
+func (s *LteNmrObj) SetEarfcn(v int64) *LteNmrObj {
+	s.Earfcn = &v
+	return s
+}
+
+// SetEutranCid sets the EutranCid field's value.
+func (s *LteNmrObj) SetEutranCid(v int64) *LteNmrObj {
+	s.EutranCid = &v
+	return s
+}
+
+// SetPci sets the Pci field's value.
+func (s *LteNmrObj) SetPci(v int64) *LteNmrObj {
+	s.Pci = &v
+	return s
+}
+
+// SetRsrp sets the Rsrp field's value.
+func (s *LteNmrObj) SetRsrp(v int64) *LteNmrObj {
+	s.Rsrp = &v
+	return s
+}
+
+// SetRsrq sets the Rsrq field's value.
+func (s *LteNmrObj) SetRsrq(v float64) *LteNmrObj {
+	s.Rsrq = &v
+	return s
+}
+
+// LTE object.
+type LteObj struct {
+	_ struct{} `type:"structure"`
+
+	// E-UTRAN (Evolved Universal Terrestrial Radio Access Network) Cell Global
+	// Identifier.
+	//
+	// EutranCid is a required field
+	EutranCid *int64 `type:"integer" required:"true"`
+
+	// LTE local identification (local ID) information.
+	LteLocalId *LteLocalId `type:"structure"`
+
+	// LTE object for network measurement reports.
+	LteNmr []*LteNmrObj `min:"1" type:"list"`
+
+	// LTE timing advance.
+	LteTimingAdvance *int64 `type:"integer"`
+
+	// Mobile Country Code.
+	//
+	// Mcc is a required field
+	Mcc *int64 `min:"200" type:"integer" required:"true"`
+
+	// Mobile Network Code.
+	//
+	// Mnc is a required field
+	Mnc *int64 `type:"integer" required:"true"`
+
+	// Parameter that determines whether the LTE object is capable of supporting
+	// NR (new radio).
+	NrCapable *bool `type:"boolean"`
+
+	// Signal power of the reference signal received, measured in dBm (decibel-milliwatts).
+	Rsrp *int64 `type:"integer"`
+
+	// Signal quality of the reference Signal received, measured in decibels (dB).
+	Rsrq *float64 `type:"float"`
+
+	// LTE tracking area code.
+	Tac *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LteObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LteObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LteObj"}
+	if s.EutranCid == nil {
+		invalidParams.Add(request.NewErrParamRequired("EutranCid"))
+	}
+	if s.LteNmr != nil && len(s.LteNmr) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LteNmr", 1))
+	}
+	if s.Mcc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mcc"))
+	}
+	if s.Mcc != nil && *s.Mcc < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("Mcc", 200))
+	}
+	if s.Mnc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mnc"))
+	}
+	if s.Rsrp != nil && *s.Rsrp < -140 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrp", -140))
+	}
+	if s.Rsrq != nil && *s.Rsrq < -19.5 {
+		invalidParams.Add(request.NewErrParamMinValue("Rsrq", -19.5))
+	}
+	if s.LteLocalId != nil {
+		if err := s.LteLocalId.Validate(); err != nil {
+			invalidParams.AddNested("LteLocalId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LteNmr != nil {
+		for i, v := range s.LteNmr {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LteNmr", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEutranCid sets the EutranCid field's value.
+func (s *LteObj) SetEutranCid(v int64) *LteObj {
+	s.EutranCid = &v
+	return s
+}
+
+// SetLteLocalId sets the LteLocalId field's value.
+func (s *LteObj) SetLteLocalId(v *LteLocalId) *LteObj {
+	s.LteLocalId = v
+	return s
+}
+
+// SetLteNmr sets the LteNmr field's value.
+func (s *LteObj) SetLteNmr(v []*LteNmrObj) *LteObj {
+	s.LteNmr = v
+	return s
+}
+
+// SetLteTimingAdvance sets the LteTimingAdvance field's value.
+func (s *LteObj) SetLteTimingAdvance(v int64) *LteObj {
+	s.LteTimingAdvance = &v
+	return s
+}
+
+// SetMcc sets the Mcc field's value.
+func (s *LteObj) SetMcc(v int64) *LteObj {
+	s.Mcc = &v
+	return s
+}
+
+// SetMnc sets the Mnc field's value.
+func (s *LteObj) SetMnc(v int64) *LteObj {
+	s.Mnc = &v
+	return s
+}
+
+// SetNrCapable sets the NrCapable field's value.
+func (s *LteObj) SetNrCapable(v bool) *LteObj {
+	s.NrCapable = &v
+	return s
+}
+
+// SetRsrp sets the Rsrp field's value.
+func (s *LteObj) SetRsrp(v int64) *LteObj {
+	s.Rsrp = &v
+	return s
+}
+
+// SetRsrq sets the Rsrq field's value.
+func (s *LteObj) SetRsrq(v float64) *LteObj {
+	s.Rsrq = &v
+	return s
+}
+
+// SetTac sets the Tac field's value.
+func (s *LteObj) SetTac(v int64) *LteObj {
+	s.Tac = &v
+	return s
+}
+
 // Message delivery status event configuration object for enabling and disabling
 // relevant topics.
 type MessageDeliveryStatusEventConfiguration struct {
@@ -19992,7 +21989,7 @@ type MessageDeliveryStatusEventConfiguration struct {
 	// object for Sidewalk-related event topics.
 	Sidewalk *SidewalkEventNotificationConfigurations `type:"structure"`
 
-	// Denotes whether the wireless device ID device registration state event topic
+	// Denotes whether the wireless device ID message delivery status event topic
 	// is enabled or disabled.
 	WirelessDeviceIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
 }
@@ -20709,8 +22706,9 @@ func (s *ProximityResourceTypeEventConfiguration) SetSidewalk(v *SidewalkResourc
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type PutPositionConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The position data destination that describes the AWS IoT rule that processes
 	// the device's position data for use by AWS IoT Core for LoRaWAN.
@@ -20797,8 +22795,9 @@ func (s *PutPositionConfigurationInput) SetSolvers(v *PositionSolverConfiguratio
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type PutPositionConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -21986,7 +23985,7 @@ func (s *SidewalkResourceTypeEventConfiguration) SetWirelessDeviceEventTopic(v s
 type SidewalkSendDataToDevice struct {
 	_ struct{} `type:"structure"`
 
-	// The duration of time in seconds for which you want to retry sending the ACK.
+	// The duration of time in seconds to retry sending the ACK.
 	AckModeRetryDurationSecs *int64 `type:"integer"`
 
 	// Sidewalk device message type. Default value is CUSTOM_COMMAND_ID_NOTIFY.
@@ -22613,6 +24612,325 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// TD-SCDMA local identification (local Id) information.
+type TdscdmaLocalId struct {
+	_ struct{} `type:"structure"`
+
+	// Cell parameters for TD-SCDMA.
+	//
+	// CellParams is a required field
+	CellParams *int64 `type:"integer" required:"true"`
+
+	// TD-SCDMA UTRA (Universal Terrestrial Radio Access Network) absolute RF channel
+	// number (UARFCN).
+	//
+	// Uarfcn is a required field
+	Uarfcn *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TdscdmaLocalId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TdscdmaLocalId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TdscdmaLocalId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TdscdmaLocalId"}
+	if s.CellParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("CellParams"))
+	}
+	if s.Uarfcn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uarfcn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCellParams sets the CellParams field's value.
+func (s *TdscdmaLocalId) SetCellParams(v int64) *TdscdmaLocalId {
+	s.CellParams = &v
+	return s
+}
+
+// SetUarfcn sets the Uarfcn field's value.
+func (s *TdscdmaLocalId) SetUarfcn(v int64) *TdscdmaLocalId {
+	s.Uarfcn = &v
+	return s
+}
+
+// TD-SCDMA object for network measurement reports.
+type TdscdmaNmrObj struct {
+	_ struct{} `type:"structure"`
+
+	// Cell parameters for TD-SCDMA network measurement reports object.
+	//
+	// CellParams is a required field
+	CellParams *int64 `type:"integer" required:"true"`
+
+	// Path loss, or path attenuation, is the reduction in power density of an electromagnetic
+	// wave as it propagates through space.
+	PathLoss *int64 `min:"46" type:"integer"`
+
+	// Code power of the received signal, measured in decibel-milliwatts (dBm).
+	Rscp *int64 `type:"integer"`
+
+	// TD-SCDMA UTRA (Universal Terrestrial Radio Access Network) absolute RF channel
+	// number.
+	//
+	// Uarfcn is a required field
+	Uarfcn *int64 `type:"integer" required:"true"`
+
+	// UTRAN (UMTS Terrestrial Radio Access Network) cell global identifier.
+	UtranCid *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TdscdmaNmrObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TdscdmaNmrObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TdscdmaNmrObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TdscdmaNmrObj"}
+	if s.CellParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("CellParams"))
+	}
+	if s.PathLoss != nil && *s.PathLoss < 46 {
+		invalidParams.Add(request.NewErrParamMinValue("PathLoss", 46))
+	}
+	if s.Rscp != nil && *s.Rscp < -120 {
+		invalidParams.Add(request.NewErrParamMinValue("Rscp", -120))
+	}
+	if s.Uarfcn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uarfcn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCellParams sets the CellParams field's value.
+func (s *TdscdmaNmrObj) SetCellParams(v int64) *TdscdmaNmrObj {
+	s.CellParams = &v
+	return s
+}
+
+// SetPathLoss sets the PathLoss field's value.
+func (s *TdscdmaNmrObj) SetPathLoss(v int64) *TdscdmaNmrObj {
+	s.PathLoss = &v
+	return s
+}
+
+// SetRscp sets the Rscp field's value.
+func (s *TdscdmaNmrObj) SetRscp(v int64) *TdscdmaNmrObj {
+	s.Rscp = &v
+	return s
+}
+
+// SetUarfcn sets the Uarfcn field's value.
+func (s *TdscdmaNmrObj) SetUarfcn(v int64) *TdscdmaNmrObj {
+	s.Uarfcn = &v
+	return s
+}
+
+// SetUtranCid sets the UtranCid field's value.
+func (s *TdscdmaNmrObj) SetUtranCid(v int64) *TdscdmaNmrObj {
+	s.UtranCid = &v
+	return s
+}
+
+// TD-SCDMA object.
+type TdscdmaObj struct {
+	_ struct{} `type:"structure"`
+
+	// Location Area Code.
+	Lac *int64 `min:"1" type:"integer"`
+
+	// Mobile Country Code.
+	//
+	// Mcc is a required field
+	Mcc *int64 `min:"200" type:"integer" required:"true"`
+
+	// Mobile Network Code.
+	//
+	// Mnc is a required field
+	Mnc *int64 `type:"integer" required:"true"`
+
+	// Path loss, or path attenuation, is the reduction in power density of an electromagnetic
+	// wave as it propagates through space.
+	PathLoss *int64 `min:"46" type:"integer"`
+
+	// Signal power of the received signal (Received Signal Code Power), measured
+	// in decibel-milliwatts (dBm).
+	Rscp *int64 `type:"integer"`
+
+	// TD-SCDMA local identification (local ID) information.
+	TdscdmaLocalId *TdscdmaLocalId `type:"structure"`
+
+	// TD-SCDMA object for network measurement reports.
+	TdscdmaNmr []*TdscdmaNmrObj `min:"1" type:"list"`
+
+	// TD-SCDMA Timing advance.
+	TdscdmaTimingAdvance *int64 `type:"integer"`
+
+	// UTRAN (UMTS Terrestrial Radio Access Network) Cell Global Identifier.
+	//
+	// UtranCid is a required field
+	UtranCid *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TdscdmaObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TdscdmaObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TdscdmaObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TdscdmaObj"}
+	if s.Lac != nil && *s.Lac < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Lac", 1))
+	}
+	if s.Mcc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mcc"))
+	}
+	if s.Mcc != nil && *s.Mcc < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("Mcc", 200))
+	}
+	if s.Mnc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mnc"))
+	}
+	if s.PathLoss != nil && *s.PathLoss < 46 {
+		invalidParams.Add(request.NewErrParamMinValue("PathLoss", 46))
+	}
+	if s.Rscp != nil && *s.Rscp < -120 {
+		invalidParams.Add(request.NewErrParamMinValue("Rscp", -120))
+	}
+	if s.TdscdmaNmr != nil && len(s.TdscdmaNmr) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TdscdmaNmr", 1))
+	}
+	if s.UtranCid == nil {
+		invalidParams.Add(request.NewErrParamRequired("UtranCid"))
+	}
+	if s.TdscdmaLocalId != nil {
+		if err := s.TdscdmaLocalId.Validate(); err != nil {
+			invalidParams.AddNested("TdscdmaLocalId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TdscdmaNmr != nil {
+		for i, v := range s.TdscdmaNmr {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TdscdmaNmr", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLac sets the Lac field's value.
+func (s *TdscdmaObj) SetLac(v int64) *TdscdmaObj {
+	s.Lac = &v
+	return s
+}
+
+// SetMcc sets the Mcc field's value.
+func (s *TdscdmaObj) SetMcc(v int64) *TdscdmaObj {
+	s.Mcc = &v
+	return s
+}
+
+// SetMnc sets the Mnc field's value.
+func (s *TdscdmaObj) SetMnc(v int64) *TdscdmaObj {
+	s.Mnc = &v
+	return s
+}
+
+// SetPathLoss sets the PathLoss field's value.
+func (s *TdscdmaObj) SetPathLoss(v int64) *TdscdmaObj {
+	s.PathLoss = &v
+	return s
+}
+
+// SetRscp sets the Rscp field's value.
+func (s *TdscdmaObj) SetRscp(v int64) *TdscdmaObj {
+	s.Rscp = &v
+	return s
+}
+
+// SetTdscdmaLocalId sets the TdscdmaLocalId field's value.
+func (s *TdscdmaObj) SetTdscdmaLocalId(v *TdscdmaLocalId) *TdscdmaObj {
+	s.TdscdmaLocalId = v
+	return s
+}
+
+// SetTdscdmaNmr sets the TdscdmaNmr field's value.
+func (s *TdscdmaObj) SetTdscdmaNmr(v []*TdscdmaNmrObj) *TdscdmaObj {
+	s.TdscdmaNmr = v
+	return s
+}
+
+// SetTdscdmaTimingAdvance sets the TdscdmaTimingAdvance field's value.
+func (s *TdscdmaObj) SetTdscdmaTimingAdvance(v int64) *TdscdmaObj {
+	s.TdscdmaTimingAdvance = &v
+	return s
+}
+
+// SetUtranCid sets the UtranCid field's value.
+func (s *TdscdmaObj) SetUtranCid(v int64) *TdscdmaObj {
+	s.UtranCid = &v
+	return s
+}
+
 type TestWirelessDeviceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -23226,6 +25544,9 @@ func (s UpdateEventConfigurationByResourceTypesOutput) GoString() string {
 type UpdateFPorts struct {
 	_ struct{} `type:"structure"`
 
+	// LoRaWAN application, which can be used for geolocation by activating positioning.
+	Applications []*ApplicationConfig `type:"list"`
+
 	// Positioning FPorts for the ClockSync, Stream, and GNSS functions.
 	Positioning *Positioning `type:"structure"`
 }
@@ -23251,6 +25572,16 @@ func (s UpdateFPorts) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateFPorts) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateFPorts"}
+	if s.Applications != nil {
+		for i, v := range s.Applications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Applications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Positioning != nil {
 		if err := s.Positioning.Validate(); err != nil {
 			invalidParams.AddNested("Positioning", err.(request.ErrInvalidParams))
@@ -23261,6 +25592,12 @@ func (s *UpdateFPorts) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplications sets the Applications field's value.
+func (s *UpdateFPorts) SetApplications(v []*ApplicationConfig) *UpdateFPorts {
+	s.Applications = v
+	return s
 }
 
 // SetPositioning sets the Positioning field's value.
@@ -23826,8 +26163,9 @@ func (s UpdatePartnerAccountOutput) GoString() string {
 	return s.String()
 }
 
+// Deprecated: This operation is no longer supported.
 type UpdatePositionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The position information of the resource.
 	//
@@ -23903,8 +26241,9 @@ func (s *UpdatePositionInput) SetResourceType(v string) *UpdatePositionInput {
 	return s
 }
 
+// Deprecated: This operation is no longer supported.
 type UpdatePositionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 }
 
 // String returns the string representation.
@@ -24064,6 +26403,105 @@ func (s UpdateResourceEventConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateResourcePositionInput struct {
+	_ struct{} `type:"structure" payload:"GeoJsonPayload"`
+
+	// The position information of the resource, displayed as a JSON payload. The
+	// payload uses the GeoJSON format, which a format that's used to encode geographic
+	// data structures. For more information, see GeoJSON (https://geojson.org/).
+	GeoJsonPayload []byte `type:"blob"`
+
+	// The identifier of the resource for which position information is updated.
+	// It can be the wireless device ID or the wireless gateway ID depending on
+	// the resource type.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// The type of resource for which position information is updated, which can
+	// be a wireless device or a wireless gateway.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"PositionResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourcePositionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourcePositionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourcePositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourcePositionInput"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGeoJsonPayload sets the GeoJsonPayload field's value.
+func (s *UpdateResourcePositionInput) SetGeoJsonPayload(v []byte) *UpdateResourcePositionInput {
+	s.GeoJsonPayload = v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *UpdateResourcePositionInput) SetResourceIdentifier(v string) *UpdateResourcePositionInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *UpdateResourcePositionInput) SetResourceType(v string) *UpdateResourcePositionInput {
+	s.ResourceType = &v
+	return s
+}
+
+type UpdateResourcePositionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourcePositionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourcePositionOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateWirelessDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24083,6 +26521,10 @@ type UpdateWirelessDeviceInput struct {
 
 	// The new name of the resource.
 	Name *string `type:"string"`
+
+	// FPort values for the GNSS, stream, and ClockSync functions of the positioning
+	// information.
+	Positioning *string `type:"string" enum:"PositioningConfigStatus"`
 }
 
 // String returns the string representation.
@@ -24151,6 +26593,12 @@ func (s *UpdateWirelessDeviceInput) SetLoRaWAN(v *LoRaWANUpdateDevice) *UpdateWi
 // SetName sets the Name field's value.
 func (s *UpdateWirelessDeviceInput) SetName(v string) *UpdateWirelessDeviceInput {
 	s.Name = &v
+	return s
+}
+
+// SetPositioning sets the Positioning field's value.
+func (s *UpdateWirelessDeviceInput) SetPositioning(v string) *UpdateWirelessDeviceInput {
+	s.Positioning = &v
 	return s
 }
 
@@ -24467,6 +26915,385 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// WCDMA local identification (local ID) information.
+type WcdmaLocalId struct {
+	_ struct{} `type:"structure"`
+
+	// Primary Scrambling Code.
+	//
+	// Psc is a required field
+	Psc *int64 `type:"integer" required:"true"`
+
+	// WCDMA UTRA Absolute RF Channel Number downlink.
+	//
+	// Uarfcndl is a required field
+	Uarfcndl *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WcdmaLocalId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WcdmaLocalId) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WcdmaLocalId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WcdmaLocalId"}
+	if s.Psc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Psc"))
+	}
+	if s.Uarfcndl == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uarfcndl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPsc sets the Psc field's value.
+func (s *WcdmaLocalId) SetPsc(v int64) *WcdmaLocalId {
+	s.Psc = &v
+	return s
+}
+
+// SetUarfcndl sets the Uarfcndl field's value.
+func (s *WcdmaLocalId) SetUarfcndl(v int64) *WcdmaLocalId {
+	s.Uarfcndl = &v
+	return s
+}
+
+// Network Measurement Reports.
+type WcdmaNmrObj struct {
+	_ struct{} `type:"structure"`
+
+	// Path loss, or path attenuation, is the reduction in power density of an electromagnetic
+	// wave as it propagates through space.
+	PathLoss *int64 `min:"46" type:"integer"`
+
+	// Primary Scrambling Code.
+	//
+	// Psc is a required field
+	Psc *int64 `type:"integer" required:"true"`
+
+	// Received Signal Code Power (signal power) (dBm)
+	Rscp *int64 `type:"integer"`
+
+	// WCDMA UTRA Absolute RF Channel Number downlink.
+	//
+	// Uarfcndl is a required field
+	Uarfcndl *int64 `type:"integer" required:"true"`
+
+	// UTRAN (UMTS Terrestrial Radio Access Network) Cell Global Identifier.
+	//
+	// UtranCid is a required field
+	UtranCid *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WcdmaNmrObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WcdmaNmrObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WcdmaNmrObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WcdmaNmrObj"}
+	if s.PathLoss != nil && *s.PathLoss < 46 {
+		invalidParams.Add(request.NewErrParamMinValue("PathLoss", 46))
+	}
+	if s.Psc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Psc"))
+	}
+	if s.Rscp != nil && *s.Rscp < -120 {
+		invalidParams.Add(request.NewErrParamMinValue("Rscp", -120))
+	}
+	if s.Uarfcndl == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uarfcndl"))
+	}
+	if s.UtranCid == nil {
+		invalidParams.Add(request.NewErrParamRequired("UtranCid"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPathLoss sets the PathLoss field's value.
+func (s *WcdmaNmrObj) SetPathLoss(v int64) *WcdmaNmrObj {
+	s.PathLoss = &v
+	return s
+}
+
+// SetPsc sets the Psc field's value.
+func (s *WcdmaNmrObj) SetPsc(v int64) *WcdmaNmrObj {
+	s.Psc = &v
+	return s
+}
+
+// SetRscp sets the Rscp field's value.
+func (s *WcdmaNmrObj) SetRscp(v int64) *WcdmaNmrObj {
+	s.Rscp = &v
+	return s
+}
+
+// SetUarfcndl sets the Uarfcndl field's value.
+func (s *WcdmaNmrObj) SetUarfcndl(v int64) *WcdmaNmrObj {
+	s.Uarfcndl = &v
+	return s
+}
+
+// SetUtranCid sets the UtranCid field's value.
+func (s *WcdmaNmrObj) SetUtranCid(v int64) *WcdmaNmrObj {
+	s.UtranCid = &v
+	return s
+}
+
+// WCDMA.
+type WcdmaObj struct {
+	_ struct{} `type:"structure"`
+
+	// Location Area Code.
+	Lac *int64 `min:"1" type:"integer"`
+
+	// Mobile Country Code.
+	//
+	// Mcc is a required field
+	Mcc *int64 `min:"200" type:"integer" required:"true"`
+
+	// Mobile Network Code.
+	//
+	// Mnc is a required field
+	Mnc *int64 `type:"integer" required:"true"`
+
+	// Path loss, or path attenuation, is the reduction in power density of an electromagnetic
+	// wave as it propagates through space.
+	PathLoss *int64 `min:"46" type:"integer"`
+
+	// Received Signal Code Power (signal power) (dBm).
+	Rscp *int64 `type:"integer"`
+
+	// UTRAN (UMTS Terrestrial Radio Access Network) Cell Global Identifier.
+	//
+	// UtranCid is a required field
+	UtranCid *int64 `type:"integer" required:"true"`
+
+	// WCDMA local ID information.
+	WcdmaLocalId *WcdmaLocalId `type:"structure"`
+
+	// WCDMA object for network measurement reports.
+	WcdmaNmr []*WcdmaNmrObj `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WcdmaObj) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WcdmaObj) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WcdmaObj) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WcdmaObj"}
+	if s.Lac != nil && *s.Lac < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Lac", 1))
+	}
+	if s.Mcc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mcc"))
+	}
+	if s.Mcc != nil && *s.Mcc < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("Mcc", 200))
+	}
+	if s.Mnc == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mnc"))
+	}
+	if s.PathLoss != nil && *s.PathLoss < 46 {
+		invalidParams.Add(request.NewErrParamMinValue("PathLoss", 46))
+	}
+	if s.Rscp != nil && *s.Rscp < -120 {
+		invalidParams.Add(request.NewErrParamMinValue("Rscp", -120))
+	}
+	if s.UtranCid == nil {
+		invalidParams.Add(request.NewErrParamRequired("UtranCid"))
+	}
+	if s.WcdmaNmr != nil && len(s.WcdmaNmr) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WcdmaNmr", 1))
+	}
+	if s.WcdmaLocalId != nil {
+		if err := s.WcdmaLocalId.Validate(); err != nil {
+			invalidParams.AddNested("WcdmaLocalId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WcdmaNmr != nil {
+		for i, v := range s.WcdmaNmr {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WcdmaNmr", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLac sets the Lac field's value.
+func (s *WcdmaObj) SetLac(v int64) *WcdmaObj {
+	s.Lac = &v
+	return s
+}
+
+// SetMcc sets the Mcc field's value.
+func (s *WcdmaObj) SetMcc(v int64) *WcdmaObj {
+	s.Mcc = &v
+	return s
+}
+
+// SetMnc sets the Mnc field's value.
+func (s *WcdmaObj) SetMnc(v int64) *WcdmaObj {
+	s.Mnc = &v
+	return s
+}
+
+// SetPathLoss sets the PathLoss field's value.
+func (s *WcdmaObj) SetPathLoss(v int64) *WcdmaObj {
+	s.PathLoss = &v
+	return s
+}
+
+// SetRscp sets the Rscp field's value.
+func (s *WcdmaObj) SetRscp(v int64) *WcdmaObj {
+	s.Rscp = &v
+	return s
+}
+
+// SetUtranCid sets the UtranCid field's value.
+func (s *WcdmaObj) SetUtranCid(v int64) *WcdmaObj {
+	s.UtranCid = &v
+	return s
+}
+
+// SetWcdmaLocalId sets the WcdmaLocalId field's value.
+func (s *WcdmaObj) SetWcdmaLocalId(v *WcdmaLocalId) *WcdmaObj {
+	s.WcdmaLocalId = v
+	return s
+}
+
+// SetWcdmaNmr sets the WcdmaNmr field's value.
+func (s *WcdmaObj) SetWcdmaNmr(v []*WcdmaNmrObj) *WcdmaObj {
+	s.WcdmaNmr = v
+	return s
+}
+
+// Wi-Fi access point.
+type WiFiAccessPoint struct {
+	_ struct{} `type:"structure"`
+
+	// Wi-Fi MAC Address.
+	//
+	// MacAddress is a required field
+	MacAddress *string `min:"12" type:"string" required:"true"`
+
+	// Recived signal strength of the WLAN measurement data.
+	//
+	// Rss is a required field
+	Rss *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WiFiAccessPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WiFiAccessPoint) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WiFiAccessPoint) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WiFiAccessPoint"}
+	if s.MacAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("MacAddress"))
+	}
+	if s.MacAddress != nil && len(*s.MacAddress) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("MacAddress", 12))
+	}
+	if s.Rss == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rss"))
+	}
+	if s.Rss != nil && *s.Rss < -128 {
+		invalidParams.Add(request.NewErrParamMinValue("Rss", -128))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMacAddress sets the MacAddress field's value.
+func (s *WiFiAccessPoint) SetMacAddress(v string) *WiFiAccessPoint {
+	s.MacAddress = &v
+	return s
+}
+
+// SetRss sets the Rss field's value.
+func (s *WiFiAccessPoint) SetRss(v int64) *WiFiAccessPoint {
+	s.Rss = &v
+	return s
 }
 
 // The log options for a wireless device event and can be used to set log levels
@@ -25025,6 +27852,18 @@ func (s *WirelessMetadata) SetSidewalk(v *SidewalkSendDataToDevice) *WirelessMet
 	return s
 }
 
+const (
+	// ApplicationConfigTypeSemtechGeolocation is a ApplicationConfigType enum value
+	ApplicationConfigTypeSemtechGeolocation = "SemtechGeolocation"
+)
+
+// ApplicationConfigType_Values returns all elements of the ApplicationConfigType enum
+func ApplicationConfigType_Values() []string {
+	return []string{
+		ApplicationConfigTypeSemtechGeolocation,
+	}
+}
+
 // Sidewalk device battery level.
 const (
 	// BatteryLevelNormal is a BatteryLevel enum value
@@ -25456,6 +28295,22 @@ const (
 func PositionSolverType_Values() []string {
 	return []string{
 		PositionSolverTypeGnss,
+	}
+}
+
+const (
+	// PositioningConfigStatusEnabled is a PositioningConfigStatus enum value
+	PositioningConfigStatusEnabled = "Enabled"
+
+	// PositioningConfigStatusDisabled is a PositioningConfigStatus enum value
+	PositioningConfigStatusDisabled = "Disabled"
+)
+
+// PositioningConfigStatus_Values returns all elements of the PositioningConfigStatus enum
+func PositioningConfigStatus_Values() []string {
+	return []string{
+		PositioningConfigStatusEnabled,
+		PositioningConfigStatusDisabled,
 	}
 }
 

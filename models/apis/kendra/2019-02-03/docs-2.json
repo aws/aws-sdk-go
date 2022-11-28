@@ -102,7 +102,7 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p/>",
+      "base": "<p>You don't have sufficient access to perform this action. Please ensure you have the required permission policies and user accounts and try again.</p>",
       "refs": {
       }
     },
@@ -336,6 +336,9 @@
         "SlackConfiguration$CrawlBotMessage": "<p> <code>TRUE</code> to index bot messages from your Slack workspace team.</p>",
         "SlackConfiguration$ExcludeArchived": "<p> <code>TRUE</code> to exclude archived messages to index from your Slack workspace team.</p>",
         "SpellCorrectionConfiguration$IncludeQuerySpellCheckSuggestions": "<p> <code>TRUE</code> to suggest spell corrections for queries.</p>",
+        "TableCell$TopAnswer": "<p> <code>TRUE</code> if the response of the table cell is the top answer. This is the cell value or content with the highest confidence score or is the most relevant to the query.</p>",
+        "TableCell$Highlighted": "<p> <code>TRUE</code> means that the table cell has a high enough confidence and is relevant to the query, so the value or content should be highlighted.</p>",
+        "TableCell$Header": "<p> <code>TRUE</code> means that the table cell should be treated as a header.</p>",
         "WorkDocsConfiguration$CrawlComments": "<p> <code>TRUE</code> to include comments on documents in your index. Including comments in your index means each comment is a document that can be searched on.</p> <p>The default is set to <code>FALSE</code>.</p>",
         "WorkDocsConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the Amazon WorkDocs change log to determine which documents require updating in the index. Depending on the change log's size, it may take longer for Amazon Kendra to use the change log than to scan all of your documents in Amazon WorkDocs.</p>"
       }
@@ -405,7 +408,7 @@
       "refs": {
         "AclConfiguration$AllowedGroupsColumnName": "<p>A list of groups, separated by semi-colons, that filters a query response based on user context. The document is only returned to users that are in one of the groups specified in the <code>UserContext</code> field of the <code>Query</code> API.</p>",
         "ChangeDetectingColumns$member": null,
-        "ColumnConfiguration$DocumentIdColumnName": "<p>The column that provides the document's unique identifier.</p>",
+        "ColumnConfiguration$DocumentIdColumnName": "<p>The column that provides the document's identifier.</p>",
         "ColumnConfiguration$DocumentDataColumnName": "<p>The column that contains the contents of the document.</p>",
         "ColumnConfiguration$DocumentTitleColumnName": "<p>The column that contains the title of the document.</p>"
       }
@@ -417,7 +420,7 @@
       }
     },
     "ConflictException": {
-      "base": "<p/>",
+      "base": "<p>A conflict occurred with the request. Please fix any inconsistences with your resources and try again.</p>",
       "refs": {
       }
     },
@@ -719,7 +722,7 @@
         "CreateDataSourceResponse$Id": "<p>The identifier of the data source connector.</p>",
         "DataSourceGroup$DataSourceId": "<p>The identifier of the data source group you want to add to your list of data source groups. This is for filtering search results based on the groups' access to documents in that data source.</p>",
         "DataSourceIdList$member": null,
-        "DataSourceSummary$Id": "<p>The unique identifier for the data source.</p>",
+        "DataSourceSummary$Id": "<p>The identifier for the data source.</p>",
         "DataSourceSyncJobMetricTarget$DataSourceId": "<p>The ID of the data source that is running the sync job.</p>",
         "DeleteDataSourceRequest$Id": "<p>The identifier of the data source connector you want to delete.</p>",
         "DeletePrincipalMappingRequest$DataSourceId": "<p>The identifier of the data source you want to delete a group from.</p> <p>A group can be tied to multiple data sources. You can delete a group from accessing documents in a certain data source. For example, the groups \"Research\", \"Engineering\", and \"Sales and Marketing\" are all tied to the company's documents stored in the data sources Confluence and Salesforce. You want to delete \"Research\" and \"Engineering\" groups from Salesforce, so that these groups cannot access customer-related documents stored in Salesforce. Only \"Sales and Marketing\" should access documents in the Salesforce data source.</p>",
@@ -804,7 +807,7 @@
       }
     },
     "DataSourceSummary": {
-      "base": "<p>Summary information for an Amazon Kendra data source. Returned in a call to the <code>DescribeDataSource</code> API.</p>",
+      "base": "<p>Summary information for a Amazon Kendra data source.</p>",
       "refs": {
         "DataSourceSummaryList$member": null
       }
@@ -1202,7 +1205,7 @@
     "DocumentAttributeStringListValue": {
       "base": null,
       "refs": {
-        "DocumentAttributeValue$StringListValue": "<p>A list of strings. </p>"
+        "DocumentAttributeValue$StringListValue": "<p>A list of strings. The default maximum length or number of strings is 10.</p>"
       }
     },
     "DocumentAttributeStringValue": {
@@ -1249,13 +1252,13 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponseFailedDocument$Id": "<p>The identifier of the document that couldn't be removed from the index.</p>",
-        "BatchGetDocumentStatusResponseError$DocumentId": "<p>The unique identifier of the document whose status could not be retrieved.</p>",
-        "BatchPutDocumentResponseFailedDocument$Id": "<p>The unique identifier of the document.</p>",
-        "Document$Id": "<p>A unique identifier of the document in the index.</p> <p>Note, each document ID must be unique per index. You cannot create a data source to index your documents with their unique IDs and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa. You can delete a data source and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa.</p>",
+        "BatchGetDocumentStatusResponseError$DocumentId": "<p>The identifier of the document whose status could not be retrieved.</p>",
+        "BatchPutDocumentResponseFailedDocument$Id": "<p>The identifier of the document.</p>",
+        "Document$Id": "<p>A identifier of the document in the index.</p> <p>Note, each document ID must be unique per index. You cannot create a data source to index your documents with their unique IDs and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa. You can delete a data source and then use the <code>BatchPutDocument</code> API to index the same documents, or vice versa.</p>",
         "DocumentIdList$member": null,
-        "DocumentInfo$DocumentId": "<p>The unique identifier of the document.</p>",
-        "QueryResultItem$DocumentId": "<p>The unique identifier for the document.</p>",
-        "Status$DocumentId": "<p>The unique identifier of the document.</p>"
+        "DocumentInfo$DocumentId": "<p>The identifier of the document.</p>",
+        "QueryResultItem$DocumentId": "<p>The identifier for the document.</p>",
+        "Status$DocumentId": "<p>The identifier of the document.</p>"
       }
     },
     "DocumentIdList": {
@@ -1614,12 +1617,12 @@
     "FaqId": {
       "base": null,
       "refs": {
-        "CreateFaqResponse$Id": "<p>The unique identifier of the FAQ.</p>",
+        "CreateFaqResponse$Id": "<p>The identifier of the FAQ.</p>",
         "DeleteFaqRequest$Id": "<p>The identifier of the FAQ you want to remove.</p>",
         "DescribeFaqRequest$Id": "<p>The identifier of the FAQ you want to get information on.</p>",
         "DescribeFaqResponse$Id": "<p>The identifier of the FAQ.</p>",
         "FaqIdsList$member": null,
-        "FaqSummary$Id": "<p>The unique identifier of the FAQ.</p>"
+        "FaqSummary$Id": "<p>The identifier of the FAQ.</p>"
       }
     },
     "FaqIdsList": {
@@ -1664,7 +1667,7 @@
     "FeedbackToken": {
       "base": null,
       "refs": {
-        "QueryResultItem$FeedbackToken": "<p>A token that identifies a particular result from a particular query. Use this token to provide click-through feedback for the result. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/submitting-feedback.html\"> Submitting feedback </a>.</p>"
+        "QueryResultItem$FeedbackToken": "<p>A token that identifies a particular result from a particular query. Use this token to provide click-through feedback for the result. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/submitting-feedback.html\">Submitting feedback </a>.</p>"
       }
     },
     "FileSystemId": {
@@ -1859,7 +1862,7 @@
       "refs": {
         "CreateIndexRequest$Edition": "<p>The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code> for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code> for your production databases. Once you set the edition for an index, it can't be changed.</p> <p>The <code>Edition</code> parameter is optional. If you don't supply a value, the default is <code>ENTERPRISE_EDITION</code>.</p> <p>For more information on quota limits for enterprise and developer editions, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>",
         "DescribeIndexResponse$Edition": "<p>The Amazon Kendra edition used for the index. You decide the edition when you create the index.</p>",
-        "IndexConfigurationSummary$Edition": "<p>Indicates whether the index is a enterprise edition index or a developer edition index. </p>"
+        "IndexConfigurationSummary$Edition": "<p>Indicates whether the index is a Enterprise Edition index or a Developer Edition index. </p>"
       }
     },
     "IndexFieldName": {
@@ -1885,7 +1888,7 @@
         "CreateDataSourceRequest$IndexId": "<p>The identifier of the index you want to use with the data source connector.</p>",
         "CreateExperienceRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
         "CreateFaqRequest$IndexId": "<p>The identifier of the index for the FAQ.</p>",
-        "CreateIndexResponse$Id": "<p>The unique identifier of the index. Use this identifier when you query an index, set up a data source, or index a document.</p>",
+        "CreateIndexResponse$Id": "<p>The identifier of the index. Use this identifier when you query an index, set up a data source, or index a document.</p>",
         "CreateQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the index you want to create a query suggestions block list for.</p>",
         "CreateThesaurusRequest$IndexId": "<p>The identifier of the index for the thesaurus.</p>",
         "DeleteAccessControlConfigurationRequest$IndexId": "<p>The identifier of the index for an access control configuration.</p>",
@@ -1916,7 +1919,7 @@
         "DisassociatePersonasFromEntitiesRequest$IndexId": "<p>The identifier of the index for your Amazon Kendra experience.</p>",
         "GetQuerySuggestionsRequest$IndexId": "<p>The identifier of the index you want to get query suggestions from.</p>",
         "GetSnapshotsRequest$IndexId": "<p>The identifier of the index to get search metrics data.</p>",
-        "IndexConfigurationSummary$Id": "<p>A unique identifier for the index. Use this to identify the index when you are using APIs such as <code>Query</code>, <code>DescribeIndex</code>, <code>UpdateIndex</code>, and <code>DeleteIndex</code>.</p>",
+        "IndexConfigurationSummary$Id": "<p>A identifier for the index. Use this to identify the index when you are using APIs such as <code>Query</code>, <code>DescribeIndex</code>, <code>UpdateIndex</code>, and <code>DeleteIndex</code>.</p>",
         "ListAccessControlConfigurationsRequest$IndexId": "<p>The identifier of the index for the access control configuration.</p>",
         "ListDataSourceSyncJobsRequest$IndexId": "<p>The identifier of the index used with the data source connector.</p>",
         "ListDataSourcesRequest$IndexId": "<p>The identifier of the index used with one or more data source connectors.</p>",
@@ -1928,7 +1931,7 @@
         "ListQuerySuggestionsBlockListsRequest$IndexId": "<p>The identifier of the index for a list of all block lists that exist for that index.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
         "ListThesauriRequest$IndexId": "<p>The identifier of the index with one or more thesauri.</p>",
         "PutPrincipalMappingRequest$IndexId": "<p>The identifier of the index you want to map users to their groups.</p>",
-        "QueryRequest$IndexId": "<p>The unique identifier of the index to search. The identifier is returned in the response from the <code>CreateIndex</code> API.</p>",
+        "QueryRequest$IndexId": "<p>The identifier of the index to search. The identifier is returned in the response from the <code>CreateIndex</code> API.</p>",
         "StartDataSourceSyncJobRequest$IndexId": "<p>The identifier of the index used with the data source connector.</p>",
         "StopDataSourceSyncJobRequest$IndexId": "<p>The identifier of the index used with the data source connector.</p>",
         "SubmitFeedbackRequest$IndexId": "<p>The identifier of the index that was queried.</p>",
@@ -1946,7 +1949,7 @@
       "refs": {
         "CreateIndexRequest$Name": "<p>A name for the index.</p>",
         "DescribeIndexResponse$Name": "<p>The name of the index.</p>",
-        "IndexConfigurationSummary$Name": "<p>The identifier of the index.</p>",
+        "IndexConfigurationSummary$Name": "<p>The name of the index.</p>",
         "UpdateIndexRequest$Name": "<p>The name of the index you want to update.</p>"
       }
     },
@@ -2012,11 +2015,12 @@
         "QuerySuggestionsBlockListSummary$ItemCount": "<p>The number of items in the block list file.</p>",
         "SuggestionHighlight$BeginOffset": "<p>The zero-based location in the response string where the highlight starts.</p>",
         "SuggestionHighlight$EndOffset": "<p>The zero-based location in the response string where the highlight ends.</p>",
+        "TableExcerpt$TotalNumberOfRows": "<p>A count of the number of rows in the original table within the document.</p>",
         "UpdateQuerySuggestionsConfigRequest$QueryLogLookBackWindowInDays": "<p>How recent your queries are in your query log time window.</p> <p>The time window is the number of days from current day to past days.</p> <p>By default, Amazon Kendra sets this to 180.</p>"
       }
     },
     "InternalServerException": {
-      "base": "<p/>",
+      "base": "<p>An issue occurred with the internal server used for your Amazon Kendra service. Please wait a few minutes and try again, or contact <a href=\"http://aws.amazon.com/aws.amazon.com/contact-us\"> Support</a> for help.</p>",
       "refs": {
       }
     },
@@ -2027,7 +2031,7 @@
       }
     },
     "InvalidRequestException": {
-      "base": "<p>The input to the request is not valid.</p>",
+      "base": "<p>The input to the request is not valid. Please provide the correct input and try again.</p>",
       "refs": {
       }
     },
@@ -2308,7 +2312,7 @@
     "MaxResultsIntegerForListIndicesRequest": {
       "base": null,
       "refs": {
-        "ListIndicesRequest$MaxResults": "<p>The maximum number of data sources to return.</p>"
+        "ListIndicesRequest$MaxResults": "<p>The maximum number of indices to return.</p>"
       }
     },
     "MaxResultsIntegerForListPrincipalsRequest": {
@@ -2419,7 +2423,7 @@
         "GetSnapshotsResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token, which you can use in a later request to retrieve the next set of search metrics data.</p>",
         "ListDataSourceSyncJobsRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of jobs.</p>",
         "ListDataSourceSyncJobsResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of jobs.</p>",
-        "ListDataSourcesRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of data source connectors (<code>DataSourceSummaryItems</code>). </p>",
+        "ListDataSourcesRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of data source connectors. </p>",
         "ListDataSourcesResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of data source connectors.</p>",
         "ListEntityPersonasRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of users or groups.</p>",
         "ListEntityPersonasResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token, which you can use in a later request to retrieve the next set of users or groups.</p>",
@@ -2431,7 +2435,7 @@
         "ListFaqsResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of FAQs.</p>",
         "ListGroupsOlderThanOrderingIdRequest$NextToken": "<p> If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of groups that are mapped to users before a given ordering or timestamp identifier. </p>",
         "ListGroupsOlderThanOrderingIdResponse$NextToken": "<p> If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of groups that are mapped to users before a given ordering or timestamp identifier. </p>",
-        "ListIndicesRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of indexes (<code>DataSourceSummaryItems</code>). </p>",
+        "ListIndicesRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of indexes. </p>",
         "ListIndicesResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of indexes.</p>",
         "ListQuerySuggestionsBlockListsRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of block lists (<code>BlockListSummaryItems</code>).</p>",
         "ListQuerySuggestionsBlockListsResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of block lists.</p>",
@@ -2608,7 +2612,7 @@
     "QueryId": {
       "base": null,
       "refs": {
-        "QueryResult$QueryId": "<p>The unique identifier for the search. You use <code>QueryId</code> to identify the search when using the feedback API.</p>",
+        "QueryResult$QueryId": "<p>The identifier for the search. You use <code>QueryId</code> to identify the search when using the feedback API.</p>",
         "SubmitFeedbackRequest$QueryId": "<p>The identifier of the specific query for which you are submitting feedback. The query ID is returned in the response to the <code>Query</code> API.</p>"
       }
     },
@@ -2628,6 +2632,12 @@
       "refs": {
       }
     },
+    "QueryResultFormat": {
+      "base": null,
+      "refs": {
+        "QueryResultItem$Format": "<p>If the <code>Type</code> of document within the response is <code>ANSWER</code>, then it is either a <code>TABLE</code> answer or <code>TEXT</code> answer. If it's a table answer, a table excerpt is returned in <code>TableExcerpt</code>. If it's a text answer, a text excerpt is returned in <code>DocumentExcerpt</code>.</p>"
+      }
+    },
     "QueryResultItem": {
       "base": "<p>A single query result.</p> <p>A query result contains information about a document returned by the query. This includes the original location of the document, a list of attributes assigned to the document, and relevant text from the document that satisfies the query.</p>",
       "refs": {
@@ -2644,13 +2654,13 @@
       "base": null,
       "refs": {
         "QueryRequest$QueryResultTypeFilter": "<p>Sets the type of query. Only results for the specified query type are returned.</p>",
-        "QueryResultItem$Type": "<p>The type of document. </p>"
+        "QueryResultItem$Type": "<p>The type of document within the response. For example, a response could include a question-answer that's relevant to the query.</p>"
       }
     },
     "QuerySuggestionsBlockListId": {
       "base": null,
       "refs": {
-        "CreateQuerySuggestionsBlockListResponse$Id": "<p>The unique identifier of the created block list.</p>",
+        "CreateQuerySuggestionsBlockListResponse$Id": "<p>The identifier of the created block list.</p>",
         "DeleteQuerySuggestionsBlockListRequest$Id": "<p>The identifier of the block list you want to delete.</p>",
         "DescribeQuerySuggestionsBlockListRequest$Id": "<p>The identifier of the block list you want to get information on.</p>",
         "DescribeQuerySuggestionsBlockListResponse$Id": "<p>The identifier of the block list.</p>",
@@ -2689,7 +2699,7 @@
     "QuerySuggestionsId": {
       "base": null,
       "refs": {
-        "GetQuerySuggestionsResponse$QuerySuggestionsId": "<p>The unique identifier for a list of query suggestions for an index.</p>"
+        "GetQuerySuggestionsResponse$QuerySuggestionsId": "<p>The identifier for a list of query suggestions for an index.</p>"
       }
     },
     "QuerySuggestionsStatus": {
@@ -2701,7 +2711,7 @@
     "QueryText": {
       "base": null,
       "refs": {
-        "QueryRequest$QueryText": "<p>The text to search for.</p>"
+        "QueryRequest$QueryText": "<p>The input query text for the search. Amazon Kendra truncates queries at 30 token words, which excludes punctuation and stop words. Truncation still applies if you use Boolean or more advanced, complex queries. </p>"
       }
     },
     "QuipConfiguration": {
@@ -2754,32 +2764,32 @@
       }
     },
     "ResourceAlreadyExistException": {
-      "base": "<p/>",
+      "base": "<p>The resource you want to use already exists. Please check you have provided the correct resource and try again.</p>",
       "refs": {
       }
     },
     "ResourceInUseException": {
-      "base": "<p/>",
+      "base": "<p>The resource you want to use is currently in use. Please check you have provided the correct resource and try again.</p>",
       "refs": {
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p/>",
+      "base": "<p>The resource you want to use doesn’t exist. Please check you have provided the correct resource and try again.</p>",
       "refs": {
       }
     },
     "ResourceUnavailableException": {
-      "base": "<p/>",
+      "base": "<p>The resource you want to use isn't available. Please check you have provided the correct resource and try again.</p>",
       "refs": {
       }
     },
     "ResultId": {
       "base": null,
       "refs": {
-        "ClickFeedback$ResultId": "<p>The unique identifier of the search result that was clicked.</p>",
-        "QueryResultItem$Id": "<p>The unique identifier for the query result.</p>",
-        "RelevanceFeedback$ResultId": "<p>The unique identifier of the search result that the user provided relevance feedback for.</p>",
-        "Suggestion$Id": "<p>The unique UUID (universally unique identifier) of a single query suggestion.</p>"
+        "ClickFeedback$ResultId": "<p>The identifier of the search result that was clicked.</p>",
+        "QueryResultItem$Id": "<p>The identifier for the query result.</p>",
+        "RelevanceFeedback$ResultId": "<p>The identifier of the search result that the user provided relevance feedback for.</p>",
+        "Suggestion$Id": "<p>The UUID (universally unique identifier) of a single query suggestion.</p>"
       }
     },
     "RoleArn": {
@@ -2976,19 +2986,19 @@
       "refs": {
         "AlfrescoConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Alfresco data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The user name of the Alfresco account.</p> </li> <li> <p>password—The password of the Alfresco account.</p> </li> </ul>",
         "BasicAuthenticationConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>You use a secret if basic authentication credentials are required to connect to a website. The secret stores your credentials of user name and password.</p>",
-        "BoxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Box platform. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>clientID—The identifier of the client OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>clientSecret—A set of characters known only to the OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>publicKeyId—The identifier of the public key contained within an identity certificate.</p> </li> <li> <p>privateKey—A set of characters that make up an encryption key.</p> </li> <li> <p>passphrase—A set of characters that act like a password.</p> </li> </ul> <p>You create an application in Box to generate the keys or credentials required for the secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-box.html#box-authentication\">Authentication for a Box data source</a>.</p>",
-        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the Confluence instance. If you use Confluence Cloud, you use a generated API token as the password. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-confluence.html\">Using a Confluence data source</a>.</p> <p>You can also provide authentication credentials in the form of a personal access token. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-confluence.html#confluence-authentication\">Authentication for a Confluence data source</a>.</p>",
+        "BoxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Box platform. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>clientID—The identifier of the client OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>clientSecret—A set of characters known only to the OAuth 2.0 authentication application created in Box.</p> </li> <li> <p>publicKeyId—The identifier of the public key contained within an identity certificate.</p> </li> <li> <p>privateKey—A set of characters that make up an encryption key.</p> </li> <li> <p>passphrase—A set of characters that act like a password.</p> </li> </ul> <p>You create an application in Box to generate the keys or credentials required for the secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-box.html\">Using a Box data source</a>.</p>",
+        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the Confluence instance. If you use Confluence Cloud, you use a generated API token as the password.</p> <p>You can also provide authentication credentials in the form of a personal access token. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-confluence.html\">Using a Confluence data source</a>.</p>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
         "FsxConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Amazon FSx file system. Windows is currently the only supported type. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username—The Active Directory user name, along with the Domain Name System (DNS) domain name. For example, <i>user@corp.example.com</i>. The Active Directory user account must have read and mounting access to the Amazon FSx file system for Windows.</p> </li> <li> <p>password—The password of the Active Directory user account with read and mounting access to the Amazon FSx Windows file system.</p> </li> </ul>",
-        "GitHubConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your GitHub. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>githubToken—The access token created in GitHub. For more information on creating a token in GitHub, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-github.html#github-authentication\">Authentication for a GitHub data source</a>.</p> </li> </ul>",
+        "GitHubConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your GitHub. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>personalToken—The access token created in GitHub. For more information on creating a token in GitHub, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-github.html\">Using a GitHub data source</a>.</p> </li> </ul>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
-        "JiraConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a secret in Secrets Manager contains the key-value pairs required to connect to your Jira data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>jiraId—The Jira username.</p> </li> <li> <p>jiraCredentials—The Jira API token. For more information on creating an API token in Jira, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html#jira-authentication\"> Authentication for a Jira data source</a>.</p> </li> </ul>",
+        "JiraConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a secret in Secrets Manager contains the key-value pairs required to connect to your Jira data source. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>jiraId—The Jira username.</p> </li> <li> <p>jiraCredentials—The Jira API token. For more information on creating an API token in Jira, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html\"> Using a Jira data source</a>.</p> </li> </ul>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
-        "QuipConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs that are required to connect to your Quip. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>accessToken—The token created in Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#quip-authentication\">Authentication for a Quip data source</a>.</p> </li> </ul>",
+        "QuipConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs that are required to connect to your Quip. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>accessToken—The token created in Quip. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html\">Using a Quip data source</a>.</p> </li> </ul>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
-        "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance. You can also provide OAuth authentication credentials of user name, password, client ID, and client secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html#servicenow-authentication\">Authentication for a ServiceNow data source</a>.</p>",
-        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the SharePoint instance. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>.</p> <p>You can also provide OAuth authentication credentials of user name, password, client ID, and client secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html#sharepoint-authentication\">Authentication for a SharePoint data source</a>.</p>",
+        "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance. You can also provide OAuth authentication credentials of user name, password, client ID, and client secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html\">Using a ServiceNow data source</a>.</p>",
+        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the user name and password required to connect to the SharePoint instance. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>.</p> <p>You can also provide OAuth authentication credentials of user name, password, client ID, and client secret. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a SharePoint data source</a>.</p>",
         "SlackConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Manager secret that contains the key-value pairs required to connect to your Slack workspace team. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>slackToken—The user or bot token created in Slack. For more information on creating a token in Slack, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html#slack-authentication\">Authentication for a Slack data source</a>.</p> </li> </ul>"
       }
     },
@@ -3066,7 +3076,7 @@
       }
     },
     "ServiceQuotaExceededException": {
-      "base": "<p/>",
+      "base": "<p>You have exceeded the set limits for your Amazon Kendra service. Please see Quotas[hyperlink Kendra Quotas pg] for more information, or contact <a href=\"http://aws.amazon.com/aws.amazon.com/contact-us\"> Support</a> to inquire about an increase of limits.</p>",
       "refs": {
       }
     },
@@ -3241,7 +3251,7 @@
         "AdditionalResultAttribute$Key": "<p>The key that identifies the attribute.</p>",
         "Correction$Term": "<p>The string or text of a misspelled word in a query.</p>",
         "Correction$CorrectedTerm": "<p>The string or text of a corrected misspelled word in a query.</p>",
-        "DataSourceSyncJob$ExecutionId": "<p>A unique identifier for the synchronization job.</p>",
+        "DataSourceSyncJob$ExecutionId": "<p>A identifier for the synchronization job.</p>",
         "DataSourceSyncJob$DataSourceErrorCode": "<p>If the reason that the synchronization failed is due to an error with the underlying data source, this field contains a code that identifies the error.</p>",
         "DocumentAttributeStringListValue$member": null,
         "IssueType$member": null,
@@ -3260,6 +3270,7 @@
         "Status$FailureReason": "<p>Provides detailed information about why the document couldn't be indexed. Use this information to correct the error before you resubmit the document for indexing.</p>",
         "StringList$member": null,
         "SuggestionTextWithHighlights$Text": "<p>The query suggestion text to display to the user.</p>",
+        "TableCell$Value": "<p>The actual value or content within a table cell. A table cell could contain a date value of a year, or a string value of text, for example.</p>",
         "TextWithHighlights$Text": "<p>The text to display to the user.</p>"
       }
     },
@@ -3336,13 +3347,43 @@
     "SuggestionValue": {
       "base": "<p>The <code>SuggestionTextWithHighlights</code> structure information.</p>",
       "refs": {
-        "Suggestion$Value": "<p>The value for the unique UUID (universally unique identifier) of a single query suggestion.</p> <p>The value is the text string of a suggestion.</p>"
+        "Suggestion$Value": "<p>The value for the UUID (universally unique identifier) of a single query suggestion.</p> <p>The value is the text string of a suggestion.</p>"
+      }
+    },
+    "TableCell": {
+      "base": "<p>Provides information about a table cell in a table excerpt.</p>",
+      "refs": {
+        "TableCellList$member": null
+      }
+    },
+    "TableCellList": {
+      "base": null,
+      "refs": {
+        "TableRow$Cells": "<p>A list of table cells in a row.</p>"
+      }
+    },
+    "TableExcerpt": {
+      "base": "<p>An excerpt from a table within a document. The table excerpt displays up to five columns and three rows, depending on how many table cells are relevant to the query and how many columns are available in the original table. The top most relevant cell is displayed in the table excerpt, along with the next most relevant cells.</p>",
+      "refs": {
+        "QueryResultItem$TableExcerpt": "<p>An excerpt from a table within a document.</p>"
       }
     },
     "TableName": {
       "base": null,
       "refs": {
         "ConnectionConfiguration$TableName": "<p>The name of the table that contains the document data.</p>"
+      }
+    },
+    "TableRow": {
+      "base": "<p>Information about a row in a table excerpt.</p>",
+      "refs": {
+        "TableRowList$member": null
+      }
+    },
+    "TableRowList": {
+      "base": null,
+      "refs": {
+        "TableExcerpt$Rows": "<p>A list of rows in the table excerpt.</p>"
       }
     },
     "Tag": {
@@ -3433,7 +3474,7 @@
     "ThesaurusId": {
       "base": null,
       "refs": {
-        "CreateThesaurusResponse$Id": "<p>The unique identifier of the thesaurus. </p>",
+        "CreateThesaurusResponse$Id": "<p>The identifier of the thesaurus. </p>",
         "DeleteThesaurusRequest$Id": "<p>The identifier of the thesaurus you want to delete.</p>",
         "DescribeThesaurusRequest$Id": "<p>The identifier of the thesaurus you want to get information on.</p>",
         "DescribeThesaurusResponse$Id": "<p>The identifier of the thesaurus.</p>",
@@ -3470,7 +3511,7 @@
       }
     },
     "ThrottlingException": {
-      "base": "<p/>",
+      "base": "<p>The request was denied due to request throttling. Please reduce the number of requests and try again.</p>",
       "refs": {
       }
     },
@@ -3680,7 +3721,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p/>",
+      "base": "<p>The input fails to satisfy the constraints set by the Amazon Kendra service. Please provide the correct input and try again.</p>",
       "refs": {
       }
     },

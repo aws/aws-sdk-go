@@ -271,6 +271,23 @@
         {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedAPIEndpointException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ConstraintViolationException"},
+        {"shape":"AWSOrganizationsNotInUseException"},
+        {"shape":"ResourcePolicyNotFoundException"}
+      ]
+    },
     "DeregisterDelegatedAdministrator":{
       "name":"DeregisterDelegatedAdministrator",
       "http":{
@@ -411,6 +428,23 @@
         {"shape":"ServiceException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"UnsupportedAPIEndpointException"}
+      ]
+    },
+    "DescribeResourcePolicy":{
+      "name":"DescribeResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{"shape":"DescribeResourcePolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedAPIEndpointException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"AWSOrganizationsNotInUseException"},
+        {"shape":"ResourcePolicyNotFoundException"},
+        {"shape":"ConstraintViolationException"}
       ]
     },
     "DetachPolicy":{
@@ -870,6 +904,25 @@
         {"shape":"ServiceException"}
       ]
     },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedAPIEndpointException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ConstraintViolationException"},
+        {"shape":"AWSOrganizationsNotInUseException"}
+      ]
+    },
     "RegisterDelegatedAdministrator":{
       "name":"RegisterDelegatedAdministrator",
       "http":{
@@ -1264,7 +1317,8 @@
         "INVALID_IDENTITY_FOR_BUSINESS_VALIDATION",
         "UNKNOWN_BUSINESS_VALIDATION",
         "MISSING_PAYMENT_INSTRUMENT",
-        "INVALID_PAYMENT_INSTRUMENT"
+        "INVALID_PAYMENT_INSTRUMENT",
+        "UPDATE_EXISTING_RESOURCE_POLICY_WITH_TAGS_NOT_SUPPORTED"
       ]
     },
     "CreateAccountName":{
@@ -1556,6 +1610,12 @@
       "type":"structure",
       "members":{
         "Policy":{"shape":"Policy"}
+      }
+    },
+    "DescribeResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicy":{"shape":"ResourcePolicy"}
       }
     },
     "DestinationParentNotFoundException":{
@@ -1919,7 +1979,11 @@
         "INVALID_SYSTEM_TAGS_PARAMETER",
         "DUPLICATE_TAG_KEY",
         "TARGET_NOT_SUPPORTED",
-        "INVALID_EMAIL_ADDRESS_TARGET"
+        "INVALID_EMAIL_ADDRESS_TARGET",
+        "INVALID_RESOURCE_POLICY_JSON",
+        "UNSUPPORTED_ACTION_IN_RESOURCE_POLICY",
+        "UNSUPPORTED_POLICY_TYPE_IN_RESOURCE_POLICY",
+        "UNSUPPORTED_RESOURCE_IN_RESOURCE_POLICY"
       ]
     },
     "InviteAccountToOrganizationRequest":{
@@ -2476,6 +2540,20 @@
       "type":"list",
       "member":{"shape":"PolicyTypeSummary"}
     },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "required":["Content"],
+      "members":{
+        "Content":{"shape":"ResourcePolicyContent"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "PutResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicy":{"shape":"ResourcePolicy"}
+      }
+    },
     "RegisterDelegatedAdministratorRequest":{
       "type":"structure",
       "required":[
@@ -2492,6 +2570,42 @@
       "required":["AccountId"],
       "members":{
         "AccountId":{"shape":"AccountId"}
+      }
+    },
+    "ResourcePolicy":{
+      "type":"structure",
+      "members":{
+        "ResourcePolicySummary":{"shape":"ResourcePolicySummary"},
+        "Content":{"shape":"ResourcePolicyContent"}
+      }
+    },
+    "ResourcePolicyArn":{
+      "type":"string",
+      "pattern":"^arn:[a-z0-9][a-z0-9-.]{0,62}:organizations::\\d{12}:resourcepolicy\\/o-[a-z0-9]{10,32}\\/rp-[0-9a-zA-Z_]{4,128}"
+    },
+    "ResourcePolicyContent":{
+      "type":"string",
+      "max":40000,
+      "min":1,
+      "pattern":"[\\s\\S]*"
+    },
+    "ResourcePolicyId":{
+      "type":"string",
+      "max":131,
+      "pattern":"^rp-[0-9a-zA-Z_]{4,128}$"
+    },
+    "ResourcePolicyNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "ResourcePolicySummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourcePolicyId"},
+        "Arn":{"shape":"ResourcePolicyArn"}
       }
     },
     "RoleName":{
@@ -2594,7 +2708,7 @@
     "TaggableResourceId":{
       "type":"string",
       "max":130,
-      "pattern":"^(r-[0-9a-z]{4,32})|(\\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(^p-[0-9a-zA-Z_]{8,128})$"
+      "pattern":"^(r-[0-9a-z]{4,32})|(\\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(^p-[0-9a-zA-Z_]{8,128})|(^rp-[0-9a-zA-Z_]{4,128})$"
     },
     "Tags":{
       "type":"list",

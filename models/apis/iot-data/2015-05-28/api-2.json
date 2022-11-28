@@ -113,7 +113,8 @@
         {"shape":"InternalFailureException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"MethodNotAllowedException"}
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateThingShadow":{
@@ -146,6 +147,8 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ContentType":{"type":"string"},
+    "CorrelationData":{"type":"string"},
     "DeleteThingShadowRequest":{
       "type":"structure",
       "required":["thingName"],
@@ -287,6 +290,7 @@
       "max":200,
       "min":1
     },
+    "MessageExpiry":{"type":"long"},
     "MethodNotAllowedException":{
       "type":"structure",
       "members":{
@@ -306,6 +310,13 @@
       "min":1
     },
     "Payload":{"type":"blob"},
+    "PayloadFormatIndicator":{
+      "type":"string",
+      "enum":[
+        "UNSPECIFIED_BYTES",
+        "UTF8_DATA"
+      ]
+    },
     "PayloadSize":{"type":"long"},
     "PublishRequest":{
       "type":"structure",
@@ -326,7 +337,38 @@
           "location":"querystring",
           "locationName":"retain"
         },
-        "payload":{"shape":"Payload"}
+        "payload":{"shape":"Payload"},
+        "userProperties":{
+          "shape":"UserProperties",
+          "jsonvalue":true,
+          "location":"header",
+          "locationName":"x-amz-mqtt5-user-properties"
+        },
+        "payloadFormatIndicator":{
+          "shape":"PayloadFormatIndicator",
+          "location":"header",
+          "locationName":"x-amz-mqtt5-payload-format-indicator"
+        },
+        "contentType":{
+          "shape":"ContentType",
+          "location":"querystring",
+          "locationName":"contentType"
+        },
+        "responseTopic":{
+          "shape":"ResponseTopic",
+          "location":"querystring",
+          "locationName":"responseTopic"
+        },
+        "correlationData":{
+          "shape":"CorrelationData",
+          "location":"header",
+          "locationName":"x-amz-mqtt5-correlation-data"
+        },
+        "messageExpiry":{
+          "shape":"MessageExpiry",
+          "location":"querystring",
+          "locationName":"messageExpiry"
+        }
       },
       "payload":"payload"
     },
@@ -351,6 +393,7 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ResponseTopic":{"type":"string"},
     "Retain":{"type":"boolean"},
     "RetainedMessageList":{
       "type":"list",
@@ -440,6 +483,7 @@
       },
       "payload":"payload"
     },
+    "UserProperties":{"type":"string"},
     "errorMessage":{"type":"string"}
   }
 }

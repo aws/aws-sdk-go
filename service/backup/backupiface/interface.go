@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS Backup.
 //	func myFunc(svc backupiface.BackupAPI) bool {
-//	    // Make svc.CreateBackupPlan request
+//	    // Make svc.CancelLegalHold request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockBackupClient struct {
 //	    backupiface.BackupAPI
 //	}
-//	func (m *mockBackupClient) CreateBackupPlan(input *backup.CreateBackupPlanInput) (*backup.CreateBackupPlanOutput, error) {
+//	func (m *mockBackupClient) CancelLegalHold(input *backup.CancelLegalHoldInput) (*backup.CancelLegalHoldOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type BackupAPI interface {
+	CancelLegalHold(*backup.CancelLegalHoldInput) (*backup.CancelLegalHoldOutput, error)
+	CancelLegalHoldWithContext(aws.Context, *backup.CancelLegalHoldInput, ...request.Option) (*backup.CancelLegalHoldOutput, error)
+	CancelLegalHoldRequest(*backup.CancelLegalHoldInput) (*request.Request, *backup.CancelLegalHoldOutput)
+
 	CreateBackupPlan(*backup.CreateBackupPlanInput) (*backup.CreateBackupPlanOutput, error)
 	CreateBackupPlanWithContext(aws.Context, *backup.CreateBackupPlanInput, ...request.Option) (*backup.CreateBackupPlanOutput, error)
 	CreateBackupPlanRequest(*backup.CreateBackupPlanInput) (*request.Request, *backup.CreateBackupPlanOutput)
@@ -75,6 +79,10 @@ type BackupAPI interface {
 	CreateFramework(*backup.CreateFrameworkInput) (*backup.CreateFrameworkOutput, error)
 	CreateFrameworkWithContext(aws.Context, *backup.CreateFrameworkInput, ...request.Option) (*backup.CreateFrameworkOutput, error)
 	CreateFrameworkRequest(*backup.CreateFrameworkInput) (*request.Request, *backup.CreateFrameworkOutput)
+
+	CreateLegalHold(*backup.CreateLegalHoldInput) (*backup.CreateLegalHoldOutput, error)
+	CreateLegalHoldWithContext(aws.Context, *backup.CreateLegalHoldInput, ...request.Option) (*backup.CreateLegalHoldOutput, error)
+	CreateLegalHoldRequest(*backup.CreateLegalHoldInput) (*request.Request, *backup.CreateLegalHoldOutput)
 
 	CreateReportPlan(*backup.CreateReportPlanInput) (*backup.CreateReportPlanOutput, error)
 	CreateReportPlanWithContext(aws.Context, *backup.CreateReportPlanInput, ...request.Option) (*backup.CreateReportPlanOutput, error)
@@ -164,6 +172,10 @@ type BackupAPI interface {
 	DisassociateRecoveryPointWithContext(aws.Context, *backup.DisassociateRecoveryPointInput, ...request.Option) (*backup.DisassociateRecoveryPointOutput, error)
 	DisassociateRecoveryPointRequest(*backup.DisassociateRecoveryPointInput) (*request.Request, *backup.DisassociateRecoveryPointOutput)
 
+	DisassociateRecoveryPointFromParent(*backup.DisassociateRecoveryPointFromParentInput) (*backup.DisassociateRecoveryPointFromParentOutput, error)
+	DisassociateRecoveryPointFromParentWithContext(aws.Context, *backup.DisassociateRecoveryPointFromParentInput, ...request.Option) (*backup.DisassociateRecoveryPointFromParentOutput, error)
+	DisassociateRecoveryPointFromParentRequest(*backup.DisassociateRecoveryPointFromParentInput) (*request.Request, *backup.DisassociateRecoveryPointFromParentOutput)
+
 	ExportBackupPlanTemplate(*backup.ExportBackupPlanTemplateInput) (*backup.ExportBackupPlanTemplateOutput, error)
 	ExportBackupPlanTemplateWithContext(aws.Context, *backup.ExportBackupPlanTemplateInput, ...request.Option) (*backup.ExportBackupPlanTemplateOutput, error)
 	ExportBackupPlanTemplateRequest(*backup.ExportBackupPlanTemplateInput) (*request.Request, *backup.ExportBackupPlanTemplateOutput)
@@ -191,6 +203,10 @@ type BackupAPI interface {
 	GetBackupVaultNotifications(*backup.GetBackupVaultNotificationsInput) (*backup.GetBackupVaultNotificationsOutput, error)
 	GetBackupVaultNotificationsWithContext(aws.Context, *backup.GetBackupVaultNotificationsInput, ...request.Option) (*backup.GetBackupVaultNotificationsOutput, error)
 	GetBackupVaultNotificationsRequest(*backup.GetBackupVaultNotificationsInput) (*request.Request, *backup.GetBackupVaultNotificationsOutput)
+
+	GetLegalHold(*backup.GetLegalHoldInput) (*backup.GetLegalHoldOutput, error)
+	GetLegalHoldWithContext(aws.Context, *backup.GetLegalHoldInput, ...request.Option) (*backup.GetLegalHoldOutput, error)
+	GetLegalHoldRequest(*backup.GetLegalHoldInput) (*request.Request, *backup.GetLegalHoldOutput)
 
 	GetRecoveryPointRestoreMetadata(*backup.GetRecoveryPointRestoreMetadataInput) (*backup.GetRecoveryPointRestoreMetadataOutput, error)
 	GetRecoveryPointRestoreMetadataWithContext(aws.Context, *backup.GetRecoveryPointRestoreMetadataInput, ...request.Option) (*backup.GetRecoveryPointRestoreMetadataOutput, error)
@@ -256,6 +272,13 @@ type BackupAPI interface {
 	ListFrameworksPages(*backup.ListFrameworksInput, func(*backup.ListFrameworksOutput, bool) bool) error
 	ListFrameworksPagesWithContext(aws.Context, *backup.ListFrameworksInput, func(*backup.ListFrameworksOutput, bool) bool, ...request.Option) error
 
+	ListLegalHolds(*backup.ListLegalHoldsInput) (*backup.ListLegalHoldsOutput, error)
+	ListLegalHoldsWithContext(aws.Context, *backup.ListLegalHoldsInput, ...request.Option) (*backup.ListLegalHoldsOutput, error)
+	ListLegalHoldsRequest(*backup.ListLegalHoldsInput) (*request.Request, *backup.ListLegalHoldsOutput)
+
+	ListLegalHoldsPages(*backup.ListLegalHoldsInput, func(*backup.ListLegalHoldsOutput, bool) bool) error
+	ListLegalHoldsPagesWithContext(aws.Context, *backup.ListLegalHoldsInput, func(*backup.ListLegalHoldsOutput, bool) bool, ...request.Option) error
+
 	ListProtectedResources(*backup.ListProtectedResourcesInput) (*backup.ListProtectedResourcesOutput, error)
 	ListProtectedResourcesWithContext(aws.Context, *backup.ListProtectedResourcesInput, ...request.Option) (*backup.ListProtectedResourcesOutput, error)
 	ListProtectedResourcesRequest(*backup.ListProtectedResourcesInput) (*request.Request, *backup.ListProtectedResourcesOutput)
@@ -269,6 +292,13 @@ type BackupAPI interface {
 
 	ListRecoveryPointsByBackupVaultPages(*backup.ListRecoveryPointsByBackupVaultInput, func(*backup.ListRecoveryPointsByBackupVaultOutput, bool) bool) error
 	ListRecoveryPointsByBackupVaultPagesWithContext(aws.Context, *backup.ListRecoveryPointsByBackupVaultInput, func(*backup.ListRecoveryPointsByBackupVaultOutput, bool) bool, ...request.Option) error
+
+	ListRecoveryPointsByLegalHold(*backup.ListRecoveryPointsByLegalHoldInput) (*backup.ListRecoveryPointsByLegalHoldOutput, error)
+	ListRecoveryPointsByLegalHoldWithContext(aws.Context, *backup.ListRecoveryPointsByLegalHoldInput, ...request.Option) (*backup.ListRecoveryPointsByLegalHoldOutput, error)
+	ListRecoveryPointsByLegalHoldRequest(*backup.ListRecoveryPointsByLegalHoldInput) (*request.Request, *backup.ListRecoveryPointsByLegalHoldOutput)
+
+	ListRecoveryPointsByLegalHoldPages(*backup.ListRecoveryPointsByLegalHoldInput, func(*backup.ListRecoveryPointsByLegalHoldOutput, bool) bool) error
+	ListRecoveryPointsByLegalHoldPagesWithContext(aws.Context, *backup.ListRecoveryPointsByLegalHoldInput, func(*backup.ListRecoveryPointsByLegalHoldOutput, bool) bool, ...request.Option) error
 
 	ListRecoveryPointsByResource(*backup.ListRecoveryPointsByResourceInput) (*backup.ListRecoveryPointsByResourceOutput, error)
 	ListRecoveryPointsByResourceWithContext(aws.Context, *backup.ListRecoveryPointsByResourceInput, ...request.Option) (*backup.ListRecoveryPointsByResourceOutput, error)

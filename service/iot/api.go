@@ -737,8 +737,7 @@ func (c *IoT) AttachThingPrincipalRequest(input *AttachThingPrincipalInput) (req
 // AttachThingPrincipal API operation for AWS IoT.
 //
 // Attaches the specified principal to the specified thing. A principal can
-// be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
-// or federated identities.
+// be X.509 certificates, Amazon Cognito identities or federated identities.
 //
 // Requires permission to access the AttachThingPrincipal (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -26510,7 +26509,7 @@ type AssociateTargetsWithJobInput struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// A list of thing group ARNs that define the targets of the job.
 	//
@@ -26544,9 +26543,6 @@ func (s *AssociateTargetsWithJobInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
-	}
-	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.Targets == nil {
 		invalidParams.Add(request.NewErrParamRequired("Targets"))
@@ -32354,10 +32350,14 @@ type CreateJobInput struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `locationName:"namespaceId" type:"string"`
 
 	// Configuration information for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
+
+	// The configuration that allows you to schedule a job for a future date and
+	// time in addition to specifying the end behavior for each job execution.
+	SchedulingConfig *SchedulingConfig `locationName:"schedulingConfig" type:"structure"`
 
 	// Metadata which can be used to manage the job.
 	Tags []*Tag `locationName:"tags" type:"list"`
@@ -32419,9 +32419,6 @@ func (s *CreateJobInput) Validate() error {
 	if s.JobTemplateArn != nil && len(*s.JobTemplateArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobTemplateArn", 1))
 	}
-	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
-	}
 	if s.Targets == nil {
 		invalidParams.Add(request.NewErrParamRequired("Targets"))
 	}
@@ -32446,6 +32443,11 @@ func (s *CreateJobInput) Validate() error {
 	if s.PresignedUrlConfig != nil {
 		if err := s.PresignedUrlConfig.Validate(); err != nil {
 			invalidParams.AddNested("PresignedUrlConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SchedulingConfig != nil {
+		if err := s.SchedulingConfig.Validate(); err != nil {
+			invalidParams.AddNested("SchedulingConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -32528,6 +32530,12 @@ func (s *CreateJobInput) SetNamespaceId(v string) *CreateJobInput {
 // SetPresignedUrlConfig sets the PresignedUrlConfig field's value.
 func (s *CreateJobInput) SetPresignedUrlConfig(v *PresignedUrlConfig) *CreateJobInput {
 	s.PresignedUrlConfig = v
+	return s
+}
+
+// SetSchedulingConfig sets the SchedulingConfig field's value.
+func (s *CreateJobInput) SetSchedulingConfig(v *SchedulingConfig) *CreateJobInput {
+	s.SchedulingConfig = v
 	return s
 }
 
@@ -36357,7 +36365,7 @@ type DeleteJobExecutionInput struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// The name of the thing whose job execution will be deleted.
 	//
@@ -36394,9 +36402,6 @@ func (s *DeleteJobExecutionInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
-	}
-	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
@@ -36494,7 +36499,7 @@ type DeleteJobInput struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 }
 
 // String returns the string representation.
@@ -36523,9 +36528,6 @@ func (s *DeleteJobInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
-	}
-	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -46908,13 +46910,17 @@ type Job struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `locationName:"namespaceId" type:"string"`
 
 	// Configuration for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
 
 	// If the job was updated, provides the reason code for the update.
 	ReasonCode *string `locationName:"reasonCode" type:"string"`
+
+	// The configuration that allows you to schedule a job for a future date and
+	// time in addition to specifying the end behavior for each job execution.
+	SchedulingConfig *SchedulingConfig `locationName:"schedulingConfig" type:"structure"`
 
 	// The status of the job, one of IN_PROGRESS, CANCELED, DELETION_IN_PROGRESS
 	// or COMPLETED.
@@ -47065,6 +47071,12 @@ func (s *Job) SetPresignedUrlConfig(v *PresignedUrlConfig) *Job {
 // SetReasonCode sets the ReasonCode field's value.
 func (s *Job) SetReasonCode(v string) *Job {
 	s.ReasonCode = &v
+	return s
+}
+
+// SetSchedulingConfig sets the SchedulingConfig field's value.
+func (s *Job) SetSchedulingConfig(v *SchedulingConfig) *Job {
+	s.SchedulingConfig = v
 	return s
 }
 
@@ -50601,7 +50613,7 @@ type ListJobExecutionsForThingInput struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// The token to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
@@ -50642,9 +50654,6 @@ func (s *ListJobExecutionsForThingInput) Validate() error {
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
-	}
-	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
@@ -50845,7 +50854,7 @@ type ListJobsInput struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// The token to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
@@ -50896,9 +50905,6 @@ func (s *ListJobsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListJobsInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
-	}
-	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.ThingGroupId != nil && len(*s.ThingGroupId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingGroupId", 1))
@@ -55934,6 +55940,144 @@ func (s *MqttContext) SetUsername(v string) *MqttContext {
 	return s
 }
 
+// Specifies MQTT Version 5.0 headers information. For more information, see
+// MQTT (https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html) from
+// Amazon Web Services IoT Core Developer Guide.
+type MqttHeaders struct {
+	_ struct{} `type:"structure"`
+
+	// A UTF-8 encoded string that describes the content of the publishing message.
+	//
+	// For more information, see Content Type (https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901118)
+	// from the MQTT Version 5.0 specification.
+	//
+	// Supports substitution templates (https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html).
+	ContentType *string `locationName:"contentType" type:"string"`
+
+	// The base64-encoded binary data used by the sender of the request message
+	// to identify which request the response message is for when it's received.
+	//
+	// For more information, see Correlation Data (https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901115)
+	// from the MQTT Version 5.0 specification.
+	//
+	// This binary data must be based64-encoded.
+	//
+	// Supports substitution templates (https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html).
+	CorrelationData *string `locationName:"correlationData" type:"string"`
+
+	// A user-defined integer value that will persist a message at the message broker
+	// for a specified amount of time to ensure that the message will expire if
+	// it's no longer relevant to the subscriber. The value of messageExpiry represents
+	// the number of seconds before it expires. For more information about the limits
+	// of messageExpiry, see Amazon Web Services IoT Core message broker and protocol
+	// limits and quotas (https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html)
+	// from the Amazon Web Services Reference Guide.
+	//
+	// Supports substitution templates (https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html).
+	MessageExpiry *string `locationName:"messageExpiry" type:"string"`
+
+	// An Enum string value that indicates whether the payload is formatted as UTF-8.
+	//
+	// Valid values are UNSPECIFIED_BYTES and UTF8_DATA.
+	//
+	// For more information, see Payload Format Indicator (https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901111)
+	// from the MQTT Version 5.0 specification.
+	//
+	// Supports substitution templates (https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html).
+	PayloadFormatIndicator *string `locationName:"payloadFormatIndicator" type:"string"`
+
+	// A UTF-8 encoded string that's used as the topic name for a response message.
+	// The response topic is used to describe the topic which the receiver should
+	// publish to as part of the request-response flow. The topic must not contain
+	// wildcard characters.
+	//
+	// For more information, see Response Topic (https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901114)
+	// from the MQTT Version 5.0 specification.
+	//
+	// Supports substitution templates (https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html).
+	ResponseTopic *string `locationName:"responseTopic" type:"string"`
+
+	// An array of key-value pairs that you define in the MQTT5 header.
+	UserProperties []*UserProperty `locationName:"userProperties" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MqttHeaders) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MqttHeaders) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MqttHeaders) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MqttHeaders"}
+	if s.UserProperties != nil && len(s.UserProperties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserProperties", 1))
+	}
+	if s.UserProperties != nil {
+		for i, v := range s.UserProperties {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserProperties", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *MqttHeaders) SetContentType(v string) *MqttHeaders {
+	s.ContentType = &v
+	return s
+}
+
+// SetCorrelationData sets the CorrelationData field's value.
+func (s *MqttHeaders) SetCorrelationData(v string) *MqttHeaders {
+	s.CorrelationData = &v
+	return s
+}
+
+// SetMessageExpiry sets the MessageExpiry field's value.
+func (s *MqttHeaders) SetMessageExpiry(v string) *MqttHeaders {
+	s.MessageExpiry = &v
+	return s
+}
+
+// SetPayloadFormatIndicator sets the PayloadFormatIndicator field's value.
+func (s *MqttHeaders) SetPayloadFormatIndicator(v string) *MqttHeaders {
+	s.PayloadFormatIndicator = &v
+	return s
+}
+
+// SetResponseTopic sets the ResponseTopic field's value.
+func (s *MqttHeaders) SetResponseTopic(v string) *MqttHeaders {
+	s.ResponseTopic = &v
+	return s
+}
+
+// SetUserProperties sets the UserProperties field's value.
+func (s *MqttHeaders) SetUserProperties(v []*UserProperty) *MqttHeaders {
+	s.UserProperties = v
+	return s
+}
+
 // Information about the resource that was noncompliant with the audit check.
 type NonCompliantResource struct {
 	_ struct{} `type:"structure"`
@@ -58464,6 +58608,10 @@ func (s ReplaceTopicRuleOutput) GoString() string {
 type RepublishAction struct {
 	_ struct{} `type:"structure"`
 
+	// MQTT Version 5.0 headers information. For more information, see MQTT (https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html)
+	// from the Amazon Web Services IoT Core Developer Guide.
+	Headers *MqttHeaders `locationName:"headers" type:"structure"`
+
 	// The Quality of Service (QoS) level to use when republishing messages. The
 	// default value is 0.
 	Qos *int64 `locationName:"qos" type:"integer"`
@@ -58506,11 +58654,22 @@ func (s *RepublishAction) Validate() error {
 	if s.Topic == nil {
 		invalidParams.Add(request.NewErrParamRequired("Topic"))
 	}
+	if s.Headers != nil {
+		if err := s.Headers.Validate(); err != nil {
+			invalidParams.AddNested("Headers", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *RepublishAction) SetHeaders(v *MqttHeaders) *RepublishAction {
+	s.Headers = v
+	return s
 }
 
 // SetQos sets the Qos field's value.
@@ -59364,6 +59523,83 @@ func (s *ScheduledAuditMetadata) SetScheduledAuditArn(v string) *ScheduledAuditM
 // SetScheduledAuditName sets the ScheduledAuditName field's value.
 func (s *ScheduledAuditMetadata) SetScheduledAuditName(v string) *ScheduledAuditMetadata {
 	s.ScheduledAuditName = &v
+	return s
+}
+
+// Specifies the date and time that a job will begin the rollout of the job
+// document to all devices in the target group. Additionally, you can specify
+// the end behavior for each job execution when it reaches the scheduled end
+// time.
+type SchedulingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the end behavior for all job executions after a job reaches the
+	// selected endTime. If endTime is not selected when creating the job, then
+	// endBehavior does not apply.
+	EndBehavior *string `locationName:"endBehavior" type:"string" enum:"JobEndBehavior"`
+
+	// The time a job will stop rollout of the job document to all devices in the
+	// target group for a job. The endTime must take place no later than two years
+	// from the current time and be scheduled a minimum of thirty minutes from the
+	// current time. The minimum duration between startTime and endTime is thirty
+	// minutes. The maximum duration between startTime and endTime is two years.
+	EndTime *string `locationName:"endTime" min:"1" type:"string"`
+
+	// The time a job will begin rollout of the job document to all devices in the
+	// target group for a job. The startTime can be scheduled up to a year in advance
+	// and must be scheduled a minimum of thirty minutes from the current time.
+	StartTime *string `locationName:"startTime" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchedulingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchedulingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SchedulingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SchedulingConfig"}
+	if s.EndTime != nil && len(*s.EndTime) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndTime", 1))
+	}
+	if s.StartTime != nil && len(*s.StartTime) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartTime", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndBehavior sets the EndBehavior field's value.
+func (s *SchedulingConfig) SetEndBehavior(v string) *SchedulingConfig {
+	s.EndBehavior = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *SchedulingConfig) SetEndTime(v string) *SchedulingConfig {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *SchedulingConfig) SetStartTime(v string) *SchedulingConfig {
+	s.StartTime = &v
 	return s
 }
 
@@ -62652,7 +62888,9 @@ type ThingGroupIndexingConfiguration struct {
 	CustomFields []*Field `locationName:"customFields" type:"list"`
 
 	// Contains fields that are indexed and whose types are already known by the
-	// Fleet Indexing service.
+	// Fleet Indexing service. This is an optional field. For more information,
+	// see Managed fields (https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field)
+	// in the Amazon Web Services IoT Core Developer Guide.
 	ManagedFields []*Field `locationName:"managedFields" type:"list"`
 
 	// Thing group indexing mode.
@@ -66193,7 +66431,7 @@ type UpdateJobInput struct {
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
 	// The namespaceId feature is in public preview.
-	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// Configuration information for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
@@ -66231,9 +66469,6 @@ func (s *UpdateJobInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
-	}
-	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.AbortConfig != nil {
 		if err := s.AbortConfig.Validate(); err != nil {
@@ -67703,6 +67938,68 @@ func (s UpdateTopicRuleDestinationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateTopicRuleDestinationOutput) GoString() string {
 	return s.String()
+}
+
+// A key-value pair that you define in the header. Both the key and the value
+// are either literal strings or valid substitution templates (https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html).
+type UserProperty struct {
+	_ struct{} `type:"structure"`
+
+	// A key to be specified in UserProperty.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// A value to be specified in UserProperty.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserProperty) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserProperty"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *UserProperty) SetKey(v string) *UserProperty {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *UserProperty) SetValue(v string) *UserProperty {
+	s.Value = &v
+	return s
 }
 
 type ValidateSecurityProfileBehaviorsInput struct {
@@ -69371,6 +69668,26 @@ func IndexStatus_Values() []string {
 }
 
 const (
+	// JobEndBehaviorStopRollout is a JobEndBehavior enum value
+	JobEndBehaviorStopRollout = "STOP_ROLLOUT"
+
+	// JobEndBehaviorCancel is a JobEndBehavior enum value
+	JobEndBehaviorCancel = "CANCEL"
+
+	// JobEndBehaviorForceCancel is a JobEndBehavior enum value
+	JobEndBehaviorForceCancel = "FORCE_CANCEL"
+)
+
+// JobEndBehavior_Values returns all elements of the JobEndBehavior enum
+func JobEndBehavior_Values() []string {
+	return []string{
+		JobEndBehaviorStopRollout,
+		JobEndBehaviorCancel,
+		JobEndBehaviorForceCancel,
+	}
+}
+
+const (
 	// JobExecutionFailureTypeFailed is a JobExecutionFailureType enum value
 	JobExecutionFailureTypeFailed = "FAILED"
 
@@ -69446,6 +69763,9 @@ const (
 
 	// JobStatusDeletionInProgress is a JobStatus enum value
 	JobStatusDeletionInProgress = "DELETION_IN_PROGRESS"
+
+	// JobStatusScheduled is a JobStatus enum value
+	JobStatusScheduled = "SCHEDULED"
 )
 
 // JobStatus_Values returns all elements of the JobStatus enum
@@ -69455,6 +69775,7 @@ func JobStatus_Values() []string {
 		JobStatusCanceled,
 		JobStatusCompleted,
 		JobStatusDeletionInProgress,
+		JobStatusScheduled,
 	}
 }
 

@@ -11,9 +11,10 @@ const (
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//
-	// One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
-	// operation was not valid. For example, MediaEncoding or LanguageCode used
-	// not valid values. Check the specified parameters and try your request again.
+	// One or more arguments to the StartStreamTranscription, StartMedicalStreamTranscription,
+	// or StartCallAnalyticsStreamTranscription operation was not valid. For example,
+	// MediaEncoding or LanguageCode used not valid values. Check the specified
+	// parameters and try your request again.
 	ErrCodeBadRequestException = "BadRequestException"
 
 	// ErrCodeConflictException for service response error code

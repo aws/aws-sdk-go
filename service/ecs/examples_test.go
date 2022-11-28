@@ -89,6 +89,8 @@ func ExampleECS_CreateService_shared00() {
 				fmt.Println(ecs.ErrCodePlatformTaskDefinitionIncompatibilityException, aerr.Error())
 			case ecs.ErrCodeAccessDeniedException:
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeNamespaceNotFoundException:
+				fmt.Println(ecs.ErrCodeNamespaceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -143,6 +145,8 @@ func ExampleECS_CreateService_shared01() {
 				fmt.Println(ecs.ErrCodePlatformTaskDefinitionIncompatibilityException, aerr.Error())
 			case ecs.ErrCodeAccessDeniedException:
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeNamespaceNotFoundException:
+				fmt.Println(ecs.ErrCodeNamespaceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1268,6 +1272,8 @@ func ExampleECS_UpdateService_shared00() {
 				fmt.Println(ecs.ErrCodePlatformTaskDefinitionIncompatibilityException, aerr.Error())
 			case ecs.ErrCodeAccessDeniedException:
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeNamespaceNotFoundException:
+				fmt.Println(ecs.ErrCodeNamespaceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1313,6 +1319,8 @@ func ExampleECS_UpdateService_shared01() {
 				fmt.Println(ecs.ErrCodePlatformTaskDefinitionIncompatibilityException, aerr.Error())
 			case ecs.ErrCodeAccessDeniedException:
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
+			case ecs.ErrCodeNamespaceNotFoundException:
+				fmt.Println(ecs.ErrCodeNamespaceNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

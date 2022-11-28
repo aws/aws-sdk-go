@@ -59,7 +59,7 @@ func (c *Organizations) AcceptHandshakeRequest(input *AcceptHandshakeInput) (req
 // Sends a response to the originator of a handshake agreeing to the action
 // proposed by the handshake request.
 //
-// This operation can be called only by the following principals when they also
+// You can only call this operation by the following principals when they also
 // have the relevant IAM permissions:
 //
 //   - Invitation to join or Approve all features request handshakes: only
@@ -1297,7 +1297,7 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 // to wait a few minutes before you can successfully access the account. To
 // check the status of the request, do one of the following:
 //
-//   - Use the Id member of the CreateAccountStatus response element from this
+//   - Use the Id value of the CreateAccountStatus response element from this
 //     operation to provide as a parameter to the DescribeCreateAccountStatus
 //     operation.
 //
@@ -3985,6 +3985,278 @@ func (c *Organizations) DeletePolicyWithContext(ctx aws.Context, input *DeletePo
 	return out, req.Send()
 }
 
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteResourcePolicyRequest method.
+//	req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DeleteResourcePolicy
+func (c *Organizations) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourcePolicy API operation for AWS Organizations.
+//
+// Deletes the resource policy from your organization.
+//
+// You can only call this operation from the organization's management account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Organizations's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - ServiceException
+//     Organizations can't complete your request because of an internal service
+//     error. Try again later.
+//
+//   - UnsupportedAPIEndpointException
+//     This action isn't available in the current Amazon Web Services Region.
+//
+//   - TooManyRequestsException
+//     You have sent too many requests in too short a period of time. The quota
+//     helps protect against denial-of-service attacks. Try again later.
+//
+//     For information about quotas that affect Organizations, see Quotas for Organizations
+//     (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)in
+//     the Organizations User Guide.
+//
+//   - ConcurrentModificationException
+//     The target of the operation is currently being modified by a different request.
+//     Try again later.
+//
+//   - ConstraintViolationException
+//     Performing this operation violates a minimum or maximum value limit. For
+//     example, attempting to remove the last service control policy (SCP) from
+//     an OU or root, inviting or creating too many accounts to the organization,
+//     or attaching too many policies to an account, OU, or root. This exception
+//     includes a reason that contains additional information about the violated
+//     limit:
+//
+//     Some of the reasons in the following list might not be applicable to this
+//     specific API or operation.
+//
+//   - ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
+//     account from the organization. You can't remove the management account.
+//     Instead, after you remove all member accounts, delete the organization
+//     itself.
+//
+//   - ACCOUNT_CANNOT_LEAVE_WITHOUT_PHONE_VERIFICATION: You attempted to remove
+//     an account from the organization that doesn't yet have enough information
+//     to exist as a standalone account. This account requires you to first complete
+//     phone verification. Follow the steps at Removing a member account from
+//     your organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_accounts_remove-from-master)
+//     in the Organizations User Guide.
+//
+//   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
+//     of accounts that you can create in one day.
+//
+//   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
+//     the number of accounts in an organization. If you need more accounts,
+//     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
+//     to request an increase in your limit. Or the number of invitations that
+//     you tried to send would cause you to exceed the limit of accounts in your
+//     organization. Send fewer invitations or contact Amazon Web Services Support
+//     to request an increase in the number of accounts. Deleted and closed accounts
+//     still count toward your limit. If you get this exception when running
+//     a command immediately after creating the organization, wait one hour and
+//     try again. After an hour, if the command continues to fail with this error,
+//     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/).
+//
+//   - CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//     register the management account of the organization as a delegated administrator
+//     for an Amazon Web Services service integrated with Organizations. You
+//     can designate only a member account as a delegated administrator.
+//
+//   - CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//     account. To close the management account for the organization, you must
+//     first either remove or close all member accounts in the organization.
+//     Follow standard account closure process using root credentials.​
+//
+//   - CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//     an account that is registered as a delegated administrator for a service
+//     integrated with your organization. To complete this operation, you must
+//     first deregister this account as a delegated administrator.
+//
+//   - CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//     for the past 30 days.
+//
+//   - CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//     of accounts that you can close at a time. ​
+//
+//   - CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//     organization in the specified region, you must enable all features mode.
+//
+//   - DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//     an Amazon Web Services account as a delegated administrator for an Amazon
+//     Web Services service that already has a delegated administrator. To complete
+//     this operation, you must first deregister any existing delegated administrators
+//     for this service.
+//
+//   - EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//     valid for a limited period of time. You must resubmit the request and
+//     generate a new verfication code.
+//
+//   - HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
+//     handshakes that you can send in one day.
+//
+//   - INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//     supported payment method is associated with the account. Amazon Web Services
+//     does not support cards issued by financial institutions in Russia or Belarus.
+//     For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
+//
+//   - MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
+//     in this organization, you first must migrate the organization's management
+//     account to the marketplace that corresponds to the management account's
+//     address. For example, accounts with India addresses must be associated
+//     with the AISPL marketplace. All accounts in an organization must be associated
+//     with the same marketplace.
+//
+//   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
+//     Web Services /> Regions in China. To create an organization, the master
+//     must have a valid business license. For more information, contact customer
+//     support.
+//
+//   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
+//     must first provide a valid contact address and phone number for the management
+//     account. Then try the operation again.
+//
+//   - MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
+//     management account must have an associated account in the Amazon Web Services
+//     GovCloud (US-West) Region. For more information, see Organizations (https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//     in the Amazon Web Services GovCloud User Guide.
+//
+//   - MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
+//     with this management account, you first must associate a valid payment
+//     instrument, such as a credit card, with the account. Follow the steps
+//     at To leave an organization when all required account information has
+//     not yet been provided (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//     in the Organizations User Guide.
+//
+//   - MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
+//     to register more delegated administrators than allowed for the service
+//     principal.
+//
+//   - MAX_POLICY_TYPE_ATTACHMENT_LIMIT_EXCEEDED: You attempted to exceed the
+//     number of policies of a certain type that can be attached to an entity
+//     at one time.
+//
+//   - MAX_TAG_LIMIT_EXCEEDED: You have exceeded the number of tags allowed
+//     on this resource.
+//
+//   - MEMBER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To complete this operation
+//     with this member account, you first must associate a valid payment instrument,
+//     such as a credit card, with the account. Follow the steps at To leave
+//     an organization when all required account information has not yet been
+//     provided (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//     in the Organizations User Guide.
+//
+//   - MIN_POLICY_TYPE_ATTACHMENT_LIMIT_EXCEEDED: You attempted to detach a
+//     policy from an entity that would cause the entity to have fewer than the
+//     minimum number of policies of a certain type required.
+//
+//   - ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
+//     that requires the organization to be configured to support all features.
+//     An organization that supports only consolidated billing features can't
+//     perform this operation.
+//
+//   - OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//     too many levels deep.
+//
+//   - OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
+//     that you can have in an organization.
+//
+//   - POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//     is larger than the maximum size.
+//
+//   - POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
+//     policies that you can have in an organization.
+//
+//   - SERVICE_ACCESS_NOT_ENABLED: You attempted to register a delegated administrator
+//     before you enabled service access. Call the EnableAWSServiceAccess API
+//     first.
+//
+//   - TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//     tags that are not compliant with the tag policy requirements for this
+//     account.
+//
+//   - WAIT_PERIOD_ACTIVE: After you create an Amazon Web Services account,
+//     there is a waiting period before you can remove it from the organization.
+//     If you get an error that indicates that a wait period is required, try
+//     again in a few days.
+//
+//   - AWSOrganizationsNotInUseException
+//     Your account isn't a member of an organization. To make this request, you
+//     must use the credentials of an account that belongs to an organization.
+//
+//   - ResourcePolicyNotFoundException
+//     We can't find a resource policy request with the parameter that you specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DeleteResourcePolicy
+func (c *Organizations) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Organizations) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeregisterDelegatedAdministrator = "DeregisterDelegatedAdministrator"
 
 // DeregisterDelegatedAdministratorRequest generates a "aws/request.Request" representing the
@@ -5759,6 +6031,274 @@ func (c *Organizations) DescribePolicyWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opDescribeResourcePolicy = "DescribeResourcePolicy"
+
+// DescribeResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeResourcePolicy for more information on using the DescribeResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeResourcePolicyRequest method.
+//	req, resp := client.DescribeResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DescribeResourcePolicy
+func (c *Organizations) DescribeResourcePolicyRequest(input *DescribeResourcePolicyInput) (req *request.Request, output *DescribeResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDescribeResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeResourcePolicyInput{}
+	}
+
+	output = &DescribeResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeResourcePolicy API operation for AWS Organizations.
+//
+// Retrieves information about a resource policy.
+//
+// You can only call this operation from the organization's management account
+// or by a member account that is a delegated administrator for an AWS service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Organizations's
+// API operation DescribeResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - ServiceException
+//     Organizations can't complete your request because of an internal service
+//     error. Try again later.
+//
+//   - UnsupportedAPIEndpointException
+//     This action isn't available in the current Amazon Web Services Region.
+//
+//   - TooManyRequestsException
+//     You have sent too many requests in too short a period of time. The quota
+//     helps protect against denial-of-service attacks. Try again later.
+//
+//     For information about quotas that affect Organizations, see Quotas for Organizations
+//     (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)in
+//     the Organizations User Guide.
+//
+//   - AWSOrganizationsNotInUseException
+//     Your account isn't a member of an organization. To make this request, you
+//     must use the credentials of an account that belongs to an organization.
+//
+//   - ResourcePolicyNotFoundException
+//     We can't find a resource policy request with the parameter that you specified.
+//
+//   - ConstraintViolationException
+//     Performing this operation violates a minimum or maximum value limit. For
+//     example, attempting to remove the last service control policy (SCP) from
+//     an OU or root, inviting or creating too many accounts to the organization,
+//     or attaching too many policies to an account, OU, or root. This exception
+//     includes a reason that contains additional information about the violated
+//     limit:
+//
+//     Some of the reasons in the following list might not be applicable to this
+//     specific API or operation.
+//
+//   - ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
+//     account from the organization. You can't remove the management account.
+//     Instead, after you remove all member accounts, delete the organization
+//     itself.
+//
+//   - ACCOUNT_CANNOT_LEAVE_WITHOUT_PHONE_VERIFICATION: You attempted to remove
+//     an account from the organization that doesn't yet have enough information
+//     to exist as a standalone account. This account requires you to first complete
+//     phone verification. Follow the steps at Removing a member account from
+//     your organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_accounts_remove-from-master)
+//     in the Organizations User Guide.
+//
+//   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
+//     of accounts that you can create in one day.
+//
+//   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
+//     the number of accounts in an organization. If you need more accounts,
+//     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
+//     to request an increase in your limit. Or the number of invitations that
+//     you tried to send would cause you to exceed the limit of accounts in your
+//     organization. Send fewer invitations or contact Amazon Web Services Support
+//     to request an increase in the number of accounts. Deleted and closed accounts
+//     still count toward your limit. If you get this exception when running
+//     a command immediately after creating the organization, wait one hour and
+//     try again. After an hour, if the command continues to fail with this error,
+//     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/).
+//
+//   - CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//     register the management account of the organization as a delegated administrator
+//     for an Amazon Web Services service integrated with Organizations. You
+//     can designate only a member account as a delegated administrator.
+//
+//   - CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//     account. To close the management account for the organization, you must
+//     first either remove or close all member accounts in the organization.
+//     Follow standard account closure process using root credentials.​
+//
+//   - CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//     an account that is registered as a delegated administrator for a service
+//     integrated with your organization. To complete this operation, you must
+//     first deregister this account as a delegated administrator.
+//
+//   - CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//     for the past 30 days.
+//
+//   - CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//     of accounts that you can close at a time. ​
+//
+//   - CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//     organization in the specified region, you must enable all features mode.
+//
+//   - DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//     an Amazon Web Services account as a delegated administrator for an Amazon
+//     Web Services service that already has a delegated administrator. To complete
+//     this operation, you must first deregister any existing delegated administrators
+//     for this service.
+//
+//   - EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//     valid for a limited period of time. You must resubmit the request and
+//     generate a new verfication code.
+//
+//   - HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
+//     handshakes that you can send in one day.
+//
+//   - INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//     supported payment method is associated with the account. Amazon Web Services
+//     does not support cards issued by financial institutions in Russia or Belarus.
+//     For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
+//
+//   - MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
+//     in this organization, you first must migrate the organization's management
+//     account to the marketplace that corresponds to the management account's
+//     address. For example, accounts with India addresses must be associated
+//     with the AISPL marketplace. All accounts in an organization must be associated
+//     with the same marketplace.
+//
+//   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
+//     Web Services /> Regions in China. To create an organization, the master
+//     must have a valid business license. For more information, contact customer
+//     support.
+//
+//   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
+//     must first provide a valid contact address and phone number for the management
+//     account. Then try the operation again.
+//
+//   - MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
+//     management account must have an associated account in the Amazon Web Services
+//     GovCloud (US-West) Region. For more information, see Organizations (https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//     in the Amazon Web Services GovCloud User Guide.
+//
+//   - MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
+//     with this management account, you first must associate a valid payment
+//     instrument, such as a credit card, with the account. Follow the steps
+//     at To leave an organization when all required account information has
+//     not yet been provided (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//     in the Organizations User Guide.
+//
+//   - MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
+//     to register more delegated administrators than allowed for the service
+//     principal.
+//
+//   - MAX_POLICY_TYPE_ATTACHMENT_LIMIT_EXCEEDED: You attempted to exceed the
+//     number of policies of a certain type that can be attached to an entity
+//     at one time.
+//
+//   - MAX_TAG_LIMIT_EXCEEDED: You have exceeded the number of tags allowed
+//     on this resource.
+//
+//   - MEMBER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To complete this operation
+//     with this member account, you first must associate a valid payment instrument,
+//     such as a credit card, with the account. Follow the steps at To leave
+//     an organization when all required account information has not yet been
+//     provided (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//     in the Organizations User Guide.
+//
+//   - MIN_POLICY_TYPE_ATTACHMENT_LIMIT_EXCEEDED: You attempted to detach a
+//     policy from an entity that would cause the entity to have fewer than the
+//     minimum number of policies of a certain type required.
+//
+//   - ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
+//     that requires the organization to be configured to support all features.
+//     An organization that supports only consolidated billing features can't
+//     perform this operation.
+//
+//   - OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//     too many levels deep.
+//
+//   - OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
+//     that you can have in an organization.
+//
+//   - POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//     is larger than the maximum size.
+//
+//   - POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
+//     policies that you can have in an organization.
+//
+//   - SERVICE_ACCESS_NOT_ENABLED: You attempted to register a delegated administrator
+//     before you enabled service access. Call the EnableAWSServiceAccess API
+//     first.
+//
+//   - TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//     tags that are not compliant with the tag policy requirements for this
+//     account.
+//
+//   - WAIT_PERIOD_ACTIVE: After you create an Amazon Web Services account,
+//     there is a waiting period before you can remove it from the organization.
+//     If you get an error that indicates that a wait period is required, try
+//     again in a few days.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DescribeResourcePolicy
+func (c *Organizations) DescribeResourcePolicy(input *DescribeResourcePolicyInput) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DescribeResourcePolicyWithContext is the same as DescribeResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Organizations) DescribeResourcePolicyWithContext(ctx aws.Context, input *DescribeResourcePolicyInput, opts ...request.Option) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDetachPolicy = "DetachPolicy"
 
 // DetachPolicyRequest generates a "aws/request.Request" representing the
@@ -6968,7 +7508,7 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 // see Integrating Organizations with Other Amazon Web Services Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
 // in the Organizations User Guide.
 //
-// This operation can be called only from the organization's management account
+// You can only call this operation from the organization's management account
 // and only if the organization has enabled all features (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -13378,6 +13918,352 @@ func (c *Organizations) MoveAccountWithContext(ctx aws.Context, input *MoveAccou
 	return out, req.Send()
 }
 
+const opPutResourcePolicy = "PutResourcePolicy"
+
+// PutResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourcePolicy for more information on using the PutResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutResourcePolicyRequest method.
+//	req, resp := client.PutResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/PutResourcePolicy
+func (c *Organizations) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req *request.Request, output *PutResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutResourcePolicyInput{}
+	}
+
+	output = &PutResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutResourcePolicy API operation for AWS Organizations.
+//
+// Creates or updates a resource policy.
+//
+// You can only call this operation from the organization's management account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Organizations's
+// API operation PutResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions. For more information, see
+//     Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//     in the IAM User Guide.
+//
+//   - ServiceException
+//     Organizations can't complete your request because of an internal service
+//     error. Try again later.
+//
+//   - UnsupportedAPIEndpointException
+//     This action isn't available in the current Amazon Web Services Region.
+//
+//   - TooManyRequestsException
+//     You have sent too many requests in too short a period of time. The quota
+//     helps protect against denial-of-service attacks. Try again later.
+//
+//     For information about quotas that affect Organizations, see Quotas for Organizations
+//     (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)in
+//     the Organizations User Guide.
+//
+//   - ConcurrentModificationException
+//     The target of the operation is currently being modified by a different request.
+//     Try again later.
+//
+//   - InvalidInputException
+//     The requested operation failed because you provided invalid values for one
+//     or more of the request parameters. This exception includes a reason that
+//     contains additional information about the violated limit:
+//
+//     Some of the reasons in the following list might not be applicable to this
+//     specific API or operation.
+//
+//   - DUPLICATE_TAG_KEY: Tag keys must be unique among the tags attached to
+//     the same entity.
+//
+//   - IMMUTABLE_POLICY: You specified a policy that is managed by Amazon Web
+//     Services and can't be modified.
+//
+//   - INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//   - INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//     for the invited account owner.
+//
+//   - INVALID_ENUM: You specified an invalid value.
+//
+//   - INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
+//
+//   - INVALID_FULL_NAME_TARGET: You specified a full name that contains invalid
+//     characters.
+//
+//   - INVALID_LIST_MEMBER: You provided a list to a parameter that contains
+//     at least one invalid value.
+//
+//   - INVALID_PAGINATION_TOKEN: Get the value for the NextToken parameter
+//     from the response to a previous call of the operation.
+//
+//   - INVALID_PARTY_TYPE_TARGET: You specified the wrong type of entity (account,
+//     organization, or email) as a party.
+//
+//   - INVALID_PATTERN: You provided a value that doesn't match the required
+//     pattern.
+//
+//   - INVALID_PATTERN_TARGET_ID: You specified a policy target ID that doesn't
+//     match the required pattern.
+//
+//   - INVALID_ROLE_NAME: You provided a role name that isn't valid. A role
+//     name can't begin with the reserved prefix AWSServiceRoleFor.
+//
+//   - INVALID_SYNTAX_ORGANIZATION_ARN: You specified an invalid Amazon Resource
+//     Name (ARN) for the organization.
+//
+//   - INVALID_SYNTAX_POLICY_ID: You specified an invalid policy ID.
+//
+//   - INVALID_SYSTEM_TAGS_PARAMETER: You specified a tag key that is a system
+//     tag. You can’t add, edit, or delete system tag keys because they're
+//     reserved for Amazon Web Services use. System tags don’t count against
+//     your tags per resource limit.
+//
+//   - MAX_FILTER_LIMIT_EXCEEDED: You can specify only one filter parameter
+//     for the operation.
+//
+//   - MAX_LENGTH_EXCEEDED: You provided a string parameter that is longer
+//     than allowed.
+//
+//   - MAX_VALUE_EXCEEDED: You provided a numeric parameter that has a larger
+//     value than allowed.
+//
+//   - MIN_LENGTH_EXCEEDED: You provided a string parameter that is shorter
+//     than allowed.
+//
+//   - MIN_VALUE_EXCEEDED: You provided a numeric parameter that has a smaller
+//     value than allowed.
+//
+//   - MOVING_ACCOUNT_BETWEEN_DIFFERENT_ROOTS: You can move an account only
+//     between entities in the same root.
+//
+//   - TARGET_NOT_SUPPORTED: You can't perform the specified operation on that
+//     target entity.
+//
+//   - UNRECOGNIZED_SERVICE_PRINCIPAL: You specified a service principal that
+//     isn't recognized.
+//
+//   - ConstraintViolationException
+//     Performing this operation violates a minimum or maximum value limit. For
+//     example, attempting to remove the last service control policy (SCP) from
+//     an OU or root, inviting or creating too many accounts to the organization,
+//     or attaching too many policies to an account, OU, or root. This exception
+//     includes a reason that contains additional information about the violated
+//     limit:
+//
+//     Some of the reasons in the following list might not be applicable to this
+//     specific API or operation.
+//
+//   - ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
+//     account from the organization. You can't remove the management account.
+//     Instead, after you remove all member accounts, delete the organization
+//     itself.
+//
+//   - ACCOUNT_CANNOT_LEAVE_WITHOUT_PHONE_VERIFICATION: You attempted to remove
+//     an account from the organization that doesn't yet have enough information
+//     to exist as a standalone account. This account requires you to first complete
+//     phone verification. Follow the steps at Removing a member account from
+//     your organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_accounts_remove-from-master)
+//     in the Organizations User Guide.
+//
+//   - ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
+//     of accounts that you can create in one day.
+//
+//   - ACCOUNT_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the limit on
+//     the number of accounts in an organization. If you need more accounts,
+//     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/)
+//     to request an increase in your limit. Or the number of invitations that
+//     you tried to send would cause you to exceed the limit of accounts in your
+//     organization. Send fewer invitations or contact Amazon Web Services Support
+//     to request an increase in the number of accounts. Deleted and closed accounts
+//     still count toward your limit. If you get this exception when running
+//     a command immediately after creating the organization, wait one hour and
+//     try again. After an hour, if the command continues to fail with this error,
+//     contact Amazon Web Services Support (https://docs.aws.amazon.com/support/home#/).
+//
+//   - CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//     register the management account of the organization as a delegated administrator
+//     for an Amazon Web Services service integrated with Organizations. You
+//     can designate only a member account as a delegated administrator.
+//
+//   - CANNOT_CLOSE_MANAGEMENT_ACCOUNT: You attempted to close the management
+//     account. To close the management account for the organization, you must
+//     first either remove or close all member accounts in the organization.
+//     Follow standard account closure process using root credentials.​
+//
+//   - CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//     an account that is registered as a delegated administrator for a service
+//     integrated with your organization. To complete this operation, you must
+//     first deregister this account as a delegated administrator.
+//
+//   - CLOSE_ACCOUNT_QUOTA_EXCEEDED: You have exceeded close account quota
+//     for the past 30 days.
+//
+//   - CLOSE_ACCOUNT_REQUESTS_LIMIT_EXCEEDED: You attempted to exceed the number
+//     of accounts that you can close at a time. ​
+//
+//   - CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//     organization in the specified region, you must enable all features mode.
+//
+//   - DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//     an Amazon Web Services account as a delegated administrator for an Amazon
+//     Web Services service that already has a delegated administrator. To complete
+//     this operation, you must first deregister any existing delegated administrators
+//     for this service.
+//
+//   - EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//     valid for a limited period of time. You must resubmit the request and
+//     generate a new verfication code.
+//
+//   - HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
+//     handshakes that you can send in one day.
+//
+//   - INVALID_PAYMENT_INSTRUMENT: You cannot remove an account because no
+//     supported payment method is associated with the account. Amazon Web Services
+//     does not support cards issued by financial institutions in Russia or Belarus.
+//     For more information, see Managing your Amazon Web Services payments (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-general.html).
+//
+//   - MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
+//     in this organization, you first must migrate the organization's management
+//     account to the marketplace that corresponds to the management account's
+//     address. For example, accounts with India addresses must be associated
+//     with the AISPL marketplace. All accounts in an organization must be associated
+//     with the same marketplace.
+//
+//   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
+//     Web Services /> Regions in China. To create an organization, the master
+//     must have a valid business license. For more information, contact customer
+//     support.
+//
+//   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
+//     must first provide a valid contact address and phone number for the management
+//     account. Then try the operation again.
+//
+//   - MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
+//     management account must have an associated account in the Amazon Web Services
+//     GovCloud (US-West) Region. For more information, see Organizations (https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//     in the Amazon Web Services GovCloud User Guide.
+//
+//   - MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
+//     with this management account, you first must associate a valid payment
+//     instrument, such as a credit card, with the account. Follow the steps
+//     at To leave an organization when all required account information has
+//     not yet been provided (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//     in the Organizations User Guide.
+//
+//   - MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
+//     to register more delegated administrators than allowed for the service
+//     principal.
+//
+//   - MAX_POLICY_TYPE_ATTACHMENT_LIMIT_EXCEEDED: You attempted to exceed the
+//     number of policies of a certain type that can be attached to an entity
+//     at one time.
+//
+//   - MAX_TAG_LIMIT_EXCEEDED: You have exceeded the number of tags allowed
+//     on this resource.
+//
+//   - MEMBER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To complete this operation
+//     with this member account, you first must associate a valid payment instrument,
+//     such as a credit card, with the account. Follow the steps at To leave
+//     an organization when all required account information has not yet been
+//     provided (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//     in the Organizations User Guide.
+//
+//   - MIN_POLICY_TYPE_ATTACHMENT_LIMIT_EXCEEDED: You attempted to detach a
+//     policy from an entity that would cause the entity to have fewer than the
+//     minimum number of policies of a certain type required.
+//
+//   - ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
+//     that requires the organization to be configured to support all features.
+//     An organization that supports only consolidated billing features can't
+//     perform this operation.
+//
+//   - OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//     too many levels deep.
+//
+//   - OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
+//     that you can have in an organization.
+//
+//   - POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//     is larger than the maximum size.
+//
+//   - POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
+//     policies that you can have in an organization.
+//
+//   - SERVICE_ACCESS_NOT_ENABLED: You attempted to register a delegated administrator
+//     before you enabled service access. Call the EnableAWSServiceAccess API
+//     first.
+//
+//   - TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//     tags that are not compliant with the tag policy requirements for this
+//     account.
+//
+//   - WAIT_PERIOD_ACTIVE: After you create an Amazon Web Services account,
+//     there is a waiting period before you can remove it from the organization.
+//     If you get an error that indicates that a wait period is required, try
+//     again in a few days.
+//
+//   - AWSOrganizationsNotInUseException
+//     Your account isn't a member of an organization. To make this request, you
+//     must use the credentials of an account that belongs to an organization.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/PutResourcePolicy
+func (c *Organizations) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutResourcePolicyWithContext is the same as PutResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Organizations) PutResourcePolicyWithContext(ctx aws.Context, input *PutResourcePolicyInput, opts ...request.Option) (*PutResourcePolicyOutput, error) {
+	req, out := c.PutResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRegisterDelegatedAdministrator = "RegisterDelegatedAdministrator"
 
 // RegisterDelegatedAdministratorRequest generates a "aws/request.Request" representing the
@@ -16960,8 +17846,6 @@ type CreateAccountInput struct {
 	// for the new account.
 	IamUserAccessToBilling *string `type:"string" enum:"IAMUserAccessToBilling"`
 
-	// (Optional)
-	//
 	// The name of an IAM role that Organizations automatically preconfigures in
 	// the new member account. This role trusts the management account, allowing
 	// users in the management account to assume the role, as permitted by the management
@@ -18354,6 +19238,50 @@ func (s DeletePolicyOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DeregisterDelegatedAdministratorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19008,6 +19936,59 @@ func (s DescribePolicyOutput) GoString() string {
 // SetPolicy sets the Policy field's value.
 func (s *DescribePolicyOutput) SetPolicy(v *Policy) *DescribePolicyOutput {
 	s.Policy = v
+	return s
+}
+
+type DescribeResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+type DescribeResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains details about the resource policy.
+	ResourcePolicy *ResourcePolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *DescribeResourcePolicyOutput) SetResourcePolicy(v *ResourcePolicy) *DescribeResourcePolicyOutput {
+	s.ResourcePolicy = v
 	return s
 }
 
@@ -24591,6 +25572,117 @@ func (s *PolicyTypeSummary) SetType(v string) *PolicyTypeSummary {
 	return s
 }
 
+type PutResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// If provided, the new content for the resource policy. The text must be correctly
+	// formatted JSON that complies with the syntax for the resource policy's type.
+	// For more information, see Service Control Policy Syntax (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html)
+	// in the Organizations User Guide.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// Updates the list of tags that you want to attach to the newly-created resource
+	// policy. For each tag in the list, you must specify both a tag key and a value.
+	// You can set the value to an empty string, but you can't set it to null. For
+	// more information about tagging, see Tagging Organizations resources (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tagging.html)
+	// in the Organizations User Guide.
+	//
+	// Calls with tags apply to the initial creation of the resource policy, otherwise
+	// an exception is thrown. If any one of the tags is invalid or if you exceed
+	// the allowed number of tags for the resource policy, then the entire request
+	// fails and the resource policy is not created.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourcePolicyInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *PutResourcePolicyInput) SetContent(v string) *PutResourcePolicyInput {
+	s.Content = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutResourcePolicyInput) SetTags(v []*Tag) *PutResourcePolicyInput {
+	s.Tags = v
+	return s
+}
+
+type PutResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains details about the resource policy.
+	ResourcePolicy *ResourcePolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *PutResourcePolicyOutput) SetResourcePolicy(v *ResourcePolicy) *PutResourcePolicyOutput {
+	s.ResourcePolicy = v
+	return s
+}
+
 type RegisterDelegatedAdministratorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24748,6 +25840,152 @@ func (s RemoveAccountFromOrganizationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RemoveAccountFromOrganizationOutput) GoString() string {
 	return s.String()
+}
+
+// A structure that contains details about a resource policy.
+type ResourcePolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The policy text of the resource policy.
+	Content *string `min:"1" type:"string"`
+
+	// A structure that contains resource policy ID and Amazon Resource Name (ARN).
+	ResourcePolicySummary *ResourcePolicySummary `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicy) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *ResourcePolicy) SetContent(v string) *ResourcePolicy {
+	s.Content = &v
+	return s
+}
+
+// SetResourcePolicySummary sets the ResourcePolicySummary field's value.
+func (s *ResourcePolicy) SetResourcePolicySummary(v *ResourcePolicySummary) *ResourcePolicy {
+	s.ResourcePolicySummary = v
+	return s
+}
+
+// We can't find a resource policy request with the parameter that you specified.
+type ResourcePolicyNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicyNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicyNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourcePolicyNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourcePolicyNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourcePolicyNotFoundException) Code() string {
+	return "ResourcePolicyNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourcePolicyNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourcePolicyNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourcePolicyNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourcePolicyNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourcePolicyNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A structure that contains resource policy ID and Amazon Resource Name (ARN).
+type ResourcePolicySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource policy.
+	Arn *string `type:"string"`
+
+	// The unique identifier (ID) of the resource policy.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePolicySummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ResourcePolicySummary) SetArn(v string) *ResourcePolicySummary {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ResourcePolicySummary) SetId(v string) *ResourcePolicySummary {
+	s.Id = &v
+	return s
 }
 
 // Contains details about a root. A root is a top-level parent node in the hierarchy
@@ -25994,6 +27232,9 @@ const (
 
 	// CreateAccountFailureReasonInvalidPaymentInstrument is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonInvalidPaymentInstrument = "INVALID_PAYMENT_INSTRUMENT"
+
+	// CreateAccountFailureReasonUpdateExistingResourcePolicyWithTagsNotSupported is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonUpdateExistingResourcePolicyWithTagsNotSupported = "UPDATE_EXISTING_RESOURCE_POLICY_WITH_TAGS_NOT_SUPPORTED"
 )
 
 // CreateAccountFailureReason_Values returns all elements of the CreateAccountFailureReason enum
@@ -26013,6 +27254,7 @@ func CreateAccountFailureReason_Values() []string {
 		CreateAccountFailureReasonUnknownBusinessValidation,
 		CreateAccountFailureReasonMissingPaymentInstrument,
 		CreateAccountFailureReasonInvalidPaymentInstrument,
+		CreateAccountFailureReasonUpdateExistingResourcePolicyWithTagsNotSupported,
 	}
 }
 
@@ -26284,6 +27526,18 @@ const (
 
 	// InvalidInputExceptionReasonInvalidEmailAddressTarget is a InvalidInputExceptionReason enum value
 	InvalidInputExceptionReasonInvalidEmailAddressTarget = "INVALID_EMAIL_ADDRESS_TARGET"
+
+	// InvalidInputExceptionReasonInvalidResourcePolicyJson is a InvalidInputExceptionReason enum value
+	InvalidInputExceptionReasonInvalidResourcePolicyJson = "INVALID_RESOURCE_POLICY_JSON"
+
+	// InvalidInputExceptionReasonUnsupportedActionInResourcePolicy is a InvalidInputExceptionReason enum value
+	InvalidInputExceptionReasonUnsupportedActionInResourcePolicy = "UNSUPPORTED_ACTION_IN_RESOURCE_POLICY"
+
+	// InvalidInputExceptionReasonUnsupportedPolicyTypeInResourcePolicy is a InvalidInputExceptionReason enum value
+	InvalidInputExceptionReasonUnsupportedPolicyTypeInResourcePolicy = "UNSUPPORTED_POLICY_TYPE_IN_RESOURCE_POLICY"
+
+	// InvalidInputExceptionReasonUnsupportedResourceInResourcePolicy is a InvalidInputExceptionReason enum value
+	InvalidInputExceptionReasonUnsupportedResourceInResourcePolicy = "UNSUPPORTED_RESOURCE_IN_RESOURCE_POLICY"
 )
 
 // InvalidInputExceptionReason_Values returns all elements of the InvalidInputExceptionReason enum
@@ -26313,6 +27567,10 @@ func InvalidInputExceptionReason_Values() []string {
 		InvalidInputExceptionReasonDuplicateTagKey,
 		InvalidInputExceptionReasonTargetNotSupported,
 		InvalidInputExceptionReasonInvalidEmailAddressTarget,
+		InvalidInputExceptionReasonInvalidResourcePolicyJson,
+		InvalidInputExceptionReasonUnsupportedActionInResourcePolicy,
+		InvalidInputExceptionReasonUnsupportedPolicyTypeInResourcePolicy,
+		InvalidInputExceptionReasonUnsupportedResourceInResourcePolicy,
 	}
 }
 

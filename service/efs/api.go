@@ -65,6 +65,12 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 // data in the application's own directory and any subdirectories. To learn
 // more, see Mounting a file system using EFS access points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html).
 //
+// If multiple requests to create access points on the same file system are
+// sent in quick succession, and the file system is near the limit of 120 access
+// points, you may experience a throttling response for these requests. This
+// is to ensure that the file system does not exceed the stated access point
+// limit.
+//
 // This operation requires permissions for the elasticfilesystem:CreateAccessPoint
 // action.
 //
@@ -103,7 +109,8 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 //
 //   - ThrottlingException
 //     Returned when the CreateAccessPoint API action is called too quickly and
-//     the number of Access Points in the account is nearing the limit of 120.
+//     the number of Access Points on the file system is nearing the limit of 120
+//     (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateAccessPoint
 func (c *EFS) CreateAccessPoint(input *CreateAccessPointInput) (*CreateAccessPointOutput, error) {
@@ -4438,13 +4445,12 @@ type CreateFileSystemInput struct {
 	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 
-	// Specifies the throughput mode for the file system, either bursting or provisioned.
-	// If you set ThroughputMode to provisioned, you must also set a value for ProvisionedThroughputInMibps.
-	// After you create the file system, you can decrease your file system's throughput
-	// in Provisioned Throughput mode or change between the throughput modes, as
-	// long as it’s been more than 24 hours since the last decrease or throughput
-	// mode change. For more information, see Specifying throughput with provisioned
-	// mode (https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput)
+	// Specifies the throughput mode for the file system. The mode can be bursting,
+	// provisioned, or elastic. If you set ThroughputMode to provisioned, you must
+	// also set a value for ProvisionedThroughputInMibps. After you create the file
+	// system, you can decrease your file system's throughput in Provisioned Throughput
+	// mode or change between the throughput modes, with certain time restrictions.
+	// For more information, see Specifying throughput with provisioned mode (https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput)
 	// in the Amazon EFS User Guide.
 	//
 	// Default is bursting.
@@ -9761,7 +9767,8 @@ func (s TagResourceOutput) GoString() string {
 }
 
 // Returned when the CreateAccessPoint API action is called too quickly and
-// the number of Access Points in the account is nearing the limit of 120.
+// the number of Access Points on the file system is nearing the limit of 120
+// (https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region).
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10667,6 +10674,9 @@ const (
 
 	// ThroughputModeProvisioned is a ThroughputMode enum value
 	ThroughputModeProvisioned = "provisioned"
+
+	// ThroughputModeElastic is a ThroughputMode enum value
+	ThroughputModeElastic = "elastic"
 )
 
 // ThroughputMode_Values returns all elements of the ThroughputMode enum
@@ -10674,6 +10684,7 @@ func ThroughputMode_Values() []string {
 	return []string{
 		ThroughputModeBursting,
 		ThroughputModeProvisioned,
+		ThroughputModeElastic,
 	}
 }
 
@@ -10692,6 +10703,9 @@ const (
 
 	// TransitionToIARulesAfter90Days is a TransitionToIARules enum value
 	TransitionToIARulesAfter90Days = "AFTER_90_DAYS"
+
+	// TransitionToIARulesAfter1Day is a TransitionToIARules enum value
+	TransitionToIARulesAfter1Day = "AFTER_1_DAY"
 )
 
 // TransitionToIARules_Values returns all elements of the TransitionToIARules enum
@@ -10702,6 +10716,7 @@ func TransitionToIARules_Values() []string {
 		TransitionToIARulesAfter30Days,
 		TransitionToIARulesAfter60Days,
 		TransitionToIARulesAfter90Days,
+		TransitionToIARulesAfter1Day,
 	}
 }
 

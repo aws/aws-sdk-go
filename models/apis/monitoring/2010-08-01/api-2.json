@@ -1380,6 +1380,7 @@
       "max":255,
       "min":1
     },
+    "IncludeLinkedAccounts":{"type":"boolean"},
     "InsightRule":{
       "type":"structure",
       "required":[
@@ -1657,18 +1658,22 @@
         "MetricName":{"shape":"MetricName"},
         "Dimensions":{"shape":"DimensionFilters"},
         "NextToken":{"shape":"NextToken"},
-        "RecentlyActive":{"shape":"RecentlyActive"}
+        "RecentlyActive":{"shape":"RecentlyActive"},
+        "IncludeLinkedAccounts":{"shape":"IncludeLinkedAccounts"},
+        "OwningAccount":{"shape":"AccountId"}
       }
     },
     "ListMetricsOutput":{
       "type":"structure",
       "members":{
         "Metrics":{"shape":"Metrics"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "OwningAccounts":{"shape":"OwningAccounts"}
       },
       "xmlOrder":[
         "Metrics",
-        "NextToken"
+        "NextToken",
+        "OwningAccounts"
       ]
     },
     "ListTagsForResourceInput":{
@@ -2018,6 +2023,10 @@
     },
     "NextToken":{"type":"string"},
     "OutputFormat":{"type":"string"},
+    "OwningAccounts":{
+      "type":"list",
+      "member":{"shape":"AccountId"}
+    },
     "PartialFailure":{
       "type":"structure",
       "members":{
@@ -2387,7 +2396,8 @@
       "enum":[
         "Complete",
         "InternalError",
-        "PartialData"
+        "PartialData",
+        "Forbidden"
       ]
     },
     "StopMetricStreamsInput":{

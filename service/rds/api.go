@@ -1243,6 +1243,137 @@ func (c *RDS) CopyOptionGroupWithContext(ctx aws.Context, input *CopyOptionGroup
 	return out, req.Send()
 }
 
+const opCreateBlueGreenDeployment = "CreateBlueGreenDeployment"
+
+// CreateBlueGreenDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBlueGreenDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBlueGreenDeployment for more information on using the CreateBlueGreenDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateBlueGreenDeploymentRequest method.
+//	req, resp := client.CreateBlueGreenDeploymentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateBlueGreenDeployment
+func (c *RDS) CreateBlueGreenDeploymentRequest(input *CreateBlueGreenDeploymentInput) (req *request.Request, output *CreateBlueGreenDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opCreateBlueGreenDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateBlueGreenDeploymentInput{}
+	}
+
+	output = &CreateBlueGreenDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateBlueGreenDeployment API operation for Amazon Relational Database Service.
+//
+// Creates a blue/green deployment.
+//
+// A blue/green deployment creates a staging environment that copies the production
+// environment. In a blue/green deployment, the blue environment is the current
+// production environment. The green environment is the staging environment.
+// The staging environment stays in sync with the current production environment
+// using logical replication.
+//
+// You can make changes to the databases in the green environment without affecting
+// production workloads. For example, you can upgrade the major or minor DB
+// engine version, change database parameters, or make schema changes in the
+// staging environment. You can thoroughly test changes in the green environment.
+// When ready, you can switch over the environments to promote the green environment
+// to be the new production environment. The switchover typically takes under
+// a minute.
+//
+// For more information, see Using Amazon RDS Blue/Green Deployments for database
+// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+// in the Amazon Aurora User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation CreateBlueGreenDeployment for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//     DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   - ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//     DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
+//   - ErrCodeSourceDatabaseNotSupportedFault "SourceDatabaseNotSupportedFault"
+//     The source DB instance isn't supported for a blue/green deployment.
+//
+//   - ErrCodeSourceClusterNotSupportedFault "SourceClusterNotSupportedFault"
+//     The source DB cluster isn't supported for a blue/green deployment.
+//
+//   - ErrCodeBlueGreenDeploymentAlreadyExistsFault "BlueGreenDeploymentAlreadyExistsFault"
+//     A blue/green deployment with the specified name already exists.
+//
+//   - ErrCodeDBParameterGroupNotFoundFault "DBParameterGroupNotFound"
+//     DBParameterGroupName doesn't refer to an existing DB parameter group.
+//
+//   - ErrCodeDBClusterParameterGroupNotFoundFault "DBClusterParameterGroupNotFound"
+//     DBClusterParameterGroupName doesn't refer to an existing DB cluster parameter
+//     group.
+//
+//   - ErrCodeInstanceQuotaExceededFault "InstanceQuotaExceeded"
+//     The request would result in the user exceeding the allowed number of DB instances.
+//
+//   - ErrCodeDBClusterQuotaExceededFault "DBClusterQuotaExceededFault"
+//     The user attempted to create a new DB cluster and the user has already reached
+//     the maximum allowed DB cluster quota.
+//
+//   - ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//     The DB instance isn't in a valid state.
+//
+//   - ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//     The requested operation can't be performed while the cluster is in this state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateBlueGreenDeployment
+func (c *RDS) CreateBlueGreenDeployment(input *CreateBlueGreenDeploymentInput) (*CreateBlueGreenDeploymentOutput, error) {
+	req, out := c.CreateBlueGreenDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// CreateBlueGreenDeploymentWithContext is the same as CreateBlueGreenDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBlueGreenDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) CreateBlueGreenDeploymentWithContext(ctx aws.Context, input *CreateBlueGreenDeploymentInput, opts ...request.Option) (*CreateBlueGreenDeploymentOutput, error) {
+	req, out := c.CreateBlueGreenDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCustomDBEngineVersion = "CreateCustomDBEngineVersion"
 
 // CreateCustomDBEngineVersionRequest generates a "aws/request.Request" representing the
@@ -3029,6 +3160,95 @@ func (c *RDS) CreateOptionGroupWithContext(ctx aws.Context, input *CreateOptionG
 	return out, req.Send()
 }
 
+const opDeleteBlueGreenDeployment = "DeleteBlueGreenDeployment"
+
+// DeleteBlueGreenDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBlueGreenDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBlueGreenDeployment for more information on using the DeleteBlueGreenDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteBlueGreenDeploymentRequest method.
+//	req, resp := client.DeleteBlueGreenDeploymentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteBlueGreenDeployment
+func (c *RDS) DeleteBlueGreenDeploymentRequest(input *DeleteBlueGreenDeploymentInput) (req *request.Request, output *DeleteBlueGreenDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBlueGreenDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteBlueGreenDeploymentInput{}
+	}
+
+	output = &DeleteBlueGreenDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteBlueGreenDeployment API operation for Amazon Relational Database Service.
+//
+// Deletes a blue/green deployment.
+//
+// For more information, see Using Amazon RDS Blue/Green Deployments for database
+// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+// in the Amazon Aurora User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DeleteBlueGreenDeployment for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeBlueGreenDeploymentNotFoundFault "BlueGreenDeploymentNotFoundFault"
+//     BlueGreenDeploymentIdentifier doesn't refer to an existing blue/green deployment.
+//
+//   - ErrCodeInvalidBlueGreenDeploymentStateFault "InvalidBlueGreenDeploymentStateFault"
+//     The blue/green deployment can't be switched over or deleted because there
+//     is an invalid configuration in the green environment.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteBlueGreenDeployment
+func (c *RDS) DeleteBlueGreenDeployment(input *DeleteBlueGreenDeploymentInput) (*DeleteBlueGreenDeploymentOutput, error) {
+	req, out := c.DeleteBlueGreenDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBlueGreenDeploymentWithContext is the same as DeleteBlueGreenDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBlueGreenDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DeleteBlueGreenDeploymentWithContext(ctx aws.Context, input *DeleteBlueGreenDeploymentInput, opts ...request.Option) (*DeleteBlueGreenDeploymentOutput, error) {
+	req, out := c.DeleteBlueGreenDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteCustomDBEngineVersion = "DeleteCustomDBEngineVersion"
 
 // DeleteCustomDBEngineVersionRequest generates a "aws/request.Request" representing the
@@ -4652,6 +4872,147 @@ func (c *RDS) DescribeAccountAttributesWithContext(ctx aws.Context, input *Descr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opDescribeBlueGreenDeployments = "DescribeBlueGreenDeployments"
+
+// DescribeBlueGreenDeploymentsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBlueGreenDeployments operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeBlueGreenDeployments for more information on using the DescribeBlueGreenDeployments
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeBlueGreenDeploymentsRequest method.
+//	req, resp := client.DescribeBlueGreenDeploymentsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeBlueGreenDeployments
+func (c *RDS) DescribeBlueGreenDeploymentsRequest(input *DescribeBlueGreenDeploymentsInput) (req *request.Request, output *DescribeBlueGreenDeploymentsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeBlueGreenDeployments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeBlueGreenDeploymentsInput{}
+	}
+
+	output = &DescribeBlueGreenDeploymentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeBlueGreenDeployments API operation for Amazon Relational Database Service.
+//
+// Returns information about blue/green deployments.
+//
+// For more information, see Using Amazon RDS Blue/Green Deployments for database
+// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+// in the Amazon Aurora User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DescribeBlueGreenDeployments for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeBlueGreenDeploymentNotFoundFault "BlueGreenDeploymentNotFoundFault"
+//     BlueGreenDeploymentIdentifier doesn't refer to an existing blue/green deployment.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeBlueGreenDeployments
+func (c *RDS) DescribeBlueGreenDeployments(input *DescribeBlueGreenDeploymentsInput) (*DescribeBlueGreenDeploymentsOutput, error) {
+	req, out := c.DescribeBlueGreenDeploymentsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeBlueGreenDeploymentsWithContext is the same as DescribeBlueGreenDeployments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBlueGreenDeployments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeBlueGreenDeploymentsWithContext(ctx aws.Context, input *DescribeBlueGreenDeploymentsInput, opts ...request.Option) (*DescribeBlueGreenDeploymentsOutput, error) {
+	req, out := c.DescribeBlueGreenDeploymentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeBlueGreenDeploymentsPages iterates over the pages of a DescribeBlueGreenDeployments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeBlueGreenDeployments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeBlueGreenDeployments operation.
+//	pageNum := 0
+//	err := client.DescribeBlueGreenDeploymentsPages(params,
+//	    func(page *rds.DescribeBlueGreenDeploymentsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *RDS) DescribeBlueGreenDeploymentsPages(input *DescribeBlueGreenDeploymentsInput, fn func(*DescribeBlueGreenDeploymentsOutput, bool) bool) error {
+	return c.DescribeBlueGreenDeploymentsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeBlueGreenDeploymentsPagesWithContext same as DescribeBlueGreenDeploymentsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeBlueGreenDeploymentsPagesWithContext(ctx aws.Context, input *DescribeBlueGreenDeploymentsInput, fn func(*DescribeBlueGreenDeploymentsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeBlueGreenDeploymentsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeBlueGreenDeploymentsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeBlueGreenDeploymentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeCertificates = "DescribeCertificates"
@@ -15029,6 +15390,99 @@ func (c *RDS) StopDBInstanceAutomatedBackupsReplicationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opSwitchoverBlueGreenDeployment = "SwitchoverBlueGreenDeployment"
+
+// SwitchoverBlueGreenDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the SwitchoverBlueGreenDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SwitchoverBlueGreenDeployment for more information on using the SwitchoverBlueGreenDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SwitchoverBlueGreenDeploymentRequest method.
+//	req, resp := client.SwitchoverBlueGreenDeploymentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverBlueGreenDeployment
+func (c *RDS) SwitchoverBlueGreenDeploymentRequest(input *SwitchoverBlueGreenDeploymentInput) (req *request.Request, output *SwitchoverBlueGreenDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opSwitchoverBlueGreenDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SwitchoverBlueGreenDeploymentInput{}
+	}
+
+	output = &SwitchoverBlueGreenDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SwitchoverBlueGreenDeployment API operation for Amazon Relational Database Service.
+//
+// Switches over a blue/green deployment.
+//
+// Before you switch over, production traffic is routed to the databases in
+// the blue environment. After you switch over, production traffic is routed
+// to the databases in the green environment.
+//
+// For more information, see Using Amazon RDS Blue/Green Deployments for database
+// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+// in the Amazon Aurora User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation SwitchoverBlueGreenDeployment for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeBlueGreenDeploymentNotFoundFault "BlueGreenDeploymentNotFoundFault"
+//     BlueGreenDeploymentIdentifier doesn't refer to an existing blue/green deployment.
+//
+//   - ErrCodeInvalidBlueGreenDeploymentStateFault "InvalidBlueGreenDeploymentStateFault"
+//     The blue/green deployment can't be switched over or deleted because there
+//     is an invalid configuration in the green environment.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SwitchoverBlueGreenDeployment
+func (c *RDS) SwitchoverBlueGreenDeployment(input *SwitchoverBlueGreenDeploymentInput) (*SwitchoverBlueGreenDeploymentOutput, error) {
+	req, out := c.SwitchoverBlueGreenDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// SwitchoverBlueGreenDeploymentWithContext is the same as SwitchoverBlueGreenDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SwitchoverBlueGreenDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) SwitchoverBlueGreenDeploymentWithContext(ctx aws.Context, input *SwitchoverBlueGreenDeploymentInput, opts ...request.Option) (*SwitchoverBlueGreenDeploymentOutput, error) {
+	req, out := c.SwitchoverBlueGreenDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSwitchoverReadReplica = "SwitchoverReadReplica"
 
 // SwitchoverReadReplicaRequest generates a "aws/request.Request" representing the
@@ -16163,6 +16617,220 @@ func (s *BacktrackDBClusterOutput) SetDBClusterIdentifier(v string) *BacktrackDB
 
 // SetStatus sets the Status field's value.
 func (s *BacktrackDBClusterOutput) SetStatus(v string) *BacktrackDBClusterOutput {
+	s.Status = &v
+	return s
+}
+
+// Contains the details about a blue/green deployment.
+//
+// For more information, see Using Amazon RDS Blue/Green Deployments for database
+// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+// in the Amazon Aurora User Guide.
+type BlueGreenDeployment struct {
+	_ struct{} `type:"structure"`
+
+	// The system-generated identifier of the blue/green deployment.
+	BlueGreenDeploymentIdentifier *string `min:"1" type:"string"`
+
+	// The user-supplied name of the blue/green deployment.
+	BlueGreenDeploymentName *string `min:"1" type:"string"`
+
+	// Specifies the time when the blue/green deployment was created, in Universal
+	// Coordinated Time (UTC).
+	CreateTime *time.Time `type:"timestamp"`
+
+	// Specifies the time when the blue/green deployment was deleted, in Universal
+	// Coordinated Time (UTC).
+	DeleteTime *time.Time `type:"timestamp"`
+
+	// The source database for the blue/green deployment.
+	//
+	// Before switchover, the source database is the production database in the
+	// blue environment.
+	Source *string `min:"1" type:"string"`
+
+	// The status of the blue/green deployment.
+	//
+	// Values:
+	//
+	//    * PROVISIONING - Resources are being created in the green environment.
+	//
+	//    * AVAILABLE - Resources are available in the green environment.
+	//
+	//    * SWITCHOVER_IN_PROGRESS - The deployment is being switched from the blue
+	//    environment to the green environment.
+	//
+	//    * SWITCHOVER_COMPLETED - Switchover from the blue environment to the green
+	//    environment is complete.
+	//
+	//    * INVALID_CONFIGURATION - Resources in the green environment are invalid,
+	//    so switchover isn't possible.
+	//
+	//    * SWITCHOVER_FAILED - Switchover was attempted but failed.
+	//
+	//    * DELETING - The blue/green deployment is being deleted.
+	Status *string `type:"string"`
+
+	// Additional information about the status of the blue/green deployment.
+	StatusDetails *string `type:"string"`
+
+	// The details about each source and target resource in the blue/green deployment.
+	SwitchoverDetails []*SwitchoverDetail `type:"list"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The target database for the blue/green deployment.
+	//
+	// Before switchover, the target database is the clone database in the green
+	// environment.
+	Target *string `min:"1" type:"string"`
+
+	// Either tasks to be performed or tasks that have been completed on the target
+	// database before switchover.
+	Tasks []*BlueGreenDeploymentTask `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BlueGreenDeployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BlueGreenDeployment) GoString() string {
+	return s.String()
+}
+
+// SetBlueGreenDeploymentIdentifier sets the BlueGreenDeploymentIdentifier field's value.
+func (s *BlueGreenDeployment) SetBlueGreenDeploymentIdentifier(v string) *BlueGreenDeployment {
+	s.BlueGreenDeploymentIdentifier = &v
+	return s
+}
+
+// SetBlueGreenDeploymentName sets the BlueGreenDeploymentName field's value.
+func (s *BlueGreenDeployment) SetBlueGreenDeploymentName(v string) *BlueGreenDeployment {
+	s.BlueGreenDeploymentName = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *BlueGreenDeployment) SetCreateTime(v time.Time) *BlueGreenDeployment {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDeleteTime sets the DeleteTime field's value.
+func (s *BlueGreenDeployment) SetDeleteTime(v time.Time) *BlueGreenDeployment {
+	s.DeleteTime = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *BlueGreenDeployment) SetSource(v string) *BlueGreenDeployment {
+	s.Source = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BlueGreenDeployment) SetStatus(v string) *BlueGreenDeployment {
+	s.Status = &v
+	return s
+}
+
+// SetStatusDetails sets the StatusDetails field's value.
+func (s *BlueGreenDeployment) SetStatusDetails(v string) *BlueGreenDeployment {
+	s.StatusDetails = &v
+	return s
+}
+
+// SetSwitchoverDetails sets the SwitchoverDetails field's value.
+func (s *BlueGreenDeployment) SetSwitchoverDetails(v []*SwitchoverDetail) *BlueGreenDeployment {
+	s.SwitchoverDetails = v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *BlueGreenDeployment) SetTagList(v []*Tag) *BlueGreenDeployment {
+	s.TagList = v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *BlueGreenDeployment) SetTarget(v string) *BlueGreenDeployment {
+	s.Target = &v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *BlueGreenDeployment) SetTasks(v []*BlueGreenDeploymentTask) *BlueGreenDeployment {
+	s.Tasks = v
+	return s
+}
+
+// Contains the details about a task for a blue/green deployment.
+//
+// For more information, see Using Amazon RDS Blue/Green Deployments for database
+// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+// in the Amazon Aurora User Guide.
+type BlueGreenDeploymentTask struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blue/green deployment task.
+	Name *string `type:"string"`
+
+	// The status of the blue/green deployment task.
+	//
+	// Values:
+	//
+	//    * PENDING - The resources are being prepared for deployment.
+	//
+	//    * IN_PROGRESS - The resource is being deployed.
+	//
+	//    * COMPLETED - The resource has been deployed.
+	//
+	//    * FAILED - Deployment of the resource failed.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BlueGreenDeploymentTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BlueGreenDeploymentTask) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *BlueGreenDeploymentTask) SetName(v string) *BlueGreenDeploymentTask {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BlueGreenDeploymentTask) SetStatus(v string) *BlueGreenDeploymentTask {
 	s.Status = &v
 	return s
 }
@@ -17817,6 +18485,174 @@ func (s *CopyOptionGroupOutput) SetOptionGroup(v *OptionGroup) *CopyOptionGroupO
 	return s
 }
 
+type CreateBlueGreenDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blue/green deployment.
+	//
+	// Constraints:
+	//
+	//    * Can't be the same as an existing blue/green deployment name in the same
+	//    account and Amazon Web Services Region.
+	//
+	// BlueGreenDeploymentName is a required field
+	BlueGreenDeploymentName *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the source production database.
+	//
+	// Specify the database that you want to clone. The blue/green deployment creates
+	// this database in the green environment. You can make updates to the database
+	// in the green environment, such as an engine version upgrade. When you are
+	// ready, you can switch the database in the green environment to be the production
+	// database.
+	//
+	// Source is a required field
+	Source *string `min:"1" type:"string" required:"true"`
+
+	// Tags to assign to the blue/green deployment.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The DB cluster parameter group associated with the Aurora DB cluster in the
+	// green environment.
+	//
+	// To test parameter changes, specify a DB cluster parameter group that is different
+	// from the one associated with the source DB cluster.
+	TargetDBClusterParameterGroupName *string `min:"1" type:"string"`
+
+	// The DB parameter group associated with the DB instance in the green environment.
+	//
+	// To test parameter changes, specify a DB parameter group that is different
+	// from the one associated with the source DB instance.
+	TargetDBParameterGroupName *string `min:"1" type:"string"`
+
+	// The engine version of the database in the green environment.
+	//
+	// Specify the engine version to upgrade to in the green environment.
+	TargetEngineVersion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBlueGreenDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBlueGreenDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBlueGreenDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBlueGreenDeploymentInput"}
+	if s.BlueGreenDeploymentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueGreenDeploymentName"))
+	}
+	if s.BlueGreenDeploymentName != nil && len(*s.BlueGreenDeploymentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueGreenDeploymentName", 1))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Source != nil && len(*s.Source) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Source", 1))
+	}
+	if s.TargetDBClusterParameterGroupName != nil && len(*s.TargetDBClusterParameterGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetDBClusterParameterGroupName", 1))
+	}
+	if s.TargetDBParameterGroupName != nil && len(*s.TargetDBParameterGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetDBParameterGroupName", 1))
+	}
+	if s.TargetEngineVersion != nil && len(*s.TargetEngineVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetEngineVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueGreenDeploymentName sets the BlueGreenDeploymentName field's value.
+func (s *CreateBlueGreenDeploymentInput) SetBlueGreenDeploymentName(v string) *CreateBlueGreenDeploymentInput {
+	s.BlueGreenDeploymentName = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *CreateBlueGreenDeploymentInput) SetSource(v string) *CreateBlueGreenDeploymentInput {
+	s.Source = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateBlueGreenDeploymentInput) SetTags(v []*Tag) *CreateBlueGreenDeploymentInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDBClusterParameterGroupName sets the TargetDBClusterParameterGroupName field's value.
+func (s *CreateBlueGreenDeploymentInput) SetTargetDBClusterParameterGroupName(v string) *CreateBlueGreenDeploymentInput {
+	s.TargetDBClusterParameterGroupName = &v
+	return s
+}
+
+// SetTargetDBParameterGroupName sets the TargetDBParameterGroupName field's value.
+func (s *CreateBlueGreenDeploymentInput) SetTargetDBParameterGroupName(v string) *CreateBlueGreenDeploymentInput {
+	s.TargetDBParameterGroupName = &v
+	return s
+}
+
+// SetTargetEngineVersion sets the TargetEngineVersion field's value.
+func (s *CreateBlueGreenDeploymentInput) SetTargetEngineVersion(v string) *CreateBlueGreenDeploymentInput {
+	s.TargetEngineVersion = &v
+	return s
+}
+
+type CreateBlueGreenDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the details about a blue/green deployment.
+	//
+	// For more information, see Using Amazon RDS Blue/Green Deployments for database
+	// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+	// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+	// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+	// in the Amazon Aurora User Guide.
+	BlueGreenDeployment *BlueGreenDeployment `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBlueGreenDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBlueGreenDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueGreenDeployment sets the BlueGreenDeployment field's value.
+func (s *CreateBlueGreenDeploymentOutput) SetBlueGreenDeployment(v *BlueGreenDeployment) *CreateBlueGreenDeploymentOutput {
+	s.BlueGreenDeployment = v
+	return s
+}
+
 type CreateCustomDBEngineVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17840,9 +18676,9 @@ type CreateCustomDBEngineVersionInput struct {
 	// Engine is a required field
 	Engine *string `min:"1" type:"string" required:"true"`
 
-	// The name of your CEV. The name format is 19.customized_string . For example,
-	// a valid name is 19.my_cev1. This setting is required for RDS Custom for Oracle,
-	// but optional for Amazon RDS. The combination of Engine and EngineVersion
+	// The name of your CEV. The name format is 19.customized_string. For example,
+	// a valid CEV name is 19.my_cev1. This setting is required for RDS Custom for
+	// Oracle, but optional for Amazon RDS. The combination of Engine and EngineVersion
 	// is unique per customer per Region.
 	//
 	// EngineVersion is a required field
@@ -20418,7 +21254,7 @@ type CreateDBInstanceInput struct {
 	//
 	// A custom engine version (CEV) that you have previously created. This setting
 	// is required for RDS Custom for Oracle. The CEV name has the following format:
-	// 19.customized_string . An example identifier is 19.my_cev1. For more information,
+	// 19.customized_string. A valid CEV name is 19.my_cev1. For more information,
 	// see Creating an RDS Custom for Oracle DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create)
 	// in the Amazon RDS User Guide.
 	//
@@ -28017,6 +28853,106 @@ func (s *DBSubnetGroup) SetVpcId(v string) *DBSubnetGroup {
 	return s
 }
 
+type DeleteBlueGreenDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The blue/green deployment identifier of the deployment to be deleted. This
+	// parameter isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must match an existing blue/green deployment identifier.
+	//
+	// BlueGreenDeploymentIdentifier is a required field
+	BlueGreenDeploymentIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// A value that indicates whether to delete the resources in the green environment.
+	DeleteTarget *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBlueGreenDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBlueGreenDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBlueGreenDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBlueGreenDeploymentInput"}
+	if s.BlueGreenDeploymentIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueGreenDeploymentIdentifier"))
+	}
+	if s.BlueGreenDeploymentIdentifier != nil && len(*s.BlueGreenDeploymentIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueGreenDeploymentIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueGreenDeploymentIdentifier sets the BlueGreenDeploymentIdentifier field's value.
+func (s *DeleteBlueGreenDeploymentInput) SetBlueGreenDeploymentIdentifier(v string) *DeleteBlueGreenDeploymentInput {
+	s.BlueGreenDeploymentIdentifier = &v
+	return s
+}
+
+// SetDeleteTarget sets the DeleteTarget field's value.
+func (s *DeleteBlueGreenDeploymentInput) SetDeleteTarget(v bool) *DeleteBlueGreenDeploymentInput {
+	s.DeleteTarget = &v
+	return s
+}
+
+type DeleteBlueGreenDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the details about a blue/green deployment.
+	//
+	// For more information, see Using Amazon RDS Blue/Green Deployments for database
+	// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+	// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+	// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+	// in the Amazon Aurora User Guide.
+	BlueGreenDeployment *BlueGreenDeployment `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBlueGreenDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBlueGreenDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueGreenDeployment sets the BlueGreenDeployment field's value.
+func (s *DeleteBlueGreenDeploymentOutput) SetBlueGreenDeployment(v *BlueGreenDeployment) *DeleteBlueGreenDeploymentOutput {
+	s.BlueGreenDeployment = v
+	return s
+}
+
 type DeleteCustomDBEngineVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29930,6 +30866,163 @@ func (s DescribeAccountAttributesOutput) GoString() string {
 // SetAccountQuotas sets the AccountQuotas field's value.
 func (s *DescribeAccountAttributesOutput) SetAccountQuotas(v []*AccountQuota) *DescribeAccountAttributesOutput {
 	s.AccountQuotas = v
+	return s
+}
+
+type DescribeBlueGreenDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The blue/green deployment identifier. If this parameter is specified, information
+	// from only the specific blue/green deployment is returned. This parameter
+	// isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * If supplied, must match an existing blue/green deployment identifier.
+	BlueGreenDeploymentIdentifier *string `min:"1" type:"string"`
+
+	// A filter that specifies one or more blue/green deployments to describe.
+	//
+	// Supported filters:
+	//
+	//    * blue-green-deployment-identifier - Accepts system-generated identifiers
+	//    for blue/green deployments. The results list only includes information
+	//    about the blue/green deployments with the specified identifiers.
+	//
+	//    * blue-green-deployment-name - Accepts user-supplied names for blue/green
+	//    deployments. The results list only includes information about the blue/green
+	//    deployments with the specified names.
+	//
+	//    * source - Accepts source databases for a blue/green deployment. The results
+	//    list only includes information about the blue/green deployments with the
+	//    specified source databases.
+	//
+	//    * target - Accepts target databases for a blue/green deployment. The results
+	//    list only includes information about the blue/green deployments with the
+	//    specified target databases.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeBlueGreenDeployments
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so you can retrieve the remaining results.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `min:"20" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBlueGreenDeploymentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBlueGreenDeploymentsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBlueGreenDeploymentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBlueGreenDeploymentsInput"}
+	if s.BlueGreenDeploymentIdentifier != nil && len(*s.BlueGreenDeploymentIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueGreenDeploymentIdentifier", 1))
+	}
+	if s.MaxRecords != nil && *s.MaxRecords < 20 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRecords", 20))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueGreenDeploymentIdentifier sets the BlueGreenDeploymentIdentifier field's value.
+func (s *DescribeBlueGreenDeploymentsInput) SetBlueGreenDeploymentIdentifier(v string) *DescribeBlueGreenDeploymentsInput {
+	s.BlueGreenDeploymentIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeBlueGreenDeploymentsInput) SetFilters(v []*Filter) *DescribeBlueGreenDeploymentsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeBlueGreenDeploymentsInput) SetMarker(v string) *DescribeBlueGreenDeploymentsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeBlueGreenDeploymentsInput) SetMaxRecords(v int64) *DescribeBlueGreenDeploymentsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeBlueGreenDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a list of blue/green deployments for the user.
+	BlueGreenDeployments []*BlueGreenDeployment `type:"list"`
+
+	// A pagination token that can be used in a later DescribeBlueGreenDeployments
+	// request.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBlueGreenDeploymentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBlueGreenDeploymentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueGreenDeployments sets the BlueGreenDeployments field's value.
+func (s *DescribeBlueGreenDeploymentsOutput) SetBlueGreenDeployments(v []*BlueGreenDeployment) *DescribeBlueGreenDeploymentsOutput {
+	s.BlueGreenDeployments = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeBlueGreenDeploymentsOutput) SetMarker(v string) *DescribeBlueGreenDeploymentsOutput {
+	s.Marker = &v
 	return s
 }
 
@@ -50718,6 +51811,181 @@ func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 	return s
 }
 
+type SwitchoverBlueGreenDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The blue/green deployment identifier.
+	//
+	// Constraints:
+	//
+	//    * Must match an existing blue/green deployment identifier.
+	//
+	// BlueGreenDeploymentIdentifier is a required field
+	BlueGreenDeploymentIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The amount of time, in seconds, for the switchover to complete. The default
+	// is 300.
+	//
+	// If the switchover takes longer than the specified duration, then any changes
+	// are rolled back, and no changes are made to the environments.
+	SwitchoverTimeout *int64 `min:"30" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverBlueGreenDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverBlueGreenDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SwitchoverBlueGreenDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SwitchoverBlueGreenDeploymentInput"}
+	if s.BlueGreenDeploymentIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueGreenDeploymentIdentifier"))
+	}
+	if s.BlueGreenDeploymentIdentifier != nil && len(*s.BlueGreenDeploymentIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueGreenDeploymentIdentifier", 1))
+	}
+	if s.SwitchoverTimeout != nil && *s.SwitchoverTimeout < 30 {
+		invalidParams.Add(request.NewErrParamMinValue("SwitchoverTimeout", 30))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueGreenDeploymentIdentifier sets the BlueGreenDeploymentIdentifier field's value.
+func (s *SwitchoverBlueGreenDeploymentInput) SetBlueGreenDeploymentIdentifier(v string) *SwitchoverBlueGreenDeploymentInput {
+	s.BlueGreenDeploymentIdentifier = &v
+	return s
+}
+
+// SetSwitchoverTimeout sets the SwitchoverTimeout field's value.
+func (s *SwitchoverBlueGreenDeploymentInput) SetSwitchoverTimeout(v int64) *SwitchoverBlueGreenDeploymentInput {
+	s.SwitchoverTimeout = &v
+	return s
+}
+
+type SwitchoverBlueGreenDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the details about a blue/green deployment.
+	//
+	// For more information, see Using Amazon RDS Blue/Green Deployments for database
+	// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+	// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+	// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+	// in the Amazon Aurora User Guide.
+	BlueGreenDeployment *BlueGreenDeployment `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverBlueGreenDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverBlueGreenDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueGreenDeployment sets the BlueGreenDeployment field's value.
+func (s *SwitchoverBlueGreenDeploymentOutput) SetBlueGreenDeployment(v *BlueGreenDeployment) *SwitchoverBlueGreenDeploymentOutput {
+	s.BlueGreenDeployment = v
+	return s
+}
+
+// Contains the details about a blue/green deployment.
+//
+// For more information, see Using Amazon RDS Blue/Green Deployments for database
+// updates (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html)
+// in the Amazon RDS User Guide and Using Amazon RDS Blue/Green Deployments
+// for database updates (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html)
+// in the Amazon Aurora User Guide.
+type SwitchoverDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a resource in the blue environment.
+	SourceMember *string `min:"1" type:"string"`
+
+	// The switchover status of a resource in a blue/green deployment.
+	//
+	// Values:
+	//
+	//    * preparing-for-switchover - The resource is being prepared to switch
+	//    over.
+	//
+	//    * ready-for-switchover - The resource is ready to switch over.
+	//
+	//    * switchover-in-progress - The resource is being switched over.
+	//
+	//    * switchover-completed - The resource has been switched over.
+	//
+	//    * switchover-failed - The resource attempted to switch over but failed.
+	Status *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of a resource in the green environment.
+	TargetMember *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverDetail) GoString() string {
+	return s.String()
+}
+
+// SetSourceMember sets the SourceMember field's value.
+func (s *SwitchoverDetail) SetSourceMember(v string) *SwitchoverDetail {
+	s.SourceMember = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SwitchoverDetail) SetStatus(v string) *SwitchoverDetail {
+	s.Status = &v
+	return s
+}
+
+// SetTargetMember sets the TargetMember field's value.
+func (s *SwitchoverDetail) SetTargetMember(v string) *SwitchoverDetail {
+	s.TargetMember = &v
+	return s
+}
+
 type SwitchoverReadReplicaInput struct {
 	_ struct{} `type:"structure"`
 
@@ -50806,6 +52074,9 @@ func (s *SwitchoverReadReplicaOutput) SetDBInstance(v *DBInstance) *SwitchoverRe
 }
 
 // Metadata assigned to an Amazon RDS resource consisting of a key-value pair.
+//
+// For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+// in the Amazon RDS User Guide.
 type Tag struct {
 	_ struct{} `type:"structure"`
 

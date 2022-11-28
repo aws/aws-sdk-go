@@ -2532,6 +2532,108 @@ func (c *Drs) RetryDataReplicationWithContext(ctx aws.Context, input *RetryDataR
 	return out, req.Send()
 }
 
+const opReverseReplication = "ReverseReplication"
+
+// ReverseReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the ReverseReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ReverseReplication for more information on using the ReverseReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ReverseReplicationRequest method.
+//	req, resp := client.ReverseReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ReverseReplication
+func (c *Drs) ReverseReplicationRequest(input *ReverseReplicationInput) (req *request.Request, output *ReverseReplicationOutput) {
+	op := &request.Operation{
+		Name:       opReverseReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ReverseReplication",
+	}
+
+	if input == nil {
+		input = &ReverseReplicationInput{}
+	}
+
+	output = &ReverseReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ReverseReplication API operation for Elastic Disaster Recovery Service.
+//
+// Start replication to origin / target region - applies only to protected instances
+// that originated in EC2. For recovery instances on target region - starts
+// replication back to origin region. For failback instances on origin region
+// - starts replication to target region to re-protect them.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation ReverseReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the AWS service.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/ReverseReplication
+func (c *Drs) ReverseReplication(input *ReverseReplicationInput) (*ReverseReplicationOutput, error) {
+	req, out := c.ReverseReplicationRequest(input)
+	return out, req.Send()
+}
+
+// ReverseReplicationWithContext is the same as ReverseReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ReverseReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) ReverseReplicationWithContext(ctx aws.Context, input *ReverseReplicationInput, opts ...request.Option) (*ReverseReplicationOutput, error) {
+	req, out := c.ReverseReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartFailbackLaunch = "StartFailbackLaunch"
 
 // StartFailbackLaunchRequest generates a "aws/request.Request" representing the
@@ -2725,6 +2827,100 @@ func (c *Drs) StartRecoveryWithContext(ctx aws.Context, input *StartRecoveryInpu
 	return out, req.Send()
 }
 
+const opStartReplication = "StartReplication"
+
+// StartReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StartReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartReplication for more information on using the StartReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartReplicationRequest method.
+//	req, resp := client.StartReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StartReplication
+func (c *Drs) StartReplicationRequest(input *StartReplicationInput) (req *request.Request, output *StartReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStartReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartReplication",
+	}
+
+	if input == nil {
+		input = &StartReplicationInput{}
+	}
+
+	output = &StartReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartReplication API operation for Elastic Disaster Recovery Service.
+//
+// Starts replication for a stopped Source Server. This action would make the
+// Source Server protected again and restart billing for it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation StartReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StartReplication
+func (c *Drs) StartReplication(input *StartReplicationInput) (*StartReplicationOutput, error) {
+	req, out := c.StartReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StartReplicationWithContext is the same as StartReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) StartReplicationWithContext(ctx aws.Context, input *StartReplicationInput, opts ...request.Option) (*StartReplicationOutput, error) {
+	req, out := c.StartReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopFailback = "StopFailback"
 
 // StopFailbackRequest generates a "aws/request.Request" representing the
@@ -2811,6 +3007,100 @@ func (c *Drs) StopFailback(input *StopFailbackInput) (*StopFailbackOutput, error
 // for more information on using Contexts.
 func (c *Drs) StopFailbackWithContext(ctx aws.Context, input *StopFailbackInput, opts ...request.Option) (*StopFailbackOutput, error) {
 	req, out := c.StopFailbackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopReplication = "StopReplication"
+
+// StopReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StopReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopReplication for more information on using the StopReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopReplicationRequest method.
+//	req, resp := client.StopReplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StopReplication
+func (c *Drs) StopReplicationRequest(input *StopReplicationInput) (req *request.Request, output *StopReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStopReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StopReplication",
+	}
+
+	if input == nil {
+		input = &StopReplicationInput{}
+	}
+
+	output = &StopReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopReplication API operation for Elastic Disaster Recovery Service.
+//
+// Stops replication for a Source Server. This action would make the Source
+// Server unprotected, delete its existing snapshots and stop billing for it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Disaster Recovery Service's
+// API operation StopReplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource for this operation was not found.
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ConflictException
+//     The request could not be completed due to a conflict with the current state
+//     of the target resource.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - UninitializedAccountException
+//     The account performing the request has not been initialized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/drs-2020-02-26/StopReplication
+func (c *Drs) StopReplication(input *StopReplicationInput) (*StopReplicationOutput, error) {
+	req, out := c.StopReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StopReplicationWithContext is the same as StopReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Drs) StopReplicationWithContext(ctx aws.Context, input *StopReplicationInput, opts ...request.Option) (*StopReplicationOutput, error) {
+	req, out := c.StopReplicationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5863,6 +6153,17 @@ type DisconnectSourceServerOutput struct {
 	// The ID of the Recovery Instance associated with this Source Server.
 	RecoveryInstanceId *string `locationName:"recoveryInstanceId" min:"10" type:"string"`
 
+	// Replication direction of the Source Server.
+	ReplicationDirection *string `locationName:"replicationDirection" type:"string" enum:"ReplicationDirection"`
+
+	// For EC2-originated Source Servers which have been failed over and then failed
+	// back, this value will mean the ARN of the Source Server on the opposite replication
+	// direction.
+	ReversedDirectionSourceServerArn *string `locationName:"reversedDirectionSourceServerArn" min:"20" type:"string"`
+
+	// Source cloud properties of the Source Server.
+	SourceCloudProperties *SourceCloudProperties `locationName:"sourceCloudProperties" type:"structure"`
+
 	// The source properties of the Source Server.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -5925,6 +6226,24 @@ func (s *DisconnectSourceServerOutput) SetLifeCycle(v *LifeCycle) *DisconnectSou
 // SetRecoveryInstanceId sets the RecoveryInstanceId field's value.
 func (s *DisconnectSourceServerOutput) SetRecoveryInstanceId(v string) *DisconnectSourceServerOutput {
 	s.RecoveryInstanceId = &v
+	return s
+}
+
+// SetReplicationDirection sets the ReplicationDirection field's value.
+func (s *DisconnectSourceServerOutput) SetReplicationDirection(v string) *DisconnectSourceServerOutput {
+	s.ReplicationDirection = &v
+	return s
+}
+
+// SetReversedDirectionSourceServerArn sets the ReversedDirectionSourceServerArn field's value.
+func (s *DisconnectSourceServerOutput) SetReversedDirectionSourceServerArn(v string) *DisconnectSourceServerOutput {
+	s.ReversedDirectionSourceServerArn = &v
+	return s
+}
+
+// SetSourceCloudProperties sets the SourceCloudProperties field's value.
+func (s *DisconnectSourceServerOutput) SetSourceCloudProperties(v *SourceCloudProperties) *DisconnectSourceServerOutput {
+	s.SourceCloudProperties = v
 	return s
 }
 
@@ -7603,6 +7922,10 @@ type RecoveryInstance struct {
 	// The ID of the Job that created the Recovery Instance.
 	JobID *string `locationName:"jobID" min:"24" type:"string"`
 
+	// Environment (On Premises / AWS) of the instance that the recovery instance
+	// originated from.
+	OriginEnvironment *string `locationName:"originEnvironment" type:"string" enum:"OriginEnvironment"`
+
 	// The date and time of the Point in Time (PIT) snapshot that this Recovery
 	// Instance was launched from.
 	PointInTimeSnapshotDateTime *string `locationName:"pointInTimeSnapshotDateTime" min:"19" type:"string"`
@@ -7681,6 +8004,12 @@ func (s *RecoveryInstance) SetIsDrill(v bool) *RecoveryInstance {
 // SetJobID sets the JobID field's value.
 func (s *RecoveryInstance) SetJobID(v string) *RecoveryInstance {
 	s.JobID = &v
+	return s
+}
+
+// SetOriginEnvironment sets the OriginEnvironment field's value.
+func (s *RecoveryInstance) SetOriginEnvironment(v string) *RecoveryInstance {
+	s.OriginEnvironment = &v
 	return s
 }
 
@@ -8056,6 +8385,10 @@ type RecoveryInstanceFailback struct {
 	// The Job ID of the last failback log for this Recovery Instance.
 	FailbackJobID *string `locationName:"failbackJobID" min:"24" type:"string"`
 
+	// The launch type (Recovery / Drill) of the last launch for the failback replication
+	// of this recovery instance.
+	FailbackLaunchType *string `locationName:"failbackLaunchType" type:"string" enum:"FailbackLaunchType"`
+
 	// Whether we are failing back to the original Source Server for this Recovery
 	// Instance.
 	FailbackToOriginalServer *bool `locationName:"failbackToOriginalServer" type:"boolean"`
@@ -8119,6 +8452,12 @@ func (s *RecoveryInstanceFailback) SetFailbackInitiationTime(v string) *Recovery
 // SetFailbackJobID sets the FailbackJobID field's value.
 func (s *RecoveryInstanceFailback) SetFailbackJobID(v string) *RecoveryInstanceFailback {
 	s.FailbackJobID = &v
+	return s
+}
+
+// SetFailbackLaunchType sets the FailbackLaunchType field's value.
+func (s *RecoveryInstanceFailback) SetFailbackLaunchType(v string) *RecoveryInstanceFailback {
+	s.FailbackLaunchType = &v
 	return s
 }
 
@@ -8313,8 +8652,9 @@ type ReplicationConfigurationReplicatedDisk struct {
 	// Whether to boot from this disk or not.
 	IsBootDisk *bool `locationName:"isBootDisk" type:"boolean"`
 
-	// The Staging Disk EBS volume type to be used during replication when stagingDiskType
-	// is set to Auto. This is a read-only field.
+	// When stagingDiskType is set to Auto, this field shows the current staging
+	// disk EBS volume type as it is constantly updated by the service. This is
+	// a read-only field.
 	OptimizedStagingDiskType *string `locationName:"optimizedStagingDiskType" type:"string" enum:"ReplicationConfigurationReplicatedDiskStagingDiskType"`
 
 	// The Staging Disk EBS volume type to be used during replication.
@@ -8699,6 +9039,17 @@ type RetryDataReplicationOutput struct {
 	// The ID of the Recovery Instance associated with this Source Server.
 	RecoveryInstanceId *string `locationName:"recoveryInstanceId" min:"10" type:"string"`
 
+	// Replication direction of the Source Server.
+	ReplicationDirection *string `locationName:"replicationDirection" type:"string" enum:"ReplicationDirection"`
+
+	// For EC2-originated Source Servers which have been failed over and then failed
+	// back, this value will mean the ARN of the Source Server on the opposite replication
+	// direction.
+	ReversedDirectionSourceServerArn *string `locationName:"reversedDirectionSourceServerArn" min:"20" type:"string"`
+
+	// Source cloud properties of the Source Server.
+	SourceCloudProperties *SourceCloudProperties `locationName:"sourceCloudProperties" type:"structure"`
+
 	// The source properties of the Source Server.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -8764,6 +9115,24 @@ func (s *RetryDataReplicationOutput) SetRecoveryInstanceId(v string) *RetryDataR
 	return s
 }
 
+// SetReplicationDirection sets the ReplicationDirection field's value.
+func (s *RetryDataReplicationOutput) SetReplicationDirection(v string) *RetryDataReplicationOutput {
+	s.ReplicationDirection = &v
+	return s
+}
+
+// SetReversedDirectionSourceServerArn sets the ReversedDirectionSourceServerArn field's value.
+func (s *RetryDataReplicationOutput) SetReversedDirectionSourceServerArn(v string) *RetryDataReplicationOutput {
+	s.ReversedDirectionSourceServerArn = &v
+	return s
+}
+
+// SetSourceCloudProperties sets the SourceCloudProperties field's value.
+func (s *RetryDataReplicationOutput) SetSourceCloudProperties(v *SourceCloudProperties) *RetryDataReplicationOutput {
+	s.SourceCloudProperties = v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *RetryDataReplicationOutput) SetSourceProperties(v *SourceProperties) *RetryDataReplicationOutput {
 	s.SourceProperties = v
@@ -8785,6 +9154,86 @@ func (s *RetryDataReplicationOutput) SetStagingArea(v *StagingArea) *RetryDataRe
 // SetTags sets the Tags field's value.
 func (s *RetryDataReplicationOutput) SetTags(v map[string]*string) *RetryDataReplicationOutput {
 	s.Tags = v
+	return s
+}
+
+type ReverseReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Recovery Instance that we want to reverse the replication for.
+	//
+	// RecoveryInstanceID is a required field
+	RecoveryInstanceID *string `locationName:"recoveryInstanceID" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReverseReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReverseReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReverseReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReverseReplicationInput"}
+	if s.RecoveryInstanceID == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecoveryInstanceID"))
+	}
+	if s.RecoveryInstanceID != nil && len(*s.RecoveryInstanceID) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("RecoveryInstanceID", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecoveryInstanceID sets the RecoveryInstanceID field's value.
+func (s *ReverseReplicationInput) SetRecoveryInstanceID(v string) *ReverseReplicationInput {
+	s.RecoveryInstanceID = &v
+	return s
+}
+
+type ReverseReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of created SourceServer.
+	ReversedDirectionSourceServerArn *string `locationName:"reversedDirectionSourceServerArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReverseReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReverseReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetReversedDirectionSourceServerArn sets the ReversedDirectionSourceServerArn field's value.
+func (s *ReverseReplicationOutput) SetReversedDirectionSourceServerArn(v string) *ReverseReplicationOutput {
+	s.ReversedDirectionSourceServerArn = &v
 	return s
 }
 
@@ -8864,6 +9313,56 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Properties of the cloud environment where this Source Server originated from.
+type SourceCloudProperties struct {
+	_ struct{} `type:"structure"`
+
+	// AWS Account ID for an EC2-originated Source Server.
+	OriginAccountID *string `locationName:"originAccountID" min:"12" type:"string"`
+
+	// AWS Availability Zone for an EC2-originated Source Server.
+	OriginAvailabilityZone *string `locationName:"originAvailabilityZone" type:"string"`
+
+	// AWS Region for an EC2-originated Source Server.
+	OriginRegion *string `locationName:"originRegion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceCloudProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceCloudProperties) GoString() string {
+	return s.String()
+}
+
+// SetOriginAccountID sets the OriginAccountID field's value.
+func (s *SourceCloudProperties) SetOriginAccountID(v string) *SourceCloudProperties {
+	s.OriginAccountID = &v
+	return s
+}
+
+// SetOriginAvailabilityZone sets the OriginAvailabilityZone field's value.
+func (s *SourceCloudProperties) SetOriginAvailabilityZone(v string) *SourceCloudProperties {
+	s.OriginAvailabilityZone = &v
+	return s
+}
+
+// SetOriginRegion sets the OriginRegion field's value.
+func (s *SourceCloudProperties) SetOriginRegion(v string) *SourceCloudProperties {
+	s.OriginRegion = &v
+	return s
 }
 
 // Properties of the Source Server machine.
@@ -8980,6 +9479,17 @@ type SourceServer struct {
 	// The ID of the Recovery Instance associated with this Source Server.
 	RecoveryInstanceId *string `locationName:"recoveryInstanceId" min:"10" type:"string"`
 
+	// Replication direction of the Source Server.
+	ReplicationDirection *string `locationName:"replicationDirection" type:"string" enum:"ReplicationDirection"`
+
+	// For EC2-originated Source Servers which have been failed over and then failed
+	// back, this value will mean the ARN of the Source Server on the opposite replication
+	// direction.
+	ReversedDirectionSourceServerArn *string `locationName:"reversedDirectionSourceServerArn" min:"20" type:"string"`
+
+	// Source cloud properties of the Source Server.
+	SourceCloudProperties *SourceCloudProperties `locationName:"sourceCloudProperties" type:"structure"`
+
 	// The source properties of the Source Server.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -9042,6 +9552,24 @@ func (s *SourceServer) SetLifeCycle(v *LifeCycle) *SourceServer {
 // SetRecoveryInstanceId sets the RecoveryInstanceId field's value.
 func (s *SourceServer) SetRecoveryInstanceId(v string) *SourceServer {
 	s.RecoveryInstanceId = &v
+	return s
+}
+
+// SetReplicationDirection sets the ReplicationDirection field's value.
+func (s *SourceServer) SetReplicationDirection(v string) *SourceServer {
+	s.ReplicationDirection = &v
+	return s
+}
+
+// SetReversedDirectionSourceServerArn sets the ReversedDirectionSourceServerArn field's value.
+func (s *SourceServer) SetReversedDirectionSourceServerArn(v string) *SourceServer {
+	s.ReversedDirectionSourceServerArn = &v
+	return s
+}
+
+// SetSourceCloudProperties sets the SourceCloudProperties field's value.
+func (s *SourceServer) SetSourceCloudProperties(v *SourceCloudProperties) *SourceServer {
+	s.SourceCloudProperties = v
 	return s
 }
 
@@ -9458,6 +9986,86 @@ func (s *StartRecoveryRequestSourceServer) SetSourceServerID(v string) *StartRec
 	return s
 }
 
+type StartReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Source Server to start replication for.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartReplicationInput"}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *StartReplicationInput) SetSourceServerID(v string) *StartReplicationInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type StartReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Source Server that this action was targeted on.
+	SourceServer *SourceServer `locationName:"sourceServer" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceServer sets the SourceServer field's value.
+func (s *StartReplicationOutput) SetSourceServer(v *SourceServer) *StartReplicationOutput {
+	s.SourceServer = v
+	return s
+}
+
 type StopFailbackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9527,6 +10135,86 @@ func (s StopFailbackOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StopFailbackOutput) GoString() string {
 	return s.String()
+}
+
+type StopReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Source Server to stop replication for.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopReplicationInput"}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *StopReplicationInput) SetSourceServerID(v string) *StopReplicationInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type StopReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Source Server that this action was targeted on.
+	SourceServer *SourceServer `locationName:"sourceServer" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSourceServer sets the SourceServer field's value.
+func (s *StopReplicationOutput) SetSourceServer(v *SourceServer) *StopReplicationOutput {
+	s.SourceServer = v
+	return s
 }
 
 type TagResourceInput struct {
@@ -11356,6 +12044,22 @@ func ExtensionStatus_Values() []string {
 }
 
 const (
+	// FailbackLaunchTypeRecovery is a FailbackLaunchType enum value
+	FailbackLaunchTypeRecovery = "RECOVERY"
+
+	// FailbackLaunchTypeDrill is a FailbackLaunchType enum value
+	FailbackLaunchTypeDrill = "DRILL"
+)
+
+// FailbackLaunchType_Values returns all elements of the FailbackLaunchType enum
+func FailbackLaunchType_Values() []string {
+	return []string{
+		FailbackLaunchTypeRecovery,
+		FailbackLaunchTypeDrill,
+	}
+}
+
+const (
 	// FailbackReplicationErrorAgentNotSeen is a FailbackReplicationError enum value
 	FailbackReplicationErrorAgentNotSeen = "AGENT_NOT_SEEN"
 
@@ -11382,6 +12086,42 @@ const (
 
 	// FailbackReplicationErrorFailedToEstablishAgentReplicatorSoftwareCommunication is a FailbackReplicationError enum value
 	FailbackReplicationErrorFailedToEstablishAgentReplicatorSoftwareCommunication = "FAILED_TO_ESTABLISH_AGENT_REPLICATOR_SOFTWARE_COMMUNICATION"
+
+	// FailbackReplicationErrorFailedGettingReplicationState is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedGettingReplicationState = "FAILED_GETTING_REPLICATION_STATE"
+
+	// FailbackReplicationErrorSnapshotsFailure is a FailbackReplicationError enum value
+	FailbackReplicationErrorSnapshotsFailure = "SNAPSHOTS_FAILURE"
+
+	// FailbackReplicationErrorFailedToCreateSecurityGroup is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToCreateSecurityGroup = "FAILED_TO_CREATE_SECURITY_GROUP"
+
+	// FailbackReplicationErrorFailedToLaunchReplicationServer is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToLaunchReplicationServer = "FAILED_TO_LAUNCH_REPLICATION_SERVER"
+
+	// FailbackReplicationErrorFailedToBootReplicationServer is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToBootReplicationServer = "FAILED_TO_BOOT_REPLICATION_SERVER"
+
+	// FailbackReplicationErrorFailedToAuthenticateWithService is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToAuthenticateWithService = "FAILED_TO_AUTHENTICATE_WITH_SERVICE"
+
+	// FailbackReplicationErrorFailedToDownloadReplicationSoftware is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToDownloadReplicationSoftware = "FAILED_TO_DOWNLOAD_REPLICATION_SOFTWARE"
+
+	// FailbackReplicationErrorFailedToCreateStagingDisks is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToCreateStagingDisks = "FAILED_TO_CREATE_STAGING_DISKS"
+
+	// FailbackReplicationErrorFailedToAttachStagingDisks is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToAttachStagingDisks = "FAILED_TO_ATTACH_STAGING_DISKS"
+
+	// FailbackReplicationErrorFailedToPairReplicationServerWithAgent is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToPairReplicationServerWithAgent = "FAILED_TO_PAIR_REPLICATION_SERVER_WITH_AGENT"
+
+	// FailbackReplicationErrorFailedToConnectAgentToReplicationServer is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToConnectAgentToReplicationServer = "FAILED_TO_CONNECT_AGENT_TO_REPLICATION_SERVER"
+
+	// FailbackReplicationErrorFailedToStartDataTransfer is a FailbackReplicationError enum value
+	FailbackReplicationErrorFailedToStartDataTransfer = "FAILED_TO_START_DATA_TRANSFER"
 )
 
 // FailbackReplicationError_Values returns all elements of the FailbackReplicationError enum
@@ -11396,6 +12136,18 @@ func FailbackReplicationError_Values() []string {
 		FailbackReplicationErrorFailedToConfigureReplicationSoftware,
 		FailbackReplicationErrorFailedToPairAgentWithReplicationSoftware,
 		FailbackReplicationErrorFailedToEstablishAgentReplicatorSoftwareCommunication,
+		FailbackReplicationErrorFailedGettingReplicationState,
+		FailbackReplicationErrorSnapshotsFailure,
+		FailbackReplicationErrorFailedToCreateSecurityGroup,
+		FailbackReplicationErrorFailedToLaunchReplicationServer,
+		FailbackReplicationErrorFailedToBootReplicationServer,
+		FailbackReplicationErrorFailedToAuthenticateWithService,
+		FailbackReplicationErrorFailedToDownloadReplicationSoftware,
+		FailbackReplicationErrorFailedToCreateStagingDisks,
+		FailbackReplicationErrorFailedToAttachStagingDisks,
+		FailbackReplicationErrorFailedToPairReplicationServerWithAgent,
+		FailbackReplicationErrorFailedToConnectAgentToReplicationServer,
+		FailbackReplicationErrorFailedToStartDataTransfer,
 	}
 }
 
@@ -11414,6 +12166,12 @@ const (
 
 	// FailbackStateFailbackError is a FailbackState enum value
 	FailbackStateFailbackError = "FAILBACK_ERROR"
+
+	// FailbackStateFailbackNotReadyForLaunch is a FailbackState enum value
+	FailbackStateFailbackNotReadyForLaunch = "FAILBACK_NOT_READY_FOR_LAUNCH"
+
+	// FailbackStateFailbackLaunchStateNotAvailable is a FailbackState enum value
+	FailbackStateFailbackLaunchStateNotAvailable = "FAILBACK_LAUNCH_STATE_NOT_AVAILABLE"
 )
 
 // FailbackState_Values returns all elements of the FailbackState enum
@@ -11424,6 +12182,8 @@ func FailbackState_Values() []string {
 		FailbackStateFailbackReadyForLaunch,
 		FailbackStateFailbackCompleted,
 		FailbackStateFailbackError,
+		FailbackStateFailbackNotReadyForLaunch,
+		FailbackStateFailbackLaunchStateNotAvailable,
 	}
 }
 
@@ -11660,6 +12420,22 @@ func LaunchStatus_Values() []string {
 }
 
 const (
+	// OriginEnvironmentOnPremises is a OriginEnvironment enum value
+	OriginEnvironmentOnPremises = "ON_PREMISES"
+
+	// OriginEnvironmentAws is a OriginEnvironment enum value
+	OriginEnvironmentAws = "AWS"
+)
+
+// OriginEnvironment_Values returns all elements of the OriginEnvironment enum
+func OriginEnvironment_Values() []string {
+	return []string{
+		OriginEnvironmentOnPremises,
+		OriginEnvironmentAws,
+	}
+}
+
+const (
 	// PITPolicyRuleUnitsMinute is a PITPolicyRuleUnits enum value
 	PITPolicyRuleUnitsMinute = "MINUTE"
 
@@ -11700,6 +12476,39 @@ const (
 
 	// RecoveryInstanceDataReplicationInitiationStepNameEstablishAgentReplicatorSoftwareCommunication is a RecoveryInstanceDataReplicationInitiationStepName enum value
 	RecoveryInstanceDataReplicationInitiationStepNameEstablishAgentReplicatorSoftwareCommunication = "ESTABLISH_AGENT_REPLICATOR_SOFTWARE_COMMUNICATION"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameWait is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameWait = "WAIT"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameCreateSecurityGroup is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameCreateSecurityGroup = "CREATE_SECURITY_GROUP"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameLaunchReplicationServer is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameLaunchReplicationServer = "LAUNCH_REPLICATION_SERVER"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameBootReplicationServer is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameBootReplicationServer = "BOOT_REPLICATION_SERVER"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameAuthenticateWithService is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameAuthenticateWithService = "AUTHENTICATE_WITH_SERVICE"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameDownloadReplicationSoftware is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameDownloadReplicationSoftware = "DOWNLOAD_REPLICATION_SOFTWARE"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameCreateStagingDisks is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameCreateStagingDisks = "CREATE_STAGING_DISKS"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameAttachStagingDisks is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameAttachStagingDisks = "ATTACH_STAGING_DISKS"
+
+	// RecoveryInstanceDataReplicationInitiationStepNamePairReplicationServerWithAgent is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNamePairReplicationServerWithAgent = "PAIR_REPLICATION_SERVER_WITH_AGENT"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameConnectAgentToReplicationServer is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameConnectAgentToReplicationServer = "CONNECT_AGENT_TO_REPLICATION_SERVER"
+
+	// RecoveryInstanceDataReplicationInitiationStepNameStartDataTransfer is a RecoveryInstanceDataReplicationInitiationStepName enum value
+	RecoveryInstanceDataReplicationInitiationStepNameStartDataTransfer = "START_DATA_TRANSFER"
 )
 
 // RecoveryInstanceDataReplicationInitiationStepName_Values returns all elements of the RecoveryInstanceDataReplicationInitiationStepName enum
@@ -11712,6 +12521,17 @@ func RecoveryInstanceDataReplicationInitiationStepName_Values() []string {
 		RecoveryInstanceDataReplicationInitiationStepNameConfigureReplicationSoftware,
 		RecoveryInstanceDataReplicationInitiationStepNamePairAgentWithReplicationSoftware,
 		RecoveryInstanceDataReplicationInitiationStepNameEstablishAgentReplicatorSoftwareCommunication,
+		RecoveryInstanceDataReplicationInitiationStepNameWait,
+		RecoveryInstanceDataReplicationInitiationStepNameCreateSecurityGroup,
+		RecoveryInstanceDataReplicationInitiationStepNameLaunchReplicationServer,
+		RecoveryInstanceDataReplicationInitiationStepNameBootReplicationServer,
+		RecoveryInstanceDataReplicationInitiationStepNameAuthenticateWithService,
+		RecoveryInstanceDataReplicationInitiationStepNameDownloadReplicationSoftware,
+		RecoveryInstanceDataReplicationInitiationStepNameCreateStagingDisks,
+		RecoveryInstanceDataReplicationInitiationStepNameAttachStagingDisks,
+		RecoveryInstanceDataReplicationInitiationStepNamePairReplicationServerWithAgent,
+		RecoveryInstanceDataReplicationInitiationStepNameConnectAgentToReplicationServer,
+		RecoveryInstanceDataReplicationInitiationStepNameStartDataTransfer,
 	}
 }
 
@@ -11773,6 +12593,12 @@ const (
 
 	// RecoveryInstanceDataReplicationStateDisconnected is a RecoveryInstanceDataReplicationState enum value
 	RecoveryInstanceDataReplicationStateDisconnected = "DISCONNECTED"
+
+	// RecoveryInstanceDataReplicationStateReplicationStateNotAvailable is a RecoveryInstanceDataReplicationState enum value
+	RecoveryInstanceDataReplicationStateReplicationStateNotAvailable = "REPLICATION_STATE_NOT_AVAILABLE"
+
+	// RecoveryInstanceDataReplicationStateNotStarted is a RecoveryInstanceDataReplicationState enum value
+	RecoveryInstanceDataReplicationStateNotStarted = "NOT_STARTED"
 )
 
 // RecoveryInstanceDataReplicationState_Values returns all elements of the RecoveryInstanceDataReplicationState enum
@@ -11788,6 +12614,8 @@ func RecoveryInstanceDataReplicationState_Values() []string {
 		RecoveryInstanceDataReplicationStateRescan,
 		RecoveryInstanceDataReplicationStateStalled,
 		RecoveryInstanceDataReplicationStateDisconnected,
+		RecoveryInstanceDataReplicationStateReplicationStateNotAvailable,
+		RecoveryInstanceDataReplicationStateNotStarted,
 	}
 }
 
@@ -11896,6 +12724,28 @@ func ReplicationConfigurationReplicatedDiskStagingDiskType_Values() []string {
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeSc1,
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeSt1,
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeStandard,
+	}
+}
+
+// Replication direction designates if this is a failover replication, or a
+// failback replication. When a DRS agent is installed on an instance, the replication
+// direction is failover. In cases where a recovery launch was made in the recovery
+// location and a new recovery instance was created, and then a failback replication
+// was initiated from that recovery instance back to the origin location, then
+// the replication direction will be failback.
+const (
+	// ReplicationDirectionFailover is a ReplicationDirection enum value
+	ReplicationDirectionFailover = "FAILOVER"
+
+	// ReplicationDirectionFailback is a ReplicationDirection enum value
+	ReplicationDirectionFailback = "FAILBACK"
+)
+
+// ReplicationDirection_Values returns all elements of the ReplicationDirection enum
+func ReplicationDirection_Values() []string {
+	return []string{
+		ReplicationDirectionFailover,
+		ReplicationDirectionFailback,
 	}
 }
 
