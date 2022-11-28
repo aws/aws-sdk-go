@@ -248,6 +248,10 @@ type IoTWirelessAPI interface {
 	GetPositionConfigurationWithContext(aws.Context, *iotwireless.GetPositionConfigurationInput, ...request.Option) (*iotwireless.GetPositionConfigurationOutput, error)
 	GetPositionConfigurationRequest(*iotwireless.GetPositionConfigurationInput) (*request.Request, *iotwireless.GetPositionConfigurationOutput)
 
+	GetPositionEstimate(*iotwireless.GetPositionEstimateInput) (*iotwireless.GetPositionEstimateOutput, error)
+	GetPositionEstimateWithContext(aws.Context, *iotwireless.GetPositionEstimateInput, ...request.Option) (*iotwireless.GetPositionEstimateOutput, error)
+	GetPositionEstimateRequest(*iotwireless.GetPositionEstimateInput) (*request.Request, *iotwireless.GetPositionEstimateOutput)
+
 	GetResourceEventConfiguration(*iotwireless.GetResourceEventConfigurationInput) (*iotwireless.GetResourceEventConfigurationOutput, error)
 	GetResourceEventConfigurationWithContext(aws.Context, *iotwireless.GetResourceEventConfigurationInput, ...request.Option) (*iotwireless.GetResourceEventConfigurationOutput, error)
 	GetResourceEventConfigurationRequest(*iotwireless.GetResourceEventConfigurationInput) (*request.Request, *iotwireless.GetResourceEventConfigurationOutput)
@@ -255,6 +259,10 @@ type IoTWirelessAPI interface {
 	GetResourceLogLevel(*iotwireless.GetResourceLogLevelInput) (*iotwireless.GetResourceLogLevelOutput, error)
 	GetResourceLogLevelWithContext(aws.Context, *iotwireless.GetResourceLogLevelInput, ...request.Option) (*iotwireless.GetResourceLogLevelOutput, error)
 	GetResourceLogLevelRequest(*iotwireless.GetResourceLogLevelInput) (*request.Request, *iotwireless.GetResourceLogLevelOutput)
+
+	GetResourcePosition(*iotwireless.GetResourcePositionInput) (*iotwireless.GetResourcePositionOutput, error)
+	GetResourcePositionWithContext(aws.Context, *iotwireless.GetResourcePositionInput, ...request.Option) (*iotwireless.GetResourcePositionOutput, error)
+	GetResourcePositionRequest(*iotwireless.GetResourcePositionInput) (*request.Request, *iotwireless.GetResourcePositionOutput)
 
 	GetServiceEndpoint(*iotwireless.GetServiceEndpointInput) (*iotwireless.GetServiceEndpointOutput, error)
 	GetServiceEndpointWithContext(aws.Context, *iotwireless.GetServiceEndpointInput, ...request.Option) (*iotwireless.GetServiceEndpointOutput, error)
@@ -476,6 +484,10 @@ type IoTWirelessAPI interface {
 	UpdateResourceEventConfiguration(*iotwireless.UpdateResourceEventConfigurationInput) (*iotwireless.UpdateResourceEventConfigurationOutput, error)
 	UpdateResourceEventConfigurationWithContext(aws.Context, *iotwireless.UpdateResourceEventConfigurationInput, ...request.Option) (*iotwireless.UpdateResourceEventConfigurationOutput, error)
 	UpdateResourceEventConfigurationRequest(*iotwireless.UpdateResourceEventConfigurationInput) (*request.Request, *iotwireless.UpdateResourceEventConfigurationOutput)
+
+	UpdateResourcePosition(*iotwireless.UpdateResourcePositionInput) (*iotwireless.UpdateResourcePositionOutput, error)
+	UpdateResourcePositionWithContext(aws.Context, *iotwireless.UpdateResourcePositionInput, ...request.Option) (*iotwireless.UpdateResourcePositionOutput, error)
+	UpdateResourcePositionRequest(*iotwireless.UpdateResourcePositionInput) (*request.Request, *iotwireless.UpdateResourcePositionOutput)
 
 	UpdateWirelessDevice(*iotwireless.UpdateWirelessDeviceInput) (*iotwireless.UpdateWirelessDeviceOutput, error)
 	UpdateWirelessDeviceWithContext(aws.Context, *iotwireless.UpdateWirelessDeviceInput, ...request.Option) (*iotwireless.UpdateWirelessDeviceOutput, error)

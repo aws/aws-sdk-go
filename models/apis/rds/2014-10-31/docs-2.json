@@ -15,6 +15,7 @@
     "CopyDBParameterGroup": "<p>Copies the specified DB parameter group.</p>",
     "CopyDBSnapshot": "<p>Copies the specified DB snapshot. The source DB snapshot must be in the <code>available</code> state.</p> <p>You can copy a snapshot from one Amazon Web Services Region to another. In that case, the Amazon Web Services Region where you call the <code>CopyDBSnapshot</code> operation is the destination Amazon Web Services Region for the DB snapshot copy.</p> <p>This command doesn't apply to RDS Custom.</p> <p>For more information about copying snapshots, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html#USER_CopyDBSnapshot\">Copying a DB Snapshot</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "CopyOptionGroup": "<p>Copies the specified option group.</p>",
+    "CreateBlueGreenDeployment": "<p>Creates a blue/green deployment.</p> <p>A blue/green deployment creates a staging environment that copies the production environment. In a blue/green deployment, the blue environment is the current production environment. The green environment is the staging environment. The staging environment stays in sync with the current production environment using logical replication.</p> <p>You can make changes to the databases in the green environment without affecting production workloads. For example, you can upgrade the major or minor DB engine version, change database parameters, or make schema changes in the staging environment. You can thoroughly test changes in the green environment. When ready, you can switch over the environments to promote the green environment to be the new production environment. The switchover typically takes under a minute.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "CreateCustomDBEngineVersion": "<p>Creates a custom DB engine version (CEV). A CEV is a binary volume snapshot of a database engine and specific AMI. The supported engines are the following:</p> <ul> <li> <p>Oracle Database 12.1 Enterprise Edition with the January 2021 or later RU/RUR</p> </li> <li> <p>Oracle Database 19c Enterprise Edition with the January 2021 or later RU/RUR</p> </li> </ul> <p>Amazon RDS, which is a fully managed service, supplies the Amazon Machine Image (AMI) and database software. The Amazon RDS database software is preinstalled, so you need only select a DB engine and version, and create your database. With Amazon RDS Custom for Oracle, you upload your database installation files in Amazon S3.</p> <p>When you create a custom engine version, you specify the files in a JSON document called a CEV manifest. This document describes installation .zip files stored in Amazon S3. RDS Custom creates your CEV from the installation files that you provided. This service model is called Bring Your Own Media (BYOM).</p> <p>Creation takes approximately two hours. If creation fails, RDS Custom issues <code>RDS-EVENT-0196</code> with the message <code>Creation failed for custom engine version</code>, and includes details about the failure. For example, the event prints missing files.</p> <p>After you create the CEV, it is available for use. You can create multiple CEVs, and create multiple RDS Custom instances from any CEV. You can also change the status of a CEV to make it available or inactive.</p> <note> <p>The MediaImport service that imports files from Amazon S3 to create CEVs isn't integrated with Amazon Web Services CloudTrail. If you turn on data logging for Amazon RDS in CloudTrail, calls to the <code>CreateCustomDbEngineVersion</code> event aren't logged. However, you might see calls from the API gateway that accesses your Amazon S3 bucket. These calls originate from the MediaImport service for the <code>CreateCustomDbEngineVersion</code> event.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.create\"> Creating a CEV</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "CreateDBCluster": "<p>Creates a new Amazon Aurora DB cluster or Multi-AZ DB cluster.</p> <p>You can use the <code>ReplicationSourceIdentifier</code> parameter to create an Amazon Aurora DB cluster as a read replica of another DB cluster or Amazon RDS MySQL or PostgreSQL DB instance.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>For more information on Multi-AZ DB clusters, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html\"> Multi-AZ deployments with two readable standby DB instances</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "CreateDBClusterEndpoint": "<p>Creates a new custom endpoint and associates it with an Amazon Aurora DB cluster.</p> <note> <p>This action applies only to Aurora DB clusters.</p> </note>",
@@ -31,6 +32,7 @@
     "CreateEventSubscription": "<p>Creates an RDS event notification subscription. This operation requires a topic Amazon Resource Name (ARN) created by either the RDS console, the SNS console, or the SNS API. To obtain an ARN with SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console.</p> <p>You can specify the type of source (<code>SourceType</code>) that you want to be notified of and provide a list of RDS sources (<code>SourceIds</code>) that triggers the events. You can also provide a list of event categories (<code>EventCategories</code>) for events that you want to be notified of. For example, you can specify <code>SourceType</code> = <code>db-instance</code>, <code>SourceIds</code> = <code>mydbinstance1</code>, <code>mydbinstance2</code> and <code>EventCategories</code> = <code>Availability</code>, <code>Backup</code>.</p> <p>If you specify both the <code>SourceType</code> and <code>SourceIds</code>, such as <code>SourceType</code> = <code>db-instance</code> and <code>SourceIds</code> = <code>myDBInstance1</code>, you are notified of all the <code>db-instance</code> events for the specified source. If you specify a <code>SourceType</code> but do not specify <code>SourceIds</code>, you receive notice of the events for that source type for all your RDS sources. If you don't specify either the SourceType or the <code>SourceIds</code>, you are notified of events generated from all RDS sources belonging to your customer account.</p> <p>For more information about subscribing to an event for RDS DB engines, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.Subscribing.html\"> Subscribing to Amazon RDS event notification</a> in the <i>Amazon RDS User Guide</i>.</p> <p>For more information about subscribing to an event for Aurora DB engines, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Events.Subscribing.html\"> Subscribing to Amazon RDS event notification</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "CreateGlobalCluster": "<p>Creates an Aurora global database spread across multiple Amazon Web Services Regions. The global database contains a single primary cluster with read-write capability, and a read-only secondary cluster that receives data from the primary cluster through high-speed replication performed by the Aurora storage subsystem.</p> <p>You can create a global database that is initially empty, and then add a primary cluster and a secondary cluster to it. Or you can specify an existing Aurora cluster during the create operation, and this cluster becomes the primary cluster of the global database.</p> <note> <p>This action applies only to Aurora DB clusters.</p> </note>",
     "CreateOptionGroup": "<p>Creates a new option group. You can create up to 20 option groups.</p> <p>This command doesn't apply to RDS Custom.</p>",
+    "DeleteBlueGreenDeployment": "<p>Deletes a blue/green deployment.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "DeleteCustomDBEngineVersion": "<p>Deletes a custom engine version. To run this command, make sure you meet the following prerequisites:</p> <ul> <li> <p>The CEV must not be the default for RDS Custom. If it is, change the default before running this command.</p> </li> <li> <p>The CEV must not be associated with an RDS Custom DB instance, RDS Custom instance snapshot, or automated backup of your RDS Custom instance.</p> </li> </ul> <p>Typically, deletion takes a few minutes.</p> <note> <p>The MediaImport service that imports files from Amazon S3 to create CEVs isn't integrated with Amazon Web Services CloudTrail. If you turn on data logging for Amazon RDS in CloudTrail, calls to the <code>DeleteCustomDbEngineVersion</code> event aren't logged. However, you might see calls from the API gateway that accesses your Amazon S3 bucket. These calls originate from the MediaImport service for the <code>DeleteCustomDbEngineVersion</code> event.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.delete\"> Deleting a CEV</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "DeleteDBCluster": "<p>The DeleteDBCluster action deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups for that DB cluster are deleted and can't be recovered. Manual DB cluster snapshots of the specified DB cluster are not deleted.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>For more information on Multi-AZ DB clusters, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html\"> Multi-AZ deployments with two readable standby DB instances</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "DeleteDBClusterEndpoint": "<p>Deletes a custom endpoint and removes it from an Amazon Aurora DB cluster.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
@@ -49,6 +51,7 @@
     "DeleteOptionGroup": "<p>Deletes an existing option group.</p>",
     "DeregisterDBProxyTargets": "<p>Remove the association between one or more <code>DBProxyTarget</code> data structures and a <code>DBProxyTargetGroup</code>.</p>",
     "DescribeAccountAttributes": "<p>Lists all of the attributes for a customer account. The attributes include Amazon RDS quotas for the account, such as the number of DB instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value.</p> <p>This command doesn't take any parameters.</p>",
+    "DescribeBlueGreenDeployments": "<p>Returns information about blue/green deployments.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "DescribeCertificates": "<p>Lists the set of CA certificates provided by Amazon RDS for this Amazon Web Services account.</p>",
     "DescribeDBClusterBacktracks": "<p>Returns information about backtracks for a DB cluster.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <note> <p>This action only applies to Aurora MySQL DB clusters.</p> </note>",
     "DescribeDBClusterEndpoints": "<p>Returns information about endpoints for an Amazon Aurora DB cluster.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
@@ -138,6 +141,7 @@
     "StopDBCluster": "<p>Stops an Amazon Aurora DB cluster. When you stop a DB cluster, Aurora retains the DB cluster's metadata, including its endpoints and DB parameter groups. Aurora also retains the transaction logs so you can do a point-in-time restore if necessary.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-cluster-stop-start.html\"> Stopping and Starting an Aurora Cluster</a> in the <i>Amazon Aurora User Guide</i>.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "StopDBInstance": "<p>Stops an Amazon RDS DB instance. When you stop a DB instance, Amazon RDS retains the DB instance's metadata, including its endpoint, DB parameter group, and option group membership. Amazon RDS also retains the transaction logs so you can do a point-in-time restore if necessary.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html\"> Stopping an Amazon RDS DB Instance Temporarily</a> in the <i>Amazon RDS User Guide.</i> </p> <note> <p>This command doesn't apply to RDS Custom, Aurora MySQL, and Aurora PostgreSQL. For Aurora clusters, use <code>StopDBCluster</code> instead.</p> </note>",
     "StopDBInstanceAutomatedBackupsReplication": "<p>Stops automated backup replication for a DB instance.</p> <p>This command doesn't apply to RDS Custom, Aurora MySQL, and Aurora PostgreSQL.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReplicateBackups.html\"> Replicating Automated Backups to Another Amazon Web Services Region</a> in the <i>Amazon RDS User Guide.</i> </p>",
+    "SwitchoverBlueGreenDeployment": "<p>Switches over a blue/green deployment.</p> <p>Before you switch over, production traffic is routed to the databases in the blue environment. After you switch over, production traffic is routed to the databases in the green environment.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
     "SwitchoverReadReplica": "<p>Switches over an Oracle standby database in an Oracle Data Guard environment, making it the new primary database. Issue this command in the Region that hosts the current standby database.</p>"
   },
   "shapes": {
@@ -341,6 +345,83 @@
       "refs": {
       }
     },
+    "BlueGreenDeployment": {
+      "base": "<p>Contains the details about a blue/green deployment.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+      "refs": {
+        "BlueGreenDeploymentList$member": null,
+        "CreateBlueGreenDeploymentResponse$BlueGreenDeployment": null,
+        "DeleteBlueGreenDeploymentResponse$BlueGreenDeployment": null,
+        "SwitchoverBlueGreenDeploymentResponse$BlueGreenDeployment": null
+      }
+    },
+    "BlueGreenDeploymentAlreadyExistsFault": {
+      "base": "<p>A blue/green deployment with the specified name already exists.</p>",
+      "refs": {
+      }
+    },
+    "BlueGreenDeploymentIdentifier": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeployment$BlueGreenDeploymentIdentifier": "<p>The system-generated identifier of the blue/green deployment.</p>",
+        "DeleteBlueGreenDeploymentRequest$BlueGreenDeploymentIdentifier": "<p>The blue/green deployment identifier of the deployment to be deleted. This parameter isn't case-sensitive.</p> <p>Constraints: </p> <ul> <li> <p>Must match an existing blue/green deployment identifier.</p> </li> </ul>",
+        "DescribeBlueGreenDeploymentsRequest$BlueGreenDeploymentIdentifier": "<p>The blue/green deployment identifier. If this parameter is specified, information from only the specific blue/green deployment is returned. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing blue/green deployment identifier.</p> </li> </ul>",
+        "SwitchoverBlueGreenDeploymentRequest$BlueGreenDeploymentIdentifier": "<p>The blue/green deployment identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must match an existing blue/green deployment identifier.</p> </li> </ul>"
+      }
+    },
+    "BlueGreenDeploymentList": {
+      "base": null,
+      "refs": {
+        "DescribeBlueGreenDeploymentsResponse$BlueGreenDeployments": "<p>Contains a list of blue/green deployments for the user.</p>"
+      }
+    },
+    "BlueGreenDeploymentName": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeployment$BlueGreenDeploymentName": "<p>The user-supplied name of the blue/green deployment.</p>",
+        "CreateBlueGreenDeploymentRequest$BlueGreenDeploymentName": "<p>The name of the blue/green deployment.</p> <p>Constraints:</p> <ul> <li> <p>Can't be the same as an existing blue/green deployment name in the same account and Amazon Web Services Region.</p> </li> </ul>"
+      }
+    },
+    "BlueGreenDeploymentNotFoundFault": {
+      "base": "<p> <code>BlueGreenDeploymentIdentifier</code> doesn't refer to an existing blue/green deployment.</p>",
+      "refs": {
+      }
+    },
+    "BlueGreenDeploymentStatus": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeployment$Status": "<p>The status of the blue/green deployment.</p> <p>Values:</p> <ul> <li> <p> <code>PROVISIONING</code> - Resources are being created in the green environment.</p> </li> <li> <p> <code>AVAILABLE</code> - Resources are available in the green environment.</p> </li> <li> <p> <code>SWITCHOVER_IN_PROGRESS</code> - The deployment is being switched from the blue environment to the green environment.</p> </li> <li> <p> <code>SWITCHOVER_COMPLETED</code> - Switchover from the blue environment to the green environment is complete.</p> </li> <li> <p> <code>INVALID_CONFIGURATION</code> - Resources in the green environment are invalid, so switchover isn't possible.</p> </li> <li> <p> <code>SWITCHOVER_FAILED</code> - Switchover was attempted but failed.</p> </li> <li> <p> <code>DELETING</code> - The blue/green deployment is being deleted.</p> </li> </ul>"
+      }
+    },
+    "BlueGreenDeploymentStatusDetails": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeployment$StatusDetails": "<p>Additional information about the status of the blue/green deployment.</p>"
+      }
+    },
+    "BlueGreenDeploymentTask": {
+      "base": "<p>Contains the details about a task for a blue/green deployment.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+      "refs": {
+        "BlueGreenDeploymentTaskList$member": null
+      }
+    },
+    "BlueGreenDeploymentTaskList": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeployment$Tasks": "<p>Either tasks to be performed or tasks that have been completed on the target database before switchover.</p>"
+      }
+    },
+    "BlueGreenDeploymentTaskName": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeploymentTask$Name": "<p>The name of the blue/green deployment task.</p>"
+      }
+    },
+    "BlueGreenDeploymentTaskStatus": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeploymentTask$Status": "<p>The status of the blue/green deployment task.</p> <p>Values:</p> <ul> <li> <p> <code>PENDING</code> - The resources are being prepared for deployment.</p> </li> <li> <p> <code>IN_PROGRESS</code> - The resource is being deployed.</p> </li> <li> <p> <code>COMPLETED</code> - The resource has been deployed.</p> </li> <li> <p> <code>FAILED</code> - Deployment of the resource failed.</p> </li> </ul>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -477,6 +558,7 @@
         "DBInstance$PerformanceInsightsEnabled": "<p>True if Performance Insights is enabled for the DB instance, and otherwise false.</p>",
         "DBInstance$CustomerOwnedIpEnabled": "<p>Specifies whether a customer-owned IP address (CoIP) is enabled for an RDS on Outposts DB instance.</p> <p>A <i>CoIP </i>provides local or external connectivity to resources in your Outpost subnets through your on-premises network. For some use cases, a CoIP can provide lower latency for connections to the DB instance from outside of its virtual private cloud (VPC) on your local network.</p> <p>For more information about RDS on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html\">Working with Amazon RDS on Amazon Web Services Outposts</a> in the <i>Amazon RDS User Guide</i>.</p> <p>For more information about CoIPs, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing\">Customer-owned IP addresses</a> in the <i>Amazon Web Services Outposts User Guide</i>.</p>",
         "DBInstance$ActivityStreamEngineNativeAuditFieldsIncluded": "<p>Indicates whether engine-native audit fields are included in the database activity stream.</p>",
+        "DeleteBlueGreenDeploymentRequest$DeleteTarget": "<p>A value that indicates whether to delete the resources in the green environment.</p>",
         "DeleteDBInstanceMessage$DeleteAutomatedBackups": "<p>A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove automated backups immediately after the DB instance is deleted.</p>",
         "DescribeDBEngineVersionsMessage$ListSupportedCharacterSets": "<p>A value that indicates whether to list the supported character sets for each engine version.</p> <p>If this parameter is enabled and the requested engine supports the <code>CharacterSetName</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported character sets for each engine version.</p> <p>For RDS Custom, the default is not to list supported character sets. If you set <code>ListSupportedCharacterSets</code> to <code>true</code>, RDS Custom returns no results.</p>",
         "DescribeDBEngineVersionsMessage$ListSupportedTimezones": "<p>A value that indicates whether to list the supported time zones for each engine version.</p> <p>If this parameter is enabled and the requested engine supports the <code>TimeZone</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported time zones for each engine version.</p> <p>For RDS Custom, the default is not to list supported time zones. If you set <code>ListSupportedTimezones</code> to <code>true</code>, RDS Custom returns no results.</p>",
@@ -680,6 +762,16 @@
       "refs": {
       }
     },
+    "CreateBlueGreenDeploymentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBlueGreenDeploymentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateCustomDBEngineVersionMessage": {
       "base": null,
       "refs": {
@@ -868,7 +960,7 @@
     "CustomEngineVersion": {
       "base": null,
       "refs": {
-        "CreateCustomDBEngineVersionMessage$EngineVersion": "<p>The name of your CEV. The name format is <code>19.<i>customized_string</i> </code>. For example, a valid name is <code>19.my_cev1</code>. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of <code>Engine</code> and <code>EngineVersion</code> is unique per customer per Region.</p>",
+        "CreateCustomDBEngineVersionMessage$EngineVersion": "<p>The name of your CEV. The name format is 19.<i>customized_string</i>. For example, a valid CEV name is <code>19.my_cev1</code>. This setting is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of <code>Engine</code> and <code>EngineVersion</code> is unique per customer per Region.</p>",
         "DeleteCustomDBEngineVersionMessage$EngineVersion": "<p>The custom engine version (CEV) for your DB instance. This option is required for RDS Custom, but optional for Amazon RDS. The combination of <code>Engine</code> and <code>EngineVersion</code> is unique per customer per Amazon Web Services Region.</p>",
         "ModifyCustomDBEngineVersionMessage$EngineVersion": "<p>The custom engine version (CEV) that you want to modify. This option is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of <code>Engine</code> and <code>EngineVersion</code> is unique per customer per Amazon Web Services Region.</p>"
       }
@@ -1611,6 +1703,26 @@
       "refs": {
       }
     },
+    "DatabaseArn": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeployment$Source": "<p>The source database for the blue/green deployment.</p> <p>Before switchover, the source database is the production database in the blue environment.</p>",
+        "BlueGreenDeployment$Target": "<p>The target database for the blue/green deployment.</p> <p>Before switchover, the target database is the clone database in the green environment.</p>",
+        "CreateBlueGreenDeploymentRequest$Source": "<p>The Amazon Resource Name (ARN) of the source production database.</p> <p>Specify the database that you want to clone. The blue/green deployment creates this database in the green environment. You can make updates to the database in the green environment, such as an engine version upgrade. When you are ready, you can switch the database in the green environment to be the production database.</p>",
+        "SwitchoverDetail$SourceMember": "<p>The Amazon Resource Name (ARN) of a resource in the blue environment.</p>",
+        "SwitchoverDetail$TargetMember": "<p>The Amazon Resource Name (ARN) of a resource in the green environment.</p>"
+      }
+    },
+    "DeleteBlueGreenDeploymentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteBlueGreenDeploymentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteCustomDBEngineVersionMessage": {
       "base": null,
       "refs": {
@@ -1748,6 +1860,16 @@
     },
     "DescribeAccountAttributesMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeBlueGreenDeploymentsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBlueGreenDeploymentsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -2265,6 +2387,7 @@
     "FilterList": {
       "base": null,
       "refs": {
+        "DescribeBlueGreenDeploymentsRequest$Filters": "<p>A filter that specifies one or more blue/green deployments to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>blue-green-deployment-identifier</code> - Accepts system-generated identifiers for blue/green deployments. The results list only includes information about the blue/green deployments with the specified identifiers.</p> </li> <li> <p> <code>blue-green-deployment-name</code> - Accepts user-supplied names for blue/green deployments. The results list only includes information about the blue/green deployments with the specified names.</p> </li> <li> <p> <code>source</code> - Accepts source databases for a blue/green deployment. The results list only includes information about the blue/green deployments with the specified source databases.</p> </li> <li> <p> <code>target</code> - Accepts target databases for a blue/green deployment. The results list only includes information about the blue/green deployments with the specified target databases.</p> </li> </ul>",
         "DescribeCertificatesMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeDBClusterBacktracksMessage$Filters": "<p>A filter that specifies one or more DB clusters to describe. Supported filters include the following:</p> <ul> <li> <p> <code>db-cluster-backtrack-id</code> - Accepts backtrack identifiers. The results list includes information about only the backtracks identified by these identifiers.</p> </li> <li> <p> <code>db-cluster-backtrack-status</code> - Accepts any of the following backtrack status values:</p> <ul> <li> <p> <code>applying</code> </p> </li> <li> <p> <code>completed</code> </p> </li> <li> <p> <code>failed</code> </p> </li> <li> <p> <code>pending</code> </p> </li> </ul> <p>The results list includes information about only the backtracks identified by these values.</p> </li> </ul>",
         "DescribeDBClusterEndpointsMessage$Filters": "<p>A set of name-value pairs that define which endpoints to include in the output. The filters are specified as name-value pairs, in the format <code>Name=<i>endpoint_type</i>,Values=<i>endpoint_type1</i>,<i>endpoint_type2</i>,...</code>. <code>Name</code> can be one of: <code>db-cluster-endpoint-type</code>, <code>db-cluster-endpoint-custom-type</code>, <code>db-cluster-endpoint-id</code>, <code>db-cluster-endpoint-status</code>. <code>Values</code> for the <code> db-cluster-endpoint-type</code> filter can be one or more of: <code>reader</code>, <code>writer</code>, <code>custom</code>. <code>Values</code> for the <code>db-cluster-endpoint-custom-type</code> filter can be one or more of: <code>reader</code>, <code>any</code>. <code>Values</code> for the <code>db-cluster-endpoint-status</code> filter can be one or more of: <code>available</code>, <code>creating</code>, <code>deleting</code>, <code>inactive</code>, <code>modifying</code>.</p>",
@@ -2597,6 +2720,11 @@
         "StartDBInstanceAutomatedBackupsReplicationMessage$BackupRetentionPeriod": "<p>The retention period for the replicated automated backups.</p>"
       }
     },
+    "InvalidBlueGreenDeploymentStateFault": {
+      "base": "<p>The blue/green deployment can't be switched over or deleted because there is an invalid configuration in the green environment.</p>",
+      "refs": {
+      }
+    },
     "InvalidCustomDBEngineVersionStateFault": {
       "base": "<p>You can't delete the CEV.</p>",
       "refs": {
@@ -2791,6 +2919,7 @@
     "MaxRecords": {
       "base": null,
       "refs": {
+        "DescribeBlueGreenDeploymentsRequest$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBProxiesRequest$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBProxyEndpointsRequest$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBProxyTargetGroupsRequest$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -3599,6 +3728,16 @@
       "refs": {
       }
     },
+    "SourceClusterNotSupportedFault": {
+      "base": "<p>The source DB cluster isn't supported for a blue/green deployment.</p>",
+      "refs": {
+      }
+    },
+    "SourceDatabaseNotSupportedFault": {
+      "base": "<p>The source DB instance isn't supported for a blue/green deployment.</p>",
+      "refs": {
+      }
+    },
     "SourceIdsList": {
       "base": null,
       "refs": {
@@ -3835,7 +3974,7 @@
         "CreateDBInstanceMessage$PreferredMaintenanceWindow": "<p>The time range each week during which system maintenance can occur, in Universal Coordinated Time (UTC). For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#Concepts.DBMaintenance\">Amazon RDS Maintenance Window</a>.</p> <p>Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region, occurring on a random day of the week.</p> <p>Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.</p> <p>Constraints: Minimum 30-minute window.</p>",
         "CreateDBInstanceMessage$DBParameterGroupName": "<p>The name of the DB parameter group to associate with this DB instance. If you do not specify a value, then the default DB parameter group for the specified DB engine and version is used.</p> <p>This setting doesn't apply to RDS Custom.</p> <p>Constraints:</p> <ul> <li> <p>It must be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>It can't end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "CreateDBInstanceMessage$PreferredBackupWindow": "<p>The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter. The default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Web Services Region. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow\">Backup window</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The daily time range for creating automated backups is managed by the DB cluster.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the format <code>hh24:mi-hh24:mi</code>.</p> </li> <li> <p>Must be in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
-        "CreateDBInstanceMessage$EngineVersion": "<p>The version number of the database engine to use.</p> <p>For a list of valid engine versions, use the <code>DescribeDBEngineVersions</code> operation.</p> <p>The following are the database engines and links to information about the major and minor versions that are available with Amazon RDS. Not every database engine is available for every Amazon Web Services Region.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The version number of the database engine to be used by the DB instance is managed by the DB cluster.</p> <p> <b>Amazon RDS Custom for Oracle</b> </p> <p>A custom engine version (CEV) that you have previously created. This setting is required for RDS Custom for Oracle. The CEV name has the following format: <code>19.<i>customized_string</i> </code>. An example identifier is <code>19.my_cev1</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create\"> Creating an RDS Custom for Oracle DB instance</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>Amazon RDS Custom for SQL Server</b> </p> <p>See <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html\">RDS Custom for SQL Server general requirements</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>MariaDB</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.VersionMgmt\">MariaDB on Amazon RDS Versions</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>Microsoft SQL Server</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport\">Microsoft SQL Server Versions on Amazon RDS</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>MySQL</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt\">MySQL on Amazon RDS Versions</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>Oracle</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.Oracle.PatchComposition.html\">Oracle Database Engine Release Notes</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>PostgreSQL</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts\">Amazon RDS for PostgreSQL versions and extensions</a> in the <i>Amazon RDS User Guide</i>.</p>",
+        "CreateDBInstanceMessage$EngineVersion": "<p>The version number of the database engine to use.</p> <p>For a list of valid engine versions, use the <code>DescribeDBEngineVersions</code> operation.</p> <p>The following are the database engines and links to information about the major and minor versions that are available with Amazon RDS. Not every database engine is available for every Amazon Web Services Region.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The version number of the database engine to be used by the DB instance is managed by the DB cluster.</p> <p> <b>Amazon RDS Custom for Oracle</b> </p> <p>A custom engine version (CEV) that you have previously created. This setting is required for RDS Custom for Oracle. The CEV name has the following format: 19.<i>customized_string</i>. A valid CEV name is <code>19.my_cev1</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create\"> Creating an RDS Custom for Oracle DB instance</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>Amazon RDS Custom for SQL Server</b> </p> <p>See <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html\">RDS Custom for SQL Server general requirements</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>MariaDB</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.VersionMgmt\">MariaDB on Amazon RDS Versions</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>Microsoft SQL Server</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport\">Microsoft SQL Server Versions on Amazon RDS</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>MySQL</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt\">MySQL on Amazon RDS Versions</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>Oracle</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.Oracle.PatchComposition.html\">Oracle Database Engine Release Notes</a> in the <i>Amazon RDS User Guide</i>.</p> <p> <b>PostgreSQL</b> </p> <p>For information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts\">Amazon RDS for PostgreSQL versions and extensions</a> in the <i>Amazon RDS User Guide</i>.</p>",
         "CreateDBInstanceMessage$LicenseModel": "<p>License model information for this DB instance.</p> <p>Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code> </p> <p>This setting doesn't apply to RDS Custom.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable.</p>",
         "CreateDBInstanceMessage$OptionGroupName": "<p>A value that indicates that the DB instance should be associated with the specified option group.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, can't be removed from an option group. Also, that option group can't be removed from a DB instance after it is associated with a DB instance.</p> <p>This setting doesn't apply to RDS Custom.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable.</p>",
         "CreateDBInstanceMessage$CharacterSetName": "<p>For supported engines, this value indicates that the DB instance should be associated with the specified <code>CharacterSet</code>.</p> <p>This setting doesn't apply to RDS Custom. However, if you need to change the character set, you can change it on the database itself.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. The character set is managed by the DB cluster. For more information, see <code>CreateDBCluster</code>.</p>",
@@ -4125,6 +4264,8 @@
         "DeleteOptionGroupMessage$OptionGroupName": "<p>The name of the option group to be deleted.</p> <note> <p>You can't delete default option groups.</p> </note>",
         "DeregisterDBProxyTargetsRequest$DBProxyName": "<p>The identifier of the <code>DBProxy</code> that is associated with the <code>DBProxyTargetGroup</code>.</p>",
         "DeregisterDBProxyTargetsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code>.</p>",
+        "DescribeBlueGreenDeploymentsRequest$Marker": "<p>An optional pagination token provided by a previous <code>DescribeBlueGreenDeployments</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeBlueGreenDeploymentsResponse$Marker": "<p>A pagination token that can be used in a later DescribeBlueGreenDeployments request.</p>",
         "DescribeCertificatesMessage$CertificateIdentifier": "<p>The user-supplied certificate identifier. If this parameter is specified, information for only the identified certificate is returned. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match an existing CertificateIdentifier.</p> </li> </ul>",
         "DescribeCertificatesMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeCertificates</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBClusterBacktracksMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the DB cluster to be described. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>my-cluster1</code> </p>",
@@ -4737,6 +4878,34 @@
         "DBEngineVersion$SupportedTimezones": "<p>A list of the time zones supported by this engine for the <code>Timezone</code> parameter of the <code>CreateDBInstance</code> action.</p>"
       }
     },
+    "SwitchoverBlueGreenDeploymentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SwitchoverBlueGreenDeploymentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SwitchoverDetail": {
+      "base": "<p>Contains the details about a blue/green deployment.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
+      "refs": {
+        "SwitchoverDetailList$member": null
+      }
+    },
+    "SwitchoverDetailList": {
+      "base": null,
+      "refs": {
+        "BlueGreenDeployment$SwitchoverDetails": "<p>The details about each source and target resource in the blue/green deployment.</p>"
+      }
+    },
+    "SwitchoverDetailStatus": {
+      "base": null,
+      "refs": {
+        "SwitchoverDetail$Status": "<p>The switchover status of a resource in a blue/green deployment.</p> <p>Values:</p> <ul> <li> <p> <code>preparing-for-switchover</code> - The resource is being prepared to switch over.</p> </li> <li> <p> <code>ready-for-switchover</code> - The resource is ready to switch over.</p> </li> <li> <p> <code>switchover-in-progress</code> - The resource is being switched over.</p> </li> <li> <p> <code>switchover-completed</code> - The resource has been switched over.</p> </li> <li> <p> <code>switchover-failed</code> - The resource attempted to switch over but failed.</p> </li> </ul>"
+      }
+    },
     "SwitchoverReadReplicaMessage": {
       "base": null,
       "refs": {
@@ -4747,10 +4916,18 @@
       "refs": {
       }
     },
+    "SwitchoverTimeout": {
+      "base": null,
+      "refs": {
+        "SwitchoverBlueGreenDeploymentRequest$SwitchoverTimeout": "<p>The amount of time, in seconds, for the switchover to complete. The default is 300.</p> <p>If the switchover takes longer than the specified duration, then any changes are rolled back, and no changes are made to the environments.</p>"
+      }
+    },
     "TStamp": {
       "base": null,
       "refs": {
         "BacktrackDBClusterMessage$BacktrackTo": "<p>The timestamp of the time to backtrack the DB cluster to, specified in ISO 8601 format. For more information about ISO 8601, see the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <note> <p>If the specified time isn't a consistent time for the DB cluster, Aurora automatically chooses the nearest possible consistent time for the DB cluster.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must contain a valid ISO 8601 timestamp.</p> </li> <li> <p>Can't contain a timestamp set in the future.</p> </li> </ul> <p>Example: <code>2017-07-08T18:00Z</code> </p>",
+        "BlueGreenDeployment$CreateTime": "<p>Specifies the time when the blue/green deployment was created, in Universal Coordinated Time (UTC).</p>",
+        "BlueGreenDeployment$DeleteTime": "<p>Specifies the time when the blue/green deployment was deleted, in Universal Coordinated Time (UTC).</p>",
         "Certificate$ValidFrom": "<p>The starting date from which the certificate is valid.</p>",
         "Certificate$ValidTill": "<p>The final date that the certificate continues to be valid.</p>",
         "Certificate$CustomerOverrideValidTill": "<p>If there is an override for the default certificate identifier, when the override expires.</p>",
@@ -4797,7 +4974,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Metadata assigned to an Amazon RDS resource consisting of a key-value pair.</p>",
+      "base": "<p>Metadata assigned to an Amazon RDS resource consisting of a key-value pair.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html\">Tagging Amazon RDS Resources</a> in the <i>Amazon RDS User Guide.</i> </p>",
       "refs": {
         "TagList$member": null
       }
@@ -4806,11 +4983,13 @@
       "base": "<p>A list of tags. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html\">Tagging Amazon RDS Resources</a> in the <i>Amazon RDS User Guide.</i> </p>",
       "refs": {
         "AddTagsToResourceMessage$Tags": "<p>The tags to be assigned to the Amazon RDS resource.</p>",
+        "BlueGreenDeployment$TagList": null,
         "CopyDBClusterParameterGroupMessage$Tags": null,
         "CopyDBClusterSnapshotMessage$Tags": null,
         "CopyDBParameterGroupMessage$Tags": null,
         "CopyDBSnapshotMessage$Tags": null,
         "CopyOptionGroupMessage$Tags": null,
+        "CreateBlueGreenDeploymentRequest$Tags": "<p>Tags to assign to the blue/green deployment.</p>",
         "CreateCustomDBEngineVersionMessage$Tags": null,
         "CreateDBClusterEndpointMessage$Tags": "<p>The tags to be assigned to the Amazon RDS resource.</p>",
         "CreateDBClusterMessage$Tags": "<p>Tags to assign to the DB cluster.</p> <p>Valid for: Aurora DB clusters and Multi-AZ DB clusters</p>",
@@ -4844,6 +5023,24 @@
     "TagListMessage": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "TargetDBClusterParameterGroupName": {
+      "base": null,
+      "refs": {
+        "CreateBlueGreenDeploymentRequest$TargetDBClusterParameterGroupName": "<p>The DB cluster parameter group associated with the Aurora DB cluster in the green environment.</p> <p>To test parameter changes, specify a DB cluster parameter group that is different from the one associated with the source DB cluster.</p>"
+      }
+    },
+    "TargetDBParameterGroupName": {
+      "base": null,
+      "refs": {
+        "CreateBlueGreenDeploymentRequest$TargetDBParameterGroupName": "<p>The DB parameter group associated with the DB instance in the green environment.</p> <p>To test parameter changes, specify a DB parameter group that is different from the one associated with the source DB instance.</p>"
+      }
+    },
+    "TargetEngineVersion": {
+      "base": null,
+      "refs": {
+        "CreateBlueGreenDeploymentRequest$TargetEngineVersion": "<p>The engine version of the database in the green environment.</p> <p>Specify the engine version to upgrade to in the green environment.</p>"
       }
     },
     "TargetGroupList": {

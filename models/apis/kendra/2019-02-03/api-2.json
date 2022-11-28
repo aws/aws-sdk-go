@@ -6521,6 +6521,13 @@
       },
       "type": "structure"
     },
+    "QueryResultFormat": {
+      "enum": [
+        "TABLE",
+        "TEXT"
+      ],
+      "type": "string"
+    },
     "QueryResultItem": {
       "members": {
         "AdditionalAttributes": {
@@ -6544,11 +6551,17 @@
         "FeedbackToken": {
           "shape": "FeedbackToken"
         },
+        "Format": {
+          "shape": "QueryResultFormat"
+        },
         "Id": {
           "shape": "ResultId"
         },
         "ScoreAttributes": {
           "shape": "ScoreAttributes"
+        },
+        "TableExcerpt": {
+          "shape": "TableExcerpt"
         },
         "Type": {
           "shape": "QueryResultType"
@@ -7727,11 +7740,59 @@
       },
       "type": "structure"
     },
+    "TableCell": {
+      "members": {
+        "Header": {
+          "shape": "Boolean"
+        },
+        "Highlighted": {
+          "shape": "Boolean"
+        },
+        "TopAnswer": {
+          "shape": "Boolean"
+        },
+        "Value": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "TableCellList": {
+      "member": {
+        "shape": "TableCell"
+      },
+      "type": "list"
+    },
+    "TableExcerpt": {
+      "members": {
+        "Rows": {
+          "shape": "TableRowList"
+        },
+        "TotalNumberOfRows": {
+          "shape": "Integer"
+        }
+      },
+      "type": "structure"
+    },
     "TableName": {
       "max": 100,
       "min": 1,
       "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
       "type": "string"
+    },
+    "TableRow": {
+      "members": {
+        "Cells": {
+          "shape": "TableCellList"
+        }
+      },
+      "type": "structure"
+    },
+    "TableRowList": {
+      "member": {
+        "shape": "TableRow"
+      },
+      "type": "list"
     },
     "Tag": {
       "members": {

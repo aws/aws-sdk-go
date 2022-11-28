@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Application Migration Service.
 //	func myFunc(svc mgniface.MgnAPI) bool {
-//	    // Make svc.ChangeServerLifeCycleState request
+//	    // Make svc.ArchiveApplication request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockMgnClient struct {
 //	    mgniface.MgnAPI
 //	}
-//	func (m *mockMgnClient) ChangeServerLifeCycleState(input *mgn.ChangeServerLifeCycleStateInput) (*mgn.ChangeServerLifeCycleStateOutput, error) {
+//	func (m *mockMgnClient) ArchiveApplication(input *mgn.ArchiveApplicationInput) (*mgn.ArchiveApplicationOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,9 +60,29 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MgnAPI interface {
+	ArchiveApplication(*mgn.ArchiveApplicationInput) (*mgn.ArchiveApplicationOutput, error)
+	ArchiveApplicationWithContext(aws.Context, *mgn.ArchiveApplicationInput, ...request.Option) (*mgn.ArchiveApplicationOutput, error)
+	ArchiveApplicationRequest(*mgn.ArchiveApplicationInput) (*request.Request, *mgn.ArchiveApplicationOutput)
+
+	ArchiveWave(*mgn.ArchiveWaveInput) (*mgn.ArchiveWaveOutput, error)
+	ArchiveWaveWithContext(aws.Context, *mgn.ArchiveWaveInput, ...request.Option) (*mgn.ArchiveWaveOutput, error)
+	ArchiveWaveRequest(*mgn.ArchiveWaveInput) (*request.Request, *mgn.ArchiveWaveOutput)
+
+	AssociateApplications(*mgn.AssociateApplicationsInput) (*mgn.AssociateApplicationsOutput, error)
+	AssociateApplicationsWithContext(aws.Context, *mgn.AssociateApplicationsInput, ...request.Option) (*mgn.AssociateApplicationsOutput, error)
+	AssociateApplicationsRequest(*mgn.AssociateApplicationsInput) (*request.Request, *mgn.AssociateApplicationsOutput)
+
+	AssociateSourceServers(*mgn.AssociateSourceServersInput) (*mgn.AssociateSourceServersOutput, error)
+	AssociateSourceServersWithContext(aws.Context, *mgn.AssociateSourceServersInput, ...request.Option) (*mgn.AssociateSourceServersOutput, error)
+	AssociateSourceServersRequest(*mgn.AssociateSourceServersInput) (*request.Request, *mgn.AssociateSourceServersOutput)
+
 	ChangeServerLifeCycleState(*mgn.ChangeServerLifeCycleStateInput) (*mgn.ChangeServerLifeCycleStateOutput, error)
 	ChangeServerLifeCycleStateWithContext(aws.Context, *mgn.ChangeServerLifeCycleStateInput, ...request.Option) (*mgn.ChangeServerLifeCycleStateOutput, error)
 	ChangeServerLifeCycleStateRequest(*mgn.ChangeServerLifeCycleStateInput) (*request.Request, *mgn.ChangeServerLifeCycleStateOutput)
+
+	CreateApplication(*mgn.CreateApplicationInput) (*mgn.CreateApplicationOutput, error)
+	CreateApplicationWithContext(aws.Context, *mgn.CreateApplicationInput, ...request.Option) (*mgn.CreateApplicationOutput, error)
+	CreateApplicationRequest(*mgn.CreateApplicationInput) (*request.Request, *mgn.CreateApplicationOutput)
 
 	CreateLaunchConfigurationTemplate(*mgn.CreateLaunchConfigurationTemplateInput) (*mgn.CreateLaunchConfigurationTemplateOutput, error)
 	CreateLaunchConfigurationTemplateWithContext(aws.Context, *mgn.CreateLaunchConfigurationTemplateInput, ...request.Option) (*mgn.CreateLaunchConfigurationTemplateOutput, error)
@@ -71,6 +91,14 @@ type MgnAPI interface {
 	CreateReplicationConfigurationTemplate(*mgn.CreateReplicationConfigurationTemplateInput) (*mgn.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateWithContext(aws.Context, *mgn.CreateReplicationConfigurationTemplateInput, ...request.Option) (*mgn.CreateReplicationConfigurationTemplateOutput, error)
 	CreateReplicationConfigurationTemplateRequest(*mgn.CreateReplicationConfigurationTemplateInput) (*request.Request, *mgn.CreateReplicationConfigurationTemplateOutput)
+
+	CreateWave(*mgn.CreateWaveInput) (*mgn.CreateWaveOutput, error)
+	CreateWaveWithContext(aws.Context, *mgn.CreateWaveInput, ...request.Option) (*mgn.CreateWaveOutput, error)
+	CreateWaveRequest(*mgn.CreateWaveInput) (*request.Request, *mgn.CreateWaveOutput)
+
+	DeleteApplication(*mgn.DeleteApplicationInput) (*mgn.DeleteApplicationOutput, error)
+	DeleteApplicationWithContext(aws.Context, *mgn.DeleteApplicationInput, ...request.Option) (*mgn.DeleteApplicationOutput, error)
+	DeleteApplicationRequest(*mgn.DeleteApplicationInput) (*request.Request, *mgn.DeleteApplicationOutput)
 
 	DeleteJob(*mgn.DeleteJobInput) (*mgn.DeleteJobOutput, error)
 	DeleteJobWithContext(aws.Context, *mgn.DeleteJobInput, ...request.Option) (*mgn.DeleteJobOutput, error)
@@ -91,6 +119,10 @@ type MgnAPI interface {
 	DeleteVcenterClient(*mgn.DeleteVcenterClientInput) (*mgn.DeleteVcenterClientOutput, error)
 	DeleteVcenterClientWithContext(aws.Context, *mgn.DeleteVcenterClientInput, ...request.Option) (*mgn.DeleteVcenterClientOutput, error)
 	DeleteVcenterClientRequest(*mgn.DeleteVcenterClientInput) (*request.Request, *mgn.DeleteVcenterClientOutput)
+
+	DeleteWave(*mgn.DeleteWaveInput) (*mgn.DeleteWaveOutput, error)
+	DeleteWaveWithContext(aws.Context, *mgn.DeleteWaveInput, ...request.Option) (*mgn.DeleteWaveOutput, error)
+	DeleteWaveRequest(*mgn.DeleteWaveInput) (*request.Request, *mgn.DeleteWaveOutput)
 
 	DescribeJobLogItems(*mgn.DescribeJobLogItemsInput) (*mgn.DescribeJobLogItemsOutput, error)
 	DescribeJobLogItemsWithContext(aws.Context, *mgn.DescribeJobLogItemsInput, ...request.Option) (*mgn.DescribeJobLogItemsOutput, error)
@@ -134,6 +166,14 @@ type MgnAPI interface {
 	DescribeVcenterClientsPages(*mgn.DescribeVcenterClientsInput, func(*mgn.DescribeVcenterClientsOutput, bool) bool) error
 	DescribeVcenterClientsPagesWithContext(aws.Context, *mgn.DescribeVcenterClientsInput, func(*mgn.DescribeVcenterClientsOutput, bool) bool, ...request.Option) error
 
+	DisassociateApplications(*mgn.DisassociateApplicationsInput) (*mgn.DisassociateApplicationsOutput, error)
+	DisassociateApplicationsWithContext(aws.Context, *mgn.DisassociateApplicationsInput, ...request.Option) (*mgn.DisassociateApplicationsOutput, error)
+	DisassociateApplicationsRequest(*mgn.DisassociateApplicationsInput) (*request.Request, *mgn.DisassociateApplicationsOutput)
+
+	DisassociateSourceServers(*mgn.DisassociateSourceServersInput) (*mgn.DisassociateSourceServersOutput, error)
+	DisassociateSourceServersWithContext(aws.Context, *mgn.DisassociateSourceServersInput, ...request.Option) (*mgn.DisassociateSourceServersOutput, error)
+	DisassociateSourceServersRequest(*mgn.DisassociateSourceServersInput) (*request.Request, *mgn.DisassociateSourceServersOutput)
+
 	DisconnectFromService(*mgn.DisconnectFromServiceInput) (*mgn.DisconnectFromServiceOutput, error)
 	DisconnectFromServiceWithContext(aws.Context, *mgn.DisconnectFromServiceInput, ...request.Option) (*mgn.DisconnectFromServiceOutput, error)
 	DisconnectFromServiceRequest(*mgn.DisconnectFromServiceInput) (*request.Request, *mgn.DisconnectFromServiceOutput)
@@ -154,13 +194,57 @@ type MgnAPI interface {
 	InitializeServiceWithContext(aws.Context, *mgn.InitializeServiceInput, ...request.Option) (*mgn.InitializeServiceOutput, error)
 	InitializeServiceRequest(*mgn.InitializeServiceInput) (*request.Request, *mgn.InitializeServiceOutput)
 
+	ListApplications(*mgn.ListApplicationsInput) (*mgn.ListApplicationsOutput, error)
+	ListApplicationsWithContext(aws.Context, *mgn.ListApplicationsInput, ...request.Option) (*mgn.ListApplicationsOutput, error)
+	ListApplicationsRequest(*mgn.ListApplicationsInput) (*request.Request, *mgn.ListApplicationsOutput)
+
+	ListApplicationsPages(*mgn.ListApplicationsInput, func(*mgn.ListApplicationsOutput, bool) bool) error
+	ListApplicationsPagesWithContext(aws.Context, *mgn.ListApplicationsInput, func(*mgn.ListApplicationsOutput, bool) bool, ...request.Option) error
+
+	ListSourceServerActions(*mgn.ListSourceServerActionsInput) (*mgn.ListSourceServerActionsOutput, error)
+	ListSourceServerActionsWithContext(aws.Context, *mgn.ListSourceServerActionsInput, ...request.Option) (*mgn.ListSourceServerActionsOutput, error)
+	ListSourceServerActionsRequest(*mgn.ListSourceServerActionsInput) (*request.Request, *mgn.ListSourceServerActionsOutput)
+
+	ListSourceServerActionsPages(*mgn.ListSourceServerActionsInput, func(*mgn.ListSourceServerActionsOutput, bool) bool) error
+	ListSourceServerActionsPagesWithContext(aws.Context, *mgn.ListSourceServerActionsInput, func(*mgn.ListSourceServerActionsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*mgn.ListTagsForResourceInput) (*mgn.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *mgn.ListTagsForResourceInput, ...request.Option) (*mgn.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*mgn.ListTagsForResourceInput) (*request.Request, *mgn.ListTagsForResourceOutput)
 
+	ListTemplateActions(*mgn.ListTemplateActionsInput) (*mgn.ListTemplateActionsOutput, error)
+	ListTemplateActionsWithContext(aws.Context, *mgn.ListTemplateActionsInput, ...request.Option) (*mgn.ListTemplateActionsOutput, error)
+	ListTemplateActionsRequest(*mgn.ListTemplateActionsInput) (*request.Request, *mgn.ListTemplateActionsOutput)
+
+	ListTemplateActionsPages(*mgn.ListTemplateActionsInput, func(*mgn.ListTemplateActionsOutput, bool) bool) error
+	ListTemplateActionsPagesWithContext(aws.Context, *mgn.ListTemplateActionsInput, func(*mgn.ListTemplateActionsOutput, bool) bool, ...request.Option) error
+
+	ListWaves(*mgn.ListWavesInput) (*mgn.ListWavesOutput, error)
+	ListWavesWithContext(aws.Context, *mgn.ListWavesInput, ...request.Option) (*mgn.ListWavesOutput, error)
+	ListWavesRequest(*mgn.ListWavesInput) (*request.Request, *mgn.ListWavesOutput)
+
+	ListWavesPages(*mgn.ListWavesInput, func(*mgn.ListWavesOutput, bool) bool) error
+	ListWavesPagesWithContext(aws.Context, *mgn.ListWavesInput, func(*mgn.ListWavesOutput, bool) bool, ...request.Option) error
+
 	MarkAsArchived(*mgn.MarkAsArchivedInput) (*mgn.MarkAsArchivedOutput, error)
 	MarkAsArchivedWithContext(aws.Context, *mgn.MarkAsArchivedInput, ...request.Option) (*mgn.MarkAsArchivedOutput, error)
 	MarkAsArchivedRequest(*mgn.MarkAsArchivedInput) (*request.Request, *mgn.MarkAsArchivedOutput)
+
+	PutSourceServerAction(*mgn.PutSourceServerActionInput) (*mgn.PutSourceServerActionOutput, error)
+	PutSourceServerActionWithContext(aws.Context, *mgn.PutSourceServerActionInput, ...request.Option) (*mgn.PutSourceServerActionOutput, error)
+	PutSourceServerActionRequest(*mgn.PutSourceServerActionInput) (*request.Request, *mgn.PutSourceServerActionOutput)
+
+	PutTemplateAction(*mgn.PutTemplateActionInput) (*mgn.PutTemplateActionOutput, error)
+	PutTemplateActionWithContext(aws.Context, *mgn.PutTemplateActionInput, ...request.Option) (*mgn.PutTemplateActionOutput, error)
+	PutTemplateActionRequest(*mgn.PutTemplateActionInput) (*request.Request, *mgn.PutTemplateActionOutput)
+
+	RemoveSourceServerAction(*mgn.RemoveSourceServerActionInput) (*mgn.RemoveSourceServerActionOutput, error)
+	RemoveSourceServerActionWithContext(aws.Context, *mgn.RemoveSourceServerActionInput, ...request.Option) (*mgn.RemoveSourceServerActionOutput, error)
+	RemoveSourceServerActionRequest(*mgn.RemoveSourceServerActionInput) (*request.Request, *mgn.RemoveSourceServerActionOutput)
+
+	RemoveTemplateAction(*mgn.RemoveTemplateActionInput) (*mgn.RemoveTemplateActionOutput, error)
+	RemoveTemplateActionWithContext(aws.Context, *mgn.RemoveTemplateActionInput, ...request.Option) (*mgn.RemoveTemplateActionOutput, error)
+	RemoveTemplateActionRequest(*mgn.RemoveTemplateActionInput) (*request.Request, *mgn.RemoveTemplateActionOutput)
 
 	RetryDataReplication(*mgn.RetryDataReplicationInput) (*mgn.RetryDataReplicationOutput, error)
 	RetryDataReplicationWithContext(aws.Context, *mgn.RetryDataReplicationInput, ...request.Option) (*mgn.RetryDataReplicationOutput, error)
@@ -186,9 +270,21 @@ type MgnAPI interface {
 	TerminateTargetInstancesWithContext(aws.Context, *mgn.TerminateTargetInstancesInput, ...request.Option) (*mgn.TerminateTargetInstancesOutput, error)
 	TerminateTargetInstancesRequest(*mgn.TerminateTargetInstancesInput) (*request.Request, *mgn.TerminateTargetInstancesOutput)
 
+	UnarchiveApplication(*mgn.UnarchiveApplicationInput) (*mgn.UnarchiveApplicationOutput, error)
+	UnarchiveApplicationWithContext(aws.Context, *mgn.UnarchiveApplicationInput, ...request.Option) (*mgn.UnarchiveApplicationOutput, error)
+	UnarchiveApplicationRequest(*mgn.UnarchiveApplicationInput) (*request.Request, *mgn.UnarchiveApplicationOutput)
+
+	UnarchiveWave(*mgn.UnarchiveWaveInput) (*mgn.UnarchiveWaveOutput, error)
+	UnarchiveWaveWithContext(aws.Context, *mgn.UnarchiveWaveInput, ...request.Option) (*mgn.UnarchiveWaveOutput, error)
+	UnarchiveWaveRequest(*mgn.UnarchiveWaveInput) (*request.Request, *mgn.UnarchiveWaveOutput)
+
 	UntagResource(*mgn.UntagResourceInput) (*mgn.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *mgn.UntagResourceInput, ...request.Option) (*mgn.UntagResourceOutput, error)
 	UntagResourceRequest(*mgn.UntagResourceInput) (*request.Request, *mgn.UntagResourceOutput)
+
+	UpdateApplication(*mgn.UpdateApplicationInput) (*mgn.UpdateApplicationOutput, error)
+	UpdateApplicationWithContext(aws.Context, *mgn.UpdateApplicationInput, ...request.Option) (*mgn.UpdateApplicationOutput, error)
+	UpdateApplicationRequest(*mgn.UpdateApplicationInput) (*request.Request, *mgn.UpdateApplicationOutput)
 
 	UpdateLaunchConfiguration(*mgn.UpdateLaunchConfigurationInput) (*mgn.UpdateLaunchConfigurationOutput, error)
 	UpdateLaunchConfigurationWithContext(aws.Context, *mgn.UpdateLaunchConfigurationInput, ...request.Option) (*mgn.UpdateLaunchConfigurationOutput, error)
@@ -209,6 +305,10 @@ type MgnAPI interface {
 	UpdateSourceServerReplicationType(*mgn.UpdateSourceServerReplicationTypeInput) (*mgn.UpdateSourceServerReplicationTypeOutput, error)
 	UpdateSourceServerReplicationTypeWithContext(aws.Context, *mgn.UpdateSourceServerReplicationTypeInput, ...request.Option) (*mgn.UpdateSourceServerReplicationTypeOutput, error)
 	UpdateSourceServerReplicationTypeRequest(*mgn.UpdateSourceServerReplicationTypeInput) (*request.Request, *mgn.UpdateSourceServerReplicationTypeOutput)
+
+	UpdateWave(*mgn.UpdateWaveInput) (*mgn.UpdateWaveOutput, error)
+	UpdateWaveWithContext(aws.Context, *mgn.UpdateWaveInput, ...request.Option) (*mgn.UpdateWaveOutput, error)
+	UpdateWaveRequest(*mgn.UpdateWaveInput) (*request.Request, *mgn.UpdateWaveOutput)
 }
 
 var _ MgnAPI = (*mgn.Mgn)(nil)

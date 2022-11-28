@@ -2,47 +2,70 @@
   "version": "2.0",
   "service": "<p>The Application Migration Service service.</p>",
   "operations": {
+    "ArchiveApplication": "<p>Archive application.</p>",
+    "ArchiveWave": "<p>Archive wave.</p>",
+    "AssociateApplications": "<p>Associate applications to wave.</p>",
+    "AssociateSourceServers": "<p>Associate source servers to application.</p>",
     "ChangeServerLifeCycleState": "<p>Allows the user to set the SourceServer.LifeCycle.state property for specific Source Server IDs to one of the following: READY_FOR_TEST or READY_FOR_CUTOVER. This command only works if the Source Server is already launchable (dataReplicationInfo.lagDuration is not null.)</p>",
-    "CreateLaunchConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
+    "CreateApplication": "<p>Create application.</p>",
+    "CreateLaunchConfigurationTemplate": "<p>Creates a new Launch Configuration Template.</p>",
     "CreateReplicationConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
+    "CreateWave": "<p>Create wave.</p>",
+    "DeleteApplication": "<p>Delete application.</p>",
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
-    "DeleteLaunchConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
+    "DeleteLaunchConfigurationTemplate": "<p>Deletes a single Launch Configuration Template by ID.</p>",
     "DeleteReplicationConfigurationTemplate": "<p>Deletes a single Replication Configuration Template by ID</p>",
     "DeleteSourceServer": "<p>Deletes a single source server by ID.</p>",
     "DeleteVcenterClient": "<p>Deletes a given vCenter client by ID.</p>",
+    "DeleteWave": "<p>Delete wave.</p>",
     "DescribeJobLogItems": "<p>Retrieves detailed job log items with paging.</p>",
     "DescribeJobs": "<p>Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normally created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>",
-    "DescribeLaunchConfigurationTemplates": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
+    "DescribeLaunchConfigurationTemplates": "<p>Lists all Launch Configuration Templates, filtered by Launch Configuration Template IDs</p>",
     "DescribeReplicationConfigurationTemplates": "<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>",
     "DescribeSourceServers": "<p>Retrieves all SourceServers or multiple SourceServers by ID.</p>",
     "DescribeVcenterClients": "<p>Returns a list of the installed vCenter clients.</p>",
+    "DisassociateApplications": "<p>Disassociate applications from wave.</p>",
+    "DisassociateSourceServers": "<p>Disassociate source servers from application.</p>",
     "DisconnectFromService": "<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communicating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>",
     "FinalizeCutover": "<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be changed to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDuration will be nullified.</p>",
     "GetLaunchConfiguration": "<p>Lists all LaunchConfigurations available, filtered by Source Server IDs.</p>",
     "GetReplicationConfiguration": "<p>Lists all ReplicationConfigurations, filtered by Source Server ID.</p>",
     "InitializeService": "<p>Initialize Application Migration Service.</p>",
+    "ListApplications": "<p>Retrieves all applications or multiple applications by ID.</p>",
+    "ListSourceServerActions": "<p>List source server post migration custom actions.</p>",
     "ListTagsForResource": "<p>List all tags for your Application Migration Service resources.</p>",
+    "ListTemplateActions": "<p>List template post migration custom actions.</p>",
+    "ListWaves": "<p>Retrieves all waves or multiple waves by ID.</p>",
     "MarkAsArchived": "<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle. state which equals DISCONNECTED or CUTOVER.</p>",
+    "PutSourceServerAction": "<p>Put source server post migration custom action.</p>",
+    "PutTemplateAction": "<p>Put template post migration custom action.</p>",
+    "RemoveSourceServerAction": "<p>Remove source server post migration custom action.</p>",
+    "RemoveTemplateAction": "<p>Remove template post migration custom action.</p>",
     "RetryDataReplication": "<p>Causes the data replication initiation sequence to begin immediately upon next Handshake for specified SourceServer IDs, regardless of when the previous initiation started. This command will not work if the SourceServer is not stalled or is in a DISCONNECTED or STOPPED state.</p>",
     "StartCutover": "<p>Launches a Cutover Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartCutover and changes the SourceServer.lifeCycle.state property to CUTTING_OVER.</p>",
     "StartReplication": "<p>Starts replication for SNAPSHOT_SHIPPING agents.</p>",
     "StartTest": "<p>Launches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING.</p>",
     "TagResource": "<p>Adds or overwrites only the specified tags for the specified Application Migration Service resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value.</p>",
     "TerminateTargetInstances": "<p>Starts a job that terminates specific launched EC2 Test and Cutover instances. This command will not work for any Source Server with a lifecycle.state of TESTING, CUTTING_OVER, or CUTOVER.</p>",
+    "UnarchiveApplication": "<p>Unarchive application.</p>",
+    "UnarchiveWave": "<p>Unarchive wave.</p>",
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Application Migration Service resources.</p>",
+    "UpdateApplication": "<p>Update application.</p>",
     "UpdateLaunchConfiguration": "<p>Updates multiple LaunchConfigurations by Source Server ID.</p>",
-    "UpdateLaunchConfigurationTemplate": "<p>Creates a new ReplicationConfigurationTemplate.</p>",
+    "UpdateLaunchConfigurationTemplate": "<p>Updates an existing Launch Configuration Template by ID.</p>",
     "UpdateReplicationConfiguration": "<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>",
     "UpdateReplicationConfigurationTemplate": "<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>",
-    "UpdateSourceServerReplicationType": "<p>Allows you to change between the AGENT_BASED replication type and the SNAPSHOT_SHIPPING replication type.</p>"
+    "UpdateSourceServerReplicationType": "<p>Allows you to change between the AGENT_BASED replication type and the SNAPSHOT_SHIPPING replication type.</p>",
+    "UpdateWave": "<p>Update wave.</p>"
   },
   "shapes": {
     "ARN": {
       "base": null,
       "refs": {
+        "Application$arn": "<p>Application ARN.</p>",
         "CreateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Request to configure an EBS encryption key during Replication Settings template creation.</p>",
         "Job$arn": "<p>the ARN of the specific Job.</p>",
-        "LaunchConfigurationTemplate$arn": "<p>Copy Private IP during Launch Configuration.</p>",
+        "LaunchConfigurationTemplate$arn": "<p>ARN of the Launch Configuration Template.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>List tags for resource request by ARN.</p>",
         "ReplicationConfiguration$ebsEncryptionKeyArn": "<p>Replication Configuration EBS encryption key ARN.</p>",
         "ReplicationConfigurationTemplate$arn": "<p>Replication Configuration template ARN.</p>",
@@ -53,7 +76,8 @@
         "UpdateReplicationConfigurationRequest$ebsEncryptionKeyArn": "<p>Update replication configuration EBS encryption key ARN request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$arn": "<p>Update replication configuration template ARN request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Update replication configuration template EBS encryption key ARN request.</p>",
-        "VcenterClient$arn": "<p>Arn of vCenter client.</p>"
+        "VcenterClient$arn": "<p>Arn of vCenter client.</p>",
+        "Wave$arn": "<p>Wave ARN.</p>"
       }
     },
     "AccessDeniedException": {
@@ -61,17 +85,170 @@
       "refs": {
       }
     },
+    "ActionID": {
+      "base": null,
+      "refs": {
+        "ActionIDs$member": null,
+        "PutSourceServerActionRequest$actionID": "<p>Source server post migration custom action ID.</p>",
+        "PutTemplateActionRequest$actionID": "<p>Template post migration custom action ID.</p>",
+        "RemoveSourceServerActionRequest$actionID": "<p>Source server post migration custom action ID to remove.</p>",
+        "RemoveTemplateActionRequest$actionID": "<p>Template post migration custom action ID to remove.</p>",
+        "SourceServerActionDocument$actionID": "<p>Source server post migration custom action ID.</p>",
+        "TemplateActionDocument$actionID": "<p>Template post migration custom action ID.</p>"
+      }
+    },
+    "ActionIDs": {
+      "base": null,
+      "refs": {
+        "SourceServerActionsRequestFilters$actionIDs": "<p>Action IDs to filter source server post migration custom actions by.</p>",
+        "TemplateActionsRequestFilters$actionIDs": "<p>Action IDs to filter template post migration custom actions by.</p>"
+      }
+    },
+    "ActionName": {
+      "base": null,
+      "refs": {
+        "PutSourceServerActionRequest$actionName": "<p>Source server post migration custom action name.</p>",
+        "SourceServerActionDocument$actionName": "<p>Source server post migration custom action name.</p>"
+      }
+    },
+    "Application": {
+      "base": null,
+      "refs": {
+        "ApplicationsList$member": null
+      }
+    },
+    "ApplicationAggregatedStatus": {
+      "base": "<p>Application aggregated status.</p>",
+      "refs": {
+        "Application$applicationAggregatedStatus": "<p>Application aggregated status.</p>"
+      }
+    },
+    "ApplicationDescription": {
+      "base": null,
+      "refs": {
+        "Application$description": "<p>Application description.</p>",
+        "CreateApplicationRequest$description": "<p>Application description.</p>",
+        "UpdateApplicationRequest$description": "<p>Application description.</p>"
+      }
+    },
+    "ApplicationHealthStatus": {
+      "base": null,
+      "refs": {
+        "ApplicationAggregatedStatus$healthStatus": "<p>Application aggregated status health status.</p>"
+      }
+    },
+    "ApplicationID": {
+      "base": null,
+      "refs": {
+        "Application$applicationID": "<p>Application ID.</p>",
+        "ApplicationIDs$member": null,
+        "ApplicationIDsFilter$member": null,
+        "ArchiveApplicationRequest$applicationID": "<p>Application ID.</p>",
+        "AssociateSourceServersRequest$applicationID": "<p>Application ID.</p>",
+        "DeleteApplicationRequest$applicationID": "<p>Application ID.</p>",
+        "DescribeSourceServersRequestApplicationIDs$member": null,
+        "DisassociateSourceServersRequest$applicationID": "<p>Application ID.</p>",
+        "SourceServer$applicationID": "<p>Source server application ID.</p>",
+        "UnarchiveApplicationRequest$applicationID": "<p>Application ID.</p>",
+        "UpdateApplicationRequest$applicationID": "<p>Application ID.</p>"
+      }
+    },
+    "ApplicationIDs": {
+      "base": null,
+      "refs": {
+        "AssociateApplicationsRequest$applicationIDs": "<p>Application IDs list.</p>",
+        "DisassociateApplicationsRequest$applicationIDs": "<p>Application IDs list.</p>"
+      }
+    },
+    "ApplicationIDsFilter": {
+      "base": null,
+      "refs": {
+        "ListApplicationsRequestFilters$applicationIDs": "<p>Filter applications list by application ID.</p>"
+      }
+    },
+    "ApplicationName": {
+      "base": null,
+      "refs": {
+        "Application$name": "<p>Application name.</p>",
+        "CreateApplicationRequest$name": "<p>Application name.</p>",
+        "UpdateApplicationRequest$name": "<p>Application name.</p>"
+      }
+    },
+    "ApplicationProgressStatus": {
+      "base": null,
+      "refs": {
+        "ApplicationAggregatedStatus$progressStatus": "<p>Application aggregated status progress status.</p>"
+      }
+    },
+    "ApplicationsList": {
+      "base": null,
+      "refs": {
+        "ListApplicationsResponse$items": "<p>Applications list.</p>"
+      }
+    },
+    "ArchiveApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ArchiveWaveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSourceServersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSourceServersRequestSourceServerIDs": {
+      "base": null,
+      "refs": {
+        "AssociateSourceServersRequest$sourceServerIDs": "<p>Source server IDs list.</p>"
+      }
+    },
+    "AssociateSourceServersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
+        "Application$isArchived": "<p>Application archival status.</p>",
+        "CreateLaunchConfigurationTemplateRequest$associatePublicIpAddress": "<p>Associate public Ip address.</p>",
+        "CreateLaunchConfigurationTemplateRequest$copyPrivateIp": "<p>Copy private Ip.</p>",
+        "CreateLaunchConfigurationTemplateRequest$copyTags": "<p>Copy tags.</p>",
+        "CreateLaunchConfigurationTemplateRequest$enableMapAutoTagging": "<p>Enable map auto tagging.</p>",
         "CreateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Request to associate the default Application Migration Service Security group with the Replication Settings template.</p>",
         "CreateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Request to create Public IP during Replication Settings template creation.</p>",
         "CreateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Request to use Dedicated Replication Servers during Replication Settings template creation.</p>",
         "DescribeSourceServersRequestFilters$isArchived": "<p>Request to filter Source Servers list by archived.</p>",
         "LaunchConfiguration$copyPrivateIp": "<p>Copy Private IP during Launch Configuration.</p>",
         "LaunchConfiguration$copyTags": "<p>Copy Tags during Launch Configuration.</p>",
+        "LaunchConfiguration$enableMapAutoTagging": "<p>Enable map auto tagging.</p>",
+        "LaunchConfigurationTemplate$associatePublicIpAddress": "<p>Associate public Ip address.</p>",
+        "LaunchConfigurationTemplate$copyPrivateIp": "<p>Copy private Ip.</p>",
+        "LaunchConfigurationTemplate$copyTags": "<p>Copy tags.</p>",
+        "LaunchConfigurationTemplate$enableMapAutoTagging": "<p>Enable map auto tagging.</p>",
         "Licensing$osByol": "<p>Configure BYOL OS licensing.</p>",
+        "ListApplicationsRequestFilters$isArchived": "<p>Filter applications list by archival status.</p>",
+        "ListWavesRequestFilters$isArchived": "<p>Filter waves list by archival status.</p>",
         "NetworkInterface$isPrimary": "<p>Network interface primary IP.</p>",
+        "PutSourceServerActionRequest$active": "<p>Source server post migration custom action active status.</p>",
+        "PutSourceServerActionRequest$mustSucceedForCutover": "<p>Source server post migration custom action must succeed for cutover.</p>",
+        "PutTemplateActionRequest$active": "<p>Template post migration custom action active status.</p>",
+        "PutTemplateActionRequest$mustSucceedForCutover": "<p>Template post migration custom action must succeed for cutover.</p>",
         "ReplicationConfiguration$associateDefaultSecurityGroup": "<p>Replication Configuration associate default Application Migration Service Security Group.</p>",
         "ReplicationConfiguration$createPublicIP": "<p>Replication Configuration create Public IP.</p>",
         "ReplicationConfiguration$useDedicatedReplicationServer": "<p>Replication Configuration use Dedicated Replication Server.</p>",
@@ -80,22 +257,35 @@
         "ReplicationConfigurationTemplate$createPublicIP": "<p>Replication Configuration template create Public IP.</p>",
         "ReplicationConfigurationTemplate$useDedicatedReplicationServer": "<p>Replication Configuration template use Dedicated Replication Server.</p>",
         "SourceServer$isArchived": "<p>Source server archived status.</p>",
-        "SsmDocument$mustSucceedForCutover": "<p>Source server replication type.</p>",
+        "SourceServerActionDocument$active": "<p>Source server post migration custom action active status.</p>",
+        "SourceServerActionDocument$mustSucceedForCutover": "<p>Source server post migration custom action must succeed for cutover.</p>",
+        "SsmDocument$mustSucceedForCutover": "<p>If true, Cutover will not be enabled if the document has failed.</p>",
+        "TemplateActionDocument$active": "<p>Template post migration custom action active status.</p>",
+        "TemplateActionDocument$mustSucceedForCutover": "<p>Template post migration custom action must succeed for cutover.</p>",
         "UpdateLaunchConfigurationRequest$copyPrivateIp": "<p>Update Launch configuration copy Private IP request.</p>",
         "UpdateLaunchConfigurationRequest$copyTags": "<p>Update Launch configuration copy Tags request.</p>",
+        "UpdateLaunchConfigurationRequest$enableMapAutoTagging": "<p>Enable map auto tagging.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$associatePublicIpAddress": "<p>Associate public Ip address.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$copyPrivateIp": "<p>Copy private Ip.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$copyTags": "<p>Copy tags.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$enableMapAutoTagging": "<p>Enable map auto tagging.</p>",
         "UpdateReplicationConfigurationRequest$associateDefaultSecurityGroup": "<p>Update replication configuration associate default Application Migration Service Security group request.</p>",
         "UpdateReplicationConfigurationRequest$createPublicIP": "<p>Update replication configuration create Public IP request.</p>",
         "UpdateReplicationConfigurationRequest$useDedicatedReplicationServer": "<p>Update replication configuration use dedicated Replication Server request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$associateDefaultSecurityGroup": "<p>Update replication configuration template associate default Application Migration Service Security group request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$createPublicIP": "<p>Update replication configuration template create Public IP request.</p>",
-        "UpdateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Update replication configuration template use dedicated Replication Server request.</p>"
+        "UpdateReplicationConfigurationTemplateRequest$useDedicatedReplicationServer": "<p>Update replication configuration template use dedicated Replication Server request.</p>",
+        "Wave$isArchived": "<p>Wave archival status.</p>"
       }
     },
     "BootMode": {
       "base": null,
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$bootMode": "<p>Launch configuration template boot mode.</p>",
         "LaunchConfiguration$bootMode": "<p>Launch configuration boot mode.</p>",
-        "UpdateLaunchConfigurationRequest$bootMode": "<p>Update Launch configuration boot mode request.</p>"
+        "LaunchConfigurationTemplate$bootMode": "<p>Launch configuration template boot mode.</p>",
+        "UpdateLaunchConfigurationRequest$bootMode": "<p>Update Launch configuration boot mode request.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$bootMode": "<p>Launch configuration template boot mode.</p>"
       }
     },
     "BoundedString": {
@@ -110,14 +300,20 @@
         "IdentificationHints$hostname": "<p>Hostname identification hint.</p>",
         "IdentificationHints$vmPath": "<p>vCenter VM path identification hint.</p>",
         "IdentificationHints$vmWareUuid": "<p>vmWare UUID identification hint.</p>",
-        "JobPostLaunchActionsLaunchStatus$executionID": "<p>Job type.</p>",
-        "JobPostLaunchActionsLaunchStatus$failureReason": "<p>Job type.</p>",
+        "JobPostLaunchActionsLaunchStatus$executionID": "<p>AWS Systems Manager Document's execution ID of the of the Job Post Launch Actions.</p>",
+        "JobPostLaunchActionsLaunchStatus$failureReason": "<p>AWS Systems Manager Document's failure reason.</p>",
         "LaunchConfiguration$ec2LaunchTemplateID": "<p>Launch configuration EC2 Launch template ID.</p>",
         "NetworkInterface$macAddress": "<p>Network interface Mac address.</p>",
         "OS$fullString": "<p>OS full string.</p>",
-        "PostLaunchActions$s3OutputKeyPrefix": "<p>Server participating in Job.</p>",
+        "PostLaunchActions$s3OutputKeyPrefix": "<p>AWS Systems Manager Command's logs S3 output key prefix.</p>",
+        "PutSourceServerActionRequest$documentIdentifier": "<p>Source server post migration custom action document identifier.</p>",
+        "PutTemplateActionRequest$actionName": "<p>Template post migration custom action name.</p>",
+        "PutTemplateActionRequest$documentIdentifier": "<p>Template post migration custom action document identifier.</p>",
         "ReplicationConfigurationReplicatedDisk$deviceName": "<p>Replication Configuration replicated disk device name.</p>",
-        "SsmDocument$actionName": "<p>Source server replication type.</p>",
+        "SourceServerActionDocument$documentIdentifier": "<p>Source server post migration custom action document identifier.</p>",
+        "SsmDocument$actionName": "<p>User-friendly name for the AWS Systems Manager Document.</p>",
+        "TemplateActionDocument$actionName": "<p>Template post migration custom action name.</p>",
+        "TemplateActionDocument$documentIdentifier": "<p>Template post migration custom action document identifier.</p>",
         "VcenterClient$datacenterName": "<p>Datacenter name of vCenter client.</p>",
         "VcenterClient$hostname": "<p>Hostname of vCenter client .</p>",
         "VcenterClient$vcenterUUID": "<p>Vcenter UUID of vCenter client.</p>"
@@ -149,7 +345,7 @@
     "CloudWatchLogGroupName": {
       "base": null,
       "refs": {
-        "PostLaunchActions$cloudWatchLogGroupName": "<p>Server participating in Job.</p>"
+        "PostLaunchActions$cloudWatchLogGroupName": "<p>AWS Systems Manager Command's CloudWatch log group name.</p>"
       }
     },
     "ConflictException": {
@@ -169,12 +365,22 @@
         "SourceProperties$cpus": "<p>Source Server CPUs.</p>"
       }
     },
+    "CreateApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateLaunchConfigurationTemplateRequest": {
       "base": null,
       "refs": {
       }
     },
     "CreateReplicationConfigurationTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWaveRequest": {
       "base": null,
       "refs": {
       }
@@ -245,6 +451,16 @@
         "DataReplicationInfo$dataReplicationState": "<p>Request to query the data replication state.</p>"
       }
     },
+    "DeleteApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteJobRequest": {
       "base": null,
       "refs": {
@@ -286,6 +502,16 @@
       }
     },
     "DeleteVcenterClientRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWaveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWaveResponse": {
       "base": null,
       "refs": {
       }
@@ -347,6 +573,12 @@
       "refs": {
       }
     },
+    "DescribeSourceServersRequestApplicationIDs": {
+      "base": null,
+      "refs": {
+        "DescribeSourceServersRequestFilters$applicationIDs": "<p>Request to filter Source Servers list by application IDs.</p>"
+      }
+    },
     "DescribeSourceServersRequestFilters": {
       "base": "<p>Request to filter Source Servers list.</p>",
       "refs": {
@@ -374,6 +606,32 @@
       "refs": {
       }
     },
+    "DisassociateApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateSourceServersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateSourceServersRequestSourceServerIDs": {
+      "base": null,
+      "refs": {
+        "DisassociateSourceServersRequest$sourceServerIDs": "<p>Source server IDs list.</p>"
+      }
+    },
+    "DisassociateSourceServersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisconnectFromServiceRequest": {
       "base": null,
       "refs": {
@@ -391,6 +649,15 @@
         "SourceProperties$disks": "<p>Source Server disks.</p>"
       }
     },
+    "DocumentVersion": {
+      "base": null,
+      "refs": {
+        "PutSourceServerActionRequest$documentVersion": "<p>Source server post migration custom action document version.</p>",
+        "PutTemplateActionRequest$documentVersion": "<p>Template post migration custom action document version.</p>",
+        "SourceServerActionDocument$documentVersion": "<p>Source server post migration custom action document version.</p>",
+        "TemplateActionDocument$documentVersion": "<p>Template post migration custom action document version.</p>"
+      }
+    },
     "EC2InstanceID": {
       "base": null,
       "refs": {
@@ -398,7 +665,7 @@
         "JobLogEventData$conversionServerID": "<p>Job Event conversion Server ID.</p>",
         "JobLogEventData$targetInstanceID": "<p>Job Event Target instance ID.</p>",
         "LaunchedInstance$ec2InstanceID": "<p>Launched instance EC2 ID.</p>",
-        "ParticipatingServer$launchedEc2InstanceID": "<p>Participating server Source Server ID.</p>"
+        "ParticipatingServer$launchedEc2InstanceID": "<p>Participating server's launched ec2 instance ID.</p>"
       }
     },
     "EC2InstanceType": {
@@ -410,6 +677,12 @@
         "SourceProperties$recommendedInstanceType": "<p>Source server recommended instance type.</p>",
         "UpdateReplicationConfigurationRequest$replicationServerInstanceType": "<p>Update replication configuration Replication Server instance type request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$replicationServerInstanceType": "<p>Update replication configuration template Replication Server instance type request.</p>"
+      }
+    },
+    "EC2LaunchConfigurationTemplateID": {
+      "base": null,
+      "refs": {
+        "LaunchConfigurationTemplate$ec2LaunchTemplateID": "<p>EC2 launch template ID.</p>"
       }
     },
     "ErrorDetails": {
@@ -448,6 +721,9 @@
     "ISO8601DatetimeString": {
       "base": null,
       "refs": {
+        "Application$creationDateTime": "<p>Application creation dateTime.</p>",
+        "Application$lastModifiedDateTime": "<p>Application last modified dateTime.</p>",
+        "ApplicationAggregatedStatus$lastUpdateDateTime": "<p>Application aggregated status last update dateTime.</p>",
         "DataReplicationInfo$etaDateTime": "<p>Request to query the time when data replication will be complete.</p>",
         "DataReplicationInfo$lastSnapshotDateTime": "<p>Request to query data replication last snapshot time.</p>",
         "DataReplicationInitiation$nextAttemptDateTime": "<p>Request to query next data initiation date and time.</p>",
@@ -466,9 +742,13 @@
         "LifeCycleLastTestFinalized$apiCallDateTime": "<p>Lifecycle Test failed API call date and time.</p>",
         "LifeCycleLastTestInitiated$apiCallDateTime": "<p>Lifecycle last Test initiated API call date and time.</p>",
         "LifeCycleLastTestReverted$apiCallDateTime": "<p>Lifecycle last Test reverted API call date and time.</p>",
-        "PostLaunchActionsStatus$ssmAgentDiscoveryDatetime": "<p>Server participating in Job.</p>",
+        "PostLaunchActionsStatus$ssmAgentDiscoveryDatetime": "<p>Time where the AWS Systems Manager was detected as running on the Test or Cutover instance.</p>",
         "SourceProperties$lastUpdatedDateTime": "<p>Source server last update date and time.</p>",
-        "VcenterClient$lastSeenDatetime": "<p>Last seen time of vCenter client.</p>"
+        "VcenterClient$lastSeenDatetime": "<p>Last seen time of vCenter client.</p>",
+        "Wave$creationDateTime": "<p>Wave creation dateTime.</p>",
+        "Wave$lastModifiedDateTime": "<p>Wave last modified dateTime.</p>",
+        "WaveAggregatedStatus$lastUpdateDateTime": "<p>Wave aggregated status last update dateTime.</p>",
+        "WaveAggregatedStatus$replicationStartedDateTime": "<p>DateTime marking when the first source server in the wave started replication.</p>"
       }
     },
     "ISO8601DurationString": {
@@ -551,7 +831,7 @@
       }
     },
     "JobPostLaunchActionsLaunchStatus": {
-      "base": "<p>Job type.</p>",
+      "base": "<p>Launch Status of the Job Post Launch Actions.</p>",
       "refs": {
         "PostLaunchActionsLaunchStatusList$member": null
       }
@@ -626,34 +906,51 @@
       "base": null,
       "refs": {
         "DeleteLaunchConfigurationTemplateRequest$launchConfigurationTemplateID": "<p>ID of resource to be deleted.</p>",
-        "LaunchConfigurationTemplate$launchConfigurationTemplateID": "<p>Copy Private IP during Launch Configuration.</p>",
+        "LaunchConfigurationTemplate$launchConfigurationTemplateID": "<p>ID of the Launch Configuration Template.</p>",
         "LaunchConfigurationTemplateIDs$member": null,
-        "UpdateLaunchConfigurationTemplateRequest$launchConfigurationTemplateID": "<p>Update Launch configuration Target instance right sizing request.</p>"
+        "ListTemplateActionsRequest$launchConfigurationTemplateID": "<p>Launch configuration template ID.</p>",
+        "PutTemplateActionRequest$launchConfigurationTemplateID": "<p>Launch configuration template ID.</p>",
+        "RemoveTemplateActionRequest$launchConfigurationTemplateID": "<p>Launch configuration template ID of the post migration custom action to remove.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$launchConfigurationTemplateID": "<p>Launch Configuration Template ID.</p>"
       }
     },
     "LaunchConfigurationTemplateIDs": {
       "base": null,
       "refs": {
-        "DescribeLaunchConfigurationTemplatesRequest$launchConfigurationTemplateIDs": "<p>Request to disconnect Source Server from service by Server ID.</p>"
+        "DescribeLaunchConfigurationTemplatesRequest$launchConfigurationTemplateIDs": "<p>Request to filter Launch Configuration Templates list by Launch Configuration Template ID.</p>"
       }
     },
     "LaunchConfigurationTemplates": {
       "base": null,
       "refs": {
-        "DescribeLaunchConfigurationTemplatesResponse$items": "<p>Request to disconnect Source Server from service by Server ID.</p>"
+        "DescribeLaunchConfigurationTemplatesResponse$items": "<p>List of items returned by DescribeLaunchConfigurationTemplates.</p>"
       }
     },
     "LaunchDisposition": {
       "base": null,
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$launchDisposition": "<p>Launch disposition.</p>",
         "LaunchConfiguration$launchDisposition": "<p>Launch disposition for launch configuration.</p>",
-        "UpdateLaunchConfigurationRequest$launchDisposition": "<p>Update Launch configuration launch disposition request.</p>"
+        "LaunchConfigurationTemplate$launchDisposition": "<p>Launch disposition.</p>",
+        "UpdateLaunchConfigurationRequest$launchDisposition": "<p>Update Launch configuration launch disposition request.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$launchDisposition": "<p>Launch disposition.</p>"
       }
     },
     "LaunchStatus": {
       "base": null,
       "refs": {
         "ParticipatingServer$launchStatus": "<p>Participating server launch status.</p>"
+      }
+    },
+    "LaunchTemplateDiskConf": {
+      "base": "<p>Launch template disk configuration.</p>",
+      "refs": {
+        "CreateLaunchConfigurationTemplateRequest$largeVolumeConf": "<p>Large volume config.</p>",
+        "CreateLaunchConfigurationTemplateRequest$smallVolumeConf": "<p>Small volume config.</p>",
+        "LaunchConfigurationTemplate$largeVolumeConf": "<p>Large volume config.</p>",
+        "LaunchConfigurationTemplate$smallVolumeConf": "<p>Small volume config.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$largeVolumeConf": "<p>Large volume config.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$smallVolumeConf": "<p>Small volume config.</p>"
       }
     },
     "LaunchedInstance": {
@@ -665,8 +962,11 @@
     "Licensing": {
       "base": "<p>Configure Licensing.</p>",
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$licensing": null,
         "LaunchConfiguration$licensing": "<p>Launch configuration OS licensing.</p>",
-        "UpdateLaunchConfigurationRequest$licensing": "<p>Update Launch configuration licensing request.</p>"
+        "LaunchConfigurationTemplate$licensing": null,
+        "UpdateLaunchConfigurationRequest$licensing": "<p>Update Launch configuration licensing request.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$licensing": null
       }
     },
     "LifeCycle": {
@@ -736,6 +1036,32 @@
         "DescribeSourceServersRequestFilters$lifeCycleStates": "<p>Request to filter Source Servers list by life cycle states.</p>"
       }
     },
+    "ListApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApplicationsRequestFilters": {
+      "base": "<p>Applications list filters.</p>",
+      "refs": {
+        "ListApplicationsRequest$filters": "<p>Applications list filters.</p>"
+      }
+    },
+    "ListApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSourceServerActionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSourceServerActionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -746,9 +1072,50 @@
       "refs": {
       }
     },
+    "ListTemplateActionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTemplateActionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWavesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWavesRequestFilters": {
+      "base": "<p>Waves list filters.</p>",
+      "refs": {
+        "ListWavesRequest$filters": "<p>Waves list filters.</p>"
+      }
+    },
+    "ListWavesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MarkAsArchivedRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "MaxResultsType": {
+      "base": null,
+      "refs": {
+        "DescribeJobLogItemsRequest$maxResults": "<p>Request to describe Job log item maximum results.</p>",
+        "DescribeJobsRequest$maxResults": "<p>Request to describe job log items by max results.</p>",
+        "DescribeLaunchConfigurationTemplatesRequest$maxResults": "<p>Maximum results to be returned in DescribeLaunchConfigurationTemplates.</p>",
+        "DescribeReplicationConfigurationTemplatesRequest$maxResults": "<p>Request to describe Replication Configuration template by max results.</p>",
+        "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>",
+        "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>",
+        "ListApplicationsRequest$maxResults": "<p>Maximum results to return when listing applications.</p>",
+        "ListSourceServerActionsRequest$maxResults": "<p>Maximum amount of items to return when listing source server post migration custom actions.</p>",
+        "ListTemplateActionsRequest$maxResults": "<p>Maximum amount of items to return when listing template post migration custom actions.</p>",
+        "ListWavesRequest$maxResults": "<p>Maximum results to return when listing waves.</p>"
       }
     },
     "NetworkInterface": {
@@ -769,6 +1136,22 @@
         "SourceProperties$os": "<p>Source server OS.</p>"
       }
     },
+    "OperatingSystemString": {
+      "base": null,
+      "refs": {
+        "PutTemplateActionRequest$operatingSystem": "<p>Operating system eligible for this template post migration custom action.</p>",
+        "TemplateActionDocument$operatingSystem": "<p>Operating system eligible for this template post migration custom action.</p>"
+      }
+    },
+    "OrderType": {
+      "base": null,
+      "refs": {
+        "PutSourceServerActionRequest$order": "<p>Source server post migration custom action order.</p>",
+        "PutTemplateActionRequest$order": "<p>Template post migration custom action order.</p>",
+        "SourceServerActionDocument$order": "<p>Source server post migration custom action order.</p>",
+        "TemplateActionDocument$order": "<p>Template post migration custom action order.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -776,14 +1159,22 @@
         "DescribeJobLogItemsResponse$nextToken": "<p>Request to describe Job log response next token.</p>",
         "DescribeJobsRequest$nextToken": "<p>Request to describe job log items by next token.</p>",
         "DescribeJobsResponse$nextToken": "<p>Request to describe Job response by next token.</p>",
-        "DescribeLaunchConfigurationTemplatesRequest$nextToken": "<p>Request to disconnect Source Server from service by Server ID.</p>",
-        "DescribeLaunchConfigurationTemplatesResponse$nextToken": "<p>Request to disconnect Source Server from service by Server ID.</p>",
+        "DescribeLaunchConfigurationTemplatesRequest$nextToken": "<p>Next pagination token returned from DescribeLaunchConfigurationTemplates.</p>",
+        "DescribeLaunchConfigurationTemplatesResponse$nextToken": "<p>Next pagination token returned from DescribeLaunchConfigurationTemplates.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
         "DescribeReplicationConfigurationTemplatesResponse$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
         "DescribeSourceServersRequest$nextToken": "<p>Request to filter Source Servers list by next token.</p>",
         "DescribeSourceServersResponse$nextToken": "<p>Request to filter Source Servers next token.</p>",
         "DescribeVcenterClientsRequest$nextToken": "<p>Next pagination token to be provided for DescribeVcenterClients.</p>",
-        "DescribeVcenterClientsResponse$nextToken": "<p>Next pagination token returned from DescribeVcenterClients.</p>"
+        "DescribeVcenterClientsResponse$nextToken": "<p>Next pagination token returned from DescribeVcenterClients.</p>",
+        "ListApplicationsRequest$nextToken": "<p>Request next token.</p>",
+        "ListApplicationsResponse$nextToken": "<p>Response next token.</p>",
+        "ListSourceServerActionsRequest$nextToken": "<p>Next token to use when listing source server post migration custom actions.</p>",
+        "ListSourceServerActionsResponse$nextToken": "<p>Next token returned when listing source server post migration custom actions.</p>",
+        "ListTemplateActionsRequest$nextToken": "<p>Next token to use when listing template post migration custom actions.</p>",
+        "ListTemplateActionsResponse$nextToken": "<p>Next token returned when listing template post migration custom actions.</p>",
+        "ListWavesRequest$nextToken": "<p>Request next token.</p>",
+        "ListWavesResponse$nextToken": "<p>Response next token.</p>"
       }
     },
     "ParticipatingServer": {
@@ -801,7 +1192,9 @@
     "PositiveInteger": {
       "base": null,
       "refs": {
+        "ApplicationAggregatedStatus$totalSourceServers": "<p>Application aggregated status total source servers amount.</p>",
         "CPU$cores": "<p>The number of CPU cores on the source server.</p>",
+        "CreateLaunchConfigurationTemplateRequest$smallVolumeMaxSize": "<p>Small volume maximum size.</p>",
         "CreateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Request to configure bandwidth throttling during Replication Settings template creation.</p>",
         "DataReplicationInfoReplicatedDisk$backloggedStorageBytes": "<p>Request to query data replication backlog size in bytes.</p>",
         "DataReplicationInfoReplicatedDisk$replicatedStorageBytes": "<p>Request to query amount of data replicated in bytes.</p>",
@@ -809,47 +1202,82 @@
         "DataReplicationInfoReplicatedDisk$totalStorageBytes": "<p>Request to query total amount of data replicated in bytes.</p>",
         "Disk$bytes": "<p>The amount of storage on the disk in bytes.</p>",
         "InternalServerException$retryAfterSeconds": "<p>The server encountered an unexpected condition that prevented it from fulfilling the request. The request will be retried again after x seconds.</p>",
+        "LaunchConfigurationTemplate$smallVolumeMaxSize": "<p>Small volume maximum size.</p>",
+        "LaunchTemplateDiskConf$iops": "<p>Launch template disk iops configuration.</p>",
+        "LaunchTemplateDiskConf$throughput": "<p>Launch template disk throughput configuration.</p>",
         "ReplicationConfiguration$bandwidthThrottling": "<p>Replication Configuration set bandwidth throttling.</p>",
         "ReplicationConfigurationReplicatedDisk$iops": "<p>Replication Configuration replicated disk IOPs.</p>",
         "ReplicationConfigurationReplicatedDisk$throughput": "<p>Replication Configuration replicated disk throughput.</p>",
         "ReplicationConfigurationTemplate$bandwidthThrottling": "<p>Replication Configuration template bandwidth throttling.</p>",
         "SourceProperties$ramBytes": "<p>Source server RAM in bytes.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$smallVolumeMaxSize": "<p>Small volume maximum size.</p>",
         "UpdateReplicationConfigurationRequest$bandwidthThrottling": "<p>Update replication configuration bandwidth throttling request.</p>",
-        "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Update replication configuration template bandwidth throttling request.</p>"
+        "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Update replication configuration template bandwidth throttling request.</p>",
+        "WaveAggregatedStatus$totalApplications": "<p>Wave aggregated status total applications amount.</p>"
       }
     },
     "PostLaunchActionExecutionStatus": {
       "base": null,
       "refs": {
-        "JobPostLaunchActionsLaunchStatus$executionStatus": "<p>Job type.</p>"
+        "JobPostLaunchActionsLaunchStatus$executionStatus": "<p>AWS Systems Manager Document's execution status.</p>"
       }
     },
     "PostLaunchActions": {
-      "base": "<p>Server participating in Job.</p>",
+      "base": "<p>Post Launch Actions to executed on the Test or Cutover instance.</p>",
       "refs": {
-        "CreateLaunchConfigurationTemplateRequest$postLaunchActions": "<p>Request to associate the default Application Migration Service Security group with the Replication Settings template.</p>",
+        "CreateLaunchConfigurationTemplateRequest$postLaunchActions": "<p>Launch configuration template post launch actions.</p>",
         "LaunchConfiguration$postLaunchActions": null,
-        "LaunchConfigurationTemplate$postLaunchActions": "<p>Copy Private IP during Launch Configuration.</p>",
+        "LaunchConfigurationTemplate$postLaunchActions": "<p>Post Launch Actions of the Launch Configuration Template.</p>",
         "UpdateLaunchConfigurationRequest$postLaunchActions": null,
-        "UpdateLaunchConfigurationTemplateRequest$postLaunchActions": "<p>Update Launch configuration Target instance right sizing request.</p>"
+        "UpdateLaunchConfigurationTemplateRequest$postLaunchActions": "<p>Post Launch Action to execute on the Test or Cutover instance.</p>"
       }
     },
     "PostLaunchActionsDeploymentType": {
       "base": null,
       "refs": {
-        "PostLaunchActions$deployment": "<p>Server participating in Job.</p>"
+        "PostLaunchActions$deployment": "<p>Deployment type in which AWS Systems Manager Documents will be executed.</p>"
       }
     },
     "PostLaunchActionsLaunchStatusList": {
       "base": null,
       "refs": {
-        "PostLaunchActionsStatus$postLaunchActionsLaunchStatusList": "<p>Server participating in Job.</p>"
+        "PostLaunchActionsStatus$postLaunchActionsLaunchStatusList": "<p>List of Post Launch Action status.</p>"
       }
     },
     "PostLaunchActionsStatus": {
-      "base": "<p>Server participating in Job.</p>",
+      "base": "<p>Status of the Post Launch Actions running on the Test or Cutover instance.</p>",
       "refs": {
-        "ParticipatingServer$postLaunchActionsStatus": "<p>Participating server Source Server ID.</p>"
+        "ParticipatingServer$postLaunchActionsStatus": "<p>Participating server's Post Launch Actions Status.</p>"
+      }
+    },
+    "PutSourceServerActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutTemplateActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveSourceServerActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveSourceServerActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveTemplateActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveTemplateActionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ReplicationConfiguration": {
@@ -970,7 +1398,7 @@
     "S3LogBucketName": {
       "base": null,
       "refs": {
-        "PostLaunchActions$s3LogBucket": "<p>Server participating in Job.</p>"
+        "PostLaunchActions$s3LogBucket": "<p>AWS Systems Manager Command's logs S3 log bucket.</p>"
       }
     },
     "SecurityGroupID": {
@@ -1005,20 +1433,43 @@
         "SourceServersList$member": null
       }
     },
+    "SourceServerActionDocument": {
+      "base": null,
+      "refs": {
+        "SourceServerActionDocuments$member": null
+      }
+    },
+    "SourceServerActionDocuments": {
+      "base": null,
+      "refs": {
+        "ListSourceServerActionsResponse$items": "<p>List of source server post migration custom actions.</p>"
+      }
+    },
+    "SourceServerActionsRequestFilters": {
+      "base": "<p>Source server post migration custom action filters.</p>",
+      "refs": {
+        "ListSourceServerActionsRequest$filters": "<p>Filters to apply when listing source server post migration custom actions.</p>"
+      }
+    },
     "SourceServerID": {
       "base": null,
       "refs": {
+        "AssociateSourceServersRequestSourceServerIDs$member": null,
         "ChangeServerLifeCycleStateRequest$sourceServerID": "<p>The request to change the source server migration lifecycle state by source server ID.</p>",
         "DeleteSourceServerRequest$sourceServerID": "<p>Request to delete Source Server from service by Server ID.</p>",
         "DescribeSourceServersRequestFiltersIDs$member": null,
+        "DisassociateSourceServersRequestSourceServerIDs$member": null,
         "DisconnectFromServiceRequest$sourceServerID": "<p>Request to disconnect Source Server from service by Server ID.</p>",
         "FinalizeCutoverRequest$sourceServerID": "<p>Request to finalize Cutover by Source Server ID.</p>",
         "GetLaunchConfigurationRequest$sourceServerID": "<p>Request to get Launch Configuration information by Source Server ID.</p>",
         "GetReplicationConfigurationRequest$sourceServerID": "<p>Request to get Replication Configuration by Source Server ID.</p>",
         "JobLogEventData$sourceServerID": "<p>Job Event Source Server ID.</p>",
         "LaunchConfiguration$sourceServerID": "<p>Launch configuration Source Server ID.</p>",
+        "ListSourceServerActionsRequest$sourceServerID": "<p>Source server ID.</p>",
         "MarkAsArchivedRequest$sourceServerID": "<p>Mark as archived by Source Server ID.</p>",
         "ParticipatingServer$sourceServerID": "<p>Participating server Source Server ID.</p>",
+        "PutSourceServerActionRequest$sourceServerID": "<p>Source server ID.</p>",
+        "RemoveSourceServerActionRequest$sourceServerID": "<p>Source server ID of the post migration custom action to remove.</p>",
         "ReplicationConfiguration$sourceServerID": "<p>Replication Configuration Source Server ID.</p>",
         "RetryDataReplicationRequest$sourceServerID": "<p>Retry data replication for Source Server ID.</p>",
         "SourceServer$sourceServerID": "<p>Source server ID.</p>",
@@ -1038,16 +1489,16 @@
       }
     },
     "SsmDocument": {
-      "base": "<p>Source server replication type.</p>",
+      "base": "<p>AWS Systems Manager Document.</p>",
       "refs": {
-        "JobPostLaunchActionsLaunchStatus$ssmDocument": "<p>Job type.</p>",
+        "JobPostLaunchActionsLaunchStatus$ssmDocument": "<p>AWS Systems Manager's Document of the of the Job Post Launch Actions.</p>",
         "SsmDocuments$member": null
       }
     },
     "SsmDocumentName": {
       "base": null,
       "refs": {
-        "SsmDocument$ssmDocumentName": "<p>Source server replication type.</p>"
+        "SsmDocument$ssmDocumentName": "<p>AWS Systems Manager Document name or full ARN.</p>"
       }
     },
     "SsmDocumentParameterName": {
@@ -1059,23 +1510,27 @@
     "SsmDocumentParameters": {
       "base": null,
       "refs": {
-        "SsmDocument$parameters": "<p>Source server replication type.</p>"
+        "PutSourceServerActionRequest$parameters": "<p>Source server post migration custom action parameters.</p>",
+        "PutTemplateActionRequest$parameters": "<p>Template post migration custom action parameters.</p>",
+        "SourceServerActionDocument$parameters": "<p>Source server post migration custom action parameters.</p>",
+        "SsmDocument$parameters": "<p>AWS Systems Manager Document parameters.</p>",
+        "TemplateActionDocument$parameters": "<p>Template post migration custom action parameters.</p>"
       }
     },
     "SsmDocumentType": {
       "base": null,
       "refs": {
-        "JobPostLaunchActionsLaunchStatus$ssmDocumentType": "<p>Job type.</p>"
+        "JobPostLaunchActionsLaunchStatus$ssmDocumentType": "<p>AWS Systems Manager Document type.</p>"
       }
     },
     "SsmDocuments": {
       "base": null,
       "refs": {
-        "PostLaunchActions$ssmDocuments": "<p>Server participating in Job.</p>"
+        "PostLaunchActions$ssmDocuments": "<p>AWS Systems Manager Documents.</p>"
       }
     },
     "SsmParameterStoreParameter": {
-      "base": "<p>Source server replication type.</p>",
+      "base": "<p>AWS Systems Manager Parameter Store parameter.</p>",
       "refs": {
         "SsmParameterStoreParameters$member": null
       }
@@ -1083,13 +1538,13 @@
     "SsmParameterStoreParameterName": {
       "base": null,
       "refs": {
-        "SsmParameterStoreParameter$parameterName": "<p>Source server replication type.</p>"
+        "SsmParameterStoreParameter$parameterName": "<p>AWS Systems Manager Parameter Store parameter name.</p>"
       }
     },
     "SsmParameterStoreParameterType": {
       "base": null,
       "refs": {
-        "SsmParameterStoreParameter$parameterType": "<p>Source server replication type.</p>"
+        "SsmParameterStoreParameter$parameterType": "<p>AWS Systems Manager Parameter Store parameter type.</p>"
       }
     },
     "SsmParameterStoreParameters": {
@@ -1138,14 +1593,12 @@
     "StrictlyPositiveInteger": {
       "base": null,
       "refs": {
-        "DescribeJobLogItemsRequest$maxResults": "<p>Request to describe Job log item maximum results.</p>",
-        "DescribeJobsRequest$maxResults": "<p>Request to describe job log items by max results.</p>",
-        "DescribeLaunchConfigurationTemplatesRequest$maxResults": "<p>Request to disconnect Source Server from service by Server ID.</p>",
-        "DescribeReplicationConfigurationTemplatesRequest$maxResults": "<p>Request to describe Replication Configuration template by max results.</p>",
-        "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>",
-        "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>",
+        "PutSourceServerActionRequest$timeoutSeconds": "<p>Source server post migration custom action timeout in seconds.</p>",
+        "PutTemplateActionRequest$timeoutSeconds": "<p>Template post migration custom action timeout in seconds.</p>",
         "ServiceQuotaExceededException$quotaValue": "<p>Exceeded the service quota value.</p>",
-        "SsmDocument$timeoutSeconds": "<p>Source server replication type.</p>"
+        "SourceServerActionDocument$timeoutSeconds": "<p>Source server post migration custom action timeout in seconds.</p>",
+        "SsmDocument$timeoutSeconds": "<p>AWS Systems Manager Document timeout seconds.</p>",
+        "TemplateActionDocument$timeoutSeconds": "<p>Template post migration custom action timeout in seconds.</p>"
       }
     },
     "SubnetID": {
@@ -1179,17 +1632,25 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "TagsMap$value": null
+        "CreateLaunchConfigurationTemplateRequest$mapAutoTaggingMpeID": "<p>Launch configuration template map auto tagging MPE ID.</p>",
+        "LaunchConfiguration$mapAutoTaggingMpeID": "<p>Map auto tagging MPE ID.</p>",
+        "LaunchConfigurationTemplate$mapAutoTaggingMpeID": "<p>Launch configuration template map auto tagging MPE ID.</p>",
+        "TagsMap$value": null,
+        "UpdateLaunchConfigurationRequest$mapAutoTaggingMpeID": "<p>Launch configuration map auto tagging MPE ID.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$mapAutoTaggingMpeID": "<p>Launch configuration template map auto tagging MPE ID.</p>"
       }
     },
     "TagsMap": {
       "base": null,
       "refs": {
-        "CreateLaunchConfigurationTemplateRequest$tags": "<p>Request to associate the default Application Migration Service Security group with the Replication Settings template.</p>",
+        "Application$tags": "<p>Application tags.</p>",
+        "CreateApplicationRequest$tags": "<p>Application tags.</p>",
+        "CreateLaunchConfigurationTemplateRequest$tags": "<p>Request to associate tags during creation of a Launch Configuration Template.</p>",
         "CreateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Request to configure Staging Area tags during Replication Settings template creation.</p>",
         "CreateReplicationConfigurationTemplateRequest$tags": "<p>Request to configure tags during Replication Settings template creation.</p>",
+        "CreateWaveRequest$tags": "<p>Wave tags.</p>",
         "Job$tags": "<p>Tags associated with specific Job.</p>",
-        "LaunchConfigurationTemplate$tags": "<p>Copy Private IP during Launch Configuration.</p>",
+        "LaunchConfigurationTemplate$tags": "<p>Tags of the Launch Configuration Template.</p>",
         "ListTagsForResourceResponse$tags": "<p>List tags for resource response.</p>",
         "ReplicationConfiguration$stagingAreaTags": "<p>Replication Configuration Staging Area tags.</p>",
         "ReplicationConfigurationTemplate$stagingAreaTags": "<p>Replication Configuration template Staging Area Tags.</p>",
@@ -1202,14 +1663,36 @@
         "UpdateReplicationConfigurationRequest$stagingAreaTags": "<p>Update replication configuration Staging Area Tags request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Update replication configuration template Staging Area Tags request.</p>",
         "VcenterClient$sourceServerTags": "<p>Tags for Source Server of vCenter client.</p>",
-        "VcenterClient$tags": "<p>Tags for vCenter client.</p>"
+        "VcenterClient$tags": "<p>Tags for vCenter client.</p>",
+        "Wave$tags": "<p>Wave tags.</p>"
       }
     },
     "TargetInstanceTypeRightSizingMethod": {
       "base": null,
       "refs": {
+        "CreateLaunchConfigurationTemplateRequest$targetInstanceTypeRightSizingMethod": "<p>Target instance type right-sizing method.</p>",
         "LaunchConfiguration$targetInstanceTypeRightSizingMethod": "<p>Launch configuration Target instance type right sizing method.</p>",
-        "UpdateLaunchConfigurationRequest$targetInstanceTypeRightSizingMethod": "<p>Update Launch configuration Target instance right sizing request.</p>"
+        "LaunchConfigurationTemplate$targetInstanceTypeRightSizingMethod": "<p>Target instance type right-sizing method.</p>",
+        "UpdateLaunchConfigurationRequest$targetInstanceTypeRightSizingMethod": "<p>Update Launch configuration Target instance right sizing request.</p>",
+        "UpdateLaunchConfigurationTemplateRequest$targetInstanceTypeRightSizingMethod": "<p>Target instance type right-sizing method.</p>"
+      }
+    },
+    "TemplateActionDocument": {
+      "base": null,
+      "refs": {
+        "TemplateActionDocuments$member": null
+      }
+    },
+    "TemplateActionDocuments": {
+      "base": null,
+      "refs": {
+        "ListTemplateActionsResponse$items": "<p>List of template post migration custom actions.</p>"
+      }
+    },
+    "TemplateActionsRequestFilters": {
+      "base": "<p>Template post migration custom action filters.</p>",
+      "refs": {
+        "ListTemplateActionsRequest$filters": "<p>Filters to apply when listing template post migration custom actions.</p>"
       }
     },
     "TerminateTargetInstancesRequest": {
@@ -1233,12 +1716,27 @@
       "refs": {
       }
     },
+    "UnarchiveApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UnarchiveWaveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UninitializedAccountException": {
       "base": "<p>Uninitialized account exception.</p>",
       "refs": {
       }
     },
     "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApplicationRequest": {
       "base": null,
       "refs": {
       }
@@ -1264,6 +1762,11 @@
       }
     },
     "UpdateSourceServerReplicationTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWaveRequest": {
       "base": null,
       "refs": {
       }
@@ -1309,6 +1812,79 @@
       "base": null,
       "refs": {
         "DescribeVcenterClientsResponse$items": "<p>List of items returned by DescribeVcenterClients.</p>"
+      }
+    },
+    "VolumeType": {
+      "base": null,
+      "refs": {
+        "LaunchTemplateDiskConf$volumeType": "<p>Launch template disk volume type configuration.</p>"
+      }
+    },
+    "Wave": {
+      "base": null,
+      "refs": {
+        "WavesList$member": null
+      }
+    },
+    "WaveAggregatedStatus": {
+      "base": "<p>Wave aggregated status.</p>",
+      "refs": {
+        "Wave$waveAggregatedStatus": "<p>Wave aggregated status.</p>"
+      }
+    },
+    "WaveDescription": {
+      "base": null,
+      "refs": {
+        "CreateWaveRequest$description": "<p>Wave description.</p>",
+        "UpdateWaveRequest$description": "<p>Wave description.</p>",
+        "Wave$description": "<p>Wave description.</p>"
+      }
+    },
+    "WaveHealthStatus": {
+      "base": null,
+      "refs": {
+        "WaveAggregatedStatus$healthStatus": "<p>Wave aggregated status health status.</p>"
+      }
+    },
+    "WaveID": {
+      "base": null,
+      "refs": {
+        "Application$waveID": "<p>Application wave ID.</p>",
+        "ArchiveWaveRequest$waveID": "<p>Wave ID.</p>",
+        "AssociateApplicationsRequest$waveID": "<p>Wave ID.</p>",
+        "DeleteWaveRequest$waveID": "<p>Wave ID.</p>",
+        "DisassociateApplicationsRequest$waveID": "<p>Wave ID.</p>",
+        "UnarchiveWaveRequest$waveID": "<p>Wave ID.</p>",
+        "UpdateWaveRequest$waveID": "<p>Wave ID.</p>",
+        "Wave$waveID": "<p>Wave ID.</p>",
+        "WaveIDsFilter$member": null
+      }
+    },
+    "WaveIDsFilter": {
+      "base": null,
+      "refs": {
+        "ListApplicationsRequestFilters$waveIDs": "<p>Filter applications list by wave ID.</p>",
+        "ListWavesRequestFilters$waveIDs": "<p>Filter waves list by wave ID.</p>"
+      }
+    },
+    "WaveName": {
+      "base": null,
+      "refs": {
+        "CreateWaveRequest$name": "<p>Wave name.</p>",
+        "UpdateWaveRequest$name": "<p>Wave name.</p>",
+        "Wave$name": "<p>Wave name.</p>"
+      }
+    },
+    "WaveProgressStatus": {
+      "base": null,
+      "refs": {
+        "WaveAggregatedStatus$progressStatus": "<p>Wave aggregated status progress status.</p>"
+      }
+    },
+    "WavesList": {
+      "base": null,
+      "refs": {
+        "ListWavesResponse$items": "<p>Waves list.</p>"
       }
     }
   }

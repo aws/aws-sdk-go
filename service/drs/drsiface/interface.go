@@ -172,6 +172,10 @@ type DrsAPI interface {
 	RetryDataReplicationWithContext(aws.Context, *drs.RetryDataReplicationInput, ...request.Option) (*drs.RetryDataReplicationOutput, error)
 	RetryDataReplicationRequest(*drs.RetryDataReplicationInput) (*request.Request, *drs.RetryDataReplicationOutput)
 
+	ReverseReplication(*drs.ReverseReplicationInput) (*drs.ReverseReplicationOutput, error)
+	ReverseReplicationWithContext(aws.Context, *drs.ReverseReplicationInput, ...request.Option) (*drs.ReverseReplicationOutput, error)
+	ReverseReplicationRequest(*drs.ReverseReplicationInput) (*request.Request, *drs.ReverseReplicationOutput)
+
 	StartFailbackLaunch(*drs.StartFailbackLaunchInput) (*drs.StartFailbackLaunchOutput, error)
 	StartFailbackLaunchWithContext(aws.Context, *drs.StartFailbackLaunchInput, ...request.Option) (*drs.StartFailbackLaunchOutput, error)
 	StartFailbackLaunchRequest(*drs.StartFailbackLaunchInput) (*request.Request, *drs.StartFailbackLaunchOutput)
@@ -180,9 +184,17 @@ type DrsAPI interface {
 	StartRecoveryWithContext(aws.Context, *drs.StartRecoveryInput, ...request.Option) (*drs.StartRecoveryOutput, error)
 	StartRecoveryRequest(*drs.StartRecoveryInput) (*request.Request, *drs.StartRecoveryOutput)
 
+	StartReplication(*drs.StartReplicationInput) (*drs.StartReplicationOutput, error)
+	StartReplicationWithContext(aws.Context, *drs.StartReplicationInput, ...request.Option) (*drs.StartReplicationOutput, error)
+	StartReplicationRequest(*drs.StartReplicationInput) (*request.Request, *drs.StartReplicationOutput)
+
 	StopFailback(*drs.StopFailbackInput) (*drs.StopFailbackOutput, error)
 	StopFailbackWithContext(aws.Context, *drs.StopFailbackInput, ...request.Option) (*drs.StopFailbackOutput, error)
 	StopFailbackRequest(*drs.StopFailbackInput) (*request.Request, *drs.StopFailbackOutput)
+
+	StopReplication(*drs.StopReplicationInput) (*drs.StopReplicationOutput, error)
+	StopReplicationWithContext(aws.Context, *drs.StopReplicationInput, ...request.Option) (*drs.StopReplicationOutput, error)
+	StopReplicationRequest(*drs.StopReplicationInput) (*request.Request, *drs.StopReplicationOutput)
 
 	TagResource(*drs.TagResourceInput) (*drs.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *drs.TagResourceInput, ...request.Option) (*drs.TagResourceOutput, error)

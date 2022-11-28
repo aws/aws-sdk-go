@@ -112,6 +112,10 @@ type RDSAPI interface {
 	CopyOptionGroupWithContext(aws.Context, *rds.CopyOptionGroupInput, ...request.Option) (*rds.CopyOptionGroupOutput, error)
 	CopyOptionGroupRequest(*rds.CopyOptionGroupInput) (*request.Request, *rds.CopyOptionGroupOutput)
 
+	CreateBlueGreenDeployment(*rds.CreateBlueGreenDeploymentInput) (*rds.CreateBlueGreenDeploymentOutput, error)
+	CreateBlueGreenDeploymentWithContext(aws.Context, *rds.CreateBlueGreenDeploymentInput, ...request.Option) (*rds.CreateBlueGreenDeploymentOutput, error)
+	CreateBlueGreenDeploymentRequest(*rds.CreateBlueGreenDeploymentInput) (*request.Request, *rds.CreateBlueGreenDeploymentOutput)
+
 	CreateCustomDBEngineVersion(*rds.CreateCustomDBEngineVersionInput) (*rds.CreateCustomDBEngineVersionOutput, error)
 	CreateCustomDBEngineVersionWithContext(aws.Context, *rds.CreateCustomDBEngineVersionInput, ...request.Option) (*rds.CreateCustomDBEngineVersionOutput, error)
 	CreateCustomDBEngineVersionRequest(*rds.CreateCustomDBEngineVersionInput) (*request.Request, *rds.CreateCustomDBEngineVersionOutput)
@@ -175,6 +179,10 @@ type RDSAPI interface {
 	CreateOptionGroup(*rds.CreateOptionGroupInput) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupWithContext(aws.Context, *rds.CreateOptionGroupInput, ...request.Option) (*rds.CreateOptionGroupOutput, error)
 	CreateOptionGroupRequest(*rds.CreateOptionGroupInput) (*request.Request, *rds.CreateOptionGroupOutput)
+
+	DeleteBlueGreenDeployment(*rds.DeleteBlueGreenDeploymentInput) (*rds.DeleteBlueGreenDeploymentOutput, error)
+	DeleteBlueGreenDeploymentWithContext(aws.Context, *rds.DeleteBlueGreenDeploymentInput, ...request.Option) (*rds.DeleteBlueGreenDeploymentOutput, error)
+	DeleteBlueGreenDeploymentRequest(*rds.DeleteBlueGreenDeploymentInput) (*request.Request, *rds.DeleteBlueGreenDeploymentOutput)
 
 	DeleteCustomDBEngineVersion(*rds.DeleteCustomDBEngineVersionInput) (*rds.DeleteCustomDBEngineVersionOutput, error)
 	DeleteCustomDBEngineVersionWithContext(aws.Context, *rds.DeleteCustomDBEngineVersionInput, ...request.Option) (*rds.DeleteCustomDBEngineVersionOutput, error)
@@ -247,6 +255,13 @@ type RDSAPI interface {
 	DescribeAccountAttributes(*rds.DescribeAccountAttributesInput) (*rds.DescribeAccountAttributesOutput, error)
 	DescribeAccountAttributesWithContext(aws.Context, *rds.DescribeAccountAttributesInput, ...request.Option) (*rds.DescribeAccountAttributesOutput, error)
 	DescribeAccountAttributesRequest(*rds.DescribeAccountAttributesInput) (*request.Request, *rds.DescribeAccountAttributesOutput)
+
+	DescribeBlueGreenDeployments(*rds.DescribeBlueGreenDeploymentsInput) (*rds.DescribeBlueGreenDeploymentsOutput, error)
+	DescribeBlueGreenDeploymentsWithContext(aws.Context, *rds.DescribeBlueGreenDeploymentsInput, ...request.Option) (*rds.DescribeBlueGreenDeploymentsOutput, error)
+	DescribeBlueGreenDeploymentsRequest(*rds.DescribeBlueGreenDeploymentsInput) (*request.Request, *rds.DescribeBlueGreenDeploymentsOutput)
+
+	DescribeBlueGreenDeploymentsPages(*rds.DescribeBlueGreenDeploymentsInput, func(*rds.DescribeBlueGreenDeploymentsOutput, bool) bool) error
+	DescribeBlueGreenDeploymentsPagesWithContext(aws.Context, *rds.DescribeBlueGreenDeploymentsInput, func(*rds.DescribeBlueGreenDeploymentsOutput, bool) bool, ...request.Option) error
 
 	DescribeCertificates(*rds.DescribeCertificatesInput) (*rds.DescribeCertificatesOutput, error)
 	DescribeCertificatesWithContext(aws.Context, *rds.DescribeCertificatesInput, ...request.Option) (*rds.DescribeCertificatesOutput, error)
@@ -702,6 +717,10 @@ type RDSAPI interface {
 	StopDBInstanceAutomatedBackupsReplication(*rds.StopDBInstanceAutomatedBackupsReplicationInput) (*rds.StopDBInstanceAutomatedBackupsReplicationOutput, error)
 	StopDBInstanceAutomatedBackupsReplicationWithContext(aws.Context, *rds.StopDBInstanceAutomatedBackupsReplicationInput, ...request.Option) (*rds.StopDBInstanceAutomatedBackupsReplicationOutput, error)
 	StopDBInstanceAutomatedBackupsReplicationRequest(*rds.StopDBInstanceAutomatedBackupsReplicationInput) (*request.Request, *rds.StopDBInstanceAutomatedBackupsReplicationOutput)
+
+	SwitchoverBlueGreenDeployment(*rds.SwitchoverBlueGreenDeploymentInput) (*rds.SwitchoverBlueGreenDeploymentOutput, error)
+	SwitchoverBlueGreenDeploymentWithContext(aws.Context, *rds.SwitchoverBlueGreenDeploymentInput, ...request.Option) (*rds.SwitchoverBlueGreenDeploymentOutput, error)
+	SwitchoverBlueGreenDeploymentRequest(*rds.SwitchoverBlueGreenDeploymentInput) (*request.Request, *rds.SwitchoverBlueGreenDeploymentOutput)
 
 	SwitchoverReadReplica(*rds.SwitchoverReadReplicaInput) (*rds.SwitchoverReadReplicaOutput, error)
 	SwitchoverReadReplicaWithContext(aws.Context, *rds.SwitchoverReadReplicaInput, ...request.Option) (*rds.SwitchoverReadReplicaOutput, error)

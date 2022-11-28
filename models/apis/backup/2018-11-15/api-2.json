@@ -11,6 +11,24 @@
     "uid":"backup-2018-11-15"
   },
   "operations":{
+    "CancelLegalHold":{
+      "name":"CancelLegalHold",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/legal-holds/{legalHoldId}",
+        "responseCode":201
+      },
+      "input":{"shape":"CancelLegalHoldInput"},
+      "output":{"shape":"CancelLegalHoldOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "CreateBackupPlan":{
       "name":"CreateBackupPlan",
       "http":{
@@ -76,6 +94,22 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
         {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "CreateLegalHold":{
+      "name":"CreateLegalHold",
+      "http":{
+        "method":"POST",
+        "requestUri":"/legal-holds/"
+      },
+      "input":{"shape":"CreateLegalHoldInput"},
+      "output":{"shape":"CreateLegalHoldOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"LimitExceededException"}
       ],
       "idempotent":true
     },
@@ -418,6 +452,22 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "DisassociateRecoveryPointFromParent":{
+      "name":"DisassociateRecoveryPointFromParent",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/backup-vaults/{backupVaultName}/recovery-points/{recoveryPointArn}/parentAssociation",
+        "responseCode":204
+      },
+      "input":{"shape":"DisassociateRecoveryPointFromParentInput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ExportBackupPlanTemplate":{
       "name":"ExportBackupPlanTemplate",
       "http":{
@@ -525,6 +575,22 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
         {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "GetLegalHold":{
+      "name":"GetLegalHold",
+      "http":{
+        "method":"GET",
+        "requestUri":"/legal-holds/{legalHoldId}/"
+      },
+      "input":{"shape":"GetLegalHoldInput"},
+      "output":{"shape":"GetLegalHoldOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
       ],
       "idempotent":true
     },
@@ -674,6 +740,20 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "ListLegalHolds":{
+      "name":"ListLegalHolds",
+      "http":{
+        "method":"GET",
+        "requestUri":"/legal-holds/"
+      },
+      "input":{"shape":"ListLegalHoldsInput"},
+      "output":{"shape":"ListLegalHoldsOutput"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
     "ListProtectedResources":{
       "name":"ListProtectedResources",
       "http":{
@@ -698,6 +778,21 @@
       "output":{"shape":"ListRecoveryPointsByBackupVaultOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
+    "ListRecoveryPointsByLegalHold":{
+      "name":"ListRecoveryPointsByLegalHold",
+      "http":{
+        "method":"GET",
+        "requestUri":"/legal-holds/{legalHoldId}/recovery-points"
+      },
+      "input":{"shape":"ListRecoveryPointsByLegalHoldInput"},
+      "output":{"shape":"ListRecoveryPointsByLegalHoldOutput"},
+      "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"MissingParameterValueException"},
         {"shape":"ServiceUnavailableException"}
@@ -730,7 +825,8 @@
       "output":{"shape":"ListReportJobsOutput"},
       "errors":[
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListReportPlans":{
@@ -1086,8 +1182,15 @@
         "ResourceType":{"shape":"ResourceType"},
         "BytesTransferred":{"shape":"Long"},
         "BackupOptions":{"shape":"BackupOptions"},
-        "BackupType":{"shape":"string"}
+        "BackupType":{"shape":"string"},
+        "ParentJobId":{"shape":"string"},
+        "IsParent":{"shape":"boolean"}
       }
+    },
+    "BackupJobChildJobsInState":{
+      "type":"map",
+      "key":{"shape":"BackupJobState"},
+      "value":{"shape":"Long"}
     },
     "BackupJobState":{
       "type":"string",
@@ -1099,7 +1202,8 @@
         "ABORTED",
         "COMPLETED",
         "FAILED",
-        "EXPIRED"
+        "EXPIRED",
+        "PARTIAL"
       ]
     },
     "BackupJobsList":{
@@ -1317,6 +1421,35 @@
         "DeleteAt":{"shape":"timestamp"}
       }
     },
+    "CancelLegalHoldInput":{
+      "type":"structure",
+      "required":[
+        "LegalHoldId",
+        "CancelDescription"
+      ],
+      "members":{
+        "LegalHoldId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"legalHoldId"
+        },
+        "CancelDescription":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"cancelDescription"
+        },
+        "RetainRecordInDays":{
+          "shape":"Long",
+          "location":"querystring",
+          "locationName":"retainRecordInDays"
+        }
+      }
+    },
+    "CancelLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ComplianceResourceIdList":{
       "type":"list",
       "member":{"shape":"string"},
@@ -1421,8 +1554,18 @@
         "BackupSizeInBytes":{"shape":"Long"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "CreatedBy":{"shape":"RecoveryPointCreator"},
-        "ResourceType":{"shape":"ResourceType"}
+        "ResourceType":{"shape":"ResourceType"},
+        "ParentJobId":{"shape":"string"},
+        "IsParent":{"shape":"boolean"},
+        "CompositeMemberIdentifier":{"shape":"string"},
+        "NumberOfChildJobs":{"shape":"Long"},
+        "ChildJobsInState":{"shape":"CopyJobChildJobsInState"}
       }
+    },
+    "CopyJobChildJobsInState":{
+      "type":"map",
+      "key":{"shape":"CopyJobState"},
+      "value":{"shape":"Long"}
     },
     "CopyJobState":{
       "type":"string",
@@ -1430,7 +1573,8 @@
         "CREATED",
         "RUNNING",
         "COMPLETED",
-        "FAILED"
+        "FAILED",
+        "PARTIAL"
       ]
     },
     "CopyJobsList":{
@@ -1526,6 +1670,32 @@
         "FrameworkArn":{"shape":"ARN"}
       }
     },
+    "CreateLegalHoldInput":{
+      "type":"structure",
+      "required":[
+        "Title",
+        "Description"
+      ],
+      "members":{
+        "Title":{"shape":"string"},
+        "Description":{"shape":"string"},
+        "IdempotencyToken":{"shape":"string"},
+        "RecoveryPointSelection":{"shape":"RecoveryPointSelection"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+        "Title":{"shape":"string"},
+        "Status":{"shape":"LegalHoldStatus"},
+        "Description":{"shape":"string"},
+        "LegalHoldId":{"shape":"string"},
+        "LegalHoldArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "RecoveryPointSelection":{"shape":"RecoveryPointSelection"}
+      }
+    },
     "CreateReportPlanInput":{
       "type":"structure",
       "required":[
@@ -1554,6 +1724,17 @@
       }
     },
     "CronExpression":{"type":"string"},
+    "DateRange":{
+      "type":"structure",
+      "required":[
+        "FromDate",
+        "ToDate"
+      ],
+      "members":{
+        "FromDate":{"shape":"timestamp"},
+        "ToDate":{"shape":"timestamp"}
+      }
+    },
     "DeleteBackupPlanInput":{
       "type":"structure",
       "required":["BackupPlanId"],
@@ -1722,7 +1903,11 @@
         "ExpectedCompletionDate":{"shape":"timestamp"},
         "StartBy":{"shape":"timestamp"},
         "BackupOptions":{"shape":"BackupOptions"},
-        "BackupType":{"shape":"string"}
+        "BackupType":{"shape":"string"},
+        "ParentJobId":{"shape":"string"},
+        "IsParent":{"shape":"boolean"},
+        "NumberOfChildJobs":{"shape":"Long"},
+        "ChildJobsInState":{"shape":"BackupJobChildJobsInState"}
       }
     },
     "DescribeBackupVaultInput":{
@@ -1863,7 +2048,10 @@
         "EncryptionKeyArn":{"shape":"ARN"},
         "IsEncrypted":{"shape":"boolean"},
         "StorageClass":{"shape":"StorageClass"},
-        "LastRestoreTime":{"shape":"timestamp"}
+        "LastRestoreTime":{"shape":"timestamp"},
+        "ParentRecoveryPointArn":{"shape":"ARN"},
+        "CompositeMemberIdentifier":{"shape":"string"},
+        "IsParent":{"shape":"boolean"}
       }
     },
     "DescribeRegionSettingsInput":{
@@ -1939,6 +2127,25 @@
         "ExpectedCompletionTimeMinutes":{"shape":"Long"},
         "CreatedResourceArn":{"shape":"ARN"},
         "ResourceType":{"shape":"ResourceType"}
+      }
+    },
+    "DisassociateRecoveryPointFromParentInput":{
+      "type":"structure",
+      "required":[
+        "BackupVaultName",
+        "RecoveryPointArn"
+      ],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "RecoveryPointArn":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"recoveryPointArn"
+        }
       }
     },
     "DisassociateRecoveryPointInput":{
@@ -2149,6 +2356,32 @@
         "BackupVaultEvents":{"shape":"BackupVaultEvents"}
       }
     },
+    "GetLegalHoldInput":{
+      "type":"structure",
+      "required":["LegalHoldId"],
+      "members":{
+        "LegalHoldId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"legalHoldId"
+        }
+      }
+    },
+    "GetLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+        "Title":{"shape":"string"},
+        "Status":{"shape":"LegalHoldStatus"},
+        "Description":{"shape":"string"},
+        "CancelDescription":{"shape":"string"},
+        "LegalHoldId":{"shape":"string"},
+        "LegalHoldArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "CancellationDate":{"shape":"timestamp"},
+        "RetainRecordUntil":{"shape":"timestamp"},
+        "RecoveryPointSelection":{"shape":"RecoveryPointSelection"}
+      }
+    },
     "GetRecoveryPointRestoreMetadataInput":{
       "type":"structure",
       "required":[
@@ -2222,6 +2455,31 @@
       "exception":true
     },
     "IsEnabled":{"type":"boolean"},
+    "LegalHold":{
+      "type":"structure",
+      "members":{
+        "Title":{"shape":"string"},
+        "Status":{"shape":"LegalHoldStatus"},
+        "Description":{"shape":"string"},
+        "LegalHoldId":{"shape":"string"},
+        "LegalHoldArn":{"shape":"ARN"},
+        "CreationDate":{"shape":"timestamp"},
+        "CancellationDate":{"shape":"timestamp"}
+      }
+    },
+    "LegalHoldStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "CANCELING",
+        "CANCELED"
+      ]
+    },
+    "LegalHoldsList":{
+      "type":"list",
+      "member":{"shape":"LegalHold"}
+    },
     "Lifecycle":{
       "type":"structure",
       "members":{
@@ -2296,6 +2554,11 @@
           "shape":"timestamp",
           "location":"querystring",
           "locationName":"completeBefore"
+        },
+        "ByParentJobId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"parentJobId"
         }
       }
     },
@@ -2490,6 +2753,11 @@
           "shape":"timestamp",
           "location":"querystring",
           "locationName":"completeAfter"
+        },
+        "ByParentJobId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"parentJobId"
         }
       }
     },
@@ -2520,6 +2788,28 @@
       "members":{
         "Frameworks":{"shape":"FrameworkList"},
         "NextToken":{"shape":"string"}
+      }
+    },
+    "ListLegalHoldsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListLegalHoldsOutput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"string"},
+        "LegalHolds":{"shape":"LegalHoldsList"}
       }
     },
     "ListOfTags":{
@@ -2591,6 +2881,11 @@
           "shape":"timestamp",
           "location":"querystring",
           "locationName":"createdAfter"
+        },
+        "ByParentRecoveryPointArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"parentRecoveryPointArn"
         }
       }
     },
@@ -2599,6 +2894,34 @@
       "members":{
         "NextToken":{"shape":"string"},
         "RecoveryPoints":{"shape":"RecoveryPointByBackupVaultList"}
+      }
+    },
+    "ListRecoveryPointsByLegalHoldInput":{
+      "type":"structure",
+      "required":["LegalHoldId"],
+      "members":{
+        "LegalHoldId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"legalHoldId"
+        },
+        "NextToken":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListRecoveryPointsByLegalHoldOutput":{
+      "type":"structure",
+      "members":{
+        "RecoveryPoints":{"shape":"RecoveryPointsList"},
+        "NextToken":{"shape":"string"}
       }
     },
     "ListRecoveryPointsByResourceInput":{
@@ -2879,7 +3202,10 @@
         "Lifecycle":{"shape":"Lifecycle"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "IsEncrypted":{"shape":"boolean"},
-        "LastRestoreTime":{"shape":"timestamp"}
+        "LastRestoreTime":{"shape":"timestamp"},
+        "ParentRecoveryPointArn":{"shape":"ARN"},
+        "CompositeMemberIdentifier":{"shape":"string"},
+        "IsParent":{"shape":"boolean"}
       }
     },
     "RecoveryPointByBackupVaultList":{
@@ -2895,7 +3221,9 @@
         "StatusMessage":{"shape":"string"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "BackupSizeBytes":{"shape":"Long"},
-        "BackupVaultName":{"shape":"BackupVaultName"}
+        "BackupVaultName":{"shape":"BackupVaultName"},
+        "IsParent":{"shape":"boolean"},
+        "ParentRecoveryPointArn":{"shape":"ARN"}
       }
     },
     "RecoveryPointByResourceList":{
@@ -2911,6 +3239,20 @@
         "BackupRuleId":{"shape":"string"}
       }
     },
+    "RecoveryPointMember":{
+      "type":"structure",
+      "members":{
+        "RecoveryPointArn":{"shape":"ARN"}
+      }
+    },
+    "RecoveryPointSelection":{
+      "type":"structure",
+      "members":{
+        "VaultNames":{"shape":"VaultNames"},
+        "ResourceIdentifiers":{"shape":"ResourceIdentifiers"},
+        "DateRange":{"shape":"DateRange"}
+      }
+    },
     "RecoveryPointStatus":{
       "type":"string",
       "enum":[
@@ -2919,6 +3261,10 @@
         "DELETING",
         "EXPIRED"
       ]
+    },
+    "RecoveryPointsList":{
+      "type":"list",
+      "member":{"shape":"RecoveryPointMember"}
     },
     "ReportDeliveryChannel":{
       "type":"structure",
@@ -2990,12 +3336,19 @@
       "members":{
         "ReportTemplate":{"shape":"string"},
         "FrameworkArns":{"shape":"stringList"},
-        "NumberOfFrameworks":{"shape":"integer"}
+        "NumberOfFrameworks":{"shape":"integer"},
+        "Accounts":{"shape":"stringList"},
+        "OrganizationUnits":{"shape":"stringList"},
+        "Regions":{"shape":"stringList"}
       }
     },
     "ResourceArns":{
       "type":"list",
       "member":{"shape":"ARN"}
+    },
+    "ResourceIdentifiers":{
+      "type":"list",
+      "member":{"shape":"string"}
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -3097,7 +3450,8 @@
       "members":{
         "BackupJobId":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
-        "CreationDate":{"shape":"timestamp"}
+        "CreationDate":{"shape":"timestamp"},
+        "IsParent":{"shape":"boolean"}
       }
     },
     "StartCopyJobInput":{
@@ -3121,7 +3475,8 @@
       "type":"structure",
       "members":{
         "CopyJobId":{"shape":"string"},
-        "CreationDate":{"shape":"timestamp"}
+        "CreationDate":{"shape":"timestamp"},
+        "IsParent":{"shape":"boolean"}
       }
     },
     "StartReportJobInput":{
@@ -3344,6 +3699,10 @@
         "ReportPlanArn":{"shape":"ARN"},
         "CreationTime":{"shape":"timestamp"}
       }
+    },
+    "VaultNames":{
+      "type":"list",
+      "member":{"shape":"string"}
     },
     "WindowMinutes":{"type":"long"},
     "boolean":{"type":"boolean"},

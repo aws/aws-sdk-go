@@ -664,7 +664,7 @@ func (c *Textract) GetDocumentAnalysisRequest(input *GetDocumentAnalysisInput) (
 //     this limit, contact Amazon Textract.
 //
 //   - InvalidJobIdException
-//     An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
+//     An invalid job identifier was passed to an asynchronous analysis operation.
 //
 //   - InternalServerError
 //     Amazon Textract experienced a service issue. Try your call again.
@@ -800,7 +800,7 @@ func (c *Textract) GetDocumentTextDetectionRequest(input *GetDocumentTextDetecti
 //     this limit, contact Amazon Textract.
 //
 //   - InvalidJobIdException
-//     An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
+//     An invalid job identifier was passed to an asynchronous analysis operation.
 //
 //   - InternalServerError
 //     Amazon Textract experienced a service issue. Try your call again.
@@ -929,7 +929,7 @@ func (c *Textract) GetExpenseAnalysisRequest(input *GetExpenseAnalysisInput) (re
 //     this limit, contact Amazon Textract.
 //
 //   - InvalidJobIdException
-//     An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
+//     An invalid job identifier was passed to an asynchronous analysis operation.
 //
 //   - InternalServerError
 //     Amazon Textract experienced a service issue. Try your call again.
@@ -964,6 +964,247 @@ func (c *Textract) GetExpenseAnalysis(input *GetExpenseAnalysisInput) (*GetExpen
 // for more information on using Contexts.
 func (c *Textract) GetExpenseAnalysisWithContext(ctx aws.Context, input *GetExpenseAnalysisInput, opts ...request.Option) (*GetExpenseAnalysisOutput, error) {
 	req, out := c.GetExpenseAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLendingAnalysis = "GetLendingAnalysis"
+
+// GetLendingAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the GetLendingAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLendingAnalysis for more information on using the GetLendingAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetLendingAnalysisRequest method.
+//	req, resp := client.GetLendingAnalysisRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetLendingAnalysis
+func (c *Textract) GetLendingAnalysisRequest(input *GetLendingAnalysisInput) (req *request.Request, output *GetLendingAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opGetLendingAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLendingAnalysisInput{}
+	}
+
+	output = &GetLendingAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLendingAnalysis API operation for Amazon Textract.
+//
+// Gets the results for an Amazon Textract asynchronous operation that analyzes
+// text in a lending document.
+//
+// You start asynchronous text analysis by calling StartLendingAnalysis, which
+// returns a job identifier (JobId). When the text analysis operation finishes,
+// Amazon Textract publishes a completion status to the Amazon Simple Notification
+// Service (Amazon SNS) topic that's registered in the initial call to StartLendingAnalysis.
+//
+// To get the results of the text analysis operation, first check that the status
+// value published to the Amazon SNS topic is SUCCEEDED. If so, call GetLendingAnalysis,
+// and pass the job identifier (JobId) from the initial call to StartLendingAnalysis.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Textract's
+// API operation GetLendingAnalysis for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     An input parameter violated a constraint. For example, in synchronous operations,
+//     an InvalidParameterException exception occurs when neither of the S3Object
+//     or Bytes values are supplied in the Document request parameter. Validate
+//     your parameter before calling the API operation again.
+//
+//   - AccessDeniedException
+//     You aren't authorized to perform the action. Use the Amazon Resource Name
+//     (ARN) of an authorized user or IAM role to perform the operation.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Textract.
+//
+//   - InvalidJobIdException
+//     An invalid job identifier was passed to an asynchronous analysis operation.
+//
+//   - InternalServerError
+//     Amazon Textract experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Textract is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InvalidS3ObjectException
+//     Amazon Textract is unable to access the S3 object that's specified in the
+//     request. for more information, Configure Access to Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)
+//     For troubleshooting information, see Troubleshooting Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html)
+//
+//   - InvalidKMSKeyException
+//     Indicates you do not have decrypt permissions with the KMS key entered, or
+//     the KMS key was entered incorrectly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetLendingAnalysis
+func (c *Textract) GetLendingAnalysis(input *GetLendingAnalysisInput) (*GetLendingAnalysisOutput, error) {
+	req, out := c.GetLendingAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// GetLendingAnalysisWithContext is the same as GetLendingAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLendingAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Textract) GetLendingAnalysisWithContext(ctx aws.Context, input *GetLendingAnalysisInput, opts ...request.Option) (*GetLendingAnalysisOutput, error) {
+	req, out := c.GetLendingAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLendingAnalysisSummary = "GetLendingAnalysisSummary"
+
+// GetLendingAnalysisSummaryRequest generates a "aws/request.Request" representing the
+// client's request for the GetLendingAnalysisSummary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLendingAnalysisSummary for more information on using the GetLendingAnalysisSummary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetLendingAnalysisSummaryRequest method.
+//	req, resp := client.GetLendingAnalysisSummaryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetLendingAnalysisSummary
+func (c *Textract) GetLendingAnalysisSummaryRequest(input *GetLendingAnalysisSummaryInput) (req *request.Request, output *GetLendingAnalysisSummaryOutput) {
+	op := &request.Operation{
+		Name:       opGetLendingAnalysisSummary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLendingAnalysisSummaryInput{}
+	}
+
+	output = &GetLendingAnalysisSummaryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLendingAnalysisSummary API operation for Amazon Textract.
+//
+// Gets summarized results for the StartLendingAnalysis operation, which analyzes
+// text in a lending document. The returned summary consists of information
+// about documents grouped together by a common document type. Information like
+// detected signatures, page numbers, and split documents is returned with respect
+// to the type of grouped document.
+//
+// You start asynchronous text analysis by calling StartLendingAnalysis, which
+// returns a job identifier (JobId). When the text analysis operation finishes,
+// Amazon Textract publishes a completion status to the Amazon Simple Notification
+// Service (Amazon SNS) topic that's registered in the initial call to StartLendingAnalysis.
+//
+// To get the results of the text analysis operation, first check that the status
+// value published to the Amazon SNS topic is SUCCEEDED. If so, call GetLendingAnalysisSummary,
+// and pass the job identifier (JobId) from the initial call to StartLendingAnalysis.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Textract's
+// API operation GetLendingAnalysisSummary for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     An input parameter violated a constraint. For example, in synchronous operations,
+//     an InvalidParameterException exception occurs when neither of the S3Object
+//     or Bytes values are supplied in the Document request parameter. Validate
+//     your parameter before calling the API operation again.
+//
+//   - AccessDeniedException
+//     You aren't authorized to perform the action. Use the Amazon Resource Name
+//     (ARN) of an authorized user or IAM role to perform the operation.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Textract.
+//
+//   - InvalidJobIdException
+//     An invalid job identifier was passed to an asynchronous analysis operation.
+//
+//   - InternalServerError
+//     Amazon Textract experienced a service issue. Try your call again.
+//
+//   - ThrottlingException
+//     Amazon Textract is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - InvalidS3ObjectException
+//     Amazon Textract is unable to access the S3 object that's specified in the
+//     request. for more information, Configure Access to Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)
+//     For troubleshooting information, see Troubleshooting Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html)
+//
+//   - InvalidKMSKeyException
+//     Indicates you do not have decrypt permissions with the KMS key entered, or
+//     the KMS key was entered incorrectly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetLendingAnalysisSummary
+func (c *Textract) GetLendingAnalysisSummary(input *GetLendingAnalysisSummaryInput) (*GetLendingAnalysisSummaryOutput, error) {
+	req, out := c.GetLendingAnalysisSummaryRequest(input)
+	return out, req.Send()
+}
+
+// GetLendingAnalysisSummaryWithContext is the same as GetLendingAnalysisSummary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLendingAnalysisSummary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Textract) GetLendingAnalysisSummaryWithContext(ctx aws.Context, input *GetLendingAnalysisSummaryInput, opts ...request.Option) (*GetLendingAnalysisSummaryOutput, error) {
+	req, out := c.GetLendingAnalysisSummaryRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1404,6 +1645,163 @@ func (c *Textract) StartExpenseAnalysis(input *StartExpenseAnalysisInput) (*Star
 // for more information on using Contexts.
 func (c *Textract) StartExpenseAnalysisWithContext(ctx aws.Context, input *StartExpenseAnalysisInput, opts ...request.Option) (*StartExpenseAnalysisOutput, error) {
 	req, out := c.StartExpenseAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartLendingAnalysis = "StartLendingAnalysis"
+
+// StartLendingAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the StartLendingAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartLendingAnalysis for more information on using the StartLendingAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartLendingAnalysisRequest method.
+//	req, resp := client.StartLendingAnalysisRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/StartLendingAnalysis
+func (c *Textract) StartLendingAnalysisRequest(input *StartLendingAnalysisInput) (req *request.Request, output *StartLendingAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opStartLendingAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartLendingAnalysisInput{}
+	}
+
+	output = &StartLendingAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartLendingAnalysis API operation for Amazon Textract.
+//
+// Starts the classification and analysis of an input document. StartLendingAnalysis
+// initiates the classification and analysis of a packet of lending documents.
+// StartLendingAnalysis operates on a document file located in an Amazon S3
+// bucket.
+//
+// StartLendingAnalysis can analyze text in documents that are in one of the
+// following formats: JPEG, PNG, TIFF, PDF. Use DocumentLocation to specify
+// the bucket name and the file name of the document.
+//
+// StartLendingAnalysis returns a job identifier (JobId) that you use to get
+// the results of the operation. When the text analysis is finished, Amazon
+// Textract publishes a completion status to the Amazon Simple Notification
+// Service (Amazon SNS) topic that you specify in NotificationChannel. To get
+// the results of the text analysis operation, first check that the status value
+// published to the Amazon SNS topic is SUCCEEDED. If the status is SUCCEEDED
+// you can call either GetLendingAnalysis or GetLendingAnalysisSummary and provide
+// the JobId to obtain the results of the analysis.
+//
+// If using OutputConfig to specify an Amazon S3 bucket, the output will be
+// contained within the specified prefix in a directory labeled with the job-id.
+// In the directory there are 3 sub-directories:
+//
+//   - detailedResponse (contains the GetLendingAnalysis response)
+//
+//   - summaryResponse (for the GetLendingAnalysisSummary response)
+//
+//   - splitDocuments (documents split across logical boundaries)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Textract's
+// API operation StartLendingAnalysis for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     An input parameter violated a constraint. For example, in synchronous operations,
+//     an InvalidParameterException exception occurs when neither of the S3Object
+//     or Bytes values are supplied in the Document request parameter. Validate
+//     your parameter before calling the API operation again.
+//
+//   - InvalidS3ObjectException
+//     Amazon Textract is unable to access the S3 object that's specified in the
+//     request. for more information, Configure Access to Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)
+//     For troubleshooting information, see Troubleshooting Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html)
+//
+//   - InvalidKMSKeyException
+//     Indicates you do not have decrypt permissions with the KMS key entered, or
+//     the KMS key was entered incorrectly.
+//
+//   - UnsupportedDocumentException
+//     The format of the input document isn't supported. Documents for operations
+//     can be in PNG, JPEG, PDF, or TIFF format.
+//
+//   - DocumentTooLargeException
+//     The document can't be processed because it's too large. The maximum document
+//     size for synchronous operations 10 MB. The maximum document size for asynchronous
+//     operations is 500 MB for PDF files.
+//
+//   - BadDocumentException
+//     Amazon Textract isn't able to read the document. For more information on
+//     the document limits in Amazon Textract, see limits.
+//
+//   - AccessDeniedException
+//     You aren't authorized to perform the action. Use the Amazon Resource Name
+//     (ARN) of an authorized user or IAM role to perform the operation.
+//
+//   - ProvisionedThroughputExceededException
+//     The number of requests exceeded your throughput limit. If you want to increase
+//     this limit, contact Amazon Textract.
+//
+//   - InternalServerError
+//     Amazon Textract experienced a service issue. Try your call again.
+//
+//   - IdempotentParameterMismatchException
+//     A ClientRequestToken input parameter was reused with an operation, but at
+//     least one of the other input parameters is different from the previous call
+//     to the operation.
+//
+//   - ThrottlingException
+//     Amazon Textract is temporarily unable to process the request. Try your call
+//     again.
+//
+//   - LimitExceededException
+//     An Amazon Textract service limit was exceeded. For example, if you start
+//     too many asynchronous jobs concurrently, calls to start operations (StartDocumentTextDetection,
+//     for example) raise a LimitExceededException exception (HTTP status code:
+//     400) until the number of concurrently running jobs is below the Amazon Textract
+//     service limit.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/StartLendingAnalysis
+func (c *Textract) StartLendingAnalysis(input *StartLendingAnalysisInput) (*StartLendingAnalysisOutput, error) {
+	req, out := c.StartLendingAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// StartLendingAnalysisWithContext is the same as StartLendingAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartLendingAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Textract) StartLendingAnalysisWithContext(ctx aws.Context, input *StartLendingAnalysisInput, opts ...request.Option) (*StartLendingAnalysisOutput, error) {
+	req, out := c.StartLendingAnalysisRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2407,6 +2805,38 @@ func (s *DetectDocumentTextOutput) SetDocumentMetadata(v *DocumentMetadata) *Det
 	return s
 }
 
+// A structure that holds information regarding a detected signature on a page.
+type DetectedSignature struct {
+	_ struct{} `type:"structure"`
+
+	// The page a detected signature was found on.
+	Page *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedSignature) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedSignature) GoString() string {
+	return s.String()
+}
+
+// SetPage sets the Page field's value.
+func (s *DetectedSignature) SetPage(v int64) *DetectedSignature {
+	s.Page = &v
+	return s
+}
+
 // The input document, either as bytes or as an S3 object.
 //
 // You pass image bytes to an Amazon Textract API operation by using the Bytes
@@ -2494,8 +2924,69 @@ func (s *Document) SetS3Object(v *S3Object) *Document {
 	return s
 }
 
+// Summary information about documents grouped by the same document type.
+type DocumentGroup struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the detected signatures found in a document group.
+	DetectedSignatures []*DetectedSignature `type:"list"`
+
+	// An array that contains information about the pages of a document, defined
+	// by logical boundary.
+	SplitDocuments []*SplitDocument `type:"list"`
+
+	// The type of document that Amazon Textract has detected. See LINK for a list
+	// of all types returned by Textract.
+	Type *string `type:"string"`
+
+	// A list of any expected signatures not found in a document group.
+	UndetectedSignatures []*UndetectedSignature `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentGroup) GoString() string {
+	return s.String()
+}
+
+// SetDetectedSignatures sets the DetectedSignatures field's value.
+func (s *DocumentGroup) SetDetectedSignatures(v []*DetectedSignature) *DocumentGroup {
+	s.DetectedSignatures = v
+	return s
+}
+
+// SetSplitDocuments sets the SplitDocuments field's value.
+func (s *DocumentGroup) SetSplitDocuments(v []*SplitDocument) *DocumentGroup {
+	s.SplitDocuments = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DocumentGroup) SetType(v string) *DocumentGroup {
+	s.Type = &v
+	return s
+}
+
+// SetUndetectedSignatures sets the UndetectedSignatures field's value.
+func (s *DocumentGroup) SetUndetectedSignatures(v []*UndetectedSignature) *DocumentGroup {
+	s.UndetectedSignatures = v
+	return s
+}
+
 // The Amazon S3 bucket that contains the document to be processed. It's used
-// by asynchronous operations such as StartDocumentTextDetection.
+// by asynchronous operations.
 //
 // The input document can be an image file in JPEG or PNG format. It can also
 // be a file in PDF format.
@@ -2984,6 +3475,56 @@ func (s *ExpenseType) SetConfidence(v float64) *ExpenseType {
 // SetText sets the Text field's value.
 func (s *ExpenseType) SetText(v string) *ExpenseType {
 	s.Text = &v
+	return s
+}
+
+// Contains information extracted by an analysis operation after using StartLendingAnalysis.
+type Extraction struct {
+	_ struct{} `type:"structure"`
+
+	// The structure holding all the information returned by AnalyzeExpense
+	ExpenseDocument *ExpenseDocument `type:"structure"`
+
+	// The structure that lists each document processed in an AnalyzeID operation.
+	IdentityDocument *IdentityDocument `type:"structure"`
+
+	// Holds the structured data returned by AnalyzeDocument for lending documents.
+	LendingDocument *LendingDocument `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Extraction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Extraction) GoString() string {
+	return s.String()
+}
+
+// SetExpenseDocument sets the ExpenseDocument field's value.
+func (s *Extraction) SetExpenseDocument(v *ExpenseDocument) *Extraction {
+	s.ExpenseDocument = v
+	return s
+}
+
+// SetIdentityDocument sets the IdentityDocument field's value.
+func (s *Extraction) SetIdentityDocument(v *IdentityDocument) *Extraction {
+	s.IdentityDocument = v
+	return s
+}
+
+// SetLendingDocument sets the LendingDocument field's value.
+func (s *Extraction) SetLendingDocument(v *LendingDocument) *Extraction {
+	s.LendingDocument = v
 	return s
 }
 
@@ -3535,6 +4076,300 @@ func (s *GetExpenseAnalysisOutput) SetWarnings(v []*Warning) *GetExpenseAnalysis
 	return s
 }
 
+type GetLendingAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the lending or text-detection job. The JobId is returned
+	// from StartLendingAnalysis. A JobId value is only valid for 7 days.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per paginated call. The largest value
+	// that you can specify is 30. If you specify a value greater than 30, a maximum
+	// of 30 results is returned. The default value is 30.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete, Amazon Textract returns a pagination
+	// token in the response. You can use this pagination token to retrieve the
+	// next set of lending results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLendingAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLendingAnalysisInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetLendingAnalysisInput) SetJobId(v string) *GetLendingAnalysisInput {
+	s.JobId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetLendingAnalysisInput) SetMaxResults(v int64) *GetLendingAnalysisInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLendingAnalysisInput) SetNextToken(v string) *GetLendingAnalysisInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetLendingAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current model version of the Analyze Lending API.
+	AnalyzeLendingModelVersion *string `type:"string"`
+
+	// Information about the input document.
+	DocumentMetadata *DocumentMetadata `type:"structure"`
+
+	// The current status of the lending analysis job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// If the response is truncated, Amazon Textract returns this token. You can
+	// use this token in the subsequent request to retrieve the next set of lending
+	// results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Holds the information returned by one of AmazonTextract's document analysis
+	// operations for the pinstripe.
+	Results []*LendingResult `type:"list"`
+
+	// Returns if the lending analysis job could not be completed. Contains explanation
+	// for what error occurred.
+	StatusMessage *string `type:"string"`
+
+	// A list of warnings that occurred during the lending analysis operation.
+	Warnings []*Warning `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzeLendingModelVersion sets the AnalyzeLendingModelVersion field's value.
+func (s *GetLendingAnalysisOutput) SetAnalyzeLendingModelVersion(v string) *GetLendingAnalysisOutput {
+	s.AnalyzeLendingModelVersion = &v
+	return s
+}
+
+// SetDocumentMetadata sets the DocumentMetadata field's value.
+func (s *GetLendingAnalysisOutput) SetDocumentMetadata(v *DocumentMetadata) *GetLendingAnalysisOutput {
+	s.DocumentMetadata = v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *GetLendingAnalysisOutput) SetJobStatus(v string) *GetLendingAnalysisOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLendingAnalysisOutput) SetNextToken(v string) *GetLendingAnalysisOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *GetLendingAnalysisOutput) SetResults(v []*LendingResult) *GetLendingAnalysisOutput {
+	s.Results = v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetLendingAnalysisOutput) SetStatusMessage(v string) *GetLendingAnalysisOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetLendingAnalysisOutput) SetWarnings(v []*Warning) *GetLendingAnalysisOutput {
+	s.Warnings = v
+	return s
+}
+
+type GetLendingAnalysisSummaryInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the lending or text-detection job. The JobId is returned
+	// from StartLendingAnalysis. A JobId value is only valid for 7 days.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisSummaryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisSummaryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLendingAnalysisSummaryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLendingAnalysisSummaryInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetLendingAnalysisSummaryInput) SetJobId(v string) *GetLendingAnalysisSummaryInput {
+	s.JobId = &v
+	return s
+}
+
+type GetLendingAnalysisSummaryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current model version of the Analyze Lending API.
+	AnalyzeLendingModelVersion *string `type:"string"`
+
+	// Information about the input document.
+	DocumentMetadata *DocumentMetadata `type:"structure"`
+
+	// The current status of the lending analysis job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// Returns if the lending analysis could not be completed. Contains explanation
+	// for what error occurred.
+	StatusMessage *string `type:"string"`
+
+	// Contains summary information for documents grouped by type.
+	Summary *LendingSummary `type:"structure"`
+
+	// A list of warnings that occurred during the lending analysis operation.
+	Warnings []*Warning `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisSummaryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLendingAnalysisSummaryOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzeLendingModelVersion sets the AnalyzeLendingModelVersion field's value.
+func (s *GetLendingAnalysisSummaryOutput) SetAnalyzeLendingModelVersion(v string) *GetLendingAnalysisSummaryOutput {
+	s.AnalyzeLendingModelVersion = &v
+	return s
+}
+
+// SetDocumentMetadata sets the DocumentMetadata field's value.
+func (s *GetLendingAnalysisSummaryOutput) SetDocumentMetadata(v *DocumentMetadata) *GetLendingAnalysisSummaryOutput {
+	s.DocumentMetadata = v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *GetLendingAnalysisSummaryOutput) SetJobStatus(v string) *GetLendingAnalysisSummaryOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetLendingAnalysisSummaryOutput) SetStatusMessage(v string) *GetLendingAnalysisSummaryOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *GetLendingAnalysisSummaryOutput) SetSummary(v *LendingSummary) *GetLendingAnalysisSummaryOutput {
+	s.Summary = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetLendingAnalysisSummaryOutput) SetWarnings(v []*Warning) *GetLendingAnalysisSummaryOutput {
+	s.Warnings = v
+	return s
+}
+
 // Shows the results of the human in the loop evaluation. If there is no HumanLoopArn,
 // the input did not trigger human review.
 type HumanLoopActivationOutput struct {
@@ -3995,7 +4830,7 @@ func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
+// An invalid job identifier was passed to an asynchronous analysis operation.
 type InvalidJobIdException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4257,6 +5092,253 @@ func (s *InvalidS3ObjectException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The results extracted for a lending document.
+type LendingDetection struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence level for the text of a detected value in a lending document.
+	Confidence *float64 `type:"float"`
+
+	// Information about where the following items are located on a document page:
+	// detected page, text, key-value pairs, tables, table cells, and selection
+	// elements.
+	Geometry *Geometry `type:"structure"`
+
+	// The selection status of a selection element, such as an option button or
+	// check box.
+	SelectionStatus *string `type:"string" enum:"SelectionStatus"`
+
+	// The text extracted for a detected value in a lending document.
+	Text *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingDetection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingDetection) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *LendingDetection) SetConfidence(v float64) *LendingDetection {
+	s.Confidence = &v
+	return s
+}
+
+// SetGeometry sets the Geometry field's value.
+func (s *LendingDetection) SetGeometry(v *Geometry) *LendingDetection {
+	s.Geometry = v
+	return s
+}
+
+// SetSelectionStatus sets the SelectionStatus field's value.
+func (s *LendingDetection) SetSelectionStatus(v string) *LendingDetection {
+	s.SelectionStatus = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *LendingDetection) SetText(v string) *LendingDetection {
+	s.Text = &v
+	return s
+}
+
+// Holds the structured data returned by AnalyzeDocument for lending documents.
+type LendingDocument struct {
+	_ struct{} `type:"structure"`
+
+	// An array of LendingField objects.
+	LendingFields []*LendingField `type:"list"`
+
+	// A list of signatures detected in a lending document.
+	SignatureDetections []*SignatureDetection `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingDocument) GoString() string {
+	return s.String()
+}
+
+// SetLendingFields sets the LendingFields field's value.
+func (s *LendingDocument) SetLendingFields(v []*LendingField) *LendingDocument {
+	s.LendingFields = v
+	return s
+}
+
+// SetSignatureDetections sets the SignatureDetections field's value.
+func (s *LendingDocument) SetSignatureDetections(v []*SignatureDetection) *LendingDocument {
+	s.SignatureDetections = v
+	return s
+}
+
+// Holds the normalized key-value pairs returned by AnalyzeDocument, including
+// the document type, detected text, and geometry.
+type LendingField struct {
+	_ struct{} `type:"structure"`
+
+	// The results extracted for a lending document.
+	KeyDetection *LendingDetection `type:"structure"`
+
+	// The type of the lending document.
+	Type *string `type:"string"`
+
+	// An array of LendingDetection objects.
+	ValueDetections []*LendingDetection `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingField) GoString() string {
+	return s.String()
+}
+
+// SetKeyDetection sets the KeyDetection field's value.
+func (s *LendingField) SetKeyDetection(v *LendingDetection) *LendingField {
+	s.KeyDetection = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *LendingField) SetType(v string) *LendingField {
+	s.Type = &v
+	return s
+}
+
+// SetValueDetections sets the ValueDetections field's value.
+func (s *LendingField) SetValueDetections(v []*LendingDetection) *LendingField {
+	s.ValueDetections = v
+	return s
+}
+
+// Contains the detections for each page analyzed through the Analyze Lending
+// API.
+type LendingResult struct {
+	_ struct{} `type:"structure"`
+
+	// An array of Extraction to hold structured data. e.g. normalized key value
+	// pairs instead of raw OCR detections .
+	Extractions []*Extraction `type:"list"`
+
+	// The page number for a page, with regard to whole submission.
+	Page *int64 `type:"integer"`
+
+	// The classifier result for a given page.
+	PageClassification *PageClassification `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingResult) GoString() string {
+	return s.String()
+}
+
+// SetExtractions sets the Extractions field's value.
+func (s *LendingResult) SetExtractions(v []*Extraction) *LendingResult {
+	s.Extractions = v
+	return s
+}
+
+// SetPage sets the Page field's value.
+func (s *LendingResult) SetPage(v int64) *LendingResult {
+	s.Page = &v
+	return s
+}
+
+// SetPageClassification sets the PageClassification field's value.
+func (s *LendingResult) SetPageClassification(v *PageClassification) *LendingResult {
+	s.PageClassification = v
+	return s
+}
+
+// Contains information regarding DocumentGroups and UndetectedDocumentTypes.
+type LendingSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Contains an array of all DocumentGroup objects.
+	DocumentGroups []*DocumentGroup `type:"list"`
+
+	// UndetectedDocumentTypes.
+	UndetectedDocumentTypes []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LendingSummary) GoString() string {
+	return s.String()
+}
+
+// SetDocumentGroups sets the DocumentGroups field's value.
+func (s *LendingSummary) SetDocumentGroups(v []*DocumentGroup) *LendingSummary {
+	s.DocumentGroups = v
+	return s
+}
+
+// SetUndetectedDocumentTypes sets the UndetectedDocumentTypes field's value.
+func (s *LendingSummary) SetUndetectedDocumentTypes(v []*string) *LendingSummary {
+	s.UndetectedDocumentTypes = v
+	return s
+}
+
 // An Amazon Textract service limit was exceeded. For example, if you start
 // too many asynchronous jobs concurrently, calls to start operations (StartDocumentTextDetection,
 // for example) raise a LimitExceededException exception (HTTP status code:
@@ -4444,8 +5526,7 @@ func (s *NormalizedValue) SetValueType(v string) *NormalizedValue {
 }
 
 // The Amazon Simple Notification Service (Amazon SNS) topic to which Amazon
-// Textract publishes the completion status of an asynchronous document operation,
-// such as StartDocumentTextDetection.
+// Textract publishes the completion status of an asynchronous document operation.
 type NotificationChannel struct {
 	_ struct{} `type:"structure"`
 
@@ -4519,10 +5600,10 @@ func (s *NotificationChannel) SetSNSTopicArn(v string) *NotificationChannel {
 // OutputConfig is an optional parameter which lets you adjust where your output
 // will be placed. By default, Amazon Textract will store the results internally
 // and can only be accessed by the Get API operations. With OutputConfig enabled,
-// you can set the name of the bucket the output will be sent to and the file
-// prefix of the results where you can download your results. Additionally,
-// you can set the KMSKeyID parameter to a customer master key (CMK) to encrypt
-// your output. Without this parameter set Amazon Textract will encrypt server-side
+// you can set the name of the bucket the output will be sent to the file prefix
+// of the results where you can download your results. Additionally, you can
+// set the KMSKeyID parameter to a customer master key (CMK) to encrypt your
+// output. Without this parameter set Amazon Textract will encrypt server-side
 // using the AWS managed CMK for Amazon S3.
 //
 // Decryption of Customer Content is necessary for processing of the documents
@@ -4595,6 +5676,55 @@ func (s *OutputConfig) SetS3Prefix(v string) *OutputConfig {
 	return s
 }
 
+// The class assigned to a Page object detected in an input document. Contains
+// information regarding the predicted type/class of a document's page and the
+// page number that the Page object was detected on.
+type PageClassification struct {
+	_ struct{} `type:"structure"`
+
+	// The page number the value was detected on, relative to Amazon Textract's
+	// starting position.
+	//
+	// PageNumber is a required field
+	PageNumber []*Prediction `type:"list" required:"true"`
+
+	// The class, or document type, assigned to a detected Page object. The class,
+	// or document type, assigned to a detected Page object.
+	//
+	// PageType is a required field
+	PageType []*Prediction `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PageClassification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PageClassification) GoString() string {
+	return s.String()
+}
+
+// SetPageNumber sets the PageNumber field's value.
+func (s *PageClassification) SetPageNumber(v []*Prediction) *PageClassification {
+	s.PageNumber = v
+	return s
+}
+
+// SetPageType sets the PageType field's value.
+func (s *PageClassification) SetPageType(v []*Prediction) *PageClassification {
+	s.PageType = v
+	return s
+}
+
 // The X and Y coordinates of a point on a document page. The X and Y values
 // that are returned are ratios of the overall document page size. For example,
 // if the input document is 700 x 200 and the operation returns X=0.5 and Y=0.25,
@@ -4640,6 +5770,49 @@ func (s *Point) SetX(v float64) *Point {
 // SetY sets the Y field's value.
 func (s *Point) SetY(v float64) *Point {
 	s.Y = &v
+	return s
+}
+
+// Contains information regarding predicted values returned by Amazon Textract
+// operations, including the predicted value and the confidence in the predicted
+// value.
+type Prediction struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Textract's confidence in its predicted value.
+	Confidence *float64 `type:"float"`
+
+	// The predicted value of a detected object.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Prediction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Prediction) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *Prediction) SetConfidence(v float64) *Prediction {
+	s.Confidence = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Prediction) SetValue(v string) *Prediction {
+	s.Value = &v
 	return s
 }
 
@@ -4983,6 +6156,90 @@ func (s *S3Object) SetName(v string) *S3Object {
 // SetVersion sets the Version field's value.
 func (s *S3Object) SetVersion(v string) *S3Object {
 	s.Version = &v
+	return s
+}
+
+// Information regarding a detected signature on a page.
+type SignatureDetection struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence, from 0 to 100, in the predicted values for a detected signature.
+	Confidence *float64 `type:"float"`
+
+	// Information about where the following items are located on a document page:
+	// detected page, text, key-value pairs, tables, table cells, and selection
+	// elements.
+	Geometry *Geometry `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignatureDetection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignatureDetection) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *SignatureDetection) SetConfidence(v float64) *SignatureDetection {
+	s.Confidence = &v
+	return s
+}
+
+// SetGeometry sets the Geometry field's value.
+func (s *SignatureDetection) SetGeometry(v *Geometry) *SignatureDetection {
+	s.Geometry = v
+	return s
+}
+
+// Contains information about the pages of a document, defined by logical boundary.
+type SplitDocument struct {
+	_ struct{} `type:"structure"`
+
+	// The index for a given document in a DocumentGroup of a specific Type.
+	Index *int64 `type:"integer"`
+
+	// An array of page numbers for a for a given document, ordered by logical boundary.
+	Pages []*int64 `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SplitDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SplitDocument) GoString() string {
+	return s.String()
+}
+
+// SetIndex sets the Index field's value.
+func (s *SplitDocument) SetIndex(v int64) *SplitDocument {
+	s.Index = &v
+	return s
+}
+
+// SetPages sets the Pages field's value.
+func (s *SplitDocument) SetPages(v []*int64) *SplitDocument {
+	s.Pages = v
 	return s
 }
 
@@ -5503,6 +6760,188 @@ func (s *StartExpenseAnalysisOutput) SetJobId(v string) *StartExpenseAnalysisOut
 	return s
 }
 
+type StartLendingAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// The idempotent token that you use to identify the start request. If you use
+	// the same token with multiple StartLendingAnalysis requests, the same JobId
+	// is returned. Use ClientRequestToken to prevent the same job from being accidentally
+	// started more than once. For more information, see Calling Amazon Textract
+	// Asynchronous Operations (https://docs.aws.amazon.com/textract/latest/dg/api-sync.html).
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The Amazon S3 bucket that contains the document to be processed. It's used
+	// by asynchronous operations.
+	//
+	// The input document can be an image file in JPEG or PNG format. It can also
+	// be a file in PDF format.
+	//
+	// DocumentLocation is a required field
+	DocumentLocation *DocumentLocation `type:"structure" required:"true"`
+
+	// An identifier that you specify to be included in the completion notification
+	// published to the Amazon SNS topic. For example, you can use JobTag to identify
+	// the type of document that the completion notification corresponds to (such
+	// as a tax form or a receipt).
+	JobTag *string `min:"1" type:"string"`
+
+	// The KMS key used to encrypt the inference results. This can be in either
+	// Key ID or Key Alias format. When a KMS key is provided, the KMS key will
+	// be used for server-side encryption of the objects in the customer bucket.
+	// When this parameter is not enabled, the result will be encrypted server side,
+	// using SSE-S3.
+	KMSKeyId *string `min:"1" type:"string"`
+
+	// The Amazon Simple Notification Service (Amazon SNS) topic to which Amazon
+	// Textract publishes the completion status of an asynchronous document operation.
+	NotificationChannel *NotificationChannel `type:"structure"`
+
+	// Sets whether or not your output will go to a user created bucket. Used to
+	// set the name of the bucket, and the prefix on the output file.
+	//
+	// OutputConfig is an optional parameter which lets you adjust where your output
+	// will be placed. By default, Amazon Textract will store the results internally
+	// and can only be accessed by the Get API operations. With OutputConfig enabled,
+	// you can set the name of the bucket the output will be sent to the file prefix
+	// of the results where you can download your results. Additionally, you can
+	// set the KMSKeyID parameter to a customer master key (CMK) to encrypt your
+	// output. Without this parameter set Amazon Textract will encrypt server-side
+	// using the AWS managed CMK for Amazon S3.
+	//
+	// Decryption of Customer Content is necessary for processing of the documents
+	// by Amazon Textract. If your account is opted out under an AI services opt
+	// out policy then all unencrypted Customer Content is immediately and permanently
+	// deleted after the Customer Content has been processed by the service. No
+	// copy of of the output is retained by Amazon Textract. For information about
+	// how to opt out, see Managing AI services opt-out policy. (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+	//
+	// For more information on data privacy, see the Data Privacy FAQ (https://aws.amazon.com/compliance/data-privacy-faq/).
+	OutputConfig *OutputConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartLendingAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartLendingAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartLendingAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartLendingAnalysisInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DocumentLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentLocation"))
+	}
+	if s.JobTag != nil && len(*s.JobTag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTag", 1))
+	}
+	if s.KMSKeyId != nil && len(*s.KMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKeyId", 1))
+	}
+	if s.DocumentLocation != nil {
+		if err := s.DocumentLocation.Validate(); err != nil {
+			invalidParams.AddNested("DocumentLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NotificationChannel != nil {
+		if err := s.NotificationChannel.Validate(); err != nil {
+			invalidParams.AddNested("NotificationChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartLendingAnalysisInput) SetClientRequestToken(v string) *StartLendingAnalysisInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDocumentLocation sets the DocumentLocation field's value.
+func (s *StartLendingAnalysisInput) SetDocumentLocation(v *DocumentLocation) *StartLendingAnalysisInput {
+	s.DocumentLocation = v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *StartLendingAnalysisInput) SetJobTag(v string) *StartLendingAnalysisInput {
+	s.JobTag = &v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *StartLendingAnalysisInput) SetKMSKeyId(v string) *StartLendingAnalysisInput {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetNotificationChannel sets the NotificationChannel field's value.
+func (s *StartLendingAnalysisInput) SetNotificationChannel(v *NotificationChannel) *StartLendingAnalysisInput {
+	s.NotificationChannel = v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *StartLendingAnalysisInput) SetOutputConfig(v *OutputConfig) *StartLendingAnalysisInput {
+	s.OutputConfig = v
+	return s
+}
+
+type StartLendingAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the lending or text-detection job. The JobId is returned
+	// from StartLendingAnalysis. A JobId value is only valid for 7 days.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartLendingAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartLendingAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartLendingAnalysisOutput) SetJobId(v string) *StartLendingAnalysisOutput {
+	s.JobId = &v
+	return s
+}
+
 // Amazon Textract is temporarily unable to process the request. Try your call
 // again.
 type ThrottlingException struct {
@@ -5566,6 +7005,39 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A structure containing information about an undetected signature on a page
+// where it was expected but not found.
+type UndetectedSignature struct {
+	_ struct{} `type:"structure"`
+
+	// The page where a signature was expected but not found.
+	Page *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UndetectedSignature) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UndetectedSignature) GoString() string {
+	return s.String()
+}
+
+// SetPage sets the Page field's value.
+func (s *UndetectedSignature) SetPage(v int64) *UndetectedSignature {
+	s.Page = &v
+	return s
 }
 
 // The format of the input document isn't supported. Documents for operations

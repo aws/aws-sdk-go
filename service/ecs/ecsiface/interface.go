@@ -183,6 +183,13 @@ type ECSAPI interface {
 	ListServicesPages(*ecs.ListServicesInput, func(*ecs.ListServicesOutput, bool) bool) error
 	ListServicesPagesWithContext(aws.Context, *ecs.ListServicesInput, func(*ecs.ListServicesOutput, bool) bool, ...request.Option) error
 
+	ListServicesByNamespace(*ecs.ListServicesByNamespaceInput) (*ecs.ListServicesByNamespaceOutput, error)
+	ListServicesByNamespaceWithContext(aws.Context, *ecs.ListServicesByNamespaceInput, ...request.Option) (*ecs.ListServicesByNamespaceOutput, error)
+	ListServicesByNamespaceRequest(*ecs.ListServicesByNamespaceInput) (*request.Request, *ecs.ListServicesByNamespaceOutput)
+
+	ListServicesByNamespacePages(*ecs.ListServicesByNamespaceInput, func(*ecs.ListServicesByNamespaceOutput, bool) bool) error
+	ListServicesByNamespacePagesWithContext(aws.Context, *ecs.ListServicesByNamespaceInput, func(*ecs.ListServicesByNamespaceOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*ecs.ListTagsForResourceInput) (*ecs.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *ecs.ListTagsForResourceInput, ...request.Option) (*ecs.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*ecs.ListTagsForResourceInput) (*request.Request, *ecs.ListTagsForResourceOutput)

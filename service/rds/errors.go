@@ -31,6 +31,18 @@ const (
 	// "BackupPolicyNotFoundFault".
 	ErrCodeBackupPolicyNotFoundFault = "BackupPolicyNotFoundFault"
 
+	// ErrCodeBlueGreenDeploymentAlreadyExistsFault for service response error code
+	// "BlueGreenDeploymentAlreadyExistsFault".
+	//
+	// A blue/green deployment with the specified name already exists.
+	ErrCodeBlueGreenDeploymentAlreadyExistsFault = "BlueGreenDeploymentAlreadyExistsFault"
+
+	// ErrCodeBlueGreenDeploymentNotFoundFault for service response error code
+	// "BlueGreenDeploymentNotFoundFault".
+	//
+	// BlueGreenDeploymentIdentifier doesn't refer to an existing blue/green deployment.
+	ErrCodeBlueGreenDeploymentNotFoundFault = "BlueGreenDeploymentNotFoundFault"
+
 	// ErrCodeCertificateNotFoundFault for service response error code
 	// "CertificateNotFound".
 	//
@@ -456,6 +468,13 @@ const (
 	// Availability Zones that have more storage available.
 	ErrCodeInsufficientStorageClusterCapacityFault = "InsufficientStorageClusterCapacity"
 
+	// ErrCodeInvalidBlueGreenDeploymentStateFault for service response error code
+	// "InvalidBlueGreenDeploymentStateFault".
+	//
+	// The blue/green deployment can't be switched over or deleted because there
+	// is an invalid configuration in the green environment.
+	ErrCodeInvalidBlueGreenDeploymentStateFault = "InvalidBlueGreenDeploymentStateFault"
+
 	// ErrCodeInvalidCustomDBEngineVersionStateFault for service response error code
 	// "InvalidCustomDBEngineVersionStateFault".
 	//
@@ -724,6 +743,18 @@ const (
 	//
 	// The request would result in the user exceeding the allowed number of DB snapshots.
 	ErrCodeSnapshotQuotaExceededFault = "SnapshotQuotaExceeded"
+
+	// ErrCodeSourceClusterNotSupportedFault for service response error code
+	// "SourceClusterNotSupportedFault".
+	//
+	// The source DB cluster isn't supported for a blue/green deployment.
+	ErrCodeSourceClusterNotSupportedFault = "SourceClusterNotSupportedFault"
+
+	// ErrCodeSourceDatabaseNotSupportedFault for service response error code
+	// "SourceDatabaseNotSupportedFault".
+	//
+	// The source DB instance isn't supported for a blue/green deployment.
+	ErrCodeSourceDatabaseNotSupportedFault = "SourceDatabaseNotSupportedFault"
 
 	// ErrCodeSourceNotFoundFault for service response error code
 	// "SourceNotFound".

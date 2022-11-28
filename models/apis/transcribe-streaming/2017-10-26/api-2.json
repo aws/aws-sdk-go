@@ -12,6 +12,22 @@
     "uid":"transcribe-streaming-2017-10-26"
   },
   "operations":{
+    "StartCallAnalyticsStreamTranscription":{
+      "name":"StartCallAnalyticsStreamTranscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/call-analytics-stream-transcription"
+      },
+      "input":{"shape":"StartCallAnalyticsStreamTranscriptionRequest"},
+      "output":{"shape":"StartCallAnalyticsStreamTranscriptionResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "StartMedicalStreamTranscription":{
       "name":"StartMedicalStreamTranscription",
       "http":{
@@ -72,7 +88,8 @@
     "AudioStream":{
       "type":"structure",
       "members":{
-        "AudioEvent":{"shape":"AudioEvent"}
+        "AudioEvent":{"shape":"AudioEvent"},
+        "ConfigurationEvent":{"shape":"ConfigurationEvent"}
       },
       "eventstream":true
     },
@@ -85,7 +102,110 @@
       "exception":true
     },
     "Boolean":{"type":"boolean"},
+    "CallAnalyticsEntity":{
+      "type":"structure",
+      "members":{
+        "BeginOffsetMillis":{"shape":"Long"},
+        "EndOffsetMillis":{"shape":"Long"},
+        "Category":{"shape":"String"},
+        "Type":{"shape":"String"},
+        "Content":{"shape":"String"},
+        "Confidence":{"shape":"Confidence"}
+      }
+    },
+    "CallAnalyticsEntityList":{
+      "type":"list",
+      "member":{"shape":"CallAnalyticsEntity"}
+    },
+    "CallAnalyticsItem":{
+      "type":"structure",
+      "members":{
+        "BeginOffsetMillis":{"shape":"Long"},
+        "EndOffsetMillis":{"shape":"Long"},
+        "Type":{"shape":"ItemType"},
+        "Content":{"shape":"String"},
+        "Confidence":{"shape":"Confidence"},
+        "VocabularyFilterMatch":{"shape":"Boolean"},
+        "Stable":{"shape":"Stable"}
+      }
+    },
+    "CallAnalyticsItemList":{
+      "type":"list",
+      "member":{"shape":"CallAnalyticsItem"}
+    },
+    "CallAnalyticsLanguageCode":{
+      "type":"string",
+      "enum":[
+        "en-US",
+        "en-GB",
+        "es-US",
+        "fr-CA",
+        "fr-FR",
+        "en-AU",
+        "it-IT",
+        "de-DE",
+        "pt-BR"
+      ]
+    },
+    "CallAnalyticsTranscriptResultStream":{
+      "type":"structure",
+      "members":{
+        "UtteranceEvent":{"shape":"UtteranceEvent"},
+        "CategoryEvent":{"shape":"CategoryEvent"},
+        "BadRequestException":{"shape":"BadRequestException"},
+        "LimitExceededException":{"shape":"LimitExceededException"},
+        "InternalFailureException":{"shape":"InternalFailureException"},
+        "ConflictException":{"shape":"ConflictException"},
+        "ServiceUnavailableException":{"shape":"ServiceUnavailableException"}
+      },
+      "eventstream":true
+    },
+    "CategoryEvent":{
+      "type":"structure",
+      "members":{
+        "MatchedCategories":{"shape":"StringList"},
+        "MatchedDetails":{"shape":"MatchedCategoryDetails"}
+      },
+      "event":true
+    },
+    "ChannelDefinition":{
+      "type":"structure",
+      "required":[
+        "ChannelId",
+        "ParticipantRole"
+      ],
+      "members":{
+        "ChannelId":{"shape":"ChannelId"},
+        "ParticipantRole":{"shape":"ParticipantRole"}
+      }
+    },
+    "ChannelDefinitions":{
+      "type":"list",
+      "member":{"shape":"ChannelDefinition"},
+      "max":2,
+      "min":2
+    },
+    "ChannelId":{
+      "type":"integer",
+      "max":1,
+      "min":0
+    },
+    "CharacterOffsets":{
+      "type":"structure",
+      "members":{
+        "Begin":{"shape":"Integer"},
+        "End":{"shape":"Integer"}
+      }
+    },
     "Confidence":{"type":"double"},
+    "ConfigurationEvent":{
+      "type":"structure",
+      "members":{
+        "ChannelDefinitions":{"shape":"ChannelDefinitions"},
+        "PostCallAnalyticsSettings":{"shape":"PostCallAnalyticsSettings"}
+      },
+      "event":true
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -97,6 +217,13 @@
     "ContentIdentificationType":{
       "type":"string",
       "enum":["PII"]
+    },
+    "ContentRedactionOutput":{
+      "type":"string",
+      "enum":[
+        "redacted",
+        "redacted_and_unredacted"
+      ]
     },
     "ContentRedactionType":{
       "type":"string",
@@ -118,6 +245,7 @@
       "type":"list",
       "member":{"shape":"Entity"}
     },
+    "Integer":{"type":"integer"},
     "InternalFailureException":{
       "type":"structure",
       "members":{
@@ -126,6 +254,16 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "IssueDetected":{
+      "type":"structure",
+      "members":{
+        "CharacterOffsets":{"shape":"CharacterOffsets"}
+      }
+    },
+    "IssuesDetected":{
+      "type":"list",
+      "member":{"shape":"IssueDetected"}
     },
     "Item":{
       "type":"structure",
@@ -194,6 +332,12 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "Long":{"type":"long"},
+    "MatchedCategoryDetails":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"PointsOfInterest"}
     },
     "MediaEncoding":{
       "type":"string",
@@ -311,11 +455,37 @@
         "low"
       ]
     },
+    "ParticipantRole":{
+      "type":"string",
+      "enum":[
+        "AGENT",
+        "CUSTOMER"
+      ]
+    },
     "PiiEntityTypes":{
       "type":"string",
       "max":300,
       "min":1,
       "pattern":"^[A-Z_, ]+"
+    },
+    "PointsOfInterest":{
+      "type":"structure",
+      "members":{
+        "TimestampRanges":{"shape":"TimestampRanges"}
+      }
+    },
+    "PostCallAnalyticsSettings":{
+      "type":"structure",
+      "required":[
+        "OutputLocation",
+        "DataAccessRoleArn"
+      ],
+      "members":{
+        "OutputLocation":{"shape":"String"},
+        "DataAccessRoleArn":{"shape":"String"},
+        "ContentRedactionOutput":{"shape":"ContentRedactionOutput"},
+        "OutputEncryptionKMSKeyId":{"shape":"String"}
+      }
     },
     "RequestId":{"type":"string"},
     "Result":{
@@ -334,6 +504,15 @@
     "ResultList":{
       "type":"list",
       "member":{"shape":"Result"}
+    },
+    "Sentiment":{
+      "type":"string",
+      "enum":[
+        "POSITIVE",
+        "NEGATIVE",
+        "MIXED",
+        "NEUTRAL"
+      ]
     },
     "ServiceUnavailableException":{
       "type":"structure",
@@ -361,6 +540,161 @@
       ]
     },
     "Stable":{"type":"boolean"},
+    "StartCallAnalyticsStreamTranscriptionRequest":{
+      "type":"structure",
+      "required":[
+        "LanguageCode",
+        "MediaSampleRateHertz",
+        "MediaEncoding",
+        "AudioStream"
+      ],
+      "members":{
+        "LanguageCode":{
+          "shape":"CallAnalyticsLanguageCode",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-code"
+        },
+        "MediaSampleRateHertz":{
+          "shape":"MediaSampleRateHertz",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-sample-rate"
+        },
+        "MediaEncoding":{
+          "shape":"MediaEncoding",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-media-encoding"
+        },
+        "VocabularyName":{
+          "shape":"VocabularyName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-name"
+        },
+        "SessionId":{
+          "shape":"SessionId",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-session-id"
+        },
+        "AudioStream":{"shape":"AudioStream"},
+        "VocabularyFilterName":{
+          "shape":"VocabularyFilterName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-name"
+        },
+        "VocabularyFilterMethod":{
+          "shape":"VocabularyFilterMethod",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-method"
+        },
+        "LanguageModelName":{
+          "shape":"ModelName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-model-name"
+        },
+        "EnablePartialResultsStabilization":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-enable-partial-results-stabilization"
+        },
+        "PartialResultsStability":{
+          "shape":"PartialResultsStability",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-partial-results-stability"
+        },
+        "ContentIdentificationType":{
+          "shape":"ContentIdentificationType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-identification-type"
+        },
+        "ContentRedactionType":{
+          "shape":"ContentRedactionType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-redaction-type"
+        },
+        "PiiEntityTypes":{
+          "shape":"PiiEntityTypes",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-pii-entity-types"
+        }
+      },
+      "payload":"AudioStream"
+    },
+    "StartCallAnalyticsStreamTranscriptionResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{
+          "shape":"RequestId",
+          "location":"header",
+          "locationName":"x-amzn-request-id"
+        },
+        "LanguageCode":{
+          "shape":"CallAnalyticsLanguageCode",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-code"
+        },
+        "MediaSampleRateHertz":{
+          "shape":"MediaSampleRateHertz",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-sample-rate"
+        },
+        "MediaEncoding":{
+          "shape":"MediaEncoding",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-media-encoding"
+        },
+        "VocabularyName":{
+          "shape":"VocabularyName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-name"
+        },
+        "SessionId":{
+          "shape":"SessionId",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-session-id"
+        },
+        "CallAnalyticsTranscriptResultStream":{"shape":"CallAnalyticsTranscriptResultStream"},
+        "VocabularyFilterName":{
+          "shape":"VocabularyFilterName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-name"
+        },
+        "VocabularyFilterMethod":{
+          "shape":"VocabularyFilterMethod",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-method"
+        },
+        "LanguageModelName":{
+          "shape":"ModelName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-model-name"
+        },
+        "EnablePartialResultsStabilization":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-enable-partial-results-stabilization"
+        },
+        "PartialResultsStability":{
+          "shape":"PartialResultsStability",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-partial-results-stability"
+        },
+        "ContentIdentificationType":{
+          "shape":"ContentIdentificationType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-identification-type"
+        },
+        "ContentRedactionType":{
+          "shape":"ContentRedactionType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-redaction-type"
+        },
+        "PiiEntityTypes":{
+          "shape":"PiiEntityTypes",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-pii-entity-types"
+        }
+      },
+      "payload":"CallAnalyticsTranscriptResultStream"
+    },
     "StartMedicalStreamTranscriptionRequest":{
       "type":"structure",
       "required":[
@@ -733,6 +1067,21 @@
       "payload":"TranscriptResultStream"
     },
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "TimestampRange":{
+      "type":"structure",
+      "members":{
+        "BeginOffsetMillis":{"shape":"Long"},
+        "EndOffsetMillis":{"shape":"Long"}
+      }
+    },
+    "TimestampRanges":{
+      "type":"list",
+      "member":{"shape":"TimestampRange"}
+    },
     "Transcript":{
       "type":"structure",
       "members":{
@@ -764,6 +1113,22 @@
         "CONVERSATION",
         "DICTATION"
       ]
+    },
+    "UtteranceEvent":{
+      "type":"structure",
+      "members":{
+        "UtteranceId":{"shape":"String"},
+        "IsPartial":{"shape":"Boolean"},
+        "ParticipantRole":{"shape":"ParticipantRole"},
+        "BeginOffsetMillis":{"shape":"Long"},
+        "EndOffsetMillis":{"shape":"Long"},
+        "Transcript":{"shape":"String"},
+        "Items":{"shape":"CallAnalyticsItemList"},
+        "Entities":{"shape":"CallAnalyticsEntityList"},
+        "Sentiment":{"shape":"Sentiment"},
+        "IssuesDetected":{"shape":"IssuesDetected"}
+      },
+      "event":true
     },
     "VocabularyFilterMethod":{
       "type":"string",
