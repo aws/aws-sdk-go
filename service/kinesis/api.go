@@ -3383,8 +3383,8 @@ func (e eventTypeForSubscribeToShardEventStreamOutputEvent) UnmarshalerForEventN
 //
 // These events are:
 //
-//     * SubscribeToShardEvent
-//     * SubscribeToShardEventStreamUnknownEvent
+//   - SubscribeToShardEvent
+//   - SubscribeToShardEventStreamUnknownEvent
 func (es *SubscribeToShardEventStream) Events() <-chan SubscribeToShardEventStreamEvent {
 	return es.Reader.Events()
 }
