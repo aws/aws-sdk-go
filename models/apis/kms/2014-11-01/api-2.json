@@ -77,7 +77,17 @@
         {"shape":"KMSInternalException"},
         {"shape":"CloudHsmClusterNotActiveException"},
         {"shape":"IncorrectTrustAnchorException"},
-        {"shape":"CloudHsmClusterInvalidConfigurationException"}
+        {"shape":"CloudHsmClusterInvalidConfigurationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"XksProxyUriInUseException"},
+        {"shape":"XksProxyUriEndpointInUseException"},
+        {"shape":"XksProxyUriUnreachableException"},
+        {"shape":"XksProxyIncorrectAuthenticationCredentialException"},
+        {"shape":"XksProxyVpcEndpointServiceInUseException"},
+        {"shape":"XksProxyVpcEndpointServiceNotFoundException"},
+        {"shape":"XksProxyVpcEndpointServiceInvalidConfigurationException"},
+        {"shape":"XksProxyInvalidResponseException"},
+        {"shape":"XksProxyInvalidConfigurationException"}
       ]
     },
     "CreateGrant":{
@@ -117,7 +127,10 @@
         {"shape":"TagException"},
         {"shape":"CustomKeyStoreNotFoundException"},
         {"shape":"CustomKeyStoreInvalidStateException"},
-        {"shape":"CloudHsmClusterInvalidConfigurationException"}
+        {"shape":"CloudHsmClusterInvalidConfigurationException"},
+        {"shape":"XksKeyInvalidConfigurationException"},
+        {"shape":"XksKeyAlreadyInUseException"},
+        {"shape":"XksKeyNotFoundException"}
       ]
     },
     "Decrypt":{
@@ -420,6 +433,7 @@
       "errors":[
         {"shape":"DependencyTimeoutException"},
         {"shape":"KMSInternalException"},
+        {"shape":"UnsupportedOperationException"},
         {"shape":"CustomKeyStoreNotFoundException"},
         {"shape":"CustomKeyStoreInvalidStateException"}
       ]
@@ -801,7 +815,16 @@
         {"shape":"CustomKeyStoreInvalidStateException"},
         {"shape":"KMSInternalException"},
         {"shape":"CloudHsmClusterNotActiveException"},
-        {"shape":"CloudHsmClusterInvalidConfigurationException"}
+        {"shape":"CloudHsmClusterInvalidConfigurationException"},
+        {"shape":"XksProxyUriInUseException"},
+        {"shape":"XksProxyUriEndpointInUseException"},
+        {"shape":"XksProxyUriUnreachableException"},
+        {"shape":"XksProxyIncorrectAuthenticationCredentialException"},
+        {"shape":"XksProxyVpcEndpointServiceInUseException"},
+        {"shape":"XksProxyVpcEndpointServiceNotFoundException"},
+        {"shape":"XksProxyVpcEndpointServiceInvalidConfigurationException"},
+        {"shape":"XksProxyInvalidResponseException"},
+        {"shape":"XksProxyInvalidConfigurationException"}
       ]
     },
     "UpdateKeyDescription":{
@@ -1000,7 +1023,15 @@
         "USER_NOT_FOUND",
         "USER_LOGGED_IN",
         "SUBNET_NOT_FOUND",
-        "INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET"
+        "INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET",
+        "XKS_PROXY_ACCESS_DENIED",
+        "XKS_PROXY_NOT_REACHABLE",
+        "XKS_VPC_ENDPOINT_SERVICE_NOT_FOUND",
+        "XKS_PROXY_INVALID_RESPONSE",
+        "XKS_PROXY_INVALID_CONFIGURATION",
+        "XKS_VPC_ENDPOINT_SERVICE_INVALID_CONFIGURATION",
+        "XKS_PROXY_TIMED_OUT",
+        "XKS_PROXY_INVALID_TLS_CONFIGURATION"
       ]
     },
     "ConnectionStateType":{
@@ -1031,7 +1062,13 @@
         "CustomKeyStoreName":{"shape":"CustomKeyStoreNameType"},
         "CloudHsmClusterId":{"shape":"CloudHsmClusterIdType"},
         "TrustAnchorCertificate":{"shape":"TrustAnchorCertificateType"},
-        "KeyStorePassword":{"shape":"KeyStorePasswordType"}
+        "KeyStorePassword":{"shape":"KeyStorePasswordType"},
+        "CustomKeyStoreType":{"shape":"CustomKeyStoreType"},
+        "XksProxyUriEndpoint":{"shape":"XksProxyUriEndpointType"},
+        "XksProxyUriPath":{"shape":"XksProxyUriPathType"},
+        "XksProxyVpcEndpointServiceName":{"shape":"XksProxyVpcEndpointServiceNameType"},
+        "XksProxyAuthenticationCredential":{"shape":"XksProxyAuthenticationCredentialType"},
+        "XksProxyConnectivity":{"shape":"XksProxyConnectivityType"}
       }
     },
     "CreateCustomKeyStoreResponse":{
@@ -1080,7 +1117,8 @@
         "CustomKeyStoreId":{"shape":"CustomKeyStoreIdType"},
         "BypassPolicyLockoutSafetyCheck":{"shape":"BooleanType"},
         "Tags":{"shape":"TagList"},
-        "MultiRegion":{"shape":"NullableBooleanType"}
+        "MultiRegion":{"shape":"NullableBooleanType"},
+        "XksKeyId":{"shape":"XksKeyIdType"}
       }
     },
     "CreateKeyResponse":{
@@ -1127,6 +1165,13 @@
       },
       "exception":true
     },
+    "CustomKeyStoreType":{
+      "type":"string",
+      "enum":[
+        "AWS_CLOUDHSM",
+        "EXTERNAL_KEY_STORE"
+      ]
+    },
     "CustomKeyStoresList":{
       "type":"list",
       "member":{"shape":"CustomKeyStoresListEntry"}
@@ -1140,7 +1185,9 @@
         "TrustAnchorCertificate":{"shape":"TrustAnchorCertificateType"},
         "ConnectionState":{"shape":"ConnectionStateType"},
         "ConnectionErrorCode":{"shape":"ConnectionErrorCodeType"},
-        "CreationDate":{"shape":"DateType"}
+        "CreationDate":{"shape":"DateType"},
+        "CustomKeyStoreType":{"shape":"CustomKeyStoreType"},
+        "XksProxyConfiguration":{"shape":"XksProxyConfigurationType"}
       }
     },
     "CustomerMasterKeySpec":{
@@ -1821,7 +1868,8 @@
         "MultiRegion":{"shape":"NullableBooleanType"},
         "MultiRegionConfiguration":{"shape":"MultiRegionConfiguration"},
         "PendingDeletionWindowInDays":{"shape":"PendingWindowInDaysType"},
-        "MacAlgorithms":{"shape":"MacAlgorithmSpecList"}
+        "MacAlgorithms":{"shape":"MacAlgorithmSpecList"},
+        "XksKeyConfiguration":{"shape":"XksKeyConfigurationType"}
       }
     },
     "KeySpec":{
@@ -2059,7 +2107,8 @@
       "enum":[
         "AWS_KMS",
         "EXTERNAL",
-        "AWS_CLOUDHSM"
+        "AWS_CLOUDHSM",
+        "EXTERNAL_KEY_STORE"
       ]
     },
     "PendingWindowInDaysType":{
@@ -2336,7 +2385,12 @@
         "CustomKeyStoreId":{"shape":"CustomKeyStoreIdType"},
         "NewCustomKeyStoreName":{"shape":"CustomKeyStoreNameType"},
         "KeyStorePassword":{"shape":"KeyStorePasswordType"},
-        "CloudHsmClusterId":{"shape":"CloudHsmClusterIdType"}
+        "CloudHsmClusterId":{"shape":"CloudHsmClusterIdType"},
+        "XksProxyUriEndpoint":{"shape":"XksProxyUriEndpointType"},
+        "XksProxyUriPath":{"shape":"XksProxyUriPathType"},
+        "XksProxyVpcEndpointServiceName":{"shape":"XksProxyVpcEndpointServiceNameType"},
+        "XksProxyAuthenticationCredential":{"shape":"XksProxyAuthenticationCredentialType"},
+        "XksProxyConnectivity":{"shape":"XksProxyConnectivityType"}
       }
     },
     "UpdateCustomKeyStoreResponse":{
@@ -2418,6 +2472,162 @@
     "WrappingKeySpec":{
       "type":"string",
       "enum":["RSA_2048"]
+    },
+    "XksKeyAlreadyInUseException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksKeyConfigurationType":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"XksKeyIdType"}
+      }
+    },
+    "XksKeyIdType":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_.]+$"
+    },
+    "XksKeyInvalidConfigurationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksKeyNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyAuthenticationAccessKeyIdType":{
+      "type":"string",
+      "max":30,
+      "min":20,
+      "pattern":"^[A-Z2-7]+$",
+      "sensitive":true
+    },
+    "XksProxyAuthenticationCredentialType":{
+      "type":"structure",
+      "required":[
+        "AccessKeyId",
+        "RawSecretAccessKey"
+      ],
+      "members":{
+        "AccessKeyId":{"shape":"XksProxyAuthenticationAccessKeyIdType"},
+        "RawSecretAccessKey":{"shape":"XksProxyAuthenticationRawSecretAccessKeyType"}
+      }
+    },
+    "XksProxyAuthenticationRawSecretAccessKeyType":{
+      "type":"string",
+      "max":64,
+      "min":43,
+      "pattern":"^[a-zA-Z0-9\\/+=]+$",
+      "sensitive":true
+    },
+    "XksProxyConfigurationType":{
+      "type":"structure",
+      "members":{
+        "Connectivity":{"shape":"XksProxyConnectivityType"},
+        "AccessKeyId":{"shape":"XksProxyAuthenticationAccessKeyIdType"},
+        "UriEndpoint":{"shape":"XksProxyUriEndpointType"},
+        "UriPath":{"shape":"XksProxyUriPathType"},
+        "VpcEndpointServiceName":{"shape":"XksProxyVpcEndpointServiceNameType"}
+      }
+    },
+    "XksProxyConnectivityType":{
+      "type":"string",
+      "enum":[
+        "PUBLIC_ENDPOINT",
+        "VPC_ENDPOINT_SERVICE"
+      ]
+    },
+    "XksProxyIncorrectAuthenticationCredentialException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyInvalidConfigurationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyInvalidResponseException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyUriEndpointInUseException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyUriEndpointType":{
+      "type":"string",
+      "max":128,
+      "min":10,
+      "pattern":"^https://[a-zA-Z0-9.-]+$"
+    },
+    "XksProxyUriInUseException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyUriPathType":{
+      "type":"string",
+      "max":128,
+      "min":10,
+      "pattern":"^(/[a-zA-Z0-9\\/_-]+/kms/xks/v\\d{1,2})$|^(/kms/xks/v\\d{1,2})$"
+    },
+    "XksProxyUriUnreachableException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyVpcEndpointServiceInUseException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyVpcEndpointServiceInvalidConfigurationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "XksProxyVpcEndpointServiceNameType":{
+      "type":"string",
+      "max":64,
+      "min":20,
+      "pattern":"^com\\.amazonaws\\.vpce\\.([a-z]+-){2,3}\\d+\\.vpce-svc-[0-9a-z]+$"
+    },
+    "XksProxyVpcEndpointServiceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
     }
   }
 }

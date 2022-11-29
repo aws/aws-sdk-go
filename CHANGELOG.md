@@ -1,3 +1,18 @@
+Release v1.44.148 (2022-11-29)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds support for AWS Verified Access and the Hpc6id Amazon EC2 compute optimized instance type, which features 3rd generation Intel Xeon Scalable processors.
+* `service/firehose`: Updates service API and documentation
+  * Allow support for the Serverless offering for Amazon OpenSearch Service as a Kinesis Data Firehose delivery destination.
+* `service/kms`: Updates service API, documentation, paginators, and examples
+  * AWS KMS introduces the External Key Store (XKS), a new feature for customers who want to protect their data with encryption keys stored in an external key management system under their control.
+* `service/omics`: Updates service API, documentation, waiters, paginators, and examples
+* `service/opensearchserverless`: Adds new service
+* `service/securitylake`: Adds new service
+* `service/simspaceweaver`: Adds new service
+
 Release v1.44.147 (2022-11-29)
 ===
 
