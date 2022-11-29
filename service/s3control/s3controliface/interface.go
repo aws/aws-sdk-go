@@ -204,6 +204,10 @@ type S3ControlAPI interface {
 	GetMultiRegionAccessPointPolicyStatusWithContext(aws.Context, *s3control.GetMultiRegionAccessPointPolicyStatusInput, ...request.Option) (*s3control.GetMultiRegionAccessPointPolicyStatusOutput, error)
 	GetMultiRegionAccessPointPolicyStatusRequest(*s3control.GetMultiRegionAccessPointPolicyStatusInput) (*request.Request, *s3control.GetMultiRegionAccessPointPolicyStatusOutput)
 
+	GetMultiRegionAccessPointRoutes(*s3control.GetMultiRegionAccessPointRoutesInput) (*s3control.GetMultiRegionAccessPointRoutesOutput, error)
+	GetMultiRegionAccessPointRoutesWithContext(aws.Context, *s3control.GetMultiRegionAccessPointRoutesInput, ...request.Option) (*s3control.GetMultiRegionAccessPointRoutesOutput, error)
+	GetMultiRegionAccessPointRoutesRequest(*s3control.GetMultiRegionAccessPointRoutesInput) (*request.Request, *s3control.GetMultiRegionAccessPointRoutesOutput)
+
 	GetPublicAccessBlock(*s3control.GetPublicAccessBlockInput) (*s3control.GetPublicAccessBlockOutput, error)
 	GetPublicAccessBlockWithContext(aws.Context, *s3control.GetPublicAccessBlockInput, ...request.Option) (*s3control.GetPublicAccessBlockOutput, error)
 	GetPublicAccessBlockRequest(*s3control.GetPublicAccessBlockInput) (*request.Request, *s3control.GetPublicAccessBlockOutput)
@@ -305,6 +309,10 @@ type S3ControlAPI interface {
 	PutStorageLensConfigurationTagging(*s3control.PutStorageLensConfigurationTaggingInput) (*s3control.PutStorageLensConfigurationTaggingOutput, error)
 	PutStorageLensConfigurationTaggingWithContext(aws.Context, *s3control.PutStorageLensConfigurationTaggingInput, ...request.Option) (*s3control.PutStorageLensConfigurationTaggingOutput, error)
 	PutStorageLensConfigurationTaggingRequest(*s3control.PutStorageLensConfigurationTaggingInput) (*request.Request, *s3control.PutStorageLensConfigurationTaggingOutput)
+
+	SubmitMultiRegionAccessPointRoutes(*s3control.SubmitMultiRegionAccessPointRoutesInput) (*s3control.SubmitMultiRegionAccessPointRoutesOutput, error)
+	SubmitMultiRegionAccessPointRoutesWithContext(aws.Context, *s3control.SubmitMultiRegionAccessPointRoutesInput, ...request.Option) (*s3control.SubmitMultiRegionAccessPointRoutesOutput, error)
+	SubmitMultiRegionAccessPointRoutesRequest(*s3control.SubmitMultiRegionAccessPointRoutesInput) (*request.Request, *s3control.SubmitMultiRegionAccessPointRoutesOutput)
 
 	UpdateJobPriority(*s3control.UpdateJobPriorityInput) (*s3control.UpdateJobPriorityOutput, error)
 	UpdateJobPriorityWithContext(aws.Context, *s3control.UpdateJobPriorityInput, ...request.Option) (*s3control.UpdateJobPriorityOutput, error)

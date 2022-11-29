@@ -220,6 +220,10 @@ type QuickSightAPI interface {
 	DescribeAnalysisWithContext(aws.Context, *quicksight.DescribeAnalysisInput, ...request.Option) (*quicksight.DescribeAnalysisOutput, error)
 	DescribeAnalysisRequest(*quicksight.DescribeAnalysisInput) (*request.Request, *quicksight.DescribeAnalysisOutput)
 
+	DescribeAnalysisDefinition(*quicksight.DescribeAnalysisDefinitionInput) (*quicksight.DescribeAnalysisDefinitionOutput, error)
+	DescribeAnalysisDefinitionWithContext(aws.Context, *quicksight.DescribeAnalysisDefinitionInput, ...request.Option) (*quicksight.DescribeAnalysisDefinitionOutput, error)
+	DescribeAnalysisDefinitionRequest(*quicksight.DescribeAnalysisDefinitionInput) (*request.Request, *quicksight.DescribeAnalysisDefinitionOutput)
+
 	DescribeAnalysisPermissions(*quicksight.DescribeAnalysisPermissionsInput) (*quicksight.DescribeAnalysisPermissionsOutput, error)
 	DescribeAnalysisPermissionsWithContext(aws.Context, *quicksight.DescribeAnalysisPermissionsInput, ...request.Option) (*quicksight.DescribeAnalysisPermissionsOutput, error)
 	DescribeAnalysisPermissionsRequest(*quicksight.DescribeAnalysisPermissionsInput) (*request.Request, *quicksight.DescribeAnalysisPermissionsOutput)
@@ -227,6 +231,10 @@ type QuickSightAPI interface {
 	DescribeDashboard(*quicksight.DescribeDashboardInput) (*quicksight.DescribeDashboardOutput, error)
 	DescribeDashboardWithContext(aws.Context, *quicksight.DescribeDashboardInput, ...request.Option) (*quicksight.DescribeDashboardOutput, error)
 	DescribeDashboardRequest(*quicksight.DescribeDashboardInput) (*request.Request, *quicksight.DescribeDashboardOutput)
+
+	DescribeDashboardDefinition(*quicksight.DescribeDashboardDefinitionInput) (*quicksight.DescribeDashboardDefinitionOutput, error)
+	DescribeDashboardDefinitionWithContext(aws.Context, *quicksight.DescribeDashboardDefinitionInput, ...request.Option) (*quicksight.DescribeDashboardDefinitionOutput, error)
+	DescribeDashboardDefinitionRequest(*quicksight.DescribeDashboardDefinitionInput) (*request.Request, *quicksight.DescribeDashboardDefinitionOutput)
 
 	DescribeDashboardPermissions(*quicksight.DescribeDashboardPermissionsInput) (*quicksight.DescribeDashboardPermissionsOutput, error)
 	DescribeDashboardPermissionsWithContext(aws.Context, *quicksight.DescribeDashboardPermissionsInput, ...request.Option) (*quicksight.DescribeDashboardPermissionsOutput, error)
@@ -291,6 +299,10 @@ type QuickSightAPI interface {
 	DescribeTemplateAlias(*quicksight.DescribeTemplateAliasInput) (*quicksight.DescribeTemplateAliasOutput, error)
 	DescribeTemplateAliasWithContext(aws.Context, *quicksight.DescribeTemplateAliasInput, ...request.Option) (*quicksight.DescribeTemplateAliasOutput, error)
 	DescribeTemplateAliasRequest(*quicksight.DescribeTemplateAliasInput) (*request.Request, *quicksight.DescribeTemplateAliasOutput)
+
+	DescribeTemplateDefinition(*quicksight.DescribeTemplateDefinitionInput) (*quicksight.DescribeTemplateDefinitionOutput, error)
+	DescribeTemplateDefinitionWithContext(aws.Context, *quicksight.DescribeTemplateDefinitionInput, ...request.Option) (*quicksight.DescribeTemplateDefinitionOutput, error)
+	DescribeTemplateDefinitionRequest(*quicksight.DescribeTemplateDefinitionInput) (*request.Request, *quicksight.DescribeTemplateDefinitionOutput)
 
 	DescribeTemplatePermissions(*quicksight.DescribeTemplatePermissionsInput) (*quicksight.DescribeTemplatePermissionsOutput, error)
 	DescribeTemplatePermissionsWithContext(aws.Context, *quicksight.DescribeTemplatePermissionsInput, ...request.Option) (*quicksight.DescribeTemplatePermissionsOutput, error)

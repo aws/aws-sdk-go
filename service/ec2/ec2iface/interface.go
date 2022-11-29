@@ -894,6 +894,13 @@ type EC2API interface {
 	DescribeAvailabilityZonesWithContext(aws.Context, *ec2.DescribeAvailabilityZonesInput, ...request.Option) (*ec2.DescribeAvailabilityZonesOutput, error)
 	DescribeAvailabilityZonesRequest(*ec2.DescribeAvailabilityZonesInput) (*request.Request, *ec2.DescribeAvailabilityZonesOutput)
 
+	DescribeAwsNetworkPerformanceMetricSubscriptions(*ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsInput) (*ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput, error)
+	DescribeAwsNetworkPerformanceMetricSubscriptionsWithContext(aws.Context, *ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, ...request.Option) (*ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput, error)
+	DescribeAwsNetworkPerformanceMetricSubscriptionsRequest(*ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsInput) (*request.Request, *ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput)
+
+	DescribeAwsNetworkPerformanceMetricSubscriptionsPages(*ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, func(*ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput, bool) bool) error
+	DescribeAwsNetworkPerformanceMetricSubscriptionsPagesWithContext(aws.Context, *ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, func(*ec2.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput, bool) bool, ...request.Option) error
+
 	DescribeBundleTasks(*ec2.DescribeBundleTasksInput) (*ec2.DescribeBundleTasksOutput, error)
 	DescribeBundleTasksWithContext(aws.Context, *ec2.DescribeBundleTasksInput, ...request.Option) (*ec2.DescribeBundleTasksOutput, error)
 	DescribeBundleTasksRequest(*ec2.DescribeBundleTasksInput) (*request.Request, *ec2.DescribeBundleTasksOutput)
@@ -1735,6 +1742,10 @@ type EC2API interface {
 	DisableAddressTransferWithContext(aws.Context, *ec2.DisableAddressTransferInput, ...request.Option) (*ec2.DisableAddressTransferOutput, error)
 	DisableAddressTransferRequest(*ec2.DisableAddressTransferInput) (*request.Request, *ec2.DisableAddressTransferOutput)
 
+	DisableAwsNetworkPerformanceMetricSubscription(*ec2.DisableAwsNetworkPerformanceMetricSubscriptionInput) (*ec2.DisableAwsNetworkPerformanceMetricSubscriptionOutput, error)
+	DisableAwsNetworkPerformanceMetricSubscriptionWithContext(aws.Context, *ec2.DisableAwsNetworkPerformanceMetricSubscriptionInput, ...request.Option) (*ec2.DisableAwsNetworkPerformanceMetricSubscriptionOutput, error)
+	DisableAwsNetworkPerformanceMetricSubscriptionRequest(*ec2.DisableAwsNetworkPerformanceMetricSubscriptionInput) (*request.Request, *ec2.DisableAwsNetworkPerformanceMetricSubscriptionOutput)
+
 	DisableEbsEncryptionByDefault(*ec2.DisableEbsEncryptionByDefaultInput) (*ec2.DisableEbsEncryptionByDefaultOutput, error)
 	DisableEbsEncryptionByDefaultWithContext(aws.Context, *ec2.DisableEbsEncryptionByDefaultInput, ...request.Option) (*ec2.DisableEbsEncryptionByDefaultOutput, error)
 	DisableEbsEncryptionByDefaultRequest(*ec2.DisableEbsEncryptionByDefaultInput) (*request.Request, *ec2.DisableEbsEncryptionByDefaultOutput)
@@ -1827,6 +1838,10 @@ type EC2API interface {
 	EnableAddressTransferWithContext(aws.Context, *ec2.EnableAddressTransferInput, ...request.Option) (*ec2.EnableAddressTransferOutput, error)
 	EnableAddressTransferRequest(*ec2.EnableAddressTransferInput) (*request.Request, *ec2.EnableAddressTransferOutput)
 
+	EnableAwsNetworkPerformanceMetricSubscription(*ec2.EnableAwsNetworkPerformanceMetricSubscriptionInput) (*ec2.EnableAwsNetworkPerformanceMetricSubscriptionOutput, error)
+	EnableAwsNetworkPerformanceMetricSubscriptionWithContext(aws.Context, *ec2.EnableAwsNetworkPerformanceMetricSubscriptionInput, ...request.Option) (*ec2.EnableAwsNetworkPerformanceMetricSubscriptionOutput, error)
+	EnableAwsNetworkPerformanceMetricSubscriptionRequest(*ec2.EnableAwsNetworkPerformanceMetricSubscriptionInput) (*request.Request, *ec2.EnableAwsNetworkPerformanceMetricSubscriptionOutput)
+
 	EnableEbsEncryptionByDefault(*ec2.EnableEbsEncryptionByDefaultInput) (*ec2.EnableEbsEncryptionByDefaultOutput, error)
 	EnableEbsEncryptionByDefaultWithContext(aws.Context, *ec2.EnableEbsEncryptionByDefaultInput, ...request.Option) (*ec2.EnableEbsEncryptionByDefaultOutput, error)
 	EnableEbsEncryptionByDefaultRequest(*ec2.EnableEbsEncryptionByDefaultInput) (*request.Request, *ec2.EnableEbsEncryptionByDefaultOutput)
@@ -1846,6 +1861,10 @@ type EC2API interface {
 	EnableIpamOrganizationAdminAccount(*ec2.EnableIpamOrganizationAdminAccountInput) (*ec2.EnableIpamOrganizationAdminAccountOutput, error)
 	EnableIpamOrganizationAdminAccountWithContext(aws.Context, *ec2.EnableIpamOrganizationAdminAccountInput, ...request.Option) (*ec2.EnableIpamOrganizationAdminAccountOutput, error)
 	EnableIpamOrganizationAdminAccountRequest(*ec2.EnableIpamOrganizationAdminAccountInput) (*request.Request, *ec2.EnableIpamOrganizationAdminAccountOutput)
+
+	EnableReachabilityAnalyzerOrganizationSharing(*ec2.EnableReachabilityAnalyzerOrganizationSharingInput) (*ec2.EnableReachabilityAnalyzerOrganizationSharingOutput, error)
+	EnableReachabilityAnalyzerOrganizationSharingWithContext(aws.Context, *ec2.EnableReachabilityAnalyzerOrganizationSharingInput, ...request.Option) (*ec2.EnableReachabilityAnalyzerOrganizationSharingOutput, error)
+	EnableReachabilityAnalyzerOrganizationSharingRequest(*ec2.EnableReachabilityAnalyzerOrganizationSharingInput) (*request.Request, *ec2.EnableReachabilityAnalyzerOrganizationSharingOutput)
 
 	EnableSerialConsoleAccess(*ec2.EnableSerialConsoleAccessInput) (*ec2.EnableSerialConsoleAccessOutput, error)
 	EnableSerialConsoleAccessWithContext(aws.Context, *ec2.EnableSerialConsoleAccessInput, ...request.Option) (*ec2.EnableSerialConsoleAccessOutput, error)
@@ -1897,6 +1916,13 @@ type EC2API interface {
 
 	GetAssociatedIpv6PoolCidrsPages(*ec2.GetAssociatedIpv6PoolCidrsInput, func(*ec2.GetAssociatedIpv6PoolCidrsOutput, bool) bool) error
 	GetAssociatedIpv6PoolCidrsPagesWithContext(aws.Context, *ec2.GetAssociatedIpv6PoolCidrsInput, func(*ec2.GetAssociatedIpv6PoolCidrsOutput, bool) bool, ...request.Option) error
+
+	GetAwsNetworkPerformanceData(*ec2.GetAwsNetworkPerformanceDataInput) (*ec2.GetAwsNetworkPerformanceDataOutput, error)
+	GetAwsNetworkPerformanceDataWithContext(aws.Context, *ec2.GetAwsNetworkPerformanceDataInput, ...request.Option) (*ec2.GetAwsNetworkPerformanceDataOutput, error)
+	GetAwsNetworkPerformanceDataRequest(*ec2.GetAwsNetworkPerformanceDataInput) (*request.Request, *ec2.GetAwsNetworkPerformanceDataOutput)
+
+	GetAwsNetworkPerformanceDataPages(*ec2.GetAwsNetworkPerformanceDataInput, func(*ec2.GetAwsNetworkPerformanceDataOutput, bool) bool) error
+	GetAwsNetworkPerformanceDataPagesWithContext(aws.Context, *ec2.GetAwsNetworkPerformanceDataInput, func(*ec2.GetAwsNetworkPerformanceDataOutput, bool) bool, ...request.Option) error
 
 	GetCapacityReservationUsage(*ec2.GetCapacityReservationUsageInput) (*ec2.GetCapacityReservationUsageOutput, error)
 	GetCapacityReservationUsageWithContext(aws.Context, *ec2.GetCapacityReservationUsageInput, ...request.Option) (*ec2.GetCapacityReservationUsageOutput, error)

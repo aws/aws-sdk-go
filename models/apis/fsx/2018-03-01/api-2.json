@@ -648,6 +648,7 @@
         {"shape":"BadRequest"},
         {"shape":"UnsupportedOperation"},
         {"shape":"IncompatibleParameterError"},
+        {"shape":"InvalidNetworkSettings"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
         {"shape":"MissingFileSystemConfiguration"},
@@ -777,7 +778,8 @@
         "FILE_SYSTEM_ALIAS_DISASSOCIATION",
         "VOLUME_UPDATE",
         "SNAPSHOT_UPDATE",
-        "RELEASE_NFS_V3_LOCKS"
+        "RELEASE_NFS_V3_LOCKS",
+        "VOLUME_RESTORE"
       ]
     },
     "AdministrativeActions":{
@@ -1299,9 +1301,7 @@
     "CreateOntapVolumeConfiguration":{
       "type":"structure",
       "required":[
-        "JunctionPath",
         "SizeInMegabytes",
-        "StorageEfficiencyEnabled",
         "StorageVirtualMachineId"
       ],
       "members":{
@@ -1310,7 +1310,10 @@
         "SizeInMegabytes":{"shape":"VolumeCapacity"},
         "StorageEfficiencyEnabled":{"shape":"Flag"},
         "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
-        "TieringPolicy":{"shape":"TieringPolicy"}
+        "TieringPolicy":{"shape":"TieringPolicy"},
+        "OntapVolumeType":{"shape":"InputOntapVolumeType"},
+        "SnapshotPolicy":{"shape":"SnapshotPolicy"},
+        "CopyTagsToBackups":{"shape":"Flag"}
       }
     },
     "CreateOpenZFSOriginSnapshotConfiguration":{
@@ -2427,6 +2430,13 @@
       },
       "exception":true
     },
+    "InputOntapVolumeType":{
+      "type":"string",
+      "enum":[
+        "RW",
+        "DP"
+      ]
+    },
     "IntegerNoMax":{
       "type":"integer",
       "max":2147483647,
@@ -2511,7 +2521,7 @@
     },
     "Iops":{
       "type":"long",
-      "max":160000,
+      "max":1000000,
       "min":0
     },
     "IpAddress":{
@@ -2659,7 +2669,7 @@
     },
     "MegabytesPerSecond":{
       "type":"integer",
-      "max":4096,
+      "max":100000,
       "min":8
     },
     "MetadataStorageCapacity":{
@@ -2779,7 +2789,9 @@
         "StorageVirtualMachineRoot":{"shape":"Flag"},
         "TieringPolicy":{"shape":"TieringPolicy"},
         "UUID":{"shape":"UUID"},
-        "OntapVolumeType":{"shape":"OntapVolumeType"}
+        "OntapVolumeType":{"shape":"OntapVolumeType"},
+        "SnapshotPolicy":{"shape":"SnapshotPolicy"},
+        "CopyTagsToBackups":{"shape":"Flag"}
       }
     },
     "OntapVolumeType":{
@@ -2840,7 +2852,10 @@
     },
     "OpenZFSDeploymentType":{
       "type":"string",
-      "enum":["SINGLE_AZ_1"]
+      "enum":[
+        "SINGLE_AZ_1",
+        "SINGLE_AZ_2"
+      ]
     },
     "OpenZFSFileSystemConfiguration":{
       "type":"structure",
@@ -2897,7 +2912,7 @@
     "OpenZFSUserAndGroupQuotas":{
       "type":"list",
       "member":{"shape":"OpenZFSUserOrGroupQuota"},
-      "max":100
+      "max":500
     },
     "OpenZFSUserOrGroupQuota":{
       "type":"structure",
@@ -2925,7 +2940,10 @@
         "OriginSnapshot":{"shape":"OpenZFSOriginSnapshotConfiguration"},
         "ReadOnly":{"shape":"ReadOnly"},
         "NfsExports":{"shape":"OpenZFSNfsExports"},
-        "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"}
+        "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"},
+        "RestoreToSnapshot":{"shape":"SnapshotId"},
+        "DeleteIntermediateSnaphots":{"shape":"Flag"},
+        "DeleteClonedVolumes":{"shape":"Flag"}
       }
     },
     "OrganizationalUnitDistinguishedName":{
@@ -3050,7 +3068,8 @@
       "type":"structure",
       "members":{
         "VolumeId":{"shape":"VolumeId"},
-        "Lifecycle":{"shape":"VolumeLifecycle"}
+        "Lifecycle":{"shape":"VolumeLifecycle"},
+        "AdministrativeActions":{"shape":"AdministrativeActions"}
       }
     },
     "RouteTableId":{
@@ -3226,6 +3245,11 @@
       },
       "exception":true
     },
+    "SnapshotPolicy":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "Snapshots":{
       "type":"list",
       "member":{"shape":"Snapshot"},
@@ -3279,7 +3303,6 @@
         "Name":{"shape":"StorageVirtualMachineName"},
         "ResourceARN":{"shape":"ResourceARN"},
         "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
-        "Subtype":{"shape":"StorageVirtualMachineSubtype"},
         "UUID":{"shape":"UUID"},
         "Tags":{"shape":"Tags"},
         "LifecycleTransitionReason":{"shape":"LifecycleTransitionReason"},
@@ -3354,15 +3377,6 @@
         "UNIX",
         "NTFS",
         "MIXED"
-      ]
-    },
-    "StorageVirtualMachineSubtype":{
-      "type":"string",
-      "enum":[
-        "DEFAULT",
-        "DP_DESTINATION",
-        "SYNC_DESTINATION",
-        "SYNC_SOURCE"
       ]
     },
     "StorageVirtualMachines":{
@@ -3580,7 +3594,9 @@
         "FsxAdminPassword":{"shape":"AdminPassword"},
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "DiskIopsConfiguration":{"shape":"DiskIopsConfiguration"},
-        "ThroughputCapacity":{"shape":"MegabytesPerSecond"}
+        "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
+        "AddRouteTableIds":{"shape":"RouteTableIds"},
+        "RemoveRouteTableIds":{"shape":"RouteTableIds"}
       }
     },
     "UpdateFileSystemOpenZFSConfiguration":{
@@ -3635,7 +3651,9 @@
         "SecurityStyle":{"shape":"SecurityStyle"},
         "SizeInMegabytes":{"shape":"VolumeCapacity"},
         "StorageEfficiencyEnabled":{"shape":"Flag"},
-        "TieringPolicy":{"shape":"TieringPolicy"}
+        "TieringPolicy":{"shape":"TieringPolicy"},
+        "SnapshotPolicy":{"shape":"SnapshotPolicy"},
+        "CopyTagsToBackups":{"shape":"Flag"}
       }
     },
     "UpdateOpenZFSVolumeConfiguration":{

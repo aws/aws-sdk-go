@@ -171,6 +171,10 @@ type Macie2API interface {
 	GetAllowListWithContext(aws.Context, *macie2.GetAllowListInput, ...request.Option) (*macie2.GetAllowListOutput, error)
 	GetAllowListRequest(*macie2.GetAllowListInput) (*request.Request, *macie2.GetAllowListOutput)
 
+	GetAutomatedDiscoveryConfiguration(*macie2.GetAutomatedDiscoveryConfigurationInput) (*macie2.GetAutomatedDiscoveryConfigurationOutput, error)
+	GetAutomatedDiscoveryConfigurationWithContext(aws.Context, *macie2.GetAutomatedDiscoveryConfigurationInput, ...request.Option) (*macie2.GetAutomatedDiscoveryConfigurationOutput, error)
+	GetAutomatedDiscoveryConfigurationRequest(*macie2.GetAutomatedDiscoveryConfigurationInput) (*request.Request, *macie2.GetAutomatedDiscoveryConfigurationOutput)
+
 	GetBucketStatistics(*macie2.GetBucketStatisticsInput) (*macie2.GetBucketStatisticsOutput, error)
 	GetBucketStatisticsWithContext(aws.Context, *macie2.GetBucketStatisticsInput, ...request.Option) (*macie2.GetBucketStatisticsOutput, error)
 	GetBucketStatisticsRequest(*macie2.GetBucketStatisticsInput) (*request.Request, *macie2.GetBucketStatisticsOutput)
@@ -178,6 +182,10 @@ type Macie2API interface {
 	GetClassificationExportConfiguration(*macie2.GetClassificationExportConfigurationInput) (*macie2.GetClassificationExportConfigurationOutput, error)
 	GetClassificationExportConfigurationWithContext(aws.Context, *macie2.GetClassificationExportConfigurationInput, ...request.Option) (*macie2.GetClassificationExportConfigurationOutput, error)
 	GetClassificationExportConfigurationRequest(*macie2.GetClassificationExportConfigurationInput) (*request.Request, *macie2.GetClassificationExportConfigurationOutput)
+
+	GetClassificationScope(*macie2.GetClassificationScopeInput) (*macie2.GetClassificationScopeOutput, error)
+	GetClassificationScopeWithContext(aws.Context, *macie2.GetClassificationScopeInput, ...request.Option) (*macie2.GetClassificationScopeOutput, error)
+	GetClassificationScopeRequest(*macie2.GetClassificationScopeInput) (*request.Request, *macie2.GetClassificationScopeOutput)
 
 	GetCustomDataIdentifier(*macie2.GetCustomDataIdentifierInput) (*macie2.GetCustomDataIdentifierOutput, error)
 	GetCustomDataIdentifierWithContext(aws.Context, *macie2.GetCustomDataIdentifierInput, ...request.Option) (*macie2.GetCustomDataIdentifierOutput, error)
@@ -215,6 +223,10 @@ type Macie2API interface {
 	GetMemberWithContext(aws.Context, *macie2.GetMemberInput, ...request.Option) (*macie2.GetMemberOutput, error)
 	GetMemberRequest(*macie2.GetMemberInput) (*request.Request, *macie2.GetMemberOutput)
 
+	GetResourceProfile(*macie2.GetResourceProfileInput) (*macie2.GetResourceProfileOutput, error)
+	GetResourceProfileWithContext(aws.Context, *macie2.GetResourceProfileInput, ...request.Option) (*macie2.GetResourceProfileOutput, error)
+	GetResourceProfileRequest(*macie2.GetResourceProfileInput) (*request.Request, *macie2.GetResourceProfileOutput)
+
 	GetRevealConfiguration(*macie2.GetRevealConfigurationInput) (*macie2.GetRevealConfigurationOutput, error)
 	GetRevealConfigurationWithContext(aws.Context, *macie2.GetRevealConfigurationInput, ...request.Option) (*macie2.GetRevealConfigurationOutput, error)
 	GetRevealConfigurationRequest(*macie2.GetRevealConfigurationInput) (*request.Request, *macie2.GetRevealConfigurationOutput)
@@ -226,6 +238,10 @@ type Macie2API interface {
 	GetSensitiveDataOccurrencesAvailability(*macie2.GetSensitiveDataOccurrencesAvailabilityInput) (*macie2.GetSensitiveDataOccurrencesAvailabilityOutput, error)
 	GetSensitiveDataOccurrencesAvailabilityWithContext(aws.Context, *macie2.GetSensitiveDataOccurrencesAvailabilityInput, ...request.Option) (*macie2.GetSensitiveDataOccurrencesAvailabilityOutput, error)
 	GetSensitiveDataOccurrencesAvailabilityRequest(*macie2.GetSensitiveDataOccurrencesAvailabilityInput) (*request.Request, *macie2.GetSensitiveDataOccurrencesAvailabilityOutput)
+
+	GetSensitivityInspectionTemplate(*macie2.GetSensitivityInspectionTemplateInput) (*macie2.GetSensitivityInspectionTemplateOutput, error)
+	GetSensitivityInspectionTemplateWithContext(aws.Context, *macie2.GetSensitivityInspectionTemplateInput, ...request.Option) (*macie2.GetSensitivityInspectionTemplateOutput, error)
+	GetSensitivityInspectionTemplateRequest(*macie2.GetSensitivityInspectionTemplateInput) (*request.Request, *macie2.GetSensitivityInspectionTemplateOutput)
 
 	GetUsageStatistics(*macie2.GetUsageStatisticsInput) (*macie2.GetUsageStatisticsOutput, error)
 	GetUsageStatisticsWithContext(aws.Context, *macie2.GetUsageStatisticsInput, ...request.Option) (*macie2.GetUsageStatisticsOutput, error)
@@ -242,12 +258,22 @@ type Macie2API interface {
 	ListAllowListsWithContext(aws.Context, *macie2.ListAllowListsInput, ...request.Option) (*macie2.ListAllowListsOutput, error)
 	ListAllowListsRequest(*macie2.ListAllowListsInput) (*request.Request, *macie2.ListAllowListsOutput)
 
+	ListAllowListsPages(*macie2.ListAllowListsInput, func(*macie2.ListAllowListsOutput, bool) bool) error
+	ListAllowListsPagesWithContext(aws.Context, *macie2.ListAllowListsInput, func(*macie2.ListAllowListsOutput, bool) bool, ...request.Option) error
+
 	ListClassificationJobs(*macie2.ListClassificationJobsInput) (*macie2.ListClassificationJobsOutput, error)
 	ListClassificationJobsWithContext(aws.Context, *macie2.ListClassificationJobsInput, ...request.Option) (*macie2.ListClassificationJobsOutput, error)
 	ListClassificationJobsRequest(*macie2.ListClassificationJobsInput) (*request.Request, *macie2.ListClassificationJobsOutput)
 
 	ListClassificationJobsPages(*macie2.ListClassificationJobsInput, func(*macie2.ListClassificationJobsOutput, bool) bool) error
 	ListClassificationJobsPagesWithContext(aws.Context, *macie2.ListClassificationJobsInput, func(*macie2.ListClassificationJobsOutput, bool) bool, ...request.Option) error
+
+	ListClassificationScopes(*macie2.ListClassificationScopesInput) (*macie2.ListClassificationScopesOutput, error)
+	ListClassificationScopesWithContext(aws.Context, *macie2.ListClassificationScopesInput, ...request.Option) (*macie2.ListClassificationScopesOutput, error)
+	ListClassificationScopesRequest(*macie2.ListClassificationScopesInput) (*request.Request, *macie2.ListClassificationScopesOutput)
+
+	ListClassificationScopesPages(*macie2.ListClassificationScopesInput, func(*macie2.ListClassificationScopesOutput, bool) bool) error
+	ListClassificationScopesPagesWithContext(aws.Context, *macie2.ListClassificationScopesInput, func(*macie2.ListClassificationScopesOutput, bool) bool, ...request.Option) error
 
 	ListCustomDataIdentifiers(*macie2.ListCustomDataIdentifiersInput) (*macie2.ListCustomDataIdentifiersOutput, error)
 	ListCustomDataIdentifiersWithContext(aws.Context, *macie2.ListCustomDataIdentifiersInput, ...request.Option) (*macie2.ListCustomDataIdentifiersOutput, error)
@@ -281,6 +307,9 @@ type Macie2API interface {
 	ListManagedDataIdentifiersWithContext(aws.Context, *macie2.ListManagedDataIdentifiersInput, ...request.Option) (*macie2.ListManagedDataIdentifiersOutput, error)
 	ListManagedDataIdentifiersRequest(*macie2.ListManagedDataIdentifiersInput) (*request.Request, *macie2.ListManagedDataIdentifiersOutput)
 
+	ListManagedDataIdentifiersPages(*macie2.ListManagedDataIdentifiersInput, func(*macie2.ListManagedDataIdentifiersOutput, bool) bool) error
+	ListManagedDataIdentifiersPagesWithContext(aws.Context, *macie2.ListManagedDataIdentifiersInput, func(*macie2.ListManagedDataIdentifiersOutput, bool) bool, ...request.Option) error
+
 	ListMembers(*macie2.ListMembersInput) (*macie2.ListMembersOutput, error)
 	ListMembersWithContext(aws.Context, *macie2.ListMembersInput, ...request.Option) (*macie2.ListMembersOutput, error)
 	ListMembersRequest(*macie2.ListMembersInput) (*request.Request, *macie2.ListMembersOutput)
@@ -294,6 +323,27 @@ type Macie2API interface {
 
 	ListOrganizationAdminAccountsPages(*macie2.ListOrganizationAdminAccountsInput, func(*macie2.ListOrganizationAdminAccountsOutput, bool) bool) error
 	ListOrganizationAdminAccountsPagesWithContext(aws.Context, *macie2.ListOrganizationAdminAccountsInput, func(*macie2.ListOrganizationAdminAccountsOutput, bool) bool, ...request.Option) error
+
+	ListResourceProfileArtifacts(*macie2.ListResourceProfileArtifactsInput) (*macie2.ListResourceProfileArtifactsOutput, error)
+	ListResourceProfileArtifactsWithContext(aws.Context, *macie2.ListResourceProfileArtifactsInput, ...request.Option) (*macie2.ListResourceProfileArtifactsOutput, error)
+	ListResourceProfileArtifactsRequest(*macie2.ListResourceProfileArtifactsInput) (*request.Request, *macie2.ListResourceProfileArtifactsOutput)
+
+	ListResourceProfileArtifactsPages(*macie2.ListResourceProfileArtifactsInput, func(*macie2.ListResourceProfileArtifactsOutput, bool) bool) error
+	ListResourceProfileArtifactsPagesWithContext(aws.Context, *macie2.ListResourceProfileArtifactsInput, func(*macie2.ListResourceProfileArtifactsOutput, bool) bool, ...request.Option) error
+
+	ListResourceProfileDetections(*macie2.ListResourceProfileDetectionsInput) (*macie2.ListResourceProfileDetectionsOutput, error)
+	ListResourceProfileDetectionsWithContext(aws.Context, *macie2.ListResourceProfileDetectionsInput, ...request.Option) (*macie2.ListResourceProfileDetectionsOutput, error)
+	ListResourceProfileDetectionsRequest(*macie2.ListResourceProfileDetectionsInput) (*request.Request, *macie2.ListResourceProfileDetectionsOutput)
+
+	ListResourceProfileDetectionsPages(*macie2.ListResourceProfileDetectionsInput, func(*macie2.ListResourceProfileDetectionsOutput, bool) bool) error
+	ListResourceProfileDetectionsPagesWithContext(aws.Context, *macie2.ListResourceProfileDetectionsInput, func(*macie2.ListResourceProfileDetectionsOutput, bool) bool, ...request.Option) error
+
+	ListSensitivityInspectionTemplates(*macie2.ListSensitivityInspectionTemplatesInput) (*macie2.ListSensitivityInspectionTemplatesOutput, error)
+	ListSensitivityInspectionTemplatesWithContext(aws.Context, *macie2.ListSensitivityInspectionTemplatesInput, ...request.Option) (*macie2.ListSensitivityInspectionTemplatesOutput, error)
+	ListSensitivityInspectionTemplatesRequest(*macie2.ListSensitivityInspectionTemplatesInput) (*request.Request, *macie2.ListSensitivityInspectionTemplatesOutput)
+
+	ListSensitivityInspectionTemplatesPages(*macie2.ListSensitivityInspectionTemplatesInput, func(*macie2.ListSensitivityInspectionTemplatesOutput, bool) bool) error
+	ListSensitivityInspectionTemplatesPagesWithContext(aws.Context, *macie2.ListSensitivityInspectionTemplatesInput, func(*macie2.ListSensitivityInspectionTemplatesOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*macie2.ListTagsForResourceInput) (*macie2.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *macie2.ListTagsForResourceInput, ...request.Option) (*macie2.ListTagsForResourceOutput, error)
@@ -330,9 +380,17 @@ type Macie2API interface {
 	UpdateAllowListWithContext(aws.Context, *macie2.UpdateAllowListInput, ...request.Option) (*macie2.UpdateAllowListOutput, error)
 	UpdateAllowListRequest(*macie2.UpdateAllowListInput) (*request.Request, *macie2.UpdateAllowListOutput)
 
+	UpdateAutomatedDiscoveryConfiguration(*macie2.UpdateAutomatedDiscoveryConfigurationInput) (*macie2.UpdateAutomatedDiscoveryConfigurationOutput, error)
+	UpdateAutomatedDiscoveryConfigurationWithContext(aws.Context, *macie2.UpdateAutomatedDiscoveryConfigurationInput, ...request.Option) (*macie2.UpdateAutomatedDiscoveryConfigurationOutput, error)
+	UpdateAutomatedDiscoveryConfigurationRequest(*macie2.UpdateAutomatedDiscoveryConfigurationInput) (*request.Request, *macie2.UpdateAutomatedDiscoveryConfigurationOutput)
+
 	UpdateClassificationJob(*macie2.UpdateClassificationJobInput) (*macie2.UpdateClassificationJobOutput, error)
 	UpdateClassificationJobWithContext(aws.Context, *macie2.UpdateClassificationJobInput, ...request.Option) (*macie2.UpdateClassificationJobOutput, error)
 	UpdateClassificationJobRequest(*macie2.UpdateClassificationJobInput) (*request.Request, *macie2.UpdateClassificationJobOutput)
+
+	UpdateClassificationScope(*macie2.UpdateClassificationScopeInput) (*macie2.UpdateClassificationScopeOutput, error)
+	UpdateClassificationScopeWithContext(aws.Context, *macie2.UpdateClassificationScopeInput, ...request.Option) (*macie2.UpdateClassificationScopeOutput, error)
+	UpdateClassificationScopeRequest(*macie2.UpdateClassificationScopeInput) (*request.Request, *macie2.UpdateClassificationScopeOutput)
 
 	UpdateFindingsFilter(*macie2.UpdateFindingsFilterInput) (*macie2.UpdateFindingsFilterOutput, error)
 	UpdateFindingsFilterWithContext(aws.Context, *macie2.UpdateFindingsFilterInput, ...request.Option) (*macie2.UpdateFindingsFilterOutput, error)
@@ -350,9 +408,21 @@ type Macie2API interface {
 	UpdateOrganizationConfigurationWithContext(aws.Context, *macie2.UpdateOrganizationConfigurationInput, ...request.Option) (*macie2.UpdateOrganizationConfigurationOutput, error)
 	UpdateOrganizationConfigurationRequest(*macie2.UpdateOrganizationConfigurationInput) (*request.Request, *macie2.UpdateOrganizationConfigurationOutput)
 
+	UpdateResourceProfile(*macie2.UpdateResourceProfileInput) (*macie2.UpdateResourceProfileOutput, error)
+	UpdateResourceProfileWithContext(aws.Context, *macie2.UpdateResourceProfileInput, ...request.Option) (*macie2.UpdateResourceProfileOutput, error)
+	UpdateResourceProfileRequest(*macie2.UpdateResourceProfileInput) (*request.Request, *macie2.UpdateResourceProfileOutput)
+
+	UpdateResourceProfileDetections(*macie2.UpdateResourceProfileDetectionsInput) (*macie2.UpdateResourceProfileDetectionsOutput, error)
+	UpdateResourceProfileDetectionsWithContext(aws.Context, *macie2.UpdateResourceProfileDetectionsInput, ...request.Option) (*macie2.UpdateResourceProfileDetectionsOutput, error)
+	UpdateResourceProfileDetectionsRequest(*macie2.UpdateResourceProfileDetectionsInput) (*request.Request, *macie2.UpdateResourceProfileDetectionsOutput)
+
 	UpdateRevealConfiguration(*macie2.UpdateRevealConfigurationInput) (*macie2.UpdateRevealConfigurationOutput, error)
 	UpdateRevealConfigurationWithContext(aws.Context, *macie2.UpdateRevealConfigurationInput, ...request.Option) (*macie2.UpdateRevealConfigurationOutput, error)
 	UpdateRevealConfigurationRequest(*macie2.UpdateRevealConfigurationInput) (*request.Request, *macie2.UpdateRevealConfigurationOutput)
+
+	UpdateSensitivityInspectionTemplate(*macie2.UpdateSensitivityInspectionTemplateInput) (*macie2.UpdateSensitivityInspectionTemplateOutput, error)
+	UpdateSensitivityInspectionTemplateWithContext(aws.Context, *macie2.UpdateSensitivityInspectionTemplateInput, ...request.Option) (*macie2.UpdateSensitivityInspectionTemplateOutput, error)
+	UpdateSensitivityInspectionTemplateRequest(*macie2.UpdateSensitivityInspectionTemplateInput) (*request.Request, *macie2.UpdateSensitivityInspectionTemplateOutput)
 
 	WaitUntilFindingRevealed(*macie2.GetSensitiveDataOccurrencesInput) error
 	WaitUntilFindingRevealedWithContext(aws.Context, *macie2.GetSensitiveDataOccurrencesInput, ...request.WaiterOption) error

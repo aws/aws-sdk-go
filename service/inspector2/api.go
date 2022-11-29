@@ -713,7 +713,7 @@ func (c *Inspector2) DescribeOrganizationConfigurationRequest(input *DescribeOrg
 // DescribeOrganizationConfiguration API operation for Inspector2.
 //
 // Describe Amazon Inspector configuration settings for an Amazon Web Services
-// organization
+// organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3697,7 +3697,7 @@ func (s *AccountAggregationResponse) SetSeverityCounts(v *SeverityCounts) *Accou
 }
 
 // An object with details the status of an Amazon Web Services account within
-// your Amazon Inspector environment
+// your Amazon Inspector environment.
 type AccountState struct {
 	_ struct{} `type:"structure"`
 
@@ -3782,6 +3782,12 @@ type AggregationRequest struct {
 	// image layers.
 	ImageLayerAggregation *ImageLayerAggregation `locationName:"imageLayerAggregation" type:"structure"`
 
+	// Returns an object with findings aggregated by AWS Lambda function.
+	LambdaFunctionAggregation *LambdaFunctionAggregation `locationName:"lambdaFunctionAggregation" type:"structure"`
+
+	// Returns an object with findings aggregated by AWS Lambda layer.
+	LambdaLayerAggregation *LambdaLayerAggregation `locationName:"lambdaLayerAggregation" type:"structure"`
+
 	// An object that contains details about an aggregation request based on operating
 	// system package type.
 	PackageAggregation *PackageAggregation `locationName:"packageAggregation" type:"structure"`
@@ -3834,6 +3840,16 @@ func (s *AggregationRequest) Validate() error {
 	if s.ImageLayerAggregation != nil {
 		if err := s.ImageLayerAggregation.Validate(); err != nil {
 			invalidParams.AddNested("ImageLayerAggregation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LambdaFunctionAggregation != nil {
+		if err := s.LambdaFunctionAggregation.Validate(); err != nil {
+			invalidParams.AddNested("LambdaFunctionAggregation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LambdaLayerAggregation != nil {
+		if err := s.LambdaLayerAggregation.Validate(); err != nil {
+			invalidParams.AddNested("LambdaLayerAggregation", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.PackageAggregation != nil {
@@ -3894,6 +3910,18 @@ func (s *AggregationRequest) SetImageLayerAggregation(v *ImageLayerAggregation) 
 	return s
 }
 
+// SetLambdaFunctionAggregation sets the LambdaFunctionAggregation field's value.
+func (s *AggregationRequest) SetLambdaFunctionAggregation(v *LambdaFunctionAggregation) *AggregationRequest {
+	s.LambdaFunctionAggregation = v
+	return s
+}
+
+// SetLambdaLayerAggregation sets the LambdaLayerAggregation field's value.
+func (s *AggregationRequest) SetLambdaLayerAggregation(v *LambdaLayerAggregation) *AggregationRequest {
+	s.LambdaLayerAggregation = v
+	return s
+}
+
 // SetPackageAggregation sets the PackageAggregation field's value.
 func (s *AggregationRequest) SetPackageAggregation(v *PackageAggregation) *AggregationRequest {
 	s.PackageAggregation = v
@@ -3939,6 +3967,12 @@ type AggregationResponse struct {
 	// An object that contains details about an aggregation response based on container
 	// image layers.
 	ImageLayerAggregation *ImageLayerAggregationResponse `locationName:"imageLayerAggregation" type:"structure"`
+
+	// An aggregation of findings by AWS Lambda function.
+	LambdaFunctionAggregation *LambdaFunctionAggregationResponse `locationName:"lambdaFunctionAggregation" type:"structure"`
+
+	// An aggregation of findings by AWS Lambda layer.
+	LambdaLayerAggregation *LambdaLayerAggregationResponse `locationName:"lambdaLayerAggregation" type:"structure"`
 
 	// An object that contains details about an aggregation response based on operating
 	// system package type.
@@ -4004,6 +4038,18 @@ func (s *AggregationResponse) SetFindingTypeAggregation(v *FindingTypeAggregatio
 // SetImageLayerAggregation sets the ImageLayerAggregation field's value.
 func (s *AggregationResponse) SetImageLayerAggregation(v *ImageLayerAggregationResponse) *AggregationResponse {
 	s.ImageLayerAggregation = v
+	return s
+}
+
+// SetLambdaFunctionAggregation sets the LambdaFunctionAggregation field's value.
+func (s *AggregationResponse) SetLambdaFunctionAggregation(v *LambdaFunctionAggregationResponse) *AggregationResponse {
+	s.LambdaFunctionAggregation = v
+	return s
+}
+
+// SetLambdaLayerAggregation sets the LambdaLayerAggregation field's value.
+func (s *AggregationResponse) SetLambdaLayerAggregation(v *LambdaLayerAggregationResponse) *AggregationResponse {
+	s.LambdaLayerAggregation = v
 	return s
 }
 
@@ -4102,7 +4148,7 @@ func (s *AmiAggregation) SetSortOrder(v string) *AmiAggregation {
 type AmiAggregationResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account ID that the AMI belongs.
+	// The Amazon Web Services account ID for the AMI.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
 
 	// The IDs of Amazon EC2 instances using this AMI.
@@ -4258,6 +4304,10 @@ type AutoEnable struct {
 	//
 	// Ecr is a required field
 	Ecr *bool `locationName:"ecr" type:"boolean" required:"true"`
+
+	// Represents whether AWS Lambda scans are automatically enabled for new members
+	// of your Amazon Inspector organization.
+	Lambda *bool `locationName:"lambda" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -4303,6 +4353,12 @@ func (s *AutoEnable) SetEc2(v bool) *AutoEnable {
 // SetEcr sets the Ecr field's value.
 func (s *AutoEnable) SetEcr(v bool) *AutoEnable {
 	s.Ecr = &v
+	return s
+}
+
+// SetLambda sets the Lambda field's value.
+func (s *AutoEnable) SetLambda(v bool) *AutoEnable {
+	s.Lambda = &v
 	return s
 }
 
@@ -4692,7 +4748,7 @@ type AwsEcrContainerImageDetails struct {
 	// The date and time the Amazon ECR container image was pushed.
 	PushedAt *time.Time `locationName:"pushedAt" type:"timestamp"`
 
-	// The registry the Amazon ECR container image belongs to.
+	// The registry for the Amazon ECR container image.
 	//
 	// Registry is a required field
 	Registry *string `locationName:"registry" min:"1" type:"string" required:"true"`
@@ -4766,6 +4822,134 @@ func (s *AwsEcrContainerImageDetails) SetRegistry(v string) *AwsEcrContainerImag
 // SetRepositoryName sets the RepositoryName field's value.
 func (s *AwsEcrContainerImageDetails) SetRepositoryName(v string) *AwsEcrContainerImageDetails {
 	s.RepositoryName = &v
+	return s
+}
+
+// A summary of information about the AWS Lambda function.
+type AwsLambdaFunctionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The instruction set architecture that the AWS Lambda function supports. Architecture
+	// is a string array with one of the valid values. The default architecture
+	// value is x86_64.
+	Architectures []*string `locationName:"architectures" min:"1" type:"list" enum:"Architecture"`
+
+	// The SHA256 hash of the AWS Lambda function's deployment package.
+	//
+	// CodeSha256 is a required field
+	CodeSha256 *string `locationName:"codeSha256" min:"1" type:"string" required:"true"`
+
+	// The AWS Lambda function's execution role.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
+
+	// The name of the AWS Lambda function.
+	//
+	// FunctionName is a required field
+	FunctionName *string `locationName:"functionName" type:"string" required:"true"`
+
+	// The date and time that a user last updated the configuration, in ISO 8601
+	// format (https://www.iso.org/iso-8601-date-and-time-format.html)
+	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp"`
+
+	// The AWS Lambda function's layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+	// A Lambda function can have up to five layers.
+	Layers []*string `locationName:"layers" min:"1" type:"list"`
+
+	// The type of deployment package. Set to Image for container image and set
+	// Zip for .zip file archive.
+	PackageType *string `locationName:"packageType" type:"string" enum:"PackageType"`
+
+	// The runtime environment for the AWS Lambda function.
+	//
+	// Runtime is a required field
+	Runtime *string `locationName:"runtime" type:"string" required:"true" enum:"Runtime"`
+
+	// The version of the AWS Lambda function.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+
+	// The AWS Lambda function's networking configuration.
+	VpcConfig *LambdaVpcConfig `locationName:"vpcConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsLambdaFunctionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsLambdaFunctionDetails) GoString() string {
+	return s.String()
+}
+
+// SetArchitectures sets the Architectures field's value.
+func (s *AwsLambdaFunctionDetails) SetArchitectures(v []*string) *AwsLambdaFunctionDetails {
+	s.Architectures = v
+	return s
+}
+
+// SetCodeSha256 sets the CodeSha256 field's value.
+func (s *AwsLambdaFunctionDetails) SetCodeSha256(v string) *AwsLambdaFunctionDetails {
+	s.CodeSha256 = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *AwsLambdaFunctionDetails) SetExecutionRoleArn(v string) *AwsLambdaFunctionDetails {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *AwsLambdaFunctionDetails) SetFunctionName(v string) *AwsLambdaFunctionDetails {
+	s.FunctionName = &v
+	return s
+}
+
+// SetLastModifiedAt sets the LastModifiedAt field's value.
+func (s *AwsLambdaFunctionDetails) SetLastModifiedAt(v time.Time) *AwsLambdaFunctionDetails {
+	s.LastModifiedAt = &v
+	return s
+}
+
+// SetLayers sets the Layers field's value.
+func (s *AwsLambdaFunctionDetails) SetLayers(v []*string) *AwsLambdaFunctionDetails {
+	s.Layers = v
+	return s
+}
+
+// SetPackageType sets the PackageType field's value.
+func (s *AwsLambdaFunctionDetails) SetPackageType(v string) *AwsLambdaFunctionDetails {
+	s.PackageType = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *AwsLambdaFunctionDetails) SetRuntime(v string) *AwsLambdaFunctionDetails {
+	s.Runtime = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AwsLambdaFunctionDetails) SetVersion(v string) *AwsLambdaFunctionDetails {
+	s.Version = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *AwsLambdaFunctionDetails) SetVpcConfig(v *LambdaVpcConfig) *AwsLambdaFunctionDetails {
+	s.VpcConfig = v
 	return s
 }
 
@@ -5216,6 +5400,16 @@ type CoverageFilterCriteria struct {
 	// The Amazon ECR repository name to filter on.
 	EcrRepositoryName []*CoverageStringFilter `locationName:"ecrRepositoryName" min:"1" type:"list"`
 
+	// Returns coverage statistics for AWS Lambda functions filtered by function
+	// names.
+	LambdaFunctionName []*CoverageStringFilter `locationName:"lambdaFunctionName" min:"1" type:"list"`
+
+	// Returns coverage statistics for AWS Lambda functions filtered by runtime.
+	LambdaFunctionRuntime []*CoverageStringFilter `locationName:"lambdaFunctionRuntime" min:"1" type:"list"`
+
+	// Returns coverage statistics for AWS Lambda functions filtered by tag.
+	LambdaFunctionTags []*CoverageMapFilter `locationName:"lambdaFunctionTags" min:"1" type:"list"`
+
 	// An array of Amazon Web Services resource IDs to return coverage statistics
 	// for.
 	ResourceId []*CoverageStringFilter `locationName:"resourceId" min:"1" type:"list"`
@@ -5266,6 +5460,15 @@ func (s *CoverageFilterCriteria) Validate() error {
 	}
 	if s.EcrRepositoryName != nil && len(s.EcrRepositoryName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EcrRepositoryName", 1))
+	}
+	if s.LambdaFunctionName != nil && len(s.LambdaFunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionName", 1))
+	}
+	if s.LambdaFunctionRuntime != nil && len(s.LambdaFunctionRuntime) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionRuntime", 1))
+	}
+	if s.LambdaFunctionTags != nil && len(s.LambdaFunctionTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionTags", 1))
 	}
 	if s.ResourceId != nil && len(s.ResourceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
@@ -5319,6 +5522,36 @@ func (s *CoverageFilterCriteria) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EcrRepositoryName", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LambdaFunctionName != nil {
+		for i, v := range s.LambdaFunctionName {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LambdaFunctionName", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LambdaFunctionRuntime != nil {
+		for i, v := range s.LambdaFunctionRuntime {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LambdaFunctionRuntime", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LambdaFunctionTags != nil {
+		for i, v := range s.LambdaFunctionTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LambdaFunctionTags", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -5400,6 +5633,24 @@ func (s *CoverageFilterCriteria) SetEcrImageTags(v []*CoverageStringFilter) *Cov
 // SetEcrRepositoryName sets the EcrRepositoryName field's value.
 func (s *CoverageFilterCriteria) SetEcrRepositoryName(v []*CoverageStringFilter) *CoverageFilterCriteria {
 	s.EcrRepositoryName = v
+	return s
+}
+
+// SetLambdaFunctionName sets the LambdaFunctionName field's value.
+func (s *CoverageFilterCriteria) SetLambdaFunctionName(v []*CoverageStringFilter) *CoverageFilterCriteria {
+	s.LambdaFunctionName = v
+	return s
+}
+
+// SetLambdaFunctionRuntime sets the LambdaFunctionRuntime field's value.
+func (s *CoverageFilterCriteria) SetLambdaFunctionRuntime(v []*CoverageStringFilter) *CoverageFilterCriteria {
+	s.LambdaFunctionRuntime = v
+	return s
+}
+
+// SetLambdaFunctionTags sets the LambdaFunctionTags field's value.
+func (s *CoverageFilterCriteria) SetLambdaFunctionTags(v []*CoverageMapFilter) *CoverageFilterCriteria {
+	s.LambdaFunctionTags = v
 	return s
 }
 
@@ -6852,7 +7103,7 @@ func (s *Ec2InstanceAggregation) SetSortOrder(v string) *Ec2InstanceAggregation 
 type Ec2InstanceAggregationResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account the Amazon EC2 instance belongs to.
+	// The Amazon Web Services account for the Amazon EC2 instance.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The Amazon Machine Image (AMI) of the Amazon EC2 instance.
@@ -6986,7 +7237,7 @@ func (s *Ec2Metadata) SetTags(v map[string]*string) *Ec2Metadata {
 	return s
 }
 
-// Details about the ECR automated re-scan duration setting for your environment
+// Details about the ECR automated re-scan duration setting for your environment.
 type EcrConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7408,6 +7659,39 @@ func (s *EnableOutput) SetFailedAccounts(v []*FailedAccount) *EnableOutput {
 	return s
 }
 
+// The details of an exploit available for a finding discovered in your environment.
+type ExploitabilityDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time of the last exploit associated with a finding discovered
+	// in your environment.
+	LastKnownExploitAt *time.Time `locationName:"lastKnownExploitAt" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExploitabilityDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExploitabilityDetails) GoString() string {
+	return s.String()
+}
+
+// SetLastKnownExploitAt sets the LastKnownExploitAt field's value.
+func (s *ExploitabilityDetails) SetLastKnownExploitAt(v time.Time) *ExploitabilityDetails {
+	s.LastKnownExploitAt = &v
+	return s
+}
+
 // An object with details on why an account failed to enable Amazon Inspector.
 type FailedAccount struct {
 	_ struct{} `type:"structure"`
@@ -7650,6 +7934,9 @@ type FilterCriteria struct {
 	// The tags attached to the Amazon ECR container image.
 	EcrImageTags []*StringFilter `locationName:"ecrImageTags" min:"1" type:"list"`
 
+	// Filters the list of AWS Lambda findings by the availability of exploits.
+	ExploitAvailable []*StringFilter `locationName:"exploitAvailable" min:"1" type:"list"`
+
 	// Details on the finding ARNs used to filter findings.
 	FindingArn []*StringFilter `locationName:"findingArn" min:"1" type:"list"`
 
@@ -7670,6 +7957,24 @@ type FilterCriteria struct {
 
 	// The Amazon Inspector score to filter on.
 	InspectorScore []*NumberFilter `locationName:"inspectorScore" min:"1" type:"list"`
+
+	// Filters the list of AWS Lambda functions by execution role.
+	LambdaFunctionExecutionRoleArn []*StringFilter `locationName:"lambdaFunctionExecutionRoleArn" min:"1" type:"list"`
+
+	// Filters the list of AWS Lambda functions by the date and time that a user
+	// last updated the configuration, in ISO 8601 format (https://www.iso.org/iso-8601-date-and-time-format.html)
+	LambdaFunctionLastModifiedAt []*DateFilter `locationName:"lambdaFunctionLastModifiedAt" min:"1" type:"list"`
+
+	// Filters the list of AWS Lambda functions by the function's layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+	// A Lambda function can have up to five layers.
+	LambdaFunctionLayers []*StringFilter `locationName:"lambdaFunctionLayers" min:"1" type:"list"`
+
+	// Filters the list of AWS Lambda functions by the name of the function.
+	LambdaFunctionName []*StringFilter `locationName:"lambdaFunctionName" min:"1" type:"list"`
+
+	// Filters the list of AWS Lambda functions by the runtime environment for the
+	// Lambda function.
+	LambdaFunctionRuntime []*StringFilter `locationName:"lambdaFunctionRuntime" min:"1" type:"list"`
 
 	// Details on the date and time a finding was last seen used to filter findings.
 	LastObservedAt []*DateFilter `locationName:"lastObservedAt" min:"1" type:"list"`
@@ -7772,6 +8077,9 @@ func (s *FilterCriteria) Validate() error {
 	if s.EcrImageTags != nil && len(s.EcrImageTags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EcrImageTags", 1))
 	}
+	if s.ExploitAvailable != nil && len(s.ExploitAvailable) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExploitAvailable", 1))
+	}
 	if s.FindingArn != nil && len(s.FindingArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FindingArn", 1))
 	}
@@ -7789,6 +8097,21 @@ func (s *FilterCriteria) Validate() error {
 	}
 	if s.InspectorScore != nil && len(s.InspectorScore) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InspectorScore", 1))
+	}
+	if s.LambdaFunctionExecutionRoleArn != nil && len(s.LambdaFunctionExecutionRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionExecutionRoleArn", 1))
+	}
+	if s.LambdaFunctionLastModifiedAt != nil && len(s.LambdaFunctionLastModifiedAt) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionLastModifiedAt", 1))
+	}
+	if s.LambdaFunctionLayers != nil && len(s.LambdaFunctionLayers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionLayers", 1))
+	}
+	if s.LambdaFunctionName != nil && len(s.LambdaFunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionName", 1))
+	}
+	if s.LambdaFunctionRuntime != nil && len(s.LambdaFunctionRuntime) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionRuntime", 1))
 	}
 	if s.LastObservedAt != nil && len(s.LastObservedAt) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LastObservedAt", 1))
@@ -7942,6 +8265,16 @@ func (s *FilterCriteria) Validate() error {
 			}
 		}
 	}
+	if s.ExploitAvailable != nil {
+		for i, v := range s.ExploitAvailable {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExploitAvailable", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.FindingArn != nil {
 		for i, v := range s.FindingArn {
 			if v == nil {
@@ -7979,6 +8312,46 @@ func (s *FilterCriteria) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FixAvailable", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LambdaFunctionExecutionRoleArn != nil {
+		for i, v := range s.LambdaFunctionExecutionRoleArn {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LambdaFunctionExecutionRoleArn", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LambdaFunctionLayers != nil {
+		for i, v := range s.LambdaFunctionLayers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LambdaFunctionLayers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LambdaFunctionName != nil {
+		for i, v := range s.LambdaFunctionName {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LambdaFunctionName", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LambdaFunctionRuntime != nil {
+		for i, v := range s.LambdaFunctionRuntime {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LambdaFunctionRuntime", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -8171,6 +8544,12 @@ func (s *FilterCriteria) SetEcrImageTags(v []*StringFilter) *FilterCriteria {
 	return s
 }
 
+// SetExploitAvailable sets the ExploitAvailable field's value.
+func (s *FilterCriteria) SetExploitAvailable(v []*StringFilter) *FilterCriteria {
+	s.ExploitAvailable = v
+	return s
+}
+
 // SetFindingArn sets the FindingArn field's value.
 func (s *FilterCriteria) SetFindingArn(v []*StringFilter) *FilterCriteria {
 	s.FindingArn = v
@@ -8204,6 +8583,36 @@ func (s *FilterCriteria) SetFixAvailable(v []*StringFilter) *FilterCriteria {
 // SetInspectorScore sets the InspectorScore field's value.
 func (s *FilterCriteria) SetInspectorScore(v []*NumberFilter) *FilterCriteria {
 	s.InspectorScore = v
+	return s
+}
+
+// SetLambdaFunctionExecutionRoleArn sets the LambdaFunctionExecutionRoleArn field's value.
+func (s *FilterCriteria) SetLambdaFunctionExecutionRoleArn(v []*StringFilter) *FilterCriteria {
+	s.LambdaFunctionExecutionRoleArn = v
+	return s
+}
+
+// SetLambdaFunctionLastModifiedAt sets the LambdaFunctionLastModifiedAt field's value.
+func (s *FilterCriteria) SetLambdaFunctionLastModifiedAt(v []*DateFilter) *FilterCriteria {
+	s.LambdaFunctionLastModifiedAt = v
+	return s
+}
+
+// SetLambdaFunctionLayers sets the LambdaFunctionLayers field's value.
+func (s *FilterCriteria) SetLambdaFunctionLayers(v []*StringFilter) *FilterCriteria {
+	s.LambdaFunctionLayers = v
+	return s
+}
+
+// SetLambdaFunctionName sets the LambdaFunctionName field's value.
+func (s *FilterCriteria) SetLambdaFunctionName(v []*StringFilter) *FilterCriteria {
+	s.LambdaFunctionName = v
+	return s
+}
+
+// SetLambdaFunctionRuntime sets the LambdaFunctionRuntime field's value.
+func (s *FilterCriteria) SetLambdaFunctionRuntime(v []*StringFilter) *FilterCriteria {
+	s.LambdaFunctionRuntime = v
 	return s
 }
 
@@ -8305,6 +8714,12 @@ type Finding struct {
 	// Description is a required field
 	Description *string `locationName:"description" min:"1" type:"string" required:"true"`
 
+	// If a finding discovered in your environment has an exploit available.
+	ExploitAvailable *string `locationName:"exploitAvailable" type:"string" enum:"ExploitAvailable"`
+
+	// The details of an exploit available for a finding discovered in your environment.
+	ExploitabilityDetails *ExploitabilityDetails `locationName:"exploitabilityDetails" type:"structure"`
+
 	// The Amazon Resource Number (ARN) of the finding.
 	//
 	// FindingArn is a required field
@@ -8397,6 +8812,18 @@ func (s *Finding) SetAwsAccountId(v string) *Finding {
 // SetDescription sets the Description field's value.
 func (s *Finding) SetDescription(v string) *Finding {
 	s.Description = &v
+	return s
+}
+
+// SetExploitAvailable sets the ExploitAvailable field's value.
+func (s *Finding) SetExploitAvailable(v string) *Finding {
+	s.ExploitAvailable = &v
+	return s
+}
+
+// SetExploitabilityDetails sets the ExploitabilityDetails field's value.
+func (s *Finding) SetExploitabilityDetails(v *ExploitabilityDetails) *Finding {
+	s.ExploitabilityDetails = v
 	return s
 }
 
@@ -9348,6 +9775,541 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The details that define a findings aggregation based on AWS Lambda functions.
+type LambdaFunctionAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Lambda function names to include in the aggregation results.
+	FunctionNames []*StringFilter `locationName:"functionNames" min:"1" type:"list"`
+
+	// The tags to include in the aggregation results.
+	FunctionTags []*MapFilter `locationName:"functionTags" min:"1" type:"list"`
+
+	// The resource IDs to include in the aggregation results.
+	ResourceIds []*StringFilter `locationName:"resourceIds" min:"1" type:"list"`
+
+	// Returns findings aggregated by AWS Lambda function runtime environments.
+	Runtimes []*StringFilter `locationName:"runtimes" min:"1" type:"list"`
+
+	// The finding severity to use for sorting the results.
+	SortBy *string `locationName:"sortBy" type:"string" enum:"LambdaFunctionSortBy"`
+
+	// The order to use for sorting the results.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionAggregation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaFunctionAggregation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaFunctionAggregation"}
+	if s.FunctionNames != nil && len(s.FunctionNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionNames", 1))
+	}
+	if s.FunctionTags != nil && len(s.FunctionTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionTags", 1))
+	}
+	if s.ResourceIds != nil && len(s.ResourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIds", 1))
+	}
+	if s.Runtimes != nil && len(s.Runtimes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Runtimes", 1))
+	}
+	if s.FunctionNames != nil {
+		for i, v := range s.FunctionNames {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FunctionNames", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.FunctionTags != nil {
+		for i, v := range s.FunctionTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FunctionTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ResourceIds != nil {
+		for i, v := range s.ResourceIds {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceIds", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Runtimes != nil {
+		for i, v := range s.Runtimes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Runtimes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionNames sets the FunctionNames field's value.
+func (s *LambdaFunctionAggregation) SetFunctionNames(v []*StringFilter) *LambdaFunctionAggregation {
+	s.FunctionNames = v
+	return s
+}
+
+// SetFunctionTags sets the FunctionTags field's value.
+func (s *LambdaFunctionAggregation) SetFunctionTags(v []*MapFilter) *LambdaFunctionAggregation {
+	s.FunctionTags = v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *LambdaFunctionAggregation) SetResourceIds(v []*StringFilter) *LambdaFunctionAggregation {
+	s.ResourceIds = v
+	return s
+}
+
+// SetRuntimes sets the Runtimes field's value.
+func (s *LambdaFunctionAggregation) SetRuntimes(v []*StringFilter) *LambdaFunctionAggregation {
+	s.Runtimes = v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *LambdaFunctionAggregation) SetSortBy(v string) *LambdaFunctionAggregation {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *LambdaFunctionAggregation) SetSortOrder(v string) *LambdaFunctionAggregation {
+	s.SortOrder = &v
+	return s
+}
+
+// A response that contains the results of an AWS Lambda function finding aggregation.
+type LambdaFunctionAggregationResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the AWS account that owns the AWS Lambda function.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The AWS Lambda function names included in the aggregation results.
+	FunctionName *string `locationName:"functionName" type:"string"`
+
+	// The tags included in the aggregation results.
+	LambdaTags map[string]*string `locationName:"lambdaTags" type:"map"`
+
+	// The date that the AWS Lambda function included in the aggregation results
+	// was last changed.
+	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp"`
+
+	// The resource IDs included in the aggregation results.
+	//
+	// ResourceId is a required field
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string" required:"true"`
+
+	// The runtimes included in the aggregation results.
+	Runtime *string `locationName:"runtime" type:"string"`
+
+	// An object that contains the counts of aggregated finding per severity.
+	SeverityCounts *SeverityCounts `locationName:"severityCounts" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionAggregationResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionAggregationResponse) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *LambdaFunctionAggregationResponse) SetAccountId(v string) *LambdaFunctionAggregationResponse {
+	s.AccountId = &v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *LambdaFunctionAggregationResponse) SetFunctionName(v string) *LambdaFunctionAggregationResponse {
+	s.FunctionName = &v
+	return s
+}
+
+// SetLambdaTags sets the LambdaTags field's value.
+func (s *LambdaFunctionAggregationResponse) SetLambdaTags(v map[string]*string) *LambdaFunctionAggregationResponse {
+	s.LambdaTags = v
+	return s
+}
+
+// SetLastModifiedAt sets the LastModifiedAt field's value.
+func (s *LambdaFunctionAggregationResponse) SetLastModifiedAt(v time.Time) *LambdaFunctionAggregationResponse {
+	s.LastModifiedAt = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *LambdaFunctionAggregationResponse) SetResourceId(v string) *LambdaFunctionAggregationResponse {
+	s.ResourceId = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *LambdaFunctionAggregationResponse) SetRuntime(v string) *LambdaFunctionAggregationResponse {
+	s.Runtime = &v
+	return s
+}
+
+// SetSeverityCounts sets the SeverityCounts field's value.
+func (s *LambdaFunctionAggregationResponse) SetSeverityCounts(v *SeverityCounts) *LambdaFunctionAggregationResponse {
+	s.SeverityCounts = v
+	return s
+}
+
+// The AWS Lambda function metadata.
+type LambdaFunctionMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a function.
+	FunctionName *string `locationName:"functionName" type:"string"`
+
+	// The resource tags on an AWS Lambda function.
+	FunctionTags map[string]*string `locationName:"functionTags" type:"map"`
+
+	// The layers for an AWS Lambda function. A Lambda function can have up to five
+	// layers.
+	Layers []*string `locationName:"layers" type:"list"`
+
+	// An AWS Lambda function's runtime.
+	Runtime *string `locationName:"runtime" type:"string" enum:"Runtime"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaFunctionMetadata) GoString() string {
+	return s.String()
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *LambdaFunctionMetadata) SetFunctionName(v string) *LambdaFunctionMetadata {
+	s.FunctionName = &v
+	return s
+}
+
+// SetFunctionTags sets the FunctionTags field's value.
+func (s *LambdaFunctionMetadata) SetFunctionTags(v map[string]*string) *LambdaFunctionMetadata {
+	s.FunctionTags = v
+	return s
+}
+
+// SetLayers sets the Layers field's value.
+func (s *LambdaFunctionMetadata) SetLayers(v []*string) *LambdaFunctionMetadata {
+	s.Layers = v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *LambdaFunctionMetadata) SetRuntime(v string) *LambdaFunctionMetadata {
+	s.Runtime = &v
+	return s
+}
+
+// The details that define a findings aggregation based on an AWS Lambda function's
+// layers.
+type LambdaLayerAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The names of the AWS Lambda functions associated with the layers.
+	FunctionNames []*StringFilter `locationName:"functionNames" min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the AWS Lambda function layer.
+	LayerArns []*StringFilter `locationName:"layerArns" min:"1" type:"list"`
+
+	// The resource IDs for the AWS Lambda function layers.
+	ResourceIds []*StringFilter `locationName:"resourceIds" min:"1" type:"list"`
+
+	// The finding severity to use for sorting the results.
+	SortBy *string `locationName:"sortBy" type:"string" enum:"LambdaLayerSortBy"`
+
+	// The order to use for sorting the results.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaLayerAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaLayerAggregation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaLayerAggregation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaLayerAggregation"}
+	if s.FunctionNames != nil && len(s.FunctionNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionNames", 1))
+	}
+	if s.LayerArns != nil && len(s.LayerArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LayerArns", 1))
+	}
+	if s.ResourceIds != nil && len(s.ResourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIds", 1))
+	}
+	if s.FunctionNames != nil {
+		for i, v := range s.FunctionNames {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FunctionNames", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LayerArns != nil {
+		for i, v := range s.LayerArns {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LayerArns", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ResourceIds != nil {
+		for i, v := range s.ResourceIds {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceIds", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionNames sets the FunctionNames field's value.
+func (s *LambdaLayerAggregation) SetFunctionNames(v []*StringFilter) *LambdaLayerAggregation {
+	s.FunctionNames = v
+	return s
+}
+
+// SetLayerArns sets the LayerArns field's value.
+func (s *LambdaLayerAggregation) SetLayerArns(v []*StringFilter) *LambdaLayerAggregation {
+	s.LayerArns = v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *LambdaLayerAggregation) SetResourceIds(v []*StringFilter) *LambdaLayerAggregation {
+	s.ResourceIds = v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *LambdaLayerAggregation) SetSortBy(v string) *LambdaLayerAggregation {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *LambdaLayerAggregation) SetSortOrder(v string) *LambdaLayerAggregation {
+	s.SortOrder = &v
+	return s
+}
+
+// A response that contains the results of an AWS Lambda function layer finding
+// aggregation.
+type LambdaLayerAggregationResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID of the AWS Lambda function layer.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The names of the AWS Lambda functions associated with the layers.
+	//
+	// FunctionName is a required field
+	FunctionName *string `locationName:"functionName" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Lambda function layer.
+	//
+	// LayerArn is a required field
+	LayerArn *string `locationName:"layerArn" min:"1" type:"string" required:"true"`
+
+	// The Resource ID of the AWS Lambda function layer.
+	//
+	// ResourceId is a required field
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string" required:"true"`
+
+	// An object that contains the counts of aggregated finding per severity.
+	SeverityCounts *SeverityCounts `locationName:"severityCounts" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaLayerAggregationResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaLayerAggregationResponse) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *LambdaLayerAggregationResponse) SetAccountId(v string) *LambdaLayerAggregationResponse {
+	s.AccountId = &v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *LambdaLayerAggregationResponse) SetFunctionName(v string) *LambdaLayerAggregationResponse {
+	s.FunctionName = &v
+	return s
+}
+
+// SetLayerArn sets the LayerArn field's value.
+func (s *LambdaLayerAggregationResponse) SetLayerArn(v string) *LambdaLayerAggregationResponse {
+	s.LayerArn = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *LambdaLayerAggregationResponse) SetResourceId(v string) *LambdaLayerAggregationResponse {
+	s.ResourceId = &v
+	return s
+}
+
+// SetSeverityCounts sets the SeverityCounts field's value.
+func (s *LambdaLayerAggregationResponse) SetSeverityCounts(v *SeverityCounts) *LambdaLayerAggregationResponse {
+	s.SeverityCounts = v
+	return s
+}
+
+// The VPC security groups and subnets that are attached to an AWS Lambda function.
+// For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
+type LambdaVpcConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The VPC security groups and subnets that are attached to an AWS Lambda function.
+	// For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
+	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
+
+	// A list of VPC subnet IDs.
+	SubnetIds []*string `locationName:"subnetIds" type:"list"`
+
+	// The ID of the VPC.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaVpcConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaVpcConfig) GoString() string {
+	return s.String()
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *LambdaVpcConfig) SetSecurityGroupIds(v []*string) *LambdaVpcConfig {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *LambdaVpcConfig) SetSubnetIds(v []*string) *LambdaVpcConfig {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *LambdaVpcConfig) SetVpcId(v string) *LambdaVpcConfig {
+	s.VpcId = &v
+	return s
 }
 
 type ListAccountPermissionsInput struct {
@@ -10908,6 +11870,9 @@ type PackageFilter struct {
 	// An object that contains details on the package release to filter on.
 	Release *StringFilter `locationName:"release" type:"structure"`
 
+	// An object that describes the details of a string filter.
+	SourceLambdaLayerArn *StringFilter `locationName:"sourceLambdaLayerArn" type:"structure"`
+
 	// An object that contains details on the source layer hash to filter on.
 	SourceLayerHash *StringFilter `locationName:"sourceLayerHash" type:"structure"`
 
@@ -10951,6 +11916,11 @@ func (s *PackageFilter) Validate() error {
 			invalidParams.AddNested("Release", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SourceLambdaLayerArn != nil {
+		if err := s.SourceLambdaLayerArn.Validate(); err != nil {
+			invalidParams.AddNested("SourceLambdaLayerArn", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SourceLayerHash != nil {
 		if err := s.SourceLayerHash.Validate(); err != nil {
 			invalidParams.AddNested("SourceLayerHash", err.(request.ErrInvalidParams))
@@ -10989,6 +11959,12 @@ func (s *PackageFilter) SetName(v *StringFilter) *PackageFilter {
 // SetRelease sets the Release field's value.
 func (s *PackageFilter) SetRelease(v *StringFilter) *PackageFilter {
 	s.Release = v
+	return s
+}
+
+// SetSourceLambdaLayerArn sets the SourceLambdaLayerArn field's value.
+func (s *PackageFilter) SetSourceLambdaLayerArn(v *StringFilter) *PackageFilter {
+	s.SourceLambdaLayerArn = v
 	return s
 }
 
@@ -11555,6 +12531,9 @@ type ResourceDetails struct {
 	// An object that contains details about the Amazon ECR container image involved
 	// in the finding.
 	AwsEcrContainerImage *AwsEcrContainerImageDetails `locationName:"awsEcrContainerImage" type:"structure"`
+
+	// A summary of the information about an AWS Lambda function affected by a finding.
+	AwsLambdaFunction *AwsLambdaFunctionDetails `locationName:"awsLambdaFunction" type:"structure"`
 }
 
 // String returns the string representation.
@@ -11584,6 +12563,12 @@ func (s *ResourceDetails) SetAwsEc2Instance(v *AwsEc2InstanceDetails) *ResourceD
 // SetAwsEcrContainerImage sets the AwsEcrContainerImage field's value.
 func (s *ResourceDetails) SetAwsEcrContainerImage(v *AwsEcrContainerImageDetails) *ResourceDetails {
 	s.AwsEcrContainerImage = v
+	return s
+}
+
+// SetAwsLambdaFunction sets the AwsLambdaFunction field's value.
+func (s *ResourceDetails) SetAwsLambdaFunction(v *AwsLambdaFunctionDetails) *ResourceDetails {
+	s.AwsLambdaFunction = v
 	return s
 }
 
@@ -11666,6 +12651,9 @@ type ResourceScanMetadata struct {
 	// An object that contains details about the repository an Amazon ECR image
 	// resides in.
 	EcrRepository *EcrRepositoryMetadata `locationName:"ecrRepository" type:"structure"`
+
+	// An object that contains metadata details for an AWS Lambda function.
+	LambdaFunction *LambdaFunctionMetadata `locationName:"lambdaFunction" type:"structure"`
 }
 
 // String returns the string representation.
@@ -11704,6 +12692,12 @@ func (s *ResourceScanMetadata) SetEcrRepository(v *EcrRepositoryMetadata) *Resou
 	return s
 }
 
+// SetLambdaFunction sets the LambdaFunction field's value.
+func (s *ResourceScanMetadata) SetLambdaFunction(v *LambdaFunctionMetadata) *ResourceScanMetadata {
+	s.LambdaFunction = v
+	return s
+}
+
 // Details the state of Amazon Inspector for each resource type Amazon Inspector
 // scans.
 type ResourceState struct {
@@ -11720,6 +12714,9 @@ type ResourceState struct {
 	//
 	// Ecr is a required field
 	Ecr *State `locationName:"ecr" type:"structure" required:"true"`
+
+	// An object that described the state of Amazon Inspector scans for an account.
+	Lambda *State `locationName:"lambda" type:"structure"`
 }
 
 // String returns the string representation.
@@ -11752,6 +12749,12 @@ func (s *ResourceState) SetEcr(v *State) *ResourceState {
 	return s
 }
 
+// SetLambda sets the Lambda field's value.
+func (s *ResourceState) SetLambda(v *State) *ResourceState {
+	s.Lambda = v
+	return s
+}
+
 // Details the status of Amazon Inspector for each resource type Amazon Inspector
 // scans.
 type ResourceStatus struct {
@@ -11766,6 +12769,9 @@ type ResourceStatus struct {
 	//
 	// Ecr is a required field
 	Ecr *string `locationName:"ecr" type:"string" required:"true" enum:"Status"`
+
+	// The status of Amazon Inspector scanning for AWS Lambda function resources.
+	Lambda *string `locationName:"lambda" type:"string" enum:"Status"`
 }
 
 // String returns the string representation.
@@ -11795,6 +12801,12 @@ func (s *ResourceStatus) SetEc2(v string) *ResourceStatus {
 // SetEcr sets the Ecr field's value.
 func (s *ResourceStatus) SetEcr(v string) *ResourceStatus {
 	s.Ecr = &v
+	return s
+}
+
+// SetLambda sets the Lambda field's value.
+func (s *ResourceStatus) SetLambda(v string) *ResourceStatus {
+	s.Lambda = &v
 	return s
 }
 
@@ -12139,7 +13151,7 @@ func (s *Step) SetComponentType(v string) *Step {
 type StringFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The operator to use when comparing values in the filter
+	// The operator to use when comparing values in the filter.
 	//
 	// Comparison is a required field
 	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"StringComparison"`
@@ -12290,6 +13302,9 @@ type ThrottlingException struct {
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
+
+	// The number of seconds to wait before retrying the request.
+	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
 }
 
 // String returns the string representation.
@@ -12335,7 +13350,7 @@ func (s *ThrottlingException) OrigErr() error {
 }
 
 func (s *ThrottlingException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -13148,6 +14163,10 @@ type VulnerablePackage struct {
 	// The code to run in your environment to update packages with a fix available.
 	Remediation *string `locationName:"remediation" min:"1" type:"string"`
 
+	// The Amazon Resource Number (ARN) of the AWS Lambda function affected by a
+	// finding.
+	SourceLambdaLayerArn *string `locationName:"sourceLambdaLayerArn" type:"string"`
+
 	// The source layer hash of the vulnerable package.
 	SourceLayerHash *string `locationName:"sourceLayerHash" min:"71" type:"string"`
 
@@ -13223,6 +14242,12 @@ func (s *VulnerablePackage) SetRemediation(v string) *VulnerablePackage {
 	return s
 }
 
+// SetSourceLambdaLayerArn sets the SourceLambdaLayerArn field's value.
+func (s *VulnerablePackage) SetSourceLambdaLayerArn(v string) *VulnerablePackage {
+	s.SourceLambdaLayerArn = &v
+	return s
+}
+
 // SetSourceLayerHash sets the SourceLayerHash field's value.
 func (s *VulnerablePackage) SetSourceLayerHash(v string) *VulnerablePackage {
 	s.SourceLayerHash = &v
@@ -13277,6 +14302,9 @@ const (
 
 	// AggregationResourceTypeAwsEcrContainerImage is a AggregationResourceType enum value
 	AggregationResourceTypeAwsEcrContainerImage = "AWS_ECR_CONTAINER_IMAGE"
+
+	// AggregationResourceTypeAwsLambdaFunction is a AggregationResourceType enum value
+	AggregationResourceTypeAwsLambdaFunction = "AWS_LAMBDA_FUNCTION"
 )
 
 // AggregationResourceType_Values returns all elements of the AggregationResourceType enum
@@ -13284,6 +14312,7 @@ func AggregationResourceType_Values() []string {
 	return []string{
 		AggregationResourceTypeAwsEc2Instance,
 		AggregationResourceTypeAwsEcrContainerImage,
+		AggregationResourceTypeAwsLambdaFunction,
 	}
 }
 
@@ -13314,6 +14343,12 @@ const (
 
 	// AggregationTypeAccount is a AggregationType enum value
 	AggregationTypeAccount = "ACCOUNT"
+
+	// AggregationTypeAwsLambdaFunction is a AggregationType enum value
+	AggregationTypeAwsLambdaFunction = "AWS_LAMBDA_FUNCTION"
+
+	// AggregationTypeLambdaLayer is a AggregationType enum value
+	AggregationTypeLambdaLayer = "LAMBDA_LAYER"
 )
 
 // AggregationType_Values returns all elements of the AggregationType enum
@@ -13328,6 +14363,8 @@ func AggregationType_Values() []string {
 		AggregationTypeAwsEcrContainer,
 		AggregationTypeImageLayer,
 		AggregationTypeAccount,
+		AggregationTypeAwsLambdaFunction,
+		AggregationTypeLambdaLayer,
 	}
 }
 
@@ -13352,6 +14389,22 @@ func AmiSortBy_Values() []string {
 		AmiSortByHigh,
 		AmiSortByAll,
 		AmiSortByAffectedInstances,
+	}
+}
+
+const (
+	// ArchitectureX8664 is a Architecture enum value
+	ArchitectureX8664 = "X86_64"
+
+	// ArchitectureArm64 is a Architecture enum value
+	ArchitectureArm64 = "ARM64"
+)
+
+// Architecture_Values returns all elements of the Architecture enum
+func Architecture_Values() []string {
+	return []string{
+		ArchitectureX8664,
+		ArchitectureArm64,
 	}
 }
 
@@ -13396,6 +14449,9 @@ const (
 
 	// CoverageResourceTypeAwsEcrRepository is a CoverageResourceType enum value
 	CoverageResourceTypeAwsEcrRepository = "AWS_ECR_REPOSITORY"
+
+	// CoverageResourceTypeAwsLambdaFunction is a CoverageResourceType enum value
+	CoverageResourceTypeAwsLambdaFunction = "AWS_LAMBDA_FUNCTION"
 )
 
 // CoverageResourceType_Values returns all elements of the CoverageResourceType enum
@@ -13404,6 +14460,7 @@ func CoverageResourceType_Values() []string {
 		CoverageResourceTypeAwsEc2Instance,
 		CoverageResourceTypeAwsEcrContainerImage,
 		CoverageResourceTypeAwsEcrRepository,
+		CoverageResourceTypeAwsLambdaFunction,
 	}
 }
 
@@ -13620,6 +14677,22 @@ func ErrorCode_Values() []string {
 }
 
 const (
+	// ExploitAvailableYes is a ExploitAvailable enum value
+	ExploitAvailableYes = "YES"
+
+	// ExploitAvailableNo is a ExploitAvailable enum value
+	ExploitAvailableNo = "NO"
+)
+
+// ExploitAvailable_Values returns all elements of the ExploitAvailable enum
+func ExploitAvailable_Values() []string {
+	return []string{
+		ExploitAvailableYes,
+		ExploitAvailableNo,
+	}
+}
+
+const (
 	// ExternalReportStatusSucceeded is a ExternalReportStatus enum value
 	ExternalReportStatusSucceeded = "SUCCEEDED"
 
@@ -13773,6 +14846,9 @@ const (
 
 	// FreeTrialTypeEcr is a FreeTrialType enum value
 	FreeTrialTypeEcr = "ECR"
+
+	// FreeTrialTypeLambda is a FreeTrialType enum value
+	FreeTrialTypeLambda = "LAMBDA"
 )
 
 // FreeTrialType_Values returns all elements of the FreeTrialType enum
@@ -13780,6 +14856,7 @@ func FreeTrialType_Values() []string {
 	return []string{
 		FreeTrialTypeEc2,
 		FreeTrialTypeEcr,
+		FreeTrialTypeLambda,
 	}
 }
 
@@ -13828,6 +14905,46 @@ func ImageLayerSortBy_Values() []string {
 		ImageLayerSortByCritical,
 		ImageLayerSortByHigh,
 		ImageLayerSortByAll,
+	}
+}
+
+const (
+	// LambdaFunctionSortByCritical is a LambdaFunctionSortBy enum value
+	LambdaFunctionSortByCritical = "CRITICAL"
+
+	// LambdaFunctionSortByHigh is a LambdaFunctionSortBy enum value
+	LambdaFunctionSortByHigh = "HIGH"
+
+	// LambdaFunctionSortByAll is a LambdaFunctionSortBy enum value
+	LambdaFunctionSortByAll = "ALL"
+)
+
+// LambdaFunctionSortBy_Values returns all elements of the LambdaFunctionSortBy enum
+func LambdaFunctionSortBy_Values() []string {
+	return []string{
+		LambdaFunctionSortByCritical,
+		LambdaFunctionSortByHigh,
+		LambdaFunctionSortByAll,
+	}
+}
+
+const (
+	// LambdaLayerSortByCritical is a LambdaLayerSortBy enum value
+	LambdaLayerSortByCritical = "CRITICAL"
+
+	// LambdaLayerSortByHigh is a LambdaLayerSortBy enum value
+	LambdaLayerSortByHigh = "HIGH"
+
+	// LambdaLayerSortByAll is a LambdaLayerSortBy enum value
+	LambdaLayerSortByAll = "ALL"
+)
+
+// LambdaLayerSortBy_Values returns all elements of the LambdaLayerSortBy enum
+func LambdaLayerSortBy_Values() []string {
+	return []string{
+		LambdaLayerSortByCritical,
+		LambdaLayerSortByHigh,
+		LambdaLayerSortByAll,
 	}
 }
 
@@ -13976,6 +15093,22 @@ func PackageSortBy_Values() []string {
 }
 
 const (
+	// PackageTypeImage is a PackageType enum value
+	PackageTypeImage = "IMAGE"
+
+	// PackageTypeZip is a PackageType enum value
+	PackageTypeZip = "ZIP"
+)
+
+// PackageType_Values returns all elements of the PackageType enum
+func PackageType_Values() []string {
+	return []string{
+		PackageTypeImage,
+		PackageTypeZip,
+	}
+}
+
+const (
 	// RelationshipStatusCreated is a RelationshipStatus enum value
 	RelationshipStatusCreated = "CREATED"
 
@@ -14109,6 +15242,9 @@ const (
 
 	// ResourceScanTypeEcr is a ResourceScanType enum value
 	ResourceScanTypeEcr = "ECR"
+
+	// ResourceScanTypeLambda is a ResourceScanType enum value
+	ResourceScanTypeLambda = "LAMBDA"
 )
 
 // ResourceScanType_Values returns all elements of the ResourceScanType enum
@@ -14116,6 +15252,7 @@ func ResourceScanType_Values() []string {
 	return []string{
 		ResourceScanTypeEc2,
 		ResourceScanTypeEcr,
+		ResourceScanTypeLambda,
 	}
 }
 
@@ -14128,6 +15265,9 @@ const (
 
 	// ResourceTypeAwsEcrRepository is a ResourceType enum value
 	ResourceTypeAwsEcrRepository = "AWS_ECR_REPOSITORY"
+
+	// ResourceTypeAwsLambdaFunction is a ResourceType enum value
+	ResourceTypeAwsLambdaFunction = "AWS_LAMBDA_FUNCTION"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -14136,6 +15276,59 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsEc2Instance,
 		ResourceTypeAwsEcrContainerImage,
 		ResourceTypeAwsEcrRepository,
+		ResourceTypeAwsLambdaFunction,
+	}
+}
+
+const (
+	// RuntimeNodejs is a Runtime enum value
+	RuntimeNodejs = "NODEJS"
+
+	// RuntimeNodejs12X is a Runtime enum value
+	RuntimeNodejs12X = "NODEJS_12_X"
+
+	// RuntimeNodejs14X is a Runtime enum value
+	RuntimeNodejs14X = "NODEJS_14_X"
+
+	// RuntimeNodejs16X is a Runtime enum value
+	RuntimeNodejs16X = "NODEJS_16_X"
+
+	// RuntimeJava8 is a Runtime enum value
+	RuntimeJava8 = "JAVA_8"
+
+	// RuntimeJava8Al2 is a Runtime enum value
+	RuntimeJava8Al2 = "JAVA_8_AL2"
+
+	// RuntimeJava11 is a Runtime enum value
+	RuntimeJava11 = "JAVA_11"
+
+	// RuntimePython37 is a Runtime enum value
+	RuntimePython37 = "PYTHON_3_7"
+
+	// RuntimePython38 is a Runtime enum value
+	RuntimePython38 = "PYTHON_3_8"
+
+	// RuntimePython39 is a Runtime enum value
+	RuntimePython39 = "PYTHON_3_9"
+
+	// RuntimeUnsupported is a Runtime enum value
+	RuntimeUnsupported = "UNSUPPORTED"
+)
+
+// Runtime_Values returns all elements of the Runtime enum
+func Runtime_Values() []string {
+	return []string{
+		RuntimeNodejs,
+		RuntimeNodejs12X,
+		RuntimeNodejs14X,
+		RuntimeNodejs16X,
+		RuntimeJava8,
+		RuntimeJava8Al2,
+		RuntimeJava11,
+		RuntimePython37,
+		RuntimePython38,
+		RuntimePython39,
+		RuntimeUnsupported,
 	}
 }
 
@@ -14203,6 +15396,12 @@ const (
 
 	// ScanStatusReasonStaleInventory is a ScanStatusReason enum value
 	ScanStatusReasonStaleInventory = "STALE_INVENTORY"
+
+	// ScanStatusReasonExcludedByTag is a ScanStatusReason enum value
+	ScanStatusReasonExcludedByTag = "EXCLUDED_BY_TAG"
+
+	// ScanStatusReasonUnsupportedRuntime is a ScanStatusReason enum value
+	ScanStatusReasonUnsupportedRuntime = "UNSUPPORTED_RUNTIME"
 )
 
 // ScanStatusReason_Values returns all elements of the ScanStatusReason enum
@@ -14224,6 +15423,8 @@ func ScanStatusReason_Values() []string {
 		ScanStatusReasonPendingDisable,
 		ScanStatusReasonNoInventory,
 		ScanStatusReasonStaleInventory,
+		ScanStatusReasonExcludedByTag,
+		ScanStatusReasonUnsupportedRuntime,
 	}
 }
 
@@ -14249,6 +15450,9 @@ const (
 
 	// ServiceEcr is a Service enum value
 	ServiceEcr = "ECR"
+
+	// ServiceLambda is a Service enum value
+	ServiceLambda = "LAMBDA"
 )
 
 // Service_Values returns all elements of the Service enum
@@ -14256,6 +15460,7 @@ func Service_Values() []string {
 	return []string{
 		ServiceEc2,
 		ServiceEcr,
+		ServiceLambda,
 	}
 }
 
@@ -14460,6 +15665,9 @@ const (
 
 	// UsageTypeEcrRescan is a UsageType enum value
 	UsageTypeEcrRescan = "ECR_RESCAN"
+
+	// UsageTypeLambdaFunctionHours is a UsageType enum value
+	UsageTypeLambdaFunctionHours = "LAMBDA_FUNCTION_HOURS"
 )
 
 // UsageType_Values returns all elements of the UsageType enum
@@ -14468,6 +15676,7 @@ func UsageType_Values() []string {
 		UsageTypeEc2InstanceHours,
 		UsageTypeEcrInitialScan,
 		UsageTypeEcrRescan,
+		UsageTypeLambdaFunctionHours,
 	}
 }
 

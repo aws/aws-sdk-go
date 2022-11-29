@@ -593,7 +593,10 @@
         "createdAt":{"shape":"Timestamp"},
         "modifiedAt":{"shape":"Timestamp"},
         "serviceAccountRoleArn":{"shape":"String"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "publisher":{"shape":"String"},
+        "owner":{"shape":"String"},
+        "marketplaceInformation":{"shape":"MarketplaceInformation"}
       }
     },
     "AddonHealth":{
@@ -607,7 +610,10 @@
       "members":{
         "addonName":{"shape":"String"},
         "type":{"shape":"String"},
-        "addonVersions":{"shape":"AddonVersionInfoList"}
+        "addonVersions":{"shape":"AddonVersionInfoList"},
+        "publisher":{"shape":"String"},
+        "owner":{"shape":"String"},
+        "marketplaceInformation":{"shape":"MarketplaceInformation"}
       }
     },
     "AddonIssue":{
@@ -653,7 +659,8 @@
       "members":{
         "addonVersion":{"shape":"String"},
         "architecture":{"shape":"StringList"},
-        "compatibilities":{"shape":"Compatibilities"}
+        "compatibilities":{"shape":"Compatibilities"},
+        "requiresConfiguration":{"shape":"Boolean"}
       }
     },
     "AddonVersionInfoList":{
@@ -1193,6 +1200,21 @@
           "shape":"String",
           "location":"querystring",
           "locationName":"addonName"
+        },
+        "types":{
+          "shape":"StringList",
+          "location":"querystring",
+          "locationName":"types"
+        },
+        "publishers":{
+          "shape":"StringList",
+          "location":"querystring",
+          "locationName":"publishers"
+        },
+        "owners":{
+          "shape":"StringList",
+          "location":"querystring",
+          "locationName":"owners"
         }
       }
     },
@@ -1798,6 +1820,13 @@
       "type":"structure",
       "members":{
         "clusterLogging":{"shape":"LogSetups"}
+      }
+    },
+    "MarketplaceInformation":{
+      "type":"structure",
+      "members":{
+        "productId":{"shape":"String"},
+        "productUrl":{"shape":"String"}
       }
     },
     "Nodegroup":{

@@ -91,7 +91,7 @@
     "CreateNetworkInterfacePermission": "<p>Grants an Amazon Web Services-authorized account permission to attach the specified network interface to an instance in their account.</p> <p>You can grant permission to a single Amazon Web Services account only, and only one account at a time.</p>",
     "CreatePlacementGroup": "<p>Creates a placement group in which to launch instances. The strategy of the placement group determines how the instances are organized within the group. </p> <p>A <code>cluster</code> placement group is a logical grouping of instances within a single Availability Zone that benefit from low network latency, high network throughput. A <code>spread</code> placement group places instances on distinct hardware. A <code>partition</code> placement group places groups of instances in different partitions, where instances in one partition do not share the same hardware with instances in another partition.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement groups</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CreatePublicIpv4Pool": "<p>Creates a public IPv4 address pool. A public IPv4 pool is an EC2 IP address pool required for the public IPv4 CIDRs that you own and bring to Amazon Web Services to manage with IPAM. IPv6 addresses you bring to Amazon Web Services, however, use IPAM pools only. To monitor the status of pool creation, use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribePublicIpv4Pools.html\">DescribePublicIpv4Pools</a>.</p>",
-    "CreateReplaceRootVolumeTask": "<p>Replaces the EBS-backed root volume for a <code>running</code> instance with a new volume that is restored to the original root volume's launch state, that is restored to a specific snapshot taken from the original root volume, or that is restored from an AMI that has the same key characteristics as that of the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html#replace-root\">Replace a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "CreateReplaceRootVolumeTask": "<p>Replaces the EBS-backed root volume for a <code>running</code> instance with a new volume that is restored to the original root volume's launch state, that is restored to a specific snapshot taken from the original root volume, or that is restored from an AMI that has the same key characteristics as that of the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html\">Replace a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateReservedInstancesListing": "<p>Creates a listing for Amazon EC2 Standard Reserved Instances to be sold in the Reserved Instance Marketplace. You can submit one Standard Reserved Instance listing at a time. To get a list of your Standard Reserved Instances, you can use the <a>DescribeReservedInstances</a> operation.</p> <note> <p>Only Standard Reserved Instances can be sold in the Reserved Instance Marketplace. Convertible Reserved Instances cannot be sold.</p> </note> <p>The Reserved Instance Marketplace matches sellers who want to resell Standard Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances.</p> <p>To sell your Standard Reserved Instances, you must first register as a seller in the Reserved Instance Marketplace. After completing the registration process, you can create a Reserved Instance Marketplace listing of some or all of your Standard Reserved Instances, and specify the upfront price to receive for them. Your Standard Reserved Instance listings then become available for purchase. To view the details of your Standard Reserved Instance listing, you can use the <a>DescribeReservedInstancesListings</a> operation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CreateRestoreImageTask": "<p>Starts a task that restores an AMI from an Amazon S3 object that was previously created by using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateStoreImageTask.html\">CreateStoreImageTask</a>.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateRoute": "<p>Creates a route in a route table within a VPC.</p> <p>You must specify either a destination CIDR block or a prefix list ID. You must also specify exactly one of the resources from the parameter list.</p> <p>When determining how to route traffic, we use the route with the most specific match. For example, traffic is destined for the IPv4 address <code>192.0.2.3</code>, and the route table includes the following two IPv4 routes:</p> <ul> <li> <p> <code>192.0.2.0/24</code> (goes to some target A)</p> </li> <li> <p> <code>192.0.2.0/28</code> (goes to some target B)</p> </li> </ul> <p>Both routes apply to the traffic destined for <code>192.0.2.3</code>. However, the second route in the list covers a smaller number of IP addresses and is therefore more specific, so we use that route to determine where to target the traffic.</p> <p>For more information about route tables, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -209,6 +209,7 @@
     "DescribeAddressesAttribute": "<p>Describes the attributes of the specified Elastic IP addresses. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "DescribeAggregateIdFormat": "<p>Describes the longer ID format settings for all resource types in a specific Region. This request is useful for performing a quick audit to determine whether a specific Region is fully opted in for longer IDs (17-character IDs).</p> <p>This request only returns information about resource types that support longer IDs.</p> <p>The following resource types support longer IDs: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>instance</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>reservation</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>snapshot</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p>",
     "DescribeAvailabilityZones": "<p>Describes the Availability Zones, Local Zones, and Wavelength Zones that are available to you. If there is an event impacting a zone, you can use this request to view the state and any provided messages for that zone.</p> <p>For more information about Availability Zones, Local Zones, and Wavelength Zones, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html\">Regions and zones</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DescribeAwsNetworkPerformanceMetricSubscriptions": "<p>Describes the curent Infrastructure Performance metric subscriptions.</p>",
     "DescribeBundleTasks": "<p>Describes the specified bundle tasks or all of your bundle tasks.</p> <note> <p>Completed bundle tasks are listed for only a limited time. If your bundle task is no longer in the list, you can still register an AMI from it. Just use <code>RegisterImage</code> with the Amazon S3 bucket name and image manifest name you provided to the bundle task.</p> </note>",
     "DescribeByoipCidrs": "<p>Describes the IP address ranges that were specified in calls to <a>ProvisionByoipCidr</a>.</p> <p>To describe the address pools that were created when you provisioned the address ranges, use <a>DescribePublicIpv4Pools</a> or <a>DescribeIpv6Pools</a>.</p>",
     "DescribeCapacityReservationFleets": "<p>Describes one or more Capacity Reservation Fleets.</p>",
@@ -284,7 +285,7 @@
     "DescribePrincipalIdFormat": "<p>Describes the ID format settings for the root user and all IAM roles and IAM users that have explicitly specified a longer ID (17-character ID) preference. </p> <p>By default, all IAM roles and IAM users default to the same ID settings as the root user, unless they explicitly override the settings. This request is useful for identifying those IAM users and IAM roles that have overridden the default ID settings.</p> <p>The following resource types support longer IDs: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>instance</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>reservation</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>snapshot</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>. </p>",
     "DescribePublicIpv4Pools": "<p>Describes the specified IPv4 address pools.</p>",
     "DescribeRegions": "<p>Describes the Regions that are enabled for your account, or all Regions.</p> <p>For a list of the Regions supported by Amazon EC2, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/ec2-service.html\"> Amazon Elastic Compute Cloud endpoints and quotas</a>.</p> <p>For information about enabling and disabling Regions for your account, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande-manage.html\">Managing Amazon Web Services Regions</a> in the <i>Amazon Web Services General Reference</i>.</p>",
-    "DescribeReplaceRootVolumeTasks": "<p>Describes a root volume replacement task. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html#replace-root\">Replace a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DescribeReplaceRootVolumeTasks": "<p>Describes a root volume replacement task. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html\">Replace a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeReservedInstances": "<p>Describes one or more of the Reserved Instances that you purchased.</p> <p>For more information about Reserved Instances, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeReservedInstancesListings": "<p>Describes your account's Reserved Instance listings in the Reserved Instance Marketplace.</p> <p>The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances.</p> <p>As a seller, you choose to list some or all of your Reserved Instances, and you specify the upfront price to receive for them. Your Reserved Instances are then listed in the Reserved Instance Marketplace and are available for purchase.</p> <p>As a buyer, you specify the configuration of the Reserved Instance to purchase, and the Marketplace matches what you're searching for with what's available. The Marketplace first sells the lowest priced Reserved Instances to you, and continues to sell available Reserved Instance listings to you until your demand is met. You are charged based on the total price of all of the listings that you purchase.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeReservedInstancesModifications": "<p>Describes the modifications made to your Reserved Instances. If no parameter is specified, information about all your Reserved Instances modification requests is returned. If a modification ID is specified, only information about the specific modification is returned.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html\">Modifying Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -345,6 +346,7 @@
     "DetachVolume": "<p>Detaches an EBS volume from an instance. Make sure to unmount any file systems on the device within your operating system before detaching the volume. Failure to do so can result in the volume becoming stuck in the <code>busy</code> state while detaching. If this happens, detachment can be delayed indefinitely until you unmount the volume, force detachment, reboot the instance, or all three. If an EBS volume is the root device of an instance, it can't be detached while the instance is running. To detach the root volume, stop the instance first.</p> <p>When a volume with an Amazon Web Services Marketplace product code is detached from an instance, the product code is no longer associated with the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html\">Detach an Amazon EBS volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DetachVpnGateway": "<p>Detaches a virtual private gateway from a VPC. You do this if you're planning to turn off the VPC and not use it anymore. You can confirm a virtual private gateway has been completely detached from a VPC by describing the virtual private gateway (any attachments to the virtual private gateway are also described).</p> <p>You must wait for the attachment's state to switch to <code>detached</code> before you can delete the VPC or attach a different VPC to the virtual private gateway.</p>",
     "DisableAddressTransfer": "<p>Disables Elastic IP address transfer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro\">Transfer Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "DisableAwsNetworkPerformanceMetricSubscription": "<p>Disables Infrastructure Performance metric subscriptions.</p>",
     "DisableEbsEncryptionByDefault": "<p>Disables EBS encryption by default for your account in the current Region.</p> <p>After you disable encryption by default, you can still create encrypted volumes by enabling encryption when you create each volume.</p> <p>Disabling encryption by default does not change the encryption status of your existing volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DisableFastLaunch": "<p>Discontinue faster launching for a Windows AMI, and clean up existing pre-provisioned snapshots. When you disable faster launching, the AMI uses the standard launch process for each instance. All pre-provisioned snapshots must be removed before you can enable faster launching again.</p> <note> <p>To change these settings, you must own the AMI.</p> </note>",
     "DisableFastSnapshotRestores": "<p>Disables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p>",
@@ -368,11 +370,13 @@
     "DisassociateTrunkInterface": "<note> <p>This API action is currently in <b>limited preview only</b>. If you are interested in using this feature, contact your account manager.</p> </note> <p>Removes an association between a branch network interface with a trunk network interface.</p>",
     "DisassociateVpcCidrBlock": "<p>Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must specify its association ID. You can get the association ID by using <a>DescribeVpcs</a>. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p> <p>You cannot disassociate the CIDR block with which you originally created the VPC (the primary CIDR block).</p>",
     "EnableAddressTransfer": "<p>Enables Elastic IP address transfer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro\">Transfer Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "EnableAwsNetworkPerformanceMetricSubscription": "<p>Enables Infrastructure Performance subscriptions.</p>",
     "EnableEbsEncryptionByDefault": "<p>Enables EBS encryption by default for your account in the current Region.</p> <p>After you enable encryption by default, the EBS volumes that you create are always encrypted, either using the default KMS key or the KMS key that you specified when you created each volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify the default KMS key for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>Enabling encryption by default has no effect on the encryption status of your existing volumes.</p> <p>After you enable encryption by default, you can no longer launch instances using instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p>",
     "EnableFastLaunch": "<p>When you enable faster launching for a Windows AMI, images are pre-provisioned, using snapshots to launch instances up to 65% faster. To create the optimized Windows image, Amazon EC2 launches an instance and runs through Sysprep steps, rebooting as required. Then it creates a set of reserved snapshots that are used for subsequent launches. The reserved snapshots are automatically replenished as they are used, depending on your settings for launch frequency.</p> <note> <p>To change these settings, you must own the AMI.</p> </note>",
     "EnableFastSnapshotRestores": "<p>Enables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p> <p>You get the full benefit of fast snapshot restores after they enter the <code>enabled</code> state. To get the current state of fast snapshot restores, use <a>DescribeFastSnapshotRestores</a>. To disable fast snapshot restores, use <a>DisableFastSnapshotRestores</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html\">Amazon EBS fast snapshot restore</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableImageDeprecation": "<p>Enables deprecation of the specified AMI at the specified date and time.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\">Deprecate an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "EnableIpamOrganizationAdminAccount": "<p>Enable an Organizations member account as the IPAM admin account. You cannot select the Organizations management account as the IPAM admin account. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/enable-integ-ipam.html\">Enable integration with Organizations</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>",
+    "EnableReachabilityAnalyzerOrganizationSharing": null,
     "EnableSerialConsoleAccess": "<p>Enables access to the EC2 serial console of all instances for your account. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "EnableTransitGatewayRouteTablePropagation": "<p>Enables the specified attachment to propagate routes to the specified propagation route table.</p>",
     "EnableVgwRoutePropagation": "<p>Enables a virtual private gateway (VGW) to propagate routes to the specified route table of a VPC.</p>",
@@ -385,6 +389,7 @@
     "ExportTransitGatewayRoutes": "<p>Exports routes from the specified transit gateway route table to the specified S3 bucket. By default, all routes are exported. Alternatively, you can filter by CIDR range.</p> <p>The routes are saved to the specified bucket in a JSON file. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/tgw/tgw-route-tables.html#tgw-export-route-tables\">Export Route Tables to Amazon S3</a> in <i>Transit Gateways</i>.</p>",
     "GetAssociatedEnclaveCertificateIamRoles": "<p>Returns the IAM roles that are associated with the specified ACM (ACM) certificate. It also returns the name of the Amazon S3 bucket and the Amazon S3 object key where the certificate, certificate chain, and encrypted private key bundle are stored, and the ARN of the KMS key that's used to encrypt the private key.</p>",
     "GetAssociatedIpv6PoolCidrs": "<p>Gets information about the IPv6 CIDR block associations for a specified IPv6 address pool.</p>",
+    "GetAwsNetworkPerformanceData": "<p>Gets network performance data.</p>",
     "GetCapacityReservationUsage": "<p>Gets usage information about a Capacity Reservation. If the Capacity Reservation is shared, it shows usage information for the Capacity Reservation owner and each Amazon Web Services account that is currently using the shared capacity. If the Capacity Reservation is not shared, it shows only the Capacity Reservation owner's usage.</p>",
     "GetCoipPoolUsage": "<p>Describes the allocations from the specified customer-owned address pool.</p>",
     "GetConsoleOutput": "<p>Gets the console output for the specified instance. For Linux instances, the instance console output displays the exact console output that would normally be displayed on a physical monitor attached to a computer. For Windows instances, the instance console output includes the last three system event log errors.</p> <p>By default, the console output returns buffered information that was posted shortly after an instance transition state (start, stop, reboot, or terminate). This information is available for at least one hour after the most recent post. Only the most recent 64 KB of console output is available.</p> <p>You can optionally retrieve the latest serial console output at any time during the instance lifecycle. This option is supported on instance types that use the Nitro hypervisor.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html#instance-console-console-output\">Instance console output</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -977,7 +982,7 @@
     "AllocationStrategy": {
       "base": null,
       "refs": {
-        "SpotFleetRequestConfigData$AllocationStrategy": "<p>The strategy that determines how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the Spot Fleet launch configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-allocation-strategy.html\">Allocation strategies for Spot Instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <p> <code>lowestPrice</code> - Spot Fleet launches instances from the lowest-price Spot Instance pool that has available capacity. If the cheapest pool doesn't have available capacity, the Spot Instances come from the next cheapest pool that has available capacity. If a pool runs out of capacity before fulfilling your desired capacity, Spot Fleet will continue to fulfill your request by drawing from the next cheapest pool. To ensure that your desired capacity is met, you might receive Spot Instances from several pools.</p> <p> <code>diversified</code> - Spot Fleet launches instances from all of the Spot Instance pools that you specify.</p> <p> <code>capacityOptimized</code> (recommended) - Spot Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching. To give certain instance types a higher chance of launching first, use <code>capacityOptimizedPrioritized</code>. Set a priority for each instance type by using the <code>Priority</code> parameter for <code>LaunchTemplateOverrides</code>. You can assign the same priority to different <code>LaunchTemplateOverrides</code>. EC2 implements the priorities on a best-effort basis, but optimizes for capacity first. <code>capacityOptimizedPrioritized</code> is supported only if your Spot Fleet uses a launch template. Note that if the <code>OnDemandAllocationStrategy</code> is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity.</p> <p>Default: <code>lowestPrice</code> </p>"
+        "SpotFleetRequestConfigData$AllocationStrategy": "<p>The strategy that determines how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the Spot Fleet launch configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-allocation-strategy.html\">Allocation strategies for Spot Instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <dl> <dt>priceCapacityOptimized (recommended)</dt> <dd> <p>Spot Fleet identifies the pools with the highest capacity availability for the number of instances that are launching. This means that we will request Spot Instances from the pools that we believe have the lowest chance of interruption in the near term. Spot Fleet then requests Spot Instances from the lowest priced of these pools.</p> </dd> <dt>capacityOptimized</dt> <dd> <p>Spot Fleet identifies the pools with the highest capacity availability for the number of instances that are launching. This means that we will request Spot Instances from the pools that we believe have the lowest chance of interruption in the near term. To give certain instance types a higher chance of launching first, use <code>capacityOptimizedPrioritized</code>. Set a priority for each instance type by using the <code>Priority</code> parameter for <code>LaunchTemplateOverrides</code>. You can assign the same priority to different <code>LaunchTemplateOverrides</code>. EC2 implements the priorities on a best-effort basis, but optimizes for capacity first. <code>capacityOptimizedPrioritized</code> is supported only if your Spot Fleet uses a launch template. Note that if the <code>OnDemandAllocationStrategy</code> is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity.</p> </dd> <dt>diversified</dt> <dd> <p>Spot Fleet requests instances from all of the Spot Instance pools that you specify.</p> </dd> <dt>lowestPrice</dt> <dd> <p>Spot Fleet requests instances from the lowest priced Spot Instance pool that has available capacity. If the lowest priced pool doesn't have available capacity, the Spot Instances come from the next lowest priced pool that has available capacity. If a pool runs out of capacity before fulfilling your desired capacity, Spot Fleet will continue to fulfill your request by drawing from the next lowest priced pool. To ensure that your desired capacity is met, you might receive Spot Instances from several pools. Because this strategy only considers instance price and not capacity availability, it might lead to high interruption rates.</p> </dd> </dl> <p>Default: <code>lowestPrice</code> </p>"
       }
     },
     "AllocationType": {
@@ -1439,6 +1444,18 @@
       "refs": {
       }
     },
+    "AttachmentEnaSrdSpecification": {
+      "base": "<p>Describes the ENA Express configuration for the network interface that's attached to the instance.</p>",
+      "refs": {
+        "NetworkInterfaceAttachment$EnaSrdSpecification": "<p>Configures ENA Express for the network interface that this action attaches to the instance.</p>"
+      }
+    },
+    "AttachmentEnaSrdUdpSpecification": {
+      "base": "<p>Describes the ENA Express configuration for UDP traffic on the network interface that's attached to the instance.</p>",
+      "refs": {
+        "AttachmentEnaSrdSpecification$EnaSrdUdpSpecification": "<p>ENA Express configuration for UDP network traffic.</p>"
+      }
+    },
     "AttachmentStatus": {
       "base": null,
       "refs": {
@@ -1774,6 +1791,8 @@
         "AttachNetworkInterfaceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AttachVolumeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AttachVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "AttachmentEnaSrdSpecification$EnaSrdEnabled": "<p>Indicates whether ENA Express is enabled for the network interface that's attached to the instance.</p>",
+        "AttachmentEnaSrdUdpSpecification$EnaSrdUdpEnabled": "<p>Indicates whether UDP traffic to and from the instance uses ENA Express. To specify this setting, you must first enable ENA Express.</p>",
         "AttributeBooleanValue$Value": "<p>The attribute value. The valid values are <code>true</code> or <code>false</code>.</p>",
         "AuthorizationRule$AccessAll": "<p>Indicates whether the authorization rule grants access to all clients.</p>",
         "AuthorizeClientVpnIngressRequest$AuthorizeAllGroups": "<p>Indicates whether to grant access to all clients. Specify <code>true</code> to grant all clients who successfully establish a VPN connection access to the network. Must be set to <code>true</code> if <code>AccessGroupId</code> is not specified.</p>",
@@ -2000,6 +2019,7 @@
         "DescribeAggregateIdFormatResult$UseLongIdsAggregated": "<p>Indicates whether all resource types in the Region are configured to use longer IDs. This value is only <code>true</code> if all users are configured to use longer IDs for all resources types in the Region.</p>",
         "DescribeAvailabilityZonesRequest$AllAvailabilityZones": "<p>Include all Availability Zones, Local Zones, and Wavelength Zones regardless of your opt-in status.</p> <p>If you do not use this parameter, the results include only the zones for the Regions where you have chosen the option to opt in.</p>",
         "DescribeAvailabilityZonesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeBundleTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeByoipCidrsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCapacityReservationFleetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2136,6 +2156,8 @@
         "DetachVolumeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DetachVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableAddressTransferRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisableAwsNetworkPerformanceMetricSubscriptionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisableAwsNetworkPerformanceMetricSubscriptionResult$Output": "<p>Indicates whether the unsubscribe action was successful.</p>",
         "DisableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
         "DisableFastLaunchRequest$Force": "<p>Forces the image settings to turn off faster launching for your Windows AMI. This parameter overrides any errors that are encountered while cleaning up resources in your account.</p>",
@@ -2168,7 +2190,11 @@
         "EbsBlockDevice$Encrypted": "<p>Indicates whether the encryption state of an EBS volume is changed while being restored from a backing snapshot. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-parameters\">Amazon EBS encryption</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>In no case can you remove encryption from an encrypted volume.</p> <p>Encrypted volumes can only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p> <p>This parameter is not returned by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeImageAttribute.html\">DescribeImageAttribute</a>.</p>",
         "EbsInstanceBlockDevice$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
         "EbsInstanceBlockDeviceSpecification$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
+        "EnaSrdSpecification$EnaSrdEnabled": "<p>Indicates whether ENA Express is enabled for the network interface.</p>",
+        "EnaSrdUdpSpecification$EnaSrdUdpEnabled": "<p>Indicates whether UDP traffic uses ENA Express. To specify this setting, you must first enable ENA Express.</p>",
         "EnableAddressTransferRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "EnableAwsNetworkPerformanceMetricSubscriptionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "EnableAwsNetworkPerformanceMetricSubscriptionResult$Output": "<p>Indicates whether the subscribe action was successful.</p>",
         "EnableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
         "EnableFastLaunchRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2177,6 +2203,8 @@
         "EnableImageDeprecationResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "EnableIpamOrganizationAdminAccountRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableIpamOrganizationAdminAccountResult$Success": "<p>The result of enabling the IPAM account.</p>",
+        "EnableReachabilityAnalyzerOrganizationSharingRequest$DryRun": null,
+        "EnableReachabilityAnalyzerOrganizationSharingResult$ReturnValue": null,
         "EnableSerialConsoleAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableSerialConsoleAccessResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
         "EnableTransitGatewayRouteTablePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2198,6 +2226,7 @@
         "FpgaImage$DataRetentionSupport": "<p>Indicates whether data retention support is enabled for the AFI.</p>",
         "GetAssociatedEnclaveCertificateIamRolesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetAssociatedIpv6PoolCidrsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "GetAwsNetworkPerformanceDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetCapacityReservationUsageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetCoipPoolUsageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetConsoleOutputRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -3385,8 +3414,8 @@
       "base": "<p>Describes a customer-owned address pool.</p>",
       "refs": {
         "CoipPoolSet$member": null,
-        "CreateCoipPoolResult$CoipPool": null,
-        "DeleteCoipPoolResult$CoipPool": null
+        "CreateCoipPoolResult$CoipPool": "<p>Information about the CoIP address pool.</p>",
+        "DeleteCoipPoolResult$CoipPool": "<p>Information about the CoIP address pool.</p>"
       }
     },
     "CoipPoolId": {
@@ -4486,6 +4515,30 @@
         "DescribeInstanceTypeOfferingsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the next token value.</p>"
       }
     },
+    "DataQueries": {
+      "base": null,
+      "refs": {
+        "GetAwsNetworkPerformanceDataRequest$DataQueries": "<p>A list of network performance data queries.</p>"
+      }
+    },
+    "DataQuery": {
+      "base": "<p>A query used for retrieving network health data. </p>",
+      "refs": {
+        "DataQueries$member": null
+      }
+    },
+    "DataResponse": {
+      "base": "<p>The response to a <code>DataQuery</code>.</p>",
+      "refs": {
+        "DataResponses$member": null
+      }
+    },
+    "DataResponses": {
+      "base": null,
+      "refs": {
+        "GetAwsNetworkPerformanceDataResult$DataResponses": "<p>The list of data responses.</p>"
+      }
+    },
     "DatafeedSubscriptionState": {
       "base": null,
       "refs": {
@@ -5452,6 +5505,16 @@
       }
     },
     "DescribeAvailabilityZonesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAwsNetworkPerformanceMetricSubscriptionsResult": {
       "base": null,
       "refs": {
       }
@@ -7187,6 +7250,16 @@
       "refs": {
       }
     },
+    "DisableAwsNetworkPerformanceMetricSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableAwsNetworkPerformanceMetricSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisableEbsEncryptionByDefaultRequest": {
       "base": null,
       "refs": {
@@ -7838,6 +7911,25 @@
         "DisassociateAddressRequest$AssociationId": "<p>[EC2-VPC] The association ID. Required for EC2-VPC.</p>"
       }
     },
+    "EnaSrdSpecification": {
+      "base": "<p>ENA Express uses Amazon Web Services Scalable Reliable Datagram (SRD) technology to increase the maximum bandwidth used per stream and minimize tail latency of network traffic between EC2 instances. With ENA Express, you can communicate between two EC2 instances in the same subnet within the same account, or in different accounts. Both sending and receiving instances must have ENA Express enabled.</p> <p>To improve the reliability of network packet delivery, ENA Express reorders network packets on the receiving end by default. However, some UDP-based applications are designed to handle network packets that are out of order to reduce the overhead for packet delivery at the network layer. When ENA Express is enabled, you can specify whether UDP network traffic uses it.</p>",
+      "refs": {
+        "AttachNetworkInterfaceRequest$EnaSrdSpecification": "<p>Configures ENA Express for the network interface that this action attaches to the instance.</p>",
+        "ModifyNetworkInterfaceAttributeRequest$EnaSrdSpecification": "<p>Updates the ENA Express configuration for the network interface that’s attached to the instance.</p>"
+      }
+    },
+    "EnaSrdSupported": {
+      "base": null,
+      "refs": {
+        "NetworkInfo$EnaSrdSupported": "<p>Indicates whether the instance type supports ENA Express. ENA Express uses Amazon Web Services Scalable Reliable Datagram (SRD) technology to increase the maximum bandwidth used per stream and minimize tail latency of network traffic between EC2 instances.</p>"
+      }
+    },
+    "EnaSrdUdpSpecification": {
+      "base": "<p>ENA Express is compatible with both TCP and UDP transport protocols. When it’s enabled, TCP traffic automatically uses it. However, some UDP-based applications are designed to handle network packets that are out of order, without a need for retransmission, such as live video broadcasting or other near-real-time applications. For UDP traffic, you can specify whether to use ENA Express, based on your application environment needs.</p>",
+      "refs": {
+        "EnaSrdSpecification$EnaSrdUdpSpecification": "<p>Configures ENA Express for UDP network traffic.</p>"
+      }
+    },
     "EnaSupport": {
       "base": null,
       "refs": {
@@ -7850,6 +7942,16 @@
       }
     },
     "EnableAddressTransferResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableAwsNetworkPerformanceMetricSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableAwsNetworkPerformanceMetricSubscriptionResult": {
       "base": null,
       "refs": {
       }
@@ -7942,6 +8044,16 @@
       }
     },
     "EnableIpamOrganizationAdminAccountResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableReachabilityAnalyzerOrganizationSharingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableReachabilityAnalyzerOrganizationSharingResult": {
       "base": null,
       "refs": {
       }
@@ -8338,6 +8450,7 @@
       "refs": {
         "DescribeAddressesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p> </li> <li> <p> <code>association-id</code> - [EC2-VPC] The association ID for the address.</p> </li> <li> <p> <code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance the address is associated with, if any.</p> </li> <li> <p> <code>network-border-group</code> - A unique set of Availability Zones, Local Zones, or Wavelength Zones from where Amazon Web Services advertises IP addresses. </p> </li> <li> <p> <code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-owner-id</code> - The Amazon Web Services account ID of the owner.</p> </li> <li> <p> <code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p> </li> <li> <p> <code>public-ip</code> - The Elastic IP address, or the carrier IP address.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeAvailabilityZonesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>) For Wavelength Zones, use the name of the group associated with the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>message</code> - The Zone message.</p> </li> <li> <p> <code>opt-in-status</code> - The opt-in status (<code>opted-in</code>, and <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p> </li> <li> <p> <code>parent-zoneID</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>parent-zoneName</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>region-name</code> - The name of the Region for the Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone, the Local Zone, or the Wavelength Zone (<code>available</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>), the Local Zone (for example, <code>usw2-lax1-az1</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-type</code> - The type of zone, for example, <code>local-zone</code>.</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>), the Local Zone (for example, <code>us-west-2-lax-1a</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-type</code> - The type of zone, for example, <code>local-zone</code>.</p> </li> </ul>",
+        "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest$Filters": "<p>One or more filters.</p>",
         "DescribeBundleTasksRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>bundle-id</code> - The ID of the bundle task.</p> </li> <li> <p> <code>error-code</code> - If the task failed, the error code returned.</p> </li> <li> <p> <code>error-message</code> - If the task failed, the error message returned.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p> </li> <li> <p> <code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p> </li> <li> <p> <code>s3-prefix</code> - The beginning of the AMI name.</p> </li> <li> <p> <code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p> </li> <li> <p> <code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p> </li> <li> <p> <code>update-time</code> - The time of the most recent update for the task.</p> </li> </ul>",
         "DescribeCapacityReservationFleetsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>state</code> - The state of the Fleet (<code>submitted</code> | <code>modifying</code> | <code>active</code> | <code>partially_fulfilled</code> | <code>expiring</code> | <code>expired</code> | <code>cancelling</code> | <code>cancelled</code> | <code>failed</code>).</p> </li> <li> <p> <code>instance-match-criteria</code> - The instance matching criteria for the Fleet. Only <code>open</code> is supported.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of the Fleet (<code>default</code> | <code>dedicated</code>).</p> </li> <li> <p> <code>allocation-strategy</code> - The allocation strategy used by the Fleet. Only <code>prioritized</code> is supported.</p> </li> </ul>",
         "DescribeCapacityReservationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>instance-type</code> - The type of instance for which the Capacity Reservation reserves capacity.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the Capacity Reservation.</p> </li> <li> <p> <code>instance-platform</code> - The type of operating system for which the Capacity Reservation reserves capacity.</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the Capacity Reservation.</p> </li> <li> <p> <code>tenancy</code> - Indicates the tenancy of the Capacity Reservation. A Capacity Reservation can have one of the following tenancy settings:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation is created on hardware that is shared with other Amazon Web Services accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware that is dedicated to a single Amazon Web Services account.</p> </li> </ul> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost on which the Capacity Reservation was created.</p> </li> <li> <p> <code>state</code> - The current state of the Capacity Reservation. A Capacity Reservation can be in one of the following states:</p> <ul> <li> <p> <code>active</code>- The Capacity Reservation is active and the capacity is available for your use.</p> </li> <li> <p> <code>expired</code> - The Capacity Reservation expired automatically at the date and time specified in your request. The reserved capacity is no longer available for your use.</p> </li> <li> <p> <code>cancelled</code> - The Capacity Reservation was cancelled. The reserved capacity is no longer available for your use.</p> </li> <li> <p> <code>pending</code> - The Capacity Reservation request was successful but the capacity provisioning is still pending.</p> </li> <li> <p> <code>failed</code> - The Capacity Reservation request has failed. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints. Failed requests are retained for 60 minutes.</p> </li> </ul> </li> <li> <p> <code>start-date</code> - The date and time at which the Capacity Reservation was started.</p> </li> <li> <p> <code>end-date</code> - The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. The Capacity Reservation's state changes to expired when it reaches its end date and time.</p> </li> <li> <p> <code>end-date-type</code> - Indicates the way in which the Capacity Reservation ends. A Capacity Reservation can have one of the following end types:</p> <ul> <li> <p> <code>unlimited</code> - The Capacity Reservation remains active until you explicitly cancel it.</p> </li> <li> <p> <code>limited</code> - The Capacity Reservation expires automatically at a specified date and time.</p> </li> </ul> </li> <li> <p> <code>instance-match-criteria</code> - Indicates the type of instance launches that the Capacity Reservation accepts. The options include:</p> <ul> <li> <p> <code>open</code> - The Capacity Reservation accepts all instances that have matching attributes (instance type, platform, and Availability Zone). Instances that have matching attributes launch into the Capacity Reservation automatically without specifying any additional parameters.</p> </li> <li> <p> <code>targeted</code> - The Capacity Reservation only accepts instances that have matching attributes (instance type, platform, and Availability Zone), and explicitly target the Capacity Reservation. This ensures that only permitted instances can use the reserved capacity.</p> </li> </ul> </li> <li> <p> <code>placement-group-arn</code> - The ARN of the cluster placement group in which the Capacity Reservation was created.</p> </li> </ul>",
@@ -8441,8 +8554,8 @@
         "DescribeVpcEndpointConnectionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>vpc-endpoint-owner</code> - The ID of the Amazon Web Services account ID that owns the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> </ul>",
         "DescribeVpcEndpointServiceConfigurationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>service-state</code> - The state of the service (<code>Pending</code> | <code>Available</code> | <code>Deleting</code> | <code>Deleted</code> | <code>Failed</code>). </p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeVpcEndpointServicePermissionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>principal</code> - The ARN of the principal.</p> </li> <li> <p> <code>principal-type</code> - The principal type (<code>All</code> | <code>Service</code> | <code>OrganizationUnit</code> | <code>Account</code> | <code>User</code> | <code>Role</code>).</p> </li> </ul>",
-        "DescribeVpcEndpointServicesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-type</code> - The type of service (<code>Interface</code> | <code>Gateway</code>).</p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
-        "DescribeVpcEndpointsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the endpoint resides.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-type</code> - The type of VPC endpoint (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
+        "DescribeVpcEndpointServicesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>owner</code> - The ID or alias of the Amazon Web Services account that owns the service.</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-type</code> - The type of service (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
+        "DescribeVpcEndpointsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the endpoint resides.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-type</code> - The type of VPC endpoint (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> </ul>",
         "DescribeVpcPeeringConnectionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>accepter-vpc-info.cidr-block</code> - The IPv4 CIDR block of the accepter VPC.</p> </li> <li> <p> <code>accepter-vpc-info.owner-id</code> - The ID of the Amazon Web Services account that owns the accepter VPC.</p> </li> <li> <p> <code>accepter-vpc-info.vpc-id</code> - The ID of the accepter VPC.</p> </li> <li> <p> <code>expiration-time</code> - The expiration date and time for the VPC peering connection.</p> </li> <li> <p> <code>requester-vpc-info.cidr-block</code> - The IPv4 CIDR block of the requester's VPC.</p> </li> <li> <p> <code>requester-vpc-info.owner-id</code> - The ID of the Amazon Web Services account that owns the requester VPC.</p> </li> <li> <p> <code>requester-vpc-info.vpc-id</code> - The ID of the requester VPC.</p> </li> <li> <p> <code>status-code</code> - The status of the VPC peering connection (<code>pending-acceptance</code> | <code>failed</code> | <code>expired</code> | <code>provisioning</code> | <code>active</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code>).</p> </li> <li> <p> <code>status-message</code> - A message that provides more information about the status of the VPC peering connection, if applicable.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-peering-connection-id</code> - The ID of the VPC peering connection.</p> </li> </ul>",
         "DescribeVpcsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>cidr</code> - The primary IPv4 CIDR block of the VPC. The CIDR block you specify must exactly match the VPC's CIDR block for information to be returned for the VPC. Must contain the slash followed by one or two digits (for example, <code>/28</code>).</p> </li> <li> <p> <code>cidr-block-association.cidr-block</code> - An IPv4 CIDR block associated with the VPC.</p> </li> <li> <p> <code>cidr-block-association.association-id</code> - The association ID for an IPv4 CIDR block associated with the VPC.</p> </li> <li> <p> <code>cidr-block-association.state</code> - The state of an IPv4 CIDR block associated with the VPC.</p> </li> <li> <p> <code>dhcp-options-id</code> - The ID of a set of DHCP options.</p> </li> <li> <p> <code>ipv6-cidr-block-association.ipv6-cidr-block</code> - An IPv6 CIDR block associated with the VPC.</p> </li> <li> <p> <code>ipv6-cidr-block-association.ipv6-pool</code> - The ID of the IPv6 address pool from which the IPv6 CIDR block is allocated.</p> </li> <li> <p> <code>ipv6-cidr-block-association.association-id</code> - The association ID for an IPv6 CIDR block associated with the VPC.</p> </li> <li> <p> <code>ipv6-cidr-block-association.state</code> - The state of an IPv6 CIDR block associated with the VPC.</p> </li> <li> <p> <code>is-default</code> - Indicates whether the VPC is the default VPC.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the VPC.</p> </li> <li> <p> <code>state</code> - The state of the VPC (<code>pending</code> | <code>available</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC.</p> </li> </ul>",
         "DescribeVpnConnectionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>customer-gateway-configuration</code> - The configuration information for the customer gateway.</p> </li> <li> <p> <code>customer-gateway-id</code> - The ID of a customer gateway associated with the VPN connection.</p> </li> <li> <p> <code>state</code> - The state of the VPN connection (<code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>option.static-routes-only</code> - Indicates whether the connection has static routes only. Used for devices that do not support Border Gateway Protocol (BGP).</p> </li> <li> <p> <code>route.destination-cidr-block</code> - The destination CIDR block. This corresponds to the subnet used in a customer data center.</p> </li> <li> <p> <code>bgp-asn</code> - The BGP Autonomous System Number (ASN) associated with a BGP device.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>type</code> - The type of VPN connection. Currently the only supported type is <code>ipsec.1</code>.</p> </li> <li> <p> <code>vpn-connection-id</code> - The ID of the VPN connection.</p> </li> <li> <p> <code>vpn-gateway-id</code> - The ID of a virtual private gateway associated with the VPN connection.</p> </li> <li> <p> <code>transit-gateway-id</code> - The ID of a transit gateway associated with the VPN connection.</p> </li> </ul>",
@@ -8683,6 +8796,7 @@
     "Float": {
       "base": null,
       "refs": {
+        "MetricPoint$Value": null,
         "ReservedInstances$FixedPrice": "<p>The purchase price of the Reserved Instance.</p>",
         "ReservedInstances$UsagePrice": "<p>The usage price of the Reserved Instance, per hour.</p>",
         "ReservedInstancesOffering$FixedPrice": "<p>The purchase price of the Reserved Instance.</p>",
@@ -8871,6 +8985,16 @@
       }
     },
     "GetAssociatedIpv6PoolCidrsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAwsNetworkPerformanceDataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAwsNetworkPerformanceDataResult": {
       "base": null,
       "refs": {
       }
@@ -10809,6 +10933,7 @@
         "FleetSpotCapacityRebalance$TerminationDelay": "<p>The amount of time (in seconds) that Amazon EC2 waits before terminating the old Spot Instance after launching a new replacement Spot Instance.</p> <p>Required when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.</p> <p>Not valid when <code>ReplacementStrategy</code> is set to <code>launch</code>.</p> <p>Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code> seconds.</p>",
         "FleetSpotCapacityRebalanceRequest$TerminationDelay": "<p>The amount of time (in seconds) that Amazon EC2 waits before terminating the old Spot Instance after launching a new replacement Spot Instance.</p> <p>Required when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.</p> <p>Not valid when <code>ReplacementStrategy</code> is set to <code>launch</code>.</p> <p>Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code> seconds.</p>",
         "FlowLog$MaxAggregationInterval": "<p>The maximum interval of time, in seconds, during which a flow of packets is captured and aggregated into a flow log record.</p> <p>When a network interface is attached to a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instance</a>, the aggregation interval is always 60 seconds (1 minute) or less, regardless of the specified value.</p> <p>Valid Values: <code>60</code> | <code>600</code> </p>",
+        "GetAwsNetworkPerformanceDataRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "GetCapacityReservationUsageResult$TotalInstanceCount": "<p>The number of instances for which the Capacity Reservation reserves capacity.</p>",
         "GetCapacityReservationUsageResult$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
         "GetInstanceTypesFromInstanceRequirementsRequest$MaxResults": "<p>The maximum number of results to return in a single call. Specify a value between 1 and&#x2028; 1000. The default value is 1000. To retrieve the remaining results, make another call with&#x2028; the returned <code>NextToken</code> value.</p>",
@@ -10924,7 +11049,7 @@
         "Phase1DHGroupNumbersRequestListValue$Value": "<p>The Diffie-Hellmann group number.</p>",
         "Phase2DHGroupNumbersListValue$Value": "<p>The Diffie-Hellmann group number.</p>",
         "Phase2DHGroupNumbersRequestListValue$Value": "<p>The Diffie-Hellmann group number.</p>",
-        "Placement$PartitionNumber": "<p>The number of the partition that the instance is in. Valid only if the placement group strategy is set to <code>partition</code>.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
+        "Placement$PartitionNumber": "<p>The number of the partition that the instance is in. Valid only if the placement group strategy is set to <code>partition</code>.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
         "PlacementGroup$PartitionCount": "<p>The number of partitions. Valid only if <b>strategy</b> is set to <code>partition</code>.</p>",
         "PortRange$From": "<p>The first port in the range.</p>",
         "PortRange$To": "<p>The last port in the range.</p>",
@@ -12404,7 +12529,7 @@
         "CreateLocalGatewayRouteResult$Route": "<p>Information about the route.</p>",
         "DeleteLocalGatewayRouteResult$Route": "<p>Information about the route.</p>",
         "LocalGatewayRouteList$member": null,
-        "ModifyLocalGatewayRouteResult$Route": null
+        "ModifyLocalGatewayRouteResult$Route": "<p>Information about the local gateway route table.</p>"
       }
     },
     "LocalGatewayRouteList": {
@@ -12422,8 +12547,8 @@
     "LocalGatewayRouteTable": {
       "base": "<p>Describes a local gateway route table.</p>",
       "refs": {
-        "CreateLocalGatewayRouteTableResult$LocalGatewayRouteTable": null,
-        "DeleteLocalGatewayRouteTableResult$LocalGatewayRouteTable": null,
+        "CreateLocalGatewayRouteTableResult$LocalGatewayRouteTable": "<p>Information about the local gateway route table.</p>",
+        "DeleteLocalGatewayRouteTableResult$LocalGatewayRouteTable": "<p>Information about the local gateway route table.</p>",
         "LocalGatewayRouteTableSet$member": null
       }
     },
@@ -12449,8 +12574,8 @@
     "LocalGatewayRouteTableVirtualInterfaceGroupAssociation": {
       "base": "<p>Describes an association between a local gateway route table and a virtual interface group.</p>",
       "refs": {
-        "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult$LocalGatewayRouteTableVirtualInterfaceGroupAssociation": null,
-        "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult$LocalGatewayRouteTableVirtualInterfaceGroupAssociation": null,
+        "CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult$LocalGatewayRouteTableVirtualInterfaceGroupAssociation": "<p>Information about the local gateway route table virtual interface group association.</p>",
+        "DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationResult$LocalGatewayRouteTableVirtualInterfaceGroupAssociation": "<p>Information about the association.</p>",
         "LocalGatewayRouteTableVirtualInterfaceGroupAssociationSet$member": null
       }
     },
@@ -12711,6 +12836,12 @@
         "SearchLocalGatewayRoutesRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
       }
     },
+    "MaxResultsParam": {
+      "base": null,
+      "refs": {
+        "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
     "MaximumBandwidthInMbps": {
       "base": null,
       "refs": {
@@ -12784,6 +12915,28 @@
         "MemoryInfo$SizeInMiB": "<p>The size of the memory, in MiB.</p>"
       }
     },
+    "MetricPoint": {
+      "base": "<p>Indicates whether the network was healthy or unhealthy at a particular point. The value is aggregated from the <code>startDate</code> to the <code>endDate</code>. Currently only <code>five_minutes</code> is supported.</p>",
+      "refs": {
+        "MetricPoints$member": null
+      }
+    },
+    "MetricPoints": {
+      "base": null,
+      "refs": {
+        "DataResponse$MetricPoints": "<p>A list of <code>MetricPoint</code> objects.</p>"
+      }
+    },
+    "MetricType": {
+      "base": null,
+      "refs": {
+        "DataQuery$Metric": "<p>The aggregation metric used for the data query. Currently only <code>aggregation-latency</code> is supported, indicating network latency.</p>",
+        "DataResponse$Metric": "<p>The metric used for the network performance request. Currently only <code>aggregate-latency</code> is supported, showing network latency during a specified period. </p>",
+        "DisableAwsNetworkPerformanceMetricSubscriptionRequest$Metric": "<p>The metric used for the disabled subscription.</p>",
+        "EnableAwsNetworkPerformanceMetricSubscriptionRequest$Metric": "<p>The metric used for the enabled subscription.</p>",
+        "Subscription$Metric": "<p>The metric used for the subscription.</p>"
+      }
+    },
     "MillisecondDateTime": {
       "base": null,
       "refs": {
@@ -12822,6 +12975,8 @@
         "EnableImageDeprecationRequest$DeprecateAt": "<p>The date and time to deprecate the AMI, in UTC, in the following format: <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z. If you specify a value for seconds, Amazon EC2 rounds the seconds to the nearest minute.</p> <p>You can’t specify a date in the past. The upper limit for <code>DeprecateAt</code> is 10 years from now, except for public AMIs, where the upper limit is 2 years from the creation date.</p>",
         "FleetCapacityReservation$CreateDate": "<p>The date and time at which the Capacity Reservation was created.</p>",
         "FlowLog$CreationTime": "<p>The date and time the flow log was created.</p>",
+        "GetAwsNetworkPerformanceDataRequest$StartTime": "<p>The starting time for the performance data request. The starting time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-10T12:00:00.000Z</code>.</p>",
+        "GetAwsNetworkPerformanceDataRequest$EndTime": "<p>The ending time for the performance data request. The end time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-12T12:00:00.000Z</code>.</p>",
         "GetIpamAddressHistoryRequest$StartTime": "<p>The start of the time period for which you are looking for history. If you omit this option, it will default to the value of EndTime.</p>",
         "GetIpamAddressHistoryRequest$EndTime": "<p>The end of the time period for which you are looking for history. If you omit this option, it will default to the current time.</p>",
         "ImageRecycleBinInfo$RecycleBinEnterTime": "<p>The date and time when the AMI entered the Recycle Bin.</p>",
@@ -12830,6 +12985,8 @@
         "IpamAddressHistoryRecord$SampledStartTime": "<p>Sampled start time of the resource-to-CIDR association within the IPAM scope. Changes are picked up in periodic snapshots, so the start time may have occurred before this specific time.</p>",
         "IpamAddressHistoryRecord$SampledEndTime": "<p>Sampled end time of the resource-to-CIDR association within the IPAM scope. Changes are picked up in periodic snapshots, so the end time may have occurred before this specific time.</p>",
         "KeyPairInfo$CreateTime": "<p>If you used Amazon EC2 to create the key pair, this is the date and time when the key was created, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p> <p>If you imported an existing key pair to Amazon EC2, this is the date and time the key was imported, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 date-time format</a>, in the UTC time zone.</p>",
+        "MetricPoint$StartDate": "<p>The start date for the metric point. The starting date for the metric point. The starting time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-10T12:00:00.000Z</code>.</p>",
+        "MetricPoint$EndDate": "<p>The end date for the metric point. The ending time must be formatted as <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2022-06-12T12:00:00.000Z</code>.</p>",
         "ModifyCapacityReservationFleetRequest$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires. When the Capacity Reservation Fleet expires, its state changes to <code>expired</code> and all of the Capacity Reservations in the Fleet expire.</p> <p>The Capacity Reservation Fleet expires within an hour after the specified time. For example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code> on <code>5/31/2019</code>.</p> <p>You can't specify <b>EndDate</b> and <b> RemoveEndDate</b> in the same request.</p>",
         "ModifySnapshotTierResult$TieringStartTime": "<p>The date and time when the archive process was started.</p>",
         "NetworkInsightsAccessScope$CreatedDate": "<p>The creation date.</p>",
@@ -13785,7 +13942,7 @@
     "NetworkInterfaceAttachmentChanges": {
       "base": "<p>Describes an attachment change.</p>",
       "refs": {
-        "ModifyNetworkInterfaceAttributeRequest$Attachment": "<p>Information about the interface attachment. If modifying the 'delete on termination' attribute, you must specify the ID of the interface attachment.</p>"
+        "ModifyNetworkInterfaceAttributeRequest$Attachment": "<p>Information about the interface attachment. If modifying the <code>delete on termination</code> attribute, you must specify the ID of the interface attachment.</p>"
       }
     },
     "NetworkInterfaceAttachmentId": {
@@ -14210,6 +14367,14 @@
         "TransitGatewayPeeringAttachment$AccepterTgwInfo": "<p>Information about the accepter transit gateway.</p>"
       }
     },
+    "PeriodType": {
+      "base": null,
+      "refs": {
+        "DataQuery$Period": "<p>The aggregation period used for the data query.</p>",
+        "DataResponse$Period": "<p>The period used for the network performance request.</p>",
+        "Subscription$Period": "<p>The data aggregation time for the subscription.</p>"
+      }
+    },
     "PermissionGroup": {
       "base": null,
       "refs": {
@@ -14398,7 +14563,7 @@
         "LaunchTemplatePlacement$GroupId": "<p>The Group ID of the placement group. You must specify the Placement Group <b>Group ID</b> to launch an instance in a shared placement group.</p>",
         "LaunchTemplatePlacementRequest$GroupId": "<p>The Group Id of a placement group. You must specify the Placement Group <b>Group Id</b> to launch an instance in a shared placement group.</p>",
         "ModifyInstancePlacementRequest$GroupId": "<p>The Group Id of a placement group. You must specify the Placement Group <b>Group Id</b> to launch an instance in a shared placement group.</p>",
-        "Placement$GroupId": "<p>The Group Id of the placement group.</p>",
+        "Placement$GroupId": "<p>The ID of the placement group that the instance is in. If you specify <code>GroupId</code>, you can't specify <code>GroupName</code>.</p>",
         "PlacementGroupIdStringList$member": null
       }
     },
@@ -14426,7 +14591,7 @@
         "DeletePlacementGroupRequest$GroupName": "<p>The name of the placement group.</p>",
         "LaunchTemplatePlacementRequest$GroupName": "<p>The name of the placement group for the instance.</p>",
         "ModifyInstancePlacementRequest$GroupName": "<p>The name of the placement group in which to place the instance. For spread placement groups, the instance must have a tenancy of <code>default</code>. For cluster and partition placement groups, the instance must have a tenancy of <code>default</code> or <code>dedicated</code>.</p> <p>To remove an instance from a placement group, specify an empty string (\"\").</p>",
-        "Placement$GroupName": "<p>The name of the placement group the instance is in.</p>",
+        "Placement$GroupName": "<p>The name of the placement group that the instance is in. If you specify <code>GroupName</code>, you can't specify <code>GroupId</code>.</p>",
         "PlacementGroupStringList$member": null,
         "PlacementResponse$GroupName": "<p>The name of the placement group that the instance is in.</p>",
         "ScheduledInstancesPlacement$GroupName": "<p>The name of the placement group.</p>",
@@ -15682,7 +15847,9 @@
         "NetworkInsightsAccessScope$NetworkInsightsAccessScopeArn": "<p>The Amazon Resource Name (ARN) of the Network Access Scope.</p>",
         "NetworkInsightsAccessScopeAnalysis$NetworkInsightsAccessScopeAnalysisArn": "<p>The Amazon Resource Name (ARN) of the Network Access Scope analysis.</p>",
         "NetworkInsightsAnalysis$NetworkInsightsAnalysisArn": "<p>The Amazon Resource Name (ARN) of the network insights analysis.</p>",
-        "NetworkInsightsPath$NetworkInsightsPathArn": "<p>The Amazon Resource Name (ARN) of the path.</p>"
+        "NetworkInsightsPath$NetworkInsightsPathArn": "<p>The Amazon Resource Name (ARN) of the path.</p>",
+        "NetworkInsightsPath$SourceArn": null,
+        "NetworkInsightsPath$DestinationArn": null
       }
     },
     "ResourceIdList": {
@@ -16532,8 +16699,8 @@
     "SpotAllocationStrategy": {
       "base": null,
       "refs": {
-        "SpotOptions$AllocationStrategy": "<p>The strategy that determines how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet launch configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html\">Allocation strategies for Spot Instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <p> <code>lowest-price</code> - EC2 Fleet launches instances from the lowest-price Spot Instance pool that has available capacity. If the cheapest pool doesn't have available capacity, the Spot Instances come from the next cheapest pool that has available capacity. If a pool runs out of capacity before fulfilling your desired capacity, EC2 Fleet will continue to fulfill your request by drawing from the next cheapest pool. To ensure that your desired capacity is met, you might receive Spot Instances from several pools.</p> <p> <code>diversified</code> - EC2 Fleet launches instances from all of the Spot Instance pools that you specify.</p> <p> <code>capacity-optimized</code> (recommended) - EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching. To give certain instance types a higher chance of launching first, use <code>capacity-optimized-prioritized</code>. Set a priority for each instance type by using the <code>Priority</code> parameter for <code>LaunchTemplateOverrides</code>. You can assign the same priority to different <code>LaunchTemplateOverrides</code>. EC2 implements the priorities on a best-effort basis, but optimizes for capacity first. <code>capacity-optimized-prioritized</code> is supported only if your fleet uses a launch template. Note that if the On-Demand <code>AllocationStrategy</code> is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity.</p> <p>Default: <code>lowest-price</code> </p>",
-        "SpotOptionsRequest$AllocationStrategy": "<p>The strategy that determines how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet launch configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html\">Allocation strategies for Spot Instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <p> <code>lowest-price</code> - EC2 Fleet launches instances from the lowest-price Spot Instance pool that has available capacity. If the cheapest pool doesn't have available capacity, the Spot Instances come from the next cheapest pool that has available capacity. If a pool runs out of capacity before fulfilling your desired capacity, EC2 Fleet will continue to fulfill your request by drawing from the next cheapest pool. To ensure that your desired capacity is met, you might receive Spot Instances from several pools.</p> <p> <code>diversified</code> - EC2 Fleet launches instances from all of the Spot Instance pools that you specify.</p> <p> <code>capacity-optimized</code> (recommended) - EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching. To give certain instance types a higher chance of launching first, use <code>capacity-optimized-prioritized</code>. Set a priority for each instance type by using the <code>Priority</code> parameter for <code>LaunchTemplateOverrides</code>. You can assign the same priority to different <code>LaunchTemplateOverrides</code>. EC2 implements the priorities on a best-effort basis, but optimizes for capacity first. <code>capacity-optimized-prioritized</code> is supported only if your fleet uses a launch template. Note that if the On-Demand <code>AllocationStrategy</code> is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity.</p> <p>Default: <code>lowest-price</code> </p>"
+        "SpotOptions$AllocationStrategy": "<p>The strategy that determines how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet launch configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html\">Allocation strategies for Spot Instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <dl> <dt>price-capacity-optimized (recommended)</dt> <dd> <p>EC2 Fleet identifies the pools with the highest capacity availability for the number of instances that are launching. This means that we will request Spot Instances from the pools that we believe have the lowest chance of interruption in the near term. EC2 Fleet then requests Spot Instances from the lowest priced of these pools.</p> </dd> <dt>capacity-optimized</dt> <dd> <p>EC2 Fleet identifies the pools with the highest capacity availability for the number of instances that are launching. This means that we will request Spot Instances from the pools that we believe have the lowest chance of interruption in the near term. To give certain instance types a higher chance of launching first, use <code>capacity-optimized-prioritized</code>. Set a priority for each instance type by using the <code>Priority</code> parameter for <code>LaunchTemplateOverrides</code>. You can assign the same priority to different <code>LaunchTemplateOverrides</code>. EC2 implements the priorities on a best-effort basis, but optimizes for capacity first. <code>capacity-optimized-prioritized</code> is supported only if your EC2 Fleet uses a launch template. Note that if the On-Demand <code>AllocationStrategy</code> is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity.</p> </dd> <dt>diversified</dt> <dd> <p>EC2 Fleet requests instances from all of the Spot Instance pools that you specify.</p> </dd> <dt>lowest-price</dt> <dd> <p>EC2 Fleet requests instances from the lowest priced Spot Instance pool that has available capacity. If the lowest priced pool doesn't have available capacity, the Spot Instances come from the next lowest priced pool that has available capacity. If a pool runs out of capacity before fulfilling your desired capacity, EC2 Fleet will continue to fulfill your request by drawing from the next lowest priced pool. To ensure that your desired capacity is met, you might receive Spot Instances from several pools. Because this strategy only considers instance price and not capacity availability, it might lead to high interruption rates.</p> </dd> </dl> <p>Default: <code>lowest-price</code> </p>",
+        "SpotOptionsRequest$AllocationStrategy": "<p>The strategy that determines how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet launch configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-allocation-strategy.html\">Allocation strategies for Spot Instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <dl> <dt>price-capacity-optimized (recommended)</dt> <dd> <p>EC2 Fleet identifies the pools with the highest capacity availability for the number of instances that are launching. This means that we will request Spot Instances from the pools that we believe have the lowest chance of interruption in the near term. EC2 Fleet then requests Spot Instances from the lowest priced of these pools.</p> </dd> <dt>capacity-optimized</dt> <dd> <p>EC2 Fleet identifies the pools with the highest capacity availability for the number of instances that are launching. This means that we will request Spot Instances from the pools that we believe have the lowest chance of interruption in the near term. To give certain instance types a higher chance of launching first, use <code>capacity-optimized-prioritized</code>. Set a priority for each instance type by using the <code>Priority</code> parameter for <code>LaunchTemplateOverrides</code>. You can assign the same priority to different <code>LaunchTemplateOverrides</code>. EC2 implements the priorities on a best-effort basis, but optimizes for capacity first. <code>capacity-optimized-prioritized</code> is supported only if your EC2 Fleet uses a launch template. Note that if the On-Demand <code>AllocationStrategy</code> is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity.</p> </dd> <dt>diversified</dt> <dd> <p>EC2 Fleet requests instances from all of the Spot Instance pools that you specify.</p> </dd> <dt>lowest-price</dt> <dd> <p>EC2 Fleet requests instances from the lowest priced Spot Instance pool that has available capacity. If the lowest priced pool doesn't have available capacity, the Spot Instances come from the next lowest priced pool that has available capacity. If a pool runs out of capacity before fulfilling your desired capacity, EC2 Fleet will continue to fulfill your request by drawing from the next lowest priced pool. To ensure that your desired capacity is met, you might receive Spot Instances from several pools. Because this strategy only considers instance price and not capacity availability, it might lead to high interruption rates.</p> </dd> </dl> <p>Default: <code>lowest-price</code> </p>"
       }
     },
     "SpotCapacityRebalance": {
@@ -16742,7 +16909,7 @@
       "base": null,
       "refs": {
         "CreatePlacementGroupRequest$SpreadLevel": "<p>Determines how placement groups spread instances. </p> <ul> <li> <p>Host – You can use <code>host</code> only with Outpost placement groups.</p> </li> <li> <p>Rack – No usage restrictions.</p> </li> </ul>",
-        "PlacementGroup$SpreadLevel": "<p> The spread level for the placement group. <i>Only</i> Outpost placement groups can be spread across hosts. </p>"
+        "PlacementGroup$SpreadLevel": "<p>The spread level for the placement group. <i>Only</i> Outpost placement groups can be spread across hosts.</p>"
       }
     },
     "StaleIpPermission": {
@@ -16822,7 +16989,7 @@
       "refs": {
         "Image$StateReason": "<p>The reason for the state change.</p>",
         "Instance$StateReason": "<p>The reason for the most recent state transition.</p>",
-        "LocalGatewayRouteTable$StateReason": null
+        "LocalGatewayRouteTable$StateReason": "<p>Information about the state change.</p>"
       }
     },
     "StaticSourcesSupportValue": {
@@ -16830,6 +16997,16 @@
       "refs": {
         "CreateTransitGatewayMulticastDomainRequestOptions$StaticSourcesSupport": "<p>Specify whether to enable support for statically configuring multicast group sources for a domain.</p>",
         "TransitGatewayMulticastDomainOptions$StaticSourcesSupport": "<p>Indicates whether support for statically configuring transit gateway multicast group sources is turned on.</p>"
+      }
+    },
+    "StatisticType": {
+      "base": null,
+      "refs": {
+        "DataQuery$Statistic": "<p>Metric data aggregations over specified periods of time. The following are the supported Infrastructure Performance statistics:</p> <ul> <li> <p> <code>p50</code> - The median value of the metric aggregated over a specified start and end time. For example, a metric of <code>five_minutes</code> is the median of all the data points gathered within those five minutes.</p> </li> </ul>",
+        "DataResponse$Statistic": "<p>The statistic used for the network performance request.</p>",
+        "DisableAwsNetworkPerformanceMetricSubscriptionRequest$Statistic": "<p>The statistic used for the disabled subscription. </p>",
+        "EnableAwsNetworkPerformanceMetricSubscriptionRequest$Statistic": "<p>The statistic used for the enabled subscription.</p>",
+        "Subscription$Statistic": "<p>The statistic used for the subscription.</p>"
       }
     },
     "Status": {
@@ -17309,6 +17486,12 @@
         "CustomerGateway$State": "<p>The current state of the customer gateway (<code>pending | available | deleting | deleted</code>).</p>",
         "CustomerGateway$Type": "<p>The type of VPN connection the customer gateway supports (<code>ipsec.1</code>).</p>",
         "CustomerGateway$DeviceName": "<p>The name of customer gateway device.</p>",
+        "DataQuery$Id": "<p>A user-defined ID associated with a data query that's returned in the <code>dataResponse</code> identifying the query. For example, if you set the Id to <code>MyQuery01</code>in the query, the <code>dataResponse</code> identifies the query as <code>MyQuery01</code>.</p>",
+        "DataQuery$Source": "<p>The Region or Availability Zone that's the source for the data query. For example, <code>us-east-1</code>.</p>",
+        "DataQuery$Destination": "<p>The Region or Availability Zone that's the target for the data query. For example, <code>eu-north-1</code>.</p>",
+        "DataResponse$Id": "<p>The ID passed in the <code>DataQuery</code>.</p>",
+        "DataResponse$Source": "<p>The Region or Availability Zone that's the source for the data query. For example, <code>us-east-1</code>.</p>",
+        "DataResponse$Destination": "<p>The Region or Availability Zone that's the destination for the data query. For example, <code>eu-west-1</code>.</p>",
         "DeleteClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route to be deleted.</p>",
         "DeleteCoipCidrRequest$Cidr": "<p> A customer-owned IP address range that you want to delete. </p>",
         "DeleteFleetError$Message": "<p>The description for the error code.</p>",
@@ -17335,6 +17518,8 @@
         "DeregisterTransitGatewayMulticastGroupSourcesRequest$GroupIpAddress": "<p>The IP address assigned to the transit gateway multicast group.</p>",
         "DescribeAddressTransfersRequest$NextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
         "DescribeAddressTransfersResult$NextToken": "<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>",
+        "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "DescribeAwsNetworkPerformanceMetricSubscriptionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeByoipCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeCapacityReservationFleetsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "DescribeCapacityReservationFleetsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
@@ -17526,6 +17711,8 @@
         "DhcpOptions$OwnerId": "<p>The ID of the Amazon Web Services account that owns the DHCP options set.</p>",
         "DirectoryServiceAuthentication$DirectoryId": "<p>The ID of the Active Directory used for authentication.</p>",
         "DirectoryServiceAuthenticationRequest$DirectoryId": "<p>The ID of the Active Directory to be used for authentication.</p>",
+        "DisableAwsNetworkPerformanceMetricSubscriptionRequest$Source": "<p>The source Region or Availability Zone that the metric subscription is disabled for. For example, <code>us-east-1</code>.</p>",
+        "DisableAwsNetworkPerformanceMetricSubscriptionRequest$Destination": "<p>The target Region or Availability Zone that the metric subscription is disabled for. For example, <code>eu-north-1</code>.</p>",
         "DisableFastLaunchResult$OwnerId": "<p>The owner of the Windows AMI for which faster launching was turned off.</p>",
         "DisableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for faster launching for the Windows AMI.</p>",
         "DisableFastSnapshotRestoreErrorItem$SnapshotId": "<p>The ID of the snapshot.</p>",
@@ -17568,6 +17755,8 @@
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationId": "<p> The ID of the association. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationState": "<p> The state of the elastic inference accelerator. </p>",
         "EnableAddressTransferRequest$TransferAccountId": "<p>The ID of the account that you want to transfer the Elastic IP address to.</p>",
+        "EnableAwsNetworkPerformanceMetricSubscriptionRequest$Source": "<p>The source Region or Availability Zone that the metric subscription is enabled for. For example, <code>us-east-1</code>.</p>",
+        "EnableAwsNetworkPerformanceMetricSubscriptionRequest$Destination": "<p>The target Region or Availability Zone that the metric subscription is enabled for. For example, <code>eu-west-1</code>.</p>",
         "EnableFastLaunchRequest$ResourceType": "<p>The type of resource to use for pre-provisioning the Windows AMI for faster launching. Supported values include: <code>snapshot</code>, which is the default value.</p>",
         "EnableFastLaunchResult$OwnerId": "<p>The owner ID for the Windows AMI for which faster launching was enabled.</p>",
         "EnableFastLaunchResult$StateTransitionReason": "<p>The reason that the state changed for faster launching for the Windows AMI.</p>",
@@ -17665,6 +17854,8 @@
         "FpgaImageAttribute$Description": "<p>The description of the AFI.</p>",
         "FpgaImageState$Message": "<p>If the state is <code>failed</code>, this is the error message.</p>",
         "GetAssociatedIpv6PoolCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "GetAwsNetworkPerformanceDataRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetAwsNetworkPerformanceDataResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetCapacityReservationUsageRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "GetCapacityReservationUsageResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetCapacityReservationUsageResult$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
@@ -18045,6 +18236,7 @@
         "ManagedPrefixList$StateMessage": "<p>The state message.</p>",
         "ManagedPrefixList$PrefixListName": "<p>The name of the prefix list.</p>",
         "ManagedPrefixList$OwnerId": "<p>The ID of the owner of the prefix list.</p>",
+        "MetricPoint$Status": "<p>The status of the metric point.</p>",
         "ModifyAddressAttributeRequest$DomainName": "<p>The domain name to modify for the IP address.</p>",
         "ModifyAvailabilityZoneGroupRequest$GroupName": "<p>The name of the Availability Zone group, Local Zone group, or Wavelength Zone group.</p>",
         "ModifyCapacityReservationRequest$AdditionalInfo": "<p>Reserved for future use.</p>",
@@ -18185,11 +18377,11 @@
         "Phase2EncryptionAlgorithmsRequestListValue$Value": "<p>The encryption algorithm.</p>",
         "Phase2IntegrityAlgorithmsListValue$Value": "<p>The integrity algorithm.</p>",
         "Phase2IntegrityAlgorithmsRequestListValue$Value": "<p>The integrity algorithm.</p>",
-        "Placement$AvailabilityZone": "<p>The Availability Zone of the instance.</p> <p>If not specified, an Availability Zone will be automatically chosen for you based on the load balancing criteria for the Region.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
-        "Placement$Affinity": "<p>The affinity setting for the instance on the Dedicated Host. This parameter is not supported for the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a> command.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
-        "Placement$HostId": "<p>The ID of the Dedicated Host on which the instance resides. This parameter is not supported for the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a> command.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
-        "Placement$SpreadDomain": "<p>Reserved for future use.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
-        "Placement$HostResourceGroupArn": "<p>The ARN of the host resource group in which to launch the instances. If you specify a host resource group ARN, omit the <b>Tenancy</b> parameter or set it to <code>host</code>.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
+        "Placement$AvailabilityZone": "<p>The Availability Zone of the instance.</p> <p>If not specified, an Availability Zone will be automatically chosen for you based on the load balancing criteria for the Region.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
+        "Placement$Affinity": "<p>The affinity setting for the instance on the Dedicated Host.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a>.</p>",
+        "Placement$HostId": "<p>The ID of the Dedicated Host on which the instance resides.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a>.</p>",
+        "Placement$SpreadDomain": "<p>Reserved for future use.</p>",
+        "Placement$HostResourceGroupArn": "<p>The ARN of the host resource group in which to launch the instances.</p> <p>If you specify this parameter, either omit the <b>Tenancy</b> parameter or set it to <code>host</code>.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
         "PlacementGroup$GroupName": "<p>The name of the placement group.</p>",
         "PlacementGroup$GroupId": "<p>The ID of the placement group.</p>",
         "PlacementGroup$GroupArn": "<p>The Amazon Resource Name (ARN) of the placement group.</p>",
@@ -18539,6 +18731,8 @@
         "SubnetCidrReservation$OwnerId": "<p>The ID of the account that owns the subnet CIDR reservation. </p>",
         "SubnetCidrReservation$Description": "<p>The description assigned to the subnet CIDR reservation.</p>",
         "SubnetIpv6CidrBlockAssociation$Ipv6CidrBlock": "<p>The IPv6 CIDR block.</p>",
+        "Subscription$Source": "<p>The Region or Availability Zone that's the source for the subscription. For example, <code>us-east-1</code>.</p>",
+        "Subscription$Destination": "<p>The Region or Availability Zone that's the target for the subscription. For example, <code>eu-west-1</code>.</p>",
         "SuccessfulInstanceCreditSpecificationItem$InstanceId": "<p>The ID of the instance.</p>",
         "SuccessfulQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
         "Tag$Key": "<p>The key of the tag.</p> <p>Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode characters. May not begin with <code>aws:</code>.</p>",
@@ -18923,6 +19117,18 @@
         "Subnet$State": "<p>The current state of the subnet.</p>"
       }
     },
+    "Subscription": {
+      "base": "<p>Describes an Infrastructure Performance subscription.</p>",
+      "refs": {
+        "SubscriptionList$member": null
+      }
+    },
+    "SubscriptionList": {
+      "base": null,
+      "refs": {
+        "DescribeAwsNetworkPerformanceMetricSubscriptionsResult$Subscriptions": "<p>Describes the current Infrastructure Performance subscriptions.</p>"
+      }
+    },
     "SuccessfulInstanceCreditSpecificationItem": {
       "base": "<p>Describes the burstable performance instance whose credit option for CPU usage was successfully modified.</p>",
       "refs": {
@@ -19279,7 +19485,7 @@
         "DescribeReservedInstancesOfferingsRequest$InstanceTenancy": "<p>The tenancy of the instances covered by the reservation. A Reserved Instance with a tenancy of <code>dedicated</code> is applied to instances that run in a VPC on single-tenant hardware (i.e., Dedicated Instances).</p> <p> <b>Important:</b> The <code>host</code> value cannot be used with this parameter. Use the <code>default</code> or <code>dedicated</code> values only.</p> <p>Default: <code>default</code> </p>",
         "LaunchTemplatePlacement$Tenancy": "<p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware. </p>",
         "LaunchTemplatePlacementRequest$Tenancy": "<p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of dedicated runs on single-tenant hardware.</p>",
-        "Placement$Tenancy": "<p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware. The <code>host</code> tenancy is not supported for the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a> command.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p> <p>T3 instances that use the <code>unlimited</code> CPU credit option do not support <code>host</code> tenancy.</p>",
+        "Placement$Tenancy": "<p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>. The <code>host</code> tenancy is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a> or for T3 instances that are configured for the <code>unlimited</code> CPU credit option.</p>",
         "ReservedInstances$InstanceTenancy": "<p>The tenancy of the instance.</p>",
         "ReservedInstancesOffering$InstanceTenancy": "<p>The tenancy of the instance.</p>",
         "SpotPlacement$Tenancy": "<p>The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of <code>dedicated</code> runs on single-tenant hardware. The <code>host</code> tenancy is not supported for Spot Instances.</p>",
@@ -19328,7 +19534,7 @@
     "ThreadsPerCoreList": {
       "base": null,
       "refs": {
-        "VCpuInfo$ValidThreadsPerCore": "<p>The valid number of threads per core that can be configured for the instance type. </p>"
+        "VCpuInfo$ValidThreadsPerCore": "<p>The valid number of threads per core that can be configured for the instance type.</p>"
       }
     },
     "ThroughResourcesStatement": {
@@ -19591,7 +19797,7 @@
       "refs": {
         "CreateTransitGatewayResult$TransitGateway": "<p>Information about the transit gateway.</p>",
         "DeleteTransitGatewayResult$TransitGateway": "<p>Information about the deleted transit gateway.</p>",
-        "ModifyTransitGatewayResult$TransitGateway": null,
+        "ModifyTransitGatewayResult$TransitGateway": "<p>Information about the transit gateway.</p>",
         "TransitGatewayList$member": null
       }
     },
@@ -19900,10 +20106,10 @@
     "TransitGatewayMulticastDomainAssociations": {
       "base": "<p>Describes the multicast domain associations.</p>",
       "refs": {
-        "AcceptTransitGatewayMulticastDomainAssociationsResult$Associations": null,
+        "AcceptTransitGatewayMulticastDomainAssociationsResult$Associations": "<p>Information about the multicast domain associations.</p>",
         "AssociateTransitGatewayMulticastDomainResult$Associations": "<p>Information about the transit gateway multicast domain associations.</p>",
         "DisassociateTransitGatewayMulticastDomainResult$Associations": "<p>Information about the association.</p>",
-        "RejectTransitGatewayMulticastDomainAssociationsResult$Associations": null
+        "RejectTransitGatewayMulticastDomainAssociationsResult$Associations": "<p>Information about the multicast domain associations.</p>"
       }
     },
     "TransitGatewayMulticastDomainId": {
@@ -20642,6 +20848,8 @@
         "ModifyVpcEndpointServiceConfigurationRequest$RemoveSupportedIpAddressTypes": "<p>The IP address types to remove from your service configuration.</p>",
         "ModifyVpcEndpointServicePermissionsRequest$AddAllowedPrincipals": "<p>The Amazon Resource Names (ARN) of one or more principals. Permissions are granted to the principals in this list. To grant permissions to all principals, specify an asterisk (*).</p>",
         "ModifyVpcEndpointServicePermissionsRequest$RemoveAllowedPrincipals": "<p>The Amazon Resource Names (ARN) of one or more principals. Permissions are revoked for principals in this list.</p>",
+        "NetworkInsightsAnalysis$AdditionalAccounts": null,
+        "NetworkInsightsAnalysis$SuggestedAccounts": null,
         "NewDhcpConfiguration$Values": null,
         "PacketHeaderStatement$SourceAddresses": "<p>The source addresses.</p>",
         "PacketHeaderStatement$DestinationAddresses": "<p>The destination addresses.</p>",
@@ -20669,6 +20877,7 @@
         "ServiceConfiguration$BaseEndpointDnsNames": "<p>The DNS names for the service.</p>",
         "ServiceDetail$AvailabilityZones": "<p>The Availability Zones in which the service is available.</p>",
         "ServiceDetail$BaseEndpointDnsNames": "<p>The DNS names for the service.</p>",
+        "StartNetworkInsightsAnalysisRequest$AdditionalAccounts": null,
         "TargetNetwork$SecurityGroups": "<p>The IDs of the security groups applied to the target network association.</p>",
         "TransitGatewayMulticastDeregisteredGroupMembers$DeregisteredNetworkInterfaceIds": "<p>The network interface IDs of the deregistered members.</p>",
         "TransitGatewayMulticastDeregisteredGroupSources$DeregisteredNetworkInterfaceIds": "<p>The network interface IDs of the non-registered members.</p>",
@@ -21175,7 +21384,6 @@
     "VpcPeeringConnectionId": {
       "base": null,
       "refs": {
-        "AcceptVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection. You must specify this parameter in the request.</p>",
         "CreateRouteRequest$VpcPeeringConnectionId": "<p>The ID of a VPC peering connection.</p>",
         "DeleteVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
         "ModifyVpcPeeringConnectionOptionsRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
@@ -21188,6 +21396,12 @@
       "base": null,
       "refs": {
         "DescribeVpcPeeringConnectionsRequest$VpcPeeringConnectionIds": "<p>One or more VPC peering connection IDs.</p> <p>Default: Describes all your VPC peering connections.</p>"
+      }
+    },
+    "VpcPeeringConnectionIdWithResolver": {
+      "base": null,
+      "refs": {
+        "AcceptVpcPeeringConnectionRequest$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection. You must specify this parameter in the request.</p>"
       }
     },
     "VpcPeeringConnectionList": {
@@ -21237,10 +21451,10 @@
       "base": "<p>Describes a VPN connection.</p>",
       "refs": {
         "CreateVpnConnectionResult$VpnConnection": "<p>Information about the VPN connection.</p>",
-        "ModifyVpnConnectionOptionsResult$VpnConnection": null,
-        "ModifyVpnConnectionResult$VpnConnection": null,
-        "ModifyVpnTunnelCertificateResult$VpnConnection": null,
-        "ModifyVpnTunnelOptionsResult$VpnConnection": null,
+        "ModifyVpnConnectionOptionsResult$VpnConnection": "<p>Information about the VPN connection.</p>",
+        "ModifyVpnConnectionResult$VpnConnection": "<p>Information about the VPN connection.</p>",
+        "ModifyVpnTunnelCertificateResult$VpnConnection": "<p>Information about the VPN connection.</p>",
+        "ModifyVpnTunnelOptionsResult$VpnConnection": "<p>Information about the VPN connection.</p>",
         "VpnConnectionList$member": null
       }
     },

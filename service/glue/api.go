@@ -23191,6 +23191,9 @@ type CodeGenConfigurationNode struct {
 	// nulls.
 	DropNullFields *DropNullFields `type:"structure"`
 
+	// Specifies a custom visual transform created by a user.
+	DynamicTransform *DynamicTransform `type:"structure"`
+
 	// Specifies a DynamoDB data source in the Glue Data Catalog.
 	DynamoDBCatalogSource *DynamoDBCatalogSource `type:"structure"`
 
@@ -23402,6 +23405,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.DropNullFields != nil {
 		if err := s.DropNullFields.Validate(); err != nil {
 			invalidParams.AddNested("DropNullFields", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DynamicTransform != nil {
+		if err := s.DynamicTransform.Validate(); err != nil {
+			invalidParams.AddNested("DynamicTransform", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.DynamoDBCatalogSource != nil {
@@ -23671,6 +23679,12 @@ func (s *CodeGenConfigurationNode) SetDropFields(v *DropFields) *CodeGenConfigur
 // SetDropNullFields sets the DropNullFields field's value.
 func (s *CodeGenConfigurationNode) SetDropNullFields(v *DropNullFields) *CodeGenConfigurationNode {
 	s.DropNullFields = v
+	return s
+}
+
+// SetDynamicTransform sets the DynamicTransform field's value.
+func (s *CodeGenConfigurationNode) SetDynamicTransform(v *DynamicTransform) *CodeGenConfigurationNode {
+	s.DynamicTransform = v
 	return s
 }
 
@@ -34593,6 +34607,141 @@ func (s *DropNullFields) SetNullTextList(v []*NullValueField) *DropNullFields {
 	return s
 }
 
+// Specifies the set of parameters needed to perform the dynamic transform.
+type DynamicTransform struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the name of the function of the dynamic transform.
+	//
+	// FunctionName is a required field
+	FunctionName *string `type:"string" required:"true"`
+
+	// Specifies the inputs for the dynamic transform that are required.
+	//
+	// Inputs is a required field
+	Inputs []*string `min:"1" type:"list" required:"true"`
+
+	// Specifies the name of the dynamic transform.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies the parameters of the dynamic transform.
+	Parameters []*TransformConfigParameter `type:"list"`
+
+	// Specifies the path of the dynamic transform source and config files.
+	//
+	// Path is a required field
+	Path *string `type:"string" required:"true"`
+
+	// Specifies the name of the dynamic transform as it appears in the Glue Studio
+	// visual editor.
+	//
+	// TransformName is a required field
+	TransformName *string `type:"string" required:"true"`
+
+	// This field is not used and will be deprecated in future release.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamicTransform) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamicTransform) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DynamicTransform) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DynamicTransform"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.Inputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Inputs"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("Path"))
+	}
+	if s.TransformName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransformName"))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *DynamicTransform) SetFunctionName(v string) *DynamicTransform {
+	s.FunctionName = &v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *DynamicTransform) SetInputs(v []*string) *DynamicTransform {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DynamicTransform) SetName(v string) *DynamicTransform {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *DynamicTransform) SetParameters(v []*TransformConfigParameter) *DynamicTransform {
+	s.Parameters = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *DynamicTransform) SetPath(v string) *DynamicTransform {
+	s.Path = &v
+	return s
+}
+
+// SetTransformName sets the TransformName field's value.
+func (s *DynamicTransform) SetTransformName(v string) *DynamicTransform {
+	s.TransformName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DynamicTransform) SetVersion(v string) *DynamicTransform {
+	s.Version = &v
+	return s
+}
+
 // Specifies a DynamoDB data source in the Glue Data Catalog.
 type DynamoDBCatalogSource struct {
 	_ struct{} `type:"structure"`
@@ -43276,8 +43425,7 @@ func (s *GluePolicy) SetUpdateTime(v time.Time) *GluePolicy {
 	return s
 }
 
-// Specifies a user-defined schema when a schema cannot be determined by AWS
-// Glue.
+// Specifies a user-defined schema when a schema cannot be determined by Glue.
 type GlueSchema struct {
 	_ struct{} `type:"structure"`
 
@@ -60101,6 +60249,114 @@ func (s *TaskRunSortCriteria) SetSortDirection(v string) *TaskRunSortCriteria {
 	return s
 }
 
+// Specifies the parameters in the config file of the dynamic transform.
+type TransformConfigParameter struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the parameter is optional or not in the config file of
+	// the dynamic transform.
+	IsOptional *bool `type:"boolean"`
+
+	// Specifies the list type of the parameter in the config file of the dynamic
+	// transform.
+	ListType *string `type:"string" enum:"ParamType"`
+
+	// Specifies the name of the parameter in the config file of the dynamic transform.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Specifies the parameter type in the config file of the dynamic transform.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ParamType"`
+
+	// Specifies the validation message in the config file of the dynamic transform.
+	ValidationMessage *string `type:"string"`
+
+	// Specifies the validation rule in the config file of the dynamic transform.
+	ValidationRule *string `type:"string"`
+
+	// Specifies the value of the parameter in the config file of the dynamic transform.
+	Value []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransformConfigParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransformConfigParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransformConfigParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransformConfigParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsOptional sets the IsOptional field's value.
+func (s *TransformConfigParameter) SetIsOptional(v bool) *TransformConfigParameter {
+	s.IsOptional = &v
+	return s
+}
+
+// SetListType sets the ListType field's value.
+func (s *TransformConfigParameter) SetListType(v string) *TransformConfigParameter {
+	s.ListType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TransformConfigParameter) SetName(v string) *TransformConfigParameter {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TransformConfigParameter) SetType(v string) *TransformConfigParameter {
+	s.Type = &v
+	return s
+}
+
+// SetValidationMessage sets the ValidationMessage field's value.
+func (s *TransformConfigParameter) SetValidationMessage(v string) *TransformConfigParameter {
+	s.ValidationMessage = &v
+	return s
+}
+
+// SetValidationRule sets the ValidationRule field's value.
+func (s *TransformConfigParameter) SetValidationRule(v string) *TransformConfigParameter {
+	s.ValidationRule = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TransformConfigParameter) SetValue(v []*string) *TransformConfigParameter {
+	s.Value = v
+	return s
+}
+
 // The encryption-at-rest settings of the transform that apply to accessing
 // user data. Machine learning transforms can access user data encrypted in
 // Amazon S3 using KMS.
@@ -65931,6 +66187,42 @@ func NodeType_Values() []string {
 		NodeTypeCrawler,
 		NodeTypeJob,
 		NodeTypeTrigger,
+	}
+}
+
+const (
+	// ParamTypeStr is a ParamType enum value
+	ParamTypeStr = "str"
+
+	// ParamTypeInt is a ParamType enum value
+	ParamTypeInt = "int"
+
+	// ParamTypeFloat is a ParamType enum value
+	ParamTypeFloat = "float"
+
+	// ParamTypeComplex is a ParamType enum value
+	ParamTypeComplex = "complex"
+
+	// ParamTypeBool is a ParamType enum value
+	ParamTypeBool = "bool"
+
+	// ParamTypeList is a ParamType enum value
+	ParamTypeList = "list"
+
+	// ParamTypeNull is a ParamType enum value
+	ParamTypeNull = "null"
+)
+
+// ParamType_Values returns all elements of the ParamType enum
+func ParamType_Values() []string {
+	return []string{
+		ParamTypeStr,
+		ParamTypeInt,
+		ParamTypeFloat,
+		ParamTypeComplex,
+		ParamTypeBool,
+		ParamTypeList,
+		ParamTypeNull,
 	}
 }
 

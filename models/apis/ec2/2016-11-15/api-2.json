@@ -1847,6 +1847,15 @@
       "input":{"shape":"DescribeAvailabilityZonesRequest"},
       "output":{"shape":"DescribeAvailabilityZonesResult"}
     },
+    "DescribeAwsNetworkPerformanceMetricSubscriptions":{
+      "name":"DescribeAwsNetworkPerformanceMetricSubscriptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAwsNetworkPerformanceMetricSubscriptionsRequest"},
+      "output":{"shape":"DescribeAwsNetworkPerformanceMetricSubscriptionsResult"}
+    },
     "DescribeBundleTasks":{
       "name":"DescribeBundleTasks",
       "http":{
@@ -3068,6 +3077,15 @@
       "input":{"shape":"DisableAddressTransferRequest"},
       "output":{"shape":"DisableAddressTransferResult"}
     },
+    "DisableAwsNetworkPerformanceMetricSubscription":{
+      "name":"DisableAwsNetworkPerformanceMetricSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableAwsNetworkPerformanceMetricSubscriptionRequest"},
+      "output":{"shape":"DisableAwsNetworkPerformanceMetricSubscriptionResult"}
+    },
     "DisableEbsEncryptionByDefault":{
       "name":"DisableEbsEncryptionByDefault",
       "http":{
@@ -3272,6 +3290,15 @@
       "input":{"shape":"EnableAddressTransferRequest"},
       "output":{"shape":"EnableAddressTransferResult"}
     },
+    "EnableAwsNetworkPerformanceMetricSubscription":{
+      "name":"EnableAwsNetworkPerformanceMetricSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableAwsNetworkPerformanceMetricSubscriptionRequest"},
+      "output":{"shape":"EnableAwsNetworkPerformanceMetricSubscriptionResult"}
+    },
     "EnableEbsEncryptionByDefault":{
       "name":"EnableEbsEncryptionByDefault",
       "http":{
@@ -3316,6 +3343,15 @@
       },
       "input":{"shape":"EnableIpamOrganizationAdminAccountRequest"},
       "output":{"shape":"EnableIpamOrganizationAdminAccountResult"}
+    },
+    "EnableReachabilityAnalyzerOrganizationSharing":{
+      "name":"EnableReachabilityAnalyzerOrganizationSharing",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableReachabilityAnalyzerOrganizationSharingRequest"},
+      "output":{"shape":"EnableReachabilityAnalyzerOrganizationSharingResult"}
     },
     "EnableSerialConsoleAccess":{
       "name":"EnableSerialConsoleAccess",
@@ -3422,6 +3458,15 @@
       },
       "input":{"shape":"GetAssociatedIpv6PoolCidrsRequest"},
       "output":{"shape":"GetAssociatedIpv6PoolCidrsResult"}
+    },
+    "GetAwsNetworkPerformanceData":{
+      "name":"GetAwsNetworkPerformanceData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAwsNetworkPerformanceDataRequest"},
+      "output":{"shape":"GetAwsNetworkPerformanceDataResult"}
     },
     "GetCapacityReservationUsage":{
       "name":"GetCapacityReservationUsage",
@@ -5102,7 +5147,7 @@
           "locationName":"dryRun"
         },
         "VpcPeeringConnectionId":{
-          "shape":"VpcPeeringConnectionId",
+          "shape":"VpcPeeringConnectionIdWithResolver",
           "locationName":"vpcPeeringConnectionId"
         }
       }
@@ -6663,7 +6708,8 @@
           "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
         },
-        "NetworkCardIndex":{"shape":"Integer"}
+        "NetworkCardIndex":{"shape":"Integer"},
+        "EnaSrdSpecification":{"shape":"EnaSrdSpecification"}
       }
     },
     "AttachNetworkInterfaceResult":{
@@ -6717,6 +6763,28 @@
         "VpcAttachment":{
           "shape":"VpcAttachment",
           "locationName":"attachment"
+        }
+      }
+    },
+    "AttachmentEnaSrdSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdEnabled":{
+          "shape":"Boolean",
+          "locationName":"enaSrdEnabled"
+        },
+        "EnaSrdUdpSpecification":{
+          "shape":"AttachmentEnaSrdUdpSpecification",
+          "locationName":"enaSrdUdpSpecification"
+        }
+      }
+    },
+    "AttachmentEnaSrdUdpSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdUdpEnabled":{
+          "shape":"Boolean",
+          "locationName":"enaSrdUdpEnabled"
         }
       }
     },
@@ -11600,6 +11668,61 @@
       "max":1000,
       "min":5
     },
+    "DataQueries":{
+      "type":"list",
+      "member":{"shape":"DataQuery"}
+    },
+    "DataQuery":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"String"},
+        "Source":{"shape":"String"},
+        "Destination":{"shape":"String"},
+        "Metric":{"shape":"MetricType"},
+        "Statistic":{"shape":"StatisticType"},
+        "Period":{"shape":"PeriodType"}
+      }
+    },
+    "DataResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{
+          "shape":"String",
+          "locationName":"id"
+        },
+        "Source":{
+          "shape":"String",
+          "locationName":"source"
+        },
+        "Destination":{
+          "shape":"String",
+          "locationName":"destination"
+        },
+        "Metric":{
+          "shape":"MetricType",
+          "locationName":"metric"
+        },
+        "Statistic":{
+          "shape":"StatisticType",
+          "locationName":"statistic"
+        },
+        "Period":{
+          "shape":"PeriodType",
+          "locationName":"period"
+        },
+        "MetricPoints":{
+          "shape":"MetricPoints",
+          "locationName":"metricPointSet"
+        }
+      }
+    },
+    "DataResponses":{
+      "type":"list",
+      "member":{
+        "shape":"DataResponse",
+        "locationName":"item"
+      }
+    },
     "DatafeedSubscriptionState":{
       "type":"string",
       "enum":[
@@ -13235,6 +13358,31 @@
         "AvailabilityZones":{
           "shape":"AvailabilityZoneList",
           "locationName":"availabilityZoneInfo"
+        }
+      }
+    },
+    "DescribeAwsNetworkPerformanceMetricSubscriptionsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResultsParam"},
+        "NextToken":{"shape":"String"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeAwsNetworkPerformanceMetricSubscriptionsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "Subscriptions":{
+          "shape":"SubscriptionList",
+          "locationName":"subscriptionSet"
         }
       }
     },
@@ -17681,6 +17829,25 @@
         }
       }
     },
+    "DisableAwsNetworkPerformanceMetricSubscriptionRequest":{
+      "type":"structure",
+      "members":{
+        "Source":{"shape":"String"},
+        "Destination":{"shape":"String"},
+        "Metric":{"shape":"MetricType"},
+        "Statistic":{"shape":"StatisticType"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableAwsNetworkPerformanceMetricSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "Output":{
+          "shape":"Boolean",
+          "locationName":"output"
+        }
+      }
+    },
     "DisableEbsEncryptionByDefaultRequest":{
       "type":"structure",
       "members":{
@@ -18809,6 +18976,20 @@
       }
     },
     "ElasticIpAssociationId":{"type":"string"},
+    "EnaSrdSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdEnabled":{"shape":"Boolean"},
+        "EnaSrdUdpSpecification":{"shape":"EnaSrdUdpSpecification"}
+      }
+    },
+    "EnaSrdSupported":{"type":"boolean"},
+    "EnaSrdUdpSpecification":{
+      "type":"structure",
+      "members":{
+        "EnaSrdUdpEnabled":{"shape":"Boolean"}
+      }
+    },
     "EnaSupport":{
       "type":"string",
       "enum":[
@@ -18835,6 +19016,25 @@
         "AddressTransfer":{
           "shape":"AddressTransfer",
           "locationName":"addressTransfer"
+        }
+      }
+    },
+    "EnableAwsNetworkPerformanceMetricSubscriptionRequest":{
+      "type":"structure",
+      "members":{
+        "Source":{"shape":"String"},
+        "Destination":{"shape":"String"},
+        "Metric":{"shape":"MetricType"},
+        "Statistic":{"shape":"StatisticType"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableAwsNetworkPerformanceMetricSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "Output":{
+          "shape":"Boolean",
+          "locationName":"output"
         }
       }
     },
@@ -19081,6 +19281,21 @@
         "Success":{
           "shape":"Boolean",
           "locationName":"success"
+        }
+      }
+    },
+    "EnableReachabilityAnalyzerOrganizationSharingRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableReachabilityAnalyzerOrganizationSharingResult":{
+      "type":"structure",
+      "members":{
+        "ReturnValue":{
+          "shape":"Boolean",
+          "locationName":"returnValue"
         }
       }
     },
@@ -20714,6 +20929,33 @@
         "Ipv6CidrAssociations":{
           "shape":"Ipv6CidrAssociationSet",
           "locationName":"ipv6CidrAssociationSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetAwsNetworkPerformanceDataRequest":{
+      "type":"structure",
+      "members":{
+        "DataQueries":{
+          "shape":"DataQueries",
+          "locationName":"DataQuery"
+        },
+        "StartTime":{"shape":"MillisecondDateTime"},
+        "EndTime":{"shape":"MillisecondDateTime"},
+        "MaxResults":{"shape":"Integer"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetAwsNetworkPerformanceDataResult":{
+      "type":"structure",
+      "members":{
+        "DataResponses":{
+          "shape":"DataResponses",
+          "locationName":"dataResponseSet"
         },
         "NextToken":{
           "shape":"String",
@@ -28176,6 +28418,11 @@
     "MaxIpv6AddrPerInterface":{"type":"integer"},
     "MaxNetworkInterfaces":{"type":"integer"},
     "MaxResults":{"type":"integer"},
+    "MaxResultsParam":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
     "MaximumBandwidthInMbps":{"type":"integer"},
     "MaximumEfaInterfaces":{"type":"integer"},
     "MaximumIops":{"type":"integer"},
@@ -28239,6 +28486,38 @@
       }
     },
     "MemorySize":{"type":"long"},
+    "MetricPoint":{
+      "type":"structure",
+      "members":{
+        "StartDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"startDate"
+        },
+        "EndDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"endDate"
+        },
+        "Value":{
+          "shape":"Float",
+          "locationName":"value"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        }
+      }
+    },
+    "MetricPoints":{
+      "type":"list",
+      "member":{
+        "shape":"MetricPoint",
+        "locationName":"item"
+      }
+    },
+    "MetricType":{
+      "type":"string",
+      "enum":["aggregate-latency"]
+    },
     "MillisecondDateTime":{"type":"timestamp"},
     "ModifyAddressAttributeRequest":{
       "type":"structure",
@@ -29001,7 +29280,8 @@
         "SourceDestCheck":{
           "shape":"AttributeBooleanValue",
           "locationName":"sourceDestCheck"
-        }
+        },
+        "EnaSrdSpecification":{"shape":"EnaSrdSpecification"}
       }
     },
     "ModifyPrivateDnsNameOptionsRequest":{
@@ -30159,6 +30439,10 @@
         "EncryptionInTransitSupported":{
           "shape":"EncryptionInTransitSupported",
           "locationName":"encryptionInTransitSupported"
+        },
+        "EnaSrdSupported":{
+          "shape":"EnaSrdSupported",
+          "locationName":"enaSrdSupported"
         }
       }
     },
@@ -30298,6 +30582,10 @@
           "shape":"NetworkInsightsPathId",
           "locationName":"networkInsightsPathId"
         },
+        "AdditionalAccounts":{
+          "shape":"ValueStringList",
+          "locationName":"additionalAccountSet"
+        },
         "FilterInArns":{
           "shape":"ArnList",
           "locationName":"filterInArnSet"
@@ -30337,6 +30625,10 @@
         "AlternatePathHints":{
           "shape":"AlternatePathHintList",
           "locationName":"alternatePathHintSet"
+        },
+        "SuggestedAccounts":{
+          "shape":"ValueStringList",
+          "locationName":"suggestedAccountSet"
         },
         "Tags":{
           "shape":"TagList",
@@ -30386,6 +30678,14 @@
         "Destination":{
           "shape":"String",
           "locationName":"destination"
+        },
+        "SourceArn":{
+          "shape":"ResourceArn",
+          "locationName":"sourceArn"
+        },
+        "DestinationArn":{
+          "shape":"ResourceArn",
+          "locationName":"destinationArn"
         },
         "SourceIp":{
           "shape":"IpAddress",
@@ -30601,6 +30901,10 @@
         "Status":{
           "shape":"AttachmentStatus",
           "locationName":"status"
+        },
+        "EnaSrdSpecification":{
+          "shape":"AttachmentEnaSrdSpecification",
+          "locationName":"enaSrdSpecification"
         }
       }
     },
@@ -31197,6 +31501,17 @@
           "locationName":"region"
         }
       }
+    },
+    "PeriodType":{
+      "type":"string",
+      "enum":[
+        "five-minutes",
+        "fifteen-minutes",
+        "one-hour",
+        "three-hours",
+        "one-day",
+        "one-week"
+      ]
     },
     "PermissionGroup":{
       "type":"string",
@@ -36909,6 +37224,10 @@
       ],
       "members":{
         "NetworkInsightsPathId":{"shape":"NetworkInsightsPathId"},
+        "AdditionalAccounts":{
+          "shape":"ValueStringList",
+          "locationName":"AdditionalAccount"
+        },
         "FilterInArns":{
           "shape":"ArnList",
           "locationName":"FilterInArn"
@@ -36982,6 +37301,10 @@
         "enable",
         "disable"
       ]
+    },
+    "StatisticType":{
+      "type":"string",
+      "enum":["p50"]
     },
     "Status":{
       "type":"string",
@@ -37332,6 +37655,38 @@
         "pending",
         "available"
       ]
+    },
+    "Subscription":{
+      "type":"structure",
+      "members":{
+        "Source":{
+          "shape":"String",
+          "locationName":"source"
+        },
+        "Destination":{
+          "shape":"String",
+          "locationName":"destination"
+        },
+        "Metric":{
+          "shape":"MetricType",
+          "locationName":"metric"
+        },
+        "Statistic":{
+          "shape":"StatisticType",
+          "locationName":"statistic"
+        },
+        "Period":{
+          "shape":"PeriodType",
+          "locationName":"period"
+        }
+      }
+    },
+    "SubscriptionList":{
+      "type":"list",
+      "member":{
+        "shape":"Subscription",
+        "locationName":"item"
+      }
     },
     "SuccessfulInstanceCreditSpecificationItem":{
       "type":"structure",
@@ -40969,6 +41324,7 @@
         "locationName":"item"
       }
     },
+    "VpcPeeringConnectionIdWithResolver":{"type":"string"},
     "VpcPeeringConnectionList":{
       "type":"list",
       "member":{

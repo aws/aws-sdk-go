@@ -534,6 +534,8 @@ func ExampleFSx_UpdateFileSystem_shared00() {
 				fmt.Println(fsx.ErrCodeUnsupportedOperation, aerr.Error())
 			case fsx.ErrCodeIncompatibleParameterError:
 				fmt.Println(fsx.ErrCodeIncompatibleParameterError, aerr.Error())
+			case fsx.ErrCodeInvalidNetworkSettings:
+				fmt.Println(fsx.ErrCodeInvalidNetworkSettings, aerr.Error())
 			case fsx.ErrCodeInternalServerError:
 				fmt.Println(fsx.ErrCodeInternalServerError, aerr.Error())
 			case fsx.ErrCodeFileSystemNotFound:

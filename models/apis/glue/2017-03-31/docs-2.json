@@ -728,7 +728,8 @@
         "S3DirectSourceAdditionalOptions$EnableSamplePath": "<p>Sets option to enable a sample path.</p>",
         "S3JsonSource$Recurse": "<p>If set to true, recursively reads files in all subdirectories under the specified paths.</p>",
         "S3JsonSource$Multiline": "<p>A Boolean value that specifies whether a single record can span multiple lines. This can occur when a field contains a quoted new-line character. You must set this option to True if any record spans multiple lines. The default value is <code>False</code>, which allows for more aggressive file-splitting during parsing.</p>",
-        "S3ParquetSource$Recurse": "<p>If set to true, recursively reads files in all subdirectories under the specified paths.</p>"
+        "S3ParquetSource$Recurse": "<p>If set to true, recursively reads files in all subdirectories under the specified paths.</p>",
+        "TransformConfigParameter$IsOptional": "<p>Specifies whether the parameter is optional or not in the config file of the dynamic transform.</p>"
       }
     },
     "BoxedDoubleFraction": {
@@ -2320,6 +2321,12 @@
         "CodeGenConfigurationNode$DropNullFields": "<p>Specifies a transform that removes columns from the dataset if all values in the column are 'null'. By default, Glue Studio will recognize null objects, but some values such as empty strings, strings that are \"null\", -1 integers or other placeholders such as zeros, are not automatically recognized as nulls.</p>"
       }
     },
+    "DynamicTransform": {
+      "base": "<p>Specifies the set of parameters needed to perform the dynamic transform.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$DynamicTransform": "<p>Specifies a custom visual transform created by a user.</p>"
+      }
+    },
     "DynamoDBCatalogSource": {
       "base": "<p>Specifies a DynamoDB data source in the Glue Data Catalog.</p>",
       "refs": {
@@ -2378,7 +2385,8 @@
         "S3JsonSource$Paths": "<p>A list of the Amazon S3 paths to read from.</p>",
         "S3JsonSource$Exclusions": "<p>A string containing a JSON list of Unix-style glob patterns to exclude. For example, \"[\\\"**.pdf\\\"]\" excludes all PDF files. </p>",
         "S3ParquetSource$Paths": "<p>A list of the Amazon S3 paths to read from.</p>",
-        "S3ParquetSource$Exclusions": "<p>A string containing a JSON list of Unix-style glob patterns to exclude. For example, \"[\\\"**.pdf\\\"]\" excludes all PDF files. </p>"
+        "S3ParquetSource$Exclusions": "<p>A string containing a JSON list of Unix-style glob patterns to exclude. For example, \"[\\\"**.pdf\\\"]\" excludes all PDF files. </p>",
+        "TransformConfigParameter$Value": "<p>Specifies the value of the parameter in the config file of the dynamic transform.</p>"
       }
     },
     "EnclosedInStringPropertiesMinOne": {
@@ -2407,6 +2415,11 @@
         "CustomCode$ClassName": "<p>The name defined for the custom code node class.</p>",
         "DirectSchemaChangePolicy$Table": "<p>Specifies the table in the database that the schema change policy applies to.</p>",
         "DirectSchemaChangePolicy$Database": "<p>Specifies the database that the schema change policy applies to.</p>",
+        "DynamicTransform$Name": "<p>Specifies the name of the dynamic transform.</p>",
+        "DynamicTransform$TransformName": "<p>Specifies the name of the dynamic transform as it appears in the Glue Studio visual editor.</p>",
+        "DynamicTransform$FunctionName": "<p>Specifies the name of the function of the dynamic transform.</p>",
+        "DynamicTransform$Path": "<p>Specifies the path of the dynamic transform source and config files.</p>",
+        "DynamicTransform$Version": "<p>This field is not used and will be deprecated in future release.</p>",
         "DynamoDBCatalogSource$Database": "<p>The name of the database to read from.</p>",
         "DynamoDBCatalogSource$Table": "<p>The name of the table in the database to read from.</p>",
         "EnclosedInStringProperties$member": null,
@@ -2499,6 +2512,9 @@
         "SparkConnectorTarget$ConnectorName": "<p>The name of an Apache Spark connector.</p>",
         "SparkConnectorTarget$ConnectionType": "<p>The type of connection, such as marketplace.spark or custom.spark, designating a connection to an Apache Spark data store.</p>",
         "Spigot$Path": "<p>A path in Amazon S3 where the transform will write a subset of records from the dataset to a JSON file in an Amazon S3 bucket.</p>",
+        "TransformConfigParameter$Name": "<p>Specifies the name of the parameter in the config file of the dynamic transform.</p>",
+        "TransformConfigParameter$ValidationRule": "<p>Specifies the validation rule in the config file of the dynamic transform.</p>",
+        "TransformConfigParameter$ValidationMessage": "<p>Specifies the validation message in the config file of the dynamic transform.</p>",
         "UpsertRedshiftTargetOptions$TableLocation": "<p>The physical location of the Redshift table.</p>",
         "UpsertRedshiftTargetOptions$ConnectionName": "<p>The name of the connection to use to write to Redshift.</p>"
       }
@@ -3574,7 +3590,7 @@
       }
     },
     "GlueSchema": {
-      "base": "<p>Specifies a user-defined schema when a schema cannot be determined by AWS Glue.</p>",
+      "base": "<p>Specifies a user-defined schema when a schema cannot be determined by Glue.</p>",
       "refs": {
         "GlueSchemas$member": null
       }
@@ -5184,6 +5200,7 @@
         "DropDuplicates$Inputs": "<p>The data inputs identified by their node names.</p>",
         "DropFields$Inputs": "<p>The data inputs identified by their node names.</p>",
         "DropNullFields$Inputs": "<p>The data inputs identified by their node names.</p>",
+        "DynamicTransform$Inputs": "<p>Specifies the inputs for the dynamic transform that are required.</p>",
         "FillMissingValues$Inputs": "<p>The data inputs identified by their node names.</p>",
         "Filter$Inputs": "<p>The data inputs identified by their node names.</p>",
         "GovernedCatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
@@ -5375,6 +5392,13 @@
         "ListCustomEntityTypesResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
         "ListMLTransformsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListMLTransformsResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>"
+      }
+    },
+    "ParamType": {
+      "base": null,
+      "refs": {
+        "TransformConfigParameter$Type": "<p>Specifies the parameter type in the config file of the dynamic transform.</p>",
+        "TransformConfigParameter$ListType": "<p>Specifies the list type of the parameter in the config file of the dynamic transform.</p>"
       }
     },
     "ParametersMap": {
@@ -7065,6 +7089,18 @@
         "GetTableRequest$TransactionId": "<p>The transaction ID at which to read the table contents. </p>",
         "GetTablesRequest$TransactionId": "<p>The transaction ID at which to read the table contents.</p>",
         "UpdateTableRequest$TransactionId": "<p>The transaction ID at which to update the table contents. </p>"
+      }
+    },
+    "TransformConfigParameter": {
+      "base": "<p>Specifies the parameters in the config file of the dynamic transform.</p>",
+      "refs": {
+        "TransformConfigParameterList$member": null
+      }
+    },
+    "TransformConfigParameterList": {
+      "base": null,
+      "refs": {
+        "DynamicTransform$Parameters": "<p>Specifies the parameters of the dynamic transform.</p>"
       }
     },
     "TransformEncryption": {

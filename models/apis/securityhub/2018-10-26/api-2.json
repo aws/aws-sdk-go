@@ -7401,7 +7401,8 @@
         "StandardsArn":{"shape":"NonEmptyString"},
         "Name":{"shape":"NonEmptyString"},
         "Description":{"shape":"NonEmptyString"},
-        "EnabledByDefault":{"shape":"Boolean"}
+        "EnabledByDefault":{"shape":"Boolean"},
+        "StandardsManagedBy":{"shape":"StandardsManagedBy"}
       }
     },
     "Standards":{
@@ -7431,6 +7432,13 @@
       "type":"map",
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
+    },
+    "StandardsManagedBy":{
+      "type":"structure",
+      "members":{
+        "Company":{"shape":"NonEmptyString"},
+        "Product":{"shape":"NonEmptyString"}
+      }
     },
     "StandardsStatus":{
       "type":"string",

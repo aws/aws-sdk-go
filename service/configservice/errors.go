@@ -14,6 +14,13 @@ const (
 	// You have specified a template that is invalid or supported.
 	ErrCodeConformancePackTemplateValidationException = "ConformancePackTemplateValidationException"
 
+	// ErrCodeIdempotentParameterMismatch for service response error code
+	// "IdempotentParameterMismatch".
+	//
+	// Using the same client token with one or more different parameters. Specify
+	// a new client token with the parameter changes and try again.
+	ErrCodeIdempotentParameterMismatch = "IdempotentParameterMismatch"
+
 	// ErrCodeInsufficientDeliveryPolicyException for service response error code
 	// "InsufficientDeliveryPolicyException".
 	//
@@ -432,6 +439,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ConformancePackTemplateValidationException":               newErrorConformancePackTemplateValidationException,
+	"IdempotentParameterMismatch":                              newErrorIdempotentParameterMismatch,
 	"InsufficientDeliveryPolicyException":                      newErrorInsufficientDeliveryPolicyException,
 	"InsufficientPermissionsException":                         newErrorInsufficientPermissionsException,
 	"InvalidConfigurationRecorderNameException":                newErrorInvalidConfigurationRecorderNameException,

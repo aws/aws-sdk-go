@@ -2467,10 +2467,6 @@ type DeleteRecommendationPreferencesInput struct {
 
 	// The name of the recommendation preference to delete.
 	//
-	// Enhanced infrastructure metrics (EnhancedInfrastructureMetrics) is the only
-	// feature that can be activated through preferences. Therefore, it is also
-	// the only recommendation preference that can be deleted.
-	//
 	// RecommendationPreferenceNames is a required field
 	RecommendationPreferenceNames []*string `locationName:"recommendationPreferenceNames" type:"list" required:"true" enum:"RecommendationPreferenceName"`
 
@@ -2845,6 +2841,14 @@ type EffectiveRecommendationPreferences struct {
 	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
 
+	// An object that describes the external metrics recommendation preference.
+	//
+	// If the preference is applied in the latest recommendation refresh, an object
+	// with a valid source value appears in the response. If the preference isn't
+	// applied to the recommendations already, then this object doesn't appear in
+	// the response.
+	ExternalMetricsPreference *ExternalMetricsPreference `locationName:"externalMetricsPreference" type:"structure"`
+
 	// Describes the activation status of the inferred workload types preference.
 	//
 	// A status of Active confirms that the preference is applied in the latest
@@ -2880,6 +2884,12 @@ func (s *EffectiveRecommendationPreferences) SetCpuVendorArchitectures(v []*stri
 // SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
 func (s *EffectiveRecommendationPreferences) SetEnhancedInfrastructureMetrics(v string) *EffectiveRecommendationPreferences {
 	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetExternalMetricsPreference sets the ExternalMetricsPreference field's value.
+func (s *EffectiveRecommendationPreferences) SetExternalMetricsPreference(v *ExternalMetricsPreference) *EffectiveRecommendationPreferences {
+	s.ExternalMetricsPreference = v
 	return s
 }
 
@@ -3756,6 +3766,38 @@ func (s *ExportLambdaFunctionRecommendationsOutput) SetS3Destination(v *S3Destin
 	return s
 }
 
+// Describes the external metrics preferences for EC2 rightsizing recommendations.
+type ExternalMetricsPreference struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the source options for external metrics preferences.
+	Source *string `locationName:"source" type:"string" enum:"ExternalMetricsSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalMetricsPreference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalMetricsPreference) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *ExternalMetricsPreference) SetSource(v string) *ExternalMetricsPreference {
+	s.Source = &v
+	return s
+}
+
 // Describes a filter that returns a more specific list of recommendations.
 // Use this filter with the GetAutoScalingGroupRecommendations and GetEC2InstanceRecommendations
 // actions.
@@ -4497,6 +4539,23 @@ type GetEffectiveRecommendationPreferencesOutput struct {
 	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
 	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+
+	// The provider of the external metrics recommendation preference. Considers
+	// all applicable preferences that you might have set at the account and organization
+	// level.
+	//
+	// If the preference is applied in the latest recommendation refresh, an object
+	// with a valid source value appears in the response. If the preference isn't
+	// applied to the recommendations already, then this object doesn't appear in
+	// the response.
+	//
+	// To validate whether the preference is applied to your last generated set
+	// of recommendations, review the effectiveRecommendationPreferences value in
+	// the response of the GetEC2InstanceRecommendations actions.
+	//
+	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
+	ExternalMetricsPreference *ExternalMetricsPreference `locationName:"externalMetricsPreference" type:"structure"`
 }
 
 // String returns the string representation.
@@ -4520,6 +4579,12 @@ func (s GetEffectiveRecommendationPreferencesOutput) GoString() string {
 // SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
 func (s *GetEffectiveRecommendationPreferencesOutput) SetEnhancedInfrastructureMetrics(v string) *GetEffectiveRecommendationPreferencesOutput {
 	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetExternalMetricsPreference sets the ExternalMetricsPreference field's value.
+func (s *GetEffectiveRecommendationPreferencesOutput) SetExternalMetricsPreference(v *ExternalMetricsPreference) *GetEffectiveRecommendationPreferencesOutput {
+	s.ExternalMetricsPreference = v
 	return s
 }
 
@@ -6528,6 +6593,18 @@ type PutRecommendationPreferencesInput struct {
 	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
 
+	// The provider of the external metrics recommendation preference to create
+	// or update.
+	//
+	// Specify a valid provider in the source field to activate the preference.
+	// To delete this preference, see the DeleteRecommendationPreferences action.
+	//
+	// This preference can only be set for the Ec2Instance resource type.
+	//
+	// For more information, see External metrics ingestion (https://docs.aws.amazon.com/compute-optimizer/latest/ug/external-metrics-ingestion.html)
+	// in the Compute Optimizer User Guide.
+	ExternalMetricsPreference *ExternalMetricsPreference `locationName:"externalMetricsPreference" type:"structure"`
+
 	// The status of the inferred workload types recommendation preference to create
 	// or update.
 	//
@@ -6606,6 +6683,12 @@ func (s *PutRecommendationPreferencesInput) Validate() error {
 // SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
 func (s *PutRecommendationPreferencesInput) SetEnhancedInfrastructureMetrics(v string) *PutRecommendationPreferencesInput {
 	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetExternalMetricsPreference sets the ExternalMetricsPreference field's value.
+func (s *PutRecommendationPreferencesInput) SetExternalMetricsPreference(v *ExternalMetricsPreference) *PutRecommendationPreferencesInput {
+	s.ExternalMetricsPreference = v
 	return s
 }
 
@@ -6836,19 +6919,27 @@ type RecommendationPreferencesDetail struct {
 
 	// The status of the enhanced infrastructure metrics recommendation preference.
 	//
-	// A status of Active confirms that the preference is applied in the latest
-	// recommendation refresh, and a status of Inactive confirms that it's not yet
-	// applied to recommendations.
+	// When the recommendations page is refreshed, a status of Active confirms that
+	// the preference is applied to the recommendations, and a status of Inactive
+	// confirms that the preference isn't yet applied to recommendations.
 	//
 	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
 	// in the Compute Optimizer User Guide.
 	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
 
+	// An object that describes the external metrics recommendation preference.
+	//
+	// If the preference is applied in the latest recommendation refresh, an object
+	// with a valid source value appears in the response. If the preference isn't
+	// applied to the recommendations already, then this object doesn't appear in
+	// the response.
+	ExternalMetricsPreference *ExternalMetricsPreference `locationName:"externalMetricsPreference" type:"structure"`
+
 	// The status of the inferred workload types recommendation preference.
 	//
-	// A status of Active confirms that the preference is applied in the latest
-	// recommendation refresh. A status of Inactive confirms that it's not yet applied
-	// to recommendations.
+	// When the recommendations page is refreshed, a status of Active confirms that
+	// the preference is applied to the recommendations, and a status of Inactive
+	// confirms that the preference isn't yet applied to recommendations.
 	InferredWorkloadTypes *string `locationName:"inferredWorkloadTypes" type:"string" enum:"InferredWorkloadTypesPreference"`
 
 	// The target resource type of the recommendation preference to create.
@@ -6889,6 +6980,12 @@ func (s RecommendationPreferencesDetail) GoString() string {
 // SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
 func (s *RecommendationPreferencesDetail) SetEnhancedInfrastructureMetrics(v string) *RecommendationPreferencesDetail {
 	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetExternalMetricsPreference sets the ExternalMetricsPreference field's value.
+func (s *RecommendationPreferencesDetail) SetExternalMetricsPreference(v *ExternalMetricsPreference) *RecommendationPreferencesDetail {
+	s.ExternalMetricsPreference = v
 	return s
 }
 
@@ -8611,6 +8708,9 @@ const (
 
 	// ExportableInstanceFieldRecommendationOptionsMigrationEffort is a ExportableInstanceField enum value
 	ExportableInstanceFieldRecommendationOptionsMigrationEffort = "RecommendationOptionsMigrationEffort"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource = "EffectiveRecommendationPreferencesExternalMetricsSource"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -8668,6 +8768,7 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldEffectiveRecommendationPreferencesInferredWorkloadTypes,
 		ExportableInstanceFieldInferredWorkloadTypes,
 		ExportableInstanceFieldRecommendationOptionsMigrationEffort,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesExternalMetricsSource,
 	}
 }
 
@@ -8900,6 +9001,30 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRecommendationOptionsSavingsOpportunityPercentage,
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
 		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue,
+	}
+}
+
+const (
+	// ExternalMetricsSourceDatadog is a ExternalMetricsSource enum value
+	ExternalMetricsSourceDatadog = "Datadog"
+
+	// ExternalMetricsSourceDynatrace is a ExternalMetricsSource enum value
+	ExternalMetricsSourceDynatrace = "Dynatrace"
+
+	// ExternalMetricsSourceNewRelic is a ExternalMetricsSource enum value
+	ExternalMetricsSourceNewRelic = "NewRelic"
+
+	// ExternalMetricsSourceInstana is a ExternalMetricsSource enum value
+	ExternalMetricsSourceInstana = "Instana"
+)
+
+// ExternalMetricsSource_Values returns all elements of the ExternalMetricsSource enum
+func ExternalMetricsSource_Values() []string {
+	return []string{
+		ExternalMetricsSourceDatadog,
+		ExternalMetricsSourceDynatrace,
+		ExternalMetricsSourceNewRelic,
+		ExternalMetricsSourceInstana,
 	}
 }
 
@@ -9405,6 +9530,9 @@ const (
 
 	// RecommendationPreferenceNameInferredWorkloadTypes is a RecommendationPreferenceName enum value
 	RecommendationPreferenceNameInferredWorkloadTypes = "InferredWorkloadTypes"
+
+	// RecommendationPreferenceNameExternalMetricsPreference is a RecommendationPreferenceName enum value
+	RecommendationPreferenceNameExternalMetricsPreference = "ExternalMetricsPreference"
 )
 
 // RecommendationPreferenceName_Values returns all elements of the RecommendationPreferenceName enum
@@ -9412,6 +9540,7 @@ func RecommendationPreferenceName_Values() []string {
 	return []string{
 		RecommendationPreferenceNameEnhancedInfrastructureMetrics,
 		RecommendationPreferenceNameInferredWorkloadTypes,
+		RecommendationPreferenceNameExternalMetricsPreference,
 	}
 }
 

@@ -1358,7 +1358,9 @@ func (c *EKS) DescribeAddonVersionsRequest(input *DescribeAddonVersionsInput) (r
 
 // DescribeAddonVersions API operation for Amazon Elastic Kubernetes Service.
 //
-// Describes the Kubernetes versions that the add-on can be used with.
+// Describes the versions for an add-on. Information such as the Kubernetes
+// versions that you can use the add-on with, the owner, publisher, and the
+// type of the add-on are returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3993,8 +3995,17 @@ type Addon struct {
 	// An object representing the health of the add-on.
 	Health *AddonHealth `locationName:"health" type:"structure"`
 
+	// Information about an Amazon EKS add-on from the Amazon Web Services Marketplace.
+	MarketplaceInformation *MarketplaceInformation `locationName:"marketplaceInformation" type:"structure"`
+
 	// The date and time that the add-on was last modified.
 	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp"`
+
+	// The owner of the add-on.
+	Owner *string `locationName:"owner" type:"string"`
+
+	// The publisher of the add-on.
+	Publisher *string `locationName:"publisher" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that is bound to the Kubernetes
 	// service account used by the add-on.
@@ -4064,9 +4075,27 @@ func (s *Addon) SetHealth(v *AddonHealth) *Addon {
 	return s
 }
 
+// SetMarketplaceInformation sets the MarketplaceInformation field's value.
+func (s *Addon) SetMarketplaceInformation(v *MarketplaceInformation) *Addon {
+	s.MarketplaceInformation = v
+	return s
+}
+
 // SetModifiedAt sets the ModifiedAt field's value.
 func (s *Addon) SetModifiedAt(v time.Time) *Addon {
 	s.ModifiedAt = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *Addon) SetOwner(v string) *Addon {
+	s.Owner = &v
+	return s
+}
+
+// SetPublisher sets the Publisher field's value.
+func (s *Addon) SetPublisher(v string) *Addon {
+	s.Publisher = &v
 	return s
 }
 
@@ -4131,6 +4160,15 @@ type AddonInfo struct {
 	// Kubernetes versions.
 	AddonVersions []*AddonVersionInfo `locationName:"addonVersions" type:"list"`
 
+	// Information about the add-on from the Amazon Web Services Marketplace.
+	MarketplaceInformation *MarketplaceInformation `locationName:"marketplaceInformation" type:"structure"`
+
+	// The owner of the add-on.
+	Owner *string `locationName:"owner" type:"string"`
+
+	// The publisher of the add-on.
+	Publisher *string `locationName:"publisher" type:"string"`
+
 	// The type of the add-on.
 	Type *string `locationName:"type" type:"string"`
 }
@@ -4162,6 +4200,24 @@ func (s *AddonInfo) SetAddonName(v string) *AddonInfo {
 // SetAddonVersions sets the AddonVersions field's value.
 func (s *AddonInfo) SetAddonVersions(v []*AddonVersionInfo) *AddonInfo {
 	s.AddonVersions = v
+	return s
+}
+
+// SetMarketplaceInformation sets the MarketplaceInformation field's value.
+func (s *AddonInfo) SetMarketplaceInformation(v *MarketplaceInformation) *AddonInfo {
+	s.MarketplaceInformation = v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *AddonInfo) SetOwner(v string) *AddonInfo {
+	s.Owner = &v
+	return s
+}
+
+// SetPublisher sets the Publisher field's value.
+func (s *AddonInfo) SetPublisher(v string) *AddonInfo {
+	s.Publisher = &v
 	return s
 }
 
@@ -4233,6 +4289,9 @@ type AddonVersionInfo struct {
 
 	// An object representing the compatibilities of a version.
 	Compatibilities []*Compatibility `locationName:"compatibilities" type:"list"`
+
+	// Whether the add-on requires configuration.
+	RequiresConfiguration *bool `locationName:"requiresConfiguration" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -4268,6 +4327,12 @@ func (s *AddonVersionInfo) SetArchitecture(v []*string) *AddonVersionInfo {
 // SetCompatibilities sets the Compatibilities field's value.
 func (s *AddonVersionInfo) SetCompatibilities(v []*Compatibility) *AddonVersionInfo {
 	s.Compatibilities = v
+	return s
+}
+
+// SetRequiresConfiguration sets the RequiresConfiguration field's value.
+func (s *AddonVersionInfo) SetRequiresConfiguration(v bool) *AddonVersionInfo {
+	s.RequiresConfiguration = &v
 	return s
 }
 
@@ -5203,7 +5268,7 @@ func (s *ConnectorConfigResponse) SetRoleArn(v string) *ConnectorConfigResponse 
 	return s
 }
 
-// The placement configuration for all the control plane instance of your local
+// The placement configuration for all the control plane instances of your local
 // Amazon EKS cluster on an Amazon Web Services Outpost. For more information,
 // see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
 // in the Amazon EKS User Guide
@@ -5239,7 +5304,7 @@ func (s *ControlPlanePlacementRequest) SetGroupName(v string) *ControlPlanePlace
 	return s
 }
 
-// The placement configuration for all the control plane instance of your local
+// The placement configuration for all the control plane instances of your local
 // Amazon EKS cluster on an Amazon Web Services Outpost. For more information,
 // see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
 // in the Amazon EKS User Guide.
@@ -6171,7 +6236,7 @@ type DeleteAddonInput struct {
 
 	// Specifying this option preserves the add-on software on your cluster but
 	// Amazon EKS stops managing any settings for the add-on. If an IAM account
-	// is associated with the add-on, it is not removed.
+	// is associated with the add-on, it isn't removed.
 	Preserve *bool `location:"querystring" locationName:"preserve" type:"boolean"`
 }
 
@@ -6726,7 +6791,7 @@ type DescribeAddonVersionsInput struct {
 	// ListAddons (https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html).
 	AddonName *string `location:"querystring" locationName:"addonName" type:"string"`
 
-	// The Kubernetes versions that the add-on can be used with.
+	// The Kubernetes versions that you can use the add-on with.
 	KubernetesVersion *string `location:"querystring" locationName:"kubernetesVersion" type:"string"`
 
 	// The maximum number of results to return.
@@ -6740,6 +6805,17 @@ type DescribeAddonVersionsInput struct {
 	// This token should be treated as an opaque identifier that is used only to
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The owner of the add-on. For valid owners, don't specify a value for this
+	// property.
+	Owners []*string `location:"querystring" locationName:"owners" type:"list"`
+
+	// The publisher of the add-on. For valid publishers, don't specify a value
+	// for this property.
+	Publishers []*string `location:"querystring" locationName:"publishers" type:"list"`
+
+	// The type of the add-on. For valid types, don't specify a value for this property.
+	Types []*string `location:"querystring" locationName:"types" type:"list"`
 }
 
 // String returns the string representation.
@@ -6797,10 +6873,29 @@ func (s *DescribeAddonVersionsInput) SetNextToken(v string) *DescribeAddonVersio
 	return s
 }
 
+// SetOwners sets the Owners field's value.
+func (s *DescribeAddonVersionsInput) SetOwners(v []*string) *DescribeAddonVersionsInput {
+	s.Owners = v
+	return s
+}
+
+// SetPublishers sets the Publishers field's value.
+func (s *DescribeAddonVersionsInput) SetPublishers(v []*string) *DescribeAddonVersionsInput {
+	s.Publishers = v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *DescribeAddonVersionsInput) SetTypes(v []*string) *DescribeAddonVersionsInput {
+	s.Types = v
+	return s
+}
+
 type DescribeAddonVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of available versions with Kubernetes version compatibility.
+	// The list of available versions with Kubernetes version compatibility and
+	// other properties.
 	Addons []*AddonInfo `locationName:"addons" type:"list"`
 
 	// The nextToken value returned from a previous paginated DescribeAddonVersionsResponse
@@ -9213,6 +9308,47 @@ func (s *Logging) SetClusterLogging(v []*LogSetup) *Logging {
 	return s
 }
 
+// Information about an Amazon EKS add-on from the Amazon Web Services Marketplace.
+type MarketplaceInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The product ID from the Amazon Web Services Marketplace.
+	ProductId *string `locationName:"productId" type:"string"`
+
+	// The product URL from the Amazon Web Services Marketplace.
+	ProductUrl *string `locationName:"productUrl" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MarketplaceInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MarketplaceInformation) GoString() string {
+	return s.String()
+}
+
+// SetProductId sets the ProductId field's value.
+func (s *MarketplaceInformation) SetProductId(v string) *MarketplaceInformation {
+	s.ProductId = &v
+	return s
+}
+
+// SetProductUrl sets the ProductUrl field's value.
+func (s *MarketplaceInformation) SetProductUrl(v string) *MarketplaceInformation {
+	s.ProductUrl = &v
+	return s
+}
+
 // An object representing an Amazon EKS managed node group.
 type Nodegroup struct {
 	_ struct{} `type:"structure"`
@@ -10101,7 +10237,7 @@ type OutpostConfigRequest struct {
 	ControlPlaneInstanceType *string `locationName:"controlPlaneInstanceType" type:"string" required:"true"`
 
 	// An object representing the placement configuration for all the control plane
-	// instance of your local Amazon EKS cluster on an Amazon Web Services Outpost.
+	// instances of your local Amazon EKS cluster on an Amazon Web Services Outpost.
 	// For more information, see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
 	// in the Amazon EKS User Guide.
 	ControlPlanePlacement *ControlPlanePlacementRequest `locationName:"controlPlanePlacement" type:"structure"`
@@ -10178,7 +10314,7 @@ type OutpostConfigResponse struct {
 	ControlPlaneInstanceType *string `locationName:"controlPlaneInstanceType" type:"string" required:"true"`
 
 	// An object representing the placement configuration for all the control plane
-	// instance of your local Amazon EKS cluster on an Amazon Web Services Outpost.
+	// instances of your local Amazon EKS cluster on an Amazon Web Services Outpost.
 	// For more information, see Capacity considerations (https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-capacity-considerations.html)
 	// in the Amazon EKS User Guide.
 	ControlPlanePlacement *ControlPlanePlacementResponse `locationName:"controlPlanePlacement" type:"structure"`
@@ -12049,7 +12185,7 @@ type UpdateTaintsPayload struct {
 	// Kubernetes taints to be added or updated.
 	AddOrUpdateTaints []*Taint `locationName:"addOrUpdateTaints" type:"list"`
 
-	// Kubernetes taints to be removed.
+	// Kubernetes taints to remove.
 	RemoveTaints []*Taint `locationName:"removeTaints" type:"list"`
 }
 

@@ -1,3 +1,27 @@
+Release v1.44.147 (2022-11-29)
+===
+
+### Service Client Updates
+* `service/arc-zonal-shift`: Adds new service
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/config`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Introduces ENA Express, which uses AWS SRD and dynamic routing to increase throughput and minimize latency, adds support for trust relationships between Reachability Analyzer and AWS Organizations to enable cross-account analysis, and adds support for Infrastructure Performance metric subscriptions.
+* `service/eks`: Updates service API and documentation
+* `service/fsx`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * This release allows the creation of Custom Visual Transforms (Dynamic Transforms) to be created via AWS Glue CLI/SDK.
+* `service/inspector2`: Updates service API and documentation
+* `service/lambda`: Updates service API, documentation, and waiters
+  * Adds support for Lambda SnapStart, which helps improve the startup performance of functions. Customers can now manage SnapStart based functions via CreateFunction and UpdateFunctionConfiguration APIs
+* `service/license-manager-user-subscriptions`: Updates service API and documentation
+* `service/macie2`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * This release adds new Describe APIs and updates Create and Update APIs to support the data model for Dashboards, Analyses, and Templates.
+* `service/s3control`: Updates service API and documentation
+  * Added two new APIs to support Amazon S3 Multi-Region Access Point failover controls: GetMultiRegionAccessPointRoutes and SubmitMultiRegionAccessPointRoutes. The failover control APIs are supported in the following Regions: us-east-1, us-west-2, eu-west-1, ap-southeast-2, and ap-northeast-1.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.44.146 (2022-11-28)
 ===
 

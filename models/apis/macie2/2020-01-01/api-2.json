@@ -998,6 +998,34 @@
         }
       ]
     },
+    "GetAutomatedDiscoveryConfiguration": {
+      "name": "GetAutomatedDiscoveryConfiguration",
+      "http": {
+        "method": "GET",
+        "requestUri": "/automated-discovery/configuration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetAutomatedDiscoveryConfigurationRequest"
+      },
+      "output": {
+        "shape": "GetAutomatedDiscoveryConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
     "GetBucketStatistics": {
       "name": "GetBucketStatistics",
       "http": {
@@ -1069,6 +1097,37 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "GetClassificationScope": {
+      "name": "GetClassificationScope",
+      "http": {
+        "method": "GET",
+        "requestUri": "/classification-scopes/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetClassificationScopeRequest"
+      },
+      "output": {
+        "shape": "GetClassificationScopeResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
         }
       ]
     },
@@ -1405,6 +1464,40 @@
         }
       ]
     },
+    "GetResourceProfile": {
+      "name": "GetResourceProfile",
+      "http": {
+        "method": "GET",
+        "requestUri": "/resource-profiles",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetResourceProfileRequest"
+      },
+      "output": {
+        "shape": "GetResourceProfileResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        }
+      ]
+    },
     "GetRevealConfiguration": {
       "name": "GetRevealConfiguration",
       "http": {
@@ -1486,6 +1579,37 @@
         },
         {
           "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
+    "GetSensitivityInspectionTemplate": {
+      "name": "GetSensitivityInspectionTemplate",
+      "http": {
+        "method": "GET",
+        "requestUri": "/templates/sensitivity-inspections/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetSensitivityInspectionTemplateRequest"
+      },
+      "output": {
+        "shape": "GetSensitivityInspectionTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
         },
         {
           "shape": "InternalServerException"
@@ -1631,6 +1755,34 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "ListClassificationScopes": {
+      "name": "ListClassificationScopes",
+      "http": {
+        "method": "GET",
+        "requestUri": "/classification-scopes",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListClassificationScopesRequest"
+      },
+      "output": {
+        "shape": "ListClassificationScopesResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
         }
       ]
     },
@@ -1871,6 +2023,102 @@
         }
       ]
     },
+    "ListResourceProfileArtifacts": {
+      "name": "ListResourceProfileArtifacts",
+      "http": {
+        "method": "GET",
+        "requestUri": "/resource-profiles/artifacts",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListResourceProfileArtifactsRequest"
+      },
+      "output": {
+        "shape": "ListResourceProfileArtifactsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
+    "ListResourceProfileDetections": {
+      "name": "ListResourceProfileDetections",
+      "http": {
+        "method": "GET",
+        "requestUri": "/resource-profiles/detections",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListResourceProfileDetectionsRequest"
+      },
+      "output": {
+        "shape": "ListResourceProfileDetectionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        }
+      ]
+    },
+    "ListSensitivityInspectionTemplates": {
+      "name": "ListSensitivityInspectionTemplates",
+      "http": {
+        "method": "GET",
+        "requestUri": "/templates/sensitivity-inspections",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListSensitivityInspectionTemplatesRequest"
+      },
+      "output": {
+        "shape": "ListSensitivityInspectionTemplatesResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
     "ListTagsForResource": {
       "name": "ListTagsForResource",
       "http": {
@@ -2095,6 +2343,34 @@
         }
       ]
     },
+    "UpdateAutomatedDiscoveryConfiguration": {
+      "name": "UpdateAutomatedDiscoveryConfiguration",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/automated-discovery/configuration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateAutomatedDiscoveryConfigurationRequest"
+      },
+      "output": {
+        "shape": "UpdateAutomatedDiscoveryConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
     "UpdateClassificationJob": {
       "name": "UpdateClassificationJob",
       "http": {
@@ -2129,6 +2405,37 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateClassificationScope": {
+      "name": "UpdateClassificationScope",
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/classification-scopes/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateClassificationScopeRequest"
+      },
+      "output": {
+        "shape": "UpdateClassificationScopeResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
         }
       ]
     },
@@ -2280,6 +2587,74 @@
         }
       ]
     },
+    "UpdateResourceProfile": {
+      "name": "UpdateResourceProfile",
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/resource-profiles",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateResourceProfileRequest"
+      },
+      "output": {
+        "shape": "UpdateResourceProfileResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        }
+      ]
+    },
+    "UpdateResourceProfileDetections": {
+      "name": "UpdateResourceProfileDetections",
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/resource-profiles/detections",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateResourceProfileDetectionsRequest"
+      },
+      "output": {
+        "shape": "UpdateResourceProfileDetectionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        }
+      ]
+    },
     "UpdateRevealConfiguration": {
       "name": "UpdateRevealConfiguration",
       "http": {
@@ -2294,6 +2669,37 @@
         "shape": "UpdateRevealConfigurationResponse"
       },
       "errors": [
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ]
+    },
+    "UpdateSensitivityInspectionTemplate": {
+      "name": "UpdateSensitivityInspectionTemplate",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/templates/sensitivity-inspections/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateSensitivityInspectionTemplateRequest"
+      },
+      "output": {
+        "shape": "UpdateSensitivityInspectionTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
         {
           "shape": "ThrottlingException"
         },
@@ -2530,6 +2936,13 @@
           "locationName": "sessionContext"
         }
       }
+    },
+    "AutomatedDiscoveryStatus": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "AvailabilityCode": {
       "type": "string",
@@ -2814,6 +3227,10 @@
           "shape": "JobDetails",
           "locationName": "jobDetails"
         },
+        "lastAutomatedDiscoveryTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "lastAutomatedDiscoveryTime"
+        },
         "lastUpdated": {
           "shape": "__timestampIso8601",
           "locationName": "lastUpdated"
@@ -2837,6 +3254,10 @@
         "replicationDetails": {
           "shape": "ReplicationDetails",
           "locationName": "replicationDetails"
+        },
+        "sensitivityScore": {
+          "shape": "__integer",
+          "locationName": "sensitivityScore"
         },
         "serverSideEncryption": {
           "shape": "BucketServerSideEncryption",
@@ -2943,6 +3364,27 @@
         }
       }
     },
+    "BucketStatisticsBySensitivity": {
+      "type": "structure",
+      "members": {
+        "classificationError": {
+          "shape": "SensitivityAggregations",
+          "locationName": "classificationError"
+        },
+        "notClassified": {
+          "shape": "SensitivityAggregations",
+          "locationName": "notClassified"
+        },
+        "notSensitive": {
+          "shape": "SensitivityAggregations",
+          "locationName": "notSensitive"
+        },
+        "sensitive": {
+          "shape": "SensitivityAggregations",
+          "locationName": "sensitive"
+        }
+      }
+    },
     "Cell": {
       "type": "structure",
       "members": {
@@ -3045,6 +3487,35 @@
           "locationName": "reason"
         }
       }
+    },
+    "ClassificationScopeId": {
+      "type": "string",
+      "pattern": "^[0-9a-z]*$"
+    },
+    "ClassificationScopeName": {
+      "type": "string",
+      "pattern": "^[0-9a-zA-Z_\\\\-]*$"
+    },
+    "ClassificationScopeSummary": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "ClassificationScopeId",
+          "locationName": "id"
+        },
+        "name": {
+          "shape": "ClassificationScopeName",
+          "locationName": "name"
+        }
+      }
+    },
+    "ClassificationScopeUpdateOperation": {
+      "type": "string",
+      "enum": [
+        "ADD",
+        "REPLACE",
+        "REMOVE"
+      ]
     },
     "ConflictException": {
       "type": "structure",
@@ -3501,6 +3972,13 @@
         "HIGH"
       ]
     },
+    "DataIdentifierType": {
+      "type": "string",
+      "enum": [
+        "CUSTOM",
+        "MANAGED"
+      ]
+    },
     "DayOfWeek": {
       "type": "string",
       "enum": [
@@ -3816,6 +4294,35 @@
       "required": [
         "value"
       ]
+    },
+    "Detection": {
+      "type": "structure",
+      "members": {
+        "arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "count": {
+          "shape": "__long",
+          "locationName": "count"
+        },
+        "id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "suppressed": {
+          "shape": "__boolean",
+          "locationName": "suppressed"
+        },
+        "type": {
+          "shape": "DataIdentifierType",
+          "locationName": "type"
+        }
+      }
     },
     "DisableMacieRequest": {
       "type": "structure",
@@ -4251,6 +4758,39 @@
         }
       }
     },
+    "GetAutomatedDiscoveryConfigurationRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "GetAutomatedDiscoveryConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "classificationScopeId": {
+          "shape": "ClassificationScopeId",
+          "locationName": "classificationScopeId"
+        },
+        "disabledAt": {
+          "shape": "Timestamp",
+          "locationName": "disabledAt"
+        },
+        "firstEnabledAt": {
+          "shape": "Timestamp",
+          "locationName": "firstEnabledAt"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp",
+          "locationName": "lastUpdatedAt"
+        },
+        "sensitivityInspectionTemplateId": {
+          "shape": "SensitivityInspectionTemplateId",
+          "locationName": "sensitivityInspectionTemplateId"
+        },
+        "status": {
+          "shape": "AutomatedDiscoveryStatus",
+          "locationName": "status"
+        }
+      }
+    },
     "GetBucketStatisticsRequest": {
       "type": "structure",
       "members": {
@@ -4282,6 +4822,10 @@
         "bucketCountBySharedAccessType": {
           "shape": "BucketCountBySharedAccessType",
           "locationName": "bucketCountBySharedAccessType"
+        },
+        "bucketStatisticsBySensitivity": {
+          "shape": "BucketStatisticsBySensitivity",
+          "locationName": "bucketStatisticsBySensitivity"
         },
         "classifiableObjectCount": {
           "shape": "__long",
@@ -4327,6 +4871,36 @@
         "configuration": {
           "shape": "ClassificationExportConfiguration",
           "locationName": "configuration"
+        }
+      }
+    },
+    "GetClassificationScopeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "id"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "GetClassificationScopeResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "ClassificationScopeId",
+          "locationName": "id"
+        },
+        "name": {
+          "shape": "ClassificationScopeName",
+          "locationName": "name"
+        },
+        "s3": {
+          "shape": "S3ClassificationScope",
+          "locationName": "s3"
         }
       }
     },
@@ -4626,6 +5200,40 @@
         }
       }
     },
+    "GetResourceProfileRequest": {
+      "type": "structure",
+      "members": {
+        "resourceArn": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        }
+      },
+      "required": [
+        "resourceArn"
+      ]
+    },
+    "GetResourceProfileResponse": {
+      "type": "structure",
+      "members": {
+        "profileUpdatedAt": {
+          "shape": "__timestampIso8601",
+          "locationName": "profileUpdatedAt"
+        },
+        "sensitivityScore": {
+          "shape": "__integer",
+          "locationName": "sensitivityScore"
+        },
+        "sensitivityScoreOverridden": {
+          "shape": "__boolean",
+          "locationName": "sensitivityScoreOverridden"
+        },
+        "statistics": {
+          "shape": "ResourceStatistics",
+          "locationName": "statistics"
+        }
+      }
+    },
     "GetRevealConfigurationRequest": {
       "type": "structure",
       "members": {}
@@ -4692,6 +5300,44 @@
         "status": {
           "shape": "RevealRequestStatus",
           "locationName": "status"
+        }
+      }
+    },
+    "GetSensitivityInspectionTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "id"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "GetSensitivityInspectionTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "shape": "__string",
+          "locationName": "description"
+        },
+        "excludes": {
+          "shape": "SensitivityInspectionTemplateExcludes",
+          "locationName": "excludes"
+        },
+        "includes": {
+          "shape": "SensitivityInspectionTemplateIncludes",
+          "locationName": "includes"
+        },
+        "name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "sensitivityInspectionTemplateId": {
+          "shape": "SensitivityInspectionTemplateId",
+          "locationName": "sensitivityInspectionTemplateId"
         }
       }
     },
@@ -5021,6 +5667,10 @@
     "JobSummary": {
       "type": "structure",
       "members": {
+        "bucketCriteria": {
+          "shape": "S3BucketCriteriaForJob",
+          "locationName": "bucketCriteria"
+        },
         "bucketDefinitions": {
           "shape": "__listOfS3BucketDefinitionForJob",
           "locationName": "bucketDefinitions"
@@ -5052,10 +5702,6 @@
         "userPausedDetails": {
           "shape": "UserPausedDetails",
           "locationName": "userPausedDetails"
-        },
-        "bucketCriteria": {
-          "shape": "S3BucketCriteriaForJob",
-          "locationName": "bucketCriteria"
         }
       }
     },
@@ -5159,6 +5805,34 @@
         },
         "nextToken": {
           "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListClassificationScopesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "name"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListClassificationScopesResponse": {
+      "type": "structure",
+      "members": {
+        "classificationScopes": {
+          "shape": "__listOfClassificationScopeSummary",
+          "locationName": "classificationScopes"
+        },
+        "nextToken": {
+          "shape": "NextToken",
           "locationName": "nextToken"
         }
       }
@@ -5423,6 +6097,101 @@
         }
       }
     },
+    "ListResourceProfileArtifactsRequest": {
+      "type": "structure",
+      "members": {
+        "nextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        },
+        "resourceArn": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        }
+      },
+      "required": [
+        "resourceArn"
+      ]
+    },
+    "ListResourceProfileArtifactsResponse": {
+      "type": "structure",
+      "members": {
+        "artifacts": {
+          "shape": "__listOfResourceProfileArtifact",
+          "locationName": "artifacts"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListResourceProfileDetectionsRequest": {
+      "type": "structure",
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        },
+        "resourceArn": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        }
+      },
+      "required": [
+        "resourceArn"
+      ]
+    },
+    "ListResourceProfileDetectionsResponse": {
+      "type": "structure",
+      "members": {
+        "detections": {
+          "shape": "__listOfDetection",
+          "locationName": "detections"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListSensitivityInspectionTemplatesRequest": {
+      "type": "structure",
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "nextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListSensitivityInspectionTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "nextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        },
+        "sensitivityInspectionTemplates": {
+          "shape": "__listOfSensitivityInspectionTemplatesEntry",
+          "locationName": "sensitivityInspectionTemplates"
+        }
+      }
+    },
     "ListTagsForResourceRequest": {
       "type": "structure",
       "members": {
@@ -5505,6 +6274,10 @@
           "shape": "JobDetails",
           "locationName": "jobDetails"
         },
+        "lastAutomatedDiscoveryTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "lastAutomatedDiscoveryTime"
+        },
         "objectCount": {
           "shape": "__long",
           "locationName": "objectCount"
@@ -5512,6 +6285,10 @@
         "objectCountByEncryptionType": {
           "shape": "ObjectCountByEncryptionType",
           "locationName": "objectCountByEncryptionType"
+        },
+        "sensitivityScore": {
+          "shape": "__integer",
+          "locationName": "sensitivityScore"
         },
         "sizeInBytes": {
           "shape": "__long",
@@ -5595,6 +6372,10 @@
         }
       }
     },
+    "NextToken": {
+      "type": "string",
+      "pattern": "^.*$"
+    },
     "ObjectCountByEncryptionType": {
       "type": "structure",
       "members": {
@@ -5672,7 +6453,8 @@
     "OriginType": {
       "type": "string",
       "enum": [
-        "SENSITIVE_DATA_DISCOVERY_JOB"
+        "SENSITIVE_DATA_DISCOVERY_JOB",
+        "AUTOMATED_SENSITIVE_DATA_DISCOVERY"
       ]
     },
     "Page": {
@@ -5837,6 +6619,68 @@
         "httpStatusCode": 404
       }
     },
+    "ResourceProfileArtifact": {
+      "type": "structure",
+      "members": {
+        "arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "classificationResultStatus": {
+          "shape": "__string",
+          "locationName": "classificationResultStatus"
+        },
+        "sensitive": {
+          "shape": "__boolean",
+          "locationName": "sensitive"
+        }
+      },
+      "required": [
+        "classificationResultStatus",
+        "arn"
+      ]
+    },
+    "ResourceStatistics": {
+      "type": "structure",
+      "members": {
+        "totalBytesClassified": {
+          "shape": "__long",
+          "locationName": "totalBytesClassified"
+        },
+        "totalDetections": {
+          "shape": "__long",
+          "locationName": "totalDetections"
+        },
+        "totalDetectionsSuppressed": {
+          "shape": "__long",
+          "locationName": "totalDetectionsSuppressed"
+        },
+        "totalItemsClassified": {
+          "shape": "__long",
+          "locationName": "totalItemsClassified"
+        },
+        "totalItemsSensitive": {
+          "shape": "__long",
+          "locationName": "totalItemsSensitive"
+        },
+        "totalItemsSkipped": {
+          "shape": "__long",
+          "locationName": "totalItemsSkipped"
+        },
+        "totalItemsSkippedInvalidEncryption": {
+          "shape": "__long",
+          "locationName": "totalItemsSkippedInvalidEncryption"
+        },
+        "totalItemsSkippedInvalidKms": {
+          "shape": "__long",
+          "locationName": "totalItemsSkippedInvalidKms"
+        },
+        "totalItemsSkippedPermissionDenied": {
+          "shape": "__long",
+          "locationName": "totalItemsSkippedPermissionDenied"
+        }
+      }
+    },
     "ResourcesAffected": {
       "type": "structure",
       "members": {
@@ -5948,6 +6792,10 @@
         "buckets"
       ]
     },
+    "S3BucketName": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9.\\-_]{3,255}$"
+    },
     "S3BucketOwner": {
       "type": "structure",
       "members": {
@@ -5960,6 +6808,59 @@
           "locationName": "id"
         }
       }
+    },
+    "S3ClassificationScope": {
+      "type": "structure",
+      "members": {
+        "excludes": {
+          "shape": "S3ClassificationScopeExclusion",
+          "locationName": "excludes"
+        }
+      },
+      "required": [
+        "excludes"
+      ]
+    },
+    "S3ClassificationScopeExclusion": {
+      "type": "structure",
+      "members": {
+        "bucketNames": {
+          "shape": "__listOfS3BucketName",
+          "locationName": "bucketNames"
+        }
+      },
+      "required": [
+        "bucketNames"
+      ]
+    },
+    "S3ClassificationScopeExclusionUpdate": {
+      "type": "structure",
+      "members": {
+        "bucketNames": {
+          "shape": "__listOfS3BucketName",
+          "locationName": "bucketNames"
+        },
+        "operation": {
+          "shape": "ClassificationScopeUpdateOperation",
+          "locationName": "operation"
+        }
+      },
+      "required": [
+        "bucketNames",
+        "operation"
+      ]
+    },
+    "S3ClassificationScopeUpdate": {
+      "type": "structure",
+      "members": {
+        "excludes": {
+          "shape": "S3ClassificationScopeExclusionUpdate",
+          "locationName": "excludes"
+        }
+      },
+      "required": [
+        "excludes"
+      ]
     },
     "S3Destination": {
       "type": "structure",
@@ -5985,6 +6886,10 @@
     "S3JobDefinition": {
       "type": "structure",
       "members": {
+        "bucketCriteria": {
+          "shape": "S3BucketCriteriaForJob",
+          "locationName": "bucketCriteria"
+        },
         "bucketDefinitions": {
           "shape": "__listOfS3BucketDefinitionForJob",
           "locationName": "bucketDefinitions"
@@ -5992,10 +6897,6 @@
         "scoping": {
           "shape": "Scoping",
           "locationName": "scoping"
-        },
-        "bucketCriteria": {
-          "shape": "S3BucketCriteriaForJob",
-          "locationName": "bucketCriteria"
         }
       }
     },
@@ -6299,6 +7200,69 @@
         "shape": "__listOfDetectedDataDetails"
       }
     },
+    "SensitivityAggregations": {
+      "type": "structure",
+      "members": {
+        "classifiableSizeInBytes": {
+          "shape": "__long",
+          "locationName": "classifiableSizeInBytes"
+        },
+        "publiclyAccessibleCount": {
+          "shape": "__long",
+          "locationName": "publiclyAccessibleCount"
+        },
+        "totalCount": {
+          "shape": "__long",
+          "locationName": "totalCount"
+        },
+        "totalSizeInBytes": {
+          "shape": "__long",
+          "locationName": "totalSizeInBytes"
+        }
+      }
+    },
+    "SensitivityInspectionTemplateExcludes": {
+      "type": "structure",
+      "members": {
+        "managedDataIdentifierIds": {
+          "shape": "__listOf__string",
+          "locationName": "managedDataIdentifierIds"
+        }
+      }
+    },
+    "SensitivityInspectionTemplateId": {
+      "type": "string"
+    },
+    "SensitivityInspectionTemplateIncludes": {
+      "type": "structure",
+      "members": {
+        "allowListIds": {
+          "shape": "__listOf__string",
+          "locationName": "allowListIds"
+        },
+        "customDataIdentifierIds": {
+          "shape": "__listOf__string",
+          "locationName": "customDataIdentifierIds"
+        },
+        "managedDataIdentifierIds": {
+          "shape": "__listOf__string",
+          "locationName": "managedDataIdentifierIds"
+        }
+      }
+    },
+    "SensitivityInspectionTemplatesEntry": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      }
+    },
     "ServerSideEncryption": {
       "type": "structure",
       "members": {
@@ -6527,6 +7491,19 @@
         "GLACIER"
       ]
     },
+    "SuppressDataIdentifier": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "type": {
+          "shape": "DataIdentifierType",
+          "locationName": "type"
+        }
+      }
+    },
     "TagCriterionForJob": {
       "type": "structure",
       "members": {
@@ -6682,6 +7659,10 @@
         "PAST_30_DAYS"
       ]
     },
+    "Timestamp": {
+      "type": "timestamp",
+      "timestampFormat": "iso8601"
+    },
     "Type": {
       "type": "string",
       "enum": [
@@ -6802,6 +7783,22 @@
         }
       }
     },
+    "UpdateAutomatedDiscoveryConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "shape": "AutomatedDiscoveryStatus",
+          "locationName": "status"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    "UpdateAutomatedDiscoveryConfigurationResponse": {
+      "type": "structure",
+      "members": {}
+    },
     "UpdateClassificationJobRequest": {
       "type": "structure",
       "members": {
@@ -6824,12 +7821,38 @@
       "type": "structure",
       "members": {}
     },
+    "UpdateClassificationScopeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "id"
+        },
+        "s3": {
+          "shape": "S3ClassificationScopeUpdate",
+          "locationName": "s3"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "UpdateClassificationScopeResponse": {
+      "type": "structure",
+      "members": {}
+    },
     "UpdateFindingsFilterRequest": {
       "type": "structure",
       "members": {
         "action": {
           "shape": "FindingsFilterAction",
           "locationName": "action"
+        },
+        "clientToken": {
+          "shape": "__string",
+          "locationName": "clientToken",
+          "idempotencyToken": true
         },
         "description": {
           "shape": "__string",
@@ -6851,11 +7874,6 @@
         "position": {
           "shape": "__integer",
           "locationName": "position"
-        },
-        "clientToken": {
-          "shape": "__string",
-          "locationName": "clientToken",
-          "idempotencyToken": true
         }
       },
       "required": [
@@ -6930,6 +7948,48 @@
       "type": "structure",
       "members": {}
     },
+    "UpdateResourceProfileDetectionsRequest": {
+      "type": "structure",
+      "members": {
+        "resourceArn": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        },
+        "suppressDataIdentifiers": {
+          "shape": "__listOfSuppressDataIdentifier",
+          "locationName": "suppressDataIdentifiers"
+        }
+      },
+      "required": [
+        "resourceArn"
+      ]
+    },
+    "UpdateResourceProfileDetectionsResponse": {
+      "type": "structure",
+      "members": {}
+    },
+    "UpdateResourceProfileRequest": {
+      "type": "structure",
+      "members": {
+        "resourceArn": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "resourceArn"
+        },
+        "sensitivityScoreOverride": {
+          "shape": "__integer",
+          "locationName": "sensitivityScoreOverride"
+        }
+      },
+      "required": [
+        "resourceArn"
+      ]
+    },
+    "UpdateResourceProfileResponse": {
+      "type": "structure",
+      "members": {}
+    },
     "UpdateRevealConfigurationRequest": {
       "type": "structure",
       "members": {
@@ -6950,6 +8010,35 @@
           "locationName": "configuration"
         }
       }
+    },
+    "UpdateSensitivityInspectionTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "shape": "__string",
+          "locationName": "description"
+        },
+        "excludes": {
+          "shape": "SensitivityInspectionTemplateExcludes",
+          "locationName": "excludes"
+        },
+        "id": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "id"
+        },
+        "includes": {
+          "shape": "SensitivityInspectionTemplateIncludes",
+          "locationName": "includes"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "UpdateSensitivityInspectionTemplateResponse": {
+      "type": "structure",
+      "members": {}
     },
     "UsageByAccount": {
       "type": "structure",
@@ -6978,6 +8067,10 @@
         "accountId": {
           "shape": "__string",
           "locationName": "accountId"
+        },
+        "automatedDiscoveryFreeTrialStartDate": {
+          "shape": "__timestampIso8601",
+          "locationName": "automatedDiscoveryFreeTrialStartDate"
         },
         "freeTrialStartDate": {
           "shape": "__timestampIso8601",
@@ -7070,7 +8163,9 @@
       "type": "string",
       "enum": [
         "DATA_INVENTORY_EVALUATION",
-        "SENSITIVE_DATA_DISCOVERY"
+        "SENSITIVE_DATA_DISCOVERY",
+        "AUTOMATED_SENSITIVE_DATA_DISCOVERY",
+        "AUTOMATED_OBJECT_MONITORING"
       ]
     },
     "UserIdentity": {
@@ -7206,6 +8301,12 @@
         "shape": "BucketMetadata"
       }
     },
+    "__listOfClassificationScopeSummary": {
+      "type": "list",
+      "member": {
+        "shape": "ClassificationScopeSummary"
+      }
+    },
     "__listOfCriteriaForJob": {
       "type": "list",
       "member": {
@@ -7222,6 +8323,12 @@
       "type": "list",
       "member": {
         "shape": "DetectedDataDetails"
+      }
+    },
+    "__listOfDetection": {
+      "type": "list",
+      "member": {
+        "shape": "Detection"
       }
     },
     "__listOfFinding": {
@@ -7296,10 +8403,22 @@
         "shape": "Member"
       }
     },
+    "__listOfResourceProfileArtifact": {
+      "type": "list",
+      "member": {
+        "shape": "ResourceProfileArtifact"
+      }
+    },
     "__listOfS3BucketDefinitionForJob": {
       "type": "list",
       "member": {
         "shape": "S3BucketDefinitionForJob"
+      }
+    },
+    "__listOfS3BucketName": {
+      "type": "list",
+      "member": {
+        "shape": "S3BucketName"
       }
     },
     "__listOfSearchResourcesCriteria": {
@@ -7312,6 +8431,18 @@
       "type": "list",
       "member": {
         "shape": "SearchResourcesTagCriterionPair"
+      }
+    },
+    "__listOfSensitivityInspectionTemplatesEntry": {
+      "type": "list",
+      "member": {
+        "shape": "SensitivityInspectionTemplatesEntry"
+      }
+    },
+    "__listOfSuppressDataIdentifier": {
+      "type": "list",
+      "member": {
+        "shape": "SuppressDataIdentifier"
       }
     },
     "__listOfTagCriterionPairForJob": {

@@ -3860,7 +3860,8 @@
         "MicrosoftSQLServerCatalogTarget":{"shape":"MicrosoftSQLServerCatalogTarget"},
         "MySQLCatalogTarget":{"shape":"MySQLCatalogTarget"},
         "OracleSQLCatalogTarget":{"shape":"OracleSQLCatalogTarget"},
-        "PostgreSQLCatalogTarget":{"shape":"PostgreSQLCatalogTarget"}
+        "PostgreSQLCatalogTarget":{"shape":"PostgreSQLCatalogTarget"},
+        "DynamicTransform":{"shape":"DynamicTransform"}
       }
     },
     "CodeGenConfigurationNodes":{
@@ -5689,6 +5690,25 @@
         "Inputs":{"shape":"OneInput"},
         "NullCheckBoxList":{"shape":"NullCheckBoxList"},
         "NullTextList":{"shape":"NullValueFields"}
+      }
+    },
+    "DynamicTransform":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TransformName",
+        "Inputs",
+        "FunctionName",
+        "Path"
+      ],
+      "members":{
+        "Name":{"shape":"EnclosedInStringProperty"},
+        "TransformName":{"shape":"EnclosedInStringProperty"},
+        "Inputs":{"shape":"OneInput"},
+        "Parameters":{"shape":"TransformConfigParameterList"},
+        "FunctionName":{"shape":"EnclosedInStringProperty"},
+        "Path":{"shape":"EnclosedInStringProperty"},
+        "Version":{"shape":"EnclosedInStringProperty"}
       }
     },
     "DynamoDBCatalogSource":{
@@ -8594,6 +8614,18 @@
       "min":1
     },
     "PaginationToken":{"type":"string"},
+    "ParamType":{
+      "type":"string",
+      "enum":[
+        "str",
+        "int",
+        "float",
+        "complex",
+        "bool",
+        "list",
+        "null"
+      ]
+    },
     "ParametersMap":{
       "type":"map",
       "key":{"shape":"KeyString"},
@@ -10483,6 +10515,26 @@
       "max":255,
       "min":1,
       "pattern":"[\\p{L}\\p{N}\\p{P}]*"
+    },
+    "TransformConfigParameter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Type"
+      ],
+      "members":{
+        "Name":{"shape":"EnclosedInStringProperty"},
+        "Type":{"shape":"ParamType"},
+        "ValidationRule":{"shape":"EnclosedInStringProperty"},
+        "ValidationMessage":{"shape":"EnclosedInStringProperty"},
+        "Value":{"shape":"EnclosedInStringProperties"},
+        "ListType":{"shape":"ParamType"},
+        "IsOptional":{"shape":"BoxedBoolean"}
+      }
+    },
+    "TransformConfigParameterList":{
+      "type":"list",
+      "member":{"shape":"TransformConfigParameter"}
     },
     "TransformEncryption":{
       "type":"structure",

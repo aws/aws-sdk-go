@@ -197,6 +197,12 @@
       "output_token": "nextToken",
       "result_key": "resourceIdentifiers"
     },
+    "ListResourceEvaluations": {
+      "input_token": "NextToken",
+      "limit_key": "Limit",
+      "output_token": "NextToken",
+      "result_key": "ResourceEvaluations"
+    },
     "ListStoredQueries": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

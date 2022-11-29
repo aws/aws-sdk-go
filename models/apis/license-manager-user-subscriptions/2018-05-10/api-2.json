@@ -205,6 +205,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
       ]
+    },
+    "UpdateIdentityProviderSettings":{
+      "name":"UpdateIdentityProviderSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/identity-provider/UpdateIdentityProviderSettings",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateIdentityProviderSettingsRequest"},
+      "output":{"shape":"UpdateIdentityProviderSettingsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -317,12 +334,14 @@
       "required":[
         "IdentityProvider",
         "Product",
+        "Settings",
         "Status"
       ],
       "members":{
         "FailureMessage":{"shape":"String"},
         "IdentityProvider":{"shape":"IdentityProvider"},
         "Product":{"shape":"String"},
+        "Settings":{"shape":"Settings"},
         "Status":{"shape":"String"}
       }
     },
@@ -483,7 +502,8 @@
       ],
       "members":{
         "IdentityProvider":{"shape":"IdentityProvider"},
-        "Product":{"shape":"String"}
+        "Product":{"shape":"String"},
+        "Settings":{"shape":"Settings"}
       }
     },
     "RegisterIdentityProviderResponse":{
@@ -504,12 +524,34 @@
       },
       "exception":true
     },
+    "SecurityGroup":{
+      "type":"string",
+      "max":200,
+      "min":5,
+      "pattern":"^sg-(([0-9a-z]{8})|([0-9a-z]{17}))$"
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
         "message":{"shape":"String"}
       },
       "exception":true
+    },
+    "Settings":{
+      "type":"structure",
+      "required":[
+        "SecurityGroupId",
+        "Subnets"
+      ],
+      "members":{
+        "SecurityGroupId":{"shape":"SecurityGroup"},
+        "Subnets":{"shape":"SettingsSubnetsList"}
+      }
+    },
+    "SettingsSubnetsList":{
+      "type":"list",
+      "member":{"shape":"Subnet"},
+      "min":1
     },
     "StartProductSubscriptionRequest":{
       "type":"structure",
@@ -558,12 +600,52 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "Subnet":{
+      "type":"string",
+      "pattern":"subnet-[a-z0-9]{8,17}"
+    },
+    "Subnets":{
+      "type":"list",
+      "member":{"shape":"Subnet"}
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
         "message":{"shape":"String"}
       },
       "exception":true
+    },
+    "UpdateIdentityProviderSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "IdentityProvider",
+        "Product",
+        "UpdateSettings"
+      ],
+      "members":{
+        "IdentityProvider":{"shape":"IdentityProvider"},
+        "Product":{"shape":"String"},
+        "UpdateSettings":{"shape":"UpdateSettings"}
+      }
+    },
+    "UpdateIdentityProviderSettingsResponse":{
+      "type":"structure",
+      "required":["IdentityProviderSummary"],
+      "members":{
+        "IdentityProviderSummary":{"shape":"IdentityProviderSummary"}
+      }
+    },
+    "UpdateSettings":{
+      "type":"structure",
+      "required":[
+        "AddSubnets",
+        "RemoveSubnets"
+      ],
+      "members":{
+        "AddSubnets":{"shape":"Subnets"},
+        "RemoveSubnets":{"shape":"Subnets"},
+        "SecurityGroupId":{"shape":"SecurityGroup"}
+      }
     },
     "ValidationException":{
       "type":"structure",
