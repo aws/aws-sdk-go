@@ -88,7 +88,10 @@
         "input": {
           "CustomKeyStoreName": "ExampleVPCEndpointKeyStore",
           "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
-          "XksProxyAuthenticationCredential": "AccessKeyId=ABCDE12345670EXAMPLE,RawSecretAccessKey=file://SecretAccessKey",
+          "XksProxyAuthenticationCredential": {
+            "AccessKeyId": "ABCDE12345670EXAMPLE",
+            "RawSecretAccessKey": "file://SecretAccessKey"
+          },
           "XksProxyConnectivity": "VPC_ENDPOINT_SERVICE",
           "XksProxyUriEndpoint": "https://myproxy-private.xks.example.com",
           "XksProxyUriPath": "/example-prefix/kms/xks/v1",
@@ -119,7 +122,10 @@
         "input": {
           "CustomKeyStoreName": "ExamplePublicEndpointKeyStore",
           "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
-          "XksProxyAuthenticationCredential": "AccessKeyId=ABCDE12345670EXAMPLE,RawSecretAccessKey=file://SecretAccessKey",
+          "XksProxyAuthenticationCredential": {
+            "AccessKeyId": "ABCDE12345670EXAMPLE",
+            "RawSecretAccessKey": "file://SecretAccessKey"
+          },
           "XksProxyConnectivity": "PUBLIC_ENDPOINT",
           "XksProxyUriEndpoint": "https://myproxy.xks.example.com",
           "XksProxyUriPath": "/kms/xks/v1"
