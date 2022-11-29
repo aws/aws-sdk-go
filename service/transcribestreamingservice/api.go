@@ -280,8 +280,8 @@ func (es *StartCallAnalyticsStreamTranscriptionEventStream) closeInputPipe() err
 //
 // These events are:
 //
-//     * AudioEvent
-//     * ConfigurationEvent
+//   - AudioEvent
+//   - ConfigurationEvent
 func (es *StartCallAnalyticsStreamTranscriptionEventStream) Send(ctx aws.Context, event AudioStreamEvent) error {
 	return es.Writer.Send(ctx, event)
 }
@@ -325,9 +325,9 @@ func (es *StartCallAnalyticsStreamTranscriptionEventStream) runInputStream(r *re
 //
 // These events are:
 //
-//     * CategoryEvent
-//     * UtteranceEvent
-//     * CallAnalyticsTranscriptResultStreamUnknownEvent
+//   - CategoryEvent
+//   - UtteranceEvent
+//   - CallAnalyticsTranscriptResultStreamUnknownEvent
 func (es *StartCallAnalyticsStreamTranscriptionEventStream) Events() <-chan CallAnalyticsTranscriptResultStreamEvent {
 	return es.Reader.Events()
 }
@@ -672,8 +672,8 @@ func (es *StartMedicalStreamTranscriptionEventStream) closeInputPipe() error {
 //
 // These events are:
 //
-//     * AudioEvent
-//     * ConfigurationEvent
+//   - AudioEvent
+//   - ConfigurationEvent
 func (es *StartMedicalStreamTranscriptionEventStream) Send(ctx aws.Context, event AudioStreamEvent) error {
 	return es.Writer.Send(ctx, event)
 }
@@ -717,8 +717,8 @@ func (es *StartMedicalStreamTranscriptionEventStream) runInputStream(r *request.
 //
 // These events are:
 //
-//     * MedicalTranscriptEvent
-//     * MedicalTranscriptResultStreamUnknownEvent
+//   - MedicalTranscriptEvent
+//   - MedicalTranscriptResultStreamUnknownEvent
 func (es *StartMedicalStreamTranscriptionEventStream) Events() <-chan MedicalTranscriptResultStreamEvent {
 	return es.Reader.Events()
 }
@@ -1062,8 +1062,8 @@ func (es *StartStreamTranscriptionEventStream) closeInputPipe() error {
 //
 // These events are:
 //
-//     * AudioEvent
-//     * ConfigurationEvent
+//   - AudioEvent
+//   - ConfigurationEvent
 func (es *StartStreamTranscriptionEventStream) Send(ctx aws.Context, event AudioStreamEvent) error {
 	return es.Writer.Send(ctx, event)
 }
@@ -1107,8 +1107,8 @@ func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request
 //
 // These events are:
 //
-//     * TranscriptEvent
-//     * TranscriptResultStreamUnknownEvent
+//   - TranscriptEvent
+//   - TranscriptResultStreamUnknownEvent
 func (es *StartStreamTranscriptionEventStream) Events() <-chan TranscriptResultStreamEvent {
 	return es.Reader.Events()
 }

@@ -180,6 +180,10 @@ type EC2API interface {
 	AttachNetworkInterfaceWithContext(aws.Context, *ec2.AttachNetworkInterfaceInput, ...request.Option) (*ec2.AttachNetworkInterfaceOutput, error)
 	AttachNetworkInterfaceRequest(*ec2.AttachNetworkInterfaceInput) (*request.Request, *ec2.AttachNetworkInterfaceOutput)
 
+	AttachVerifiedAccessTrustProvider(*ec2.AttachVerifiedAccessTrustProviderInput) (*ec2.AttachVerifiedAccessTrustProviderOutput, error)
+	AttachVerifiedAccessTrustProviderWithContext(aws.Context, *ec2.AttachVerifiedAccessTrustProviderInput, ...request.Option) (*ec2.AttachVerifiedAccessTrustProviderOutput, error)
+	AttachVerifiedAccessTrustProviderRequest(*ec2.AttachVerifiedAccessTrustProviderInput) (*request.Request, *ec2.AttachVerifiedAccessTrustProviderOutput)
+
 	AttachVolume(*ec2.AttachVolumeInput) (*ec2.VolumeAttachment, error)
 	AttachVolumeWithContext(aws.Context, *ec2.AttachVolumeInput, ...request.Option) (*ec2.VolumeAttachment, error)
 	AttachVolumeRequest(*ec2.AttachVolumeInput) (*request.Request, *ec2.VolumeAttachment)
@@ -528,6 +532,22 @@ type EC2API interface {
 	CreateTransitGatewayVpcAttachmentWithContext(aws.Context, *ec2.CreateTransitGatewayVpcAttachmentInput, ...request.Option) (*ec2.CreateTransitGatewayVpcAttachmentOutput, error)
 	CreateTransitGatewayVpcAttachmentRequest(*ec2.CreateTransitGatewayVpcAttachmentInput) (*request.Request, *ec2.CreateTransitGatewayVpcAttachmentOutput)
 
+	CreateVerifiedAccessEndpoint(*ec2.CreateVerifiedAccessEndpointInput) (*ec2.CreateVerifiedAccessEndpointOutput, error)
+	CreateVerifiedAccessEndpointWithContext(aws.Context, *ec2.CreateVerifiedAccessEndpointInput, ...request.Option) (*ec2.CreateVerifiedAccessEndpointOutput, error)
+	CreateVerifiedAccessEndpointRequest(*ec2.CreateVerifiedAccessEndpointInput) (*request.Request, *ec2.CreateVerifiedAccessEndpointOutput)
+
+	CreateVerifiedAccessGroup(*ec2.CreateVerifiedAccessGroupInput) (*ec2.CreateVerifiedAccessGroupOutput, error)
+	CreateVerifiedAccessGroupWithContext(aws.Context, *ec2.CreateVerifiedAccessGroupInput, ...request.Option) (*ec2.CreateVerifiedAccessGroupOutput, error)
+	CreateVerifiedAccessGroupRequest(*ec2.CreateVerifiedAccessGroupInput) (*request.Request, *ec2.CreateVerifiedAccessGroupOutput)
+
+	CreateVerifiedAccessInstance(*ec2.CreateVerifiedAccessInstanceInput) (*ec2.CreateVerifiedAccessInstanceOutput, error)
+	CreateVerifiedAccessInstanceWithContext(aws.Context, *ec2.CreateVerifiedAccessInstanceInput, ...request.Option) (*ec2.CreateVerifiedAccessInstanceOutput, error)
+	CreateVerifiedAccessInstanceRequest(*ec2.CreateVerifiedAccessInstanceInput) (*request.Request, *ec2.CreateVerifiedAccessInstanceOutput)
+
+	CreateVerifiedAccessTrustProvider(*ec2.CreateVerifiedAccessTrustProviderInput) (*ec2.CreateVerifiedAccessTrustProviderOutput, error)
+	CreateVerifiedAccessTrustProviderWithContext(aws.Context, *ec2.CreateVerifiedAccessTrustProviderInput, ...request.Option) (*ec2.CreateVerifiedAccessTrustProviderOutput, error)
+	CreateVerifiedAccessTrustProviderRequest(*ec2.CreateVerifiedAccessTrustProviderInput) (*request.Request, *ec2.CreateVerifiedAccessTrustProviderOutput)
+
 	CreateVolume(*ec2.CreateVolumeInput) (*ec2.Volume, error)
 	CreateVolumeWithContext(aws.Context, *ec2.CreateVolumeInput, ...request.Option) (*ec2.Volume, error)
 	CreateVolumeRequest(*ec2.CreateVolumeInput) (*request.Request, *ec2.Volume)
@@ -799,6 +819,22 @@ type EC2API interface {
 	DeleteTransitGatewayVpcAttachment(*ec2.DeleteTransitGatewayVpcAttachmentInput) (*ec2.DeleteTransitGatewayVpcAttachmentOutput, error)
 	DeleteTransitGatewayVpcAttachmentWithContext(aws.Context, *ec2.DeleteTransitGatewayVpcAttachmentInput, ...request.Option) (*ec2.DeleteTransitGatewayVpcAttachmentOutput, error)
 	DeleteTransitGatewayVpcAttachmentRequest(*ec2.DeleteTransitGatewayVpcAttachmentInput) (*request.Request, *ec2.DeleteTransitGatewayVpcAttachmentOutput)
+
+	DeleteVerifiedAccessEndpoint(*ec2.DeleteVerifiedAccessEndpointInput) (*ec2.DeleteVerifiedAccessEndpointOutput, error)
+	DeleteVerifiedAccessEndpointWithContext(aws.Context, *ec2.DeleteVerifiedAccessEndpointInput, ...request.Option) (*ec2.DeleteVerifiedAccessEndpointOutput, error)
+	DeleteVerifiedAccessEndpointRequest(*ec2.DeleteVerifiedAccessEndpointInput) (*request.Request, *ec2.DeleteVerifiedAccessEndpointOutput)
+
+	DeleteVerifiedAccessGroup(*ec2.DeleteVerifiedAccessGroupInput) (*ec2.DeleteVerifiedAccessGroupOutput, error)
+	DeleteVerifiedAccessGroupWithContext(aws.Context, *ec2.DeleteVerifiedAccessGroupInput, ...request.Option) (*ec2.DeleteVerifiedAccessGroupOutput, error)
+	DeleteVerifiedAccessGroupRequest(*ec2.DeleteVerifiedAccessGroupInput) (*request.Request, *ec2.DeleteVerifiedAccessGroupOutput)
+
+	DeleteVerifiedAccessInstance(*ec2.DeleteVerifiedAccessInstanceInput) (*ec2.DeleteVerifiedAccessInstanceOutput, error)
+	DeleteVerifiedAccessInstanceWithContext(aws.Context, *ec2.DeleteVerifiedAccessInstanceInput, ...request.Option) (*ec2.DeleteVerifiedAccessInstanceOutput, error)
+	DeleteVerifiedAccessInstanceRequest(*ec2.DeleteVerifiedAccessInstanceInput) (*request.Request, *ec2.DeleteVerifiedAccessInstanceOutput)
+
+	DeleteVerifiedAccessTrustProvider(*ec2.DeleteVerifiedAccessTrustProviderInput) (*ec2.DeleteVerifiedAccessTrustProviderOutput, error)
+	DeleteVerifiedAccessTrustProviderWithContext(aws.Context, *ec2.DeleteVerifiedAccessTrustProviderInput, ...request.Option) (*ec2.DeleteVerifiedAccessTrustProviderOutput, error)
+	DeleteVerifiedAccessTrustProviderRequest(*ec2.DeleteVerifiedAccessTrustProviderInput) (*request.Request, *ec2.DeleteVerifiedAccessTrustProviderOutput)
 
 	DeleteVolume(*ec2.DeleteVolumeInput) (*ec2.DeleteVolumeOutput, error)
 	DeleteVolumeWithContext(aws.Context, *ec2.DeleteVolumeInput, ...request.Option) (*ec2.DeleteVolumeOutput, error)
@@ -1617,6 +1653,41 @@ type EC2API interface {
 	DescribeTrunkInterfaceAssociationsPages(*ec2.DescribeTrunkInterfaceAssociationsInput, func(*ec2.DescribeTrunkInterfaceAssociationsOutput, bool) bool) error
 	DescribeTrunkInterfaceAssociationsPagesWithContext(aws.Context, *ec2.DescribeTrunkInterfaceAssociationsInput, func(*ec2.DescribeTrunkInterfaceAssociationsOutput, bool) bool, ...request.Option) error
 
+	DescribeVerifiedAccessEndpoints(*ec2.DescribeVerifiedAccessEndpointsInput) (*ec2.DescribeVerifiedAccessEndpointsOutput, error)
+	DescribeVerifiedAccessEndpointsWithContext(aws.Context, *ec2.DescribeVerifiedAccessEndpointsInput, ...request.Option) (*ec2.DescribeVerifiedAccessEndpointsOutput, error)
+	DescribeVerifiedAccessEndpointsRequest(*ec2.DescribeVerifiedAccessEndpointsInput) (*request.Request, *ec2.DescribeVerifiedAccessEndpointsOutput)
+
+	DescribeVerifiedAccessEndpointsPages(*ec2.DescribeVerifiedAccessEndpointsInput, func(*ec2.DescribeVerifiedAccessEndpointsOutput, bool) bool) error
+	DescribeVerifiedAccessEndpointsPagesWithContext(aws.Context, *ec2.DescribeVerifiedAccessEndpointsInput, func(*ec2.DescribeVerifiedAccessEndpointsOutput, bool) bool, ...request.Option) error
+
+	DescribeVerifiedAccessGroups(*ec2.DescribeVerifiedAccessGroupsInput) (*ec2.DescribeVerifiedAccessGroupsOutput, error)
+	DescribeVerifiedAccessGroupsWithContext(aws.Context, *ec2.DescribeVerifiedAccessGroupsInput, ...request.Option) (*ec2.DescribeVerifiedAccessGroupsOutput, error)
+	DescribeVerifiedAccessGroupsRequest(*ec2.DescribeVerifiedAccessGroupsInput) (*request.Request, *ec2.DescribeVerifiedAccessGroupsOutput)
+
+	DescribeVerifiedAccessGroupsPages(*ec2.DescribeVerifiedAccessGroupsInput, func(*ec2.DescribeVerifiedAccessGroupsOutput, bool) bool) error
+	DescribeVerifiedAccessGroupsPagesWithContext(aws.Context, *ec2.DescribeVerifiedAccessGroupsInput, func(*ec2.DescribeVerifiedAccessGroupsOutput, bool) bool, ...request.Option) error
+
+	DescribeVerifiedAccessInstanceLoggingConfigurations(*ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsInput) (*ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput, error)
+	DescribeVerifiedAccessInstanceLoggingConfigurationsWithContext(aws.Context, *ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsInput, ...request.Option) (*ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput, error)
+	DescribeVerifiedAccessInstanceLoggingConfigurationsRequest(*ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsInput) (*request.Request, *ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput)
+
+	DescribeVerifiedAccessInstanceLoggingConfigurationsPages(*ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsInput, func(*ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput, bool) bool) error
+	DescribeVerifiedAccessInstanceLoggingConfigurationsPagesWithContext(aws.Context, *ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsInput, func(*ec2.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput, bool) bool, ...request.Option) error
+
+	DescribeVerifiedAccessInstances(*ec2.DescribeVerifiedAccessInstancesInput) (*ec2.DescribeVerifiedAccessInstancesOutput, error)
+	DescribeVerifiedAccessInstancesWithContext(aws.Context, *ec2.DescribeVerifiedAccessInstancesInput, ...request.Option) (*ec2.DescribeVerifiedAccessInstancesOutput, error)
+	DescribeVerifiedAccessInstancesRequest(*ec2.DescribeVerifiedAccessInstancesInput) (*request.Request, *ec2.DescribeVerifiedAccessInstancesOutput)
+
+	DescribeVerifiedAccessInstancesPages(*ec2.DescribeVerifiedAccessInstancesInput, func(*ec2.DescribeVerifiedAccessInstancesOutput, bool) bool) error
+	DescribeVerifiedAccessInstancesPagesWithContext(aws.Context, *ec2.DescribeVerifiedAccessInstancesInput, func(*ec2.DescribeVerifiedAccessInstancesOutput, bool) bool, ...request.Option) error
+
+	DescribeVerifiedAccessTrustProviders(*ec2.DescribeVerifiedAccessTrustProvidersInput) (*ec2.DescribeVerifiedAccessTrustProvidersOutput, error)
+	DescribeVerifiedAccessTrustProvidersWithContext(aws.Context, *ec2.DescribeVerifiedAccessTrustProvidersInput, ...request.Option) (*ec2.DescribeVerifiedAccessTrustProvidersOutput, error)
+	DescribeVerifiedAccessTrustProvidersRequest(*ec2.DescribeVerifiedAccessTrustProvidersInput) (*request.Request, *ec2.DescribeVerifiedAccessTrustProvidersOutput)
+
+	DescribeVerifiedAccessTrustProvidersPages(*ec2.DescribeVerifiedAccessTrustProvidersInput, func(*ec2.DescribeVerifiedAccessTrustProvidersOutput, bool) bool) error
+	DescribeVerifiedAccessTrustProvidersPagesWithContext(aws.Context, *ec2.DescribeVerifiedAccessTrustProvidersInput, func(*ec2.DescribeVerifiedAccessTrustProvidersOutput, bool) bool, ...request.Option) error
+
 	DescribeVolumeAttribute(*ec2.DescribeVolumeAttributeInput) (*ec2.DescribeVolumeAttributeOutput, error)
 	DescribeVolumeAttributeWithContext(aws.Context, *ec2.DescribeVolumeAttributeInput, ...request.Option) (*ec2.DescribeVolumeAttributeOutput, error)
 	DescribeVolumeAttributeRequest(*ec2.DescribeVolumeAttributeInput) (*request.Request, *ec2.DescribeVolumeAttributeOutput)
@@ -1729,6 +1800,10 @@ type EC2API interface {
 	DetachNetworkInterface(*ec2.DetachNetworkInterfaceInput) (*ec2.DetachNetworkInterfaceOutput, error)
 	DetachNetworkInterfaceWithContext(aws.Context, *ec2.DetachNetworkInterfaceInput, ...request.Option) (*ec2.DetachNetworkInterfaceOutput, error)
 	DetachNetworkInterfaceRequest(*ec2.DetachNetworkInterfaceInput) (*request.Request, *ec2.DetachNetworkInterfaceOutput)
+
+	DetachVerifiedAccessTrustProvider(*ec2.DetachVerifiedAccessTrustProviderInput) (*ec2.DetachVerifiedAccessTrustProviderOutput, error)
+	DetachVerifiedAccessTrustProviderWithContext(aws.Context, *ec2.DetachVerifiedAccessTrustProviderInput, ...request.Option) (*ec2.DetachVerifiedAccessTrustProviderOutput, error)
+	DetachVerifiedAccessTrustProviderRequest(*ec2.DetachVerifiedAccessTrustProviderInput) (*request.Request, *ec2.DetachVerifiedAccessTrustProviderOutput)
 
 	DetachVolume(*ec2.DetachVolumeInput) (*ec2.VolumeAttachment, error)
 	DetachVolumeWithContext(aws.Context, *ec2.DetachVolumeInput, ...request.Option) (*ec2.VolumeAttachment, error)
@@ -2101,6 +2176,14 @@ type EC2API interface {
 	GetTransitGatewayRouteTablePropagationsPages(*ec2.GetTransitGatewayRouteTablePropagationsInput, func(*ec2.GetTransitGatewayRouteTablePropagationsOutput, bool) bool) error
 	GetTransitGatewayRouteTablePropagationsPagesWithContext(aws.Context, *ec2.GetTransitGatewayRouteTablePropagationsInput, func(*ec2.GetTransitGatewayRouteTablePropagationsOutput, bool) bool, ...request.Option) error
 
+	GetVerifiedAccessEndpointPolicy(*ec2.GetVerifiedAccessEndpointPolicyInput) (*ec2.GetVerifiedAccessEndpointPolicyOutput, error)
+	GetVerifiedAccessEndpointPolicyWithContext(aws.Context, *ec2.GetVerifiedAccessEndpointPolicyInput, ...request.Option) (*ec2.GetVerifiedAccessEndpointPolicyOutput, error)
+	GetVerifiedAccessEndpointPolicyRequest(*ec2.GetVerifiedAccessEndpointPolicyInput) (*request.Request, *ec2.GetVerifiedAccessEndpointPolicyOutput)
+
+	GetVerifiedAccessGroupPolicy(*ec2.GetVerifiedAccessGroupPolicyInput) (*ec2.GetVerifiedAccessGroupPolicyOutput, error)
+	GetVerifiedAccessGroupPolicyWithContext(aws.Context, *ec2.GetVerifiedAccessGroupPolicyInput, ...request.Option) (*ec2.GetVerifiedAccessGroupPolicyOutput, error)
+	GetVerifiedAccessGroupPolicyRequest(*ec2.GetVerifiedAccessGroupPolicyInput) (*request.Request, *ec2.GetVerifiedAccessGroupPolicyOutput)
+
 	GetVpnConnectionDeviceSampleConfiguration(*ec2.GetVpnConnectionDeviceSampleConfigurationInput) (*ec2.GetVpnConnectionDeviceSampleConfigurationOutput, error)
 	GetVpnConnectionDeviceSampleConfigurationWithContext(aws.Context, *ec2.GetVpnConnectionDeviceSampleConfigurationInput, ...request.Option) (*ec2.GetVpnConnectionDeviceSampleConfigurationOutput, error)
 	GetVpnConnectionDeviceSampleConfigurationRequest(*ec2.GetVpnConnectionDeviceSampleConfigurationInput) (*request.Request, *ec2.GetVpnConnectionDeviceSampleConfigurationOutput)
@@ -2317,6 +2400,34 @@ type EC2API interface {
 	ModifyTransitGatewayVpcAttachment(*ec2.ModifyTransitGatewayVpcAttachmentInput) (*ec2.ModifyTransitGatewayVpcAttachmentOutput, error)
 	ModifyTransitGatewayVpcAttachmentWithContext(aws.Context, *ec2.ModifyTransitGatewayVpcAttachmentInput, ...request.Option) (*ec2.ModifyTransitGatewayVpcAttachmentOutput, error)
 	ModifyTransitGatewayVpcAttachmentRequest(*ec2.ModifyTransitGatewayVpcAttachmentInput) (*request.Request, *ec2.ModifyTransitGatewayVpcAttachmentOutput)
+
+	ModifyVerifiedAccessEndpoint(*ec2.ModifyVerifiedAccessEndpointInput) (*ec2.ModifyVerifiedAccessEndpointOutput, error)
+	ModifyVerifiedAccessEndpointWithContext(aws.Context, *ec2.ModifyVerifiedAccessEndpointInput, ...request.Option) (*ec2.ModifyVerifiedAccessEndpointOutput, error)
+	ModifyVerifiedAccessEndpointRequest(*ec2.ModifyVerifiedAccessEndpointInput) (*request.Request, *ec2.ModifyVerifiedAccessEndpointOutput)
+
+	ModifyVerifiedAccessEndpointPolicy(*ec2.ModifyVerifiedAccessEndpointPolicyInput) (*ec2.ModifyVerifiedAccessEndpointPolicyOutput, error)
+	ModifyVerifiedAccessEndpointPolicyWithContext(aws.Context, *ec2.ModifyVerifiedAccessEndpointPolicyInput, ...request.Option) (*ec2.ModifyVerifiedAccessEndpointPolicyOutput, error)
+	ModifyVerifiedAccessEndpointPolicyRequest(*ec2.ModifyVerifiedAccessEndpointPolicyInput) (*request.Request, *ec2.ModifyVerifiedAccessEndpointPolicyOutput)
+
+	ModifyVerifiedAccessGroup(*ec2.ModifyVerifiedAccessGroupInput) (*ec2.ModifyVerifiedAccessGroupOutput, error)
+	ModifyVerifiedAccessGroupWithContext(aws.Context, *ec2.ModifyVerifiedAccessGroupInput, ...request.Option) (*ec2.ModifyVerifiedAccessGroupOutput, error)
+	ModifyVerifiedAccessGroupRequest(*ec2.ModifyVerifiedAccessGroupInput) (*request.Request, *ec2.ModifyVerifiedAccessGroupOutput)
+
+	ModifyVerifiedAccessGroupPolicy(*ec2.ModifyVerifiedAccessGroupPolicyInput) (*ec2.ModifyVerifiedAccessGroupPolicyOutput, error)
+	ModifyVerifiedAccessGroupPolicyWithContext(aws.Context, *ec2.ModifyVerifiedAccessGroupPolicyInput, ...request.Option) (*ec2.ModifyVerifiedAccessGroupPolicyOutput, error)
+	ModifyVerifiedAccessGroupPolicyRequest(*ec2.ModifyVerifiedAccessGroupPolicyInput) (*request.Request, *ec2.ModifyVerifiedAccessGroupPolicyOutput)
+
+	ModifyVerifiedAccessInstance(*ec2.ModifyVerifiedAccessInstanceInput) (*ec2.ModifyVerifiedAccessInstanceOutput, error)
+	ModifyVerifiedAccessInstanceWithContext(aws.Context, *ec2.ModifyVerifiedAccessInstanceInput, ...request.Option) (*ec2.ModifyVerifiedAccessInstanceOutput, error)
+	ModifyVerifiedAccessInstanceRequest(*ec2.ModifyVerifiedAccessInstanceInput) (*request.Request, *ec2.ModifyVerifiedAccessInstanceOutput)
+
+	ModifyVerifiedAccessInstanceLoggingConfiguration(*ec2.ModifyVerifiedAccessInstanceLoggingConfigurationInput) (*ec2.ModifyVerifiedAccessInstanceLoggingConfigurationOutput, error)
+	ModifyVerifiedAccessInstanceLoggingConfigurationWithContext(aws.Context, *ec2.ModifyVerifiedAccessInstanceLoggingConfigurationInput, ...request.Option) (*ec2.ModifyVerifiedAccessInstanceLoggingConfigurationOutput, error)
+	ModifyVerifiedAccessInstanceLoggingConfigurationRequest(*ec2.ModifyVerifiedAccessInstanceLoggingConfigurationInput) (*request.Request, *ec2.ModifyVerifiedAccessInstanceLoggingConfigurationOutput)
+
+	ModifyVerifiedAccessTrustProvider(*ec2.ModifyVerifiedAccessTrustProviderInput) (*ec2.ModifyVerifiedAccessTrustProviderOutput, error)
+	ModifyVerifiedAccessTrustProviderWithContext(aws.Context, *ec2.ModifyVerifiedAccessTrustProviderInput, ...request.Option) (*ec2.ModifyVerifiedAccessTrustProviderOutput, error)
+	ModifyVerifiedAccessTrustProviderRequest(*ec2.ModifyVerifiedAccessTrustProviderInput) (*request.Request, *ec2.ModifyVerifiedAccessTrustProviderOutput)
 
 	ModifyVolume(*ec2.ModifyVolumeInput) (*ec2.ModifyVolumeOutput, error)
 	ModifyVolumeWithContext(aws.Context, *ec2.ModifyVolumeInput, ...request.Option) (*ec2.ModifyVolumeOutput, error)

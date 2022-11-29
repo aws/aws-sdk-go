@@ -838,12 +838,12 @@ func (es *StartConversationEventStream) closeInputPipe() error {
 //
 // These events are:
 //
-//     * AudioInputEvent
-//     * ConfigurationEvent
-//     * DTMFInputEvent
-//     * DisconnectionEvent
-//     * PlaybackCompletionEvent
-//     * TextInputEvent
+//   - AudioInputEvent
+//   - ConfigurationEvent
+//   - DTMFInputEvent
+//   - DisconnectionEvent
+//   - PlaybackCompletionEvent
+//   - TextInputEvent
 func (es *StartConversationEventStream) Send(ctx aws.Context, event StartConversationRequestEventStreamEvent) error {
 	return es.Writer.Send(ctx, event)
 }
@@ -887,13 +887,13 @@ func (es *StartConversationEventStream) runInputStream(r *request.Request) {
 //
 // These events are:
 //
-//     * AudioResponseEvent
-//     * HeartbeatEvent
-//     * IntentResultEvent
-//     * PlaybackInterruptionEvent
-//     * TextResponseEvent
-//     * TranscriptEvent
-//     * StartConversationResponseEventStreamUnknownEvent
+//   - AudioResponseEvent
+//   - HeartbeatEvent
+//   - IntentResultEvent
+//   - PlaybackInterruptionEvent
+//   - TextResponseEvent
+//   - TranscriptEvent
+//   - StartConversationResponseEventStreamUnknownEvent
 func (es *StartConversationEventStream) Events() <-chan StartConversationResponseEventStreamEvent {
 	return es.Reader.Events()
 }

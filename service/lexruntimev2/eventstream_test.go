@@ -235,12 +235,12 @@ func mockStartConversationReadEvents() (
 			EventId:   aws.String("string value goes here"),
 			InputMode: aws.String("string value goes here"),
 			Interpretations: []*Interpretation{
-				&Interpretation{
+				{
 					Intent: &Intent{
 						ConfirmationState: aws.String("string value goes here"),
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
-							"a": &Slot{
+							"a": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -254,7 +254,7 @@ func mockStartConversationReadEvents() (
 								},
 								Values: []*Slot{},
 							},
-							"b": &Slot{
+							"b": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -268,7 +268,7 @@ func mockStartConversationReadEvents() (
 								},
 								Values: []*Slot{},
 							},
-							"c": &Slot{
+							"c": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -298,12 +298,12 @@ func mockStartConversationReadEvents() (
 						},
 					},
 				},
-				&Interpretation{
+				{
 					Intent: &Intent{
 						ConfirmationState: aws.String("string value goes here"),
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
-							"a": &Slot{
+							"a": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -317,7 +317,7 @@ func mockStartConversationReadEvents() (
 								},
 								Values: []*Slot{},
 							},
-							"b": &Slot{
+							"b": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -331,7 +331,7 @@ func mockStartConversationReadEvents() (
 								},
 								Values: []*Slot{},
 							},
-							"c": &Slot{
+							"c": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -361,12 +361,12 @@ func mockStartConversationReadEvents() (
 						},
 					},
 				},
-				&Interpretation{
+				{
 					Intent: &Intent{
 						ConfirmationState: aws.String("string value goes here"),
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
-							"a": &Slot{
+							"a": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -380,7 +380,7 @@ func mockStartConversationReadEvents() (
 								},
 								Values: []*Slot{},
 							},
-							"b": &Slot{
+							"b": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -394,7 +394,7 @@ func mockStartConversationReadEvents() (
 								},
 								Values: []*Slot{},
 							},
-							"c": &Slot{
+							"c": {
 								Shape:    aws.String("string value goes here"),
 								SubSlots: nil,
 								Value: &Value{
@@ -433,7 +433,7 @@ func mockStartConversationReadEvents() (
 			SessionId: aws.String("string value goes here"),
 			SessionState: &SessionState{
 				ActiveContexts: []*ActiveContext{
-					&ActiveContext{
+					{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -445,7 +445,7 @@ func mockStartConversationReadEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					&ActiveContext{
+					{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -457,7 +457,7 @@ func mockStartConversationReadEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					&ActiveContext{
+					{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -483,7 +483,7 @@ func mockStartConversationReadEvents() (
 					ConfirmationState: aws.String("string value goes here"),
 					Name:              aws.String("string value goes here"),
 					Slots: map[string]*Slot{
-						"a": &Slot{
+						"a": {
 							Shape:    aws.String("string value goes here"),
 							SubSlots: nil,
 							Value: &Value{
@@ -497,7 +497,7 @@ func mockStartConversationReadEvents() (
 							},
 							Values: []*Slot{},
 						},
-						"b": &Slot{
+						"b": {
 							Shape:    aws.String("string value goes here"),
 							SubSlots: nil,
 							Value: &Value{
@@ -511,7 +511,7 @@ func mockStartConversationReadEvents() (
 							},
 							Values: []*Slot{},
 						},
-						"c": &Slot{
+						"c": {
 							Shape:    aws.String("string value goes here"),
 							SubSlots: nil,
 							Value: &Value{
@@ -531,132 +531,132 @@ func mockStartConversationReadEvents() (
 				OriginatingRequestId: aws.String("string value goes here"),
 				RuntimeHints: &RuntimeHints{
 					SlotHints: map[string]map[string]*RuntimeHintDetails{
-						"a": map[string]*RuntimeHintDetails{
-							"a": &RuntimeHintDetails{
+						"a": {
+							"a": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"b": &RuntimeHintDetails{
+							"b": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"c": &RuntimeHintDetails{
+							"c": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-								},
-								SubSlotHints: nil,
-							},
-						},
-						"b": map[string]*RuntimeHintDetails{
-							"a": &RuntimeHintDetails{
-								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-								},
-								SubSlotHints: nil,
-							},
-							"b": &RuntimeHintDetails{
-								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-								},
-								SubSlotHints: nil,
-							},
-							"c": &RuntimeHintDetails{
-								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
 						},
-						"c": map[string]*RuntimeHintDetails{
-							"a": &RuntimeHintDetails{
+						"b": {
+							"a": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"b": &RuntimeHintDetails{
+							"b": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"c": &RuntimeHintDetails{
+							"c": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+								},
+								SubSlotHints: nil,
+							},
+						},
+						"c": {
+							"a": {
+								RuntimeHintValues: []*RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+								},
+								SubSlotHints: nil,
+							},
+							"b": {
+								RuntimeHintValues: []*RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+								},
+								SubSlotHints: nil,
+							},
+							"c": {
+								RuntimeHintValues: []*RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
@@ -680,20 +680,20 @@ func mockStartConversationReadEvents() (
 		&TextResponseEvent{
 			EventId: aws.String("string value goes here"),
 			Messages: []*Message{
-				&Message{
+				{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -703,20 +703,20 @@ func mockStartConversationReadEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				&Message{
+				{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -726,20 +726,20 @@ func mockStartConversationReadEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				&Message{
+				{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -1103,7 +1103,7 @@ func mockStartConversationWriteEvents() (
 			ResponseContentType: aws.String("string value goes here"),
 			SessionState: &SessionState{
 				ActiveContexts: []*ActiveContext{
-					&ActiveContext{
+					{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -1115,7 +1115,7 @@ func mockStartConversationWriteEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					&ActiveContext{
+					{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -1127,7 +1127,7 @@ func mockStartConversationWriteEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					&ActiveContext{
+					{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -1153,7 +1153,7 @@ func mockStartConversationWriteEvents() (
 					ConfirmationState: aws.String("string value goes here"),
 					Name:              aws.String("string value goes here"),
 					Slots: map[string]*Slot{
-						"a": &Slot{
+						"a": {
 							Shape:    aws.String("string value goes here"),
 							SubSlots: nil,
 							Value: &Value{
@@ -1167,7 +1167,7 @@ func mockStartConversationWriteEvents() (
 							},
 							Values: []*Slot{},
 						},
-						"b": &Slot{
+						"b": {
 							Shape:    aws.String("string value goes here"),
 							SubSlots: nil,
 							Value: &Value{
@@ -1181,7 +1181,7 @@ func mockStartConversationWriteEvents() (
 							},
 							Values: []*Slot{},
 						},
-						"c": &Slot{
+						"c": {
 							Shape:    aws.String("string value goes here"),
 							SubSlots: nil,
 							Value: &Value{
@@ -1201,132 +1201,132 @@ func mockStartConversationWriteEvents() (
 				OriginatingRequestId: aws.String("string value goes here"),
 				RuntimeHints: &RuntimeHints{
 					SlotHints: map[string]map[string]*RuntimeHintDetails{
-						"a": map[string]*RuntimeHintDetails{
-							"a": &RuntimeHintDetails{
+						"a": {
+							"a": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"b": &RuntimeHintDetails{
+							"b": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"c": &RuntimeHintDetails{
+							"c": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-								},
-								SubSlotHints: nil,
-							},
-						},
-						"b": map[string]*RuntimeHintDetails{
-							"a": &RuntimeHintDetails{
-								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-								},
-								SubSlotHints: nil,
-							},
-							"b": &RuntimeHintDetails{
-								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-								},
-								SubSlotHints: nil,
-							},
-							"c": &RuntimeHintDetails{
-								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
-										Phrase: aws.String("string value goes here"),
-									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
 						},
-						"c": map[string]*RuntimeHintDetails{
-							"a": &RuntimeHintDetails{
+						"b": {
+							"a": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"b": &RuntimeHintDetails{
+							"b": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
 								SubSlotHints: nil,
 							},
-							"c": &RuntimeHintDetails{
+							"c": {
 								RuntimeHintValues: []*RuntimeHintValue{
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
 										Phrase: aws.String("string value goes here"),
 									},
-									&RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+								},
+								SubSlotHints: nil,
+							},
+						},
+						"c": {
+							"a": {
+								RuntimeHintValues: []*RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+								},
+								SubSlotHints: nil,
+							},
+							"b": {
+								RuntimeHintValues: []*RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+								},
+								SubSlotHints: nil,
+							},
+							"c": {
+								RuntimeHintValues: []*RuntimeHintValue{
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
+										Phrase: aws.String("string value goes here"),
+									},
+									{
 										Phrase: aws.String("string value goes here"),
 									},
 								},
@@ -1342,20 +1342,20 @@ func mockStartConversationWriteEvents() (
 				},
 			},
 			WelcomeMessages: []*Message{
-				&Message{
+				{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -1365,20 +1365,20 @@ func mockStartConversationWriteEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				&Message{
+				{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -1388,20 +1388,20 @@ func mockStartConversationWriteEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				&Message{
+				{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							&Button{
+							{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
