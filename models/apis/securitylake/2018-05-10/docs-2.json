@@ -1,0 +1,942 @@
+{
+  "version": "2.0",
+  "service": "<note> <p>Amazon Security Lake is in preview release. Your use of the Amazon Security Lake preview is subject to Section 2 of the <a href=\"http://aws.amazon.com/service-terms/\">Amazon Web Services Service Terms</a>(\"Betas and Previews\").</p> </note> <p>Amazon Security Lake is a fully-managed security data lake service. You can use Security Lake to automatically centralize security data from cloud, on-premises, and custom sources into a data lake that's stored in your account. Security Lake helps you analyze security data, so you can get a more complete understanding of your security posture across the entire organization and improve the protection of your workloads, applications, and data.</p> <p>The data lake is backed by Amazon Simple Storage Service (Amazon S3) buckets, and you retain ownership over your data.</p> <p>Security Lake automates the collection of security-related log and event data from integrated Amazon Web Services. and third-party services and manages the lifecycle of data with customizable retention and replication settings. Security Lake also converts ingested data into Apache Parquet format and a standard open-source schema called the Open Cybersecurity Schema Framework (OCSF).</p> <p>Other Amazon Web Services and third-party services can subscribe to the data that's stored in Security Lake for incident response and security data analytics.</p>",
+  "operations": {
+    "CreateAwsLogSource": "<p>Adds a natively-supported Amazon Web Services service as a Security Lake source. Enables source types for member accounts in required Regions, based on specified parameters. You can choose any source type in any Region for accounts that are either part of a trusted organization or standalone accounts. At least one of the three dimensions is a mandatory input to this API. However, any combination of the three dimensions can be supplied to this API. </p> <p>By default, dimension refers to the entire set. When you don't provide a dimension, Security Lake assumes that the missing dimension refers to the entire set. This is overridden when you supply any one of the inputs. For instance, when members is not specified, the API disables all Security Lake member accounts for sources. Similarly, when Regions are not specified, Security Lake is disabled for all the Regions where Security Lake is available as a service.</p> <p>You can use this API only to enable a natively-supported Amazon Web Services services as a source. Use <code>CreateCustomLogSource</code> to enable data collection from a custom source. </p>",
+    "CreateCustomLogSource": "<p>Adds a third-party custom source in Amazon Security Lake, from the Region where you want to create a custom source. Security Lake can collect logs and events from third-party custom sources. After creating the appropriate API roles, use this API to add a custom source name in Security Lake. This operation creates a partition in the Security Lake S3 bucket as the target location for log files from the custom source, an associated Glue table, and an Glue crawler.</p>",
+    "CreateDatalake": "<p>Initializes an Amazon Security Lake instance with the provided (or default) configuration. You can enable Security Lake in Regions with customized settings in advance before enabling log collection in Regions. You can either use the <code>enableAll</code> parameter to specify all Regions or you can specify the Regions you want to enable Security Lake using the <code>Regions</code> parameter and configure these Regions using the <code>configurations</code> parameter. When the <code>CreateDataLake</code> API is called multiple times, if that Region is already enabled, it will update the Region if configuration for that Region is provided. If that Region is a new Region, it will be set up with the customized configurations if it is specified. </p> <p>When you enable Security Lake, it starts ingesting security data after the <code>CreateAwsLogSource</code> call. This includes ingesting security data from sources, storing data, and making data accessible to subscribers. Security Lake also enables all the existing settings and resources that it stores or maintains for your account in the current Region, including security log and event data. For more information, see the Amazon Security Lake User Guide.</p>",
+    "CreateDatalakeAutoEnable": "<p>Automatically enable Security Lake in the specified Regions to begin ingesting security data. When you choose to enable organization accounts automatically, then Security Lake begins to enable new accounts as member accounts as they are added to the organization. Security Lake does not enable existing organization accounts that are not yet enabled.</p>",
+    "CreateDatalakeDelegatedAdmin": "<p>Designates the Security Lake administrator account for the organization. This API can only be called by the organization management account. The organization management account cannot be the delegated administrator account.</p>",
+    "CreateDatalakeExceptionsSubscription": "<p>Creates the specified notification subscription in Security Lake. Creates the specified subscription notifications in the specified organization. </p>",
+    "CreateSubscriber": "<p>Creates a subscription permission for accounts that are already enabled in Security Lake.</p>",
+    "CreateSubscriptionNotificationConfiguration": "<p>Creates the specified notification subscription in Security Lake. Creates the specified subscription notifications from the specified organization. </p>",
+    "DeleteAwsLogSource": "<p>Removes a natively-supported Amazon Web Services service as a Amazon Security Lake source. When you remove the source, Security Lake stops collecting data from that source, and subscribers can no longer consume new data from the source. Subscribers can still consume data that Amazon Security Lake collected from the source before disablement.</p> <p>You can choose any source type in any Region for accounts that are either part of a trusted organization or standalone accounts. At least one of the three dimensions is a mandatory input to this API. However, any combination of the three dimensions can be supplied to this API. </p> <p>By default, dimension refers to the entire set. This is overridden when you supply any one of the inputs. For instance, when members is not specified, the API disables all Security Lake member accounts for sources. Similarly, when Regions are not specified, Security Lake is disabled for all the Regions where Security Lake is available as a service.</p> <p>You can use this API to remove a natively-supported Amazon Web Services service as a source. Use <code>DeregisterCustomData</code> to remove a custom source.</p> <p>When you don't provide a dimension, Security Lake assumes that the missing dimension refers to the entire set. For example, if you don't provide specific accounts, the API applies to the entire set of accounts in your organization.</p>",
+    "DeleteCustomLogSource": "<p>Removes a custom log source from Security Lake.</p>",
+    "DeleteDatalake": "<p>When you delete Amazon Security Lake from your account, Security Lake is disabled in all Regions. Also, this API automatically performs the off-boarding steps to off-board the account from Security Lake . This includes ingesting security data from sources, storing data, and making data accessible to subscribers. Security Lake also deletes all the existing settings and resources that it stores or maintains for your account in the current Region, including security log and event data. <code>DeleteDatalake</code> does not delete the S3 bucket which is owned by the Amazon Web Services account. For more information, see the Amazon Security Lake User Guide.</p>",
+    "DeleteDatalakeAutoEnable": "<p>Automatically delete Security Lake in the specified Regions to stop ingesting security data. When you delete Amazon Security Lake from your account, Security Lake is disabled in all Regions. Also, this API automatically performs the off-boarding steps to off-board the account from Security Lake . This includes ingesting security data from sources, storing data, and making data accessible to subscribers. Security Lake also deletes all the existing settings and resources that it stores or maintains for your account in the current Region, including security log and event data. For more information, see the Amazon Security Lake User Guide. </p>",
+    "DeleteDatalakeDelegatedAdmin": "<p>Deletes the Security Lake administrator account for the organization. This API can only be called by the organization management account. The organization management account cannot be the delegated administrator account.</p>",
+    "DeleteDatalakeExceptionsSubscription": "<p>Deletes the specified notification subscription in Security Lake. Deletes the specified subscription notifications in the specified organization.</p>",
+    "DeleteSubscriber": "<p>Deletes the specified subscription permissions to Security Lake. Deletes the specified subscription permissions from the specified organization. </p>",
+    "DeleteSubscriptionNotificationConfiguration": "<p>Deletes the specified notification subscription in Security Lake. Deletes the specified subscription notifications from the specified organization. </p>",
+    "GetDatalake": "<p>Retrieve the Security Lake configuration object for the specified account ID. This API does not take input parameters. </p>",
+    "GetDatalakeAutoEnable": "<p>Retrieves the configuration that will be automatically set up for accounts added to the organization after the organization has on boarded to Amazon Security Lake. This API does not take input parameters.</p>",
+    "GetDatalakeExceptionsExpiry": "<p>Retrieves the expiration period and time-to-live (TTL) for which the exception message will remain. Exceptions are stored by default, for a 2 week period of time from when a record was created in Security Lake. This API does not take input parameters. This API does not take input parameters.</p>",
+    "GetDatalakeExceptionsSubscription": "<p>Retrieves the details of exception notifications for the account in Amazon Security Lake.</p>",
+    "GetDatalakeStatus": "<p>Retrieve the Security Lake configuration object for the specified account ID. This API does not take input parameters. </p>",
+    "GetSubscriber": "<p>Retrieves subscription information for the specified subscription ID.</p>",
+    "ListDatalakeExceptions": "<p>List the Amazon Security Lake exceptions that you can use to find the source of problems and fix them.</p>",
+    "ListLogSources": "<p>Lists the log sources in the current region.</p>",
+    "ListSubscribers": "<p>List all subscribers for the specific Security Lake account ID.</p>",
+    "UpdateDatalake": "<p>Amazon Security Lake allows you to specify where to store your security data and for how long. You can specify a rollup Region to consolidate data from multiple regions. </p> <p>You can update the properties of a Region or source. Input can either be directly specified to the API. </p>",
+    "UpdateDatalakeExceptionsExpiry": "<p>Update the expiration period for the exception message to your preferred time, and control the time-to-live (TTL) for the exception message to remain. Exceptions are stored by default, for a 2 week period of time from when a record was created in Security Lake. </p>",
+    "UpdateDatalakeExceptionsSubscription": "<p>Update the subscription notification for exception notification.</p>",
+    "UpdateSubscriber": "<p>Update the subscription permission for the given Security Lake account ID.</p>",
+    "UpdateSubscriptionNotificationConfiguration": "<p>Create a new subscription notification or add the existing subscription notification setting for the specified subscription ID.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You do not have sufficient access to perform this action. Access denied errors appear when Amazon Security Lake explicitly or implicitly denies an authorization request. An explicit denial occurs when a policy contains a Deny statement for the specific Amazon Web Services action. An implicit denial occurs when there is no applicable Deny statement and also no applicable Allow statement.</p>",
+      "refs": {
+      }
+    },
+    "AccessType": {
+      "base": null,
+      "refs": {
+        "AccessTypeList$member": null
+      }
+    },
+    "AccessTypeList": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberRequest$accessTypes": "<p>The Amazon S3 or Lake Formation access type.</p>",
+        "SubscriberResource$accessTypes": "<p>You can choose to notify subscribers of new objects with an Amazon Simple Queue Service (Amazon SQS) queue or through messaging to an HTTPS endpoint provided by the subscriber. </p> <p> Subscribers can consume data by directly querying Lake Formation tables in your S3 bucket via services like Amazon Athena. This subscription type is defined as <code>LAKEFORMATION</code>. </p>"
+      }
+    },
+    "AccountList": {
+      "base": null,
+      "refs": {
+        "CreateAwsLogSourceResponse$failed": "<p>List of all accounts in which enabling a natively-supported Amazon Web Services service as a Security Lake failed. The failure occurred as these accounts are not part of an organization.</p>",
+        "CreateAwsLogSourceResponse$processing": "<p>List of all accounts which are in the process of enabling a natively-supported Amazon Web Services service as a Security Lake.</p>",
+        "DeleteAwsLogSourceResponse$failed": "<p>Deletion of the Amazon Web Services sources failed as the account is not a part of the organization.</p>",
+        "DeleteAwsLogSourceResponse$processing": "<p>Deletion of the Amazon Web Services sources is in-progress.</p>"
+      }
+    },
+    "AccountNotFoundException": {
+      "base": "<p>Amazon Security Lake can't find an Amazon Web Services account with the accountID that you specified, or the account whose credentials you used to make this request isn't a member of an organization.</p>",
+      "refs": {
+      }
+    },
+    "AccountSources": {
+      "base": "<p>Security Lake can collect logs and events from supported Amazon Web Services services and custom sources. </p>",
+      "refs": {
+        "AccountSourcesList$member": null
+      }
+    },
+    "AccountSourcesList": {
+      "base": null,
+      "refs": {
+        "GetDatalakeStatusResponse$accountSourcesList": "<p>The list of enabled accounts and enabled sources.</p>"
+      }
+    },
+    "AllDimensionsMap": {
+      "base": null,
+      "refs": {
+        "CreateAwsLogSourceRequest$enableAllDimensions": "<p>Enables specific sources in all Regions and source types.</p>",
+        "DeleteAwsLogSourceRequest$disableAllDimensions": "<p>Removes the specific Amazon Web Services sources from all Regions and source types.</p>",
+        "ListLogSourcesRequest$listAllDimensions": "<p>List the view of log sources for enabled Security Lake accounts in all Regions and source types.</p>",
+        "RegionSourceTypesAccountsList$member": null
+      }
+    },
+    "AutoEnableNewRegionConfiguration": {
+      "base": "<p>Automatically enable new organization accounts as member accounts from a Security Lake administrator account.</p>",
+      "refs": {
+        "AutoEnableNewRegionConfigurationList$member": null
+      }
+    },
+    "AutoEnableNewRegionConfigurationList": {
+      "base": null,
+      "refs": {
+        "CreateDatalakeAutoEnableRequest$configurationForNewAccounts": "<p>Enable Amazon Security Lake with the specified configurations settings to begin ingesting security data for new accounts in Security Lake. </p>",
+        "DeleteDatalakeAutoEnableRequest$removeFromConfigurationForNewAccounts": "<p>Delete Amazon Security Lake with the specified configurations settings to stop ingesting security data for new accounts in Security Lake. </p>",
+        "GetDatalakeAutoEnableResponse$autoEnableNewAccounts": "<p>The configuration for new accounts.</p>"
+      }
+    },
+    "AwsAccountId": {
+      "base": null,
+      "refs": {
+        "CreateCustomLogSourceRequest$logProviderAccountId": "<p>The Account ID that will assume the above Role to put logs into the Data Lake.</p>",
+        "CreateSubscriberRequest$accountId": "<p>The third party Amazon Web Services account ID used to access your data.</p>",
+        "SubscriberResource$accountId": "<p>The Amazon Web Services account ID of the account that you are using to create your Amazon Security Lake account.</p>"
+      }
+    },
+    "AwsLogSourceType": {
+      "base": null,
+      "refs": {
+        "AwsSourceTypeList$member": null,
+        "SourceType$awsSourceType": "<p>Amazon Security Lake supports logs and events collection for natively-supported Amazon Web Services services. For more information, see the Amazon Security Lake User Guide.</p>"
+      }
+    },
+    "AwsSourceTypeList": {
+      "base": null,
+      "refs": {
+        "AutoEnableNewRegionConfiguration$sources": "<p>The Amazon Web Services sources which are auto enabled in Security Lake.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "CreateDatalakeRequest$enableAll": "<p>Enable Security Lake in all Regions to begin ingesting security data.</p>",
+        "CreateSubscriptionNotificationConfigurationRequest$createSqs": "<p>Create a new subscription notification for the specified subscription ID in Security Lake.</p>",
+        "UpdateSubscriptionNotificationConfigurationRequest$createSqs": "<p>Create a new subscription notification for the specified subscription ID in Security Lake.</p>"
+      }
+    },
+    "BucketNotFoundException": {
+      "base": "<p>Amazon Security Lake generally returns 404 errors if the requested object is missing from the bucket.</p>",
+      "refs": {
+      }
+    },
+    "ConcurrentModificationException": {
+      "base": "<p>More than one process tried to modify a resource at the same time. </p>",
+      "refs": {
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Occurs when a conflict with a previous successful write is detected. This generally occurs when the previous write did not have time to propagate to the host serving the current request. A retry (with appropriate backoff logic) is the recommended response to this exception.</p>",
+      "refs": {
+      }
+    },
+    "ConflictSourceNamesException": {
+      "base": "<p>There was a conflict when you attempted to modify a Security Lake source name. </p>",
+      "refs": {
+      }
+    },
+    "ConflictSubscriptionException": {
+      "base": "<p>A conflicting subscription exception operation is in progress. </p>",
+      "refs": {
+      }
+    },
+    "CreateAwsLogSourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAwsLogSourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCustomLogSourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCustomLogSourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeAutoEnableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeAutoEnableResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeDelegatedAdminRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeDelegatedAdminResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeExceptionsSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeExceptionsSubscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatalakeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSubscriberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSubscriberRequestSubscriberNameString": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberRequest$subscriberName": "<p>The name of your Amazon Security Lake subscriber account.</p>"
+      }
+    },
+    "CreateSubscriberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSubscriptionNotificationConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSubscriptionNotificationConfigurationRequestSubscriptionEndpointString": {
+      "base": null,
+      "refs": {
+        "CreateSubscriptionNotificationConfigurationRequest$subscriptionEndpoint": "<p>The subscription endpoint in Security Lake.</p>"
+      }
+    },
+    "CreateSubscriptionNotificationConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CustomSourceType": {
+      "base": null,
+      "refs": {
+        "CreateCustomLogSourceRequest$customSourceName": "<p>The custom source name for a third-party custom source. </p>",
+        "SourceType$customSourceType": "<p>Amazon Security Lake supports custom source types. For the detailed list, see the Amazon Security Lake User Guide.</p>"
+      }
+    },
+    "DeleteAwsLogSourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAwsLogSourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCustomLogSourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCustomLogSourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeAutoEnableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeAutoEnableResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeDelegatedAdminRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeDelegatedAdminResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeExceptionsSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeExceptionsSubscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatalakeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSubscriberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSubscriberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSubscriptionNotificationConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSubscriptionNotificationConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Dimension": {
+      "base": null,
+      "refs": {
+        "DimensionSet$member": null
+      }
+    },
+    "DimensionSet": {
+      "base": null,
+      "refs": {
+        "CreateAwsLogSourceRequest$inputOrder": "<p>Specifies the input order to enable dimensions in Security Lake, namely region, source type, and member account.</p>",
+        "DeleteAwsLogSourceRequest$inputOrder": "<p>This is a mandatory input. Specifies the input order to disable dimensions in Security Lake, namely Region, source type, and member. </p>",
+        "ListLogSourcesRequest$inputOrder": "<p>Lists the log sources in input order, namely Region, source type, and member account.</p>"
+      }
+    },
+    "EndpointProtocol": {
+      "base": null,
+      "refs": {
+        "SubscriberResource$subscriptionProtocol": "<p>The subscription protocol to which exception messages are posted. </p>"
+      }
+    },
+    "EventBridgeException": {
+      "base": "<p>Represents an error interacting with the Amazon EventBridge service.</p>",
+      "refs": {
+      }
+    },
+    "Failures": {
+      "base": "<p>List of all failures.</p>",
+      "refs": {
+        "Failureslist$member": null
+      }
+    },
+    "FailuresResponse": {
+      "base": "<p>Response element for actions which make changes namely create, update, or delete actions. </p>",
+      "refs": {
+        "FailuresResponseList$member": null
+      }
+    },
+    "FailuresResponseList": {
+      "base": null,
+      "refs": {
+        "ListDatalakeExceptionsResponse$nonRetryableFailures": "<p>Lists the non-retryable failures in the current region.</p>"
+      }
+    },
+    "Failureslist": {
+      "base": null,
+      "refs": {
+        "FailuresResponse$failures": "<p>List of all failures. </p>"
+      }
+    },
+    "GetDatalakeAutoEnableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeAutoEnableResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeExceptionsExpiryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeExceptionsExpiryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeExceptionsSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeExceptionsSubscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDatalakeStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSubscriberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSubscriberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "HttpsMethod": {
+      "base": null,
+      "refs": {
+        "CreateSubscriptionNotificationConfigurationRequest$httpsMethod": "<p>The HTTPS method used for the subscription notification. </p>",
+        "UpdateSubscriptionNotificationConfigurationRequest$httpsMethod": "<p>The HTTPS method used for the subscription notification. </p>"
+      }
+    },
+    "InputSet": {
+      "base": null,
+      "refs": {
+        "CreateAwsLogSourceRequest$enableSingleDimension": "<p>Enables all sources in specific accounts or Regions.</p>",
+        "DeleteAwsLogSourceRequest$disableSingleDimension": "<p>Removes all Amazon Web Services sources from specific accounts or Regions.</p>",
+        "GetDatalakeStatusRequest$accountSet": "<p>The account IDs for which a static snapshot of the current Region, including enabled accounts and log sources is retrieved.</p>",
+        "ListLogSourcesRequest$listSingleDimension": "<p>List the view of log sources for enabled Security Lake accounts for the entire region.</p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "GetDatalakeStatusRequest$maxAccountResults": "<p>The maximum limit of accounts for which the static snapshot of the current Region including enabled accounts and log sources is retrieved.</p>",
+        "InternalServerException$retryAfterSeconds": "<p>Retry the request after the specified time. </p>",
+        "ListDatalakeExceptionsRequest$maxFailures": "<p>List the maximum number of failures in Security Lake.</p>",
+        "ListLogSourcesRequest$maxResults": "<p>The maximum number of accounts for which the configuration is displayed.</p>",
+        "ListSubscribersRequest$maxResults": "<p>The maximum number of accounts for which the configuration is displayed.</p>",
+        "ThrottlingException$retryAfterSeconds": "<p>Retry the request after the specified time. </p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>Internal service exceptions are sometimes caused by transient issues. Before you start troubleshooting, perform the operation again. </p>",
+      "refs": {
+      }
+    },
+    "InvalidInputException": {
+      "base": "<p>The request was rejected because an invalid or out-of-range value was supplied for an input parameter. </p>",
+      "refs": {
+      }
+    },
+    "LakeConfigurationRequest": {
+      "base": "<p>Provides details of lake configuration object in Amazon Security Lake.</p>",
+      "refs": {
+        "LakeConfigurationRequestMap$value": null
+      }
+    },
+    "LakeConfigurationRequestMap": {
+      "base": null,
+      "refs": {
+        "CreateDatalakeRequest$configurations": "<p>Enable Security Lake with the specified configurations settings to begin ingesting security data. </p>",
+        "UpdateDatalakeRequest$configurations": "<p>The configuration object</p>"
+      }
+    },
+    "LakeConfigurationResponse": {
+      "base": "<p>Provides details of lake configuration object in Amazon Security Lake.</p>",
+      "refs": {
+        "LakeConfigurationResponseMap$value": null
+      }
+    },
+    "LakeConfigurationResponseMap": {
+      "base": null,
+      "refs": {
+        "GetDatalakeResponse$configurations": "<p>Retrieves the Security Lake configuration object. </p>"
+      }
+    },
+    "ListDatalakeExceptionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDatalakeExceptionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLogSourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLogSourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSubscribersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSubscribersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LogsStatus": {
+      "base": "<p>Log status for the Security Lake account.</p>",
+      "refs": {
+        "LogsStatusList$member": null
+      }
+    },
+    "LogsStatusList": {
+      "base": null,
+      "refs": {
+        "AccountSources$logsStatus": "<p>Log status for the Security Lake account.</p>"
+      }
+    },
+    "Long": {
+      "base": null,
+      "refs": {
+        "GetDatalakeExceptionsExpiryResponse$exceptionMessageExpiry": "<p>The expiration period and time-to-live (TTL).</p>"
+      }
+    },
+    "OcsfEventClass": {
+      "base": null,
+      "refs": {
+        "AccountSources$eventClass": "<p>Initializes a new instance of the Event class.</p>",
+        "CreateCustomLogSourceRequest$eventClass": "<p>The Open Cybersecurity Schema Framework (OCSF) event class.</p>"
+      }
+    },
+    "ProtocolAndNotificationEndpoint": {
+      "base": "<p>Notifications in Security Lake which dictates how notifications are posted at the endpoint. </p>",
+      "refs": {
+        "GetDatalakeExceptionsSubscriptionResponse$protocolAndNotificationEndpoint": "<p>Retrieves the exception notification subscription information.</p>"
+      }
+    },
+    "Region": {
+      "base": null,
+      "refs": {
+        "AutoEnableNewRegionConfiguration$region": "<p>The Regions where Security Lake is auto enabled</p>",
+        "LakeConfigurationRequestMap$key": null,
+        "LakeConfigurationResponseMap$key": null,
+        "RegionSet$member": null
+      }
+    },
+    "RegionSet": {
+      "base": null,
+      "refs": {
+        "CreateDatalakeRequest$regions": "<p>Enable Security Lake in the specified Regions to begin ingesting security data. To enable Security Lake in specific Amazon Web Services Regions, such as us-east-1 or ap-northeast-3, provide the Region codes. For a list of Region codes, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints\">Region codes</a> in the Amazon Web Services General Reference.</p>",
+        "LakeConfigurationRequest$replicationDestinationRegions": "<p>Replication enables automatic, asynchronous copying of objects across Amazon S3 buckets. Amazon S3 buckets that are configured for object replication can be owned by the same Amazon Web Services account or by different accounts. You can replicate objects to a single destination bucket or to multiple destination buckets. The destination buckets can be in different Amazon Web Services Regions or within the same Region as the source bucket.</p> <p>Set up one or more rollup Regions by providing the Region or Regions that should contribute to the central rollup Region. </p>",
+        "LakeConfigurationResponse$replicationDestinationRegions": "<p>Replication enables automatic, asynchronous copying of objects across Amazon S3 buckets. Amazon S3 buckets that are configured for object replication can be owned by the same AWS account or by different accounts. You can replicate objects to a single destination bucket or to multiple destination buckets. The destination buckets can be in different Amazon Web Services Regions or within the same Region as the source bucket.</p> <p>Set up one or more rollup Regions by providing the Region or Regions that should contribute to the central rollup Region. </p>",
+        "ListDatalakeExceptionsRequest$regionSet": "<p>List the regions from which exceptions are retrieved.</p>"
+      }
+    },
+    "RegionSourceTypesAccountsList": {
+      "base": null,
+      "refs": {
+        "ListLogSourcesResponse$regionSourceTypesAccountsList": "<p>Lists the log sources in the Regions for enabled Security Lake accounts.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The resource could not be found.</p>",
+      "refs": {
+      }
+    },
+    "RetentionSetting": {
+      "base": "<p>Retention settings for the destination Amazon S3 buckets in Security Lake. </p>",
+      "refs": {
+        "RetentionSettingList$member": null
+      }
+    },
+    "RetentionSettingList": {
+      "base": null,
+      "refs": {
+        "LakeConfigurationRequest$retentionSettings": "<p>Retention settings for the destination Amazon S3 buckets. </p>",
+        "LakeConfigurationResponse$retentionSettings": "<p>Retention settings for the destination Amazon S3 buckets. </p>"
+      }
+    },
+    "RetentionSettingRetentionPeriodInteger": {
+      "base": null,
+      "refs": {
+        "RetentionSetting$retentionPeriod": "<p>The retention period specifies a fixed period of time during which the Security Lake object remains locked. You can specify the retention period for one or more source in days. </p>"
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "CreateCustomLogSourceRequest$glueInvocationRoleArn": "<p>The IAM Role ARN to be used by the Glue Crawler. The recommended IAM policies are:</p> <ul> <li> <p>The managed policy <code>AWSGlueServiceRole</code> </p> </li> <li> <p>A custom policy granting access to your S3 Data Lake</p> </li> </ul>",
+        "CreateDatalakeRequest$metaStoreManagerRoleArn": "<p>The Role ARN used to create and update the Glue table with partitions generated by ingestion and normalization of Amazon Web Services log sources and custom sources.</p>",
+        "CreateSubscriberResponse$roleArn": "<p>The Amazon Resource Name (ARN) created by the user to provide to the subscriber. For more information about ARNs and how to use them in policies, see IAM identifiers in the IAM User Guide.</p>",
+        "CreateSubscriptionNotificationConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) specifying the role of the subscriber.</p>",
+        "LakeConfigurationRequest$replicationRoleArn": "<p>Replication settings for the Amazon S3 buckets. This parameter uses the IAM role created by you that is managed by Security Lake, to ensure the replication setting is correct. </p>",
+        "LakeConfigurationResponse$replicationRoleArn": "<p>Replication settings for the Amazon S3 buckets. This parameter uses the IAM role created by you that is managed by Security Lake, to ensure the replication setting is correct. </p>",
+        "SubscriberResource$roleArn": "<p>The Amazon Resource Name (ARN) specifying the role of the subscriber.</p>",
+        "UpdateSubscriptionNotificationConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) specifying the role of the subscriber. </p>"
+      }
+    },
+    "S3BucketArn": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberResponse$s3BucketArn": "<p>The Amazon Resource Name (ARN) for the Amazon S3 bucket. </p>",
+        "LakeConfigurationResponse$s3BucketArn": "<p>Amazon Resource Names (ARNs) uniquely identify Amazon Web Services resources. Security Lake requires an ARN when you need to specify a resource unambiguously across all of Amazon Web Services, such as in IAM policies, Amazon Relational Database Service (Amazon RDS) tags, and API calls. </p>",
+        "SubscriberResource$s3BucketArn": "<p>The Amazon Resource Name (ARN) for the Amazon S3 bucket. </p>"
+      }
+    },
+    "S3Exception": {
+      "base": "<p>Provides an extension of the AmazonServiceException for errors reported by Amazon S3 while processing a request. In particular, this class provides access to Amazon S3's extended request ID. This ID is required debugging information in the case the user needs to contact Amazon about an issue where Amazon S3 is incorrectly handling a request.</p>",
+      "refs": {
+      }
+    },
+    "SafeString": {
+      "base": null,
+      "refs": {
+        "CreateDatalakeDelegatedAdminRequest$account": "<p>Account ID of the Security Lake delegated administrator.</p>",
+        "CreateDatalakeExceptionsSubscriptionRequest$notificationEndpoint": "<p>The account in which the exception notifications subscription is created.</p>",
+        "CreateSubscriberRequest$externalId": "<p>The external ID of the subscriber. External ID allows the user that is assuming the role to assert the circumstances in which they are operating. It also provides a way for the account owner to permit the role to be assumed only under specific circumstances.</p>",
+        "CreateSubscriberRequest$subscriberDescription": "<p>The subscriber descriptions for the subscriber account in Amazon Security Lake. </p>",
+        "CreateSubscriptionNotificationConfigurationResponse$queueArn": "<p>Returns the Amazon resource name (ARN) of the queue.</p>",
+        "DeleteDatalakeDelegatedAdminRequest$account": "<p>Account ID the Security Lake delegated administrator.</p>",
+        "DeleteDatalakeExceptionsSubscriptionResponse$status": "<p>Retrieves the status of the delete Security Lake operation for an account. </p>",
+        "Failures$exceptionMessage": "<p>List of all exception messages.</p>",
+        "Failures$remediation": "<p>List of all remediation steps for failures.</p>",
+        "FailuresResponse$region": "<p>List of Regions where the failure occurred. </p>",
+        "GetDatalakeStatusRequest$nextToken": "<p>If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.</p>",
+        "GetDatalakeStatusResponse$nextToken": "<p>If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.</p>",
+        "InputSet$member": null,
+        "ListDatalakeExceptionsRequest$nextToken": "<p>List if there are more results available. if nextToken is returned, You can make the call again using the returned token to retrieve the next page</p>",
+        "ListDatalakeExceptionsResponse$nextToken": "<p>List if there are more results available. if nextToken is returned, You can make the call again using the returned token to retrieve the next page</p>",
+        "ListLogSourcesRequest$nextToken": "<p>If nextToken is returned, there are more results available. You can make the call again using the returned token to retrieve the next page.</p>",
+        "ListSubscribersRequest$nextToken": "<p>If nextToken is returned, there are more results available. You can make the call again using the returned token to retrieve the next page.</p>",
+        "ListSubscribersResponse$nextToken": "<p>If nextToken is returned, there are more results available. You can make the call again using the returned token to retrieve the next page.</p>",
+        "ProtocolAndNotificationEndpoint$endpoint": "<p>The account which is subscribed to receive exception notifications. </p>",
+        "ProtocolAndNotificationEndpoint$protocol": "<p>The protocol to which notification messages are posted. </p>",
+        "SubscriberResource$externalId": "<p>The external ID of the subscriber. External ID allows the user that is assuming the role to assert the circumstances in which they are operating. It also provides a way for the account owner to permit the role to be assumed only under specific circumstances.</p>",
+        "SubscriberResource$subscriberDescription": "<p>The subscriber descriptions for a subscriber account. The description for a subscriber includes <code>subscriberName</code>, <code>accountID</code>, <code>externalID</code>, and <code>subscriptionId</code>.</p>",
+        "SubscriberResource$subscriberName": "<p>The name of your Amazon Security Lake subscriber account.</p>",
+        "UpdateDatalakeExceptionsSubscriptionRequest$notificationEndpoint": "<p>The account which is subscribed to receive exception notifications.</p>",
+        "UpdateSubscriberRequest$externalId": "<p>External ID of the Security Lake account.</p>",
+        "UpdateSubscriberRequest$subscriberDescription": "<p>Description of the Security Lake account subscriber.</p>",
+        "UpdateSubscriptionNotificationConfigurationResponse$queueArn": "<p>Returns the Amazon resource name (ARN) of the queue.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>You have exceeded your service quota. To perform the requested action, remove some of the relevant resources, or use Service Quotas to request a service quota increase. </p>",
+      "refs": {
+      }
+    },
+    "SnsTopicArn": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberResponse$snsArn": "<p>The Amazon Resource Name (ARN) for the Amazon Simple Notification Service.</p>",
+        "SubscriberResource$snsArn": "<p>The Amazon Resource Name (ARN) for the Amazon Simple Notification Service.</p>"
+      }
+    },
+    "SourceStatus": {
+      "base": null,
+      "refs": {
+        "LogsStatus$healthStatus": "<p>Health status of services including error codes and patterns.</p>"
+      }
+    },
+    "SourceType": {
+      "base": "<p>The supported source types from which logs and events are collected in Amazon Security Lake. </p>",
+      "refs": {
+        "SourceTypeList$member": null
+      }
+    },
+    "SourceTypeList": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberRequest$sourceTypes": "<p>The supported Amazon Web Services services from which logs and events are collected. Amazon Security Lake supports logs and events collection for natively-supported Amazon Web Services services.</p>",
+        "SubscriberResource$sourceTypes": "<p>Amazon Security Lake supports logs and events collection for the natively-supported Amazon Web Services services. For more information, see the Amazon Security Lake User Guide.</p>",
+        "UpdateSubscriberRequest$sourceTypes": "<p>The supported Amazon Web Services services from which logs and events are collected. Amazon Security Lake supports logs and events collection for the following natively-supported Amazon Web Services services. For more information, see the Amazon Security Lake User Guide.</p>"
+      }
+    },
+    "StorageClass": {
+      "base": null,
+      "refs": {
+        "RetentionSetting$storageClass": "<p>The range of storage classes that you can choose from based on the data access, resiliency, and cost requirements of your workloads.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": null,
+        "AccountList$member": null,
+        "AccountNotFoundException$message": null,
+        "AccountSources$account": "<p>Account ID of the Security Lake account for which logs are collected.</p>",
+        "AccountSources$sourceType": "<p>The supported Amazon Web Services services from which logs and events are collected. Amazon Security Lake supports logs and events collection for natively-supported Amazon Web Services services. For more information, see the Amazon Security Lake User Guide. </p>",
+        "AllDimensionsMap$key": null,
+        "BucketNotFoundException$message": null,
+        "ConcurrentModificationException$message": null,
+        "ConflictException$message": null,
+        "ConflictException$resourceId": "<p>A conflict occurred when prompting for the Resource ID.</p>",
+        "ConflictException$resourceType": "<p>The resource type. </p>",
+        "ConflictSourceNamesException$message": null,
+        "ConflictSubscriptionException$message": null,
+        "CreateCustomLogSourceResponse$customDataLocation": "<p>The location of the partition in the Security Lake S3 bucket.</p>",
+        "CreateCustomLogSourceResponse$glueCrawlerName": "<p>The name of the Glue crawler.</p>",
+        "CreateCustomLogSourceResponse$glueDatabaseName": "<p>The Glue database where results are written, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.</p>",
+        "CreateCustomLogSourceResponse$glueTableName": "<p>The table name of the Glue crawler.</p>",
+        "CreateCustomLogSourceResponse$logProviderAccessRoleArn": "<p> IAM Role ARN to be used by the entity putting logs into your Custom Source partition. Security Lake will apply the correct access policies to this Role, but this Role must have the trust policy created manually. This Role's name must start with the text 'Security Lake'. It must trust the <code>logProviderAccountId</code> to assume it.</p>",
+        "CreateSubscriptionNotificationConfigurationRequest$httpsApiKeyName": "<p>The key name for the subscription notification.</p>",
+        "CreateSubscriptionNotificationConfigurationRequest$httpsApiKeyValue": "<p>The key value for the subscription notification.</p>",
+        "DeleteCustomLogSourceRequest$customSourceName": "<p>The custom source name for the custome log source.</p>",
+        "DeleteCustomLogSourceResponse$customDataLocation": "<p>The location of the partition in the Security Lake S3 bucket.</p>",
+        "DeleteSubscriberRequest$id": "<p>A value created by Security Lake that uniquely identifies your <code>DeleteSubscriber</code> API request. </p>",
+        "EventBridgeException$message": null,
+        "GetSubscriberRequest$id": "<p>A value created by Security Lake that uniquely identifies your <code>GetSubscriber</code> API request.</p>",
+        "InternalServerException$message": null,
+        "InvalidInputException$message": null,
+        "LakeConfigurationRequest$encryptionKey": "<p>The type of encryption key used by Security Lake to encrypt the lake configuration object.</p>",
+        "LakeConfigurationResponse$encryptionKey": "<p>The type of encryption key used by Security Lake to encrypt the lake configuration</p>",
+        "ListLogSourcesResponse$nextToken": "<p>If nextToken is returned, there are more results available. You can make the call again using the returned token to retrieve the next page.</p>",
+        "LogsStatus$pathToLogs": "<p>Defines path the stored logs are available which has information on your systems, applications, and services. </p>",
+        "ResourceNotFoundException$message": null,
+        "ResourceNotFoundException$resourceId": "<p>The ID of the resource for which the type of resource could not be found.</p>",
+        "ResourceNotFoundException$resourceType": "<p>The type of the resource that could not be found.</p>",
+        "S3Exception$message": null,
+        "ServiceQuotaExceededException$message": null,
+        "ServiceQuotaExceededException$quotaCode": "<p>That the rate of requests to Security Lake is exceeding the request quotas for your Amazon Web Services account.</p>",
+        "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource that exceeds the service quota.</p>",
+        "ServiceQuotaExceededException$resourceType": "<p>The type of the resource that exceeds the service quota.</p>",
+        "ServiceQuotaExceededException$serviceCode": "<p>The code for the service in Service Quotas.</p>",
+        "SubscriberResource$subscriptionEndpoint": "<p>The subscription endpoint to which exception messages are posted. </p>",
+        "TagsMap$key": null,
+        "TagsMap$value": null,
+        "ThrottlingException$message": null,
+        "ThrottlingException$quotaCode": "<p>That the rate of requests to Security Lake is exceeding the request quotas for your Amazon Web Services account.</p>",
+        "ThrottlingException$serviceCode": "<p>The code for the service in Service Quotas.</p>",
+        "TwoDimensionsMap$key": null,
+        "UpdateSubscriberRequest$id": "<p>A value created by Security Lake that uniquely identifies your <code>UpdateSubscriber</code> API request. </p>",
+        "UpdateSubscriptionNotificationConfigurationRequest$httpsApiKeyName": "<p>The key name for the subscription notification.</p>",
+        "UpdateSubscriptionNotificationConfigurationRequest$httpsApiKeyValue": "<p>The key value for the subscription notification.</p>",
+        "ValidationException$message": null,
+        "ValidationExceptionField$message": "<p>Describes the error encountered.</p>",
+        "ValidationExceptionField$name": "<p>Name of the validation exception.</p>",
+        "ValueSet$member": null
+      }
+    },
+    "SubscriberList": {
+      "base": null,
+      "refs": {
+        "ListSubscribersResponse$subscribers": "<p>The subscribers available in the specified Security Lake account ID.</p>"
+      }
+    },
+    "SubscriberResource": {
+      "base": "<p>Provides details of the Amazon Security Lake account subscription. Subscribers are notified of new objects for a source as the data is written to your Amazon Security Lake S3 bucket. </p>",
+      "refs": {
+        "GetSubscriberResponse$subscriber": "<p>Subscription information for the specified subscription ID</p>",
+        "SubscriberList$member": null,
+        "UpdateSubscriberResponse$subscriber": "<p>The account subscriber in Amazon Security Lake.</p>"
+      }
+    },
+    "SubscriptionProtocolType": {
+      "base": null,
+      "refs": {
+        "CreateDatalakeExceptionsSubscriptionRequest$subscriptionProtocol": "<p>The subscription protocol to which exception messages are posted. </p>",
+        "UpdateDatalakeExceptionsSubscriptionRequest$subscriptionProtocol": "<p>The subscription protocol to which exception messages are posted. </p>"
+      }
+    },
+    "SubscriptionStatus": {
+      "base": null,
+      "refs": {
+        "SubscriberResource$subscriptionStatus": "<p>Subscription status of the Amazon Security Lake subscriber account.</p>"
+      }
+    },
+    "SyntheticTimestamp_date_time": {
+      "base": null,
+      "refs": {
+        "Failures$timestamp": "<p>This error can occur if you configure the wrong timestamp format, or if the subset of entries used for validation had errors or missing values.</p>",
+        "SubscriberResource$createdAt": "<p>The date and time when the subscription was created. </p>",
+        "SubscriberResource$updatedAt": "<p>The date and time when the subscription was created. </p>"
+      }
+    },
+    "TagsMap": {
+      "base": null,
+      "refs": {
+        "LakeConfigurationRequest$tagsMap": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value, both of which you define.</p>",
+        "LakeConfigurationResponse$tagsMap": "<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value, both of which you define.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The limit on the number of requests per second was exceeded. </p>",
+      "refs": {
+      }
+    },
+    "TwoDimensionsMap": {
+      "base": null,
+      "refs": {
+        "AllDimensionsMap$value": null,
+        "CreateAwsLogSourceRequest$enableTwoDimensions": "<p>Enables specific service sources in specific accounts or Regions.</p>",
+        "DeleteAwsLogSourceRequest$disableTwoDimensions": "<p>Remove a specific Amazon Web Services source from specific accounts or Regions.</p>",
+        "ListLogSourcesRequest$listTwoDimensions": "<p>Lists the log sources for the specified source types in enabled Security Lake accounts for the entire Region, for selected member accounts.</p>"
+      }
+    },
+    "UUID": {
+      "base": null,
+      "refs": {
+        "CreateSubscriberResponse$subscriptionId": "<p>The <code>subscriptionId</code> that was created by the <code>CreateSubscriber</code> API call.</p>",
+        "CreateSubscriptionNotificationConfigurationRequest$subscriptionId": "<p>The subscription ID for which the subscription notification is specified. </p>",
+        "DeleteSubscriptionNotificationConfigurationRequest$subscriptionId": "<p>The subscription ID of the Amazon Security Lake subscriber account.</p>",
+        "SubscriberResource$subscriptionId": "<p>The subscription ID of the Amazon Security Lake subscriber account.</p>",
+        "UpdateSubscriptionNotificationConfigurationRequest$subscriptionId": "<p>The subscription ID for which the subscription notification is specified. </p>"
+      }
+    },
+    "UpdateDatalakeExceptionsExpiryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatalakeExceptionsExpiryRequestExceptionMessageExpiryLong": {
+      "base": null,
+      "refs": {
+        "UpdateDatalakeExceptionsExpiryRequest$exceptionMessageExpiry": "<p>The time-to-live (TTL) for the exception message to remain.</p>"
+      }
+    },
+    "UpdateDatalakeExceptionsExpiryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatalakeExceptionsSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatalakeExceptionsSubscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatalakeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatalakeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSubscriberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSubscriberRequestSubscriberNameString": {
+      "base": null,
+      "refs": {
+        "UpdateSubscriberRequest$subscriberName": "<p>Name of the Security Lake account subscriber. </p>"
+      }
+    },
+    "UpdateSubscriberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSubscriptionNotificationConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSubscriptionNotificationConfigurationRequestSubscriptionEndpointString": {
+      "base": null,
+      "refs": {
+        "UpdateSubscriptionNotificationConfigurationRequest$subscriptionEndpoint": "<p>The subscription endpoint in Security Lake.</p>"
+      }
+    },
+    "UpdateSubscriptionNotificationConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>Your signing certificate could not be validated. </p>",
+      "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p>The input fails to meet the constraints specified in Amazon Security Lake </p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": null,
+      "refs": {
+        "ValidationException$fieldList": "<p>The list of parameters that failed to validate. </p>"
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": null,
+      "refs": {
+        "ValidationException$reason": "<p>The reason for the validation exception. </p>"
+      }
+    },
+    "ValueSet": {
+      "base": null,
+      "refs": {
+        "TwoDimensionsMap$value": null
+      }
+    },
+    "settingsStatus": {
+      "base": null,
+      "refs": {
+        "LakeConfigurationResponse$status": "<p>Retrieves the status of the configuration operation for an account in Amazon Security Lake. </p>"
+      }
+    }
+  }
+}
