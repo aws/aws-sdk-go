@@ -36,9 +36,9 @@
           "output": {
           }
         },
-        "description": "This example connects an AWS KMS custom key store to its AWS CloudHSM cluster. This operation does not return any data. To verify that the custom key store is connected, use the <code>DescribeCustomKeyStores</code> operation.",
-        "id": "to-connect-a-custom-key-store-to-its-cloudhsm-cluster-1628626947750",
-        "title": "To connect a custom key store to its CloudHSM cluster"
+        "description": "This example connects an AWS KMS custom key store to its backing key store. For an AWS CloudHSM key store, it connects the key store to its AWS CloudHSM cluster. For an external key store, it connects the key store to the external key store proxy that communicates with your external key manager. This operation does not return any data. To verify that the custom key store is connected, use the <code>DescribeCustomKeyStores</code> operation.",
+        "id": "to-connect-a-custom-key-store-1628626947750",
+        "title": "To connect a custom key store"
       }
     ],
     "CreateAlias": [
@@ -81,8 +81,68 @@
           }
         },
         "description": "This example creates a custom key store that is associated with an AWS CloudHSM cluster.",
-        "id": "to-create-an-aws-cloudhsm-custom-key-store-1628627769469",
-        "title": "To create an AWS CloudHSM custom key store"
+        "id": "to-create-an-aws-cloudhsm-custom-key-store-1",
+        "title": "To create an AWS CloudHSM key store"
+      },
+      {
+        "input": {
+          "CustomKeyStoreName": "ExampleVPCEndpointKeyStore",
+          "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
+          "XksProxyAuthenticationCredential": "AccessKeyId=ABCDE12345670EXAMPLE,RawSecretAccessKey=file://SecretAccessKey",
+          "XksProxyConnectivity": "VPC_ENDPOINT_SERVICE",
+          "XksProxyUriEndpoint": "https://myproxy-private.xks.example.com",
+          "XksProxyUriPath": "/example-prefix/kms/xks/v1",
+          "XksProxyVpcEndpointServiceName": "com.amazonaws.vpce.us-east-1.vpce-svc-example1"
+        },
+        "output": {
+          "CustomKeyStoreId": "cks-1234567890abcdef0"
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreName": "A friendly name for the custom key store",
+            "CustomKeyStoreType": "For external key stores, the value must be EXTERNAL_KEY_STORE",
+            "XksProxyAuthenticationCredential": "The access key ID and secret access key that KMS uses to authenticate to your external key store proxy",
+            "XksProxyConnectivity": "Indicates how AWS KMS communicates with the external key store proxy",
+            "XksProxyUriEndpoint": "The URI that AWS KMS uses to connect to the external key store proxy",
+            "XksProxyUriPath": "The URI path to the external key store proxy APIs",
+            "XksProxyVpcEndpointServiceName": "The VPC endpoint service that KMS uses to communicate with the external key store proxy"
+          },
+          "output": {
+            "CustomKeyStoreId": "The ID of the new custom key store."
+          }
+        },
+        "description": "This example creates an external key store that uses an Amazon VPC endpoint service to communicate with AWS KMS.",
+        "id": "to-create-an-external-custom-key-store-with-vpc-connectivity-2",
+        "title": "To create an external key store with VPC endpoint service connectivity"
+      },
+      {
+        "input": {
+          "CustomKeyStoreName": "ExamplePublicEndpointKeyStore",
+          "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
+          "XksProxyAuthenticationCredential": "AccessKeyId=ABCDE12345670EXAMPLE,RawSecretAccessKey=file://SecretAccessKey",
+          "XksProxyConnectivity": "PUBLIC_ENDPOINT",
+          "XksProxyUriEndpoint": "https://myproxy.xks.example.com",
+          "XksProxyUriPath": "/kms/xks/v1"
+        },
+        "output": {
+          "CustomKeyStoreId": "cks-987654321abcdef0"
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreName": "A friendly name for the custom key store",
+            "CustomKeyStoreType": "For external key stores, the value must be EXTERNAL_KEY_STORE",
+            "XksProxyAuthenticationCredential": "The access key ID and secret access key that KMS uses to authenticate to your external key store proxy",
+            "XksProxyConnectivity": "Indicates how AWS KMS communicates with the external key store proxy",
+            "XksProxyUriEndpoint": "The URI that AWS KMS uses to connect to the external key store proxy",
+            "XksProxyUriPath": "The URI path to your external key store proxy API"
+          },
+          "output": {
+            "CustomKeyStoreId": "The ID of the new custom key store."
+          }
+        },
+        "description": "This example creates an external key store with public endpoint connectivity.",
+        "id": "to-create-an-external-custom-key-store-with-a-public-endpoint-3",
+        "title": "To create an external key store with public endpoint connectivity"
       }
     ],
     "CreateGrant": [
@@ -148,7 +208,7 @@
           }
         },
         "description": "The following example creates a symmetric KMS key for encryption and decryption. No parameters are required for this operation.",
-        "id": "to-create-a-cmk-1478028992966",
+        "id": "to-create-a-cmk-1",
         "title": "To create a KMS key"
       },
       {
@@ -187,7 +247,7 @@
           }
         },
         "description": "This example creates a KMS key that contains an asymmetric RSA key pair for encryption and decryption. The key spec and key usage can't be changed after the key is created.",
-        "id": "to-create-an-asymmetric-rsa-kms-key-for-encryption-and-decryption-1630533897833",
+        "id": "to-create-an-asymmetric-rsa-kms-key-for-encryption-and-decryption-2",
         "title": "To create an asymmetric RSA KMS key for encryption and decryption"
       },
       {
@@ -225,8 +285,46 @@
           }
         },
         "description": "This example creates a KMS key that contains an asymmetric elliptic curve (ECC) key pair for signing and verification. The key usage is required even though \"SIGN_VERIFY\" is the only valid value for ECC KMS keys. The key spec and key usage can't be changed after the key is created.",
-        "id": "to-create-an-asymmetric-elliptic-curve-kms-key-for-signing-and-verification-1630541089401",
+        "id": "to-create-an-asymmetric-elliptic-curve-kms-key-for-signing-and-verification-3",
         "title": "To create an asymmetric elliptic curve KMS key for signing and verification"
+      },
+      {
+        "input": {
+          "KeySpec": "HMAC_384",
+          "KeyUsage": "GENERATE_VERIFY_MAC"
+        },
+        "output": {
+          "KeyMetadata": {
+            "AWSAccountId": "111122223333",
+            "Arn": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+            "CreationDate": "2022-04-05T14:04:55-07:00",
+            "CustomerMasterKeySpec": "HMAC_384",
+            "Description": "",
+            "Enabled": true,
+            "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+            "KeyManager": "CUSTOMER",
+            "KeySpec": "HMAC_384",
+            "KeyState": "Enabled",
+            "KeyUsage": "GENERATE_VERIFY_MAC",
+            "MacAlgorithms": [
+              "HMAC_SHA_384"
+            ],
+            "MultiRegion": false,
+            "Origin": "AWS_KMS"
+          }
+        },
+        "comments": {
+          "input": {
+            "KeySpec": "Describes the type of key material in the KMS key.",
+            "KeyUsage": "The cryptographic operations for which you can use the KMS key."
+          },
+          "output": {
+            "KeyMetadata": "Detailed information about the KMS key that this operation creates."
+          }
+        },
+        "description": "This example creates a 384-bit symmetric HMAC KMS key. The GENERATE_VERIFY_MAC key usage value is required even though it's the only valid value for HMAC KMS keys. The key spec and key usage can't be changed after the key is created.",
+        "id": "to-create-an-hmac-kms-key-1630628752841",
+        "title": "To create an HMAC KMS key"
       },
       {
         "input": {
@@ -271,7 +369,7 @@
           }
         },
         "description": "This example creates a multi-Region primary symmetric encryption key. Because the default values for all parameters create a symmetric encryption key, only the MultiRegion parameter is required for this KMS key.",
-        "id": "to-create-a-multi-region-primary-kms-key-1630599158567",
+        "id": "to-create-a-multi-region-primary-kms-key-4",
         "title": "To create a multi-Region primary KMS key"
       },
       {
@@ -306,8 +404,8 @@
             "KeyMetadata": "Detailed information about the KMS key that this operation creates."
           }
         },
-        "description": "This example creates a KMS key with no key material. When the operation is complete, you can import your own key material into the KMS key. To create this KMS key, set the Origin parameter to EXTERNAL. ",
-        "id": "to-create-a-kms-key-for-imported-key-material-1630603607560",
+        "description": "This example creates a KMS key with no key material. When the operation is complete, you can import your own key material into the KMS key. To create this KMS key, set the Origin parameter to EXTERNAL.",
+        "id": "to-create-a-kms-key-for-imported-key-material-5",
         "title": "To create a KMS key for imported key material"
       },
       {
@@ -346,47 +444,53 @@
             "KeyMetadata": "Detailed information about the KMS key that this operation creates."
           }
         },
-        "description": "This example creates a KMS key in the specified custom key store. The operation creates the KMS key and its metadata in AWS KMS and the key material in the AWS CloudHSM cluster associated with the custom key store. This example requires the Origin and CustomKeyStoreId parameters.",
-        "id": "to-create-a-kms-key-in-a-custom-key-store-1630604382908",
-        "title": "To create a KMS key in a custom key store"
+        "description": "This example creates a KMS key in the specified AWS CloudHSM key store. The operation creates the KMS key and its metadata in AWS KMS and creates the key material in the AWS CloudHSM cluster associated with the custom key store. This example requires the CustomKeyStoreId  and Origin parameters.",
+        "id": "to-create-a-kms-key-in-an-aws-cloudhsm-custom-key-store-6",
+        "title": "To create a KMS key in an AWS CloudHSM key store"
       },
       {
         "input": {
-          "KeySpec": "HMAC_384",
-          "KeyUsage": "GENERATE_VERIFY_MAC"
+          "CustomKeyStoreId": "cks-9876543210fedcba9",
+          "Origin": "EXTERNAL_KEY_STORE",
+          "XksKeyId": "bb8562717f809024"
         },
         "output": {
           "KeyMetadata": {
             "AWSAccountId": "111122223333",
-            "Arn": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
-            "CreationDate": "2022-04-05T14:04:55-07:00",
-            "CustomerMasterKeySpec": "HMAC_384",
+            "Arn": "arn:aws:kms:us-east-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321",
+            "CreationDate": "2022-02-02T07:48:55-07:00",
+            "CustomKeyStoreId": "cks-9876543210fedcba9",
+            "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
             "Description": "",
             "Enabled": true,
-            "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
-            "KeyManager": "CUSTOMER",
-            "KeySpec": "HMAC_384",
-            "KeyState": "Enabled",
-            "KeyUsage": "GENERATE_VERIFY_MAC",
-            "MacAlgorithms": [
-              "HMAC_SHA_384"
+            "EncryptionAlgorithms": [
+              "SYMMETRIC_DEFAULT"
             ],
+            "KeyId": "0987dcba-09fe-87dc-65ba-ab0987654321",
+            "KeyManager": "CUSTOMER",
+            "KeySpec": "SYMMETRIC_DEFAULT",
+            "KeyState": "Enabled",
+            "KeyUsage": "ENCRYPT_DECRYPT",
             "MultiRegion": false,
-            "Origin": "AWS_KMS"
+            "Origin": "EXTERNAL_KEY_STORE",
+            "XksKeyConfiguration": {
+              "Id": "bb8562717f809024"
+            }
           }
         },
         "comments": {
           "input": {
-            "KeySpec": "Describes the type of key material in the KMS key.",
-            "KeyUsage": "The cryptographic operations for which you can use the KMS key."
+            "CustomKeyStoreId": "Identifies the custom key store that hosts the KMS key.",
+            "Origin": "Indicates the source of the key material for the KMS key.",
+            "XksKeyId": "Identifies the encryption key in your external key manager that is associated with the KMS key"
           },
           "output": {
             "KeyMetadata": "Detailed information about the KMS key that this operation creates."
           }
         },
-        "description": "This example creates a 384-bit symmetric HMAC KMS key. The GENERATE_VERIFY_MAC key usage value is required even though it's the only valid value for HMAC KMS keys. The key spec and key usage can't be changed after the key is created. ",
-        "id": "to-create-an-hmac-kms-key-1630628752841",
-        "title": "To create an HMAC KMS key"
+        "description": "This example creates a KMS key in the specified external key store. It uses the XksKeyId parameter to associate the KMS key with an existing symmetric encryption key in your external key manager. This CustomKeyStoreId, Origin, and XksKeyId parameters are required in this operation.",
+        "id": "to-create-a-kms-key-in-an-external-custom-key-store-7",
+        "title": "To create a KMS key in an external key store"
       }
     ],
     "Decrypt": [
@@ -443,7 +547,7 @@
           "output": {
           }
         },
-        "description": "This example deletes a custom key store from AWS KMS. This operation does not delete the AWS CloudHSM cluster that was associated with the CloudHSM cluster. This operation doesn't return any data. To verify that the operation was successful, use the DescribeCustomKeyStores operation.  ",
+        "description": "This example deletes a custom key store from AWS KMS. This operation does not affect the backing key store, such as a CloudHSM cluster, external key store proxy, or your external key manager. This operation doesn't return any data. To verify that the operation was successful, use the DescribeCustomKeyStores operation.",
         "id": "to-delete-a-custom-key-store-from-aws-kms-1628630837145",
         "title": "To delete a custom key store from AWS KMS"
       }
@@ -480,7 +584,7 @@
           }
         },
         "description": "This example gets detailed information about all AWS KMS custom key stores in an AWS account and Region. To get all key stores, do not enter a custom key store name or ID.",
-        "id": "to-get-detailed-information-about-custom-key-stores-in-the-account-and-region-1628628556811",
+        "id": "to-get-detailed-information-about-custom-key-stores-in-the-account-and-region-1",
         "title": "To get detailed information about custom key stores in the account and Region"
       },
       {
@@ -495,6 +599,7 @@
               "CreationDate": "1.499288695918E9",
               "CustomKeyStoreId": "cks-1234567890abcdef0",
               "CustomKeyStoreName": "ExampleKeyStore",
+              "CustomKeyStoreType": "AWS_CLOUDHSM",
               "TrustAnchorCertificate": "<certificate appears here>"
             }
           ]
@@ -507,9 +612,76 @@
             "CustomKeyStores": "Detailed information about the specified custom key store."
           }
         },
-        "description": "This example gets detailed information about a particular AWS KMS custom key store that is associate with an AWS CloudHSM cluster. To limit the output to a particular custom key store, provide the custom key store name or ID. ",
-        "id": "to-get-detailed-information-about-a-custom-key-store-associated-with-a-cloudhsm-cluster-1628628885843",
-        "title": "To get detailed information about a custom key store associated with a CloudHSM cluster."
+        "description": "This example gets detailed information about a particular AWS CloudHSM key store by specifying its friendly name. To limit the output to a particular custom key store, provide either the custom key store name or ID.",
+        "id": "to-get-detailed-information-about-a-cloudhsm-custom-key-store-by-name-2",
+        "title": "To get detailed information about an AWS CloudHSM key store by specifying its friendly name"
+      },
+      {
+        "input": {
+          "CustomKeyStoreId": "cks-9876543210fedcba9"
+        },
+        "output": {
+          "CustomKeyStores": [
+            {
+              "ConnectionState": "CONNECTED",
+              "CreationDate": "1.599288695918E9",
+              "CustomKeyStoreId": "cks-9876543210fedcba9",
+              "CustomKeyStoreName": "ExampleExternalKeyStore",
+              "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
+              "XksProxyConfiguration": {
+                "AccessKeyId": "ABCDE12345670EXAMPLE",
+                "Connectivity": "PUBLIC_ENDPOINT",
+                "UriEndpoint": "https://myproxy.xks.example.com",
+                "UriPath": "/kms/xks/v1"
+              }
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreId": "The ID of the custom key store."
+          },
+          "output": {
+            "CustomKeyStores": "Detailed information about the specified custom key store."
+          }
+        },
+        "description": "This example gets detailed information about an external key store by specifying its ID.  The example external key store proxy uses public endpoint connectivity.",
+        "id": "to-get-detailed-information-about-an-external-key-store--3",
+        "title": "To get detailed information about an external key store by specifying its ID"
+      },
+      {
+        "input": {
+          "CustomKeyStoreName": "VPCExternalKeystore"
+        },
+        "output": {
+          "CustomKeyStores": [
+            {
+              "ConnectionState": "CONNECTED",
+              "CreationDate": "1.643057863.842",
+              "CustomKeyStoreId": "cks-876543210fedcba98",
+              "CustomKeyStoreName": "ExampleVPCExternalKeyStore",
+              "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
+              "XksProxyConfiguration": {
+                "AccessKeyId": "ABCDE12345670EXAMPLE",
+                "Connectivity": "VPC_ENDPOINT_SERVICE",
+                "UriEndpoint": "https://myproxy-private.xks.example.com",
+                "UriPath": "/example-prefix/kms/xks/v1",
+                "VpcEndpointServiceName": "com.amazonaws.vpce.us-east-1.vpce-svc-example1"
+              }
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreId": "The ID of the custom key store."
+          },
+          "output": {
+            "CustomKeyStores": "Detailed information about the specified custom key store."
+          }
+        },
+        "description": "This example gets detailed information about a particular external key store by specifying its friendly name. To limit the output to a particular custom key store, provide either the custom key store name or ID. The proxy URI path for this external key store includes an optional prefix. Also, because this example external key store uses VPC endpoint connectivity, the response includes the associated VPC endpoint service name.",
+        "id": "to-get-detailed-information-about-an-external-custom-key-store-by-name-4",
+        "title": "To get detailed information about an external key store VPC endpoint connectivity by specifying its friendly name"
       }
     ],
     "DescribeKey": [
@@ -546,7 +718,7 @@
           }
         },
         "description": "The following example gets metadata for a symmetric encryption KMS key.",
-        "id": "get-key-details-1478565820907",
+        "id": "get-key-details-1",
         "title": "To get details about a KMS key"
       },
       {
@@ -587,7 +759,7 @@
           }
         },
         "description": "The following example gets metadata for an asymmetric RSA KMS key used for signing and verification.",
-        "id": "to-get-details-about-an-rsa-asymmetric-kms-key-1637971611761",
+        "id": "to-get-details-about-an-rsa-asymmetric-kms-key-2",
         "title": "To get details about an RSA asymmetric KMS key"
       },
       {
@@ -643,7 +815,7 @@
           }
         },
         "description": "The following example gets metadata for a multi-Region replica key. This multi-Region key is a symmetric encryption key. DescribeKey returns information about the primary key and all of its replicas.",
-        "id": "to-get-details-about-a-multi-region-key-1637969624239",
+        "id": "to-get-details-about-a-multi-region-key-3",
         "title": "To get details about a multi-Region key"
       },
       {
@@ -677,9 +849,87 @@
             "KeyMetadata": "An object that contains information about the specified KMS key."
           }
         },
-        "description": "The following example gets the metadata of an HMAC KMS key. ",
-        "id": "to-get-details-about-an-hmac-kms-key-1637970472619",
+        "description": "The following example gets the metadata of an HMAC KMS key.",
+        "id": "to-get-details-about-an-hmac-kms-key-4",
         "title": "To get details about an HMAC KMS key"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+        },
+        "output": {
+          "KeyMetadata": {
+            "AWSAccountId": "123456789012",
+            "Arn": "arn:aws:kms:us-west-2:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+            "CloudHsmClusterId": "cluster-1a23b4cdefg",
+            "CreationDate": 1646160362.664,
+            "CustomKeyStoreId": "cks-1234567890abcdef0",
+            "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
+            "Description": "CloudHSM key store test key",
+            "Enabled": true,
+            "EncryptionAlgorithms": [
+              "SYMMETRIC_DEFAULT"
+            ],
+            "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+            "KeyManager": "CUSTOMER",
+            "KeySpec": "SYMMETRIC_DEFAULT",
+            "KeyState": "Enabled",
+            "KeyUsage": "ENCRYPT_DECRYPT",
+            "MultiRegion": false,
+            "Origin": "AWS_CLOUDHSM"
+          }
+        },
+        "comments": {
+          "input": {
+            "KeyId": "An identifier for the KMS key. You can use the key ID, key ARN, alias name, alias ARN of the KMS key."
+          },
+          "output": {
+            "KeyMetadata": "An object that contains information about the specified KMS key."
+          }
+        },
+        "description": "The following example gets the metadata of a KMS key in an AWS CloudHSM key store.",
+        "id": "to-get-details-about-a-kms-key-in-an-AWS-CloudHSM-key-store-5",
+        "title": "To get details about a KMS key in an AWS CloudHSM key store"
+      },
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+        },
+        "output": {
+          "KeyMetadata": {
+            "AWSAccountId": "123456789012",
+            "Arn": "arn:aws:kms:us-west-2:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+            "CreationDate": 1646160362.664,
+            "CustomKeyStoreId": "cks-1234567890abcdef0",
+            "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
+            "Description": "External key store test key",
+            "Enabled": true,
+            "EncryptionAlgorithms": [
+              "SYMMETRIC_DEFAULT"
+            ],
+            "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+            "KeyManager": "CUSTOMER",
+            "KeySpec": "SYMMETRIC_DEFAULT",
+            "KeyState": "Enabled",
+            "KeyUsage": "ENCRYPT_DECRYPT",
+            "MultiRegion": false,
+            "Origin": "EXTERNAL_KEY_STORE",
+            "XksKeyConfiguration": {
+              "Id": "bb8562717f809024"
+            }
+          }
+        },
+        "comments": {
+          "input": {
+            "KeyId": "An identifier for the KMS key. You can use the key ID, key ARN, alias name, alias ARN of the KMS key."
+          },
+          "output": {
+            "KeyMetadata": "An object that contains information about the specified KMS key."
+          }
+        },
+        "description": "The following example gets the metadata of a KMS key in an external key store.",
+        "id": "to-get-details-about-a-kms-key-in-an-external-key-store-6",
+        "title": "To get details about a KMS key in an external key store"
       }
     ],
     "DisableKey": [
@@ -726,7 +976,7 @@
           "output": {
           }
         },
-        "description": "This example disconnects an AWS KMS custom key store from its AWS CloudHSM cluster. This operation doesn't return any data. To verify that the custom key store is disconnected, use the <code>DescribeCustomKeyStores</code> operation.",
+        "description": "This example disconnects an AWS KMS custom key store from its backing key store. For an AWS CloudHSM key store, it disconnects the key store from its AWS CloudHSM cluster. For an external key store, it disconnects the key store from the external key store proxy that communicates with your external key manager. This operation doesn't return any data. To verify that the custom key store is disconnected, use the <code>DescribeCustomKeyStores</code> operation.",
         "id": "to-disconnect-a-custom-key-store-from-its-cloudhsm-cluster-1628627955156",
         "title": "To disconnect a custom key store from its CloudHSM cluster"
       }
@@ -1452,7 +1702,7 @@
             "ReplicaTags": "The tags on the replica key, if any."
           }
         },
-        "description": "This example creates a multi-Region replica key in us-west-2 of a multi-Region primary key in us-east-1. ",
+        "description": "This example creates a multi-Region replica key in us-west-2 of a multi-Region primary key in us-east-1.",
         "id": "to-replicate-a-multi-region-key-in-a-different-aws-region-1628622402887",
         "title": "To replicate a multi-Region key in a different AWS Region"
       }
@@ -1622,9 +1872,9 @@
           "output": {
           }
         },
-        "description": "This example tells KMS the password for the kmsuser crypto user in the AWS CloudHSM cluster that is associated with the AWS KMS custom key store. (It does not change the password in the CloudHSM cluster.) This operation does not return any data.",
-        "id": "to-edit-the-properties-of-a-custom-key-store-1628629851834",
-        "title": "To edit the password of a custom key store"
+        "description": "This example tells AWS KMS the password for the kmsuser crypto user in the AWS CloudHSM cluster that is associated with the AWS KMS custom key store. (It does not change the password in the CloudHSM cluster.) This operation does not return any data.",
+        "id": "to-edit-the-properties-of-a-custom-key-store-1",
+        "title": "To edit the password of an AWS CloudHSM key store"
       },
       {
         "input": {
@@ -1642,7 +1892,7 @@
           }
         },
         "description": "This example changes the friendly name of the AWS KMS custom key store to the name that you specify. This operation does not return any data. To verify that the operation worked, use the DescribeCustomKeyStores operation.",
-        "id": "to-edit-the-friendly-name-of-a-custom-key-store-1630451340904",
+        "id": "to-edit-the-friendly-name-of-a-custom-key-store-2",
         "title": "To edit the friendly name of a custom key store"
       },
       {
@@ -1660,9 +1910,51 @@
           "output": {
           }
         },
-        "description": "This example changes the cluster that is associated with a custom key store to a related cluster, such as a different backup of the same cluster. This operation does not return any data. To verify that the operation worked, use the DescribeCustomKeyStores operation.",
-        "id": "to-associate-the-custom-key-store-with-a-different-but-related-aws-cloudhsm-cluster-1630451842438",
+        "description": "This example changes the AWS CloudHSM cluster that is associated with an AWS CloudHSM key store to a related cluster, such as a different backup of the same cluster. This operation does not return any data. To verify that the operation worked, use the DescribeCustomKeyStores operation.",
+        "id": "to-associate-the-custom-key-store-with-a-different-but-related-aws-cloudhsm-cluster-3",
         "title": "To associate the custom key store with a different, but related, AWS CloudHSM cluster."
+      },
+      {
+        "input": {
+          "CustomKeyStoreId": "cks-1234567890abcdef0",
+          "XksProxyUriPath": "/new-path/kms/xks/v1"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreId": "The ID of the custom key store that you are updating",
+            "XksProxyUriPath": "The URI path to the external key store proxy APIs"
+          },
+          "output": {
+          }
+        },
+        "description": "This example updates the proxy URI path for an external key store",
+        "id": "to-update-the-xks-proxy-api-path-of-an-external-custom-key-store-4",
+        "title": "To edit the proxy URI path of an external key store."
+      },
+      {
+        "input": {
+          "CustomKeyStoreId": "cks-1234567890abcdef0",
+          "XksProxyConnectivity": "VPC_ENDPOINT_SERVICE",
+          "XksProxyUriEndpoint": "https://myproxy-private.xks.example.com",
+          "XksProxyVpcEndpointServiceName": "com.amazonaws.vpce.us-east-1.vpce-svc-example"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreId": "Identifies the custom key store",
+            "XksProxyConnectivity": "Specifies the connectivity option",
+            "XksProxyUriEndpoint": "Specifies the URI endpoint that AWS KMS uses when communicating with the external key store proxy",
+            "XksProxyVpcEndpointServiceName": "Specifies the name of the VPC endpoint service that the proxy uses for communication"
+          },
+          "output": {
+          }
+        },
+        "description": "To change the external key store proxy connectivity option from public endpoint connectivity to VPC endpoint service connectivity, in addition to changing the <code>XksProxyConnectivity</code> value, you must change the <code>XksProxyUriEndpoint</code> value to reflect the private DNS name associated with the VPC endpoint service. You must also add an <code>XksProxyVpcEndpointServiceName</code> value.",
+        "id": "to-update-the-proxy-connectivity-of-an-external-key-store-to-vpc_endpoint_service-5",
+        "title": "To update the proxy connectivity of an external key store to VPC_ENDPOINT_SERVICE"
       }
     ],
     "UpdateKeyDescription": [
@@ -1680,6 +1972,23 @@
         "description": "The following example updates the description of the specified KMS key.",
         "id": "to-update-the-description-of-a-cmk-1481574808619",
         "title": "To update the description of a KMS key"
+      }
+    ],
+    "UpdatePrimaryRegion": [
+      {
+        "input": {
+          "KeyId": "arn:aws:kms:us-west-1:111122223333:key/mrk-1234abcd12ab34cd56ef1234567890ab",
+          "PrimaryRegion": "eu-central-1"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The current primary key.",
+            "PrimaryRegion": "The Region of the replica key that will become the primary key."
+          }
+        },
+        "description": "The following UpdatePrimaryRegion example changes the multi-Region replica key in the eu-central-1 Region to the primary key. The current primary key in the us-west-1 Region becomes a replica key. \n\nThe KeyId parameter identifies the current primary key in the us-west-1 Region. The PrimaryRegion parameter indicates the Region of the replica key that will become the new primary key.\n\nThis operation does not return any output. To verify that primary key is changed, use the DescribeKey operation.",
+        "id": "to-update-the-primary-region-of-a-multi-region-kms-key-1660249555577",
+        "title": "To update the primary Region of a multi-Region KMS key"
       }
     ],
     "Verify": [
@@ -1710,7 +2019,7 @@
             "SigningAlgorithm": "The signing algorithm that was used to verify the signature."
           }
         },
-        "description": "This operation uses the public key in an elliptic curve (ECC) asymmetric key to verify a digital signature within AWS KMS. ",
+        "description": "This operation uses the public key in an elliptic curve (ECC) asymmetric key to verify a digital signature within AWS KMS.",
         "id": "to-use-an-asymmetric-kms-key-to-verify-a-digital-signature-1628633365663",
         "title": "To use an asymmetric KMS key to verify a digital signature"
       }

@@ -584,6 +584,36 @@
       "output_token": "NextToken",
       "result_key": "InterfaceAssociations"
     },
+    "DescribeVerifiedAccessEndpoints": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "VerifiedAccessEndpoints"
+    },
+    "DescribeVerifiedAccessGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "VerifiedAccessGroups"
+    },
+    "DescribeVerifiedAccessInstanceLoggingConfigurations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "LoggingConfigurations"
+    },
+    "DescribeVerifiedAccessInstances": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "VerifiedAccessInstances"
+    },
+    "DescribeVerifiedAccessTrustProviders": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "VerifiedAccessTrustProviders"
+    },
     "DescribeVolumeStatus": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
