@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p>With License Manager, you can create user-based subscriptions to utilize licensed software with a per user subscription fee on Amazon EC2 instances.</p>",
   "operations": {
-    "AssociateUser": "<p>Associates the user to an EC2 instance to utilize user-based subscriptions.</p>",
+    "AssociateUser": "<p>Associates the user to an EC2 instance to utilize user-based subscriptions.</p> <note> <p>Your estimated bill for charges on the number of users and related costs will take 48 hours to appear for billing periods that haven't closed (marked as <b>Pending</b> billing status) in Amazon Web Services Billing. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/invoice.html\">Viewing your monthly charges</a> in the <i>Amazon Web Services Billing User Guide</i>.</p> </note>",
     "DeregisterIdentityProvider": "<p>Deregisters the identity provider from providing user-based subscriptions.</p>",
     "DisassociateUser": "<p>Disassociates the user from an EC2 instance providing user-based subscriptions.</p>",
     "ListIdentityProviders": "<p>Lists the identity providers for user-based subscriptions.</p>",
@@ -10,8 +10,9 @@
     "ListProductSubscriptions": "<p>Lists the user-based subscription products available from an identity provider.</p>",
     "ListUserAssociations": "<p>Lists user associations for an identity provider.</p>",
     "RegisterIdentityProvider": "<p>Registers an identity provider for user-based subscriptions.</p>",
-    "StartProductSubscription": "<p>Starts a product subscription for a user with the specified identity provider.</p>",
-    "StopProductSubscription": "<p>Stops a product subscription for a user with the specified identity provider.</p>"
+    "StartProductSubscription": "<p>Starts a product subscription for a user with the specified identity provider.</p> <note> <p>Your estimated bill for charges on the number of users and related costs will take 48 hours to appear for billing periods that haven't closed (marked as <b>Pending</b> billing status) in Amazon Web Services Billing. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/invoice.html\">Viewing your monthly charges</a> in the <i>Amazon Web Services Billing User Guide</i>.</p> </note>",
+    "StopProductSubscription": "<p>Stops a product subscription for a user with the specified identity provider.</p>",
+    "UpdateIdentityProviderSettings": "<p>Updates additional product configuration settings for the registered identity provider.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -96,7 +97,8 @@
         "ProductUserSummary$IdentityProvider": "<p>An object that specifies details for the identity provider.</p>",
         "RegisterIdentityProviderRequest$IdentityProvider": "<p>An object that specifies details for the identity provider.</p>",
         "StartProductSubscriptionRequest$IdentityProvider": "<p>An object that specifies details for the identity provider.</p>",
-        "StopProductSubscriptionRequest$IdentityProvider": "<p>An object that specifies details for the identity provider.</p>"
+        "StopProductSubscriptionRequest$IdentityProvider": "<p>An object that specifies details for the identity provider.</p>",
+        "UpdateIdentityProviderSettingsRequest$IdentityProvider": null
       }
     },
     "IdentityProviderSummary": {
@@ -104,7 +106,8 @@
       "refs": {
         "DeregisterIdentityProviderResponse$IdentityProviderSummary": "<p>Metadata that describes the results of an identity provider operation.</p>",
         "IdentityProviderSummaryList$member": null,
-        "RegisterIdentityProviderResponse$IdentityProviderSummary": "<p>Metadata that describes the results of an identity provider operation.</p>"
+        "RegisterIdentityProviderResponse$IdentityProviderSummary": "<p>Metadata that describes the results of an identity provider operation.</p>",
+        "UpdateIdentityProviderSettingsResponse$IdentityProviderSummary": null
       }
     },
     "IdentityProviderSummaryList": {
@@ -213,9 +216,29 @@
       "refs": {
       }
     },
+    "SecurityGroup": {
+      "base": null,
+      "refs": {
+        "Settings$SecurityGroupId": "<p>A security group ID that allows inbound TCP port 1688 communication between resources in your VPC and the VPC endpoint for activation servers.</p>",
+        "UpdateSettings$SecurityGroupId": "<p>A security group ID that allows inbound TCP port 1688 communication between resources in your VPC and the VPC endpoints for activation servers.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>The request failed because a service quota is exceeded.</p>",
       "refs": {
+      }
+    },
+    "Settings": {
+      "base": "<p>The registered identity provider’s product related configuration settings such as the subnets to provision VPC endpoints, and the security group ID that is associated with the VPC endpoints. The security group should permit inbound TCP port 1688 communication from resources in the VPC.</p>",
+      "refs": {
+        "IdentityProviderSummary$Settings": "<p>An object that details the registered identity provider’s product related configuration settings such as the subnets to provision VPC endpoints.</p>",
+        "RegisterIdentityProviderRequest$Settings": "<p>The registered identity provider’s product related configuration settings such as the subnets to provision VPC endpoints.</p>"
+      }
+    },
+    "SettingsSubnetsList": {
+      "base": null,
+      "refs": {
+        "Settings$Subnets": "<p>The subnets defined for the registered identity provider.</p>"
       }
     },
     "StartProductSubscriptionRequest": {
@@ -297,6 +320,7 @@
         "StopProductSubscriptionRequest$Username": "<p>The user name from the identity provider for the user.</p>",
         "StringList$member": null,
         "ThrottlingException$message": null,
+        "UpdateIdentityProviderSettingsRequest$Product": "<p>The name of the user-based subscription product.</p>",
         "ValidationException$message": null
       }
     },
@@ -306,9 +330,39 @@
         "InstanceSummary$Products": "<p>A list of provided user-based subscription products.</p>"
       }
     },
+    "Subnet": {
+      "base": null,
+      "refs": {
+        "SettingsSubnetsList$member": null,
+        "Subnets$member": null
+      }
+    },
+    "Subnets": {
+      "base": null,
+      "refs": {
+        "UpdateSettings$AddSubnets": "<p>The ID of one or more subnets in which License Manager will create a VPC endpoint for products that require connectivity to activation servers.</p>",
+        "UpdateSettings$RemoveSubnets": "<p>The ID of one or more subnets to remove.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>The request was denied because of request throttling. Retry the request.</p>",
       "refs": {
+      }
+    },
+    "UpdateIdentityProviderSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIdentityProviderSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSettings": {
+      "base": "<p>Updates the registered identity provider’s product related configuration settings such as the subnets to provision VPC endpoints.</p>",
+      "refs": {
+        "UpdateIdentityProviderSettingsRequest$UpdateSettings": "<p>Updates the registered identity provider’s product related configuration settings. You can update any combination of settings in a single operation such as the:</p> <ul> <li> <p>Subnets which you want to add to provision VPC endpoints.</p> </li> <li> <p>Subnets which you want to remove the VPC endpoints from.</p> </li> <li> <p>Security group ID which permits traffic to the VPC endpoints.</p> </li> </ul>"
       }
     },
     "ValidationException": {

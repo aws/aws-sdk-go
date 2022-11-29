@@ -5960,6 +5960,8 @@
         "StandardsControl$RemediationUrl": "<p>A link to remediation information for the control in the Security Hub user documentation.</p>",
         "StandardsInputParameterMap$key": null,
         "StandardsInputParameterMap$value": null,
+        "StandardsManagedBy$Company": "<p>An identifier for the company that manages a specific security standard. For existing standards, the value is equal to <code>Amazon Web Services</code>.</p>",
+        "StandardsManagedBy$Product": "<p>An identifier for the product that manages a specific security standard. For existing standards, the value is equal to the Amazon Web Services service that manages the standard.</p>",
         "StandardsSubscription$StandardsSubscriptionArn": "<p>The ARN of a resource that represents your subscription to a supported standard.</p>",
         "StandardsSubscription$StandardsArn": "<p>The ARN of a standard.</p>",
         "StandardsSubscriptionArns$member": null,
@@ -6606,7 +6608,7 @@
       }
     },
     "Standard": {
-      "base": "<p>Provides information about a specific standard.</p>",
+      "base": "<p>Provides information about a specific security standard.</p>",
       "refs": {
         "Standards$member": null
       }
@@ -6634,6 +6636,12 @@
       "refs": {
         "StandardsSubscription$StandardsInput": "<p>A key-value pair of input for the standard.</p>",
         "StandardsSubscriptionRequest$StandardsInput": "<p>A key-value pair of input for the standard.</p>"
+      }
+    },
+    "StandardsManagedBy": {
+      "base": "<p>Provides details about the management of a security standard.</p>",
+      "refs": {
+        "Standard$StandardsManagedBy": "<p>Provides details about the management of a standard. </p>"
       }
     },
     "StandardsStatus": {

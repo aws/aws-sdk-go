@@ -56,6 +56,12 @@ func (c *LicenseManagerUserSubscriptions) AssociateUserRequest(input *AssociateU
 //
 // Associates the user to an EC2 instance to utilize user-based subscriptions.
 //
+// Your estimated bill for charges on the number of users and related costs
+// will take 48 hours to appear for billing periods that haven't closed (marked
+// as Pending billing status) in Amazon Web Services Billing. For more information,
+// see Viewing your monthly charges (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/invoice.html)
+// in the Amazon Web Services Billing User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1068,6 +1074,12 @@ func (c *LicenseManagerUserSubscriptions) StartProductSubscriptionRequest(input 
 //
 // Starts a product subscription for a user with the specified identity provider.
 //
+// Your estimated bill for charges on the number of users and related costs
+// will take 48 hours to appear for billing periods that haven't closed (marked
+// as Pending billing status) in Amazon Web Services Billing. For more information,
+// see Viewing your monthly charges (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/invoice.html)
+// in the Amazon Web Services Billing User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1214,6 +1226,95 @@ func (c *LicenseManagerUserSubscriptions) StopProductSubscription(input *StopPro
 // for more information on using Contexts.
 func (c *LicenseManagerUserSubscriptions) StopProductSubscriptionWithContext(ctx aws.Context, input *StopProductSubscriptionInput, opts ...request.Option) (*StopProductSubscriptionOutput, error) {
 	req, out := c.StopProductSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateIdentityProviderSettings = "UpdateIdentityProviderSettings"
+
+// UpdateIdentityProviderSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIdentityProviderSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIdentityProviderSettings for more information on using the UpdateIdentityProviderSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateIdentityProviderSettingsRequest method.
+//	req, resp := client.UpdateIdentityProviderSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/UpdateIdentityProviderSettings
+func (c *LicenseManagerUserSubscriptions) UpdateIdentityProviderSettingsRequest(input *UpdateIdentityProviderSettingsInput) (req *request.Request, output *UpdateIdentityProviderSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIdentityProviderSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identity-provider/UpdateIdentityProviderSettings",
+	}
+
+	if input == nil {
+		input = &UpdateIdentityProviderSettingsInput{}
+	}
+
+	output = &UpdateIdentityProviderSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIdentityProviderSettings API operation for AWS License Manager User Subscriptions.
+//
+// Updates additional product configuration settings for the registered identity
+// provider.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager User Subscriptions's
+// API operation UpdateIdentityProviderSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     A parameter is not valid.
+//
+//   - ThrottlingException
+//     The request was denied because of request throttling. Retry the request.
+//
+//   - InternalServerException
+//     An exception occurred with the service.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-user-subscriptions-2018-05-10/UpdateIdentityProviderSettings
+func (c *LicenseManagerUserSubscriptions) UpdateIdentityProviderSettings(input *UpdateIdentityProviderSettingsInput) (*UpdateIdentityProviderSettingsOutput, error) {
+	req, out := c.UpdateIdentityProviderSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIdentityProviderSettingsWithContext is the same as UpdateIdentityProviderSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIdentityProviderSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManagerUserSubscriptions) UpdateIdentityProviderSettingsWithContext(ctx aws.Context, input *UpdateIdentityProviderSettingsInput, opts ...request.Option) (*UpdateIdentityProviderSettingsOutput, error) {
+	req, out := c.UpdateIdentityProviderSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1806,6 +1907,12 @@ type IdentityProviderSummary struct {
 	// Product is a required field
 	Product *string `type:"string" required:"true"`
 
+	// An object that details the registered identity provider’s product related
+	// configuration settings such as the subnets to provision VPC endpoints.
+	//
+	// Settings is a required field
+	Settings *Settings `type:"structure" required:"true"`
+
 	// The status of an identity provider.
 	//
 	// Status is a required field
@@ -1845,6 +1952,12 @@ func (s *IdentityProviderSummary) SetIdentityProvider(v *IdentityProvider) *Iden
 // SetProduct sets the Product field's value.
 func (s *IdentityProviderSummary) SetProduct(v string) *IdentityProviderSummary {
 	s.Product = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *IdentityProviderSummary) SetSettings(v *Settings) *IdentityProviderSummary {
+	s.Settings = v
 	return s
 }
 
@@ -2638,6 +2751,10 @@ type RegisterIdentityProviderInput struct {
 	//
 	// Product is a required field
 	Product *string `type:"string" required:"true"`
+
+	// The registered identity provider’s product related configuration settings
+	// such as the subnets to provision VPC endpoints.
+	Settings *Settings `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2667,6 +2784,11 @@ func (s *RegisterIdentityProviderInput) Validate() error {
 	if s.Product == nil {
 		invalidParams.Add(request.NewErrParamRequired("Product"))
 	}
+	if s.Settings != nil {
+		if err := s.Settings.Validate(); err != nil {
+			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2683,6 +2805,12 @@ func (s *RegisterIdentityProviderInput) SetIdentityProvider(v *IdentityProvider)
 // SetProduct sets the Product field's value.
 func (s *RegisterIdentityProviderInput) SetProduct(v string) *RegisterIdentityProviderInput {
 	s.Product = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *RegisterIdentityProviderInput) SetSettings(v *Settings) *RegisterIdentityProviderInput {
+	s.Settings = v
 	return s
 }
 
@@ -2845,6 +2973,77 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The registered identity provider’s product related configuration settings
+// such as the subnets to provision VPC endpoints, and the security group ID
+// that is associated with the VPC endpoints. The security group should permit
+// inbound TCP port 1688 communication from resources in the VPC.
+type Settings struct {
+	_ struct{} `type:"structure"`
+
+	// A security group ID that allows inbound TCP port 1688 communication between
+	// resources in your VPC and the VPC endpoint for activation servers.
+	//
+	// SecurityGroupId is a required field
+	SecurityGroupId *string `min:"5" type:"string" required:"true"`
+
+	// The subnets defined for the registered identity provider.
+	//
+	// Subnets is a required field
+	Subnets []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Settings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Settings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Settings"}
+	if s.SecurityGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupId"))
+	}
+	if s.SecurityGroupId != nil && len(*s.SecurityGroupId) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupId", 5))
+	}
+	if s.Subnets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Subnets"))
+	}
+	if s.Subnets != nil && len(s.Subnets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Subnets", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *Settings) SetSecurityGroupId(v string) *Settings {
+	s.SecurityGroupId = &v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *Settings) SetSubnets(v []*string) *Settings {
+	s.Subnets = v
+	return s
 }
 
 type StartProductSubscriptionInput struct {
@@ -3141,6 +3340,202 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UpdateIdentityProviderSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about an identity provider.
+	//
+	// IdentityProvider is a required field
+	IdentityProvider *IdentityProvider `type:"structure" required:"true"`
+
+	// The name of the user-based subscription product.
+	//
+	// Product is a required field
+	Product *string `type:"string" required:"true"`
+
+	// Updates the registered identity provider’s product related configuration
+	// settings. You can update any combination of settings in a single operation
+	// such as the:
+	//
+	//    * Subnets which you want to add to provision VPC endpoints.
+	//
+	//    * Subnets which you want to remove the VPC endpoints from.
+	//
+	//    * Security group ID which permits traffic to the VPC endpoints.
+	//
+	// UpdateSettings is a required field
+	UpdateSettings *UpdateSettings `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityProviderSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityProviderSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIdentityProviderSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIdentityProviderSettingsInput"}
+	if s.IdentityProvider == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityProvider"))
+	}
+	if s.Product == nil {
+		invalidParams.Add(request.NewErrParamRequired("Product"))
+	}
+	if s.UpdateSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("UpdateSettings"))
+	}
+	if s.UpdateSettings != nil {
+		if err := s.UpdateSettings.Validate(); err != nil {
+			invalidParams.AddNested("UpdateSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityProvider sets the IdentityProvider field's value.
+func (s *UpdateIdentityProviderSettingsInput) SetIdentityProvider(v *IdentityProvider) *UpdateIdentityProviderSettingsInput {
+	s.IdentityProvider = v
+	return s
+}
+
+// SetProduct sets the Product field's value.
+func (s *UpdateIdentityProviderSettingsInput) SetProduct(v string) *UpdateIdentityProviderSettingsInput {
+	s.Product = &v
+	return s
+}
+
+// SetUpdateSettings sets the UpdateSettings field's value.
+func (s *UpdateIdentityProviderSettingsInput) SetUpdateSettings(v *UpdateSettings) *UpdateIdentityProviderSettingsInput {
+	s.UpdateSettings = v
+	return s
+}
+
+type UpdateIdentityProviderSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes an identity provider.
+	//
+	// IdentityProviderSummary is a required field
+	IdentityProviderSummary *IdentityProviderSummary `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityProviderSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdentityProviderSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdentityProviderSummary sets the IdentityProviderSummary field's value.
+func (s *UpdateIdentityProviderSettingsOutput) SetIdentityProviderSummary(v *IdentityProviderSummary) *UpdateIdentityProviderSettingsOutput {
+	s.IdentityProviderSummary = v
+	return s
+}
+
+// Updates the registered identity provider’s product related configuration
+// settings such as the subnets to provision VPC endpoints.
+type UpdateSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of one or more subnets in which License Manager will create a VPC
+	// endpoint for products that require connectivity to activation servers.
+	//
+	// AddSubnets is a required field
+	AddSubnets []*string `type:"list" required:"true"`
+
+	// The ID of one or more subnets to remove.
+	//
+	// RemoveSubnets is a required field
+	RemoveSubnets []*string `type:"list" required:"true"`
+
+	// A security group ID that allows inbound TCP port 1688 communication between
+	// resources in your VPC and the VPC endpoints for activation servers.
+	SecurityGroupId *string `min:"5" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSettings"}
+	if s.AddSubnets == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddSubnets"))
+	}
+	if s.RemoveSubnets == nil {
+		invalidParams.Add(request.NewErrParamRequired("RemoveSubnets"))
+	}
+	if s.SecurityGroupId != nil && len(*s.SecurityGroupId) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupId", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddSubnets sets the AddSubnets field's value.
+func (s *UpdateSettings) SetAddSubnets(v []*string) *UpdateSettings {
+	s.AddSubnets = v
+	return s
+}
+
+// SetRemoveSubnets sets the RemoveSubnets field's value.
+func (s *UpdateSettings) SetRemoveSubnets(v []*string) *UpdateSettings {
+	s.RemoveSubnets = v
+	return s
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *UpdateSettings) SetSecurityGroupId(v string) *UpdateSettings {
+	s.SecurityGroupId = &v
+	return s
 }
 
 // A parameter is not valid.

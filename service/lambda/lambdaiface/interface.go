@@ -359,6 +359,9 @@ type LambdaAPI interface {
 
 	WaitUntilFunctionUpdatedV2(*lambda.GetFunctionInput) error
 	WaitUntilFunctionUpdatedV2WithContext(aws.Context, *lambda.GetFunctionInput, ...request.WaiterOption) error
+
+	WaitUntilPublishedVersionActive(*lambda.GetFunctionConfigurationInput) error
+	WaitUntilPublishedVersionActiveWithContext(aws.Context, *lambda.GetFunctionConfigurationInput, ...request.WaiterOption) error
 }
 
 var _ LambdaAPI = (*lambda.Lambda)(nil)

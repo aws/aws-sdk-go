@@ -4632,6 +4632,9 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //     request token but different parameters settings. A client request token should
 //     always uniquely identify a single request.
 //
+//   - InvalidNetworkSettings
+//     One or more network settings specified in the request are invalid.
+//
 //   - InternalServerError
 //     A generic error indicating a server-side failure.
 //
@@ -5104,6 +5107,10 @@ type AdministrativeAction struct {
 	//    * VOLUME_UPDATE - A volume update to an Amazon FSx for NetApp ONTAP or
 	//    Amazon FSx for OpenZFS volume initiated from the Amazon FSx console, API
 	//    (UpdateVolume), or CLI (update-volume).
+	//
+	//    * VOLUME_RESTORE - An Amazon FSx for OpenZFS volume is returned to the
+	//    state saved by the specified snapshot, initiated from an API (RestoreVolumeFromSnapshot)
+	//    or CLI (restore-volume-from-snapshot).
 	//
 	//    * SNAPSHOT_UPDATE - A snapshot update to an Amazon FSx for OpenZFS volume
 	//    initiated from the Amazon FSx console, API (UpdateSnapshot), or CLI (update-snapshot).
@@ -8356,11 +8363,12 @@ type CreateFileSystemOntapConfiguration struct {
 	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
 	// (Multi-AZ only) Specifies the IP address range in which the endpoints to
-	// access your file system will be created. By default, Amazon FSx selects an
-	// unused IP address range for you from the 198.19.* range.
-	//
-	// The Endpoint IP address range you select for your file system must exist
-	// outside the VPC's CIDR range and must be at least /30 or larger.
+	// access your file system will be created. By default in the Amazon FSx API,
+	// Amazon FSx selects an unused IP address range for you from the 198.19.* range.
+	// By default in the Amazon FSx console, Amazon FSx chooses the last 64 IP addresses
+	// from the VPC’s primary CIDR range to use as the endpoint IP address range
+	// for the file system. You can have overlapping endpoint IP addresses for file
+	// systems deployed in the same VPC/route tables.
 	EndpointIpAddressRange *string `min:"9" type:"string"`
 
 	// The ONTAP administrative password for the fsxadmin user with which you administer
@@ -8382,7 +8390,7 @@ type CreateFileSystemOntapConfiguration struct {
 	RouteTableIds []*string `type:"list"`
 
 	// Sets the throughput capacity for the file system that you're creating. Valid
-	// values are 128, 256, 512, 1024, and 2048 MBps.
+	// values are 128, 256, 512, 1024, 2048, and 4096 MBps.
 	//
 	// ThroughputCapacity is a required field
 	ThroughputCapacity *int64 `min:"8" type:"integer" required:"true"`
@@ -8544,9 +8552,22 @@ type CreateFileSystemOpenZFSConfiguration struct {
 	// 05:00 specifies 5 AM daily.
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
-	// Specifies the file system deployment type. Amazon FSx for OpenZFS supports
-	// SINGLE_AZ_1. SINGLE_AZ_1 deployment type is configured for redundancy within
-	// a single Availability Zone.
+	// Specifies the file system deployment type. Single AZ deployment types are
+	// configured for redundancy within a single Availability Zone in an Amazon
+	// Web Services Region . Valid values are the following:
+	//
+	//    * SINGLE_AZ_1- (Default) Creates file systems with throughput capacities
+	//    of 64 - 4,096 MB/s. Single_AZ_1 is available in all Amazon Web Services
+	//    Regions where Amazon FSx for OpenZFS is available, except US West (Oregon).
+	//
+	//    * SINGLE_AZ_2- Creates file systems with throughput capacities of 160
+	//    - 10,240 MB/s using an NVMe L2ARC cache. Single_AZ_2 is available only
+	//    in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe
+	//    (Ireland) Amazon Web Services Regions.
+	//
+	// For more information, see: Deployment type availability (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/available-aws-regions.html)
+	// and File system performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/zfs-fs-performance.html)in
+	// theAmazon FSx for OpenZFS User Guide.
 	//
 	// DeploymentType is a required field
 	DeploymentType *string `type:"string" required:"true" enum:"OpenZFSDeploymentType"`
@@ -8563,9 +8584,16 @@ type CreateFileSystemOpenZFSConfiguration struct {
 	RootVolumeConfiguration *OpenZFSCreateRootVolumeConfiguration `type:"structure"`
 
 	// Specifies the throughput of an Amazon FSx for OpenZFS file system, measured
-	// in megabytes per second (MB/s). Valid values are 64, 128, 256, 512, 1024,
-	// 2048, 3072, or 4096 MB/s. You pay for additional throughput capacity that
-	// you provision.
+	// in megabytes per second (MB/s). Valid values depend on the DeploymentType
+	// you choose, as follows:
+	//
+	//    * For SINGLE_AZ_1, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
+	//    or 4096 MB/s.
+	//
+	//    * For SINGLE_AZ_2, valid values are 160, 320, 640, 1280, 2560, 3840, 5120,
+	//    7680, or 10240 MB/s.
+	//
+	// You pay for additional throughput capacity that you provision.
 	//
 	// ThroughputCapacity is a required field
 	ThroughputCapacity *int64 `min:"8" type:"integer" required:"true"`
@@ -8951,11 +8979,29 @@ func (s *CreateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 type CreateOntapVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// A boolean flag indicating whether tags for the volume should be copied to
+	// backups. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to all automatic and user-initiated backups where the
+	// user doesn't specify tags. If this value is true, and you specify one or
+	// more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the volume, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
 	// Specifies the location in the SVM's namespace where the volume is mounted.
 	// The JunctionPath must have a leading forward slash, such as /vol3.
+	JunctionPath *string `min:"1" type:"string"`
+
+	// Specifies the type of volume you are creating. Valid values are the following:
 	//
-	// JunctionPath is a required field
-	JunctionPath *string `min:"1" type:"string" required:"true"`
+	//    * RW specifies a read/write volume. RW is the default.
+	//
+	//    * DP specifies a data-protection volume. A DP volume is read-only and
+	//    can be used as the destination of a NetApp SnapMirror relationship.
+	//
+	// For more information, see Volume types (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	OntapVolumeType *string `type:"string" enum:"InputOntapVolumeType"`
 
 	// Specifies the security style for the volume. If a volume's security style
 	// is not specified, it is automatically set to the root volume's security style.
@@ -8982,11 +9028,30 @@ type CreateOntapVolumeConfiguration struct {
 	// SizeInMegabytes is a required field
 	SizeInMegabytes *int64 `type:"integer" required:"true"`
 
+	// Specifies the snapshot policy for the volume. There are three built-in snapshot
+	// policies:
+	//
+	//    * default: This is the default policy. A maximum of six hourly snapshots
+	//    taken five minutes past the hour. A maximum of two daily snapshots taken
+	//    Monday through Saturday at 10 minutes after midnight. A maximum of two
+	//    weekly snapshots taken every Sunday at 15 minutes after midnight.
+	//
+	//    * default-1weekly: This policy is the same as the default policy except
+	//    that it only retains one snapshot from the weekly schedule.
+	//
+	//    * none: This policy does not take any snapshots. This policy can be assigned
+	//    to volumes to prevent automatic snapshots from being taken.
+	//
+	// You can also provide the name of a custom policy that you created with the
+	// ONTAP CLI or REST API.
+	//
+	// For more information, see Snapshot policies (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	SnapshotPolicy *string `min:"1" type:"string"`
+
 	// Set to true to enable deduplication, compression, and compaction storage
 	// efficiency features on the volume.
-	//
-	// StorageEfficiencyEnabled is a required field
-	StorageEfficiencyEnabled *bool `type:"boolean" required:"true"`
+	StorageEfficiencyEnabled *bool `type:"boolean"`
 
 	// Specifies the ONTAP SVM in which to create the volume.
 	//
@@ -9035,17 +9100,14 @@ func (s CreateOntapVolumeConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateOntapVolumeConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateOntapVolumeConfiguration"}
-	if s.JunctionPath == nil {
-		invalidParams.Add(request.NewErrParamRequired("JunctionPath"))
-	}
 	if s.JunctionPath != nil && len(*s.JunctionPath) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JunctionPath", 1))
 	}
 	if s.SizeInMegabytes == nil {
 		invalidParams.Add(request.NewErrParamRequired("SizeInMegabytes"))
 	}
-	if s.StorageEfficiencyEnabled == nil {
-		invalidParams.Add(request.NewErrParamRequired("StorageEfficiencyEnabled"))
+	if s.SnapshotPolicy != nil && len(*s.SnapshotPolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotPolicy", 1))
 	}
 	if s.StorageVirtualMachineId == nil {
 		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineId"))
@@ -9065,9 +9127,21 @@ func (s *CreateOntapVolumeConfiguration) Validate() error {
 	return nil
 }
 
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *CreateOntapVolumeConfiguration) SetCopyTagsToBackups(v bool) *CreateOntapVolumeConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
 // SetJunctionPath sets the JunctionPath field's value.
 func (s *CreateOntapVolumeConfiguration) SetJunctionPath(v string) *CreateOntapVolumeConfiguration {
 	s.JunctionPath = &v
+	return s
+}
+
+// SetOntapVolumeType sets the OntapVolumeType field's value.
+func (s *CreateOntapVolumeConfiguration) SetOntapVolumeType(v string) *CreateOntapVolumeConfiguration {
+	s.OntapVolumeType = &v
 	return s
 }
 
@@ -9080,6 +9154,12 @@ func (s *CreateOntapVolumeConfiguration) SetSecurityStyle(v string) *CreateOntap
 // SetSizeInMegabytes sets the SizeInMegabytes field's value.
 func (s *CreateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *CreateOntapVolumeConfiguration {
 	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnapshotPolicy sets the SnapshotPolicy field's value.
+func (s *CreateOntapVolumeConfiguration) SetSnapshotPolicy(v string) *CreateOntapVolumeConfiguration {
+	s.SnapshotPolicy = &v
 	return s
 }
 
@@ -10151,7 +10231,7 @@ type DataRepositoryAssociation struct {
 	// supported for S3 data repositories.
 	DataRepositorySubdirectories []*string `type:"list"`
 
-	// Provides detailed information about the data respository if its Lifecycle
+	// Provides detailed information about the data repository if its Lifecycle
 	// is set to MISCONFIGURED or FAILED.
 	FailureDetails *DataRepositoryFailureDetails `type:"structure"`
 
@@ -10464,7 +10544,7 @@ type DataRepositoryConfiguration struct {
 	// store new and changed Lustre file system files in S3.
 	ExportPath *string `min:"3" type:"string"`
 
-	// Provides detailed information about the data respository if its Lifecycle
+	// Provides detailed information about the data repository if its Lifecycle
 	// is set to MISCONFIGURED or FAILED.
 	FailureDetails *DataRepositoryFailureDetails `type:"structure"`
 
@@ -10560,7 +10640,7 @@ func (s *DataRepositoryConfiguration) SetLifecycle(v string) *DataRepositoryConf
 	return s
 }
 
-// Provides detailed information about the data respository if its Lifecycle
+// Provides detailed information about the data repository if its Lifecycle
 // is set to MISCONFIGURED or FAILED.
 type DataRepositoryFailureDetails struct {
 	_ struct{} `type:"structure"`
@@ -16885,6 +16965,15 @@ func (s *OntapFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) *
 type OntapVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// A boolean flag indicating whether tags for the volume should be copied to
+	// backups. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to all automatic and user-initiated backups where the
+	// user doesn't specify tags. If this value is true, and you specify one or
+	// more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the volume, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
 	// Specifies the FlexCache endpoint type of the volume. Valid values are the
 	// following:
 	//
@@ -16923,6 +17012,27 @@ type OntapVolumeConfiguration struct {
 
 	// The configured size of the volume, in megabytes (MBs).
 	SizeInMegabytes *int64 `type:"integer"`
+
+	// Specifies the snapshot policy for the volume. There are three built-in snapshot
+	// policies:
+	//
+	//    * default: This is the default policy. A maximum of six hourly snapshots
+	//    taken five minutes past the hour. A maximum of two daily snapshots taken
+	//    Monday through Saturday at 10 minutes after midnight. A maximum of two
+	//    weekly snapshots taken every Sunday at 15 minutes after midnight.
+	//
+	//    * default-1weekly: This policy is the same as the default policy except
+	//    that it only retains one snapshot from the weekly schedule.
+	//
+	//    * none: This policy does not take any snapshots. This policy can be assigned
+	//    to volumes to prevent automatic snapshots from being taken.
+	//
+	// You can also provide the name of a custom policy that you created with the
+	// ONTAP CLI or REST API.
+	//
+	// For more information, see Snapshot policies (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	SnapshotPolicy *string `min:"1" type:"string"`
 
 	// The volume's storage efficiency setting.
 	StorageEfficiencyEnabled *bool `type:"boolean"`
@@ -16965,6 +17075,12 @@ func (s OntapVolumeConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *OntapVolumeConfiguration) SetCopyTagsToBackups(v bool) *OntapVolumeConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
+}
+
 // SetFlexCacheEndpointType sets the FlexCacheEndpointType field's value.
 func (s *OntapVolumeConfiguration) SetFlexCacheEndpointType(v string) *OntapVolumeConfiguration {
 	s.FlexCacheEndpointType = &v
@@ -16992,6 +17108,12 @@ func (s *OntapVolumeConfiguration) SetSecurityStyle(v string) *OntapVolumeConfig
 // SetSizeInMegabytes sets the SizeInMegabytes field's value.
 func (s *OntapVolumeConfiguration) SetSizeInMegabytes(v int64) *OntapVolumeConfiguration {
 	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnapshotPolicy sets the SnapshotPolicy field's value.
+func (s *OntapVolumeConfiguration) SetSnapshotPolicy(v string) *OntapVolumeConfiguration {
+	s.SnapshotPolicy = &v
 	return s
 }
 
@@ -17272,8 +17394,7 @@ type OpenZFSFileSystemConfiguration struct {
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
 	// Specifies the file-system deployment type. Amazon FSx for OpenZFS supports
-	// SINGLE_AZ_1. SINGLE_AZ_1 is a file system configured for a single Availability
-	// Zone (AZ) of redundancy.
+	// SINGLE_AZ_1 and SINGLE_AZ_2.
 	DeploymentType *string `type:"string" enum:"OpenZFSDeploymentType"`
 
 	// The SSD IOPS (input/output operations per second) configuration for an Amazon
@@ -17287,7 +17408,7 @@ type OpenZFSFileSystemConfiguration struct {
 	RootVolumeId *string `min:"23" type:"string"`
 
 	// The throughput of an Amazon FSx file system, measured in megabytes per second
-	// (MBps). Valid values are 64, 128, 256, 512, 1024, 2048, 3072, or 4096 MB/s.
+	// (MBps).
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -17588,6 +17709,14 @@ type OpenZFSVolumeConfiguration struct {
 	//    write throughput speeds.
 	DataCompressionType *string `type:"string" enum:"OpenZFSDataCompressionType"`
 
+	// A Boolean value indicating whether dependent clone volumes created from intermediate
+	// snapshots should be deleted when a volume is restored from snapshot.
+	DeleteClonedVolumes *bool `type:"boolean"`
+
+	// A Boolean value indicating whether snapshots between the current state and
+	// the specified snapshot should be deleted when a volume is restored from snapshot.
+	DeleteIntermediateSnaphots *bool `type:"boolean"`
+
 	// The configuration object for mounting a Network File System (NFS) file system.
 	NfsExports []*OpenZFSNfsExport `type:"list"`
 
@@ -17606,6 +17735,9 @@ type OpenZFSVolumeConfiguration struct {
 	// workloads should use the default record size. For guidance on when to set
 	// a custom record size, see the Amazon FSx for OpenZFS User Guide.
 	RecordSizeKiB *int64 `min:"4" type:"integer"`
+
+	// Specifies the ID of the snapshot to which the volume was restored.
+	RestoreToSnapshot *string `min:"11" type:"string"`
 
 	// The maximum amount of storage in gibibtyes (GiB) that the volume can use
 	// from its parent. You can specify a quota larger than the storage on the parent
@@ -17653,6 +17785,18 @@ func (s *OpenZFSVolumeConfiguration) SetDataCompressionType(v string) *OpenZFSVo
 	return s
 }
 
+// SetDeleteClonedVolumes sets the DeleteClonedVolumes field's value.
+func (s *OpenZFSVolumeConfiguration) SetDeleteClonedVolumes(v bool) *OpenZFSVolumeConfiguration {
+	s.DeleteClonedVolumes = &v
+	return s
+}
+
+// SetDeleteIntermediateSnaphots sets the DeleteIntermediateSnaphots field's value.
+func (s *OpenZFSVolumeConfiguration) SetDeleteIntermediateSnaphots(v bool) *OpenZFSVolumeConfiguration {
+	s.DeleteIntermediateSnaphots = &v
+	return s
+}
+
 // SetNfsExports sets the NfsExports field's value.
 func (s *OpenZFSVolumeConfiguration) SetNfsExports(v []*OpenZFSNfsExport) *OpenZFSVolumeConfiguration {
 	s.NfsExports = v
@@ -17680,6 +17824,12 @@ func (s *OpenZFSVolumeConfiguration) SetReadOnly(v bool) *OpenZFSVolumeConfigura
 // SetRecordSizeKiB sets the RecordSizeKiB field's value.
 func (s *OpenZFSVolumeConfiguration) SetRecordSizeKiB(v int64) *OpenZFSVolumeConfiguration {
 	s.RecordSizeKiB = &v
+	return s
+}
+
+// SetRestoreToSnapshot sets the RestoreToSnapshot field's value.
+func (s *OpenZFSVolumeConfiguration) SetRestoreToSnapshot(v string) *OpenZFSVolumeConfiguration {
+	s.RestoreToSnapshot = &v
 	return s
 }
 
@@ -18042,6 +18192,11 @@ func (s *RestoreVolumeFromSnapshotInput) SetVolumeId(v string) *RestoreVolumeFro
 type RestoreVolumeFromSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of administrative actions for the file system that are in process
+	// or waiting to be processed. Administrative actions describe changes to the
+	// Amazon FSx system.
+	AdministrativeActions []*AdministrativeAction `type:"list"`
+
 	// The lifecycle state of the volume being restored.
 	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
 
@@ -18065,6 +18220,12 @@ func (s RestoreVolumeFromSnapshotOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RestoreVolumeFromSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdministrativeActions sets the AdministrativeActions field's value.
+func (s *RestoreVolumeFromSnapshotOutput) SetAdministrativeActions(v []*AdministrativeAction) *RestoreVolumeFromSnapshotOutput {
+	s.AdministrativeActions = v
+	return s
 }
 
 // SetLifecycle sets the Lifecycle field's value.
@@ -18860,9 +19021,6 @@ type StorageVirtualMachine struct {
 	// The SVM's system generated unique ID.
 	StorageVirtualMachineId *string `min:"21" type:"string"`
 
-	// Describes the SVM's subtype.
-	Subtype *string `type:"string" enum:"StorageVirtualMachineSubtype"`
-
 	// A list of Tag values, with a maximum of 50 elements.
 	Tags []*Tag `min:"1" type:"list"`
 
@@ -18945,12 +19103,6 @@ func (s *StorageVirtualMachine) SetRootVolumeSecurityStyle(v string) *StorageVir
 // SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
 func (s *StorageVirtualMachine) SetStorageVirtualMachineId(v string) *StorageVirtualMachine {
 	s.StorageVirtualMachineId = &v
-	return s
-}
-
-// SetSubtype sets the Subtype field's value.
-func (s *StorageVirtualMachine) SetSubtype(v string) *StorageVirtualMachine {
-	s.Subtype = &v
 	return s
 }
 
@@ -20255,6 +20407,10 @@ func (s *UpdateFileSystemLustreConfiguration) SetWeeklyMaintenanceStartTime(v st
 type UpdateFileSystemOntapConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// (Multi-AZ only) A list of IDs of new virtual private cloud (VPC) route tables
+	// to associate (add) with your Amazon FSx for NetApp ONTAP file system.
+	AddRouteTableIds []*string `type:"list"`
+
 	// The number of days to retain automatic backups. Setting this property to
 	// 0 disables automatic backups. You can retain automatic backups for a maximum
 	// of 90 days. The default is 0.
@@ -20279,9 +20435,15 @@ type UpdateFileSystemOntapConfiguration struct {
 	// String and GoString methods.
 	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
 
+	// (Multi-AZ only) A list of IDs of existing virtual private cloud (VPC) route
+	// tables to disassociate (remove) from your Amazon FSx for NetApp ONTAP file
+	// system. You can use the API operation to retrieve the list of VPC route table
+	// IDs for a file system.
+	RemoveRouteTableIds []*string `type:"list"`
+
 	// Specifies the throughput of an FSx for NetApp ONTAP file system, measured
-	// in megabytes per second (MBps). Valid values are 128, 256, 512, 1024, or
-	// 2048 MB/s.
+	// in megabytes per second (MBps). Valid values are 128, 256, 512, 1024, 2048,
+	// and 4096 MBps.
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -20337,6 +20499,12 @@ func (s *UpdateFileSystemOntapConfiguration) Validate() error {
 	return nil
 }
 
+// SetAddRouteTableIds sets the AddRouteTableIds field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetAddRouteTableIds(v []*string) *UpdateFileSystemOntapConfiguration {
+	s.AddRouteTableIds = v
+	return s
+}
+
 // SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
 func (s *UpdateFileSystemOntapConfiguration) SetAutomaticBackupRetentionDays(v int64) *UpdateFileSystemOntapConfiguration {
 	s.AutomaticBackupRetentionDays = &v
@@ -20358,6 +20526,12 @@ func (s *UpdateFileSystemOntapConfiguration) SetDiskIopsConfiguration(v *DiskIop
 // SetFsxAdminPassword sets the FsxAdminPassword field's value.
 func (s *UpdateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *UpdateFileSystemOntapConfiguration {
 	s.FsxAdminPassword = &v
+	return s
+}
+
+// SetRemoveRouteTableIds sets the RemoveRouteTableIds field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetRemoveRouteTableIds(v []*string) *UpdateFileSystemOntapConfiguration {
+	s.RemoveRouteTableIds = v
 	return s
 }
 
@@ -20411,8 +20585,15 @@ type UpdateFileSystemOpenZFSConfiguration struct {
 	// SSD IOPS and how the amount was provisioned (by the customer or by the system).
 	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
 
-	// The throughput of an Amazon FSx file system, measured in megabytes per second
-	// (MBps). Valid values are 64, 128, 256, 512, 1024, 2048, 3072, or 4096 MB/s.
+	// The throughput of an Amazon FSx for OpenZFS file system, measured in megabytes
+	// per second (MB/s). Valid values depend on the DeploymentType you choose,
+	// as follows:
+	//
+	//    * For SINGLE_AZ_1, valid values are 64, 128, 256, 512, 1024, 2048, 3072,
+	//    or 4096 MB/s.
+	//
+	//    * For SINGLE_AZ_2, valid values are 160, 320, 640, 1280, 2560, 3840, 5120,
+	//    7680, or 10240 MB/s.
 	ThroughputCapacity *int64 `min:"8" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.
@@ -20667,6 +20848,15 @@ func (s *UpdateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 type UpdateOntapVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// A boolean flag indicating whether tags for the volume should be copied to
+	// backups. This value defaults to false. If it's set to true, all tags for
+	// the volume are copied to all automatic and user-initiated backups where the
+	// user doesn't specify tags. If this value is true, and you specify one or
+	// more tags, only the specified tags are copied to backups. If you specify
+	// one or more tags when creating a user-initiated backup, no tags are copied
+	// from the volume, regardless of this value.
+	CopyTagsToBackups *bool `type:"boolean"`
+
 	// Specifies the location in the SVM's namespace where the volume is mounted.
 	// The JunctionPath must have a leading forward slash, such as /vol3.
 	JunctionPath *string `min:"1" type:"string"`
@@ -20676,6 +20866,27 @@ type UpdateOntapVolumeConfiguration struct {
 
 	// Specifies the size of the volume in megabytes.
 	SizeInMegabytes *int64 `type:"integer"`
+
+	// Specifies the snapshot policy for the volume. There are three built-in snapshot
+	// policies:
+	//
+	//    * default: This is the default policy. A maximum of six hourly snapshots
+	//    taken five minutes past the hour. A maximum of two daily snapshots taken
+	//    Monday through Saturday at 10 minutes after midnight. A maximum of two
+	//    weekly snapshots taken every Sunday at 15 minutes after midnight.
+	//
+	//    * default-1weekly: This policy is the same as the default policy except
+	//    that it only retains one snapshot from the weekly schedule.
+	//
+	//    * none: This policy does not take any snapshots. This policy can be assigned
+	//    to volumes to prevent automatic snapshots from being taken.
+	//
+	// You can also provide the name of a custom policy that you created with the
+	// ONTAP CLI or REST API.
+	//
+	// For more information, see Snapshot policies (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/snapshots-ontap.html#snapshot-policies)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
+	SnapshotPolicy *string `min:"1" type:"string"`
 
 	// Default is false. Set to true to enable the deduplication, compression, and
 	// compaction storage efficiency features on the volume.
@@ -20709,6 +20920,9 @@ func (s *UpdateOntapVolumeConfiguration) Validate() error {
 	if s.JunctionPath != nil && len(*s.JunctionPath) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JunctionPath", 1))
 	}
+	if s.SnapshotPolicy != nil && len(*s.SnapshotPolicy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotPolicy", 1))
+	}
 	if s.TieringPolicy != nil {
 		if err := s.TieringPolicy.Validate(); err != nil {
 			invalidParams.AddNested("TieringPolicy", err.(request.ErrInvalidParams))
@@ -20719,6 +20933,12 @@ func (s *UpdateOntapVolumeConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCopyTagsToBackups sets the CopyTagsToBackups field's value.
+func (s *UpdateOntapVolumeConfiguration) SetCopyTagsToBackups(v bool) *UpdateOntapVolumeConfiguration {
+	s.CopyTagsToBackups = &v
+	return s
 }
 
 // SetJunctionPath sets the JunctionPath field's value.
@@ -20736,6 +20956,12 @@ func (s *UpdateOntapVolumeConfiguration) SetSecurityStyle(v string) *UpdateOntap
 // SetSizeInMegabytes sets the SizeInMegabytes field's value.
 func (s *UpdateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *UpdateOntapVolumeConfiguration {
 	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetSnapshotPolicy sets the SnapshotPolicy field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSnapshotPolicy(v string) *UpdateOntapVolumeConfiguration {
+	s.SnapshotPolicy = &v
 	return s
 }
 
@@ -21327,9 +21553,9 @@ func (s *UpdateVolumeOutput) SetVolume(v *Volume) *UpdateVolumeOutput {
 type Volume struct {
 	_ struct{} `type:"structure"`
 
-	// A list of administrative actions for the file system that are in process
-	// or waiting to be processed. Administrative actions describe changes to the
-	// Amazon FSx system that you initiated.
+	// A list of administrative actions for the volume that are in process or waiting
+	// to be processed. Administrative actions describe changes to the volume that
+	// you have initiated using the UpdateVolume action.
 	AdministrativeActions []*AdministrativeAction `type:"list"`
 
 	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
@@ -22056,6 +22282,10 @@ func ActiveDirectoryErrorType_Values() []string {
 //     Amazon FSx for OpenZFS volume initiated from the Amazon FSx console, API
 //     (UpdateVolume), or CLI (update-volume).
 //
+//   - VOLUME_RESTORE - An Amazon FSx for OpenZFS volume is returned to the
+//     state saved by the specified snapshot, initiated from an API (RestoreVolumeFromSnapshot)
+//     or CLI (restore-volume-from-snapshot).
+//
 //   - SNAPSHOT_UPDATE - A snapshot update to an Amazon FSx for OpenZFS volume
 //     initiated from the Amazon FSx console, API (UpdateSnapshot), or CLI (update-snapshot).
 //
@@ -22082,6 +22312,9 @@ const (
 
 	// AdministrativeActionTypeReleaseNfsV3Locks is a AdministrativeActionType enum value
 	AdministrativeActionTypeReleaseNfsV3Locks = "RELEASE_NFS_V3_LOCKS"
+
+	// AdministrativeActionTypeVolumeRestore is a AdministrativeActionType enum value
+	AdministrativeActionTypeVolumeRestore = "VOLUME_RESTORE"
 )
 
 // AdministrativeActionType_Values returns all elements of the AdministrativeActionType enum
@@ -22094,6 +22327,7 @@ func AdministrativeActionType_Values() []string {
 		AdministrativeActionTypeVolumeUpdate,
 		AdministrativeActionTypeSnapshotUpdate,
 		AdministrativeActionTypeReleaseNfsV3Locks,
+		AdministrativeActionTypeVolumeRestore,
 	}
 }
 
@@ -22616,6 +22850,22 @@ func FlexCacheEndpointType_Values() []string {
 }
 
 const (
+	// InputOntapVolumeTypeRw is a InputOntapVolumeType enum value
+	InputOntapVolumeTypeRw = "RW"
+
+	// InputOntapVolumeTypeDp is a InputOntapVolumeType enum value
+	InputOntapVolumeTypeDp = "DP"
+)
+
+// InputOntapVolumeType_Values returns all elements of the InputOntapVolumeType enum
+func InputOntapVolumeType_Values() []string {
+	return []string{
+		InputOntapVolumeTypeRw,
+		InputOntapVolumeTypeDp,
+	}
+}
+
+const (
 	// LustreAccessAuditLogLevelDisabled is a LustreAccessAuditLogLevel enum value
 	LustreAccessAuditLogLevelDisabled = "DISABLED"
 
@@ -22750,12 +23000,16 @@ func OpenZFSDataCompressionType_Values() []string {
 const (
 	// OpenZFSDeploymentTypeSingleAz1 is a OpenZFSDeploymentType enum value
 	OpenZFSDeploymentTypeSingleAz1 = "SINGLE_AZ_1"
+
+	// OpenZFSDeploymentTypeSingleAz2 is a OpenZFSDeploymentType enum value
+	OpenZFSDeploymentTypeSingleAz2 = "SINGLE_AZ_2"
 )
 
 // OpenZFSDeploymentType_Values returns all elements of the OpenZFSDeploymentType enum
 func OpenZFSDeploymentType_Values() []string {
 	return []string{
 		OpenZFSDeploymentTypeSingleAz1,
+		OpenZFSDeploymentTypeSingleAz2,
 	}
 }
 
@@ -23050,30 +23304,6 @@ func StorageVirtualMachineRootVolumeSecurityStyle_Values() []string {
 		StorageVirtualMachineRootVolumeSecurityStyleUnix,
 		StorageVirtualMachineRootVolumeSecurityStyleNtfs,
 		StorageVirtualMachineRootVolumeSecurityStyleMixed,
-	}
-}
-
-const (
-	// StorageVirtualMachineSubtypeDefault is a StorageVirtualMachineSubtype enum value
-	StorageVirtualMachineSubtypeDefault = "DEFAULT"
-
-	// StorageVirtualMachineSubtypeDpDestination is a StorageVirtualMachineSubtype enum value
-	StorageVirtualMachineSubtypeDpDestination = "DP_DESTINATION"
-
-	// StorageVirtualMachineSubtypeSyncDestination is a StorageVirtualMachineSubtype enum value
-	StorageVirtualMachineSubtypeSyncDestination = "SYNC_DESTINATION"
-
-	// StorageVirtualMachineSubtypeSyncSource is a StorageVirtualMachineSubtype enum value
-	StorageVirtualMachineSubtypeSyncSource = "SYNC_SOURCE"
-)
-
-// StorageVirtualMachineSubtype_Values returns all elements of the StorageVirtualMachineSubtype enum
-func StorageVirtualMachineSubtype_Values() []string {
-	return []string{
-		StorageVirtualMachineSubtypeDefault,
-		StorageVirtualMachineSubtypeDpDestination,
-		StorageVirtualMachineSubtypeSyncDestination,
-		StorageVirtualMachineSubtypeSyncSource,
 	}
 }
 

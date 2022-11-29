@@ -111,6 +111,10 @@ type LicenseManagerUserSubscriptionsAPI interface {
 	StopProductSubscription(*licensemanagerusersubscriptions.StopProductSubscriptionInput) (*licensemanagerusersubscriptions.StopProductSubscriptionOutput, error)
 	StopProductSubscriptionWithContext(aws.Context, *licensemanagerusersubscriptions.StopProductSubscriptionInput, ...request.Option) (*licensemanagerusersubscriptions.StopProductSubscriptionOutput, error)
 	StopProductSubscriptionRequest(*licensemanagerusersubscriptions.StopProductSubscriptionInput) (*request.Request, *licensemanagerusersubscriptions.StopProductSubscriptionOutput)
+
+	UpdateIdentityProviderSettings(*licensemanagerusersubscriptions.UpdateIdentityProviderSettingsInput) (*licensemanagerusersubscriptions.UpdateIdentityProviderSettingsOutput, error)
+	UpdateIdentityProviderSettingsWithContext(aws.Context, *licensemanagerusersubscriptions.UpdateIdentityProviderSettingsInput, ...request.Option) (*licensemanagerusersubscriptions.UpdateIdentityProviderSettingsOutput, error)
+	UpdateIdentityProviderSettingsRequest(*licensemanagerusersubscriptions.UpdateIdentityProviderSettingsInput) (*request.Request, *licensemanagerusersubscriptions.UpdateIdentityProviderSettingsOutput)
 }
 
 var _ LicenseManagerUserSubscriptionsAPI = (*licensemanagerusersubscriptions.LicenseManagerUserSubscriptions)(nil)

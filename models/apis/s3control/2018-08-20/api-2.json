@@ -542,7 +542,7 @@
       "name":"GetMultiRegionAccessPoint",
       "http":{
         "method":"GET",
-        "requestUri":"/v20180820/mrap/instances/{name}"
+        "requestUri":"/v20180820/mrap/instances/{name+}"
       },
       "input":{"shape":"GetMultiRegionAccessPointRequest"},
       "output":{"shape":"GetMultiRegionAccessPointResult"},
@@ -558,7 +558,7 @@
       "name":"GetMultiRegionAccessPointPolicy",
       "http":{
         "method":"GET",
-        "requestUri":"/v20180820/mrap/instances/{name}/policy"
+        "requestUri":"/v20180820/mrap/instances/{name+}/policy"
       },
       "input":{"shape":"GetMultiRegionAccessPointPolicyRequest"},
       "output":{"shape":"GetMultiRegionAccessPointPolicyResult"},
@@ -574,10 +574,26 @@
       "name":"GetMultiRegionAccessPointPolicyStatus",
       "http":{
         "method":"GET",
-        "requestUri":"/v20180820/mrap/instances/{name}/policystatus"
+        "requestUri":"/v20180820/mrap/instances/{name+}/policystatus"
       },
       "input":{"shape":"GetMultiRegionAccessPointPolicyStatusRequest"},
       "output":{"shape":"GetMultiRegionAccessPointPolicyStatusResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "GetMultiRegionAccessPointRoutes":{
+      "name":"GetMultiRegionAccessPointRoutes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/mrap/instances/{mrap+}/routes"
+      },
+      "input":{"shape":"GetMultiRegionAccessPointRoutesRequest"},
+      "output":{"shape":"GetMultiRegionAccessPointRoutesResult"},
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
@@ -937,6 +953,26 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       },
+      "staticContextParams":{
+        "RequiresAccountId":{"value":true}
+      }
+    },
+    "SubmitMultiRegionAccessPointRoutes":{
+      "name":"SubmitMultiRegionAccessPointRoutes",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/v20180820/mrap/instances/{mrap+}/routes"
+      },
+      "input":{
+        "shape":"SubmitMultiRegionAccessPointRoutesRequest",
+        "locationName":"SubmitMultiRegionAccessPointRoutesRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"SubmitMultiRegionAccessPointRoutesResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true,
       "staticContextParams":{
         "RequiresAccountId":{"value":true}
       }
@@ -2316,6 +2352,34 @@
         "AccessPoint":{"shape":"MultiRegionAccessPointReport"}
       }
     },
+    "GetMultiRegionAccessPointRoutesRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Mrap"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Mrap":{
+          "shape":"MultiRegionAccessPointId",
+          "location":"uri",
+          "locationName":"mrap"
+        }
+      }
+    },
+    "GetMultiRegionAccessPointRoutesResult":{
+      "type":"structure",
+      "members":{
+        "Mrap":{"shape":"MultiRegionAccessPointId"},
+        "Routes":{"shape":"RouteList"}
+      }
+    },
     "GetPublicAccessBlockOutput":{
       "type":"structure",
       "members":{
@@ -3118,6 +3182,11 @@
       "max":64,
       "pattern":"\\S+"
     },
+    "MultiRegionAccessPointId":{
+      "type":"string",
+      "max":200,
+      "pattern":"^[a-zA-Z0-9\\:.-]{3,200}$"
+    },
     "MultiRegionAccessPointName":{
       "type":"string",
       "max":50,
@@ -3160,6 +3229,15 @@
       "member":{
         "shape":"MultiRegionAccessPointReport",
         "locationName":"AccessPoint"
+      }
+    },
+    "MultiRegionAccessPointRoute":{
+      "type":"structure",
+      "required":["TrafficDialPercentage"],
+      "members":{
+        "Bucket":{"shape":"BucketName"},
+        "Region":{"shape":"RegionName"},
+        "TrafficDialPercentage":{"shape":"TrafficDialPercentage"}
       }
     },
     "MultiRegionAccessPointStatus":{
@@ -3842,6 +3920,13 @@
         "Ready"
       ]
     },
+    "RouteList":{
+      "type":"list",
+      "member":{
+        "shape":"MultiRegionAccessPointRoute",
+        "locationName":"Route"
+      }
+    },
     "S3AWSRegion":{
       "type":"string",
       "max":30,
@@ -4341,6 +4426,34 @@
       "min":1,
       "pattern":"^[A-Za-z0-9\\+\\:\\/\\=\\?\\#-_]+$"
     },
+    "SubmitMultiRegionAccessPointRoutesRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Mrap",
+        "RouteUpdates"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "contextParam":{"name":"AccountId"},
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Mrap":{
+          "shape":"MultiRegionAccessPointId",
+          "location":"uri",
+          "locationName":"mrap"
+        },
+        "RouteUpdates":{"shape":"RouteList"}
+      }
+    },
+    "SubmitMultiRegionAccessPointRoutesResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "SuspendedCause":{
       "type":"string",
       "max":1024,
@@ -4379,6 +4492,11 @@
         "Message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "TrafficDialPercentage":{
+      "type":"integer",
+      "max":100,
+      "min":0
     },
     "Transition":{
       "type":"structure",

@@ -3208,7 +3208,7 @@ func (c *S3Control) GetMultiRegionAccessPointRequest(input *GetMultiRegionAccess
 	op := &request.Operation{
 		Name:       opGetMultiRegionAccessPoint,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v20180820/mrap/instances/{name}",
+		HTTPPath:   "/v20180820/mrap/instances/{name+}",
 	}
 
 	if input == nil {
@@ -3303,7 +3303,7 @@ func (c *S3Control) GetMultiRegionAccessPointPolicyRequest(input *GetMultiRegion
 	op := &request.Operation{
 		Name:       opGetMultiRegionAccessPointPolicy,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v20180820/mrap/instances/{name}/policy",
+		HTTPPath:   "/v20180820/mrap/instances/{name+}/policy",
 	}
 
 	if input == nil {
@@ -3393,7 +3393,7 @@ func (c *S3Control) GetMultiRegionAccessPointPolicyStatusRequest(input *GetMulti
 	op := &request.Operation{
 		Name:       opGetMultiRegionAccessPointPolicyStatus,
 		HTTPMethod: "GET",
-		HTTPPath:   "/v20180820/mrap/instances/{name}/policystatus",
+		HTTPPath:   "/v20180820/mrap/instances/{name+}/policystatus",
 	}
 
 	if input == nil {
@@ -3450,6 +3450,102 @@ func (c *S3Control) GetMultiRegionAccessPointPolicyStatus(input *GetMultiRegionA
 // for more information on using Contexts.
 func (c *S3Control) GetMultiRegionAccessPointPolicyStatusWithContext(ctx aws.Context, input *GetMultiRegionAccessPointPolicyStatusInput, opts ...request.Option) (*GetMultiRegionAccessPointPolicyStatusOutput, error) {
 	req, out := c.GetMultiRegionAccessPointPolicyStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMultiRegionAccessPointRoutes = "GetMultiRegionAccessPointRoutes"
+
+// GetMultiRegionAccessPointRoutesRequest generates a "aws/request.Request" representing the
+// client's request for the GetMultiRegionAccessPointRoutes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMultiRegionAccessPointRoutes for more information on using the GetMultiRegionAccessPointRoutes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMultiRegionAccessPointRoutesRequest method.
+//	req, resp := client.GetMultiRegionAccessPointRoutesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointRoutes
+func (c *S3Control) GetMultiRegionAccessPointRoutesRequest(input *GetMultiRegionAccessPointRoutesInput) (req *request.Request, output *GetMultiRegionAccessPointRoutesOutput) {
+	op := &request.Operation{
+		Name:       opGetMultiRegionAccessPointRoutes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances/{mrap+}/routes",
+	}
+
+	if input == nil {
+		input = &GetMultiRegionAccessPointRoutesInput{}
+	}
+
+	output = &GetMultiRegionAccessPointRoutesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetMultiRegionAccessPointRoutes API operation for AWS S3 Control.
+//
+// Returns the routing configuration for a Multi-Region Access Point, indicating
+// which Regions are active or passive.
+//
+// To obtain routing control changes and failover requests, use the Amazon S3
+// failover control infrastructure endpoints in these five Amazon Web Services
+// Regions:
+//
+//   - us-east-1
+//
+//   - us-west-2
+//
+//   - ap-southeast-2
+//
+//   - ap-northeast-1
+//
+//   - eu-west-1
+//
+// Your Amazon S3 bucket does not need to be in these five Regions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetMultiRegionAccessPointRoutes for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointRoutes
+func (c *S3Control) GetMultiRegionAccessPointRoutes(input *GetMultiRegionAccessPointRoutesInput) (*GetMultiRegionAccessPointRoutesOutput, error) {
+	req, out := c.GetMultiRegionAccessPointRoutesRequest(input)
+	return out, req.Send()
+}
+
+// GetMultiRegionAccessPointRoutesWithContext is the same as GetMultiRegionAccessPointRoutes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMultiRegionAccessPointRoutes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetMultiRegionAccessPointRoutesWithContext(ctx aws.Context, input *GetMultiRegionAccessPointRoutesInput, opts ...request.Option) (*GetMultiRegionAccessPointRoutesOutput, error) {
+	req, out := c.GetMultiRegionAccessPointRoutesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5820,6 +5916,115 @@ func (c *S3Control) PutStorageLensConfigurationTagging(input *PutStorageLensConf
 // for more information on using Contexts.
 func (c *S3Control) PutStorageLensConfigurationTaggingWithContext(ctx aws.Context, input *PutStorageLensConfigurationTaggingInput, opts ...request.Option) (*PutStorageLensConfigurationTaggingOutput, error) {
 	req, out := c.PutStorageLensConfigurationTaggingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSubmitMultiRegionAccessPointRoutes = "SubmitMultiRegionAccessPointRoutes"
+
+// SubmitMultiRegionAccessPointRoutesRequest generates a "aws/request.Request" representing the
+// client's request for the SubmitMultiRegionAccessPointRoutes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SubmitMultiRegionAccessPointRoutes for more information on using the SubmitMultiRegionAccessPointRoutes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SubmitMultiRegionAccessPointRoutesRequest method.
+//	req, resp := client.SubmitMultiRegionAccessPointRoutesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/SubmitMultiRegionAccessPointRoutes
+func (c *S3Control) SubmitMultiRegionAccessPointRoutesRequest(input *SubmitMultiRegionAccessPointRoutesInput) (req *request.Request, output *SubmitMultiRegionAccessPointRoutesOutput) {
+	op := &request.Operation{
+		Name:       opSubmitMultiRegionAccessPointRoutes,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/v20180820/mrap/instances/{mrap+}/routes",
+	}
+
+	if input == nil {
+		input = &SubmitMultiRegionAccessPointRoutesInput{}
+	}
+
+	output = &SubmitMultiRegionAccessPointRoutesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// SubmitMultiRegionAccessPointRoutes API operation for AWS S3 Control.
+//
+// Submits an updated route configuration for a Multi-Region Access Point. This
+// API operation updates the routing status for the specified Regions from active
+// to passive, or from passive to active. A value of 0 indicates a passive status,
+// which means that traffic won't be routed to the specified Region. A value
+// of 100 indicates an active status, which means that traffic will be routed
+// to the specified Region. At least one Region must be active at all times.
+//
+// When the routing configuration is changed, any in-progress operations (uploads,
+// copies, deletes, and so on) to formerly active Regions will continue to run
+// to their final completion state (success or failure). The routing configurations
+// of any Regions that aren’t specified remain unchanged.
+//
+// Updated routing configurations might not be immediately applied. It can take
+// up to 2 minutes for your changes to take effect.
+//
+// To submit routing control changes and failover requests, use the Amazon S3
+// failover control infrastructure endpoints in these five Amazon Web Services
+// Regions:
+//
+//   - us-east-1
+//
+//   - us-west-2
+//
+//   - ap-southeast-2
+//
+//   - ap-northeast-1
+//
+//   - eu-west-1
+//
+// Your Amazon S3 bucket does not need to be in these five Regions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation SubmitMultiRegionAccessPointRoutes for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/SubmitMultiRegionAccessPointRoutes
+func (c *S3Control) SubmitMultiRegionAccessPointRoutes(input *SubmitMultiRegionAccessPointRoutesInput) (*SubmitMultiRegionAccessPointRoutesOutput, error) {
+	req, out := c.SubmitMultiRegionAccessPointRoutesRequest(input)
+	return out, req.Send()
+}
+
+// SubmitMultiRegionAccessPointRoutesWithContext is the same as SubmitMultiRegionAccessPointRoutes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SubmitMultiRegionAccessPointRoutes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) SubmitMultiRegionAccessPointRoutesWithContext(ctx aws.Context, input *SubmitMultiRegionAccessPointRoutesInput, opts ...request.Option) (*SubmitMultiRegionAccessPointRoutesOutput, error) {
+	req, out := c.SubmitMultiRegionAccessPointRoutesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11986,6 +12191,120 @@ func (s *GetMultiRegionAccessPointPolicyStatusOutput) SetEstablished(v *PolicySt
 	return s
 }
 
+type GetMultiRegionAccessPointRoutesInput struct {
+	_ struct{} `locationName:"GetMultiRegionAccessPointRoutesRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Multi-Region Access Point ARN.
+	//
+	// Mrap is a required field
+	Mrap *string `location:"uri" locationName:"mrap" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointRoutesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointRoutesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMultiRegionAccessPointRoutesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMultiRegionAccessPointRoutesInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Mrap == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mrap"))
+	}
+	if s.Mrap != nil && len(*s.Mrap) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Mrap", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetMultiRegionAccessPointRoutesInput) SetAccountId(v string) *GetMultiRegionAccessPointRoutesInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMrap sets the Mrap field's value.
+func (s *GetMultiRegionAccessPointRoutesInput) SetMrap(v string) *GetMultiRegionAccessPointRoutesInput {
+	s.Mrap = &v
+	return s
+}
+
+func (s *GetMultiRegionAccessPointRoutesInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetMultiRegionAccessPointRoutesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Multi-Region Access Point ARN.
+	Mrap *string `type:"string"`
+
+	// The different routes that make up the route configuration. Active routes
+	// return a value of 100, and passive routes return a value of 0.
+	Routes []*MultiRegionAccessPointRoute `locationNameList:"Route" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointRoutesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointRoutesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMrap sets the Mrap field's value.
+func (s *GetMultiRegionAccessPointRoutesOutput) SetMrap(v string) *GetMultiRegionAccessPointRoutesOutput {
+	s.Mrap = &v
+	return s
+}
+
+// SetRoutes sets the Routes field's value.
+func (s *GetMultiRegionAccessPointRoutesOutput) SetRoutes(v []*MultiRegionAccessPointRoute) *GetMultiRegionAccessPointRoutesOutput {
+	s.Routes = v
+	return s
+}
+
 type GetPublicAccessBlockInput struct {
 	_ struct{} `locationName:"GetPublicAccessBlockRequest" type:"structure"`
 
@@ -14854,6 +15173,103 @@ func (s *MultiRegionAccessPointReport) SetRegions(v []*RegionReport) *MultiRegio
 // SetStatus sets the Status field's value.
 func (s *MultiRegionAccessPointReport) SetStatus(v string) *MultiRegionAccessPointReport {
 	s.Status = &v
+	return s
+}
+
+// A structure for a Multi-Region Access Point that indicates where Amazon S3
+// traffic can be routed. Routes can be either active or passive. Active routes
+// can process Amazon S3 requests through the Multi-Region Access Point, but
+// passive routes are not eligible to process Amazon S3 requests.
+//
+// Each route contains the Amazon S3 bucket name and the Amazon Web Services
+// Region that the bucket is located in. The route also includes the TrafficDialPercentage
+// value, which shows whether the bucket and Region are active (indicated by
+// a value of 100) or passive (indicated by a value of 0).
+type MultiRegionAccessPointRoute struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket for which you'll submit a routing configuration
+	// change. Either the Bucket or the Region value must be provided. If both are
+	// provided, the bucket must be in the specified Region.
+	Bucket *string `min:"3" type:"string"`
+
+	// The Amazon Web Services Region to which you'll be submitting a routing configuration
+	// change. Either the Bucket or the Region value must be provided. If both are
+	// provided, the bucket must be in the specified Region.
+	Region *string `min:"1" type:"string"`
+
+	// The traffic state for the specified bucket or Amazon Web Services Region.
+	//
+	// A value of 0 indicates a passive state, which means that no new traffic will
+	// be routed to the Region.
+	//
+	// A value of 100 indicates an active state, which means that traffic will be
+	// routed to the specified Region.
+	//
+	// When the routing configuration for a Region is changed from active to passive,
+	// any in-progress operations (uploads, copies, deletes, and so on) to the formerly
+	// active Region will continue to run to until a final success or failure status
+	// is reached.
+	//
+	// If all Regions in the routing configuration are designated as passive, you'll
+	// receive an InvalidRequest error.
+	//
+	// TrafficDialPercentage is a required field
+	TrafficDialPercentage *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointRoute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointRoute) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MultiRegionAccessPointRoute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MultiRegionAccessPointRoute"}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.Region != nil && len(*s.Region) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 1))
+	}
+	if s.TrafficDialPercentage == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrafficDialPercentage"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *MultiRegionAccessPointRoute) SetBucket(v string) *MultiRegionAccessPointRoute {
+	s.Bucket = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *MultiRegionAccessPointRoute) SetRegion(v string) *MultiRegionAccessPointRoute {
+	s.Region = &v
+	return s
+}
+
+// SetTrafficDialPercentage sets the TrafficDialPercentage field's value.
+func (s *MultiRegionAccessPointRoute) SetTrafficDialPercentage(v int64) *MultiRegionAccessPointRoute {
+	s.TrafficDialPercentage = &v
 	return s
 }
 
@@ -19464,6 +19880,126 @@ func (s *StorageLensTag) SetKey(v string) *StorageLensTag {
 func (s *StorageLensTag) SetValue(v string) *StorageLensTag {
 	s.Value = &v
 	return s
+}
+
+type SubmitMultiRegionAccessPointRoutesInput struct {
+	_ struct{} `locationName:"SubmitMultiRegionAccessPointRoutesRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Multi-Region Access Point ARN.
+	//
+	// Mrap is a required field
+	Mrap *string `location:"uri" locationName:"mrap" type:"string" required:"true"`
+
+	// The different routes that make up the new route configuration. Active routes
+	// return a value of 100, and passive routes return a value of 0.
+	//
+	// RouteUpdates is a required field
+	RouteUpdates []*MultiRegionAccessPointRoute `locationNameList:"Route" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitMultiRegionAccessPointRoutesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitMultiRegionAccessPointRoutesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubmitMultiRegionAccessPointRoutesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubmitMultiRegionAccessPointRoutesInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Mrap == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mrap"))
+	}
+	if s.Mrap != nil && len(*s.Mrap) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Mrap", 1))
+	}
+	if s.RouteUpdates == nil {
+		invalidParams.Add(request.NewErrParamRequired("RouteUpdates"))
+	}
+	if s.RouteUpdates != nil {
+		for i, v := range s.RouteUpdates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RouteUpdates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *SubmitMultiRegionAccessPointRoutesInput) SetAccountId(v string) *SubmitMultiRegionAccessPointRoutesInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMrap sets the Mrap field's value.
+func (s *SubmitMultiRegionAccessPointRoutesInput) SetMrap(v string) *SubmitMultiRegionAccessPointRoutesInput {
+	s.Mrap = &v
+	return s
+}
+
+// SetRouteUpdates sets the RouteUpdates field's value.
+func (s *SubmitMultiRegionAccessPointRoutesInput) SetRouteUpdates(v []*MultiRegionAccessPointRoute) *SubmitMultiRegionAccessPointRoutesInput {
+	s.RouteUpdates = v
+	return s
+}
+
+func (s *SubmitMultiRegionAccessPointRoutesInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type SubmitMultiRegionAccessPointRoutesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitMultiRegionAccessPointRoutesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitMultiRegionAccessPointRoutesOutput) GoString() string {
+	return s.String()
 }
 
 type Tagging struct {

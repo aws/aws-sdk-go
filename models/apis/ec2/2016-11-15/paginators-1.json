@@ -21,6 +21,12 @@
     "DescribeAvailabilityZones": {
       "result_key": "AvailabilityZones"
     },
+    "DescribeAwsNetworkPerformanceMetricSubscriptions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Subscriptions"
+    },
     "DescribeBundleTasks": {
       "result_key": "BundleTasks"
     },
@@ -655,6 +661,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "Ipv6CidrAssociations"
+    },
+    "GetAwsNetworkPerformanceData": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DataResponses"
     },
     "GetGroupsForCapacityReservation": {
       "input_token": "NextToken",

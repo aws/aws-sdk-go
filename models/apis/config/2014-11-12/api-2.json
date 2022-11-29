@@ -331,7 +331,8 @@
       "output":{"shape":"DescribeConfigRulesResponse"},
       "errors":[
         {"shape":"NoSuchConfigRuleException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DescribeConfigurationAggregatorSourcesStatus":{
@@ -818,6 +819,18 @@
         {"shape":"ResourceNotDiscoveredException"}
       ]
     },
+    "GetResourceEvaluationSummary":{
+      "name":"GetResourceEvaluationSummary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourceEvaluationSummaryRequest"},
+      "output":{"shape":"GetResourceEvaluationSummaryResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetStoredQuery":{
       "name":"GetStoredQuery",
       "http":{
@@ -873,6 +886,20 @@
         {"shape":"InvalidLimitException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"NoAvailableConfigurationRecorderException"}
+      ]
+    },
+    "ListResourceEvaluations":{
+      "name":"ListResourceEvaluations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceEvaluationsRequest"},
+      "output":{"shape":"ListResourceEvaluationsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidTimeRangeException"}
       ]
     },
     "ListStoredQueries":{
@@ -1195,6 +1222,19 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"InsufficientPermissionsException"},
         {"shape":"NoSuchRemediationConfigurationException"}
+      ]
+    },
+    "StartResourceEvaluation":{
+      "name":"StartResourceEvaluation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartResourceEvaluationRequest"},
+      "output":{"shape":"StartResourceEvaluationResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"IdempotentParameterMismatch"}
       ]
     },
     "StopConfigurationRecorder":{
@@ -1535,6 +1575,11 @@
         "Forward"
       ]
     },
+    "ClientToken":{
+      "type":"string",
+      "max":256,
+      "min":64
+    },
     "Compliance":{
       "type":"structure",
       "members":{
@@ -1637,7 +1682,8 @@
         "InputParameters":{"shape":"StringWithCharLimit1024"},
         "MaximumExecutionFrequency":{"shape":"MaximumExecutionFrequency"},
         "ConfigRuleState":{"shape":"ConfigRuleState"},
-        "CreatedBy":{"shape":"StringWithCharLimit256"}
+        "CreatedBy":{"shape":"StringWithCharLimit256"},
+        "EvaluationModes":{"shape":"EvaluationModes"}
       }
     },
     "ConfigRuleComplianceFilters":{
@@ -2396,11 +2442,18 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "DescribeConfigRulesFilters":{
+      "type":"structure",
+      "members":{
+        "EvaluationMode":{"shape":"EvaluationMode"}
+      }
+    },
     "DescribeConfigRulesRequest":{
       "type":"structure",
       "members":{
         "ConfigRuleNames":{"shape":"ConfigRuleNames"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"String"},
+        "Filters":{"shape":"DescribeConfigRulesFilters"}
       }
     },
     "DescribeConfigRulesResponse":{
@@ -2714,6 +2767,34 @@
         "OrderingTimestamp":{"shape":"OrderingTimestamp"}
       }
     },
+    "EvaluationContext":{
+      "type":"structure",
+      "members":{
+        "EvaluationContextIdentifier":{"shape":"EvaluationContextIdentifier"}
+      }
+    },
+    "EvaluationContextIdentifier":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "EvaluationMode":{
+      "type":"string",
+      "enum":[
+        "DETECTIVE",
+        "PROACTIVE"
+      ]
+    },
+    "EvaluationModeConfiguration":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"EvaluationMode"}
+      }
+    },
+    "EvaluationModes":{
+      "type":"list",
+      "member":{"shape":"EvaluationModeConfiguration"}
+    },
     "EvaluationResult":{
       "type":"structure",
       "members":{
@@ -2729,7 +2810,8 @@
       "type":"structure",
       "members":{
         "EvaluationResultQualifier":{"shape":"EvaluationResultQualifier"},
-        "OrderingTimestamp":{"shape":"Date"}
+        "OrderingTimestamp":{"shape":"Date"},
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
       }
     },
     "EvaluationResultQualifier":{
@@ -2737,12 +2819,26 @@
       "members":{
         "ConfigRuleName":{"shape":"ConfigRuleName"},
         "ResourceType":{"shape":"StringWithCharLimit256"},
-        "ResourceId":{"shape":"BaseResourceId"}
+        "ResourceId":{"shape":"BaseResourceId"},
+        "EvaluationMode":{"shape":"EvaluationMode"}
       }
     },
     "EvaluationResults":{
       "type":"list",
       "member":{"shape":"EvaluationResult"}
+    },
+    "EvaluationStatus":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"ResourceEvaluationStatus"},
+        "FailureReason":{"shape":"StringWithCharLimit1024"}
+      }
+    },
+    "EvaluationTimeout":{
+      "type":"integer",
+      "max":3600,
+      "min":0
     },
     "Evaluations":{
       "type":"list",
@@ -2951,15 +3047,12 @@
     },
     "GetComplianceDetailsByResourceRequest":{
       "type":"structure",
-      "required":[
-        "ResourceType",
-        "ResourceId"
-      ],
       "members":{
         "ResourceType":{"shape":"StringWithCharLimit256"},
         "ResourceId":{"shape":"BaseResourceId"},
         "ComplianceTypes":{"shape":"ComplianceTypes"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"String"},
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
       }
     },
     "GetComplianceDetailsByResourceResponse":{
@@ -3125,6 +3218,25 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "GetResourceEvaluationSummaryRequest":{
+      "type":"structure",
+      "required":["ResourceEvaluationId"],
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
+      }
+    },
+    "GetResourceEvaluationSummaryResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"},
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "EvaluationStatus":{"shape":"EvaluationStatus"},
+        "EvaluationStartTimestamp":{"shape":"Date"},
+        "Compliance":{"shape":"ComplianceType"},
+        "EvaluationContext":{"shape":"EvaluationContext"},
+        "ResourceDetails":{"shape":"ResourceDetails"}
+      }
+    },
     "GetStoredQueryRequest":{
       "type":"structure",
       "required":["QueryName"],
@@ -3157,6 +3269,13 @@
     "GroupedResourceCountList":{
       "type":"list",
       "member":{"shape":"GroupedResourceCount"}
+    },
+    "IdempotentParameterMismatch":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
     },
     "IncludeGlobalResourceTypes":{"type":"boolean"},
     "InsufficientDeliveryPolicyException":{
@@ -3325,6 +3444,26 @@
       "members":{
         "resourceIdentifiers":{"shape":"ResourceIdentifierList"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceEvaluationsPageItemLimit":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
+    "ListResourceEvaluationsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"ResourceEvaluationFilters"},
+        "Limit":{"shape":"ListResourceEvaluationsPageItemLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListResourceEvaluationsResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluations":{"shape":"ResourceEvaluations"},
+        "NextToken":{"shape":"String"}
       }
     },
     "ListStoredQueriesRequest":{
@@ -4346,6 +4485,15 @@
       },
       "exception":true
     },
+    "ResourceConfiguration":{
+      "type":"string",
+      "max":51200,
+      "min":1
+    },
+    "ResourceConfigurationSchemaType":{
+      "type":"string",
+      "enum":["CFN_RESOURCE_SCHEMA"]
+    },
     "ResourceCount":{
       "type":"structure",
       "members":{
@@ -4375,6 +4523,53 @@
     },
     "ResourceCreationTime":{"type":"timestamp"},
     "ResourceDeletionTime":{"type":"timestamp"},
+    "ResourceDetails":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "ResourceType",
+        "ResourceConfiguration"
+      ],
+      "members":{
+        "ResourceId":{"shape":"BaseResourceId"},
+        "ResourceType":{"shape":"StringWithCharLimit256"},
+        "ResourceConfiguration":{"shape":"ResourceConfiguration"},
+        "ResourceConfigurationSchemaType":{"shape":"ResourceConfigurationSchemaType"}
+      }
+    },
+    "ResourceEvaluation":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"},
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "EvaluationStartTimestamp":{"shape":"Date"}
+      }
+    },
+    "ResourceEvaluationFilters":{
+      "type":"structure",
+      "members":{
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "TimeWindow":{"shape":"TimeWindow"},
+        "EvaluationContextIdentifier":{"shape":"EvaluationContextIdentifier"}
+      }
+    },
+    "ResourceEvaluationId":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ResourceEvaluationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "FAILED",
+        "SUCCEEDED"
+      ]
+    },
+    "ResourceEvaluations":{
+      "type":"list",
+      "member":{"shape":"ResourceEvaluation"}
+    },
     "ResourceFilters":{
       "type":"structure",
       "members":{
@@ -4835,6 +5030,26 @@
         "FailedItems":{"shape":"ResourceKeys"}
       }
     },
+    "StartResourceEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceDetails",
+        "EvaluationMode"
+      ],
+      "members":{
+        "ResourceDetails":{"shape":"ResourceDetails"},
+        "EvaluationContext":{"shape":"EvaluationContext"},
+        "EvaluationMode":{"shape":"EvaluationMode"},
+        "EvaluationTimeout":{"shape":"EvaluationTimeout"},
+        "ClientToken":{"shape":"ClientToken"}
+      }
+    },
+    "StartResourceEvaluationResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceEvaluationId":{"shape":"ResourceEvaluationId"}
+      }
+    },
     "StaticParameterValues":{
       "type":"list",
       "member":{"shape":"StringWithCharLimit256"},
@@ -5014,6 +5229,13 @@
       "members":{
         "DocumentName":{"shape":"SSMDocumentName"},
         "DocumentVersion":{"shape":"SSMDocumentVersion"}
+      }
+    },
+    "TimeWindow":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"Date"},
+        "EndTime":{"shape":"Date"}
       }
     },
     "TooManyTagsException":{

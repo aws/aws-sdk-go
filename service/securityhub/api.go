@@ -45510,7 +45510,7 @@ func (s *SortCriterion) SetSortOrder(v string) *SortCriterion {
 	return s
 }
 
-// Provides information about a specific standard.
+// Provides information about a specific security standard.
 type Standard struct {
 	_ struct{} `type:"structure"`
 
@@ -45530,6 +45530,9 @@ type Standard struct {
 
 	// The ARN of a standard.
 	StandardsArn *string `type:"string"`
+
+	// Provides details about the management of a standard.
+	StandardsManagedBy *StandardsManagedBy `type:"structure"`
 }
 
 // String returns the string representation.
@@ -45571,6 +45574,12 @@ func (s *Standard) SetName(v string) *Standard {
 // SetStandardsArn sets the StandardsArn field's value.
 func (s *Standard) SetStandardsArn(v string) *Standard {
 	s.StandardsArn = &v
+	return s
+}
+
+// SetStandardsManagedBy sets the StandardsManagedBy field's value.
+func (s *Standard) SetStandardsManagedBy(v *StandardsManagedBy) *Standard {
+	s.StandardsManagedBy = v
 	return s
 }
 
@@ -45692,6 +45701,50 @@ func (s *StandardsControl) SetStandardsControlArn(v string) *StandardsControl {
 // SetTitle sets the Title field's value.
 func (s *StandardsControl) SetTitle(v string) *StandardsControl {
 	s.Title = &v
+	return s
+}
+
+// Provides details about the management of a security standard.
+type StandardsManagedBy struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier for the company that manages a specific security standard.
+	// For existing standards, the value is equal to Amazon Web Services.
+	Company *string `type:"string"`
+
+	// An identifier for the product that manages a specific security standard.
+	// For existing standards, the value is equal to the Amazon Web Services service
+	// that manages the standard.
+	Product *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsManagedBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StandardsManagedBy) GoString() string {
+	return s.String()
+}
+
+// SetCompany sets the Company field's value.
+func (s *StandardsManagedBy) SetCompany(v string) *StandardsManagedBy {
+	s.Company = &v
+	return s
+}
+
+// SetProduct sets the Product field's value.
+func (s *StandardsManagedBy) SetProduct(v string) *StandardsManagedBy {
+	s.Product = &v
 	return s
 }
 

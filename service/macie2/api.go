@@ -1625,7 +1625,7 @@ func (c *Macie2) DescribeBucketsRequest(input *DescribeBucketsInput) (req *reque
 // DescribeBuckets API operation for Amazon Macie 2.
 //
 // Retrieves (queries) statistical data and other information about one or more
-// S3 buckets that Amazon Macie monitors and analyzes.
+// S3 buckets that Amazon Macie monitors and analyzes for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2888,6 +2888,99 @@ func (c *Macie2) GetAllowListWithContext(ctx aws.Context, input *GetAllowListInp
 	return out, req.Send()
 }
 
+const opGetAutomatedDiscoveryConfiguration = "GetAutomatedDiscoveryConfiguration"
+
+// GetAutomatedDiscoveryConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetAutomatedDiscoveryConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAutomatedDiscoveryConfiguration for more information on using the GetAutomatedDiscoveryConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAutomatedDiscoveryConfigurationRequest method.
+//	req, resp := client.GetAutomatedDiscoveryConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetAutomatedDiscoveryConfiguration
+func (c *Macie2) GetAutomatedDiscoveryConfigurationRequest(input *GetAutomatedDiscoveryConfigurationInput) (req *request.Request, output *GetAutomatedDiscoveryConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetAutomatedDiscoveryConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/automated-discovery/configuration",
+	}
+
+	if input == nil {
+		input = &GetAutomatedDiscoveryConfigurationInput{}
+	}
+
+	output = &GetAutomatedDiscoveryConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAutomatedDiscoveryConfiguration API operation for Amazon Macie 2.
+//
+// Retrieves the configuration settings and status of automated sensitive data
+// discovery for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation GetAutomatedDiscoveryConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetAutomatedDiscoveryConfiguration
+func (c *Macie2) GetAutomatedDiscoveryConfiguration(input *GetAutomatedDiscoveryConfigurationInput) (*GetAutomatedDiscoveryConfigurationOutput, error) {
+	req, out := c.GetAutomatedDiscoveryConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetAutomatedDiscoveryConfigurationWithContext is the same as GetAutomatedDiscoveryConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAutomatedDiscoveryConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetAutomatedDiscoveryConfigurationWithContext(ctx aws.Context, input *GetAutomatedDiscoveryConfigurationInput, opts ...request.Option) (*GetAutomatedDiscoveryConfigurationOutput, error) {
+	req, out := c.GetAutomatedDiscoveryConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetBucketStatistics = "GetBucketStatistics"
 
 // GetBucketStatisticsRequest generates a "aws/request.Request" representing the
@@ -2931,8 +3024,8 @@ func (c *Macie2) GetBucketStatisticsRequest(input *GetBucketStatisticsInput) (re
 
 // GetBucketStatistics API operation for Amazon Macie 2.
 //
-// Retrieves (queries) aggregated statistical data about S3 buckets that Amazon
-// Macie monitors and analyzes.
+// Retrieves (queries) aggregated statistical data about all the S3 buckets
+// that Amazon Macie monitors and analyzes for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3092,6 +3185,102 @@ func (c *Macie2) GetClassificationExportConfiguration(input *GetClassificationEx
 // for more information on using Contexts.
 func (c *Macie2) GetClassificationExportConfigurationWithContext(ctx aws.Context, input *GetClassificationExportConfigurationInput, opts ...request.Option) (*GetClassificationExportConfigurationOutput, error) {
 	req, out := c.GetClassificationExportConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetClassificationScope = "GetClassificationScope"
+
+// GetClassificationScopeRequest generates a "aws/request.Request" representing the
+// client's request for the GetClassificationScope operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetClassificationScope for more information on using the GetClassificationScope
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetClassificationScopeRequest method.
+//	req, resp := client.GetClassificationScopeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetClassificationScope
+func (c *Macie2) GetClassificationScopeRequest(input *GetClassificationScopeInput) (req *request.Request, output *GetClassificationScopeOutput) {
+	op := &request.Operation{
+		Name:       opGetClassificationScope,
+		HTTPMethod: "GET",
+		HTTPPath:   "/classification-scopes/{id}",
+	}
+
+	if input == nil {
+		input = &GetClassificationScopeInput{}
+	}
+
+	output = &GetClassificationScopeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetClassificationScope API operation for Amazon Macie 2.
+//
+// Retrieves the classification scope settings for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation GetClassificationScope for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetClassificationScope
+func (c *Macie2) GetClassificationScope(input *GetClassificationScopeInput) (*GetClassificationScopeOutput, error) {
+	req, out := c.GetClassificationScopeRequest(input)
+	return out, req.Send()
+}
+
+// GetClassificationScopeWithContext is the same as GetClassificationScope with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetClassificationScope for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetClassificationScopeWithContext(ctx aws.Context, input *GetClassificationScopeInput, opts ...request.Option) (*GetClassificationScopeOutput, error) {
+	req, out := c.GetClassificationScopeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3766,8 +3955,7 @@ func (c *Macie2) GetMacieSessionRequest(input *GetMacieSessionInput) (req *reque
 
 // GetMacieSession API operation for Amazon Macie 2.
 //
-// Retrieves the current status and configuration settings for an Amazon Macie
-// account.
+// Retrieves the status and configuration settings for an Amazon Macie account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4034,6 +4222,107 @@ func (c *Macie2) GetMember(input *GetMemberInput) (*GetMemberOutput, error) {
 // for more information on using Contexts.
 func (c *Macie2) GetMemberWithContext(ctx aws.Context, input *GetMemberInput, opts ...request.Option) (*GetMemberOutput, error) {
 	req, out := c.GetMemberRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResourceProfile = "GetResourceProfile"
+
+// GetResourceProfileRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourceProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourceProfile for more information on using the GetResourceProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetResourceProfileRequest method.
+//	req, resp := client.GetResourceProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetResourceProfile
+func (c *Macie2) GetResourceProfileRequest(input *GetResourceProfileInput) (req *request.Request, output *GetResourceProfileOutput) {
+	op := &request.Operation{
+		Name:       opGetResourceProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/resource-profiles",
+	}
+
+	if input == nil {
+		input = &GetResourceProfileInput{}
+	}
+
+	output = &GetResourceProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourceProfile API operation for Amazon Macie 2.
+//
+// Retrieves (queries) sensitive data discovery statistics and the sensitivity
+// score for an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation GetResourceProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - ServiceQuotaExceededException
+//     Provides information about an error that occurred due to one or more service
+//     quotas for an account.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetResourceProfile
+func (c *Macie2) GetResourceProfile(input *GetResourceProfileInput) (*GetResourceProfileOutput, error) {
+	req, out := c.GetResourceProfileRequest(input)
+	return out, req.Send()
+}
+
+// GetResourceProfileWithContext is the same as GetResourceProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourceProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetResourceProfileWithContext(ctx aws.Context, input *GetResourceProfileInput, opts ...request.Option) (*GetResourceProfileOutput, error) {
+	req, out := c.GetResourceProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4319,6 +4608,102 @@ func (c *Macie2) GetSensitiveDataOccurrencesAvailability(input *GetSensitiveData
 // for more information on using Contexts.
 func (c *Macie2) GetSensitiveDataOccurrencesAvailabilityWithContext(ctx aws.Context, input *GetSensitiveDataOccurrencesAvailabilityInput, opts ...request.Option) (*GetSensitiveDataOccurrencesAvailabilityOutput, error) {
 	req, out := c.GetSensitiveDataOccurrencesAvailabilityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSensitivityInspectionTemplate = "GetSensitivityInspectionTemplate"
+
+// GetSensitivityInspectionTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetSensitivityInspectionTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSensitivityInspectionTemplate for more information on using the GetSensitivityInspectionTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSensitivityInspectionTemplateRequest method.
+//	req, resp := client.GetSensitivityInspectionTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetSensitivityInspectionTemplate
+func (c *Macie2) GetSensitivityInspectionTemplateRequest(input *GetSensitivityInspectionTemplateInput) (req *request.Request, output *GetSensitivityInspectionTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetSensitivityInspectionTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/templates/sensitivity-inspections/{id}",
+	}
+
+	if input == nil {
+		input = &GetSensitivityInspectionTemplateInput{}
+	}
+
+	output = &GetSensitivityInspectionTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSensitivityInspectionTemplate API operation for Amazon Macie 2.
+//
+// Retrieves the settings for the sensitivity inspection template for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation GetSensitivityInspectionTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetSensitivityInspectionTemplate
+func (c *Macie2) GetSensitivityInspectionTemplate(input *GetSensitivityInspectionTemplateInput) (*GetSensitivityInspectionTemplateOutput, error) {
+	req, out := c.GetSensitivityInspectionTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetSensitivityInspectionTemplateWithContext is the same as GetSensitivityInspectionTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSensitivityInspectionTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetSensitivityInspectionTemplateWithContext(ctx aws.Context, input *GetSensitivityInspectionTemplateInput, opts ...request.Option) (*GetSensitivityInspectionTemplateOutput, error) {
+	req, out := c.GetSensitivityInspectionTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4619,6 +5004,12 @@ func (c *Macie2) ListAllowListsRequest(input *ListAllowListsInput) (req *request
 		Name:       opListAllowLists,
 		HTTPMethod: "GET",
 		HTTPPath:   "/allow-lists",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4679,6 +5070,57 @@ func (c *Macie2) ListAllowListsWithContext(ctx aws.Context, input *ListAllowList
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListAllowListsPages iterates over the pages of a ListAllowLists operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAllowLists method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAllowLists operation.
+//	pageNum := 0
+//	err := client.ListAllowListsPages(params,
+//	    func(page *macie2.ListAllowListsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Macie2) ListAllowListsPages(input *ListAllowListsInput, fn func(*ListAllowListsOutput, bool) bool) error {
+	return c.ListAllowListsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAllowListsPagesWithContext same as ListAllowListsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListAllowListsPagesWithContext(ctx aws.Context, input *ListAllowListsInput, fn func(*ListAllowListsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAllowListsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAllowListsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAllowListsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListClassificationJobs = "ListClassificationJobs"
@@ -4835,6 +5277,155 @@ func (c *Macie2) ListClassificationJobsPagesWithContext(ctx aws.Context, input *
 
 	for p.Next() {
 		if !fn(p.Page().(*ListClassificationJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListClassificationScopes = "ListClassificationScopes"
+
+// ListClassificationScopesRequest generates a "aws/request.Request" representing the
+// client's request for the ListClassificationScopes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClassificationScopes for more information on using the ListClassificationScopes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListClassificationScopesRequest method.
+//	req, resp := client.ListClassificationScopesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListClassificationScopes
+func (c *Macie2) ListClassificationScopesRequest(input *ListClassificationScopesInput) (req *request.Request, output *ListClassificationScopesOutput) {
+	op := &request.Operation{
+		Name:       opListClassificationScopes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/classification-scopes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListClassificationScopesInput{}
+	}
+
+	output = &ListClassificationScopesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClassificationScopes API operation for Amazon Macie 2.
+//
+// Retrieves a subset of information about the classification scope for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation ListClassificationScopes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListClassificationScopes
+func (c *Macie2) ListClassificationScopes(input *ListClassificationScopesInput) (*ListClassificationScopesOutput, error) {
+	req, out := c.ListClassificationScopesRequest(input)
+	return out, req.Send()
+}
+
+// ListClassificationScopesWithContext is the same as ListClassificationScopes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClassificationScopes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListClassificationScopesWithContext(ctx aws.Context, input *ListClassificationScopesInput, opts ...request.Option) (*ListClassificationScopesOutput, error) {
+	req, out := c.ListClassificationScopesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListClassificationScopesPages iterates over the pages of a ListClassificationScopes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClassificationScopes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListClassificationScopes operation.
+//	pageNum := 0
+//	err := client.ListClassificationScopesPages(params,
+//	    func(page *macie2.ListClassificationScopesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Macie2) ListClassificationScopesPages(input *ListClassificationScopesInput, fn func(*ListClassificationScopesOutput, bool) bool) error {
+	return c.ListClassificationScopesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClassificationScopesPagesWithContext same as ListClassificationScopesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListClassificationScopesPagesWithContext(ctx aws.Context, input *ListClassificationScopesInput, fn func(*ListClassificationScopesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClassificationScopesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClassificationScopesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListClassificationScopesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5518,6 +6109,12 @@ func (c *Macie2) ListManagedDataIdentifiersRequest(input *ListManagedDataIdentif
 		Name:       opListManagedDataIdentifiers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/managed-data-identifiers/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5560,6 +6157,57 @@ func (c *Macie2) ListManagedDataIdentifiersWithContext(ctx aws.Context, input *L
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListManagedDataIdentifiersPages iterates over the pages of a ListManagedDataIdentifiers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListManagedDataIdentifiers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListManagedDataIdentifiers operation.
+//	pageNum := 0
+//	err := client.ListManagedDataIdentifiersPages(params,
+//	    func(page *macie2.ListManagedDataIdentifiersOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Macie2) ListManagedDataIdentifiersPages(input *ListManagedDataIdentifiersInput, fn func(*ListManagedDataIdentifiersOutput, bool) bool) error {
+	return c.ListManagedDataIdentifiersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListManagedDataIdentifiersPagesWithContext same as ListManagedDataIdentifiersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListManagedDataIdentifiersPagesWithContext(ctx aws.Context, input *ListManagedDataIdentifiersInput, fn func(*ListManagedDataIdentifiersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListManagedDataIdentifiersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListManagedDataIdentifiersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListManagedDataIdentifiersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListMembers = "ListMembers"
@@ -5879,6 +6527,472 @@ func (c *Macie2) ListOrganizationAdminAccountsPagesWithContext(ctx aws.Context, 
 
 	for p.Next() {
 		if !fn(p.Page().(*ListOrganizationAdminAccountsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListResourceProfileArtifacts = "ListResourceProfileArtifacts"
+
+// ListResourceProfileArtifactsRequest generates a "aws/request.Request" representing the
+// client's request for the ListResourceProfileArtifacts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResourceProfileArtifacts for more information on using the ListResourceProfileArtifacts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResourceProfileArtifactsRequest method.
+//	req, resp := client.ListResourceProfileArtifactsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListResourceProfileArtifacts
+func (c *Macie2) ListResourceProfileArtifactsRequest(input *ListResourceProfileArtifactsInput) (req *request.Request, output *ListResourceProfileArtifactsOutput) {
+	op := &request.Operation{
+		Name:       opListResourceProfileArtifacts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/resource-profiles/artifacts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResourceProfileArtifactsInput{}
+	}
+
+	output = &ListResourceProfileArtifactsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResourceProfileArtifacts API operation for Amazon Macie 2.
+//
+// Retrieves information about objects that were selected from an S3 bucket
+// for automated sensitive data discovery.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation ListResourceProfileArtifacts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListResourceProfileArtifacts
+func (c *Macie2) ListResourceProfileArtifacts(input *ListResourceProfileArtifactsInput) (*ListResourceProfileArtifactsOutput, error) {
+	req, out := c.ListResourceProfileArtifactsRequest(input)
+	return out, req.Send()
+}
+
+// ListResourceProfileArtifactsWithContext is the same as ListResourceProfileArtifacts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResourceProfileArtifacts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListResourceProfileArtifactsWithContext(ctx aws.Context, input *ListResourceProfileArtifactsInput, opts ...request.Option) (*ListResourceProfileArtifactsOutput, error) {
+	req, out := c.ListResourceProfileArtifactsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResourceProfileArtifactsPages iterates over the pages of a ListResourceProfileArtifacts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceProfileArtifacts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResourceProfileArtifacts operation.
+//	pageNum := 0
+//	err := client.ListResourceProfileArtifactsPages(params,
+//	    func(page *macie2.ListResourceProfileArtifactsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Macie2) ListResourceProfileArtifactsPages(input *ListResourceProfileArtifactsInput, fn func(*ListResourceProfileArtifactsOutput, bool) bool) error {
+	return c.ListResourceProfileArtifactsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceProfileArtifactsPagesWithContext same as ListResourceProfileArtifactsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListResourceProfileArtifactsPagesWithContext(ctx aws.Context, input *ListResourceProfileArtifactsInput, fn func(*ListResourceProfileArtifactsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceProfileArtifactsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceProfileArtifactsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceProfileArtifactsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListResourceProfileDetections = "ListResourceProfileDetections"
+
+// ListResourceProfileDetectionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListResourceProfileDetections operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResourceProfileDetections for more information on using the ListResourceProfileDetections
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResourceProfileDetectionsRequest method.
+//	req, resp := client.ListResourceProfileDetectionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListResourceProfileDetections
+func (c *Macie2) ListResourceProfileDetectionsRequest(input *ListResourceProfileDetectionsInput) (req *request.Request, output *ListResourceProfileDetectionsOutput) {
+	op := &request.Operation{
+		Name:       opListResourceProfileDetections,
+		HTTPMethod: "GET",
+		HTTPPath:   "/resource-profiles/detections",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResourceProfileDetectionsInput{}
+	}
+
+	output = &ListResourceProfileDetectionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResourceProfileDetections API operation for Amazon Macie 2.
+//
+// Retrieves information about the types and amount of sensitive data that Amazon
+// Macie found in an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation ListResourceProfileDetections for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - ServiceQuotaExceededException
+//     Provides information about an error that occurred due to one or more service
+//     quotas for an account.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListResourceProfileDetections
+func (c *Macie2) ListResourceProfileDetections(input *ListResourceProfileDetectionsInput) (*ListResourceProfileDetectionsOutput, error) {
+	req, out := c.ListResourceProfileDetectionsRequest(input)
+	return out, req.Send()
+}
+
+// ListResourceProfileDetectionsWithContext is the same as ListResourceProfileDetections with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResourceProfileDetections for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListResourceProfileDetectionsWithContext(ctx aws.Context, input *ListResourceProfileDetectionsInput, opts ...request.Option) (*ListResourceProfileDetectionsOutput, error) {
+	req, out := c.ListResourceProfileDetectionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResourceProfileDetectionsPages iterates over the pages of a ListResourceProfileDetections operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceProfileDetections method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResourceProfileDetections operation.
+//	pageNum := 0
+//	err := client.ListResourceProfileDetectionsPages(params,
+//	    func(page *macie2.ListResourceProfileDetectionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Macie2) ListResourceProfileDetectionsPages(input *ListResourceProfileDetectionsInput, fn func(*ListResourceProfileDetectionsOutput, bool) bool) error {
+	return c.ListResourceProfileDetectionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceProfileDetectionsPagesWithContext same as ListResourceProfileDetectionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListResourceProfileDetectionsPagesWithContext(ctx aws.Context, input *ListResourceProfileDetectionsInput, fn func(*ListResourceProfileDetectionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceProfileDetectionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceProfileDetectionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceProfileDetectionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSensitivityInspectionTemplates = "ListSensitivityInspectionTemplates"
+
+// ListSensitivityInspectionTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListSensitivityInspectionTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSensitivityInspectionTemplates for more information on using the ListSensitivityInspectionTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSensitivityInspectionTemplatesRequest method.
+//	req, resp := client.ListSensitivityInspectionTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListSensitivityInspectionTemplates
+func (c *Macie2) ListSensitivityInspectionTemplatesRequest(input *ListSensitivityInspectionTemplatesInput) (req *request.Request, output *ListSensitivityInspectionTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListSensitivityInspectionTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/templates/sensitivity-inspections",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSensitivityInspectionTemplatesInput{}
+	}
+
+	output = &ListSensitivityInspectionTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSensitivityInspectionTemplates API operation for Amazon Macie 2.
+//
+// Retrieves a subset of information about the sensitivity inspection template
+// for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation ListSensitivityInspectionTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - ServiceQuotaExceededException
+//     Provides information about an error that occurred due to one or more service
+//     quotas for an account.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListSensitivityInspectionTemplates
+func (c *Macie2) ListSensitivityInspectionTemplates(input *ListSensitivityInspectionTemplatesInput) (*ListSensitivityInspectionTemplatesOutput, error) {
+	req, out := c.ListSensitivityInspectionTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListSensitivityInspectionTemplatesWithContext is the same as ListSensitivityInspectionTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSensitivityInspectionTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListSensitivityInspectionTemplatesWithContext(ctx aws.Context, input *ListSensitivityInspectionTemplatesInput, opts ...request.Option) (*ListSensitivityInspectionTemplatesOutput, error) {
+	req, out := c.ListSensitivityInspectionTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSensitivityInspectionTemplatesPages iterates over the pages of a ListSensitivityInspectionTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSensitivityInspectionTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSensitivityInspectionTemplates operation.
+//	pageNum := 0
+//	err := client.ListSensitivityInspectionTemplatesPages(params,
+//	    func(page *macie2.ListSensitivityInspectionTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Macie2) ListSensitivityInspectionTemplatesPages(input *ListSensitivityInspectionTemplatesInput, fn func(*ListSensitivityInspectionTemplatesOutput, bool) bool) error {
+	return c.ListSensitivityInspectionTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSensitivityInspectionTemplatesPagesWithContext same as ListSensitivityInspectionTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListSensitivityInspectionTemplatesPagesWithContext(ctx aws.Context, input *ListSensitivityInspectionTemplatesInput, fn func(*ListSensitivityInspectionTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSensitivityInspectionTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSensitivityInspectionTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSensitivityInspectionTemplatesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6681,6 +7795,99 @@ func (c *Macie2) UpdateAllowListWithContext(ctx aws.Context, input *UpdateAllowL
 	return out, req.Send()
 }
 
+const opUpdateAutomatedDiscoveryConfiguration = "UpdateAutomatedDiscoveryConfiguration"
+
+// UpdateAutomatedDiscoveryConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAutomatedDiscoveryConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAutomatedDiscoveryConfiguration for more information on using the UpdateAutomatedDiscoveryConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAutomatedDiscoveryConfigurationRequest method.
+//	req, resp := client.UpdateAutomatedDiscoveryConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateAutomatedDiscoveryConfiguration
+func (c *Macie2) UpdateAutomatedDiscoveryConfigurationRequest(input *UpdateAutomatedDiscoveryConfigurationInput) (req *request.Request, output *UpdateAutomatedDiscoveryConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAutomatedDiscoveryConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/automated-discovery/configuration",
+	}
+
+	if input == nil {
+		input = &UpdateAutomatedDiscoveryConfigurationInput{}
+	}
+
+	output = &UpdateAutomatedDiscoveryConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateAutomatedDiscoveryConfiguration API operation for Amazon Macie 2.
+//
+// Enables or disables automated sensitive data discovery for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation UpdateAutomatedDiscoveryConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateAutomatedDiscoveryConfiguration
+func (c *Macie2) UpdateAutomatedDiscoveryConfiguration(input *UpdateAutomatedDiscoveryConfigurationInput) (*UpdateAutomatedDiscoveryConfigurationOutput, error) {
+	req, out := c.UpdateAutomatedDiscoveryConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAutomatedDiscoveryConfigurationWithContext is the same as UpdateAutomatedDiscoveryConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAutomatedDiscoveryConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) UpdateAutomatedDiscoveryConfigurationWithContext(ctx aws.Context, input *UpdateAutomatedDiscoveryConfigurationInput, opts ...request.Option) (*UpdateAutomatedDiscoveryConfigurationOutput, error) {
+	req, out := c.UpdateAutomatedDiscoveryConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateClassificationJob = "UpdateClassificationJob"
 
 // UpdateClassificationJobRequest generates a "aws/request.Request" representing the
@@ -6781,6 +7988,103 @@ func (c *Macie2) UpdateClassificationJob(input *UpdateClassificationJobInput) (*
 // for more information on using Contexts.
 func (c *Macie2) UpdateClassificationJobWithContext(ctx aws.Context, input *UpdateClassificationJobInput, opts ...request.Option) (*UpdateClassificationJobOutput, error) {
 	req, out := c.UpdateClassificationJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateClassificationScope = "UpdateClassificationScope"
+
+// UpdateClassificationScopeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateClassificationScope operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateClassificationScope for more information on using the UpdateClassificationScope
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateClassificationScopeRequest method.
+//	req, resp := client.UpdateClassificationScopeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateClassificationScope
+func (c *Macie2) UpdateClassificationScopeRequest(input *UpdateClassificationScopeInput) (req *request.Request, output *UpdateClassificationScopeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateClassificationScope,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/classification-scopes/{id}",
+	}
+
+	if input == nil {
+		input = &UpdateClassificationScopeInput{}
+	}
+
+	output = &UpdateClassificationScopeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateClassificationScope API operation for Amazon Macie 2.
+//
+// Updates the classification scope settings for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation UpdateClassificationScope for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateClassificationScope
+func (c *Macie2) UpdateClassificationScope(input *UpdateClassificationScopeInput) (*UpdateClassificationScopeOutput, error) {
+	req, out := c.UpdateClassificationScopeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateClassificationScopeWithContext is the same as UpdateClassificationScope with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateClassificationScope for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) UpdateClassificationScopeWithContext(ctx aws.Context, input *UpdateClassificationScopeInput, opts ...request.Option) (*UpdateClassificationScopeOutput, error) {
+	req, out := c.UpdateClassificationScopeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7207,6 +8511,208 @@ func (c *Macie2) UpdateOrganizationConfigurationWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opUpdateResourceProfile = "UpdateResourceProfile"
+
+// UpdateResourceProfileRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResourceProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResourceProfile for more information on using the UpdateResourceProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateResourceProfileRequest method.
+//	req, resp := client.UpdateResourceProfileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateResourceProfile
+func (c *Macie2) UpdateResourceProfileRequest(input *UpdateResourceProfileInput) (req *request.Request, output *UpdateResourceProfileOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResourceProfile,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/resource-profiles",
+	}
+
+	if input == nil {
+		input = &UpdateResourceProfileInput{}
+	}
+
+	output = &UpdateResourceProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateResourceProfile API operation for Amazon Macie 2.
+//
+// Updates the sensitivity score for an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation UpdateResourceProfile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - ServiceQuotaExceededException
+//     Provides information about an error that occurred due to one or more service
+//     quotas for an account.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateResourceProfile
+func (c *Macie2) UpdateResourceProfile(input *UpdateResourceProfileInput) (*UpdateResourceProfileOutput, error) {
+	req, out := c.UpdateResourceProfileRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResourceProfileWithContext is the same as UpdateResourceProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResourceProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) UpdateResourceProfileWithContext(ctx aws.Context, input *UpdateResourceProfileInput, opts ...request.Option) (*UpdateResourceProfileOutput, error) {
+	req, out := c.UpdateResourceProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateResourceProfileDetections = "UpdateResourceProfileDetections"
+
+// UpdateResourceProfileDetectionsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResourceProfileDetections operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResourceProfileDetections for more information on using the UpdateResourceProfileDetections
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateResourceProfileDetectionsRequest method.
+//	req, resp := client.UpdateResourceProfileDetectionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateResourceProfileDetections
+func (c *Macie2) UpdateResourceProfileDetectionsRequest(input *UpdateResourceProfileDetectionsInput) (req *request.Request, output *UpdateResourceProfileDetectionsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResourceProfileDetections,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/resource-profiles/detections",
+	}
+
+	if input == nil {
+		input = &UpdateResourceProfileDetectionsInput{}
+	}
+
+	output = &UpdateResourceProfileDetectionsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateResourceProfileDetections API operation for Amazon Macie 2.
+//
+// Updates the sensitivity scoring settings for an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation UpdateResourceProfileDetections for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - ServiceQuotaExceededException
+//     Provides information about an error that occurred due to one or more service
+//     quotas for an account.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateResourceProfileDetections
+func (c *Macie2) UpdateResourceProfileDetections(input *UpdateResourceProfileDetectionsInput) (*UpdateResourceProfileDetectionsOutput, error) {
+	req, out := c.UpdateResourceProfileDetectionsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResourceProfileDetectionsWithContext is the same as UpdateResourceProfileDetections with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResourceProfileDetections for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) UpdateResourceProfileDetectionsWithContext(ctx aws.Context, input *UpdateResourceProfileDetectionsInput, opts ...request.Option) (*UpdateResourceProfileDetectionsOutput, error) {
+	req, out := c.UpdateResourceProfileDetectionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRevealConfiguration = "UpdateRevealConfiguration"
 
 // UpdateRevealConfigurationRequest generates a "aws/request.Request" representing the
@@ -7295,6 +8801,103 @@ func (c *Macie2) UpdateRevealConfiguration(input *UpdateRevealConfigurationInput
 // for more information on using Contexts.
 func (c *Macie2) UpdateRevealConfigurationWithContext(ctx aws.Context, input *UpdateRevealConfigurationInput, opts ...request.Option) (*UpdateRevealConfigurationOutput, error) {
 	req, out := c.UpdateRevealConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSensitivityInspectionTemplate = "UpdateSensitivityInspectionTemplate"
+
+// UpdateSensitivityInspectionTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSensitivityInspectionTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSensitivityInspectionTemplate for more information on using the UpdateSensitivityInspectionTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSensitivityInspectionTemplateRequest method.
+//	req, resp := client.UpdateSensitivityInspectionTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateSensitivityInspectionTemplate
+func (c *Macie2) UpdateSensitivityInspectionTemplateRequest(input *UpdateSensitivityInspectionTemplateInput) (req *request.Request, output *UpdateSensitivityInspectionTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSensitivityInspectionTemplate,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/templates/sensitivity-inspections/{id}",
+	}
+
+	if input == nil {
+		input = &UpdateSensitivityInspectionTemplateInput{}
+	}
+
+	output = &UpdateSensitivityInspectionTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateSensitivityInspectionTemplate API operation for Amazon Macie 2.
+//
+// Updates the settings for the sensitivity inspection template for an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation UpdateSensitivityInspectionTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Provides information about an error that occurred because a specified resource
+//     wasn't found.
+//
+//   - ThrottlingException
+//     Provides information about an error that occurred because too many requests
+//     were sent during a certain amount of time.
+//
+//   - ValidationException
+//     Provides information about an error that occurred due to a syntax error in
+//     a request.
+//
+//   - InternalServerException
+//     Provides information about an error that occurred due to an unknown internal
+//     server error, exception, or failure.
+//
+//   - AccessDeniedException
+//     Provides information about an error that occurred due to insufficient access
+//     to a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UpdateSensitivityInspectionTemplate
+func (c *Macie2) UpdateSensitivityInspectionTemplate(input *UpdateSensitivityInspectionTemplateInput) (*UpdateSensitivityInspectionTemplateOutput, error) {
+	req, out := c.UpdateSensitivityInspectionTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSensitivityInspectionTemplateWithContext is the same as UpdateSensitivityInspectionTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSensitivityInspectionTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) UpdateSensitivityInspectionTemplateWithContext(ctx aws.Context, input *UpdateSensitivityInspectionTemplateInput, opts ...request.Option) (*UpdateSensitivityInspectionTemplateOutput, error) {
+	req, out := c.UpdateSensitivityInspectionTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7557,9 +9160,9 @@ type AccountLevelPermissions struct {
 	_ struct{} `type:"structure"`
 
 	// Provides information about the block public access settings for an S3 bucket.
-	// These settings can apply to a bucket at the account level or bucket level.
-	// For detailed information about each setting, see Blocking public access to
-	// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+	// These settings can apply to a bucket at the account or bucket level. For
+	// detailed information about each setting, see Blocking public access to your
+	// Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
 	// in the Amazon Simple Storage Service User Guide.
 	BlockPublicAccess *BlockPublicAccess `locationName:"blockPublicAccess" type:"structure"`
 }
@@ -8142,9 +9745,9 @@ func (s *BatchGetCustomDataIdentifiersOutput) SetNotFoundIdentifierIds(v []*stri
 }
 
 // Provides information about the block public access settings for an S3 bucket.
-// These settings can apply to a bucket at the account level or bucket level.
-// For detailed information about each setting, see Blocking public access to
-// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+// These settings can apply to a bucket at the account or bucket level. For
+// detailed information about each setting, see Blocking public access to your
+// Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
 // in the Amazon Simple Storage Service User Guide.
 type BlockPublicAccess struct {
 	_ struct{} `type:"structure"`
@@ -8510,9 +10113,9 @@ type BucketLevelPermissions struct {
 	AccessControlList *AccessControlList `locationName:"accessControlList" type:"structure"`
 
 	// Provides information about the block public access settings for an S3 bucket.
-	// These settings can apply to a bucket at the account level or bucket level.
-	// For detailed information about each setting, see Blocking public access to
-	// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+	// These settings can apply to a bucket at the account or bucket level. For
+	// detailed information about each setting, see Blocking public access to your
+	// Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
 	// in the Amazon Simple Storage Service User Guide.
 	BlockPublicAccess *BlockPublicAccess `locationName:"blockPublicAccess" type:"structure"`
 
@@ -8559,11 +10162,11 @@ func (s *BucketLevelPermissions) SetBucketPolicy(v *BucketPolicy) *BucketLevelPe
 
 // Provides statistical data and other information about an S3 bucket that Amazon
 // Macie monitors and analyzes for your account. If an error occurs when Macie
-// attempts to retrieve and process information about the bucket or the bucket's
-// objects, the value for the versioning property is false and the value for
-// most other properties is null. Exceptions are accountId, bucketArn, bucketCreatedAt,
-// bucketName, lastUpdated, and region. To identify the cause of the error,
-// refer to the errorCode and errorMessage values.
+// attempts to retrieve and process metadata from Amazon S3 for the bucket and
+// the bucket's objects, the value for the versioning property is false and
+// the value for most other properties is null. Key exceptions are accountId,
+// bucketArn, bucketCreatedAt, bucketName, lastUpdated, and region. To identify
+// the cause of the error, refer to the errorCode and errorMessage values.
 type BucketMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -8582,7 +10185,7 @@ type BucketMetadata struct {
 	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
 
 	// The error code for an error that prevented Amazon Macie from retrieving and
-	// processing information about an S3 bucket and the bucket's objects.
+	// processing metadata from Amazon S3 for an S3 bucket and the bucket's objects.
 	ErrorCode *string `locationName:"errorCode" type:"string" enum:"BucketMetadataErrorCode"`
 
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
@@ -8591,6 +10194,8 @@ type BucketMetadata struct {
 	// to analyze data in an S3 bucket, and, if so, the details of the job that
 	// ran most recently.
 	JobDetails *JobDetails `locationName:"jobDetails" type:"structure"`
+
+	LastAutomatedDiscoveryTime *time.Time `locationName:"lastAutomatedDiscoveryTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -8612,6 +10217,8 @@ type BucketMetadata struct {
 	// accounts and, if so, which accounts.
 	ReplicationDetails *ReplicationDetails `locationName:"replicationDetails" type:"structure"`
 
+	SensitivityScore *int64 `locationName:"sensitivityScore" type:"integer"`
+
 	// Provides information about the default server-side encryption settings for
 	// an S3 bucket. For detailed information about these settings, see Setting
 	// default server-side encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
@@ -8629,17 +10236,17 @@ type BucketMetadata struct {
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for the buckets in the query results. If
-	// versioning is enabled for a bucket, total storage size values are based on
-	// the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, storage size values are based on the
+	// size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for the buckets in the query results. If
-	// versioning is enabled for a bucket, total storage size values are based on
-	// the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, storage size values are based on the
+	// size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 
 	Versioning *bool `locationName:"versioning" type:"boolean"`
@@ -8723,6 +10330,12 @@ func (s *BucketMetadata) SetJobDetails(v *JobDetails) *BucketMetadata {
 	return s
 }
 
+// SetLastAutomatedDiscoveryTime sets the LastAutomatedDiscoveryTime field's value.
+func (s *BucketMetadata) SetLastAutomatedDiscoveryTime(v time.Time) *BucketMetadata {
+	s.LastAutomatedDiscoveryTime = &v
+	return s
+}
+
 // SetLastUpdated sets the LastUpdated field's value.
 func (s *BucketMetadata) SetLastUpdated(v time.Time) *BucketMetadata {
 	s.LastUpdated = &v
@@ -8756,6 +10369,12 @@ func (s *BucketMetadata) SetRegion(v string) *BucketMetadata {
 // SetReplicationDetails sets the ReplicationDetails field's value.
 func (s *BucketMetadata) SetReplicationDetails(v *ReplicationDetails) *BucketMetadata {
 	s.ReplicationDetails = v
+	return s
+}
+
+// SetSensitivityScore sets the SensitivityScore field's value.
+func (s *BucketMetadata) SetSensitivityScore(v int64) *BucketMetadata {
+	s.SensitivityScore = &v
 	return s
 }
 
@@ -9015,6 +10634,88 @@ func (s *BucketSortCriteria) SetOrderBy(v string) *BucketSortCriteria {
 	return s
 }
 
+// Provides aggregated statistical data for sensitive data discovery metrics
+// that apply to S3 buckets, grouped by bucket sensitivity score (sensitivityScore).
+// If automated sensitive data discovery is currently disabled for your account,
+// the value for each metric is 0.
+type BucketStatisticsBySensitivity struct {
+	_ struct{} `type:"structure"`
+
+	// Provides aggregated statistical data for sensitive data discovery metrics
+	// that apply to S3 buckets. Each field contains aggregated data for all the
+	// buckets that have a sensitivity score (sensitivityScore) of a specified value
+	// or within a specified range (BucketStatisticsBySensitivity). If automated
+	// sensitive data discovery is currently disabled for your account, the value
+	// for each field is 0.
+	ClassificationError *SensitivityAggregations `locationName:"classificationError" type:"structure"`
+
+	// Provides aggregated statistical data for sensitive data discovery metrics
+	// that apply to S3 buckets. Each field contains aggregated data for all the
+	// buckets that have a sensitivity score (sensitivityScore) of a specified value
+	// or within a specified range (BucketStatisticsBySensitivity). If automated
+	// sensitive data discovery is currently disabled for your account, the value
+	// for each field is 0.
+	NotClassified *SensitivityAggregations `locationName:"notClassified" type:"structure"`
+
+	// Provides aggregated statistical data for sensitive data discovery metrics
+	// that apply to S3 buckets. Each field contains aggregated data for all the
+	// buckets that have a sensitivity score (sensitivityScore) of a specified value
+	// or within a specified range (BucketStatisticsBySensitivity). If automated
+	// sensitive data discovery is currently disabled for your account, the value
+	// for each field is 0.
+	NotSensitive *SensitivityAggregations `locationName:"notSensitive" type:"structure"`
+
+	// Provides aggregated statistical data for sensitive data discovery metrics
+	// that apply to S3 buckets. Each field contains aggregated data for all the
+	// buckets that have a sensitivity score (sensitivityScore) of a specified value
+	// or within a specified range (BucketStatisticsBySensitivity). If automated
+	// sensitive data discovery is currently disabled for your account, the value
+	// for each field is 0.
+	Sensitive *SensitivityAggregations `locationName:"sensitive" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BucketStatisticsBySensitivity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BucketStatisticsBySensitivity) GoString() string {
+	return s.String()
+}
+
+// SetClassificationError sets the ClassificationError field's value.
+func (s *BucketStatisticsBySensitivity) SetClassificationError(v *SensitivityAggregations) *BucketStatisticsBySensitivity {
+	s.ClassificationError = v
+	return s
+}
+
+// SetNotClassified sets the NotClassified field's value.
+func (s *BucketStatisticsBySensitivity) SetNotClassified(v *SensitivityAggregations) *BucketStatisticsBySensitivity {
+	s.NotClassified = v
+	return s
+}
+
+// SetNotSensitive sets the NotSensitive field's value.
+func (s *BucketStatisticsBySensitivity) SetNotSensitive(v *SensitivityAggregations) *BucketStatisticsBySensitivity {
+	s.NotSensitive = v
+	return s
+}
+
+// SetSensitive sets the Sensitive field's value.
+func (s *BucketStatisticsBySensitivity) SetSensitive(v *SensitivityAggregations) *BucketStatisticsBySensitivity {
+	s.Sensitive = v
+	return s
+}
+
 // Specifies the location of an occurrence of sensitive data in a Microsoft
 // Excel workbook, CSV file, or TSV file.
 type Cell struct {
@@ -9083,7 +10784,7 @@ type ClassificationDetails struct {
 	JobId *string `locationName:"jobId" type:"string"`
 
 	// Specifies how Amazon Macie found the sensitive data that produced a finding.
-	// The only possible value is:
+	// Possible values are:
 	OriginType *string `locationName:"originType" type:"string" enum:"OriginType"`
 
 	// Provides the details of a sensitive data finding, including the types, number
@@ -9140,8 +10841,8 @@ func (s *ClassificationDetails) SetResult(v *ClassificationResult) *Classificati
 }
 
 // Specifies where to store data classification results, and the encryption
-// settings to use when storing results in that location. Currently, you can
-// store classification results only in an S3 bucket.
+// settings to use when storing results in that location. The location must
+// be an S3 bucket.
 type ClassificationExportConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9303,6 +11004,49 @@ func (s *ClassificationResultStatus) SetCode(v string) *ClassificationResultStat
 // SetReason sets the Reason field's value.
 func (s *ClassificationResultStatus) SetReason(v string) *ClassificationResultStatus {
 	s.Reason = &v
+	return s
+}
+
+// Provides information about the classification scope for an Amazon Macie account.
+// Macie uses the scope's settings when it performs automated sensitive data
+// discovery for the account.
+type ClassificationScopeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier the classification scope.
+	Id *string `locationName:"id" type:"string"`
+
+	// The name of the classification scope.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClassificationScopeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClassificationScopeSummary) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ClassificationScopeSummary) SetId(v string) *ClassificationScopeSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ClassificationScopeSummary) SetName(v string) *ClassificationScopeSummary {
+	s.Name = &v
 	return s
 }
 
@@ -9899,9 +11643,9 @@ func (s *CreateCustomDataIdentifierOutput) SetCustomDataIdentifierId(v string) *
 type CreateFindingsFilterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform on findings that meet the filter criteria. To suppress
-	// (automatically archive) findings that meet the criteria, set this value to
-	// ARCHIVE. Valid values are:
+	// The action to perform on findings that match the filter criteria. To suppress
+	// (automatically archive) findings that match the criteria, set this value
+	// to ARCHIVE. Valid values are:
 	//
 	// Action is a required field
 	Action *string `locationName:"action" type:"string" required:"true" enum:"FindingsFilterAction"`
@@ -11591,6 +13335,83 @@ func (s *DetectedDataDetails) SetValue(v string) *DetectedDataDetails {
 	return s
 }
 
+// Provides information about a type of sensitive data that Amazon Macie found
+// in an S3 bucket while performing automated sensitive data discovery for the
+// bucket. The information also specifies the custom data identifier or managed
+// data identifier that detected the data. This information is available only
+// if automated sensitive data discovery is currently enabled for your account.
+type Detection struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	Count *int64 `locationName:"count" type:"long"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	Name *string `locationName:"name" type:"string"`
+
+	Suppressed *bool `locationName:"suppressed" type:"boolean"`
+
+	// The type of data identifier that detected a specific type of sensitive data
+	// in an S3 bucket. Possible values are:
+	Type *string `locationName:"type" type:"string" enum:"DataIdentifierType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Detection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Detection) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Detection) SetArn(v string) *Detection {
+	s.Arn = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *Detection) SetCount(v int64) *Detection {
+	s.Count = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Detection) SetId(v string) *Detection {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Detection) SetName(v string) *Detection {
+	s.Name = &v
+	return s
+}
+
+// SetSuppressed sets the Suppressed field's value.
+func (s *Detection) SetSuppressed(v bool) *Detection {
+	s.Suppressed = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Detection) SetType(v string) *Detection {
+	s.Type = &v
+	return s
+}
+
 type DisableMacieInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -12119,7 +13940,7 @@ type Finding struct {
 
 	Archived *bool `locationName:"archived" type:"boolean"`
 
-	// The category of the finding. Valid values are:
+	// The category of the finding. Possible values are:
 	Category *string `locationName:"category" type:"string" enum:"FindingCategory"`
 
 	// Provides information about a sensitive data finding and the details of the
@@ -12155,7 +13976,7 @@ type Finding struct {
 
 	// The type of finding. For details about each type, see Types of Amazon Macie
 	// findings (https://docs.aws.amazon.com/macie/latest/user/findings-types.html)
-	// in the Amazon Macie User Guide. Valid values are:
+	// in the Amazon Macie User Guide. Possible values are:
 	Type *string `locationName:"type" type:"string" enum:"FindingType"`
 
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -12468,9 +14289,9 @@ func (s *FindingStatisticsSortCriteria) SetOrderBy(v string) *FindingStatisticsS
 type FindingsFilterListItem struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform on findings that meet the filter criteria. To suppress
-	// (automatically archive) findings that meet the criteria, set this value to
-	// ARCHIVE. Valid values are:
+	// The action to perform on findings that match the filter criteria. To suppress
+	// (automatically archive) findings that match the criteria, set this value
+	// to ARCHIVE. Valid values are:
 	Action *string `locationName:"action" type:"string" enum:"FindingsFilterAction"`
 
 	Arn *string `locationName:"arn" type:"string"`
@@ -12736,6 +14557,108 @@ func (s *GetAllowListOutput) SetUpdatedAt(v time.Time) *GetAllowListOutput {
 	return s
 }
 
+type GetAutomatedDiscoveryConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutomatedDiscoveryConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutomatedDiscoveryConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Provides information about the configuration settings for performing automated
+// sensitive data discovery for an Amazon Macie account, and the status of the
+// configuration for the account.
+type GetAutomatedDiscoveryConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier the classification scope.
+	ClassificationScopeId *string `locationName:"classificationScopeId" type:"string"`
+
+	// Specifies a date and time in UTC and extended ISO 8601 format.
+	DisabledAt *time.Time `locationName:"disabledAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Specifies a date and time in UTC and extended ISO 8601 format.
+	FirstEnabledAt *time.Time `locationName:"firstEnabledAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Specifies a date and time in UTC and extended ISO 8601 format.
+	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The unique identifier for the sensitivity inspection template.
+	SensitivityInspectionTemplateId *string `locationName:"sensitivityInspectionTemplateId" type:"string"`
+
+	// The status of the automated sensitive data discovery configuration for an
+	// Amazon Macie account. Valid values are:
+	Status *string `locationName:"status" type:"string" enum:"AutomatedDiscoveryStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutomatedDiscoveryConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAutomatedDiscoveryConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetClassificationScopeId sets the ClassificationScopeId field's value.
+func (s *GetAutomatedDiscoveryConfigurationOutput) SetClassificationScopeId(v string) *GetAutomatedDiscoveryConfigurationOutput {
+	s.ClassificationScopeId = &v
+	return s
+}
+
+// SetDisabledAt sets the DisabledAt field's value.
+func (s *GetAutomatedDiscoveryConfigurationOutput) SetDisabledAt(v time.Time) *GetAutomatedDiscoveryConfigurationOutput {
+	s.DisabledAt = &v
+	return s
+}
+
+// SetFirstEnabledAt sets the FirstEnabledAt field's value.
+func (s *GetAutomatedDiscoveryConfigurationOutput) SetFirstEnabledAt(v time.Time) *GetAutomatedDiscoveryConfigurationOutput {
+	s.FirstEnabledAt = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *GetAutomatedDiscoveryConfigurationOutput) SetLastUpdatedAt(v time.Time) *GetAutomatedDiscoveryConfigurationOutput {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetSensitivityInspectionTemplateId sets the SensitivityInspectionTemplateId field's value.
+func (s *GetAutomatedDiscoveryConfigurationOutput) SetSensitivityInspectionTemplateId(v string) *GetAutomatedDiscoveryConfigurationOutput {
+	s.SensitivityInspectionTemplateId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetAutomatedDiscoveryConfigurationOutput) SetStatus(v string) *GetAutomatedDiscoveryConfigurationOutput {
+	s.Status = &v
+	return s
+}
+
 // Specifies the account that owns the S3 buckets to retrieve aggregated statistical
 // data for.
 type GetBucketStatisticsInput struct {
@@ -12795,6 +14718,12 @@ type GetBucketStatisticsOutput struct {
 	// with other Amazon Web Services accounts.
 	BucketCountBySharedAccessType *BucketCountBySharedAccessType `locationName:"bucketCountBySharedAccessType" type:"structure"`
 
+	// Provides aggregated statistical data for sensitive data discovery metrics
+	// that apply to S3 buckets, grouped by bucket sensitivity score (sensitivityScore).
+	// If automated sensitive data discovery is currently disabled for your account,
+	// the value for each metric is 0.
+	BucketStatisticsBySensitivity *BucketStatisticsBySensitivity `locationName:"bucketStatisticsBySensitivity" type:"structure"`
+
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
 
 	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
@@ -12810,17 +14739,17 @@ type GetBucketStatisticsOutput struct {
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for the buckets in the query results. If
-	// versioning is enabled for a bucket, total storage size values are based on
-	// the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, storage size values are based on the
+	// size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for the buckets in the query results. If
-	// versioning is enabled for a bucket, total storage size values are based on
-	// the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, storage size values are based on the
+	// size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 }
 
@@ -12869,6 +14798,12 @@ func (s *GetBucketStatisticsOutput) SetBucketCountByObjectEncryptionRequirement(
 // SetBucketCountBySharedAccessType sets the BucketCountBySharedAccessType field's value.
 func (s *GetBucketStatisticsOutput) SetBucketCountBySharedAccessType(v *BucketCountBySharedAccessType) *GetBucketStatisticsOutput {
 	s.BucketCountBySharedAccessType = v
+	return s
+}
+
+// SetBucketStatisticsBySensitivity sets the BucketStatisticsBySensitivity field's value.
+func (s *GetBucketStatisticsOutput) SetBucketStatisticsBySensitivity(v *BucketStatisticsBySensitivity) *GetBucketStatisticsOutput {
+	s.BucketStatisticsBySensitivity = v
 	return s
 }
 
@@ -12948,8 +14883,8 @@ type GetClassificationExportConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies where to store data classification results, and the encryption
-	// settings to use when storing results in that location. Currently, you can
-	// store classification results only in an S3 bucket.
+	// settings to use when storing results in that location. The location must
+	// be an S3 bucket.
 	Configuration *ClassificationExportConfiguration `locationName:"configuration" type:"structure"`
 }
 
@@ -12974,6 +14909,106 @@ func (s GetClassificationExportConfigurationOutput) GoString() string {
 // SetConfiguration sets the Configuration field's value.
 func (s *GetClassificationExportConfigurationOutput) SetConfiguration(v *ClassificationExportConfiguration) *GetClassificationExportConfigurationOutput {
 	s.Configuration = v
+	return s
+}
+
+type GetClassificationScopeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClassificationScopeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClassificationScopeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetClassificationScopeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetClassificationScopeInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetClassificationScopeInput) SetId(v string) *GetClassificationScopeInput {
+	s.Id = &v
+	return s
+}
+
+// Provides information about the classification scope settings for an Amazon
+// Macie account. Macie uses these settings when it performs automated sensitive
+// data discovery for the account.
+type GetClassificationScopeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier the classification scope.
+	Id *string `locationName:"id" type:"string"`
+
+	// The name of the classification scope.
+	Name *string `locationName:"name" type:"string"`
+
+	// Specifies the S3 buckets that are excluded from automated sensitive data
+	// discovery for an Amazon Macie account.
+	S3 *S3ClassificationScope `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClassificationScopeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClassificationScopeOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *GetClassificationScopeOutput) SetId(v string) *GetClassificationScopeOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetClassificationScopeOutput) SetName(v string) *GetClassificationScopeOutput {
+	s.Name = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *GetClassificationScopeOutput) SetS3(v *S3ClassificationScope) *GetClassificationScopeOutput {
+	s.S3 = v
 	return s
 }
 
@@ -13317,9 +15352,9 @@ func (s *GetFindingsFilterInput) SetId(v string) *GetFindingsFilterInput {
 type GetFindingsFilterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform on findings that meet the filter criteria. To suppress
-	// (automatically archive) findings that meet the criteria, set this value to
-	// ARCHIVE. Valid values are:
+	// The action to perform on findings that match the filter criteria. To suppress
+	// (automatically archive) findings that match the criteria, set this value
+	// to ARCHIVE. Valid values are:
 	Action *string `locationName:"action" type:"string" enum:"FindingsFilterAction"`
 
 	Arn *string `locationName:"arn" type:"string"`
@@ -13627,8 +15662,8 @@ func (s GetMacieSessionInput) GoString() string {
 	return s.String()
 }
 
-// Provides information about the current status and configuration settings
-// for an Amazon Macie account.
+// Provides information about the status and configuration settings for an Amazon
+// Macie account.
 type GetMacieSessionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13900,6 +15935,114 @@ func (s *GetMemberOutput) SetUpdatedAt(v time.Time) *GetMemberOutput {
 	return s
 }
 
+type GetResourceProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourceProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourceProfileInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetResourceProfileInput) SetResourceArn(v string) *GetResourceProfileInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// Provides the results of a query that retrieved sensitive data discovery statistics
+// and the sensitivity score for an S3 bucket that Amazon Macie monitors and
+// analyzes for your account. This data is available only if automated sensitive
+// data discovery is currently enabled for your account.
+type GetResourceProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	ProfileUpdatedAt *time.Time `locationName:"profileUpdatedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	SensitivityScore *int64 `locationName:"sensitivityScore" type:"integer"`
+
+	SensitivityScoreOverridden *bool `locationName:"sensitivityScoreOverridden" type:"boolean"`
+
+	// Provides statistical data for sensitive data discovery metrics that apply
+	// to an S3 bucket that Amazon Macie monitors and analyzes for your account.
+	// The statistics capture the results of automated sensitive data discovery
+	// activities that Macie has performed for the bucket. The data is available
+	// only if automated sensitive data discovery is currently enabled for your
+	// account.
+	Statistics *ResourceStatistics `locationName:"statistics" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfileUpdatedAt sets the ProfileUpdatedAt field's value.
+func (s *GetResourceProfileOutput) SetProfileUpdatedAt(v time.Time) *GetResourceProfileOutput {
+	s.ProfileUpdatedAt = &v
+	return s
+}
+
+// SetSensitivityScore sets the SensitivityScore field's value.
+func (s *GetResourceProfileOutput) SetSensitivityScore(v int64) *GetResourceProfileOutput {
+	s.SensitivityScore = &v
+	return s
+}
+
+// SetSensitivityScoreOverridden sets the SensitivityScoreOverridden field's value.
+func (s *GetResourceProfileOutput) SetSensitivityScoreOverridden(v bool) *GetResourceProfileOutput {
+	s.SensitivityScoreOverridden = &v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *GetResourceProfileOutput) SetStatistics(v *ResourceStatistics) *GetResourceProfileOutput {
+	s.Statistics = v
+	return s
+}
+
 type GetRevealConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -14146,6 +16289,131 @@ func (s *GetSensitiveDataOccurrencesOutput) SetSensitiveDataOccurrences(v map[st
 // SetStatus sets the Status field's value.
 func (s *GetSensitiveDataOccurrencesOutput) SetStatus(v string) *GetSensitiveDataOccurrencesOutput {
 	s.Status = &v
+	return s
+}
+
+type GetSensitivityInspectionTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSensitivityInspectionTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSensitivityInspectionTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSensitivityInspectionTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSensitivityInspectionTemplateInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetSensitivityInspectionTemplateInput) SetId(v string) *GetSensitivityInspectionTemplateInput {
+	s.Id = &v
+	return s
+}
+
+// Provides information about the settings for the sensitivity inspection template
+// for an Amazon Macie account. Macie uses the template's settings when it performs
+// automated sensitive data discovery for the account.
+type GetSensitivityInspectionTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// Specifies managed data identifiers to exclude (not use) when performing automated
+	// sensitive data discovery for an Amazon Macie account. For information about
+	// the managed data identifiers that Amazon Macie currently provides, see Using
+	// managed data identifiers (https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html)
+	// in the Amazon Macie User Guide.
+	Excludes *SensitivityInspectionTemplateExcludes `locationName:"excludes" type:"structure"`
+
+	// Specifies the allow lists, custom data identifiers, and managed data identifiers
+	// to include (use) when performing automated sensitive data discovery for an
+	// Amazon Macie account. The configuration must specify at least one custom
+	// data identifier or managed data identifier. For information about the managed
+	// data identifiers that Amazon Macie currently provides, see Using managed
+	// data identifiers (https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html)
+	// in the Amazon Macie User Guide.
+	Includes *SensitivityInspectionTemplateIncludes `locationName:"includes" type:"structure"`
+
+	Name *string `locationName:"name" type:"string"`
+
+	// The unique identifier for the sensitivity inspection template.
+	SensitivityInspectionTemplateId *string `locationName:"sensitivityInspectionTemplateId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSensitivityInspectionTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSensitivityInspectionTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetSensitivityInspectionTemplateOutput) SetDescription(v string) *GetSensitivityInspectionTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *GetSensitivityInspectionTemplateOutput) SetExcludes(v *SensitivityInspectionTemplateExcludes) *GetSensitivityInspectionTemplateOutput {
+	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *GetSensitivityInspectionTemplateOutput) SetIncludes(v *SensitivityInspectionTemplateIncludes) *GetSensitivityInspectionTemplateOutput {
+	s.Includes = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetSensitivityInspectionTemplateOutput) SetName(v string) *GetSensitivityInspectionTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetSensitivityInspectionTemplateId sets the SensitivityInspectionTemplateId field's value.
+func (s *GetSensitivityInspectionTemplateOutput) SetSensitivityInspectionTemplateId(v string) *GetSensitivityInspectionTemplateOutput {
+	s.SensitivityInspectionTemplateId = &v
 	return s
 }
 
@@ -15357,6 +17625,86 @@ func (s *ListClassificationJobsOutput) SetNextToken(v string) *ListClassificatio
 	return s
 }
 
+type ListClassificationScopesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	Name *string `location:"querystring" locationName:"name" type:"string"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClassificationScopesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClassificationScopesInput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ListClassificationScopesInput) SetName(v string) *ListClassificationScopesInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClassificationScopesInput) SetNextToken(v string) *ListClassificationScopesInput {
+	s.NextToken = &v
+	return s
+}
+
+// Provides the results of a request for information about the classification
+// scope for an Amazon Macie account. Macie uses the scope's settings when it
+// performs automated sensitive data discovery for the account.
+type ListClassificationScopesOutput struct {
+	_ struct{} `type:"structure"`
+
+	ClassificationScopes []*ClassificationScopeSummary `locationName:"classificationScopes" type:"list"`
+
+	// Specifies which page of results to return in a paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClassificationScopesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClassificationScopesOutput) GoString() string {
+	return s.String()
+}
+
+// SetClassificationScopes sets the ClassificationScopes field's value.
+func (s *ListClassificationScopesOutput) SetClassificationScopes(v []*ClassificationScopeSummary) *ListClassificationScopesOutput {
+	s.ClassificationScopes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClassificationScopesOutput) SetNextToken(v string) *ListClassificationScopesOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Specifies criteria for paginating the results of a request for information
 // about custom data identifiers.
 type ListCustomDataIdentifiersInput struct {
@@ -16110,6 +18458,298 @@ func (s *ListOrganizationAdminAccountsOutput) SetNextToken(v string) *ListOrgani
 	return s
 }
 
+type ListResourceProfileArtifactsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileArtifactsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileArtifactsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResourceProfileArtifactsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResourceProfileArtifactsInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceProfileArtifactsInput) SetNextToken(v string) *ListResourceProfileArtifactsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListResourceProfileArtifactsInput) SetResourceArn(v string) *ListResourceProfileArtifactsInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// Provides the results of a request for information about the S3 objects that
+// Amazon Macie selected for analysis while performing automated sensitive data
+// discovery for an S3 bucket. This information is available only if automated
+// sensitive data discovery is currently enabled for your account.
+type ListResourceProfileArtifactsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Artifacts []*ResourceProfileArtifact `locationName:"artifacts" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileArtifactsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileArtifactsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArtifacts sets the Artifacts field's value.
+func (s *ListResourceProfileArtifactsOutput) SetArtifacts(v []*ResourceProfileArtifact) *ListResourceProfileArtifactsOutput {
+	s.Artifacts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceProfileArtifactsOutput) SetNextToken(v string) *ListResourceProfileArtifactsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResourceProfileDetectionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileDetectionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileDetectionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResourceProfileDetectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResourceProfileDetectionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResourceProfileDetectionsInput) SetMaxResults(v int64) *ListResourceProfileDetectionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceProfileDetectionsInput) SetNextToken(v string) *ListResourceProfileDetectionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListResourceProfileDetectionsInput) SetResourceArn(v string) *ListResourceProfileDetectionsInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// Provides the results of a request for information about the types and amount
+// of sensitive data that Amazon Macie found in an S3 bucket while performing
+// automated sensitive data discovery for the bucket. This information is available
+// only if automated sensitive data discovery is currently enabled for your
+// account.
+type ListResourceProfileDetectionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Detections []*Detection `locationName:"detections" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileDetectionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceProfileDetectionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDetections sets the Detections field's value.
+func (s *ListResourceProfileDetectionsOutput) SetDetections(v []*Detection) *ListResourceProfileDetectionsOutput {
+	s.Detections = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceProfileDetectionsOutput) SetNextToken(v string) *ListResourceProfileDetectionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSensitivityInspectionTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensitivityInspectionTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensitivityInspectionTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSensitivityInspectionTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSensitivityInspectionTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSensitivityInspectionTemplatesInput) SetMaxResults(v int64) *ListSensitivityInspectionTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSensitivityInspectionTemplatesInput) SetNextToken(v string) *ListSensitivityInspectionTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+// Provides the results of a request for information about the sensitivity inspection
+// template for an Amazon Macie account. Macie uses the template's settings
+// when it performs automated sensitive data discovery for the account.
+type ListSensitivityInspectionTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	SensitivityInspectionTemplates []*SensitivityInspectionTemplatesEntry `locationName:"sensitivityInspectionTemplates" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensitivityInspectionTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSensitivityInspectionTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSensitivityInspectionTemplatesOutput) SetNextToken(v string) *ListSensitivityInspectionTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSensitivityInspectionTemplates sets the SensitivityInspectionTemplates field's value.
+func (s *ListSensitivityInspectionTemplatesOutput) SetSensitivityInspectionTemplates(v []*SensitivityInspectionTemplatesEntry) *ListSensitivityInspectionTemplatesOutput {
+	s.SensitivityInspectionTemplates = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -16238,9 +18878,9 @@ func (s *ManagedDataIdentifierSummary) SetId(v string) *ManagedDataIdentifierSum
 // Provides statistical data and other information about an S3 bucket that Amazon
 // Macie monitors and analyzes for your account. If an error occurs when Macie
 // attempts to retrieve and process information about the bucket or the bucket's
-// objects, the value for most of these properties is null. Exceptions are accountId
-// and bucketName. To identify the cause of the error, refer to the errorCode
-// and errorMessage values.
+// objects, the value for most of these properties is null. Key exceptions are
+// accountId and bucketName. To identify the cause of the error, refer to the
+// errorCode and errorMessage values.
 type MatchingBucket struct {
 	_ struct{} `type:"structure"`
 
@@ -16253,7 +18893,7 @@ type MatchingBucket struct {
 	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
 
 	// The error code for an error that prevented Amazon Macie from retrieving and
-	// processing information about an S3 bucket and the bucket's objects.
+	// processing metadata from Amazon S3 for an S3 bucket and the bucket's objects.
 	ErrorCode *string `locationName:"errorCode" type:"string" enum:"BucketMetadataErrorCode"`
 
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
@@ -16263,12 +18903,16 @@ type MatchingBucket struct {
 	// ran most recently.
 	JobDetails *JobDetails `locationName:"jobDetails" type:"structure"`
 
+	LastAutomatedDiscoveryTime *time.Time `locationName:"lastAutomatedDiscoveryTime" type:"timestamp" timestampFormat:"iso8601"`
+
 	ObjectCount *int64 `locationName:"objectCount" type:"long"`
 
 	// Provides information about the number of objects that are in an S3 bucket
 	// and use certain types of server-side encryption, use client-side encryption,
 	// or aren't encrypted.
 	ObjectCountByEncryptionType *ObjectCountByEncryptionType `locationName:"objectCountByEncryptionType" type:"structure"`
+
+	SensitivityScore *int64 `locationName:"sensitivityScore" type:"integer"`
 
 	SizeInBytes *int64 `locationName:"sizeInBytes" type:"long"`
 
@@ -16277,17 +18921,17 @@ type MatchingBucket struct {
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for the buckets in the query results. If
-	// versioning is enabled for a bucket, total storage size values are based on
-	// the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, storage size values are based on the
+	// size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for the buckets in the query results. If
-	// versioning is enabled for a bucket, total storage size values are based on
-	// the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, storage size values are based on the
+	// size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 }
 
@@ -16351,6 +18995,12 @@ func (s *MatchingBucket) SetJobDetails(v *JobDetails) *MatchingBucket {
 	return s
 }
 
+// SetLastAutomatedDiscoveryTime sets the LastAutomatedDiscoveryTime field's value.
+func (s *MatchingBucket) SetLastAutomatedDiscoveryTime(v time.Time) *MatchingBucket {
+	s.LastAutomatedDiscoveryTime = &v
+	return s
+}
+
 // SetObjectCount sets the ObjectCount field's value.
 func (s *MatchingBucket) SetObjectCount(v int64) *MatchingBucket {
 	s.ObjectCount = &v
@@ -16360,6 +19010,12 @@ func (s *MatchingBucket) SetObjectCount(v int64) *MatchingBucket {
 // SetObjectCountByEncryptionType sets the ObjectCountByEncryptionType field's value.
 func (s *MatchingBucket) SetObjectCountByEncryptionType(v *ObjectCountByEncryptionType) *MatchingBucket {
 	s.ObjectCountByEncryptionType = v
+	return s
+}
+
+// SetSensitivityScore sets the SensitivityScore field's value.
+func (s *MatchingBucket) SetSensitivityScore(v int64) *MatchingBucket {
+	s.SensitivityScore = &v
 	return s
 }
 
@@ -16395,9 +19051,9 @@ type MatchingResource struct {
 	// Provides statistical data and other information about an S3 bucket that Amazon
 	// Macie monitors and analyzes for your account. If an error occurs when Macie
 	// attempts to retrieve and process information about the bucket or the bucket's
-	// objects, the value for most of these properties is null. Exceptions are accountId
-	// and bucketName. To identify the cause of the error, refer to the errorCode
-	// and errorMessage values.
+	// objects, the value for most of these properties is null. Key exceptions are
+	// accountId and bucketName. To identify the cause of the error, refer to the
+	// errorCode and errorMessage values.
 	MatchingBucket *MatchingBucket `locationName:"matchingBucket" type:"structure"`
 }
 
@@ -16624,9 +19280,9 @@ func (s *ObjectCountByEncryptionType) SetUnknown(v int64) *ObjectCountByEncrypti
 // Provides information about the total storage size (in bytes) or number of
 // objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 // or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-// object, this data is aggregated for the buckets in the query results. If
-// versioning is enabled for a bucket, total storage size values are based on
-// the size of the latest version of each applicable object in the bucket.
+// object, this data is aggregated for all the buckets in the query results.
+// If versioning is enabled for a bucket, storage size values are based on the
+// size of the latest version of each applicable object in the bucket.
 type ObjectLevelStatistics struct {
 	_ struct{} `type:"structure"`
 
@@ -16844,14 +19500,13 @@ func (s *PolicyDetails) SetActor(v *FindingActor) *PolicyDetails {
 }
 
 // Specifies where to store data classification results, and the encryption
-// settings to use when storing results in that location. Currently, you can
-// store classification results only in an S3 bucket.
+// settings to use when storing results in that location.
 type PutClassificationExportConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies where to store data classification results, and the encryption
-	// settings to use when storing results in that location. Currently, you can
-	// store classification results only in an S3 bucket.
+	// settings to use when storing results in that location. The location must
+	// be an S3 bucket.
 	//
 	// Configuration is a required field
 	Configuration *ClassificationExportConfiguration `locationName:"configuration" type:"structure" required:"true"`
@@ -16905,8 +19560,8 @@ type PutClassificationExportConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies where to store data classification results, and the encryption
-	// settings to use when storing results in that location. Currently, you can
-	// store classification results only in an S3 bucket.
+	// settings to use when storing results in that location. The location must
+	// be an S3 bucket.
 	Configuration *ClassificationExportConfiguration `locationName:"configuration" type:"structure"`
 }
 
@@ -17216,6 +19871,158 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Provides information about an S3 object that Amazon Macie selected for analysis
+// while performing automated sensitive data discovery for an S3 bucket, and
+// the status and results of the analysis. This information is available only
+// if automated sensitive data discovery is currently enabled for your account.
+type ResourceProfileArtifact struct {
+	_ struct{} `type:"structure"`
+
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// ClassificationResultStatus is a required field
+	ClassificationResultStatus *string `locationName:"classificationResultStatus" type:"string" required:"true"`
+
+	Sensitive *bool `locationName:"sensitive" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceProfileArtifact) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceProfileArtifact) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ResourceProfileArtifact) SetArn(v string) *ResourceProfileArtifact {
+	s.Arn = &v
+	return s
+}
+
+// SetClassificationResultStatus sets the ClassificationResultStatus field's value.
+func (s *ResourceProfileArtifact) SetClassificationResultStatus(v string) *ResourceProfileArtifact {
+	s.ClassificationResultStatus = &v
+	return s
+}
+
+// SetSensitive sets the Sensitive field's value.
+func (s *ResourceProfileArtifact) SetSensitive(v bool) *ResourceProfileArtifact {
+	s.Sensitive = &v
+	return s
+}
+
+// Provides statistical data for sensitive data discovery metrics that apply
+// to an S3 bucket that Amazon Macie monitors and analyzes for your account.
+// The statistics capture the results of automated sensitive data discovery
+// activities that Macie has performed for the bucket. The data is available
+// only if automated sensitive data discovery is currently enabled for your
+// account.
+type ResourceStatistics struct {
+	_ struct{} `type:"structure"`
+
+	TotalBytesClassified *int64 `locationName:"totalBytesClassified" type:"long"`
+
+	TotalDetections *int64 `locationName:"totalDetections" type:"long"`
+
+	TotalDetectionsSuppressed *int64 `locationName:"totalDetectionsSuppressed" type:"long"`
+
+	TotalItemsClassified *int64 `locationName:"totalItemsClassified" type:"long"`
+
+	TotalItemsSensitive *int64 `locationName:"totalItemsSensitive" type:"long"`
+
+	TotalItemsSkipped *int64 `locationName:"totalItemsSkipped" type:"long"`
+
+	TotalItemsSkippedInvalidEncryption *int64 `locationName:"totalItemsSkippedInvalidEncryption" type:"long"`
+
+	TotalItemsSkippedInvalidKms *int64 `locationName:"totalItemsSkippedInvalidKms" type:"long"`
+
+	TotalItemsSkippedPermissionDenied *int64 `locationName:"totalItemsSkippedPermissionDenied" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceStatistics) GoString() string {
+	return s.String()
+}
+
+// SetTotalBytesClassified sets the TotalBytesClassified field's value.
+func (s *ResourceStatistics) SetTotalBytesClassified(v int64) *ResourceStatistics {
+	s.TotalBytesClassified = &v
+	return s
+}
+
+// SetTotalDetections sets the TotalDetections field's value.
+func (s *ResourceStatistics) SetTotalDetections(v int64) *ResourceStatistics {
+	s.TotalDetections = &v
+	return s
+}
+
+// SetTotalDetectionsSuppressed sets the TotalDetectionsSuppressed field's value.
+func (s *ResourceStatistics) SetTotalDetectionsSuppressed(v int64) *ResourceStatistics {
+	s.TotalDetectionsSuppressed = &v
+	return s
+}
+
+// SetTotalItemsClassified sets the TotalItemsClassified field's value.
+func (s *ResourceStatistics) SetTotalItemsClassified(v int64) *ResourceStatistics {
+	s.TotalItemsClassified = &v
+	return s
+}
+
+// SetTotalItemsSensitive sets the TotalItemsSensitive field's value.
+func (s *ResourceStatistics) SetTotalItemsSensitive(v int64) *ResourceStatistics {
+	s.TotalItemsSensitive = &v
+	return s
+}
+
+// SetTotalItemsSkipped sets the TotalItemsSkipped field's value.
+func (s *ResourceStatistics) SetTotalItemsSkipped(v int64) *ResourceStatistics {
+	s.TotalItemsSkipped = &v
+	return s
+}
+
+// SetTotalItemsSkippedInvalidEncryption sets the TotalItemsSkippedInvalidEncryption field's value.
+func (s *ResourceStatistics) SetTotalItemsSkippedInvalidEncryption(v int64) *ResourceStatistics {
+	s.TotalItemsSkippedInvalidEncryption = &v
+	return s
+}
+
+// SetTotalItemsSkippedInvalidKms sets the TotalItemsSkippedInvalidKms field's value.
+func (s *ResourceStatistics) SetTotalItemsSkippedInvalidKms(v int64) *ResourceStatistics {
+	s.TotalItemsSkippedInvalidKms = &v
+	return s
+}
+
+// SetTotalItemsSkippedPermissionDenied sets the TotalItemsSkippedPermissionDenied field's value.
+func (s *ResourceStatistics) SetTotalItemsSkippedPermissionDenied(v int64) *ResourceStatistics {
+	s.TotalItemsSkippedPermissionDenied = &v
+	return s
 }
 
 // Provides information about the resources that a finding applies to.
@@ -17559,6 +20366,190 @@ func (s *S3BucketOwner) SetDisplayName(v string) *S3BucketOwner {
 // SetId sets the Id field's value.
 func (s *S3BucketOwner) SetId(v string) *S3BucketOwner {
 	s.Id = &v
+	return s
+}
+
+// Specifies the S3 buckets that are excluded from automated sensitive data
+// discovery for an Amazon Macie account.
+type S3ClassificationScope struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the names of the S3 buckets that are excluded from automated sensitive
+	// data discovery.
+	//
+	// Excludes is a required field
+	Excludes *S3ClassificationScopeExclusion `locationName:"excludes" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScope) GoString() string {
+	return s.String()
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *S3ClassificationScope) SetExcludes(v *S3ClassificationScopeExclusion) *S3ClassificationScope {
+	s.Excludes = v
+	return s
+}
+
+// Specifies the names of the S3 buckets that are excluded from automated sensitive
+// data discovery.
+type S3ClassificationScopeExclusion struct {
+	_ struct{} `type:"structure"`
+
+	// BucketNames is a required field
+	BucketNames []*string `locationName:"bucketNames" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScopeExclusion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScopeExclusion) GoString() string {
+	return s.String()
+}
+
+// SetBucketNames sets the BucketNames field's value.
+func (s *S3ClassificationScopeExclusion) SetBucketNames(v []*string) *S3ClassificationScopeExclusion {
+	s.BucketNames = v
+	return s
+}
+
+// Specifies S3 buckets to add or remove from the exclusion list defined by
+// the classification scope for an Amazon Macie account.
+type S3ClassificationScopeExclusionUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// BucketNames is a required field
+	BucketNames []*string `locationName:"bucketNames" type:"list" required:"true"`
+
+	// Specifies how to apply changes to the S3 bucket exclusion list defined by
+	// the classification scope for an Amazon Macie account. Valid values are:
+	//
+	// Operation is a required field
+	Operation *string `locationName:"operation" type:"string" required:"true" enum:"ClassificationScopeUpdateOperation"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScopeExclusionUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScopeExclusionUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ClassificationScopeExclusionUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ClassificationScopeExclusionUpdate"}
+	if s.BucketNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketNames"))
+	}
+	if s.Operation == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operation"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketNames sets the BucketNames field's value.
+func (s *S3ClassificationScopeExclusionUpdate) SetBucketNames(v []*string) *S3ClassificationScopeExclusionUpdate {
+	s.BucketNames = v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *S3ClassificationScopeExclusionUpdate) SetOperation(v string) *S3ClassificationScopeExclusionUpdate {
+	s.Operation = &v
+	return s
+}
+
+// Specifies changes to the list of S3 buckets that are excluded from automated
+// sensitive data discovery for an Amazon Macie account.
+type S3ClassificationScopeUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies S3 buckets to add or remove from the exclusion list defined by
+	// the classification scope for an Amazon Macie account.
+	//
+	// Excludes is a required field
+	Excludes *S3ClassificationScopeExclusionUpdate `locationName:"excludes" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScopeUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ClassificationScopeUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ClassificationScopeUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ClassificationScopeUpdate"}
+	if s.Excludes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Excludes"))
+	}
+	if s.Excludes != nil {
+		if err := s.Excludes.Validate(); err != nil {
+			invalidParams.AddNested("Excludes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *S3ClassificationScopeUpdate) SetExcludes(v *S3ClassificationScopeExclusionUpdate) *S3ClassificationScopeUpdate {
+	s.Excludes = v
 	return s
 }
 
@@ -18455,13 +21446,202 @@ func (s *SensitiveDataItem) SetTotalCount(v int64) *SensitiveDataItem {
 	return s
 }
 
+// Provides aggregated statistical data for sensitive data discovery metrics
+// that apply to S3 buckets. Each field contains aggregated data for all the
+// buckets that have a sensitivity score (sensitivityScore) of a specified value
+// or within a specified range (BucketStatisticsBySensitivity). If automated
+// sensitive data discovery is currently disabled for your account, the value
+// for each field is 0.
+type SensitivityAggregations struct {
+	_ struct{} `type:"structure"`
+
+	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
+
+	PubliclyAccessibleCount *int64 `locationName:"publiclyAccessibleCount" type:"long"`
+
+	TotalCount *int64 `locationName:"totalCount" type:"long"`
+
+	TotalSizeInBytes *int64 `locationName:"totalSizeInBytes" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityAggregations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityAggregations) GoString() string {
+	return s.String()
+}
+
+// SetClassifiableSizeInBytes sets the ClassifiableSizeInBytes field's value.
+func (s *SensitivityAggregations) SetClassifiableSizeInBytes(v int64) *SensitivityAggregations {
+	s.ClassifiableSizeInBytes = &v
+	return s
+}
+
+// SetPubliclyAccessibleCount sets the PubliclyAccessibleCount field's value.
+func (s *SensitivityAggregations) SetPubliclyAccessibleCount(v int64) *SensitivityAggregations {
+	s.PubliclyAccessibleCount = &v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *SensitivityAggregations) SetTotalCount(v int64) *SensitivityAggregations {
+	s.TotalCount = &v
+	return s
+}
+
+// SetTotalSizeInBytes sets the TotalSizeInBytes field's value.
+func (s *SensitivityAggregations) SetTotalSizeInBytes(v int64) *SensitivityAggregations {
+	s.TotalSizeInBytes = &v
+	return s
+}
+
+// Specifies managed data identifiers to exclude (not use) when performing automated
+// sensitive data discovery for an Amazon Macie account. For information about
+// the managed data identifiers that Amazon Macie currently provides, see Using
+// managed data identifiers (https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html)
+// in the Amazon Macie User Guide.
+type SensitivityInspectionTemplateExcludes struct {
+	_ struct{} `type:"structure"`
+
+	ManagedDataIdentifierIds []*string `locationName:"managedDataIdentifierIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityInspectionTemplateExcludes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityInspectionTemplateExcludes) GoString() string {
+	return s.String()
+}
+
+// SetManagedDataIdentifierIds sets the ManagedDataIdentifierIds field's value.
+func (s *SensitivityInspectionTemplateExcludes) SetManagedDataIdentifierIds(v []*string) *SensitivityInspectionTemplateExcludes {
+	s.ManagedDataIdentifierIds = v
+	return s
+}
+
+// Specifies the allow lists, custom data identifiers, and managed data identifiers
+// to include (use) when performing automated sensitive data discovery for an
+// Amazon Macie account. The configuration must specify at least one custom
+// data identifier or managed data identifier. For information about the managed
+// data identifiers that Amazon Macie currently provides, see Using managed
+// data identifiers (https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html)
+// in the Amazon Macie User Guide.
+type SensitivityInspectionTemplateIncludes struct {
+	_ struct{} `type:"structure"`
+
+	AllowListIds []*string `locationName:"allowListIds" type:"list"`
+
+	CustomDataIdentifierIds []*string `locationName:"customDataIdentifierIds" type:"list"`
+
+	ManagedDataIdentifierIds []*string `locationName:"managedDataIdentifierIds" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityInspectionTemplateIncludes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityInspectionTemplateIncludes) GoString() string {
+	return s.String()
+}
+
+// SetAllowListIds sets the AllowListIds field's value.
+func (s *SensitivityInspectionTemplateIncludes) SetAllowListIds(v []*string) *SensitivityInspectionTemplateIncludes {
+	s.AllowListIds = v
+	return s
+}
+
+// SetCustomDataIdentifierIds sets the CustomDataIdentifierIds field's value.
+func (s *SensitivityInspectionTemplateIncludes) SetCustomDataIdentifierIds(v []*string) *SensitivityInspectionTemplateIncludes {
+	s.CustomDataIdentifierIds = v
+	return s
+}
+
+// SetManagedDataIdentifierIds sets the ManagedDataIdentifierIds field's value.
+func (s *SensitivityInspectionTemplateIncludes) SetManagedDataIdentifierIds(v []*string) *SensitivityInspectionTemplateIncludes {
+	s.ManagedDataIdentifierIds = v
+	return s
+}
+
+// Provides information about the sensitivity inspection template for an Amazon
+// Macie account. Macie uses the template's settings when it performs automated
+// sensitive data discovery for the account.
+type SensitivityInspectionTemplatesEntry struct {
+	_ struct{} `type:"structure"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityInspectionTemplatesEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SensitivityInspectionTemplatesEntry) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *SensitivityInspectionTemplatesEntry) SetId(v string) *SensitivityInspectionTemplatesEntry {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SensitivityInspectionTemplatesEntry) SetName(v string) *SensitivityInspectionTemplatesEntry {
+	s.Name = &v
+	return s
+}
+
 // Provides information about the server-side encryption settings for an S3
 // bucket or S3 object.
 type ServerSideEncryption struct {
 	_ struct{} `type:"structure"`
 
 	// The type of server-side encryption that's used to encrypt an S3 object or
-	// objects in an S3 bucket. Valid values are:
+	// objects in an S3 bucket. Possible values are:
 	EncryptionType *string `locationName:"encryptionType" type:"string" enum:"EncryptionType"`
 
 	KmsMasterKeyId *string `locationName:"kmsMasterKeyId" type:"string"`
@@ -19040,6 +22220,49 @@ func (s *Statistics) SetApproximateNumberOfObjectsToProcess(v float64) *Statisti
 // SetNumberOfRuns sets the NumberOfRuns field's value.
 func (s *Statistics) SetNumberOfRuns(v float64) *Statistics {
 	s.NumberOfRuns = &v
+	return s
+}
+
+// Specifies a custom data identifier or managed data identifier that detected
+// a type of sensitive data to start excluding or including in an S3 bucket's
+// sensitivity score.
+type SuppressDataIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	// The type of data identifier that detected a specific type of sensitive data
+	// in an S3 bucket. Possible values are:
+	Type *string `locationName:"type" type:"string" enum:"DataIdentifierType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuppressDataIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuppressDataIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *SuppressDataIdentifier) SetId(v string) *SuppressDataIdentifier {
+	s.Id = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SuppressDataIdentifier) SetType(v string) *SuppressDataIdentifier {
+	s.Type = &v
 	return s
 }
 
@@ -19824,6 +23047,77 @@ func (s *UpdateAllowListOutput) SetId(v string) *UpdateAllowListOutput {
 	return s
 }
 
+// Enables or disables automated sensitive data discovery for an Amazon Macie
+// account.
+type UpdateAutomatedDiscoveryConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the automated sensitive data discovery configuration for an
+	// Amazon Macie account. Valid values are:
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AutomatedDiscoveryStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutomatedDiscoveryConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutomatedDiscoveryConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAutomatedDiscoveryConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAutomatedDiscoveryConfigurationInput"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateAutomatedDiscoveryConfigurationInput) SetStatus(v string) *UpdateAutomatedDiscoveryConfigurationInput {
+	s.Status = &v
+	return s
+}
+
+type UpdateAutomatedDiscoveryConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutomatedDiscoveryConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAutomatedDiscoveryConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 // Changes the status of a classification job. For more information about pausing,
 // resuming, or cancelling jobs, see Managing sensitive data discovery jobs
 // (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html)
@@ -19911,13 +23205,101 @@ func (s UpdateClassificationJobOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies new classification scope settings for an Amazon Macie account.
+// Macie uses these settings when it performs automated sensitive data discovery
+// for the account. To update the settings, automated sensitive data discovery
+// must currently be enabled for the account.
+type UpdateClassificationScopeInput struct {
+	_ struct{} `type:"structure"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// Specifies changes to the list of S3 buckets that are excluded from automated
+	// sensitive data discovery for an Amazon Macie account.
+	S3 *S3ClassificationScopeUpdate `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClassificationScopeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClassificationScopeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateClassificationScopeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateClassificationScopeInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateClassificationScopeInput) SetId(v string) *UpdateClassificationScopeInput {
+	s.Id = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *UpdateClassificationScopeInput) SetS3(v *S3ClassificationScopeUpdate) *UpdateClassificationScopeInput {
+	s.S3 = v
+	return s
+}
+
+type UpdateClassificationScopeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClassificationScopeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateClassificationScopeOutput) GoString() string {
+	return s.String()
+}
+
 // Specifies the criteria and other settings for a findings filter.
 type UpdateFindingsFilterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform on findings that meet the filter criteria. To suppress
-	// (automatically archive) findings that meet the criteria, set this value to
-	// ARCHIVE. Valid values are:
+	// The action to perform on findings that match the filter criteria. To suppress
+	// (automatically archive) findings that match the criteria, set this value
+	// to ARCHIVE. Valid values are:
 	Action *string `locationName:"action" type:"string" enum:"FindingsFilterAction"`
 
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
@@ -20271,6 +23653,162 @@ func (s UpdateOrganizationConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+// Updates the sensitivity scoring settings for an S3 bucket that Amazon Macie
+// monitors and analyzes for your account. The settings specify whether to exclude
+// or include occurrences of specific types of sensitive data in calculations
+// of the bucket's sensitivity score. You can update the settings only if automated
+// sensitive data discovery is currently enabled for your account.
+type UpdateResourceProfileDetectionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
+
+	SuppressDataIdentifiers []*SuppressDataIdentifier `locationName:"suppressDataIdentifiers" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileDetectionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileDetectionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourceProfileDetectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourceProfileDetectionsInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateResourceProfileDetectionsInput) SetResourceArn(v string) *UpdateResourceProfileDetectionsInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSuppressDataIdentifiers sets the SuppressDataIdentifiers field's value.
+func (s *UpdateResourceProfileDetectionsInput) SetSuppressDataIdentifiers(v []*SuppressDataIdentifier) *UpdateResourceProfileDetectionsInput {
+	s.SuppressDataIdentifiers = v
+	return s
+}
+
+type UpdateResourceProfileDetectionsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileDetectionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileDetectionsOutput) GoString() string {
+	return s.String()
+}
+
+// Specifies a new sensitivity score for an S3 bucket that Amazon Macie monitors
+// and analyzes for your account. To update the score, automated sensitive data
+// discovery must currently be enabled for your account.
+type UpdateResourceProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
+
+	SensitivityScoreOverride *int64 `locationName:"sensitivityScoreOverride" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourceProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourceProfileInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateResourceProfileInput) SetResourceArn(v string) *UpdateResourceProfileInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSensitivityScoreOverride sets the SensitivityScoreOverride field's value.
+func (s *UpdateResourceProfileInput) SetSensitivityScoreOverride(v int64) *UpdateResourceProfileInput {
+	s.SensitivityScoreOverride = &v
+	return s
+}
+
+type UpdateResourceProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceProfileOutput) GoString() string {
+	return s.String()
+}
+
 // Specifies the configuration settings for retrieving occurrences of sensitive
 // data reported by findings, and the status of the configuration for an Amazon
 // Macie account.
@@ -20369,6 +23907,115 @@ func (s *UpdateRevealConfigurationOutput) SetConfiguration(v *RevealConfiguratio
 	return s
 }
 
+// Specifies settings for the sensitivity inspection template for an Amazon
+// Macie account. Macie uses the template's settings when it performs automated
+// sensitive data discovery for the account. To update the settings, automated
+// sensitive data discovery must currently be enabled for the account.
+type UpdateSensitivityInspectionTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// Specifies managed data identifiers to exclude (not use) when performing automated
+	// sensitive data discovery for an Amazon Macie account. For information about
+	// the managed data identifiers that Amazon Macie currently provides, see Using
+	// managed data identifiers (https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html)
+	// in the Amazon Macie User Guide.
+	Excludes *SensitivityInspectionTemplateExcludes `locationName:"excludes" type:"structure"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// Specifies the allow lists, custom data identifiers, and managed data identifiers
+	// to include (use) when performing automated sensitive data discovery for an
+	// Amazon Macie account. The configuration must specify at least one custom
+	// data identifier or managed data identifier. For information about the managed
+	// data identifiers that Amazon Macie currently provides, see Using managed
+	// data identifiers (https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html)
+	// in the Amazon Macie User Guide.
+	Includes *SensitivityInspectionTemplateIncludes `locationName:"includes" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSensitivityInspectionTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSensitivityInspectionTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSensitivityInspectionTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSensitivityInspectionTemplateInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateSensitivityInspectionTemplateInput) SetDescription(v string) *UpdateSensitivityInspectionTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *UpdateSensitivityInspectionTemplateInput) SetExcludes(v *SensitivityInspectionTemplateExcludes) *UpdateSensitivityInspectionTemplateInput {
+	s.Excludes = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateSensitivityInspectionTemplateInput) SetId(v string) *UpdateSensitivityInspectionTemplateInput {
+	s.Id = &v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *UpdateSensitivityInspectionTemplateInput) SetIncludes(v *SensitivityInspectionTemplateIncludes) *UpdateSensitivityInspectionTemplateInput {
+	s.Includes = v
+	return s
+}
+
+type UpdateSensitivityInspectionTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSensitivityInspectionTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSensitivityInspectionTemplateOutput) GoString() string {
+	return s.String()
+}
+
 // Provides data for a specific usage metric and the corresponding quota for
 // an Amazon Macie account.
 type UsageByAccount struct {
@@ -20436,6 +24083,8 @@ type UsageRecord struct {
 
 	AccountId *string `locationName:"accountId" type:"string"`
 
+	AutomatedDiscoveryFreeTrialStartDate *time.Time `locationName:"automatedDiscoveryFreeTrialStartDate" type:"timestamp" timestampFormat:"iso8601"`
+
 	FreeTrialStartDate *time.Time `locationName:"freeTrialStartDate" type:"timestamp" timestampFormat:"iso8601"`
 
 	Usage []*UsageByAccount `locationName:"usage" type:"list"`
@@ -20462,6 +24111,12 @@ func (s UsageRecord) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *UsageRecord) SetAccountId(v string) *UsageRecord {
 	s.AccountId = &v
+	return s
+}
+
+// SetAutomatedDiscoveryFreeTrialStartDate sets the AutomatedDiscoveryFreeTrialStartDate field's value.
+func (s *UsageRecord) SetAutomatedDiscoveryFreeTrialStartDate(v time.Time) *UsageRecord {
+	s.AutomatedDiscoveryFreeTrialStartDate = &v
 	return s
 }
 
@@ -21002,6 +24657,24 @@ func AllowsUnencryptedObjectUploads_Values() []string {
 	}
 }
 
+// The status of the automated sensitive data discovery configuration for an
+// Amazon Macie account. Valid values are:
+const (
+	// AutomatedDiscoveryStatusEnabled is a AutomatedDiscoveryStatus enum value
+	AutomatedDiscoveryStatusEnabled = "ENABLED"
+
+	// AutomatedDiscoveryStatusDisabled is a AutomatedDiscoveryStatus enum value
+	AutomatedDiscoveryStatusDisabled = "DISABLED"
+)
+
+// AutomatedDiscoveryStatus_Values returns all elements of the AutomatedDiscoveryStatus enum
+func AutomatedDiscoveryStatus_Values() []string {
+	return []string{
+		AutomatedDiscoveryStatusEnabled,
+		AutomatedDiscoveryStatusDisabled,
+	}
+}
+
 // Specifies whether occurrences of sensitive data can be retrieved for a finding.
 // Possible values are:
 const (
@@ -21021,7 +24694,7 @@ func AvailabilityCode_Values() []string {
 }
 
 // The error code for an error that prevented Amazon Macie from retrieving and
-// processing information about an S3 bucket and the bucket's objects.
+// processing metadata from Amazon S3 for an S3 bucket and the bucket's objects.
 const (
 	// BucketMetadataErrorCodeAccessDenied is a BucketMetadataErrorCode enum value
 	BucketMetadataErrorCodeAccessDenied = "ACCESS_DENIED"
@@ -21031,6 +24704,28 @@ const (
 func BucketMetadataErrorCode_Values() []string {
 	return []string{
 		BucketMetadataErrorCodeAccessDenied,
+	}
+}
+
+// Specifies how to apply changes to the S3 bucket exclusion list defined by
+// the classification scope for an Amazon Macie account. Valid values are:
+const (
+	// ClassificationScopeUpdateOperationAdd is a ClassificationScopeUpdateOperation enum value
+	ClassificationScopeUpdateOperationAdd = "ADD"
+
+	// ClassificationScopeUpdateOperationReplace is a ClassificationScopeUpdateOperation enum value
+	ClassificationScopeUpdateOperationReplace = "REPLACE"
+
+	// ClassificationScopeUpdateOperationRemove is a ClassificationScopeUpdateOperation enum value
+	ClassificationScopeUpdateOperationRemove = "REMOVE"
+)
+
+// ClassificationScopeUpdateOperation_Values returns all elements of the ClassificationScopeUpdateOperation enum
+func ClassificationScopeUpdateOperation_Values() []string {
+	return []string{
+		ClassificationScopeUpdateOperationAdd,
+		ClassificationScopeUpdateOperationReplace,
+		ClassificationScopeUpdateOperationRemove,
 	}
 }
 
@@ -21067,6 +24762,24 @@ func DataIdentifierSeverity_Values() []string {
 		DataIdentifierSeverityLow,
 		DataIdentifierSeverityMedium,
 		DataIdentifierSeverityHigh,
+	}
+}
+
+// The type of data identifier that detected a specific type of sensitive data
+// in an S3 bucket. Possible values are:
+const (
+	// DataIdentifierTypeCustom is a DataIdentifierType enum value
+	DataIdentifierTypeCustom = "CUSTOM"
+
+	// DataIdentifierTypeManaged is a DataIdentifierType enum value
+	DataIdentifierTypeManaged = "MANAGED"
+)
+
+// DataIdentifierType_Values returns all elements of the DataIdentifierType enum
+func DataIdentifierType_Values() []string {
+	return []string{
+		DataIdentifierTypeCustom,
+		DataIdentifierTypeManaged,
 	}
 }
 
@@ -21127,7 +24840,7 @@ func EffectivePermission_Values() []string {
 }
 
 // The type of server-side encryption that's used to encrypt an S3 object or
-// objects in an S3 bucket. Valid values are:
+// objects in an S3 bucket. Possible values are:
 const (
 	// EncryptionTypeNone is a EncryptionType enum value
 	EncryptionTypeNone = "NONE"
@@ -21183,7 +24896,7 @@ func FindingActionType_Values() []string {
 	}
 }
 
-// The category of the finding. Valid values are:
+// The category of the finding. Possible values are:
 const (
 	// FindingCategoryClassification is a FindingCategory enum value
 	FindingCategoryClassification = "CLASSIFICATION"
@@ -21244,7 +24957,7 @@ func FindingStatisticsSortAttributeName_Values() []string {
 
 // The type of finding. For details about each type, see Types of Amazon Macie
 // findings (https://docs.aws.amazon.com/macie/latest/user/findings-types.html)
-// in the Amazon Macie User Guide. Valid values are:
+// in the Amazon Macie User Guide. Possible values are:
 const (
 	// FindingTypeSensitiveDataS3objectMultiple is a FindingType enum value
 	FindingTypeSensitiveDataS3objectMultiple = "SensitiveData:S3Object/Multiple"
@@ -21293,9 +25006,9 @@ func FindingType_Values() []string {
 	}
 }
 
-// The action to perform on findings that meet the filter criteria. To suppress
-// (automatically archive) findings that meet the criteria, set this value to
-// ARCHIVE. Valid values are:
+// The action to perform on findings that match the filter criteria. To suppress
+// (automatically archive) findings that match the criteria, set this value
+// to ARCHIVE. Valid values are:
 const (
 	// FindingsFilterActionArchive is a FindingsFilterAction enum value
 	FindingsFilterActionArchive = "ARCHIVE"
@@ -21597,16 +25310,20 @@ func OrderBy_Values() []string {
 }
 
 // Specifies how Amazon Macie found the sensitive data that produced a finding.
-// The only possible value is:
+// Possible values are:
 const (
 	// OriginTypeSensitiveDataDiscoveryJob is a OriginType enum value
 	OriginTypeSensitiveDataDiscoveryJob = "SENSITIVE_DATA_DISCOVERY_JOB"
+
+	// OriginTypeAutomatedSensitiveDataDiscovery is a OriginType enum value
+	OriginTypeAutomatedSensitiveDataDiscovery = "AUTOMATED_SENSITIVE_DATA_DISCOVERY"
 )
 
 // OriginType_Values returns all elements of the OriginType enum
 func OriginType_Values() []string {
 	return []string{
 		OriginTypeSensitiveDataDiscoveryJob,
+		OriginTypeAutomatedSensitiveDataDiscovery,
 	}
 }
 
@@ -22122,6 +25839,12 @@ const (
 
 	// UsageTypeSensitiveDataDiscovery is a UsageType enum value
 	UsageTypeSensitiveDataDiscovery = "SENSITIVE_DATA_DISCOVERY"
+
+	// UsageTypeAutomatedSensitiveDataDiscovery is a UsageType enum value
+	UsageTypeAutomatedSensitiveDataDiscovery = "AUTOMATED_SENSITIVE_DATA_DISCOVERY"
+
+	// UsageTypeAutomatedObjectMonitoring is a UsageType enum value
+	UsageTypeAutomatedObjectMonitoring = "AUTOMATED_OBJECT_MONITORING"
 )
 
 // UsageType_Values returns all elements of the UsageType enum
@@ -22129,6 +25852,8 @@ func UsageType_Values() []string {
 	return []string{
 		UsageTypeDataInventoryEvaluation,
 		UsageTypeSensitiveDataDiscovery,
+		UsageTypeAutomatedSensitiveDataDiscovery,
+		UsageTypeAutomatedObjectMonitoring,
 	}
 }
 

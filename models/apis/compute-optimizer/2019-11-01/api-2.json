@@ -551,7 +551,8 @@
       "members":{
         "cpuVendorArchitectures":{"shape":"CpuVendorArchitectures"},
         "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
-        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"}
+        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"},
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
       }
     },
     "EnhancedInfrastructureMetrics":{
@@ -785,7 +786,8 @@
         "EffectiveRecommendationPreferencesEnhancedInfrastructureMetrics",
         "EffectiveRecommendationPreferencesInferredWorkloadTypes",
         "InferredWorkloadTypes",
-        "RecommendationOptionsMigrationEffort"
+        "RecommendationOptionsMigrationEffort",
+        "EffectiveRecommendationPreferencesExternalMetricsSource"
       ]
     },
     "ExportableInstanceFields":{
@@ -863,6 +865,21 @@
     "ExportableVolumeFields":{
       "type":"list",
       "member":{"shape":"ExportableVolumeField"}
+    },
+    "ExternalMetricsPreference":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"ExternalMetricsSource"}
+      }
+    },
+    "ExternalMetricsSource":{
+      "type":"string",
+      "enum":[
+        "Datadog",
+        "Dynatrace",
+        "NewRelic",
+        "Instana"
+      ]
     },
     "FailureReason":{"type":"string"},
     "FileFormat":{
@@ -1005,7 +1022,8 @@
     "GetEffectiveRecommendationPreferencesResponse":{
       "type":"structure",
       "members":{
-        "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"}
+        "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
       }
     },
     "GetEnrollmentStatusRequest":{
@@ -1489,7 +1507,8 @@
         "resourceType":{"shape":"ResourceType"},
         "scope":{"shape":"Scope"},
         "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
-        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"}
+        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"},
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
       }
     },
     "PutRecommendationPreferencesResponse":{
@@ -1533,7 +1552,8 @@
       "type":"string",
       "enum":[
         "EnhancedInfrastructureMetrics",
-        "InferredWorkloadTypes"
+        "InferredWorkloadTypes",
+        "ExternalMetricsPreference"
       ]
     },
     "RecommendationPreferenceNames":{
@@ -1552,7 +1572,8 @@
         "scope":{"shape":"Scope"},
         "resourceType":{"shape":"ResourceType"},
         "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
-        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"}
+        "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"},
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
       }
     },
     "RecommendationPreferencesDetails":{
