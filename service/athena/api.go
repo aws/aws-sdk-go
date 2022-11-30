@@ -458,6 +458,94 @@ func (c *Athena) CreateNamedQueryWithContext(ctx aws.Context, input *CreateNamed
 	return out, req.Send()
 }
 
+const opCreateNotebook = "CreateNotebook"
+
+// CreateNotebookRequest generates a "aws/request.Request" representing the
+// client's request for the CreateNotebook operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateNotebook for more information on using the CreateNotebook
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateNotebookRequest method.
+//	req, resp := client.CreateNotebookRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreateNotebook
+func (c *Athena) CreateNotebookRequest(input *CreateNotebookInput) (req *request.Request, output *CreateNotebookOutput) {
+	op := &request.Operation{
+		Name:       opCreateNotebook,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateNotebookInput{}
+	}
+
+	output = &CreateNotebookOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateNotebook API operation for Amazon Athena.
+//
+// Creates an empty ipynb file in the specified Apache Spark enabled workgroup.
+// Throws an error if a file in the workgroup with the same name already exists.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation CreateNotebook for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreateNotebook
+func (c *Athena) CreateNotebook(input *CreateNotebookInput) (*CreateNotebookOutput, error) {
+	req, out := c.CreateNotebookRequest(input)
+	return out, req.Send()
+}
+
+// CreateNotebookWithContext is the same as CreateNotebook with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateNotebook for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) CreateNotebookWithContext(ctx aws.Context, input *CreateNotebookInput, opts ...request.Option) (*CreateNotebookOutput, error) {
+	req, out := c.CreateNotebookRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreatePreparedStatement = "CreatePreparedStatement"
 
 // CreatePreparedStatementRequest generates a "aws/request.Request" representing the
@@ -543,6 +631,95 @@ func (c *Athena) CreatePreparedStatementWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreatePresignedNotebookUrl = "CreatePresignedNotebookUrl"
+
+// CreatePresignedNotebookUrlRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePresignedNotebookUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePresignedNotebookUrl for more information on using the CreatePresignedNotebookUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePresignedNotebookUrlRequest method.
+//	req, resp := client.CreatePresignedNotebookUrlRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreatePresignedNotebookUrl
+func (c *Athena) CreatePresignedNotebookUrlRequest(input *CreatePresignedNotebookUrlInput) (req *request.Request, output *CreatePresignedNotebookUrlOutput) {
+	op := &request.Operation{
+		Name:       opCreatePresignedNotebookUrl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreatePresignedNotebookUrlInput{}
+	}
+
+	output = &CreatePresignedNotebookUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePresignedNotebookUrl API operation for Amazon Athena.
+//
+// Gets an authentication token and the URL at which the notebook can be accessed.
+// During programmatic access, CreatePresignedNotebookUrl must be called every
+// 10 minutes to refresh the authentication token.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation CreatePresignedNotebookUrl for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreatePresignedNotebookUrl
+func (c *Athena) CreatePresignedNotebookUrl(input *CreatePresignedNotebookUrlInput) (*CreatePresignedNotebookUrlOutput, error) {
+	req, out := c.CreatePresignedNotebookUrlRequest(input)
+	return out, req.Send()
+}
+
+// CreatePresignedNotebookUrlWithContext is the same as CreatePresignedNotebookUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePresignedNotebookUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) CreatePresignedNotebookUrlWithContext(ctx aws.Context, input *CreatePresignedNotebookUrlInput, opts ...request.Option) (*CreatePresignedNotebookUrlOutput, error) {
+	req, out := c.CreatePresignedNotebookUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateWorkGroup = "CreateWorkGroup"
 
 // CreateWorkGroupRequest generates a "aws/request.Request" representing the
@@ -587,7 +764,10 @@ func (c *Athena) CreateWorkGroupRequest(input *CreateWorkGroupInput) (req *reque
 
 // CreateWorkGroup API operation for Amazon Athena.
 //
-// Creates a workgroup with the specified name.
+// Creates a workgroup with the specified name. Only one of Configurations or
+// Configuration can be specified; Configurations for a workgroup with multi
+// engine support (for example, an Apache Spark enabled workgroup) or Configuration
+// for an Athena SQL workgroup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -803,6 +983,94 @@ func (c *Athena) DeleteNamedQueryWithContext(ctx aws.Context, input *DeleteNamed
 	return out, req.Send()
 }
 
+const opDeleteNotebook = "DeleteNotebook"
+
+// DeleteNotebookRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteNotebook operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteNotebook for more information on using the DeleteNotebook
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteNotebookRequest method.
+//	req, resp := client.DeleteNotebookRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/DeleteNotebook
+func (c *Athena) DeleteNotebookRequest(input *DeleteNotebookInput) (req *request.Request, output *DeleteNotebookOutput) {
+	op := &request.Operation{
+		Name:       opDeleteNotebook,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteNotebookInput{}
+	}
+
+	output = &DeleteNotebookOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteNotebook API operation for Amazon Athena.
+//
+// Deletes the specified notebook.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation DeleteNotebook for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/DeleteNotebook
+func (c *Athena) DeleteNotebook(input *DeleteNotebookInput) (*DeleteNotebookOutput, error) {
+	req, out := c.DeleteNotebookRequest(input)
+	return out, req.Send()
+}
+
+// DeleteNotebookWithContext is the same as DeleteNotebook with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteNotebook for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) DeleteNotebookWithContext(ctx aws.Context, input *DeleteNotebookInput, opts ...request.Option) (*DeleteNotebookOutput, error) {
+	req, out := c.DeleteNotebookRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeletePreparedStatement = "DeletePreparedStatement"
 
 // DeletePreparedStatementRequest generates a "aws/request.Request" representing the
@@ -973,6 +1241,351 @@ func (c *Athena) DeleteWorkGroup(input *DeleteWorkGroupInput) (*DeleteWorkGroupO
 // for more information on using Contexts.
 func (c *Athena) DeleteWorkGroupWithContext(ctx aws.Context, input *DeleteWorkGroupInput, opts ...request.Option) (*DeleteWorkGroupOutput, error) {
 	req, out := c.DeleteWorkGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opExportNotebook = "ExportNotebook"
+
+// ExportNotebookRequest generates a "aws/request.Request" representing the
+// client's request for the ExportNotebook operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportNotebook for more information on using the ExportNotebook
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ExportNotebookRequest method.
+//	req, resp := client.ExportNotebookRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ExportNotebook
+func (c *Athena) ExportNotebookRequest(input *ExportNotebookInput) (req *request.Request, output *ExportNotebookOutput) {
+	op := &request.Operation{
+		Name:       opExportNotebook,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportNotebookInput{}
+	}
+
+	output = &ExportNotebookOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportNotebook API operation for Amazon Athena.
+//
+// Exports the specified notebook and its metadata.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ExportNotebook for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ExportNotebook
+func (c *Athena) ExportNotebook(input *ExportNotebookInput) (*ExportNotebookOutput, error) {
+	req, out := c.ExportNotebookRequest(input)
+	return out, req.Send()
+}
+
+// ExportNotebookWithContext is the same as ExportNotebook with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportNotebook for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ExportNotebookWithContext(ctx aws.Context, input *ExportNotebookInput, opts ...request.Option) (*ExportNotebookOutput, error) {
+	req, out := c.ExportNotebookRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCalculationExecution = "GetCalculationExecution"
+
+// GetCalculationExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the GetCalculationExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCalculationExecution for more information on using the GetCalculationExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCalculationExecutionRequest method.
+//	req, resp := client.GetCalculationExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCalculationExecution
+func (c *Athena) GetCalculationExecutionRequest(input *GetCalculationExecutionInput) (req *request.Request, output *GetCalculationExecutionOutput) {
+	op := &request.Operation{
+		Name:       opGetCalculationExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCalculationExecutionInput{}
+	}
+
+	output = &GetCalculationExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCalculationExecution API operation for Amazon Athena.
+//
+// Describes a previously submitted calculation execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetCalculationExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCalculationExecution
+func (c *Athena) GetCalculationExecution(input *GetCalculationExecutionInput) (*GetCalculationExecutionOutput, error) {
+	req, out := c.GetCalculationExecutionRequest(input)
+	return out, req.Send()
+}
+
+// GetCalculationExecutionWithContext is the same as GetCalculationExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCalculationExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetCalculationExecutionWithContext(ctx aws.Context, input *GetCalculationExecutionInput, opts ...request.Option) (*GetCalculationExecutionOutput, error) {
+	req, out := c.GetCalculationExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCalculationExecutionCode = "GetCalculationExecutionCode"
+
+// GetCalculationExecutionCodeRequest generates a "aws/request.Request" representing the
+// client's request for the GetCalculationExecutionCode operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCalculationExecutionCode for more information on using the GetCalculationExecutionCode
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCalculationExecutionCodeRequest method.
+//	req, resp := client.GetCalculationExecutionCodeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCalculationExecutionCode
+func (c *Athena) GetCalculationExecutionCodeRequest(input *GetCalculationExecutionCodeInput) (req *request.Request, output *GetCalculationExecutionCodeOutput) {
+	op := &request.Operation{
+		Name:       opGetCalculationExecutionCode,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCalculationExecutionCodeInput{}
+	}
+
+	output = &GetCalculationExecutionCodeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCalculationExecutionCode API operation for Amazon Athena.
+//
+// Retrieves a pre-signed URL to a copy of the code that was executed for the
+// calculation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetCalculationExecutionCode for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCalculationExecutionCode
+func (c *Athena) GetCalculationExecutionCode(input *GetCalculationExecutionCodeInput) (*GetCalculationExecutionCodeOutput, error) {
+	req, out := c.GetCalculationExecutionCodeRequest(input)
+	return out, req.Send()
+}
+
+// GetCalculationExecutionCodeWithContext is the same as GetCalculationExecutionCode with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCalculationExecutionCode for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetCalculationExecutionCodeWithContext(ctx aws.Context, input *GetCalculationExecutionCodeInput, opts ...request.Option) (*GetCalculationExecutionCodeOutput, error) {
+	req, out := c.GetCalculationExecutionCodeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCalculationExecutionStatus = "GetCalculationExecutionStatus"
+
+// GetCalculationExecutionStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetCalculationExecutionStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCalculationExecutionStatus for more information on using the GetCalculationExecutionStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCalculationExecutionStatusRequest method.
+//	req, resp := client.GetCalculationExecutionStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCalculationExecutionStatus
+func (c *Athena) GetCalculationExecutionStatusRequest(input *GetCalculationExecutionStatusInput) (req *request.Request, output *GetCalculationExecutionStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetCalculationExecutionStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCalculationExecutionStatusInput{}
+	}
+
+	output = &GetCalculationExecutionStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCalculationExecutionStatus API operation for Amazon Athena.
+//
+// Gets the status of a current calculation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetCalculationExecutionStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetCalculationExecutionStatus
+func (c *Athena) GetCalculationExecutionStatus(input *GetCalculationExecutionStatusInput) (*GetCalculationExecutionStatusOutput, error) {
+	req, out := c.GetCalculationExecutionStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetCalculationExecutionStatusWithContext is the same as GetCalculationExecutionStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCalculationExecutionStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetCalculationExecutionStatusWithContext(ctx aws.Context, input *GetCalculationExecutionStatusInput, opts ...request.Option) (*GetCalculationExecutionStatusOutput, error) {
+	req, out := c.GetCalculationExecutionStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1233,6 +1846,93 @@ func (c *Athena) GetNamedQuery(input *GetNamedQueryInput) (*GetNamedQueryOutput,
 // for more information on using Contexts.
 func (c *Athena) GetNamedQueryWithContext(ctx aws.Context, input *GetNamedQueryInput, opts ...request.Option) (*GetNamedQueryOutput, error) {
 	req, out := c.GetNamedQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetNotebookMetadata = "GetNotebookMetadata"
+
+// GetNotebookMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the GetNotebookMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNotebookMetadata for more information on using the GetNotebookMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetNotebookMetadataRequest method.
+//	req, resp := client.GetNotebookMetadataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetNotebookMetadata
+func (c *Athena) GetNotebookMetadataRequest(input *GetNotebookMetadataInput) (req *request.Request, output *GetNotebookMetadataOutput) {
+	op := &request.Operation{
+		Name:       opGetNotebookMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetNotebookMetadataInput{}
+	}
+
+	output = &GetNotebookMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNotebookMetadata API operation for Amazon Athena.
+//
+// Retrieves notebook metadata for the specified notebook ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetNotebookMetadata for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetNotebookMetadata
+func (c *Athena) GetNotebookMetadata(input *GetNotebookMetadataInput) (*GetNotebookMetadataOutput, error) {
+	req, out := c.GetNotebookMetadataRequest(input)
+	return out, req.Send()
+}
+
+// GetNotebookMetadataWithContext is the same as GetNotebookMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNotebookMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetNotebookMetadataWithContext(ctx aws.Context, input *GetNotebookMetadataInput, opts ...request.Option) (*GetNotebookMetadataOutput, error) {
+	req, out := c.GetNotebookMetadataRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1657,6 +2357,181 @@ func (c *Athena) GetQueryRuntimeStatisticsWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opGetSession = "GetSession"
+
+// GetSessionRequest generates a "aws/request.Request" representing the
+// client's request for the GetSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSession for more information on using the GetSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSessionRequest method.
+//	req, resp := client.GetSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetSession
+func (c *Athena) GetSessionRequest(input *GetSessionInput) (req *request.Request, output *GetSessionOutput) {
+	op := &request.Operation{
+		Name:       opGetSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSessionInput{}
+	}
+
+	output = &GetSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSession API operation for Amazon Athena.
+//
+// Gets the full details of a previously created session, including the session
+// status and configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetSession
+func (c *Athena) GetSession(input *GetSessionInput) (*GetSessionOutput, error) {
+	req, out := c.GetSessionRequest(input)
+	return out, req.Send()
+}
+
+// GetSessionWithContext is the same as GetSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetSessionWithContext(ctx aws.Context, input *GetSessionInput, opts ...request.Option) (*GetSessionOutput, error) {
+	req, out := c.GetSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSessionStatus = "GetSessionStatus"
+
+// GetSessionStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetSessionStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSessionStatus for more information on using the GetSessionStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSessionStatusRequest method.
+//	req, resp := client.GetSessionStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetSessionStatus
+func (c *Athena) GetSessionStatusRequest(input *GetSessionStatusInput) (req *request.Request, output *GetSessionStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetSessionStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSessionStatusInput{}
+	}
+
+	output = &GetSessionStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSessionStatus API operation for Amazon Athena.
+//
+// Gets the current status of a session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetSessionStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetSessionStatus
+func (c *Athena) GetSessionStatus(input *GetSessionStatusInput) (*GetSessionStatusOutput, error) {
+	req, out := c.GetSessionStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetSessionStatusWithContext is the same as GetSessionStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSessionStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetSessionStatusWithContext(ctx aws.Context, input *GetSessionStatusInput, opts ...request.Option) (*GetSessionStatusOutput, error) {
+	req, out := c.GetSessionStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetTableMetadata = "GetTableMetadata"
 
 // GetTableMetadataRequest generates a "aws/request.Request" representing the
@@ -1830,6 +2705,386 @@ func (c *Athena) GetWorkGroupWithContext(ctx aws.Context, input *GetWorkGroupInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opImportNotebook = "ImportNotebook"
+
+// ImportNotebookRequest generates a "aws/request.Request" representing the
+// client's request for the ImportNotebook operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportNotebook for more information on using the ImportNotebook
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ImportNotebookRequest method.
+//	req, resp := client.ImportNotebookRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ImportNotebook
+func (c *Athena) ImportNotebookRequest(input *ImportNotebookInput) (req *request.Request, output *ImportNotebookOutput) {
+	op := &request.Operation{
+		Name:       opImportNotebook,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportNotebookInput{}
+	}
+
+	output = &ImportNotebookOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportNotebook API operation for Amazon Athena.
+//
+// Imports a single ipynb file to a Spark enabled workgroup. The maximum file
+// size that can be imported is 10 megabytes. If an ipynb file with the same
+// name already exists in the workgroup, throws an error.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ImportNotebook for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ImportNotebook
+func (c *Athena) ImportNotebook(input *ImportNotebookInput) (*ImportNotebookOutput, error) {
+	req, out := c.ImportNotebookRequest(input)
+	return out, req.Send()
+}
+
+// ImportNotebookWithContext is the same as ImportNotebook with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportNotebook for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ImportNotebookWithContext(ctx aws.Context, input *ImportNotebookInput, opts ...request.Option) (*ImportNotebookOutput, error) {
+	req, out := c.ImportNotebookRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListApplicationDPUSizes = "ListApplicationDPUSizes"
+
+// ListApplicationDPUSizesRequest generates a "aws/request.Request" representing the
+// client's request for the ListApplicationDPUSizes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListApplicationDPUSizes for more information on using the ListApplicationDPUSizes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListApplicationDPUSizesRequest method.
+//	req, resp := client.ListApplicationDPUSizesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListApplicationDPUSizes
+func (c *Athena) ListApplicationDPUSizesRequest(input *ListApplicationDPUSizesInput) (req *request.Request, output *ListApplicationDPUSizesOutput) {
+	op := &request.Operation{
+		Name:       opListApplicationDPUSizes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListApplicationDPUSizesInput{}
+	}
+
+	output = &ListApplicationDPUSizesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListApplicationDPUSizes API operation for Amazon Athena.
+//
+// Returns the supported DPU sizes for the supported application runtimes (for
+// example, Jupyter 1.0).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListApplicationDPUSizes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListApplicationDPUSizes
+func (c *Athena) ListApplicationDPUSizes(input *ListApplicationDPUSizesInput) (*ListApplicationDPUSizesOutput, error) {
+	req, out := c.ListApplicationDPUSizesRequest(input)
+	return out, req.Send()
+}
+
+// ListApplicationDPUSizesWithContext is the same as ListApplicationDPUSizes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListApplicationDPUSizes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListApplicationDPUSizesWithContext(ctx aws.Context, input *ListApplicationDPUSizesInput, opts ...request.Option) (*ListApplicationDPUSizesOutput, error) {
+	req, out := c.ListApplicationDPUSizesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListApplicationDPUSizesPages iterates over the pages of a ListApplicationDPUSizes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApplicationDPUSizes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApplicationDPUSizes operation.
+//	pageNum := 0
+//	err := client.ListApplicationDPUSizesPages(params,
+//	    func(page *athena.ListApplicationDPUSizesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Athena) ListApplicationDPUSizesPages(input *ListApplicationDPUSizesInput, fn func(*ListApplicationDPUSizesOutput, bool) bool) error {
+	return c.ListApplicationDPUSizesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApplicationDPUSizesPagesWithContext same as ListApplicationDPUSizesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListApplicationDPUSizesPagesWithContext(ctx aws.Context, input *ListApplicationDPUSizesInput, fn func(*ListApplicationDPUSizesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApplicationDPUSizesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApplicationDPUSizesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApplicationDPUSizesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCalculationExecutions = "ListCalculationExecutions"
+
+// ListCalculationExecutionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCalculationExecutions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCalculationExecutions for more information on using the ListCalculationExecutions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCalculationExecutionsRequest method.
+//	req, resp := client.ListCalculationExecutionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListCalculationExecutions
+func (c *Athena) ListCalculationExecutionsRequest(input *ListCalculationExecutionsInput) (req *request.Request, output *ListCalculationExecutionsOutput) {
+	op := &request.Operation{
+		Name:       opListCalculationExecutions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCalculationExecutionsInput{}
+	}
+
+	output = &ListCalculationExecutionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCalculationExecutions API operation for Amazon Athena.
+//
+// Lists the calculations that have been submitted to a session in descending
+// order. Newer calculations are listed first; older calculations are listed
+// later.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListCalculationExecutions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListCalculationExecutions
+func (c *Athena) ListCalculationExecutions(input *ListCalculationExecutionsInput) (*ListCalculationExecutionsOutput, error) {
+	req, out := c.ListCalculationExecutionsRequest(input)
+	return out, req.Send()
+}
+
+// ListCalculationExecutionsWithContext is the same as ListCalculationExecutions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCalculationExecutions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListCalculationExecutionsWithContext(ctx aws.Context, input *ListCalculationExecutionsInput, opts ...request.Option) (*ListCalculationExecutionsOutput, error) {
+	req, out := c.ListCalculationExecutionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCalculationExecutionsPages iterates over the pages of a ListCalculationExecutions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCalculationExecutions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCalculationExecutions operation.
+//	pageNum := 0
+//	err := client.ListCalculationExecutionsPages(params,
+//	    func(page *athena.ListCalculationExecutionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Athena) ListCalculationExecutionsPages(input *ListCalculationExecutionsInput, fn func(*ListCalculationExecutionsOutput, bool) bool) error {
+	return c.ListCalculationExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCalculationExecutionsPagesWithContext same as ListCalculationExecutionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListCalculationExecutionsPagesWithContext(ctx aws.Context, input *ListCalculationExecutionsInput, fn func(*ListCalculationExecutionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCalculationExecutionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCalculationExecutionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCalculationExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListDataCatalogs = "ListDataCatalogs"
@@ -2263,6 +3518,152 @@ func (c *Athena) ListEngineVersionsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListExecutors = "ListExecutors"
+
+// ListExecutorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExecutors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExecutors for more information on using the ListExecutors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListExecutorsRequest method.
+//	req, resp := client.ListExecutorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListExecutors
+func (c *Athena) ListExecutorsRequest(input *ListExecutorsInput) (req *request.Request, output *ListExecutorsOutput) {
+	op := &request.Operation{
+		Name:       opListExecutors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExecutorsInput{}
+	}
+
+	output = &ListExecutorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExecutors API operation for Amazon Athena.
+//
+// Lists, in descending order, the executors that have been submitted to a session.
+// Newer executors are listed first; older executors are listed later. The result
+// can be optionally filtered by state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListExecutors for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListExecutors
+func (c *Athena) ListExecutors(input *ListExecutorsInput) (*ListExecutorsOutput, error) {
+	req, out := c.ListExecutorsRequest(input)
+	return out, req.Send()
+}
+
+// ListExecutorsWithContext is the same as ListExecutors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExecutors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListExecutorsWithContext(ctx aws.Context, input *ListExecutorsInput, opts ...request.Option) (*ListExecutorsOutput, error) {
+	req, out := c.ListExecutorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExecutorsPages iterates over the pages of a ListExecutors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExecutors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListExecutors operation.
+//	pageNum := 0
+//	err := client.ListExecutorsPages(params,
+//	    func(page *athena.ListExecutorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Athena) ListExecutorsPages(input *ListExecutorsInput, fn func(*ListExecutorsOutput, bool) bool) error {
+	return c.ListExecutorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExecutorsPagesWithContext same as ListExecutorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListExecutorsPagesWithContext(ctx aws.Context, input *ListExecutorsInput, fn func(*ListExecutorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExecutorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExecutorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExecutorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListNamedQueries = "ListNamedQueries"
 
 // ListNamedQueriesRequest generates a "aws/request.Request" representing the
@@ -2408,6 +3809,182 @@ func (c *Athena) ListNamedQueriesPagesWithContext(ctx aws.Context, input *ListNa
 	}
 
 	return p.Err()
+}
+
+const opListNotebookMetadata = "ListNotebookMetadata"
+
+// ListNotebookMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the ListNotebookMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListNotebookMetadata for more information on using the ListNotebookMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListNotebookMetadataRequest method.
+//	req, resp := client.ListNotebookMetadataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListNotebookMetadata
+func (c *Athena) ListNotebookMetadataRequest(input *ListNotebookMetadataInput) (req *request.Request, output *ListNotebookMetadataOutput) {
+	op := &request.Operation{
+		Name:       opListNotebookMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListNotebookMetadataInput{}
+	}
+
+	output = &ListNotebookMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListNotebookMetadata API operation for Amazon Athena.
+//
+// Displays the notebook files for the specified workgroup in paginated format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListNotebookMetadata for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListNotebookMetadata
+func (c *Athena) ListNotebookMetadata(input *ListNotebookMetadataInput) (*ListNotebookMetadataOutput, error) {
+	req, out := c.ListNotebookMetadataRequest(input)
+	return out, req.Send()
+}
+
+// ListNotebookMetadataWithContext is the same as ListNotebookMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListNotebookMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListNotebookMetadataWithContext(ctx aws.Context, input *ListNotebookMetadataInput, opts ...request.Option) (*ListNotebookMetadataOutput, error) {
+	req, out := c.ListNotebookMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListNotebookSessions = "ListNotebookSessions"
+
+// ListNotebookSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListNotebookSessions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListNotebookSessions for more information on using the ListNotebookSessions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListNotebookSessionsRequest method.
+//	req, resp := client.ListNotebookSessionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListNotebookSessions
+func (c *Athena) ListNotebookSessionsRequest(input *ListNotebookSessionsInput) (req *request.Request, output *ListNotebookSessionsOutput) {
+	op := &request.Operation{
+		Name:       opListNotebookSessions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListNotebookSessionsInput{}
+	}
+
+	output = &ListNotebookSessionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListNotebookSessions API operation for Amazon Athena.
+//
+// Lists, in descending order, the sessions that have been created in a notebook
+// that are in an active state like CREATING, CREATED, IDLE or BUSY. Newer sessions
+// are listed first; older sessions are listed later.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListNotebookSessions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListNotebookSessions
+func (c *Athena) ListNotebookSessions(input *ListNotebookSessionsInput) (*ListNotebookSessionsOutput, error) {
+	req, out := c.ListNotebookSessionsRequest(input)
+	return out, req.Send()
+}
+
+// ListNotebookSessionsWithContext is the same as ListNotebookSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListNotebookSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListNotebookSessionsWithContext(ctx aws.Context, input *ListNotebookSessionsInput, opts ...request.Option) (*ListNotebookSessionsOutput, error) {
+	req, out := c.ListNotebookSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListPreparedStatements = "ListPreparedStatements"
@@ -2692,6 +4269,152 @@ func (c *Athena) ListQueryExecutionsPagesWithContext(ctx aws.Context, input *Lis
 
 	for p.Next() {
 		if !fn(p.Page().(*ListQueryExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSessions = "ListSessions"
+
+// ListSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSessions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSessions for more information on using the ListSessions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSessionsRequest method.
+//	req, resp := client.ListSessionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListSessions
+func (c *Athena) ListSessionsRequest(input *ListSessionsInput) (req *request.Request, output *ListSessionsOutput) {
+	op := &request.Operation{
+		Name:       opListSessions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSessionsInput{}
+	}
+
+	output = &ListSessionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSessions API operation for Amazon Athena.
+//
+// Lists the sessions in a workgroup that are in an active state like CREATING,
+// CREATED, IDLE, or BUSY. Newer sessions are listed first; older sessions are
+// listed later.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListSessions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListSessions
+func (c *Athena) ListSessions(input *ListSessionsInput) (*ListSessionsOutput, error) {
+	req, out := c.ListSessionsRequest(input)
+	return out, req.Send()
+}
+
+// ListSessionsWithContext is the same as ListSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListSessionsWithContext(ctx aws.Context, input *ListSessionsInput, opts ...request.Option) (*ListSessionsOutput, error) {
+	req, out := c.ListSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSessionsPages iterates over the pages of a ListSessions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSessions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSessions operation.
+//	pageNum := 0
+//	err := client.ListSessionsPages(params,
+//	    func(page *athena.ListSessionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Athena) ListSessionsPages(input *ListSessionsInput, fn func(*ListSessionsOutput, bool) bool) error {
+	return c.ListSessionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSessionsPagesWithContext same as ListSessionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListSessionsPagesWithContext(ctx aws.Context, input *ListSessionsInput, fn func(*ListSessionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSessionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSessionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSessionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3132,6 +4855,94 @@ func (c *Athena) ListWorkGroupsPagesWithContext(ctx aws.Context, input *ListWork
 	return p.Err()
 }
 
+const opStartCalculationExecution = "StartCalculationExecution"
+
+// StartCalculationExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StartCalculationExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCalculationExecution for more information on using the StartCalculationExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartCalculationExecutionRequest method.
+//	req, resp := client.StartCalculationExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/StartCalculationExecution
+func (c *Athena) StartCalculationExecutionRequest(input *StartCalculationExecutionInput) (req *request.Request, output *StartCalculationExecutionOutput) {
+	op := &request.Operation{
+		Name:       opStartCalculationExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartCalculationExecutionInput{}
+	}
+
+	output = &StartCalculationExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartCalculationExecution API operation for Amazon Athena.
+//
+// Submits calculations for execution within a session. You can supply the code
+// to run as an inline code block within the request or as an Amazon S3 URL.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation StartCalculationExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/StartCalculationExecution
+func (c *Athena) StartCalculationExecution(input *StartCalculationExecutionInput) (*StartCalculationExecutionOutput, error) {
+	req, out := c.StartCalculationExecutionRequest(input)
+	return out, req.Send()
+}
+
+// StartCalculationExecutionWithContext is the same as StartCalculationExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCalculationExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) StartCalculationExecutionWithContext(ctx aws.Context, input *StartCalculationExecutionInput, opts ...request.Option) (*StartCalculationExecutionOutput, error) {
+	req, out := c.StartCalculationExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartQueryExecution = "StartQueryExecution"
 
 // StartQueryExecutionRequest generates a "aws/request.Request" representing the
@@ -3219,6 +5030,190 @@ func (c *Athena) StartQueryExecution(input *StartQueryExecutionInput) (*StartQue
 // for more information on using Contexts.
 func (c *Athena) StartQueryExecutionWithContext(ctx aws.Context, input *StartQueryExecutionInput, opts ...request.Option) (*StartQueryExecutionOutput, error) {
 	req, out := c.StartQueryExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSession = "StartSession"
+
+// StartSessionRequest generates a "aws/request.Request" representing the
+// client's request for the StartSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSession for more information on using the StartSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSessionRequest method.
+//	req, resp := client.StartSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/StartSession
+func (c *Athena) StartSessionRequest(input *StartSessionInput) (req *request.Request, output *StartSessionOutput) {
+	op := &request.Operation{
+		Name:       opStartSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartSessionInput{}
+	}
+
+	output = &StartSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSession API operation for Amazon Athena.
+//
+// Creates a session for running calculations within a workgroup. The session
+// is ready when it reaches an IDLE state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation StartSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+//   - SessionAlreadyExistsException
+//     The specified session already exists.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/StartSession
+func (c *Athena) StartSession(input *StartSessionInput) (*StartSessionOutput, error) {
+	req, out := c.StartSessionRequest(input)
+	return out, req.Send()
+}
+
+// StartSessionWithContext is the same as StartSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) StartSessionWithContext(ctx aws.Context, input *StartSessionInput, opts ...request.Option) (*StartSessionOutput, error) {
+	req, out := c.StartSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopCalculationExecution = "StopCalculationExecution"
+
+// StopCalculationExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StopCalculationExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopCalculationExecution for more information on using the StopCalculationExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopCalculationExecutionRequest method.
+//	req, resp := client.StopCalculationExecutionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/StopCalculationExecution
+func (c *Athena) StopCalculationExecutionRequest(input *StopCalculationExecutionInput) (req *request.Request, output *StopCalculationExecutionOutput) {
+	op := &request.Operation{
+		Name:       opStopCalculationExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopCalculationExecutionInput{}
+	}
+
+	output = &StopCalculationExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopCalculationExecution API operation for Amazon Athena.
+//
+// Requests the cancellation of a calculation. A StopCalculationExecution call
+// on a calculation that is already in a terminal state (for example, STOPPED,
+// FAILED, or COMPLETED) succeeds but has no effect.
+//
+// Cancelling a calculation is done on a best effort basis. If a calculation
+// cannot be cancelled, you can be charged for its completion. If you are concerned
+// about being charged for a calculation that cannot be cancelled, consider
+// terminating the session in which the calculation is running.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation StopCalculationExecution for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/StopCalculationExecution
+func (c *Athena) StopCalculationExecution(input *StopCalculationExecutionInput) (*StopCalculationExecutionOutput, error) {
+	req, out := c.StopCalculationExecutionRequest(input)
+	return out, req.Send()
+}
+
+// StopCalculationExecutionWithContext is the same as StopCalculationExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopCalculationExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) StopCalculationExecutionWithContext(ctx aws.Context, input *StopCalculationExecutionInput, opts ...request.Option) (*StopCalculationExecutionOutput, error) {
+	req, out := c.StopCalculationExecutionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3408,6 +5403,96 @@ func (c *Athena) TagResource(input *TagResourceInput) (*TagResourceOutput, error
 // for more information on using Contexts.
 func (c *Athena) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTerminateSession = "TerminateSession"
+
+// TerminateSessionRequest generates a "aws/request.Request" representing the
+// client's request for the TerminateSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TerminateSession for more information on using the TerminateSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TerminateSessionRequest method.
+//	req, resp := client.TerminateSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/TerminateSession
+func (c *Athena) TerminateSessionRequest(input *TerminateSessionInput) (req *request.Request, output *TerminateSessionOutput) {
+	op := &request.Operation{
+		Name:       opTerminateSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TerminateSessionInput{}
+	}
+
+	output = &TerminateSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// TerminateSession API operation for Amazon Athena.
+//
+// Terminates an active session. A TerminateSession call on a session that is
+// already inactive (for example, in a FAILED, TERMINATED or TERMINATING state)
+// succeeds but has no effect. Calculations running in the session when TerminateSession
+// is called are forcefully stopped, but may display as FAILED instead of STOPPED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation TerminateSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - ResourceNotFoundException
+//     A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/TerminateSession
+func (c *Athena) TerminateSession(input *TerminateSessionInput) (*TerminateSessionOutput, error) {
+	req, out := c.TerminateSessionRequest(input)
+	return out, req.Send()
+}
+
+// TerminateSessionWithContext is the same as TerminateSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TerminateSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) TerminateSessionWithContext(ctx aws.Context, input *TerminateSessionInput, opts ...request.Option) (*TerminateSessionOutput, error) {
+	req, out := c.TerminateSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3671,6 +5756,182 @@ func (c *Athena) UpdateNamedQueryWithContext(ctx aws.Context, input *UpdateNamed
 	return out, req.Send()
 }
 
+const opUpdateNotebook = "UpdateNotebook"
+
+// UpdateNotebookRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateNotebook operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateNotebook for more information on using the UpdateNotebook
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateNotebookRequest method.
+//	req, resp := client.UpdateNotebookRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdateNotebook
+func (c *Athena) UpdateNotebookRequest(input *UpdateNotebookInput) (req *request.Request, output *UpdateNotebookOutput) {
+	op := &request.Operation{
+		Name:       opUpdateNotebook,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateNotebookInput{}
+	}
+
+	output = &UpdateNotebookOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateNotebook API operation for Amazon Athena.
+//
+// Updates the contents of a Spark notebook.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation UpdateNotebook for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdateNotebook
+func (c *Athena) UpdateNotebook(input *UpdateNotebookInput) (*UpdateNotebookOutput, error) {
+	req, out := c.UpdateNotebookRequest(input)
+	return out, req.Send()
+}
+
+// UpdateNotebookWithContext is the same as UpdateNotebook with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNotebook for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) UpdateNotebookWithContext(ctx aws.Context, input *UpdateNotebookInput, opts ...request.Option) (*UpdateNotebookOutput, error) {
+	req, out := c.UpdateNotebookRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateNotebookMetadata = "UpdateNotebookMetadata"
+
+// UpdateNotebookMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateNotebookMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateNotebookMetadata for more information on using the UpdateNotebookMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateNotebookMetadataRequest method.
+//	req, resp := client.UpdateNotebookMetadataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdateNotebookMetadata
+func (c *Athena) UpdateNotebookMetadataRequest(input *UpdateNotebookMetadataInput) (req *request.Request, output *UpdateNotebookMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateNotebookMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateNotebookMetadataInput{}
+	}
+
+	output = &UpdateNotebookMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateNotebookMetadata API operation for Amazon Athena.
+//
+// Updates the metadata for a notebook.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation UpdateNotebookMetadata for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     Indicates a platform issue, which may be due to a transient condition or
+//     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
+//   - TooManyRequestsException
+//     Indicates that the request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdateNotebookMetadata
+func (c *Athena) UpdateNotebookMetadata(input *UpdateNotebookMetadataInput) (*UpdateNotebookMetadataOutput, error) {
+	req, out := c.UpdateNotebookMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateNotebookMetadataWithContext is the same as UpdateNotebookMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNotebookMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) UpdateNotebookMetadataWithContext(ctx aws.Context, input *UpdateNotebookMetadataInput, opts ...request.Option) (*UpdateNotebookMetadataOutput, error) {
+	req, out := c.UpdateNotebookMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdatePreparedStatement = "UpdatePreparedStatement"
 
 // UpdatePreparedStatementRequest generates a "aws/request.Request" representing the
@@ -3804,7 +6065,10 @@ func (c *Athena) UpdateWorkGroupRequest(input *UpdateWorkGroupInput) (req *reque
 // UpdateWorkGroup API operation for Amazon Athena.
 //
 // Updates the workgroup with the specified name. The workgroup's name cannot
-// be changed.
+// be changed. Only one of ConfigurationsUpdates or ConfigurationUpdates can
+// be specified; ConfigurationsUpdates for a workgroup with multi engine support
+// (for example, an Apache Spark enabled workgroup) or ConfigurationUpdates
+// for an Athena SQL workgroup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3899,6 +6163,47 @@ func (s *AclConfiguration) Validate() error {
 // SetS3AclOption sets the S3AclOption field's value.
 func (s *AclConfiguration) SetS3AclOption(v string) *AclConfiguration {
 	s.S3AclOption = &v
+	return s
+}
+
+// Contains the application runtime IDs and their supported DPU sizes.
+type ApplicationDPUSizes struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the supported application runtime (for example, Jupyter 1.0).
+	ApplicationRuntimeId *string `min:"1" type:"string"`
+
+	// A list of the supported DPU sizes that the application runtime supports.
+	SupportedDPUSizes []*int64 `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationDPUSizes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationDPUSizes) GoString() string {
+	return s.String()
+}
+
+// SetApplicationRuntimeId sets the ApplicationRuntimeId field's value.
+func (s *ApplicationDPUSizes) SetApplicationRuntimeId(v string) *ApplicationDPUSizes {
+	s.ApplicationRuntimeId = &v
+	return s
+}
+
+// SetSupportedDPUSizes sets the SupportedDPUSizes field's value.
+func (s *ApplicationDPUSizes) SetSupportedDPUSizes(v []*int64) *ApplicationDPUSizes {
+	s.SupportedDPUSizes = v
 	return s
 }
 
@@ -4252,6 +6557,266 @@ func (s *BatchGetQueryExecutionOutput) SetQueryExecutions(v []*QueryExecution) *
 // SetUnprocessedQueryExecutionIds sets the UnprocessedQueryExecutionIds field's value.
 func (s *BatchGetQueryExecutionOutput) SetUnprocessedQueryExecutionIds(v []*UnprocessedQueryExecutionId) *BatchGetQueryExecutionOutput {
 	s.UnprocessedQueryExecutionIds = v
+	return s
+}
+
+// Contains configuration information for the calculation.
+type CalculationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A string that contains the code for the calculation.
+	CodeBlock *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCodeBlock sets the CodeBlock field's value.
+func (s *CalculationConfiguration) SetCodeBlock(v string) *CalculationConfiguration {
+	s.CodeBlock = &v
+	return s
+}
+
+// Contains information about an application-specific calculation result.
+type CalculationResult struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location of the folder for the calculation results.
+	ResultS3Uri *string `type:"string"`
+
+	// The data format of the calculation result.
+	ResultType *string `min:"1" type:"string"`
+
+	// The Amazon S3 location of the stderr error messages file for the calculation.
+	StdErrorS3Uri *string `type:"string"`
+
+	// The Amazon S3 location of the stdout file for the calculation.
+	StdOutS3Uri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationResult) GoString() string {
+	return s.String()
+}
+
+// SetResultS3Uri sets the ResultS3Uri field's value.
+func (s *CalculationResult) SetResultS3Uri(v string) *CalculationResult {
+	s.ResultS3Uri = &v
+	return s
+}
+
+// SetResultType sets the ResultType field's value.
+func (s *CalculationResult) SetResultType(v string) *CalculationResult {
+	s.ResultType = &v
+	return s
+}
+
+// SetStdErrorS3Uri sets the StdErrorS3Uri field's value.
+func (s *CalculationResult) SetStdErrorS3Uri(v string) *CalculationResult {
+	s.StdErrorS3Uri = &v
+	return s
+}
+
+// SetStdOutS3Uri sets the StdOutS3Uri field's value.
+func (s *CalculationResult) SetStdOutS3Uri(v string) *CalculationResult {
+	s.StdOutS3Uri = &v
+	return s
+}
+
+// Contains statistics for a notebook calculation.
+type CalculationStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The data processing unit execution time in milliseconds for the calculation.
+	DpuExecutionInMillis *int64 `type:"long"`
+
+	// The progress of the calculation.
+	Progress *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationStatistics) GoString() string {
+	return s.String()
+}
+
+// SetDpuExecutionInMillis sets the DpuExecutionInMillis field's value.
+func (s *CalculationStatistics) SetDpuExecutionInMillis(v int64) *CalculationStatistics {
+	s.DpuExecutionInMillis = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *CalculationStatistics) SetProgress(v string) *CalculationStatistics {
+	s.Progress = &v
+	return s
+}
+
+// Contains information about the status of a notebook calculation.
+type CalculationStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time the calculation completed processing.
+	CompletionDateTime *time.Time `type:"timestamp"`
+
+	// The state of the calculation execution. A description of each state follows.
+	//
+	// CREATING - The calculation is in the process of being created.
+	//
+	// CREATED - The calculation has been created and is ready to run.
+	//
+	// QUEUED - The calculation has been queued for processing.
+	//
+	// RUNNING - The calculation is running.
+	//
+	// CANCELING - A request to cancel the calculation has been received and the
+	// system is working to stop it.
+	//
+	// CANCELED - The calculation is no longer running as the result of a cancel
+	// request.
+	//
+	// COMPLETED - The calculation has completed without error.
+	//
+	// FAILED - The calculation failed and is no longer running.
+	State *string `type:"string" enum:"CalculationExecutionState"`
+
+	// The reason for the calculation state change (for example, the calculation
+	// was canceled because the session was terminated).
+	StateChangeReason *string `min:"1" type:"string"`
+
+	// The date and time the calculation was submitted for processing.
+	SubmissionDateTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationStatus) GoString() string {
+	return s.String()
+}
+
+// SetCompletionDateTime sets the CompletionDateTime field's value.
+func (s *CalculationStatus) SetCompletionDateTime(v time.Time) *CalculationStatus {
+	s.CompletionDateTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CalculationStatus) SetState(v string) *CalculationStatus {
+	s.State = &v
+	return s
+}
+
+// SetStateChangeReason sets the StateChangeReason field's value.
+func (s *CalculationStatus) SetStateChangeReason(v string) *CalculationStatus {
+	s.StateChangeReason = &v
+	return s
+}
+
+// SetSubmissionDateTime sets the SubmissionDateTime field's value.
+func (s *CalculationStatus) SetSubmissionDateTime(v time.Time) *CalculationStatus {
+	s.SubmissionDateTime = &v
+	return s
+}
+
+// Summary information for a notebook calculation.
+type CalculationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The calculation execution UUID.
+	CalculationExecutionId *string `min:"1" type:"string"`
+
+	// A description of the calculation.
+	Description *string `min:"1" type:"string"`
+
+	// Contains information about the status of the calculation.
+	Status *CalculationStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CalculationSummary) GoString() string {
+	return s.String()
+}
+
+// SetCalculationExecutionId sets the CalculationExecutionId field's value.
+func (s *CalculationSummary) SetCalculationExecutionId(v string) *CalculationSummary {
+	s.CalculationExecutionId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CalculationSummary) SetDescription(v string) *CalculationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CalculationSummary) SetStatus(v *CalculationStatus) *CalculationSummary {
+	s.Status = v
 	return s
 }
 
@@ -4732,6 +7297,119 @@ func (s *CreateNamedQueryOutput) SetNamedQueryId(v string) *CreateNamedQueryOutp
 	return s
 }
 
+type CreateNotebookInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive string used to ensure the request to create the notebook
+	// is idempotent (executes only once).
+	//
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// you. If you are not using the Amazon Web Services SDK or the Amazon Web Services
+	// CLI, you must provide this token or the action will fail.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The name of the ipynb file to be created in the Spark workgroup, without
+	// the .ipynb extension.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The name of the Spark enabled workgroup in which the notebook will be created.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNotebookInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNotebookInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateNotebookInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateNotebookInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateNotebookInput) SetClientRequestToken(v string) *CreateNotebookInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateNotebookInput) SetName(v string) *CreateNotebookInput {
+	s.Name = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *CreateNotebookInput) SetWorkGroup(v string) *CreateNotebookInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type CreateNotebookOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the notebook.
+	NotebookId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNotebookOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNotebookOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *CreateNotebookOutput) SetNotebookId(v string) *CreateNotebookOutput {
+	s.NotebookId = &v
+	return s
+}
+
 type CreatePreparedStatementInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4846,16 +7524,121 @@ func (s CreatePreparedStatementOutput) GoString() string {
 	return s.String()
 }
 
+type CreatePresignedNotebookUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePresignedNotebookUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePresignedNotebookUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePresignedNotebookUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePresignedNotebookUrlInput"}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *CreatePresignedNotebookUrlInput) SetSessionId(v string) *CreatePresignedNotebookUrlInput {
+	s.SessionId = &v
+	return s
+}
+
+type CreatePresignedNotebookUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The authentication token for the notebook.
+	//
+	// AuthToken is a required field
+	AuthToken *string `type:"string" required:"true"`
+
+	// The UTC epoch time when the authentication token expires.
+	//
+	// AuthTokenExpirationTime is a required field
+	AuthTokenExpirationTime *int64 `type:"long" required:"true"`
+
+	// The URL of the notebook. The URL includes the authentication token and notebook
+	// file name and points directly to the opened notebook.
+	//
+	// NotebookUrl is a required field
+	NotebookUrl *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePresignedNotebookUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePresignedNotebookUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthToken sets the AuthToken field's value.
+func (s *CreatePresignedNotebookUrlOutput) SetAuthToken(v string) *CreatePresignedNotebookUrlOutput {
+	s.AuthToken = &v
+	return s
+}
+
+// SetAuthTokenExpirationTime sets the AuthTokenExpirationTime field's value.
+func (s *CreatePresignedNotebookUrlOutput) SetAuthTokenExpirationTime(v int64) *CreatePresignedNotebookUrlOutput {
+	s.AuthTokenExpirationTime = &v
+	return s
+}
+
+// SetNotebookUrl sets the NotebookUrl field's value.
+func (s *CreatePresignedNotebookUrlOutput) SetNotebookUrl(v string) *CreatePresignedNotebookUrlOutput {
+	s.NotebookUrl = &v
+	return s
+}
+
 type CreateWorkGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration for the workgroup, which includes the location in Amazon
-	// S3 where query results are stored, the encryption configuration, if any,
-	// used for encrypting query results, whether the Amazon CloudWatch Metrics
-	// are enabled for the workgroup, the limit for the amount of bytes scanned
-	// (cutoff) per query, if it is specified, and whether workgroup's settings
-	// (specified with EnforceWorkGroupConfiguration) in the WorkGroupConfiguration
-	// override client-side settings. See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
+	// Contains configuration information for creating an Athena SQL workgroup,
+	// which includes the location in Amazon S3 where query results are stored,
+	// the encryption configuration, if any, used for encrypting query results,
+	// whether the Amazon CloudWatch Metrics are enabled for the workgroup, the
+	// limit for the amount of bytes scanned (cutoff) per query, if it is specified,
+	// and whether workgroup's settings (specified with EnforceWorkGroupConfiguration)
+	// in the WorkGroupConfiguration override client-side settings. See WorkGroupConfiguration$EnforceWorkGroupConfiguration.
 	Configuration *WorkGroupConfiguration `type:"structure"`
 
 	// The workgroup description.
@@ -4960,6 +7743,56 @@ func (s CreateWorkGroupOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateWorkGroupOutput) GoString() string {
 	return s.String()
+}
+
+// Specifies the KMS key that is used to encrypt the user's data stores in Athena.
+type CustomerContentEncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The KMS key that is used to encrypt the user's data stores in Athena.
+	//
+	// KmsKey is a required field
+	KmsKey *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerContentEncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerContentEncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomerContentEncryptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomerContentEncryptionConfiguration"}
+	if s.KmsKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKey"))
+	}
+	if s.KmsKey != nil && len(*s.KmsKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *CustomerContentEncryptionConfiguration) SetKmsKey(v string) *CustomerContentEncryptionConfiguration {
+	s.KmsKey = &v
+	return s
 }
 
 // Contains information about a data catalog in an Amazon Web Services account.
@@ -5315,6 +8148,77 @@ func (s DeleteNamedQueryOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteNotebookInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the notebook to delete.
+	//
+	// NotebookId is a required field
+	NotebookId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteNotebookInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteNotebookInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteNotebookInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteNotebookInput"}
+	if s.NotebookId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookId"))
+	}
+	if s.NotebookId != nil && len(*s.NotebookId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotebookId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *DeleteNotebookInput) SetNotebookId(v string) *DeleteNotebookInput {
+	s.NotebookId = &v
+	return s
+}
+
+type DeleteNotebookOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteNotebookOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteNotebookOutput) GoString() string {
+	return s.String()
+}
+
 type DeletePreparedStatementInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5541,7 +8445,99 @@ func (s *EncryptionConfiguration) SetKmsKey(v string) *EncryptionConfiguration {
 	return s
 }
 
-// The Athena engine version for running queries.
+// Contains data processing unit (DPU) configuration settings and parameter
+// mappings for a notebook engine.
+type EngineConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains additional notebook engine MAP<string, string> parameter mappings
+	// in the form of key-value pairs. To specify an Amazon S3 URI that the Jupyter
+	// server will download and serve, specify a value for the StartSessionRequest$NotebookVersion
+	// field, and then add a key named NotebookFileURI to AdditionalConfigs that
+	// has value of the Amazon S3 URI.
+	AdditionalConfigs map[string]*string `type:"map"`
+
+	// The number of DPUs to use for the coordinator. A coordinator is a special
+	// executor that orchestrates processing work and manages other executors in
+	// a notebook session.
+	CoordinatorDpuSize *int64 `min:"1" type:"integer"`
+
+	// The default number of DPUs to use for executors. An executor is the smallest
+	// unit of compute that a notebook session can request from Athena.
+	DefaultExecutorDpuSize *int64 `min:"1" type:"integer"`
+
+	// The maximum number of DPUs that can run concurrently.
+	//
+	// MaxConcurrentDpus is a required field
+	MaxConcurrentDpus *int64 `min:"2" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EngineConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EngineConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EngineConfiguration"}
+	if s.CoordinatorDpuSize != nil && *s.CoordinatorDpuSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("CoordinatorDpuSize", 1))
+	}
+	if s.DefaultExecutorDpuSize != nil && *s.DefaultExecutorDpuSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DefaultExecutorDpuSize", 1))
+	}
+	if s.MaxConcurrentDpus == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxConcurrentDpus"))
+	}
+	if s.MaxConcurrentDpus != nil && *s.MaxConcurrentDpus < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxConcurrentDpus", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalConfigs sets the AdditionalConfigs field's value.
+func (s *EngineConfiguration) SetAdditionalConfigs(v map[string]*string) *EngineConfiguration {
+	s.AdditionalConfigs = v
+	return s
+}
+
+// SetCoordinatorDpuSize sets the CoordinatorDpuSize field's value.
+func (s *EngineConfiguration) SetCoordinatorDpuSize(v int64) *EngineConfiguration {
+	s.CoordinatorDpuSize = &v
+	return s
+}
+
+// SetDefaultExecutorDpuSize sets the DefaultExecutorDpuSize field's value.
+func (s *EngineConfiguration) SetDefaultExecutorDpuSize(v int64) *EngineConfiguration {
+	s.DefaultExecutorDpuSize = &v
+	return s
+}
+
+// SetMaxConcurrentDpus sets the MaxConcurrentDpus field's value.
+func (s *EngineConfiguration) SetMaxConcurrentDpus(v int64) *EngineConfiguration {
+	s.MaxConcurrentDpus = &v
+	return s
+}
+
+// The Athena engine version for running queries, or the PySpark engine version
+// for running sessions.
 type EngineVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -5601,6 +8597,539 @@ func (s *EngineVersion) SetEffectiveEngineVersion(v string) *EngineVersion {
 // SetSelectedEngineVersion sets the SelectedEngineVersion field's value.
 func (s *EngineVersion) SetSelectedEngineVersion(v string) *EngineVersion {
 	s.SelectedEngineVersion = &v
+	return s
+}
+
+// Contains summary information about an executor.
+type ExecutorsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The UUID of the executor.
+	//
+	// ExecutorId is a required field
+	ExecutorId *string `type:"string" required:"true"`
+
+	// The smallest unit of compute that a session can request from Athena. Size
+	// is measured in data processing unit (DPU) values, a relative measure of processing
+	// power.
+	ExecutorSize *int64 `type:"long"`
+
+	// The processing state of the executor. A description of each state follows.
+	//
+	// CREATING - The executor is being started, including acquiring resources.
+	//
+	// CREATED - The executor has been started.
+	//
+	// REGISTERED - The executor has been registered.
+	//
+	// TERMINATING - The executor is in the process of shutting down.
+	//
+	// TERMINATED - The executor is no longer running.
+	//
+	// FAILED - Due to a failure, the executor is no longer running.
+	ExecutorState *string `type:"string" enum:"ExecutorState"`
+
+	// The type of executor used for the application (COORDINATOR, GATEWAY, or WORKER).
+	ExecutorType *string `type:"string" enum:"ExecutorType"`
+
+	// The date and time that the executor started.
+	StartDateTime *int64 `type:"long"`
+
+	// The date and time that the executor was terminated.
+	TerminationDateTime *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutorsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutorsSummary) GoString() string {
+	return s.String()
+}
+
+// SetExecutorId sets the ExecutorId field's value.
+func (s *ExecutorsSummary) SetExecutorId(v string) *ExecutorsSummary {
+	s.ExecutorId = &v
+	return s
+}
+
+// SetExecutorSize sets the ExecutorSize field's value.
+func (s *ExecutorsSummary) SetExecutorSize(v int64) *ExecutorsSummary {
+	s.ExecutorSize = &v
+	return s
+}
+
+// SetExecutorState sets the ExecutorState field's value.
+func (s *ExecutorsSummary) SetExecutorState(v string) *ExecutorsSummary {
+	s.ExecutorState = &v
+	return s
+}
+
+// SetExecutorType sets the ExecutorType field's value.
+func (s *ExecutorsSummary) SetExecutorType(v string) *ExecutorsSummary {
+	s.ExecutorType = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *ExecutorsSummary) SetStartDateTime(v int64) *ExecutorsSummary {
+	s.StartDateTime = &v
+	return s
+}
+
+// SetTerminationDateTime sets the TerminationDateTime field's value.
+func (s *ExecutorsSummary) SetTerminationDateTime(v int64) *ExecutorsSummary {
+	s.TerminationDateTime = &v
+	return s
+}
+
+type ExportNotebookInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the notebook to export.
+	//
+	// NotebookId is a required field
+	NotebookId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportNotebookInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportNotebookInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportNotebookInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportNotebookInput"}
+	if s.NotebookId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookId"))
+	}
+	if s.NotebookId != nil && len(*s.NotebookId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotebookId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *ExportNotebookInput) SetNotebookId(v string) *ExportNotebookInput {
+	s.NotebookId = &v
+	return s
+}
+
+type ExportNotebookOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The notebook metadata, including notebook ID, notebook name, and workgroup
+	// name.
+	NotebookMetadata *NotebookMetadata `type:"structure"`
+
+	// The content of the exported notebook.
+	Payload *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportNotebookOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportNotebookOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotebookMetadata sets the NotebookMetadata field's value.
+func (s *ExportNotebookOutput) SetNotebookMetadata(v *NotebookMetadata) *ExportNotebookOutput {
+	s.NotebookMetadata = v
+	return s
+}
+
+// SetPayload sets the Payload field's value.
+func (s *ExportNotebookOutput) SetPayload(v string) *ExportNotebookOutput {
+	s.Payload = &v
+	return s
+}
+
+// A string for searching notebook names.
+type FilterDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the notebook to search for.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FilterDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FilterDefinition"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *FilterDefinition) SetName(v string) *FilterDefinition {
+	s.Name = &v
+	return s
+}
+
+type GetCalculationExecutionCodeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The calculation execution UUID.
+	//
+	// CalculationExecutionId is a required field
+	CalculationExecutionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionCodeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionCodeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCalculationExecutionCodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCalculationExecutionCodeInput"}
+	if s.CalculationExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculationExecutionId"))
+	}
+	if s.CalculationExecutionId != nil && len(*s.CalculationExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculationExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculationExecutionId sets the CalculationExecutionId field's value.
+func (s *GetCalculationExecutionCodeInput) SetCalculationExecutionId(v string) *GetCalculationExecutionCodeInput {
+	s.CalculationExecutionId = &v
+	return s
+}
+
+type GetCalculationExecutionCodeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pre-signed URL to the code that executed the calculation.
+	CodeBlock *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionCodeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionCodeOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeBlock sets the CodeBlock field's value.
+func (s *GetCalculationExecutionCodeOutput) SetCodeBlock(v string) *GetCalculationExecutionCodeOutput {
+	s.CodeBlock = &v
+	return s
+}
+
+type GetCalculationExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The calculation execution UUID.
+	//
+	// CalculationExecutionId is a required field
+	CalculationExecutionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCalculationExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCalculationExecutionInput"}
+	if s.CalculationExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculationExecutionId"))
+	}
+	if s.CalculationExecutionId != nil && len(*s.CalculationExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculationExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculationExecutionId sets the CalculationExecutionId field's value.
+func (s *GetCalculationExecutionInput) SetCalculationExecutionId(v string) *GetCalculationExecutionInput {
+	s.CalculationExecutionId = &v
+	return s
+}
+
+type GetCalculationExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The calculation execution UUID.
+	CalculationExecutionId *string `min:"1" type:"string"`
+
+	// The description of the calculation execution.
+	Description *string `min:"1" type:"string"`
+
+	// Contains result information. This field is populated only if the calculation
+	// is completed.
+	Result *CalculationResult `type:"structure"`
+
+	// The session ID that the calculation ran in.
+	SessionId *string `min:"1" type:"string"`
+
+	// Contains information about the data processing unit (DPU) execution time
+	// and progress. This field is populated only when statistics are available.
+	Statistics *CalculationStatistics `type:"structure"`
+
+	// Contains information about the status of the calculation.
+	Status *CalculationStatus `type:"structure"`
+
+	// The Amazon S3 location in which calculation results are stored.
+	WorkingDirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCalculationExecutionId sets the CalculationExecutionId field's value.
+func (s *GetCalculationExecutionOutput) SetCalculationExecutionId(v string) *GetCalculationExecutionOutput {
+	s.CalculationExecutionId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetCalculationExecutionOutput) SetDescription(v string) *GetCalculationExecutionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *GetCalculationExecutionOutput) SetResult(v *CalculationResult) *GetCalculationExecutionOutput {
+	s.Result = v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetCalculationExecutionOutput) SetSessionId(v string) *GetCalculationExecutionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *GetCalculationExecutionOutput) SetStatistics(v *CalculationStatistics) *GetCalculationExecutionOutput {
+	s.Statistics = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetCalculationExecutionOutput) SetStatus(v *CalculationStatus) *GetCalculationExecutionOutput {
+	s.Status = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *GetCalculationExecutionOutput) SetWorkingDirectory(v string) *GetCalculationExecutionOutput {
+	s.WorkingDirectory = &v
+	return s
+}
+
+type GetCalculationExecutionStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The calculation execution UUID.
+	//
+	// CalculationExecutionId is a required field
+	CalculationExecutionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCalculationExecutionStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCalculationExecutionStatusInput"}
+	if s.CalculationExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculationExecutionId"))
+	}
+	if s.CalculationExecutionId != nil && len(*s.CalculationExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculationExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculationExecutionId sets the CalculationExecutionId field's value.
+func (s *GetCalculationExecutionStatusInput) SetCalculationExecutionId(v string) *GetCalculationExecutionStatusInput {
+	s.CalculationExecutionId = &v
+	return s
+}
+
+type GetCalculationExecutionStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the DPU execution time and progress.
+	Statistics *CalculationStatistics `type:"structure"`
+
+	// Contains information about the calculation execution status.
+	Status *CalculationStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCalculationExecutionStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *GetCalculationExecutionStatusOutput) SetStatistics(v *CalculationStatistics) *GetCalculationExecutionStatusOutput {
+	s.Statistics = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetCalculationExecutionStatusOutput) SetStatus(v *CalculationStatus) *GetCalculationExecutionStatusOutput {
+	s.Status = v
 	return s
 }
 
@@ -5858,6 +9387,86 @@ func (s GetNamedQueryOutput) GoString() string {
 // SetNamedQuery sets the NamedQuery field's value.
 func (s *GetNamedQueryOutput) SetNamedQuery(v *NamedQuery) *GetNamedQueryOutput {
 	s.NamedQuery = v
+	return s
+}
+
+type GetNotebookMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the notebook whose metadata is to be retrieved.
+	//
+	// NotebookId is a required field
+	NotebookId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNotebookMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNotebookMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNotebookMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNotebookMetadataInput"}
+	if s.NotebookId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookId"))
+	}
+	if s.NotebookId != nil && len(*s.NotebookId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotebookId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *GetNotebookMetadataInput) SetNotebookId(v string) *GetNotebookMetadataInput {
+	s.NotebookId = &v
+	return s
+}
+
+type GetNotebookMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata that is returned for the specified notebook ID.
+	NotebookMetadata *NotebookMetadata `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNotebookMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNotebookMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotebookMetadata sets the NotebookMetadata field's value.
+func (s *GetNotebookMetadataOutput) SetNotebookMetadata(v *NotebookMetadata) *GetNotebookMetadataOutput {
+	s.NotebookMetadata = v
 	return s
 }
 
@@ -6243,6 +9852,248 @@ func (s *GetQueryRuntimeStatisticsOutput) SetQueryRuntimeStatistics(v *QueryRunt
 	return s
 }
 
+type GetSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSessionInput"}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetSessionInput) SetSessionId(v string) *GetSessionInput {
+	s.SessionId = &v
+	return s
+}
+
+type GetSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The session description.
+	Description *string `min:"1" type:"string"`
+
+	// Contains engine configuration information like DPU usage.
+	EngineConfiguration *EngineConfiguration `type:"structure"`
+
+	// The engine version used by the session (for example, PySpark engine version
+	// 3). You can get a list of engine versions by calling ListEngineVersions.
+	EngineVersion *string `min:"1" type:"string"`
+
+	// The notebook version.
+	NotebookVersion *string `min:"1" type:"string"`
+
+	// Contains the workgroup configuration information used by the session.
+	SessionConfiguration *SessionConfiguration `type:"structure"`
+
+	// The session ID.
+	SessionId *string `min:"1" type:"string"`
+
+	// Contains the DPU execution time.
+	Statistics *SessionStatistics `type:"structure"`
+
+	// Contains information about the status of the session.
+	Status *SessionStatus `type:"structure"`
+
+	// The workgroup to which the session belongs.
+	WorkGroup *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetSessionOutput) SetDescription(v string) *GetSessionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEngineConfiguration sets the EngineConfiguration field's value.
+func (s *GetSessionOutput) SetEngineConfiguration(v *EngineConfiguration) *GetSessionOutput {
+	s.EngineConfiguration = v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *GetSessionOutput) SetEngineVersion(v string) *GetSessionOutput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNotebookVersion sets the NotebookVersion field's value.
+func (s *GetSessionOutput) SetNotebookVersion(v string) *GetSessionOutput {
+	s.NotebookVersion = &v
+	return s
+}
+
+// SetSessionConfiguration sets the SessionConfiguration field's value.
+func (s *GetSessionOutput) SetSessionConfiguration(v *SessionConfiguration) *GetSessionOutput {
+	s.SessionConfiguration = v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetSessionOutput) SetSessionId(v string) *GetSessionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *GetSessionOutput) SetStatistics(v *SessionStatistics) *GetSessionOutput {
+	s.Statistics = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetSessionOutput) SetStatus(v *SessionStatus) *GetSessionOutput {
+	s.Status = v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *GetSessionOutput) SetWorkGroup(v string) *GetSessionOutput {
+	s.WorkGroup = &v
+	return s
+}
+
+type GetSessionStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSessionStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSessionStatusInput"}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetSessionStatusInput) SetSessionId(v string) *GetSessionStatusInput {
+	s.SessionId = &v
+	return s
+}
+
+type GetSessionStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The session ID.
+	SessionId *string `min:"1" type:"string"`
+
+	// Contains information about the status of the session.
+	Status *SessionStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSessionStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *GetSessionStatusOutput) SetSessionId(v string) *GetSessionStatusOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetSessionStatusOutput) SetStatus(v *SessionStatus) *GetSessionStatusOutput {
+	s.Status = v
+	return s
+}
+
 type GetTableMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6435,6 +10286,149 @@ func (s *GetWorkGroupOutput) SetWorkGroup(v *WorkGroup) *GetWorkGroupOutput {
 	return s
 }
 
+type ImportNotebookInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive string used to ensure the request to import the notebook
+	// is idempotent (executes only once).
+	//
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// you. If you are not using the Amazon Web Services SDK or the Amazon Web Services
+	// CLI, you must provide this token or the action will fail.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The name of the notebook to import.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The notebook content to be imported.
+	//
+	// Payload is a required field
+	Payload *string `min:"1" type:"string" required:"true"`
+
+	// The notebook content type. Currently, the only valid type is IPYNB.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"NotebookType"`
+
+	// The name of the Spark enabled workgroup to import the notebook to.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportNotebookInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportNotebookInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportNotebookInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportNotebookInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Payload == nil {
+		invalidParams.Add(request.NewErrParamRequired("Payload"))
+	}
+	if s.Payload != nil && len(*s.Payload) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Payload", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *ImportNotebookInput) SetClientRequestToken(v string) *ImportNotebookInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ImportNotebookInput) SetName(v string) *ImportNotebookInput {
+	s.Name = &v
+	return s
+}
+
+// SetPayload sets the Payload field's value.
+func (s *ImportNotebookInput) SetPayload(v string) *ImportNotebookInput {
+	s.Payload = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ImportNotebookInput) SetType(v string) *ImportNotebookInput {
+	s.Type = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *ImportNotebookInput) SetWorkGroup(v string) *ImportNotebookInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type ImportNotebookOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the notebook to import.
+	NotebookId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportNotebookOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportNotebookOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *ImportNotebookOutput) SetNotebookId(v string) *ImportNotebookOutput {
+	s.NotebookId = &v
+	return s
+}
+
 // Indicates a platform issue, which may be due to a transient condition or
 // outage.
 type InternalServerException struct {
@@ -6567,6 +10561,250 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListApplicationDPUSizesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationDPUSizesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationDPUSizesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListApplicationDPUSizesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListApplicationDPUSizesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListApplicationDPUSizesInput) SetMaxResults(v int64) *ListApplicationDPUSizesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationDPUSizesInput) SetNextToken(v string) *ListApplicationDPUSizesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListApplicationDPUSizesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the supported DPU sizes that the application runtime supports.
+	ApplicationDPUSizes []*ApplicationDPUSizes `type:"list"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationDPUSizesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationDPUSizesOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationDPUSizes sets the ApplicationDPUSizes field's value.
+func (s *ListApplicationDPUSizesOutput) SetApplicationDPUSizes(v []*ApplicationDPUSizes) *ListApplicationDPUSizesOutput {
+	s.ApplicationDPUSizes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationDPUSizesOutput) SetNextToken(v string) *ListApplicationDPUSizesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCalculationExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of calculation executions to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `type:"string"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+
+	// A filter for a specific calculation execution state. A description of each
+	// state follows.
+	//
+	// CREATING - The calculation is in the process of being created.
+	//
+	// CREATED - The calculation has been created and is ready to run.
+	//
+	// QUEUED - The calculation has been queued for processing.
+	//
+	// RUNNING - The calculation is running.
+	//
+	// CANCELING - A request to cancel the calculation has been received and the
+	// system is working to stop it.
+	//
+	// CANCELED - The calculation is no longer running as the result of a cancel
+	// request.
+	//
+	// COMPLETED - The calculation has completed without error.
+	//
+	// FAILED - The calculation failed and is no longer running.
+	StateFilter *string `type:"string" enum:"CalculationExecutionState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculationExecutionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculationExecutionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCalculationExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCalculationExecutionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCalculationExecutionsInput) SetMaxResults(v int64) *ListCalculationExecutionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCalculationExecutionsInput) SetNextToken(v string) *ListCalculationExecutionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *ListCalculationExecutionsInput) SetSessionId(v string) *ListCalculationExecutionsInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStateFilter sets the StateFilter field's value.
+func (s *ListCalculationExecutionsInput) SetStateFilter(v string) *ListCalculationExecutionsInput {
+	s.StateFilter = &v
+	return s
+}
+
+type ListCalculationExecutionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of CalculationSummary objects.
+	Calculations []*CalculationSummary `type:"list"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculationExecutionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCalculationExecutionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCalculations sets the Calculations field's value.
+func (s *ListCalculationExecutionsOutput) SetCalculations(v []*CalculationSummary) *ListCalculationExecutionsOutput {
+	s.Calculations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCalculationExecutionsOutput) SetNextToken(v string) *ListCalculationExecutionsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListDataCatalogsInput struct {
@@ -6892,6 +11130,154 @@ func (s *ListEngineVersionsOutput) SetNextToken(v string) *ListEngineVersionsOut
 	return s
 }
 
+type ListExecutorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter for a specific executor state. A description of each state follows.
+	//
+	// CREATING - The executor is being started, including acquiring resources.
+	//
+	// CREATED - The executor has been started.
+	//
+	// REGISTERED - The executor has been registered.
+	//
+	// TERMINATING - The executor is in the process of shutting down.
+	//
+	// TERMINATED - The executor is no longer running.
+	//
+	// FAILED - Due to a failure, the executor is no longer running.
+	ExecutorStateFilter *string `type:"string" enum:"ExecutorState"`
+
+	// The maximum number of executors to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `type:"string"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExecutorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExecutorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExecutorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExecutorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutorStateFilter sets the ExecutorStateFilter field's value.
+func (s *ListExecutorsInput) SetExecutorStateFilter(v string) *ListExecutorsInput {
+	s.ExecutorStateFilter = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExecutorsInput) SetMaxResults(v int64) *ListExecutorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExecutorsInput) SetNextToken(v string) *ListExecutorsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *ListExecutorsInput) SetSessionId(v string) *ListExecutorsInput {
+	s.SessionId = &v
+	return s
+}
+
+type ListExecutorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains summary information about the executor.
+	ExecutorsSummary []*ExecutorsSummary `type:"list"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `type:"string"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExecutorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExecutorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetExecutorsSummary sets the ExecutorsSummary field's value.
+func (s *ListExecutorsOutput) SetExecutorsSummary(v []*ExecutorsSummary) *ListExecutorsOutput {
+	s.ExecutorsSummary = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExecutorsOutput) SetNextToken(v string) *ListExecutorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *ListExecutorsOutput) SetSessionId(v string) *ListExecutorsOutput {
+	s.SessionId = &v
+	return s
+}
+
 type ListNamedQueriesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6999,6 +11385,255 @@ func (s *ListNamedQueriesOutput) SetNamedQueryIds(v []*string) *ListNamedQueries
 // SetNextToken sets the NextToken field's value.
 func (s *ListNamedQueriesOutput) SetNextToken(v string) *ListNamedQueriesOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListNotebookMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// Search filter string.
+	Filters *FilterDefinition `type:"structure"`
+
+	// Specifies the maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name of the Spark enabled workgroup to retrieve notebook metadata for.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListNotebookMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListNotebookMetadataInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListNotebookMetadataInput) SetFilters(v *FilterDefinition) *ListNotebookMetadataInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListNotebookMetadataInput) SetMaxResults(v int64) *ListNotebookMetadataInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNotebookMetadataInput) SetNextToken(v string) *ListNotebookMetadataInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *ListNotebookMetadataInput) SetWorkGroup(v string) *ListNotebookMetadataInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type ListNotebookMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of notebook metadata for the specified workgroup.
+	NotebookMetadataList []*NotebookMetadata `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNotebookMetadataOutput) SetNextToken(v string) *ListNotebookMetadataOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetNotebookMetadataList sets the NotebookMetadataList field's value.
+func (s *ListNotebookMetadataOutput) SetNotebookMetadataList(v []*NotebookMetadata) *ListNotebookMetadataOutput {
+	s.NotebookMetadataList = v
+	return s
+}
+
+type ListNotebookSessionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of notebook sessions to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+
+	// The ID of the notebook to list sessions for.
+	//
+	// NotebookId is a required field
+	NotebookId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookSessionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookSessionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListNotebookSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListNotebookSessionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.NotebookId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookId"))
+	}
+	if s.NotebookId != nil && len(*s.NotebookId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotebookId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListNotebookSessionsInput) SetMaxResults(v int64) *ListNotebookSessionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNotebookSessionsInput) SetNextToken(v string) *ListNotebookSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *ListNotebookSessionsInput) SetNotebookId(v string) *ListNotebookSessionsInput {
+	s.NotebookId = &v
+	return s
+}
+
+type ListNotebookSessionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of the sessions belonging to the notebook.
+	//
+	// NotebookSessionsList is a required field
+	NotebookSessionsList []*NotebookSessionSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookSessionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListNotebookSessionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNotebookSessionsOutput) SetNextToken(v string) *ListNotebookSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetNotebookSessionsList sets the NotebookSessionsList field's value.
+func (s *ListNotebookSessionsOutput) SetNotebookSessionsList(v []*NotebookSessionSummary) *ListNotebookSessionsOutput {
+	s.NotebookSessionsList = v
 	return s
 }
 
@@ -7222,6 +11857,144 @@ func (s *ListQueryExecutionsOutput) SetNextToken(v string) *ListQueryExecutionsO
 // SetQueryExecutionIds sets the QueryExecutionIds field's value.
 func (s *ListQueryExecutionsOutput) SetQueryExecutionIds(v []*string) *ListQueryExecutionsOutput {
 	s.QueryExecutionIds = v
+	return s
+}
+
+type ListSessionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of sessions to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `type:"string"`
+
+	// A filter for a specific session state. A description of each state follows.
+	//
+	// CREATING - The session is being started, including acquiring resources.
+	//
+	// CREATED - The session has been started.
+	//
+	// IDLE - The session is able to accept a calculation.
+	//
+	// BUSY - The session is processing another task and is unable to accept a calculation.
+	//
+	// TERMINATING - The session is in the process of shutting down.
+	//
+	// TERMINATED - The session and its resources are no longer running.
+	//
+	// DEGRADED - The session has no healthy coordinators.
+	//
+	// FAILED - Due to a failure, the session and its resources are no longer running.
+	StateFilter *string `type:"string" enum:"SessionState"`
+
+	// The workgroup to which the session belongs.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSessionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSessionsInput) SetMaxResults(v int64) *ListSessionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionsInput) SetNextToken(v string) *ListSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStateFilter sets the StateFilter field's value.
+func (s *ListSessionsInput) SetStateFilter(v string) *ListSessionsInput {
+	s.StateFilter = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *ListSessionsInput) SetWorkGroup(v string) *ListSessionsInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type ListSessionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `type:"string"`
+
+	// A list of sessions.
+	Sessions []*SessionSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSessionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSessionsOutput) SetNextToken(v string) *ListSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSessions sets the Sessions field's value.
+func (s *ListSessionsOutput) SetSessions(v []*SessionSummary) *ListSessionsOutput {
+	s.Sessions = v
 	return s
 }
 
@@ -7738,6 +12511,125 @@ func (s *NamedQuery) SetQueryString(v string) *NamedQuery {
 // SetWorkGroup sets the WorkGroup field's value.
 func (s *NamedQuery) SetWorkGroup(v string) *NamedQuery {
 	s.WorkGroup = &v
+	return s
+}
+
+// Contains metadata for notebook, including the notebook name, ID, workgroup,
+// and time created.
+type NotebookMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the notebook was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The time when the notebook was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the notebook.
+	Name *string `min:"1" type:"string"`
+
+	// The notebook ID.
+	NotebookId *string `min:"1" type:"string"`
+
+	// The type of notebook. Currently, the only valid type is IPYNB.
+	Type *string `type:"string" enum:"NotebookType"`
+
+	// The name of the Spark enabled workgroup to which the notebook belongs.
+	WorkGroup *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *NotebookMetadata) SetCreationTime(v time.Time) *NotebookMetadata {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *NotebookMetadata) SetLastModifiedTime(v time.Time) *NotebookMetadata {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *NotebookMetadata) SetName(v string) *NotebookMetadata {
+	s.Name = &v
+	return s
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *NotebookMetadata) SetNotebookId(v string) *NotebookMetadata {
+	s.NotebookId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *NotebookMetadata) SetType(v string) *NotebookMetadata {
+	s.Type = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *NotebookMetadata) SetWorkGroup(v string) *NotebookMetadata {
+	s.WorkGroup = &v
+	return s
+}
+
+// Contains the notebook session ID and notebook session creation time.
+type NotebookSessionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the notebook session was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The notebook session ID.
+	SessionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookSessionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotebookSessionSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *NotebookSessionSummary) SetCreationTime(v time.Time) *NotebookSessionSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *NotebookSessionSummary) SetSessionId(v string) *NotebookSessionSummary {
+	s.SessionId = &v
 	return s
 }
 
@@ -9176,6 +14068,483 @@ func (s *Row) SetData(v []*Datum) *Row {
 	return s
 }
 
+// The specified session already exists.
+type SessionAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorSessionAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &SessionAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *SessionAlreadyExistsException) Code() string {
+	return "SessionAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *SessionAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *SessionAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *SessionAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *SessionAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *SessionAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Contains session configuration information.
+type SessionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// If query results are encrypted in Amazon S3, indicates the encryption option
+	// used (for example, SSE_KMS or CSE_KMS) and key information.
+	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
+
+	// The ARN of the execution role used for the session.
+	ExecutionRole *string `min:"20" type:"string"`
+
+	// The idle timeout in seconds for the session.
+	IdleTimeoutSeconds *int64 `type:"long"`
+
+	// The Amazon S3 location that stores information for the notebook.
+	WorkingDirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *SessionConfiguration) SetEncryptionConfiguration(v *EncryptionConfiguration) *SessionConfiguration {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *SessionConfiguration) SetExecutionRole(v string) *SessionConfiguration {
+	s.ExecutionRole = &v
+	return s
+}
+
+// SetIdleTimeoutSeconds sets the IdleTimeoutSeconds field's value.
+func (s *SessionConfiguration) SetIdleTimeoutSeconds(v int64) *SessionConfiguration {
+	s.IdleTimeoutSeconds = &v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *SessionConfiguration) SetWorkingDirectory(v string) *SessionConfiguration {
+	s.WorkingDirectory = &v
+	return s
+}
+
+// Contains statistics for a notebook session.
+type SessionStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The data processing unit execution time for a session in milliseconds.
+	DpuExecutionInMillis *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionStatistics) GoString() string {
+	return s.String()
+}
+
+// SetDpuExecutionInMillis sets the DpuExecutionInMillis field's value.
+func (s *SessionStatistics) SetDpuExecutionInMillis(v int64) *SessionStatistics {
+	s.DpuExecutionInMillis = &v
+	return s
+}
+
+// Contains information about the status of a notebook session.
+type SessionStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the session ended.
+	EndDateTime *time.Time `type:"timestamp"`
+
+	// The date and time starting at which the session became idle. Can be empty
+	// if the session is not currently idle.
+	IdleSinceDateTime *time.Time `type:"timestamp"`
+
+	// The most recent date and time that the session was modified.
+	LastModifiedDateTime *time.Time `type:"timestamp"`
+
+	// The date and time that the session started.
+	StartDateTime *time.Time `type:"timestamp"`
+
+	// The state of the session. A description of each state follows.
+	//
+	// CREATING - The session is being started, including acquiring resources.
+	//
+	// CREATED - The session has been started.
+	//
+	// IDLE - The session is able to accept a calculation.
+	//
+	// BUSY - The session is processing another task and is unable to accept a calculation.
+	//
+	// TERMINATING - The session is in the process of shutting down.
+	//
+	// TERMINATED - The session and its resources are no longer running.
+	//
+	// DEGRADED - The session has no healthy coordinators.
+	//
+	// FAILED - Due to a failure, the session and its resources are no longer running.
+	State *string `type:"string" enum:"SessionState"`
+
+	// The reason for the session state change (for example, canceled because the
+	// session was terminated).
+	StateChangeReason *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionStatus) GoString() string {
+	return s.String()
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *SessionStatus) SetEndDateTime(v time.Time) *SessionStatus {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetIdleSinceDateTime sets the IdleSinceDateTime field's value.
+func (s *SessionStatus) SetIdleSinceDateTime(v time.Time) *SessionStatus {
+	s.IdleSinceDateTime = &v
+	return s
+}
+
+// SetLastModifiedDateTime sets the LastModifiedDateTime field's value.
+func (s *SessionStatus) SetLastModifiedDateTime(v time.Time) *SessionStatus {
+	s.LastModifiedDateTime = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *SessionStatus) SetStartDateTime(v time.Time) *SessionStatus {
+	s.StartDateTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SessionStatus) SetState(v string) *SessionStatus {
+	s.State = &v
+	return s
+}
+
+// SetStateChangeReason sets the StateChangeReason field's value.
+func (s *SessionStatus) SetStateChangeReason(v string) *SessionStatus {
+	s.StateChangeReason = &v
+	return s
+}
+
+// Contains summary information about a notebook session.
+type SessionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The session description.
+	Description *string `min:"1" type:"string"`
+
+	// The engine version used by the session (for example, PySpark engine version
+	// 3).
+	EngineVersion *EngineVersion `type:"structure"`
+
+	// The notebook version.
+	NotebookVersion *string `min:"1" type:"string"`
+
+	// The session ID.
+	SessionId *string `min:"1" type:"string"`
+
+	// Contains information about the session status.
+	Status *SessionStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SessionSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *SessionSummary) SetDescription(v string) *SessionSummary {
+	s.Description = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *SessionSummary) SetEngineVersion(v *EngineVersion) *SessionSummary {
+	s.EngineVersion = v
+	return s
+}
+
+// SetNotebookVersion sets the NotebookVersion field's value.
+func (s *SessionSummary) SetNotebookVersion(v string) *SessionSummary {
+	s.NotebookVersion = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *SessionSummary) SetSessionId(v string) *SessionSummary {
+	s.SessionId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SessionSummary) SetStatus(v *SessionStatus) *SessionSummary {
+	s.Status = v
+	return s
+}
+
+type StartCalculationExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configuration information for the calculation.
+	//
+	// Deprecated: Kepler Post GA Tasks : https://sim.amazon.com/issues/ATHENA-39828
+	CalculationConfiguration *CalculationConfiguration `deprecated:"true" type:"structure"`
+
+	// A unique case-sensitive string used to ensure the request to create the calculation
+	// is idempotent (executes only once). If another StartCalculationExecutionRequest
+	// is received, the same response is returned and another calculation is not
+	// created. If a parameter has changed, an error is returned.
+	//
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// users. If you are not using the Amazon Web Services SDK or the Amazon Web
+	// Services CLI, you must provide this token or the action will fail.
+	ClientRequestToken *string `min:"32" type:"string"`
+
+	// A string that contains the code of the calculation.
+	CodeBlock *string `type:"string"`
+
+	// A description of the calculation.
+	Description *string `min:"1" type:"string"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCalculationExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCalculationExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCalculationExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCalculationExecutionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculationConfiguration sets the CalculationConfiguration field's value.
+func (s *StartCalculationExecutionInput) SetCalculationConfiguration(v *CalculationConfiguration) *StartCalculationExecutionInput {
+	s.CalculationConfiguration = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartCalculationExecutionInput) SetClientRequestToken(v string) *StartCalculationExecutionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCodeBlock sets the CodeBlock field's value.
+func (s *StartCalculationExecutionInput) SetCodeBlock(v string) *StartCalculationExecutionInput {
+	s.CodeBlock = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartCalculationExecutionInput) SetDescription(v string) *StartCalculationExecutionInput {
+	s.Description = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StartCalculationExecutionInput) SetSessionId(v string) *StartCalculationExecutionInput {
+	s.SessionId = &v
+	return s
+}
+
+type StartCalculationExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The calculation execution UUID.
+	CalculationExecutionId *string `min:"1" type:"string"`
+
+	// CREATING - The calculation is in the process of being created.
+	//
+	// CREATED - The calculation has been created and is ready to run.
+	//
+	// QUEUED - The calculation has been queued for processing.
+	//
+	// RUNNING - The calculation is running.
+	//
+	// CANCELING - A request to cancel the calculation has been received and the
+	// system is working to stop it.
+	//
+	// CANCELED - The calculation is no longer running as the result of a cancel
+	// request.
+	//
+	// COMPLETED - The calculation has completed without error.
+	//
+	// FAILED - The calculation failed and is no longer running.
+	State *string `type:"string" enum:"CalculationExecutionState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCalculationExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCalculationExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCalculationExecutionId sets the CalculationExecutionId field's value.
+func (s *StartCalculationExecutionOutput) SetCalculationExecutionId(v string) *StartCalculationExecutionOutput {
+	s.CalculationExecutionId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *StartCalculationExecutionOutput) SetState(v string) *StartCalculationExecutionOutput {
+	s.State = &v
+	return s
+}
+
 type StartQueryExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9341,6 +14710,282 @@ func (s StartQueryExecutionOutput) GoString() string {
 // SetQueryExecutionId sets the QueryExecutionId field's value.
 func (s *StartQueryExecutionOutput) SetQueryExecutionId(v string) *StartQueryExecutionOutput {
 	s.QueryExecutionId = &v
+	return s
+}
+
+type StartSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive string used to ensure the request to create the session
+	// is idempotent (executes only once). If another StartSessionRequest is received,
+	// the same response is returned and another session is not created. If a parameter
+	// has changed, an error is returned.
+	//
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// users. If you are not using the Amazon Web Services SDK or the Amazon Web
+	// Services CLI, you must provide this token or the action will fail.
+	ClientRequestToken *string `min:"32" type:"string"`
+
+	// The session description.
+	Description *string `min:"1" type:"string"`
+
+	// Contains engine data processing unit (DPU) configuration settings and parameter
+	// mappings.
+	//
+	// EngineConfiguration is a required field
+	EngineConfiguration *EngineConfiguration `type:"structure" required:"true"`
+
+	// The notebook version. This value is required only when requesting that a
+	// notebook server be started for the session. The only valid notebook version
+	// is Jupyter1.0.
+	NotebookVersion *string `min:"1" type:"string"`
+
+	// The idle timeout in minutes for the session.
+	SessionIdleTimeoutInMinutes *int64 `min:"1" type:"integer"`
+
+	// The workgroup to which the session belongs.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSessionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.EngineConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineConfiguration"))
+	}
+	if s.NotebookVersion != nil && len(*s.NotebookVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotebookVersion", 1))
+	}
+	if s.SessionIdleTimeoutInMinutes != nil && *s.SessionIdleTimeoutInMinutes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SessionIdleTimeoutInMinutes", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+	if s.EngineConfiguration != nil {
+		if err := s.EngineConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EngineConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSessionInput) SetClientRequestToken(v string) *StartSessionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartSessionInput) SetDescription(v string) *StartSessionInput {
+	s.Description = &v
+	return s
+}
+
+// SetEngineConfiguration sets the EngineConfiguration field's value.
+func (s *StartSessionInput) SetEngineConfiguration(v *EngineConfiguration) *StartSessionInput {
+	s.EngineConfiguration = v
+	return s
+}
+
+// SetNotebookVersion sets the NotebookVersion field's value.
+func (s *StartSessionInput) SetNotebookVersion(v string) *StartSessionInput {
+	s.NotebookVersion = &v
+	return s
+}
+
+// SetSessionIdleTimeoutInMinutes sets the SessionIdleTimeoutInMinutes field's value.
+func (s *StartSessionInput) SetSessionIdleTimeoutInMinutes(v int64) *StartSessionInput {
+	s.SessionIdleTimeoutInMinutes = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *StartSessionInput) SetWorkGroup(v string) *StartSessionInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type StartSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The session ID.
+	SessionId *string `min:"1" type:"string"`
+
+	// The state of the session. A description of each state follows.
+	//
+	// CREATING - The session is being started, including acquiring resources.
+	//
+	// CREATED - The session has been started.
+	//
+	// IDLE - The session is able to accept a calculation.
+	//
+	// BUSY - The session is processing another task and is unable to accept a calculation.
+	//
+	// TERMINATING - The session is in the process of shutting down.
+	//
+	// TERMINATED - The session and its resources are no longer running.
+	//
+	// DEGRADED - The session has no healthy coordinators.
+	//
+	// FAILED - Due to a failure, the session and its resources are no longer running.
+	State *string `type:"string" enum:"SessionState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StartSessionOutput) SetSessionId(v string) *StartSessionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *StartSessionOutput) SetState(v string) *StartSessionOutput {
+	s.State = &v
+	return s
+}
+
+type StopCalculationExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The calculation execution UUID.
+	//
+	// CalculationExecutionId is a required field
+	CalculationExecutionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCalculationExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCalculationExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopCalculationExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopCalculationExecutionInput"}
+	if s.CalculationExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculationExecutionId"))
+	}
+	if s.CalculationExecutionId != nil && len(*s.CalculationExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculationExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculationExecutionId sets the CalculationExecutionId field's value.
+func (s *StopCalculationExecutionInput) SetCalculationExecutionId(v string) *StopCalculationExecutionInput {
+	s.CalculationExecutionId = &v
+	return s
+}
+
+type StopCalculationExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// CREATING - The calculation is in the process of being created.
+	//
+	// CREATED - The calculation has been created and is ready to run.
+	//
+	// QUEUED - The calculation has been queued for processing.
+	//
+	// RUNNING - The calculation is running.
+	//
+	// CANCELING - A request to cancel the calculation has been received and the
+	// system is working to stop it.
+	//
+	// CANCELED - The calculation is no longer running as the result of a cancel
+	// request.
+	//
+	// COMPLETED - The calculation has completed without error.
+	//
+	// FAILED - The calculation failed and is no longer running.
+	State *string `type:"string" enum:"CalculationExecutionState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCalculationExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCalculationExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *StopCalculationExecutionOutput) SetState(v string) *StopCalculationExecutionOutput {
+	s.State = &v
 	return s
 }
 
@@ -9662,6 +15307,102 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type TerminateSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The session ID.
+	//
+	// SessionId is a required field
+	SessionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TerminateSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TerminateSessionInput"}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *TerminateSessionInput) SetSessionId(v string) *TerminateSessionInput {
+	s.SessionId = &v
+	return s
+}
+
+type TerminateSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the session. A description of each state follows.
+	//
+	// CREATING - The session is being started, including acquiring resources.
+	//
+	// CREATED - The session has been started.
+	//
+	// IDLE - The session is able to accept a calculation.
+	//
+	// BUSY - The session is processing another task and is unable to accept a calculation.
+	//
+	// TERMINATING - The session is in the process of shutting down.
+	//
+	// TERMINATED - The session and its resources are no longer running.
+	//
+	// DEGRADED - The session has no healthy coordinators.
+	//
+	// FAILED - Due to a failure, the session and its resources are no longer running.
+	State *string `type:"string" enum:"SessionState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TerminateSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *TerminateSessionOutput) SetState(v string) *TerminateSessionOutput {
+	s.State = &v
+	return s
 }
 
 // Indicates that the request was throttled.
@@ -10217,6 +15958,234 @@ func (s UpdateNamedQueryOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateNotebookInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive string used to ensure the request to create the notebook
+	// is idempotent (executes only once).
+	//
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// you. If you are not using the Amazon Web Services SDK or the Amazon Web Services
+	// CLI, you must provide this token or the action will fail.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The ID of the notebook to update.
+	//
+	// NotebookId is a required field
+	NotebookId *string `min:"1" type:"string" required:"true"`
+
+	// The updated content for the notebook.
+	Payload *string `min:"1" type:"string"`
+
+	// The ID of the session in which the notebook will be updated.
+	SessionId *string `min:"1" type:"string"`
+
+	// The notebook content type. Currently, the only valid type is IPYNB.
+	Type *string `type:"string" enum:"NotebookType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateNotebookInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateNotebookInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.NotebookId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookId"))
+	}
+	if s.NotebookId != nil && len(*s.NotebookId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotebookId", 1))
+	}
+	if s.Payload != nil && len(*s.Payload) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Payload", 1))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateNotebookInput) SetClientRequestToken(v string) *UpdateNotebookInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *UpdateNotebookInput) SetNotebookId(v string) *UpdateNotebookInput {
+	s.NotebookId = &v
+	return s
+}
+
+// SetPayload sets the Payload field's value.
+func (s *UpdateNotebookInput) SetPayload(v string) *UpdateNotebookInput {
+	s.Payload = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *UpdateNotebookInput) SetSessionId(v string) *UpdateNotebookInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateNotebookInput) SetType(v string) *UpdateNotebookInput {
+	s.Type = &v
+	return s
+}
+
+type UpdateNotebookMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive string used to ensure the request to create the notebook
+	// is idempotent (executes only once).
+	//
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// you. If you are not using the Amazon Web Services SDK or the Amazon Web Services
+	// CLI, you must provide this token or the action will fail.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The name to update the notebook to.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the notebook to update the metadata for.
+	//
+	// NotebookId is a required field
+	NotebookId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateNotebookMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateNotebookMetadataInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NotebookId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotebookId"))
+	}
+	if s.NotebookId != nil && len(*s.NotebookId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotebookId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateNotebookMetadataInput) SetClientRequestToken(v string) *UpdateNotebookMetadataInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateNotebookMetadataInput) SetName(v string) *UpdateNotebookMetadataInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotebookId sets the NotebookId field's value.
+func (s *UpdateNotebookMetadataInput) SetNotebookId(v string) *UpdateNotebookMetadataInput {
+	s.NotebookId = &v
+	return s
+}
+
+type UpdateNotebookMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookMetadataOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateNotebookOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNotebookOutput) GoString() string {
+	return s.String()
+}
+
 type UpdatePreparedStatementInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10334,7 +16303,7 @@ func (s UpdatePreparedStatementOutput) GoString() string {
 type UpdateWorkGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The workgroup configuration that will be updated for the given workgroup.
+	// Contains configuration updates for an Athena SQL workgroup.
 	ConfigurationUpdates *WorkGroupConfigurationUpdates `type:"structure"`
 
 	// The workgroup description.
@@ -10525,9 +16494,15 @@ func (s *WorkGroup) SetState(v string) *WorkGroup {
 type WorkGroupConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies a user defined JSON string that is passed to the notebook engine.
+	AdditionalConfiguration *string `min:"1" type:"string"`
+
 	// The upper data usage limit (cutoff) for the amount of bytes a single query
 	// in a workgroup is allowed to scan.
 	BytesScannedCutoffPerQuery *int64 `min:"1e+07" type:"long"`
+
+	// Specifies the KMS key that is used to encrypt the user's data stores in Athena.
+	CustomerContentEncryptionConfiguration *CustomerContentEncryptionConfiguration `type:"structure"`
 
 	// If set to "true", the settings for the workgroup override client-side settings.
 	// If set to "false", client-side settings are used. For more information, see
@@ -10538,6 +16513,9 @@ type WorkGroupConfiguration struct {
 	// on the AmazonAthenaPreviewFunctionality workgroup run on the preview engine
 	// regardless of this setting.
 	EngineVersion *EngineVersion `type:"structure"`
+
+	// Role used in a notebook session for accessing the user's resources.
+	ExecutionRole *string `min:"20" type:"string"`
 
 	// Indicates that the Amazon CloudWatch metrics are enabled for the workgroup.
 	PublishCloudWatchMetricsEnabled *bool `type:"boolean"`
@@ -10582,8 +16560,19 @@ func (s WorkGroupConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *WorkGroupConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "WorkGroupConfiguration"}
+	if s.AdditionalConfiguration != nil && len(*s.AdditionalConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalConfiguration", 1))
+	}
 	if s.BytesScannedCutoffPerQuery != nil && *s.BytesScannedCutoffPerQuery < 1e+07 {
 		invalidParams.Add(request.NewErrParamMinValue("BytesScannedCutoffPerQuery", 1e+07))
+	}
+	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 20))
+	}
+	if s.CustomerContentEncryptionConfiguration != nil {
+		if err := s.CustomerContentEncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomerContentEncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EngineVersion != nil {
 		if err := s.EngineVersion.Validate(); err != nil {
@@ -10602,9 +16591,21 @@ func (s *WorkGroupConfiguration) Validate() error {
 	return nil
 }
 
+// SetAdditionalConfiguration sets the AdditionalConfiguration field's value.
+func (s *WorkGroupConfiguration) SetAdditionalConfiguration(v string) *WorkGroupConfiguration {
+	s.AdditionalConfiguration = &v
+	return s
+}
+
 // SetBytesScannedCutoffPerQuery sets the BytesScannedCutoffPerQuery field's value.
 func (s *WorkGroupConfiguration) SetBytesScannedCutoffPerQuery(v int64) *WorkGroupConfiguration {
 	s.BytesScannedCutoffPerQuery = &v
+	return s
+}
+
+// SetCustomerContentEncryptionConfiguration sets the CustomerContentEncryptionConfiguration field's value.
+func (s *WorkGroupConfiguration) SetCustomerContentEncryptionConfiguration(v *CustomerContentEncryptionConfiguration) *WorkGroupConfiguration {
+	s.CustomerContentEncryptionConfiguration = v
 	return s
 }
 
@@ -10617,6 +16618,12 @@ func (s *WorkGroupConfiguration) SetEnforceWorkGroupConfiguration(v bool) *WorkG
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *WorkGroupConfiguration) SetEngineVersion(v *EngineVersion) *WorkGroupConfiguration {
 	s.EngineVersion = v
+	return s
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *WorkGroupConfiguration) SetExecutionRole(v string) *WorkGroupConfiguration {
+	s.ExecutionRole = &v
 	return s
 }
 
@@ -10647,9 +16654,15 @@ func (s *WorkGroupConfiguration) SetResultConfiguration(v *ResultConfiguration) 
 type WorkGroupConfigurationUpdates struct {
 	_ struct{} `type:"structure"`
 
+	// Contains a user defined string in JSON format for a Spark-enabled workgroup.
+	AdditionalConfiguration *string `min:"1" type:"string"`
+
 	// The upper limit (cutoff) for the amount of bytes a single query in a workgroup
 	// is allowed to scan.
 	BytesScannedCutoffPerQuery *int64 `min:"1e+07" type:"long"`
+
+	// Specifies the KMS key that is used to encrypt the user's data stores in Athena.
+	CustomerContentEncryptionConfiguration *CustomerContentEncryptionConfiguration `type:"structure"`
 
 	// If set to "true", the settings for the workgroup override client-side settings.
 	// If set to "false" client-side settings are used. For more information, see
@@ -10662,11 +16675,17 @@ type WorkGroupConfigurationUpdates struct {
 	// workgroup run on the preview engine regardless of this setting.
 	EngineVersion *EngineVersion `type:"structure"`
 
+	// Contains the ARN of the execution role for the workgroup
+	ExecutionRole *string `min:"20" type:"string"`
+
 	// Indicates whether this workgroup enables publishing metrics to Amazon CloudWatch.
 	PublishCloudWatchMetricsEnabled *bool `type:"boolean"`
 
 	// Indicates that the data usage control limit per query is removed. WorkGroupConfiguration$BytesScannedCutoffPerQuery
 	RemoveBytesScannedCutoffPerQuery *bool `type:"boolean"`
+
+	// Removes content encryption configuration for a workgroup.
+	RemoveCustomerContentEncryptionConfiguration *bool `type:"boolean"`
 
 	// If set to true, allows members assigned to a workgroup to specify Amazon
 	// S3 Requester Pays buckets in queries. If set to false, workgroup members
@@ -10704,8 +16723,19 @@ func (s WorkGroupConfigurationUpdates) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *WorkGroupConfigurationUpdates) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "WorkGroupConfigurationUpdates"}
+	if s.AdditionalConfiguration != nil && len(*s.AdditionalConfiguration) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalConfiguration", 1))
+	}
 	if s.BytesScannedCutoffPerQuery != nil && *s.BytesScannedCutoffPerQuery < 1e+07 {
 		invalidParams.Add(request.NewErrParamMinValue("BytesScannedCutoffPerQuery", 1e+07))
+	}
+	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 20))
+	}
+	if s.CustomerContentEncryptionConfiguration != nil {
+		if err := s.CustomerContentEncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomerContentEncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EngineVersion != nil {
 		if err := s.EngineVersion.Validate(); err != nil {
@@ -10724,9 +16754,21 @@ func (s *WorkGroupConfigurationUpdates) Validate() error {
 	return nil
 }
 
+// SetAdditionalConfiguration sets the AdditionalConfiguration field's value.
+func (s *WorkGroupConfigurationUpdates) SetAdditionalConfiguration(v string) *WorkGroupConfigurationUpdates {
+	s.AdditionalConfiguration = &v
+	return s
+}
+
 // SetBytesScannedCutoffPerQuery sets the BytesScannedCutoffPerQuery field's value.
 func (s *WorkGroupConfigurationUpdates) SetBytesScannedCutoffPerQuery(v int64) *WorkGroupConfigurationUpdates {
 	s.BytesScannedCutoffPerQuery = &v
+	return s
+}
+
+// SetCustomerContentEncryptionConfiguration sets the CustomerContentEncryptionConfiguration field's value.
+func (s *WorkGroupConfigurationUpdates) SetCustomerContentEncryptionConfiguration(v *CustomerContentEncryptionConfiguration) *WorkGroupConfigurationUpdates {
+	s.CustomerContentEncryptionConfiguration = v
 	return s
 }
 
@@ -10742,6 +16784,12 @@ func (s *WorkGroupConfigurationUpdates) SetEngineVersion(v *EngineVersion) *Work
 	return s
 }
 
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *WorkGroupConfigurationUpdates) SetExecutionRole(v string) *WorkGroupConfigurationUpdates {
+	s.ExecutionRole = &v
+	return s
+}
+
 // SetPublishCloudWatchMetricsEnabled sets the PublishCloudWatchMetricsEnabled field's value.
 func (s *WorkGroupConfigurationUpdates) SetPublishCloudWatchMetricsEnabled(v bool) *WorkGroupConfigurationUpdates {
 	s.PublishCloudWatchMetricsEnabled = &v
@@ -10751,6 +16799,12 @@ func (s *WorkGroupConfigurationUpdates) SetPublishCloudWatchMetricsEnabled(v boo
 // SetRemoveBytesScannedCutoffPerQuery sets the RemoveBytesScannedCutoffPerQuery field's value.
 func (s *WorkGroupConfigurationUpdates) SetRemoveBytesScannedCutoffPerQuery(v bool) *WorkGroupConfigurationUpdates {
 	s.RemoveBytesScannedCutoffPerQuery = &v
+	return s
+}
+
+// SetRemoveCustomerContentEncryptionConfiguration sets the RemoveCustomerContentEncryptionConfiguration field's value.
+func (s *WorkGroupConfigurationUpdates) SetRemoveCustomerContentEncryptionConfiguration(v bool) *WorkGroupConfigurationUpdates {
+	s.RemoveCustomerContentEncryptionConfiguration = &v
 	return s
 }
 
@@ -10838,6 +16892,46 @@ func (s *WorkGroupSummary) SetState(v string) *WorkGroupSummary {
 }
 
 const (
+	// CalculationExecutionStateCreating is a CalculationExecutionState enum value
+	CalculationExecutionStateCreating = "CREATING"
+
+	// CalculationExecutionStateCreated is a CalculationExecutionState enum value
+	CalculationExecutionStateCreated = "CREATED"
+
+	// CalculationExecutionStateQueued is a CalculationExecutionState enum value
+	CalculationExecutionStateQueued = "QUEUED"
+
+	// CalculationExecutionStateRunning is a CalculationExecutionState enum value
+	CalculationExecutionStateRunning = "RUNNING"
+
+	// CalculationExecutionStateCanceling is a CalculationExecutionState enum value
+	CalculationExecutionStateCanceling = "CANCELING"
+
+	// CalculationExecutionStateCanceled is a CalculationExecutionState enum value
+	CalculationExecutionStateCanceled = "CANCELED"
+
+	// CalculationExecutionStateCompleted is a CalculationExecutionState enum value
+	CalculationExecutionStateCompleted = "COMPLETED"
+
+	// CalculationExecutionStateFailed is a CalculationExecutionState enum value
+	CalculationExecutionStateFailed = "FAILED"
+)
+
+// CalculationExecutionState_Values returns all elements of the CalculationExecutionState enum
+func CalculationExecutionState_Values() []string {
+	return []string{
+		CalculationExecutionStateCreating,
+		CalculationExecutionStateCreated,
+		CalculationExecutionStateQueued,
+		CalculationExecutionStateRunning,
+		CalculationExecutionStateCanceling,
+		CalculationExecutionStateCanceled,
+		CalculationExecutionStateCompleted,
+		CalculationExecutionStateFailed,
+	}
+}
+
+const (
 	// ColumnNullableNotNull is a ColumnNullable enum value
 	ColumnNullableNotNull = "NOT_NULL"
 
@@ -10898,6 +16992,70 @@ func EncryptionOption_Values() []string {
 }
 
 const (
+	// ExecutorStateCreating is a ExecutorState enum value
+	ExecutorStateCreating = "CREATING"
+
+	// ExecutorStateCreated is a ExecutorState enum value
+	ExecutorStateCreated = "CREATED"
+
+	// ExecutorStateRegistered is a ExecutorState enum value
+	ExecutorStateRegistered = "REGISTERED"
+
+	// ExecutorStateTerminating is a ExecutorState enum value
+	ExecutorStateTerminating = "TERMINATING"
+
+	// ExecutorStateTerminated is a ExecutorState enum value
+	ExecutorStateTerminated = "TERMINATED"
+
+	// ExecutorStateFailed is a ExecutorState enum value
+	ExecutorStateFailed = "FAILED"
+)
+
+// ExecutorState_Values returns all elements of the ExecutorState enum
+func ExecutorState_Values() []string {
+	return []string{
+		ExecutorStateCreating,
+		ExecutorStateCreated,
+		ExecutorStateRegistered,
+		ExecutorStateTerminating,
+		ExecutorStateTerminated,
+		ExecutorStateFailed,
+	}
+}
+
+const (
+	// ExecutorTypeCoordinator is a ExecutorType enum value
+	ExecutorTypeCoordinator = "COORDINATOR"
+
+	// ExecutorTypeGateway is a ExecutorType enum value
+	ExecutorTypeGateway = "GATEWAY"
+
+	// ExecutorTypeWorker is a ExecutorType enum value
+	ExecutorTypeWorker = "WORKER"
+)
+
+// ExecutorType_Values returns all elements of the ExecutorType enum
+func ExecutorType_Values() []string {
+	return []string{
+		ExecutorTypeCoordinator,
+		ExecutorTypeGateway,
+		ExecutorTypeWorker,
+	}
+}
+
+const (
+	// NotebookTypeIpynb is a NotebookType enum value
+	NotebookTypeIpynb = "IPYNB"
+)
+
+// NotebookType_Values returns all elements of the NotebookType enum
+func NotebookType_Values() []string {
+	return []string{
+		NotebookTypeIpynb,
+	}
+}
+
+const (
 	// QueryExecutionStateQueued is a QueryExecutionState enum value
 	QueryExecutionStateQueued = "QUEUED"
 
@@ -10934,6 +17092,46 @@ const (
 func S3AclOption_Values() []string {
 	return []string{
 		S3AclOptionBucketOwnerFullControl,
+	}
+}
+
+const (
+	// SessionStateCreating is a SessionState enum value
+	SessionStateCreating = "CREATING"
+
+	// SessionStateCreated is a SessionState enum value
+	SessionStateCreated = "CREATED"
+
+	// SessionStateIdle is a SessionState enum value
+	SessionStateIdle = "IDLE"
+
+	// SessionStateBusy is a SessionState enum value
+	SessionStateBusy = "BUSY"
+
+	// SessionStateTerminating is a SessionState enum value
+	SessionStateTerminating = "TERMINATING"
+
+	// SessionStateTerminated is a SessionState enum value
+	SessionStateTerminated = "TERMINATED"
+
+	// SessionStateDegraded is a SessionState enum value
+	SessionStateDegraded = "DEGRADED"
+
+	// SessionStateFailed is a SessionState enum value
+	SessionStateFailed = "FAILED"
+)
+
+// SessionState_Values returns all elements of the SessionState enum
+func SessionState_Values() []string {
+	return []string{
+		SessionStateCreating,
+		SessionStateCreated,
+		SessionStateIdle,
+		SessionStateBusy,
+		SessionStateTerminating,
+		SessionStateTerminated,
+		SessionStateDegraded,
+		SessionStateFailed,
 	}
 }
 

@@ -10,6 +10,7 @@
     "BatchGetBlueprints": "<p>Retrieves information about a list of blueprints.</p>",
     "BatchGetCrawlers": "<p>Returns a list of resource metadata for a given list of crawler names. After calling the <code>ListCrawlers</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetCustomEntityTypes": "<p>Retrieves the details for the custom patterns specified by a list of names.</p>",
+    "BatchGetDataQualityResult": "<p>Retrieves a list of data quality results for the specified result IDs.</p>",
     "BatchGetDevEndpoints": "<p>Returns a list of resource metadata for a given list of development endpoint names. After calling the <code>ListDevEndpoints</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetJobs": "<p>Returns a list of resource metadata for a given list of job names. After calling the <code>ListJobs</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags. </p>",
     "BatchGetPartition": "<p>Retrieves partitions in a batch request.</p>",
@@ -17,6 +18,8 @@
     "BatchGetWorkflows": "<p>Returns a list of resource metadata for a given list of workflow names. After calling the <code>ListWorkflows</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchStopJobRun": "<p>Stops one or more job runs for a specified job definition.</p>",
     "BatchUpdatePartition": "<p>Updates one or more partitions in a batch operation.</p>",
+    "CancelDataQualityRuleRecommendationRun": "<p>Cancels the specified recommendation run that was being used to generate rules.</p>",
+    "CancelDataQualityRulesetEvaluationRun": "<p>Cancels a run where a ruleset is being evaluated against a data source.</p>",
     "CancelMLTaskRun": "<p>Cancels (stops) a task run. Machine learning task runs are asynchronous tasks that Glue runs on your behalf as part of various machine learning workflows. You can cancel a machine learning task run at any time by calling <code>CancelMLTaskRun</code> with a task run's parent transform's <code>TransformID</code> and the task run's <code>TaskRunId</code>. </p>",
     "CancelStatement": "<p>Cancels the statement.</p>",
     "CheckSchemaVersionValidity": "<p>Validates the supplied schema. This call has no side effects, it simply validates using the supplied schema using <code>DataFormat</code> as the format. Since it does not take a schema set name, no compatibility checks are performed.</p>",
@@ -25,6 +28,7 @@
     "CreateConnection": "<p>Creates a connection definition in the Data Catalog.</p>",
     "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in the <code>s3Targets</code> field, the <code>jdbcTargets</code> field, or the <code>DynamoDBTargets</code> field.</p>",
     "CreateCustomEntityType": "<p>Creates a custom pattern that is used to detect sensitive data across the columns and rows of your structured data.</p> <p>Each custom pattern you create specifies a regular expression and an optional list of context words. If no context words are passed only a regular expression is checked.</p>",
+    "CreateDataQualityRuleset": "<p>Creates a data quality ruleset with DQDL rules applied to a specified Glue table.</p> <p>You create the ruleset using the Data Quality Definition Language (DQDL). For more information, see the Glue developer guide.</p>",
     "CreateDatabase": "<p>Creates a new database in a Data Catalog.</p>",
     "CreateDevEndpoint": "<p>Creates a new development endpoint.</p>",
     "CreateJob": "<p>Creates a new job definition.</p>",
@@ -47,6 +51,7 @@
     "DeleteConnection": "<p>Deletes a connection from the Data Catalog.</p>",
     "DeleteCrawler": "<p>Removes a specified crawler from the Glue Data Catalog, unless the crawler state is <code>RUNNING</code>.</p>",
     "DeleteCustomEntityType": "<p>Deletes a custom pattern by specifying its name.</p>",
+    "DeleteDataQualityRuleset": "<p>Deletes a data quality ruleset.</p>",
     "DeleteDatabase": "<p>Removes a specified database from a Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted database. Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, <code>DeletePartition</code> or <code>BatchDeletePartition</code>, <code>DeleteUserDefinedFunction</code>, and <code>DeleteTable</code> or <code>BatchDeleteTable</code>, to delete any resources that belong to the database.</p> </note>",
     "DeleteDevEndpoint": "<p>Deletes a specified development endpoint.</p>",
     "DeleteJob": "<p>Deletes a specified job definition. If the job definition is not found, no exception is thrown.</p>",
@@ -79,6 +84,10 @@
     "GetCrawlers": "<p>Retrieves metadata for all crawlers defined in the customer account.</p>",
     "GetCustomEntityType": "<p>Retrieves the details of a custom pattern by specifying its name.</p>",
     "GetDataCatalogEncryptionSettings": "<p>Retrieves the security configuration for a specified catalog.</p>",
+    "GetDataQualityResult": "<p>Retrieves the result of a data quality rule evaluation.</p>",
+    "GetDataQualityRuleRecommendationRun": "<p>Gets the specified recommendation run that was used to generate rules.</p>",
+    "GetDataQualityRuleset": "<p>Returns an existing ruleset by identifier or name.</p>",
+    "GetDataQualityRulesetEvaluationRun": "<p>Retrieves a specific run where a ruleset is evaluated against a data source.</p>",
     "GetDatabase": "<p>Retrieves the definition of a specified database.</p>",
     "GetDatabases": "<p>Retrieves all databases defined in a given Data Catalog.</p>",
     "GetDataflowGraph": "<p>Transforms a Python script into a directed acyclic graph (DAG). </p>",
@@ -130,6 +139,10 @@
     "ListCrawlers": "<p>Retrieves the names of all crawler resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListCrawls": "<p>Returns all the crawls of a specified crawler. Returns only the crawls that have occurred since the launch date of the crawler history feature, and only retains up to 12 months of crawls. Older crawls will not be returned.</p> <p>You may use this API to:</p> <ul> <li> <p>Retrive all the crawls of a specified crawler.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler within a limited count.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler in a specific time range.</p> </li> <li> <p>Retrieve all the crawls of a specified crawler with a particular state, crawl ID, or DPU hour value.</p> </li> </ul>",
     "ListCustomEntityTypes": "<p>Lists all the custom patterns that have been created.</p>",
+    "ListDataQualityResults": "<p>Returns all data quality execution results for your account.</p>",
+    "ListDataQualityRuleRecommendationRuns": "<p>Lists the recommendation runs meeting the filter criteria.</p>",
+    "ListDataQualityRulesetEvaluationRuns": "<p>Lists all the runs meeting the filter criteria, where a ruleset is evaluated against a data source.</p>",
+    "ListDataQualityRulesets": "<p>Returns a paginated list of rulesets for the specified list of Glue tables.</p>",
     "ListDevEndpoints": "<p>Retrieves the names of all <code>DevEndpoint</code> resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListJobs": "<p>Retrieves the names of all job resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListMLTransforms": "<p> Retrieves a sortable, filterable list of existing Glue machine learning transforms in this Amazon Web Services account, or the resources with the specified tag. This operation takes the optional <code>Tags</code> field, which you can use as a filter of the responses so that tagged resources can be retrieved as a group. If you choose to use tag filtering, only resources with the tags are retrieved. </p>",
@@ -154,6 +167,8 @@
     "StartBlueprintRun": "<p>Starts a new run of the specified blueprint.</p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
+    "StartDataQualityRuleRecommendationRun": "<p>Starts a recommendation run that is used to generate rules when you don't know what rules to write. Glue Data Quality analyzes the data and comes up with recommendations for a potential ruleset. You can then triage the ruleset and modify the generated ruleset to your liking.</p>",
+    "StartDataQualityRulesetEvaluationRun": "<p>Once you have a ruleset definition (either recommended or your own), you call this operation to evaluate the ruleset against a data source (Glue table). The evaluation computes results which you can retrieve with the <code>GetDataQualityResult</code> API.</p>",
     "StartExportLabelsTaskRun": "<p>Begins an asynchronous task to export all labeled data for a particular transform. This task is the only label-related API call that is not part of the typical active learning workflow. You typically use <code>StartExportLabelsTaskRun</code> when you want to work with all of your existing labels at the same time, such as when you want to remove or change labels that were previously submitted as truth. This API operation accepts the <code>TransformId</code> whose labels you want to export and an Amazon Simple Storage Service (Amazon S3) path to export the labels to. The operation returns a <code>TaskRunId</code>. You can check on the status of your task run by calling the <code>GetMLTaskRun</code> API.</p>",
     "StartImportLabelsTaskRun": "<p>Enables you to provide additional labels (examples of truth) to be used to teach the machine learning transform and improve its quality. This API operation is generally used as part of the active learning workflow that starts with the <code>StartMLLabelingSetGenerationTaskRun</code> call and that ultimately results in improving the quality of your machine learning transform. </p> <p>After the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, Glue machine learning will have generated a series of questions for humans to answer. (Answering these questions is often called 'labeling' in the machine learning workflows). In the case of the <code>FindMatches</code> transform, these questions are of the form, “What is the correct way to group these rows together into groups composed entirely of matching records?” After the labeling process is finished, users upload their answers/labels with a call to <code>StartImportLabelsTaskRun</code>. After <code>StartImportLabelsTaskRun</code> finishes, all future runs of the machine learning transform use the new and improved labels and perform a higher-quality transformation.</p> <p>By default, <code>StartMLLabelingSetGenerationTaskRun</code> continually learns from and combines all labels that you upload unless you set <code>Replace</code> to true. If you set <code>Replace</code> to true, <code>StartImportLabelsTaskRun</code> deletes and forgets all previously uploaded labels and learns only from the exact set that you upload. Replacing labels can be helpful if you realize that you previously uploaded incorrect labels, and you believe that they are having a negative effect on your transform quality.</p> <p>You can check on the status of your task run by calling the <code>GetMLTaskRun</code> operation. </p>",
     "StartJobRun": "<p>Starts a job run using a job definition.</p>",
@@ -175,6 +190,7 @@
     "UpdateConnection": "<p>Updates a connection definition in the Data Catalog.</p>",
     "UpdateCrawler": "<p>Updates a crawler. If a crawler is running, you must stop it using <code>StopCrawler</code> before updating it.</p>",
     "UpdateCrawlerSchedule": "<p>Updates the schedule of a crawler using a <code>cron</code> expression. </p>",
+    "UpdateDataQualityRuleset": "<p>Updates the specified data quality ruleset.</p>",
     "UpdateDatabase": "<p>Updates an existing database definition in a Data Catalog.</p>",
     "UpdateDevEndpoint": "<p>Updates a specified development endpoint.</p>",
     "UpdateJob": "<p>Updates an existing job definition. The previous job definition is completely overwritten by this information.</p>",
@@ -433,6 +449,16 @@
       }
     },
     "BatchGetCustomEntityTypesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetDataQualityResultRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetDataQualityResultResponse": {
       "base": null,
       "refs": {
       }
@@ -710,6 +736,8 @@
         "CatalogKafkaSource$DetectSchema": "<p>Whether to automatically determine the schema from the incoming data.</p>",
         "CatalogKinesisSource$DetectSchema": "<p>Whether to automatically determine the schema from the incoming data.</p>",
         "CatalogSchemaChangePolicy$EnableUpdateCatalog": "<p>Whether to use the specified update behavior when the crawler finds a changed schema.</p>",
+        "DQResultsPublishingOptions$CloudWatchMetricsEnabled": "<p>Enable metrics for your data quality results.</p>",
+        "DQResultsPublishingOptions$ResultsPublishingEnabled": "<p>Enable publishing for your data quality results.</p>",
         "DirectKafkaSource$DetectSchema": "<p>Whether to automatically determine the schema from the incoming data.</p>",
         "DirectKinesisSource$DetectSchema": "<p>Whether to automatically determine the schema from the incoming data.</p>",
         "DirectSchemaChangePolicy$EnableUpdateCatalog": "<p>Whether to use the specified update behavior when the crawler finds a changed schema.</p>",
@@ -787,6 +815,26 @@
         "CatalogKinesisSource$WindowSize": "<p>The amount of time to spend processing each micro batch.</p>",
         "DirectKafkaSource$WindowSize": "<p>The amount of time to spend processing each micro batch.</p>",
         "DirectKinesisSource$WindowSize": "<p>The amount of time to spend processing each micro batch.</p>"
+      }
+    },
+    "CancelDataQualityRuleRecommendationRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelDataQualityRuleRecommendationRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelDataQualityRulesetEvaluationRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelDataQualityRulesetEvaluationRunResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CancelMLTaskRunRequest": {
@@ -1546,6 +1594,16 @@
       "refs": {
       }
     },
+    "CreateDataQualityRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDataQualityRulesetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateDatabaseRequest": {
       "base": null,
       "refs": {
@@ -1817,6 +1875,36 @@
         "UpdateGrokClassifierRequest$CustomPatterns": "<p>Optional custom grok patterns used by this classifier.</p>"
       }
     },
+    "DQDLString": {
+      "base": null,
+      "refs": {
+        "EvaluateDataQuality$Ruleset": "<p>The ruleset for your data quality evaluation.</p>"
+      }
+    },
+    "DQResultsPublishingOptions": {
+      "base": "<p>Options to configure how your data quality evaluation results are published.</p>",
+      "refs": {
+        "EvaluateDataQuality$PublishingOptions": "<p>Options to configure how your results are published.</p>"
+      }
+    },
+    "DQStopJobOnFailureOptions": {
+      "base": "<p>Options to configure how your job will stop if your data quality evaluation fails.</p>",
+      "refs": {
+        "EvaluateDataQuality$StopJobOnFailureOptions": "<p>Options to configure how your job will stop if your data quality evaluation fails.</p>"
+      }
+    },
+    "DQStopJobOnFailureTiming": {
+      "base": null,
+      "refs": {
+        "DQStopJobOnFailureOptions$StopJobOnFailureTiming": "<p>When to stop job if your data quality evaluation fails. Options are Immediate or AfterDataLoad.</p>"
+      }
+    },
+    "DQTransformOutput": {
+      "base": null,
+      "refs": {
+        "EvaluateDataQuality$Output": "<p>The output of your data quality evaluation.</p>"
+      }
+    },
     "DagEdges": {
       "base": null,
       "refs": {
@@ -1859,6 +1947,165 @@
       "base": null,
       "refs": {
         "DataLakePrincipal$DataLakePrincipalIdentifier": "<p>An identifier for the Lake Formation principal.</p>"
+      }
+    },
+    "DataQualityEvaluationRunAdditionalRunOptions": {
+      "base": "<p>Additional run options you can specify for an evaluation run.</p>",
+      "refs": {
+        "GetDataQualityRulesetEvaluationRunResponse$AdditionalRunOptions": "<p>Additional run options you can specify for an evaluation run.</p>",
+        "StartDataQualityRulesetEvaluationRunRequest$AdditionalRunOptions": "<p>Additional run options you can specify for an evaluation run.</p>"
+      }
+    },
+    "DataQualityResult": {
+      "base": "<p>Describes a data quality result.</p>",
+      "refs": {
+        "DataQualityResultsList$member": null
+      }
+    },
+    "DataQualityResultDescription": {
+      "base": "<p>Describes a data quality result.</p>",
+      "refs": {
+        "DataQualityResultDescriptionList$member": null
+      }
+    },
+    "DataQualityResultDescriptionList": {
+      "base": null,
+      "refs": {
+        "ListDataQualityResultsResponse$Results": "<p>A list of <code>DataQualityResultDescription</code> objects.</p>"
+      }
+    },
+    "DataQualityResultFilterCriteria": {
+      "base": "<p>Criteria used to return data quality results.</p>",
+      "refs": {
+        "ListDataQualityResultsRequest$Filter": "<p>The filter criteria.</p>"
+      }
+    },
+    "DataQualityResultIdList": {
+      "base": null,
+      "refs": {
+        "GetDataQualityRulesetEvaluationRunResponse$ResultIds": "<p>A list of result IDs for the data quality results for the run.</p>"
+      }
+    },
+    "DataQualityResultIds": {
+      "base": null,
+      "refs": {
+        "BatchGetDataQualityResultRequest$ResultIds": "<p>A list of unique result IDs for the data quality results.</p>",
+        "BatchGetDataQualityResultResponse$ResultsNotFound": "<p>A list of result IDs for which results were not found.</p>"
+      }
+    },
+    "DataQualityResultsList": {
+      "base": null,
+      "refs": {
+        "BatchGetDataQualityResultResponse$Results": "<p>A list of <code>DataQualityResult</code> objects representing the data quality results.</p>"
+      }
+    },
+    "DataQualityRuleRecommendationRunDescription": {
+      "base": "<p>Describes the result of a data quality rule recommendation run.</p>",
+      "refs": {
+        "DataQualityRuleRecommendationRunList$member": null
+      }
+    },
+    "DataQualityRuleRecommendationRunFilter": {
+      "base": "<p>A filter for listing data quality recommendation runs.</p>",
+      "refs": {
+        "ListDataQualityRuleRecommendationRunsRequest$Filter": "<p>The filter criteria.</p>"
+      }
+    },
+    "DataQualityRuleRecommendationRunList": {
+      "base": null,
+      "refs": {
+        "ListDataQualityRuleRecommendationRunsResponse$Runs": "<p>A list of <code>DataQualityRuleRecommendationRunDescription</code> objects.</p>"
+      }
+    },
+    "DataQualityRuleResult": {
+      "base": "<p>Describes the result of the evaluation of a data quality rule.</p>",
+      "refs": {
+        "DataQualityRuleResults$member": null
+      }
+    },
+    "DataQualityRuleResultStatus": {
+      "base": null,
+      "refs": {
+        "DataQualityRuleResult$Result": "<p>A pass or fail status for the rule.</p>"
+      }
+    },
+    "DataQualityRuleResults": {
+      "base": null,
+      "refs": {
+        "DataQualityResult$RuleResults": "<p>A list of <code>DataQualityRuleResult</code> objects representing the results for each rule. </p>",
+        "GetDataQualityResultResponse$RuleResults": "<p>A list of <code>DataQualityRuleResult</code> objects representing the results for each rule. </p>"
+      }
+    },
+    "DataQualityRulesetEvaluationRunDescription": {
+      "base": "<p>Describes the result of a data quality ruleset evaluation run.</p>",
+      "refs": {
+        "DataQualityRulesetEvaluationRunList$member": null
+      }
+    },
+    "DataQualityRulesetEvaluationRunFilter": {
+      "base": "<p>The filter criteria.</p>",
+      "refs": {
+        "ListDataQualityRulesetEvaluationRunsRequest$Filter": "<p>The filter criteria.</p>"
+      }
+    },
+    "DataQualityRulesetEvaluationRunList": {
+      "base": null,
+      "refs": {
+        "ListDataQualityRulesetEvaluationRunsResponse$Runs": "<p>A list of <code>DataQualityRulesetEvaluationRunDescription</code> objects representing data quality ruleset runs.</p>"
+      }
+    },
+    "DataQualityRulesetFilterCriteria": {
+      "base": "<p>The criteria used to filter data quality rulesets.</p>",
+      "refs": {
+        "ListDataQualityRulesetsRequest$Filter": "<p>The filter criteria. </p>"
+      }
+    },
+    "DataQualityRulesetList": {
+      "base": null,
+      "refs": {
+        "ListDataQualityRulesetsResponse$Rulesets": "<p>A paginated list of rulesets for the specified list of Glue tables.</p>"
+      }
+    },
+    "DataQualityRulesetListDetails": {
+      "base": "<p>Describes a data quality ruleset returned by <code>GetDataQualityRuleset</code>.</p>",
+      "refs": {
+        "DataQualityRulesetList$member": null
+      }
+    },
+    "DataQualityRulesetString": {
+      "base": null,
+      "refs": {
+        "CreateDataQualityRulesetRequest$Ruleset": "<p>A Data Quality Definition Language (DQDL) ruleset. For more information, see the Glue developer guide.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$RecommendedRuleset": "<p>When a start rule recommendation run completes, it creates a recommended ruleset (a set of rules). This member has those rules in Data Quality Definition Language (DQDL) format.</p>",
+        "GetDataQualityRulesetResponse$Ruleset": "<p>A Data Quality Definition Language (DQDL) ruleset. For more information, see the Glue developer guide.</p>",
+        "UpdateDataQualityRulesetRequest$Ruleset": "<p>A Data Quality Definition Language (DQDL) ruleset. For more information, see the Glue developer guide.</p>",
+        "UpdateDataQualityRulesetResponse$Ruleset": "<p>A Data Quality Definition Language (DQDL) ruleset. For more information, see the Glue developer guide.</p>"
+      }
+    },
+    "DataQualityTargetTable": {
+      "base": "<p>An object representing an Glue table.</p>",
+      "refs": {
+        "CreateDataQualityRulesetRequest$TargetTable": "<p>A target table associated with the data quality ruleset.</p>",
+        "DataQualityRulesetFilterCriteria$TargetTable": "<p>The name and database name of the target table.</p>",
+        "DataQualityRulesetListDetails$TargetTable": "<p>An object representing an Glue table.</p>",
+        "GetDataQualityRulesetResponse$TargetTable": "<p>The name and database name of the target table.</p>"
+      }
+    },
+    "DataSource": {
+      "base": "<p>A data source (an Glue table) for which you want data quality results.</p>",
+      "refs": {
+        "DataQualityResult$DataSource": "<p>The table associated with the data quality result, if any.</p>",
+        "DataQualityResultDescription$DataSource": "<p>The table name associated with the data quality result.</p>",
+        "DataQualityResultFilterCriteria$DataSource": "<p>Filter results by the specified data source. For example, retrieving all results for an Glue table.</p>",
+        "DataQualityRuleRecommendationRunDescription$DataSource": "<p>The data source (Glue table) associated with the recommendation run.</p>",
+        "DataQualityRuleRecommendationRunFilter$DataSource": "<p>Filter based on a specified data source (Glue table).</p>",
+        "DataQualityRulesetEvaluationRunDescription$DataSource": "<p>The data source (an Glue table) associated with the run.</p>",
+        "DataQualityRulesetEvaluationRunFilter$DataSource": "<p>Filter based on a data source (an Glue table) associated with the run.</p>",
+        "GetDataQualityResultResponse$DataSource": "<p>The table associated with the data quality result, if any.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$DataSource": "<p>The data source (an Glue table) associated with this run.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$DataSource": "<p>The data source (an Glue table) associated with this evaluation run.</p>",
+        "StartDataQualityRuleRecommendationRunRequest$DataSource": "<p>The data source (Glue table) associated with this run.</p>",
+        "StartDataQualityRulesetEvaluationRunRequest$DataSource": "<p>The data source (Glue table) associated with this run.</p>"
       }
     },
     "Database": {
@@ -1999,6 +2246,16 @@
       }
     },
     "DeleteCustomEntityTypeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDataQualityRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDataQualityRulesetResponse": {
       "base": null,
       "refs": {
       }
@@ -2194,6 +2451,7 @@
         "Crawler$Description": "<p>A description of the crawler.</p>",
         "CrawlerHistory$ErrorMessage": "<p>If an error occurred, the error message associated with the crawl.</p>",
         "CreateCrawlerRequest$Description": "<p>A description of the new crawler.</p>",
+        "CreateDataQualityRulesetRequest$Description": "<p>A description of the data quality ruleset.</p>",
         "CreateJobRequest$Description": "<p>Description of the job being defined.</p>",
         "CreateMLTransformRequest$Description": "<p>A description of the machine learning transform that is being defined. The default is an empty string.</p>",
         "CreateRegistryInput$Description": "<p>A description of the registry. If description is not provided, there will not be any default value for this.</p>",
@@ -2202,12 +2460,18 @@
         "CreateSchemaResponse$Description": "<p>A description of the schema if specified when created.</p>",
         "CreateSessionRequest$Description": "<p>The description of the session. </p>",
         "CreateTriggerRequest$Description": "<p>A description of the new trigger.</p>",
+        "DataQualityRuleResult$Description": "<p>A description of the data quality rule.</p>",
+        "DataQualityRuleResult$EvaluationMessage": "<p>An evaluation message.</p>",
+        "DataQualityRulesetFilterCriteria$Description": "<p>The description of the ruleset filter criteria.</p>",
+        "DataQualityRulesetListDetails$Description": "<p>A description of the data quality ruleset.</p>",
         "Database$Description": "<p>A description of the database.</p>",
         "DatabaseInput$Description": "<p>A description of the database.</p>",
         "ErrorDetail$ErrorMessage": "<p>A message describing the error.</p>",
+        "GetDataQualityRulesetResponse$Description": "<p>A description of the ruleset.</p>",
         "GetMLTransformResponse$Description": "<p>A description of the transform.</p>",
         "GetRegistryResponse$Description": "<p>A description of the registry.</p>",
         "GetSchemaResponse$Description": "<p>A description of schema if specified when created</p>",
+        "GlueTableAdditionalOptions$value": null,
         "Job$Description": "<p>A description of the job.</p>",
         "JobUpdate$Description": "<p>Description of the job being defined.</p>",
         "LastCrawlInfo$ErrorMessage": "<p>If an error occurred, the error information about the last crawl.</p>",
@@ -2220,6 +2484,8 @@
         "TableInput$Description": "<p>A description of the table.</p>",
         "Trigger$Description": "<p>A description of this trigger.</p>",
         "TriggerUpdate$Description": "<p>A description of this trigger.</p>",
+        "UpdateDataQualityRulesetRequest$Description": "<p>A description of the ruleset.</p>",
+        "UpdateDataQualityRulesetResponse$Description": "<p>A description of the ruleset.</p>",
         "UpdateMLTransformRequest$Description": "<p>A description of the transform. The default is an empty string.</p>",
         "UpdateRegistryInput$Description": "<p>A description of the registry. If description is not provided, this field will not be updated.</p>",
         "UpdateSchemaInput$Description": "<p>The new description for the schema.</p>"
@@ -2413,6 +2679,7 @@
         "CatalogSource$Database": "<p>The name of the database to read from.</p>",
         "CatalogSource$Table": "<p>The name of the table in the database to read from.</p>",
         "CustomCode$ClassName": "<p>The name defined for the custom code node class.</p>",
+        "DQResultsPublishingOptions$ResultsS3Prefix": "<p>The Amazon S3 prefix prepended to the results.</p>",
         "DirectSchemaChangePolicy$Table": "<p>Specifies the table in the database that the schema change policy applies to.</p>",
         "DirectSchemaChangePolicy$Database": "<p>Specifies the database that the schema change policy applies to.</p>",
         "DynamicTransform$Name": "<p>Specifies the name of the dynamic transform.</p>",
@@ -2592,6 +2859,12 @@
         "WorkflowRun$ErrorMessage": "<p>This error message describes any error that may have occurred in starting the workflow run. Currently the only error message is \"Concurrent runs exceeded for workflow: <code>foo</code>.\"</p>"
       }
     },
+    "EvaluateDataQuality": {
+      "base": "<p>Specifies your data quality evaluation criteria.</p>",
+      "refs": {
+        "CodeGenConfigurationNode$EvaluateDataQuality": "<p>Specifies your data quality evaluation criteria.</p>"
+      }
+    },
     "EvaluationMetrics": {
       "base": "<p>Evaluation metrics provide an estimate of the quality of your machine learning transform.</p>",
       "refs": {
@@ -2637,6 +2910,8 @@
     "ExecutionTime": {
       "base": null,
       "refs": {
+        "GetDataQualityRuleRecommendationRunResponse$ExecutionTime": "<p>The amount of time (in seconds) that the run consumed resources.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$ExecutionTime": "<p>The amount of time (in seconds) that the run consumed resources.</p>",
         "GetMLTaskRunResponse$ExecutionTime": "<p>The amount of time (in seconds) that the task run consumed resources.</p>",
         "JobRun$ExecutionTime": "<p>The amount of time (in seconds) that the job run consumed resources.</p>",
         "TaskRun$ExecutionTime": "<p>The amount of time (in seconds) that the task run consumed resources.</p>"
@@ -2783,17 +3058,20 @@
       "base": null,
       "refs": {
         "ColumnImportance$Importance": "<p>The column importance score for the column, as a decimal.</p>",
+        "DataQualityResult$Score": "<p>An aggregate data quality score. Represents the ratio of rules that passed to the total number of rules.</p>",
         "FindMatchesMetrics$AreaUnderPRCurve": "<p>The area under the precision/recall curve (AUPRC) is a single number measuring the overall quality of the transform, that is independent of the choice made for precision vs. recall. Higher values indicate that you have a more attractive precision vs. recall tradeoff.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
         "FindMatchesMetrics$Precision": "<p>The precision metric indicates when often your transform is correct when it predicts a match. Specifically, it measures how well the transform finds true positives from the total true positives possible.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
         "FindMatchesMetrics$Recall": "<p>The recall metric indicates that for an actual match, how often your transform predicts the match. Specifically, it measures how well the transform finds true positives from the total records in the source data.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
         "FindMatchesMetrics$F1": "<p>The maximum F1 metric indicates the transform's accuracy between 0 and 1, where 1 is the best accuracy.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/F1_score\">F1 score</a> in Wikipedia.</p>",
         "FindMatchesParameters$PrecisionRecallTradeoff": "<p>The value selected when tuning your transform for a balance between precision and recall. A value of 0.5 means no preference; a value of 1.0 means a bias purely for precision, and a value of 0.0 means a bias for recall. Because this is a tradeoff, choosing values close to 1.0 means very low recall, and choosing values close to 0.0 results in very low precision.</p> <p>The precision metric indicates how often your model is correct when it predicts a match. </p> <p>The recall metric indicates that for an actual match, how often your model predicts the match.</p>",
-        "FindMatchesParameters$AccuracyCostTradeoff": "<p>The value that is selected when tuning your transform for a balance between accuracy and cost. A value of 0.5 means that the system balances accuracy and cost concerns. A value of 1.0 means a bias purely for accuracy, which typically results in a higher cost, sometimes substantially higher. A value of 0.0 means a bias purely for cost, which results in a less accurate <code>FindMatches</code> transform, sometimes with unacceptable accuracy.</p> <p>Accuracy measures how well the transform finds true positives and true negatives. Increasing accuracy requires more machine resources and cost. But it also results in increased recall. </p> <p>Cost measures how many compute resources, and thus money, are consumed to run the transform.</p>"
+        "FindMatchesParameters$AccuracyCostTradeoff": "<p>The value that is selected when tuning your transform for a balance between accuracy and cost. A value of 0.5 means that the system balances accuracy and cost concerns. A value of 1.0 means a bias purely for accuracy, which typically results in a higher cost, sometimes substantially higher. A value of 0.0 means a bias purely for cost, which results in a less accurate <code>FindMatches</code> transform, sometimes with unacceptable accuracy.</p> <p>Accuracy measures how well the transform finds true positives and true negatives. Increasing accuracy requires more machine resources and cost. But it also results in increased recall. </p> <p>Cost measures how many compute resources, and thus money, are consumed to run the transform.</p>",
+        "GetDataQualityResultResponse$Score": "<p>An aggregate data quality score. Represents the ratio of rules that passed to the total number of rules.</p>"
       }
     },
     "GenericLimitedString": {
       "base": null,
       "refs": {
+        "DQResultsPublishingOptions$EvaluationContext": "<p>The context of the evaluation.</p>",
         "Datatype$Id": "<p>The datatype of the value.</p>",
         "Datatype$Label": "<p>A label assigned to the datatype.</p>",
         "LimitedStringList$member": null
@@ -2837,6 +3115,7 @@
         "CreateDevEndpointResponse$FailureReason": "<p>The reason for a current failure in this <code>DevEndpoint</code>.</p>",
         "CreateTriggerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p> <p>This field is required when the trigger type is SCHEDULED.</p>",
         "CreateWorkflowRequest$Description": "<p>A description of the workflow.</p>",
+        "DataQualityResult$EvaluationContext": "<p>In the context of a job in Glue Studio, each node in the canvas is typically assigned some sort of name and data quality nodes will have names. In the case of multiple nodes, the <code>evaluationContext</code> can differentiate the nodes.</p>",
         "DeleteDevEndpointRequest$EndpointName": "<p>The name of the <code>DevEndpoint</code>.</p>",
         "DevEndpoint$EndpointName": "<p>The name of the <code>DevEndpoint</code>.</p>",
         "DevEndpoint$SubnetId": "<p>The subnet ID for this <code>DevEndpoint</code>.</p>",
@@ -2858,6 +3137,9 @@
         "GenericMap$value": null,
         "GetBlueprintRunsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "GetBlueprintRunsResponse$NextToken": "<p>A continuation token, if not all blueprint runs have been returned.</p>",
+        "GetDataQualityResultResponse$EvaluationContext": "<p>In the context of a job in Glue Studio, each node in the canvas is typically assigned some sort of name and data quality nodes will have names. In the case of multiple nodes, the <code>evaluationContext</code> can differentiate the nodes.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$ErrorString": "<p>The error strings that are associated with the run.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$ErrorString": "<p>The error strings that are associated with the run.</p>",
         "GetDevEndpointRequest$EndpointName": "<p>Name of the <code>DevEndpoint</code> to retrieve information for.</p>",
         "GetDevEndpointsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetDevEndpointsResponse$NextToken": "<p>A continuation token, if not all <code>DevEndpoint</code> definitions have yet been returned.</p>",
@@ -3066,6 +3348,46 @@
       }
     },
     "GetDataCatalogEncryptionSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityResultRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityResultResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityRuleRecommendationRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityRuleRecommendationRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityRulesetEvaluationRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityRulesetEvaluationRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataQualityRulesetResponse": {
       "base": null,
       "refs": {
       }
@@ -3646,7 +3968,14 @@
     "GlueTable": {
       "base": "<p>The database and table in the Glue Data Catalog that is used for input or output data.</p>",
       "refs": {
+        "DataSource$GlueTable": "<p>An Glue table.</p>",
         "GlueTables$member": null
+      }
+    },
+    "GlueTableAdditionalOptions": {
+      "base": null,
+      "refs": {
+        "GlueTable$AdditionalOptions": "<p>Additional options for the table. Currently there are two keys supported:</p> <ul> <li> <p> <code>pushDownPredicate</code>: to filter on partitions without having to list and read all the files in your dataset.</p> </li> <li> <p> <code>catalogPartitionPredicate</code>: to use server-side partition pruning using partition indexes in the Glue Data Catalog.</p> </li> </ul>"
       }
     },
     "GlueTables": {
@@ -3705,16 +4034,39 @@
     "HashString": {
       "base": null,
       "refs": {
+        "CancelDataQualityRuleRecommendationRunRequest$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "CancelDataQualityRulesetEvaluationRunRequest$RunId": "<p>The unique run identifier associated with this run.</p>",
         "CancelMLTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
         "CancelMLTaskRunRequest$TaskRunId": "<p>A unique identifier for the task run.</p>",
         "CancelMLTaskRunResponse$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
         "CancelMLTaskRunResponse$TaskRunId": "<p>The unique identifier for the task run.</p>",
+        "CreateDataQualityRulesetRequest$ClientToken": "<p>Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.</p>",
         "CreateMLTransformResponse$TransformId": "<p>A unique identifier that is generated for the transform.</p>",
+        "DataQualityResult$ResultId": "<p>A unique result ID for the data quality result.</p>",
+        "DataQualityResult$JobRunId": "<p>The job run ID associated with the data quality result, if any.</p>",
+        "DataQualityResult$RulesetEvaluationRunId": "<p>The unique run ID for the ruleset evaluation for this data quality result.</p>",
+        "DataQualityResultDescription$ResultId": "<p>The unique result ID for this data quality result.</p>",
+        "DataQualityResultDescription$JobRunId": "<p>The job run ID associated with the data quality result.</p>",
+        "DataQualityResultFilterCriteria$JobRunId": "<p>Filter results by the specified job run ID.</p>",
+        "DataQualityResultIdList$member": null,
+        "DataQualityResultIds$member": null,
+        "DataQualityRuleRecommendationRunDescription$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "DataQualityRulesetEvaluationRunDescription$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "DataQualityRulesetListDetails$RecommendationRunId": "<p>When a ruleset was created from a recommendation run, this run ID is generated to link the two together.</p>",
         "DeleteMLTransformRequest$TransformId": "<p>The unique identifier of the transform to delete.</p>",
         "DeleteMLTransformResponse$TransformId": "<p>The unique identifier of the transform that was deleted.</p>",
         "DeleteResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when this policy was set.</p>",
         "FindMatchesTaskRunProperties$JobId": "<p>The job ID for the Find Matches task run.</p>",
         "FindMatchesTaskRunProperties$JobRunId": "<p>The job run ID for the Find Matches task run.</p>",
+        "GetDataQualityResultRequest$ResultId": "<p>A unique result ID for the data quality result.</p>",
+        "GetDataQualityResultResponse$ResultId": "<p>A unique result ID for the data quality result.</p>",
+        "GetDataQualityResultResponse$JobRunId": "<p>The job run ID associated with the data quality result, if any.</p>",
+        "GetDataQualityResultResponse$RulesetEvaluationRunId": "<p>The unique run ID associated with the ruleset evaluation.</p>",
+        "GetDataQualityRuleRecommendationRunRequest$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "GetDataQualityRulesetEvaluationRunRequest$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "GetDataQualityRulesetResponse$RecommendationRunId": "<p>When a ruleset was created from a recommendation run, this run ID is generated to link the two together.</p>",
         "GetMLTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
         "GetMLTaskRunRequest$TaskRunId": "<p>The unique identifier of the task run.</p>",
         "GetMLTaskRunResponse$TransformId": "<p>The unique identifier of the task run.</p>",
@@ -3727,6 +4079,10 @@
         "MLTransform$TransformId": "<p>The unique transform ID that is generated for the machine learning transform. The ID is guaranteed to be unique and does not change.</p>",
         "PutResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when the previous policy was set using <code>PutResourcePolicy</code>. Its purpose is to prevent concurrent modifications of a policy. Do not use this parameter if no previous policy has been set.</p>",
         "PutResourcePolicyResponse$PolicyHash": "<p>A hash of the policy that has just been set. This must be included in a subsequent call that overwrites or updates this policy.</p>",
+        "StartDataQualityRuleRecommendationRunRequest$ClientToken": "<p>Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.</p>",
+        "StartDataQualityRuleRecommendationRunResponse$RunId": "<p>The unique run identifier associated with this run.</p>",
+        "StartDataQualityRulesetEvaluationRunRequest$ClientToken": "<p>Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.</p>",
+        "StartDataQualityRulesetEvaluationRunResponse$RunId": "<p>The unique run identifier associated with this run.</p>",
         "StartExportLabelsTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
         "StartExportLabelsTaskRunResponse$TaskRunId": "<p>The unique identifier for the task run.</p>",
         "StartImportLabelsTaskRunRequest$TransformId": "<p>The unique identifier of the machine learning transform.</p>",
@@ -4215,6 +4571,46 @@
       "refs": {
       }
     },
+    "ListDataQualityResultsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityResultsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityRuleRecommendationRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityRuleRecommendationRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityRulesetEvaluationRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityRulesetEvaluationRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityRulesetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityRulesetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDevEndpointsRequest": {
       "base": null,
       "refs": {
@@ -4677,6 +5073,8 @@
         "CreateCustomEntityTypeRequest$Name": "<p>A name for the custom pattern that allows it to be retrieved or deleted later. This name must be unique per Amazon Web Services account.</p>",
         "CreateCustomEntityTypeRequest$RegexString": "<p>A regular expression string that is used for detecting sensitive data in a custom pattern.</p>",
         "CreateCustomEntityTypeResponse$Name": "<p>The name of the custom pattern you created.</p>",
+        "CreateDataQualityRulesetRequest$Name": "<p>A unique name for the data quality ruleset.</p>",
+        "CreateDataQualityRulesetResponse$Name": "<p>A unique name for the data quality ruleset.</p>",
         "CreateDevEndpointRequest$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointResponse$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure being used with this <code>DevEndpoint</code>.</p>",
         "CreateGrokClassifierRequest$Name": "<p>The name of the new classifier.</p>",
@@ -4707,6 +5105,15 @@
         "CustomEntityType$Name": "<p>A name for the custom pattern that allows it to be retrieved or deleted later. This name must be unique per Amazon Web Services account.</p>",
         "CustomEntityType$RegexString": "<p>A regular expression string that is used for detecting sensitive data in a custom pattern.</p>",
         "CustomEntityTypeNames$member": null,
+        "DataQualityResult$RulesetName": "<p>The name of the ruleset associated with the data quality result.</p>",
+        "DataQualityResult$JobName": "<p>The job name associated with the data quality result, if any.</p>",
+        "DataQualityResultDescription$JobName": "<p>The job name associated with the data quality result.</p>",
+        "DataQualityResultFilterCriteria$JobName": "<p>Filter results by the specified job name.</p>",
+        "DataQualityRuleResult$Name": "<p>The name of the data quality rule.</p>",
+        "DataQualityRulesetFilterCriteria$Name": "<p>The name of the ruleset filter criteria.</p>",
+        "DataQualityRulesetListDetails$Name": "<p>The name of the data quality ruleset.</p>",
+        "DataQualityTargetTable$TableName": "<p>The name of the Glue table.</p>",
+        "DataQualityTargetTable$DatabaseName": "<p>The name of the database where the Glue table exists.</p>",
         "Database$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "DatabaseIdentifier$DatabaseName": "<p>The name of the catalog database.</p>",
         "DatabaseInput$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
@@ -4724,6 +5131,7 @@
         "DeleteCrawlerRequest$Name": "<p>The name of the crawler to remove.</p>",
         "DeleteCustomEntityTypeRequest$Name": "<p>The name of the custom pattern that you want to delete.</p>",
         "DeleteCustomEntityTypeResponse$Name": "<p>The name of the custom pattern you deleted.</p>",
+        "DeleteDataQualityRulesetRequest$Name": "<p>A name for the data quality ruleset.</p>",
         "DeleteDatabaseRequest$Name": "<p>The name of the database to delete. For Hive compatibility, this must be all lowercase.</p>",
         "DeleteJobRequest$JobName": "<p>The name of the job definition to delete.</p>",
         "DeleteJobResponse$JobName": "<p>The name of the job definition that was deleted.</p>",
@@ -4766,6 +5174,11 @@
         "GetCustomEntityTypeRequest$Name": "<p>The name of the custom pattern that you want to retrieve.</p>",
         "GetCustomEntityTypeResponse$Name": "<p>The name of the custom pattern that you retrieved.</p>",
         "GetCustomEntityTypeResponse$RegexString": "<p>A regular expression string that is used for detecting sensitive data in a custom pattern.</p>",
+        "GetDataQualityResultResponse$RulesetName": "<p>The name of the ruleset associated with the data quality result.</p>",
+        "GetDataQualityResultResponse$JobName": "<p>The job name associated with the data quality result, if any.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$CreatedRulesetName": "<p>The name of the ruleset that was created by the run.</p>",
+        "GetDataQualityRulesetRequest$Name": "<p>The name of the ruleset.</p>",
+        "GetDataQualityRulesetResponse$Name": "<p>The name of the ruleset.</p>",
         "GetDatabaseRequest$Name": "<p>The name of the database to retrieve. For Hive compatibility, this should be all lowercase.</p>",
         "GetJobRequest$JobName": "<p>The name of the job definition to retrieve.</p>",
         "GetJobRunRequest$JobName": "<p>Name of the job definition being run.</p>",
@@ -4807,6 +5220,7 @@
         "GlueTable$TableName": "<p>A table name in the Glue Data Catalog.</p>",
         "GlueTable$CatalogId": "<p>A unique identifier for the Glue Data Catalog.</p>",
         "GlueTable$ConnectionName": "<p>The name of the connection to the Glue Data Catalog.</p>",
+        "GlueTableAdditionalOptions$key": null,
         "GrokClassifier$Name": "<p>The name of the classifier.</p>",
         "Job$Name": "<p>The name you assign to this job definition.</p>",
         "Job$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job.</p>",
@@ -4838,6 +5252,7 @@
         "Predecessor$JobName": "<p>The name of the job definition used by the predecessor job run.</p>",
         "PutWorkflowRunPropertiesRequest$Name": "<p>Name of the workflow which was run.</p>",
         "ResumeWorkflowRunRequest$Name": "<p>The name of the workflow to resume.</p>",
+        "RulesetNames$member": null,
         "RunStatementRequest$SessionId": "<p>The Session Id of the statement to be run.</p>",
         "SecurityConfiguration$Name": "<p>The name of the security configuration.</p>",
         "SecurityGroupIdList$member": null,
@@ -4849,6 +5264,7 @@
         "SessionIdList$member": null,
         "StartCrawlerRequest$Name": "<p>Name of the crawler to start.</p>",
         "StartCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler to schedule.</p>",
+        "StartDataQualityRuleRecommendationRunRequest$CreatedRulesetName": "<p>A name for the ruleset.</p>",
         "StartJobRunRequest$JobName": "<p>The name of the job definition to use.</p>",
         "StartJobRunRequest$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job run.</p>",
         "StartTriggerRequest$Name": "<p>The name of the trigger to start.</p>",
@@ -4886,6 +5302,9 @@
         "UpdateCrawlerRequest$Name": "<p>Name of the new crawler.</p>",
         "UpdateCrawlerScheduleRequest$CrawlerName": "<p>The name of the crawler whose schedule to update.</p>",
         "UpdateCsvClassifierRequest$Name": "<p>The name of the classifier.</p>",
+        "UpdateDataQualityRulesetRequest$Name": "<p>The name of the data quality ruleset.</p>",
+        "UpdateDataQualityRulesetRequest$UpdatedName": "<p>The new name of the ruleset, if you are renaming it.</p>",
+        "UpdateDataQualityRulesetResponse$Name": "<p>The name of the data quality ruleset.</p>",
         "UpdateDatabaseRequest$Name": "<p>The name of the database to update in the catalog. For Hive compatibility, this is folded to lowercase.</p>",
         "UpdateGrokClassifierRequest$Name": "<p>The name of the <code>GrokClassifier</code>.</p>",
         "UpdateJobFromSourceControlRequest$JobName": "<p>The name of the Glue job to be synchronized to or from the remote repository.</p>",
@@ -4989,6 +5408,7 @@
         "DropFields$Name": "<p>The name of the transform node.</p>",
         "DropNullFields$Name": "<p>The name of the transform node.</p>",
         "DynamoDBCatalogSource$Name": "<p>The name of the data source.</p>",
+        "EvaluateDataQuality$Name": "<p>The name of the data quality evaluation.</p>",
         "FillMissingValues$Name": "<p>The name of the transform node.</p>",
         "Filter$Name": "<p>The name of the transform node.</p>",
         "GovernedCatalogSource$Name": "<p>The name of the data store.</p>",
@@ -5130,6 +5550,7 @@
         "CsvClassifier$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is <code>true</code>.</p>",
         "CsvClassifier$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
         "CsvClassifier$CustomDatatypeConfigured": "<p>Enables the custom datatype to be configured.</p>",
+        "DataQualityEvaluationRunAdditionalRunOptions$CloudWatchMetricsEnabled": "<p>Whether or not to enable CloudWatch metrics.</p>",
         "DeltaTarget$WriteManifest": "<p>Specifies whether to write the manifest files to the Delta table path.</p>",
         "DynamoDBTarget$scanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "FindMatchesParameters$EnforceProvidedLabels": "<p>The value to switch on or off to force the output to match the provided labels from users. If the value is <code>True</code>, the <code>find matches</code> transform forces the output to match the provided labels. The results override the normal conflation results. If the value is <code>False</code>, the <code>find matches</code> transform does not ensure all the labels provided are respected, and the results rely on the trained model.</p> <p>Note that setting this value to true may increase the conflation execution time.</p>",
@@ -5173,7 +5594,10 @@
         "CreateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
         "CreateSessionRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>WorkerType</code> to use for the session. </p>",
         "CreateWorkflowRequest$MaxConcurrentRuns": "<p>You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs.</p>",
+        "DataQualityRulesetListDetails$RuleCount": "<p>The number of rules in the ruleset.</p>",
         "DevEndpoint$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated to the development endpoint.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
+        "GetDataQualityRuleRecommendationRunResponse$NumberOfWorkers": "<p>The number of <code>G.1X</code> workers to be used in the run. The default is 5.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$NumberOfWorkers": "<p>The number of <code>G.1X</code> workers to be used in the run. The default is 5.</p>",
         "GetMLTransformResponse$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
         "GetMLTransformResponse$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
         "Job$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p>",
@@ -5182,6 +5606,8 @@
         "MLTransform$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a task of the transform runs.</p> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p>",
         "MLTransform$MaxRetries": "<p>The maximum number of times to retry after an <code>MLTaskRun</code> of the machine learning transform fails.</p>",
         "S3Target$SampleSize": "<p>Sets the number of files in each leaf folder to be crawled when crawling sample files in a dataset. If not set, all the files are crawled. A valid value is an integer between 1 and 249.</p>",
+        "StartDataQualityRuleRecommendationRunRequest$NumberOfWorkers": "<p>The number of <code>G.1X</code> workers to be used in the run. The default is 5.</p>",
+        "StartDataQualityRulesetEvaluationRunRequest$NumberOfWorkers": "<p>The number of <code>G.1X</code> workers to be used in the run. The default is 5.</p>",
         "StartJobRunRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p>",
         "StartingEventBatchCondition$BatchSize": "<p>Number of events in the batch.</p>",
         "StartingEventBatchCondition$BatchWindow": "<p>Duration of the batch window in seconds.</p>",
@@ -5201,6 +5627,7 @@
         "DropFields$Inputs": "<p>The data inputs identified by their node names.</p>",
         "DropNullFields$Inputs": "<p>The data inputs identified by their node names.</p>",
         "DynamicTransform$Inputs": "<p>Specifies the inputs for the dynamic transform that are required.</p>",
+        "EvaluateDataQuality$Inputs": "<p>The inputs of your data quality evaluation.</p>",
         "FillMissingValues$Inputs": "<p>The data inputs identified by their node names.</p>",
         "Filter$Inputs": "<p>The data inputs identified by their node names.</p>",
         "GovernedCatalogTarget$Inputs": "<p>The nodes that are inputs to the data target.</p>",
@@ -5372,6 +5799,10 @@
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListCrawlsRequest$MaxResults": "<p>The maximum number of results to return. The default is 20, and maximum is 100.</p>",
         "ListCustomEntityTypesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListDataQualityResultsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListDataQualityRuleRecommendationRunsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListDataQualityRulesetEvaluationRunsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "ListDataQualityRulesetsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "ListDevEndpointsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListMLTransformsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
@@ -5390,6 +5821,14 @@
         "GetMLTransformsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
         "ListCustomEntityTypesRequest$NextToken": "<p>A paginated token to offset the results.</p>",
         "ListCustomEntityTypesResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
+        "ListDataQualityResultsRequest$NextToken": "<p>A paginated token to offset the results.</p>",
+        "ListDataQualityResultsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
+        "ListDataQualityRuleRecommendationRunsRequest$NextToken": "<p>A paginated token to offset the results.</p>",
+        "ListDataQualityRuleRecommendationRunsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
+        "ListDataQualityRulesetEvaluationRunsRequest$NextToken": "<p>A paginated token to offset the results.</p>",
+        "ListDataQualityRulesetEvaluationRunsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
+        "ListDataQualityRulesetsRequest$NextToken": "<p>A paginated token to offset the results.</p>",
+        "ListDataQualityRulesetsResponse$NextToken": "<p>A pagination token, if more results are available.</p>",
         "ListMLTransformsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListMLTransformsResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>"
       }
@@ -5932,10 +6371,14 @@
       "refs": {
         "CreateJobRequest$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with this job.</p>",
         "CreateMLTransformRequest$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions. The required permissions include both Glue service role permissions to Glue resources, and Amazon S3 permissions required by the transform. </p> <ul> <li> <p>This role needs Glue service role permissions to allow access to resources in Glue. See <a href=\"https://docs.aws.amazon.com/glue/latest/dg/attach-policy-iam-user.html\">Attach a Policy to IAM Users That Access Glue</a>.</p> </li> <li> <p>This role needs permission to your Amazon Simple Storage Service (Amazon S3) sources, targets, temporary directory, scripts, and any libraries used by the task run for this transform.</p> </li> </ul>",
+        "GetDataQualityRuleRecommendationRunResponse$Role": "<p>An IAM role supplied to encrypt the results of the run.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$Role": "<p>An IAM role supplied to encrypt the results of the run.</p>",
         "GetMLTransformResponse$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions.</p>",
         "Job$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with this job.</p>",
         "JobUpdate$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role associated with this job (required).</p>",
         "MLTransform$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions. The required permissions include both Glue service role permissions to Glue resources, and Amazon S3 permissions required by the transform. </p> <ul> <li> <p>This role needs Glue service role permissions to allow access to resources in Glue. See <a href=\"https://docs.aws.amazon.com/glue/latest/dg/attach-policy-iam-user.html\">Attach a Policy to IAM Users That Access Glue</a>.</p> </li> <li> <p>This role needs permission to your Amazon Simple Storage Service (Amazon S3) sources, targets, temporary directory, scripts, and any libraries used by the task run for this transform.</p> </li> </ul>",
+        "StartDataQualityRuleRecommendationRunRequest$Role": "<p>An IAM role supplied to encrypt the results of the run.</p>",
+        "StartDataQualityRulesetEvaluationRunRequest$Role": "<p>An IAM role supplied to encrypt the results of the run.</p>",
         "UpdateMLTransformRequest$Role": "<p>The name or Amazon Resource Name (ARN) of the IAM role with the required permissions.</p>"
       }
     },
@@ -5945,6 +6388,13 @@
         "CreateXMLClassifierRequest$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. This can't identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>",
         "UpdateXMLClassifierRequest$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. This cannot identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>",
         "XMLClassifier$RowTag": "<p>The XML tag designating the element that contains each record in an XML document being parsed. This can't identify a self-closing element (closed by <code>/&gt;</code>). An empty row element that contains only attributes can be parsed as long as it ends with a closing tag (for example, <code>&lt;row item_a=\"A\" item_b=\"B\"&gt;&lt;/row&gt;</code> is okay, but <code>&lt;row item_a=\"A\" item_b=\"B\" /&gt;</code> is not).</p>"
+      }
+    },
+    "RulesetNames": {
+      "base": null,
+      "refs": {
+        "GetDataQualityRulesetEvaluationRunResponse$RulesetNames": "<p>A list of ruleset names for the run.</p>",
+        "StartDataQualityRulesetEvaluationRunRequest$RulesetNames": "<p>A list of ruleset names.</p>"
       }
     },
     "RunId": {
@@ -6532,6 +6982,26 @@
       "refs": {
       }
     },
+    "StartDataQualityRuleRecommendationRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartDataQualityRuleRecommendationRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartDataQualityRulesetEvaluationRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartDataQualityRulesetEvaluationRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartExportLabelsTaskRunRequest": {
       "base": null,
       "refs": {
@@ -6847,6 +7317,7 @@
         "CreateBlueprintRequest$Tags": "<p>The tags to be applied to this blueprint.</p>",
         "CreateConnectionRequest$Tags": "<p>The tags you assign to the connection.</p>",
         "CreateCrawlerRequest$Tags": "<p>The tags to use with this crawler request. You may use tags to limit access to the crawler. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
+        "CreateDataQualityRulesetRequest$Tags": "<p>A list of tags applied to the data quality ruleset.</p>",
         "CreateDatabaseRequest$Tags": "<p>The tags you assign to the database.</p>",
         "CreateDevEndpointRequest$Tags": "<p>The tags to use with this DevEndpoint. You may use tags to limit access to the DevEndpoint. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
         "CreateJobRequest$Tags": "<p>The tags to use with this job. You may use tags to limit access to the job. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
@@ -6861,6 +7332,7 @@
         "GetTagsResponse$Tags": "<p>The requested tags.</p>",
         "ListBlueprintsRequest$Tags": "<p>Filters the list by an Amazon Web Services resource tag.</p>",
         "ListCrawlersRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
+        "ListDataQualityRulesetsRequest$Tags": "<p>A list of key-value pair tags.</p>",
         "ListDevEndpointsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "ListJobsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "ListMLTransformsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
@@ -6916,6 +7388,10 @@
       "base": null,
       "refs": {
         "CancelMLTaskRunResponse$Status": "<p>The status for this run.</p>",
+        "DataQualityRuleRecommendationRunDescription$Status": "<p>The status for this run.</p>",
+        "DataQualityRulesetEvaluationRunDescription$Status": "<p>The status for this run.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$Status": "<p>The status for this run.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$Status": "<p>The status for this run.</p>",
         "GetMLTaskRunResponse$Status": "<p>The status for this task run.</p>",
         "TaskRun$Status": "<p>The current status of the requested task run.</p>",
         "TaskRunFilterCriteria$Status": "<p>The current status of the task run.</p>"
@@ -6936,11 +7412,15 @@
         "CreateMLTransformRequest$Timeout": "<p>The timeout of the task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "CreateSessionRequest$Timeout": "<p>The number of seconds before request times out. </p>",
         "CreateSessionRequest$IdleTimeout": "<p>The number of seconds when idle before request times out. </p>",
+        "GetDataQualityRuleRecommendationRunResponse$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "GetMLTransformResponse$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "Job$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "JobRun$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. This value overrides the timeout value set in the parent job.</p> <p>Streaming jobs do not have a timeout. The default for non-streaming jobs is 2,880 minutes (48 hours).</p>",
         "JobUpdate$Timeout": "<p>The job timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "MLTransform$Timeout": "<p>The timeout in minutes of the machine learning transform.</p>",
+        "StartDataQualityRuleRecommendationRunRequest$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
+        "StartDataQualityRulesetEvaluationRunRequest$Timeout": "<p>The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>",
         "StartJobRunRequest$Timeout": "<p>The <code>JobRun</code> timeout in minutes. This is the maximum time that a job run can consume resources before it is terminated and enters <code>TIMEOUT</code> status. This value overrides the timeout value set in the parent job.</p> <p>Streaming jobs do not have a timeout. The default for non-streaming jobs is 2,880 minutes (48 hours).</p>",
         "UpdateMLTransformRequest$Timeout": "<p>The timeout for a task run for this transform in minutes. This is the maximum time that a task run for this transform can consume resources before it is terminated and enters <code>TIMEOUT</code> status. The default is 2,880 minutes (48 hours).</p>"
       }
@@ -6958,9 +7438,36 @@
         "CrawlerHistory$EndTime": "<p>The date and time on which the crawl ended.</p>",
         "CsvClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "CsvClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
+        "DataQualityResult$StartedOn": "<p>The date and time when this data quality run started.</p>",
+        "DataQualityResult$CompletedOn": "<p>The date and time when this data quality run completed.</p>",
+        "DataQualityResultDescription$StartedOn": "<p>The time that the run started for this data quality result.</p>",
+        "DataQualityResultFilterCriteria$StartedAfter": "<p>Filter results by runs that started after this time.</p>",
+        "DataQualityResultFilterCriteria$StartedBefore": "<p>Filter results by runs that started before this time.</p>",
+        "DataQualityRuleRecommendationRunDescription$StartedOn": "<p>The date and time when this run started.</p>",
+        "DataQualityRuleRecommendationRunFilter$StartedBefore": "<p>Filter based on time for results started before provided time.</p>",
+        "DataQualityRuleRecommendationRunFilter$StartedAfter": "<p>Filter based on time for results started after provided time.</p>",
+        "DataQualityRulesetEvaluationRunDescription$StartedOn": "<p>The date and time when the run started.</p>",
+        "DataQualityRulesetEvaluationRunFilter$StartedBefore": "<p>Filter results by runs that started before this time.</p>",
+        "DataQualityRulesetEvaluationRunFilter$StartedAfter": "<p>Filter results by runs that started after this time.</p>",
+        "DataQualityRulesetFilterCriteria$CreatedBefore": "<p>Filter on rulesets created before this date.</p>",
+        "DataQualityRulesetFilterCriteria$CreatedAfter": "<p>Filter on rulesets created after this date.</p>",
+        "DataQualityRulesetFilterCriteria$LastModifiedBefore": "<p>Filter on rulesets last modified before this date.</p>",
+        "DataQualityRulesetFilterCriteria$LastModifiedAfter": "<p>Filter on rulesets last modified after this date.</p>",
+        "DataQualityRulesetListDetails$CreatedOn": "<p>The date and time the data quality ruleset was created.</p>",
+        "DataQualityRulesetListDetails$LastModifiedOn": "<p>The date and time the data quality ruleset was last modified.</p>",
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
         "DateColumnStatisticsData$MinimumValue": "<p>The lowest value in the column.</p>",
         "DateColumnStatisticsData$MaximumValue": "<p>The highest value in the column.</p>",
+        "GetDataQualityResultResponse$StartedOn": "<p>The date and time when the run for this data quality result started.</p>",
+        "GetDataQualityResultResponse$CompletedOn": "<p>The date and time when the run for this data quality result was completed.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$StartedOn": "<p>The date and time when this run started.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$LastModifiedOn": "<p>A timestamp. The last point in time when this data quality rule recommendation run was modified.</p>",
+        "GetDataQualityRuleRecommendationRunResponse$CompletedOn": "<p>The date and time when this run was completed.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$StartedOn": "<p>The date and time when this run started.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$LastModifiedOn": "<p>A timestamp. The last point in time when this data quality rule recommendation run was modified.</p>",
+        "GetDataQualityRulesetEvaluationRunResponse$CompletedOn": "<p>The date and time when this run was completed.</p>",
+        "GetDataQualityRulesetResponse$CreatedOn": "<p>A timestamp. The time and date that this data quality ruleset was created.</p>",
+        "GetDataQualityRulesetResponse$LastModifiedOn": "<p>A timestamp. The last point in time when this data quality ruleset was modified.</p>",
         "GetMLTaskRunResponse$StartedOn": "<p>The date and time when this task run started.</p>",
         "GetMLTaskRunResponse$LastModifiedOn": "<p>The date and time when this task run was last modified.</p>",
         "GetMLTaskRunResponse$CompletedOn": "<p>The date and time when this task run was completed.</p>",
@@ -7377,6 +7884,16 @@
         "UpdateClassifierRequest$CsvClassifier": "<p>A <code>CsvClassifier</code> object with updated fields.</p>"
       }
     },
+    "UpdateDataQualityRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDataQualityRulesetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDatabaseRequest": {
       "base": null,
       "refs": {
@@ -7544,6 +8061,7 @@
       "base": null,
       "refs": {
         "CreateJobRequest$LogUri": "<p>This field is reserved for future use.</p>",
+        "DataQualityEvaluationRunAdditionalRunOptions$ResultsS3Prefix": "<p>Prefix for Amazon S3 to store results.</p>",
         "ExportLabelsTaskRunProperties$OutputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path where you will export the labels.</p>",
         "ImportLabelsTaskRunProperties$InputS3Path": "<p>The Amazon Simple Storage Service (Amazon S3) path from where you will import the labels.</p>",
         "Job$LogUri": "<p>This field is reserved for future use.</p>",

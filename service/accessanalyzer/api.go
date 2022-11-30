@@ -4886,7 +4886,9 @@ func (s CreateArchiveRuleOutput) GoString() string {
 	return s.String()
 }
 
-// The criteria to use in the filter that defines the archive rule.
+// The criteria to use in the filter that defines the archive rule. For more
+// information on available filter keys, see IAM Access Analyzer filter keys
+// (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html).
 type Criterion struct {
 	_ struct{} `type:"structure"`
 
@@ -5542,6 +5544,9 @@ func (s *FindingSource) SetType(v string) *FindingSource {
 type FindingSourceDetail struct {
 	_ struct{} `type:"structure"`
 
+	// The account of the cross-account access point that generated the finding.
+	AccessPointAccount *string `locationName:"accessPointAccount" type:"string"`
+
 	// The ARN of the access point that generated the finding. The ARN format depends
 	// on whether the ARN represents an access point or a multi-region access point.
 	AccessPointArn *string `locationName:"accessPointArn" type:"string"`
@@ -5563,6 +5568,12 @@ func (s FindingSourceDetail) String() string {
 // value will be replaced with "sensitive".
 func (s FindingSourceDetail) GoString() string {
 	return s.String()
+}
+
+// SetAccessPointAccount sets the AccessPointAccount field's value.
+func (s *FindingSourceDetail) SetAccessPointAccount(v string) *FindingSourceDetail {
+	s.AccessPointAccount = &v
+	return s
 }
 
 // SetAccessPointArn sets the AccessPointArn field's value.
@@ -10611,6 +10622,9 @@ const (
 
 	// FindingSourceTypeS3AccessPoint is a FindingSourceType enum value
 	FindingSourceTypeS3AccessPoint = "S3_ACCESS_POINT"
+
+	// FindingSourceTypeS3AccessPointAccount is a FindingSourceType enum value
+	FindingSourceTypeS3AccessPointAccount = "S3_ACCESS_POINT_ACCOUNT"
 )
 
 // FindingSourceType_Values returns all elements of the FindingSourceType enum
@@ -10619,6 +10633,7 @@ func FindingSourceType_Values() []string {
 		FindingSourceTypePolicy,
 		FindingSourceTypeBucketAcl,
 		FindingSourceTypeS3AccessPoint,
+		FindingSourceTypeS3AccessPointAccount,
 	}
 }
 

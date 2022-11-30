@@ -1,0 +1,1169 @@
+{
+  "version": "2.0",
+  "service": "<p>Provides APIs for creating and managing SageMaker geospatial resources.</p>",
+  "operations": {
+    "DeleteEarthObservationJob": "<p>Use this operation to delete an Earth Observation job.</p>",
+    "DeleteVectorEnrichmentJob": "<p>Use this operation to delete a Vector Enrichment job.</p>",
+    "ExportEarthObservationJob": "<p>Use this operation to export results of an Earth Observation job and optionally source images used as input to the EOJ to an S3 location.</p>",
+    "ExportVectorEnrichmentJob": "<p>Use this operation to copy results of a Vector Enrichment job to an S3 location.</p>",
+    "GetEarthObservationJob": "<p>Get the details for a previously initiated Earth Observation job.</p>",
+    "GetRasterDataCollection": "<p>Use this operation to get details of a specific raster data collection.</p>",
+    "GetTile": "<p>Gets a web mercator tile for the given Earth Observation job.</p>",
+    "GetVectorEnrichmentJob": "<p>Retrieves details of a Vector Enrichment Job for a given job Amazon Resource Name (ARN).</p>",
+    "ListEarthObservationJobs": "<p>Use this operation to get a list of the Earth Observation jobs associated with the calling Amazon Web Services account.</p>",
+    "ListRasterDataCollections": "<p>Use this operation to get raster data collections.</p>",
+    "ListTagsForResource": "<p>Lists the tags attached to the resource.</p>",
+    "ListVectorEnrichmentJobs": "<p>Retrieves a list of vector enrichment jobs.</p>",
+    "SearchRasterDataCollection": "<p>Allows you run image query on a specific raster data collection to get a list of the satellite imagery matching the selected filters.</p>",
+    "StartEarthObservationJob": "<p>Use this operation to create an Earth observation job.</p>",
+    "StartVectorEnrichmentJob": "<p>Creates a Vector Enrichment job for the supplied job type. Currently, there are two supported job types: reverse geocoding and map matching.</p>",
+    "StopEarthObservationJob": "<p>Use this operation to stop an existing earth observation job.</p>",
+    "StopVectorEnrichmentJob": "<p>Stops the Vector Enrichment job for a given job ARN.</p>",
+    "TagResource": "<p>The resource you want to tag.</p>",
+    "UntagResource": "<p>The resource you want to untag.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You do not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "AlgorithmNameCloudRemoval": {
+      "base": null,
+      "refs": {
+        "CloudRemovalConfigInput$AlgorithmName": "<p>The name of the algorithm used for cloud removal.</p>"
+      }
+    },
+    "AlgorithmNameGeoMosaic": {
+      "base": null,
+      "refs": {
+        "GeoMosaicConfigInput$AlgorithmName": "<p>The name of the algorithm being used for geomosaic.</p>"
+      }
+    },
+    "AlgorithmNameResampling": {
+      "base": null,
+      "refs": {
+        "ResamplingConfigInput$AlgorithmName": "<p>The name of the algorithm used for resampling.</p>"
+      }
+    },
+    "AreaOfInterest": {
+      "base": "<p/>",
+      "refs": {
+        "RasterDataCollectionQueryInput$AreaOfInterest": "<p>The area of interest being queried for the raster data collection.</p>",
+        "RasterDataCollectionQueryOutput$AreaOfInterest": "<p/>",
+        "RasterDataCollectionQueryWithBandFilterInput$AreaOfInterest": "<p/>"
+      }
+    },
+    "AreaOfInterestGeometry": {
+      "base": "<p/>",
+      "refs": {
+        "AreaOfInterest$AreaOfInterestGeometry": "<p/>"
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource you want to tag.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource you want to tag.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource you want to untag.</p>"
+      }
+    },
+    "AssetValue": {
+      "base": "<p/>",
+      "refs": {
+        "AssetsMap$value": null
+      }
+    },
+    "AssetsMap": {
+      "base": null,
+      "refs": {
+        "ItemSource$Assets": "<p/>"
+      }
+    },
+    "BandMathConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$BandMathConfig": "<p/>"
+      }
+    },
+    "BinaryFile": {
+      "base": null,
+      "refs": {
+        "GetTileOutput$BinaryFile": "<p>The output binary file.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "ExportEarthObservationJobInput$ExportSourceImages": "<p>The source images provided to the Earth Observation job being exported.</p>",
+        "ExportEarthObservationJobOutput$ExportSourceImages": "<p>The source images provided to the Earth Observation job being exported.</p>",
+        "GetTileInput$ImageMask": "<p>Determines whether or not to return a valid data mask.</p>"
+      }
+    },
+    "CloudMaskingConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$CloudMaskingConfig": "<p>An object containing information about the job configuration for cloud masking.</p>"
+      }
+    },
+    "CloudRemovalConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$CloudRemovalConfig": "<p>An object containing information about the job configuration for cloud removal.</p>"
+      }
+    },
+    "ComparisonOperator": {
+      "base": null,
+      "refs": {
+        "PlatformInput$ComparisonOperator": "<p/>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "CustomIndicesInput": {
+      "base": "<p/>",
+      "refs": {
+        "BandMathConfigInput$CustomIndices": "<p/>"
+      }
+    },
+    "DataCollectionArn": {
+      "base": null,
+      "refs": {
+        "GetRasterDataCollectionInput$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
+        "GetRasterDataCollectionOutput$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
+        "RasterDataCollectionMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
+        "SearchRasterDataCollectionInput$Arn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>"
+      }
+    },
+    "DataCollectionType": {
+      "base": null,
+      "refs": {
+        "GetRasterDataCollectionOutput$Type": "<p>The raster data collection type.</p>",
+        "RasterDataCollectionMetadata$Type": "<p>The type of raster data collection.</p>"
+      }
+    },
+    "DataCollectionsList": {
+      "base": null,
+      "refs": {
+        "ListRasterDataCollectionsOutput$RasterDataCollectionSummaries": "<p>Contains summary information about the raster data collection.</p>"
+      }
+    },
+    "DeleteEarthObservationJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEarthObservationJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVectorEnrichmentJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVectorEnrichmentJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Double": {
+      "base": null,
+      "refs": {
+        "Position$member": null
+      }
+    },
+    "EarthObservationJobArn": {
+      "base": null,
+      "refs": {
+        "DeleteEarthObservationJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job being deleted.</p>",
+        "ExportEarthObservationJobInput$Arn": "<p>The input Amazon Resource Name (ARN) of the Earth Observation job being exported.</p>",
+        "ExportEarthObservationJobOutput$Arn": "<p>The output Amazon Resource Name (ARN) of the Earth Observation job being exported.</p>",
+        "GetEarthObservationJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job.</p>",
+        "GetTileInput$Arn": "<p>The Amazon Resource Name (ARN) of the tile operation.</p>",
+        "StopEarthObservationJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job being stopped.</p>"
+      }
+    },
+    "EarthObservationJobErrorDetails": {
+      "base": "<p>The structure representing the errors in an EarthObservationJob.</p>",
+      "refs": {
+        "GetEarthObservationJobOutput$ErrorDetails": "<p>Details about the errors generated during the Earth Observation job.</p>"
+      }
+    },
+    "EarthObservationJobErrorType": {
+      "base": null,
+      "refs": {
+        "EarthObservationJobErrorDetails$Type": "<p/>"
+      }
+    },
+    "EarthObservationJobExportStatus": {
+      "base": null,
+      "refs": {
+        "ExportEarthObservationJobOutput$ExportStatus": "<p>The status of the results of the Earth Observation job being exported.</p>",
+        "GetEarthObservationJobOutput$ExportStatus": "<p>The status of the Earth Observation job.</p>"
+      }
+    },
+    "EarthObservationJobList": {
+      "base": null,
+      "refs": {
+        "ListEarthObservationJobOutput$EarthObservationJobSummaries": "<p>Contains summary information about the Earth Observation jobs.</p>"
+      }
+    },
+    "EarthObservationJobOutputBands": {
+      "base": null,
+      "refs": {
+        "GetEarthObservationJobOutput$OutputBands": "<p/>"
+      }
+    },
+    "EarthObservationJobStatus": {
+      "base": null,
+      "refs": {
+        "GetEarthObservationJobOutput$Status": "<p>The status of a previously initiated Earth Observation job.</p>",
+        "ListEarthObservationJobInput$StatusEquals": "<p>A filter that retrieves only jobs with a specific status.</p>",
+        "ListEarthObservationJobOutputConfig$Status": "<p>The status of the list of the Earth Observation jobs.</p>",
+        "StartEarthObservationJobOutput$Status": "<p>The status of the Earth Observation job.</p>"
+      }
+    },
+    "EoCloudCoverInput": {
+      "base": "<p/>",
+      "refs": {
+        "Property$EoCloudCover": "<p/>"
+      }
+    },
+    "EojDataSourceConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "InputConfigInput$DataSourceConfig": "<p>The location of the input data.&gt;</p>",
+        "InputConfigOutput$DataSourceConfig": "<p>The location of the input data.</p>"
+      }
+    },
+    "ExportEarthObservationJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportEarthObservationJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportErrorDetails": {
+      "base": "<p>The structure for returning the export error details in a GetEarthObservationJob.</p>",
+      "refs": {
+        "GetEarthObservationJobOutput$ExportErrorDetails": "<p>Details about the errors generated during ExportEarthObservationJob.</p>"
+      }
+    },
+    "ExportErrorDetailsOutput": {
+      "base": "<p/>",
+      "refs": {
+        "ExportErrorDetails$ExportResults": "<p/>",
+        "ExportErrorDetails$ExportSourceImages": "<p/>"
+      }
+    },
+    "ExportErrorType": {
+      "base": null,
+      "refs": {
+        "ExportErrorDetailsOutput$Type": "<p/>"
+      }
+    },
+    "ExportS3DataInput": {
+      "base": "<p/>",
+      "refs": {
+        "OutputConfigInput$S3Data": "<p>Path to Amazon S3 storage location for the output configuration file.</p>"
+      }
+    },
+    "ExportVectorEnrichmentJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportVectorEnrichmentJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportVectorEnrichmentJobOutputConfig": {
+      "base": "<p>An object containing information about the output file.</p>",
+      "refs": {
+        "ExportVectorEnrichmentJobInput$OutputConfig": "<p>Output location information for exporting Vector Enrichment Job results. </p>",
+        "ExportVectorEnrichmentJobOutput$OutputConfig": "<p>Output location information for exporting Vector Enrichment Job results. </p>"
+      }
+    },
+    "Filter": {
+      "base": "<p>The structure representing the filters supported by a RasterDataCollection.</p>",
+      "refs": {
+        "FilterList$member": null
+      }
+    },
+    "FilterList": {
+      "base": null,
+      "refs": {
+        "GetRasterDataCollectionOutput$SupportedFilters": "<p>The filters supported by the raster data collection.</p>",
+        "RasterDataCollectionMetadata$SupportedFilters": "<p/>"
+      }
+    },
+    "Float": {
+      "base": null,
+      "refs": {
+        "EoCloudCoverInput$LowerBound": "<p/>",
+        "EoCloudCoverInput$UpperBound": "<p/>",
+        "Filter$Maximum": "<p>The maximum value of the filter.</p>",
+        "Filter$Minimum": "<p>The minimum value of the filter.</p>",
+        "LandsatCloudCoverLandInput$LowerBound": "<p/>",
+        "LandsatCloudCoverLandInput$UpperBound": "<p/>",
+        "Properties$EoCloudCover": "<p/>",
+        "Properties$LandsatCloudCoverLand": "<p/>",
+        "Properties$ViewOffNadir": "<p/>",
+        "Properties$ViewSunAzimuth": "<p/>",
+        "Properties$ViewSunElevation": "<p/>",
+        "UserDefined$Value": "<p/>",
+        "ViewOffNadirInput$LowerBound": "<p/>",
+        "ViewOffNadirInput$UpperBound": "<p/>",
+        "ViewSunAzimuthInput$LowerBound": "<p/>",
+        "ViewSunAzimuthInput$UpperBound": "<p/>",
+        "ViewSunElevationInput$LowerBound": "<p>The lower bound to view the sun elevation.</p>",
+        "ViewSunElevationInput$UpperBound": "<p>The upper bound to view the sun elevation.</p>"
+      }
+    },
+    "GeoMosaicConfigInput": {
+      "base": "<p>Input configuration information for the geomosaic.</p>",
+      "refs": {
+        "JobConfigInput$GeoMosaicConfig": "<p>An object containing information about the job configuration for geomosaic.</p>"
+      }
+    },
+    "Geometry": {
+      "base": "<p/>",
+      "refs": {
+        "ItemSource$Geometry": "<p/>"
+      }
+    },
+    "GetEarthObservationJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEarthObservationJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRasterDataCollectionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRasterDataCollectionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTileInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTileOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVectorEnrichmentJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVectorEnrichmentJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GroupBy": {
+      "base": null,
+      "refs": {
+        "TemporalStatisticsConfigInput$GroupBy": "<p/>"
+      }
+    },
+    "ImageSourceBandList": {
+      "base": null,
+      "refs": {
+        "GetRasterDataCollectionOutput$ImageSourceBands": "<p/>"
+      }
+    },
+    "InputConfigInput": {
+      "base": "<p>Input configuration information.</p>",
+      "refs": {
+        "StartEarthObservationJobInput$InputConfig": "<p>Input configuration information for the Earth Observation job.</p>"
+      }
+    },
+    "InputConfigOutput": {
+      "base": "<p>The InputConfig for an EarthObservationJob response.</p>",
+      "refs": {
+        "GetEarthObservationJobOutput$InputConfig": "<p>Input data for the Earth Observation job.</p>",
+        "StartEarthObservationJobOutput$InputConfig": "<p>Input configuration information for the Earth Observation job.</p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "GetEarthObservationJobOutput$DurationInSeconds": "<p>The duration of Earth Observation job, in seconds.</p>",
+        "GetTileInput$x": "<p>The x coordinate of the tile input.</p>",
+        "GetTileInput$y": "<p>The y coordinate of the tile input.</p>",
+        "GetTileInput$z": "<p>The z coordinate of the tile input.</p>",
+        "GetVectorEnrichmentJobOutput$DurationInSeconds": "<p>The duration of the Vector Enrichment job, in seconds.</p>",
+        "ListEarthObservationJobOutputConfig$DurationInSeconds": "<p>The duration of the session, in seconds.</p>",
+        "ListVectorEnrichmentJobOutputConfig$DurationInSeconds": "<p>The duration of the session, in seconds.</p>",
+        "SearchRasterDataCollectionOutput$ApproximateResultCount": "<p/>",
+        "StartEarthObservationJobOutput$DurationInSeconds": "<p>The duration of the session, in seconds.</p>",
+        "StartVectorEnrichmentJobOutput$DurationInSeconds": "<p>The duration of the Vector Enrichment job, in seconds.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>The request processing has failed because of an unknown error, exception, or failure.</p>",
+      "refs": {
+      }
+    },
+    "ItemSource": {
+      "base": "<p>Structure representing the items in the response for SearchRasterDataCollection.</p>",
+      "refs": {
+        "ItemSourceList$member": null
+      }
+    },
+    "ItemSourceList": {
+      "base": null,
+      "refs": {
+        "SearchRasterDataCollectionOutput$Items": "<p/>"
+      }
+    },
+    "JobConfigInput": {
+      "base": "<p>The input structure for the JobConfig in an EarthObservationJob.</p>",
+      "refs": {
+        "GetEarthObservationJobOutput$JobConfig": "<p>An object containing information about the job configuration.</p>",
+        "StartEarthObservationJobInput$JobConfig": "<p>An object containing information about the job configuration.</p>",
+        "StartEarthObservationJobOutput$JobConfig": "<p>An object containing information about the job configuration.</p>"
+      }
+    },
+    "LandCoverSegmentationConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$LandCoverSegmentationConfig": "<p>An object containing information about the job configuration for land cover segmentation.</p>"
+      }
+    },
+    "LandsatCloudCoverLandInput": {
+      "base": "<p/>",
+      "refs": {
+        "Property$LandsatCloudCoverLand": "<p/>"
+      }
+    },
+    "LinearRing": {
+      "base": null,
+      "refs": {
+        "LinearRings$member": null
+      }
+    },
+    "LinearRings": {
+      "base": null,
+      "refs": {
+        "Geometry$Coordinates": "<p/>",
+        "LinearRingsList$member": null,
+        "PolygonGeometryInput$Coordinates": "<p/>"
+      }
+    },
+    "LinearRingsList": {
+      "base": null,
+      "refs": {
+        "MultiPolygonGeometryInput$Coordinates": "<p>The coordinates of the multipolygon geometry.</p>"
+      }
+    },
+    "ListEarthObservationJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEarthObservationJobInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListEarthObservationJobInput$MaxResults": "<p>The total number of items to return.</p>"
+      }
+    },
+    "ListEarthObservationJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEarthObservationJobOutputConfig": {
+      "base": "<p>An object containing information about the output file.</p>",
+      "refs": {
+        "EarthObservationJobList$member": null
+      }
+    },
+    "ListRasterDataCollectionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRasterDataCollectionsInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListRasterDataCollectionsInput$MaxResults": "<p>The total number of items to return.</p>"
+      }
+    },
+    "ListRasterDataCollectionsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVectorEnrichmentJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVectorEnrichmentJobInputMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListVectorEnrichmentJobInput$MaxResults": "<p>The maximum number of items to return.</p>"
+      }
+    },
+    "ListVectorEnrichmentJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVectorEnrichmentJobOutputConfig": {
+      "base": "<p>An object containing information about the output file.</p>",
+      "refs": {
+        "VectorEnrichmentJobList$member": null
+      }
+    },
+    "LogicalOperator": {
+      "base": null,
+      "refs": {
+        "PropertyFilters$LogicalOperator": "<p/>"
+      }
+    },
+    "MapMatchingConfig": {
+      "base": "<p/>",
+      "refs": {
+        "VectorEnrichmentJobConfig$MapMatchingConfig": "<p/>"
+      }
+    },
+    "MetadataProvider": {
+      "base": null,
+      "refs": {
+        "S3DataInput$MetadataProvider": "<p/>"
+      }
+    },
+    "MultiPolygonGeometryInput": {
+      "base": "<p/>",
+      "refs": {
+        "AreaOfInterestGeometry$MultiPolygonGeometry": "<p/>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListEarthObservationJobInput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListEarthObservationJobOutput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListRasterDataCollectionsInput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListRasterDataCollectionsOutput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListVectorEnrichmentJobInput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListVectorEnrichmentJobOutput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "SearchRasterDataCollectionInput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "SearchRasterDataCollectionOutput$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>"
+      }
+    },
+    "Operation": {
+      "base": "<p/>",
+      "refs": {
+        "OperationsListInput$member": null
+      }
+    },
+    "OperationsListInput": {
+      "base": null,
+      "refs": {
+        "CustomIndicesInput$Operations": "<p/>"
+      }
+    },
+    "OutputBand": {
+      "base": "<p>A single EarthObservationJob output band.</p>",
+      "refs": {
+        "EarthObservationJobOutputBands$member": null
+      }
+    },
+    "OutputConfigInput": {
+      "base": "<p>The response structure for an OutputConfig returned by an ExportEarthObservationJob.</p>",
+      "refs": {
+        "ExportEarthObservationJobInput$OutputConfig": "<p>An object containing information about the output file.</p>",
+        "ExportEarthObservationJobOutput$OutputConfig": "<p>An object containing information about the output file.</p>"
+      }
+    },
+    "OutputResolutionResamplingInput": {
+      "base": "<p/>",
+      "refs": {
+        "ResamplingConfigInput$OutputResolution": "<p/>"
+      }
+    },
+    "OutputResolutionStackInput": {
+      "base": "<p/>",
+      "refs": {
+        "StackConfigInput$OutputResolution": "<p/>"
+      }
+    },
+    "OutputType": {
+      "base": null,
+      "refs": {
+        "GetTileInput$OutputDataType": "<p>The output data type of the tile operation.</p>",
+        "Operation$OutputType": "<p>The type of the operation.</p>",
+        "OutputBand$OutputDataType": "<p>The datatype of the output band.</p>"
+      }
+    },
+    "PlatformInput": {
+      "base": "<p/>",
+      "refs": {
+        "Property$Platform": "<p/>"
+      }
+    },
+    "PolygonGeometryInput": {
+      "base": "<p/>",
+      "refs": {
+        "AreaOfInterestGeometry$PolygonGeometry": "<p/>"
+      }
+    },
+    "Position": {
+      "base": null,
+      "refs": {
+        "LinearRing$member": null
+      }
+    },
+    "PredefinedResolution": {
+      "base": null,
+      "refs": {
+        "OutputResolutionStackInput$Predefined": "<p/>"
+      }
+    },
+    "Properties": {
+      "base": "<p/>",
+      "refs": {
+        "ItemSource$Properties": "<p/>"
+      }
+    },
+    "Property": {
+      "base": "<p/>",
+      "refs": {
+        "PropertyFilter$Property": "<p/>"
+      }
+    },
+    "PropertyFilter": {
+      "base": "<p/>",
+      "refs": {
+        "PropertyFiltersList$member": null
+      }
+    },
+    "PropertyFilters": {
+      "base": "<p/>",
+      "refs": {
+        "RasterDataCollectionQueryInput$PropertyFilters": "<p/>",
+        "RasterDataCollectionQueryOutput$PropertyFilters": "<p/>",
+        "RasterDataCollectionQueryWithBandFilterInput$PropertyFilters": "<p/>"
+      }
+    },
+    "PropertyFiltersList": {
+      "base": null,
+      "refs": {
+        "PropertyFilters$Properties": "<p/>"
+      }
+    },
+    "RasterDataCollectionMetadata": {
+      "base": "<p>Response object containing details for a specific RasterDataCollection.</p>",
+      "refs": {
+        "DataCollectionsList$member": null
+      }
+    },
+    "RasterDataCollectionQueryInput": {
+      "base": "<p/>",
+      "refs": {
+        "InputConfigInput$RasterDataCollectionQuery": "<p/>"
+      }
+    },
+    "RasterDataCollectionQueryOutput": {
+      "base": "<p/>",
+      "refs": {
+        "InputConfigOutput$RasterDataCollectionQuery": "<p/>"
+      }
+    },
+    "RasterDataCollectionQueryWithBandFilterInput": {
+      "base": "<p>This is a RasterDataCollectionQueryInput containing AreaOfInterest, Time Range filter and Property filters.</p>",
+      "refs": {
+        "SearchRasterDataCollectionInput$RasterDataCollectionQuery": "<p/>"
+      }
+    },
+    "ResamplingConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$ResamplingConfig": "<p>An object containing information about the job configuration for resampling.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ReverseGeocodingConfig": {
+      "base": "<p/>",
+      "refs": {
+        "VectorEnrichmentJobConfig$ReverseGeocodingConfig": "<p/>"
+      }
+    },
+    "S3DataInput": {
+      "base": "<p>Path to Amazon S3 storage location for input data.</p>",
+      "refs": {
+        "EojDataSourceConfigInput$S3Data": "<p/>"
+      }
+    },
+    "SearchRasterDataCollectionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchRasterDataCollectionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>You have exceeded the service quota.</p>",
+      "refs": {
+      }
+    },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "ListEarthObservationJobInput$SortOrder": "<p>An optional value that specifies whether you want the results sorted in <code>Ascending</code> or <code>Descending</code> order.</p>",
+        "ListVectorEnrichmentJobInput$SortOrder": "<p>An optional value that specifies whether you want the results sorted in <code>Ascending</code> or <code>Descending</code> order.</p>"
+      }
+    },
+    "StackConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$StackConfig": "<p/>"
+      }
+    },
+    "StartEarthObservationJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartEarthObservationJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartVectorEnrichmentJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartVectorEnrichmentJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopEarthObservationJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopEarthObservationJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopVectorEnrichmentJobInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopVectorEnrichmentJobOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$Message": null,
+        "AssetValue$Href": "<p/>",
+        "AssetsMap$key": null,
+        "CloudRemovalConfigInput$InterpolationValue": "<p>The interpolation value you provide for cloud removal.</p>",
+        "ConflictException$Message": null,
+        "ConflictException$ResourceId": "<p/>",
+        "EarthObservationJobErrorDetails$Message": "<p/>",
+        "ExportEarthObservationJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "ExportEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "ExportErrorDetailsOutput$Message": "<p/>",
+        "ExportS3DataInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "ExportS3DataInput$S3Uri": "<p>The URL to the Amazon S3 data input.</p>",
+        "ExportVectorEnrichmentJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM rolewith permission to upload to the location in OutputConfig.</p>",
+        "ExportVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permission to upload to the location in OutputConfig.</p>",
+        "Filter$Name": "<p>The name of the filter.</p>",
+        "Filter$Type": "<p>The type of the filter being used.</p>",
+        "Geometry$Type": "<p/>",
+        "GetEarthObservationJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job.</p>",
+        "GetEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "GetEarthObservationJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "GetEarthObservationJobOutput$Name": "<p>The name of the Earth Observation job.</p>",
+        "GetRasterDataCollectionOutput$Description": "<p>A description of the raster data collection.</p>",
+        "GetRasterDataCollectionOutput$DescriptionPageUrl": "<p>The URL of the description page.</p>",
+        "GetRasterDataCollectionOutput$Name": "<p>The name of the raster data collection.</p>",
+        "GetTileInput$OutputFormat": "<p>The data format of the output tile. The formats include .npy, .png and .jpg.</p>",
+        "GetTileInput$PropertyFilters": "<p>Property filters for the imagery to tile.</p>",
+        "GetTileInput$TimeRangeFilter": "<p>Time range filter applied to imagery to find the images to tile.</p>",
+        "GetVectorEnrichmentJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job.</p>",
+        "GetVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "GetVectorEnrichmentJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "GetVectorEnrichmentJobOutput$Name": "<p>The name of the Vector Enrichment job.</p>",
+        "ImageSourceBandList$member": null,
+        "InputConfigInput$PreviousEarthObservationJobArn": "<p>The Amazon Resource Name (ARN) of the previous Earth Observation job.</p>",
+        "InputConfigOutput$PreviousEarthObservationJobArn": "<p>The Amazon Resource Name (ARN) of the previous Earth Observation job.</p>",
+        "InternalServerException$Message": null,
+        "InternalServerException$ResourceId": "<p/>",
+        "ItemSource$Id": "<p>A unique Id for the source item.</p>",
+        "ListEarthObservationJobInput$SortBy": "<p>The parameter by which to sort the results.</p>",
+        "ListEarthObservationJobOutputConfig$Arn": "<p>The Amazon Resource Name (ARN) of the list of the Earth Observation jobs.</p>",
+        "ListEarthObservationJobOutputConfig$Name": "<p>The names of the Earth Observation jobs in the list.</p>",
+        "ListEarthObservationJobOutputConfig$OperationType": "<p/>",
+        "ListVectorEnrichmentJobInput$SortBy": "<p>The parameter by which to sort the results.</p>",
+        "ListVectorEnrichmentJobInput$StatusEquals": "<p>A filter that retrieves only jobs with a specific status.</p>",
+        "ListVectorEnrichmentJobOutputConfig$Name": "<p>The names of the Vector Enrichment jobs in the list.</p>",
+        "MapMatchingConfig$IdAttributeName": "<p/>",
+        "MapMatchingConfig$TimestampAttributeName": "<p>The name of the timestamp attribute.</p>",
+        "MapMatchingConfig$XAttributeName": "<p>The name of the X-attribute</p>",
+        "MapMatchingConfig$YAttributeName": "<p>The name of the Y-attribute</p>",
+        "Operation$Equation": "<p/>",
+        "Operation$Name": "<p>The name of the operation.</p>",
+        "OutputBand$BandName": "<p>The name of the band.</p>",
+        "PlatformInput$Value": "<p>The value of the platform.</p>",
+        "Properties$Platform": "<p/>",
+        "RasterDataCollectionMetadata$Description": "<p>A description of the raster data collection.</p>",
+        "RasterDataCollectionMetadata$DescriptionPageUrl": "<p>The description URL of the raster data collection.</p>",
+        "RasterDataCollectionMetadata$Name": "<p>The name of the raster data collection.</p>",
+        "RasterDataCollectionQueryInput$RasterDataCollectionArn": "<p>The Amazon Resource Name (ARN) of the raster data collection.</p>",
+        "RasterDataCollectionQueryOutput$RasterDataCollectionArn": "<p/>",
+        "RasterDataCollectionQueryOutput$RasterDataCollectionName": "<p>The name of the raster data collection.</p>",
+        "ResourceNotFoundException$Message": null,
+        "ResourceNotFoundException$ResourceId": "<p/>",
+        "ReverseGeocodingConfig$XAttributeName": "<p/>",
+        "ReverseGeocodingConfig$YAttributeName": "<p/>",
+        "S3DataInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "S3DataInput$S3Uri": "<p>The URL to the Amazon S3 input.</p>",
+        "ServiceQuotaExceededException$Message": null,
+        "ServiceQuotaExceededException$ResourceId": "<p/>",
+        "StartEarthObservationJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>",
+        "StartEarthObservationJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartEarthObservationJobInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "StartEarthObservationJobInput$Name": "<p>The name of the Earth Observation job.</p>",
+        "StartEarthObservationJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Earth Observation job.</p>",
+        "StartEarthObservationJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartEarthObservationJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "StartEarthObservationJobOutput$Name": "<p>The name of the Earth Observation job.</p>",
+        "StartVectorEnrichmentJobInput$ClientToken": "<p>A unique token that guarantees that the call to this API is idempotent.</p>",
+        "StartVectorEnrichmentJobInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartVectorEnrichmentJobInput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "StartVectorEnrichmentJobInput$Name": "<p>The name of the Vector Enrichment job.</p>",
+        "StartVectorEnrichmentJobOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the job.</p>",
+        "StartVectorEnrichmentJobOutput$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "StartVectorEnrichmentJobOutput$Name": "<p>The name of the Vector Enrichment job.</p>",
+        "StringListInput$member": null,
+        "TagKeyList$member": null,
+        "Tags$key": null,
+        "Tags$value": null,
+        "ThrottlingException$Message": null,
+        "ThrottlingException$ResourceId": "<p/>",
+        "ValidationException$Message": null,
+        "ValidationException$ResourceId": "<p/>",
+        "VectorEnrichmentJobErrorDetails$ErrorMessage": "<p>A message that you define and then is processed and rendered by the Vector Enrichment job when the error occurs.</p>",
+        "VectorEnrichmentJobExportErrorDetails$Message": "<p>The message providing details about the errors generated during the Vector Enrichment job.</p>",
+        "VectorEnrichmentJobS3Data$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
+        "VectorEnrichmentJobS3Data$S3Uri": "<p>The URL to the Amazon S3 data for the Vector Enrichment job.</p>",
+        "ZonalStatisticsConfigInput$ZoneS3Path": "<p/>"
+      }
+    },
+    "StringListInput": {
+      "base": null,
+      "refs": {
+        "BandMathConfigInput$PredefinedIndices": "<p/>",
+        "CloudRemovalConfigInput$TargetBands": "<p/>",
+        "GeoMosaicConfigInput$TargetBands": "<p>The target bands for geomosaic.</p>",
+        "GetTileInput$ImageAssets": "<p>The particular assets or bands to tile.</p>",
+        "RasterDataCollectionQueryWithBandFilterInput$BandFilter": "<p/>",
+        "ResamplingConfigInput$TargetBands": "<p/>",
+        "StackConfigInput$TargetBands": "<p/>",
+        "TemporalStatisticsConfigInput$TargetBands": "<p/>",
+        "ZonalStatisticsConfigInput$TargetBands": "<p/>"
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>Keys of the tags you want to remove.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "GetEarthObservationJobOutput$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "GetRasterDataCollectionOutput$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "GetVectorEnrichmentJobOutput$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "ListEarthObservationJobOutputConfig$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "ListVectorEnrichmentJobOutputConfig$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "RasterDataCollectionMetadata$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "StartEarthObservationJobInput$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "StartEarthObservationJobOutput$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "StartVectorEnrichmentJobInput$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "StartVectorEnrichmentJobOutput$Tags": "<p>Each tag consists of a key and a value.</p>",
+        "TagResourceRequest$Tags": "<p>Each tag consists of a key and a value.</p>"
+      }
+    },
+    "TargetOptions": {
+      "base": null,
+      "refs": {
+        "GetTileInput$Target": "<p>Determines what part of the Earth Observation job to tile. 'INPUT' or 'OUTPUT' are the valid options.</p>"
+      }
+    },
+    "TemporalStatistics": {
+      "base": null,
+      "refs": {
+        "TemporalStatisticsListInput$member": null
+      }
+    },
+    "TemporalStatisticsConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$TemporalStatisticsConfig": "<p>An object containing information about the job configuration for temporal statistics.</p>"
+      }
+    },
+    "TemporalStatisticsListInput": {
+      "base": null,
+      "refs": {
+        "TemporalStatisticsConfigInput$Statistics": "<p/>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "TimeRangeFilterInput": {
+      "base": "<p>The input for the time-range filter.</p>",
+      "refs": {
+        "RasterDataCollectionQueryInput$TimeRangeFilter": "<p/>",
+        "RasterDataCollectionQueryOutput$TimeRangeFilter": "<p/>",
+        "RasterDataCollectionQueryWithBandFilterInput$TimeRangeFilter": "<p/>"
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "ExportEarthObservationJobOutput$CreationTime": "<p>The creation time.</p>",
+        "ExportVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
+        "GetEarthObservationJobOutput$CreationTime": "<p>The creation time of the initiated Earth Observation job.</p>",
+        "GetVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
+        "ItemSource$DateTime": "<p/>",
+        "ListEarthObservationJobOutputConfig$CreationTime": "<p>The creation time.</p>",
+        "ListVectorEnrichmentJobOutputConfig$CreationTime": "<p>The creation time.</p>",
+        "StartEarthObservationJobOutput$CreationTime": "<p>The creation time.</p>",
+        "StartVectorEnrichmentJobOutput$CreationTime": "<p>The creation time.</p>",
+        "TimeRangeFilterInput$EndTime": "<p>The end time for the time-range filter.</p>",
+        "TimeRangeFilterInput$StartTime": "<p>The start time for the time-range filter.</p>"
+      }
+    },
+    "Unit": {
+      "base": null,
+      "refs": {
+        "UserDefined$Unit": "<p/>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UserDefined": {
+      "base": "<p/>",
+      "refs": {
+        "OutputResolutionResamplingInput$UserDefined": "<p/>",
+        "OutputResolutionStackInput$UserDefined": "<p/>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>",
+      "refs": {
+      }
+    },
+    "VectorEnrichmentJobArn": {
+      "base": null,
+      "refs": {
+        "DeleteVectorEnrichmentJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job being deleted.</p>",
+        "ExportVectorEnrichmentJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job.</p>",
+        "ExportVectorEnrichmentJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job being exported.</p>",
+        "GetVectorEnrichmentJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job.</p>",
+        "ListVectorEnrichmentJobOutputConfig$Arn": "<p>The Amazon Resource Name (ARN) of the list of the Vector Enrichment jobs.</p>",
+        "StartVectorEnrichmentJobOutput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job.</p>",
+        "StopVectorEnrichmentJobInput$Arn": "<p>The Amazon Resource Name (ARN) of the Vector Enrichment job.</p>"
+      }
+    },
+    "VectorEnrichmentJobConfig": {
+      "base": "<p>It contains configs such as ReverseGeocodingConfig and MapMatchingConfig.</p>",
+      "refs": {
+        "GetVectorEnrichmentJobOutput$JobConfig": "<p>An object containing information about the job configuration.</p>",
+        "StartVectorEnrichmentJobInput$JobConfig": "<p>An object containing information about the job configuration.</p>",
+        "StartVectorEnrichmentJobOutput$JobConfig": "<p>An object containing information about the job configuration.</p>"
+      }
+    },
+    "VectorEnrichmentJobDataSourceConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "VectorEnrichmentJobInputConfig$DataSourceConfig": "<p/>"
+      }
+    },
+    "VectorEnrichmentJobDocumentType": {
+      "base": null,
+      "refs": {
+        "VectorEnrichmentJobInputConfig$DocumentType": "<p/>"
+      }
+    },
+    "VectorEnrichmentJobErrorDetails": {
+      "base": "<p>VectorEnrichmentJob error details in response from GetVectorEnrichmentJob.</p>",
+      "refs": {
+        "GetVectorEnrichmentJobOutput$ErrorDetails": "<p>Details about the errors generated during the Vector Enrichment job.</p>"
+      }
+    },
+    "VectorEnrichmentJobErrorType": {
+      "base": null,
+      "refs": {
+        "VectorEnrichmentJobErrorDetails$ErrorType": "<p>The type of error generated during the Vector Enrichment job.</p>"
+      }
+    },
+    "VectorEnrichmentJobExportErrorDetails": {
+      "base": "<p>VectorEnrichmentJob export error details in response from GetVectorEnrichmentJob.</p>",
+      "refs": {
+        "GetVectorEnrichmentJobOutput$ExportErrorDetails": "<p>Details about the errors generated during the ExportVectorEnrichmentJob.</p>"
+      }
+    },
+    "VectorEnrichmentJobExportErrorType": {
+      "base": null,
+      "refs": {
+        "VectorEnrichmentJobExportErrorDetails$Type": "<p/>"
+      }
+    },
+    "VectorEnrichmentJobExportStatus": {
+      "base": null,
+      "refs": {
+        "ExportVectorEnrichmentJobOutput$ExportStatus": "<p>The status of the results the Vector Enrichment job being exported.</p>",
+        "GetVectorEnrichmentJobOutput$ExportStatus": "<p>The export status of the Vector Enrichment job being initiated.</p>"
+      }
+    },
+    "VectorEnrichmentJobInputConfig": {
+      "base": "<p>The input structure for the InputConfig in a VectorEnrichmentJob.</p>",
+      "refs": {
+        "GetVectorEnrichmentJobOutput$InputConfig": "<p>Input configuration information for the Vector Enrichment job.</p>",
+        "StartVectorEnrichmentJobInput$InputConfig": "<p>Input configuration information for the Vector Enrichment job.</p>",
+        "StartVectorEnrichmentJobOutput$InputConfig": "<p>Input configuration information for starting the Vector Enrichment job.</p>"
+      }
+    },
+    "VectorEnrichmentJobList": {
+      "base": null,
+      "refs": {
+        "ListVectorEnrichmentJobOutput$VectorEnrichmentJobSummaries": "<p>Contains summary information about the Vector Enrichment jobs.</p>"
+      }
+    },
+    "VectorEnrichmentJobS3Data": {
+      "base": "<p>The Amazon S3 data for the Vector Enrichment job.</p>",
+      "refs": {
+        "ExportVectorEnrichmentJobOutputConfig$S3Data": "<p/>",
+        "VectorEnrichmentJobDataSourceConfigInput$S3Data": "<p/>"
+      }
+    },
+    "VectorEnrichmentJobStatus": {
+      "base": null,
+      "refs": {
+        "GetVectorEnrichmentJobOutput$Status": "<p>The status of the initiated Vector Enrichment job.</p>",
+        "ListVectorEnrichmentJobOutputConfig$Status": "<p>The status of the Vector Enrichment jobs list. </p>",
+        "StartVectorEnrichmentJobOutput$Status": "<p>The status of the Vector Enrichment job being started.</p>"
+      }
+    },
+    "VectorEnrichmentJobType": {
+      "base": null,
+      "refs": {
+        "GetVectorEnrichmentJobOutput$Type": "<p>The type of the Vector Enrichment job being initiated.</p>",
+        "ListVectorEnrichmentJobOutputConfig$Type": "<p>The type of the list of Vector Enrichment jobs.</p>",
+        "StartVectorEnrichmentJobOutput$Type": "<p>The type of the Vector Enrichment job.</p>"
+      }
+    },
+    "ViewOffNadirInput": {
+      "base": "<p/>",
+      "refs": {
+        "Property$ViewOffNadir": "<p/>"
+      }
+    },
+    "ViewSunAzimuthInput": {
+      "base": "<p/>",
+      "refs": {
+        "Property$ViewSunAzimuth": "<p/>"
+      }
+    },
+    "ViewSunElevationInput": {
+      "base": "<p/>",
+      "refs": {
+        "Property$ViewSunElevation": "<p/>"
+      }
+    },
+    "ZonalStatistics": {
+      "base": null,
+      "refs": {
+        "ZonalStatisticsListInput$member": null
+      }
+    },
+    "ZonalStatisticsConfigInput": {
+      "base": "<p/>",
+      "refs": {
+        "JobConfigInput$ZonalStatisticsConfig": "<p>An object containing information about the job configuration for zonal statistics.</p>"
+      }
+    },
+    "ZonalStatisticsListInput": {
+      "base": null,
+      "refs": {
+        "ZonalStatisticsConfigInput$Statistics": "<p/>"
+      }
+    }
+  }
+}

@@ -78,6 +78,20 @@
       ],
       "idempotent":true
     },
+    "CreateNotebook":{
+      "name":"CreateNotebook",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateNotebookInput"},
+      "output":{"shape":"CreateNotebookOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "CreatePreparedStatement":{
       "name":"CreatePreparedStatement",
       "http":{
@@ -89,6 +103,20 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "CreatePresignedNotebookUrl":{
+      "name":"CreatePresignedNotebookUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePresignedNotebookUrlRequest"},
+      "output":{"shape":"CreatePresignedNotebookUrlResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateWorkGroup":{
@@ -131,6 +159,20 @@
       ],
       "idempotent":true
     },
+    "DeleteNotebook":{
+      "name":"DeleteNotebook",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteNotebookInput"},
+      "output":{"shape":"DeleteNotebookOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DeletePreparedStatement":{
       "name":"DeletePreparedStatement",
       "http":{
@@ -158,6 +200,61 @@
         {"shape":"InvalidRequestException"}
       ],
       "idempotent":true
+    },
+    "ExportNotebook":{
+      "name":"ExportNotebook",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportNotebookInput"},
+      "output":{"shape":"ExportNotebookOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "GetCalculationExecution":{
+      "name":"GetCalculationExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCalculationExecutionRequest"},
+      "output":{"shape":"GetCalculationExecutionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetCalculationExecutionCode":{
+      "name":"GetCalculationExecutionCode",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCalculationExecutionCodeRequest"},
+      "output":{"shape":"GetCalculationExecutionCodeResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetCalculationExecutionStatus":{
+      "name":"GetCalculationExecutionStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCalculationExecutionStatusRequest"},
+      "output":{"shape":"GetCalculationExecutionStatusResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     },
     "GetDataCatalog":{
       "name":"GetDataCatalog",
@@ -197,6 +294,20 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "GetNotebookMetadata":{
+      "name":"GetNotebookMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetNotebookMetadataInput"},
+      "output":{"shape":"GetNotebookMetadataOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetPreparedStatement":{
@@ -253,6 +364,34 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetSession":{
+      "name":"GetSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSessionRequest"},
+      "output":{"shape":"GetSessionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetSessionStatus":{
+      "name":"GetSessionStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSessionStatusRequest"},
+      "output":{"shape":"GetSessionStatusResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetTableMetadata":{
       "name":"GetTableMetadata",
       "http":{
@@ -278,6 +417,48 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "ImportNotebook":{
+      "name":"ImportNotebook",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportNotebookInput"},
+      "output":{"shape":"ImportNotebookOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "ListApplicationDPUSizes":{
+      "name":"ListApplicationDPUSizes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListApplicationDPUSizesInput"},
+      "output":{"shape":"ListApplicationDPUSizesOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "ListCalculationExecutions":{
+      "name":"ListCalculationExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCalculationExecutionsRequest"},
+      "output":{"shape":"ListCalculationExecutionsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListDataCatalogs":{
@@ -320,6 +501,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ListExecutors":{
+      "name":"ListExecutors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListExecutorsRequest"},
+      "output":{"shape":"ListExecutorsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListNamedQueries":{
       "name":"ListNamedQueries",
       "http":{
@@ -331,6 +526,34 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "ListNotebookMetadata":{
+      "name":"ListNotebookMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListNotebookMetadataInput"},
+      "output":{"shape":"ListNotebookMetadataOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "ListNotebookSessions":{
+      "name":"ListNotebookSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListNotebookSessionsRequest"},
+      "output":{"shape":"ListNotebookSessionsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListPreparedStatements":{
@@ -357,6 +580,20 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "ListSessions":{
+      "name":"ListSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSessionsRequest"},
+      "output":{"shape":"ListSessionsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListTableMetadata":{
@@ -400,6 +637,20 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "StartCalculationExecution":{
+      "name":"StartCalculationExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartCalculationExecutionRequest"},
+      "output":{"shape":"StartCalculationExecutionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "StartQueryExecution":{
       "name":"StartQueryExecution",
       "http":{
@@ -414,6 +665,35 @@
         {"shape":"TooManyRequestsException"}
       ],
       "idempotent":true
+    },
+    "StartSession":{
+      "name":"StartSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartSessionRequest"},
+      "output":{"shape":"StartSessionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"SessionAlreadyExistsException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "StopCalculationExecution":{
+      "name":"StopCalculationExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopCalculationExecutionRequest"},
+      "output":{"shape":"StopCalculationExecutionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     },
     "StopQueryExecution":{
       "name":"StopQueryExecution",
@@ -437,6 +717,20 @@
       },
       "input":{"shape":"TagResourceInput"},
       "output":{"shape":"TagResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "TerminateSession":{
+      "name":"TerminateSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TerminateSessionRequest"},
+      "output":{"shape":"TerminateSessionResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"},
@@ -484,6 +778,34 @@
       ],
       "idempotent":true
     },
+    "UpdateNotebook":{
+      "name":"UpdateNotebook",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateNotebookInput"},
+      "output":{"shape":"UpdateNotebookOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "UpdateNotebookMetadata":{
+      "name":"UpdateNotebookMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateNotebookMetadataInput"},
+      "output":{"shape":"UpdateNotebookMetadataOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "UpdatePreparedStatement":{
       "name":"UpdatePreparedStatement",
       "http":{
@@ -530,6 +852,17 @@
       "max":1011,
       "min":1
     },
+    "ApplicationDPUSizes":{
+      "type":"structure",
+      "members":{
+        "ApplicationRuntimeId":{"shape":"NameString"},
+        "SupportedDPUSizes":{"shape":"SupportedDPUSizeList"}
+      }
+    },
+    "ApplicationDPUSizesList":{
+      "type":"list",
+      "member":{"shape":"ApplicationDPUSizes"}
+    },
     "AthenaError":{
       "type":"structure",
       "members":{
@@ -538,6 +871,10 @@
         "Retryable":{"shape":"Boolean"},
         "ErrorMessage":{"shape":"String"}
       }
+    },
+    "AuthToken":{
+      "type":"string",
+      "max":2048
     },
     "AwsAccountId":{
       "type":"string",
@@ -597,11 +934,90 @@
       "type":"long",
       "min":10000000
     },
+    "CalculationConfiguration":{
+      "type":"structure",
+      "members":{
+        "CodeBlock":{"shape":"CodeBlock"}
+      }
+    },
+    "CalculationExecutionId":{
+      "type":"string",
+      "max":36,
+      "min":1
+    },
+    "CalculationExecutionState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "QUEUED",
+        "RUNNING",
+        "CANCELING",
+        "CANCELED",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "CalculationResult":{
+      "type":"structure",
+      "members":{
+        "StdOutS3Uri":{"shape":"S3Uri"},
+        "StdErrorS3Uri":{"shape":"S3Uri"},
+        "ResultS3Uri":{"shape":"S3Uri"},
+        "ResultType":{"shape":"CalculationResultType"}
+      }
+    },
+    "CalculationResultType":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"\\w+\\/[-+.\\w]+"
+    },
+    "CalculationStatistics":{
+      "type":"structure",
+      "members":{
+        "DpuExecutionInMillis":{"shape":"Long"},
+        "Progress":{"shape":"DescriptionString"}
+      }
+    },
+    "CalculationStatus":{
+      "type":"structure",
+      "members":{
+        "SubmissionDateTime":{"shape":"Date"},
+        "CompletionDateTime":{"shape":"Date"},
+        "State":{"shape":"CalculationExecutionState"},
+        "StateChangeReason":{"shape":"DescriptionString"}
+      }
+    },
+    "CalculationSummary":{
+      "type":"structure",
+      "members":{
+        "CalculationExecutionId":{"shape":"CalculationExecutionId"},
+        "Description":{"shape":"DescriptionString"},
+        "Status":{"shape":"CalculationStatus"}
+      }
+    },
+    "CalculationsList":{
+      "type":"list",
+      "member":{"shape":"CalculationSummary"},
+      "max":100,
+      "min":0
+    },
     "CatalogNameString":{
       "type":"string",
       "max":256,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "ClientRequestToken":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "CodeBlock":{
+      "type":"string",
+      "max":68000
     },
     "Column":{
       "type":"structure",
@@ -653,6 +1069,11 @@
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "CoordinatorDpuSize":{
+      "type":"integer",
+      "max":5000,
+      "min":1
+    },
     "CreateDataCatalogInput":{
       "type":"structure",
       "required":[
@@ -697,6 +1118,24 @@
         "NamedQueryId":{"shape":"NamedQueryId"}
       }
     },
+    "CreateNotebookInput":{
+      "type":"structure",
+      "required":[
+        "WorkGroup",
+        "Name"
+      ],
+      "members":{
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "Name":{"shape":"NotebookName"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"}
+      }
+    },
+    "CreateNotebookOutput":{
+      "type":"structure",
+      "members":{
+        "NotebookId":{"shape":"NotebookId"}
+      }
+    },
     "CreatePreparedStatementInput":{
       "type":"structure",
       "required":[
@@ -716,6 +1155,26 @@
       "members":{
       }
     },
+    "CreatePresignedNotebookUrlRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
+    "CreatePresignedNotebookUrlResponse":{
+      "type":"structure",
+      "required":[
+        "NotebookUrl",
+        "AuthToken",
+        "AuthTokenExpirationTime"
+      ],
+      "members":{
+        "NotebookUrl":{"shape":"String"},
+        "AuthToken":{"shape":"AuthToken"},
+        "AuthTokenExpirationTime":{"shape":"Long"}
+      }
+    },
     "CreateWorkGroupInput":{
       "type":"structure",
       "required":["Name"],
@@ -729,6 +1188,13 @@
     "CreateWorkGroupOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "CustomerContentEncryptionConfiguration":{
+      "type":"structure",
+      "required":["KmsKey"],
+      "members":{
+        "KmsKey":{"shape":"KmsKey"}
       }
     },
     "DataCatalog":{
@@ -788,6 +1254,11 @@
         "VarCharValue":{"shape":"datumString"}
       }
     },
+    "DefaultExecutorDpuSize":{
+      "type":"integer",
+      "max":5000,
+      "min":1
+    },
     "DeleteDataCatalogInput":{
       "type":"structure",
       "required":["Name"],
@@ -811,6 +1282,18 @@
       }
     },
     "DeleteNamedQueryOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteNotebookInput":{
+      "type":"structure",
+      "required":["NotebookId"],
+      "members":{
+        "NotebookId":{"shape":"NotebookId"}
+      }
+    },
+    "DeleteNotebookOutput":{
       "type":"structure",
       "members":{
       }
@@ -865,6 +1348,16 @@
         "CSE_KMS"
       ]
     },
+    "EngineConfiguration":{
+      "type":"structure",
+      "required":["MaxConcurrentDpus"],
+      "members":{
+        "CoordinatorDpuSize":{"shape":"CoordinatorDpuSize"},
+        "MaxConcurrentDpus":{"shape":"MaxConcurrentDpus"},
+        "DefaultExecutorDpuSize":{"shape":"DefaultExecutorDpuSize"},
+        "AdditionalConfigs":{"shape":"ParametersMap"}
+      }
+    },
     "EngineVersion":{
       "type":"structure",
       "members":{
@@ -906,10 +1399,116 @@
       "member":{"shape":"ExecutionParameter"},
       "min":1
     },
+    "ExecutorId":{
+      "type":"string",
+      "max":100000,
+      "pattern":".*"
+    },
+    "ExecutorState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "REGISTERED",
+        "TERMINATING",
+        "TERMINATED",
+        "FAILED"
+      ]
+    },
+    "ExecutorType":{
+      "type":"string",
+      "enum":[
+        "COORDINATOR",
+        "GATEWAY",
+        "WORKER"
+      ]
+    },
+    "ExecutorsSummary":{
+      "type":"structure",
+      "required":["ExecutorId"],
+      "members":{
+        "ExecutorId":{"shape":"ExecutorId"},
+        "ExecutorType":{"shape":"ExecutorType"},
+        "StartDateTime":{"shape":"Long"},
+        "TerminationDateTime":{"shape":"Long"},
+        "ExecutorState":{"shape":"ExecutorState"},
+        "ExecutorSize":{"shape":"Long"}
+      }
+    },
+    "ExecutorsSummaryList":{
+      "type":"list",
+      "member":{"shape":"ExecutorsSummary"}
+    },
+    "ExportNotebookInput":{
+      "type":"structure",
+      "required":["NotebookId"],
+      "members":{
+        "NotebookId":{"shape":"NotebookId"}
+      }
+    },
+    "ExportNotebookOutput":{
+      "type":"structure",
+      "members":{
+        "NotebookMetadata":{"shape":"NotebookMetadata"},
+        "Payload":{"shape":"Payload"}
+      }
+    },
     "ExpressionString":{
       "type":"string",
       "max":256,
       "min":0
+    },
+    "FilterDefinition":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NotebookName"}
+      }
+    },
+    "GetCalculationExecutionCodeRequest":{
+      "type":"structure",
+      "required":["CalculationExecutionId"],
+      "members":{
+        "CalculationExecutionId":{"shape":"CalculationExecutionId"}
+      }
+    },
+    "GetCalculationExecutionCodeResponse":{
+      "type":"structure",
+      "members":{
+        "CodeBlock":{"shape":"CodeBlock"}
+      }
+    },
+    "GetCalculationExecutionRequest":{
+      "type":"structure",
+      "required":["CalculationExecutionId"],
+      "members":{
+        "CalculationExecutionId":{"shape":"CalculationExecutionId"}
+      }
+    },
+    "GetCalculationExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "CalculationExecutionId":{"shape":"CalculationExecutionId"},
+        "SessionId":{"shape":"SessionId"},
+        "Description":{"shape":"DescriptionString"},
+        "WorkingDirectory":{"shape":"S3Uri"},
+        "Status":{"shape":"CalculationStatus"},
+        "Statistics":{"shape":"CalculationStatistics"},
+        "Result":{"shape":"CalculationResult"}
+      }
+    },
+    "GetCalculationExecutionStatusRequest":{
+      "type":"structure",
+      "required":["CalculationExecutionId"],
+      "members":{
+        "CalculationExecutionId":{"shape":"CalculationExecutionId"}
+      }
+    },
+    "GetCalculationExecutionStatusResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"CalculationStatus"},
+        "Statistics":{"shape":"CalculationStatistics"}
+      }
     },
     "GetDataCatalogInput":{
       "type":"structure",
@@ -952,6 +1551,19 @@
       "type":"structure",
       "members":{
         "NamedQuery":{"shape":"NamedQuery"}
+      }
+    },
+    "GetNotebookMetadataInput":{
+      "type":"structure",
+      "required":["NotebookId"],
+      "members":{
+        "NotebookId":{"shape":"NotebookId"}
+      }
+    },
+    "GetNotebookMetadataOutput":{
+      "type":"structure",
+      "members":{
+        "NotebookMetadata":{"shape":"NotebookMetadata"}
       }
     },
     "GetPreparedStatementInput":{
@@ -1014,6 +1626,41 @@
         "QueryRuntimeStatistics":{"shape":"QueryRuntimeStatistics"}
       }
     },
+    "GetSessionRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
+    "GetSessionResponse":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "Description":{"shape":"DescriptionString"},
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "EngineVersion":{"shape":"NameString"},
+        "EngineConfiguration":{"shape":"EngineConfiguration"},
+        "NotebookVersion":{"shape":"NameString"},
+        "SessionConfiguration":{"shape":"SessionConfiguration"},
+        "Status":{"shape":"SessionStatus"},
+        "Statistics":{"shape":"SessionStatistics"}
+      }
+    },
+    "GetSessionStatusRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
+    "GetSessionStatusResponse":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "Status":{"shape":"SessionStatus"}
+      }
+    },
     "GetTableMetadataInput":{
       "type":"structure",
       "required":[
@@ -1051,6 +1698,28 @@
       "max":128,
       "min":32
     },
+    "ImportNotebookInput":{
+      "type":"structure",
+      "required":[
+        "WorkGroup",
+        "Name",
+        "Payload",
+        "Type"
+      ],
+      "members":{
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "Name":{"shape":"NotebookName"},
+        "Payload":{"shape":"Payload"},
+        "Type":{"shape":"NotebookType"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"}
+      }
+    },
+    "ImportNotebookOutput":{
+      "type":"structure",
+      "members":{
+        "NotebookId":{"shape":"NotebookId"}
+      }
+    },
     "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
@@ -1073,6 +1742,43 @@
       "max":255,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "KmsKey":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:aws[a-z\\-]*:kms:([a-z0-9\\-]+):\\d{12}:key/?[a-zA-Z_0-9+=,.@\\-_/]+$|^arn:aws[a-z\\-]*:kms:([a-z0-9\\-]+):\\d{12}:alias/?[a-zA-Z_0-9+=,.@\\-_/]+$|^alias/[a-zA-Z0-9/_-]+$|[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "ListApplicationDPUSizesInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxApplicationDPUSizesCount"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListApplicationDPUSizesOutput":{
+      "type":"structure",
+      "members":{
+        "ApplicationDPUSizes":{"shape":"ApplicationDPUSizesList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListCalculationExecutionsRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "StateFilter":{"shape":"CalculationExecutionState"},
+        "MaxResults":{"shape":"MaxCalculationsCount"},
+        "NextToken":{"shape":"SessionManagerToken"}
+      }
+    },
+    "ListCalculationExecutionsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"SessionManagerToken"},
+        "Calculations":{"shape":"CalculationsList"}
+      }
     },
     "ListDataCatalogsInput":{
       "type":"structure",
@@ -1118,6 +1824,25 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "ListExecutorsRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "ExecutorStateFilter":{"shape":"ExecutorState"},
+        "MaxResults":{"shape":"MaxListExecutorsCount"},
+        "NextToken":{"shape":"SessionManagerToken"}
+      }
+    },
+    "ListExecutorsResponse":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "NextToken":{"shape":"SessionManagerToken"},
+        "ExecutorsSummary":{"shape":"ExecutorsSummaryList"}
+      }
+    },
     "ListNamedQueriesInput":{
       "type":"structure",
       "members":{
@@ -1130,6 +1855,40 @@
       "type":"structure",
       "members":{
         "NamedQueryIds":{"shape":"NamedQueryIdList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListNotebookMetadataInput":{
+      "type":"structure",
+      "required":["WorkGroup"],
+      "members":{
+        "Filters":{"shape":"FilterDefinition"},
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"MaxNotebooksCount"},
+        "WorkGroup":{"shape":"WorkGroupName"}
+      }
+    },
+    "ListNotebookMetadataOutput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "NotebookMetadataList":{"shape":"NotebookMetadataArray"}
+      }
+    },
+    "ListNotebookSessionsRequest":{
+      "type":"structure",
+      "required":["NotebookId"],
+      "members":{
+        "NotebookId":{"shape":"NotebookId"},
+        "MaxResults":{"shape":"MaxSessionsCount"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListNotebookSessionsResponse":{
+      "type":"structure",
+      "required":["NotebookSessionsList"],
+      "members":{
+        "NotebookSessionsList":{"shape":"NotebookSessionsList"},
         "NextToken":{"shape":"Token"}
       }
     },
@@ -1162,6 +1921,23 @@
       "members":{
         "QueryExecutionIds":{"shape":"QueryExecutionIdList"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListSessionsRequest":{
+      "type":"structure",
+      "required":["WorkGroup"],
+      "members":{
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "StateFilter":{"shape":"SessionState"},
+        "MaxResults":{"shape":"MaxSessionsCount"},
+        "NextToken":{"shape":"SessionManagerToken"}
+      }
+    },
+    "ListSessionsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"SessionManagerToken"},
+        "Sessions":{"shape":"SessionsList"}
       }
     },
     "ListTableMetadataInput":{
@@ -1216,6 +1992,22 @@
       }
     },
     "Long":{"type":"long"},
+    "MaxApplicationDPUSizesCount":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "MaxCalculationsCount":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "MaxConcurrentDpus":{
+      "type":"integer",
+      "max":5000,
+      "min":2
+    },
     "MaxDataCatalogsCount":{
       "type":"integer",
       "box":true,
@@ -1234,11 +2026,23 @@
       "max":10,
       "min":1
     },
+    "MaxListExecutorsCount":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "MaxNamedQueriesCount":{
       "type":"integer",
       "box":true,
       "max":50,
       "min":0
+    },
+    "MaxNotebooksCount":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
     },
     "MaxPreparedStatementsCount":{
       "type":"integer",
@@ -1256,6 +2060,12 @@
       "type":"integer",
       "box":true,
       "max":1000,
+      "min":1
+    },
+    "MaxSessionsCount":{
+      "type":"integer",
+      "box":true,
+      "max":100,
       "min":1
     },
     "MaxTableMetadataCount":{
@@ -1324,6 +2134,50 @@
       "type":"list",
       "member":{"shape":"NamedQuery"}
     },
+    "NotebookId":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "NotebookMetadata":{
+      "type":"structure",
+      "members":{
+        "NotebookId":{"shape":"NotebookId"},
+        "Name":{"shape":"NotebookName"},
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "CreationTime":{"shape":"Date"},
+        "Type":{"shape":"NotebookType"},
+        "LastModifiedTime":{"shape":"Date"}
+      }
+    },
+    "NotebookMetadataArray":{
+      "type":"list",
+      "member":{"shape":"NotebookMetadata"}
+    },
+    "NotebookName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]+"
+    },
+    "NotebookSessionSummary":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "CreationTime":{"shape":"Date"}
+      }
+    },
+    "NotebookSessionsList":{
+      "type":"list",
+      "member":{"shape":"NotebookSessionSummary"},
+      "max":10,
+      "min":0
+    },
+    "NotebookType":{
+      "type":"string",
+      "enum":["IPYNB"]
+    },
     "ParametersMap":{
       "type":"map",
       "key":{"shape":"KeyString"},
@@ -1332,6 +2186,11 @@
     "ParametersMapValue":{
       "type":"string",
       "max":51200
+    },
+    "Payload":{
+      "type":"string",
+      "max":15728640,
+      "min":1
     },
     "PreparedStatement":{
       "type":"structure",
@@ -1564,6 +2423,12 @@
         "ColumnInfo":{"shape":"ColumnInfoList"}
       }
     },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
     "Row":{
       "type":"structure",
       "members":{
@@ -1577,6 +2442,110 @@
     "S3AclOption":{
       "type":"string",
       "enum":["BUCKET_OWNER_FULL_CONTROL"]
+    },
+    "S3Uri":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^(https|s3|S3)://([^/]+)/?(.*)$"
+    },
+    "SessionAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "SessionConfiguration":{
+      "type":"structure",
+      "members":{
+        "ExecutionRole":{"shape":"RoleArn"},
+        "WorkingDirectory":{"shape":"ResultOutputLocation"},
+        "IdleTimeoutSeconds":{"shape":"Long"},
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
+      }
+    },
+    "SessionId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "SessionIdleTimeoutInMinutes":{
+      "type":"integer",
+      "box":true,
+      "max":480,
+      "min":1
+    },
+    "SessionManagerToken":{
+      "type":"string",
+      "max":2048
+    },
+    "SessionState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "IDLE",
+        "BUSY",
+        "TERMINATING",
+        "TERMINATED",
+        "DEGRADED",
+        "FAILED"
+      ]
+    },
+    "SessionStatistics":{
+      "type":"structure",
+      "members":{
+        "DpuExecutionInMillis":{"shape":"Long"}
+      }
+    },
+    "SessionStatus":{
+      "type":"structure",
+      "members":{
+        "StartDateTime":{"shape":"Date"},
+        "LastModifiedDateTime":{"shape":"Date"},
+        "EndDateTime":{"shape":"Date"},
+        "IdleSinceDateTime":{"shape":"Date"},
+        "State":{"shape":"SessionState"},
+        "StateChangeReason":{"shape":"DescriptionString"}
+      }
+    },
+    "SessionSummary":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "Description":{"shape":"DescriptionString"},
+        "EngineVersion":{"shape":"EngineVersion"},
+        "NotebookVersion":{"shape":"NameString"},
+        "Status":{"shape":"SessionStatus"}
+      }
+    },
+    "SessionsList":{
+      "type":"list",
+      "member":{"shape":"SessionSummary"},
+      "max":100,
+      "min":0
+    },
+    "StartCalculationExecutionRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "Description":{"shape":"DescriptionString"},
+        "CalculationConfiguration":{
+          "shape":"CalculationConfiguration",
+          "deprecated":true,
+          "deprecatedMessage":"Kepler Post GA Tasks : https://sim.amazon.com/issues/ATHENA-39828"
+        },
+        "CodeBlock":{"shape":"CodeBlock"},
+        "ClientRequestToken":{"shape":"IdempotencyToken"}
+      }
+    },
+    "StartCalculationExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "CalculationExecutionId":{"shape":"CalculationExecutionId"},
+        "State":{"shape":"CalculationExecutionState"}
+      }
     },
     "StartQueryExecutionInput":{
       "type":"structure",
@@ -1600,6 +2569,28 @@
         "QueryExecutionId":{"shape":"QueryExecutionId"}
       }
     },
+    "StartSessionRequest":{
+      "type":"structure",
+      "required":[
+        "WorkGroup",
+        "EngineConfiguration"
+      ],
+      "members":{
+        "Description":{"shape":"DescriptionString"},
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "EngineConfiguration":{"shape":"EngineConfiguration"},
+        "NotebookVersion":{"shape":"NameString"},
+        "SessionIdleTimeoutInMinutes":{"shape":"SessionIdleTimeoutInMinutes"},
+        "ClientRequestToken":{"shape":"IdempotencyToken"}
+      }
+    },
+    "StartSessionResponse":{
+      "type":"structure",
+      "members":{
+        "SessionId":{"shape":"SessionId"},
+        "State":{"shape":"SessionState"}
+      }
+    },
     "StatementName":{
       "type":"string",
       "max":256,
@@ -1613,6 +2604,19 @@
         "DML",
         "UTILITY"
       ]
+    },
+    "StopCalculationExecutionRequest":{
+      "type":"structure",
+      "required":["CalculationExecutionId"],
+      "members":{
+        "CalculationExecutionId":{"shape":"CalculationExecutionId"}
+      }
+    },
+    "StopCalculationExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"CalculationExecutionState"}
+      }
     },
     "StopQueryExecutionInput":{
       "type":"structure",
@@ -1633,6 +2637,10 @@
     "StringList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "SupportedDPUSizeList":{
+      "type":"list",
+      "member":{"shape":"Integer"}
     },
     "TableMetadata":{
       "type":"structure",
@@ -1695,6 +2703,19 @@
       "type":"string",
       "max":256,
       "min":0
+    },
+    "TerminateSessionRequest":{
+      "type":"structure",
+      "required":["SessionId"],
+      "members":{
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
+    "TerminateSessionResponse":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"SessionState"}
+      }
     },
     "ThrottleReason":{
       "type":"string",
@@ -1809,6 +2830,39 @@
       "members":{
       }
     },
+    "UpdateNotebookInput":{
+      "type":"structure",
+      "required":["NotebookId"],
+      "members":{
+        "NotebookId":{"shape":"NotebookId"},
+        "Payload":{"shape":"Payload"},
+        "Type":{"shape":"NotebookType"},
+        "SessionId":{"shape":"SessionId"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"}
+      }
+    },
+    "UpdateNotebookMetadataInput":{
+      "type":"structure",
+      "required":[
+        "NotebookId",
+        "Name"
+      ],
+      "members":{
+        "NotebookId":{"shape":"NotebookId"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "Name":{"shape":"NotebookName"}
+      }
+    },
+    "UpdateNotebookMetadataOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateNotebookOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdatePreparedStatementInput":{
       "type":"structure",
       "required":[
@@ -1862,7 +2916,10 @@
         "PublishCloudWatchMetricsEnabled":{"shape":"BoxedBoolean"},
         "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
         "RequesterPaysEnabled":{"shape":"BoxedBoolean"},
-        "EngineVersion":{"shape":"EngineVersion"}
+        "EngineVersion":{"shape":"EngineVersion"},
+        "AdditionalConfiguration":{"shape":"NameString"},
+        "ExecutionRole":{"shape":"RoleArn"},
+        "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"}
       }
     },
     "WorkGroupConfigurationUpdates":{
@@ -1874,7 +2931,11 @@
         "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
         "RemoveBytesScannedCutoffPerQuery":{"shape":"BoxedBoolean"},
         "RequesterPaysEnabled":{"shape":"BoxedBoolean"},
-        "EngineVersion":{"shape":"EngineVersion"}
+        "EngineVersion":{"shape":"EngineVersion"},
+        "RemoveCustomerContentEncryptionConfiguration":{"shape":"BoxedBoolean"},
+        "AdditionalConfiguration":{"shape":"NameString"},
+        "ExecutionRole":{"shape":"RoleArn"},
+        "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"}
       }
     },
     "WorkGroupDescriptionString":{

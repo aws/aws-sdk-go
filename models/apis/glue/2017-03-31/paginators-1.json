@@ -122,6 +122,26 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListDataQualityResults": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListDataQualityRuleRecommendationRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListDataQualityRulesetEvaluationRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListDataQualityRulesets": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListDevEndpoints": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

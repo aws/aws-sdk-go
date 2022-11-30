@@ -529,7 +529,9 @@
       "members":{
         "S3SnapshotAsset":{"shape":"S3SnapshotAsset"},
         "RedshiftDataShareAsset":{"shape":"RedshiftDataShareAsset"},
-        "ApiGatewayApiAsset":{"shape":"ApiGatewayApiAsset"}
+        "ApiGatewayApiAsset":{"shape":"ApiGatewayApiAsset"},
+        "S3DataAccessAsset":{"shape":"S3DataAccessAsset"},
+        "LakeFormationDataPermissionAsset":{"shape":"LakeFormationDataPermissionAsset"}
       }
     },
     "AssetEntry":{
@@ -575,7 +577,9 @@
       "enum":[
         "S3_SNAPSHOT",
         "REDSHIFT_DATA_SHARE",
-        "API_GATEWAY_API"
+        "API_GATEWAY_API",
+        "S3_DATA_ACCESS",
+        "LAKE_FORMATION_DATA_PERMISSION"
       ]
     },
     "AutoExportRevisionDestinationEntry":{
@@ -593,6 +597,12 @@
         "Encryption":{"shape":"ExportServerSideEncryption"},
         "RevisionDestination":{"shape":"AutoExportRevisionDestinationEntry"}
       }
+    },
+    "AwsAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":".*/^[\\d]{12}$/.*"
     },
     "CancelJobRequest":{
       "type":"structure",
@@ -737,6 +747,32 @@
         "RevokedAt":{"shape":"Timestamp"}
       }
     },
+    "CreateS3DataAccessFromS3BucketRequestDetails":{
+      "type":"structure",
+      "required":[
+        "AssetSource",
+        "DataSetId",
+        "RevisionId"
+      ],
+      "members":{
+        "AssetSource":{"shape":"S3DataAccessAssetSourceEntry"},
+        "DataSetId":{"shape":"Id"},
+        "RevisionId":{"shape":"Id"}
+      }
+    },
+    "CreateS3DataAccessFromS3BucketResponseDetails":{
+      "type":"structure",
+      "required":[
+        "AssetSource",
+        "DataSetId",
+        "RevisionId"
+      ],
+      "members":{
+        "AssetSource":{"shape":"S3DataAccessAssetSourceEntry"},
+        "DataSetId":{"shape":"Id"},
+        "RevisionId":{"shape":"Id"}
+      }
+    },
     "DataSetEntry":{
       "type":"structure",
       "required":[
@@ -761,6 +797,28 @@
         "SourceId":{"shape":"Id"},
         "UpdatedAt":{"shape":"Timestamp"}
       }
+    },
+    "DatabaseLFTagPolicy":{
+      "type":"structure",
+      "required":["Expression"],
+      "members":{
+        "Expression":{"shape":"ListOfLFTags"}
+      }
+    },
+    "DatabaseLFTagPolicyAndPermissions":{
+      "type":"structure",
+      "required":[
+        "Expression",
+        "Permissions"
+      ],
+      "members":{
+        "Expression":{"shape":"ListOfLFTags"},
+        "Permissions":{"shape":"ListOfDatabaseLFTagPolicyPermissions"}
+      }
+    },
+    "DatabaseLFTagPolicyPermission":{
+      "type":"string",
+      "enum":["DESCRIBE"]
     },
     "DeleteAssetRequest":{
       "type":"structure",
@@ -1195,6 +1253,40 @@
         "SignedUrlExpiresAt":{"shape":"Timestamp"}
       }
     },
+    "ImportAssetsFromLakeFormationTagPolicyRequestDetails":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "RoleArn",
+        "DataSetId",
+        "RevisionId"
+      ],
+      "members":{
+        "CatalogId":{"shape":"AwsAccountId"},
+        "Database":{"shape":"DatabaseLFTagPolicyAndPermissions"},
+        "Table":{"shape":"TableLFTagPolicyAndPermissions"},
+        "RoleArn":{"shape":"RoleArn"},
+        "DataSetId":{"shape":"Id"},
+        "RevisionId":{"shape":"Id"}
+      }
+    },
+    "ImportAssetsFromLakeFormationTagPolicyResponseDetails":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "RoleArn",
+        "DataSetId",
+        "RevisionId"
+      ],
+      "members":{
+        "CatalogId":{"shape":"AwsAccountId"},
+        "Database":{"shape":"DatabaseLFTagPolicyAndPermissions"},
+        "Table":{"shape":"TableLFTagPolicyAndPermissions"},
+        "RoleArn":{"shape":"RoleArn"},
+        "DataSetId":{"shape":"Id"},
+        "RevisionId":{"shape":"Id"}
+      }
+    },
     "ImportAssetsFromRedshiftDataSharesRequestDetails":{
       "type":"structure",
       "required":[
@@ -1300,7 +1392,9 @@
       "enum":[
         "Assets per revision",
         "Asset size in GB",
-        "Amazon Redshift datashare assets per revision"
+        "Amazon Redshift datashare assets per revision",
+        "AWS Lake Formation data permission assets per revision",
+        "Amazon S3 data access assets per revision"
       ]
     },
     "JobErrorResourceTypes":{
@@ -1310,6 +1404,75 @@
         "ASSET",
         "DATA_SET"
       ]
+    },
+    "LFPermission":{
+      "type":"string",
+      "enum":[
+        "DESCRIBE",
+        "SELECT"
+      ]
+    },
+    "LFResourceDetails":{
+      "type":"structure",
+      "members":{
+        "Database":{"shape":"DatabaseLFTagPolicy"},
+        "Table":{"shape":"TableLFTagPolicy"}
+      }
+    },
+    "LFResourceType":{
+      "type":"string",
+      "enum":[
+        "TABLE",
+        "DATABASE"
+      ]
+    },
+    "LFTag":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "TagValues"
+      ],
+      "members":{
+        "TagKey":{"shape":"String"},
+        "TagValues":{"shape":"ListOfLFTagValues"}
+      }
+    },
+    "LFTagPolicyDetails":{
+      "type":"structure",
+      "required":[
+        "CatalogId",
+        "ResourceType",
+        "ResourceDetails"
+      ],
+      "members":{
+        "CatalogId":{"shape":"AwsAccountId"},
+        "ResourceType":{"shape":"LFResourceType"},
+        "ResourceDetails":{"shape":"LFResourceDetails"}
+      }
+    },
+    "LakeFormationDataPermissionAsset":{
+      "type":"structure",
+      "required":[
+        "LakeFormationDataPermissionDetails",
+        "LakeFormationDataPermissionType",
+        "Permissions"
+      ],
+      "members":{
+        "LakeFormationDataPermissionDetails":{"shape":"LakeFormationDataPermissionDetails"},
+        "LakeFormationDataPermissionType":{"shape":"LakeFormationDataPermissionType"},
+        "Permissions":{"shape":"ListOfLFPermissions"},
+        "RoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "LakeFormationDataPermissionDetails":{
+      "type":"structure",
+      "members":{
+        "LFTagPolicy":{"shape":"LFTagPolicyDetails"}
+      }
+    },
+    "LakeFormationDataPermissionType":{
+      "type":"string",
+      "enum":["LFTagPolicy"]
     },
     "LimitName":{
       "type":"string",
@@ -1335,7 +1498,13 @@
         "Amazon Redshift datashare assets per revision",
         "Concurrent in progress jobs to import assets from an API Gateway API",
         "Amazon API Gateway API assets per revision",
-        "Revisions per Amazon API Gateway API data set"
+        "Revisions per Amazon API Gateway API data set",
+        "Concurrent in progress jobs to import assets from an AWS Lake Formation tag policy",
+        "AWS Lake Formation data permission assets per revision",
+        "Revisions per AWS Lake Formation data permission data set",
+        "Revisions per Amazon S3 data access data set",
+        "Amazon S3 data access assets per revision",
+        "Concurrent in progress jobs to create Amazon S3 data access assets from S3 buckets"
       ]
     },
     "ListDataSetRevisionsRequest":{
@@ -1468,6 +1637,10 @@
       "type":"list",
       "member":{"shape":"DataSetEntry"}
     },
+    "ListOfDatabaseLFTagPolicyPermissions":{
+      "type":"list",
+      "member":{"shape":"DatabaseLFTagPolicyPermission"}
+    },
     "ListOfEventActionEntry":{
       "type":"list",
       "member":{"shape":"EventActionEntry"}
@@ -1480,6 +1653,18 @@
       "type":"list",
       "member":{"shape":"JobError"}
     },
+    "ListOfLFPermissions":{
+      "type":"list",
+      "member":{"shape":"LFPermission"}
+    },
+    "ListOfLFTagValues":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "ListOfLFTags":{
+      "type":"list",
+      "member":{"shape":"LFTag"}
+    },
     "ListOfRedshiftDataShareAssetSourceEntry":{
       "type":"list",
       "member":{"shape":"RedshiftDataShareAssetSourceEntry"}
@@ -1491,6 +1676,10 @@
     "ListOfRevisionEntry":{
       "type":"list",
       "member":{"shape":"RevisionEntry"}
+    },
+    "ListOfTableTagPolicyLFPermissions":{
+      "type":"list",
+      "member":{"shape":"TableTagPolicyLFPermission"}
     },
     "ListOf__string":{
       "type":"list",
@@ -1605,7 +1794,9 @@
         "ImportAssetFromSignedUrl":{"shape":"ImportAssetFromSignedUrlRequestDetails"},
         "ImportAssetsFromS3":{"shape":"ImportAssetsFromS3RequestDetails"},
         "ImportAssetsFromRedshiftDataShares":{"shape":"ImportAssetsFromRedshiftDataSharesRequestDetails"},
-        "ImportAssetFromApiGatewayApi":{"shape":"ImportAssetFromApiGatewayApiRequestDetails"}
+        "ImportAssetFromApiGatewayApi":{"shape":"ImportAssetFromApiGatewayApiRequestDetails"},
+        "CreateS3DataAccessFromS3Bucket":{"shape":"CreateS3DataAccessFromS3BucketRequestDetails"},
+        "ImportAssetsFromLakeFormationTagPolicy":{"shape":"ImportAssetsFromLakeFormationTagPolicyRequestDetails"}
       }
     },
     "ResourceNotFoundException":{
@@ -1641,7 +1832,9 @@
         "ImportAssetFromSignedUrl":{"shape":"ImportAssetFromSignedUrlResponseDetails"},
         "ImportAssetsFromS3":{"shape":"ImportAssetsFromS3ResponseDetails"},
         "ImportAssetsFromRedshiftDataShares":{"shape":"ImportAssetsFromRedshiftDataSharesResponseDetails"},
-        "ImportAssetFromApiGatewayApi":{"shape":"ImportAssetFromApiGatewayApiResponseDetails"}
+        "ImportAssetFromApiGatewayApi":{"shape":"ImportAssetFromApiGatewayApiResponseDetails"},
+        "CreateS3DataAccessFromS3Bucket":{"shape":"CreateS3DataAccessFromS3BucketResponseDetails"},
+        "ImportAssetsFromLakeFormationTagPolicy":{"shape":"ImportAssetsFromLakeFormationTagPolicyResponseDetails"}
       }
     },
     "RevisionDestinationEntry":{
@@ -1721,6 +1914,30 @@
         "RevocationComment":{"shape":"__stringMin10Max512"},
         "Revoked":{"shape":"__boolean"},
         "RevokedAt":{"shape":"Timestamp"}
+      }
+    },
+    "RoleArn":{
+      "type":"string",
+      "pattern":"arn:aws:iam::(\\d{12}):role\\/.+"
+    },
+    "S3DataAccessAsset":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{"shape":"__string"},
+        "KeyPrefixes":{"shape":"ListOf__string"},
+        "Keys":{"shape":"ListOf__string"},
+        "S3AccessPointAlias":{"shape":"__string"},
+        "S3AccessPointArn":{"shape":"__string"}
+      }
+    },
+    "S3DataAccessAssetSourceEntry":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{"shape":"__string"},
+        "KeyPrefixes":{"shape":"ListOf__string"},
+        "Keys":{"shape":"ListOf__string"}
       }
     },
     "S3SnapshotAsset":{
@@ -1836,6 +2053,32 @@
         "TIMED_OUT"
       ]
     },
+    "String":{"type":"string"},
+    "TableLFTagPolicy":{
+      "type":"structure",
+      "required":["Expression"],
+      "members":{
+        "Expression":{"shape":"ListOfLFTags"}
+      }
+    },
+    "TableLFTagPolicyAndPermissions":{
+      "type":"structure",
+      "required":[
+        "Expression",
+        "Permissions"
+      ],
+      "members":{
+        "Expression":{"shape":"ListOfLFTags"},
+        "Permissions":{"shape":"ListOfTableTagPolicyLFPermissions"}
+      }
+    },
+    "TableTagPolicyLFPermission":{
+      "type":"string",
+      "enum":[
+        "DESCRIBE",
+        "SELECT"
+      ]
+    },
     "TagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1879,7 +2122,9 @@
         "EXPORT_ASSET_TO_SIGNED_URL",
         "EXPORT_REVISIONS_TO_S3",
         "IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES",
-        "IMPORT_ASSET_FROM_API_GATEWAY_API"
+        "IMPORT_ASSET_FROM_API_GATEWAY_API",
+        "CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET",
+        "IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY"
       ]
     },
     "UntagResourceRequest":{

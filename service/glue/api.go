@@ -726,6 +726,91 @@ func (c *Glue) BatchGetCustomEntityTypesWithContext(ctx aws.Context, input *Batc
 	return out, req.Send()
 }
 
+const opBatchGetDataQualityResult = "BatchGetDataQualityResult"
+
+// BatchGetDataQualityResultRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetDataQualityResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetDataQualityResult for more information on using the BatchGetDataQualityResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetDataQualityResultRequest method.
+//	req, resp := client.BatchGetDataQualityResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetDataQualityResult
+func (c *Glue) BatchGetDataQualityResultRequest(input *BatchGetDataQualityResultInput) (req *request.Request, output *BatchGetDataQualityResultOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetDataQualityResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetDataQualityResultInput{}
+	}
+
+	output = &BatchGetDataQualityResultOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetDataQualityResult API operation for AWS Glue.
+//
+// Retrieves a list of data quality results for the specified result IDs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation BatchGetDataQualityResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetDataQualityResult
+func (c *Glue) BatchGetDataQualityResult(input *BatchGetDataQualityResultInput) (*BatchGetDataQualityResultOutput, error) {
+	req, out := c.BatchGetDataQualityResultRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetDataQualityResultWithContext is the same as BatchGetDataQualityResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetDataQualityResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) BatchGetDataQualityResultWithContext(ctx aws.Context, input *BatchGetDataQualityResultInput, opts ...request.Option) (*BatchGetDataQualityResultOutput, error) {
+	req, out := c.BatchGetDataQualityResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetDevEndpoints = "BatchGetDevEndpoints"
 
 // BatchGetDevEndpointsRequest generates a "aws/request.Request" representing the
@@ -1346,6 +1431,185 @@ func (c *Glue) BatchUpdatePartition(input *BatchUpdatePartitionInput) (*BatchUpd
 // for more information on using Contexts.
 func (c *Glue) BatchUpdatePartitionWithContext(ctx aws.Context, input *BatchUpdatePartitionInput, opts ...request.Option) (*BatchUpdatePartitionOutput, error) {
 	req, out := c.BatchUpdatePartitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCancelDataQualityRuleRecommendationRun = "CancelDataQualityRuleRecommendationRun"
+
+// CancelDataQualityRuleRecommendationRunRequest generates a "aws/request.Request" representing the
+// client's request for the CancelDataQualityRuleRecommendationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelDataQualityRuleRecommendationRun for more information on using the CancelDataQualityRuleRecommendationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelDataQualityRuleRecommendationRunRequest method.
+//	req, resp := client.CancelDataQualityRuleRecommendationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CancelDataQualityRuleRecommendationRun
+func (c *Glue) CancelDataQualityRuleRecommendationRunRequest(input *CancelDataQualityRuleRecommendationRunInput) (req *request.Request, output *CancelDataQualityRuleRecommendationRunOutput) {
+	op := &request.Operation{
+		Name:       opCancelDataQualityRuleRecommendationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelDataQualityRuleRecommendationRunInput{}
+	}
+
+	output = &CancelDataQualityRuleRecommendationRunOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelDataQualityRuleRecommendationRun API operation for AWS Glue.
+//
+// Cancels the specified recommendation run that was being used to generate
+// rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CancelDataQualityRuleRecommendationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CancelDataQualityRuleRecommendationRun
+func (c *Glue) CancelDataQualityRuleRecommendationRun(input *CancelDataQualityRuleRecommendationRunInput) (*CancelDataQualityRuleRecommendationRunOutput, error) {
+	req, out := c.CancelDataQualityRuleRecommendationRunRequest(input)
+	return out, req.Send()
+}
+
+// CancelDataQualityRuleRecommendationRunWithContext is the same as CancelDataQualityRuleRecommendationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelDataQualityRuleRecommendationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CancelDataQualityRuleRecommendationRunWithContext(ctx aws.Context, input *CancelDataQualityRuleRecommendationRunInput, opts ...request.Option) (*CancelDataQualityRuleRecommendationRunOutput, error) {
+	req, out := c.CancelDataQualityRuleRecommendationRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCancelDataQualityRulesetEvaluationRun = "CancelDataQualityRulesetEvaluationRun"
+
+// CancelDataQualityRulesetEvaluationRunRequest generates a "aws/request.Request" representing the
+// client's request for the CancelDataQualityRulesetEvaluationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelDataQualityRulesetEvaluationRun for more information on using the CancelDataQualityRulesetEvaluationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelDataQualityRulesetEvaluationRunRequest method.
+//	req, resp := client.CancelDataQualityRulesetEvaluationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CancelDataQualityRulesetEvaluationRun
+func (c *Glue) CancelDataQualityRulesetEvaluationRunRequest(input *CancelDataQualityRulesetEvaluationRunInput) (req *request.Request, output *CancelDataQualityRulesetEvaluationRunOutput) {
+	op := &request.Operation{
+		Name:       opCancelDataQualityRulesetEvaluationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelDataQualityRulesetEvaluationRunInput{}
+	}
+
+	output = &CancelDataQualityRulesetEvaluationRunOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelDataQualityRulesetEvaluationRun API operation for AWS Glue.
+//
+// Cancels a run where a ruleset is being evaluated against a data source.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CancelDataQualityRulesetEvaluationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CancelDataQualityRulesetEvaluationRun
+func (c *Glue) CancelDataQualityRulesetEvaluationRun(input *CancelDataQualityRulesetEvaluationRunInput) (*CancelDataQualityRulesetEvaluationRunOutput, error) {
+	req, out := c.CancelDataQualityRulesetEvaluationRunRequest(input)
+	return out, req.Send()
+}
+
+// CancelDataQualityRulesetEvaluationRunWithContext is the same as CancelDataQualityRulesetEvaluationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelDataQualityRulesetEvaluationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CancelDataQualityRulesetEvaluationRunWithContext(ctx aws.Context, input *CancelDataQualityRulesetEvaluationRunInput, opts ...request.Option) (*CancelDataQualityRulesetEvaluationRunOutput, error) {
+	req, out := c.CancelDataQualityRulesetEvaluationRunRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2083,6 +2347,101 @@ func (c *Glue) CreateCustomEntityType(input *CreateCustomEntityTypeInput) (*Crea
 // for more information on using Contexts.
 func (c *Glue) CreateCustomEntityTypeWithContext(ctx aws.Context, input *CreateCustomEntityTypeInput, opts ...request.Option) (*CreateCustomEntityTypeOutput, error) {
 	req, out := c.CreateCustomEntityTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDataQualityRuleset = "CreateDataQualityRuleset"
+
+// CreateDataQualityRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataQualityRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataQualityRuleset for more information on using the CreateDataQualityRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateDataQualityRulesetRequest method.
+//	req, resp := client.CreateDataQualityRulesetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateDataQualityRuleset
+func (c *Glue) CreateDataQualityRulesetRequest(input *CreateDataQualityRulesetInput) (req *request.Request, output *CreateDataQualityRulesetOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataQualityRuleset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDataQualityRulesetInput{}
+	}
+
+	output = &CreateDataQualityRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataQualityRuleset API operation for AWS Glue.
+//
+// Creates a data quality ruleset with DQDL rules applied to a specified Glue
+// table.
+//
+// You create the ruleset using the Data Quality Definition Language (DQDL).
+// For more information, see the Glue developer guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CreateDataQualityRuleset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - AlreadyExistsException
+//     A resource to be created or added already exists.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - ResourceNumberLimitExceededException
+//     A resource numerical limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateDataQualityRuleset
+func (c *Glue) CreateDataQualityRuleset(input *CreateDataQualityRulesetInput) (*CreateDataQualityRulesetOutput, error) {
+	req, out := c.CreateDataQualityRulesetRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataQualityRulesetWithContext is the same as CreateDataQualityRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataQualityRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CreateDataQualityRulesetWithContext(ctx aws.Context, input *CreateDataQualityRulesetInput, opts ...request.Option) (*CreateDataQualityRulesetOutput, error) {
+	req, out := c.CreateDataQualityRulesetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4183,6 +4542,95 @@ func (c *Glue) DeleteCustomEntityType(input *DeleteCustomEntityTypeInput) (*Dele
 // for more information on using Contexts.
 func (c *Glue) DeleteCustomEntityTypeWithContext(ctx aws.Context, input *DeleteCustomEntityTypeInput, opts ...request.Option) (*DeleteCustomEntityTypeOutput, error) {
 	req, out := c.DeleteCustomEntityTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDataQualityRuleset = "DeleteDataQualityRuleset"
+
+// DeleteDataQualityRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataQualityRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataQualityRuleset for more information on using the DeleteDataQualityRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteDataQualityRulesetRequest method.
+//	req, resp := client.DeleteDataQualityRulesetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteDataQualityRuleset
+func (c *Glue) DeleteDataQualityRulesetRequest(input *DeleteDataQualityRulesetInput) (req *request.Request, output *DeleteDataQualityRulesetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataQualityRuleset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDataQualityRulesetInput{}
+	}
+
+	output = &DeleteDataQualityRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDataQualityRuleset API operation for AWS Glue.
+//
+// Deletes a data quality ruleset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation DeleteDataQualityRuleset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteDataQualityRuleset
+func (c *Glue) DeleteDataQualityRuleset(input *DeleteDataQualityRulesetInput) (*DeleteDataQualityRulesetOutput, error) {
+	req, out := c.DeleteDataQualityRulesetRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataQualityRulesetWithContext is the same as DeleteDataQualityRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataQualityRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) DeleteDataQualityRulesetWithContext(ctx aws.Context, input *DeleteDataQualityRulesetInput, opts ...request.Option) (*DeleteDataQualityRulesetOutput, error) {
+	req, out := c.DeleteDataQualityRulesetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7324,6 +7772,358 @@ func (c *Glue) GetDataCatalogEncryptionSettings(input *GetDataCatalogEncryptionS
 // for more information on using Contexts.
 func (c *Glue) GetDataCatalogEncryptionSettingsWithContext(ctx aws.Context, input *GetDataCatalogEncryptionSettingsInput, opts ...request.Option) (*GetDataCatalogEncryptionSettingsOutput, error) {
 	req, out := c.GetDataCatalogEncryptionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDataQualityResult = "GetDataQualityResult"
+
+// GetDataQualityResultRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataQualityResult operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataQualityResult for more information on using the GetDataQualityResult
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataQualityResultRequest method.
+//	req, resp := client.GetDataQualityResultRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityResult
+func (c *Glue) GetDataQualityResultRequest(input *GetDataQualityResultInput) (req *request.Request, output *GetDataQualityResultOutput) {
+	op := &request.Operation{
+		Name:       opGetDataQualityResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDataQualityResultInput{}
+	}
+
+	output = &GetDataQualityResultOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataQualityResult API operation for AWS Glue.
+//
+// Retrieves the result of a data quality rule evaluation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetDataQualityResult for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityResult
+func (c *Glue) GetDataQualityResult(input *GetDataQualityResultInput) (*GetDataQualityResultOutput, error) {
+	req, out := c.GetDataQualityResultRequest(input)
+	return out, req.Send()
+}
+
+// GetDataQualityResultWithContext is the same as GetDataQualityResult with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataQualityResult for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetDataQualityResultWithContext(ctx aws.Context, input *GetDataQualityResultInput, opts ...request.Option) (*GetDataQualityResultOutput, error) {
+	req, out := c.GetDataQualityResultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDataQualityRuleRecommendationRun = "GetDataQualityRuleRecommendationRun"
+
+// GetDataQualityRuleRecommendationRunRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataQualityRuleRecommendationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataQualityRuleRecommendationRun for more information on using the GetDataQualityRuleRecommendationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataQualityRuleRecommendationRunRequest method.
+//	req, resp := client.GetDataQualityRuleRecommendationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityRuleRecommendationRun
+func (c *Glue) GetDataQualityRuleRecommendationRunRequest(input *GetDataQualityRuleRecommendationRunInput) (req *request.Request, output *GetDataQualityRuleRecommendationRunOutput) {
+	op := &request.Operation{
+		Name:       opGetDataQualityRuleRecommendationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDataQualityRuleRecommendationRunInput{}
+	}
+
+	output = &GetDataQualityRuleRecommendationRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataQualityRuleRecommendationRun API operation for AWS Glue.
+//
+// Gets the specified recommendation run that was used to generate rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetDataQualityRuleRecommendationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityRuleRecommendationRun
+func (c *Glue) GetDataQualityRuleRecommendationRun(input *GetDataQualityRuleRecommendationRunInput) (*GetDataQualityRuleRecommendationRunOutput, error) {
+	req, out := c.GetDataQualityRuleRecommendationRunRequest(input)
+	return out, req.Send()
+}
+
+// GetDataQualityRuleRecommendationRunWithContext is the same as GetDataQualityRuleRecommendationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataQualityRuleRecommendationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetDataQualityRuleRecommendationRunWithContext(ctx aws.Context, input *GetDataQualityRuleRecommendationRunInput, opts ...request.Option) (*GetDataQualityRuleRecommendationRunOutput, error) {
+	req, out := c.GetDataQualityRuleRecommendationRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDataQualityRuleset = "GetDataQualityRuleset"
+
+// GetDataQualityRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataQualityRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataQualityRuleset for more information on using the GetDataQualityRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataQualityRulesetRequest method.
+//	req, resp := client.GetDataQualityRulesetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityRuleset
+func (c *Glue) GetDataQualityRulesetRequest(input *GetDataQualityRulesetInput) (req *request.Request, output *GetDataQualityRulesetOutput) {
+	op := &request.Operation{
+		Name:       opGetDataQualityRuleset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDataQualityRulesetInput{}
+	}
+
+	output = &GetDataQualityRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataQualityRuleset API operation for AWS Glue.
+//
+// Returns an existing ruleset by identifier or name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetDataQualityRuleset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityRuleset
+func (c *Glue) GetDataQualityRuleset(input *GetDataQualityRulesetInput) (*GetDataQualityRulesetOutput, error) {
+	req, out := c.GetDataQualityRulesetRequest(input)
+	return out, req.Send()
+}
+
+// GetDataQualityRulesetWithContext is the same as GetDataQualityRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataQualityRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetDataQualityRulesetWithContext(ctx aws.Context, input *GetDataQualityRulesetInput, opts ...request.Option) (*GetDataQualityRulesetOutput, error) {
+	req, out := c.GetDataQualityRulesetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDataQualityRulesetEvaluationRun = "GetDataQualityRulesetEvaluationRun"
+
+// GetDataQualityRulesetEvaluationRunRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataQualityRulesetEvaluationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataQualityRulesetEvaluationRun for more information on using the GetDataQualityRulesetEvaluationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataQualityRulesetEvaluationRunRequest method.
+//	req, resp := client.GetDataQualityRulesetEvaluationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityRulesetEvaluationRun
+func (c *Glue) GetDataQualityRulesetEvaluationRunRequest(input *GetDataQualityRulesetEvaluationRunInput) (req *request.Request, output *GetDataQualityRulesetEvaluationRunOutput) {
+	op := &request.Operation{
+		Name:       opGetDataQualityRulesetEvaluationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDataQualityRulesetEvaluationRunInput{}
+	}
+
+	output = &GetDataQualityRulesetEvaluationRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataQualityRulesetEvaluationRun API operation for AWS Glue.
+//
+// Retrieves a specific run where a ruleset is evaluated against a data source.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetDataQualityRulesetEvaluationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetDataQualityRulesetEvaluationRun
+func (c *Glue) GetDataQualityRulesetEvaluationRun(input *GetDataQualityRulesetEvaluationRunInput) (*GetDataQualityRulesetEvaluationRunOutput, error) {
+	req, out := c.GetDataQualityRulesetEvaluationRunRequest(input)
+	return out, req.Send()
+}
+
+// GetDataQualityRulesetEvaluationRunWithContext is the same as GetDataQualityRulesetEvaluationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataQualityRulesetEvaluationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetDataQualityRulesetEvaluationRunWithContext(ctx aws.Context, input *GetDataQualityRulesetEvaluationRunInput, opts ...request.Option) (*GetDataQualityRulesetEvaluationRunOutput, error) {
+	req, out := c.GetDataQualityRulesetEvaluationRunRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13003,6 +13803,578 @@ func (c *Glue) ListCustomEntityTypesPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListDataQualityResults = "ListDataQualityResults"
+
+// ListDataQualityResultsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataQualityResults operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataQualityResults for more information on using the ListDataQualityResults
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDataQualityResultsRequest method.
+//	req, resp := client.ListDataQualityResultsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityResults
+func (c *Glue) ListDataQualityResultsRequest(input *ListDataQualityResultsInput) (req *request.Request, output *ListDataQualityResultsOutput) {
+	op := &request.Operation{
+		Name:       opListDataQualityResults,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDataQualityResultsInput{}
+	}
+
+	output = &ListDataQualityResultsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataQualityResults API operation for AWS Glue.
+//
+// Returns all data quality execution results for your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListDataQualityResults for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityResults
+func (c *Glue) ListDataQualityResults(input *ListDataQualityResultsInput) (*ListDataQualityResultsOutput, error) {
+	req, out := c.ListDataQualityResultsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataQualityResultsWithContext is the same as ListDataQualityResults with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataQualityResults for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityResultsWithContext(ctx aws.Context, input *ListDataQualityResultsInput, opts ...request.Option) (*ListDataQualityResultsOutput, error) {
+	req, out := c.ListDataQualityResultsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDataQualityResultsPages iterates over the pages of a ListDataQualityResults operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataQualityResults method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDataQualityResults operation.
+//	pageNum := 0
+//	err := client.ListDataQualityResultsPages(params,
+//	    func(page *glue.ListDataQualityResultsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Glue) ListDataQualityResultsPages(input *ListDataQualityResultsInput, fn func(*ListDataQualityResultsOutput, bool) bool) error {
+	return c.ListDataQualityResultsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataQualityResultsPagesWithContext same as ListDataQualityResultsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityResultsPagesWithContext(ctx aws.Context, input *ListDataQualityResultsInput, fn func(*ListDataQualityResultsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataQualityResultsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataQualityResultsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataQualityResultsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDataQualityRuleRecommendationRuns = "ListDataQualityRuleRecommendationRuns"
+
+// ListDataQualityRuleRecommendationRunsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataQualityRuleRecommendationRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataQualityRuleRecommendationRuns for more information on using the ListDataQualityRuleRecommendationRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDataQualityRuleRecommendationRunsRequest method.
+//	req, resp := client.ListDataQualityRuleRecommendationRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityRuleRecommendationRuns
+func (c *Glue) ListDataQualityRuleRecommendationRunsRequest(input *ListDataQualityRuleRecommendationRunsInput) (req *request.Request, output *ListDataQualityRuleRecommendationRunsOutput) {
+	op := &request.Operation{
+		Name:       opListDataQualityRuleRecommendationRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDataQualityRuleRecommendationRunsInput{}
+	}
+
+	output = &ListDataQualityRuleRecommendationRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataQualityRuleRecommendationRuns API operation for AWS Glue.
+//
+// Lists the recommendation runs meeting the filter criteria.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListDataQualityRuleRecommendationRuns for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityRuleRecommendationRuns
+func (c *Glue) ListDataQualityRuleRecommendationRuns(input *ListDataQualityRuleRecommendationRunsInput) (*ListDataQualityRuleRecommendationRunsOutput, error) {
+	req, out := c.ListDataQualityRuleRecommendationRunsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataQualityRuleRecommendationRunsWithContext is the same as ListDataQualityRuleRecommendationRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataQualityRuleRecommendationRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityRuleRecommendationRunsWithContext(ctx aws.Context, input *ListDataQualityRuleRecommendationRunsInput, opts ...request.Option) (*ListDataQualityRuleRecommendationRunsOutput, error) {
+	req, out := c.ListDataQualityRuleRecommendationRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDataQualityRuleRecommendationRunsPages iterates over the pages of a ListDataQualityRuleRecommendationRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataQualityRuleRecommendationRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDataQualityRuleRecommendationRuns operation.
+//	pageNum := 0
+//	err := client.ListDataQualityRuleRecommendationRunsPages(params,
+//	    func(page *glue.ListDataQualityRuleRecommendationRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Glue) ListDataQualityRuleRecommendationRunsPages(input *ListDataQualityRuleRecommendationRunsInput, fn func(*ListDataQualityRuleRecommendationRunsOutput, bool) bool) error {
+	return c.ListDataQualityRuleRecommendationRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataQualityRuleRecommendationRunsPagesWithContext same as ListDataQualityRuleRecommendationRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityRuleRecommendationRunsPagesWithContext(ctx aws.Context, input *ListDataQualityRuleRecommendationRunsInput, fn func(*ListDataQualityRuleRecommendationRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataQualityRuleRecommendationRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataQualityRuleRecommendationRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataQualityRuleRecommendationRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDataQualityRulesetEvaluationRuns = "ListDataQualityRulesetEvaluationRuns"
+
+// ListDataQualityRulesetEvaluationRunsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataQualityRulesetEvaluationRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataQualityRulesetEvaluationRuns for more information on using the ListDataQualityRulesetEvaluationRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDataQualityRulesetEvaluationRunsRequest method.
+//	req, resp := client.ListDataQualityRulesetEvaluationRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityRulesetEvaluationRuns
+func (c *Glue) ListDataQualityRulesetEvaluationRunsRequest(input *ListDataQualityRulesetEvaluationRunsInput) (req *request.Request, output *ListDataQualityRulesetEvaluationRunsOutput) {
+	op := &request.Operation{
+		Name:       opListDataQualityRulesetEvaluationRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDataQualityRulesetEvaluationRunsInput{}
+	}
+
+	output = &ListDataQualityRulesetEvaluationRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataQualityRulesetEvaluationRuns API operation for AWS Glue.
+//
+// Lists all the runs meeting the filter criteria, where a ruleset is evaluated
+// against a data source.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListDataQualityRulesetEvaluationRuns for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityRulesetEvaluationRuns
+func (c *Glue) ListDataQualityRulesetEvaluationRuns(input *ListDataQualityRulesetEvaluationRunsInput) (*ListDataQualityRulesetEvaluationRunsOutput, error) {
+	req, out := c.ListDataQualityRulesetEvaluationRunsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataQualityRulesetEvaluationRunsWithContext is the same as ListDataQualityRulesetEvaluationRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataQualityRulesetEvaluationRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityRulesetEvaluationRunsWithContext(ctx aws.Context, input *ListDataQualityRulesetEvaluationRunsInput, opts ...request.Option) (*ListDataQualityRulesetEvaluationRunsOutput, error) {
+	req, out := c.ListDataQualityRulesetEvaluationRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDataQualityRulesetEvaluationRunsPages iterates over the pages of a ListDataQualityRulesetEvaluationRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataQualityRulesetEvaluationRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDataQualityRulesetEvaluationRuns operation.
+//	pageNum := 0
+//	err := client.ListDataQualityRulesetEvaluationRunsPages(params,
+//	    func(page *glue.ListDataQualityRulesetEvaluationRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Glue) ListDataQualityRulesetEvaluationRunsPages(input *ListDataQualityRulesetEvaluationRunsInput, fn func(*ListDataQualityRulesetEvaluationRunsOutput, bool) bool) error {
+	return c.ListDataQualityRulesetEvaluationRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataQualityRulesetEvaluationRunsPagesWithContext same as ListDataQualityRulesetEvaluationRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityRulesetEvaluationRunsPagesWithContext(ctx aws.Context, input *ListDataQualityRulesetEvaluationRunsInput, fn func(*ListDataQualityRulesetEvaluationRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataQualityRulesetEvaluationRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataQualityRulesetEvaluationRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataQualityRulesetEvaluationRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDataQualityRulesets = "ListDataQualityRulesets"
+
+// ListDataQualityRulesetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataQualityRulesets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataQualityRulesets for more information on using the ListDataQualityRulesets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDataQualityRulesetsRequest method.
+//	req, resp := client.ListDataQualityRulesetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityRulesets
+func (c *Glue) ListDataQualityRulesetsRequest(input *ListDataQualityRulesetsInput) (req *request.Request, output *ListDataQualityRulesetsOutput) {
+	op := &request.Operation{
+		Name:       opListDataQualityRulesets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDataQualityRulesetsInput{}
+	}
+
+	output = &ListDataQualityRulesetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataQualityRulesets API operation for AWS Glue.
+//
+// Returns a paginated list of rulesets for the specified list of Glue tables.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListDataQualityRulesets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListDataQualityRulesets
+func (c *Glue) ListDataQualityRulesets(input *ListDataQualityRulesetsInput) (*ListDataQualityRulesetsOutput, error) {
+	req, out := c.ListDataQualityRulesetsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataQualityRulesetsWithContext is the same as ListDataQualityRulesets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataQualityRulesets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityRulesetsWithContext(ctx aws.Context, input *ListDataQualityRulesetsInput, opts ...request.Option) (*ListDataQualityRulesetsOutput, error) {
+	req, out := c.ListDataQualityRulesetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDataQualityRulesetsPages iterates over the pages of a ListDataQualityRulesets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataQualityRulesets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListDataQualityRulesets operation.
+//	pageNum := 0
+//	err := client.ListDataQualityRulesetsPages(params,
+//	    func(page *glue.ListDataQualityRulesetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Glue) ListDataQualityRulesetsPages(input *ListDataQualityRulesetsInput, fn func(*ListDataQualityRulesetsOutput, bool) bool) error {
+	return c.ListDataQualityRulesetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataQualityRulesetsPagesWithContext same as ListDataQualityRulesetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListDataQualityRulesetsPagesWithContext(ctx aws.Context, input *ListDataQualityRulesetsInput, fn func(*ListDataQualityRulesetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataQualityRulesetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataQualityRulesetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataQualityRulesetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDevEndpoints = "ListDevEndpoints"
 
 // ListDevEndpointsRequest generates a "aws/request.Request" representing the
@@ -15793,6 +17165,191 @@ func (c *Glue) StartCrawlerScheduleWithContext(ctx aws.Context, input *StartCraw
 	return out, req.Send()
 }
 
+const opStartDataQualityRuleRecommendationRun = "StartDataQualityRuleRecommendationRun"
+
+// StartDataQualityRuleRecommendationRunRequest generates a "aws/request.Request" representing the
+// client's request for the StartDataQualityRuleRecommendationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDataQualityRuleRecommendationRun for more information on using the StartDataQualityRuleRecommendationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartDataQualityRuleRecommendationRunRequest method.
+//	req, resp := client.StartDataQualityRuleRecommendationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartDataQualityRuleRecommendationRun
+func (c *Glue) StartDataQualityRuleRecommendationRunRequest(input *StartDataQualityRuleRecommendationRunInput) (req *request.Request, output *StartDataQualityRuleRecommendationRunOutput) {
+	op := &request.Operation{
+		Name:       opStartDataQualityRuleRecommendationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartDataQualityRuleRecommendationRunInput{}
+	}
+
+	output = &StartDataQualityRuleRecommendationRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDataQualityRuleRecommendationRun API operation for AWS Glue.
+//
+// Starts a recommendation run that is used to generate rules when you don't
+// know what rules to write. Glue Data Quality analyzes the data and comes up
+// with recommendations for a potential ruleset. You can then triage the ruleset
+// and modify the generated ruleset to your liking.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation StartDataQualityRuleRecommendationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - ConflictException
+//     The CreatePartitions API was called on a table that has indexes enabled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartDataQualityRuleRecommendationRun
+func (c *Glue) StartDataQualityRuleRecommendationRun(input *StartDataQualityRuleRecommendationRunInput) (*StartDataQualityRuleRecommendationRunOutput, error) {
+	req, out := c.StartDataQualityRuleRecommendationRunRequest(input)
+	return out, req.Send()
+}
+
+// StartDataQualityRuleRecommendationRunWithContext is the same as StartDataQualityRuleRecommendationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDataQualityRuleRecommendationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) StartDataQualityRuleRecommendationRunWithContext(ctx aws.Context, input *StartDataQualityRuleRecommendationRunInput, opts ...request.Option) (*StartDataQualityRuleRecommendationRunOutput, error) {
+	req, out := c.StartDataQualityRuleRecommendationRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartDataQualityRulesetEvaluationRun = "StartDataQualityRulesetEvaluationRun"
+
+// StartDataQualityRulesetEvaluationRunRequest generates a "aws/request.Request" representing the
+// client's request for the StartDataQualityRulesetEvaluationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDataQualityRulesetEvaluationRun for more information on using the StartDataQualityRulesetEvaluationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartDataQualityRulesetEvaluationRunRequest method.
+//	req, resp := client.StartDataQualityRulesetEvaluationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartDataQualityRulesetEvaluationRun
+func (c *Glue) StartDataQualityRulesetEvaluationRunRequest(input *StartDataQualityRulesetEvaluationRunInput) (req *request.Request, output *StartDataQualityRulesetEvaluationRunOutput) {
+	op := &request.Operation{
+		Name:       opStartDataQualityRulesetEvaluationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartDataQualityRulesetEvaluationRunInput{}
+	}
+
+	output = &StartDataQualityRulesetEvaluationRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDataQualityRulesetEvaluationRun API operation for AWS Glue.
+//
+// Once you have a ruleset definition (either recommended or your own), you
+// call this operation to evaluate the ruleset against a data source (Glue table).
+// The evaluation computes results which you can retrieve with the GetDataQualityResult
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation StartDataQualityRulesetEvaluationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - ConflictException
+//     The CreatePartitions API was called on a table that has indexes enabled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartDataQualityRulesetEvaluationRun
+func (c *Glue) StartDataQualityRulesetEvaluationRun(input *StartDataQualityRulesetEvaluationRunInput) (*StartDataQualityRulesetEvaluationRunOutput, error) {
+	req, out := c.StartDataQualityRulesetEvaluationRunRequest(input)
+	return out, req.Send()
+}
+
+// StartDataQualityRulesetEvaluationRunWithContext is the same as StartDataQualityRulesetEvaluationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDataQualityRulesetEvaluationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) StartDataQualityRulesetEvaluationRunWithContext(ctx aws.Context, input *StartDataQualityRulesetEvaluationRunInput, opts ...request.Option) (*StartDataQualityRulesetEvaluationRunOutput, error) {
+	req, out := c.StartDataQualityRulesetEvaluationRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartExportLabelsTaskRun = "StartExportLabelsTaskRun"
 
 // StartExportLabelsTaskRunRequest generates a "aws/request.Request" representing the
@@ -17773,6 +19330,103 @@ func (c *Glue) UpdateCrawlerSchedule(input *UpdateCrawlerScheduleInput) (*Update
 // for more information on using Contexts.
 func (c *Glue) UpdateCrawlerScheduleWithContext(ctx aws.Context, input *UpdateCrawlerScheduleInput, opts ...request.Option) (*UpdateCrawlerScheduleOutput, error) {
 	req, out := c.UpdateCrawlerScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateDataQualityRuleset = "UpdateDataQualityRuleset"
+
+// UpdateDataQualityRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataQualityRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDataQualityRuleset for more information on using the UpdateDataQualityRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDataQualityRulesetRequest method.
+//	req, resp := client.UpdateDataQualityRulesetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateDataQualityRuleset
+func (c *Glue) UpdateDataQualityRulesetRequest(input *UpdateDataQualityRulesetInput) (req *request.Request, output *UpdateDataQualityRulesetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDataQualityRuleset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDataQualityRulesetInput{}
+	}
+
+	output = &UpdateDataQualityRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDataQualityRuleset API operation for AWS Glue.
+//
+// Updates the specified data quality ruleset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation UpdateDataQualityRuleset for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist
+//
+//   - AlreadyExistsException
+//     A resource to be created or added already exists.
+//
+//   - IdempotentParameterMismatchException
+//     The same unique identifier was associated with two different records.
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - ResourceNumberLimitExceededException
+//     A resource numerical limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateDataQualityRuleset
+func (c *Glue) UpdateDataQualityRuleset(input *UpdateDataQualityRulesetInput) (*UpdateDataQualityRulesetOutput, error) {
+	req, out := c.UpdateDataQualityRulesetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDataQualityRulesetWithContext is the same as UpdateDataQualityRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDataQualityRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) UpdateDataQualityRulesetWithContext(ctx aws.Context, input *UpdateDataQualityRulesetInput, opts ...request.Option) (*UpdateDataQualityRulesetOutput, error) {
+	req, out := c.UpdateDataQualityRulesetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -20757,6 +22411,97 @@ func (s *BatchGetCustomEntityTypesOutput) SetCustomEntityTypesNotFound(v []*stri
 	return s
 }
 
+type BatchGetDataQualityResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of unique result IDs for the data quality results.
+	//
+	// ResultIds is a required field
+	ResultIds []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetDataQualityResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetDataQualityResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetDataQualityResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetDataQualityResultInput"}
+	if s.ResultIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResultIds"))
+	}
+	if s.ResultIds != nil && len(s.ResultIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResultIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResultIds sets the ResultIds field's value.
+func (s *BatchGetDataQualityResultInput) SetResultIds(v []*string) *BatchGetDataQualityResultInput {
+	s.ResultIds = v
+	return s
+}
+
+type BatchGetDataQualityResultOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DataQualityResult objects representing the data quality results.
+	//
+	// Results is a required field
+	Results []*DataQualityResult `type:"list" required:"true"`
+
+	// A list of result IDs for which results were not found.
+	ResultsNotFound []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetDataQualityResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetDataQualityResultOutput) GoString() string {
+	return s.String()
+}
+
+// SetResults sets the Results field's value.
+func (s *BatchGetDataQualityResultOutput) SetResults(v []*DataQualityResult) *BatchGetDataQualityResultOutput {
+	s.Results = v
+	return s
+}
+
+// SetResultsNotFound sets the ResultsNotFound field's value.
+func (s *BatchGetDataQualityResultOutput) SetResultsNotFound(v []*string) *BatchGetDataQualityResultOutput {
+	s.ResultsNotFound = v
+	return s
+}
+
 type BatchGetDevEndpointsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -22152,6 +23897,148 @@ func (s *BooleanColumnStatisticsData) SetNumberOfTrues(v int64) *BooleanColumnSt
 	return s
 }
 
+type CancelDataQualityRuleRecommendationRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	//
+	// RunId is a required field
+	RunId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRuleRecommendationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRuleRecommendationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelDataQualityRuleRecommendationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelDataQualityRuleRecommendationRunInput"}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRunId sets the RunId field's value.
+func (s *CancelDataQualityRuleRecommendationRunInput) SetRunId(v string) *CancelDataQualityRuleRecommendationRunInput {
+	s.RunId = &v
+	return s
+}
+
+type CancelDataQualityRuleRecommendationRunOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRuleRecommendationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRuleRecommendationRunOutput) GoString() string {
+	return s.String()
+}
+
+type CancelDataQualityRulesetEvaluationRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	//
+	// RunId is a required field
+	RunId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRulesetEvaluationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRulesetEvaluationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelDataQualityRulesetEvaluationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelDataQualityRulesetEvaluationRunInput"}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRunId sets the RunId field's value.
+func (s *CancelDataQualityRulesetEvaluationRunInput) SetRunId(v string) *CancelDataQualityRulesetEvaluationRunInput {
+	s.RunId = &v
+	return s
+}
+
+type CancelDataQualityRulesetEvaluationRunOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRulesetEvaluationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDataQualityRulesetEvaluationRunOutput) GoString() string {
+	return s.String()
+}
+
 type CancelMLTaskRunInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23197,6 +25084,9 @@ type CodeGenConfigurationNode struct {
 	// Specifies a DynamoDB data source in the Glue Data Catalog.
 	DynamoDBCatalogSource *DynamoDBCatalogSource `type:"structure"`
 
+	// Specifies your data quality evaluation criteria.
+	EvaluateDataQuality *EvaluateDataQuality `type:"structure"`
+
 	// Specifies a transform that locates records in the dataset that have missing
 	// values and adds a new field with a value determined by imputation. The input
 	// data set is used to train the machine learning model that determines what
@@ -23415,6 +25305,11 @@ func (s *CodeGenConfigurationNode) Validate() error {
 	if s.DynamoDBCatalogSource != nil {
 		if err := s.DynamoDBCatalogSource.Validate(); err != nil {
 			invalidParams.AddNested("DynamoDBCatalogSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EvaluateDataQuality != nil {
+		if err := s.EvaluateDataQuality.Validate(); err != nil {
+			invalidParams.AddNested("EvaluateDataQuality", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.FillMissingValues != nil {
@@ -23691,6 +25586,12 @@ func (s *CodeGenConfigurationNode) SetDynamicTransform(v *DynamicTransform) *Cod
 // SetDynamoDBCatalogSource sets the DynamoDBCatalogSource field's value.
 func (s *CodeGenConfigurationNode) SetDynamoDBCatalogSource(v *DynamoDBCatalogSource) *CodeGenConfigurationNode {
 	s.DynamoDBCatalogSource = v
+	return s
+}
+
+// SetEvaluateDataQuality sets the EvaluateDataQuality field's value.
+func (s *CodeGenConfigurationNode) SetEvaluateDataQuality(v *EvaluateDataQuality) *CodeGenConfigurationNode {
+	s.EvaluateDataQuality = v
 	return s
 }
 
@@ -27215,6 +29116,149 @@ func (s *CreateCustomEntityTypeOutput) SetName(v string) *CreateCustomEntityType
 	return s
 }
 
+type CreateDataQualityRulesetInput struct {
+	_ struct{} `type:"structure"`
+
+	// Used for idempotency and is recommended to be set to a random ID (such as
+	// a UUID) to avoid creating or starting multiple instances of the same resource.
+	ClientToken *string `min:"1" type:"string"`
+
+	// A description of the data quality ruleset.
+	Description *string `type:"string"`
+
+	// A unique name for the data quality ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A Data Quality Definition Language (DQDL) ruleset. For more information,
+	// see the Glue developer guide.
+	//
+	// Ruleset is a required field
+	Ruleset *string `min:"1" type:"string" required:"true"`
+
+	// A list of tags applied to the data quality ruleset.
+	Tags map[string]*string `type:"map"`
+
+	// A target table associated with the data quality ruleset.
+	TargetTable *DataQualityTargetTable `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataQualityRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataQualityRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataQualityRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataQualityRulesetInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Ruleset == nil {
+		invalidParams.Add(request.NewErrParamRequired("Ruleset"))
+	}
+	if s.Ruleset != nil && len(*s.Ruleset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ruleset", 1))
+	}
+	if s.TargetTable != nil {
+		if err := s.TargetTable.Validate(); err != nil {
+			invalidParams.AddNested("TargetTable", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateDataQualityRulesetInput) SetClientToken(v string) *CreateDataQualityRulesetInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateDataQualityRulesetInput) SetDescription(v string) *CreateDataQualityRulesetInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateDataQualityRulesetInput) SetName(v string) *CreateDataQualityRulesetInput {
+	s.Name = &v
+	return s
+}
+
+// SetRuleset sets the Ruleset field's value.
+func (s *CreateDataQualityRulesetInput) SetRuleset(v string) *CreateDataQualityRulesetInput {
+	s.Ruleset = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDataQualityRulesetInput) SetTags(v map[string]*string) *CreateDataQualityRulesetInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetTable sets the TargetTable field's value.
+func (s *CreateDataQualityRulesetInput) SetTargetTable(v *DataQualityTargetTable) *CreateDataQualityRulesetInput {
+	s.TargetTable = v
+	return s
+}
+
+type CreateDataQualityRulesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique name for the data quality ruleset.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataQualityRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataQualityRulesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *CreateDataQualityRulesetOutput) SetName(v string) *CreateDataQualityRulesetOutput {
+	s.Name = &v
+	return s
+}
+
 type CreateDatabaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -30725,6 +32769,99 @@ func (s *CustomEntityType) SetRegexString(v string) *CustomEntityType {
 	return s
 }
 
+// Options to configure how your data quality evaluation results are published.
+type DQResultsPublishingOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Enable metrics for your data quality results.
+	CloudWatchMetricsEnabled *bool `type:"boolean"`
+
+	// The context of the evaluation.
+	EvaluationContext *string `type:"string"`
+
+	// Enable publishing for your data quality results.
+	ResultsPublishingEnabled *bool `type:"boolean"`
+
+	// The Amazon S3 prefix prepended to the results.
+	ResultsS3Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DQResultsPublishingOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DQResultsPublishingOptions) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchMetricsEnabled sets the CloudWatchMetricsEnabled field's value.
+func (s *DQResultsPublishingOptions) SetCloudWatchMetricsEnabled(v bool) *DQResultsPublishingOptions {
+	s.CloudWatchMetricsEnabled = &v
+	return s
+}
+
+// SetEvaluationContext sets the EvaluationContext field's value.
+func (s *DQResultsPublishingOptions) SetEvaluationContext(v string) *DQResultsPublishingOptions {
+	s.EvaluationContext = &v
+	return s
+}
+
+// SetResultsPublishingEnabled sets the ResultsPublishingEnabled field's value.
+func (s *DQResultsPublishingOptions) SetResultsPublishingEnabled(v bool) *DQResultsPublishingOptions {
+	s.ResultsPublishingEnabled = &v
+	return s
+}
+
+// SetResultsS3Prefix sets the ResultsS3Prefix field's value.
+func (s *DQResultsPublishingOptions) SetResultsS3Prefix(v string) *DQResultsPublishingOptions {
+	s.ResultsS3Prefix = &v
+	return s
+}
+
+// Options to configure how your job will stop if your data quality evaluation
+// fails.
+type DQStopJobOnFailureOptions struct {
+	_ struct{} `type:"structure"`
+
+	// When to stop job if your data quality evaluation fails. Options are Immediate
+	// or AfterDataLoad.
+	StopJobOnFailureTiming *string `type:"string" enum:"DQStopJobOnFailureTiming"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DQStopJobOnFailureOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DQStopJobOnFailureOptions) GoString() string {
+	return s.String()
+}
+
+// SetStopJobOnFailureTiming sets the StopJobOnFailureTiming field's value.
+func (s *DQStopJobOnFailureOptions) SetStopJobOnFailureTiming(v string) *DQStopJobOnFailureOptions {
+	s.StopJobOnFailureTiming = &v
+	return s
+}
+
 // Contains configuration information for maintaining Data Catalog security.
 type DataCatalogEncryptionSettings struct {
 	_ struct{} `type:"structure"`
@@ -30831,6 +32968,958 @@ func (s *DataLakePrincipal) Validate() error {
 // SetDataLakePrincipalIdentifier sets the DataLakePrincipalIdentifier field's value.
 func (s *DataLakePrincipal) SetDataLakePrincipalIdentifier(v string) *DataLakePrincipal {
 	s.DataLakePrincipalIdentifier = &v
+	return s
+}
+
+// Additional run options you can specify for an evaluation run.
+type DataQualityEvaluationRunAdditionalRunOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Whether or not to enable CloudWatch metrics.
+	CloudWatchMetricsEnabled *bool `type:"boolean"`
+
+	// Prefix for Amazon S3 to store results.
+	ResultsS3Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityEvaluationRunAdditionalRunOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityEvaluationRunAdditionalRunOptions) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchMetricsEnabled sets the CloudWatchMetricsEnabled field's value.
+func (s *DataQualityEvaluationRunAdditionalRunOptions) SetCloudWatchMetricsEnabled(v bool) *DataQualityEvaluationRunAdditionalRunOptions {
+	s.CloudWatchMetricsEnabled = &v
+	return s
+}
+
+// SetResultsS3Prefix sets the ResultsS3Prefix field's value.
+func (s *DataQualityEvaluationRunAdditionalRunOptions) SetResultsS3Prefix(v string) *DataQualityEvaluationRunAdditionalRunOptions {
+	s.ResultsS3Prefix = &v
+	return s
+}
+
+// Describes a data quality result.
+type DataQualityResult struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when this data quality run completed.
+	CompletedOn *time.Time `type:"timestamp"`
+
+	// The table associated with the data quality result, if any.
+	DataSource *DataSource `type:"structure"`
+
+	// In the context of a job in Glue Studio, each node in the canvas is typically
+	// assigned some sort of name and data quality nodes will have names. In the
+	// case of multiple nodes, the evaluationContext can differentiate the nodes.
+	EvaluationContext *string `type:"string"`
+
+	// The job name associated with the data quality result, if any.
+	JobName *string `min:"1" type:"string"`
+
+	// The job run ID associated with the data quality result, if any.
+	JobRunId *string `min:"1" type:"string"`
+
+	// A unique result ID for the data quality result.
+	ResultId *string `min:"1" type:"string"`
+
+	// A list of DataQualityRuleResult objects representing the results for each
+	// rule.
+	RuleResults []*DataQualityRuleResult `min:"1" type:"list"`
+
+	// The unique run ID for the ruleset evaluation for this data quality result.
+	RulesetEvaluationRunId *string `min:"1" type:"string"`
+
+	// The name of the ruleset associated with the data quality result.
+	RulesetName *string `min:"1" type:"string"`
+
+	// An aggregate data quality score. Represents the ratio of rules that passed
+	// to the total number of rules.
+	Score *float64 `type:"double"`
+
+	// The date and time when this data quality run started.
+	StartedOn *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityResult) GoString() string {
+	return s.String()
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *DataQualityResult) SetCompletedOn(v time.Time) *DataQualityResult {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataQualityResult) SetDataSource(v *DataSource) *DataQualityResult {
+	s.DataSource = v
+	return s
+}
+
+// SetEvaluationContext sets the EvaluationContext field's value.
+func (s *DataQualityResult) SetEvaluationContext(v string) *DataQualityResult {
+	s.EvaluationContext = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DataQualityResult) SetJobName(v string) *DataQualityResult {
+	s.JobName = &v
+	return s
+}
+
+// SetJobRunId sets the JobRunId field's value.
+func (s *DataQualityResult) SetJobRunId(v string) *DataQualityResult {
+	s.JobRunId = &v
+	return s
+}
+
+// SetResultId sets the ResultId field's value.
+func (s *DataQualityResult) SetResultId(v string) *DataQualityResult {
+	s.ResultId = &v
+	return s
+}
+
+// SetRuleResults sets the RuleResults field's value.
+func (s *DataQualityResult) SetRuleResults(v []*DataQualityRuleResult) *DataQualityResult {
+	s.RuleResults = v
+	return s
+}
+
+// SetRulesetEvaluationRunId sets the RulesetEvaluationRunId field's value.
+func (s *DataQualityResult) SetRulesetEvaluationRunId(v string) *DataQualityResult {
+	s.RulesetEvaluationRunId = &v
+	return s
+}
+
+// SetRulesetName sets the RulesetName field's value.
+func (s *DataQualityResult) SetRulesetName(v string) *DataQualityResult {
+	s.RulesetName = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *DataQualityResult) SetScore(v float64) *DataQualityResult {
+	s.Score = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *DataQualityResult) SetStartedOn(v time.Time) *DataQualityResult {
+	s.StartedOn = &v
+	return s
+}
+
+// Describes a data quality result.
+type DataQualityResultDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The table name associated with the data quality result.
+	DataSource *DataSource `type:"structure"`
+
+	// The job name associated with the data quality result.
+	JobName *string `min:"1" type:"string"`
+
+	// The job run ID associated with the data quality result.
+	JobRunId *string `min:"1" type:"string"`
+
+	// The unique result ID for this data quality result.
+	ResultId *string `min:"1" type:"string"`
+
+	// The time that the run started for this data quality result.
+	StartedOn *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityResultDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityResultDescription) GoString() string {
+	return s.String()
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataQualityResultDescription) SetDataSource(v *DataSource) *DataQualityResultDescription {
+	s.DataSource = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DataQualityResultDescription) SetJobName(v string) *DataQualityResultDescription {
+	s.JobName = &v
+	return s
+}
+
+// SetJobRunId sets the JobRunId field's value.
+func (s *DataQualityResultDescription) SetJobRunId(v string) *DataQualityResultDescription {
+	s.JobRunId = &v
+	return s
+}
+
+// SetResultId sets the ResultId field's value.
+func (s *DataQualityResultDescription) SetResultId(v string) *DataQualityResultDescription {
+	s.ResultId = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *DataQualityResultDescription) SetStartedOn(v time.Time) *DataQualityResultDescription {
+	s.StartedOn = &v
+	return s
+}
+
+// Criteria used to return data quality results.
+type DataQualityResultFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// Filter results by the specified data source. For example, retrieving all
+	// results for an Glue table.
+	DataSource *DataSource `type:"structure"`
+
+	// Filter results by the specified job name.
+	JobName *string `min:"1" type:"string"`
+
+	// Filter results by the specified job run ID.
+	JobRunId *string `min:"1" type:"string"`
+
+	// Filter results by runs that started after this time.
+	StartedAfter *time.Time `type:"timestamp"`
+
+	// Filter results by runs that started before this time.
+	StartedBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityResultFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityResultFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityResultFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityResultFilterCriteria"}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.JobRunId != nil && len(*s.JobRunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobRunId", 1))
+	}
+	if s.DataSource != nil {
+		if err := s.DataSource.Validate(); err != nil {
+			invalidParams.AddNested("DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataQualityResultFilterCriteria) SetDataSource(v *DataSource) *DataQualityResultFilterCriteria {
+	s.DataSource = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DataQualityResultFilterCriteria) SetJobName(v string) *DataQualityResultFilterCriteria {
+	s.JobName = &v
+	return s
+}
+
+// SetJobRunId sets the JobRunId field's value.
+func (s *DataQualityResultFilterCriteria) SetJobRunId(v string) *DataQualityResultFilterCriteria {
+	s.JobRunId = &v
+	return s
+}
+
+// SetStartedAfter sets the StartedAfter field's value.
+func (s *DataQualityResultFilterCriteria) SetStartedAfter(v time.Time) *DataQualityResultFilterCriteria {
+	s.StartedAfter = &v
+	return s
+}
+
+// SetStartedBefore sets the StartedBefore field's value.
+func (s *DataQualityResultFilterCriteria) SetStartedBefore(v time.Time) *DataQualityResultFilterCriteria {
+	s.StartedBefore = &v
+	return s
+}
+
+// Describes the result of a data quality rule recommendation run.
+type DataQualityRuleRecommendationRunDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The data source (Glue table) associated with the recommendation run.
+	DataSource *DataSource `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	RunId *string `min:"1" type:"string"`
+
+	// The date and time when this run started.
+	StartedOn *time.Time `type:"timestamp"`
+
+	// The status for this run.
+	Status *string `type:"string" enum:"TaskStatusType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRuleRecommendationRunDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRuleRecommendationRunDescription) GoString() string {
+	return s.String()
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataQualityRuleRecommendationRunDescription) SetDataSource(v *DataSource) *DataQualityRuleRecommendationRunDescription {
+	s.DataSource = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *DataQualityRuleRecommendationRunDescription) SetRunId(v string) *DataQualityRuleRecommendationRunDescription {
+	s.RunId = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *DataQualityRuleRecommendationRunDescription) SetStartedOn(v time.Time) *DataQualityRuleRecommendationRunDescription {
+	s.StartedOn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataQualityRuleRecommendationRunDescription) SetStatus(v string) *DataQualityRuleRecommendationRunDescription {
+	s.Status = &v
+	return s
+}
+
+// A filter for listing data quality recommendation runs.
+type DataQualityRuleRecommendationRunFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filter based on a specified data source (Glue table).
+	//
+	// DataSource is a required field
+	DataSource *DataSource `type:"structure" required:"true"`
+
+	// Filter based on time for results started after provided time.
+	StartedAfter *time.Time `type:"timestamp"`
+
+	// Filter based on time for results started before provided time.
+	StartedBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRuleRecommendationRunFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRuleRecommendationRunFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityRuleRecommendationRunFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityRuleRecommendationRunFilter"}
+	if s.DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSource"))
+	}
+	if s.DataSource != nil {
+		if err := s.DataSource.Validate(); err != nil {
+			invalidParams.AddNested("DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataQualityRuleRecommendationRunFilter) SetDataSource(v *DataSource) *DataQualityRuleRecommendationRunFilter {
+	s.DataSource = v
+	return s
+}
+
+// SetStartedAfter sets the StartedAfter field's value.
+func (s *DataQualityRuleRecommendationRunFilter) SetStartedAfter(v time.Time) *DataQualityRuleRecommendationRunFilter {
+	s.StartedAfter = &v
+	return s
+}
+
+// SetStartedBefore sets the StartedBefore field's value.
+func (s *DataQualityRuleRecommendationRunFilter) SetStartedBefore(v time.Time) *DataQualityRuleRecommendationRunFilter {
+	s.StartedBefore = &v
+	return s
+}
+
+// Describes the result of the evaluation of a data quality rule.
+type DataQualityRuleResult struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the data quality rule.
+	Description *string `type:"string"`
+
+	// An evaluation message.
+	EvaluationMessage *string `type:"string"`
+
+	// The name of the data quality rule.
+	Name *string `min:"1" type:"string"`
+
+	// A pass or fail status for the rule.
+	Result *string `type:"string" enum:"DataQualityRuleResultStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRuleResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRuleResult) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DataQualityRuleResult) SetDescription(v string) *DataQualityRuleResult {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationMessage sets the EvaluationMessage field's value.
+func (s *DataQualityRuleResult) SetEvaluationMessage(v string) *DataQualityRuleResult {
+	s.EvaluationMessage = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataQualityRuleResult) SetName(v string) *DataQualityRuleResult {
+	s.Name = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *DataQualityRuleResult) SetResult(v string) *DataQualityRuleResult {
+	s.Result = &v
+	return s
+}
+
+// Describes the result of a data quality ruleset evaluation run.
+type DataQualityRulesetEvaluationRunDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The data source (an Glue table) associated with the run.
+	DataSource *DataSource `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	RunId *string `min:"1" type:"string"`
+
+	// The date and time when the run started.
+	StartedOn *time.Time `type:"timestamp"`
+
+	// The status for this run.
+	Status *string `type:"string" enum:"TaskStatusType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetEvaluationRunDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetEvaluationRunDescription) GoString() string {
+	return s.String()
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataQualityRulesetEvaluationRunDescription) SetDataSource(v *DataSource) *DataQualityRulesetEvaluationRunDescription {
+	s.DataSource = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *DataQualityRulesetEvaluationRunDescription) SetRunId(v string) *DataQualityRulesetEvaluationRunDescription {
+	s.RunId = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *DataQualityRulesetEvaluationRunDescription) SetStartedOn(v time.Time) *DataQualityRulesetEvaluationRunDescription {
+	s.StartedOn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataQualityRulesetEvaluationRunDescription) SetStatus(v string) *DataQualityRulesetEvaluationRunDescription {
+	s.Status = &v
+	return s
+}
+
+// The filter criteria.
+type DataQualityRulesetEvaluationRunFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filter based on a data source (an Glue table) associated with the run.
+	//
+	// DataSource is a required field
+	DataSource *DataSource `type:"structure" required:"true"`
+
+	// Filter results by runs that started after this time.
+	StartedAfter *time.Time `type:"timestamp"`
+
+	// Filter results by runs that started before this time.
+	StartedBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetEvaluationRunFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetEvaluationRunFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityRulesetEvaluationRunFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityRulesetEvaluationRunFilter"}
+	if s.DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSource"))
+	}
+	if s.DataSource != nil {
+		if err := s.DataSource.Validate(); err != nil {
+			invalidParams.AddNested("DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataQualityRulesetEvaluationRunFilter) SetDataSource(v *DataSource) *DataQualityRulesetEvaluationRunFilter {
+	s.DataSource = v
+	return s
+}
+
+// SetStartedAfter sets the StartedAfter field's value.
+func (s *DataQualityRulesetEvaluationRunFilter) SetStartedAfter(v time.Time) *DataQualityRulesetEvaluationRunFilter {
+	s.StartedAfter = &v
+	return s
+}
+
+// SetStartedBefore sets the StartedBefore field's value.
+func (s *DataQualityRulesetEvaluationRunFilter) SetStartedBefore(v time.Time) *DataQualityRulesetEvaluationRunFilter {
+	s.StartedBefore = &v
+	return s
+}
+
+// The criteria used to filter data quality rulesets.
+type DataQualityRulesetFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// Filter on rulesets created after this date.
+	CreatedAfter *time.Time `type:"timestamp"`
+
+	// Filter on rulesets created before this date.
+	CreatedBefore *time.Time `type:"timestamp"`
+
+	// The description of the ruleset filter criteria.
+	Description *string `type:"string"`
+
+	// Filter on rulesets last modified after this date.
+	LastModifiedAfter *time.Time `type:"timestamp"`
+
+	// Filter on rulesets last modified before this date.
+	LastModifiedBefore *time.Time `type:"timestamp"`
+
+	// The name of the ruleset filter criteria.
+	Name *string `min:"1" type:"string"`
+
+	// The name and database name of the target table.
+	TargetTable *DataQualityTargetTable `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityRulesetFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityRulesetFilterCriteria"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TargetTable != nil {
+		if err := s.TargetTable.Validate(); err != nil {
+			invalidParams.AddNested("TargetTable", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *DataQualityRulesetFilterCriteria) SetCreatedAfter(v time.Time) *DataQualityRulesetFilterCriteria {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *DataQualityRulesetFilterCriteria) SetCreatedBefore(v time.Time) *DataQualityRulesetFilterCriteria {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DataQualityRulesetFilterCriteria) SetDescription(v string) *DataQualityRulesetFilterCriteria {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedAfter sets the LastModifiedAfter field's value.
+func (s *DataQualityRulesetFilterCriteria) SetLastModifiedAfter(v time.Time) *DataQualityRulesetFilterCriteria {
+	s.LastModifiedAfter = &v
+	return s
+}
+
+// SetLastModifiedBefore sets the LastModifiedBefore field's value.
+func (s *DataQualityRulesetFilterCriteria) SetLastModifiedBefore(v time.Time) *DataQualityRulesetFilterCriteria {
+	s.LastModifiedBefore = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataQualityRulesetFilterCriteria) SetName(v string) *DataQualityRulesetFilterCriteria {
+	s.Name = &v
+	return s
+}
+
+// SetTargetTable sets the TargetTable field's value.
+func (s *DataQualityRulesetFilterCriteria) SetTargetTable(v *DataQualityTargetTable) *DataQualityRulesetFilterCriteria {
+	s.TargetTable = v
+	return s
+}
+
+// Describes a data quality ruleset returned by GetDataQualityRuleset.
+type DataQualityRulesetListDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time the data quality ruleset was created.
+	CreatedOn *time.Time `type:"timestamp"`
+
+	// A description of the data quality ruleset.
+	Description *string `type:"string"`
+
+	// The date and time the data quality ruleset was last modified.
+	LastModifiedOn *time.Time `type:"timestamp"`
+
+	// The name of the data quality ruleset.
+	Name *string `min:"1" type:"string"`
+
+	// When a ruleset was created from a recommendation run, this run ID is generated
+	// to link the two together.
+	RecommendationRunId *string `min:"1" type:"string"`
+
+	// The number of rules in the ruleset.
+	RuleCount *int64 `type:"integer"`
+
+	// An object representing an Glue table.
+	TargetTable *DataQualityTargetTable `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetListDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityRulesetListDetails) GoString() string {
+	return s.String()
+}
+
+// SetCreatedOn sets the CreatedOn field's value.
+func (s *DataQualityRulesetListDetails) SetCreatedOn(v time.Time) *DataQualityRulesetListDetails {
+	s.CreatedOn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DataQualityRulesetListDetails) SetDescription(v string) *DataQualityRulesetListDetails {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedOn sets the LastModifiedOn field's value.
+func (s *DataQualityRulesetListDetails) SetLastModifiedOn(v time.Time) *DataQualityRulesetListDetails {
+	s.LastModifiedOn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataQualityRulesetListDetails) SetName(v string) *DataQualityRulesetListDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRecommendationRunId sets the RecommendationRunId field's value.
+func (s *DataQualityRulesetListDetails) SetRecommendationRunId(v string) *DataQualityRulesetListDetails {
+	s.RecommendationRunId = &v
+	return s
+}
+
+// SetRuleCount sets the RuleCount field's value.
+func (s *DataQualityRulesetListDetails) SetRuleCount(v int64) *DataQualityRulesetListDetails {
+	s.RuleCount = &v
+	return s
+}
+
+// SetTargetTable sets the TargetTable field's value.
+func (s *DataQualityRulesetListDetails) SetTargetTable(v *DataQualityTargetTable) *DataQualityRulesetListDetails {
+	s.TargetTable = v
+	return s
+}
+
+// An object representing an Glue table.
+type DataQualityTargetTable struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database where the Glue table exists.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the Glue table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityTargetTable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityTargetTable) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityTargetTable) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityTargetTable"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DataQualityTargetTable) SetDatabaseName(v string) *DataQualityTargetTable {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DataQualityTargetTable) SetTableName(v string) *DataQualityTargetTable {
+	s.TableName = &v
+	return s
+}
+
+// A data source (an Glue table) for which you want data quality results.
+type DataSource struct {
+	_ struct{} `type:"structure"`
+
+	// An Glue table.
+	//
+	// GlueTable is a required field
+	GlueTable *Table `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSource"}
+	if s.GlueTable == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlueTable"))
+	}
+	if s.GlueTable != nil {
+		if err := s.GlueTable.Validate(); err != nil {
+			invalidParams.AddNested("GlueTable", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlueTable sets the GlueTable field's value.
+func (s *DataSource) SetGlueTable(v *Table) *DataSource {
+	s.GlueTable = v
 	return s
 }
 
@@ -32033,6 +35122,77 @@ func (s DeleteCustomEntityTypeOutput) GoString() string {
 func (s *DeleteCustomEntityTypeOutput) SetName(v string) *DeleteCustomEntityTypeOutput {
 	s.Name = &v
 	return s
+}
+
+type DeleteDataQualityRulesetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A name for the data quality ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataQualityRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataQualityRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataQualityRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataQualityRulesetInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteDataQualityRulesetInput) SetName(v string) *DeleteDataQualityRulesetInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteDataQualityRulesetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataQualityRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataQualityRulesetOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDatabaseInput struct {
@@ -35244,6 +38404,115 @@ func (s *ErrorDetails) SetErrorMessage(v string) *ErrorDetails {
 	return s
 }
 
+// Specifies your data quality evaluation criteria.
+type EvaluateDataQuality struct {
+	_ struct{} `type:"structure"`
+
+	// The inputs of your data quality evaluation.
+	//
+	// Inputs is a required field
+	Inputs []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the data quality evaluation.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The output of your data quality evaluation.
+	Output *string `type:"string" enum:"DQTransformOutput_"`
+
+	// Options to configure how your results are published.
+	PublishingOptions *DQResultsPublishingOptions `type:"structure"`
+
+	// The ruleset for your data quality evaluation.
+	//
+	// Ruleset is a required field
+	Ruleset *string `min:"1" type:"string" required:"true"`
+
+	// Options to configure how your job will stop if your data quality evaluation
+	// fails.
+	StopJobOnFailureOptions *DQStopJobOnFailureOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateDataQuality) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluateDataQuality) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluateDataQuality) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluateDataQuality"}
+	if s.Inputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Inputs"))
+	}
+	if s.Inputs != nil && len(s.Inputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Inputs", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Ruleset == nil {
+		invalidParams.Add(request.NewErrParamRequired("Ruleset"))
+	}
+	if s.Ruleset != nil && len(*s.Ruleset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ruleset", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *EvaluateDataQuality) SetInputs(v []*string) *EvaluateDataQuality {
+	s.Inputs = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EvaluateDataQuality) SetName(v string) *EvaluateDataQuality {
+	s.Name = &v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *EvaluateDataQuality) SetOutput(v string) *EvaluateDataQuality {
+	s.Output = &v
+	return s
+}
+
+// SetPublishingOptions sets the PublishingOptions field's value.
+func (s *EvaluateDataQuality) SetPublishingOptions(v *DQResultsPublishingOptions) *EvaluateDataQuality {
+	s.PublishingOptions = v
+	return s
+}
+
+// SetRuleset sets the Ruleset field's value.
+func (s *EvaluateDataQuality) SetRuleset(v string) *EvaluateDataQuality {
+	s.Ruleset = &v
+	return s
+}
+
+// SetStopJobOnFailureOptions sets the StopJobOnFailureOptions field's value.
+func (s *EvaluateDataQuality) SetStopJobOnFailureOptions(v *DQStopJobOnFailureOptions) *EvaluateDataQuality {
+	s.StopJobOnFailureOptions = v
+	return s
+}
+
 // Evaluation metrics provide an estimate of the quality of your machine learning
 // transform.
 type EvaluationMetrics struct {
@@ -37575,6 +40844,709 @@ func (s GetDataCatalogEncryptionSettingsOutput) GoString() string {
 // SetDataCatalogEncryptionSettings sets the DataCatalogEncryptionSettings field's value.
 func (s *GetDataCatalogEncryptionSettingsOutput) SetDataCatalogEncryptionSettings(v *DataCatalogEncryptionSettings) *GetDataCatalogEncryptionSettingsOutput {
 	s.DataCatalogEncryptionSettings = v
+	return s
+}
+
+type GetDataQualityResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique result ID for the data quality result.
+	//
+	// ResultId is a required field
+	ResultId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataQualityResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataQualityResultInput"}
+	if s.ResultId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResultId"))
+	}
+	if s.ResultId != nil && len(*s.ResultId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResultId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResultId sets the ResultId field's value.
+func (s *GetDataQualityResultInput) SetResultId(v string) *GetDataQualityResultInput {
+	s.ResultId = &v
+	return s
+}
+
+type GetDataQualityResultOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the run for this data quality result was completed.
+	CompletedOn *time.Time `type:"timestamp"`
+
+	// The table associated with the data quality result, if any.
+	DataSource *DataSource `type:"structure"`
+
+	// In the context of a job in Glue Studio, each node in the canvas is typically
+	// assigned some sort of name and data quality nodes will have names. In the
+	// case of multiple nodes, the evaluationContext can differentiate the nodes.
+	EvaluationContext *string `type:"string"`
+
+	// The job name associated with the data quality result, if any.
+	JobName *string `min:"1" type:"string"`
+
+	// The job run ID associated with the data quality result, if any.
+	JobRunId *string `min:"1" type:"string"`
+
+	// A unique result ID for the data quality result.
+	ResultId *string `min:"1" type:"string"`
+
+	// A list of DataQualityRuleResult objects representing the results for each
+	// rule.
+	RuleResults []*DataQualityRuleResult `min:"1" type:"list"`
+
+	// The unique run ID associated with the ruleset evaluation.
+	RulesetEvaluationRunId *string `min:"1" type:"string"`
+
+	// The name of the ruleset associated with the data quality result.
+	RulesetName *string `min:"1" type:"string"`
+
+	// An aggregate data quality score. Represents the ratio of rules that passed
+	// to the total number of rules.
+	Score *float64 `type:"double"`
+
+	// The date and time when the run for this data quality result started.
+	StartedOn *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityResultOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *GetDataQualityResultOutput) SetCompletedOn(v time.Time) *GetDataQualityResultOutput {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *GetDataQualityResultOutput) SetDataSource(v *DataSource) *GetDataQualityResultOutput {
+	s.DataSource = v
+	return s
+}
+
+// SetEvaluationContext sets the EvaluationContext field's value.
+func (s *GetDataQualityResultOutput) SetEvaluationContext(v string) *GetDataQualityResultOutput {
+	s.EvaluationContext = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *GetDataQualityResultOutput) SetJobName(v string) *GetDataQualityResultOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobRunId sets the JobRunId field's value.
+func (s *GetDataQualityResultOutput) SetJobRunId(v string) *GetDataQualityResultOutput {
+	s.JobRunId = &v
+	return s
+}
+
+// SetResultId sets the ResultId field's value.
+func (s *GetDataQualityResultOutput) SetResultId(v string) *GetDataQualityResultOutput {
+	s.ResultId = &v
+	return s
+}
+
+// SetRuleResults sets the RuleResults field's value.
+func (s *GetDataQualityResultOutput) SetRuleResults(v []*DataQualityRuleResult) *GetDataQualityResultOutput {
+	s.RuleResults = v
+	return s
+}
+
+// SetRulesetEvaluationRunId sets the RulesetEvaluationRunId field's value.
+func (s *GetDataQualityResultOutput) SetRulesetEvaluationRunId(v string) *GetDataQualityResultOutput {
+	s.RulesetEvaluationRunId = &v
+	return s
+}
+
+// SetRulesetName sets the RulesetName field's value.
+func (s *GetDataQualityResultOutput) SetRulesetName(v string) *GetDataQualityResultOutput {
+	s.RulesetName = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *GetDataQualityResultOutput) SetScore(v float64) *GetDataQualityResultOutput {
+	s.Score = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *GetDataQualityResultOutput) SetStartedOn(v time.Time) *GetDataQualityResultOutput {
+	s.StartedOn = &v
+	return s
+}
+
+type GetDataQualityRuleRecommendationRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	//
+	// RunId is a required field
+	RunId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRuleRecommendationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRuleRecommendationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataQualityRuleRecommendationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataQualityRuleRecommendationRunInput"}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetDataQualityRuleRecommendationRunInput) SetRunId(v string) *GetDataQualityRuleRecommendationRunInput {
+	s.RunId = &v
+	return s
+}
+
+type GetDataQualityRuleRecommendationRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when this run was completed.
+	CompletedOn *time.Time `type:"timestamp"`
+
+	// The name of the ruleset that was created by the run.
+	CreatedRulesetName *string `min:"1" type:"string"`
+
+	// The data source (an Glue table) associated with this run.
+	DataSource *DataSource `type:"structure"`
+
+	// The error strings that are associated with the run.
+	ErrorString *string `type:"string"`
+
+	// The amount of time (in seconds) that the run consumed resources.
+	ExecutionTime *int64 `type:"integer"`
+
+	// A timestamp. The last point in time when this data quality rule recommendation
+	// run was modified.
+	LastModifiedOn *time.Time `type:"timestamp"`
+
+	// The number of G.1X workers to be used in the run. The default is 5.
+	NumberOfWorkers *int64 `type:"integer"`
+
+	// When a start rule recommendation run completes, it creates a recommended
+	// ruleset (a set of rules). This member has those rules in Data Quality Definition
+	// Language (DQDL) format.
+	RecommendedRuleset *string `min:"1" type:"string"`
+
+	// An IAM role supplied to encrypt the results of the run.
+	Role *string `type:"string"`
+
+	// The unique run identifier associated with this run.
+	RunId *string `min:"1" type:"string"`
+
+	// The date and time when this run started.
+	StartedOn *time.Time `type:"timestamp"`
+
+	// The status for this run.
+	Status *string `type:"string" enum:"TaskStatusType"`
+
+	// The timeout for a run in minutes. This is the maximum time that a run can
+	// consume resources before it is terminated and enters TIMEOUT status. The
+	// default is 2,880 minutes (48 hours).
+	Timeout *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRuleRecommendationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRuleRecommendationRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetCompletedOn(v time.Time) *GetDataQualityRuleRecommendationRunOutput {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetCreatedRulesetName sets the CreatedRulesetName field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetCreatedRulesetName(v string) *GetDataQualityRuleRecommendationRunOutput {
+	s.CreatedRulesetName = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetDataSource(v *DataSource) *GetDataQualityRuleRecommendationRunOutput {
+	s.DataSource = v
+	return s
+}
+
+// SetErrorString sets the ErrorString field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetErrorString(v string) *GetDataQualityRuleRecommendationRunOutput {
+	s.ErrorString = &v
+	return s
+}
+
+// SetExecutionTime sets the ExecutionTime field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetExecutionTime(v int64) *GetDataQualityRuleRecommendationRunOutput {
+	s.ExecutionTime = &v
+	return s
+}
+
+// SetLastModifiedOn sets the LastModifiedOn field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetLastModifiedOn(v time.Time) *GetDataQualityRuleRecommendationRunOutput {
+	s.LastModifiedOn = &v
+	return s
+}
+
+// SetNumberOfWorkers sets the NumberOfWorkers field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetNumberOfWorkers(v int64) *GetDataQualityRuleRecommendationRunOutput {
+	s.NumberOfWorkers = &v
+	return s
+}
+
+// SetRecommendedRuleset sets the RecommendedRuleset field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetRecommendedRuleset(v string) *GetDataQualityRuleRecommendationRunOutput {
+	s.RecommendedRuleset = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetRole(v string) *GetDataQualityRuleRecommendationRunOutput {
+	s.Role = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetRunId(v string) *GetDataQualityRuleRecommendationRunOutput {
+	s.RunId = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetStartedOn(v time.Time) *GetDataQualityRuleRecommendationRunOutput {
+	s.StartedOn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetStatus(v string) *GetDataQualityRuleRecommendationRunOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *GetDataQualityRuleRecommendationRunOutput) SetTimeout(v int64) *GetDataQualityRuleRecommendationRunOutput {
+	s.Timeout = &v
+	return s
+}
+
+type GetDataQualityRulesetEvaluationRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	//
+	// RunId is a required field
+	RunId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetEvaluationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetEvaluationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataQualityRulesetEvaluationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataQualityRulesetEvaluationRunInput"}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetDataQualityRulesetEvaluationRunInput) SetRunId(v string) *GetDataQualityRulesetEvaluationRunInput {
+	s.RunId = &v
+	return s
+}
+
+type GetDataQualityRulesetEvaluationRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Additional run options you can specify for an evaluation run.
+	AdditionalRunOptions *DataQualityEvaluationRunAdditionalRunOptions `type:"structure"`
+
+	// The date and time when this run was completed.
+	CompletedOn *time.Time `type:"timestamp"`
+
+	// The data source (an Glue table) associated with this evaluation run.
+	DataSource *DataSource `type:"structure"`
+
+	// The error strings that are associated with the run.
+	ErrorString *string `type:"string"`
+
+	// The amount of time (in seconds) that the run consumed resources.
+	ExecutionTime *int64 `type:"integer"`
+
+	// A timestamp. The last point in time when this data quality rule recommendation
+	// run was modified.
+	LastModifiedOn *time.Time `type:"timestamp"`
+
+	// The number of G.1X workers to be used in the run. The default is 5.
+	NumberOfWorkers *int64 `type:"integer"`
+
+	// A list of result IDs for the data quality results for the run.
+	ResultIds []*string `min:"1" type:"list"`
+
+	// An IAM role supplied to encrypt the results of the run.
+	Role *string `type:"string"`
+
+	// A list of ruleset names for the run.
+	RulesetNames []*string `min:"1" type:"list"`
+
+	// The unique run identifier associated with this run.
+	RunId *string `min:"1" type:"string"`
+
+	// The date and time when this run started.
+	StartedOn *time.Time `type:"timestamp"`
+
+	// The status for this run.
+	Status *string `type:"string" enum:"TaskStatusType"`
+
+	// The timeout for a run in minutes. This is the maximum time that a run can
+	// consume resources before it is terminated and enters TIMEOUT status. The
+	// default is 2,880 minutes (48 hours).
+	Timeout *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetEvaluationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetEvaluationRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalRunOptions sets the AdditionalRunOptions field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetAdditionalRunOptions(v *DataQualityEvaluationRunAdditionalRunOptions) *GetDataQualityRulesetEvaluationRunOutput {
+	s.AdditionalRunOptions = v
+	return s
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetCompletedOn(v time.Time) *GetDataQualityRulesetEvaluationRunOutput {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetDataSource(v *DataSource) *GetDataQualityRulesetEvaluationRunOutput {
+	s.DataSource = v
+	return s
+}
+
+// SetErrorString sets the ErrorString field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetErrorString(v string) *GetDataQualityRulesetEvaluationRunOutput {
+	s.ErrorString = &v
+	return s
+}
+
+// SetExecutionTime sets the ExecutionTime field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetExecutionTime(v int64) *GetDataQualityRulesetEvaluationRunOutput {
+	s.ExecutionTime = &v
+	return s
+}
+
+// SetLastModifiedOn sets the LastModifiedOn field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetLastModifiedOn(v time.Time) *GetDataQualityRulesetEvaluationRunOutput {
+	s.LastModifiedOn = &v
+	return s
+}
+
+// SetNumberOfWorkers sets the NumberOfWorkers field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetNumberOfWorkers(v int64) *GetDataQualityRulesetEvaluationRunOutput {
+	s.NumberOfWorkers = &v
+	return s
+}
+
+// SetResultIds sets the ResultIds field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetResultIds(v []*string) *GetDataQualityRulesetEvaluationRunOutput {
+	s.ResultIds = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetRole(v string) *GetDataQualityRulesetEvaluationRunOutput {
+	s.Role = &v
+	return s
+}
+
+// SetRulesetNames sets the RulesetNames field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetRulesetNames(v []*string) *GetDataQualityRulesetEvaluationRunOutput {
+	s.RulesetNames = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetRunId(v string) *GetDataQualityRulesetEvaluationRunOutput {
+	s.RunId = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetStartedOn(v time.Time) *GetDataQualityRulesetEvaluationRunOutput {
+	s.StartedOn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetStatus(v string) *GetDataQualityRulesetEvaluationRunOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *GetDataQualityRulesetEvaluationRunOutput) SetTimeout(v int64) *GetDataQualityRulesetEvaluationRunOutput {
+	s.Timeout = &v
+	return s
+}
+
+type GetDataQualityRulesetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataQualityRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataQualityRulesetInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetDataQualityRulesetInput) SetName(v string) *GetDataQualityRulesetInput {
+	s.Name = &v
+	return s
+}
+
+type GetDataQualityRulesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp. The time and date that this data quality ruleset was created.
+	CreatedOn *time.Time `type:"timestamp"`
+
+	// A description of the ruleset.
+	Description *string `type:"string"`
+
+	// A timestamp. The last point in time when this data quality ruleset was modified.
+	LastModifiedOn *time.Time `type:"timestamp"`
+
+	// The name of the ruleset.
+	Name *string `min:"1" type:"string"`
+
+	// When a ruleset was created from a recommendation run, this run ID is generated
+	// to link the two together.
+	RecommendationRunId *string `min:"1" type:"string"`
+
+	// A Data Quality Definition Language (DQDL) ruleset. For more information,
+	// see the Glue developer guide.
+	Ruleset *string `min:"1" type:"string"`
+
+	// The name and database name of the target table.
+	TargetTable *DataQualityTargetTable `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataQualityRulesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedOn sets the CreatedOn field's value.
+func (s *GetDataQualityRulesetOutput) SetCreatedOn(v time.Time) *GetDataQualityRulesetOutput {
+	s.CreatedOn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetDataQualityRulesetOutput) SetDescription(v string) *GetDataQualityRulesetOutput {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedOn sets the LastModifiedOn field's value.
+func (s *GetDataQualityRulesetOutput) SetLastModifiedOn(v time.Time) *GetDataQualityRulesetOutput {
+	s.LastModifiedOn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetDataQualityRulesetOutput) SetName(v string) *GetDataQualityRulesetOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRecommendationRunId sets the RecommendationRunId field's value.
+func (s *GetDataQualityRulesetOutput) SetRecommendationRunId(v string) *GetDataQualityRulesetOutput {
+	s.RecommendationRunId = &v
+	return s
+}
+
+// SetRuleset sets the Ruleset field's value.
+func (s *GetDataQualityRulesetOutput) SetRuleset(v string) *GetDataQualityRulesetOutput {
+	s.Ruleset = &v
+	return s
+}
+
+// SetTargetTable sets the TargetTable field's value.
+func (s *GetDataQualityRulesetOutput) SetTargetTable(v *DataQualityTargetTable) *GetDataQualityRulesetOutput {
+	s.TargetTable = v
 	return s
 }
 
@@ -47381,6 +51353,446 @@ func (s *ListCustomEntityTypesOutput) SetCustomEntityTypes(v []*CustomEntityType
 // SetNextToken sets the NextToken field's value.
 func (s *ListCustomEntityTypesOutput) SetNextToken(v string) *ListCustomEntityTypesOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListDataQualityResultsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter criteria.
+	Filter *DataQualityResultFilterCriteria `type:"structure"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A paginated token to offset the results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityResultsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityResultsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataQualityResultsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataQualityResultsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListDataQualityResultsInput) SetFilter(v *DataQualityResultFilterCriteria) *ListDataQualityResultsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataQualityResultsInput) SetMaxResults(v int64) *ListDataQualityResultsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityResultsInput) SetNextToken(v string) *ListDataQualityResultsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataQualityResultsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token, if more results are available.
+	NextToken *string `type:"string"`
+
+	// A list of DataQualityResultDescription objects.
+	//
+	// Results is a required field
+	Results []*DataQualityResultDescription `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityResultsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityResultsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityResultsOutput) SetNextToken(v string) *ListDataQualityResultsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *ListDataQualityResultsOutput) SetResults(v []*DataQualityResultDescription) *ListDataQualityResultsOutput {
+	s.Results = v
+	return s
+}
+
+type ListDataQualityRuleRecommendationRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter criteria.
+	Filter *DataQualityRuleRecommendationRunFilter `type:"structure"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A paginated token to offset the results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRuleRecommendationRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRuleRecommendationRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataQualityRuleRecommendationRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataQualityRuleRecommendationRunsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListDataQualityRuleRecommendationRunsInput) SetFilter(v *DataQualityRuleRecommendationRunFilter) *ListDataQualityRuleRecommendationRunsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataQualityRuleRecommendationRunsInput) SetMaxResults(v int64) *ListDataQualityRuleRecommendationRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityRuleRecommendationRunsInput) SetNextToken(v string) *ListDataQualityRuleRecommendationRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataQualityRuleRecommendationRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token, if more results are available.
+	NextToken *string `type:"string"`
+
+	// A list of DataQualityRuleRecommendationRunDescription objects.
+	Runs []*DataQualityRuleRecommendationRunDescription `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRuleRecommendationRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRuleRecommendationRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityRuleRecommendationRunsOutput) SetNextToken(v string) *ListDataQualityRuleRecommendationRunsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRuns sets the Runs field's value.
+func (s *ListDataQualityRuleRecommendationRunsOutput) SetRuns(v []*DataQualityRuleRecommendationRunDescription) *ListDataQualityRuleRecommendationRunsOutput {
+	s.Runs = v
+	return s
+}
+
+type ListDataQualityRulesetEvaluationRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter criteria.
+	Filter *DataQualityRulesetEvaluationRunFilter `type:"structure"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A paginated token to offset the results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetEvaluationRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetEvaluationRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataQualityRulesetEvaluationRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataQualityRulesetEvaluationRunsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListDataQualityRulesetEvaluationRunsInput) SetFilter(v *DataQualityRulesetEvaluationRunFilter) *ListDataQualityRulesetEvaluationRunsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataQualityRulesetEvaluationRunsInput) SetMaxResults(v int64) *ListDataQualityRulesetEvaluationRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityRulesetEvaluationRunsInput) SetNextToken(v string) *ListDataQualityRulesetEvaluationRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataQualityRulesetEvaluationRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token, if more results are available.
+	NextToken *string `type:"string"`
+
+	// A list of DataQualityRulesetEvaluationRunDescription objects representing
+	// data quality ruleset runs.
+	Runs []*DataQualityRulesetEvaluationRunDescription `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetEvaluationRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetEvaluationRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityRulesetEvaluationRunsOutput) SetNextToken(v string) *ListDataQualityRulesetEvaluationRunsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRuns sets the Runs field's value.
+func (s *ListDataQualityRulesetEvaluationRunsOutput) SetRuns(v []*DataQualityRulesetEvaluationRunDescription) *ListDataQualityRulesetEvaluationRunsOutput {
+	s.Runs = v
+	return s
+}
+
+type ListDataQualityRulesetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter criteria.
+	Filter *DataQualityRulesetFilterCriteria `type:"structure"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A paginated token to offset the results.
+	NextToken *string `type:"string"`
+
+	// A list of key-value pair tags.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataQualityRulesetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataQualityRulesetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListDataQualityRulesetsInput) SetFilter(v *DataQualityRulesetFilterCriteria) *ListDataQualityRulesetsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataQualityRulesetsInput) SetMaxResults(v int64) *ListDataQualityRulesetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityRulesetsInput) SetNextToken(v string) *ListDataQualityRulesetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListDataQualityRulesetsInput) SetTags(v map[string]*string) *ListDataQualityRulesetsInput {
+	s.Tags = v
+	return s
+}
+
+type ListDataQualityRulesetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token, if more results are available.
+	NextToken *string `type:"string"`
+
+	// A paginated list of rulesets for the specified list of Glue tables.
+	Rulesets []*DataQualityRulesetListDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataQualityRulesetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityRulesetsOutput) SetNextToken(v string) *ListDataQualityRulesetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRulesets sets the Rulesets field's value.
+func (s *ListDataQualityRulesetsOutput) SetRulesets(v []*DataQualityRulesetListDetails) *ListDataQualityRulesetsOutput {
+	s.Rulesets = v
 	return s
 }
 
@@ -57379,6 +61791,308 @@ func (s StartCrawlerScheduleOutput) GoString() string {
 	return s.String()
 }
 
+type StartDataQualityRuleRecommendationRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// Used for idempotency and is recommended to be set to a random ID (such as
+	// a UUID) to avoid creating or starting multiple instances of the same resource.
+	ClientToken *string `min:"1" type:"string"`
+
+	// A name for the ruleset.
+	CreatedRulesetName *string `min:"1" type:"string"`
+
+	// The data source (Glue table) associated with this run.
+	//
+	// DataSource is a required field
+	DataSource *DataSource `type:"structure" required:"true"`
+
+	// The number of G.1X workers to be used in the run. The default is 5.
+	NumberOfWorkers *int64 `type:"integer"`
+
+	// An IAM role supplied to encrypt the results of the run.
+	//
+	// Role is a required field
+	Role *string `type:"string" required:"true"`
+
+	// The timeout for a run in minutes. This is the maximum time that a run can
+	// consume resources before it is terminated and enters TIMEOUT status. The
+	// default is 2,880 minutes (48 hours).
+	Timeout *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRuleRecommendationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRuleRecommendationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDataQualityRuleRecommendationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDataQualityRuleRecommendationRunInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.CreatedRulesetName != nil && len(*s.CreatedRulesetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreatedRulesetName", 1))
+	}
+	if s.DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSource"))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Timeout != nil && *s.Timeout < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
+	}
+	if s.DataSource != nil {
+		if err := s.DataSource.Validate(); err != nil {
+			invalidParams.AddNested("DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartDataQualityRuleRecommendationRunInput) SetClientToken(v string) *StartDataQualityRuleRecommendationRunInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCreatedRulesetName sets the CreatedRulesetName field's value.
+func (s *StartDataQualityRuleRecommendationRunInput) SetCreatedRulesetName(v string) *StartDataQualityRuleRecommendationRunInput {
+	s.CreatedRulesetName = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *StartDataQualityRuleRecommendationRunInput) SetDataSource(v *DataSource) *StartDataQualityRuleRecommendationRunInput {
+	s.DataSource = v
+	return s
+}
+
+// SetNumberOfWorkers sets the NumberOfWorkers field's value.
+func (s *StartDataQualityRuleRecommendationRunInput) SetNumberOfWorkers(v int64) *StartDataQualityRuleRecommendationRunInput {
+	s.NumberOfWorkers = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *StartDataQualityRuleRecommendationRunInput) SetRole(v string) *StartDataQualityRuleRecommendationRunInput {
+	s.Role = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *StartDataQualityRuleRecommendationRunInput) SetTimeout(v int64) *StartDataQualityRuleRecommendationRunInput {
+	s.Timeout = &v
+	return s
+}
+
+type StartDataQualityRuleRecommendationRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	RunId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRuleRecommendationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRuleRecommendationRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetRunId sets the RunId field's value.
+func (s *StartDataQualityRuleRecommendationRunOutput) SetRunId(v string) *StartDataQualityRuleRecommendationRunOutput {
+	s.RunId = &v
+	return s
+}
+
+type StartDataQualityRulesetEvaluationRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// Additional run options you can specify for an evaluation run.
+	AdditionalRunOptions *DataQualityEvaluationRunAdditionalRunOptions `type:"structure"`
+
+	// Used for idempotency and is recommended to be set to a random ID (such as
+	// a UUID) to avoid creating or starting multiple instances of the same resource.
+	ClientToken *string `min:"1" type:"string"`
+
+	// The data source (Glue table) associated with this run.
+	//
+	// DataSource is a required field
+	DataSource *DataSource `type:"structure" required:"true"`
+
+	// The number of G.1X workers to be used in the run. The default is 5.
+	NumberOfWorkers *int64 `type:"integer"`
+
+	// An IAM role supplied to encrypt the results of the run.
+	//
+	// Role is a required field
+	Role *string `type:"string" required:"true"`
+
+	// A list of ruleset names.
+	//
+	// RulesetNames is a required field
+	RulesetNames []*string `min:"1" type:"list" required:"true"`
+
+	// The timeout for a run in minutes. This is the maximum time that a run can
+	// consume resources before it is terminated and enters TIMEOUT status. The
+	// default is 2,880 minutes (48 hours).
+	Timeout *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRulesetEvaluationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRulesetEvaluationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDataQualityRulesetEvaluationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDataQualityRulesetEvaluationRunInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSource"))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.RulesetNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("RulesetNames"))
+	}
+	if s.RulesetNames != nil && len(s.RulesetNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RulesetNames", 1))
+	}
+	if s.Timeout != nil && *s.Timeout < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
+	}
+	if s.DataSource != nil {
+		if err := s.DataSource.Validate(); err != nil {
+			invalidParams.AddNested("DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalRunOptions sets the AdditionalRunOptions field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetAdditionalRunOptions(v *DataQualityEvaluationRunAdditionalRunOptions) *StartDataQualityRulesetEvaluationRunInput {
+	s.AdditionalRunOptions = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetClientToken(v string) *StartDataQualityRulesetEvaluationRunInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetDataSource(v *DataSource) *StartDataQualityRulesetEvaluationRunInput {
+	s.DataSource = v
+	return s
+}
+
+// SetNumberOfWorkers sets the NumberOfWorkers field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetNumberOfWorkers(v int64) *StartDataQualityRulesetEvaluationRunInput {
+	s.NumberOfWorkers = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetRole(v string) *StartDataQualityRulesetEvaluationRunInput {
+	s.Role = &v
+	return s
+}
+
+// SetRulesetNames sets the RulesetNames field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetRulesetNames(v []*string) *StartDataQualityRulesetEvaluationRunInput {
+	s.RulesetNames = v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *StartDataQualityRulesetEvaluationRunInput) SetTimeout(v int64) *StartDataQualityRulesetEvaluationRunInput {
+	s.Timeout = &v
+	return s
+}
+
+type StartDataQualityRulesetEvaluationRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique run identifier associated with this run.
+	RunId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRulesetEvaluationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataQualityRulesetEvaluationRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetRunId sets the RunId field's value.
+func (s *StartDataQualityRulesetEvaluationRunOutput) SetRunId(v string) *StartDataQualityRulesetEvaluationRunOutput {
+	s.RunId = &v
+	return s
+}
+
 type StartExportLabelsTaskRunInput struct {
 	_ struct{} `type:"structure"`
 
@@ -59162,6 +63876,15 @@ func (s *StringColumnStatisticsData) SetNumberOfNulls(v int64) *StringColumnStat
 type Table struct {
 	_ struct{} `type:"structure"`
 
+	// Additional options for the table. Currently there are two keys supported:
+	//
+	//    * pushDownPredicate: to filter on partitions without having to list and
+	//    read all the files in your dataset.
+	//
+	//    * catalogPartitionPredicate: to use server-side partition pruning using
+	//    partition indexes in the Glue Data Catalog.
+	AdditionalOptions map[string]*string `min:"1" type:"map"`
+
 	// A unique identifier for the Glue Data Catalog.
 	CatalogId *string `min:"1" type:"string"`
 
@@ -59200,6 +63923,9 @@ func (s Table) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Table) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Table"}
+	if s.AdditionalOptions != nil && len(s.AdditionalOptions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalOptions", 1))
+	}
 	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
 	}
@@ -59223,6 +63949,12 @@ func (s *Table) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalOptions sets the AdditionalOptions field's value.
+func (s *Table) SetAdditionalOptions(v map[string]*string) *Table {
+	s.AdditionalOptions = v
+	return s
 }
 
 // SetCatalogId sets the CatalogId field's value.
@@ -62186,6 +66918,139 @@ func (s *UpdateCsvClassifierRequest) SetName(v string) *UpdateCsvClassifierReque
 // SetQuoteSymbol sets the QuoteSymbol field's value.
 func (s *UpdateCsvClassifierRequest) SetQuoteSymbol(v string) *UpdateCsvClassifierRequest {
 	s.QuoteSymbol = &v
+	return s
+}
+
+type UpdateDataQualityRulesetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the ruleset.
+	Description *string `type:"string"`
+
+	// The name of the data quality ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A Data Quality Definition Language (DQDL) ruleset. For more information,
+	// see the Glue developer guide.
+	Ruleset *string `min:"1" type:"string"`
+
+	// The new name of the ruleset, if you are renaming it.
+	UpdatedName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataQualityRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataQualityRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDataQualityRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDataQualityRulesetInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Ruleset != nil && len(*s.Ruleset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ruleset", 1))
+	}
+	if s.UpdatedName != nil && len(*s.UpdatedName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UpdatedName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateDataQualityRulesetInput) SetDescription(v string) *UpdateDataQualityRulesetInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateDataQualityRulesetInput) SetName(v string) *UpdateDataQualityRulesetInput {
+	s.Name = &v
+	return s
+}
+
+// SetRuleset sets the Ruleset field's value.
+func (s *UpdateDataQualityRulesetInput) SetRuleset(v string) *UpdateDataQualityRulesetInput {
+	s.Ruleset = &v
+	return s
+}
+
+// SetUpdatedName sets the UpdatedName field's value.
+func (s *UpdateDataQualityRulesetInput) SetUpdatedName(v string) *UpdateDataQualityRulesetInput {
+	s.UpdatedName = &v
+	return s
+}
+
+type UpdateDataQualityRulesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the ruleset.
+	Description *string `type:"string"`
+
+	// The name of the data quality ruleset.
+	Name *string `min:"1" type:"string"`
+
+	// A Data Quality Definition Language (DQDL) ruleset. For more information,
+	// see the Glue developer guide.
+	Ruleset *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataQualityRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataQualityRulesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateDataQualityRulesetOutput) SetDescription(v string) *UpdateDataQualityRulesetOutput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateDataQualityRulesetOutput) SetName(v string) *UpdateDataQualityRulesetOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRuleset sets the Ruleset field's value.
+func (s *UpdateDataQualityRulesetOutput) SetRuleset(v string) *UpdateDataQualityRulesetOutput {
+	s.Ruleset = &v
 	return s
 }
 
@@ -65551,6 +70416,38 @@ func CsvHeaderOption_Values() []string {
 }
 
 const (
+	// DQStopJobOnFailureTimingImmediate is a DQStopJobOnFailureTiming enum value
+	DQStopJobOnFailureTimingImmediate = "Immediate"
+
+	// DQStopJobOnFailureTimingAfterDataLoad is a DQStopJobOnFailureTiming enum value
+	DQStopJobOnFailureTimingAfterDataLoad = "AfterDataLoad"
+)
+
+// DQStopJobOnFailureTiming_Values returns all elements of the DQStopJobOnFailureTiming enum
+func DQStopJobOnFailureTiming_Values() []string {
+	return []string{
+		DQStopJobOnFailureTimingImmediate,
+		DQStopJobOnFailureTimingAfterDataLoad,
+	}
+}
+
+const (
+	// DQTransformOutputPrimaryInput is a DQTransformOutput_ enum value
+	DQTransformOutputPrimaryInput = "PrimaryInput"
+
+	// DQTransformOutputEvaluationResults is a DQTransformOutput_ enum value
+	DQTransformOutputEvaluationResults = "EvaluationResults"
+)
+
+// DQTransformOutput__Values returns all elements of the DQTransformOutput_ enum
+func DQTransformOutput__Values() []string {
+	return []string{
+		DQTransformOutputPrimaryInput,
+		DQTransformOutputEvaluationResults,
+	}
+}
+
+const (
 	// DataFormatAvro is a DataFormat enum value
 	DataFormatAvro = "AVRO"
 
@@ -65567,6 +70464,26 @@ func DataFormat_Values() []string {
 		DataFormatAvro,
 		DataFormatJson,
 		DataFormatProtobuf,
+	}
+}
+
+const (
+	// DataQualityRuleResultStatusPass is a DataQualityRuleResultStatus enum value
+	DataQualityRuleResultStatusPass = "PASS"
+
+	// DataQualityRuleResultStatusFail is a DataQualityRuleResultStatus enum value
+	DataQualityRuleResultStatusFail = "FAIL"
+
+	// DataQualityRuleResultStatusError is a DataQualityRuleResultStatus enum value
+	DataQualityRuleResultStatusError = "ERROR"
+)
+
+// DataQualityRuleResultStatus_Values returns all elements of the DataQualityRuleResultStatus enum
+func DataQualityRuleResultStatus_Values() []string {
+	return []string{
+		DataQualityRuleResultStatusPass,
+		DataQualityRuleResultStatusFail,
+		DataQualityRuleResultStatusError,
 	}
 }
 
