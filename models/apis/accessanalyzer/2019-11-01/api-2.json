@@ -1053,7 +1053,8 @@
     "FindingSourceDetail":{
       "type":"structure",
       "members":{
-        "accessPointArn":{"shape":"String"}
+        "accessPointArn":{"shape":"String"},
+        "accessPointAccount":{"shape":"String"}
       }
     },
     "FindingSourceList":{
@@ -1065,7 +1066,8 @@
       "enum":[
         "POLICY",
         "BUCKET_ACL",
-        "S3_ACCESS_POINT"
+        "S3_ACCESS_POINT",
+        "S3_ACCESS_POINT_ACCOUNT"
       ]
     },
     "FindingStatus":{
@@ -1714,10 +1716,7 @@
     "PathElement":{
       "type":"structure",
       "members":{
-        "index":{
-          "shape":"Integer",
-          "box":true
-        },
+        "index":{"shape":"Integer"},
         "key":{"shape":"String"},
         "substring":{"shape":"Substring"},
         "value":{"shape":"String"}

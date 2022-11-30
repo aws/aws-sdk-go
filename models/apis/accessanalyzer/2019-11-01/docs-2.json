@@ -327,7 +327,7 @@
       }
     },
     "Criterion": {
-      "base": "<p>The criteria to use in the filter that defines the archive rule.</p>",
+      "base": "<p>The criteria to use in the filter that defines the archive rule. For more information on available filter keys, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html\">IAM Access Analyzer filter keys</a>.</p>",
       "refs": {
         "FilterCriteriaMap$value": null
       }
@@ -1261,6 +1261,7 @@
         "Finding$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
         "Finding$error": "<p>An error.</p>",
         "FindingSourceDetail$accessPointArn": "<p>The ARN of the access point that generated the finding. The ARN format depends on whether the ARN represents an access point or a multi-region access point.</p>",
+        "FindingSourceDetail$accessPointAccount": "<p>The account of the cross-account access point that generated the finding.</p>",
         "FindingSummary$resource": "<p>The resource that the external principal has access to.</p>",
         "FindingSummary$resourceOwnerAccount": "<p>The Amazon Web Services account ID that owns the resource.</p>",
         "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",

@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS Data Exchange is a service that makes it easy for AWS customers to exchange data in the cloud. You can use the AWS Data Exchange APIs to create, update, manage, and access file-based data set in the AWS Cloud.</p> <p>As a subscriber, you can view and access the data sets that you have an entitlement to through a subscription. You can use the APIS to download or copy your entitled data sets to Amazon S3 for use across a variety of AWS analytics and machine learning services.</p> <p>As a provider, you can create and manage your data sets that you would like to publish to a product. Being able to package and provide your data sets into products requires a few steps to determine eligibility. For more information, visit the AWS Data Exchange User Guide.</p> <p>A data set is a collection of data that can be changed or updated over time. Data sets can be updated using revisions, which represent a new version or incremental change to a data set. A revision contains one or more assets. An asset in AWS Data Exchange is a piece of data that can be stored as an Amazon S3 object. The asset can be a structured data file, an image file, or some other data file. Jobs are asynchronous import or export operations used to create or copy assets.</p>",
+  "service": "<p>AWS Data Exchange is a service that makes it easy for AWS customers to exchange data in the cloud. You can use the AWS Data Exchange APIs to create, update, manage, and access file-based data set in the AWS Cloud.</p> <p>As a subscriber, you can view and access the data sets that you have an entitlement to through a subscription. You can use the APIs to download or copy your entitled data sets to Amazon Simple Storage Service (Amazon S3) for use across a variety of AWS analytics and machine learning services.</p> <p>As a provider, you can create and manage your data sets that you would like to publish to a product. Being able to package and provide your data sets into products requires a few steps to determine eligibility. For more information, visit the <i>AWS Data Exchange User Guide</i>.</p> <p>A data set is a collection of data that can be changed or updated over time. Data sets can be updated using revisions, which represent a new version or incremental change to a data set. A revision contains one or more assets. An asset in AWS Data Exchange is a piece of data that can be stored as an Amazon S3 object, Redshift datashare, API Gateway API, AWS Lake Formation data permission, or Amazon S3 data access. The asset can be a structured data file, an image file, or some other data file. Jobs are asynchronous import or export operations used to create or copy assets.</p>",
   "operations": {
     "CancelJob": "<p>This operation cancels a job. Jobs can be cancelled only when they are in the WAITING state.</p>",
     "CreateDataSet": "<p>This operation creates a data set.</p>",
@@ -94,15 +94,15 @@
       }
     },
     "AssetDetails": {
-      "base": "<p>Information about the asset.</p>",
+      "base": "<p>Details about the asset.</p>",
       "refs": {
-        "AssetEntry$AssetDetails": "<p>Information about the asset.</p>",
-        "GetAssetResponse$AssetDetails": "<p>Information about the asset.</p>",
-        "UpdateAssetResponse$AssetDetails": "<p>Information about the asset.</p>"
+        "AssetEntry$AssetDetails": "<p>Details about the asset.</p>",
+        "GetAssetResponse$AssetDetails": "<p>Details about the asset.</p>",
+        "UpdateAssetResponse$AssetDetails": "<p>Details about the asset.</p>"
       }
     },
     "AssetEntry": {
-      "base": "<p>An asset in AWS Data Exchange is a piece of data (S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare. When you create an import job for your files, API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.</p>",
+      "base": "<p>An asset in AWS Data Exchange is a piece of data (Amazon S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API, AWS Lake Formation data permission, or Amazon S3 data access). The asset can be a structured data file, an image file, or some other data file that can be stored as an Amazon S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare, an AWS Lake Formation data permission, or an Amazon S3 data access. When you create an import job for your files, API Gateway APIs, Amazon Redshift datashares, AWS Lake Formation data permission, or Amazon S3 data access, you create an asset in AWS Data Exchange.</p>",
       "refs": {
         "ListOfAssetEntry$member": null
       }
@@ -110,13 +110,13 @@
     "AssetName": {
       "base": null,
       "refs": {
-        "AssetEntry$Name": "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>",
-        "GetAssetResponse$Name": "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>",
-        "ImportAssetFromSignedUrlJobErrorDetails$AssetName": "<p>Information about the job error.</p>",
-        "ImportAssetFromSignedUrlRequestDetails$AssetName": "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name.</p>",
+        "AssetEntry$Name": "<p>The name of the asset. When importing from Amazon S3, the Amazon S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target Amazon S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name. When importing from AWS Lake Formation, the static values of \"Database(s) included in LF-tag policy\" or \"Table(s) included in LF-tag policy\" are used as the asset name.</p>",
+        "GetAssetResponse$Name": "<p>The name of the asset. When importing from Amazon S3, the Amazon S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target Amazon S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name. When importing from AWS Lake Formation, the static values of \"Database(s) included in the LF-tag policy\" or \"Table(s) included in the LF-tag policy\" are used as the asset name.</p>",
+        "ImportAssetFromSignedUrlJobErrorDetails$AssetName": "<p>Details about the job error.</p>",
+        "ImportAssetFromSignedUrlRequestDetails$AssetName": "<p>The name of the asset. When importing from Amazon S3, the Amazon S3 object key is used as the asset name.</p>",
         "ImportAssetFromSignedUrlResponseDetails$AssetName": "<p>The name for the asset associated with this import job.</p>",
-        "UpdateAssetRequest$Name": "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>",
-        "UpdateAssetResponse$Name": "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>"
+        "UpdateAssetRequest$Name": "<p>The name of the asset. When importing from Amazon S3, the Amazon S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target Amazon S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name. When importing from AWS Lake Formation, the static values of \"Database(s) included in the LF-tag policy\" or \"Table(s) included in LF-tag policy\" are used as the name.</p>",
+        "UpdateAssetResponse$Name": "<p>The name of the asset. When importing from Amazon S3, the Amazon S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target Amazon S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name. When importing from AWS Lake Formation, the static values of \"Database(s) included in the LF-tag policy\"- or \"Table(s) included in LF-tag policy\" are used as the asset name.</p>"
       }
     },
     "AssetSourceEntry": {
@@ -148,6 +148,14 @@
       "base": "<p>Details of the operation to be performed by the job.</p>",
       "refs": {
         "Action$ExportRevisionToS3": "<p>Details for the export revision to Amazon S3 action.</p>"
+      }
+    },
+    "AwsAccountId": {
+      "base": null,
+      "refs": {
+        "ImportAssetsFromLakeFormationTagPolicyRequestDetails$CatalogId": "<p>The identifier for the AWS Glue Data Catalog.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyResponseDetails$CatalogId": "<p>The identifier for the AWS Glue Data Catalog.</p>",
+        "LFTagPolicyDetails$CatalogId": "<p>The identifier for the AWS Glue Data Catalog.</p>"
       }
     },
     "CancelJobRequest": {
@@ -206,10 +214,41 @@
       "refs": {
       }
     },
+    "CreateS3DataAccessFromS3BucketRequestDetails": {
+      "base": "<p>Details of the operation to create an Amazon S3 data access from an S3 bucket.</p>",
+      "refs": {
+        "RequestDetails$CreateS3DataAccessFromS3Bucket": "<p>Details of the request to create S3 data access from the Amazon S3 bucket.</p>"
+      }
+    },
+    "CreateS3DataAccessFromS3BucketResponseDetails": {
+      "base": "<p>Details about the response of the operation to create an S3 data access from an S3 bucket.</p>",
+      "refs": {
+        "ResponseDetails$CreateS3DataAccessFromS3Bucket": "<p>Response details from the CreateS3DataAccessFromS3Bucket job.</p>"
+      }
+    },
     "DataSetEntry": {
       "base": "<p>A data set is an AWS resource with one or more revisions.</p>",
       "refs": {
         "ListOfDataSetEntry$member": null
+      }
+    },
+    "DatabaseLFTagPolicy": {
+      "base": "<p>The LF-tag policy for database resources.</p>",
+      "refs": {
+        "LFResourceDetails$Database": "<p>Details about the database resource included in the AWS Lake Formation data permission.</p>"
+      }
+    },
+    "DatabaseLFTagPolicyAndPermissions": {
+      "base": "<p>The LF-tag policy and permissions for database resources.</p>",
+      "refs": {
+        "ImportAssetsFromLakeFormationTagPolicyRequestDetails$Database": "<p>A structure for the database object.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyResponseDetails$Database": "<p>A structure for the database object.</p>"
+      }
+    },
+    "DatabaseLFTagPolicyPermission": {
+      "base": null,
+      "refs": {
+        "ListOfDatabaseLFTagPolicyPermissions$member": null
       }
     },
     "DeleteAssetRequest": {
@@ -379,9 +418,13 @@
         "CreateDataSetResponse$SourceId": "<p>The data set ID of the owned data set corresponding to the entitled data set being viewed. This parameter is returned when a data set owner is viewing the entitled copy of its owned data set.</p>",
         "CreateEventActionResponse$Id": "<p>The unique identifier for the event action.</p>",
         "CreateJobResponse$Id": "<p>The unique identifier for the job.</p>",
-        "CreateRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with this revision.</p>",
+        "CreateRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with the data set revision.</p>",
         "CreateRevisionResponse$Id": "<p>The unique identifier for the revision.</p>",
         "CreateRevisionResponse$SourceId": "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>",
+        "CreateS3DataAccessFromS3BucketRequestDetails$DataSetId": "<p>The unique identifier for the data set associated with the creation of this Amazon S3 data access.</p>",
+        "CreateS3DataAccessFromS3BucketRequestDetails$RevisionId": "<p>The unique identifier for a revision.</p>",
+        "CreateS3DataAccessFromS3BucketResponseDetails$DataSetId": "<p>The unique identifier for this data set.</p>",
+        "CreateS3DataAccessFromS3BucketResponseDetails$RevisionId": "<p>The unique identifier for the revision.</p>",
         "DataSetEntry$Id": "<p>The unique identifier for the data set.</p>",
         "DataSetEntry$SourceId": "<p>The data set ID of the owned data set corresponding to the entitled data set being viewed. This parameter is returned when a data set owner is viewing the entitled copy of its owned data set.</p>",
         "EventActionEntry$Id": "<p>The unique identifier for the event action.</p>",
@@ -405,7 +448,7 @@
         "GetDataSetResponse$SourceId": "<p>The data set ID of the owned data set corresponding to the entitled data set being viewed. This parameter is returned when a data set owner is viewing the entitled copy of its owned data set.</p>",
         "GetEventActionResponse$Id": "<p>The unique identifier for the event action.</p>",
         "GetJobResponse$Id": "<p>The unique identifier for the job.</p>",
-        "GetRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with this revision.</p>",
+        "GetRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with the data set revision.</p>",
         "GetRevisionResponse$Id": "<p>The unique identifier for the revision.</p>",
         "GetRevisionResponse$SourceId": "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>",
         "ImportAssetFromApiGatewayApiRequestDetails$DataSetId": "<p>The data set ID.</p>",
@@ -416,6 +459,10 @@
         "ImportAssetFromSignedUrlRequestDetails$RevisionId": "<p>The unique identifier for the revision associated with this import request.</p>",
         "ImportAssetFromSignedUrlResponseDetails$DataSetId": "<p>The unique identifier for the data set associated with this import job.</p>",
         "ImportAssetFromSignedUrlResponseDetails$RevisionId": "<p>The unique identifier for the revision associated with this import response.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyRequestDetails$DataSetId": "<p>The unique identifier for the data set associated with this import job.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyRequestDetails$RevisionId": "<p>The unique identifier for the revision associated with this import job.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyResponseDetails$DataSetId": "<p>The unique identifier for the data set associated with this import job.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyResponseDetails$RevisionId": "<p>The unique identifier for the revision associated with this import job.</p>",
         "ImportAssetsFromRedshiftDataSharesRequestDetails$DataSetId": "<p>The unique identifier for the data set associated with this import job.</p>",
         "ImportAssetsFromRedshiftDataSharesRequestDetails$RevisionId": "<p>The unique identifier for the revision associated with this import job.</p>",
         "ImportAssetsFromRedshiftDataSharesResponseDetails$DataSetId": "<p>The unique identifier for the data set associated with this import job.</p>",
@@ -426,11 +473,11 @@
         "ImportAssetsFromS3ResponseDetails$RevisionId": "<p>The unique identifier for the revision associated with this import response.</p>",
         "JobEntry$Id": "<p>The unique identifier for the job.</p>",
         "RevisionDestinationEntry$RevisionId": "<p>The unique identifier for the revision.</p>",
-        "RevisionEntry$DataSetId": "<p>The unique identifier for the data set associated with this revision.</p>",
+        "RevisionEntry$DataSetId": "<p>The unique identifier for the data set associated with the data set revision.</p>",
         "RevisionEntry$Id": "<p>The unique identifier for the revision.</p>",
         "RevisionEntry$SourceId": "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>",
         "RevisionPublished$DataSetId": "<p>The data set ID of the published revision.</p>",
-        "RevokeRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with this revision.</p>",
+        "RevokeRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with the data set revision.</p>",
         "RevokeRevisionResponse$Id": "<p>The unique identifier for the revision.</p>",
         "RevokeRevisionResponse$SourceId": "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>",
         "UpdateAssetResponse$DataSetId": "<p>The unique identifier for the data set associated with this asset.</p>",
@@ -440,7 +487,7 @@
         "UpdateDataSetResponse$Id": "<p>The unique identifier for the data set.</p>",
         "UpdateDataSetResponse$SourceId": "<p>The data set ID of the owned data set corresponding to the entitled data set being viewed. This parameter is returned when a data set owner is viewing the entitled copy of its owned data set.</p>",
         "UpdateEventActionResponse$Id": "<p>The unique identifier for the event action.</p>",
-        "UpdateRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with this revision.</p>",
+        "UpdateRevisionResponse$DataSetId": "<p>The unique identifier for the data set associated with the data set revision.</p>",
         "UpdateRevisionResponse$Id": "<p>The unique identifier for the revision.</p>",
         "UpdateRevisionResponse$SourceId": "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>"
       }
@@ -458,7 +505,7 @@
       }
     },
     "ImportAssetFromSignedUrlJobErrorDetails": {
-      "base": "<p>Information about the job error.</p>",
+      "base": "<p>Details about the job error.</p>",
       "refs": {
         "Details$ImportAssetFromSignedUrlJobErrorDetails": "<p>Information about the job error.</p>"
       }
@@ -473,6 +520,18 @@
       "base": "<p>The details in the response for an import request, including the signed URL and other information.</p>",
       "refs": {
         "ResponseDetails$ImportAssetFromSignedUrl": "<p>Details for the import from signed URL response.</p>"
+      }
+    },
+    "ImportAssetsFromLakeFormationTagPolicyRequestDetails": {
+      "base": "<p>Details about the assets imported from an AWS Lake Formation tag policy request.</p>",
+      "refs": {
+        "RequestDetails$ImportAssetsFromLakeFormationTagPolicy": "<p>Request details for the ImportAssetsFromLakeFormationTagPolicy job.</p>"
+      }
+    },
+    "ImportAssetsFromLakeFormationTagPolicyResponseDetails": {
+      "base": "<p>Details from an import AWS Lake Formation tag policy job response.</p>",
+      "refs": {
+        "ResponseDetails$ImportAssetsFromLakeFormationTagPolicy": "<p>Response details from the ImportAssetsFromLakeFormationTagPolicy job.</p>"
       }
     },
     "ImportAssetsFromRedshiftDataSharesRequestDetails": {
@@ -490,7 +549,7 @@
     "ImportAssetsFromS3RequestDetails": {
       "base": "<p>Details of the operation to be performed by the job.</p>",
       "refs": {
-        "RequestDetails$ImportAssetsFromS3": "<p>Information about the import asset from API Gateway API request.</p>"
+        "RequestDetails$ImportAssetsFromS3": "<p>Details about the import asset from API Gateway API request.</p>"
       }
     },
     "ImportAssetsFromS3ResponseDetails": {
@@ -526,6 +585,54 @@
       "base": null,
       "refs": {
         "JobError$ResourceType": "<p>The type of resource related to the error.</p>"
+      }
+    },
+    "LFPermission": {
+      "base": null,
+      "refs": {
+        "ListOfLFPermissions$member": null
+      }
+    },
+    "LFResourceDetails": {
+      "base": "<p>Details about the AWS Lake Formation resource (Table or Database) included in the AWS Lake Formation data permission.</p>",
+      "refs": {
+        "LFTagPolicyDetails$ResourceDetails": "<p>Details for the Lake Formation Resources included in the LF-tag policy.</p>"
+      }
+    },
+    "LFResourceType": {
+      "base": null,
+      "refs": {
+        "LFTagPolicyDetails$ResourceType": "<p>The resource type for which the LF-tag policy applies.</p>"
+      }
+    },
+    "LFTag": {
+      "base": "<p>A structure that allows an LF-admin to grant permissions on certain conditions.</p>",
+      "refs": {
+        "ListOfLFTags$member": null
+      }
+    },
+    "LFTagPolicyDetails": {
+      "base": "<p>Details about the LF-tag policy.</p>",
+      "refs": {
+        "LakeFormationDataPermissionDetails$LFTagPolicy": "<p>Details about the LF-tag policy.</p>"
+      }
+    },
+    "LakeFormationDataPermissionAsset": {
+      "base": "<p>The AWS Lake Formation data permission asset.</p>",
+      "refs": {
+        "AssetDetails$LakeFormationDataPermissionAsset": "<p>The AWS Lake Formation data permission that is the asset.</p>"
+      }
+    },
+    "LakeFormationDataPermissionDetails": {
+      "base": "<p>Details about the AWS Lake Formation data permission.</p>",
+      "refs": {
+        "LakeFormationDataPermissionAsset$LakeFormationDataPermissionDetails": "<p>Details about the AWS Lake Formation data permission.</p>"
+      }
+    },
+    "LakeFormationDataPermissionType": {
+      "base": null,
+      "refs": {
+        "LakeFormationDataPermissionAsset$LakeFormationDataPermissionType": "<p>The data permission type.</p>"
       }
     },
     "LimitName": {
@@ -590,8 +697,8 @@
     "ListOfAssetSourceEntry": {
       "base": null,
       "refs": {
-        "Details$ImportAssetsFromS3JobErrorDetails": "<p>Information about the job error.</p>",
-        "ImportAssetsFromS3RequestDetails$AssetSources": "<p>Is a list of S3 bucket and object key pairs.</p>",
+        "Details$ImportAssetsFromS3JobErrorDetails": "<p>Details about the job error.</p>",
+        "ImportAssetsFromS3RequestDetails$AssetSources": "<p>Is a list of Amazon S3 bucket and object key pairs.</p>",
         "ImportAssetsFromS3ResponseDetails$AssetSources": "<p>Is a list of Amazon S3 bucket and object key pairs.</p>"
       }
     },
@@ -599,6 +706,12 @@
       "base": null,
       "refs": {
         "ListDataSetsResponse$DataSets": "<p>The data set objects listed by the request.</p>"
+      }
+    },
+    "ListOfDatabaseLFTagPolicyPermissions": {
+      "base": null,
+      "refs": {
+        "DatabaseLFTagPolicyAndPermissions$Permissions": "<p>The permissions granted to subscribers on database resources.</p>"
       }
     },
     "ListOfEventActionEntry": {
@@ -621,6 +734,27 @@
         "JobEntry$Errors": "<p>Errors for jobs.</p>"
       }
     },
+    "ListOfLFPermissions": {
+      "base": null,
+      "refs": {
+        "LakeFormationDataPermissionAsset$Permissions": "<p>The permissions granted to the subscribers on the resource.</p>"
+      }
+    },
+    "ListOfLFTagValues": {
+      "base": null,
+      "refs": {
+        "LFTag$TagValues": "<p>A list of LF-tag values.</p>"
+      }
+    },
+    "ListOfLFTags": {
+      "base": null,
+      "refs": {
+        "DatabaseLFTagPolicy$Expression": "<p>A list of LF-tag conditions that apply to database resources.</p>",
+        "DatabaseLFTagPolicyAndPermissions$Expression": "<p>A list of LF-tag conditions that apply to database resources.</p>",
+        "TableLFTagPolicy$Expression": "<p>A list of LF-tag conditions that apply to table resources.</p>",
+        "TableLFTagPolicyAndPermissions$Expression": "<p>A list of LF-tag conditions that apply to table resources.</p>"
+      }
+    },
     "ListOfRedshiftDataShareAssetSourceEntry": {
       "base": null,
       "refs": {
@@ -641,9 +775,19 @@
         "ListDataSetRevisionsResponse$Revisions": "<p>The asset objects listed by the request.</p>"
       }
     },
+    "ListOfTableTagPolicyLFPermissions": {
+      "base": null,
+      "refs": {
+        "TableLFTagPolicyAndPermissions$Permissions": "<p>The permissions granted to subscribers on table resources.</p>"
+      }
+    },
     "ListOf__string": {
       "base": null,
       "refs": {
+        "S3DataAccessAsset$KeyPrefixes": "<p>The Amazon S3 bucket used for hosting shared data in the Amazon S3 data access.</p>",
+        "S3DataAccessAsset$Keys": "<p>S3 keys made available using this asset.</p>",
+        "S3DataAccessAssetSourceEntry$KeyPrefixes": "<p>Organizes Amazon S3 asset key prefixes stored in an Amazon S3 bucket.</p>",
+        "S3DataAccessAssetSourceEntry$Keys": "<p>The keys used to create the Amazon S3 data access.</p>",
         "UntagResourceRequest$TagKeys": "<p>The key tags.</p>"
       }
     },
@@ -724,7 +868,7 @@
       }
     },
     "OriginDetails": {
-      "base": "<p>Information about the origin of the data set.</p>",
+      "base": "<p>Details about the origin of the data set.</p>",
       "refs": {
         "CreateDataSetResponse$OriginDetails": "<p>If the origin of this data set is ENTITLED, includes the details for the product on AWS Marketplace.</p>",
         "DataSetEntry$OriginDetails": "<p>If the origin of this data set is ENTITLED, includes the details for the product on AWS Marketplace.</p>",
@@ -806,10 +950,31 @@
       "refs": {
       }
     },
-    "S3SnapshotAsset": {
-      "base": "<p>The S3 object that is the asset.</p>",
+    "RoleArn": {
+      "base": null,
       "refs": {
-        "AssetDetails$S3SnapshotAsset": "<p>The S3 object that is the asset.</p>"
+        "ImportAssetsFromLakeFormationTagPolicyRequestDetails$RoleArn": "<p>The IAM role's ARN that allows AWS Data Exchange to assume the role and grant and revoke permissions of subscribers to AWS Lake Formation data permissions.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyResponseDetails$RoleArn": "<p>The IAM role's ARN that allows AWS Data Exchange to assume the role and grant and revoke permissions to AWS Lake Formation data permissions.</p>",
+        "LakeFormationDataPermissionAsset$RoleArn": "<p>The IAM role's ARN that allows AWS Data Exchange to assume the role and grant and revoke permissions to AWS Lake Formation data permissions.</p>"
+      }
+    },
+    "S3DataAccessAsset": {
+      "base": "<p>The Amazon S3 data access that is the asset.</p>",
+      "refs": {
+        "AssetDetails$S3DataAccessAsset": "<p>The Amazon S3 data access that is the asset.</p>"
+      }
+    },
+    "S3DataAccessAssetSourceEntry": {
+      "base": "<p>Source details for an Amazon S3 data access asset.</p>",
+      "refs": {
+        "CreateS3DataAccessFromS3BucketRequestDetails$AssetSource": "<p>Details about the S3 data access source asset.</p>",
+        "CreateS3DataAccessFromS3BucketResponseDetails$AssetSource": "<p>Details about the asset source from an Amazon S3 bucket.</p>"
+      }
+    },
+    "S3SnapshotAsset": {
+      "base": "<p>The Amazon S3 object that is the asset.</p>",
+      "refs": {
+        "AssetDetails$S3SnapshotAsset": "<p>The Amazon S3 object that is the asset.</p>"
       }
     },
     "SendApiAssetRequest": {
@@ -849,6 +1014,32 @@
         "CreateJobResponse$State": "<p>The state of the job.</p>",
         "GetJobResponse$State": "<p>The state of the job.</p>",
         "JobEntry$State": "<p>The state of the job.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "LFTag$TagKey": "<p>The key name for the LF-tag.</p>",
+        "ListOfLFTagValues$member": null
+      }
+    },
+    "TableLFTagPolicy": {
+      "base": "<p>The LF-tag policy for a table resource.</p>",
+      "refs": {
+        "LFResourceDetails$Table": "<p>Details about the table resource included in the AWS Lake Formation data permission.</p>"
+      }
+    },
+    "TableLFTagPolicyAndPermissions": {
+      "base": "<p>The LF-tag policy and permissions that apply to table resources.</p>",
+      "refs": {
+        "ImportAssetsFromLakeFormationTagPolicyRequestDetails$Table": "<p>A structure for the table object.</p>",
+        "ImportAssetsFromLakeFormationTagPolicyResponseDetails$Table": "<p>A structure for the table object.</p>"
+      }
+    },
+    "TableTagPolicyLFPermission": {
+      "base": null,
+      "refs": {
+        "ListOfTableTagPolicyLFPermissions$member": null
       }
     },
     "TagResourceRequest": {
@@ -998,7 +1189,7 @@
     "__doubleMin0": {
       "base": null,
       "refs": {
-        "S3SnapshotAsset$Size": "<p>The size of the S3 object that is the object.</p>"
+        "S3SnapshotAsset$Size": "<p>The size of the Amazon S3 object that is the object.</p>"
       }
     },
     "__string": {
@@ -1011,11 +1202,11 @@
         "ApiGatewayApiAsset$ApiName": "<p>The API name of the API asset.</p>",
         "ApiGatewayApiAsset$ApiSpecificationDownloadUrl": "<p>The download URL of the API specification of the API asset.</p>",
         "ApiGatewayApiAsset$Stage": "<p>The stage of the API asset.</p>",
-        "AssetDestinationEntry$Bucket": "<p>The S3 bucket that is the destination for the asset.</p>",
+        "AssetDestinationEntry$Bucket": "<p>The Amazon S3 bucket that is the destination for the asset.</p>",
         "AssetDestinationEntry$Key": "<p>The name of the object in Amazon S3 for the asset.</p>",
-        "AssetSourceEntry$Bucket": "<p>The S3 bucket that's part of the source of the asset.</p>",
+        "AssetSourceEntry$Bucket": "<p>The Amazon S3 bucket that's part of the source of the asset.</p>",
         "AssetSourceEntry$Key": "<p>The name of the object in Amazon S3 for the asset.</p>",
-        "AutoExportRevisionDestinationEntry$Bucket": "<p>The S3 bucket that is the destination for the event action.</p>",
+        "AutoExportRevisionDestinationEntry$Bucket": "<p>The Amazon S3 bucket that is the destination for the event action.</p>",
         "AutoExportRevisionDestinationEntry$KeyPattern": "<p>A string representing the pattern for generated names of the individual assets in the revision. For more information about key patterns, see <a href=\"https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns\">Key patterns when exporting revisions</a>.</p>",
         "CancelJobRequest$JobId": "<p>The unique identifier for a job.</p>",
         "ConflictException$Message": "<p>The request couldn't be completed because it conflicted with the current state of the resource.</p>",
@@ -1073,10 +1264,14 @@
         "RedshiftDataShareAssetSourceEntry$DataShareArn": "<p>The Amazon Resource Name (ARN) of the datashare asset.</p>",
         "ResourceNotFoundException$Message": "<p>The resource couldn't be found.</p>",
         "ResourceNotFoundException$ResourceId": "<p>The unique identifier for the resource that couldn't be found.</p>",
-        "RevisionDestinationEntry$Bucket": "<p>The S3 bucket that is the destination for the assets in the revision.</p>",
+        "RevisionDestinationEntry$Bucket": "<p>The Amazon S3 bucket that is the destination for the assets in the revision.</p>",
         "RevisionDestinationEntry$KeyPattern": "<p>A string representing the pattern for generated names of the individual assets in the revision. For more information about key patterns, see <a href=\"https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns\">Key patterns when exporting revisions</a>.</p>",
         "RevokeRevisionRequest$DataSetId": "<p>The unique identifier for a data set.</p>",
         "RevokeRevisionRequest$RevisionId": "<p>The unique identifier for a revision.</p>",
+        "S3DataAccessAsset$Bucket": "<p>The Amazon S3 bucket hosting data to be shared in the S3 data access.</p>",
+        "S3DataAccessAsset$S3AccessPointAlias": "<p>The automatically-generated bucket-style alias for your Amazon S3 Access Point. Customers can access their entitled data using the S3 Access Point alias.</p>",
+        "S3DataAccessAsset$S3AccessPointArn": "<p>The ARN for your Amazon S3 Access Point. Customers can also access their entitled data using the S3 Access Point ARN.</p>",
+        "S3DataAccessAssetSourceEntry$Bucket": "<p>The Amazon S3 bucket used for hosting shared data in the Amazon S3 data access.</p>",
         "SendApiAssetRequest$Body": "<p>The request body.</p>",
         "SendApiAssetRequest$AssetId": "<p>Asset ID value for the API request.</p>",
         "SendApiAssetRequest$DataSetId": "<p>Data set ID value for the API request.</p>",

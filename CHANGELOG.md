@@ -1,3 +1,20 @@
+Release v1.44.150 (2022-11-30)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/athena`: Updates service API, documentation, and paginators
+  * This release includes support for using Apache Spark in Amazon Athena.
+* `service/dataexchange`: Updates service API and documentation
+* `service/docdb-elastic`: Adds new service
+* `service/glue`: Updates service API, documentation, and paginators
+  * This release adds support for AWS Glue Data Quality, which helps you evaluate and monitor the quality of your data and includes the API for creating, deleting, or updating data quality rulesets, runs and evaluations.
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 now supports cross-account access points. S3 bucket owners can now allow trusted AWS accounts to create access points associated with their bucket.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Added Models as part of the Search API. Added Model shadow deployments in realtime inference, and shadow testing in managed inference. Added support for shared spaces, geospatial APIs, Model Cards, AutoMLJobStep in pipelines, Git repositories on user profiles and domains, Model sharing in Jumpstart.
+* `service/sagemaker-geospatial`: Adds new service
+
 Release v1.44.149 (2022-11-29)
 ===
 

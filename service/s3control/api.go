@@ -3860,11 +3860,11 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 
 // ListAccessPoints API operation for AWS S3 Control.
 //
-// Returns a list of the access points currently associated with the specified
-// bucket. You can retrieve up to 1000 access points per call. If the specified
-// bucket has more than 1,000 access points (or the number specified in maxResults,
-// whichever is less), the response will include a continuation token that you
-// can use to list the additional access points.
+// Returns a list of the access points owned by the current account associated
+// with the specified bucket. You can retrieve up to 1000 access points per
+// call. If the specified bucket has more than 1,000 access points (or the number
+// specified in maxResults, whichever is less), the response will include a
+// continuation token that you can use to list the additional access points.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
 // parameter of x-amz-outpost-id to be passed with the request. In addition,
@@ -6277,6 +6277,10 @@ type AccessPoint struct {
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
+	// The Amazon Web Services account ID associated with the S3 bucket associated
+	// with this access point.
+	BucketAccountId *string `type:"string"`
+
 	// The name of this access point.
 	//
 	// Name is a required field
@@ -6332,6 +6336,12 @@ func (s *AccessPoint) SetAlias(v string) *AccessPoint {
 // SetBucket sets the Bucket field's value.
 func (s *AccessPoint) SetBucket(v string) *AccessPoint {
 	s.Bucket = &v
+	return s
+}
+
+// SetBucketAccountId sets the BucketAccountId field's value.
+func (s *AccessPoint) SetBucketAccountId(v string) *AccessPoint {
+	s.BucketAccountId = &v
 	return s
 }
 
@@ -7133,8 +7143,8 @@ func (s *CreateAccessPointForObjectLambdaOutput) SetObjectLambdaAccessPointArn(v
 type CreateAccessPointInput struct {
 	_ struct{} `locationName:"CreateAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The Amazon Web Services account ID for the owner of the bucket for which
-	// you want to create an access point.
+	// The Amazon Web Services account ID for the account that owns the specified
+	// access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7153,6 +7163,10 @@ type CreateAccessPointInput struct {
 	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon Web Services account ID associated with the S3 bucket associated
+	// with this access point.
+	BucketAccountId *string `type:"string"`
 
 	// The name you want to assign to this access point.
 	//
@@ -7233,6 +7247,12 @@ func (s *CreateAccessPointInput) SetBucket(v string) *CreateAccessPointInput {
 	return s
 }
 
+// SetBucketAccountId sets the BucketAccountId field's value.
+func (s *CreateAccessPointInput) SetBucketAccountId(v string) *CreateAccessPointInput {
+	s.BucketAccountId = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateAccessPointInput) SetName(v string) *CreateAccessPointInput {
 	s.Name = &v
@@ -7293,6 +7313,20 @@ func (s CreateAccessPointInput) updateAccountID(accountId string) (interface{}, 
 		s.AccountId = aws.String(accountId)
 		return &s, nil
 	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
+}
+
+// updateBucketAccountId returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s CreateAccessPointInput) updateBucketAccountId(accountId string) (interface{}, error) {
+	if s.BucketAccountId == nil {
+		s.BucketAccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.BucketAccountId != accountId {
 		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
 	return nil, nil
@@ -8146,7 +8180,8 @@ func (s DeleteAccessPointForObjectLambdaOutput) GoString() string {
 type DeleteAccessPointInput struct {
 	_ struct{} `locationName:"DeleteAccessPointRequest" type:"structure"`
 
-	// The account ID for the account that owns the specified access point.
+	// The Amazon Web Services account ID for the account that owns the specified
+	// access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10257,7 +10292,8 @@ func (s *GetAccessPointForObjectLambdaOutput) SetPublicAccessBlockConfiguration(
 type GetAccessPointInput struct {
 	_ struct{} `locationName:"GetAccessPointRequest" type:"structure"`
 
-	// The account ID for the account that owns the specified access point.
+	// The Amazon Web Services account ID for the account that owns the specified
+	// access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10391,6 +10427,10 @@ type GetAccessPointOutput struct {
 	// The name of the bucket associated with the specified access point.
 	Bucket *string `min:"3" type:"string"`
 
+	// The Amazon Web Services account ID associated with the S3 bucket associated
+	// with this access point.
+	BucketAccountId *string `type:"string"`
+
 	// The date and time when the specified access point was created.
 	CreationDate *time.Time `type:"timestamp"`
 
@@ -10459,6 +10499,12 @@ func (s *GetAccessPointOutput) SetAlias(v string) *GetAccessPointOutput {
 // SetBucket sets the Bucket field's value.
 func (s *GetAccessPointOutput) SetBucket(v string) *GetAccessPointOutput {
 	s.Bucket = &v
+	return s
+}
+
+// SetBucketAccountId sets the BucketAccountId field's value.
+func (s *GetAccessPointOutput) SetBucketAccountId(v string) *GetAccessPointOutput {
+	s.BucketAccountId = &v
 	return s
 }
 
@@ -14239,8 +14285,8 @@ func (s *ListAccessPointsForObjectLambdaOutput) SetObjectLambdaAccessPointList(v
 type ListAccessPointsInput struct {
 	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
 
-	// The Amazon Web Services account ID for owner of the bucket whose access points
-	// you want to list.
+	// The Amazon Web Services account ID for the account that owns the specified
+	// access points.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`

@@ -156,6 +156,12 @@
       "limit_key": "MaxResults",
       "result_key": "Images"
     },
+    "ListInferenceExperiments": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "InferenceExperiments"
+    },
     "ListInferenceRecommendationsJobSteps": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -192,6 +198,24 @@
       "limit_key": "MaxResults",
       "result_key": "JobDefinitionSummaries"
     },
+    "ListModelCardExportJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ModelCardExportJobSummaries"
+    },
+    "ListModelCardVersions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ModelCardVersionSummaryList"
+    },
+    "ListModelCards": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ModelCardSummaries"
+    },
     "ListModelExplainabilityJobDefinitions": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -227,6 +251,18 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "Models"
+    },
+    "ListMonitoringAlertHistory": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "MonitoringAlertHistory"
+    },
+    "ListMonitoringAlerts": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "MonitoringAlertSummaries"
     },
     "ListMonitoringExecutions": {
       "input_token": "NextToken",
@@ -286,6 +322,12 @@
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"
+    },
+    "ListSpaces": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Spaces"
     },
     "ListStageDevices": {
       "input_token": "NextToken",

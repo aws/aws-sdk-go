@@ -1041,7 +1041,8 @@
         "VpcConfiguration":{"shape":"VpcConfiguration"},
         "Bucket":{"shape":"BucketName"},
         "AccessPointArn":{"shape":"S3AccessPointArn"},
-        "Alias":{"shape":"Alias"}
+        "Alias":{"shape":"Alias"},
+        "BucketAccountId":{"shape":"AccountId"}
       }
     },
     "AccessPointList":{
@@ -1305,7 +1306,8 @@
           "contextParam":{"name":"Bucket"}
         },
         "VpcConfiguration":{"shape":"VpcConfiguration"},
-        "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"}
+        "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"},
+        "BucketAccountId":{"shape":"AccountId"}
       }
     },
     "CreateAccessPointResult":{
@@ -2096,7 +2098,8 @@
         "CreationDate":{"shape":"CreationDate"},
         "Alias":{"shape":"Alias"},
         "AccessPointArn":{"shape":"S3AccessPointArn"},
-        "Endpoints":{"shape":"Endpoints"}
+        "Endpoints":{"shape":"Endpoints"},
+        "BucketAccountId":{"shape":"AccountId"}
       }
     },
     "GetBucketLifecycleConfigurationRequest":{

@@ -826,6 +826,22 @@
           }
         }
       },
+      "api.ecr-public" : {
+        "endpoints" : {
+          "us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "api.ecr-public.us-east-1.amazonaws.com"
+          },
+          "us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "api.ecr-public.us-west-2.amazonaws.com"
+          }
+        }
+      },
       "api.elastic-inference" : {
         "endpoints" : {
           "ap-northeast-1" : {
@@ -7021,18 +7037,6 @@
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ca-central-1" : { },
-          "dataplane-ap-south-1" : {
-            "credentialScope" : {
-              "region" : "ap-south-1"
-            },
-            "hostname" : "greengrass-ats.iot.ap-south-1.amazonaws.com"
-          },
-          "dataplane-us-east-2" : {
-            "credentialScope" : {
-              "region" : "us-east-2"
-            },
-            "hostname" : "greengrass-ats.iot.us-east-2.amazonaws.com"
-          },
           "eu-central-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
@@ -12585,6 +12589,11 @@
           }
         }
       },
+      "sagemaker-geospatial" : {
+        "endpoints" : {
+          "us-west-2" : { }
+        }
+      },
       "savingsplans" : {
         "endpoints" : {
           "aws-global" : {
@@ -16420,13 +16429,7 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
-          "cn-north-1" : { },
-          "dataplane-cn-north-1" : {
-            "credentialScope" : {
-              "region" : "cn-north-1"
-            },
-            "hostname" : "greengrass.ats.iot.cn-north-1.amazonaws.com.cn"
-          }
+          "cn-north-1" : { }
         },
         "isRegionalized" : true
       },

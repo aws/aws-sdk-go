@@ -3124,7 +3124,7 @@ type AssetDestinationEntry struct {
 	// AssetId is a required field
 	AssetId *string `type:"string" required:"true"`
 
-	// The S3 bucket that is the destination for the asset.
+	// The Amazon S3 bucket that is the destination for the asset.
 	//
 	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
@@ -3185,17 +3185,23 @@ func (s *AssetDestinationEntry) SetKey(v string) *AssetDestinationEntry {
 	return s
 }
 
-// Information about the asset.
+// Details about the asset.
 type AssetDetails struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the API Gateway API asset.
 	ApiGatewayApiAsset *ApiGatewayApiAsset `type:"structure"`
 
+	// The AWS Lake Formation data permission that is the asset.
+	LakeFormationDataPermissionAsset *LakeFormationDataPermissionAsset `type:"structure"`
+
 	// The Amazon Redshift datashare that is the asset.
 	RedshiftDataShareAsset *RedshiftDataShareAsset `type:"structure"`
 
-	// The S3 object that is the asset.
+	// The Amazon S3 data access that is the asset.
+	S3DataAccessAsset *S3DataAccessAsset `type:"structure"`
+
+	// The Amazon S3 object that is the asset.
 	S3SnapshotAsset *S3SnapshotAsset `type:"structure"`
 }
 
@@ -3223,9 +3229,21 @@ func (s *AssetDetails) SetApiGatewayApiAsset(v *ApiGatewayApiAsset) *AssetDetail
 	return s
 }
 
+// SetLakeFormationDataPermissionAsset sets the LakeFormationDataPermissionAsset field's value.
+func (s *AssetDetails) SetLakeFormationDataPermissionAsset(v *LakeFormationDataPermissionAsset) *AssetDetails {
+	s.LakeFormationDataPermissionAsset = v
+	return s
+}
+
 // SetRedshiftDataShareAsset sets the RedshiftDataShareAsset field's value.
 func (s *AssetDetails) SetRedshiftDataShareAsset(v *RedshiftDataShareAsset) *AssetDetails {
 	s.RedshiftDataShareAsset = v
+	return s
+}
+
+// SetS3DataAccessAsset sets the S3DataAccessAsset field's value.
+func (s *AssetDetails) SetS3DataAccessAsset(v *S3DataAccessAsset) *AssetDetails {
+	s.S3DataAccessAsset = v
 	return s
 }
 
@@ -3235,12 +3253,15 @@ func (s *AssetDetails) SetS3SnapshotAsset(v *S3SnapshotAsset) *AssetDetails {
 	return s
 }
 
-// An asset in AWS Data Exchange is a piece of data (S3 object) or a means of
-// fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The
-// asset can be a structured data file, an image file, or some other data file
-// that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon
-// Redshift datashare. When you create an import job for your files, API Gateway
-// APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.
+// An asset in AWS Data Exchange is a piece of data (Amazon S3 object) or a
+// means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway
+// API, AWS Lake Formation data permission, or Amazon S3 data access). The asset
+// can be a structured data file, an image file, or some other data file that
+// can be stored as an Amazon S3 object, an Amazon API Gateway API, or an Amazon
+// Redshift datashare, an AWS Lake Formation data permission, or an Amazon S3
+// data access. When you create an import job for your files, API Gateway APIs,
+// Amazon Redshift datashares, AWS Lake Formation data permission, or Amazon
+// S3 data access, you create an asset in AWS Data Exchange.
 type AssetEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -3249,7 +3270,7 @@ type AssetEntry struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
-	// Information about the asset.
+	// Details about the asset.
 	//
 	// AssetDetails is a required field
 	AssetDetails *AssetDetails `type:"structure" required:"true"`
@@ -3274,11 +3295,13 @@ type AssetEntry struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key. When importing from Amazon API Gateway API,
-	// the API name is used as the asset name. When importing from Amazon Redshift,
-	// the datashare name is used as the asset name.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in LF-tag
+	// policy" or "Table(s) included in LF-tag policy" are used as the asset name.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -3381,7 +3404,7 @@ func (s *AssetEntry) SetUpdatedAt(v time.Time) *AssetEntry {
 type AssetSourceEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that's part of the source of the asset.
+	// The Amazon S3 bucket that's part of the source of the asset.
 	//
 	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
@@ -3443,7 +3466,7 @@ func (s *AssetSourceEntry) SetKey(v string) *AssetSourceEntry {
 type AutoExportRevisionDestinationEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that is the destination for the event action.
+	// The Amazon S3 bucket that is the destination for the event action.
 	//
 	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
@@ -4307,7 +4330,7 @@ type CreateRevisionOutput struct {
 	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The unique identifier for the data set associated with this revision.
+	// The unique identifier for the data set associated with the data set revision.
 	DataSetId *string `type:"string"`
 
 	// To publish a revision to a data set in a product, the revision must first
@@ -4431,6 +4454,144 @@ func (s *CreateRevisionOutput) SetTags(v map[string]*string) *CreateRevisionOutp
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *CreateRevisionOutput) SetUpdatedAt(v time.Time) *CreateRevisionOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+// Details of the operation to create an Amazon S3 data access from an S3 bucket.
+type CreateS3DataAccessFromS3BucketRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the S3 data access source asset.
+	//
+	// AssetSource is a required field
+	AssetSource *S3DataAccessAssetSourceEntry `type:"structure" required:"true"`
+
+	// The unique identifier for the data set associated with the creation of this
+	// Amazon S3 data access.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for a revision.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateS3DataAccessFromS3BucketRequestDetails"}
+	if s.AssetSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetSource"))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.AssetSource != nil {
+		if err := s.AssetSource.Validate(); err != nil {
+			invalidParams.AddNested("AssetSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetSource sets the AssetSource field's value.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) SetAssetSource(v *S3DataAccessAssetSourceEntry) *CreateS3DataAccessFromS3BucketRequestDetails {
+	s.AssetSource = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) SetDataSetId(v string) *CreateS3DataAccessFromS3BucketRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *CreateS3DataAccessFromS3BucketRequestDetails) SetRevisionId(v string) *CreateS3DataAccessFromS3BucketRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// Details about the response of the operation to create an S3 data access from
+// an S3 bucket.
+type CreateS3DataAccessFromS3BucketResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the asset source from an Amazon S3 bucket.
+	//
+	// AssetSource is a required field
+	AssetSource *S3DataAccessAssetSourceEntry `type:"structure" required:"true"`
+
+	// The unique identifier for this data set.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for the revision.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateS3DataAccessFromS3BucketResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssetSource sets the AssetSource field's value.
+func (s *CreateS3DataAccessFromS3BucketResponseDetails) SetAssetSource(v *S3DataAccessAssetSourceEntry) *CreateS3DataAccessFromS3BucketResponseDetails {
+	s.AssetSource = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *CreateS3DataAccessFromS3BucketResponseDetails) SetDataSetId(v string) *CreateS3DataAccessFromS3BucketResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *CreateS3DataAccessFromS3BucketResponseDetails) SetRevisionId(v string) *CreateS3DataAccessFromS3BucketResponseDetails {
+	s.RevisionId = &v
 	return s
 }
 
@@ -4564,6 +4725,111 @@ func (s *DataSetEntry) SetSourceId(v string) *DataSetEntry {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DataSetEntry) SetUpdatedAt(v time.Time) *DataSetEntry {
 	s.UpdatedAt = &v
+	return s
+}
+
+// The LF-tag policy for database resources.
+type DatabaseLFTagPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to database resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicy) GoString() string {
+	return s.String()
+}
+
+// SetExpression sets the Expression field's value.
+func (s *DatabaseLFTagPolicy) SetExpression(v []*LFTag) *DatabaseLFTagPolicy {
+	s.Expression = v
+	return s
+}
+
+// The LF-tag policy and permissions for database resources.
+type DatabaseLFTagPolicyAndPermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to database resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+
+	// The permissions granted to subscribers on database resources.
+	//
+	// Permissions is a required field
+	Permissions []*string `type:"list" required:"true" enum:"DatabaseLFTagPolicyPermission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicyAndPermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseLFTagPolicyAndPermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatabaseLFTagPolicyAndPermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatabaseLFTagPolicyAndPermissions"}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.Expression != nil {
+		for i, v := range s.Expression {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Expression", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *DatabaseLFTagPolicyAndPermissions) SetExpression(v []*LFTag) *DatabaseLFTagPolicyAndPermissions {
+	s.Expression = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *DatabaseLFTagPolicyAndPermissions) SetPermissions(v []*string) *DatabaseLFTagPolicyAndPermissions {
+	s.Permissions = v
 	return s
 }
 
@@ -4909,7 +5175,7 @@ type Details struct {
 	// Information about the job error.
 	ImportAssetFromSignedUrlJobErrorDetails *ImportAssetFromSignedUrlJobErrorDetails `type:"structure"`
 
-	// Information about the job error.
+	// Details about the job error.
 	ImportAssetsFromS3JobErrorDetails []*AssetSourceEntry `type:"list"`
 }
 
@@ -5691,7 +5957,7 @@ type GetAssetOutput struct {
 	// The ARN for the asset.
 	Arn *string `type:"string"`
 
-	// Information about the asset.
+	// Details about the asset.
 	AssetDetails *AssetDetails `type:"structure"`
 
 	// The type of asset that is added to a data set.
@@ -5706,11 +5972,14 @@ type GetAssetOutput struct {
 	// The unique identifier for the asset.
 	Id *string `type:"string"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key. When importing from Amazon API Gateway API,
-	// the API name is used as the asset name. When importing from Amazon Redshift,
-	// the datashare name is used as the asset name.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in the
+	// LF-tag policy" or "Table(s) included in the LF-tag policy" are used as the
+	// asset name.
 	Name *string `type:"string"`
 
 	// The unique identifier for the revision associated with this asset.
@@ -6323,7 +6592,7 @@ type GetRevisionOutput struct {
 	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The unique identifier for the data set associated with this revision.
+	// The unique identifier for the data set associated with the data set revision.
 	DataSetId *string `type:"string"`
 
 	// To publish a revision to a data set in a product, the revision must first
@@ -6744,11 +7013,11 @@ func (s *ImportAssetFromApiGatewayApiResponseDetails) SetStage(v string) *Import
 	return s
 }
 
-// Information about the job error.
+// Details about the job error.
 type ImportAssetFromSignedUrlJobErrorDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the job error.
+	// Details about the job error.
 	//
 	// AssetName is a required field
 	AssetName *string `type:"string" required:"true"`
@@ -6782,8 +7051,8 @@ func (s *ImportAssetFromSignedUrlJobErrorDetails) SetAssetName(v string) *Import
 type ImportAssetFromSignedUrlRequestDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name.
 	//
 	// AssetName is a required field
 	AssetName *string `type:"string" required:"true"`
@@ -6957,6 +7226,213 @@ func (s *ImportAssetFromSignedUrlResponseDetails) SetSignedUrlExpiresAt(v time.T
 	return s
 }
 
+// Details about the assets imported from an AWS Lake Formation tag policy request.
+type ImportAssetsFromLakeFormationTagPolicyRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the AWS Glue Data Catalog.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"12" type:"string" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// A structure for the database object.
+	Database *DatabaseLFTagPolicyAndPermissions `type:"structure"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The IAM role's ARN that allows AWS Data Exchange to assume the role and grant
+	// and revoke permissions of subscribers to AWS Lake Formation data permissions.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
+
+	// A structure for the table object.
+	Table *TableLFTagPolicyAndPermissions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportAssetsFromLakeFormationTagPolicyRequestDetails"}
+	if s.CatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogId"))
+	}
+	if s.CatalogId != nil && len(*s.CatalogId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 12))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.Database != nil {
+		if err := s.Database.Validate(); err != nil {
+			invalidParams.AddNested("Database", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Table != nil {
+		if err := s.Table.Validate(); err != nil {
+			invalidParams.AddNested("Table", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetCatalogId(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetDataSetId(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetDatabase(v *DatabaseLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.Database = v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetRevisionId(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetRoleArn(v string) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyRequestDetails) SetTable(v *TableLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyRequestDetails {
+	s.Table = v
+	return s
+}
+
+// Details from an import AWS Lake Formation tag policy job response.
+type ImportAssetsFromLakeFormationTagPolicyResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the AWS Glue Data Catalog.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"12" type:"string" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// A structure for the database object.
+	Database *DatabaseLFTagPolicyAndPermissions `type:"structure"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The IAM role's ARN that allows AWS Data Exchange to assume the role and grant
+	// and revoke permissions to AWS Lake Formation data permissions.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
+
+	// A structure for the table object.
+	Table *TableLFTagPolicyAndPermissions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromLakeFormationTagPolicyResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetCatalogId(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetDataSetId(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetDatabase(v *DatabaseLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.Database = v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetRevisionId(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetRoleArn(v string) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *ImportAssetsFromLakeFormationTagPolicyResponseDetails) SetTable(v *TableLFTagPolicyAndPermissions) *ImportAssetsFromLakeFormationTagPolicyResponseDetails {
+	s.Table = v
+	return s
+}
+
 // Details from an import from Amazon Redshift datashare request.
 type ImportAssetsFromRedshiftDataSharesRequestDetails struct {
 	_ struct{} `type:"structure"`
@@ -7102,7 +7578,7 @@ func (s *ImportAssetsFromRedshiftDataSharesResponseDetails) SetRevisionId(v stri
 type ImportAssetsFromS3RequestDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Is a list of S3 bucket and object key pairs.
+	// Is a list of Amazon S3 bucket and object key pairs.
 	//
 	// AssetSources is a required field
 	AssetSources []*AssetSourceEntry `type:"list" required:"true"`
@@ -7504,6 +7980,265 @@ func (s *JobError) SetResourceId(v string) *JobError {
 // SetResourceType sets the ResourceType field's value.
 func (s *JobError) SetResourceType(v string) *JobError {
 	s.ResourceType = &v
+	return s
+}
+
+// Details about the AWS Lake Formation resource (Table or Database) included
+// in the AWS Lake Formation data permission.
+type LFResourceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the database resource included in the AWS Lake Formation data
+	// permission.
+	Database *DatabaseLFTagPolicy `type:"structure"`
+
+	// Details about the table resource included in the AWS Lake Formation data
+	// permission.
+	Table *TableLFTagPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFResourceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFResourceDetails) GoString() string {
+	return s.String()
+}
+
+// SetDatabase sets the Database field's value.
+func (s *LFResourceDetails) SetDatabase(v *DatabaseLFTagPolicy) *LFResourceDetails {
+	s.Database = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *LFResourceDetails) SetTable(v *TableLFTagPolicy) *LFResourceDetails {
+	s.Table = v
+	return s
+}
+
+// A structure that allows an LF-admin to grant permissions on certain conditions.
+type LFTag struct {
+	_ struct{} `type:"structure"`
+
+	// The key name for the LF-tag.
+	//
+	// TagKey is a required field
+	TagKey *string `type:"string" required:"true"`
+
+	// A list of LF-tag values.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LFTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LFTag"}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *LFTag) SetTagKey(v string) *LFTag {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *LFTag) SetTagValues(v []*string) *LFTag {
+	s.TagValues = v
+	return s
+}
+
+// Details about the LF-tag policy.
+type LFTagPolicyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the AWS Glue Data Catalog.
+	//
+	// CatalogId is a required field
+	CatalogId *string `min:"12" type:"string" required:"true"`
+
+	// Details for the Lake Formation Resources included in the LF-tag policy.
+	//
+	// ResourceDetails is a required field
+	ResourceDetails *LFResourceDetails `type:"structure" required:"true"`
+
+	// The resource type for which the LF-tag policy applies.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"LFResourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTagPolicyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LFTagPolicyDetails) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *LFTagPolicyDetails) SetCatalogId(v string) *LFTagPolicyDetails {
+	s.CatalogId = &v
+	return s
+}
+
+// SetResourceDetails sets the ResourceDetails field's value.
+func (s *LFTagPolicyDetails) SetResourceDetails(v *LFResourceDetails) *LFTagPolicyDetails {
+	s.ResourceDetails = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *LFTagPolicyDetails) SetResourceType(v string) *LFTagPolicyDetails {
+	s.ResourceType = &v
+	return s
+}
+
+// The AWS Lake Formation data permission asset.
+type LakeFormationDataPermissionAsset struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the AWS Lake Formation data permission.
+	//
+	// LakeFormationDataPermissionDetails is a required field
+	LakeFormationDataPermissionDetails *LakeFormationDataPermissionDetails `type:"structure" required:"true"`
+
+	// The data permission type.
+	//
+	// LakeFormationDataPermissionType is a required field
+	LakeFormationDataPermissionType *string `type:"string" required:"true" enum:"LakeFormationDataPermissionType"`
+
+	// The permissions granted to the subscribers on the resource.
+	//
+	// Permissions is a required field
+	Permissions []*string `type:"list" required:"true" enum:"LFPermission"`
+
+	// The IAM role's ARN that allows AWS Data Exchange to assume the role and grant
+	// and revoke permissions to AWS Lake Formation data permissions.
+	RoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionAsset) GoString() string {
+	return s.String()
+}
+
+// SetLakeFormationDataPermissionDetails sets the LakeFormationDataPermissionDetails field's value.
+func (s *LakeFormationDataPermissionAsset) SetLakeFormationDataPermissionDetails(v *LakeFormationDataPermissionDetails) *LakeFormationDataPermissionAsset {
+	s.LakeFormationDataPermissionDetails = v
+	return s
+}
+
+// SetLakeFormationDataPermissionType sets the LakeFormationDataPermissionType field's value.
+func (s *LakeFormationDataPermissionAsset) SetLakeFormationDataPermissionType(v string) *LakeFormationDataPermissionAsset {
+	s.LakeFormationDataPermissionType = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *LakeFormationDataPermissionAsset) SetPermissions(v []*string) *LakeFormationDataPermissionAsset {
+	s.Permissions = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *LakeFormationDataPermissionAsset) SetRoleArn(v string) *LakeFormationDataPermissionAsset {
+	s.RoleArn = &v
+	return s
+}
+
+// Details about the AWS Lake Formation data permission.
+type LakeFormationDataPermissionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the LF-tag policy.
+	LFTagPolicy *LFTagPolicyDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationDataPermissionDetails) GoString() string {
+	return s.String()
+}
+
+// SetLFTagPolicy sets the LFTagPolicy field's value.
+func (s *LakeFormationDataPermissionDetails) SetLFTagPolicy(v *LFTagPolicyDetails) *LakeFormationDataPermissionDetails {
+	s.LFTagPolicy = v
 	return s
 }
 
@@ -8150,7 +8885,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Information about the origin of the data set.
+// Details about the origin of the data set.
 type OriginDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -8269,6 +9004,9 @@ func (s *RedshiftDataShareAssetSourceEntry) SetDataShareArn(v string) *RedshiftD
 type RequestDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Details of the request to create S3 data access from the Amazon S3 bucket.
+	CreateS3DataAccessFromS3Bucket *CreateS3DataAccessFromS3BucketRequestDetails `type:"structure"`
+
 	// Details about the export to signed URL request.
 	ExportAssetToSignedUrl *ExportAssetToSignedUrlRequestDetails `type:"structure"`
 
@@ -8284,10 +9022,13 @@ type RequestDetails struct {
 	// Details about the import from Amazon S3 request.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlRequestDetails `type:"structure"`
 
+	// Request details for the ImportAssetsFromLakeFormationTagPolicy job.
+	ImportAssetsFromLakeFormationTagPolicy *ImportAssetsFromLakeFormationTagPolicyRequestDetails `type:"structure"`
+
 	// Details from an import from Amazon Redshift datashare request.
 	ImportAssetsFromRedshiftDataShares *ImportAssetsFromRedshiftDataSharesRequestDetails `type:"structure"`
 
-	// Information about the import asset from API Gateway API request.
+	// Details about the import asset from API Gateway API request.
 	ImportAssetsFromS3 *ImportAssetsFromS3RequestDetails `type:"structure"`
 }
 
@@ -8312,6 +9053,11 @@ func (s RequestDetails) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RequestDetails) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RequestDetails"}
+	if s.CreateS3DataAccessFromS3Bucket != nil {
+		if err := s.CreateS3DataAccessFromS3Bucket.Validate(); err != nil {
+			invalidParams.AddNested("CreateS3DataAccessFromS3Bucket", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExportAssetToSignedUrl != nil {
 		if err := s.ExportAssetToSignedUrl.Validate(); err != nil {
 			invalidParams.AddNested("ExportAssetToSignedUrl", err.(request.ErrInvalidParams))
@@ -8337,6 +9083,11 @@ func (s *RequestDetails) Validate() error {
 			invalidParams.AddNested("ImportAssetFromSignedUrl", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImportAssetsFromLakeFormationTagPolicy != nil {
+		if err := s.ImportAssetsFromLakeFormationTagPolicy.Validate(); err != nil {
+			invalidParams.AddNested("ImportAssetsFromLakeFormationTagPolicy", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ImportAssetsFromRedshiftDataShares != nil {
 		if err := s.ImportAssetsFromRedshiftDataShares.Validate(); err != nil {
 			invalidParams.AddNested("ImportAssetsFromRedshiftDataShares", err.(request.ErrInvalidParams))
@@ -8352,6 +9103,12 @@ func (s *RequestDetails) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCreateS3DataAccessFromS3Bucket sets the CreateS3DataAccessFromS3Bucket field's value.
+func (s *RequestDetails) SetCreateS3DataAccessFromS3Bucket(v *CreateS3DataAccessFromS3BucketRequestDetails) *RequestDetails {
+	s.CreateS3DataAccessFromS3Bucket = v
+	return s
 }
 
 // SetExportAssetToSignedUrl sets the ExportAssetToSignedUrl field's value.
@@ -8381,6 +9138,12 @@ func (s *RequestDetails) SetImportAssetFromApiGatewayApi(v *ImportAssetFromApiGa
 // SetImportAssetFromSignedUrl sets the ImportAssetFromSignedUrl field's value.
 func (s *RequestDetails) SetImportAssetFromSignedUrl(v *ImportAssetFromSignedUrlRequestDetails) *RequestDetails {
 	s.ImportAssetFromSignedUrl = v
+	return s
+}
+
+// SetImportAssetsFromLakeFormationTagPolicy sets the ImportAssetsFromLakeFormationTagPolicy field's value.
+func (s *RequestDetails) SetImportAssetsFromLakeFormationTagPolicy(v *ImportAssetsFromLakeFormationTagPolicyRequestDetails) *RequestDetails {
+	s.ImportAssetsFromLakeFormationTagPolicy = v
 	return s
 }
 
@@ -8471,6 +9234,9 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResponseDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Response details from the CreateS3DataAccessFromS3Bucket job.
+	CreateS3DataAccessFromS3Bucket *CreateS3DataAccessFromS3BucketResponseDetails `type:"structure"`
+
 	// Details for the export to signed URL response.
 	ExportAssetToSignedUrl *ExportAssetToSignedUrlResponseDetails `type:"structure"`
 
@@ -8485,6 +9251,9 @@ type ResponseDetails struct {
 
 	// Details for the import from signed URL response.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlResponseDetails `type:"structure"`
+
+	// Response details from the ImportAssetsFromLakeFormationTagPolicy job.
+	ImportAssetsFromLakeFormationTagPolicy *ImportAssetsFromLakeFormationTagPolicyResponseDetails `type:"structure"`
 
 	// Details from an import from Amazon Redshift datashare response.
 	ImportAssetsFromRedshiftDataShares *ImportAssetsFromRedshiftDataSharesResponseDetails `type:"structure"`
@@ -8509,6 +9278,12 @@ func (s ResponseDetails) String() string {
 // value will be replaced with "sensitive".
 func (s ResponseDetails) GoString() string {
 	return s.String()
+}
+
+// SetCreateS3DataAccessFromS3Bucket sets the CreateS3DataAccessFromS3Bucket field's value.
+func (s *ResponseDetails) SetCreateS3DataAccessFromS3Bucket(v *CreateS3DataAccessFromS3BucketResponseDetails) *ResponseDetails {
+	s.CreateS3DataAccessFromS3Bucket = v
+	return s
 }
 
 // SetExportAssetToSignedUrl sets the ExportAssetToSignedUrl field's value.
@@ -8541,6 +9316,12 @@ func (s *ResponseDetails) SetImportAssetFromSignedUrl(v *ImportAssetFromSignedUr
 	return s
 }
 
+// SetImportAssetsFromLakeFormationTagPolicy sets the ImportAssetsFromLakeFormationTagPolicy field's value.
+func (s *ResponseDetails) SetImportAssetsFromLakeFormationTagPolicy(v *ImportAssetsFromLakeFormationTagPolicyResponseDetails) *ResponseDetails {
+	s.ImportAssetsFromLakeFormationTagPolicy = v
+	return s
+}
+
 // SetImportAssetsFromRedshiftDataShares sets the ImportAssetsFromRedshiftDataShares field's value.
 func (s *ResponseDetails) SetImportAssetsFromRedshiftDataShares(v *ImportAssetsFromRedshiftDataSharesResponseDetails) *ResponseDetails {
 	s.ImportAssetsFromRedshiftDataShares = v
@@ -8557,7 +9338,7 @@ func (s *ResponseDetails) SetImportAssetsFromS3(v *ImportAssetsFromS3ResponseDet
 type RevisionDestinationEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that is the destination for the assets in the revision.
+	// The Amazon S3 bucket that is the destination for the assets in the revision.
 	//
 	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
@@ -8642,7 +9423,7 @@ type RevisionEntry struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The unique identifier for the data set associated with this revision.
+	// The unique identifier for the data set associated with the data set revision.
 	//
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
@@ -8909,7 +9690,7 @@ type RevokeRevisionOutput struct {
 	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The unique identifier for the data set associated with this revision.
+	// The unique identifier for the data set associated with the data set revision.
 	DataSetId *string `type:"string"`
 
 	// To publish a revision to a data set in a product, the revision must first
@@ -9027,11 +9808,149 @@ func (s *RevokeRevisionOutput) SetUpdatedAt(v time.Time) *RevokeRevisionOutput {
 	return s
 }
 
-// The S3 object that is the asset.
+// The Amazon S3 data access that is the asset.
+type S3DataAccessAsset struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket hosting data to be shared in the S3 data access.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// The Amazon S3 bucket used for hosting shared data in the Amazon S3 data access.
+	KeyPrefixes []*string `type:"list"`
+
+	// S3 keys made available using this asset.
+	Keys []*string `type:"list"`
+
+	// The automatically-generated bucket-style alias for your Amazon S3 Access
+	// Point. Customers can access their entitled data using the S3 Access Point
+	// alias.
+	S3AccessPointAlias *string `type:"string"`
+
+	// The ARN for your Amazon S3 Access Point. Customers can also access their
+	// entitled data using the S3 Access Point ARN.
+	S3AccessPointArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAsset) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3DataAccessAsset) SetBucket(v string) *S3DataAccessAsset {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefixes sets the KeyPrefixes field's value.
+func (s *S3DataAccessAsset) SetKeyPrefixes(v []*string) *S3DataAccessAsset {
+	s.KeyPrefixes = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *S3DataAccessAsset) SetKeys(v []*string) *S3DataAccessAsset {
+	s.Keys = v
+	return s
+}
+
+// SetS3AccessPointAlias sets the S3AccessPointAlias field's value.
+func (s *S3DataAccessAsset) SetS3AccessPointAlias(v string) *S3DataAccessAsset {
+	s.S3AccessPointAlias = &v
+	return s
+}
+
+// SetS3AccessPointArn sets the S3AccessPointArn field's value.
+func (s *S3DataAccessAsset) SetS3AccessPointArn(v string) *S3DataAccessAsset {
+	s.S3AccessPointArn = &v
+	return s
+}
+
+// Source details for an Amazon S3 data access asset.
+type S3DataAccessAssetSourceEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket used for hosting shared data in the Amazon S3 data access.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// Organizes Amazon S3 asset key prefixes stored in an Amazon S3 bucket.
+	KeyPrefixes []*string `type:"list"`
+
+	// The keys used to create the Amazon S3 data access.
+	Keys []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAssetSourceEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3DataAccessAssetSourceEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DataAccessAssetSourceEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DataAccessAssetSourceEntry"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3DataAccessAssetSourceEntry) SetBucket(v string) *S3DataAccessAssetSourceEntry {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefixes sets the KeyPrefixes field's value.
+func (s *S3DataAccessAssetSourceEntry) SetKeyPrefixes(v []*string) *S3DataAccessAssetSourceEntry {
+	s.KeyPrefixes = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *S3DataAccessAssetSourceEntry) SetKeys(v []*string) *S3DataAccessAssetSourceEntry {
+	s.Keys = v
+	return s
+}
+
+// The Amazon S3 object that is the asset.
 type S3SnapshotAsset struct {
 	_ struct{} `type:"structure"`
 
-	// The size of the S3 object that is the object.
+	// The size of the Amazon S3 object that is the object.
 	//
 	// Size is a required field
 	Size *float64 `type:"double" required:"true"`
@@ -9371,6 +10290,111 @@ func (s StartJobOutput) GoString() string {
 	return s.String()
 }
 
+// The LF-tag policy for a table resource.
+type TableLFTagPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to table resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicy) GoString() string {
+	return s.String()
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TableLFTagPolicy) SetExpression(v []*LFTag) *TableLFTagPolicy {
+	s.Expression = v
+	return s
+}
+
+// The LF-tag policy and permissions that apply to table resources.
+type TableLFTagPolicyAndPermissions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of LF-tag conditions that apply to table resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `type:"list" required:"true"`
+
+	// The permissions granted to subscribers on table resources.
+	//
+	// Permissions is a required field
+	Permissions []*string `type:"list" required:"true" enum:"TableTagPolicyLFPermission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicyAndPermissions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableLFTagPolicyAndPermissions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TableLFTagPolicyAndPermissions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TableLFTagPolicyAndPermissions"}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Permissions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permissions"))
+	}
+	if s.Expression != nil {
+		for i, v := range s.Expression {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Expression", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *TableLFTagPolicyAndPermissions) SetExpression(v []*LFTag) *TableLFTagPolicyAndPermissions {
+	s.Expression = v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *TableLFTagPolicyAndPermissions) SetPermissions(v []*string) *TableLFTagPolicyAndPermissions {
+	s.Permissions = v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9619,11 +10643,13 @@ type UpdateAssetInput struct {
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key. When importing from Amazon API Gateway API,
-	// the API name is used as the asset name. When importing from Amazon Redshift,
-	// the datashare name is used as the asset name.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in the
+	// LF-tag policy" or "Table(s) included in LF-tag policy" are used as the name.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -9713,7 +10739,7 @@ type UpdateAssetOutput struct {
 	// The ARN for the asset.
 	Arn *string `type:"string"`
 
-	// Information about the asset.
+	// Details about the asset.
 	AssetDetails *AssetDetails `type:"structure"`
 
 	// The type of asset that is added to a data set.
@@ -9728,11 +10754,14 @@ type UpdateAssetOutput struct {
 	// The unique identifier for the asset.
 	Id *string `type:"string"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key. When importing from Amazon API Gateway API,
-	// the API name is used as the asset name. When importing from Amazon Redshift,
-	// the datashare name is used as the asset name.
+	// The name of the asset. When importing from Amazon S3, the Amazon S3 object
+	// key is used as the asset name. When exporting to Amazon S3, the asset name
+	// is used as default target Amazon S3 object key. When importing from Amazon
+	// API Gateway API, the API name is used as the asset name. When importing from
+	// Amazon Redshift, the datashare name is used as the asset name. When importing
+	// from AWS Lake Formation, the static values of "Database(s) included in the
+	// LF-tag policy"- or "Table(s) included in LF-tag policy" are used as the asset
+	// name.
 	Name *string `type:"string"`
 
 	// The unique identifier for the revision associated with this asset.
@@ -10245,7 +11274,7 @@ type UpdateRevisionOutput struct {
 	// The date and time that the revision was created, in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The unique identifier for the data set associated with this revision.
+	// The unique identifier for the data set associated with the data set revision.
 	DataSetId *string `type:"string"`
 
 	// To publish a revision to a data set in a product, the revision must first
@@ -10440,6 +11469,12 @@ const (
 
 	// AssetTypeApiGatewayApi is a AssetType enum value
 	AssetTypeApiGatewayApi = "API_GATEWAY_API"
+
+	// AssetTypeS3DataAccess is a AssetType enum value
+	AssetTypeS3DataAccess = "S3_DATA_ACCESS"
+
+	// AssetTypeLakeFormationDataPermission is a AssetType enum value
+	AssetTypeLakeFormationDataPermission = "LAKE_FORMATION_DATA_PERMISSION"
 )
 
 // AssetType_Values returns all elements of the AssetType enum
@@ -10448,6 +11483,8 @@ func AssetType_Values() []string {
 		AssetTypeS3Snapshot,
 		AssetTypeRedshiftDataShare,
 		AssetTypeApiGatewayApi,
+		AssetTypeS3DataAccess,
+		AssetTypeLakeFormationDataPermission,
 	}
 }
 
@@ -10488,6 +11525,18 @@ func Code_Values() []string {
 }
 
 const (
+	// DatabaseLFTagPolicyPermissionDescribe is a DatabaseLFTagPolicyPermission enum value
+	DatabaseLFTagPolicyPermissionDescribe = "DESCRIBE"
+)
+
+// DatabaseLFTagPolicyPermission_Values returns all elements of the DatabaseLFTagPolicyPermission enum
+func DatabaseLFTagPolicyPermission_Values() []string {
+	return []string{
+		DatabaseLFTagPolicyPermissionDescribe,
+	}
+}
+
+const (
 	// ExceptionCauseInsufficientS3bucketPolicy is a ExceptionCause enum value
 	ExceptionCauseInsufficientS3bucketPolicy = "InsufficientS3BucketPolicy"
 
@@ -10512,6 +11561,12 @@ const (
 
 	// JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision is a JobErrorLimitName enum value
 	JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision = "Amazon Redshift datashare assets per revision"
+
+	// JobErrorLimitNameAwslakeFormationdatapermissionassetsperrevision is a JobErrorLimitName enum value
+	JobErrorLimitNameAwslakeFormationdatapermissionassetsperrevision = "AWS Lake Formation data permission assets per revision"
+
+	// JobErrorLimitNameAmazonS3dataaccessassetsperrevision is a JobErrorLimitName enum value
+	JobErrorLimitNameAmazonS3dataaccessassetsperrevision = "Amazon S3 data access assets per revision"
 )
 
 // JobErrorLimitName_Values returns all elements of the JobErrorLimitName enum
@@ -10520,6 +11575,8 @@ func JobErrorLimitName_Values() []string {
 		JobErrorLimitNameAssetsperrevision,
 		JobErrorLimitNameAssetsizeinGb,
 		JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision,
+		JobErrorLimitNameAwslakeFormationdatapermissionassetsperrevision,
+		JobErrorLimitNameAmazonS3dataaccessassetsperrevision,
 	}
 }
 
@@ -10540,6 +11597,50 @@ func JobErrorResourceTypes_Values() []string {
 		JobErrorResourceTypesRevision,
 		JobErrorResourceTypesAsset,
 		JobErrorResourceTypesDataSet,
+	}
+}
+
+const (
+	// LFPermissionDescribe is a LFPermission enum value
+	LFPermissionDescribe = "DESCRIBE"
+
+	// LFPermissionSelect is a LFPermission enum value
+	LFPermissionSelect = "SELECT"
+)
+
+// LFPermission_Values returns all elements of the LFPermission enum
+func LFPermission_Values() []string {
+	return []string{
+		LFPermissionDescribe,
+		LFPermissionSelect,
+	}
+}
+
+const (
+	// LFResourceTypeTable is a LFResourceType enum value
+	LFResourceTypeTable = "TABLE"
+
+	// LFResourceTypeDatabase is a LFResourceType enum value
+	LFResourceTypeDatabase = "DATABASE"
+)
+
+// LFResourceType_Values returns all elements of the LFResourceType enum
+func LFResourceType_Values() []string {
+	return []string{
+		LFResourceTypeTable,
+		LFResourceTypeDatabase,
+	}
+}
+
+const (
+	// LakeFormationDataPermissionTypeLftagPolicy is a LakeFormationDataPermissionType enum value
+	LakeFormationDataPermissionTypeLftagPolicy = "LFTagPolicy"
+)
+
+// LakeFormationDataPermissionType_Values returns all elements of the LakeFormationDataPermissionType enum
+func LakeFormationDataPermissionType_Values() []string {
+	return []string{
+		LakeFormationDataPermissionTypeLftagPolicy,
 	}
 }
 
@@ -10609,6 +11710,24 @@ const (
 
 	// LimitNameRevisionsperAmazonApigatewayApidataset is a LimitName enum value
 	LimitNameRevisionsperAmazonApigatewayApidataset = "Revisions per Amazon API Gateway API data set"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromanAwslakeFormationtagpolicy is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromanAwslakeFormationtagpolicy = "Concurrent in progress jobs to import assets from an AWS Lake Formation tag policy"
+
+	// LimitNameAwslakeFormationdatapermissionassetsperrevision is a LimitName enum value
+	LimitNameAwslakeFormationdatapermissionassetsperrevision = "AWS Lake Formation data permission assets per revision"
+
+	// LimitNameRevisionsperAwslakeFormationdatapermissiondataset is a LimitName enum value
+	LimitNameRevisionsperAwslakeFormationdatapermissiondataset = "Revisions per AWS Lake Formation data permission data set"
+
+	// LimitNameRevisionsperAmazonS3dataaccessdataset is a LimitName enum value
+	LimitNameRevisionsperAmazonS3dataaccessdataset = "Revisions per Amazon S3 data access data set"
+
+	// LimitNameAmazonS3dataaccessassetsperrevision is a LimitName enum value
+	LimitNameAmazonS3dataaccessassetsperrevision = "Amazon S3 data access assets per revision"
+
+	// LimitNameConcurrentinprogressjobstocreateAmazonS3dataaccessassetsfromS3buckets is a LimitName enum value
+	LimitNameConcurrentinprogressjobstocreateAmazonS3dataaccessassetsfromS3buckets = "Concurrent in progress jobs to create Amazon S3 data access assets from S3 buckets"
 )
 
 // LimitName_Values returns all elements of the LimitName enum
@@ -10636,6 +11755,12 @@ func LimitName_Values() []string {
 		LimitNameConcurrentinprogressjobstoimportassetsfromanApigatewayApi,
 		LimitNameAmazonApigatewayApiassetsperrevision,
 		LimitNameRevisionsperAmazonApigatewayApidataset,
+		LimitNameConcurrentinprogressjobstoimportassetsfromanAwslakeFormationtagpolicy,
+		LimitNameAwslakeFormationdatapermissionassetsperrevision,
+		LimitNameRevisionsperAwslakeFormationdatapermissiondataset,
+		LimitNameRevisionsperAmazonS3dataaccessdataset,
+		LimitNameAmazonS3dataaccessassetsperrevision,
+		LimitNameConcurrentinprogressjobstocreateAmazonS3dataaccessassetsfromS3buckets,
 	}
 }
 
@@ -10744,6 +11869,22 @@ func State_Values() []string {
 }
 
 const (
+	// TableTagPolicyLFPermissionDescribe is a TableTagPolicyLFPermission enum value
+	TableTagPolicyLFPermissionDescribe = "DESCRIBE"
+
+	// TableTagPolicyLFPermissionSelect is a TableTagPolicyLFPermission enum value
+	TableTagPolicyLFPermissionSelect = "SELECT"
+)
+
+// TableTagPolicyLFPermission_Values returns all elements of the TableTagPolicyLFPermission enum
+func TableTagPolicyLFPermission_Values() []string {
+	return []string{
+		TableTagPolicyLFPermissionDescribe,
+		TableTagPolicyLFPermissionSelect,
+	}
+}
+
+const (
 	// TypeImportAssetsFromS3 is a Type enum value
 	TypeImportAssetsFromS3 = "IMPORT_ASSETS_FROM_S3"
 
@@ -10764,6 +11905,12 @@ const (
 
 	// TypeImportAssetFromApiGatewayApi is a Type enum value
 	TypeImportAssetFromApiGatewayApi = "IMPORT_ASSET_FROM_API_GATEWAY_API"
+
+	// TypeCreateS3DataAccessFromS3Bucket is a Type enum value
+	TypeCreateS3DataAccessFromS3Bucket = "CREATE_S3_DATA_ACCESS_FROM_S3_BUCKET"
+
+	// TypeImportAssetsFromLakeFormationTagPolicy is a Type enum value
+	TypeImportAssetsFromLakeFormationTagPolicy = "IMPORT_ASSETS_FROM_LAKE_FORMATION_TAG_POLICY"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -10776,5 +11923,7 @@ func Type_Values() []string {
 		TypeExportRevisionsToS3,
 		TypeImportAssetsFromRedshiftDataShares,
 		TypeImportAssetFromApiGatewayApi,
+		TypeCreateS3DataAccessFromS3Bucket,
+		TypeImportAssetsFromLakeFormationTagPolicy,
 	}
 }
