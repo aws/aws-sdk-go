@@ -84,6 +84,10 @@ type SFNAPI interface {
 	DescribeExecutionWithContext(aws.Context, *sfn.DescribeExecutionInput, ...request.Option) (*sfn.DescribeExecutionOutput, error)
 	DescribeExecutionRequest(*sfn.DescribeExecutionInput) (*request.Request, *sfn.DescribeExecutionOutput)
 
+	DescribeMapRun(*sfn.DescribeMapRunInput) (*sfn.DescribeMapRunOutput, error)
+	DescribeMapRunWithContext(aws.Context, *sfn.DescribeMapRunInput, ...request.Option) (*sfn.DescribeMapRunOutput, error)
+	DescribeMapRunRequest(*sfn.DescribeMapRunInput) (*request.Request, *sfn.DescribeMapRunOutput)
+
 	DescribeStateMachine(*sfn.DescribeStateMachineInput) (*sfn.DescribeStateMachineOutput, error)
 	DescribeStateMachineWithContext(aws.Context, *sfn.DescribeStateMachineInput, ...request.Option) (*sfn.DescribeStateMachineOutput, error)
 	DescribeStateMachineRequest(*sfn.DescribeStateMachineInput) (*request.Request, *sfn.DescribeStateMachineOutput)
@@ -116,6 +120,13 @@ type SFNAPI interface {
 
 	ListExecutionsPages(*sfn.ListExecutionsInput, func(*sfn.ListExecutionsOutput, bool) bool) error
 	ListExecutionsPagesWithContext(aws.Context, *sfn.ListExecutionsInput, func(*sfn.ListExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListMapRuns(*sfn.ListMapRunsInput) (*sfn.ListMapRunsOutput, error)
+	ListMapRunsWithContext(aws.Context, *sfn.ListMapRunsInput, ...request.Option) (*sfn.ListMapRunsOutput, error)
+	ListMapRunsRequest(*sfn.ListMapRunsInput) (*request.Request, *sfn.ListMapRunsOutput)
+
+	ListMapRunsPages(*sfn.ListMapRunsInput, func(*sfn.ListMapRunsOutput, bool) bool) error
+	ListMapRunsPagesWithContext(aws.Context, *sfn.ListMapRunsInput, func(*sfn.ListMapRunsOutput, bool) bool, ...request.Option) error
 
 	ListStateMachines(*sfn.ListStateMachinesInput) (*sfn.ListStateMachinesOutput, error)
 	ListStateMachinesWithContext(aws.Context, *sfn.ListStateMachinesInput, ...request.Option) (*sfn.ListStateMachinesOutput, error)
@@ -159,6 +170,10 @@ type SFNAPI interface {
 	UntagResource(*sfn.UntagResourceInput) (*sfn.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *sfn.UntagResourceInput, ...request.Option) (*sfn.UntagResourceOutput, error)
 	UntagResourceRequest(*sfn.UntagResourceInput) (*request.Request, *sfn.UntagResourceOutput)
+
+	UpdateMapRun(*sfn.UpdateMapRunInput) (*sfn.UpdateMapRunOutput, error)
+	UpdateMapRunWithContext(aws.Context, *sfn.UpdateMapRunInput, ...request.Option) (*sfn.UpdateMapRunOutput, error)
+	UpdateMapRunRequest(*sfn.UpdateMapRunInput) (*request.Request, *sfn.UpdateMapRunOutput)
 
 	UpdateStateMachine(*sfn.UpdateStateMachineInput) (*sfn.UpdateStateMachineOutput, error)
 	UpdateStateMachineWithContext(aws.Context, *sfn.UpdateStateMachineInput, ...request.Option) (*sfn.UpdateStateMachineOutput, error)

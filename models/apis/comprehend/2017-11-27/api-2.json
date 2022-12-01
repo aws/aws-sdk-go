@@ -1370,6 +1370,50 @@
       },
       "exception":true
     },
+    "Block":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"String"},
+        "BlockType":{"shape":"BlockType"},
+        "Text":{"shape":"String"},
+        "Page":{"shape":"Integer"},
+        "Geometry":{"shape":"Geometry"},
+        "Relationships":{"shape":"ListOfRelationships"}
+      }
+    },
+    "BlockReference":{
+      "type":"structure",
+      "members":{
+        "BlockId":{"shape":"String"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "ChildBlocks":{"shape":"ListOfChildBlocks"}
+      }
+    },
+    "BlockType":{
+      "type":"string",
+      "enum":[
+        "LINE",
+        "WORD"
+      ]
+    },
+    "BoundingBox":{
+      "type":"structure",
+      "members":{
+        "Height":{"shape":"Float"},
+        "Left":{"shape":"Float"},
+        "Top":{"shape":"Float"},
+        "Width":{"shape":"Float"}
+      }
+    },
+    "ChildBlock":{
+      "type":"structure",
+      "members":{
+        "ChildBlockId":{"shape":"String"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"}
+      }
+    },
     "ClassifierEvaluationMetrics":{
       "type":"structure",
       "members":{
@@ -1395,20 +1439,22 @@
     },
     "ClassifyDocumentRequest":{
       "type":"structure",
-      "required":[
-        "Text",
-        "EndpointArn"
-      ],
+      "required":["EndpointArn"],
       "members":{
         "Text":{"shape":"CustomerInputString"},
-        "EndpointArn":{"shape":"DocumentClassifierEndpointArn"}
+        "EndpointArn":{"shape":"DocumentClassifierEndpointArn"},
+        "Bytes":{"shape":"SemiStructuredDocumentBlob"},
+        "DocumentReaderConfig":{"shape":"DocumentReaderConfig"}
       }
     },
     "ClassifyDocumentResponse":{
       "type":"structure",
       "members":{
         "Classes":{"shape":"ListOfClasses"},
-        "Labels":{"shape":"ListOfLabels"}
+        "Labels":{"shape":"ListOfLabels"},
+        "DocumentMetadata":{"shape":"DocumentMetadata"},
+        "DocumentType":{"shape":"ListOfDocumentType"},
+        "Errors":{"shape":"ListOfErrors"}
       },
       "sensitive":true
     },
@@ -1804,17 +1850,22 @@
     },
     "DetectEntitiesRequest":{
       "type":"structure",
-      "required":["Text"],
       "members":{
         "Text":{"shape":"CustomerInputString"},
         "LanguageCode":{"shape":"LanguageCode"},
-        "EndpointArn":{"shape":"EntityRecognizerEndpointArn"}
+        "EndpointArn":{"shape":"EntityRecognizerEndpointArn"},
+        "Bytes":{"shape":"SemiStructuredDocumentBlob"},
+        "DocumentReaderConfig":{"shape":"DocumentReaderConfig"}
       }
     },
     "DetectEntitiesResponse":{
       "type":"structure",
       "members":{
-        "Entities":{"shape":"ListOfEntities"}
+        "Entities":{"shape":"ListOfEntities"},
+        "DocumentMetadata":{"shape":"DocumentMetadata"},
+        "DocumentType":{"shape":"ListOfDocumentType"},
+        "Blocks":{"shape":"ListOfBlocks"},
+        "Errors":{"shape":"ListOfErrors"}
       },
       "sensitive":true
     },
@@ -1912,7 +1963,8 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"String"},
-        "Score":{"shape":"Float"}
+        "Score":{"shape":"Float"},
+        "Page":{"shape":"Integer"}
       }
     },
     "DocumentClassificationJobFilter":{
@@ -2045,7 +2097,15 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"String"},
-        "Score":{"shape":"Float"}
+        "Score":{"shape":"Float"},
+        "Page":{"shape":"Integer"}
+      }
+    },
+    "DocumentMetadata":{
+      "type":"structure",
+      "members":{
+        "Pages":{"shape":"Integer"},
+        "ExtractedCharacters":{"shape":"ListOfExtractedCharacters"}
       }
     },
     "DocumentReadAction":{
@@ -2076,6 +2136,25 @@
         "DocumentReadAction":{"shape":"DocumentReadAction"},
         "DocumentReadMode":{"shape":"DocumentReadMode"},
         "FeatureTypes":{"shape":"ListOfDocumentReadFeatureTypes"}
+      }
+    },
+    "DocumentType":{
+      "type":"string",
+      "enum":[
+        "NATIVE_PDF",
+        "SCANNED_PDF",
+        "MS_WORD",
+        "IMAGE",
+        "PLAIN_TEXT",
+        "TEXTRACT_DETECT_DOCUMENT_TEXT_JSON",
+        "TEXTRACT_ANALYZE_DOCUMENT_JSON"
+      ]
+    },
+    "DocumentTypeListItem":{
+      "type":"structure",
+      "members":{
+        "Page":{"shape":"Integer"},
+        "Type":{"shape":"DocumentType"}
       }
     },
     "DominantLanguage":{
@@ -2194,7 +2273,8 @@
         "Type":{"shape":"EntityType"},
         "Text":{"shape":"String"},
         "BeginOffset":{"shape":"Integer"},
-        "EndOffset":{"shape":"Integer"}
+        "EndOffset":{"shape":"Integer"},
+        "BlockReferences":{"shape":"ListOfBlockReferences"}
       }
     },
     "EntityLabel":{
@@ -2377,6 +2457,14 @@
         "Type":{"shape":"EntityTypeName"}
       }
     },
+    "ErrorsListItem":{
+      "type":"structure",
+      "members":{
+        "Page":{"shape":"Integer"},
+        "ErrorCode":{"shape":"PageBasedErrorCode"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
     "EventTypeString":{
       "type":"string",
       "max":40,
@@ -2413,7 +2501,21 @@
       "type":"list",
       "member":{"shape":"EventsDetectionJobProperties"}
     },
+    "ExtractedCharactersListItem":{
+      "type":"structure",
+      "members":{
+        "Page":{"shape":"Integer"},
+        "Count":{"shape":"Integer"}
+      }
+    },
     "Float":{"type":"float"},
+    "Geometry":{
+      "type":"structure",
+      "members":{
+        "BoundingBox":{"shape":"BoundingBox"},
+        "Polygon":{"shape":"Polygon"}
+      }
+    },
     "IamRoleArn":{
       "type":"string",
       "max":2048,
@@ -2474,12 +2576,33 @@
       },
       "exception":true
     },
+    "InvalidRequestDetail":{
+      "type":"structure",
+      "members":{
+        "Reason":{"shape":"InvalidRequestDetailReason"}
+      }
+    },
+    "InvalidRequestDetailReason":{
+      "type":"string",
+      "enum":[
+        "DOCUMENT_SIZE_EXCEEDED",
+        "UNSUPPORTED_DOC_TYPE",
+        "PAGE_LIMIT_EXCEEDED",
+        "TEXTRACT_ACCESS_DENIED"
+      ]
+    },
     "InvalidRequestException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"String"}
+        "Message":{"shape":"String"},
+        "Reason":{"shape":"InvalidRequestReason"},
+        "Detail":{"shape":"InvalidRequestDetail"}
       },
       "exception":true
+    },
+    "InvalidRequestReason":{
+      "type":"string",
+      "enum":["INVALID_DOCUMENT"]
     },
     "JobId":{
       "type":"string",
@@ -2734,6 +2857,18 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListOfBlockReferences":{
+      "type":"list",
+      "member":{"shape":"BlockReference"}
+    },
+    "ListOfBlocks":{
+      "type":"list",
+      "member":{"shape":"Block"}
+    },
+    "ListOfChildBlocks":{
+      "type":"list",
+      "member":{"shape":"ChildBlock"}
+    },
     "ListOfClasses":{
       "type":"list",
       "member":{"shape":"DocumentClass"}
@@ -2772,6 +2907,10 @@
       "max":2,
       "min":1
     },
+    "ListOfDocumentType":{
+      "type":"list",
+      "member":{"shape":"DocumentTypeListItem"}
+    },
     "ListOfDominantLanguages":{
       "type":"list",
       "member":{"shape":"DominantLanguage"}
@@ -2783,6 +2922,14 @@
     "ListOfEntityLabels":{
       "type":"list",
       "member":{"shape":"EntityLabel"}
+    },
+    "ListOfErrors":{
+      "type":"list",
+      "member":{"shape":"ErrorsListItem"}
+    },
+    "ListOfExtractedCharacters":{
+      "type":"list",
+      "member":{"shape":"ExtractedCharactersListItem"}
     },
     "ListOfKeyPhrases":{
       "type":"list",
@@ -2803,6 +2950,10 @@
     "ListOfPiiEntityTypes":{
       "type":"list",
       "member":{"shape":"PiiEntityType"}
+    },
+    "ListOfRelationships":{
+      "type":"list",
+      "member":{"shape":"RelationshipsListItem"}
     },
     "ListOfSyntaxTokens":{
       "type":"list",
@@ -2928,6 +3079,16 @@
         "S3Uri":{"shape":"S3Uri"},
         "KmsKeyId":{"shape":"KmsKeyId"}
       }
+    },
+    "PageBasedErrorCode":{
+      "type":"string",
+      "enum":[
+        "TEXTRACT_BAD_PAGE",
+        "TEXTRACT_PROVISIONED_THROUGHPUT_EXCEEDED",
+        "PAGE_CHARACTERS_EXCEEDED",
+        "PAGE_SIZE_EXCEEDED",
+        "INTERNAL_SERVER_ERROR"
+      ]
     },
     "PartOfSpeechTag":{
       "type":"structure",
@@ -3063,6 +3224,13 @@
         "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
+    "Point":{
+      "type":"structure",
+      "members":{
+        "X":{"shape":"Float"},
+        "Y":{"shape":"Float"}
+      }
+    },
     "Policy":{
       "type":"string",
       "max":20000,
@@ -3073,6 +3241,10 @@
       "type":"string",
       "max":64,
       "pattern":"[0-9A-Fa-f]+"
+    },
+    "Polygon":{
+      "type":"list",
+      "member":{"shape":"Point"}
     },
     "PutResourcePolicyRequest":{
       "type":"structure",
@@ -3098,6 +3270,17 @@
         "PiiEntityTypes":{"shape":"ListOfPiiEntityTypes"},
         "MaskMode":{"shape":"PiiEntitiesDetectionMaskMode"},
         "MaskCharacter":{"shape":"MaskCharacter"}
+      }
+    },
+    "RelationshipType":{
+      "type":"string",
+      "enum":["CHILD"]
+    },
+    "RelationshipsListItem":{
+      "type":"structure",
+      "members":{
+        "Ids":{"shape":"StringList"},
+        "Type":{"shape":"RelationshipType"}
       }
     },
     "ResourceInUseException":{
@@ -3143,6 +3326,10 @@
       "type":"list",
       "member":{"shape":"SecurityGroupId"},
       "max":5,
+      "min":1
+    },
+    "SemiStructuredDocumentBlob":{
+      "type":"blob",
       "min":1
     },
     "SentimentDetectionJobFilter":{
@@ -3604,6 +3791,10 @@
     "String":{
       "type":"string",
       "min":1
+    },
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "SubnetId":{
       "type":"string",

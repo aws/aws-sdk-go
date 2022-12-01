@@ -1,3 +1,14 @@
+Release v1.44.151 (2022-12-01)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/gamelift`: Updates service API, documentation, and paginators
+  * GameLift introduces a new feature, GameLift Anywhere. GameLift Anywhere allows you to integrate your own compute resources with GameLift. You can also use GameLift Anywhere to iteratively test your game servers without uploading the build to GameLift for every iteration.
+* `service/pipes`: Updates service API, documentation, paginators, and examples
+* `service/states`: Updates service API, documentation, and paginators
+  * This release adds support for the AWS Step Functions Map state in Distributed mode. The changes include a new MapRun resource and several new and modified APIs.
+
 Release v1.44.150 (2022-11-30)
 ===
 

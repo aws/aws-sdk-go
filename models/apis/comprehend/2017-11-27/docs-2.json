@@ -8,7 +8,7 @@
     "BatchDetectSentiment": "<p>Inspects a batch of documents and returns an inference of the prevailing sentiment, <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>, in each one.</p>",
     "BatchDetectSyntax": "<p>Inspects the text of a batch of documents for the syntax and part of speech of the words in the document and returns information about them. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>",
     "BatchDetectTargetedSentiment": "<p>Inspects a batch of documents and returns a sentiment analysis for each entity identified in the documents.</p> <p>For more information about targeted sentiment, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html\">Targeted sentiment</a>.</p>",
-    "ClassifyDocument": "<p>Creates a new document classification request to analyze a single document in real-time, using a previously created and trained custom model and an endpoint.</p>",
+    "ClassifyDocument": "<p>Creates a new document classification request to analyze a single document in real-time, using a previously created and trained custom model and an endpoint.</p> <p>You can input plain text or you can upload a single-page input document (text, PDF, Word, or image). </p> <p>If the system detects errors while processing a page in the input document, the API response includes an entry in <code>Errors</code> that describes the errors.</p> <p>If the system detects a document-level error in your input document, the API returns an <code>InvalidRequestException</code> error response. For details about this exception, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html\"> Errors in semi-structured documents</a> in the Comprehend Developer Guide. </p>",
     "ContainsPiiEntities": "<p>Analyzes input text for the presence of personally identifiable information (PII) and returns the labels of identified PII entity types such as name, address, bank account number, or phone number.</p>",
     "CreateDocumentClassifier": "<p>Creates a new document classifier that you can use to categorize documents. To create a classifier, you provide a set of training documents that labeled with the categories that you want to use. After the classifier is trained you can use it to categorize a set of labeled documents into the categories. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html\">Document Classification</a> in the Comprehend Developer Guide. </p>",
     "CreateEndpoint": "<p>Creates a model-specific endpoint for synchronous inference for a previously trained custom model For information about endpoints, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html\">Managing endpoints</a>.</p>",
@@ -31,7 +31,7 @@
     "DescribeTargetedSentimentDetectionJob": "<p>Gets the properties associated with a targeted sentiment detection job. Use this operation to get the status of the job.</p>",
     "DescribeTopicsDetectionJob": "<p>Gets the properties associated with a topic detection job. Use this operation to get the status of a detection job.</p>",
     "DetectDominantLanguage": "<p>Determines the dominant language of the input text. For a list of languages that Amazon Comprehend can detect, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-languages.html\">Amazon Comprehend Supported Languages</a>. </p>",
-    "DetectEntities": "<p>Inspects text for named entities, and returns information about them. For more information, about named entities, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html\">Entities</a> in the Comprehend Developer Guide.</p>",
+    "DetectEntities": "<p>Detects named entities in input text when you use the pre-trained model. Detects custom entities if you have a custom entity recognition model. </p> <p> When detecting named entities using the pre-trained model, use plain text as the input. For more information about named entities, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html\">Entities</a> in the Comprehend Developer Guide.</p> <p>When you use a custom entity recognition model, you can input plain text or you can upload a single-page input document (text, PDF, Word, or image). </p> <p>If the system detects errors while processing a page in the input document, the API response includes an entry in <code>Errors</code> for each error. </p> <p>If the system detects a document-level error in your input document, the API returns an <code>InvalidRequestException</code> error response. For details about this exception, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html\"> Errors in semi-structured documents</a> in the Comprehend Developer Guide. </p>",
     "DetectKeyPhrases": "<p>Detects the key noun phrases found in the text. </p>",
     "DetectPiiEntities": "<p>Inspects the input text for entities that contain personally identifiable information (PII) and returns information about them.</p>",
     "DetectSentiment": "<p>Inspects text and returns an inference of the prevailing sentiment (<code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>). </p>",
@@ -238,6 +238,36 @@
       "refs": {
       }
     },
+    "Block": {
+      "base": "<p>Information about each word or line of text in the input document.</p> <p>For additional information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/API_Block.html\">Block</a> in the Amazon Textract API reference.</p>",
+      "refs": {
+        "ListOfBlocks$member": null
+      }
+    },
+    "BlockReference": {
+      "base": "<p>A reference to a block. </p>",
+      "refs": {
+        "ListOfBlockReferences$member": null
+      }
+    },
+    "BlockType": {
+      "base": null,
+      "refs": {
+        "Block$BlockType": "<p>The block represents a line of text or one word of text.</p> <ul> <li> <p>WORD - A word that's detected on a document page. A word is one or more ISO basic Latin script characters that aren't separated by spaces.</p> </li> <li> <p>LINE - A string of tab-delimited, contiguous words that are detected on a document page</p> </li> </ul>"
+      }
+    },
+    "BoundingBox": {
+      "base": "<p>The bounding box around the detected page or around an element on a document page. The left (x-coordinate) and top (y-coordinate) are coordinates that represent the top and left sides of the bounding box. Note that the upper-left corner of the image is the origin (0,0). </p> <p>For additional information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/API_BoundingBox.html\">BoundingBox</a> in the Amazon Textract API reference.</p>",
+      "refs": {
+        "Geometry$BoundingBox": "<p>An axis-aligned coarse representation of the location of the recognized item on the document page.</p>"
+      }
+    },
+    "ChildBlock": {
+      "base": "<p>Nested block contained within a block.</p>",
+      "refs": {
+        "ListOfChildBlocks$member": null
+      }
+    },
     "ClassifierEvaluationMetrics": {
       "base": "<p>Describes the result metrics for the test data associated with an documentation classifier.</p>",
       "refs": {
@@ -337,7 +367,7 @@
       "refs": {
         "CreateEndpointRequest$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint will be attached.</p>",
         "DeleteResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the custom model version that has the policy to delete.</p>",
-        "DescribeResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the policy to describe.</p>",
+        "DescribeResourcePolicyRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the custom model version that has the resource policy.</p>",
         "EndpointFilter$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint is attached.</p>",
         "EndpointProperties$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint is attached.</p>",
         "EndpointProperties$DesiredModelArn": "<p>ARN of the new model to use for updating an existing endpoint. This ARN is going to be different from the model ARN when the update is in progress</p>",
@@ -395,10 +425,10 @@
     "CustomerInputString": {
       "base": null,
       "refs": {
-        "ClassifyDocumentRequest$Text": "<p>The document text to be analyzed.</p>",
+        "ClassifyDocumentRequest$Text": "<p>The document text to be analyzed. If you enter text using this parameter, do not use the <code>Bytes</code> parameter.</p>",
         "CustomerInputStringList$member": null,
         "DetectDominantLanguageRequest$Text": "<p>A UTF-8 text string. The string must contain at least 20 characters. The maximum string size is 100 KB.</p>",
-        "DetectEntitiesRequest$Text": "<p>A UTF-8 text string. The maximum string size is 100 KB.</p>",
+        "DetectEntitiesRequest$Text": "<p>A UTF-8 text string. The maximum string size is 100 KB. If you enter text using this parameter, do not use the <code>Bytes</code> parameter.</p>",
         "DetectKeyPhrasesRequest$Text": "<p>A UTF-8 text string. The string must contain less than 100 KB of UTF-8 encoded characters.</p>",
         "DetectSentimentRequest$Text": "<p>A UTF-8 text string. The maximum string size is 5 KB.</p> <note> <p>Amazon Comprehend performs real-time sentiment analysis on the first 500 characters of the input text and ignores any additional text in the input.</p> </note>",
         "DetectSyntaxRequest$Text": "<p>A UTF-8 string. The maximum string size is 5 KB.</p>",
@@ -770,14 +800,21 @@
         "ListOfLabels$member": null
       }
     },
+    "DocumentMetadata": {
+      "base": "<p>Information about the document, discovered during text extraction.</p>",
+      "refs": {
+        "ClassifyDocumentResponse$DocumentMetadata": "<p>Extraction information about the document. This field is present in the response only if your request includes the <code>Byte</code> parameter. </p>",
+        "DetectEntitiesResponse$DocumentMetadata": "<p>Information about the document, discovered during text extraction. This field is present in the response only if your request used the <code>Byte</code> parameter. </p>"
+      }
+    },
     "DocumentReadAction": {
       "base": null,
       "refs": {
-        "DocumentReaderConfig$DocumentReadAction": "<p>This enum field will start with two values which will apply to PDFs:</p> <ul> <li> <p> <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls DetectDocumentText for PDF documents per page.</p> </li> <li> <p> <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls AnalyzeDocument for PDF documents per page.</p> </li> </ul>"
+        "DocumentReaderConfig$DocumentReadAction": "<p>This field defines the Amazon Textract API operation that Amazon Comprehend uses to extract text from PDF files and image files. Enter one of the following values:</p> <ul> <li> <p> <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon Comprehend service uses the <code>DetectDocumentText</code> API operation. </p> </li> <li> <p> <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend service uses the <code>AnalyzeDocument</code> API operation. </p> </li> </ul>"
       }
     },
     "DocumentReadFeatureTypes": {
-      "base": "<p>A list of the types of analyses to perform. This field specifies what feature types need to be extracted from the document where entity recognition is expected.</p> <ul> <li> <p> <code>TABLES</code> - Add TABLES to the list to return information about the tables that are detected in the input document. </p> </li> <li> <p> <code>FORMS</code> - Add FORMS to return detected form data. </p> </li> </ul>",
+      "base": "<p>Specifies the type of Amazon Textract features to apply. If you chose <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must specify one or both of the following values:</p> <ul> <li> <p> <code>TABLES</code> - Returns additional information about any tables that are detected in the input document. </p> </li> <li> <p> <code>FORMS</code> - Returns additional information about any forms that are detected in the input document. </p> </li> </ul>",
       "refs": {
         "ListOfDocumentReadFeatureTypes$member": null
       }
@@ -785,13 +822,27 @@
     "DocumentReadMode": {
       "base": null,
       "refs": {
-        "DocumentReaderConfig$DocumentReadMode": "<p>This enum field provides two values:</p> <ul> <li> <p> <code>SERVICE_DEFAULT</code> - use service defaults for Document reading. For Digital PDF it would mean using an internal parser instead of Textract APIs</p> </li> <li> <p> <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for DocumentReadAction, including Digital PDF. </p> </li> </ul>"
+        "DocumentReaderConfig$DocumentReadMode": "<p>Determines the text extraction actions for PDF files. Enter one of the following values:</p> <ul> <li> <p> <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service defaults for PDF files.</p> </li> <li> <p> <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses the Textract API specified by DocumentReadAction for all PDF files, including digital PDF files. </p> </li> </ul>"
       }
     },
     "DocumentReaderConfig": {
-      "base": "<p>The input properties for a topic detection job.</p>",
+      "base": "<p>Provides configuration parameters to override the default actions for extracting text from PDF documents and image files. </p> <p> By default, Amazon Comprehend performs the following actions to extract text from files, based on the input file type: </p> <ul> <li> <p> <b>Word files</b> - Amazon Comprehend parser extracts the text. </p> </li> <li> <p> <b>Digital PDF files</b> - Amazon Comprehend parser extracts the text. </p> </li> <li> <p> <b>Image files and scanned PDF files</b> - Amazon Comprehend uses the Amazon Textract <code>DetectDocumentText</code> API to extract the text. </p> </li> </ul> <p> <code>DocumentReaderConfig</code> does not apply to plain text files or Word files.</p> <p> For image files and PDF documents, you can override these default actions using the fields listed below. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/detecting-cer.html#detecting-cer-pdf\"> Setting text extraction options</a>. </p>",
       "refs": {
-        "InputDataConfig$DocumentReaderConfig": "<p>The document reader config field applies only for InputDataConfig of StartEntitiesDetectionJob. </p> <p>Use DocumentReaderConfig to provide specifications about how you want your inference documents read. Currently it applies for PDF documents in StartEntitiesDetectionJob custom inference.</p>"
+        "ClassifyDocumentRequest$DocumentReaderConfig": "<p>Provides configuration parameters to override the default actions for extracting text from PDF documents and image files.</p>",
+        "DetectEntitiesRequest$DocumentReaderConfig": "<p>Provides configuration parameters to override the default actions for extracting text from PDF documents and image files.</p>",
+        "InputDataConfig$DocumentReaderConfig": "<p>Provides configuration parameters to override the default actions for extracting text from PDF documents and image files.</p>"
+      }
+    },
+    "DocumentType": {
+      "base": null,
+      "refs": {
+        "DocumentTypeListItem$Type": "<p>Document type.</p>"
+      }
+    },
+    "DocumentTypeListItem": {
+      "base": "<p>Document type for each page in the document.</p>",
+      "refs": {
+        "ListOfDocumentType$member": null
       }
     },
     "DominantLanguage": {
@@ -1009,7 +1060,7 @@
     "EntityType": {
       "base": null,
       "refs": {
-        "Entity$Type": "<p>The entity's type.</p>"
+        "Entity$Type": "<p>The entity type. For entity detection using the built-in model, this field contains one of the standard entity types listed below.</p> <p>For custom entity detection, this field contains one of the entity types that you specified when you trained your custom model.</p>"
       }
     },
     "EntityTypeName": {
@@ -1034,6 +1085,12 @@
       "base": "<p>An entity type within a labeled training dataset that Amazon Comprehend uses to train a custom entity recognizer.</p>",
       "refs": {
         "EntityTypesList$member": null
+      }
+    },
+    "ErrorsListItem": {
+      "base": "<p>Text extraction encountered one or more page-level errors in the input document.</p> <p>The <code>ErrorCode</code> contains one of the following values:</p> <ul> <li> <p>TEXTRACT_BAD_PAGE - Amazon Textract cannot read the page. For more information about page limits in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits-document.html\"> Page Quotas in Amazon Textract</a>.</p> </li> <li> <p>TEXTRACT_PROVISIONED_THROUGHPUT_EXCEEDED - The number of requests exceeded your throughput limit. For more information about throughput quotas in Amazon Textract, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/limits-quotas-explained.html\"> Default quotas in Amazon Textract</a>.</p> </li> <li> <p>PAGE_CHARACTERS_EXCEEDED - Too many text characters on the page (10,000 characters maximum).</p> </li> <li> <p>PAGE_SIZE_EXCEEDED - The maximum page size is 10 MB.</p> </li> <li> <p>INTERNAL_SERVER_ERROR - The request encountered a service issue. Try the API request again.</p> </li> </ul>",
+      "refs": {
+        "ListOfErrors$member": null
       }
     },
     "EventTypeString": {
@@ -1061,9 +1118,19 @@
         "ListEventsDetectionJobsResponse$EventsDetectionJobPropertiesList": "<p>A list containing the properties of each job that is returned.</p>"
       }
     },
+    "ExtractedCharactersListItem": {
+      "base": "<p>Array of the number of characters extracted from each page.</p>",
+      "refs": {
+        "ListOfExtractedCharacters$member": null
+      }
+    },
     "Float": {
       "base": null,
       "refs": {
+        "BoundingBox$Height": "<p>The height of the bounding box as a ratio of the overall document page height.</p>",
+        "BoundingBox$Left": "<p>The left coordinate of the bounding box as a ratio of overall document page width.</p>",
+        "BoundingBox$Top": "<p>The top coordinate of the bounding box as a ratio of overall document page height.</p>",
+        "BoundingBox$Width": "<p>The width of the bounding box as a ratio of the overall document page width.</p>",
         "DocumentClass$Score": "<p>The confidence score that Amazon Comprehend has this class correctly attributed.</p>",
         "DocumentLabel$Score": "<p>The confidence score that Amazon Comprehend has this label correctly attributed.</p>",
         "DominantLanguage$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
@@ -1072,12 +1139,20 @@
         "KeyPhrase$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
         "PartOfSpeechTag$Score": "<p>The confidence that Amazon Comprehend has that the part of speech was correctly identified.</p>",
         "PiiEntity$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
+        "Point$X": "<p>The value of the X coordinate for a point on a polygon</p>",
+        "Point$Y": "<p>The value of the Y coordinate for a point on a polygon</p>",
         "SentimentScore$Positive": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>POSITIVE</code> sentiment.</p>",
         "SentimentScore$Negative": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEGATIVE</code> sentiment.</p>",
         "SentimentScore$Neutral": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>NEUTRAL</code> sentiment.</p>",
         "SentimentScore$Mixed": "<p>The level of confidence that Amazon Comprehend has in the accuracy of its detection of the <code>MIXED</code> sentiment.</p>",
         "TargetedSentimentMention$Score": "<p>Model confidence that the entity is relevant. Value range is zero to one, where one is highest confidence.</p>",
         "TargetedSentimentMention$GroupScore": "<p>The confidence that all the entities mentioned in the group relate to the same entity.</p>"
+      }
+    },
+    "Geometry": {
+      "base": "<p>Information about the location of items on a document page.</p> <p>For additional information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/API_Geometry.html\">Geometry</a> in the Amazon Textract API reference.</p>",
+      "refs": {
+        "Block$Geometry": "<p>Co-ordinates of the rectangle or polygon that contains the text.</p>"
       }
     },
     "IamRoleArn": {
@@ -1132,7 +1207,7 @@
       }
     },
     "InputDataConfig": {
-      "base": "<p>The input properties for an inference job.</p>",
+      "base": "<p>The input properties for an inference job. The document reader config field applies only to non-text inputs for custom analysis.</p>",
       "refs": {
         "DocumentClassificationJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the document classification job.</p>",
         "DominantLanguageDetectionJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the dominant language detection job.</p>",
@@ -1171,16 +1246,28 @@
         "BatchDetectSyntaxItemResult$Index": "<p>The zero-based index of the document in the input list.</p>",
         "BatchDetectTargetedSentimentItemResult$Index": "<p>The zero-based index of this result in the input list.</p>",
         "BatchItemError$Index": "<p>The zero-based index of the document in the input list.</p>",
+        "Block$Page": "<p>Page number where the block appears.</p>",
+        "BlockReference$BeginOffset": "<p>Offset of the start of the block within its parent block.</p>",
+        "BlockReference$EndOffset": "<p>Offset of the end of the block within its parent block.</p>",
+        "ChildBlock$BeginOffset": "<p>Offset of the start of the child block within its parent block.</p>",
+        "ChildBlock$EndOffset": "<p>Offset of the end of the child block within its parent block.</p>",
         "ClassifierMetadata$NumberOfLabels": "<p>The number of labels in the input data. </p>",
         "ClassifierMetadata$NumberOfTrainedDocuments": "<p>The number of documents in the input data that were used to train the classifier. Typically this is 80 to 90 percent of the input documents.</p>",
         "ClassifierMetadata$NumberOfTestDocuments": "<p>The number of documents in the input data that were used to test the classifier. Typically this is 10 to 20 percent of the input documents, up to 10,000 documents.</p>",
+        "DocumentClass$Page": "<p>Page number in the input document. This field is present in the response only if your request includes the <code>Byte</code> parameter. </p>",
         "DocumentClassifierSummary$NumberOfVersions": "<p>The number of versions you created.</p>",
-        "Entity$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the entity.</p>",
-        "Entity$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the entity.</p>",
+        "DocumentLabel$Page": "<p>Page number where the label occurs. This field is present in the response only if your request includes the <code>Byte</code> parameter. </p>",
+        "DocumentMetadata$Pages": "<p>Number of pages in the document.</p>",
+        "DocumentTypeListItem$Page": "<p>Page number.</p>",
+        "Entity$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the entity.</p> <p>This field is empty for non-text input.</p>",
+        "Entity$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the entity.</p> <p>This field is empty for non-text input.</p>",
         "EntityRecognizerMetadata$NumberOfTrainedDocuments": "<p> The number of documents in the input data that were used to train the entity recognizer. Typically this is 80 to 90 percent of the input documents.</p>",
         "EntityRecognizerMetadata$NumberOfTestDocuments": "<p> The number of documents in the input data that were used to test the entity recognizer. Typically this is 10 to 20 percent of the input documents.</p>",
         "EntityRecognizerMetadataEntityTypesListItem$NumberOfTrainMentions": "<p>Indicates the number of times the given entity type was seen in the training data. </p>",
         "EntityRecognizerSummary$NumberOfVersions": "<p> The number of versions you created.</p>",
+        "ErrorsListItem$Page": "<p>Page number where the error occurred.</p>",
+        "ExtractedCharactersListItem$Page": "<p>Page number.</p>",
+        "ExtractedCharactersListItem$Count": "<p>Number of characters extracted from each page.</p>",
         "KeyPhrase$BeginOffset": "<p>The zero-based offset from the beginning of the source text to the first character in the key phrase.</p>",
         "KeyPhrase$EndOffset": "<p>The zero-based offset from the beginning of the source text to the last character in the key phrase.</p>",
         "ListOfDescriptiveMentionIndices$member": null,
@@ -1204,9 +1291,27 @@
       "refs": {
       }
     },
+    "InvalidRequestDetail": {
+      "base": "<p>Provides additional detail about why the request failed:</p> <ul> <li> <p>Document size is too large - Check the size of your file and resubmit the request.</p> </li> <li> <p>Document type is not supported - Check the file type and resubmit the request.</p> </li> <li> <p>Too many pages in the document - Check the number of pages in your file and resubmit the request.</p> </li> <li> <p>Access denied to Amazon Textract - Verify that your account has permission to use Amazon Textract API operations and resubmit the request.</p> </li> </ul>",
+      "refs": {
+        "InvalidRequestException$Detail": null
+      }
+    },
+    "InvalidRequestDetailReason": {
+      "base": null,
+      "refs": {
+        "InvalidRequestDetail$Reason": "<p>Reason code is <code>INVALID_DOCUMENT</code>.</p>"
+      }
+    },
     "InvalidRequestException": {
       "base": "<p>The request is invalid.</p>",
       "refs": {
+      }
+    },
+    "InvalidRequestReason": {
+      "base": null,
+      "refs": {
+        "InvalidRequestException$Reason": null
       }
     },
     "JobId": {
@@ -1407,8 +1512,8 @@
         "BatchDetectTargetedSentimentRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only supported language.</p>",
         "ContainsPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "CreateDocumentClassifierRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the following languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
-        "CreateEntityRecognizerRequest$LanguageCode": "<p> You can specify any of the following languages supported by Amazon Comprehend: English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), German (\"de\"), or Portuguese (\"pt\"). All documents must be in the same language.</p>",
-        "DetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p> <p>If your request includes the endpoint for a custom entity recognition model, Amazon Comprehend uses the language of your custom model, and it ignores any language code that you specify here.</p>",
+        "CreateEntityRecognizerRequest$LanguageCode": "<p> You can specify any of the following languages: English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), German (\"de\"), or Portuguese (\"pt\"). If you plan to use this entity recognizer with PDF, Word, or image input files, you must specify English as the language. All training documents must be in the same language.</p>",
+        "DetectEntitiesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. If your request includes the endpoint for a custom entity recognition model, Amazon Comprehend uses the language of your custom model, and it ignores any language code that you specify here.</p> <p>All input documents must be in the same language.</p>",
         "DetectKeyPhrasesRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "DetectPiiEntitiesRequest$LanguageCode": "<p>The language of the input documents. Currently, English is the only valid language.</p>",
         "DetectSentimentRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
@@ -1529,6 +1634,24 @@
       "refs": {
       }
     },
+    "ListOfBlockReferences": {
+      "base": null,
+      "refs": {
+        "Entity$BlockReferences": "<p>A reference to each block for this entity. This field is empty for plain-text input.</p>"
+      }
+    },
+    "ListOfBlocks": {
+      "base": null,
+      "refs": {
+        "DetectEntitiesResponse$Blocks": "<p>Information about each block of text in the input document. Blocks are nested. A page block contains a block for each line of text, which contains a block for each word. </p> <p>The <code>Block</code> content for a Word input document does not include a <code>Geometry</code> field.</p> <p>The <code>Block</code> field is not present in the response for plain-text inputs.</p>"
+      }
+    },
+    "ListOfChildBlocks": {
+      "base": null,
+      "refs": {
+        "BlockReference$ChildBlocks": "<p>List of child blocks within this block.</p>"
+      }
+    },
     "ListOfClasses": {
       "base": null,
       "refs": {
@@ -1580,7 +1703,14 @@
     "ListOfDocumentReadFeatureTypes": {
       "base": null,
       "refs": {
-        "DocumentReaderConfig$FeatureTypes": "<p>Specifies how the text in an input file should be processed:</p>"
+        "DocumentReaderConfig$FeatureTypes": "<p>Specifies the type of Amazon Textract features to apply. If you chose <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must specify one or both of the following values:</p> <ul> <li> <p> <code>TABLES</code> - Returns information about any tables that are detected in the input document. </p> </li> <li> <p> <code>FORMS</code> - Returns information and the data from any forms that are detected in the input document. </p> </li> </ul>"
+      }
+    },
+    "ListOfDocumentType": {
+      "base": null,
+      "refs": {
+        "ClassifyDocumentResponse$DocumentType": "<p>The document type for each page in the input document. This field is present in the response only if your request includes the <code>Byte</code> parameter. </p>",
+        "DetectEntitiesResponse$DocumentType": "<p>The document type for each page in the input document. This field is present in the response only if your request used the <code>Byte</code> parameter. </p>"
       }
     },
     "ListOfDominantLanguages": {
@@ -1601,6 +1731,19 @@
       "base": null,
       "refs": {
         "ContainsPiiEntitiesResponse$Labels": "<p>The labels used in the document being analyzed. Individual labels represent personally identifiable information (PII) entity types.</p>"
+      }
+    },
+    "ListOfErrors": {
+      "base": null,
+      "refs": {
+        "ClassifyDocumentResponse$Errors": "<p>Page-level errors that the system detected while processing the input document. The field is empty if the system encountered no errors.</p>",
+        "DetectEntitiesResponse$Errors": "<p>Page-level errors that the system detected while processing the input document. The field is empty if the system encountered no errors.</p>"
+      }
+    },
+    "ListOfExtractedCharacters": {
+      "base": null,
+      "refs": {
+        "DocumentMetadata$ExtractedCharacters": "<p>List of pages in the document, with the number of characters extracted from each page.</p>"
       }
     },
     "ListOfKeyPhrases": {
@@ -1632,6 +1775,12 @@
       "base": null,
       "refs": {
         "RedactionConfig$PiiEntityTypes": "<p>An array of the types of PII entities that Amazon Comprehend detects in the input text for your request.</p>"
+      }
+    },
+    "ListOfRelationships": {
+      "base": null,
+      "refs": {
+        "Block$Relationships": "<p>A list of child blocks of the current block. For example, a LINE object has child blocks for each WORD block that's part of the line of text. </p>"
       }
     },
     "ListOfSyntaxTokens": {
@@ -1768,6 +1917,12 @@
         "TopicsDetectionJobProperties$OutputDataConfig": "<p>The output data configuration supplied when you created the topic detection job.</p>"
       }
     },
+    "PageBasedErrorCode": {
+      "base": null,
+      "refs": {
+        "ErrorsListItem$ErrorCode": "<p>Error code for the cause of the error.</p>"
+      }
+    },
     "PartOfSpeechTag": {
       "base": "<p>Identifies the part of speech represented by the token and gives the confidence that Amazon Comprehend has that the part of speech was correctly identified. For more information about the parts of speech that Amazon Comprehend can identify, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html\">Syntax</a> in the Comprehend Developer Guide. </p>",
       "refs": {
@@ -1832,6 +1987,12 @@
         "PiiEntitiesDetectionJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the PII entities detection job.</p>"
       }
     },
+    "Point": {
+      "base": "<p>The X and Y coordinates of a point on a document page.</p> <p>For additional information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/API_Point.html\">Point</a> in the Amazon Textract API reference.</p>",
+      "refs": {
+        "Polygon$member": null
+      }
+    },
     "Policy": {
       "base": null,
       "refs": {
@@ -1850,6 +2011,12 @@
         "PutResourcePolicyResponse$PolicyRevisionId": "<p>The revision ID of the policy. Each time you modify a policy, Amazon Comprehend assigns a new revision ID, and it deletes the prior version of the policy.</p>"
       }
     },
+    "Polygon": {
+      "base": null,
+      "refs": {
+        "Geometry$Polygon": "<p>Within the bounding box, a fine-grained polygon around the recognized item.</p>"
+      }
+    },
     "PutResourcePolicyRequest": {
       "base": null,
       "refs": {
@@ -1865,6 +2032,18 @@
       "refs": {
         "PiiEntitiesDetectionJobProperties$RedactionConfig": "<p>Provides configuration parameters for PII entity redaction.</p> <p>This parameter is required if you set the <code>Mode</code> parameter to <code>ONLY_REDACTION</code>. In that case, you must provide a <code>RedactionConfig</code> definition that includes the <code>PiiEntityTypes</code> parameter.</p>",
         "StartPiiEntitiesDetectionJobRequest$RedactionConfig": "<p>Provides configuration parameters for PII entity redaction.</p> <p>This parameter is required if you set the <code>Mode</code> parameter to <code>ONLY_REDACTION</code>. In that case, you must provide a <code>RedactionConfig</code> definition that includes the <code>PiiEntityTypes</code> parameter.</p>"
+      }
+    },
+    "RelationshipType": {
+      "base": null,
+      "refs": {
+        "RelationshipsListItem$Type": "<p>Only supported relationship is a child relationship.</p>"
+      }
+    },
+    "RelationshipsListItem": {
+      "base": "<p>List of child blocks for the current block.</p>",
+      "refs": {
+        "ListOfRelationships$member": null
       }
     },
     "ResourceInUseException": {
@@ -1916,6 +2095,13 @@
       "base": null,
       "refs": {
         "VpcConfig$SecurityGroupIds": "<p>The ID number for a security group on an instance of your private VPC. Security groups on your VPC function serve as a virtual firewall to control inbound and outbound traffic and provides security for the resources that you’ll be accessing on the VPC. This ID number is preceded by \"sg-\", for instance: \"sg-03b388029b0a285ea\". For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html\">Security Groups for your VPC</a>. </p>"
+      }
+    },
+    "SemiStructuredDocumentBlob": {
+      "base": null,
+      "refs": {
+        "ClassifyDocumentRequest$Bytes": "<p>Use the <code>Bytes</code> parameter to input a text, PDF, Word or image file. You can also use the <code>Bytes</code> parameter to input an Amazon Textract <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output file.</p> <p>Provide the input document as a sequence of base64-encoded bytes. If your code uses an Amazon Web Services SDK to classify documents, the SDK may encode the document file bytes for you. </p> <p>The maximum length of this field depends on the input document type. For details, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html\"> Inputs for real-time custom analysis</a> in the Comprehend Developer Guide. </p> <p>If you use the <code>Bytes</code> parameter, do not use the <code>Text</code> parameter.</p>",
+        "DetectEntitiesRequest$Bytes": "<p>This field applies only when you use a custom entity recognition model that was trained with PDF annotations. For other cases, enter your text input in the <code>Text</code> field.</p> <p> Use the <code>Bytes</code> parameter to input a text, PDF, Word or image file. Using a plain-text file in the <code>Bytes</code> parameter is equivelent to using the <code>Text</code> parameter (the <code>Entities</code> field in the response is identical).</p> <p>You can also use the <code>Bytes</code> parameter to input an Amazon Textract <code>DetectDocumentText</code> or <code>AnalyzeDocument</code> output file.</p> <p>Provide the input document as a sequence of base64-encoded bytes. If your code uses an Amazon Web Services SDK to detect entities, the SDK may encode the document file bytes for you. </p> <p>The maximum length of this field depends on the input document type. For details, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html\"> Inputs for real-time custom analysis</a> in the Comprehend Developer Guide. </p> <p>If you use the <code>Bytes</code> parameter, do not use the <code>Text</code> parameter.</p>"
       }
     },
     "SentimentDetectionJobFilter": {
@@ -2145,6 +2331,10 @@
         "BatchItemError$ErrorCode": "<p>The numeric error code of the error.</p>",
         "BatchItemError$ErrorMessage": "<p>A text description of the error.</p>",
         "BatchSizeLimitExceededException$Message": null,
+        "Block$Id": "<p>Unique identifier for the block.</p>",
+        "Block$Text": "<p>The word or line of text extracted from the block.</p>",
+        "BlockReference$BlockId": "<p>Unique identifier for the block.</p>",
+        "ChildBlock$ChildBlockId": "<p>Unique identifier for the child block.</p>",
         "ConcurrentModificationException$Message": null,
         "ContainsPiiEntitiesRequest$Text": "<p>A UTF-8 text string. The maximum string size is 100 KB.</p>",
         "DetectPiiEntitiesRequest$Text": "<p>A UTF-8 text string. The maximum string size is 100 KB.</p>",
@@ -2152,6 +2342,7 @@
         "DocumentLabel$Name": "<p>The name of the label.</p>",
         "DominantLanguage$LanguageCode": "<p>The RFC 5646 language code for the dominant language. For more information about RFC 5646, see <a href=\"https://tools.ietf.org/html/rfc5646\">Tags for Identifying Languages</a> on the <i>IETF Tools</i> web site.</p>",
         "Entity$Text": "<p>The text of the entity.</p>",
+        "ErrorsListItem$ErrorMessage": "<p>Text message explaining the reason for the error.</p>",
         "InternalServerException$Message": null,
         "InvalidFilterException$Message": null,
         "InvalidRequestException$Message": null,
@@ -2190,6 +2381,7 @@
         "ResourceLimitExceededException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ResourceUnavailableException$Message": null,
+        "StringList$member": null,
         "SyntaxToken$Text": "<p>The word that was recognized in the source text.</p>",
         "TargetedSentimentMention$Text": "<p>The text in the document that identifies the entity.</p>",
         "TextSizeLimitExceededException$Message": null,
@@ -2197,6 +2389,12 @@
         "TooManyTagKeysException$Message": null,
         "TooManyTagsException$Message": null,
         "UnsupportedLanguageException$Message": null
+      }
+    },
+    "StringList": {
+      "base": null,
+      "refs": {
+        "RelationshipsListItem$Ids": "<p>Identifers of the child blocks.</p>"
       }
     },
     "SubnetId": {

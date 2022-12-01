@@ -641,6 +641,17 @@ func (c *Comprehend) ClassifyDocumentRequest(input *ClassifyDocumentInput) (req 
 // in real-time, using a previously created and trained custom model and an
 // endpoint.
 //
+// You can input plain text or you can upload a single-page input document (text,
+// PDF, Word, or image).
+//
+// If the system detects errors while processing a page in the input document,
+// the API response includes an entry in Errors that describes the errors.
+//
+// If the system detects a document-level error in your input document, the
+// API returns an InvalidRequestException error response. For details about
+// this exception, see Errors in semi-structured documents (https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html)
+// in the Comprehend Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2793,8 +2804,22 @@ func (c *Comprehend) DetectEntitiesRequest(input *DetectEntitiesInput) (req *req
 
 // DetectEntities API operation for Amazon Comprehend.
 //
-// Inspects text for named entities, and returns information about them. For
-// more information, about named entities, see Entities (https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html)
+// Detects named entities in input text when you use the pre-trained model.
+// Detects custom entities if you have a custom entity recognition model.
+//
+// When detecting named entities using the pre-trained model, use plain text
+// as the input. For more information about named entities, see Entities (https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html)
+// in the Comprehend Developer Guide.
+//
+// When you use a custom entity recognition model, you can input plain text
+// or you can upload a single-page input document (text, PDF, Word, or image).
+//
+// If the system detects errors while processing a page in the input document,
+// the API response includes an entry in Errors for each error.
+//
+// If the system detects a document-level error in your input document, the
+// API returns an InvalidRequestException error response. For details about
+// this exception, see Errors in semi-structured documents (https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html)
 // in the Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4039,6 +4064,12 @@ func (c *Comprehend) ListEndpointsRequest(input *ListEndpointsInput) (req *reque
 		Name:       opListEndpoints,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4093,6 +4124,57 @@ func (c *Comprehend) ListEndpointsWithContext(ctx aws.Context, input *ListEndpoi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListEndpointsPages iterates over the pages of a ListEndpoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEndpoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEndpoints operation.
+//	pageNum := 0
+//	err := client.ListEndpointsPages(params,
+//	    func(page *comprehend.ListEndpointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Comprehend) ListEndpointsPages(input *ListEndpointsInput, fn func(*ListEndpointsOutput, bool) bool) error {
+	return c.ListEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEndpointsPagesWithContext same as ListEndpointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListEndpointsPagesWithContext(ctx aws.Context, input *ListEndpointsInput, fn func(*ListEndpointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEndpointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEndpointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEndpointsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListEntitiesDetectionJobs = "ListEntitiesDetectionJobs"
@@ -4854,6 +4936,12 @@ func (c *Comprehend) ListPiiEntitiesDetectionJobsRequest(input *ListPiiEntitiesD
 		Name:       opListPiiEntitiesDetectionJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4910,6 +4998,57 @@ func (c *Comprehend) ListPiiEntitiesDetectionJobsWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListPiiEntitiesDetectionJobsPages iterates over the pages of a ListPiiEntitiesDetectionJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPiiEntitiesDetectionJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPiiEntitiesDetectionJobs operation.
+//	pageNum := 0
+//	err := client.ListPiiEntitiesDetectionJobsPages(params,
+//	    func(page *comprehend.ListPiiEntitiesDetectionJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Comprehend) ListPiiEntitiesDetectionJobsPages(input *ListPiiEntitiesDetectionJobsInput, fn func(*ListPiiEntitiesDetectionJobsOutput, bool) bool) error {
+	return c.ListPiiEntitiesDetectionJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPiiEntitiesDetectionJobsPagesWithContext same as ListPiiEntitiesDetectionJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListPiiEntitiesDetectionJobsPagesWithContext(ctx aws.Context, input *ListPiiEntitiesDetectionJobsInput, fn func(*ListPiiEntitiesDetectionJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPiiEntitiesDetectionJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPiiEntitiesDetectionJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPiiEntitiesDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListSentimentDetectionJobs = "ListSentimentDetectionJobs"
@@ -8746,6 +8885,269 @@ func (s *BatchSizeLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about each word or line of text in the input document.
+//
+// For additional information, see Block (https://docs.aws.amazon.com/textract/latest/dg/API_Block.html)
+// in the Amazon Textract API reference.
+type Block struct {
+	_ struct{} `type:"structure"`
+
+	// The block represents a line of text or one word of text.
+	//
+	//    * WORD - A word that's detected on a document page. A word is one or more
+	//    ISO basic Latin script characters that aren't separated by spaces.
+	//
+	//    * LINE - A string of tab-delimited, contiguous words that are detected
+	//    on a document page
+	BlockType *string `type:"string" enum:"BlockType"`
+
+	// Co-ordinates of the rectangle or polygon that contains the text.
+	Geometry *Geometry `type:"structure"`
+
+	// Unique identifier for the block.
+	Id *string `min:"1" type:"string"`
+
+	// Page number where the block appears.
+	Page *int64 `type:"integer"`
+
+	// A list of child blocks of the current block. For example, a LINE object has
+	// child blocks for each WORD block that's part of the line of text.
+	Relationships []*RelationshipsListItem `type:"list"`
+
+	// The word or line of text extracted from the block.
+	Text *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Block) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Block) GoString() string {
+	return s.String()
+}
+
+// SetBlockType sets the BlockType field's value.
+func (s *Block) SetBlockType(v string) *Block {
+	s.BlockType = &v
+	return s
+}
+
+// SetGeometry sets the Geometry field's value.
+func (s *Block) SetGeometry(v *Geometry) *Block {
+	s.Geometry = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Block) SetId(v string) *Block {
+	s.Id = &v
+	return s
+}
+
+// SetPage sets the Page field's value.
+func (s *Block) SetPage(v int64) *Block {
+	s.Page = &v
+	return s
+}
+
+// SetRelationships sets the Relationships field's value.
+func (s *Block) SetRelationships(v []*RelationshipsListItem) *Block {
+	s.Relationships = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *Block) SetText(v string) *Block {
+	s.Text = &v
+	return s
+}
+
+// A reference to a block.
+type BlockReference struct {
+	_ struct{} `type:"structure"`
+
+	// Offset of the start of the block within its parent block.
+	BeginOffset *int64 `type:"integer"`
+
+	// Unique identifier for the block.
+	BlockId *string `min:"1" type:"string"`
+
+	// List of child blocks within this block.
+	ChildBlocks []*ChildBlock `type:"list"`
+
+	// Offset of the end of the block within its parent block.
+	EndOffset *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BlockReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BlockReference) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *BlockReference) SetBeginOffset(v int64) *BlockReference {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetBlockId sets the BlockId field's value.
+func (s *BlockReference) SetBlockId(v string) *BlockReference {
+	s.BlockId = &v
+	return s
+}
+
+// SetChildBlocks sets the ChildBlocks field's value.
+func (s *BlockReference) SetChildBlocks(v []*ChildBlock) *BlockReference {
+	s.ChildBlocks = v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *BlockReference) SetEndOffset(v int64) *BlockReference {
+	s.EndOffset = &v
+	return s
+}
+
+// The bounding box around the detected page or around an element on a document
+// page. The left (x-coordinate) and top (y-coordinate) are coordinates that
+// represent the top and left sides of the bounding box. Note that the upper-left
+// corner of the image is the origin (0,0).
+//
+// For additional information, see BoundingBox (https://docs.aws.amazon.com/textract/latest/dg/API_BoundingBox.html)
+// in the Amazon Textract API reference.
+type BoundingBox struct {
+	_ struct{} `type:"structure"`
+
+	// The height of the bounding box as a ratio of the overall document page height.
+	Height *float64 `type:"float"`
+
+	// The left coordinate of the bounding box as a ratio of overall document page
+	// width.
+	Left *float64 `type:"float"`
+
+	// The top coordinate of the bounding box as a ratio of overall document page
+	// height.
+	Top *float64 `type:"float"`
+
+	// The width of the bounding box as a ratio of the overall document page width.
+	Width *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BoundingBox) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BoundingBox) GoString() string {
+	return s.String()
+}
+
+// SetHeight sets the Height field's value.
+func (s *BoundingBox) SetHeight(v float64) *BoundingBox {
+	s.Height = &v
+	return s
+}
+
+// SetLeft sets the Left field's value.
+func (s *BoundingBox) SetLeft(v float64) *BoundingBox {
+	s.Left = &v
+	return s
+}
+
+// SetTop sets the Top field's value.
+func (s *BoundingBox) SetTop(v float64) *BoundingBox {
+	s.Top = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *BoundingBox) SetWidth(v float64) *BoundingBox {
+	s.Width = &v
+	return s
+}
+
+// Nested block contained within a block.
+type ChildBlock struct {
+	_ struct{} `type:"structure"`
+
+	// Offset of the start of the child block within its parent block.
+	BeginOffset *int64 `type:"integer"`
+
+	// Unique identifier for the child block.
+	ChildBlockId *string `min:"1" type:"string"`
+
+	// Offset of the end of the child block within its parent block.
+	EndOffset *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChildBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChildBlock) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *ChildBlock) SetBeginOffset(v int64) *ChildBlock {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetChildBlockId sets the ChildBlockId field's value.
+func (s *ChildBlock) SetChildBlockId(v string) *ChildBlock {
+	s.ChildBlockId = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *ChildBlock) SetEndOffset(v int64) *ChildBlock {
+	s.EndOffset = &v
+	return s
+}
+
 // Describes the result metrics for the test data associated with an documentation
 // classifier.
 type ClassifierEvaluationMetrics struct {
@@ -8929,20 +9331,39 @@ func (s *ClassifierMetadata) SetNumberOfTrainedDocuments(v int64) *ClassifierMet
 type ClassifyDocumentInput struct {
 	_ struct{} `type:"structure"`
 
+	// Use the Bytes parameter to input a text, PDF, Word or image file. You can
+	// also use the Bytes parameter to input an Amazon Textract DetectDocumentText
+	// or AnalyzeDocument output file.
+	//
+	// Provide the input document as a sequence of base64-encoded bytes. If your
+	// code uses an Amazon Web Services SDK to classify documents, the SDK may encode
+	// the document file bytes for you.
+	//
+	// The maximum length of this field depends on the input document type. For
+	// details, see Inputs for real-time custom analysis (https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html)
+	// in the Comprehend Developer Guide.
+	//
+	// If you use the Bytes parameter, do not use the Text parameter.
+	// Bytes is automatically base64 encoded/decoded by the SDK.
+	Bytes []byte `min:"1" type:"blob"`
+
+	// Provides configuration parameters to override the default actions for extracting
+	// text from PDF documents and image files.
+	DocumentReaderConfig *DocumentReaderConfig `type:"structure"`
+
 	// The Amazon Resource Number (ARN) of the endpoint. For information about endpoints,
 	// see Managing endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html).
 	//
 	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 
-	// The document text to be analyzed.
+	// The document text to be analyzed. If you enter text using this parameter,
+	// do not use the Bytes parameter.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ClassifyDocumentInput's
 	// String and GoString methods.
-	//
-	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
+	Text *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8966,20 +9387,37 @@ func (s ClassifyDocumentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ClassifyDocumentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ClassifyDocumentInput"}
+	if s.Bytes != nil && len(s.Bytes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bytes", 1))
+	}
 	if s.EndpointArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
 	}
-	if s.Text == nil {
-		invalidParams.Add(request.NewErrParamRequired("Text"))
-	}
 	if s.Text != nil && len(*s.Text) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+	if s.DocumentReaderConfig != nil {
+		if err := s.DocumentReaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentReaderConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBytes sets the Bytes field's value.
+func (s *ClassifyDocumentInput) SetBytes(v []byte) *ClassifyDocumentInput {
+	s.Bytes = v
+	return s
+}
+
+// SetDocumentReaderConfig sets the DocumentReaderConfig field's value.
+func (s *ClassifyDocumentInput) SetDocumentReaderConfig(v *DocumentReaderConfig) *ClassifyDocumentInput {
+	s.DocumentReaderConfig = v
+	return s
 }
 
 // SetEndpointArn sets the EndpointArn field's value.
@@ -9002,6 +9440,18 @@ type ClassifyDocumentOutput struct {
 	// is expected to have only a single class assigned to it. For example, an animal
 	// can be a dog or a cat, but not both at the same time.
 	Classes []*DocumentClass `type:"list"`
+
+	// Extraction information about the document. This field is present in the response
+	// only if your request includes the Byte parameter.
+	DocumentMetadata *DocumentMetadata `type:"structure"`
+
+	// The document type for each page in the input document. This field is present
+	// in the response only if your request includes the Byte parameter.
+	DocumentType []*DocumentTypeListItem `type:"list"`
+
+	// Page-level errors that the system detected while processing the input document.
+	// The field is empty if the system encountered no errors.
+	Errors []*ErrorsListItem `type:"list"`
 
 	// The labels used the document being analyzed. These are used for multi-label
 	// trained models. Individual labels represent different categories that are
@@ -9032,6 +9482,24 @@ func (s ClassifyDocumentOutput) GoString() string {
 // SetClasses sets the Classes field's value.
 func (s *ClassifyDocumentOutput) SetClasses(v []*DocumentClass) *ClassifyDocumentOutput {
 	s.Classes = v
+	return s
+}
+
+// SetDocumentMetadata sets the DocumentMetadata field's value.
+func (s *ClassifyDocumentOutput) SetDocumentMetadata(v *DocumentMetadata) *ClassifyDocumentOutput {
+	s.DocumentMetadata = v
+	return s
+}
+
+// SetDocumentType sets the DocumentType field's value.
+func (s *ClassifyDocumentOutput) SetDocumentType(v []*DocumentTypeListItem) *ClassifyDocumentOutput {
+	s.DocumentType = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *ClassifyDocumentOutput) SetErrors(v []*ErrorsListItem) *ClassifyDocumentOutput {
+	s.Errors = v
 	return s
 }
 
@@ -9657,9 +10125,11 @@ type CreateEntityRecognizerInput struct {
 	// InputDataConfig is a required field
 	InputDataConfig *EntityRecognizerInputDataConfig `type:"structure" required:"true"`
 
-	// You can specify any of the following languages supported by Amazon Comprehend:
-	// English ("en"), Spanish ("es"), French ("fr"), Italian ("it"), German ("de"),
-	// or Portuguese ("pt"). All documents must be in the same language.
+	// You can specify any of the following languages: English ("en"), Spanish ("es"),
+	// French ("fr"), Italian ("it"), German ("de"), or Portuguese ("pt"). If you
+	// plan to use this entity recognizer with PDF, Word, or image input files,
+	// you must specify English as the language. All training documents must be
+	// in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -10898,7 +11368,8 @@ func (s *DescribePiiEntitiesDetectionJobOutput) SetPiiEntitiesDetectionJobProper
 type DescribeResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the policy to describe.
+	// The Amazon Resource Name (ARN) of the custom model version that has the resource
+	// policy.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
@@ -11336,6 +11807,33 @@ func (s *DetectDominantLanguageOutput) SetLanguages(v []*DominantLanguage) *Dete
 type DetectEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
+	// This field applies only when you use a custom entity recognition model that
+	// was trained with PDF annotations. For other cases, enter your text input
+	// in the Text field.
+	//
+	// Use the Bytes parameter to input a text, PDF, Word or image file. Using a
+	// plain-text file in the Bytes parameter is equivelent to using the Text parameter
+	// (the Entities field in the response is identical).
+	//
+	// You can also use the Bytes parameter to input an Amazon Textract DetectDocumentText
+	// or AnalyzeDocument output file.
+	//
+	// Provide the input document as a sequence of base64-encoded bytes. If your
+	// code uses an Amazon Web Services SDK to detect entities, the SDK may encode
+	// the document file bytes for you.
+	//
+	// The maximum length of this field depends on the input document type. For
+	// details, see Inputs for real-time custom analysis (https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html)
+	// in the Comprehend Developer Guide.
+	//
+	// If you use the Bytes parameter, do not use the Text parameter.
+	// Bytes is automatically base64 encoded/decoded by the SDK.
+	Bytes []byte `min:"1" type:"blob"`
+
+	// Provides configuration parameters to override the default actions for extracting
+	// text from PDF documents and image files.
+	DocumentReaderConfig *DocumentReaderConfig `type:"structure"`
+
 	// The Amazon Resource Name of an endpoint that is associated with a custom
 	// entity recognition model. Provide an endpoint if you want to detect entities
 	// by using your own custom model instead of the default model that is used
@@ -11348,21 +11846,20 @@ type DetectEntitiesInput struct {
 	EndpointArn *string `type:"string"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend. All documents must be in the same language.
+	// supported by Amazon Comprehend. If your request includes the endpoint for
+	// a custom entity recognition model, Amazon Comprehend uses the language of
+	// your custom model, and it ignores any language code that you specify here.
 	//
-	// If your request includes the endpoint for a custom entity recognition model,
-	// Amazon Comprehend uses the language of your custom model, and it ignores
-	// any language code that you specify here.
+	// All input documents must be in the same language.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// A UTF-8 text string. The maximum string size is 100 KB.
+	// A UTF-8 text string. The maximum string size is 100 KB. If you enter text
+	// using this parameter, do not use the Bytes parameter.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DetectEntitiesInput's
 	// String and GoString methods.
-	//
-	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
+	Text *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -11386,17 +11883,34 @@ func (s DetectEntitiesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DetectEntitiesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DetectEntitiesInput"}
-	if s.Text == nil {
-		invalidParams.Add(request.NewErrParamRequired("Text"))
+	if s.Bytes != nil && len(s.Bytes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bytes", 1))
 	}
 	if s.Text != nil && len(*s.Text) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+	if s.DocumentReaderConfig != nil {
+		if err := s.DocumentReaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentReaderConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBytes sets the Bytes field's value.
+func (s *DetectEntitiesInput) SetBytes(v []byte) *DetectEntitiesInput {
+	s.Bytes = v
+	return s
+}
+
+// SetDocumentReaderConfig sets the DocumentReaderConfig field's value.
+func (s *DetectEntitiesInput) SetDocumentReaderConfig(v *DocumentReaderConfig) *DetectEntitiesInput {
+	s.DocumentReaderConfig = v
+	return s
 }
 
 // SetEndpointArn sets the EndpointArn field's value.
@@ -11420,6 +11934,23 @@ func (s *DetectEntitiesInput) SetText(v string) *DetectEntitiesInput {
 type DetectEntitiesOutput struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
+	// Information about each block of text in the input document. Blocks are nested.
+	// A page block contains a block for each line of text, which contains a block
+	// for each word.
+	//
+	// The Block content for a Word input document does not include a Geometry field.
+	//
+	// The Block field is not present in the response for plain-text inputs.
+	Blocks []*Block `type:"list"`
+
+	// Information about the document, discovered during text extraction. This field
+	// is present in the response only if your request used the Byte parameter.
+	DocumentMetadata *DocumentMetadata `type:"structure"`
+
+	// The document type for each page in the input document. This field is present
+	// in the response only if your request used the Byte parameter.
+	DocumentType []*DocumentTypeListItem `type:"list"`
+
 	// A collection of entities identified in the input text. For each entity, the
 	// response provides the entity text, entity type, where the entity text begins
 	// and ends, and the level of confidence that Amazon Comprehend has in the detection.
@@ -11430,6 +11961,10 @@ type DetectEntitiesOutput struct {
 	// Entities (https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html)
 	// in the Comprehend Developer Guide.
 	Entities []*Entity `type:"list"`
+
+	// Page-level errors that the system detected while processing the input document.
+	// The field is empty if the system encountered no errors.
+	Errors []*ErrorsListItem `type:"list"`
 }
 
 // String returns the string representation.
@@ -11450,9 +11985,33 @@ func (s DetectEntitiesOutput) GoString() string {
 	return s.String()
 }
 
+// SetBlocks sets the Blocks field's value.
+func (s *DetectEntitiesOutput) SetBlocks(v []*Block) *DetectEntitiesOutput {
+	s.Blocks = v
+	return s
+}
+
+// SetDocumentMetadata sets the DocumentMetadata field's value.
+func (s *DetectEntitiesOutput) SetDocumentMetadata(v *DocumentMetadata) *DetectEntitiesOutput {
+	s.DocumentMetadata = v
+	return s
+}
+
+// SetDocumentType sets the DocumentType field's value.
+func (s *DetectEntitiesOutput) SetDocumentType(v []*DocumentTypeListItem) *DetectEntitiesOutput {
+	s.DocumentType = v
+	return s
+}
+
 // SetEntities sets the Entities field's value.
 func (s *DetectEntitiesOutput) SetEntities(v []*Entity) *DetectEntitiesOutput {
 	s.Entities = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *DetectEntitiesOutput) SetErrors(v []*ErrorsListItem) *DetectEntitiesOutput {
+	s.Errors = v
 	return s
 }
 
@@ -11979,6 +12538,10 @@ type DocumentClass struct {
 	// The name of the class.
 	Name *string `min:"1" type:"string"`
 
+	// Page number in the input document. This field is present in the response
+	// only if your request includes the Byte parameter.
+	Page *int64 `type:"integer"`
+
 	// The confidence score that Amazon Comprehend has this class correctly attributed.
 	Score *float64 `type:"float"`
 }
@@ -12004,6 +12567,12 @@ func (s DocumentClass) GoString() string {
 // SetName sets the Name field's value.
 func (s *DocumentClass) SetName(v string) *DocumentClass {
 	s.Name = &v
+	return s
+}
+
+// SetPage sets the Page field's value.
+func (s *DocumentClass) SetPage(v int64) *DocumentClass {
+	s.Page = &v
 	return s
 }
 
@@ -12799,6 +13368,10 @@ type DocumentLabel struct {
 	// The name of the label.
 	Name *string `min:"1" type:"string"`
 
+	// Page number where the label occurs. This field is present in the response
+	// only if your request includes the Byte parameter.
+	Page *int64 `type:"integer"`
+
 	// The confidence score that Amazon Comprehend has this label correctly attributed.
 	Score *float64 `type:"float"`
 }
@@ -12827,37 +13400,113 @@ func (s *DocumentLabel) SetName(v string) *DocumentLabel {
 	return s
 }
 
+// SetPage sets the Page field's value.
+func (s *DocumentLabel) SetPage(v int64) *DocumentLabel {
+	s.Page = &v
+	return s
+}
+
 // SetScore sets the Score field's value.
 func (s *DocumentLabel) SetScore(v float64) *DocumentLabel {
 	s.Score = &v
 	return s
 }
 
-// The input properties for a topic detection job.
+// Information about the document, discovered during text extraction.
+type DocumentMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// List of pages in the document, with the number of characters extracted from
+	// each page.
+	ExtractedCharacters []*ExtractedCharactersListItem `type:"list"`
+
+	// Number of pages in the document.
+	Pages *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentMetadata) GoString() string {
+	return s.String()
+}
+
+// SetExtractedCharacters sets the ExtractedCharacters field's value.
+func (s *DocumentMetadata) SetExtractedCharacters(v []*ExtractedCharactersListItem) *DocumentMetadata {
+	s.ExtractedCharacters = v
+	return s
+}
+
+// SetPages sets the Pages field's value.
+func (s *DocumentMetadata) SetPages(v int64) *DocumentMetadata {
+	s.Pages = &v
+	return s
+}
+
+// Provides configuration parameters to override the default actions for extracting
+// text from PDF documents and image files.
+//
+// By default, Amazon Comprehend performs the following actions to extract text
+// from files, based on the input file type:
+//
+//   - Word files - Amazon Comprehend parser extracts the text.
+//
+//   - Digital PDF files - Amazon Comprehend parser extracts the text.
+//
+//   - Image files and scanned PDF files - Amazon Comprehend uses the Amazon
+//     Textract DetectDocumentText API to extract the text.
+//
+// DocumentReaderConfig does not apply to plain text files or Word files.
+//
+// For image files and PDF documents, you can override these default actions
+// using the fields listed below. For more information, see Setting text extraction
+// options (https://docs.aws.amazon.com/comprehend/latest/dg/detecting-cer.html#detecting-cer-pdf).
 type DocumentReaderConfig struct {
 	_ struct{} `type:"structure"`
 
-	// This enum field will start with two values which will apply to PDFs:
+	// This field defines the Amazon Textract API operation that Amazon Comprehend
+	// uses to extract text from PDF files and image files. Enter one of the following
+	// values:
 	//
-	//    * TEXTRACT_DETECT_DOCUMENT_TEXT - The service calls DetectDocumentText
-	//    for PDF documents per page.
+	//    * TEXTRACT_DETECT_DOCUMENT_TEXT - The Amazon Comprehend service uses the
+	//    DetectDocumentText API operation.
 	//
-	//    * TEXTRACT_ANALYZE_DOCUMENT - The service calls AnalyzeDocument for PDF
-	//    documents per page.
+	//    * TEXTRACT_ANALYZE_DOCUMENT - The Amazon Comprehend service uses the AnalyzeDocument
+	//    API operation.
 	//
 	// DocumentReadAction is a required field
 	DocumentReadAction *string `type:"string" required:"true" enum:"DocumentReadAction"`
 
-	// This enum field provides two values:
+	// Determines the text extraction actions for PDF files. Enter one of the following
+	// values:
 	//
-	//    * SERVICE_DEFAULT - use service defaults for Document reading. For Digital
-	//    PDF it would mean using an internal parser instead of Textract APIs
+	//    * SERVICE_DEFAULT - use the Amazon Comprehend service defaults for PDF
+	//    files.
 	//
-	//    * FORCE_DOCUMENT_READ_ACTION - Always use specified action for DocumentReadAction,
-	//    including Digital PDF.
+	//    * FORCE_DOCUMENT_READ_ACTION - Amazon Comprehend uses the Textract API
+	//    specified by DocumentReadAction for all PDF files, including digital PDF
+	//    files.
 	DocumentReadMode *string `type:"string" enum:"DocumentReadMode"`
 
-	// Specifies how the text in an input file should be processed:
+	// Specifies the type of Amazon Textract features to apply. If you chose TEXTRACT_ANALYZE_DOCUMENT
+	// as the read action, you must specify one or both of the following values:
+	//
+	//    * TABLES - Returns information about any tables that are detected in the
+	//    input document.
+	//
+	//    * FORMS - Returns information and the data from any forms that are detected
+	//    in the input document.
 	FeatureTypes []*string `min:"1" type:"list" enum:"DocumentReadFeatureTypes"`
 }
 
@@ -12910,6 +13559,47 @@ func (s *DocumentReaderConfig) SetDocumentReadMode(v string) *DocumentReaderConf
 // SetFeatureTypes sets the FeatureTypes field's value.
 func (s *DocumentReaderConfig) SetFeatureTypes(v []*string) *DocumentReaderConfig {
 	s.FeatureTypes = v
+	return s
+}
+
+// Document type for each page in the document.
+type DocumentTypeListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Page number.
+	Page *int64 `type:"integer"`
+
+	// Document type.
+	Type *string `type:"string" enum:"DocumentType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentTypeListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentTypeListItem) GoString() string {
+	return s.String()
+}
+
+// SetPage sets the Page field's value.
+func (s *DocumentTypeListItem) SetPage(v int64) *DocumentTypeListItem {
+	s.Page = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DocumentTypeListItem) SetType(v string) *DocumentTypeListItem {
+	s.Type = &v
 	return s
 }
 
@@ -13635,10 +14325,18 @@ type Entity struct {
 
 	// The zero-based offset from the beginning of the source text to the first
 	// character in the entity.
+	//
+	// This field is empty for non-text input.
 	BeginOffset *int64 `type:"integer"`
+
+	// A reference to each block for this entity. This field is empty for plain-text
+	// input.
+	BlockReferences []*BlockReference `type:"list"`
 
 	// The zero-based offset from the beginning of the source text to the last character
 	// in the entity.
+	//
+	// This field is empty for non-text input.
 	EndOffset *int64 `type:"integer"`
 
 	// The level of confidence that Amazon Comprehend has in the accuracy of the
@@ -13648,7 +14346,11 @@ type Entity struct {
 	// The text of the entity.
 	Text *string `min:"1" type:"string"`
 
-	// The entity's type.
+	// The entity type. For entity detection using the built-in model, this field
+	// contains one of the standard entity types listed below.
+	//
+	// For custom entity detection, this field contains one of the entity types
+	// that you specified when you trained your custom model.
 	Type *string `type:"string" enum:"EntityType"`
 }
 
@@ -13673,6 +14375,12 @@ func (s Entity) GoString() string {
 // SetBeginOffset sets the BeginOffset field's value.
 func (s *Entity) SetBeginOffset(v int64) *Entity {
 	s.BeginOffset = &v
+	return s
+}
+
+// SetBlockReferences sets the BlockReferences field's value.
+func (s *Entity) SetBlockReferences(v []*BlockReference) *Entity {
+	s.BlockReferences = v
 	return s
 }
 
@@ -14690,6 +15398,74 @@ func (s *EntityTypesListItem) SetType(v string) *EntityTypesListItem {
 	return s
 }
 
+// Text extraction encountered one or more page-level errors in the input document.
+//
+// The ErrorCode contains one of the following values:
+//
+//   - TEXTRACT_BAD_PAGE - Amazon Textract cannot read the page. For more information
+//     about page limits in Amazon Textract, see Page Quotas in Amazon Textract
+//     (https://docs.aws.amazon.com/textract/latest/dg/limits-document.html).
+//
+//   - TEXTRACT_PROVISIONED_THROUGHPUT_EXCEEDED - The number of requests exceeded
+//     your throughput limit. For more information about throughput quotas in
+//     Amazon Textract, see Default quotas in Amazon Textract (https://docs.aws.amazon.com/textract/latest/dg/limits-quotas-explained.html).
+//
+//   - PAGE_CHARACTERS_EXCEEDED - Too many text characters on the page (10,000
+//     characters maximum).
+//
+//   - PAGE_SIZE_EXCEEDED - The maximum page size is 10 MB.
+//
+//   - INTERNAL_SERVER_ERROR - The request encountered a service issue. Try
+//     the API request again.
+type ErrorsListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Error code for the cause of the error.
+	ErrorCode *string `type:"string" enum:"PageBasedErrorCode"`
+
+	// Text message explaining the reason for the error.
+	ErrorMessage *string `min:"1" type:"string"`
+
+	// Page number where the error occurred.
+	Page *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorsListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorsListItem) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ErrorsListItem) SetErrorCode(v string) *ErrorsListItem {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ErrorsListItem) SetErrorMessage(v string) *ErrorsListItem {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetPage sets the Page field's value.
+func (s *ErrorsListItem) SetPage(v int64) *ErrorsListItem {
+	s.Page = &v
+	return s
+}
+
 // Provides information for filtering a list of event detection jobs.
 type EventsDetectionJobFilter struct {
 	_ struct{} `type:"structure"`
@@ -14909,6 +15685,92 @@ func (s *EventsDetectionJobProperties) SetTargetEventTypes(v []*string) *EventsD
 	return s
 }
 
+// Array of the number of characters extracted from each page.
+type ExtractedCharactersListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Number of characters extracted from each page.
+	Count *int64 `type:"integer"`
+
+	// Page number.
+	Page *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtractedCharactersListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtractedCharactersListItem) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *ExtractedCharactersListItem) SetCount(v int64) *ExtractedCharactersListItem {
+	s.Count = &v
+	return s
+}
+
+// SetPage sets the Page field's value.
+func (s *ExtractedCharactersListItem) SetPage(v int64) *ExtractedCharactersListItem {
+	s.Page = &v
+	return s
+}
+
+// Information about the location of items on a document page.
+//
+// For additional information, see Geometry (https://docs.aws.amazon.com/textract/latest/dg/API_Geometry.html)
+// in the Amazon Textract API reference.
+type Geometry struct {
+	_ struct{} `type:"structure"`
+
+	// An axis-aligned coarse representation of the location of the recognized item
+	// on the document page.
+	BoundingBox *BoundingBox `type:"structure"`
+
+	// Within the bounding box, a fine-grained polygon around the recognized item.
+	Polygon []*Point `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Geometry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Geometry) GoString() string {
+	return s.String()
+}
+
+// SetBoundingBox sets the BoundingBox field's value.
+func (s *Geometry) SetBoundingBox(v *BoundingBox) *Geometry {
+	s.BoundingBox = v
+	return s
+}
+
+// SetPolygon sets the Polygon field's value.
+func (s *Geometry) SetPolygon(v []*Point) *Geometry {
+	s.Polygon = v
+	return s
+}
+
 type ImportModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15059,15 +15921,13 @@ func (s *ImportModelOutput) SetModelArn(v string) *ImportModelOutput {
 	return s
 }
 
-// The input properties for an inference job.
+// The input properties for an inference job. The document reader config field
+// applies only to non-text inputs for custom analysis.
 type InputDataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The document reader config field applies only for InputDataConfig of StartEntitiesDetectionJob.
-	//
-	// Use DocumentReaderConfig to provide specifications about how you want your
-	// inference documents read. Currently it applies for PDF documents in StartEntitiesDetectionJob
-	// custom inference.
+	// Provides configuration parameters to override the default actions for extracting
+	// text from PDF documents and image files.
 	DocumentReaderConfig *DocumentReaderConfig `type:"structure"`
 
 	// Specifies how the text in an input file should be processed:
@@ -15275,12 +16135,73 @@ func (s *InvalidFilterException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Provides additional detail about why the request failed:
+//
+//   - Document size is too large - Check the size of your file and resubmit
+//     the request.
+//
+//   - Document type is not supported - Check the file type and resubmit the
+//     request.
+//
+//   - Too many pages in the document - Check the number of pages in your file
+//     and resubmit the request.
+//
+//   - Access denied to Amazon Textract - Verify that your account has permission
+//     to use Amazon Textract API operations and resubmit the request.
+type InvalidRequestDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Reason code is INVALID_DOCUMENT.
+	Reason *string `type:"string" enum:"InvalidRequestDetailReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestDetail) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *InvalidRequestDetail) SetReason(v string) *InvalidRequestDetail {
+	s.Reason = &v
+	return s
+}
+
 // The request is invalid.
 type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Provides additional detail about why the request failed:
+	//
+	//    * Document size is too large - Check the size of your file and resubmit
+	//    the request.
+	//
+	//    * Document type is not supported - Check the file type and resubmit the
+	//    request.
+	//
+	//    * Too many pages in the document - Check the number of pages in your file
+	//    and resubmit the request.
+	//
+	//    * Access denied to Amazon Textract - Verify that your account has permission
+	//    to use Amazon Textract API operations and resubmit the request.
+	Detail *InvalidRequestDetail `type:"structure"`
+
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
+
+	Reason *string `type:"string" enum:"InvalidRequestReason"`
 }
 
 // String returns the string representation.
@@ -15326,7 +16247,7 @@ func (s *InvalidRequestException) OrigErr() error {
 }
 
 func (s *InvalidRequestException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -17895,6 +18816,50 @@ func (s *PiiOutputDataConfig) SetS3Uri(v string) *PiiOutputDataConfig {
 	return s
 }
 
+// The X and Y coordinates of a point on a document page.
+//
+// For additional information, see Point (https://docs.aws.amazon.com/textract/latest/dg/API_Point.html)
+// in the Amazon Textract API reference.
+type Point struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the X coordinate for a point on a polygon
+	X *float64 `type:"float"`
+
+	// The value of the Y coordinate for a point on a polygon
+	Y *float64 `type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Point) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Point) GoString() string {
+	return s.String()
+}
+
+// SetX sets the X field's value.
+func (s *Point) SetX(v float64) *Point {
+	s.X = &v
+	return s
+}
+
+// SetY sets the Y field's value.
+func (s *Point) SetY(v float64) *Point {
+	s.Y = &v
+	return s
+}
+
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18074,6 +19039,47 @@ func (s *RedactionConfig) SetMaskMode(v string) *RedactionConfig {
 // SetPiiEntityTypes sets the PiiEntityTypes field's value.
 func (s *RedactionConfig) SetPiiEntityTypes(v []*string) *RedactionConfig {
 	s.PiiEntityTypes = v
+	return s
+}
+
+// List of child blocks for the current block.
+type RelationshipsListItem struct {
+	_ struct{} `type:"structure"`
+
+	// Identifers of the child blocks.
+	Ids []*string `type:"list"`
+
+	// Only supported relationship is a child relationship.
+	Type *string `type:"string" enum:"RelationshipType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RelationshipsListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RelationshipsListItem) GoString() string {
+	return s.String()
+}
+
+// SetIds sets the Ids field's value.
+func (s *RelationshipsListItem) SetIds(v []*string) *RelationshipsListItem {
+	s.Ids = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RelationshipsListItem) SetType(v string) *RelationshipsListItem {
+	s.Type = &v
 	return s
 }
 
@@ -20375,7 +21381,8 @@ type StartTargetedSentimentDetectionJobInput struct {
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
 
-	// The input properties for an inference job.
+	// The input properties for an inference job. The document reader config field
+	// applies only to non-text inputs for custom analysis.
 	//
 	// InputDataConfig is a required field
 	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
@@ -21950,7 +22957,8 @@ type TargetedSentimentDetectionJobProperties struct {
 	// The time that the targeted sentiment detection job ended.
 	EndTime *time.Time `type:"timestamp"`
 
-	// The input properties for an inference job.
+	// The input properties for an inference job. The document reader config field
+	// applies only to non-text inputs for custom analysis.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the targeted sentiment detection job. It
@@ -23087,6 +24095,22 @@ func AugmentedManifestsDocumentTypeFormat_Values() []string {
 }
 
 const (
+	// BlockTypeLine is a BlockType enum value
+	BlockTypeLine = "LINE"
+
+	// BlockTypeWord is a BlockType enum value
+	BlockTypeWord = "WORD"
+)
+
+// BlockType_Values returns all elements of the BlockType enum
+func BlockType_Values() []string {
+	return []string{
+		BlockTypeLine,
+		BlockTypeWord,
+	}
+}
+
+const (
 	// DocumentClassifierDataFormatComprehendCsv is a DocumentClassifierDataFormat enum value
 	DocumentClassifierDataFormatComprehendCsv = "COMPREHEND_CSV"
 
@@ -23134,14 +24158,14 @@ func DocumentReadAction_Values() []string {
 	}
 }
 
-// A list of the types of analyses to perform. This field specifies what feature
-// types need to be extracted from the document where entity recognition is
-// expected.
+// Specifies the type of Amazon Textract features to apply. If you chose TEXTRACT_ANALYZE_DOCUMENT
+// as the read action, you must specify one or both of the following values:
 //
-//   - TABLES - Add TABLES to the list to return information about the tables
-//     that are detected in the input document.
+//   - TABLES - Returns additional information about any tables that are detected
+//     in the input document.
 //
-//   - FORMS - Add FORMS to return detected form data.
+//   - FORMS - Returns additional information about any forms that are detected
+//     in the input document.
 const (
 	// DocumentReadFeatureTypesTables is a DocumentReadFeatureTypes enum value
 	DocumentReadFeatureTypesTables = "TABLES"
@@ -23171,6 +24195,42 @@ func DocumentReadMode_Values() []string {
 	return []string{
 		DocumentReadModeServiceDefault,
 		DocumentReadModeForceDocumentReadAction,
+	}
+}
+
+const (
+	// DocumentTypeNativePdf is a DocumentType enum value
+	DocumentTypeNativePdf = "NATIVE_PDF"
+
+	// DocumentTypeScannedPdf is a DocumentType enum value
+	DocumentTypeScannedPdf = "SCANNED_PDF"
+
+	// DocumentTypeMsWord is a DocumentType enum value
+	DocumentTypeMsWord = "MS_WORD"
+
+	// DocumentTypeImage is a DocumentType enum value
+	DocumentTypeImage = "IMAGE"
+
+	// DocumentTypePlainText is a DocumentType enum value
+	DocumentTypePlainText = "PLAIN_TEXT"
+
+	// DocumentTypeTextractDetectDocumentTextJson is a DocumentType enum value
+	DocumentTypeTextractDetectDocumentTextJson = "TEXTRACT_DETECT_DOCUMENT_TEXT_JSON"
+
+	// DocumentTypeTextractAnalyzeDocumentJson is a DocumentType enum value
+	DocumentTypeTextractAnalyzeDocumentJson = "TEXTRACT_ANALYZE_DOCUMENT_JSON"
+)
+
+// DocumentType_Values returns all elements of the DocumentType enum
+func DocumentType_Values() []string {
+	return []string{
+		DocumentTypeNativePdf,
+		DocumentTypeScannedPdf,
+		DocumentTypeMsWord,
+		DocumentTypeImage,
+		DocumentTypePlainText,
+		DocumentTypeTextractDetectDocumentTextJson,
+		DocumentTypeTextractAnalyzeDocumentJson,
 	}
 }
 
@@ -23275,6 +24335,42 @@ func InputFormat_Values() []string {
 	return []string{
 		InputFormatOneDocPerFile,
 		InputFormatOneDocPerLine,
+	}
+}
+
+const (
+	// InvalidRequestDetailReasonDocumentSizeExceeded is a InvalidRequestDetailReason enum value
+	InvalidRequestDetailReasonDocumentSizeExceeded = "DOCUMENT_SIZE_EXCEEDED"
+
+	// InvalidRequestDetailReasonUnsupportedDocType is a InvalidRequestDetailReason enum value
+	InvalidRequestDetailReasonUnsupportedDocType = "UNSUPPORTED_DOC_TYPE"
+
+	// InvalidRequestDetailReasonPageLimitExceeded is a InvalidRequestDetailReason enum value
+	InvalidRequestDetailReasonPageLimitExceeded = "PAGE_LIMIT_EXCEEDED"
+
+	// InvalidRequestDetailReasonTextractAccessDenied is a InvalidRequestDetailReason enum value
+	InvalidRequestDetailReasonTextractAccessDenied = "TEXTRACT_ACCESS_DENIED"
+)
+
+// InvalidRequestDetailReason_Values returns all elements of the InvalidRequestDetailReason enum
+func InvalidRequestDetailReason_Values() []string {
+	return []string{
+		InvalidRequestDetailReasonDocumentSizeExceeded,
+		InvalidRequestDetailReasonUnsupportedDocType,
+		InvalidRequestDetailReasonPageLimitExceeded,
+		InvalidRequestDetailReasonTextractAccessDenied,
+	}
+}
+
+const (
+	// InvalidRequestReasonInvalidDocument is a InvalidRequestReason enum value
+	InvalidRequestReasonInvalidDocument = "INVALID_DOCUMENT"
+)
+
+// InvalidRequestReason_Values returns all elements of the InvalidRequestReason enum
+func InvalidRequestReason_Values() []string {
+	return []string{
+		InvalidRequestReasonInvalidDocument,
 	}
 }
 
@@ -23399,6 +24495,34 @@ func ModelStatus_Values() []string {
 		ModelStatusStopped,
 		ModelStatusInError,
 		ModelStatusTrained,
+	}
+}
+
+const (
+	// PageBasedErrorCodeTextractBadPage is a PageBasedErrorCode enum value
+	PageBasedErrorCodeTextractBadPage = "TEXTRACT_BAD_PAGE"
+
+	// PageBasedErrorCodeTextractProvisionedThroughputExceeded is a PageBasedErrorCode enum value
+	PageBasedErrorCodeTextractProvisionedThroughputExceeded = "TEXTRACT_PROVISIONED_THROUGHPUT_EXCEEDED"
+
+	// PageBasedErrorCodePageCharactersExceeded is a PageBasedErrorCode enum value
+	PageBasedErrorCodePageCharactersExceeded = "PAGE_CHARACTERS_EXCEEDED"
+
+	// PageBasedErrorCodePageSizeExceeded is a PageBasedErrorCode enum value
+	PageBasedErrorCodePageSizeExceeded = "PAGE_SIZE_EXCEEDED"
+
+	// PageBasedErrorCodeInternalServerError is a PageBasedErrorCode enum value
+	PageBasedErrorCodeInternalServerError = "INTERNAL_SERVER_ERROR"
+)
+
+// PageBasedErrorCode_Values returns all elements of the PageBasedErrorCode enum
+func PageBasedErrorCode_Values() []string {
+	return []string{
+		PageBasedErrorCodeTextractBadPage,
+		PageBasedErrorCodeTextractProvisionedThroughputExceeded,
+		PageBasedErrorCodePageCharactersExceeded,
+		PageBasedErrorCodePageSizeExceeded,
+		PageBasedErrorCodeInternalServerError,
 	}
 }
 
@@ -23667,6 +24791,18 @@ func PiiEntityType_Values() []string {
 		PiiEntityTypeCaHealthNumber,
 		PiiEntityTypeInAadhaar,
 		PiiEntityTypeInVoterNumber,
+	}
+}
+
+const (
+	// RelationshipTypeChild is a RelationshipType enum value
+	RelationshipTypeChild = "CHILD"
+)
+
+// RelationshipType_Values returns all elements of the RelationshipType enum
+func RelationshipType_Values() []string {
+	return []string{
+		RelationshipTypeChild,
 	}
 }
 

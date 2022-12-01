@@ -87,7 +87,7 @@ func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Re
 //     be deleted before a new activity can be created.
 //
 //   - InvalidName
-//     The provided name is invalid.
+//     The provided name is not valid.
 //
 //   - TooManyTags
 //     You've exceeded the number of tags allowed for a resource. See the Limits
@@ -187,13 +187,13 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - InvalidDefinition
-//     The provided Amazon States Language definition is invalid.
+//     The provided Amazon States Language definition is not valid.
 //
 //   - InvalidName
-//     The provided name is invalid.
+//     The provided name is not valid.
 //
 //   - InvalidLoggingConfiguration
 //
@@ -296,7 +296,7 @@ func (c *SFN) DeleteActivityRequest(input *DeleteActivityInput) (req *request.Re
 //
 // Returned Error Types:
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteActivity
 func (c *SFN) DeleteActivity(input *DeleteActivityInput) (*DeleteActivityOutput, error) {
@@ -367,6 +367,14 @@ func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *re
 // Deletes a state machine. This is an asynchronous operation: It sets the state
 // machine's status to DELETING and begins the deletion process.
 //
+// If the given state machine Amazon Resource Name (ARN) is a qualified state
+// machine ARN, it will fail with ValidationException.
+//
+// A qualified state machine ARN refers to a Distributed Map state defined within
+// a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
+// refers to a Distributed Map state with a label mapStateLabel in the state
+// machine named stateMachineName.
+//
 // For EXPRESS state machines, the deletion will happen eventually (usually
 // less than a minute). Running executions may emit logs after DeleteStateMachine
 // API is called.
@@ -379,8 +387,13 @@ func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *re
 // API operation DeleteStateMachine for usage and error information.
 //
 // Returned Error Types:
+//
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachine
 func (c *SFN) DeleteStateMachine(input *DeleteStateMachineInput) (*DeleteStateMachineOutput, error) {
@@ -465,7 +478,7 @@ func (c *SFN) DescribeActivityRequest(input *DescribeActivityInput) (req *reques
 //     The specified activity does not exist.
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeActivity
 func (c *SFN) DescribeActivity(input *DescribeActivityInput) (*DescribeActivityOutput, error) {
@@ -532,12 +545,16 @@ func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *requ
 
 // DescribeExecution API operation for AWS Step Functions.
 //
-// Describes an execution.
+// Provides all information about a state machine execution, such as the state
+// machine associated with the execution, the execution input and output, and
+// relevant execution metadata. Use this API action to return the Map Run ARN
+// if the execution was dispatched by a Map Run.
 //
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
 //
-// This API action is not supported by EXPRESS state machines.
+// This API action is not supported by EXPRESS state machine executions unless
+// they were dispatched by a Map Run.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -552,7 +569,7 @@ func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *requ
 //     The specified execution does not exist.
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecution
 func (c *SFN) DescribeExecution(input *DescribeExecutionInput) (*DescribeExecutionOutput, error) {
@@ -571,6 +588,91 @@ func (c *SFN) DescribeExecution(input *DescribeExecutionInput) (*DescribeExecuti
 // for more information on using Contexts.
 func (c *SFN) DescribeExecutionWithContext(ctx aws.Context, input *DescribeExecutionInput, opts ...request.Option) (*DescribeExecutionOutput, error) {
 	req, out := c.DescribeExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeMapRun = "DescribeMapRun"
+
+// DescribeMapRunRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMapRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMapRun for more information on using the DescribeMapRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeMapRunRequest method.
+//	req, resp := client.DescribeMapRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeMapRun
+func (c *SFN) DescribeMapRunRequest(input *DescribeMapRunInput) (req *request.Request, output *DescribeMapRunOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMapRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeMapRunInput{}
+	}
+
+	output = &DescribeMapRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMapRun API operation for AWS Step Functions.
+//
+// Provides information about a Map Run's configuration, progress, and results.
+// For more information, see Examining Map Run (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html)
+// in the Step Functions Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation DescribeMapRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource. Only state machine and activity ARNs
+//     are supported.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeMapRun
+func (c *SFN) DescribeMapRun(input *DescribeMapRunInput) (*DescribeMapRunOutput, error) {
+	req, out := c.DescribeMapRunRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMapRunWithContext is the same as DescribeMapRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMapRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) DescribeMapRunWithContext(ctx aws.Context, input *DescribeMapRunInput, opts ...request.Option) (*DescribeMapRunOutput, error) {
+	req, out := c.DescribeMapRunRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -619,7 +721,14 @@ func (c *SFN) DescribeStateMachineRequest(input *DescribeStateMachineInput) (req
 
 // DescribeStateMachine API operation for AWS Step Functions.
 //
-// Describes a state machine.
+// Provides information about a state machine's definition, its IAM role Amazon
+// Resource Name (ARN), and configuration. If the state machine ARN is a qualified
+// state machine ARN, the response returned includes the Map state's label.
+//
+// A qualified state machine ARN refers to a Distributed Map state defined within
+// a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
+// refers to a Distributed Map state with a label mapStateLabel in the state
+// machine named stateMachineName.
 //
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
@@ -634,7 +743,7 @@ func (c *SFN) DescribeStateMachineRequest(input *DescribeStateMachineInput) (req
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - StateMachineDoesNotExist
 //     The specified state machine does not exist.
@@ -704,7 +813,10 @@ func (c *SFN) DescribeStateMachineForExecutionRequest(input *DescribeStateMachin
 
 // DescribeStateMachineForExecution API operation for AWS Step Functions.
 //
-// Describes the state machine associated with a specific execution.
+// Provides information about a state machine's definition, its execution role
+// ARN, and configuration. If an execution was dispatched by a Map Run, the
+// Map Run is returned in the response. Additionally, the state machine returned
+// will be the state machine associated with the Map Run.
 //
 // This operation is eventually consistent. The results are best effort and
 // may not reflect very recent updates and changes.
@@ -724,7 +836,7 @@ func (c *SFN) DescribeStateMachineForExecutionRequest(input *DescribeStateMachin
 //     The specified execution does not exist.
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineForExecution
 func (c *SFN) DescribeStateMachineForExecution(input *DescribeStateMachineForExecutionInput) (*DescribeStateMachineForExecutionOutput, error) {
@@ -825,7 +937,7 @@ func (c *SFN) GetActivityTaskRequest(input *GetActivityTaskInput) (req *request.
 //     been reached.
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTask
 func (c *SFN) GetActivityTask(input *GetActivityTaskInput) (*GetActivityTaskOutput, error) {
@@ -923,10 +1035,10 @@ func (c *SFN) GetExecutionHistoryRequest(input *GetExecutionHistoryInput) (req *
 //     The specified execution does not exist.
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - InvalidToken
-//     The provided token is invalid.
+//     The provided token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistory
 func (c *SFN) GetExecutionHistory(input *GetExecutionHistoryInput) (*GetExecutionHistoryOutput, error) {
@@ -1070,7 +1182,7 @@ func (c *SFN) ListActivitiesRequest(input *ListActivitiesInput) (req *request.Re
 //
 // Returned Error Types:
 //   - InvalidToken
-//     The provided token is invalid.
+//     The provided token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListActivities
 func (c *SFN) ListActivities(input *ListActivitiesInput) (*ListActivitiesOutput, error) {
@@ -1194,7 +1306,10 @@ func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Re
 
 // ListExecutions API operation for AWS Step Functions.
 //
-// Lists the executions of a state machine that meet the filtering criteria.
+// Lists all executions of a state machine or a Map Run. You can list all executions
+// related to a state machine by specifying a state machine Amazon Resource
+// Name (ARN), or those related to a Map Run by specifying a Map Run ARN.
+//
 // Results are sorted by time, with the most recent execution first.
 //
 // If nextToken is returned, there are more results available. The value of
@@ -1218,15 +1333,23 @@ func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Re
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - InvalidToken
-//     The provided token is invalid.
+//     The provided token is not valid.
 //
 //   - StateMachineDoesNotExist
 //     The specified state machine does not exist.
 //
 //   - StateMachineTypeNotSupported
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource. Only state machine and activity ARNs
+//     are supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListExecutions
 func (c *SFN) ListExecutions(input *ListExecutionsInput) (*ListExecutionsOutput, error) {
@@ -1294,6 +1417,150 @@ func (c *SFN) ListExecutionsPagesWithContext(ctx aws.Context, input *ListExecuti
 
 	for p.Next() {
 		if !fn(p.Page().(*ListExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMapRuns = "ListMapRuns"
+
+// ListMapRunsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMapRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMapRuns for more information on using the ListMapRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMapRunsRequest method.
+//	req, resp := client.ListMapRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListMapRuns
+func (c *SFN) ListMapRunsRequest(input *ListMapRunsInput) (req *request.Request, output *ListMapRunsOutput) {
+	op := &request.Operation{
+		Name:       opListMapRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMapRunsInput{}
+	}
+
+	output = &ListMapRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMapRuns API operation for AWS Step Functions.
+//
+// Lists all Map Runs that were started by a given state machine execution.
+// Use this API action to obtain Map Run ARNs, and then call DescribeMapRun
+// to obtain more information, if needed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation ListMapRuns for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ExecutionDoesNotExist
+//     The specified execution does not exist.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - InvalidToken
+//     The provided token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListMapRuns
+func (c *SFN) ListMapRuns(input *ListMapRunsInput) (*ListMapRunsOutput, error) {
+	req, out := c.ListMapRunsRequest(input)
+	return out, req.Send()
+}
+
+// ListMapRunsWithContext is the same as ListMapRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMapRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) ListMapRunsWithContext(ctx aws.Context, input *ListMapRunsInput, opts ...request.Option) (*ListMapRunsOutput, error) {
+	req, out := c.ListMapRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMapRunsPages iterates over the pages of a ListMapRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMapRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMapRuns operation.
+//	pageNum := 0
+//	err := client.ListMapRunsPages(params,
+//	    func(page *sfn.ListMapRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SFN) ListMapRunsPages(input *ListMapRunsInput, fn func(*ListMapRunsOutput, bool) bool) error {
+	return c.ListMapRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMapRunsPagesWithContext same as ListMapRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) ListMapRunsPagesWithContext(ctx aws.Context, input *ListMapRunsInput, fn func(*ListMapRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMapRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMapRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMapRunsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1370,7 +1637,7 @@ func (c *SFN) ListStateMachinesRequest(input *ListStateMachinesInput) (req *requ
 //
 // Returned Error Types:
 //   - InvalidToken
-//     The provided token is invalid.
+//     The provided token is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachines
 func (c *SFN) ListStateMachines(input *ListStateMachinesInput) (*ListStateMachinesOutput, error) {
@@ -1503,7 +1770,7 @@ func (c *SFN) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - ResourceNotFound
 //     Could not find the referenced resource. Only state machine and activity ARNs
@@ -1590,7 +1857,7 @@ func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.
 //   - TaskDoesNotExist
 //
 //   - InvalidToken
-//     The provided token is invalid.
+//     The provided token is not valid.
 //
 //   - TaskTimedOut
 //
@@ -1688,7 +1955,7 @@ func (c *SFN) SendTaskHeartbeatRequest(input *SendTaskHeartbeatInput) (req *requ
 //   - TaskDoesNotExist
 //
 //   - InvalidToken
-//     The provided token is invalid.
+//     The provided token is not valid.
 //
 //   - TaskTimedOut
 //
@@ -1773,10 +2040,10 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 //   - TaskDoesNotExist
 //
 //   - InvalidOutput
-//     The provided JSON output data is invalid.
+//     The provided JSON output data is not valid.
 //
 //   - InvalidToken
-//     The provided token is invalid.
+//     The provided token is not valid.
 //
 //   - TaskTimedOut
 //
@@ -1845,7 +2112,13 @@ func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Re
 
 // StartExecution API operation for AWS Step Functions.
 //
-// Starts a state machine execution.
+// Starts a state machine execution. If the given state machine Amazon Resource
+// Name (ARN) is a qualified state machine ARN, it will fail with ValidationException.
+//
+// A qualified state machine ARN refers to a Distributed Map state defined within
+// a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
+// refers to a Distributed Map state with a label mapStateLabel in the state
+// machine named stateMachineName.
 //
 // StartExecution is idempotent for STANDARD workflows. For a STANDARD workflow,
 // if StartExecution is called with the same name and input as a running execution,
@@ -1874,19 +2147,23 @@ func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Re
 //     Executions with the same name and input are considered idempotent.
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - InvalidExecutionInput
-//     The provided JSON input data is invalid.
+//     The provided JSON input data is not valid.
 //
 //   - InvalidName
-//     The provided name is invalid.
+//     The provided name is not valid.
 //
 //   - StateMachineDoesNotExist
 //     The specified state machine does not exist.
 //
 //   - StateMachineDeleting
 //     The specified state machine is being deleted.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartExecution
 func (c *SFN) StartExecution(input *StartExecutionInput) (*StartExecutionOutput, error) {
@@ -1976,13 +2253,13 @@ func (c *SFN) StartSyncExecutionRequest(input *StartSyncExecutionInput) (req *re
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - InvalidExecutionInput
-//     The provided JSON input data is invalid.
+//     The provided JSON input data is not valid.
 //
 //   - InvalidName
-//     The provided name is invalid.
+//     The provided name is not valid.
 //
 //   - StateMachineDoesNotExist
 //     The specified state machine does not exist.
@@ -2074,7 +2351,11 @@ func (c *SFN) StopExecutionRequest(input *StopExecutionInput) (req *request.Requ
 //     The specified execution does not exist.
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StopExecution
 func (c *SFN) StopExecution(input *StopExecutionInput) (*StopExecutionOutput, error) {
@@ -2162,7 +2443,7 @@ func (c *SFN) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - ResourceNotFound
 //     Could not find the referenced resource. Only state machine and activity ARNs
@@ -2251,7 +2532,7 @@ func (c *SFN) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - ResourceNotFound
 //     Could not find the referenced resource. Only state machine and activity ARNs
@@ -2274,6 +2555,95 @@ func (c *SFN) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, er
 // for more information on using Contexts.
 func (c *SFN) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateMapRun = "UpdateMapRun"
+
+// UpdateMapRunRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMapRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMapRun for more information on using the UpdateMapRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateMapRunRequest method.
+//	req, resp := client.UpdateMapRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UpdateMapRun
+func (c *SFN) UpdateMapRunRequest(input *UpdateMapRunInput) (req *request.Request, output *UpdateMapRunOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMapRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateMapRunInput{}
+	}
+
+	output = &UpdateMapRunOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateMapRun API operation for AWS Step Functions.
+//
+// Updates an in-progress Map Run's configuration to include changes to the
+// settings that control maximum concurrency and Map Run failure.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation UpdateMapRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFound
+//     Could not find the referenced resource. Only state machine and activity ARNs
+//     are supported.
+//
+//   - InvalidArn
+//     The provided Amazon Resource Name (ARN) is not valid.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UpdateMapRun
+func (c *SFN) UpdateMapRun(input *UpdateMapRunInput) (*UpdateMapRunOutput, error) {
+	req, out := c.UpdateMapRunRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMapRunWithContext is the same as UpdateMapRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMapRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) UpdateMapRunWithContext(ctx aws.Context, input *UpdateMapRunInput, opts ...request.Option) (*UpdateMapRunOutput, error) {
+	req, out := c.UpdateMapRunRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2327,6 +2697,14 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 // definition and roleArn. You must include at least one of definition or roleArn
 // or you will receive a MissingRequiredParameter error.
 //
+// If the given state machine Amazon Resource Name (ARN) is a qualified state
+// machine ARN, it will fail with ValidationException.
+//
+// A qualified state machine ARN refers to a Distributed Map state defined within
+// a state machine. For example, the qualified state machine ARN arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel
+// refers to a Distributed Map state with a label mapStateLabel in the state
+// machine named stateMachineName.
+//
 // All StartExecution calls within a few seconds will use the updated definition
 // and roleArn. Executions started immediately after calling UpdateStateMachine
 // may use the previous state machine definition and roleArn.
@@ -2341,10 +2719,10 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 // Returned Error Types:
 //
 //   - InvalidArn
-//     The provided Amazon Resource Name (ARN) is invalid.
+//     The provided Amazon Resource Name (ARN) is not valid.
 //
 //   - InvalidDefinition
-//     The provided Amazon States Language definition is invalid.
+//     The provided Amazon States Language definition is not valid.
 //
 //   - InvalidLoggingConfiguration
 //
@@ -2361,6 +2739,10 @@ func (c *SFN) UpdateStateMachineRequest(input *UpdateStateMachineInput) (req *re
 //
 //   - StateMachineDoesNotExist
 //     The specified state machine does not exist.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/UpdateStateMachine
 func (c *SFN) UpdateStateMachine(input *UpdateStateMachineInput) (*UpdateStateMachineOutput, error) {
@@ -3734,6 +4116,20 @@ func (s *DescribeExecutionInput) SetExecutionArn(v string) *DescribeExecutionInp
 type DescribeExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The cause string if the state machine execution failed.
+	//
+	// Cause is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeExecutionOutput's
+	// String and GoString methods.
+	Cause *string `locationName:"cause" type:"string" sensitive:"true"`
+
+	// The error string if the state machine execution failed.
+	//
+	// Error is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeExecutionOutput's
+	// String and GoString methods.
+	Error *string `locationName:"error" type:"string" sensitive:"true"`
+
 	// The Amazon Resource Name (ARN) that identifies the execution.
 	//
 	// ExecutionArn is a required field
@@ -3749,6 +4145,10 @@ type DescribeExecutionOutput struct {
 
 	// Provides details about execution input or output.
 	InputDetails *CloudWatchEventsExecutionDataDetails `locationName:"inputDetails" type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies a Map Run, which dispatched
+	// this execution.
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string"`
 
 	// The name of the execution.
 	//
@@ -3822,6 +4222,18 @@ func (s DescribeExecutionOutput) GoString() string {
 	return s.String()
 }
 
+// SetCause sets the Cause field's value.
+func (s *DescribeExecutionOutput) SetCause(v string) *DescribeExecutionOutput {
+	s.Cause = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *DescribeExecutionOutput) SetError(v string) *DescribeExecutionOutput {
+	s.Error = &v
+	return s
+}
+
 // SetExecutionArn sets the ExecutionArn field's value.
 func (s *DescribeExecutionOutput) SetExecutionArn(v string) *DescribeExecutionOutput {
 	s.ExecutionArn = &v
@@ -3837,6 +4249,12 @@ func (s *DescribeExecutionOutput) SetInput(v string) *DescribeExecutionOutput {
 // SetInputDetails sets the InputDetails field's value.
 func (s *DescribeExecutionOutput) SetInputDetails(v *CloudWatchEventsExecutionDataDetails) *DescribeExecutionOutput {
 	s.InputDetails = v
+	return s
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *DescribeExecutionOutput) SetMapRunArn(v string) *DescribeExecutionOutput {
+	s.MapRunArn = &v
 	return s
 }
 
@@ -3885,6 +4303,192 @@ func (s *DescribeExecutionOutput) SetStopDate(v time.Time) *DescribeExecutionOut
 // SetTraceHeader sets the TraceHeader field's value.
 func (s *DescribeExecutionOutput) SetTraceHeader(v string) *DescribeExecutionOutput {
 	s.TraceHeader = &v
+	return s
+}
+
+type DescribeMapRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies a Map Run.
+	//
+	// MapRunArn is a required field
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMapRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMapRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMapRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMapRunInput"}
+	if s.MapRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MapRunArn"))
+	}
+	if s.MapRunArn != nil && len(*s.MapRunArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MapRunArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *DescribeMapRunInput) SetMapRunArn(v string) *DescribeMapRunInput {
+	s.MapRunArn = &v
+	return s
+}
+
+type DescribeMapRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the execution in which the
+	// Map Run was started.
+	//
+	// ExecutionArn is a required field
+	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
+
+	// A JSON object that contains information about the total number of child workflow
+	// executions for the Map Run, and the count of child workflow executions for
+	// each status, such as failed and succeeded.
+	//
+	// ExecutionCounts is a required field
+	ExecutionCounts *MapRunExecutionCounts `locationName:"executionCounts" type:"structure" required:"true"`
+
+	// A JSON object that contains information about the total number of items,
+	// and the item count for each processing status, such as pending and failed.
+	//
+	// ItemCounts is a required field
+	ItemCounts *MapRunItemCounts `locationName:"itemCounts" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) that identifies a Map Run.
+	//
+	// MapRunArn is a required field
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string" required:"true"`
+
+	// The maximum number of child workflow executions configured to run in parallel
+	// for the Map Run at the same time.
+	//
+	// MaxConcurrency is a required field
+	MaxConcurrency *int64 `locationName:"maxConcurrency" type:"integer" required:"true"`
+
+	// The date when the Map Run was started.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `locationName:"startDate" type:"timestamp" required:"true"`
+
+	// The current status of the Map Run.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"MapRunStatus"`
+
+	// The date when the Map Run was stopped.
+	StopDate *time.Time `locationName:"stopDate" type:"timestamp"`
+
+	// The maximum number of failed child workflow executions before the Map Run
+	// fails.
+	//
+	// ToleratedFailureCount is a required field
+	ToleratedFailureCount *int64 `locationName:"toleratedFailureCount" type:"long" required:"true"`
+
+	// The maximum percentage of failed child workflow executions before the Map
+	// Run fails.
+	//
+	// ToleratedFailurePercentage is a required field
+	ToleratedFailurePercentage *float64 `locationName:"toleratedFailurePercentage" type:"float" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMapRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMapRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetExecutionArn sets the ExecutionArn field's value.
+func (s *DescribeMapRunOutput) SetExecutionArn(v string) *DescribeMapRunOutput {
+	s.ExecutionArn = &v
+	return s
+}
+
+// SetExecutionCounts sets the ExecutionCounts field's value.
+func (s *DescribeMapRunOutput) SetExecutionCounts(v *MapRunExecutionCounts) *DescribeMapRunOutput {
+	s.ExecutionCounts = v
+	return s
+}
+
+// SetItemCounts sets the ItemCounts field's value.
+func (s *DescribeMapRunOutput) SetItemCounts(v *MapRunItemCounts) *DescribeMapRunOutput {
+	s.ItemCounts = v
+	return s
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *DescribeMapRunOutput) SetMapRunArn(v string) *DescribeMapRunOutput {
+	s.MapRunArn = &v
+	return s
+}
+
+// SetMaxConcurrency sets the MaxConcurrency field's value.
+func (s *DescribeMapRunOutput) SetMaxConcurrency(v int64) *DescribeMapRunOutput {
+	s.MaxConcurrency = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *DescribeMapRunOutput) SetStartDate(v time.Time) *DescribeMapRunOutput {
+	s.StartDate = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeMapRunOutput) SetStatus(v string) *DescribeMapRunOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStopDate sets the StopDate field's value.
+func (s *DescribeMapRunOutput) SetStopDate(v time.Time) *DescribeMapRunOutput {
+	s.StopDate = &v
+	return s
+}
+
+// SetToleratedFailureCount sets the ToleratedFailureCount field's value.
+func (s *DescribeMapRunOutput) SetToleratedFailureCount(v int64) *DescribeMapRunOutput {
+	s.ToleratedFailureCount = &v
+	return s
+}
+
+// SetToleratedFailurePercentage sets the ToleratedFailurePercentage field's value.
+func (s *DescribeMapRunOutput) SetToleratedFailurePercentage(v float64) *DescribeMapRunOutput {
+	s.ToleratedFailurePercentage = &v
 	return s
 }
 
@@ -3951,8 +4555,18 @@ type DescribeStateMachineForExecutionOutput struct {
 	// Definition is a required field
 	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// A user-defined or an auto-generated string that identifies a Map state. This
+	// ﬁeld is returned only if the executionArn is a child workflow execution
+	// that was started by a Distributed Map state.
+	Label *string `locationName:"label" type:"string"`
+
 	// The LoggingConfiguration data type is used to set CloudWatch Logs options.
 	LoggingConfiguration *LoggingConfiguration `locationName:"loggingConfiguration" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Map Run that started the child workflow
+	// execution. This field is returned only if the executionArn is a child workflow
+	// execution that was started by a Distributed Map state.
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string"`
 
 	// The name of the state machine associated with the execution.
 	//
@@ -4004,9 +4618,21 @@ func (s *DescribeStateMachineForExecutionOutput) SetDefinition(v string) *Descri
 	return s
 }
 
+// SetLabel sets the Label field's value.
+func (s *DescribeStateMachineForExecutionOutput) SetLabel(v string) *DescribeStateMachineForExecutionOutput {
+	s.Label = &v
+	return s
+}
+
 // SetLoggingConfiguration sets the LoggingConfiguration field's value.
 func (s *DescribeStateMachineForExecutionOutput) SetLoggingConfiguration(v *LoggingConfiguration) *DescribeStateMachineForExecutionOutput {
 	s.LoggingConfiguration = v
+	return s
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *DescribeStateMachineForExecutionOutput) SetMapRunArn(v string) *DescribeStateMachineForExecutionOutput {
+	s.MapRunArn = &v
 	return s
 }
 
@@ -4107,6 +4733,11 @@ type DescribeStateMachineOutput struct {
 	// Definition is a required field
 	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// A user-defined or an auto-generated string that identifies a Map state. This
+	// parameter is present only if the stateMachineArn specified in input is a
+	// qualified state machine ARN.
+	Label *string `locationName:"label" type:"string"`
+
 	// The LoggingConfiguration data type is used to set CloudWatch Logs options.
 	LoggingConfiguration *LoggingConfiguration `locationName:"loggingConfiguration" type:"structure"`
 
@@ -4181,6 +4812,12 @@ func (s *DescribeStateMachineOutput) SetCreationDate(v time.Time) *DescribeState
 // SetDefinition sets the Definition field's value.
 func (s *DescribeStateMachineOutput) SetDefinition(v string) *DescribeStateMachineOutput {
 	s.Definition = &v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *DescribeStateMachineOutput) SetLabel(v string) *DescribeStateMachineOutput {
+	s.Label = &v
 	return s
 }
 
@@ -4528,6 +5165,17 @@ type ExecutionListItem struct {
 	// ExecutionArn is a required field
 	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
 
+	// The total number of items processed in a child workflow execution. This field
+	// is returned only if mapRunArn was specified in the ListExecutions API action.
+	// If stateMachineArn was specified in ListExecutions, the itemCount field isn't
+	// returned.
+	ItemCount *int64 `locationName:"itemCount" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of a Map Run. This field is returned only
+	// if mapRunArn was specified in the ListExecutions API action. If stateMachineArn
+	// was specified in ListExecutions, the mapRunArn isn't returned.
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string"`
+
 	// The name of the execution.
 	//
 	// A name must not contain:
@@ -4588,6 +5236,18 @@ func (s ExecutionListItem) GoString() string {
 // SetExecutionArn sets the ExecutionArn field's value.
 func (s *ExecutionListItem) SetExecutionArn(v string) *ExecutionListItem {
 	s.ExecutionArn = &v
+	return s
+}
+
+// SetItemCount sets the ItemCount field's value.
+func (s *ExecutionListItem) SetItemCount(v int64) *ExecutionListItem {
+	s.ItemCount = &v
+	return s
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *ExecutionListItem) SetMapRunArn(v string) *ExecutionListItem {
+	s.MapRunArn = &v
 	return s
 }
 
@@ -5103,6 +5763,14 @@ type HistoryEvent struct {
 	// Contains details about an iteration of a Map state that succeeded.
 	MapIterationSucceededEventDetails *MapIterationEventDetails `locationName:"mapIterationSucceededEventDetails" type:"structure"`
 
+	// Contains error and cause details about a Map Run that failed.
+	MapRunFailedEventDetails *MapRunFailedEventDetails `locationName:"mapRunFailedEventDetails" type:"structure"`
+
+	// Contains details, such as mapRunArn, and the start date and time of a Map
+	// Run. mapRunArn is the Amazon Resource Name (ARN) of the Map Run that was
+	// started.
+	MapRunStartedEventDetails *MapRunStartedEventDetails `locationName:"mapRunStartedEventDetails" type:"structure"`
+
 	// Contains details about Map state that was started.
 	MapStateStartedEventDetails *MapStateStartedEventDetails `locationName:"mapStateStartedEventDetails" type:"structure"`
 
@@ -5300,6 +5968,18 @@ func (s *HistoryEvent) SetMapIterationSucceededEventDetails(v *MapIterationEvent
 	return s
 }
 
+// SetMapRunFailedEventDetails sets the MapRunFailedEventDetails field's value.
+func (s *HistoryEvent) SetMapRunFailedEventDetails(v *MapRunFailedEventDetails) *HistoryEvent {
+	s.MapRunFailedEventDetails = v
+	return s
+}
+
+// SetMapRunStartedEventDetails sets the MapRunStartedEventDetails field's value.
+func (s *HistoryEvent) SetMapRunStartedEventDetails(v *MapRunStartedEventDetails) *HistoryEvent {
+	s.MapRunStartedEventDetails = v
+	return s
+}
+
 // SetMapStateStartedEventDetails sets the MapStateStartedEventDetails field's value.
 func (s *HistoryEvent) SetMapStateStartedEventDetails(v *MapStateStartedEventDetails) *HistoryEvent {
 	s.MapStateStartedEventDetails = v
@@ -5417,7 +6097,7 @@ func (s *HistoryEventExecutionDataDetails) SetTruncated(v bool) *HistoryEventExe
 	return s
 }
 
-// The provided Amazon Resource Name (ARN) is invalid.
+// The provided Amazon Resource Name (ARN) is not valid.
 type InvalidArn struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5481,7 +6161,7 @@ func (s *InvalidArn) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The provided Amazon States Language definition is invalid.
+// The provided Amazon States Language definition is not valid.
 type InvalidDefinition struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5545,7 +6225,7 @@ func (s *InvalidDefinition) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The provided JSON input data is invalid.
+// The provided JSON input data is not valid.
 type InvalidExecutionInput struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5672,7 +6352,7 @@ func (s *InvalidLoggingConfiguration) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The provided name is invalid.
+// The provided name is not valid.
 type InvalidName struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5736,7 +6416,7 @@ func (s *InvalidName) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The provided JSON output data is invalid.
+// The provided JSON output data is not valid.
 type InvalidOutput struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5800,7 +6480,7 @@ func (s *InvalidOutput) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The provided token is invalid.
+// The provided token is not valid.
 type InvalidToken struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6360,6 +7040,15 @@ func (s *ListActivitiesOutput) SetNextToken(v string) *ListActivitiesOutput {
 type ListExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the Map Run that started the child workflow
+	// executions. If the mapRunArn field is specified, a list of all of the child
+	// workflow executions started by a Map Run is returned. For more information,
+	// see Examining Map Run (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html)
+	// in the Step Functions Developer Guide.
+	//
+	// You can specify either a mapRunArn or a stateMachineArn, but not both.
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string"`
+
 	// The maximum number of results that are returned per call. You can use nextToken
 	// to obtain further pages of results. The default is 100 and the maximum allowed
 	// page size is 1000. A value of 0 uses the default.
@@ -6377,8 +7066,8 @@ type ListExecutionsInput struct {
 
 	// The Amazon Resource Name (ARN) of the state machine whose executions is listed.
 	//
-	// StateMachineArn is a required field
-	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+	// You can specify either a mapRunArn or a stateMachineArn, but not both.
+	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string"`
 
 	// If specified, only list the executions whose current execution status matches
 	// the given filter.
@@ -6406,11 +7095,11 @@ func (s ListExecutionsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListExecutionsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListExecutionsInput"}
+	if s.MapRunArn != nil && len(*s.MapRunArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MapRunArn", 1))
+	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
-	}
-	if s.StateMachineArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("StateMachineArn"))
 	}
 	if s.StateMachineArn != nil && len(*s.StateMachineArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StateMachineArn", 1))
@@ -6420,6 +7109,12 @@ func (s *ListExecutionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *ListExecutionsInput) SetMapRunArn(v string) *ListExecutionsInput {
+	s.MapRunArn = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -6488,6 +7183,134 @@ func (s *ListExecutionsOutput) SetExecutions(v []*ExecutionListItem) *ListExecut
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListExecutionsOutput) SetNextToken(v string) *ListExecutionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMapRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the execution for which the Map Runs must
+	// be listed.
+	//
+	// ExecutionArn is a required field
+	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results that are returned per call. You can use nextToken
+	// to obtain further pages of results. The default is 100 and the maximum allowed
+	// page size is 1000. A value of 0 uses the default.
+	//
+	// This is only an upper limit. The actual number of results returned per call
+	// might be fewer than the specified maximum.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours. Using an expired
+	// pagination token will return an HTTP 400 InvalidToken error.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMapRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMapRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMapRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMapRunsInput"}
+	if s.ExecutionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionArn"))
+	}
+	if s.ExecutionArn != nil && len(*s.ExecutionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionArn", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutionArn sets the ExecutionArn field's value.
+func (s *ListMapRunsInput) SetExecutionArn(v string) *ListMapRunsInput {
+	s.ExecutionArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMapRunsInput) SetMaxResults(v int64) *ListMapRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMapRunsInput) SetNextToken(v string) *ListMapRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMapRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array that lists information related to a Map Run, such as the Amazon
+	// Resource Name (ARN) of the Map Run and the ARN of the state machine that
+	// started the Map Run.
+	//
+	// MapRuns is a required field
+	MapRuns []*MapRunListItem `locationName:"mapRuns" type:"list" required:"true"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged. Each pagination token expires after 24 hours. Using an expired
+	// pagination token will return an HTTP 400 InvalidToken error.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMapRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMapRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMapRuns sets the MapRuns field's value.
+func (s *ListMapRunsOutput) SetMapRuns(v []*MapRunListItem) *ListMapRunsOutput {
+	s.MapRuns = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMapRunsOutput) SetNextToken(v string) *ListMapRunsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -6836,6 +7659,408 @@ func (s *MapIterationEventDetails) SetIndex(v int64) *MapIterationEventDetails {
 // SetName sets the Name field's value.
 func (s *MapIterationEventDetails) SetName(v string) *MapIterationEventDetails {
 	s.Name = &v
+	return s
+}
+
+// Contains details about all of the child workflow executions started by a
+// Map Run.
+type MapRunExecutionCounts struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of child workflow executions that were started by a Map
+	// Run and were running, but were either stopped by the user or by Step Functions
+	// because the Map Run failed.
+	//
+	// Aborted is a required field
+	Aborted *int64 `locationName:"aborted" type:"long" required:"true"`
+
+	// The total number of child workflow executions that were started by a Map
+	// Run, but have failed.
+	//
+	// Failed is a required field
+	Failed *int64 `locationName:"failed" type:"long" required:"true"`
+
+	// The total number of child workflow executions that were started by a Map
+	// Run, but haven't started executing yet.
+	//
+	// Pending is a required field
+	Pending *int64 `locationName:"pending" type:"long" required:"true"`
+
+	// Returns the count of child workflow executions whose results were written
+	// by ResultWriter. For more information, see ResultWriter (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultwriter.html)
+	// in the Step Functions Developer Guide.
+	//
+	// ResultsWritten is a required field
+	ResultsWritten *int64 `locationName:"resultsWritten" type:"long" required:"true"`
+
+	// The total number of child workflow executions that were started by a Map
+	// Run and are currently in-progress.
+	//
+	// Running is a required field
+	Running *int64 `locationName:"running" type:"long" required:"true"`
+
+	// The total number of child workflow executions that were started by a Map
+	// Run and have completed successfully.
+	//
+	// Succeeded is a required field
+	Succeeded *int64 `locationName:"succeeded" type:"long" required:"true"`
+
+	// The total number of child workflow executions that were started by a Map
+	// Run and have timed out.
+	//
+	// TimedOut is a required field
+	TimedOut *int64 `locationName:"timedOut" type:"long" required:"true"`
+
+	// The total number of child workflow executions that were started by a Map
+	// Run.
+	//
+	// Total is a required field
+	Total *int64 `locationName:"total" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunExecutionCounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunExecutionCounts) GoString() string {
+	return s.String()
+}
+
+// SetAborted sets the Aborted field's value.
+func (s *MapRunExecutionCounts) SetAborted(v int64) *MapRunExecutionCounts {
+	s.Aborted = &v
+	return s
+}
+
+// SetFailed sets the Failed field's value.
+func (s *MapRunExecutionCounts) SetFailed(v int64) *MapRunExecutionCounts {
+	s.Failed = &v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *MapRunExecutionCounts) SetPending(v int64) *MapRunExecutionCounts {
+	s.Pending = &v
+	return s
+}
+
+// SetResultsWritten sets the ResultsWritten field's value.
+func (s *MapRunExecutionCounts) SetResultsWritten(v int64) *MapRunExecutionCounts {
+	s.ResultsWritten = &v
+	return s
+}
+
+// SetRunning sets the Running field's value.
+func (s *MapRunExecutionCounts) SetRunning(v int64) *MapRunExecutionCounts {
+	s.Running = &v
+	return s
+}
+
+// SetSucceeded sets the Succeeded field's value.
+func (s *MapRunExecutionCounts) SetSucceeded(v int64) *MapRunExecutionCounts {
+	s.Succeeded = &v
+	return s
+}
+
+// SetTimedOut sets the TimedOut field's value.
+func (s *MapRunExecutionCounts) SetTimedOut(v int64) *MapRunExecutionCounts {
+	s.TimedOut = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *MapRunExecutionCounts) SetTotal(v int64) *MapRunExecutionCounts {
+	s.Total = &v
+	return s
+}
+
+// Contains details about a Map Run failure event that occurred during a state
+// machine execution.
+type MapRunFailedEventDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A more detailed explanation of the cause of the failure.
+	//
+	// Cause is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MapRunFailedEventDetails's
+	// String and GoString methods.
+	Cause *string `locationName:"cause" type:"string" sensitive:"true"`
+
+	// The error code of the Map Run failure.
+	//
+	// Error is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MapRunFailedEventDetails's
+	// String and GoString methods.
+	Error *string `locationName:"error" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunFailedEventDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunFailedEventDetails) GoString() string {
+	return s.String()
+}
+
+// SetCause sets the Cause field's value.
+func (s *MapRunFailedEventDetails) SetCause(v string) *MapRunFailedEventDetails {
+	s.Cause = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *MapRunFailedEventDetails) SetError(v string) *MapRunFailedEventDetails {
+	s.Error = &v
+	return s
+}
+
+// Contains details about items that were processed in all of the child workflow
+// executions that were started by a Map Run.
+type MapRunItemCounts struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of items processed in child workflow executions that were
+	// either stopped by the user or by Step Functions, because the Map Run failed.
+	//
+	// Aborted is a required field
+	Aborted *int64 `locationName:"aborted" type:"long" required:"true"`
+
+	// The total number of items processed in child workflow executions that have
+	// failed.
+	//
+	// Failed is a required field
+	Failed *int64 `locationName:"failed" type:"long" required:"true"`
+
+	// The total number of items to process in child workflow executions that haven't
+	// started running yet.
+	//
+	// Pending is a required field
+	Pending *int64 `locationName:"pending" type:"long" required:"true"`
+
+	// Returns the count of items whose results were written by ResultWriter. For
+	// more information, see ResultWriter (https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultwriter.html)
+	// in the Step Functions Developer Guide.
+	//
+	// ResultsWritten is a required field
+	ResultsWritten *int64 `locationName:"resultsWritten" type:"long" required:"true"`
+
+	// The total number of items being processed in child workflow executions that
+	// are currently in-progress.
+	//
+	// Running is a required field
+	Running *int64 `locationName:"running" type:"long" required:"true"`
+
+	// The total number of items processed in child workflow executions that have
+	// completed successfully.
+	//
+	// Succeeded is a required field
+	Succeeded *int64 `locationName:"succeeded" type:"long" required:"true"`
+
+	// The total number of items processed in child workflow executions that have
+	// timed out.
+	//
+	// TimedOut is a required field
+	TimedOut *int64 `locationName:"timedOut" type:"long" required:"true"`
+
+	// The total number of items processed in all the child workflow executions
+	// started by a Map Run.
+	//
+	// Total is a required field
+	Total *int64 `locationName:"total" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunItemCounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunItemCounts) GoString() string {
+	return s.String()
+}
+
+// SetAborted sets the Aborted field's value.
+func (s *MapRunItemCounts) SetAborted(v int64) *MapRunItemCounts {
+	s.Aborted = &v
+	return s
+}
+
+// SetFailed sets the Failed field's value.
+func (s *MapRunItemCounts) SetFailed(v int64) *MapRunItemCounts {
+	s.Failed = &v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *MapRunItemCounts) SetPending(v int64) *MapRunItemCounts {
+	s.Pending = &v
+	return s
+}
+
+// SetResultsWritten sets the ResultsWritten field's value.
+func (s *MapRunItemCounts) SetResultsWritten(v int64) *MapRunItemCounts {
+	s.ResultsWritten = &v
+	return s
+}
+
+// SetRunning sets the Running field's value.
+func (s *MapRunItemCounts) SetRunning(v int64) *MapRunItemCounts {
+	s.Running = &v
+	return s
+}
+
+// SetSucceeded sets the Succeeded field's value.
+func (s *MapRunItemCounts) SetSucceeded(v int64) *MapRunItemCounts {
+	s.Succeeded = &v
+	return s
+}
+
+// SetTimedOut sets the TimedOut field's value.
+func (s *MapRunItemCounts) SetTimedOut(v int64) *MapRunItemCounts {
+	s.TimedOut = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *MapRunItemCounts) SetTotal(v int64) *MapRunItemCounts {
+	s.Total = &v
+	return s
+}
+
+// Contains details about a specific Map Run.
+type MapRunListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The executionArn of the execution from which the Map Run was started.
+	//
+	// ExecutionArn is a required field
+	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Map Run.
+	//
+	// MapRunArn is a required field
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string" required:"true"`
+
+	// The date on which the Map Run started.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `locationName:"startDate" type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the executed state machine.
+	//
+	// StateMachineArn is a required field
+	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+
+	// The date on which the Map Run stopped.
+	StopDate *time.Time `locationName:"stopDate" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunListItem) GoString() string {
+	return s.String()
+}
+
+// SetExecutionArn sets the ExecutionArn field's value.
+func (s *MapRunListItem) SetExecutionArn(v string) *MapRunListItem {
+	s.ExecutionArn = &v
+	return s
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *MapRunListItem) SetMapRunArn(v string) *MapRunListItem {
+	s.MapRunArn = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *MapRunListItem) SetStartDate(v time.Time) *MapRunListItem {
+	s.StartDate = &v
+	return s
+}
+
+// SetStateMachineArn sets the StateMachineArn field's value.
+func (s *MapRunListItem) SetStateMachineArn(v string) *MapRunListItem {
+	s.StateMachineArn = &v
+	return s
+}
+
+// SetStopDate sets the StopDate field's value.
+func (s *MapRunListItem) SetStopDate(v time.Time) *MapRunListItem {
+	s.StopDate = &v
+	return s
+}
+
+// Contains details about a Map Run that was started during a state machine
+// execution.
+type MapRunStartedEventDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a Map Run that was started.
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunStartedEventDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MapRunStartedEventDetails) GoString() string {
+	return s.String()
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *MapRunStartedEventDetails) SetMapRunArn(v string) *MapRunStartedEventDetails {
+	s.MapRunArn = &v
 	return s
 }
 
@@ -9400,6 +10625,105 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateMapRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a Map Run.
+	//
+	// MapRunArn is a required field
+	MapRunArn *string `locationName:"mapRunArn" min:"1" type:"string" required:"true"`
+
+	// The maximum number of child workflow executions that can be specified to
+	// run in parallel for the Map Run at the same time.
+	MaxConcurrency *int64 `locationName:"maxConcurrency" type:"integer"`
+
+	// The maximum number of failed items before the Map Run fails.
+	ToleratedFailureCount *int64 `locationName:"toleratedFailureCount" type:"long"`
+
+	// The maximum percentage of failed items before the Map Run fails.
+	ToleratedFailurePercentage *float64 `locationName:"toleratedFailurePercentage" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMapRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMapRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMapRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMapRunInput"}
+	if s.MapRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MapRunArn"))
+	}
+	if s.MapRunArn != nil && len(*s.MapRunArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MapRunArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMapRunArn sets the MapRunArn field's value.
+func (s *UpdateMapRunInput) SetMapRunArn(v string) *UpdateMapRunInput {
+	s.MapRunArn = &v
+	return s
+}
+
+// SetMaxConcurrency sets the MaxConcurrency field's value.
+func (s *UpdateMapRunInput) SetMaxConcurrency(v int64) *UpdateMapRunInput {
+	s.MaxConcurrency = &v
+	return s
+}
+
+// SetToleratedFailureCount sets the ToleratedFailureCount field's value.
+func (s *UpdateMapRunInput) SetToleratedFailureCount(v int64) *UpdateMapRunInput {
+	s.ToleratedFailureCount = &v
+	return s
+}
+
+// SetToleratedFailurePercentage sets the ToleratedFailurePercentage field's value.
+func (s *UpdateMapRunInput) SetToleratedFailurePercentage(v float64) *UpdateMapRunInput {
+	s.ToleratedFailurePercentage = &v
+	return s
+}
+
+type UpdateMapRunOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMapRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMapRunOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9532,6 +10856,75 @@ func (s UpdateStateMachineOutput) GoString() string {
 func (s *UpdateStateMachineOutput) SetUpdateDate(v time.Time) *UpdateStateMachineOutput {
 	s.UpdateDate = &v
 	return s
+}
+
+// The input does not satisfy the constraints specified by an Amazon Web Services
+// service.
+type ValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The input does not satisfy the constraints specified by an Amazon Web Services
+	// service.
+	Reason *string `locationName:"reason" type:"string" enum:"ValidationExceptionReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s *ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 const (
@@ -9727,6 +11120,18 @@ const (
 
 	// HistoryEventTypeWaitStateExited is a HistoryEventType enum value
 	HistoryEventTypeWaitStateExited = "WaitStateExited"
+
+	// HistoryEventTypeMapRunAborted is a HistoryEventType enum value
+	HistoryEventTypeMapRunAborted = "MapRunAborted"
+
+	// HistoryEventTypeMapRunFailed is a HistoryEventType enum value
+	HistoryEventTypeMapRunFailed = "MapRunFailed"
+
+	// HistoryEventTypeMapRunStarted is a HistoryEventType enum value
+	HistoryEventTypeMapRunStarted = "MapRunStarted"
+
+	// HistoryEventTypeMapRunSucceeded is a HistoryEventType enum value
+	HistoryEventTypeMapRunSucceeded = "MapRunSucceeded"
 )
 
 // HistoryEventType_Values returns all elements of the HistoryEventType enum
@@ -9787,6 +11192,10 @@ func HistoryEventType_Values() []string {
 		HistoryEventTypeWaitStateAborted,
 		HistoryEventTypeWaitStateEntered,
 		HistoryEventTypeWaitStateExited,
+		HistoryEventTypeMapRunAborted,
+		HistoryEventTypeMapRunFailed,
+		HistoryEventTypeMapRunStarted,
+		HistoryEventTypeMapRunSucceeded,
 	}
 }
 
@@ -9811,6 +11220,30 @@ func LogLevel_Values() []string {
 		LogLevelError,
 		LogLevelFatal,
 		LogLevelOff,
+	}
+}
+
+const (
+	// MapRunStatusRunning is a MapRunStatus enum value
+	MapRunStatusRunning = "RUNNING"
+
+	// MapRunStatusSucceeded is a MapRunStatus enum value
+	MapRunStatusSucceeded = "SUCCEEDED"
+
+	// MapRunStatusFailed is a MapRunStatus enum value
+	MapRunStatusFailed = "FAILED"
+
+	// MapRunStatusAborted is a MapRunStatus enum value
+	MapRunStatusAborted = "ABORTED"
+)
+
+// MapRunStatus_Values returns all elements of the MapRunStatus enum
+func MapRunStatus_Values() []string {
+	return []string{
+		MapRunStatusRunning,
+		MapRunStatusSucceeded,
+		MapRunStatusFailed,
+		MapRunStatusAborted,
 	}
 }
 
@@ -9863,5 +11296,25 @@ func SyncExecutionStatus_Values() []string {
 		SyncExecutionStatusSucceeded,
 		SyncExecutionStatusFailed,
 		SyncExecutionStatusTimedOut,
+	}
+}
+
+const (
+	// ValidationExceptionReasonApiDoesNotSupportLabeledArns is a ValidationExceptionReason enum value
+	ValidationExceptionReasonApiDoesNotSupportLabeledArns = "API_DOES_NOT_SUPPORT_LABELED_ARNS"
+
+	// ValidationExceptionReasonMissingRequiredParameter is a ValidationExceptionReason enum value
+	ValidationExceptionReasonMissingRequiredParameter = "MISSING_REQUIRED_PARAMETER"
+
+	// ValidationExceptionReasonCannotUpdateCompletedMapRun is a ValidationExceptionReason enum value
+	ValidationExceptionReasonCannotUpdateCompletedMapRun = "CANNOT_UPDATE_COMPLETED_MAP_RUN"
+)
+
+// ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
+func ValidationExceptionReason_Values() []string {
+	return []string{
+		ValidationExceptionReasonApiDoesNotSupportLabeledArns,
+		ValidationExceptionReasonMissingRequiredParameter,
+		ValidationExceptionReasonCannotUpdateCompletedMapRun,
 	}
 }
