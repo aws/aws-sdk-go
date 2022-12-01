@@ -236,6 +236,9 @@ type ComprehendAPI interface {
 	ListEndpointsWithContext(aws.Context, *comprehend.ListEndpointsInput, ...request.Option) (*comprehend.ListEndpointsOutput, error)
 	ListEndpointsRequest(*comprehend.ListEndpointsInput) (*request.Request, *comprehend.ListEndpointsOutput)
 
+	ListEndpointsPages(*comprehend.ListEndpointsInput, func(*comprehend.ListEndpointsOutput, bool) bool) error
+	ListEndpointsPagesWithContext(aws.Context, *comprehend.ListEndpointsInput, func(*comprehend.ListEndpointsOutput, bool) bool, ...request.Option) error
+
 	ListEntitiesDetectionJobs(*comprehend.ListEntitiesDetectionJobsInput) (*comprehend.ListEntitiesDetectionJobsOutput, error)
 	ListEntitiesDetectionJobsWithContext(aws.Context, *comprehend.ListEntitiesDetectionJobsInput, ...request.Option) (*comprehend.ListEntitiesDetectionJobsOutput, error)
 	ListEntitiesDetectionJobsRequest(*comprehend.ListEntitiesDetectionJobsInput) (*request.Request, *comprehend.ListEntitiesDetectionJobsOutput)
@@ -274,6 +277,9 @@ type ComprehendAPI interface {
 	ListPiiEntitiesDetectionJobs(*comprehend.ListPiiEntitiesDetectionJobsInput) (*comprehend.ListPiiEntitiesDetectionJobsOutput, error)
 	ListPiiEntitiesDetectionJobsWithContext(aws.Context, *comprehend.ListPiiEntitiesDetectionJobsInput, ...request.Option) (*comprehend.ListPiiEntitiesDetectionJobsOutput, error)
 	ListPiiEntitiesDetectionJobsRequest(*comprehend.ListPiiEntitiesDetectionJobsInput) (*request.Request, *comprehend.ListPiiEntitiesDetectionJobsOutput)
+
+	ListPiiEntitiesDetectionJobsPages(*comprehend.ListPiiEntitiesDetectionJobsInput, func(*comprehend.ListPiiEntitiesDetectionJobsOutput, bool) bool) error
+	ListPiiEntitiesDetectionJobsPagesWithContext(aws.Context, *comprehend.ListPiiEntitiesDetectionJobsInput, func(*comprehend.ListPiiEntitiesDetectionJobsOutput, bool) bool, ...request.Option) error
 
 	ListSentimentDetectionJobs(*comprehend.ListSentimentDetectionJobsInput) (*comprehend.ListSentimentDetectionJobsOutput, error)
 	ListSentimentDetectionJobsWithContext(aws.Context, *comprehend.ListSentimentDetectionJobsInput, ...request.Option) (*comprehend.ListSentimentDetectionJobsOutput, error)

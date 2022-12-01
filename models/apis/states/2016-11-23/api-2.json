@@ -71,7 +71,8 @@
       "input":{"shape":"DeleteStateMachineInput"},
       "output":{"shape":"DeleteStateMachineOutput"},
       "errors":[
-        {"shape":"InvalidArn"}
+        {"shape":"InvalidArn"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeActivity":{
@@ -97,6 +98,19 @@
       "output":{"shape":"DescribeExecutionOutput"},
       "errors":[
         {"shape":"ExecutionDoesNotExist"},
+        {"shape":"InvalidArn"}
+      ]
+    },
+    "DescribeMapRun":{
+      "name":"DescribeMapRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeMapRunInput"},
+      "output":{"shape":"DescribeMapRunOutput"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
         {"shape":"InvalidArn"}
       ]
     },
@@ -178,7 +192,23 @@
         {"shape":"InvalidArn"},
         {"shape":"InvalidToken"},
         {"shape":"StateMachineDoesNotExist"},
-        {"shape":"StateMachineTypeNotSupported"}
+        {"shape":"StateMachineTypeNotSupported"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "ListMapRuns":{
+      "name":"ListMapRuns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMapRunsInput"},
+      "output":{"shape":"ListMapRunsOutput"},
+      "errors":[
+        {"shape":"ExecutionDoesNotExist"},
+        {"shape":"InvalidArn"},
+        {"shape":"InvalidToken"}
       ]
     },
     "ListStateMachines":{
@@ -264,7 +294,8 @@
         {"shape":"InvalidExecutionInput"},
         {"shape":"InvalidName"},
         {"shape":"StateMachineDoesNotExist"},
-        {"shape":"StateMachineDeleting"}
+        {"shape":"StateMachineDeleting"},
+        {"shape":"ValidationException"}
       ],
       "idempotent":true
     },
@@ -296,7 +327,8 @@
       "output":{"shape":"StopExecutionOutput"},
       "errors":[
         {"shape":"ExecutionDoesNotExist"},
-        {"shape":"InvalidArn"}
+        {"shape":"InvalidArn"},
+        {"shape":"ValidationException"}
       ]
     },
     "TagResource":{
@@ -326,6 +358,20 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "UpdateMapRun":{
+      "name":"UpdateMapRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateMapRunInput"},
+      "output":{"shape":"UpdateMapRunOutput"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"InvalidArn"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateStateMachine":{
       "name":"UpdateStateMachine",
       "http":{
@@ -341,7 +387,8 @@
         {"shape":"InvalidTracingConfiguration"},
         {"shape":"MissingRequiredParameter"},
         {"shape":"StateMachineDeleting"},
-        {"shape":"StateMachineDoesNotExist"}
+        {"shape":"StateMachineDoesNotExist"},
+        {"shape":"ValidationException"}
       ],
       "idempotent":true
     }
@@ -597,7 +644,43 @@
         "inputDetails":{"shape":"CloudWatchEventsExecutionDataDetails"},
         "output":{"shape":"SensitiveData"},
         "outputDetails":{"shape":"CloudWatchEventsExecutionDataDetails"},
-        "traceHeader":{"shape":"TraceHeader"}
+        "traceHeader":{"shape":"TraceHeader"},
+        "mapRunArn":{"shape":"LongArn"},
+        "error":{"shape":"SensitiveError"},
+        "cause":{"shape":"SensitiveCause"}
+      }
+    },
+    "DescribeMapRunInput":{
+      "type":"structure",
+      "required":["mapRunArn"],
+      "members":{
+        "mapRunArn":{"shape":"LongArn"}
+      }
+    },
+    "DescribeMapRunOutput":{
+      "type":"structure",
+      "required":[
+        "mapRunArn",
+        "executionArn",
+        "status",
+        "startDate",
+        "maxConcurrency",
+        "toleratedFailurePercentage",
+        "toleratedFailureCount",
+        "itemCounts",
+        "executionCounts"
+      ],
+      "members":{
+        "mapRunArn":{"shape":"LongArn"},
+        "executionArn":{"shape":"Arn"},
+        "status":{"shape":"MapRunStatus"},
+        "startDate":{"shape":"Timestamp"},
+        "stopDate":{"shape":"Timestamp"},
+        "maxConcurrency":{"shape":"MaxConcurrency"},
+        "toleratedFailurePercentage":{"shape":"ToleratedFailurePercentage"},
+        "toleratedFailureCount":{"shape":"ToleratedFailureCount"},
+        "itemCounts":{"shape":"MapRunItemCounts"},
+        "executionCounts":{"shape":"MapRunExecutionCounts"}
       }
     },
     "DescribeStateMachineForExecutionInput":{
@@ -623,7 +706,9 @@
         "roleArn":{"shape":"Arn"},
         "updateDate":{"shape":"Timestamp"},
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
-        "tracingConfiguration":{"shape":"TracingConfiguration"}
+        "tracingConfiguration":{"shape":"TracingConfiguration"},
+        "mapRunArn":{"shape":"LongArn"},
+        "label":{"shape":"MapRunLabel"}
       }
     },
     "DescribeStateMachineInput":{
@@ -652,7 +737,8 @@
         "type":{"shape":"StateMachineType"},
         "creationDate":{"shape":"Timestamp"},
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
-        "tracingConfiguration":{"shape":"TracingConfiguration"}
+        "tracingConfiguration":{"shape":"TracingConfiguration"},
+        "label":{"shape":"MapRunLabel"}
       }
     },
     "Enabled":{"type":"boolean"},
@@ -712,7 +798,12 @@
         "name":{"shape":"Name"},
         "status":{"shape":"ExecutionStatus"},
         "startDate":{"shape":"Timestamp"},
-        "stopDate":{"shape":"Timestamp"}
+        "stopDate":{"shape":"Timestamp"},
+        "mapRunArn":{"shape":"LongArn"},
+        "itemCount":{
+          "shape":"UnsignedInteger",
+          "box":true
+        }
       }
     },
     "ExecutionStartedEventDetails":{
@@ -824,7 +915,9 @@
         "lambdaFunctionSucceededEventDetails":{"shape":"LambdaFunctionSucceededEventDetails"},
         "lambdaFunctionTimedOutEventDetails":{"shape":"LambdaFunctionTimedOutEventDetails"},
         "stateEnteredEventDetails":{"shape":"StateEnteredEventDetails"},
-        "stateExitedEventDetails":{"shape":"StateExitedEventDetails"}
+        "stateExitedEventDetails":{"shape":"StateExitedEventDetails"},
+        "mapRunStartedEventDetails":{"shape":"MapRunStartedEventDetails"},
+        "mapRunFailedEventDetails":{"shape":"MapRunFailedEventDetails"}
       }
     },
     "HistoryEventExecutionDataDetails":{
@@ -894,7 +987,11 @@
         "TaskTimedOut",
         "WaitStateAborted",
         "WaitStateEntered",
-        "WaitStateExited"
+        "WaitStateExited",
+        "MapRunAborted",
+        "MapRunFailed",
+        "MapRunStarted",
+        "MapRunSucceeded"
       ]
     },
     "Identity":{
@@ -1028,12 +1125,12 @@
     },
     "ListExecutionsInput":{
       "type":"structure",
-      "required":["stateMachineArn"],
       "members":{
         "stateMachineArn":{"shape":"Arn"},
         "statusFilter":{"shape":"ExecutionStatus"},
         "maxResults":{"shape":"PageSize"},
-        "nextToken":{"shape":"ListExecutionsPageToken"}
+        "nextToken":{"shape":"ListExecutionsPageToken"},
+        "mapRunArn":{"shape":"LongArn"}
       }
     },
     "ListExecutionsOutput":{
@@ -1048,6 +1145,23 @@
       "type":"string",
       "max":3096,
       "min":1
+    },
+    "ListMapRunsInput":{
+      "type":"structure",
+      "required":["executionArn"],
+      "members":{
+        "executionArn":{"shape":"Arn"},
+        "maxResults":{"shape":"PageSize"},
+        "nextToken":{"shape":"PageToken"}
+      }
+    },
+    "ListMapRunsOutput":{
+      "type":"structure",
+      "required":["mapRuns"],
+      "members":{
+        "mapRuns":{"shape":"MapRunList"},
+        "nextToken":{"shape":"PageToken"}
+      }
     },
     "ListStateMachinesInput":{
       "type":"structure",
@@ -1106,7 +1220,7 @@
     },
     "LongArn":{
       "type":"string",
-      "max":1600,
+      "max":2000,
       "min":1
     },
     "MapIterationEventDetails":{
@@ -1116,11 +1230,104 @@
         "index":{"shape":"UnsignedInteger"}
       }
     },
+    "MapRunExecutionCounts":{
+      "type":"structure",
+      "required":[
+        "pending",
+        "running",
+        "succeeded",
+        "failed",
+        "timedOut",
+        "aborted",
+        "total",
+        "resultsWritten"
+      ],
+      "members":{
+        "pending":{"shape":"UnsignedLong"},
+        "running":{"shape":"UnsignedLong"},
+        "succeeded":{"shape":"UnsignedLong"},
+        "failed":{"shape":"UnsignedLong"},
+        "timedOut":{"shape":"UnsignedLong"},
+        "aborted":{"shape":"UnsignedLong"},
+        "total":{"shape":"UnsignedLong"},
+        "resultsWritten":{"shape":"UnsignedLong"}
+      }
+    },
+    "MapRunFailedEventDetails":{
+      "type":"structure",
+      "members":{
+        "error":{"shape":"SensitiveError"},
+        "cause":{"shape":"SensitiveCause"}
+      }
+    },
+    "MapRunItemCounts":{
+      "type":"structure",
+      "required":[
+        "pending",
+        "running",
+        "succeeded",
+        "failed",
+        "timedOut",
+        "aborted",
+        "total",
+        "resultsWritten"
+      ],
+      "members":{
+        "pending":{"shape":"UnsignedLong"},
+        "running":{"shape":"UnsignedLong"},
+        "succeeded":{"shape":"UnsignedLong"},
+        "failed":{"shape":"UnsignedLong"},
+        "timedOut":{"shape":"UnsignedLong"},
+        "aborted":{"shape":"UnsignedLong"},
+        "total":{"shape":"UnsignedLong"},
+        "resultsWritten":{"shape":"UnsignedLong"}
+      }
+    },
+    "MapRunLabel":{"type":"string"},
+    "MapRunList":{
+      "type":"list",
+      "member":{"shape":"MapRunListItem"}
+    },
+    "MapRunListItem":{
+      "type":"structure",
+      "required":[
+        "executionArn",
+        "mapRunArn",
+        "stateMachineArn",
+        "startDate"
+      ],
+      "members":{
+        "executionArn":{"shape":"Arn"},
+        "mapRunArn":{"shape":"LongArn"},
+        "stateMachineArn":{"shape":"Arn"},
+        "startDate":{"shape":"Timestamp"},
+        "stopDate":{"shape":"Timestamp"}
+      }
+    },
+    "MapRunStartedEventDetails":{
+      "type":"structure",
+      "members":{
+        "mapRunArn":{"shape":"LongArn"}
+      }
+    },
+    "MapRunStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "ABORTED"
+      ]
+    },
     "MapStateStartedEventDetails":{
       "type":"structure",
       "members":{
         "length":{"shape":"UnsignedInteger"}
       }
+    },
+    "MaxConcurrency":{
+      "type":"integer",
+      "min":0
     },
     "MissingRequiredParameter":{
       "type":"structure",
@@ -1564,6 +1771,15 @@
     },
     "TimeoutInSeconds":{"type":"long"},
     "Timestamp":{"type":"timestamp"},
+    "ToleratedFailureCount":{
+      "type":"long",
+      "min":0
+    },
+    "ToleratedFailurePercentage":{
+      "type":"float",
+      "max":100,
+      "min":0
+    },
     "TooManyTags":{
       "type":"structure",
       "members":{
@@ -1588,6 +1804,10 @@
       "type":"integer",
       "min":0
     },
+    "UnsignedLong":{
+      "type":"long",
+      "min":0
+    },
     "UntagResourceInput":{
       "type":"structure",
       "required":[
@@ -1600,6 +1820,30 @@
       }
     },
     "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateMapRunInput":{
+      "type":"structure",
+      "required":["mapRunArn"],
+      "members":{
+        "mapRunArn":{"shape":"LongArn"},
+        "maxConcurrency":{
+          "shape":"MaxConcurrency",
+          "box":true
+        },
+        "toleratedFailurePercentage":{
+          "shape":"ToleratedFailurePercentage",
+          "box":true
+        },
+        "toleratedFailureCount":{
+          "shape":"ToleratedFailureCount",
+          "box":true
+        }
+      }
+    },
+    "UpdateMapRunOutput":{
       "type":"structure",
       "members":{
       }
@@ -1621,6 +1865,22 @@
       "members":{
         "updateDate":{"shape":"Timestamp"}
       }
+    },
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"},
+        "reason":{"shape":"ValidationExceptionReason"}
+      },
+      "exception":true
+    },
+    "ValidationExceptionReason":{
+      "type":"string",
+      "enum":[
+        "API_DOES_NOT_SUPPORT_LABELED_ARNS",
+        "MISSING_REQUIRED_PARAMETER",
+        "CANNOT_UPDATE_COMPLETED_MAP_RUN"
+      ]
     },
     "includedDetails":{"type":"boolean"},
     "truncated":{"type":"boolean"}

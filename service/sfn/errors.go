@@ -52,19 +52,19 @@ const (
 	// ErrCodeInvalidArn for service response error code
 	// "InvalidArn".
 	//
-	// The provided Amazon Resource Name (ARN) is invalid.
+	// The provided Amazon Resource Name (ARN) is not valid.
 	ErrCodeInvalidArn = "InvalidArn"
 
 	// ErrCodeInvalidDefinition for service response error code
 	// "InvalidDefinition".
 	//
-	// The provided Amazon States Language definition is invalid.
+	// The provided Amazon States Language definition is not valid.
 	ErrCodeInvalidDefinition = "InvalidDefinition"
 
 	// ErrCodeInvalidExecutionInput for service response error code
 	// "InvalidExecutionInput".
 	//
-	// The provided JSON input data is invalid.
+	// The provided JSON input data is not valid.
 	ErrCodeInvalidExecutionInput = "InvalidExecutionInput"
 
 	// ErrCodeInvalidLoggingConfiguration for service response error code
@@ -74,19 +74,19 @@ const (
 	// ErrCodeInvalidName for service response error code
 	// "InvalidName".
 	//
-	// The provided name is invalid.
+	// The provided name is not valid.
 	ErrCodeInvalidName = "InvalidName"
 
 	// ErrCodeInvalidOutput for service response error code
 	// "InvalidOutput".
 	//
-	// The provided JSON output data is invalid.
+	// The provided JSON output data is not valid.
 	ErrCodeInvalidOutput = "InvalidOutput"
 
 	// ErrCodeInvalidToken for service response error code
 	// "InvalidToken".
 	//
-	// The provided token is invalid.
+	// The provided token is not valid.
 	ErrCodeInvalidToken = "InvalidToken"
 
 	// ErrCodeInvalidTracingConfiguration for service response error code
@@ -155,6 +155,13 @@ const (
 	// Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
 	// in the Step Functions Developer Guide.
 	ErrCodeTooManyTags = "TooManyTags"
+
+	// ErrCodeValidationException for service response error code
+	// "ValidationException".
+	//
+	// The input does not satisfy the constraints specified by an Amazon Web Services
+	// service.
+	ErrCodeValidationException = "ValidationException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -182,4 +189,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"TaskDoesNotExist":             newErrorTaskDoesNotExist,
 	"TaskTimedOut":                 newErrorTaskTimedOut,
 	"TooManyTags":                  newErrorTooManyTags,
+	"ValidationException":          newErrorValidationException,
 }

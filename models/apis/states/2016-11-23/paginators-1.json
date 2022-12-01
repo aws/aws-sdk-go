@@ -18,6 +18,12 @@
       "output_token": "nextToken",
       "result_key": "executions"
     },
+    "ListMapRuns": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "mapRuns"
+    },
     "ListStateMachines": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
