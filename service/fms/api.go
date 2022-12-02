@@ -13795,12 +13795,16 @@ func TargetType_Values() []string {
 const (
 	// ThirdPartyFirewallPaloAltoNetworksCloudNgfw is a ThirdPartyFirewall enum value
 	ThirdPartyFirewallPaloAltoNetworksCloudNgfw = "PALO_ALTO_NETWORKS_CLOUD_NGFW"
+
+	// ThirdPartyFirewallFortigateCloudNativeFirewall is a ThirdPartyFirewall enum value
+	ThirdPartyFirewallFortigateCloudNativeFirewall = "FORTIGATE_CLOUD_NATIVE_FIREWALL"
 )
 
 // ThirdPartyFirewall_Values returns all elements of the ThirdPartyFirewall enum
 func ThirdPartyFirewall_Values() []string {
 	return []string{
 		ThirdPartyFirewallPaloAltoNetworksCloudNgfw,
+		ThirdPartyFirewallFortigateCloudNativeFirewall,
 	}
 }
 

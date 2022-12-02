@@ -81,6 +81,9 @@ func (c *RedshiftServerless) ConvertRecoveryPointToSnapshotRequest(input *Conver
 //   - ValidationException
 //     The input failed to satisfy the constraints specified by an AWS service.
 //
+//   - TooManyTagsException
+//     The request exceeded the number of tags allowed for a resource.
+//
 //   - ServiceQuotaExceededException
 //     The service limit was exceeded.
 //
@@ -357,6 +360,9 @@ func (c *RedshiftServerless) CreateSnapshotRequest(input *CreateSnapshotInput) (
 //
 //   - ValidationException
 //     The input failed to satisfy the constraints specified by an AWS service.
+//
+//   - TooManyTagsException
+//     The request exceeded the number of tags allowed for a resource.
 //
 //   - ServiceQuotaExceededException
 //     The service limit was exceeded.
@@ -1155,9 +1161,9 @@ func (c *RedshiftServerless) GetCredentialsRequest(input *GetCredentialsInput) (
 // specify a duration between 900 seconds (15 minutes) and 3600 seconds (60
 // minutes).
 //
-//	<p> The Identity and Access Management (IAM) user or role that runs GetCredentials
+//	<p>The Identity and Access Management (IAM) user or role that runs GetCredentials
 //	must have an IAM policy attached that allows access to all necessary actions
-//	and resources. </p> <p> If the <code>DbName</code> parameter is specified,
+//	and resources.</p> <p>If the <code>DbName</code> parameter is specified,
 //	the IAM policy must allow access to the resource dbname for the specified
 //	database name.</p>
 //
@@ -1633,6 +1639,88 @@ func (c *RedshiftServerless) GetSnapshot(input *GetSnapshotInput) (*GetSnapshotO
 // for more information on using Contexts.
 func (c *RedshiftServerless) GetSnapshotWithContext(ctx aws.Context, input *GetSnapshotInput, opts ...request.Option) (*GetSnapshotOutput, error) {
 	req, out := c.GetSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTableRestoreStatus = "GetTableRestoreStatus"
+
+// GetTableRestoreStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetTableRestoreStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTableRestoreStatus for more information on using the GetTableRestoreStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTableRestoreStatusRequest method.
+//	req, resp := client.GetTableRestoreStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetTableRestoreStatus
+func (c *RedshiftServerless) GetTableRestoreStatusRequest(input *GetTableRestoreStatusInput) (req *request.Request, output *GetTableRestoreStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetTableRestoreStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetTableRestoreStatusInput{}
+	}
+
+	output = &GetTableRestoreStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTableRestoreStatus API operation for Redshift Serverless.
+//
+// Returns information about a TableRestoreStatus object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation GetTableRestoreStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/GetTableRestoreStatus
+func (c *RedshiftServerless) GetTableRestoreStatus(input *GetTableRestoreStatusInput) (*GetTableRestoreStatusOutput, error) {
+	req, out := c.GetTableRestoreStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetTableRestoreStatusWithContext is the same as GetTableRestoreStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTableRestoreStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) GetTableRestoreStatusWithContext(ctx aws.Context, input *GetTableRestoreStatusInput, opts ...request.Option) (*GetTableRestoreStatusOutput, error) {
+	req, out := c.GetTableRestoreStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2382,6 +2470,148 @@ func (c *RedshiftServerless) ListSnapshotsPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opListTableRestoreStatus = "ListTableRestoreStatus"
+
+// ListTableRestoreStatusRequest generates a "aws/request.Request" representing the
+// client's request for the ListTableRestoreStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTableRestoreStatus for more information on using the ListTableRestoreStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTableRestoreStatusRequest method.
+//	req, resp := client.ListTableRestoreStatusRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListTableRestoreStatus
+func (c *RedshiftServerless) ListTableRestoreStatusRequest(input *ListTableRestoreStatusInput) (req *request.Request, output *ListTableRestoreStatusOutput) {
+	op := &request.Operation{
+		Name:       opListTableRestoreStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTableRestoreStatusInput{}
+	}
+
+	output = &ListTableRestoreStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTableRestoreStatus API operation for Redshift Serverless.
+//
+// Returns information about an array of TableRestoreStatus objects.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation ListTableRestoreStatus for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidPaginationException
+//     The provided pagination token is invalid.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/ListTableRestoreStatus
+func (c *RedshiftServerless) ListTableRestoreStatus(input *ListTableRestoreStatusInput) (*ListTableRestoreStatusOutput, error) {
+	req, out := c.ListTableRestoreStatusRequest(input)
+	return out, req.Send()
+}
+
+// ListTableRestoreStatusWithContext is the same as ListTableRestoreStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTableRestoreStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) ListTableRestoreStatusWithContext(ctx aws.Context, input *ListTableRestoreStatusInput, opts ...request.Option) (*ListTableRestoreStatusOutput, error) {
+	req, out := c.ListTableRestoreStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTableRestoreStatusPages iterates over the pages of a ListTableRestoreStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTableRestoreStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTableRestoreStatus operation.
+//	pageNum := 0
+//	err := client.ListTableRestoreStatusPages(params,
+//	    func(page *redshiftserverless.ListTableRestoreStatusOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *RedshiftServerless) ListTableRestoreStatusPages(input *ListTableRestoreStatusInput, fn func(*ListTableRestoreStatusOutput, bool) bool) error {
+	return c.ListTableRestoreStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTableRestoreStatusPagesWithContext same as ListTableRestoreStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) ListTableRestoreStatusPagesWithContext(ctx aws.Context, input *ListTableRestoreStatusInput, fn func(*ListTableRestoreStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTableRestoreStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTableRestoreStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTableRestoreStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -3029,6 +3259,95 @@ func (c *RedshiftServerless) RestoreFromSnapshot(input *RestoreFromSnapshotInput
 // for more information on using Contexts.
 func (c *RedshiftServerless) RestoreFromSnapshotWithContext(ctx aws.Context, input *RestoreFromSnapshotInput, opts ...request.Option) (*RestoreFromSnapshotOutput, error) {
 	req, out := c.RestoreFromSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRestoreTableFromSnapshot = "RestoreTableFromSnapshot"
+
+// RestoreTableFromSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the RestoreTableFromSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RestoreTableFromSnapshot for more information on using the RestoreTableFromSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RestoreTableFromSnapshotRequest method.
+//	req, resp := client.RestoreTableFromSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreTableFromSnapshot
+func (c *RedshiftServerless) RestoreTableFromSnapshotRequest(input *RestoreTableFromSnapshotInput) (req *request.Request, output *RestoreTableFromSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opRestoreTableFromSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RestoreTableFromSnapshotInput{}
+	}
+
+	output = &RestoreTableFromSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RestoreTableFromSnapshot API operation for Redshift Serverless.
+//
+// Restores a table from a snapshot to your Amazon Redshift Serverless instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Serverless's
+// API operation RestoreTableFromSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ConflictException
+//     The submitted action has conflicts.
+//
+//   - ValidationException
+//     The input failed to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-serverless-2021-04-21/RestoreTableFromSnapshot
+func (c *RedshiftServerless) RestoreTableFromSnapshot(input *RestoreTableFromSnapshotInput) (*RestoreTableFromSnapshotOutput, error) {
+	req, out := c.RestoreTableFromSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// RestoreTableFromSnapshotWithContext is the same as RestoreTableFromSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RestoreTableFromSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftServerless) RestoreTableFromSnapshotWithContext(ctx aws.Context, input *RestoreTableFromSnapshotInput, opts ...request.Option) (*RestoreTableFromSnapshotOutput, error) {
+	req, out := c.RestoreTableFromSnapshotRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3857,6 +4176,10 @@ type ConvertRecoveryPointToSnapshotInput struct {
 	//
 	// SnapshotName is a required field
 	SnapshotName *string `locationName:"snapshotName" type:"string" required:"true"`
+
+	// An array of Tag objects (https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_Tag.html)
+	// to associate with the created snapshot.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -3886,6 +4209,16 @@ func (s *ConvertRecoveryPointToSnapshotInput) Validate() error {
 	if s.SnapshotName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SnapshotName"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3908,6 +4241,12 @@ func (s *ConvertRecoveryPointToSnapshotInput) SetRetentionPeriod(v int64) *Conve
 // SetSnapshotName sets the SnapshotName field's value.
 func (s *ConvertRecoveryPointToSnapshotInput) SetSnapshotName(v string) *ConvertRecoveryPointToSnapshotInput {
 	s.SnapshotName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ConvertRecoveryPointToSnapshotInput) SetTags(v []*Tag) *ConvertRecoveryPointToSnapshotInput {
+	s.Tags = v
 	return s
 }
 
@@ -4249,6 +4588,10 @@ type CreateSnapshotInput struct {
 	//
 	// SnapshotName is a required field
 	SnapshotName *string `locationName:"snapshotName" type:"string" required:"true"`
+
+	// An array of Tag objects (https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_Tag.html)
+	// to associate with the snapshot.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -4278,6 +4621,16 @@ func (s *CreateSnapshotInput) Validate() error {
 	if s.SnapshotName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SnapshotName"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4300,6 +4653,12 @@ func (s *CreateSnapshotInput) SetRetentionPeriod(v int64) *CreateSnapshotInput {
 // SetSnapshotName sets the SnapshotName field's value.
 func (s *CreateSnapshotInput) SetSnapshotName(v string) *CreateSnapshotInput {
 	s.SnapshotName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSnapshotInput) SetTags(v []*Tag) *CreateSnapshotInput {
+	s.Tags = v
 	return s
 }
 
@@ -4485,6 +4844,10 @@ type CreateWorkgroupInput struct {
 	// NamespaceName is a required field
 	NamespaceName *string `locationName:"namespaceName" min:"3" type:"string" required:"true"`
 
+	// The custom port to use when connecting to a workgroup. Valid port ranges
+	// are 5431-5455 and 8191-8215. The default is 5439.
+	Port *int64 `locationName:"port" type:"integer"`
+
 	// A value that specifies whether the workgroup can be accessed from a public
 	// network.
 	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean"`
@@ -4575,6 +4938,12 @@ func (s *CreateWorkgroupInput) SetEnhancedVpcRouting(v bool) *CreateWorkgroupInp
 // SetNamespaceName sets the NamespaceName field's value.
 func (s *CreateWorkgroupInput) SetNamespaceName(v string) *CreateWorkgroupInput {
 	s.NamespaceName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateWorkgroupInput) SetPort(v int64) *CreateWorkgroupInput {
+	s.Port = &v
 	return s
 }
 
@@ -5293,8 +5662,8 @@ type GetCredentialsInput struct {
 	//
 	//    * Must be 1 to 64 alphanumeric characters or hyphens.
 	//
-	//    * Must contain only lowercase letters, numbers, underscore, plus sign,
-	//    period (dot), at symbol (@), or hyphen.
+	//    * Must contain only uppercase or lowercase letters, numbers, underscore,
+	//    plus sign, period (dot), at symbol (@), or hyphen.
 	//
 	//    * The first character must be a letter.
 	//
@@ -5830,6 +6199,84 @@ func (s *GetSnapshotOutput) SetSnapshot(v *Snapshot) *GetSnapshotOutput {
 	return s
 }
 
+type GetTableRestoreStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the RestoreTableFromSnapshot request to return status for.
+	//
+	// TableRestoreRequestId is a required field
+	TableRestoreRequestId *string `locationName:"tableRestoreRequestId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableRestoreStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableRestoreStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTableRestoreStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTableRestoreStatusInput"}
+	if s.TableRestoreRequestId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableRestoreRequestId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTableRestoreRequestId sets the TableRestoreRequestId field's value.
+func (s *GetTableRestoreStatusInput) SetTableRestoreRequestId(v string) *GetTableRestoreStatusInput {
+	s.TableRestoreRequestId = &v
+	return s
+}
+
+type GetTableRestoreStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The returned TableRestoreStatus object that contains information about the
+	// status of your RestoreTableFromSnapshot request.
+	TableRestoreStatus *TableRestoreStatus `locationName:"tableRestoreStatus" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableRestoreStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableRestoreStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetTableRestoreStatus sets the TableRestoreStatus field's value.
+func (s *GetTableRestoreStatusOutput) SetTableRestoreStatus(v *TableRestoreStatus) *GetTableRestoreStatusOutput {
+	s.TableRestoreStatus = v
+	return s
+}
+
 type GetUsageLimitInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6186,11 +6633,11 @@ type ListEndpointAccessInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional parameter that specifies the maximum number of results to return.
-	// You can use nextToken to get the next page of results.
+	// You can use nextToken to display the next page of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// If your initial ListEndpointAccess operation returns a nextToken, you can
-	// include the returned nextToken in subsequent ListEndpointAccess operations,
+	// include the returned nextToken in following ListEndpointAccess operations,
 	// which returns results in the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -6305,11 +6752,11 @@ type ListNamespacesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional parameter that specifies the maximum number of results to return.
-	// You can use nextToken to get the next page of results.
+	// You can use nextToken to display the next page of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// If your initial ListNamespaces operation returns a nextToken, you can include
-	// the returned nextToken in subsequent ListNamespaces operations, which returns
+	// the returned nextToken in following ListNamespaces operations, which returns
 	// results in the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -6408,14 +6855,18 @@ type ListRecoveryPointsInput struct {
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// An optional parameter that specifies the maximum number of results to return.
-	// You can use nextToken to get the next page of results.
+	// You can use nextToken to display the next page of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the namespace from which to list recovery
+	// points.
+	NamespaceArn *string `locationName:"namespaceArn" type:"string"`
 
 	// The name of the namespace to list recovery points for.
 	NamespaceName *string `locationName:"namespaceName" min:"3" type:"string"`
 
 	// If your initial ListRecoveryPoints operation returns a nextToken, you can
-	// include the returned nextToken in subsequent ListRecoveryPoints operations,
+	// include the returned nextToken in following ListRecoveryPoints operations,
 	// which returns results in the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -6466,6 +6917,12 @@ func (s *ListRecoveryPointsInput) SetEndTime(v time.Time) *ListRecoveryPointsInp
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListRecoveryPointsInput) SetMaxResults(v int64) *ListRecoveryPointsInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNamespaceArn sets the NamespaceArn field's value.
+func (s *ListRecoveryPointsInput) SetNamespaceArn(v string) *ListRecoveryPointsInput {
+	s.NamespaceArn = &v
 	return s
 }
 
@@ -6536,7 +6993,7 @@ type ListSnapshotsInput struct {
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// An optional parameter that specifies the maximum number of results to return.
-	// You can use nextToken to get the next page of results.
+	// You can use nextToken to display the next page of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the namespace from which to list all snapshots.
@@ -6672,6 +7129,127 @@ func (s *ListSnapshotsOutput) SetSnapshots(v []*Snapshot) *ListSnapshotsOutput {
 	return s
 }
 
+type ListTableRestoreStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional parameter that specifies the maximum number of results to return.
+	// You can use nextToken to display the next page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The namespace from which to list all of the statuses of RestoreTableFromSnapshot
+	// operations .
+	NamespaceName *string `locationName:"namespaceName" type:"string"`
+
+	// If your initial ListTableRestoreStatus operation returns a nextToken, you
+	// can include the returned nextToken in following ListTableRestoreStatus operations.
+	// This will return results on the next page.
+	NextToken *string `locationName:"nextToken" min:"8" type:"string"`
+
+	// The workgroup from which to list all of the statuses of RestoreTableFromSnapshot
+	// operations.
+	WorkgroupName *string `locationName:"workgroupName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableRestoreStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableRestoreStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTableRestoreStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTableRestoreStatusInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTableRestoreStatusInput) SetMaxResults(v int64) *ListTableRestoreStatusInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNamespaceName sets the NamespaceName field's value.
+func (s *ListTableRestoreStatusInput) SetNamespaceName(v string) *ListTableRestoreStatusInput {
+	s.NamespaceName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTableRestoreStatusInput) SetNextToken(v string) *ListTableRestoreStatusInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *ListTableRestoreStatusInput) SetWorkgroupName(v string) *ListTableRestoreStatusInput {
+	s.WorkgroupName = &v
+	return s
+}
+
+type ListTableRestoreStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If your initial ListTableRestoreStatus operation returns a nextToken, you
+	// can include the returned nextToken in following ListTableRestoreStatus operations.
+	// This will returns results on the next page.
+	NextToken *string `locationName:"nextToken" min:"8" type:"string"`
+
+	// The array of returned TableRestoreStatus objects.
+	TableRestoreStatuses []*TableRestoreStatus `locationName:"tableRestoreStatuses" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableRestoreStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableRestoreStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTableRestoreStatusOutput) SetNextToken(v string) *ListTableRestoreStatusOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTableRestoreStatuses sets the TableRestoreStatuses field's value.
+func (s *ListTableRestoreStatusOutput) SetTableRestoreStatuses(v []*TableRestoreStatus) *ListTableRestoreStatusOutput {
+	s.TableRestoreStatuses = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6760,7 +7338,7 @@ type ListUsageLimitsInput struct {
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// If your initial ListUsageLimits operation returns a nextToken, you can include
-	// the returned nextToken in subsequent ListUsageLimits operations, which returns
+	// the returned nextToken in following ListUsageLimits operations, which returns
 	// results in the next page.
 	NextToken *string `locationName:"nextToken" min:"8" type:"string"`
 
@@ -6876,11 +7454,11 @@ type ListWorkgroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional parameter that specifies the maximum number of results to return.
-	// You can use nextToken to get the next page of results.
+	// You can use nextToken to display the next page of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// If your initial ListWorkgroups operation returns a nextToken, you can include
-	// the returned nextToken in subsequent ListNamespaces operations, which returns
+	// the returned nextToken in following ListNamespaces operations, which returns
 	// results in the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -7266,6 +7844,10 @@ func (s *PutResourcePolicyOutput) SetResourcePolicy(v *ResourcePolicy) *PutResou
 type RecoveryPoint struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the namespace the recovery point is associated
+	// with.
+	NamespaceArn *string `locationName:"namespaceArn" type:"string"`
+
 	// The name of the namespace the recovery point is associated with.
 	NamespaceName *string `locationName:"namespaceName" min:"3" type:"string"`
 
@@ -7298,6 +7880,12 @@ func (s RecoveryPoint) String() string {
 // value will be replaced with "sensitive".
 func (s RecoveryPoint) GoString() string {
 	return s.String()
+}
+
+// SetNamespaceArn sets the NamespaceArn field's value.
+func (s *RecoveryPoint) SetNamespaceArn(v string) *RecoveryPoint {
+	s.NamespaceArn = &v
+	return s
 }
 
 // SetNamespaceName sets the NamespaceName field's value.
@@ -7570,10 +8158,15 @@ type RestoreFromSnapshotInput struct {
 	// The Amazon Web Services account that owns the snapshot.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the snapshot to restore from.
+	// The Amazon Resource Name (ARN) of the snapshot to restore from. Required
+	// if restoring from Amazon Redshift Serverless to a provisioned cluster. Must
+	// not be specified at the same time as snapshotName.
+	//
+	// The format of the ARN is arn:aws:redshift:<region>:<account_id>:snapshot:<cluster_identifier>/<snapshot_identifier>.
 	SnapshotArn *string `locationName:"snapshotArn" type:"string"`
 
-	// The name of the snapshot to restore from.
+	// The name of the snapshot to restore from. Must not be specified at the same
+	// time as snapshotArn.
 	SnapshotName *string `locationName:"snapshotName" type:"string"`
 
 	// The name of the workgroup used to restore the snapshot.
@@ -7698,6 +8291,191 @@ func (s *RestoreFromSnapshotOutput) SetOwnerAccount(v string) *RestoreFromSnapsh
 // SetSnapshotName sets the SnapshotName field's value.
 func (s *RestoreFromSnapshotOutput) SetSnapshotName(v string) *RestoreFromSnapshotOutput {
 	s.SnapshotName = &v
+	return s
+}
+
+type RestoreTableFromSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether name identifiers for database, schema, and table are case
+	// sensitive. If true, the names are case sensitive. If false, the names are
+	// not case sensitive. The default is false.
+	ActivateCaseSensitiveIdentifier *bool `locationName:"activateCaseSensitiveIdentifier" type:"boolean"`
+
+	// The namespace of the snapshot to restore from.
+	//
+	// NamespaceName is a required field
+	NamespaceName *string `locationName:"namespaceName" type:"string" required:"true"`
+
+	// The name of the table to create from the restore operation.
+	//
+	// NewTableName is a required field
+	NewTableName *string `locationName:"newTableName" type:"string" required:"true"`
+
+	// The name of the snapshot to restore the table from.
+	//
+	// SnapshotName is a required field
+	SnapshotName *string `locationName:"snapshotName" type:"string" required:"true"`
+
+	// The name of the source database that contains the table being restored.
+	//
+	// SourceDatabaseName is a required field
+	SourceDatabaseName *string `locationName:"sourceDatabaseName" type:"string" required:"true"`
+
+	// The name of the source schema that contains the table being restored.
+	SourceSchemaName *string `locationName:"sourceSchemaName" type:"string"`
+
+	// The name of the source table being restored.
+	//
+	// SourceTableName is a required field
+	SourceTableName *string `locationName:"sourceTableName" type:"string" required:"true"`
+
+	// The name of the database to restore the table to.
+	TargetDatabaseName *string `locationName:"targetDatabaseName" type:"string"`
+
+	// The name of the schema to restore the table to.
+	TargetSchemaName *string `locationName:"targetSchemaName" type:"string"`
+
+	// The workgroup to restore the table to.
+	//
+	// WorkgroupName is a required field
+	WorkgroupName *string `locationName:"workgroupName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreTableFromSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreTableFromSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RestoreTableFromSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RestoreTableFromSnapshotInput"}
+	if s.NamespaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NamespaceName"))
+	}
+	if s.NewTableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewTableName"))
+	}
+	if s.SnapshotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotName"))
+	}
+	if s.SourceDatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceDatabaseName"))
+	}
+	if s.SourceTableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceTableName"))
+	}
+	if s.WorkgroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkgroupName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActivateCaseSensitiveIdentifier sets the ActivateCaseSensitiveIdentifier field's value.
+func (s *RestoreTableFromSnapshotInput) SetActivateCaseSensitiveIdentifier(v bool) *RestoreTableFromSnapshotInput {
+	s.ActivateCaseSensitiveIdentifier = &v
+	return s
+}
+
+// SetNamespaceName sets the NamespaceName field's value.
+func (s *RestoreTableFromSnapshotInput) SetNamespaceName(v string) *RestoreTableFromSnapshotInput {
+	s.NamespaceName = &v
+	return s
+}
+
+// SetNewTableName sets the NewTableName field's value.
+func (s *RestoreTableFromSnapshotInput) SetNewTableName(v string) *RestoreTableFromSnapshotInput {
+	s.NewTableName = &v
+	return s
+}
+
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *RestoreTableFromSnapshotInput) SetSnapshotName(v string) *RestoreTableFromSnapshotInput {
+	s.SnapshotName = &v
+	return s
+}
+
+// SetSourceDatabaseName sets the SourceDatabaseName field's value.
+func (s *RestoreTableFromSnapshotInput) SetSourceDatabaseName(v string) *RestoreTableFromSnapshotInput {
+	s.SourceDatabaseName = &v
+	return s
+}
+
+// SetSourceSchemaName sets the SourceSchemaName field's value.
+func (s *RestoreTableFromSnapshotInput) SetSourceSchemaName(v string) *RestoreTableFromSnapshotInput {
+	s.SourceSchemaName = &v
+	return s
+}
+
+// SetSourceTableName sets the SourceTableName field's value.
+func (s *RestoreTableFromSnapshotInput) SetSourceTableName(v string) *RestoreTableFromSnapshotInput {
+	s.SourceTableName = &v
+	return s
+}
+
+// SetTargetDatabaseName sets the TargetDatabaseName field's value.
+func (s *RestoreTableFromSnapshotInput) SetTargetDatabaseName(v string) *RestoreTableFromSnapshotInput {
+	s.TargetDatabaseName = &v
+	return s
+}
+
+// SetTargetSchemaName sets the TargetSchemaName field's value.
+func (s *RestoreTableFromSnapshotInput) SetTargetSchemaName(v string) *RestoreTableFromSnapshotInput {
+	s.TargetSchemaName = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *RestoreTableFromSnapshotInput) SetWorkgroupName(v string) *RestoreTableFromSnapshotInput {
+	s.WorkgroupName = &v
+	return s
+}
+
+type RestoreTableFromSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The TableRestoreStatus object that contains the status of the restore operation.
+	TableRestoreStatus *TableRestoreStatus `locationName:"tableRestoreStatus" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreTableFromSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestoreTableFromSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetTableRestoreStatus sets the TableRestoreStatus field's value.
+func (s *RestoreTableFromSnapshotOutput) SetTableRestoreStatus(v *TableRestoreStatus) *RestoreTableFromSnapshotOutput {
+	s.TableRestoreStatus = v
 	return s
 }
 
@@ -7968,6 +8746,167 @@ func (s *Snapshot) SetStatus(v string) *Snapshot {
 // SetTotalBackupSizeInMegaBytes sets the TotalBackupSizeInMegaBytes field's value.
 func (s *Snapshot) SetTotalBackupSizeInMegaBytes(v float64) *Snapshot {
 	s.TotalBackupSizeInMegaBytes = &v
+	return s
+}
+
+// Contains information about a table restore request.
+type TableRestoreStatus struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the status of the table restore request. Status values include
+	// SUCCEEDED, FAILED, CANCELED, PENDING, IN_PROGRESS.
+	Message *string `locationName:"message" type:"string"`
+
+	// The namespace of the table being restored from.
+	NamespaceName *string `locationName:"namespaceName" type:"string"`
+
+	// The name of the table to create from the restore operation.
+	NewTableName *string `locationName:"newTableName" type:"string"`
+
+	// The amount of data restored to the new table so far, in megabytes (MB).
+	ProgressInMegaBytes *int64 `locationName:"progressInMegaBytes" type:"long"`
+
+	// The time that the table restore request was made, in Universal Coordinated
+	// Time (UTC).
+	RequestTime *time.Time `locationName:"requestTime" type:"timestamp"`
+
+	// The name of the snapshot being restored from.
+	SnapshotName *string `locationName:"snapshotName" type:"string"`
+
+	// The name of the source database being restored from.
+	SourceDatabaseName *string `locationName:"sourceDatabaseName" type:"string"`
+
+	// The name of the source schema being restored from.
+	SourceSchemaName *string `locationName:"sourceSchemaName" type:"string"`
+
+	// The name of the source table being restored from.
+	SourceTableName *string `locationName:"sourceTableName" type:"string"`
+
+	// A value that describes the current state of the table restore request. Possible
+	// values include SUCCEEDED, FAILED, CANCELED, PENDING, IN_PROGRESS.
+	Status *string `locationName:"status" type:"string"`
+
+	// The ID of the RestoreTableFromSnapshot request.
+	TableRestoreRequestId *string `locationName:"tableRestoreRequestId" type:"string"`
+
+	// The name of the database to restore to.
+	TargetDatabaseName *string `locationName:"targetDatabaseName" type:"string"`
+
+	// The name of the schema to restore to.
+	TargetSchemaName *string `locationName:"targetSchemaName" type:"string"`
+
+	// The total amount of data to restore to the new table, in megabytes (MB).
+	TotalDataInMegaBytes *int64 `locationName:"totalDataInMegaBytes" type:"long"`
+
+	// The name of the workgroup being restored from.
+	WorkgroupName *string `locationName:"workgroupName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableRestoreStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableRestoreStatus) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *TableRestoreStatus) SetMessage(v string) *TableRestoreStatus {
+	s.Message = &v
+	return s
+}
+
+// SetNamespaceName sets the NamespaceName field's value.
+func (s *TableRestoreStatus) SetNamespaceName(v string) *TableRestoreStatus {
+	s.NamespaceName = &v
+	return s
+}
+
+// SetNewTableName sets the NewTableName field's value.
+func (s *TableRestoreStatus) SetNewTableName(v string) *TableRestoreStatus {
+	s.NewTableName = &v
+	return s
+}
+
+// SetProgressInMegaBytes sets the ProgressInMegaBytes field's value.
+func (s *TableRestoreStatus) SetProgressInMegaBytes(v int64) *TableRestoreStatus {
+	s.ProgressInMegaBytes = &v
+	return s
+}
+
+// SetRequestTime sets the RequestTime field's value.
+func (s *TableRestoreStatus) SetRequestTime(v time.Time) *TableRestoreStatus {
+	s.RequestTime = &v
+	return s
+}
+
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *TableRestoreStatus) SetSnapshotName(v string) *TableRestoreStatus {
+	s.SnapshotName = &v
+	return s
+}
+
+// SetSourceDatabaseName sets the SourceDatabaseName field's value.
+func (s *TableRestoreStatus) SetSourceDatabaseName(v string) *TableRestoreStatus {
+	s.SourceDatabaseName = &v
+	return s
+}
+
+// SetSourceSchemaName sets the SourceSchemaName field's value.
+func (s *TableRestoreStatus) SetSourceSchemaName(v string) *TableRestoreStatus {
+	s.SourceSchemaName = &v
+	return s
+}
+
+// SetSourceTableName sets the SourceTableName field's value.
+func (s *TableRestoreStatus) SetSourceTableName(v string) *TableRestoreStatus {
+	s.SourceTableName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TableRestoreStatus) SetStatus(v string) *TableRestoreStatus {
+	s.Status = &v
+	return s
+}
+
+// SetTableRestoreRequestId sets the TableRestoreRequestId field's value.
+func (s *TableRestoreStatus) SetTableRestoreRequestId(v string) *TableRestoreStatus {
+	s.TableRestoreRequestId = &v
+	return s
+}
+
+// SetTargetDatabaseName sets the TargetDatabaseName field's value.
+func (s *TableRestoreStatus) SetTargetDatabaseName(v string) *TableRestoreStatus {
+	s.TargetDatabaseName = &v
+	return s
+}
+
+// SetTargetSchemaName sets the TargetSchemaName field's value.
+func (s *TableRestoreStatus) SetTargetSchemaName(v string) *TableRestoreStatus {
+	s.TargetSchemaName = &v
+	return s
+}
+
+// SetTotalDataInMegaBytes sets the TotalDataInMegaBytes field's value.
+func (s *TableRestoreStatus) SetTotalDataInMegaBytes(v int64) *TableRestoreStatus {
+	s.TotalDataInMegaBytes = &v
+	return s
+}
+
+// SetWorkgroupName sets the WorkgroupName field's value.
+func (s *TableRestoreStatus) SetWorkgroupName(v string) *TableRestoreStatus {
+	s.WorkgroupName = &v
 	return s
 }
 
@@ -8671,7 +9610,10 @@ func (s *UpdateSnapshotOutput) SetSnapshot(v *Snapshot) *UpdateSnapshotOutput {
 type UpdateUsageLimitInput struct {
 	_ struct{} `type:"structure"`
 
-	// The new limit amount. For more information about this parameter.
+	// The new limit amount. If time-based, this amount is in Redshift Processing
+	// Units (RPU) consumed per hour. If data-based, this amount is in terabytes
+	// (TB) of data transferred between Regions in cross-account sharing. The value
+	// must be a positive number.
 	Amount *int64 `locationName:"amount" type:"long"`
 
 	// The new action that Amazon Redshift Serverless takes when the limit is reached.
@@ -8779,6 +9721,10 @@ type UpdateWorkgroupInput struct {
 	// your VPC.
 	EnhancedVpcRouting *bool `locationName:"enhancedVpcRouting" type:"boolean"`
 
+	// The custom port to use when connecting to a workgroup. Valid port ranges
+	// are 5431-5455 and 8191-8215. The default is 5439.
+	Port *int64 `locationName:"port" type:"integer"`
+
 	// A value that specifies whether the workgroup can be accessible from a public
 	// network.
 	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean"`
@@ -8844,6 +9790,12 @@ func (s *UpdateWorkgroupInput) SetConfigParameters(v []*ConfigParameter) *Update
 // SetEnhancedVpcRouting sets the EnhancedVpcRouting field's value.
 func (s *UpdateWorkgroupInput) SetEnhancedVpcRouting(v bool) *UpdateWorkgroupInput {
 	s.EnhancedVpcRouting = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *UpdateWorkgroupInput) SetPort(v int64) *UpdateWorkgroupInput {
+	s.Port = &v
 	return s
 }
 
@@ -9179,6 +10131,10 @@ type Workgroup struct {
 	// The namespace the workgroup is associated with.
 	NamespaceName *string `locationName:"namespaceName" type:"string"`
 
+	// The custom port to use when connecting to a workgroup. Valid port ranges
+	// are 5431-5455 and 8191-8215. The default is 5439.
+	Port *int64 `locationName:"port" type:"integer"`
+
 	// A value that specifies whether the workgroup can be accessible from a public
 	// network
 	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean"`
@@ -9253,6 +10209,12 @@ func (s *Workgroup) SetEnhancedVpcRouting(v bool) *Workgroup {
 // SetNamespaceName sets the NamespaceName field's value.
 func (s *Workgroup) SetNamespaceName(v string) *Workgroup {
 	s.NamespaceName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *Workgroup) SetPort(v int64) *Workgroup {
+	s.Port = &v
 	return s
 }
 

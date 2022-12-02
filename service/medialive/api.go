@@ -15091,7 +15091,10 @@ type Esam struct {
 	// apply to OOB messages.
 	AdAvailOffset *int64 `locationName:"adAvailOffset" type:"integer"`
 
-	Password *string `locationName:"password" type:"string"`
+	// Password if credentials are required to access the POIS endpoint. This is
+	// a reference to an AWS parameter store name from which the password can be
+	// retrieved. AWS Parameter store format: "ssm://"
+	PasswordParam *string `locationName:"passwordParam" type:"string"`
 
 	// The URL of the signal conditioner endpoint on the Placement Opportunity Information
 	// System (POIS). MediaLive sends SignalProcessingEvents here when SCTE-35 messages
@@ -15160,9 +15163,9 @@ func (s *Esam) SetAdAvailOffset(v int64) *Esam {
 	return s
 }
 
-// SetPassword sets the Password field's value.
-func (s *Esam) SetPassword(v string) *Esam {
-	s.Password = &v
+// SetPasswordParam sets the PasswordParam field's value.
+func (s *Esam) SetPasswordParam(v string) *Esam {
+	s.PasswordParam = &v
 	return s
 }
 

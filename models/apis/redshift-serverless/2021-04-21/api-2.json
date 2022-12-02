@@ -26,6 +26,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
@@ -76,6 +77,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"ServiceQuotaExceededException"}
       ],
       "idempotent":true
@@ -295,6 +297,19 @@
         {"shape":"ValidationException"}
       ]
     },
+    "GetTableRestoreStatus":{
+      "name":"GetTableRestoreStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTableRestoreStatusRequest"},
+      "output":{"shape":"GetTableRestoreStatusResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetUsageLimit":{
       "name":"GetUsageLimit",
       "http":{
@@ -375,6 +390,20 @@
       "output":{"shape":"ListSnapshotsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListTableRestoreStatus":{
+      "name":"ListTableRestoreStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTableRestoreStatusRequest"},
+      "output":{"shape":"ListTableRestoreStatusResponse"},
+      "errors":[
+        {"shape":"InvalidPaginationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ]
@@ -470,6 +499,21 @@
         {"shape":"ServiceQuotaExceededException"}
       ],
       "idempotent":true
+    },
+    "RestoreTableFromSnapshot":{
+      "name":"RestoreTableFromSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreTableFromSnapshotRequest"},
+      "output":{"shape":"RestoreTableFromSnapshotResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"}
+      ]
     },
     "TagResource":{
       "name":"TagResource",
@@ -630,7 +674,8 @@
       "members":{
         "recoveryPointId":{"shape":"String"},
         "retentionPeriod":{"shape":"Integer"},
-        "snapshotName":{"shape":"String"}
+        "snapshotName":{"shape":"String"},
+        "tags":{"shape":"TagList"}
       }
     },
     "ConvertRecoveryPointToSnapshotResponse":{
@@ -689,7 +734,8 @@
       "members":{
         "namespaceName":{"shape":"String"},
         "retentionPeriod":{"shape":"Integer"},
-        "snapshotName":{"shape":"String"}
+        "snapshotName":{"shape":"String"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateSnapshotResponse":{
@@ -730,6 +776,7 @@
         "configParameters":{"shape":"ConfigParameterList"},
         "enhancedVpcRouting":{"shape":"Boolean"},
         "namespaceName":{"shape":"NamespaceName"},
+        "port":{"shape":"Integer"},
         "publiclyAccessible":{"shape":"Boolean"},
         "securityGroupIds":{"shape":"SecurityGroupIdList"},
         "subnetIds":{"shape":"SubnetIdList"},
@@ -949,6 +996,19 @@
         "snapshot":{"shape":"Snapshot"}
       }
     },
+    "GetTableRestoreStatusRequest":{
+      "type":"structure",
+      "required":["tableRestoreRequestId"],
+      "members":{
+        "tableRestoreRequestId":{"shape":"String"}
+      }
+    },
+    "GetTableRestoreStatusResponse":{
+      "type":"structure",
+      "members":{
+        "tableRestoreStatus":{"shape":"TableRestoreStatus"}
+      }
+    },
     "GetUsageLimitRequest":{
       "type":"structure",
       "required":["usageLimitId"],
@@ -1071,6 +1131,7 @@
           "shape":"ListRecoveryPointsRequestMaxResultsInteger",
           "box":true
         },
+        "namespaceArn":{"shape":"String"},
         "namespaceName":{"shape":"NamespaceName"},
         "nextToken":{"shape":"String"},
         "startTime":{"shape":"Timestamp"}
@@ -1115,6 +1176,31 @@
       "members":{
         "nextToken":{"shape":"String"},
         "snapshots":{"shape":"SnapshotList"}
+      }
+    },
+    "ListTableRestoreStatusRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"ListTableRestoreStatusRequestMaxResultsInteger",
+          "box":true
+        },
+        "namespaceName":{"shape":"String"},
+        "nextToken":{"shape":"PaginationToken"},
+        "workgroupName":{"shape":"String"}
+      }
+    },
+    "ListTableRestoreStatusRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListTableRestoreStatusResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "tableRestoreStatuses":{"shape":"TableRestoreStatusList"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1271,6 +1357,7 @@
     "RecoveryPoint":{
       "type":"structure",
       "members":{
+        "namespaceArn":{"shape":"String"},
         "namespaceName":{"shape":"NamespaceName"},
         "recoveryPointCreateTime":{"shape":"SyntheticTimestamp_date_time"},
         "recoveryPointId":{"shape":"String"},
@@ -1340,6 +1427,35 @@
         "snapshotName":{"shape":"String"}
       }
     },
+    "RestoreTableFromSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "namespaceName",
+        "newTableName",
+        "snapshotName",
+        "sourceDatabaseName",
+        "sourceTableName",
+        "workgroupName"
+      ],
+      "members":{
+        "activateCaseSensitiveIdentifier":{"shape":"Boolean"},
+        "namespaceName":{"shape":"String"},
+        "newTableName":{"shape":"String"},
+        "snapshotName":{"shape":"String"},
+        "sourceDatabaseName":{"shape":"String"},
+        "sourceSchemaName":{"shape":"String"},
+        "sourceTableName":{"shape":"String"},
+        "targetDatabaseName":{"shape":"String"},
+        "targetSchemaName":{"shape":"String"},
+        "workgroupName":{"shape":"String"}
+      }
+    },
+    "RestoreTableFromSnapshotResponse":{
+      "type":"structure",
+      "members":{
+        "tableRestoreStatus":{"shape":"TableRestoreStatus"}
+      }
+    },
     "SecurityGroupId":{"type":"string"},
     "SecurityGroupIdList":{
       "type":"list",
@@ -1402,6 +1518,30 @@
     "SyntheticTimestamp_date_time":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
+    },
+    "TableRestoreStatus":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"},
+        "namespaceName":{"shape":"String"},
+        "newTableName":{"shape":"String"},
+        "progressInMegaBytes":{"shape":"Long"},
+        "requestTime":{"shape":"Timestamp"},
+        "snapshotName":{"shape":"String"},
+        "sourceDatabaseName":{"shape":"String"},
+        "sourceSchemaName":{"shape":"String"},
+        "sourceTableName":{"shape":"String"},
+        "status":{"shape":"String"},
+        "tableRestoreRequestId":{"shape":"String"},
+        "targetDatabaseName":{"shape":"String"},
+        "targetSchemaName":{"shape":"String"},
+        "totalDataInMegaBytes":{"shape":"Long"},
+        "workgroupName":{"shape":"String"}
+      }
+    },
+    "TableRestoreStatusList":{
+      "type":"list",
+      "member":{"shape":"TableRestoreStatus"}
     },
     "Tag":{
       "type":"structure",
@@ -1556,6 +1696,7 @@
         "baseCapacity":{"shape":"Integer"},
         "configParameters":{"shape":"ConfigParameterList"},
         "enhancedVpcRouting":{"shape":"Boolean"},
+        "port":{"shape":"Integer"},
         "publiclyAccessible":{"shape":"Boolean"},
         "securityGroupIds":{"shape":"SecurityGroupIdList"},
         "subnetIds":{"shape":"SubnetIdList"},
@@ -1655,6 +1796,7 @@
         "endpoint":{"shape":"Endpoint"},
         "enhancedVpcRouting":{"shape":"Boolean"},
         "namespaceName":{"shape":"String"},
+        "port":{"shape":"Integer"},
         "publiclyAccessible":{"shape":"Boolean"},
         "securityGroupIds":{"shape":"SecurityGroupIdList"},
         "status":{"shape":"WorkgroupStatus"},

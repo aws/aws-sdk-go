@@ -6047,12 +6047,12 @@
           "shape": "__integerMinNegative1000Max1000",
           "locationName": "adAvailOffset"
         },
-        "Password": {
+        "PasswordParam": {
           "shape": "__string",
-          "locationName": "password"
+          "locationName": "passwordParam"
         },
         "PoisEndpoint": {
-          "shape": "__string",
+          "shape": "__stringMax2048",
           "locationName": "poisEndpoint"
         },
         "Username": {

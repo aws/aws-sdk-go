@@ -7929,9 +7929,9 @@ type ClusterServiceConnectDefaultsRequest struct {
 
 	// The namespace name or full Amazon Resource Name (ARN) of the Cloud Map namespace
 	// that's used when you create a service and don't specify a Service Connect
-	// configuration. Up to 1024 characters are allowed. The name is case-sensitive.
-	// The characters can't include hyphens (-), tilde (~), greater than (>), less
-	// than (<), or slash (/).
+	// configuration. The namespace name can include up to 1024 characters. The
+	// name is case-sensitive. The name can't include hyphens (-), tilde (~), greater
+	// than (>), less than (<), or slash (/).
 	//
 	// If you enter an existing namespace name or ARN, then that namespace will
 	// be used. Any namespace type is supported. The namespace must be in this account
@@ -17693,9 +17693,9 @@ type PortMapping struct {
 
 	// The name that's used for the port mapping. This parameter only applies to
 	// Service Connect. This parameter is the name that you use in the serviceConnectConfiguration
-	// of a service. Up to 64 characters are allowed. The characters can include
-	// lowercase letters, numbers, underscores (_), and hyphens (-). A hyphen can't
-	// be the first character.
+	// of a service. The name can include up to 64 characters. The characters can
+	// include lowercase letters, numbers, underscores (_), and hyphens (-). The
+	// name can't start with a hyphen.
 	//
 	// For more information, see Service Connect (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-connect.html)
 	// in the Amazon Elastic Container Service Developer Guide.
@@ -20424,13 +20424,13 @@ type ServiceConnectClientAlias struct {
 
 	// The dnsName is the name that you use in the applications of client tasks
 	// to connect to this service. The name must be a valid DNS name but doesn't
-	// need to be fully-qualified. Up to 127 characters are allowed. The characters
-	// can include lowercase letters, numbers, underscores (_), hyphens (-), and
-	// periods (.). A hyphen can't be the first character.
+	// need to be fully-qualified. The name can include up to 127 characters. The
+	// name can include lowercase letters, numbers, underscores (_), hyphens (-),
+	// and periods (.). The name can't start with a hyphen.
 	//
 	// If this parameter isn't specified, the default value of discoveryName.namespace
-	// is used. If the discoveryName isn't specified, the portName.namespace from
-	// the task definition is used.
+	// is used. If the discoveryName isn't specified, the port mapping name from
+	// the task definition is used in portName.namespace.
 	//
 	// To avoid changing your applications in client Amazon ECS services, set this
 	// to the same name that the client application uses by default. For example,
@@ -20559,7 +20559,7 @@ type ServiceConnectConfiguration struct {
 
 	// The list of Service Connect service objects. These are names and aliases
 	// (also known as endpoints) that are used by other Amazon ECS services to connect
-	// to this service. You can specify up to X (30?) objects per Amazon ECS service.
+	// to this service.
 	//
 	// This field is not required for a "client" Amazon ECS service that's a member
 	// of a namespace only to connect to other services within the namespace. An
@@ -20663,11 +20663,13 @@ type ServiceConnectService struct {
 
 	// The discoveryName is the name of the new Cloud Map service that Amazon ECS
 	// creates for this Amazon ECS service. This must be unique within the Cloud
-	// Map namespace. Up to 64 characters are allowed. The characters can include
-	// lowercase letters, numbers, underscores (_), and hyphens (-). A hyphen can't
-	// be the first character.
+	// Map namespace. The name can contain up to 64 characters. The name can include
+	// lowercase letters, numbers, underscores (_), and hyphens (-). The name can't
+	// start with a hyphen.
 	//
-	// If this field isn't specified, portName is used.
+	// If this parameter isn't specified, the default value of discoveryName.namespace
+	// is used. If the discoveryName isn't specified, the port mapping name from
+	// the task definition is used in portName.namespace.
 	DiscoveryName *string `locationName:"discoveryName" type:"string"`
 
 	// The port number for the Service Connect proxy to listen on.
@@ -20777,11 +20779,13 @@ type ServiceConnectServiceResource struct {
 	//
 	// The discoveryName is the name of the new Cloud Map service that Amazon ECS
 	// creates for this Amazon ECS service. This must be unique within the Cloud
-	// Map namespace. Up to 64 characters are allowed. The characters can include
-	// lowercase letters, numbers, underscores (_), and hyphens (-). A hyphen can't
-	// be the first character.
+	// Map namespace. The name can contain up to 64 characters. The name can include
+	// lowercase letters, numbers, underscores (_), and hyphens (-). The name can't
+	// start with a hyphen.
 	//
-	// If this field isn't specified, portName is used.
+	// If this parameter isn't specified, the default value of discoveryName.namespace
+	// is used. If the discoveryName isn't specified, the port mapping name from
+	// the task definition is used in portName.namespace.
 	DiscoveryName *string `locationName:"discoveryName" type:"string"`
 }
 

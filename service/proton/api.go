@@ -9851,9 +9851,7 @@ type CreateEnvironmentAccountConnectionInput struct {
 	// The Amazon Resource Name (ARN) of the IAM service role that's created in
 	// the environment account. Proton uses this role to provision infrastructure
 	// resources in the associated environment account.
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
 	// An optional list of metadata items that you can associate with the Proton
 	// environment account connection. A tag is a key-value pair.
@@ -9898,9 +9896,6 @@ func (s *CreateEnvironmentAccountConnectionInput) Validate() error {
 	}
 	if s.ManagementAccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ManagementAccountId"))
-	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
 	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
