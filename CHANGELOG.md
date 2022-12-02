@@ -1,3 +1,22 @@
+Release v1.44.152 (2022-12-02)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service documentation
+* `service/ecs`: Updates service documentation
+  * Documentation updates for Amazon ECS
+* `service/fms`: Updates service API
+* `service/mediaconvert`: Updates service API and documentation
+  * The AWS Elemental MediaConvert SDK has added support for configurable ID3 eMSG box attributes and the ability to signal them with InbandEventStream tags in DASH and CMAF outputs.
+* `service/medialive`: Updates service API and documentation
+  * Updates to Event Signaling and Management (ESAM) API and documentation.
+* `service/polly`: Updates service API
+  * Add language code for Finnish (fi-FI)
+* `service/proton`: Updates service API
+* `service/redshift-serverless`: Updates service API, documentation, and paginators
+* `service/sns`: Updates service documentation
+  * This release adds the message payload-filtering feature to the SNS Subscribe, SetSubscriptionAttributes, and GetSubscriptionAttributes API actions
+
 Release v1.44.151 (2022-12-01)
 ===
 

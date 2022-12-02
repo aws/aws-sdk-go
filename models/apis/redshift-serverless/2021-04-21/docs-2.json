@@ -14,24 +14,27 @@
     "DeleteSnapshot": "<p>Deletes a snapshot from Amazon Redshift Serverless.</p>",
     "DeleteUsageLimit": "<p>Deletes a usage limit from Amazon Redshift Serverless.</p>",
     "DeleteWorkgroup": "<p>Deletes a workgroup.</p>",
-    "GetCredentials": "<p>Returns a database user name and temporary password with temporary authorization to log in to Amazon Redshift Serverless.</p> <p>By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).</p> <pre><code> &lt;p&gt; The Identity and Access Management (IAM) user or role that runs GetCredentials must have an IAM policy attached that allows access to all necessary actions and resources. &lt;/p&gt; &lt;p&gt; If the &lt;code&gt;DbName&lt;/code&gt; parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name.&lt;/p&gt; </code></pre>",
+    "GetCredentials": "<p>Returns a database user name and temporary password with temporary authorization to log in to Amazon Redshift Serverless.</p> <p>By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).</p> <pre><code> &lt;p&gt;The Identity and Access Management (IAM) user or role that runs GetCredentials must have an IAM policy attached that allows access to all necessary actions and resources.&lt;/p&gt; &lt;p&gt;If the &lt;code&gt;DbName&lt;/code&gt; parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name.&lt;/p&gt; </code></pre>",
     "GetEndpointAccess": "<p>Returns information, such as the name, about a VPC endpoint.</p>",
     "GetNamespace": "<p>Returns information about a namespace in Amazon Redshift Serverless.</p>",
     "GetRecoveryPoint": "<p>Returns information about a recovery point.</p>",
     "GetResourcePolicy": "<p>Returns a resource policy.</p>",
     "GetSnapshot": "<p>Returns information about a specific snapshot.</p>",
+    "GetTableRestoreStatus": "<p>Returns information about a <code>TableRestoreStatus</code> object.</p>",
     "GetUsageLimit": "<p>Returns information about a usage limit.</p>",
     "GetWorkgroup": "<p>Returns information about a specific workgroup.</p>",
     "ListEndpointAccess": "<p>Returns an array of <code>EndpointAccess</code> objects and relevant information.</p>",
     "ListNamespaces": "<p>Returns information about a list of specified namespaces.</p>",
     "ListRecoveryPoints": "<p>Returns an array of recovery points.</p>",
     "ListSnapshots": "<p>Returns a list of snapshots.</p>",
+    "ListTableRestoreStatus": "<p>Returns information about an array of <code>TableRestoreStatus</code> objects.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to a resource.</p>",
     "ListUsageLimits": "<p>Lists all usage limits within Amazon Redshift Serverless.</p>",
     "ListWorkgroups": "<p>Returns information about a list of specified workgroups.</p>",
     "PutResourcePolicy": "<p>Creates or updates a resource policy. Currently, you can use policies to share snapshots across Amazon Web Services accounts.</p>",
     "RestoreFromRecoveryPoint": "<p>Restore the data from a recovery point.</p>",
     "RestoreFromSnapshot": "<p>Restores a namespace from a snapshot.</p>",
+    "RestoreTableFromSnapshot": "<p>Restores a table from a snapshot to your Amazon Redshift Serverless instance.</p>",
     "TagResource": "<p>Assigns one or more tags to a resource.</p>",
     "UntagResource": "<p>Removes a tag or set of tags from a resource.</p>",
     "UpdateEndpointAccess": "<p>Updates an Amazon Redshift Serverless managed endpoint.</p>",
@@ -68,6 +71,7 @@
       "refs": {
         "CreateWorkgroupRequest$enhancedVpcRouting": "<p>The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC instead of over the internet.</p>",
         "CreateWorkgroupRequest$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessed from a public network.</p>",
+        "RestoreTableFromSnapshotRequest$activateCaseSensitiveIdentifier": "<p>Indicates whether name identifiers for database, schema, and table are case sensitive. If true, the names are case sensitive. If false, the names are not case sensitive. The default is false.</p>",
         "UpdateWorkgroupRequest$enhancedVpcRouting": "<p>The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
         "UpdateWorkgroupRequest$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessible from a public network.</p>",
         "Workgroup$enhancedVpcRouting": "<p>The value that specifies whether to enable enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
@@ -156,7 +160,7 @@
     "DbName": {
       "base": null,
       "refs": {
-        "GetCredentialsRequest$dbName": "<p>The name of the database to get temporary authorization to log on to.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 64 alphanumeric characters or hyphens.</p> </li> <li> <p>Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Must not contain a colon ( : ) or slash ( / ).</p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words </a> in the Amazon Redshift Database Developer Guide</p> </li> </ul>"
+        "GetCredentialsRequest$dbName": "<p>The name of the database to get temporary authorization to log on to.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 64 alphanumeric characters or hyphens.</p> </li> <li> <p>Must contain only uppercase or lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Must not contain a colon ( : ) or slash ( / ).</p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words </a> in the Amazon Redshift Database Developer Guide</p> </li> </ul>"
       }
     },
     "DbPassword": {
@@ -328,6 +332,16 @@
       "refs": {
       }
     },
+    "GetTableRestoreStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTableRestoreStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetUsageLimitRequest": {
       "base": null,
       "refs": {
@@ -373,6 +387,7 @@
         "ConvertRecoveryPointToSnapshotRequest$retentionPeriod": "<p>How long to retain the snapshot.</p>",
         "CreateSnapshotRequest$retentionPeriod": "<p>How long to retain the created snapshot.</p>",
         "CreateWorkgroupRequest$baseCapacity": "<p>The base data warehouse capacity of the workgroup in Redshift Processing Units (RPUs).</p>",
+        "CreateWorkgroupRequest$port": "<p>The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.</p>",
         "DeleteNamespaceRequest$finalSnapshotRetentionPeriod": "<p>How long to retain the final snapshot.</p>",
         "Endpoint$port": "<p>The port that Amazon Redshift Serverless listens on.</p>",
         "EndpointAccess$port": "<p>The port number on which Amazon Redshift Serverless accepts incoming connections.</p>",
@@ -381,7 +396,9 @@
         "Snapshot$snapshotRetentionPeriod": "<p>The period of time, in days, of how long the snapshot is retained.</p>",
         "UpdateSnapshotRequest$retentionPeriod": "<p>The new retention period of the snapshot.</p>",
         "UpdateWorkgroupRequest$baseCapacity": "<p>The new base data warehouse capacity in Redshift Processing Units (RPUs).</p>",
-        "Workgroup$baseCapacity": "<p>The base data warehouse capacity of the workgroup in Redshift Processing Units (RPUs).</p>"
+        "UpdateWorkgroupRequest$port": "<p>The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.</p>",
+        "Workgroup$baseCapacity": "<p>The base data warehouse capacity of the workgroup in Redshift Processing Units (RPUs).</p>",
+        "Workgroup$port": "<p>The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.</p>"
       }
     },
     "InternalServerException": {
@@ -408,7 +425,7 @@
     "ListEndpointAccessRequestMaxResultsInteger": {
       "base": null,
       "refs": {
-        "ListEndpointAccessRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>"
+        "ListEndpointAccessRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to display the next page of results.</p>"
       }
     },
     "ListEndpointAccessResponse": {
@@ -424,7 +441,7 @@
     "ListNamespacesRequestMaxResultsInteger": {
       "base": null,
       "refs": {
-        "ListNamespacesRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>"
+        "ListNamespacesRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to display the next page of results.</p>"
       }
     },
     "ListNamespacesResponse": {
@@ -440,7 +457,7 @@
     "ListRecoveryPointsRequestMaxResultsInteger": {
       "base": null,
       "refs": {
-        "ListRecoveryPointsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>"
+        "ListRecoveryPointsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to display the next page of results.</p>"
       }
     },
     "ListRecoveryPointsResponse": {
@@ -456,10 +473,26 @@
     "ListSnapshotsRequestMaxResultsInteger": {
       "base": null,
       "refs": {
-        "ListSnapshotsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>"
+        "ListSnapshotsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to display the next page of results.</p>"
       }
     },
     "ListSnapshotsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTableRestoreStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTableRestoreStatusRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListTableRestoreStatusRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use nextToken to display the next page of results.</p>"
+      }
+    },
+    "ListTableRestoreStatusResponse": {
       "base": null,
       "refs": {
       }
@@ -498,7 +531,7 @@
     "ListWorkgroupsRequestMaxResultsInteger": {
       "base": null,
       "refs": {
-        "ListWorkgroupsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to get the next page of results.</p>"
+        "ListWorkgroupsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to display the next page of results.</p>"
       }
     },
     "ListWorkgroupsResponse": {
@@ -526,7 +559,9 @@
         "CreateUsageLimitRequest$amount": "<p>The limit amount. If time-based, this amount is in Redshift Processing Units (RPU) consumed per hour. If data-based, this amount is in terabytes (TB) of data transferred between Regions in cross-account sharing. The value must be a positive number.</p>",
         "Snapshot$elapsedTimeInSeconds": "<p>The amount of time it took to back up data into a snapshot.</p>",
         "Snapshot$estimatedSecondsToCompletion": "<p>The estimated amount of seconds until the snapshot completes backup.</p>",
-        "UpdateUsageLimitRequest$amount": "<p>The new limit amount. For more information about this parameter.</p>",
+        "TableRestoreStatus$progressInMegaBytes": "<p>The amount of data restored to the new table so far, in megabytes (MB).</p>",
+        "TableRestoreStatus$totalDataInMegaBytes": "<p>The total amount of data to restore to the new table, in megabytes (MB).</p>",
+        "UpdateUsageLimitRequest$amount": "<p>The new limit amount. If time-based, this amount is in Redshift Processing Units (RPU) consumed per hour. If data-based, this amount is in terabytes (TB) of data transferred between Regions in cross-account sharing. The value must be a positive number.</p>",
         "UsageLimit$amount": "<p>The limit amount. If time-based, this amount is in RPUs consumed per hour. If data-based, this amount is in terabytes (TB). The value must be a positive number.</p>"
       }
     },
@@ -584,7 +619,9 @@
     "PaginationToken": {
       "base": null,
       "refs": {
-        "ListUsageLimitsRequest$nextToken": "<p>If your initial <code>ListUsageLimits</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListUsageLimits</code> operations, which returns results in the next page. </p>",
+        "ListTableRestoreStatusRequest$nextToken": "<p>If your initial <code>ListTableRestoreStatus</code> operation returns a nextToken, you can include the returned <code>nextToken</code> in following <code>ListTableRestoreStatus</code> operations. This will return results on the next page.</p>",
+        "ListTableRestoreStatusResponse$nextToken": "<p>If your initial <code>ListTableRestoreStatus</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListTableRestoreStatus</code> operations. This will returns results on the next page.</p>",
+        "ListUsageLimitsRequest$nextToken": "<p>If your initial <code>ListUsageLimits</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListUsageLimits</code> operations, which returns results in the next page. </p>",
         "ListUsageLimitsResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>"
       }
     },
@@ -651,6 +688,16 @@
       }
     },
     "RestoreFromSnapshotResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreTableFromSnapshotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreTableFromSnapshotResponse": {
       "base": null,
       "refs": {
       }
@@ -731,25 +778,29 @@
         "GetSnapshotRequest$ownerAccount": "<p>The owner Amazon Web Services account of a snapshot shared with another user.</p>",
         "GetSnapshotRequest$snapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot to return.</p>",
         "GetSnapshotRequest$snapshotName": "<p>The name of the snapshot to return.</p>",
+        "GetTableRestoreStatusRequest$tableRestoreRequestId": "<p>The ID of the <code>RestoreTableFromSnapshot</code> request to return status for.</p>",
         "GetUsageLimitRequest$usageLimitId": "<p>The unique identifier of the usage limit to return information for.</p>",
         "InsufficientCapacityException$message": null,
         "InternalServerException$message": null,
         "InvalidPaginationException$message": null,
-        "ListEndpointAccessRequest$nextToken": "<p>If your initial <code>ListEndpointAccess</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListEndpointAccess</code> operations, which returns results in the next page.</p>",
+        "ListEndpointAccessRequest$nextToken": "<p>If your initial <code>ListEndpointAccess</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListEndpointAccess</code> operations, which returns results in the next page.</p>",
         "ListEndpointAccessRequest$vpcId": "<p>The unique identifier of the virtual private cloud with access to Amazon Redshift Serverless.</p>",
         "ListEndpointAccessRequest$workgroupName": "<p>The name of the workgroup associated with the VPC endpoint to return.</p>",
         "ListEndpointAccessResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
-        "ListNamespacesRequest$nextToken": "<p>If your initial <code>ListNamespaces</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListNamespaces</code> operations, which returns results in the next page.</p>",
+        "ListNamespacesRequest$nextToken": "<p>If your initial <code>ListNamespaces</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListNamespaces</code> operations, which returns results in the next page.</p>",
         "ListNamespacesResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
-        "ListRecoveryPointsRequest$nextToken": "<p>If your initial <code>ListRecoveryPoints</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListRecoveryPoints</code> operations, which returns results in the next page.</p>",
+        "ListRecoveryPointsRequest$namespaceArn": "<p>The Amazon Resource Name (ARN) of the namespace from which to list recovery points.</p>",
+        "ListRecoveryPointsRequest$nextToken": "<p>If your initial <code>ListRecoveryPoints</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListRecoveryPoints</code> operations, which returns results in the next page.</p>",
         "ListRecoveryPointsResponse$nextToken": "<p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListSnapshotsRequest$namespaceArn": "<p>The Amazon Resource Name (ARN) of the namespace from which to list all snapshots.</p>",
         "ListSnapshotsRequest$namespaceName": "<p>The namespace from which to list all snapshots.</p>",
         "ListSnapshotsRequest$nextToken": "<p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListSnapshotsRequest$ownerAccount": "<p>The owner Amazon Web Services account of the snapshot.</p>",
         "ListSnapshotsResponse$nextToken": "<p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ListTableRestoreStatusRequest$namespaceName": "<p>The namespace from which to list all of the statuses of <code>RestoreTableFromSnapshot</code> operations .</p>",
+        "ListTableRestoreStatusRequest$workgroupName": "<p>The workgroup from which to list all of the statuses of <code>RestoreTableFromSnapshot</code> operations.</p>",
         "ListUsageLimitsRequest$resourceArn": "<p>The Amazon Resource Name (ARN) associated with the resource whose usage limits you want to list.</p>",
-        "ListWorkgroupsRequest$nextToken": "<p>If your initial ListWorkgroups operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent ListNamespaces operations, which returns results in the next page.</p>",
+        "ListWorkgroupsRequest$nextToken": "<p>If your initial ListWorkgroups operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following ListNamespaces operations, which returns results in the next page.</p>",
         "ListWorkgroupsResponse$nextToken": "<p> If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token.</p>",
         "Namespace$dbName": "<p>The name of the first database created in the namespace.</p>",
         "Namespace$defaultIamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace.</p>",
@@ -762,6 +813,7 @@
         "NetworkInterface$subnetId": "<p>The unique identifier of the subnet.</p>",
         "PutResourcePolicyRequest$policy": "<p>The policy to create or update. For example, the following policy grants a user authorization to restore a snapshot.</p> <p> <code>\"{\\\"Version\\\": \\\"2012-10-17\\\", \\\"Statement\\\" : [{ \\\"Sid\\\": \\\"AllowUserRestoreFromSnapshot\\\", \\\"Principal\\\":{\\\"AWS\\\": [\\\"739247239426\\\"]}, \\\"Action\\\": [\\\"redshift-serverless:RestoreFromSnapshot\\\"] , \\\"Effect\\\": \\\"Allow\\\" }]}\"</code> </p>",
         "PutResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the account to create or update a resource policy for.</p>",
+        "RecoveryPoint$namespaceArn": "<p>The Amazon Resource Name (ARN) of the namespace the recovery point is associated with.</p>",
         "RecoveryPoint$recoveryPointId": "<p>The unique identifier of the recovery point.</p>",
         "ResourceNotFoundException$message": null,
         "ResourcePolicy$policy": "<p>The resource policy.</p>",
@@ -769,10 +821,19 @@
         "RestoreFromRecoveryPointRequest$recoveryPointId": "<p>The unique identifier of the recovery point to restore from.</p>",
         "RestoreFromRecoveryPointResponse$recoveryPointId": "<p>The unique identifier of the recovery point used for the restore.</p>",
         "RestoreFromSnapshotRequest$ownerAccount": "<p>The Amazon Web Services account that owns the snapshot.</p>",
-        "RestoreFromSnapshotRequest$snapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot to restore from.</p>",
-        "RestoreFromSnapshotRequest$snapshotName": "<p>The name of the snapshot to restore from.</p>",
+        "RestoreFromSnapshotRequest$snapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot to restore from. Required if restoring from Amazon Redshift Serverless to a provisioned cluster. Must not be specified at the same time as <code>snapshotName</code>.</p> <p>The format of the ARN is arn:aws:redshift:&lt;region&gt;:&lt;account_id&gt;:snapshot:&lt;cluster_identifier&gt;/&lt;snapshot_identifier&gt;.</p>",
+        "RestoreFromSnapshotRequest$snapshotName": "<p>The name of the snapshot to restore from. Must not be specified at the same time as <code>snapshotArn</code>.</p>",
         "RestoreFromSnapshotResponse$ownerAccount": "<p>The owner Amazon Web Services; account of the snapshot that was restored.</p>",
         "RestoreFromSnapshotResponse$snapshotName": "<p>The name of the snapshot used to restore the namespace.</p>",
+        "RestoreTableFromSnapshotRequest$namespaceName": "<p>The namespace of the snapshot to restore from.</p>",
+        "RestoreTableFromSnapshotRequest$newTableName": "<p>The name of the table to create from the restore operation.</p>",
+        "RestoreTableFromSnapshotRequest$snapshotName": "<p>The name of the snapshot to restore the table from.</p>",
+        "RestoreTableFromSnapshotRequest$sourceDatabaseName": "<p>The name of the source database that contains the table being restored.</p>",
+        "RestoreTableFromSnapshotRequest$sourceSchemaName": "<p>The name of the source schema that contains the table being restored.</p>",
+        "RestoreTableFromSnapshotRequest$sourceTableName": "<p>The name of the source table being restored.</p>",
+        "RestoreTableFromSnapshotRequest$targetDatabaseName": "<p>The name of the database to restore the table to.</p>",
+        "RestoreTableFromSnapshotRequest$targetSchemaName": "<p>The name of the schema to restore the table to.</p>",
+        "RestoreTableFromSnapshotRequest$workgroupName": "<p>The workgroup to restore the table to.</p>",
         "ServiceQuotaExceededException$message": null,
         "Snapshot$adminUsername": "<p>The username of the database within a snapshot.</p>",
         "Snapshot$namespaceArn": "<p>The Amazon Resource Name (ARN) of the namespace the snapshot was created from.</p>",
@@ -780,6 +841,18 @@
         "Snapshot$ownerAccount": "<p>The owner Amazon Web Services; account of the snapshot.</p>",
         "Snapshot$snapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot.</p>",
         "Snapshot$snapshotName": "<p>The name of the snapshot.</p>",
+        "TableRestoreStatus$message": "<p>A description of the status of the table restore request. Status values include <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code>.</p>",
+        "TableRestoreStatus$namespaceName": "<p>The namespace of the table being restored from.</p>",
+        "TableRestoreStatus$newTableName": "<p>The name of the table to create from the restore operation.</p>",
+        "TableRestoreStatus$snapshotName": "<p>The name of the snapshot being restored from.</p>",
+        "TableRestoreStatus$sourceDatabaseName": "<p>The name of the source database being restored from.</p>",
+        "TableRestoreStatus$sourceSchemaName": "<p>The name of the source schema being restored from.</p>",
+        "TableRestoreStatus$sourceTableName": "<p>The name of the source table being restored from.</p>",
+        "TableRestoreStatus$status": "<p>A value that describes the current state of the table restore request. Possible values include <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code>.</p>",
+        "TableRestoreStatus$tableRestoreRequestId": "<p>The ID of the RestoreTableFromSnapshot request.</p>",
+        "TableRestoreStatus$targetDatabaseName": "<p>The name of the database to restore to.</p>",
+        "TableRestoreStatus$targetSchemaName": "<p>The name of the schema to restore to.</p>",
+        "TableRestoreStatus$workgroupName": "<p>The name of the workgroup being restored from.</p>",
         "ThrottlingException$code": null,
         "ThrottlingException$message": null,
         "TooManyTagsException$message": null,
@@ -827,6 +900,20 @@
         "Workgroup$creationDate": "<p>The creation date of the workgroup.</p>"
       }
     },
+    "TableRestoreStatus": {
+      "base": "<p>Contains information about a table restore request.</p>",
+      "refs": {
+        "GetTableRestoreStatusResponse$tableRestoreStatus": "<p>The returned <code>TableRestoreStatus</code> object that contains information about the status of your <code>RestoreTableFromSnapshot</code> request.</p>",
+        "RestoreTableFromSnapshotResponse$tableRestoreStatus": "<p>The TableRestoreStatus object that contains the status of the restore operation.</p>",
+        "TableRestoreStatusList$member": null
+      }
+    },
+    "TableRestoreStatusList": {
+      "base": null,
+      "refs": {
+        "ListTableRestoreStatusResponse$tableRestoreStatuses": "<p>The array of returned <code>TableRestoreStatus</code> objects.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>A map of key-value pairs.</p>",
       "refs": {
@@ -849,7 +936,9 @@
     "TagList": {
       "base": null,
       "refs": {
+        "ConvertRecoveryPointToSnapshotRequest$tags": "<p>An array of <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_Tag.html\">Tag objects</a> to associate with the created snapshot.</p>",
         "CreateNamespaceRequest$tags": "<p>A list of tag instances.</p>",
+        "CreateSnapshotRequest$tags": "<p>An array of <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_Tag.html\">Tag objects</a> to associate with the snapshot.</p>",
         "CreateWorkgroupRequest$tags": "<p>A array of tag instances.</p>",
         "ListTagsForResourceResponse$tags": "<p>A map of the key-value pairs assigned to the resource.</p>",
         "TagResourceRequest$tags": "<p>The map of the key-value pairs used to tag the resource.</p>"
@@ -884,7 +973,8 @@
         "ListRecoveryPointsRequest$endTime": "<p>The time when creation of the recovery point finished.</p>",
         "ListRecoveryPointsRequest$startTime": "<p>The time when the recovery point's creation was initiated.</p>",
         "ListSnapshotsRequest$endTime": "<p>The timestamp showing when the snapshot creation finished.</p>",
-        "ListSnapshotsRequest$startTime": "<p>The time when the creation of the snapshot was initiated.</p>"
+        "ListSnapshotsRequest$startTime": "<p>The time when the creation of the snapshot was initiated.</p>",
+        "TableRestoreStatus$requestTime": "<p>The time that the table restore request was made, in Universal Coordinated Time (UTC).</p>"
       }
     },
     "TooManyTagsException": {

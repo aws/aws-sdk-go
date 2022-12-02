@@ -132,6 +132,10 @@ type RedshiftServerlessAPI interface {
 	GetSnapshotWithContext(aws.Context, *redshiftserverless.GetSnapshotInput, ...request.Option) (*redshiftserverless.GetSnapshotOutput, error)
 	GetSnapshotRequest(*redshiftserverless.GetSnapshotInput) (*request.Request, *redshiftserverless.GetSnapshotOutput)
 
+	GetTableRestoreStatus(*redshiftserverless.GetTableRestoreStatusInput) (*redshiftserverless.GetTableRestoreStatusOutput, error)
+	GetTableRestoreStatusWithContext(aws.Context, *redshiftserverless.GetTableRestoreStatusInput, ...request.Option) (*redshiftserverless.GetTableRestoreStatusOutput, error)
+	GetTableRestoreStatusRequest(*redshiftserverless.GetTableRestoreStatusInput) (*request.Request, *redshiftserverless.GetTableRestoreStatusOutput)
+
 	GetUsageLimit(*redshiftserverless.GetUsageLimitInput) (*redshiftserverless.GetUsageLimitOutput, error)
 	GetUsageLimitWithContext(aws.Context, *redshiftserverless.GetUsageLimitInput, ...request.Option) (*redshiftserverless.GetUsageLimitOutput, error)
 	GetUsageLimitRequest(*redshiftserverless.GetUsageLimitInput) (*request.Request, *redshiftserverless.GetUsageLimitOutput)
@@ -168,6 +172,13 @@ type RedshiftServerlessAPI interface {
 	ListSnapshotsPages(*redshiftserverless.ListSnapshotsInput, func(*redshiftserverless.ListSnapshotsOutput, bool) bool) error
 	ListSnapshotsPagesWithContext(aws.Context, *redshiftserverless.ListSnapshotsInput, func(*redshiftserverless.ListSnapshotsOutput, bool) bool, ...request.Option) error
 
+	ListTableRestoreStatus(*redshiftserverless.ListTableRestoreStatusInput) (*redshiftserverless.ListTableRestoreStatusOutput, error)
+	ListTableRestoreStatusWithContext(aws.Context, *redshiftserverless.ListTableRestoreStatusInput, ...request.Option) (*redshiftserverless.ListTableRestoreStatusOutput, error)
+	ListTableRestoreStatusRequest(*redshiftserverless.ListTableRestoreStatusInput) (*request.Request, *redshiftserverless.ListTableRestoreStatusOutput)
+
+	ListTableRestoreStatusPages(*redshiftserverless.ListTableRestoreStatusInput, func(*redshiftserverless.ListTableRestoreStatusOutput, bool) bool) error
+	ListTableRestoreStatusPagesWithContext(aws.Context, *redshiftserverless.ListTableRestoreStatusInput, func(*redshiftserverless.ListTableRestoreStatusOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*redshiftserverless.ListTagsForResourceInput) (*redshiftserverless.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *redshiftserverless.ListTagsForResourceInput, ...request.Option) (*redshiftserverless.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*redshiftserverless.ListTagsForResourceInput) (*request.Request, *redshiftserverless.ListTagsForResourceOutput)
@@ -197,6 +208,10 @@ type RedshiftServerlessAPI interface {
 	RestoreFromSnapshot(*redshiftserverless.RestoreFromSnapshotInput) (*redshiftserverless.RestoreFromSnapshotOutput, error)
 	RestoreFromSnapshotWithContext(aws.Context, *redshiftserverless.RestoreFromSnapshotInput, ...request.Option) (*redshiftserverless.RestoreFromSnapshotOutput, error)
 	RestoreFromSnapshotRequest(*redshiftserverless.RestoreFromSnapshotInput) (*request.Request, *redshiftserverless.RestoreFromSnapshotOutput)
+
+	RestoreTableFromSnapshot(*redshiftserverless.RestoreTableFromSnapshotInput) (*redshiftserverless.RestoreTableFromSnapshotOutput, error)
+	RestoreTableFromSnapshotWithContext(aws.Context, *redshiftserverless.RestoreTableFromSnapshotInput, ...request.Option) (*redshiftserverless.RestoreTableFromSnapshotOutput, error)
+	RestoreTableFromSnapshotRequest(*redshiftserverless.RestoreTableFromSnapshotInput) (*request.Request, *redshiftserverless.RestoreTableFromSnapshotOutput)
 
 	TagResource(*redshiftserverless.TagResourceInput) (*redshiftserverless.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *redshiftserverless.TagResourceInput, ...request.Option) (*redshiftserverless.TagResourceOutput, error)

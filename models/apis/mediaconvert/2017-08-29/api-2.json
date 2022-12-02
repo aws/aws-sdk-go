@@ -2441,6 +2441,10 @@
           "shape": "__doubleMin0Max2147483647",
           "locationName": "minFinalSegmentLength"
         },
+        "MpdManifestBandwidthType": {
+          "shape": "CmafMpdManifestBandwidthType",
+          "locationName": "mpdManifestBandwidthType"
+        },
         "MpdProfile": {
           "shape": "CmafMpdProfile",
           "locationName": "mpdProfile"
@@ -2468,6 +2472,10 @@
         "TargetDurationCompatibilityMode": {
           "shape": "CmafTargetDurationCompatibilityMode",
           "locationName": "targetDurationCompatibilityMode"
+        },
+        "VideoCompositionOffsets": {
+          "shape": "CmafVideoCompositionOffsets",
+          "locationName": "videoCompositionOffsets"
         },
         "WriteDashManifest": {
           "shape": "CmafWriteDASHManifest",
@@ -2556,6 +2564,13 @@
         "INTEGER"
       ]
     },
+    "CmafMpdManifestBandwidthType": {
+      "type": "string",
+      "enum": [
+        "AVERAGE",
+        "MAX"
+      ]
+    },
     "CmafMpdProfile": {
       "type": "string",
       "enum": [
@@ -2596,6 +2611,13 @@
       "enum": [
         "LEGACY",
         "SPEC_COMPLIANT"
+      ]
+    },
+    "CmafVideoCompositionOffsets": {
+      "type": "string",
+      "enum": [
+        "SIGNED",
+        "UNSIGNED"
       ]
     },
     "CmafWriteDASHManifest": {
@@ -2655,6 +2677,13 @@
         "NONE"
       ]
     },
+    "CmfcManifestMetadataSignaling": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "CmfcScte35Esam": {
       "type": "string",
       "enum": [
@@ -2700,6 +2729,10 @@
           "shape": "CmfcKlvMetadata",
           "locationName": "klvMetadata"
         },
+        "ManifestMetadataSignaling": {
+          "shape": "CmfcManifestMetadataSignaling",
+          "locationName": "manifestMetadataSignaling"
+        },
         "Scte35Esam": {
           "shape": "CmfcScte35Esam",
           "locationName": "scte35Esam"
@@ -2711,6 +2744,18 @@
         "TimedMetadata": {
           "shape": "CmfcTimedMetadata",
           "locationName": "timedMetadata"
+        },
+        "TimedMetadataBoxVersion": {
+          "shape": "CmfcTimedMetadataBoxVersion",
+          "locationName": "timedMetadataBoxVersion"
+        },
+        "TimedMetadataSchemeIdUri": {
+          "shape": "__stringMax1000",
+          "locationName": "timedMetadataSchemeIdUri"
+        },
+        "TimedMetadataValue": {
+          "shape": "__stringMax1000",
+          "locationName": "timedMetadataValue"
         }
       }
     },
@@ -2719,6 +2764,13 @@
       "enum": [
         "PASSTHROUGH",
         "NONE"
+      ]
+    },
+    "CmfcTimedMetadataBoxVersion": {
+      "type": "string",
+      "enum": [
+        "VERSION_0",
+        "VERSION_1"
       ]
     },
     "ColorCorrector": {
@@ -3171,6 +3223,10 @@
           "shape": "__doubleMin0Max2147483647",
           "locationName": "minFinalSegmentLength"
         },
+        "MpdManifestBandwidthType": {
+          "shape": "DashIsoMpdManifestBandwidthType",
+          "locationName": "mpdManifestBandwidthType"
+        },
         "MpdProfile": {
           "shape": "DashIsoMpdProfile",
           "locationName": "mpdProfile"
@@ -3190,6 +3246,10 @@
         "SegmentLengthControl": {
           "shape": "DashIsoSegmentLengthControl",
           "locationName": "segmentLengthControl"
+        },
+        "VideoCompositionOffsets": {
+          "shape": "DashIsoVideoCompositionOffsets",
+          "locationName": "videoCompositionOffsets"
         },
         "WriteSegmentTimelineInRepresentation": {
           "shape": "DashIsoWriteSegmentTimelineInRepresentation",
@@ -3249,6 +3309,13 @@
         "FOLLOW_CUSTOM"
       ]
     },
+    "DashIsoMpdManifestBandwidthType": {
+      "type": "string",
+      "enum": [
+        "AVERAGE",
+        "MAX"
+      ]
+    },
     "DashIsoMpdProfile": {
       "type": "string",
       "enum": [
@@ -3282,6 +3349,13 @@
       "enum": [
         "EXACT",
         "GOP_MULTIPLE"
+      ]
+    },
+    "DashIsoVideoCompositionOffsets": {
+      "type": "string",
+      "enum": [
+        "SIGNED",
+        "UNSIGNED"
       ]
     },
     "DashIsoWriteSegmentTimelineInRepresentation": {
@@ -7665,6 +7739,13 @@
         "PASSTHROUGH"
       ]
     },
+    "MpdManifestMetadataSignaling": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "MpdScte35Esam": {
       "type": "string",
       "enum": [
@@ -7698,6 +7779,10 @@
           "shape": "MpdKlvMetadata",
           "locationName": "klvMetadata"
         },
+        "ManifestMetadataSignaling": {
+          "shape": "MpdManifestMetadataSignaling",
+          "locationName": "manifestMetadataSignaling"
+        },
         "Scte35Esam": {
           "shape": "MpdScte35Esam",
           "locationName": "scte35Esam"
@@ -7709,6 +7794,18 @@
         "TimedMetadata": {
           "shape": "MpdTimedMetadata",
           "locationName": "timedMetadata"
+        },
+        "TimedMetadataBoxVersion": {
+          "shape": "MpdTimedMetadataBoxVersion",
+          "locationName": "timedMetadataBoxVersion"
+        },
+        "TimedMetadataSchemeIdUri": {
+          "shape": "__stringMax1000",
+          "locationName": "timedMetadataSchemeIdUri"
+        },
+        "TimedMetadataValue": {
+          "shape": "__stringMax1000",
+          "locationName": "timedMetadataValue"
         }
       }
     },
@@ -7717,6 +7814,13 @@
       "enum": [
         "PASSTHROUGH",
         "NONE"
+      ]
+    },
+    "MpdTimedMetadataBoxVersion": {
+      "type": "string",
+      "enum": [
+        "VERSION_0",
+        "VERSION_1"
       ]
     },
     "Mpeg2AdaptiveQuantization": {
@@ -11281,6 +11385,10 @@
     },
     "__string": {
       "type": "string"
+    },
+    "__stringMax1000": {
+      "type": "string",
+      "max": 1000
     },
     "__stringMin0": {
       "type": "string",

@@ -4455,7 +4455,6 @@
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "EbuTtDDestinationSettings$FontFamily": "Specifies the font family to include in the font data attached to the EBU-TT captions. Valid only if styleControl is set to include. If you leave this field empty, the font family is set to \"monospaced\". (If styleControl is set to exclude, the font family is always set to \"monospaced\".)\n\nYou specify only the font family. All other style information (color, bold, position and so on) is copied from the input captions. The size is always set to 100% to allow the downstream player to choose the size.\n\n- Enter a list of font families, as a comma-separated list of font names, in order of preference. The name can be a font family (such as \u201cArial\u201d), or a generic font family (such as \u201cserif\u201d), or \u201cdefault\u201d (to let the downstream player choose the font).\n- Leave blank to set the family to \u201cmonospace\u201d.",
         "Esam$PasswordParam": "Password if credentials are required to access the POIS endpoint.  This is a reference to an AWS parameter store name from which the password can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
-        "Esam$PoisEndpoint": "The URL of the signal conditioner endpoint on the Placement Opportunity Information System (POIS). MediaLive sends SignalProcessingEvents here when SCTE-35 messages are read.",
         "Esam$Username": "Username if credentials are required to access the POIS endpoint.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",
         "Fmp4HlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
@@ -4645,7 +4644,8 @@
     "__stringMax2048": {
       "base": null,
       "refs": {
-        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\"."
+        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
+        "Esam$PoisEndpoint": "The URL of the signal conditioner endpoint on the Placement Opportunity Information System (POIS). MediaLive sends SignalProcessingEvents here when SCTE-35 messages are read."
       }
     },
     "__stringMax255": {

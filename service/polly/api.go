@@ -3989,6 +3989,9 @@ const (
 
 	// LanguageCodeArAe is a LanguageCode enum value
 	LanguageCodeArAe = "ar-AE"
+
+	// LanguageCodeFiFi is a LanguageCode enum value
+	LanguageCodeFiFi = "fi-FI"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -4029,6 +4032,7 @@ func LanguageCode_Values() []string {
 		LanguageCodeDeAt,
 		LanguageCodeYueCn,
 		LanguageCodeArAe,
+		LanguageCodeFiFi,
 	}
 }
 

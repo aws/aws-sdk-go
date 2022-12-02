@@ -2825,11 +2825,14 @@ type AacSettings struct {
 	// AAC Profile.
 	CodecProfile *string `locationName:"codecProfile" type:"string" enum:"AacCodecProfile"`
 
-	// Mono (Audio Description), Mono, Stereo, or 5.1 channel layout. Valid values
-	// depend on rate control mode and profile. "1.0 - Audio Description (Receiver
-	// Mix)" setting receives a stereo description plus control track and emits
-	// a mono AAC encode of the description track, with control data emitted in
-	// the PES header as per ETSI TS 101 154 Annex E.
+	// The Coding mode that you specify determines the number of audio channels
+	// and the audio channel layout metadata in your AAC output. Valid coding modes
+	// depend on the Rate control mode and Profile that you select. The following
+	// list shows the number of audio channels and channel layout for each coding
+	// mode. * 1.0 Audio Description (Receiver Mix): One channel, C. Includes audio
+	// description data from your stereo input. For more information see ETSI TS
+	// 101 154 Annex E. * 1.0 Mono: One channel, C. * 2.0 Stereo: Two channels,
+	// L, R. * 5.1 Surround: Five channels, C, L, R, Ls, Rs, LFE.
 	CodingMode *string `locationName:"codingMode" type:"string" enum:"AacCodingMode"`
 
 	// Rate Control Mode.
@@ -2839,7 +2842,14 @@ type AacSettings struct {
 	// you must choose "No container" for the output container.
 	RawFormat *string `locationName:"rawFormat" type:"string" enum:"AacRawFormat"`
 
-	// Sample rate in Hz. Valid values depend on rate control mode and profile.
+	// Specify the Sample rate in Hz. Valid sample rates depend on the Profile and
+	// Coding mode that you select. The following list shows valid sample rates
+	// for each Profile and Coding mode. * LC Profile, Coding mode 1.0, 2.0, and
+	// Receiver Mix: 8000, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 88200,
+	// 96000. * LC Profile, Coding mode 5.1: 32000, 44100, 48000, 96000. * HEV1
+	// Profile, Coding mode 1.0 and Receiver Mix: 22050, 24000, 32000, 44100, 48000.
+	// * HEV1 Profile, Coding mode 2.0 and 5.1: 32000, 44100, 48000, 96000. * HEV2
+	// Profile, Coding mode 2.0: 22050, 24000, 32000, 44100, 48000.
 	SampleRate *int64 `locationName:"sampleRate" min:"8000" type:"integer"`
 
 	// Use MPEG-2 AAC instead of MPEG-4 AAC audio for raw or MPEG-2 Transport Stream
@@ -6558,6 +6568,14 @@ type CmafGroupSettings struct {
 	// to 1, your final segment is 3.5 seconds.
 	MinFinalSegmentLength *float64 `locationName:"minFinalSegmentLength" type:"double"`
 
+	// Specify how the value for bandwidth is determined for each video Representation
+	// in your output MPD manifest. We recommend that you choose a MPD manifest
+	// bandwidth type that is compatible with your downstream player configuration.
+	// Max: Use the same value that you specify for Max bitrate in the video output,
+	// in bits per second. Average: Use the calculated average bitrate of the encoded
+	// video output, in bits per second.
+	MpdManifestBandwidthType *string `locationName:"mpdManifestBandwidthType" type:"string" enum:"CmafMpdManifestBandwidthType"`
+
 	// Specify whether your DASH profile is on-demand or main. When you choose Main
 	// profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
 	// in your .mpd DASH manifest. When you choose On-demand (ON_DEMAND_PROFILE),
@@ -6610,6 +6628,15 @@ type CmafGroupSettings struct {
 	// of the segment. Some older players may experience interrupted playback when
 	// the actual duration of a track in a segment is longer than the target duration.
 	TargetDurationCompatibilityMode *string `locationName:"targetDurationCompatibilityMode" type:"string" enum:"CmafTargetDurationCompatibilityMode"`
+
+	// Specify the video sample composition time offset mode in the output fMP4
+	// TRUN box. For wider player compatibility, set Video composition offsets to
+	// Unsigned or leave blank. The earliest presentation time may be greater than
+	// zero, and sample composition time offsets will increment using unsigned integers.
+	// For strict fMP4 video and audio timing, set Video composition offsets to
+	// Signed. The earliest presentation time will be equal to zero, and sample
+	// composition time offsets will increment using signed integers.
+	VideoCompositionOffsets *string `locationName:"videoCompositionOffsets" type:"string" enum:"CmafVideoCompositionOffsets"`
 
 	// When set to ENABLED, a DASH MPD manifest will be generated for this output.
 	WriteDashManifest *string `locationName:"writeDashManifest" type:"string" enum:"CmafWriteDASHManifest"`
@@ -6764,6 +6791,12 @@ func (s *CmafGroupSettings) SetMinFinalSegmentLength(v float64) *CmafGroupSettin
 	return s
 }
 
+// SetMpdManifestBandwidthType sets the MpdManifestBandwidthType field's value.
+func (s *CmafGroupSettings) SetMpdManifestBandwidthType(v string) *CmafGroupSettings {
+	s.MpdManifestBandwidthType = &v
+	return s
+}
+
 // SetMpdProfile sets the MpdProfile field's value.
 func (s *CmafGroupSettings) SetMpdProfile(v string) *CmafGroupSettings {
 	s.MpdProfile = &v
@@ -6803,6 +6836,12 @@ func (s *CmafGroupSettings) SetStreamInfResolution(v string) *CmafGroupSettings 
 // SetTargetDurationCompatibilityMode sets the TargetDurationCompatibilityMode field's value.
 func (s *CmafGroupSettings) SetTargetDurationCompatibilityMode(v string) *CmafGroupSettings {
 	s.TargetDurationCompatibilityMode = &v
+	return s
+}
+
+// SetVideoCompositionOffsets sets the VideoCompositionOffsets field's value.
+func (s *CmafGroupSettings) SetVideoCompositionOffsets(v string) *CmafGroupSettings {
+	s.VideoCompositionOffsets = &v
 	return s
 }
 
@@ -7024,6 +7063,15 @@ type CmfcSettings struct {
 	// to None or leave blank.
 	KlvMetadata *string `locationName:"klvMetadata" type:"string" enum:"CmfcKlvMetadata"`
 
+	// To add an InbandEventStream element in your output MPD manifest for each
+	// type of event message, set Manifest metadata signaling to Enabled. For ID3
+	// event messages, the InbandEventStream element schemeIdUri will be same value
+	// that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
+	// the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
+	// To leave these elements out of your output MPD manifest, set Manifest metadata
+	// signaling to Disabled.
+	ManifestMetadataSignaling *string `locationName:"manifestMetadataSignaling" type:"string" enum:"CmfcManifestMetadataSignaling"`
+
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 	// INSERT to put SCTE-35 markers in this output at the insertion points that
 	// you specify in an ESAM XML document. Provide the document in the setting
@@ -7042,6 +7090,25 @@ type CmfcSettings struct {
 	// metadata in a separate Event Message (eMSG) box. To exclude this ID3 metadata:
 	// Set ID3 metadata to None (NONE) or leave blank.
 	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"CmfcTimedMetadata"`
+
+	// Specify the event message box (eMSG) version for ID3 timed metadata in your
+	// output.For more information, see ISO/IEC 23009-1:2022 section 5.10.3.3.3
+	// Syntax.Leave blank to use the default value Version 0.When you specify Version
+	// 1, you must also set ID3 metadata (timedMetadata) to Passthrough.
+	TimedMetadataBoxVersion *string `locationName:"timedMetadataBoxVersion" type:"string" enum:"CmfcTimedMetadataBoxVersion"`
+
+	// Specify the event message box (eMSG) scheme ID URI (scheme_id_uri) for ID3
+	// timed metadata in your output. For more informaiton, see ISO/IEC 23009-1:2022
+	// section 5.10.3.3.4 Semantics. Leave blank to use the default value: https://aomedia.org/emsg/ID3
+	// When you specify a value for ID3 metadata scheme ID URI, you must also set
+	// ID3 metadata (timedMetadata) to Passthrough.
+	TimedMetadataSchemeIdUri *string `locationName:"timedMetadataSchemeIdUri" type:"string"`
+
+	// Specify the event message box (eMSG) value for ID3 timed metadata in your
+	// output. For more informaiton, see ISO/IEC 23009-1:2022 section 5.10.3.3.4
+	// Semantics. When you specify a value for ID3 Metadata Value, you must also
+	// set ID3 metadata (timedMetadata) to Passthrough.
+	TimedMetadataValue *string `locationName:"timedMetadataValue" type:"string"`
 }
 
 // String returns the string representation.
@@ -7104,6 +7171,12 @@ func (s *CmfcSettings) SetKlvMetadata(v string) *CmfcSettings {
 	return s
 }
 
+// SetManifestMetadataSignaling sets the ManifestMetadataSignaling field's value.
+func (s *CmfcSettings) SetManifestMetadataSignaling(v string) *CmfcSettings {
+	s.ManifestMetadataSignaling = &v
+	return s
+}
+
 // SetScte35Esam sets the Scte35Esam field's value.
 func (s *CmfcSettings) SetScte35Esam(v string) *CmfcSettings {
 	s.Scte35Esam = &v
@@ -7119,6 +7192,24 @@ func (s *CmfcSettings) SetScte35Source(v string) *CmfcSettings {
 // SetTimedMetadata sets the TimedMetadata field's value.
 func (s *CmfcSettings) SetTimedMetadata(v string) *CmfcSettings {
 	s.TimedMetadata = &v
+	return s
+}
+
+// SetTimedMetadataBoxVersion sets the TimedMetadataBoxVersion field's value.
+func (s *CmfcSettings) SetTimedMetadataBoxVersion(v string) *CmfcSettings {
+	s.TimedMetadataBoxVersion = &v
+	return s
+}
+
+// SetTimedMetadataSchemeIdUri sets the TimedMetadataSchemeIdUri field's value.
+func (s *CmfcSettings) SetTimedMetadataSchemeIdUri(v string) *CmfcSettings {
+	s.TimedMetadataSchemeIdUri = &v
+	return s
+}
+
+// SetTimedMetadataValue sets the TimedMetadataValue field's value.
+func (s *CmfcSettings) SetTimedMetadataValue(v string) *CmfcSettings {
+	s.TimedMetadataValue = &v
 	return s
 }
 
@@ -8401,6 +8492,14 @@ type DashIsoGroupSettings struct {
 	// to 1, your final segment is 3.5 seconds.
 	MinFinalSegmentLength *float64 `locationName:"minFinalSegmentLength" type:"double"`
 
+	// Specify how the value for bandwidth is determined for each video Representation
+	// in your output MPD manifest. We recommend that you choose a MPD manifest
+	// bandwidth type that is compatible with your downstream player configuration.
+	// Max: Use the same value that you specify for Max bitrate in the video output,
+	// in bits per second. Average: Use the calculated average bitrate of the encoded
+	// video output, in bits per second.
+	MpdManifestBandwidthType *string `locationName:"mpdManifestBandwidthType" type:"string" enum:"DashIsoMpdManifestBandwidthType"`
+
 	// Specify whether your DASH profile is on-demand or main. When you choose Main
 	// profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
 	// in your .mpd DASH manifest. When you choose On-demand (ON_DEMAND_PROFILE),
@@ -8439,6 +8538,15 @@ type DashIsoGroupSettings struct {
 	// Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round up the segment
 	// lengths to match the next GOP boundary.
 	SegmentLengthControl *string `locationName:"segmentLengthControl" type:"string" enum:"DashIsoSegmentLengthControl"`
+
+	// Specify the video sample composition time offset mode in the output fMP4
+	// TRUN box. For wider player compatibility, set Video composition offsets to
+	// Unsigned or leave blank. The earliest presentation time may be greater than
+	// zero, and sample composition time offsets will increment using unsigned integers.
+	// For strict fMP4 video and audio timing, set Video composition offsets to
+	// Signed. The earliest presentation time will be equal to zero, and sample
+	// composition time offsets will increment using signed integers.
+	VideoCompositionOffsets *string `locationName:"videoCompositionOffsets" type:"string" enum:"DashIsoVideoCompositionOffsets"`
 
 	// If you get an HTTP error in the 400 range when you play back your DASH output,
 	// enable this setting and run your transcoding job again. When you enable this
@@ -8571,6 +8679,12 @@ func (s *DashIsoGroupSettings) SetMinFinalSegmentLength(v float64) *DashIsoGroup
 	return s
 }
 
+// SetMpdManifestBandwidthType sets the MpdManifestBandwidthType field's value.
+func (s *DashIsoGroupSettings) SetMpdManifestBandwidthType(v string) *DashIsoGroupSettings {
+	s.MpdManifestBandwidthType = &v
+	return s
+}
+
 // SetMpdProfile sets the MpdProfile field's value.
 func (s *DashIsoGroupSettings) SetMpdProfile(v string) *DashIsoGroupSettings {
 	s.MpdProfile = &v
@@ -8598,6 +8712,12 @@ func (s *DashIsoGroupSettings) SetSegmentLength(v int64) *DashIsoGroupSettings {
 // SetSegmentLengthControl sets the SegmentLengthControl field's value.
 func (s *DashIsoGroupSettings) SetSegmentLengthControl(v string) *DashIsoGroupSettings {
 	s.SegmentLengthControl = &v
+	return s
+}
+
+// SetVideoCompositionOffsets sets the VideoCompositionOffsets field's value.
+func (s *DashIsoGroupSettings) SetVideoCompositionOffsets(v string) *DashIsoGroupSettings {
+	s.VideoCompositionOffsets = &v
 	return s
 }
 
@@ -19121,6 +19241,15 @@ type MpdSettings struct {
 	// to None or leave blank.
 	KlvMetadata *string `locationName:"klvMetadata" type:"string" enum:"MpdKlvMetadata"`
 
+	// To add an InbandEventStream element in your output MPD manifest for each
+	// type of event message, set Manifest metadata signaling to Enabled. For ID3
+	// event messages, the InbandEventStream element schemeIdUri will be same value
+	// that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
+	// the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
+	// To leave these elements out of your output MPD manifest, set Manifest metadata
+	// signaling to Disabled.
+	ManifestMetadataSignaling *string `locationName:"manifestMetadataSignaling" type:"string" enum:"MpdManifestMetadataSignaling"`
+
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 	// INSERT to put SCTE-35 markers in this output at the insertion points that
 	// you specify in an ESAM XML document. Provide the document in the setting
@@ -19139,6 +19268,25 @@ type MpdSettings struct {
 	// metadata in a separate Event Message (eMSG) box. To exclude this ID3 metadata:
 	// Set ID3 metadata to None (NONE) or leave blank.
 	TimedMetadata *string `locationName:"timedMetadata" type:"string" enum:"MpdTimedMetadata"`
+
+	// Specify the event message box (eMSG) version for ID3 timed metadata in your
+	// output.For more information, see ISO/IEC 23009-1:2022 section 5.10.3.3.3
+	// Syntax.Leave blank to use the default value Version 0.When you specify Version
+	// 1, you must also set ID3 metadata (timedMetadata) to Passthrough.
+	TimedMetadataBoxVersion *string `locationName:"timedMetadataBoxVersion" type:"string" enum:"MpdTimedMetadataBoxVersion"`
+
+	// Specify the event message box (eMSG) scheme ID URI (scheme_id_uri) for ID3
+	// timed metadata in your output. For more informaiton, see ISO/IEC 23009-1:2022
+	// section 5.10.3.3.4 Semantics. Leave blank to use the default value: https://aomedia.org/emsg/ID3
+	// When you specify a value for ID3 metadata scheme ID URI, you must also set
+	// ID3 metadata (timedMetadata) to Passthrough.
+	TimedMetadataSchemeIdUri *string `locationName:"timedMetadataSchemeIdUri" type:"string"`
+
+	// Specify the event message box (eMSG) value for ID3 timed metadata in your
+	// output. For more informaiton, see ISO/IEC 23009-1:2022 section 5.10.3.3.4
+	// Semantics. When you specify a value for ID3 Metadata Value, you must also
+	// set ID3 metadata (timedMetadata) to Passthrough.
+	TimedMetadataValue *string `locationName:"timedMetadataValue" type:"string"`
 }
 
 // String returns the string representation.
@@ -19183,6 +19331,12 @@ func (s *MpdSettings) SetKlvMetadata(v string) *MpdSettings {
 	return s
 }
 
+// SetManifestMetadataSignaling sets the ManifestMetadataSignaling field's value.
+func (s *MpdSettings) SetManifestMetadataSignaling(v string) *MpdSettings {
+	s.ManifestMetadataSignaling = &v
+	return s
+}
+
 // SetScte35Esam sets the Scte35Esam field's value.
 func (s *MpdSettings) SetScte35Esam(v string) *MpdSettings {
 	s.Scte35Esam = &v
@@ -19198,6 +19352,24 @@ func (s *MpdSettings) SetScte35Source(v string) *MpdSettings {
 // SetTimedMetadata sets the TimedMetadata field's value.
 func (s *MpdSettings) SetTimedMetadata(v string) *MpdSettings {
 	s.TimedMetadata = &v
+	return s
+}
+
+// SetTimedMetadataBoxVersion sets the TimedMetadataBoxVersion field's value.
+func (s *MpdSettings) SetTimedMetadataBoxVersion(v string) *MpdSettings {
+	s.TimedMetadataBoxVersion = &v
+	return s
+}
+
+// SetTimedMetadataSchemeIdUri sets the TimedMetadataSchemeIdUri field's value.
+func (s *MpdSettings) SetTimedMetadataSchemeIdUri(v string) *MpdSettings {
+	s.TimedMetadataSchemeIdUri = &v
+	return s
+}
+
+// SetTimedMetadataValue sets the TimedMetadataValue field's value.
+func (s *MpdSettings) SetTimedMetadataValue(v string) *MpdSettings {
+	s.TimedMetadataValue = &v
 	return s
 }
 
@@ -19438,7 +19610,7 @@ type Mpeg2Settings struct {
 
 	// Specify whether this output's video uses the D10 syntax. Keep the default
 	// value to not use the syntax. Related settings: When you choose D10 (D_10)
-	// for your MXF profile (profile), you must also set this value to to D10 (D_10).
+	// for your MXF profile (profile), you must also set this value to D10 (D_10).
 	Syntax *string `locationName:"syntax" type:"string" enum:"Mpeg2Syntax"`
 
 	// When you do frame rate conversion from 23.976 frames per second (fps) to
@@ -26603,11 +26775,14 @@ func AacCodecProfile_Values() []string {
 	}
 }
 
-// Mono (Audio Description), Mono, Stereo, or 5.1 channel layout. Valid values
-// depend on rate control mode and profile. "1.0 - Audio Description (Receiver
-// Mix)" setting receives a stereo description plus control track and emits
-// a mono AAC encode of the description track, with control data emitted in
-// the PES header as per ETSI TS 101 154 Annex E.
+// The Coding mode that you specify determines the number of audio channels
+// and the audio channel layout metadata in your AAC output. Valid coding modes
+// depend on the Rate control mode and Profile that you select. The following
+// list shows the number of audio channels and channel layout for each coding
+// mode. * 1.0 Audio Description (Receiver Mix): One channel, C. Includes audio
+// description data from your stereo input. For more information see ETSI TS
+// 101 154 Annex E. * 1.0 Mono: One channel, C. * 2.0 Stereo: Two channels,
+// L, R. * 5.1 Surround: Five channels, C, L, R, Ls, Rs, LFE.
 const (
 	// AacCodingModeAdReceiverMix is a AacCodingMode enum value
 	AacCodingModeAdReceiverMix = "AD_RECEIVER_MIX"
@@ -28422,6 +28597,28 @@ func CmafManifestDurationFormat_Values() []string {
 	}
 }
 
+// Specify how the value for bandwidth is determined for each video Representation
+// in your output MPD manifest. We recommend that you choose a MPD manifest
+// bandwidth type that is compatible with your downstream player configuration.
+// Max: Use the same value that you specify for Max bitrate in the video output,
+// in bits per second. Average: Use the calculated average bitrate of the encoded
+// video output, in bits per second.
+const (
+	// CmafMpdManifestBandwidthTypeAverage is a CmafMpdManifestBandwidthType enum value
+	CmafMpdManifestBandwidthTypeAverage = "AVERAGE"
+
+	// CmafMpdManifestBandwidthTypeMax is a CmafMpdManifestBandwidthType enum value
+	CmafMpdManifestBandwidthTypeMax = "MAX"
+)
+
+// CmafMpdManifestBandwidthType_Values returns all elements of the CmafMpdManifestBandwidthType enum
+func CmafMpdManifestBandwidthType_Values() []string {
+	return []string{
+		CmafMpdManifestBandwidthTypeAverage,
+		CmafMpdManifestBandwidthTypeMax,
+	}
+}
+
 // Specify whether your DASH profile is on-demand or main. When you choose Main
 // profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
 // in your .mpd DASH manifest. When you choose On-demand (ON_DEMAND_PROFILE),
@@ -28548,6 +28745,29 @@ func CmafTargetDurationCompatibilityMode_Values() []string {
 	return []string{
 		CmafTargetDurationCompatibilityModeLegacy,
 		CmafTargetDurationCompatibilityModeSpecCompliant,
+	}
+}
+
+// Specify the video sample composition time offset mode in the output fMP4
+// TRUN box. For wider player compatibility, set Video composition offsets to
+// Unsigned or leave blank. The earliest presentation time may be greater than
+// zero, and sample composition time offsets will increment using unsigned integers.
+// For strict fMP4 video and audio timing, set Video composition offsets to
+// Signed. The earliest presentation time will be equal to zero, and sample
+// composition time offsets will increment using signed integers.
+const (
+	// CmafVideoCompositionOffsetsSigned is a CmafVideoCompositionOffsets enum value
+	CmafVideoCompositionOffsetsSigned = "SIGNED"
+
+	// CmafVideoCompositionOffsetsUnsigned is a CmafVideoCompositionOffsets enum value
+	CmafVideoCompositionOffsetsUnsigned = "UNSIGNED"
+)
+
+// CmafVideoCompositionOffsets_Values returns all elements of the CmafVideoCompositionOffsets enum
+func CmafVideoCompositionOffsets_Values() []string {
+	return []string{
+		CmafVideoCompositionOffsetsSigned,
+		CmafVideoCompositionOffsetsUnsigned,
 	}
 }
 
@@ -28737,6 +28957,29 @@ func CmfcKlvMetadata_Values() []string {
 	}
 }
 
+// To add an InbandEventStream element in your output MPD manifest for each
+// type of event message, set Manifest metadata signaling to Enabled. For ID3
+// event messages, the InbandEventStream element schemeIdUri will be same value
+// that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
+// the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
+// To leave these elements out of your output MPD manifest, set Manifest metadata
+// signaling to Disabled.
+const (
+	// CmfcManifestMetadataSignalingEnabled is a CmfcManifestMetadataSignaling enum value
+	CmfcManifestMetadataSignalingEnabled = "ENABLED"
+
+	// CmfcManifestMetadataSignalingDisabled is a CmfcManifestMetadataSignaling enum value
+	CmfcManifestMetadataSignalingDisabled = "DISABLED"
+)
+
+// CmfcManifestMetadataSignaling_Values returns all elements of the CmfcManifestMetadataSignaling enum
+func CmfcManifestMetadataSignaling_Values() []string {
+	return []string{
+		CmfcManifestMetadataSignalingEnabled,
+		CmfcManifestMetadataSignalingDisabled,
+	}
+}
+
 // Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 // INSERT to put SCTE-35 markers in this output at the insertion points that
 // you specify in an ESAM XML document. Provide the document in the setting
@@ -28795,6 +29038,26 @@ func CmfcTimedMetadata_Values() []string {
 	return []string{
 		CmfcTimedMetadataPassthrough,
 		CmfcTimedMetadataNone,
+	}
+}
+
+// Specify the event message box (eMSG) version for ID3 timed metadata in your
+// output.For more information, see ISO/IEC 23009-1:2022 section 5.10.3.3.3
+// Syntax.Leave blank to use the default value Version 0.When you specify Version
+// 1, you must also set ID3 metadata (timedMetadata) to Passthrough.
+const (
+	// CmfcTimedMetadataBoxVersionVersion0 is a CmfcTimedMetadataBoxVersion enum value
+	CmfcTimedMetadataBoxVersionVersion0 = "VERSION_0"
+
+	// CmfcTimedMetadataBoxVersionVersion1 is a CmfcTimedMetadataBoxVersion enum value
+	CmfcTimedMetadataBoxVersionVersion1 = "VERSION_1"
+)
+
+// CmfcTimedMetadataBoxVersion_Values returns all elements of the CmfcTimedMetadataBoxVersion enum
+func CmfcTimedMetadataBoxVersion_Values() []string {
+	return []string{
+		CmfcTimedMetadataBoxVersionVersion0,
+		CmfcTimedMetadataBoxVersionVersion1,
 	}
 }
 
@@ -29114,6 +29377,28 @@ func DashIsoIntervalCadence_Values() []string {
 	}
 }
 
+// Specify how the value for bandwidth is determined for each video Representation
+// in your output MPD manifest. We recommend that you choose a MPD manifest
+// bandwidth type that is compatible with your downstream player configuration.
+// Max: Use the same value that you specify for Max bitrate in the video output,
+// in bits per second. Average: Use the calculated average bitrate of the encoded
+// video output, in bits per second.
+const (
+	// DashIsoMpdManifestBandwidthTypeAverage is a DashIsoMpdManifestBandwidthType enum value
+	DashIsoMpdManifestBandwidthTypeAverage = "AVERAGE"
+
+	// DashIsoMpdManifestBandwidthTypeMax is a DashIsoMpdManifestBandwidthType enum value
+	DashIsoMpdManifestBandwidthTypeMax = "MAX"
+)
+
+// DashIsoMpdManifestBandwidthType_Values returns all elements of the DashIsoMpdManifestBandwidthType enum
+func DashIsoMpdManifestBandwidthType_Values() []string {
+	return []string{
+		DashIsoMpdManifestBandwidthTypeAverage,
+		DashIsoMpdManifestBandwidthTypeMax,
+	}
+}
+
 // Specify whether your DASH profile is on-demand or main. When you choose Main
 // profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
 // in your .mpd DASH manifest. When you choose On-demand (ON_DEMAND_PROFILE),
@@ -29220,6 +29505,29 @@ func DashIsoSegmentLengthControl_Values() []string {
 	return []string{
 		DashIsoSegmentLengthControlExact,
 		DashIsoSegmentLengthControlGopMultiple,
+	}
+}
+
+// Specify the video sample composition time offset mode in the output fMP4
+// TRUN box. For wider player compatibility, set Video composition offsets to
+// Unsigned or leave blank. The earliest presentation time may be greater than
+// zero, and sample composition time offsets will increment using unsigned integers.
+// For strict fMP4 video and audio timing, set Video composition offsets to
+// Signed. The earliest presentation time will be equal to zero, and sample
+// composition time offsets will increment using signed integers.
+const (
+	// DashIsoVideoCompositionOffsetsSigned is a DashIsoVideoCompositionOffsets enum value
+	DashIsoVideoCompositionOffsetsSigned = "SIGNED"
+
+	// DashIsoVideoCompositionOffsetsUnsigned is a DashIsoVideoCompositionOffsets enum value
+	DashIsoVideoCompositionOffsetsUnsigned = "UNSIGNED"
+)
+
+// DashIsoVideoCompositionOffsets_Values returns all elements of the DashIsoVideoCompositionOffsets enum
+func DashIsoVideoCompositionOffsets_Values() []string {
+	return []string{
+		DashIsoVideoCompositionOffsetsSigned,
+		DashIsoVideoCompositionOffsetsUnsigned,
 	}
 }
 
@@ -34321,6 +34629,29 @@ func MpdKlvMetadata_Values() []string {
 	}
 }
 
+// To add an InbandEventStream element in your output MPD manifest for each
+// type of event message, set Manifest metadata signaling to Enabled. For ID3
+// event messages, the InbandEventStream element schemeIdUri will be same value
+// that you specify for ID3 metadata scheme ID URI. For SCTE35 event messages,
+// the InbandEventStream element schemeIdUri will be "urn:scte:scte35:2013:bin".
+// To leave these elements out of your output MPD manifest, set Manifest metadata
+// signaling to Disabled.
+const (
+	// MpdManifestMetadataSignalingEnabled is a MpdManifestMetadataSignaling enum value
+	MpdManifestMetadataSignalingEnabled = "ENABLED"
+
+	// MpdManifestMetadataSignalingDisabled is a MpdManifestMetadataSignaling enum value
+	MpdManifestMetadataSignalingDisabled = "DISABLED"
+)
+
+// MpdManifestMetadataSignaling_Values returns all elements of the MpdManifestMetadataSignaling enum
+func MpdManifestMetadataSignaling_Values() []string {
+	return []string{
+		MpdManifestMetadataSignalingEnabled,
+		MpdManifestMetadataSignalingDisabled,
+	}
+}
+
 // Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 // INSERT to put SCTE-35 markers in this output at the insertion points that
 // you specify in an ESAM XML document. Provide the document in the setting
@@ -34379,6 +34710,26 @@ func MpdTimedMetadata_Values() []string {
 	return []string{
 		MpdTimedMetadataPassthrough,
 		MpdTimedMetadataNone,
+	}
+}
+
+// Specify the event message box (eMSG) version for ID3 timed metadata in your
+// output.For more information, see ISO/IEC 23009-1:2022 section 5.10.3.3.3
+// Syntax.Leave blank to use the default value Version 0.When you specify Version
+// 1, you must also set ID3 metadata (timedMetadata) to Passthrough.
+const (
+	// MpdTimedMetadataBoxVersionVersion0 is a MpdTimedMetadataBoxVersion enum value
+	MpdTimedMetadataBoxVersionVersion0 = "VERSION_0"
+
+	// MpdTimedMetadataBoxVersionVersion1 is a MpdTimedMetadataBoxVersion enum value
+	MpdTimedMetadataBoxVersionVersion1 = "VERSION_1"
+)
+
+// MpdTimedMetadataBoxVersion_Values returns all elements of the MpdTimedMetadataBoxVersion enum
+func MpdTimedMetadataBoxVersion_Values() []string {
+	return []string{
+		MpdTimedMetadataBoxVersionVersion0,
+		MpdTimedMetadataBoxVersionVersion1,
 	}
 }
 
@@ -34788,7 +35139,7 @@ func Mpeg2SpatialAdaptiveQuantization_Values() []string {
 
 // Specify whether this output's video uses the D10 syntax. Keep the default
 // value to not use the syntax. Related settings: When you choose D10 (D_10)
-// for your MXF profile (profile), you must also set this value to to D10 (D_10).
+// for your MXF profile (profile), you must also set this value to D10 (D_10).
 const (
 	// Mpeg2SyntaxDefault is a Mpeg2Syntax enum value
 	Mpeg2SyntaxDefault = "DEFAULT"
