@@ -1,3 +1,15 @@
+Release v1.44.153 (2022-12-05)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/ec2`: Updates service documentation
+  * Documentation updates for EC2.
+* `service/ivschat`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds the InvalidDBInstanceStateFault to the RestoreDBClusterFromSnapshot operation.
+* `service/transcribe`: Updates service API
+
 Release v1.44.152 (2022-12-02)
 ===
 

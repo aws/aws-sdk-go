@@ -59,7 +59,7 @@
     "CloudWatchLogsDestinationConfiguration": {
       "base": "<p>Specifies a CloudWatch Logs location where chat logs will be stored.</p>",
       "refs": {
-        "DestinationConfiguration$cloudWatchLogs": "<p>Name of the Amazon CloudWatch Logs destination where chat activity will be logged.</p>"
+        "DestinationConfiguration$cloudWatchLogs": "<p>An Amazon CloudWatch Logs destination configuration where chat activity will be logged.</p>"
       }
     },
     "ConflictException": {
@@ -191,7 +191,7 @@
     "FirehoseDestinationConfiguration": {
       "base": "<p>Specifies a Kinesis Firehose location where chat logs will be stored.</p>",
       "refs": {
-        "DestinationConfiguration$firehose": "<p>Name of the Amazon Kinesis Data Firehose destination where chat activity will be logged</p>"
+        "DestinationConfiguration$firehose": "<p>An Amazon Kinesis Data Firehose destination configuration where chat activity will be logged.</p>"
       }
     },
     "GetLoggingConfigurationRequest": {
@@ -503,7 +503,7 @@
     "S3DestinationConfiguration": {
       "base": "<p>Specifies an S3 location where chat logs will be stored.</p>",
       "refs": {
-        "DestinationConfiguration$s3": "<p>Name of the Amazon S3 bucket where chat activity will be logged.</p>"
+        "DestinationConfiguration$s3": "<p>An Amazon S3 destination configuration where chat activity will be logged.</p>"
       }
     },
     "SendEventRequest": {

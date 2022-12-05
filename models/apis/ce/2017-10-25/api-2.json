@@ -386,6 +386,19 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "ListSavingsPlansPurchaseRecommendationGeneration":{
+      "name":"ListSavingsPlansPurchaseRecommendationGeneration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSavingsPlansPurchaseRecommendationGenerationRequest"},
+      "output":{"shape":"ListSavingsPlansPurchaseRecommendationGenerationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -409,6 +422,20 @@
       "output":{"shape":"ProvideAnomalyFeedbackResponse"},
       "errors":[
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "StartSavingsPlansPurchaseRecommendationGeneration":{
+      "name":"StartSavingsPlansPurchaseRecommendationGeneration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartSavingsPlansPurchaseRecommendationGenerationRequest"},
+      "output":{"shape":"StartSavingsPlansPurchaseRecommendationGenerationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"GenerationExistsException"}
       ]
     },
     "TagResource":{
@@ -1270,6 +1297,35 @@
       "type":"list",
       "member":{"shape":"ForecastResult"}
     },
+    "GenerationExistsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "GenerationStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "PROCESSING",
+        "FAILED"
+      ]
+    },
+    "GenerationSummary":{
+      "type":"structure",
+      "members":{
+        "RecommendationId":{"shape":"RecommendationId"},
+        "GenerationStatus":{"shape":"GenerationStatus"},
+        "GenerationStartedTime":{"shape":"ZonedDateTime"},
+        "GenerationCompletionTime":{"shape":"ZonedDateTime"},
+        "EstimatedCompletionTime":{"shape":"ZonedDateTime"}
+      }
+    },
+    "GenerationSummaryList":{
+      "type":"list",
+      "member":{"shape":"GenerationSummary"}
+    },
     "GenericBoolean":{"type":"boolean"},
     "GenericDouble":{"type":"double"},
     "GenericString":{
@@ -1823,6 +1879,22 @@
         "NextToken":{"shape":"NextPageToken"}
       }
     },
+    "ListSavingsPlansPurchaseRecommendationGenerationRequest":{
+      "type":"structure",
+      "members":{
+        "GenerationStatus":{"shape":"GenerationStatus"},
+        "RecommendationIds":{"shape":"RecommendationIdList"},
+        "PageSize":{"shape":"NonNegativeInteger"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
+    "ListSavingsPlansPurchaseRecommendationGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "GenerationSummaryList":{"shape":"GenerationSummaryList"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -2034,6 +2106,16 @@
     },
     "RICostForUnusedHours":{"type":"string"},
     "RealizedSavings":{"type":"string"},
+    "RecommendationId":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[\\S\\s]{8}-[\\S\\s]{4}-[\\S\\s]{4}-[\\S\\s]{4}-[\\S\\s]{12}$"
+    },
+    "RecommendationIdList":{
+      "type":"list",
+      "member":{"shape":"RecommendationId"}
+    },
     "RecommendationTarget":{
       "type":"string",
       "enum":[
@@ -2510,6 +2592,19 @@
         "ASCENDING",
         "DESCENDING"
       ]
+    },
+    "StartSavingsPlansPurchaseRecommendationGenerationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "StartSavingsPlansPurchaseRecommendationGenerationResponse":{
+      "type":"structure",
+      "members":{
+        "RecommendationId":{"shape":"RecommendationId"},
+        "GenerationStartedTime":{"shape":"ZonedDateTime"},
+        "EstimatedCompletionTime":{"shape":"ZonedDateTime"}
+      }
     },
     "Subscriber":{
       "type":"structure",

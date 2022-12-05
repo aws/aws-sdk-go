@@ -2121,7 +2121,8 @@
         {"shape":"OptionGroupNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DomainNotFoundFault"},
-        {"shape":"DBClusterParameterGroupNotFoundFault"}
+        {"shape":"DBClusterParameterGroupNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
       ]
     },
     "RestoreDBClusterToPointInTime":{
