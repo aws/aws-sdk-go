@@ -180,6 +180,10 @@ type CostExplorerAPI interface {
 	ListCostCategoryDefinitionsPages(*costexplorer.ListCostCategoryDefinitionsInput, func(*costexplorer.ListCostCategoryDefinitionsOutput, bool) bool) error
 	ListCostCategoryDefinitionsPagesWithContext(aws.Context, *costexplorer.ListCostCategoryDefinitionsInput, func(*costexplorer.ListCostCategoryDefinitionsOutput, bool) bool, ...request.Option) error
 
+	ListSavingsPlansPurchaseRecommendationGeneration(*costexplorer.ListSavingsPlansPurchaseRecommendationGenerationInput) (*costexplorer.ListSavingsPlansPurchaseRecommendationGenerationOutput, error)
+	ListSavingsPlansPurchaseRecommendationGenerationWithContext(aws.Context, *costexplorer.ListSavingsPlansPurchaseRecommendationGenerationInput, ...request.Option) (*costexplorer.ListSavingsPlansPurchaseRecommendationGenerationOutput, error)
+	ListSavingsPlansPurchaseRecommendationGenerationRequest(*costexplorer.ListSavingsPlansPurchaseRecommendationGenerationInput) (*request.Request, *costexplorer.ListSavingsPlansPurchaseRecommendationGenerationOutput)
+
 	ListTagsForResource(*costexplorer.ListTagsForResourceInput) (*costexplorer.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *costexplorer.ListTagsForResourceInput, ...request.Option) (*costexplorer.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*costexplorer.ListTagsForResourceInput) (*request.Request, *costexplorer.ListTagsForResourceOutput)
@@ -187,6 +191,10 @@ type CostExplorerAPI interface {
 	ProvideAnomalyFeedback(*costexplorer.ProvideAnomalyFeedbackInput) (*costexplorer.ProvideAnomalyFeedbackOutput, error)
 	ProvideAnomalyFeedbackWithContext(aws.Context, *costexplorer.ProvideAnomalyFeedbackInput, ...request.Option) (*costexplorer.ProvideAnomalyFeedbackOutput, error)
 	ProvideAnomalyFeedbackRequest(*costexplorer.ProvideAnomalyFeedbackInput) (*request.Request, *costexplorer.ProvideAnomalyFeedbackOutput)
+
+	StartSavingsPlansPurchaseRecommendationGeneration(*costexplorer.StartSavingsPlansPurchaseRecommendationGenerationInput) (*costexplorer.StartSavingsPlansPurchaseRecommendationGenerationOutput, error)
+	StartSavingsPlansPurchaseRecommendationGenerationWithContext(aws.Context, *costexplorer.StartSavingsPlansPurchaseRecommendationGenerationInput, ...request.Option) (*costexplorer.StartSavingsPlansPurchaseRecommendationGenerationOutput, error)
+	StartSavingsPlansPurchaseRecommendationGenerationRequest(*costexplorer.StartSavingsPlansPurchaseRecommendationGenerationInput) (*request.Request, *costexplorer.StartSavingsPlansPurchaseRecommendationGenerationOutput)
 
 	TagResource(*costexplorer.TagResourceInput) (*costexplorer.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *costexplorer.TagResourceInput, ...request.Option) (*costexplorer.TagResourceOutput, error)

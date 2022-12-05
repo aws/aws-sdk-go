@@ -94,6 +94,7 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"PendingVerification"},
         {"shape":"ValidationException"}
       ]
     },
@@ -125,6 +126,7 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"PendingVerification"},
         {"shape":"ValidationException"}
       ]
     },
@@ -215,6 +217,7 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"PendingVerification"},
         {"shape":"ValidationException"}
       ]
     },

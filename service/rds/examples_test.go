@@ -2773,6 +2773,8 @@ func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterParameterGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
+			case rds.ErrCodeInvalidDBInstanceStateFault:
+				fmt.Println(rds.ErrCodeInvalidDBInstanceStateFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

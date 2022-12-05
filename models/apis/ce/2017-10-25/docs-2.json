@@ -22,15 +22,17 @@
     "GetReservationUtilization": "<p>Retrieves the reservation utilization for your account. Management account in an organization have access to member accounts. You can filter data by dimensions in a time period. You can use <code>GetDimensionValues</code> to determine the possible dimension values. Currently, you can group only by <code>SUBSCRIPTION_ID</code>. </p>",
     "GetRightsizingRecommendation": "<p>Creates recommendations that help you save cost by identifying idle and underutilized Amazon EC2 instances.</p> <p>Recommendations are generated to either downsize or terminate instances, along with providing savings detail and metrics. For more information about calculation and function, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-rightsizing.html\">Optimizing Your Cost with Rightsizing Recommendations</a> in the <i>Billing and Cost Management User Guide</i>.</p>",
     "GetSavingsPlansCoverage": "<p>Retrieves the Savings Plans covered for your account. This enables you to see how much of your cost is covered by a Savings Plan. An organization’s management account can see the coverage of the associated member accounts. This supports dimensions, Cost Categories, and nested expressions. For any time period, you can filter data for Savings Plans usage with the following dimensions:</p> <ul> <li> <p> <code>LINKED_ACCOUNT</code> </p> </li> <li> <p> <code>REGION</code> </p> </li> <li> <p> <code>SERVICE</code> </p> </li> <li> <p> <code>INSTANCE_FAMILY</code> </p> </li> </ul> <p>To determine valid values for a dimension, use the <code>GetDimensionValues</code> operation.</p>",
-    "GetSavingsPlansPurchaseRecommendation": "<p>Retrieves your request parameters, Savings Plan Recommendations Summary and Details. </p>",
+    "GetSavingsPlansPurchaseRecommendation": "<p>Retrieves the Savings Plans recommendations for your account. First use <code>StartSavingsPlansPurchaseRecommendationGeneration</code> to generate a new set of recommendations, and then use <code>GetSavingsPlansPurchaseRecommendation</code> to retrieve them.</p>",
     "GetSavingsPlansUtilization": "<p>Retrieves the Savings Plans utilization for your account across date ranges with daily or monthly granularity. Management account in an organization have access to member accounts. You can use <code>GetDimensionValues</code> in <code>SAVINGS_PLANS</code> to determine the possible dimension values.</p> <note> <p>You can't group by any dimension values for <code>GetSavingsPlansUtilization</code>.</p> </note>",
     "GetSavingsPlansUtilizationDetails": "<p>Retrieves attribute data along with aggregate utilization and savings data for a given time period. This doesn't support granular or grouped data (daily/monthly) in response. You can't retrieve data by dates in a single response similar to <code>GetSavingsPlanUtilization</code>, but you have the option to make multiple calls to <code>GetSavingsPlanUtilizationDetails</code> by providing individual dates. You can use <code>GetDimensionValues</code> in <code>SAVINGS_PLANS</code> to determine the possible dimension values.</p> <note> <p> <code>GetSavingsPlanUtilizationDetails</code> internally groups data by <code>SavingsPlansArn</code>.</p> </note>",
     "GetTags": "<p>Queries for available tag keys and tag values for a specified period. You can search the tag values for an arbitrary string. </p>",
     "GetUsageForecast": "<p>Retrieves a forecast for how much Amazon Web Services predicts that you will use over the forecast time period that you select, based on your past usage. </p>",
     "ListCostAllocationTags": "<p>Get a list of cost allocation tags. All inputs in the API are optional and serve as filters. By default, all cost allocation tags are returned. </p>",
     "ListCostCategoryDefinitions": "<p>Returns the name, Amazon Resource Name (ARN), <code>NumberOfRules</code> and effective dates of all Cost Categories defined in the account. You have the option to use <code>EffectiveOn</code> to return a list of Cost Categories that were active on a specific date. If there is no <code>EffectiveOn</code> specified, you’ll see Cost Categories that are effective on the current date. If Cost Category is still effective, <code>EffectiveEnd</code> is omitted in the response. <code>ListCostCategoryDefinitions</code> supports pagination. The request can have a <code>MaxResults</code> range up to 100.</p>",
+    "ListSavingsPlansPurchaseRecommendationGeneration": "<p>Retrieves a list of your historical recommendation generations within the past 30 days.</p>",
     "ListTagsForResource": "<p>Returns a list of resource tags associated with the resource specified by the Amazon Resource Name (ARN). </p>",
     "ProvideAnomalyFeedback": "<p>Modifies the feedback property of a given cost anomaly. </p>",
+    "StartSavingsPlansPurchaseRecommendationGeneration": "<p>Requests a Savings Plans recommendation generation. This enables you to calculate a fresh set of Savings Plans recommendations that takes your latest usage data and current Savings Plans inventory into account. You can refresh Savings Plans recommendations up to three times daily for a consolidated billing family.</p> <note> <p> <code>StartSavingsPlansPurchaseRecommendationGeneration</code> has no request syntax because no input parameters are needed to support this operation.</p> </note>",
     "TagResource": "<p>An API operation for adding one or more tags (key-value pairs) to a resource.</p> <p>You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value you specify replaces the previous value for that tag.</p> <p>Although the maximum number of array members is 200, user-tag maximum is 50. The remaining are reserved for Amazon Web Services use.</p>",
     "UntagResource": "<p>Removes one or more tags from a resource. Specify only tag keys in your request. Don't specify the value. </p>",
     "UpdateAnomalyMonitor": "<p>Updates an existing cost anomaly monitor. The changes made are applied going forward, and doesn't change anomalies detected in the past. </p>",
@@ -649,6 +651,7 @@
       "refs": {
         "BillExpirationException$Message": null,
         "DataUnavailableException$Message": null,
+        "GenerationExistsException$Message": null,
         "InvalidNextTokenException$Message": null,
         "LimitExceededException$Message": null,
         "RequestChangedException$Message": null,
@@ -721,6 +724,30 @@
       "refs": {
         "GetCostForecastResponse$ForecastResultsByTime": "<p>The forecasts for your query, in order. For <code>DAILY</code> forecasts, this is a list of days. For <code>MONTHLY</code> forecasts, this is a list of months.</p>",
         "GetUsageForecastResponse$ForecastResultsByTime": "<p>The forecasts for your query, in order. For <code>DAILY</code> forecasts, this is a list of days. For <code>MONTHLY</code> forecasts, this is a list of months.</p>"
+      }
+    },
+    "GenerationExistsException": {
+      "base": "<p>A request to generate a recommendation is already in progress.</p>",
+      "refs": {
+      }
+    },
+    "GenerationStatus": {
+      "base": null,
+      "refs": {
+        "GenerationSummary$GenerationStatus": "<p>Indicates whether the recommendation generation succeeded, is processing, or failed.</p>",
+        "ListSavingsPlansPurchaseRecommendationGenerationRequest$GenerationStatus": "<p>The status of the recommendation generation.</p>"
+      }
+    },
+    "GenerationSummary": {
+      "base": "<p>The summary of the Savings Plans recommendation generation.</p>",
+      "refs": {
+        "GenerationSummaryList$member": null
+      }
+    },
+    "GenerationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListSavingsPlansPurchaseRecommendationGenerationResponse$GenerationSummaryList": "<p>The list of historical recommendation generations.</p>"
       }
     },
     "GenericBoolean": {
@@ -1218,6 +1245,16 @@
       "refs": {
       }
     },
+    "ListSavingsPlansPurchaseRecommendationGenerationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSavingsPlansPurchaseRecommendationGenerationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -1387,7 +1424,9 @@
         "ListCostAllocationTagsRequest$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size. </p>",
         "ListCostAllocationTagsResponse$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size. </p>",
         "ListCostCategoryDefinitionsRequest$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size. </p>",
-        "ListCostCategoryDefinitionsResponse$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size. </p>"
+        "ListCostCategoryDefinitionsResponse$NextToken": "<p>The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size. </p>",
+        "ListSavingsPlansPurchaseRecommendationGenerationRequest$NextPageToken": "<p>The token to retrieve the next set of results.</p>",
+        "ListSavingsPlansPurchaseRecommendationGenerationResponse$NextPageToken": "<p>The token to retrieve the next set of results.</p>"
       }
     },
     "NonNegativeInteger": {
@@ -1397,7 +1436,8 @@
         "CostCategoryReference$NumberOfRules": "<p>The number of rules that are associated with a specific Cost Category. </p>",
         "GetReservationPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
         "GetRightsizingRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
-        "GetSavingsPlansPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>"
+        "GetSavingsPlansPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
+        "ListSavingsPlansPurchaseRecommendationGenerationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>"
       }
     },
     "NullableNonNegativeDouble": {
@@ -1523,6 +1563,20 @@
       "base": null,
       "refs": {
         "ReservationAggregates$RealizedSavings": "<p>The realized savings because of purchasing and using a reservation.</p>"
+      }
+    },
+    "RecommendationId": {
+      "base": null,
+      "refs": {
+        "GenerationSummary$RecommendationId": "<p>Indicates the ID for this specific recommendation.</p>",
+        "RecommendationIdList$member": null,
+        "StartSavingsPlansPurchaseRecommendationGenerationResponse$RecommendationId": "<p>The ID for this specific recommendation.</p>"
+      }
+    },
+    "RecommendationIdList": {
+      "base": null,
+      "refs": {
+        "ListSavingsPlansPurchaseRecommendationGenerationRequest$RecommendationIds": "<p>The IDs for each specific recommendation.</p>"
       }
     },
     "RecommendationTarget": {
@@ -1928,6 +1982,16 @@
         "SortDefinition$SortOrder": "<p>The order that's used to sort the data.</p>"
       }
     },
+    "StartSavingsPlansPurchaseRecommendationGenerationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSavingsPlansPurchaseRecommendationGenerationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Subscriber": {
       "base": "<p>The recipient of <code>AnomalySubscription</code> notifications. </p>",
       "refs": {
@@ -2241,7 +2305,12 @@
         "CreateCostCategoryDefinitionResponse$EffectiveStart": "<p>The Cost Category's effective start date. It can only be a billing start date (first day of the month).</p>",
         "DeleteCostCategoryDefinitionResponse$EffectiveEnd": "<p>The effective end date of the Cost Category as a result of deleting it. No costs after this date is categorized by the deleted Cost Category. </p>",
         "DescribeCostCategoryDefinitionRequest$EffectiveOn": "<p>The date when the Cost Category was effective. </p>",
+        "GenerationSummary$GenerationStartedTime": "<p>Indicates the start time of the recommendation generation.</p>",
+        "GenerationSummary$GenerationCompletionTime": "<p>Indicates the completion time of the recommendation generation.</p>",
+        "GenerationSummary$EstimatedCompletionTime": "<p>Indicates the estimated time for when the recommendation generation will complete.</p>",
         "ListCostCategoryDefinitionsRequest$EffectiveOn": "<p>The date when the Cost Category was effective. </p>",
+        "StartSavingsPlansPurchaseRecommendationGenerationResponse$GenerationStartedTime": "<p>The start time of the recommendation generation.</p>",
+        "StartSavingsPlansPurchaseRecommendationGenerationResponse$EstimatedCompletionTime": "<p>The estimated time for when the recommendation generation will complete.</p>",
         "UpdateCostCategoryDefinitionRequest$EffectiveStart": "<p>The Cost Category's effective start date. It can only be a billing start date (first day of the month). If the date isn't provided, it's the first day of the current month. Dates can't be before the previous twelve months, or in the future.</p>",
         "UpdateCostCategoryDefinitionResponse$EffectiveStart": "<p>The Cost Category's effective start date. It can only be a billing start date (first day of the month).</p>"
       }

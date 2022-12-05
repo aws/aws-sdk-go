@@ -13768,6 +13768,12 @@ const (
 
 	// CLMLanguageCodeEnAu is a CLMLanguageCode enum value
 	CLMLanguageCodeEnAu = "en-AU"
+
+	// CLMLanguageCodeDeDe is a CLMLanguageCode enum value
+	CLMLanguageCodeDeDe = "de-DE"
+
+	// CLMLanguageCodeJaJp is a CLMLanguageCode enum value
+	CLMLanguageCodeJaJp = "ja-JP"
 )
 
 // CLMLanguageCode_Values returns all elements of the CLMLanguageCode enum
@@ -13778,6 +13784,8 @@ func CLMLanguageCode_Values() []string {
 		CLMLanguageCodeEsUs,
 		CLMLanguageCodeEnGb,
 		CLMLanguageCodeEnAu,
+		CLMLanguageCodeDeDe,
+		CLMLanguageCodeJaJp,
 	}
 }
 

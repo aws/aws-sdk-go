@@ -441,6 +441,8 @@ func (c *Ivschat) DeleteMessageRequest(input *DeleteMessageInput) (req *request.
 //
 //   - ResourceNotFoundException
 //
+//   - PendingVerification
+//
 //   - ValidationException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivschat-2020-07-14/DeleteMessage
@@ -612,6 +614,8 @@ func (c *Ivschat) DisconnectUserRequest(input *DisconnectUserInput) (req *reques
 //   - AccessDeniedException
 //
 //   - ResourceNotFoundException
+//
+//   - PendingVerification
 //
 //   - ValidationException
 //
@@ -1222,6 +1226,8 @@ func (c *Ivschat) SendEventRequest(input *SendEventInput) (req *request.Request,
 //   - AccessDeniedException
 //
 //   - ResourceNotFoundException
+//
+//   - PendingVerification
 //
 //   - ValidationException
 //
@@ -2571,15 +2577,15 @@ func (s DeleteRoomOutput) GoString() string {
 type DestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the Amazon CloudWatch Logs destination where chat activity will be
-	// logged.
+	// An Amazon CloudWatch Logs destination configuration where chat activity will
+	// be logged.
 	CloudWatchLogs *CloudWatchLogsDestinationConfiguration `locationName:"cloudWatchLogs" type:"structure"`
 
-	// Name of the Amazon Kinesis Data Firehose destination where chat activity
-	// will be logged
+	// An Amazon Kinesis Data Firehose destination configuration where chat activity
+	// will be logged.
 	Firehose *FirehoseDestinationConfiguration `locationName:"firehose" type:"structure"`
 
-	// Name of the Amazon S3 bucket where chat activity will be logged.
+	// An Amazon S3 destination configuration where chat activity will be logged.
 	S3 *S3DestinationConfiguration `locationName:"s3" type:"structure"`
 }
 

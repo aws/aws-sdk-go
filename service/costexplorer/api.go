@@ -1926,8 +1926,9 @@ func (c *CostExplorer) GetSavingsPlansPurchaseRecommendationRequest(input *GetSa
 
 // GetSavingsPlansPurchaseRecommendation API operation for AWS Cost Explorer Service.
 //
-// Retrieves your request parameters, Savings Plan Recommendations Summary and
-// Details.
+// Retrieves the Savings Plans recommendations for your account. First use StartSavingsPlansPurchaseRecommendationGeneration
+// to generate a new set of recommendations, and then use GetSavingsPlansPurchaseRecommendation
+// to retrieve them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2664,6 +2665,89 @@ func (c *CostExplorer) ListCostCategoryDefinitionsPagesWithContext(ctx aws.Conte
 	return p.Err()
 }
 
+const opListSavingsPlansPurchaseRecommendationGeneration = "ListSavingsPlansPurchaseRecommendationGeneration"
+
+// ListSavingsPlansPurchaseRecommendationGenerationRequest generates a "aws/request.Request" representing the
+// client's request for the ListSavingsPlansPurchaseRecommendationGeneration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSavingsPlansPurchaseRecommendationGeneration for more information on using the ListSavingsPlansPurchaseRecommendationGeneration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSavingsPlansPurchaseRecommendationGenerationRequest method.
+//	req, resp := client.ListSavingsPlansPurchaseRecommendationGenerationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListSavingsPlansPurchaseRecommendationGeneration
+func (c *CostExplorer) ListSavingsPlansPurchaseRecommendationGenerationRequest(input *ListSavingsPlansPurchaseRecommendationGenerationInput) (req *request.Request, output *ListSavingsPlansPurchaseRecommendationGenerationOutput) {
+	op := &request.Operation{
+		Name:       opListSavingsPlansPurchaseRecommendationGeneration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListSavingsPlansPurchaseRecommendationGenerationInput{}
+	}
+
+	output = &ListSavingsPlansPurchaseRecommendationGenerationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSavingsPlansPurchaseRecommendationGeneration API operation for AWS Cost Explorer Service.
+//
+// Retrieves a list of your historical recommendation generations within the
+// past 30 days.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation ListSavingsPlansPurchaseRecommendationGeneration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     You made too many calls in a short period of time. Try again later.
+//
+//   - InvalidNextTokenException
+//     The pagination token is invalid. Try again without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListSavingsPlansPurchaseRecommendationGeneration
+func (c *CostExplorer) ListSavingsPlansPurchaseRecommendationGeneration(input *ListSavingsPlansPurchaseRecommendationGenerationInput) (*ListSavingsPlansPurchaseRecommendationGenerationOutput, error) {
+	req, out := c.ListSavingsPlansPurchaseRecommendationGenerationRequest(input)
+	return out, req.Send()
+}
+
+// ListSavingsPlansPurchaseRecommendationGenerationWithContext is the same as ListSavingsPlansPurchaseRecommendationGeneration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSavingsPlansPurchaseRecommendationGeneration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) ListSavingsPlansPurchaseRecommendationGenerationWithContext(ctx aws.Context, input *ListSavingsPlansPurchaseRecommendationGenerationInput, opts ...request.Option) (*ListSavingsPlansPurchaseRecommendationGenerationOutput, error) {
+	req, out := c.ListSavingsPlansPurchaseRecommendationGenerationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2820,6 +2904,99 @@ func (c *CostExplorer) ProvideAnomalyFeedback(input *ProvideAnomalyFeedbackInput
 // for more information on using Contexts.
 func (c *CostExplorer) ProvideAnomalyFeedbackWithContext(ctx aws.Context, input *ProvideAnomalyFeedbackInput, opts ...request.Option) (*ProvideAnomalyFeedbackOutput, error) {
 	req, out := c.ProvideAnomalyFeedbackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSavingsPlansPurchaseRecommendationGeneration = "StartSavingsPlansPurchaseRecommendationGeneration"
+
+// StartSavingsPlansPurchaseRecommendationGenerationRequest generates a "aws/request.Request" representing the
+// client's request for the StartSavingsPlansPurchaseRecommendationGeneration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSavingsPlansPurchaseRecommendationGeneration for more information on using the StartSavingsPlansPurchaseRecommendationGeneration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartSavingsPlansPurchaseRecommendationGenerationRequest method.
+//	req, resp := client.StartSavingsPlansPurchaseRecommendationGenerationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartSavingsPlansPurchaseRecommendationGeneration
+func (c *CostExplorer) StartSavingsPlansPurchaseRecommendationGenerationRequest(input *StartSavingsPlansPurchaseRecommendationGenerationInput) (req *request.Request, output *StartSavingsPlansPurchaseRecommendationGenerationOutput) {
+	op := &request.Operation{
+		Name:       opStartSavingsPlansPurchaseRecommendationGeneration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartSavingsPlansPurchaseRecommendationGenerationInput{}
+	}
+
+	output = &StartSavingsPlansPurchaseRecommendationGenerationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSavingsPlansPurchaseRecommendationGeneration API operation for AWS Cost Explorer Service.
+//
+// Requests a Savings Plans recommendation generation. This enables you to calculate
+// a fresh set of Savings Plans recommendations that takes your latest usage
+// data and current Savings Plans inventory into account. You can refresh Savings
+// Plans recommendations up to three times daily for a consolidated billing
+// family.
+//
+// StartSavingsPlansPurchaseRecommendationGeneration has no request syntax because
+// no input parameters are needed to support this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation StartSavingsPlansPurchaseRecommendationGeneration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     You made too many calls in a short period of time. Try again later.
+//
+//   - ServiceQuotaExceededException
+//     You've reached the limit on the number of resources you can create, or exceeded
+//     the size of an individual resource.
+//
+//   - GenerationExistsException
+//     A request to generate a recommendation is already in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartSavingsPlansPurchaseRecommendationGeneration
+func (c *CostExplorer) StartSavingsPlansPurchaseRecommendationGeneration(input *StartSavingsPlansPurchaseRecommendationGenerationInput) (*StartSavingsPlansPurchaseRecommendationGenerationOutput, error) {
+	req, out := c.StartSavingsPlansPurchaseRecommendationGenerationRequest(input)
+	return out, req.Send()
+}
+
+// StartSavingsPlansPurchaseRecommendationGenerationWithContext is the same as StartSavingsPlansPurchaseRecommendationGeneration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSavingsPlansPurchaseRecommendationGeneration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) StartSavingsPlansPurchaseRecommendationGenerationWithContext(ctx aws.Context, input *StartSavingsPlansPurchaseRecommendationGenerationInput, opts ...request.Option) (*StartSavingsPlansPurchaseRecommendationGenerationOutput, error) {
+	req, out := c.StartSavingsPlansPurchaseRecommendationGenerationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6893,6 +7070,140 @@ func (s *ForecastResult) SetPredictionIntervalUpperBound(v string) *ForecastResu
 // SetTimePeriod sets the TimePeriod field's value.
 func (s *ForecastResult) SetTimePeriod(v *DateInterval) *ForecastResult {
 	s.TimePeriod = v
+	return s
+}
+
+// A request to generate a recommendation is already in progress.
+type GenerationExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerationExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerationExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorGenerationExistsException(v protocol.ResponseMetadata) error {
+	return &GenerationExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *GenerationExistsException) Code() string {
+	return "GenerationExistsException"
+}
+
+// Message returns the exception's message.
+func (s *GenerationExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *GenerationExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *GenerationExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *GenerationExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *GenerationExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The summary of the Savings Plans recommendation generation.
+type GenerationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the estimated time for when the recommendation generation will
+	// complete.
+	EstimatedCompletionTime *string `min:"20" type:"string"`
+
+	// Indicates the completion time of the recommendation generation.
+	GenerationCompletionTime *string `min:"20" type:"string"`
+
+	// Indicates the start time of the recommendation generation.
+	GenerationStartedTime *string `min:"20" type:"string"`
+
+	// Indicates whether the recommendation generation succeeded, is processing,
+	// or failed.
+	GenerationStatus *string `type:"string" enum:"GenerationStatus"`
+
+	// Indicates the ID for this specific recommendation.
+	RecommendationId *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerationSummary) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedCompletionTime sets the EstimatedCompletionTime field's value.
+func (s *GenerationSummary) SetEstimatedCompletionTime(v string) *GenerationSummary {
+	s.EstimatedCompletionTime = &v
+	return s
+}
+
+// SetGenerationCompletionTime sets the GenerationCompletionTime field's value.
+func (s *GenerationSummary) SetGenerationCompletionTime(v string) *GenerationSummary {
+	s.GenerationCompletionTime = &v
+	return s
+}
+
+// SetGenerationStartedTime sets the GenerationStartedTime field's value.
+func (s *GenerationSummary) SetGenerationStartedTime(v string) *GenerationSummary {
+	s.GenerationStartedTime = &v
+	return s
+}
+
+// SetGenerationStatus sets the GenerationStatus field's value.
+func (s *GenerationSummary) SetGenerationStatus(v string) *GenerationSummary {
+	s.GenerationStatus = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *GenerationSummary) SetRecommendationId(v string) *GenerationSummary {
+	s.RecommendationId = &v
 	return s
 }
 
@@ -11414,6 +11725,105 @@ func (s *ListCostCategoryDefinitionsOutput) SetNextToken(v string) *ListCostCate
 	return s
 }
 
+type ListSavingsPlansPurchaseRecommendationGenerationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the recommendation generation.
+	GenerationStatus *string `type:"string" enum:"GenerationStatus"`
+
+	// The token to retrieve the next set of results.
+	NextPageToken *string `type:"string"`
+
+	// The number of recommendations that you want returned in a single response
+	// object.
+	PageSize *int64 `type:"integer"`
+
+	// The IDs for each specific recommendation.
+	RecommendationIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSavingsPlansPurchaseRecommendationGenerationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSavingsPlansPurchaseRecommendationGenerationInput) GoString() string {
+	return s.String()
+}
+
+// SetGenerationStatus sets the GenerationStatus field's value.
+func (s *ListSavingsPlansPurchaseRecommendationGenerationInput) SetGenerationStatus(v string) *ListSavingsPlansPurchaseRecommendationGenerationInput {
+	s.GenerationStatus = &v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *ListSavingsPlansPurchaseRecommendationGenerationInput) SetNextPageToken(v string) *ListSavingsPlansPurchaseRecommendationGenerationInput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListSavingsPlansPurchaseRecommendationGenerationInput) SetPageSize(v int64) *ListSavingsPlansPurchaseRecommendationGenerationInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetRecommendationIds sets the RecommendationIds field's value.
+func (s *ListSavingsPlansPurchaseRecommendationGenerationInput) SetRecommendationIds(v []*string) *ListSavingsPlansPurchaseRecommendationGenerationInput {
+	s.RecommendationIds = v
+	return s
+}
+
+type ListSavingsPlansPurchaseRecommendationGenerationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of historical recommendation generations.
+	GenerationSummaryList []*GenerationSummary `type:"list"`
+
+	// The token to retrieve the next set of results.
+	NextPageToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSavingsPlansPurchaseRecommendationGenerationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSavingsPlansPurchaseRecommendationGenerationOutput) GoString() string {
+	return s.String()
+}
+
+// SetGenerationSummaryList sets the GenerationSummaryList field's value.
+func (s *ListSavingsPlansPurchaseRecommendationGenerationOutput) SetGenerationSummaryList(v []*GenerationSummary) *ListSavingsPlansPurchaseRecommendationGenerationOutput {
+	s.GenerationSummaryList = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *ListSavingsPlansPurchaseRecommendationGenerationOutput) SetNextPageToken(v string) *ListSavingsPlansPurchaseRecommendationGenerationOutput {
+	s.NextPageToken = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14370,6 +14780,77 @@ func (s *SortDefinition) SetSortOrder(v string) *SortDefinition {
 	return s
 }
 
+type StartSavingsPlansPurchaseRecommendationGenerationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSavingsPlansPurchaseRecommendationGenerationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSavingsPlansPurchaseRecommendationGenerationInput) GoString() string {
+	return s.String()
+}
+
+type StartSavingsPlansPurchaseRecommendationGenerationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated time for when the recommendation generation will complete.
+	EstimatedCompletionTime *string `min:"20" type:"string"`
+
+	// The start time of the recommendation generation.
+	GenerationStartedTime *string `min:"20" type:"string"`
+
+	// The ID for this specific recommendation.
+	RecommendationId *string `min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSavingsPlansPurchaseRecommendationGenerationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartSavingsPlansPurchaseRecommendationGenerationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedCompletionTime sets the EstimatedCompletionTime field's value.
+func (s *StartSavingsPlansPurchaseRecommendationGenerationOutput) SetEstimatedCompletionTime(v string) *StartSavingsPlansPurchaseRecommendationGenerationOutput {
+	s.EstimatedCompletionTime = &v
+	return s
+}
+
+// SetGenerationStartedTime sets the GenerationStartedTime field's value.
+func (s *StartSavingsPlansPurchaseRecommendationGenerationOutput) SetGenerationStartedTime(v string) *StartSavingsPlansPurchaseRecommendationGenerationOutput {
+	s.GenerationStartedTime = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *StartSavingsPlansPurchaseRecommendationGenerationOutput) SetRecommendationId(v string) *StartSavingsPlansPurchaseRecommendationGenerationOutput {
+	s.RecommendationId = &v
+	return s
+}
+
 // The recipient of AnomalySubscription notifications.
 type Subscriber struct {
 	_ struct{} `type:"structure"`
@@ -16177,6 +16658,26 @@ func FindingReasonCode_Values() []string {
 		FindingReasonCodeDiskIopsUnderProvisioned,
 		FindingReasonCodeDiskThroughputOverProvisioned,
 		FindingReasonCodeDiskThroughputUnderProvisioned,
+	}
+}
+
+const (
+	// GenerationStatusSucceeded is a GenerationStatus enum value
+	GenerationStatusSucceeded = "SUCCEEDED"
+
+	// GenerationStatusProcessing is a GenerationStatus enum value
+	GenerationStatusProcessing = "PROCESSING"
+
+	// GenerationStatusFailed is a GenerationStatus enum value
+	GenerationStatusFailed = "FAILED"
+)
+
+// GenerationStatus_Values returns all elements of the GenerationStatus enum
+func GenerationStatus_Values() []string {
+	return []string{
+		GenerationStatusSucceeded,
+		GenerationStatusProcessing,
+		GenerationStatusFailed,
 	}
 }
 
