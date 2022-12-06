@@ -71,7 +71,7 @@ func (c *SageMakerFeatureStoreRuntime) BatchGetRecordRequest(input *BatchGetReco
 //
 //   - InternalFailure
 //     An internal failure occurred. Try your request again. If the problem persists,
-//     contact AWS customer support.
+//     contact Amazon Web Services customer support.
 //
 //   - ServiceUnavailable
 //     The service is currently unavailable.
@@ -145,9 +145,10 @@ func (c *SageMakerFeatureStoreRuntime) DeleteRecordRequest(input *DeleteRecordIn
 
 // DeleteRecord API operation for Amazon SageMaker Feature Store Runtime.
 //
-// Deletes a Record from a FeatureGroup. A new record will show up in the OfflineStore
-// when the DeleteRecord API is called. This record will have a value of True
-// in the is_deleted column.
+// Deletes a Record from a FeatureGroup. When the DeleteRecord API is called
+// a new record will be added to the OfflineStore and the Record will be removed
+// from the OnlineStore. This record will have a value of True in the is_deleted
+// column.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -163,7 +164,7 @@ func (c *SageMakerFeatureStoreRuntime) DeleteRecordRequest(input *DeleteRecordIn
 //
 //   - InternalFailure
 //     An internal failure occurred. Try your request again. If the problem persists,
-//     contact AWS customer support.
+//     contact Amazon Web Services customer support.
 //
 //   - ServiceUnavailable
 //     The service is currently unavailable.
@@ -257,7 +258,7 @@ func (c *SageMakerFeatureStoreRuntime) GetRecordRequest(input *GetRecordInput) (
 //
 //   - InternalFailure
 //     An internal failure occurred. Try your request again. If the problem persists,
-//     contact AWS customer support.
+//     contact Amazon Web Services customer support.
 //
 //   - ServiceUnavailable
 //     The service is currently unavailable.
@@ -351,7 +352,7 @@ func (c *SageMakerFeatureStoreRuntime) PutRecordRequest(input *PutRecordInput) (
 //
 //   - InternalFailure
 //     An internal failure occurred. Try your request again. If the problem persists,
-//     contact AWS customer support.
+//     contact Amazon Web Services customer support.
 //
 //   - ServiceUnavailable
 //     The service is currently unavailable.
@@ -659,7 +660,7 @@ func (s *BatchGetRecordInput) SetIdentifiers(v []*BatchGetRecordIdentifier) *Bat
 type BatchGetRecordOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of errors that have occured when retrieving a batch of Records.
+	// A list of errors that have occurred when retrieving a batch of Records.
 	//
 	// Errors is a required field
 	Errors []*BatchGetRecordError `type:"list" required:"true"`
@@ -787,6 +788,11 @@ type DeleteRecordInput struct {
 	//
 	// RecordIdentifierValueAsString is a required field
 	RecordIdentifierValueAsString *string `location:"querystring" locationName:"RecordIdentifierValueAsString" type:"string" required:"true"`
+
+	// A list of stores from which you're deleting the record. By default, Feature
+	// Store deletes the record from all of the stores that you're using for the
+	// FeatureGroup.
+	TargetStores []*string `location:"querystring" locationName:"TargetStores" min:"1" type:"list" enum:"TargetStore"`
 }
 
 // String returns the string representation.
@@ -822,6 +828,9 @@ func (s *DeleteRecordInput) Validate() error {
 	if s.RecordIdentifierValueAsString == nil {
 		invalidParams.Add(request.NewErrParamRequired("RecordIdentifierValueAsString"))
 	}
+	if s.TargetStores != nil && len(s.TargetStores) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetStores", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -844,6 +853,12 @@ func (s *DeleteRecordInput) SetFeatureGroupName(v string) *DeleteRecordInput {
 // SetRecordIdentifierValueAsString sets the RecordIdentifierValueAsString field's value.
 func (s *DeleteRecordInput) SetRecordIdentifierValueAsString(v string) *DeleteRecordInput {
 	s.RecordIdentifierValueAsString = &v
+	return s
+}
+
+// SetTargetStores sets the TargetStores field's value.
+func (s *DeleteRecordInput) SetTargetStores(v []*string) *DeleteRecordInput {
+	s.TargetStores = v
 	return s
 }
 
@@ -938,7 +953,7 @@ func (s *FeatureValue) SetValueAsString(v string) *FeatureValue {
 type GetRecordInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the feature group in which you want to put the records.
+	// The name of the feature group from which you want to retrieve a record.
 	//
 	// FeatureGroupName is a required field
 	FeatureGroupName *string `location:"uri" locationName:"FeatureGroupName" min:"1" type:"string" required:"true"`
@@ -1044,7 +1059,7 @@ func (s *GetRecordOutput) SetRecord(v []*FeatureValue) *GetRecordOutput {
 }
 
 // An internal failure occurred. Try your request again. If the problem persists,
-// contact AWS customer support.
+// contact Amazon Web Services customer support.
 type InternalFailure struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1127,6 +1142,10 @@ type PutRecordInput struct {
 	//
 	// Record is a required field
 	Record []*FeatureValue `min:"1" type:"list" required:"true"`
+
+	// A list of stores to which you're adding the record. By default, Feature Store
+	// adds the record to all of the stores that you're using for the FeatureGroup.
+	TargetStores []*string `min:"1" type:"list" enum:"TargetStore"`
 }
 
 // String returns the string representation.
@@ -1162,6 +1181,9 @@ func (s *PutRecordInput) Validate() error {
 	if s.Record != nil && len(s.Record) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Record", 1))
 	}
+	if s.TargetStores != nil && len(s.TargetStores) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetStores", 1))
+	}
 	if s.Record != nil {
 		for i, v := range s.Record {
 			if v == nil {
@@ -1188,6 +1210,12 @@ func (s *PutRecordInput) SetFeatureGroupName(v string) *PutRecordInput {
 // SetRecord sets the Record field's value.
 func (s *PutRecordInput) SetRecord(v []*FeatureValue) *PutRecordInput {
 	s.Record = v
+	return s
+}
+
+// SetTargetStores sets the TargetStores field's value.
+func (s *PutRecordInput) SetTargetStores(v []*string) *PutRecordInput {
+	s.TargetStores = v
 	return s
 }
 
@@ -1403,4 +1431,20 @@ func (s *ValidationError) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationError) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// TargetStoreOnlineStore is a TargetStore enum value
+	TargetStoreOnlineStore = "OnlineStore"
+
+	// TargetStoreOfflineStore is a TargetStore enum value
+	TargetStoreOfflineStore = "OfflineStore"
+)
+
+// TargetStore_Values returns all elements of the TargetStore enum
+func TargetStore_Values() []string {
+	return []string{
+		TargetStoreOnlineStore,
+		TargetStoreOfflineStore,
+	}
 }

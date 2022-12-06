@@ -357,6 +357,24 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CreateRule":{
+      "name":"CreateRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/rules/{InstanceId}"
+      },
+      "input":{"shape":"CreateRuleRequest"},
+      "output":{"shape":"CreateRuleResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "CreateSecurityProfile":{
       "name":"CreateSecurityProfile",
       "http":{
@@ -569,6 +587,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DeleteRule":{
+      "name":"DeleteRule",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/rules/{InstanceId}/{RuleId}"
+      },
+      "input":{"shape":"DeleteRuleRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteSecurityProfile":{
@@ -872,6 +905,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DescribeRule":{
+      "name":"DescribeRule",
+      "http":{
+        "method":"GET",
+        "requestUri":"/rules/{InstanceId}/{RuleId}"
+      },
+      "input":{"shape":"DescribeRuleRequest"},
+      "output":{"shape":"DescribeRuleResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DescribeSecurityProfile":{
@@ -1577,6 +1626,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListRules":{
+      "name":"ListRules",
+      "http":{
+        "method":"GET",
+        "requestUri":"/rules/{InstanceId}"
+      },
+      "input":{"shape":"ListRulesRequest"},
+      "output":{"shape":"ListRulesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListSecurityKeys":{
@@ -2468,6 +2533,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateRule":{
+      "name":"UpdateRule",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/rules/{InstanceId}/{RuleId}"
+      },
+      "input":{"shape":"UpdateRuleRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceConflictException"}
+      ]
+    },
     "UpdateSecurityProfile":{
       "name":"UpdateSecurityProfile",
       "http":{
@@ -2635,6 +2716,26 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "ActionSummaries":{
+      "type":"list",
+      "member":{"shape":"ActionSummary"}
+    },
+    "ActionSummary":{
+      "type":"structure",
+      "required":["ActionType"],
+      "members":{
+        "ActionType":{"shape":"ActionType"}
+      }
+    },
+    "ActionType":{
+      "type":"string",
+      "enum":[
+        "CREATE_TASK",
+        "ASSIGN_CONTACT_CATEGORY",
+        "GENERATE_EVENTBRIDGE_EVENT",
+        "SEND_NOTIFICATION"
+      ]
+    },
     "AfterContactWorkTimeLimit":{
       "type":"integer",
       "min":0
@@ -2775,6 +2876,11 @@
       }
     },
     "ApproximateTotalCount":{"type":"long"},
+    "AssignContactCategoryActionDefinition":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AssociateApprovedOriginRequest":{
       "type":"structure",
       "required":[
@@ -3352,6 +3458,11 @@
       "member":{"shape":"ContactState"},
       "max":9
     },
+    "Content":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ControlPlaneTagFilter":{
       "type":"structure",
       "members":{
@@ -3613,6 +3724,44 @@
       "members":{
         "RoutingProfileArn":{"shape":"ARN"},
         "RoutingProfileId":{"shape":"RoutingProfileId"}
+      }
+    },
+    "CreateRuleRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Name",
+        "TriggerEventSource",
+        "Function",
+        "Actions",
+        "PublishStatus"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Name":{"shape":"RuleName"},
+        "TriggerEventSource":{"shape":"RuleTriggerEventSource"},
+        "Function":{"shape":"RuleFunction"},
+        "Actions":{"shape":"RuleActions"},
+        "PublishStatus":{"shape":"RulePublishStatus"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateRuleResponse":{
+      "type":"structure",
+      "required":[
+        "RuleArn",
+        "RuleId"
+      ],
+      "members":{
+        "RuleArn":{"shape":"ARN"},
+        "RuleId":{"shape":"RuleId"}
       }
     },
     "CreateSecurityProfileName":{
@@ -4034,6 +4183,25 @@
           "shape":"QuickConnectId",
           "location":"uri",
           "locationName":"QuickConnectId"
+        }
+      }
+    },
+    "DeleteRuleRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "RuleId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "RuleId":{
+          "shape":"RuleId",
+          "location":"uri",
+          "locationName":"RuleId"
         }
       }
     },
@@ -4481,6 +4649,32 @@
         "RoutingProfile":{"shape":"RoutingProfile"}
       }
     },
+    "DescribeRuleRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "RuleId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "RuleId":{
+          "shape":"RuleId",
+          "location":"uri",
+          "locationName":"RuleId"
+        }
+      }
+    },
+    "DescribeRuleResponse":{
+      "type":"structure",
+      "required":["Rule"],
+      "members":{
+        "Rule":{"shape":"Rule"}
+      }
+    },
     "DescribeSecurityProfileRequest":{
       "type":"structure",
       "required":[
@@ -4921,6 +5115,29 @@
     "EncryptionType":{
       "type":"string",
       "enum":["KMS"]
+    },
+    "EventBridgeActionDefinition":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"EventBridgeActionName"}
+      }
+    },
+    "EventBridgeActionName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "EventSourceName":{
+      "type":"string",
+      "enum":[
+        "OnPostCallAnalysisAvailable",
+        "OnRealTimeCallAnalysisAvailable",
+        "OnPostChatAnalysisAvailable",
+        "OnZendeskTicketCreate",
+        "OnZendeskTicketStatusUpdate",
+        "OnSalesforceCaseCreate"
+      ]
     },
     "Filters":{
       "type":"structure",
@@ -6414,6 +6631,46 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListRulesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "PublishStatus":{
+          "shape":"RulePublishStatus",
+          "location":"querystring",
+          "locationName":"publishStatus"
+        },
+        "EventSourceName":{
+          "shape":"EventSourceName",
+          "location":"querystring",
+          "locationName":"eventSourceName"
+        },
+        "MaxResults":{
+          "shape":"MaxResult200",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListRulesResponse":{
+      "type":"structure",
+      "required":["RuleSummaryList"],
+      "members":{
+        "RuleSummaryList":{"shape":"RuleSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListSecurityKeysRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -6708,6 +6965,11 @@
       "max":2,
       "min":1
     },
+    "MaxResult200":{
+      "type":"integer",
+      "max":200,
+      "min":1
+    },
     "MaxResult25":{
       "type":"integer",
       "max":25,
@@ -6787,6 +7049,21 @@
       "type":"string",
       "max":2500,
       "min":1
+    },
+    "NotificationContentType":{
+      "type":"string",
+      "enum":["PLAIN_TEXT"]
+    },
+    "NotificationDeliveryType":{
+      "type":"string",
+      "enum":["EMAIL"]
+    },
+    "NotificationRecipientType":{
+      "type":"structure",
+      "members":{
+        "UserTags":{"shape":"UserTagMap"},
+        "UserIds":{"shape":"UserIdList"}
+      }
     },
     "NumberReference":{
       "type":"structure",
@@ -7798,6 +8075,103 @@
       "type":"list",
       "member":{"shape":"RoutingProfileSummary"}
     },
+    "Rule":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RuleId",
+        "RuleArn",
+        "TriggerEventSource",
+        "Function",
+        "Actions",
+        "PublishStatus",
+        "CreatedTime",
+        "LastUpdatedTime",
+        "LastUpdatedBy"
+      ],
+      "members":{
+        "Name":{"shape":"RuleName"},
+        "RuleId":{"shape":"RuleId"},
+        "RuleArn":{"shape":"ARN"},
+        "TriggerEventSource":{"shape":"RuleTriggerEventSource"},
+        "Function":{"shape":"RuleFunction"},
+        "Actions":{"shape":"RuleActions"},
+        "PublishStatus":{"shape":"RulePublishStatus"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "LastUpdatedBy":{"shape":"ARN"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "RuleAction":{
+      "type":"structure",
+      "required":["ActionType"],
+      "members":{
+        "ActionType":{"shape":"ActionType"},
+        "TaskAction":{"shape":"TaskActionDefinition"},
+        "EventBridgeAction":{"shape":"EventBridgeActionDefinition"},
+        "AssignContactCategoryAction":{"shape":"AssignContactCategoryActionDefinition"},
+        "SendNotificationAction":{"shape":"SendNotificationActionDefinition"}
+      }
+    },
+    "RuleActions":{
+      "type":"list",
+      "member":{"shape":"RuleAction"}
+    },
+    "RuleFunction":{"type":"string"},
+    "RuleId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "RuleName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "RulePublishStatus":{
+      "type":"string",
+      "enum":[
+        "DRAFT",
+        "PUBLISHED"
+      ]
+    },
+    "RuleSummary":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RuleId",
+        "RuleArn",
+        "EventSourceName",
+        "PublishStatus",
+        "ActionSummaries",
+        "CreatedTime",
+        "LastUpdatedTime"
+      ],
+      "members":{
+        "Name":{"shape":"RuleName"},
+        "RuleId":{"shape":"RuleId"},
+        "RuleArn":{"shape":"ARN"},
+        "EventSourceName":{"shape":"EventSourceName"},
+        "PublishStatus":{"shape":"RulePublishStatus"},
+        "ActionSummaries":{"shape":"ActionSummaries"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "RuleSummaryList":{
+      "type":"list",
+      "member":{"shape":"RuleSummary"}
+    },
+    "RuleTriggerEventSource":{
+      "type":"structure",
+      "required":["EventSourceName"],
+      "members":{
+        "EventSourceName":{"shape":"EventSourceName"},
+        "IntegrationAssociationId":{"shape":"IntegrationAssociationId"}
+      }
+    },
     "S3Config":{
       "type":"structure",
       "required":[
@@ -8049,6 +8423,22 @@
     "SecurityToken":{
       "type":"string",
       "sensitive":true
+    },
+    "SendNotificationActionDefinition":{
+      "type":"structure",
+      "required":[
+        "DeliveryMethod",
+        "Content",
+        "ContentType",
+        "Recipient"
+      ],
+      "members":{
+        "DeliveryMethod":{"shape":"NotificationDeliveryType"},
+        "Subject":{"shape":"Subject"},
+        "Content":{"shape":"Content"},
+        "ContentType":{"shape":"NotificationContentType"},
+        "Recipient":{"shape":"NotificationRecipientType"}
+      }
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -8306,6 +8696,11 @@
         "Value":{"shape":"ReferenceValue"}
       }
     },
+    "Subject":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
     "SupportedMessagingContentType":{
       "type":"string",
       "max":100,
@@ -8395,6 +8790,29 @@
     "TagValue":{
       "type":"string",
       "max":256
+    },
+    "TaskActionDefinition":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ContactFlowId"
+      ],
+      "members":{
+        "Name":{"shape":"TaskNameExpression"},
+        "Description":{"shape":"TaskDescriptionExpression"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "References":{"shape":"ContactReferences"}
+      }
+    },
+    "TaskDescriptionExpression":{
+      "type":"string",
+      "max":4096,
+      "min":0
+    },
+    "TaskNameExpression":{
+      "type":"string",
+      "max":512,
+      "min":1
     },
     "TaskTemplateArn":{
       "type":"string",
@@ -9217,6 +9635,33 @@
         "QueueConfigs":{"shape":"RoutingProfileQueueConfigList"}
       }
     },
+    "UpdateRuleRequest":{
+      "type":"structure",
+      "required":[
+        "RuleId",
+        "InstanceId",
+        "Name",
+        "Function",
+        "Actions",
+        "PublishStatus"
+      ],
+      "members":{
+        "RuleId":{
+          "shape":"RuleId",
+          "location":"uri",
+          "locationName":"RuleId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Name":{"shape":"RuleName"},
+        "Function":{"shape":"RuleFunction"},
+        "Actions":{"shape":"RuleActions"},
+        "PublishStatus":{"shape":"RulePublishStatus"}
+      }
+    },
     "UpdateSecurityProfileRequest":{
       "type":"structure",
       "required":[
@@ -9512,6 +9957,10 @@
       "member":{"shape":"UserData"}
     },
     "UserId":{"type":"string"},
+    "UserIdList":{
+      "type":"list",
+      "member":{"shape":"UserId"}
+    },
     "UserIdentityInfo":{
       "type":"structure",
       "members":{
@@ -9614,6 +10063,11 @@
     "UserSummaryList":{
       "type":"list",
       "member":{"shape":"UserSummary"}
+    },
+    "UserTagMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
     },
     "Value":{"type":"double"},
     "Vocabulary":{

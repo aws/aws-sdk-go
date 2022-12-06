@@ -4877,6 +4877,53 @@ func (s *CreateCustomLineItemOutput) SetArn(v string) *CreateCustomLineItemOutpu
 	return s
 }
 
+// The possible Amazon Web Services Free Tier configurations.
+type CreateFreeTierConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Activate or deactivate Amazon Web Services Free Tier.
+	//
+	// Activated is a required field
+	Activated *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFreeTierConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFreeTierConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFreeTierConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFreeTierConfig"}
+	if s.Activated == nil {
+		invalidParams.Add(request.NewErrParamRequired("Activated"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActivated sets the Activated field's value.
+func (s *CreateFreeTierConfig) SetActivated(v bool) *CreateFreeTierConfig {
+	s.Activated = &v
+	return s
+}
+
 type CreatePricingPlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5028,9 +5075,7 @@ type CreatePricingRuleInput struct {
 	Description *string `type:"string" sensitive:"true"`
 
 	// A percentage modifier that's applied on the public pricing rates.
-	//
-	// ModifierPercentage is a required field
-	ModifierPercentage *float64 `type:"double" required:"true"`
+	ModifierPercentage *float64 `type:"double"`
 
 	// The pricing rule name. The names must be unique to each pricing rule.
 	//
@@ -5054,6 +5099,9 @@ type CreatePricingRuleInput struct {
 	// A map that contains tag keys and tag values that are attached to a pricing
 	// rule.
 	Tags map[string]*string `min:"1" type:"map"`
+
+	// The set of tiering configurations for the pricing rule.
+	Tiering *CreateTieringInput_ `type:"structure"`
 
 	// The type of pricing rule.
 	//
@@ -5085,9 +5133,6 @@ func (s *CreatePricingRuleInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
-	if s.ModifierPercentage == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModifierPercentage"))
-	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -5105,6 +5150,11 @@ func (s *CreatePricingRuleInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Tiering != nil {
+		if err := s.Tiering.Validate(); err != nil {
+			invalidParams.AddNested("Tiering", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5161,6 +5211,12 @@ func (s *CreatePricingRuleInput) SetTags(v map[string]*string) *CreatePricingRul
 	return s
 }
 
+// SetTiering sets the Tiering field's value.
+func (s *CreatePricingRuleInput) SetTiering(v *CreateTieringInput_) *CreatePricingRuleInput {
+	s.Tiering = v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *CreatePricingRuleInput) SetType(v string) *CreatePricingRuleInput {
 	s.Type = &v
@@ -5195,6 +5251,58 @@ func (s CreatePricingRuleOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreatePricingRuleOutput) SetArn(v string) *CreatePricingRuleOutput {
 	s.Arn = &v
+	return s
+}
+
+// The set of tiering configurations for the pricing rule.
+type CreateTieringInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The possible Amazon Web Services Free Tier configurations.
+	//
+	// FreeTier is a required field
+	FreeTier *CreateFreeTierConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTieringInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTieringInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTieringInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTieringInput_"}
+	if s.FreeTier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FreeTier"))
+	}
+	if s.FreeTier != nil {
+		if err := s.FreeTier.Validate(); err != nil {
+			invalidParams.AddNested("FreeTier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFreeTier sets the FreeTier field's value.
+func (s *CreateTieringInput_) SetFreeTier(v *CreateFreeTierConfig) *CreateTieringInput_ {
+	s.FreeTier = v
 	return s
 }
 
@@ -6250,6 +6358,40 @@ func (s *DisassociateResourceResponseElement) SetArn(v string) *DisassociateReso
 // SetError sets the Error field's value.
 func (s *DisassociateResourceResponseElement) SetError(v *AssociateResourceError) *DisassociateResourceResponseElement {
 	s.Error = v
+	return s
+}
+
+// The possible Amazon Web Services Free Tier configurations.
+type FreeTierConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Activate or deactivate Amazon Web Services Free Tier application.
+	//
+	// Activated is a required field
+	Activated *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FreeTierConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FreeTierConfig) GoString() string {
+	return s.String()
+}
+
+// SetActivated sets the Activated field's value.
+func (s *FreeTierConfig) SetActivated(v bool) *FreeTierConfig {
+	s.Activated = &v
 	return s
 }
 
@@ -8368,6 +8510,9 @@ type PricingRuleListElement struct {
 	// the PricingRule is applicable for.
 	Service *string `min:"1" type:"string"`
 
+	// The set of tiering configurations for the pricing rule.
+	Tiering *Tiering `type:"structure"`
+
 	// The type of pricing rule.
 	Type *string `type:"string" enum:"PricingRuleType"`
 }
@@ -8447,6 +8592,12 @@ func (s *PricingRuleListElement) SetScope(v string) *PricingRuleListElement {
 // SetService sets the Service field's value.
 func (s *PricingRuleListElement) SetService(v string) *PricingRuleListElement {
 	s.Service = &v
+	return s
+}
+
+// SetTiering sets the Tiering field's value.
+func (s *PricingRuleListElement) SetTiering(v *Tiering) *PricingRuleListElement {
+	s.Tiering = v
 	return s
 }
 
@@ -8763,6 +8914,40 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The set of tiering configurations for the pricing rule.
+type Tiering struct {
+	_ struct{} `type:"structure"`
+
+	// The possible Amazon Web Services Free Tier configurations.
+	//
+	// FreeTier is a required field
+	FreeTier *FreeTierConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tiering) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Tiering) GoString() string {
+	return s.String()
+}
+
+// SetFreeTier sets the FreeTier field's value.
+func (s *Tiering) SetFreeTier(v *FreeTierConfig) *Tiering {
+	s.FreeTier = v
+	return s
 }
 
 type UntagResourceInput struct {
@@ -9426,6 +9611,53 @@ func (s *UpdateCustomLineItemPercentageChargeDetails) SetPercentageValue(v float
 	return s
 }
 
+// The possible Amazon Web Services Free Tier configurations.
+type UpdateFreeTierConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Activate or deactivate application of Amazon Web Services Free Tier.
+	//
+	// Activated is a required field
+	Activated *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFreeTierConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFreeTierConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFreeTierConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFreeTierConfig"}
+	if s.Activated == nil {
+		invalidParams.Add(request.NewErrParamRequired("Activated"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActivated sets the Activated field's value.
+func (s *UpdateFreeTierConfig) SetActivated(v bool) *UpdateFreeTierConfig {
+	s.Activated = &v
+	return s
+}
+
 type UpdatePricingPlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9603,6 +9835,9 @@ type UpdatePricingRuleInput struct {
 	// String and GoString methods.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 
+	// The set of tiering configurations for the pricing rule.
+	Tiering *UpdateTieringInput_ `type:"structure"`
+
 	// The new pricing rule type.
 	Type *string `type:"string" enum:"PricingRuleType"`
 }
@@ -9634,6 +9869,11 @@ func (s *UpdatePricingRuleInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tiering != nil {
+		if err := s.Tiering.Validate(); err != nil {
+			invalidParams.AddNested("Tiering", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9662,6 +9902,12 @@ func (s *UpdatePricingRuleInput) SetModifierPercentage(v float64) *UpdatePricing
 // SetName sets the Name field's value.
 func (s *UpdatePricingRuleInput) SetName(v string) *UpdatePricingRuleInput {
 	s.Name = &v
+	return s
+}
+
+// SetTiering sets the Tiering field's value.
+func (s *UpdatePricingRuleInput) SetTiering(v *UpdateTieringInput_) *UpdatePricingRuleInput {
+	s.Tiering = v
 	return s
 }
 
@@ -9712,6 +9958,9 @@ type UpdatePricingRuleOutput struct {
 	// If the Scope attribute is set to SERVICE, the attribute indicates which service
 	// the PricingRule is applicable for.
 	Service *string `min:"1" type:"string"`
+
+	// The set of tiering configurations for the pricing rule.
+	Tiering *UpdateTieringInput_ `type:"structure"`
 
 	// The new pricing rule type.
 	Type *string `type:"string" enum:"PricingRuleType"`
@@ -9789,9 +10038,67 @@ func (s *UpdatePricingRuleOutput) SetService(v string) *UpdatePricingRuleOutput 
 	return s
 }
 
+// SetTiering sets the Tiering field's value.
+func (s *UpdatePricingRuleOutput) SetTiering(v *UpdateTieringInput_) *UpdatePricingRuleOutput {
+	s.Tiering = v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *UpdatePricingRuleOutput) SetType(v string) *UpdatePricingRuleOutput {
 	s.Type = &v
+	return s
+}
+
+// The set of tiering configurations for the pricing rule.
+type UpdateTieringInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The possible Amazon Web Services Free Tier configurations.
+	//
+	// FreeTier is a required field
+	FreeTier *UpdateFreeTierConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTieringInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTieringInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTieringInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTieringInput_"}
+	if s.FreeTier == nil {
+		invalidParams.Add(request.NewErrParamRequired("FreeTier"))
+	}
+	if s.FreeTier != nil {
+		if err := s.FreeTier.Validate(); err != nil {
+			invalidParams.AddNested("FreeTier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFreeTier sets the FreeTier field's value.
+func (s *UpdateTieringInput_) SetFreeTier(v *UpdateFreeTierConfig) *UpdateTieringInput_ {
+	s.FreeTier = v
 	return s
 }
 
@@ -10057,6 +10364,9 @@ const (
 
 	// PricingRuleTypeDiscount is a PricingRuleType enum value
 	PricingRuleTypeDiscount = "DISCOUNT"
+
+	// PricingRuleTypeTiering is a PricingRuleType enum value
+	PricingRuleTypeTiering = "TIERING"
 )
 
 // PricingRuleType_Values returns all elements of the PricingRuleType enum
@@ -10064,6 +10374,7 @@ func PricingRuleType_Values() []string {
 	return []string{
 		PricingRuleTypeMarkup,
 		PricingRuleTypeDiscount,
+		PricingRuleTypeTiering,
 	}
 }
 
@@ -10217,6 +10528,15 @@ const (
 
 	// ValidationExceptionReasonIllegalModifierPercentage is a ValidationExceptionReason enum value
 	ValidationExceptionReasonIllegalModifierPercentage = "ILLEGAL_MODIFIER_PERCENTAGE"
+
+	// ValidationExceptionReasonIllegalType is a ValidationExceptionReason enum value
+	ValidationExceptionReasonIllegalType = "ILLEGAL_TYPE"
+
+	// ValidationExceptionReasonIllegalEndedBillinggroup is a ValidationExceptionReason enum value
+	ValidationExceptionReasonIllegalEndedBillinggroup = "ILLEGAL_ENDED_BILLINGGROUP"
+
+	// ValidationExceptionReasonIllegalTieringInput is a ValidationExceptionReason enum value
+	ValidationExceptionReasonIllegalTieringInput = "ILLEGAL_TIERING_INPUT"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -10272,5 +10592,8 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonInvalidBillingPeriodForOperation,
 		ValidationExceptionReasonIllegalBillingEntity,
 		ValidationExceptionReasonIllegalModifierPercentage,
+		ValidationExceptionReasonIllegalType,
+		ValidationExceptionReasonIllegalEndedBillinggroup,
+		ValidationExceptionReasonIllegalTieringInput,
 	}
 }

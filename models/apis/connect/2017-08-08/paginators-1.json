@@ -146,6 +146,12 @@
       "output_token": "NextToken",
       "result_key": "RoutingProfileSummaryList"
     },
+    "ListRules": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "RuleSummaryList"
+    },
     "ListSecurityKeys": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

@@ -84,6 +84,8 @@ func ExampleRDS_AddTagsToResource_shared00() {
 				fmt.Println(rds.ErrCodeDBProxyNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBProxyTargetGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBProxyTargetGroupNotFoundFault, aerr.Error())
+			case rds.ErrCodeBlueGreenDeploymentNotFoundFault:
+				fmt.Println(rds.ErrCodeBlueGreenDeploymentNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2074,6 +2076,8 @@ func ExampleRDS_ListTagsForResource_shared00() {
 				fmt.Println(rds.ErrCodeDBProxyNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBProxyTargetGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBProxyTargetGroupNotFoundFault, aerr.Error())
+			case rds.ErrCodeBlueGreenDeploymentNotFoundFault:
+				fmt.Println(rds.ErrCodeBlueGreenDeploymentNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2647,6 +2651,8 @@ func ExampleRDS_RemoveTagsFromResource_shared00() {
 				fmt.Println(rds.ErrCodeDBProxyNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBProxyTargetGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBProxyTargetGroupNotFoundFault, aerr.Error())
+			case rds.ErrCodeBlueGreenDeploymentNotFoundFault:
+				fmt.Println(rds.ErrCodeBlueGreenDeploymentNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

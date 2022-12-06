@@ -140,6 +140,10 @@ type ConnectAPI interface {
 	CreateRoutingProfileWithContext(aws.Context, *connect.CreateRoutingProfileInput, ...request.Option) (*connect.CreateRoutingProfileOutput, error)
 	CreateRoutingProfileRequest(*connect.CreateRoutingProfileInput) (*request.Request, *connect.CreateRoutingProfileOutput)
 
+	CreateRule(*connect.CreateRuleInput) (*connect.CreateRuleOutput, error)
+	CreateRuleWithContext(aws.Context, *connect.CreateRuleInput, ...request.Option) (*connect.CreateRuleOutput, error)
+	CreateRuleRequest(*connect.CreateRuleInput) (*request.Request, *connect.CreateRuleOutput)
+
 	CreateSecurityProfile(*connect.CreateSecurityProfileInput) (*connect.CreateSecurityProfileOutput, error)
 	CreateSecurityProfileWithContext(aws.Context, *connect.CreateSecurityProfileInput, ...request.Option) (*connect.CreateSecurityProfileOutput, error)
 	CreateSecurityProfileRequest(*connect.CreateSecurityProfileInput) (*request.Request, *connect.CreateSecurityProfileOutput)
@@ -191,6 +195,10 @@ type ConnectAPI interface {
 	DeleteQuickConnect(*connect.DeleteQuickConnectInput) (*connect.DeleteQuickConnectOutput, error)
 	DeleteQuickConnectWithContext(aws.Context, *connect.DeleteQuickConnectInput, ...request.Option) (*connect.DeleteQuickConnectOutput, error)
 	DeleteQuickConnectRequest(*connect.DeleteQuickConnectInput) (*request.Request, *connect.DeleteQuickConnectOutput)
+
+	DeleteRule(*connect.DeleteRuleInput) (*connect.DeleteRuleOutput, error)
+	DeleteRuleWithContext(aws.Context, *connect.DeleteRuleInput, ...request.Option) (*connect.DeleteRuleOutput, error)
+	DeleteRuleRequest(*connect.DeleteRuleInput) (*request.Request, *connect.DeleteRuleOutput)
 
 	DeleteSecurityProfile(*connect.DeleteSecurityProfileInput) (*connect.DeleteSecurityProfileOutput, error)
 	DeleteSecurityProfileWithContext(aws.Context, *connect.DeleteSecurityProfileInput, ...request.Option) (*connect.DeleteSecurityProfileOutput, error)
@@ -267,6 +275,10 @@ type ConnectAPI interface {
 	DescribeRoutingProfile(*connect.DescribeRoutingProfileInput) (*connect.DescribeRoutingProfileOutput, error)
 	DescribeRoutingProfileWithContext(aws.Context, *connect.DescribeRoutingProfileInput, ...request.Option) (*connect.DescribeRoutingProfileOutput, error)
 	DescribeRoutingProfileRequest(*connect.DescribeRoutingProfileInput) (*request.Request, *connect.DescribeRoutingProfileOutput)
+
+	DescribeRule(*connect.DescribeRuleInput) (*connect.DescribeRuleOutput, error)
+	DescribeRuleWithContext(aws.Context, *connect.DescribeRuleInput, ...request.Option) (*connect.DescribeRuleOutput, error)
+	DescribeRuleRequest(*connect.DescribeRuleInput) (*request.Request, *connect.DescribeRuleOutput)
 
 	DescribeSecurityProfile(*connect.DescribeSecurityProfileInput) (*connect.DescribeSecurityProfileOutput, error)
 	DescribeSecurityProfileWithContext(aws.Context, *connect.DescribeSecurityProfileInput, ...request.Option) (*connect.DescribeSecurityProfileOutput, error)
@@ -522,6 +534,13 @@ type ConnectAPI interface {
 
 	ListRoutingProfilesPages(*connect.ListRoutingProfilesInput, func(*connect.ListRoutingProfilesOutput, bool) bool) error
 	ListRoutingProfilesPagesWithContext(aws.Context, *connect.ListRoutingProfilesInput, func(*connect.ListRoutingProfilesOutput, bool) bool, ...request.Option) error
+
+	ListRules(*connect.ListRulesInput) (*connect.ListRulesOutput, error)
+	ListRulesWithContext(aws.Context, *connect.ListRulesInput, ...request.Option) (*connect.ListRulesOutput, error)
+	ListRulesRequest(*connect.ListRulesInput) (*request.Request, *connect.ListRulesOutput)
+
+	ListRulesPages(*connect.ListRulesInput, func(*connect.ListRulesOutput, bool) bool) error
+	ListRulesPagesWithContext(aws.Context, *connect.ListRulesInput, func(*connect.ListRulesOutput, bool) bool, ...request.Option) error
 
 	ListSecurityKeys(*connect.ListSecurityKeysInput) (*connect.ListSecurityKeysOutput, error)
 	ListSecurityKeysWithContext(aws.Context, *connect.ListSecurityKeysInput, ...request.Option) (*connect.ListSecurityKeysOutput, error)
@@ -788,6 +807,10 @@ type ConnectAPI interface {
 	UpdateRoutingProfileQueues(*connect.UpdateRoutingProfileQueuesInput) (*connect.UpdateRoutingProfileQueuesOutput, error)
 	UpdateRoutingProfileQueuesWithContext(aws.Context, *connect.UpdateRoutingProfileQueuesInput, ...request.Option) (*connect.UpdateRoutingProfileQueuesOutput, error)
 	UpdateRoutingProfileQueuesRequest(*connect.UpdateRoutingProfileQueuesInput) (*request.Request, *connect.UpdateRoutingProfileQueuesOutput)
+
+	UpdateRule(*connect.UpdateRuleInput) (*connect.UpdateRuleOutput, error)
+	UpdateRuleWithContext(aws.Context, *connect.UpdateRuleInput, ...request.Option) (*connect.UpdateRuleOutput, error)
+	UpdateRuleRequest(*connect.UpdateRuleInput) (*request.Request, *connect.UpdateRuleOutput)
 
 	UpdateSecurityProfile(*connect.UpdateSecurityProfileInput) (*connect.UpdateSecurityProfileOutput, error)
 	UpdateSecurityProfileWithContext(aws.Context, *connect.UpdateSecurityProfileInput, ...request.Option) (*connect.UpdateSecurityProfileOutput, error)

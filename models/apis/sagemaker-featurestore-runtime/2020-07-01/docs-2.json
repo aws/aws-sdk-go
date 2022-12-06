@@ -3,7 +3,7 @@
   "service": "<p>Contains all data plane API operations and data types for the Amazon SageMaker Feature Store. Use this API to put, delete, and retrieve (get) features from a feature store.</p> <p>Use the following operations to configure your <code>OnlineStore</code> and <code>OfflineStore</code> features, and to create and manage feature groups:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFeatureGroup.html\">CreateFeatureGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteFeatureGroup.html\">DeleteFeatureGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeFeatureGroup.html\">DescribeFeatureGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListFeatureGroups.html\">ListFeatureGroups</a> </p> </li> </ul>",
   "operations": {
     "BatchGetRecord": "<p>Retrieves a batch of <code>Records</code> from a <code>FeatureGroup</code>.</p>",
-    "DeleteRecord": "<p>Deletes a <code>Record</code> from a <code>FeatureGroup</code>. A new record will show up in the <code>OfflineStore</code> when the <code>DeleteRecord</code> API is called. This record will have a value of <code>True</code> in the <code>is_deleted</code> column.</p>",
+    "DeleteRecord": "<p>Deletes a <code>Record</code> from a <code>FeatureGroup</code>. When the <code>DeleteRecord</code> API is called a new record will be added to the <code>OfflineStore</code> and the <code>Record</code> will be removed from the <code>OnlineStore</code>. This record will have a value of <code>True</code> in the <code>is_deleted</code> column.</p>",
     "GetRecord": "<p>Use for <code>OnlineStore</code> serving from a <code>FeatureStore</code>. Only the latest records stored in the <code>OnlineStore</code> can be retrieved. If no Record with <code>RecordIdentifierValue</code> is found, then an empty result is returned. </p>",
     "PutRecord": "<p>Used for data ingestion into the <code>FeatureStore</code>. The <code>PutRecord</code> API writes to both the <code>OnlineStore</code> and <code>OfflineStore</code>. If the record is the latest record for the <code>recordIdentifier</code>, the record is written to both the <code>OnlineStore</code> and <code>OfflineStore</code>. If the record is a historic record, it is written only to the <code>OfflineStore</code>.</p>"
   },
@@ -22,7 +22,7 @@
     "BatchGetRecordErrors": {
       "base": null,
       "refs": {
-        "BatchGetRecordResponse$Errors": "<p>A list of errors that have occured when retrieving a batch of Records.</p>"
+        "BatchGetRecordResponse$Errors": "<p>A list of errors that have occurred when retrieving a batch of Records.</p>"
       }
     },
     "BatchGetRecordIdentifier": {
@@ -70,7 +70,7 @@
       "refs": {
         "BatchGetRecordIdentifier$FeatureGroupName": "<p>A <code>FeatureGroupName</code> containing Records you are retrieving in a batch.</p>",
         "DeleteRecordRequest$FeatureGroupName": "<p>The name of the feature group to delete the record from. </p>",
-        "GetRecordRequest$FeatureGroupName": "<p>The name of the feature group in which you want to put the records.</p>",
+        "GetRecordRequest$FeatureGroupName": "<p>The name of the feature group from which you want to retrieve a record.</p>",
         "PutRecordRequest$FeatureGroupName": "<p>The name of the feature group that you want to insert the record into.</p>"
       }
     },
@@ -105,7 +105,7 @@
       }
     },
     "InternalFailure": {
-      "base": "<p>An internal failure occurred. Try your request again. If the problem persists, contact AWS customer support.</p>",
+      "base": "<p>An internal failure occurred. Try your request again. If the problem persists, contact Amazon Web Services customer support.</p>",
       "refs": {
       }
     },
@@ -149,6 +149,19 @@
       "refs": {
       }
     },
+    "TargetStore": {
+      "base": null,
+      "refs": {
+        "TargetStores$member": null
+      }
+    },
+    "TargetStores": {
+      "base": null,
+      "refs": {
+        "DeleteRecordRequest$TargetStores": "<p>A list of stores from which you're deleting the record. By default, Feature Store deletes the record from all of the stores that you're using for the <code>FeatureGroup</code>.</p>",
+        "PutRecordRequest$TargetStores": "<p>A list of stores to which you're adding the record. By default, Feature Store adds the record to all of the stores that you're using for the <code>FeatureGroup</code>.</p>"
+      }
+    },
     "UnprocessedIdentifiers": {
       "base": null,
       "refs": {
@@ -165,7 +178,7 @@
       "refs": {
         "BatchGetRecordError$FeatureGroupName": "<p>The name of the feature group that the record belongs to.</p>",
         "BatchGetRecordError$RecordIdentifierValueAsString": "<p>The value for the <code>RecordIdentifier</code> in string format of a Record from a <code>FeatureGroup</code> that is causing an error when attempting to be retrieved.</p>",
-        "BatchGetRecordError$ErrorCode": "<p>The error code of an error that has occured when attempting to retrieve a batch of Records. For more information on errors, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors\"> Errors</a>.</p>",
+        "BatchGetRecordError$ErrorCode": "<p>The error code of an error that has occured when attempting to retrieve a batch of Records. For more information on errors, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors\">Errors</a>.</p>",
         "BatchGetRecordResultDetail$FeatureGroupName": "<p>The <code>FeatureGroupName</code> containing Records you retrieved in a batch.</p>",
         "BatchGetRecordResultDetail$RecordIdentifierValueAsString": "<p>The value of the record identifer in string format.</p>",
         "DeleteRecordRequest$RecordIdentifierValueAsString": "<p>The value for the <code>RecordIdentifier</code> that uniquely identifies the record, in string format. </p>",

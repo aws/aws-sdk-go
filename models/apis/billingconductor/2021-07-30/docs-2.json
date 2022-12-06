@@ -348,6 +348,12 @@
       "refs": {
       }
     },
+    "CreateFreeTierConfig": {
+      "base": "<p> The possible Amazon Web Services Free Tier configurations. </p>",
+      "refs": {
+        "CreateTieringInput$FreeTier": "<p> The possible Amazon Web Services Free Tier configurations. </p>"
+      }
+    },
     "CreatePricingPlanInput": {
       "base": null,
       "refs": {
@@ -366,6 +372,12 @@
     "CreatePricingRuleOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateTieringInput": {
+      "base": "<p> The set of tiering configurations for the pricing rule. </p>",
+      "refs": {
+        "CreatePricingRuleInput$Tiering": "<p> The set of tiering configurations for the pricing rule. </p>"
       }
     },
     "Currency": {
@@ -620,6 +632,12 @@
       "refs": {
         "BatchDisassociateResourcesFromCustomLineItemOutput$SuccessfullyDisassociatedResources": "<p> A list of <code>DisassociateResourceResponseElement</code> for each resource that's been disassociated from a percentage custom line item successfully. </p>",
         "BatchDisassociateResourcesFromCustomLineItemOutput$FailedDisassociatedResources": "<p> A list of <code>DisassociateResourceResponseElement</code> for each resource that failed disassociation from a percentage custom line item. </p>"
+      }
+    },
+    "FreeTierConfig": {
+      "base": "<p> The possible Amazon Web Services Free Tier configurations. </p>",
+      "refs": {
+        "Tiering$FreeTier": "<p> The possible Amazon Web Services Free Tier configurations. </p>"
       }
     },
     "Instant": {
@@ -1166,6 +1184,20 @@
       "refs": {
       }
     },
+    "Tiering": {
+      "base": "<p> The set of tiering configurations for the pricing rule. </p>",
+      "refs": {
+        "PricingRuleListElement$Tiering": "<p> The set of tiering configurations for the pricing rule. </p>"
+      }
+    },
+    "TieringActivated": {
+      "base": null,
+      "refs": {
+        "CreateFreeTierConfig$Activated": "<p> Activate or deactivate Amazon Web Services Free Tier. </p>",
+        "FreeTierConfig$Activated": "<p> Activate or deactivate Amazon Web Services Free Tier application. </p>",
+        "UpdateFreeTierConfig$Activated": "<p> Activate or deactivate application of Amazon Web Services Free Tier. </p>"
+      }
+    },
     "Token": {
       "base": null,
       "refs": {
@@ -1239,6 +1271,12 @@
         "UpdateCustomLineItemChargeDetails$Percentage": "<p> An <code>UpdateCustomLineItemPercentageChargeDetails</code> that describes the new charge details of a percentage custom line item. </p>"
       }
     },
+    "UpdateFreeTierConfig": {
+      "base": "<p> The possible Amazon Web Services Free Tier configurations. </p>",
+      "refs": {
+        "UpdateTieringInput$FreeTier": "<p> The possible Amazon Web Services Free Tier configurations. </p>"
+      }
+    },
     "UpdatePricingPlanInput": {
       "base": null,
       "refs": {
@@ -1257,6 +1295,13 @@
     "UpdatePricingRuleOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateTieringInput": {
+      "base": "<p> The set of tiering configurations for the pricing rule. </p>",
+      "refs": {
+        "UpdatePricingRuleInput$Tiering": "<p> The set of tiering configurations for the pricing rule. </p>",
+        "UpdatePricingRuleOutput$Tiering": "<p> The set of tiering configurations for the pricing rule. </p>"
       }
     },
     "ValidationException": {

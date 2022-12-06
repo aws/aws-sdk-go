@@ -12,7 +12,7 @@
     "AssociateQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a set of quick connects with a queue.</p>",
     "AssociateRoutingProfileQueues": "<p>Associates a set of queues with a routing profile.</p>",
     "AssociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a security key to the instance.</p>",
-    "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance or traffic distribution group. You can call this API only in the same Amazon Web Services Region where the Amazon Connect instance or traffic distribution group was created.</p> <important> <p>You can call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html\">ClaimPhoneNumber</a> operation.</p> </important>",
+    "ClaimPhoneNumber": "<p>Claims an available phone number to your Amazon Connect instance or traffic distribution group. You can call this API only in the same Amazon Web Services Region where the Amazon Connect instance or traffic distribution group was created.</p> <p>For more information about how to use this operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html\">Claim a phone number in your country</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html\">Claim phone numbers to traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <important> <p>You can call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html\">SearchAvailablePhoneNumbers</a> API for available phone numbers that you can claim. Call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html\">ClaimPhoneNumber</a> operation.</p> </important>",
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a flow for the specified Amazon Connect instance.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "CreateContactFlowModule": "<p>Creates a flow module for the specified Amazon Connect instance. </p>",
@@ -22,6 +22,7 @@
     "CreateQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates a new queue for the specified Amazon Connect instance.</p> <important> <p>If the number being used in the input is claimed to a traffic distribution group, and you are calling this API using an instance in the Amazon Web Services Region where the traffic distribution group was created, you can use either a full phone number ARN or UUID value for the <code>OutboundCallerIdNumberId</code> value of the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig\">OutboundCallerConfig</a> request body parameter. However, if the number is claimed to a traffic distribution group and you are calling this API using an instance in the alternate Amazon Web Services Region associated with the traffic distribution group, you must provide a full phone number ARN. If a UUID is provided in this scenario, you will receive a <code>ResourceNotFoundException</code>.</p> </important>",
     "CreateQuickConnect": "<p>Creates a quick connect for the specified Amazon Connect instance.</p>",
     "CreateRoutingProfile": "<p>Creates a new routing profile.</p>",
+    "CreateRule": "<p>Creates a rule for the specified Amazon Connect instance.</p>",
     "CreateSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates a security profile.</p>",
     "CreateTaskTemplate": "<p>Creates a new task template in the specified Amazon Connect instance.</p>",
     "CreateTrafficDistributionGroup": "<p>Creates a traffic distribution group given an Amazon Connect instance that has been replicated. </p> <p>For more information about creating traffic distribution groups, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-traffic-distribution-groups.html\">Set up traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
@@ -35,6 +36,7 @@
     "DeleteInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the Amazon Connect instance.</p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "DeleteIntegrationAssociation": "<p>Deletes an Amazon Web Services resource association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
     "DeleteQuickConnect": "<p>Deletes a quick connect.</p>",
+    "DeleteRule": "<p>Deletes a rule for the specified Amazon Connect instance.</p>",
     "DeleteSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes a security profile.</p>",
     "DeleteTaskTemplate": "<p>Deletes the task template.</p>",
     "DeleteTrafficDistributionGroup": "<p>Deletes a traffic distribution group. This API can be called only in the Region where the traffic distribution group is created.</p> <p>For more information about deleting traffic distribution groups, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/delete-traffic-distribution-groups.html\">Delete traffic distribution groups</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -54,6 +56,7 @@
     "DescribeQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified queue.</p>",
     "DescribeQuickConnect": "<p>Describes the quick connect.</p>",
     "DescribeRoutingProfile": "<p>Describes the specified routing profile.</p>",
+    "DescribeRule": "<p>Describes a rule for the specified Amazon Connect instance.</p>",
     "DescribeSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Gets basic information about the security profle.</p>",
     "DescribeTrafficDistributionGroup": "<p>Gets details and status of a traffic distribution group.</p>",
     "DescribeUser": "<p>Describes the specified user account. You can find the instance ID in the console (it’s the final part of the ARN). The console does not display the user IDs. Instead, list the users and note the IDs provided in the output.</p>",
@@ -99,6 +102,7 @@
     "ListQuickConnects": "<p>Provides information about the quick connects for the specified Amazon Connect instance. </p>",
     "ListRoutingProfileQueues": "<p>Lists the queues associated with a routing profile.</p>",
     "ListRoutingProfiles": "<p>Provides summary information about the routing profiles for the specified Amazon Connect instance.</p> <p>For more information about routing profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html\">Routing Profiles</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html\">Create a Routing Profile</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ListRules": "<p>List all rules for the specified Amazon Connect instance.</p>",
     "ListSecurityKeys": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all security keys associated with the instance.</p>",
     "ListSecurityProfilePermissions": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists the permissions granted to a security profile.</p>",
     "ListSecurityProfiles": "<p>Provides summary information about the security profiles for the specified Amazon Connect instance.</p> <p>For more information about security profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html\">Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -155,6 +159,7 @@
     "UpdateRoutingProfileDefaultOutboundQueue": "<p>Updates the default outbound queue of a routing profile.</p>",
     "UpdateRoutingProfileName": "<p>Updates the name and description of a routing profile. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
     "UpdateRoutingProfileQueues": "<p>Updates the properties associated with a set of queues for a routing profile.</p>",
+    "UpdateRule": "<p>Updates a rule for the specified Amazon Connect instance.</p>",
     "UpdateSecurityProfile": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates a security profile.</p>",
     "UpdateTaskTemplate": "<p>Updates details about a specific task template in the specified Amazon Connect instance. This operation does not support partial updates. Instead it does a full update of template content.</p>",
     "UpdateTrafficDistribution": "<p>Updates the traffic distribution for a given traffic distribution group. </p> <p>For more information about updating a traffic distribution group, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html\">Update telephony traffic distribution across Amazon Web Services Regions </a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
@@ -192,6 +197,7 @@
         "CreateQueueResponse$QueueArn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
         "CreateQuickConnectResponse$QuickConnectARN": "<p>The Amazon Resource Name (ARN) for the quick connect. </p>",
         "CreateRoutingProfileResponse$RoutingProfileArn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
+        "CreateRuleResponse$RuleArn": "<p>The Amazon Resource Name (ARN) of the rule.</p>",
         "CreateSecurityProfileResponse$SecurityProfileArn": "<p>The Amazon Resource Name (ARN) for the security profile.</p>",
         "CreateUseCaseResponse$UseCaseArn": "<p>The Amazon Resource Name (ARN) for the use case.</p>",
         "CreateUserHierarchyGroupResponse$HierarchyGroupArn": "<p>The Amazon Resource Name (ARN) of the hierarchy group. </p>",
@@ -231,6 +237,9 @@
         "RoutingProfileQueueConfigSummary$QueueArn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
         "RoutingProfileReference$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "RoutingProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
+        "Rule$RuleArn": "<p>The Amazon Resource Name (ARN) of the rule.</p>",
+        "Rule$LastUpdatedBy": "<p>The Amazon Resource Name (ARN) of the user who last updated the rule.</p>",
+        "RuleSummary$RuleArn": "<p>The Amazon Resource Name (ARN) of the rule.</p>",
         "SearchAvailablePhoneNumbersRequest$TargetArn": "<p>The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone numbers are claimed to.</p>",
         "SecurityProfile$Arn": "<p>The Amazon Resource Name (ARN) for the secruity profile.</p>",
         "SecurityProfileSearchSummary$Arn": "<p>The Amazon Resource Name (ARN) of the security profile.</p>",
@@ -252,6 +261,25 @@
     "AccessDeniedException": {
       "base": "<p>You do not have sufficient permissions to perform this action.</p>",
       "refs": {
+      }
+    },
+    "ActionSummaries": {
+      "base": null,
+      "refs": {
+        "RuleSummary$ActionSummaries": "<p>A list of ActionTypes associated with a rule. </p>"
+      }
+    },
+    "ActionSummary": {
+      "base": "<p>Information about an action.</p>",
+      "refs": {
+        "ActionSummaries$member": null
+      }
+    },
+    "ActionType": {
+      "base": null,
+      "refs": {
+        "ActionSummary$ActionType": "<p>The action type.</p>",
+        "RuleAction$ActionType": "<p>The type of action that creates a rule.</p>"
       }
     },
     "AfterContactWorkTimeLimit": {
@@ -424,6 +452,12 @@
         "SearchRoutingProfilesResponse$ApproximateTotalCount": "<p>The total number of routing profiles which matched your search query.</p>",
         "SearchSecurityProfilesResponse$ApproximateTotalCount": "<p>The total number of security profiles which matched your search query.</p>",
         "SearchUsersResponse$ApproximateTotalCount": "<p>The total number of users who matched your search query.</p>"
+      }
+    },
+    "AssignContactCategoryActionDefinition": {
+      "base": "<p>This action must be set if <code>TriggerEventSource</code> is one of the following values: <code>OnPostCallAnalysisAvailable</code> | <code>OnRealTimeCallAnalysisAvailable</code> | <code>OnPostChatAnalysisAvailable</code>. Contact is categorized using the rule name.</p> <p> <code>RuleName</code> is used as <code>ContactCategory</code>.</p>",
+      "refs": {
+        "RuleAction$AssignContactCategoryAction": "<p>Information about the contact category action.</p>"
       }
     },
     "AssociateApprovedOriginRequest": {
@@ -682,6 +716,7 @@
         "ClaimPhoneNumberRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p> <p>Pattern: <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code> </p>",
         "CreateContactFlowModuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateInstanceRequest$ClientToken": "<p>The idempotency token.</p>",
+        "CreateRuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateTaskTemplateRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateTrafficDistributionGroupRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>.</p>",
         "CreateVocabularyRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If not provided, the Amazon Web Services SDK populates this field. For more information about idempotency, see <a href=\"https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/\">Making retries safe with idempotent APIs</a>. If a create request is received more than once with same client token, subsequent requests return the previous response without creating a vocabulary again.</p>",
@@ -770,6 +805,7 @@
         "StartChatContactRequest$ContactFlowId": "<p>The identifier of the flow for initiating the chat. To see the ContactFlowId in the Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow page, under the name of the flow, choose <b>Show additional flow information</b>. The ContactFlowId is the last part of the ARN, shown here in bold: </p> <p>arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b> </p>",
         "StartOutboundVoiceContactRequest$ContactFlowId": "<p>The identifier of the flow for the outbound call. To see the ContactFlowId in the Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow page, under the name of the flow, choose <b>Show additional flow information</b>. The ContactFlowId is the last part of the ARN, shown here in bold: </p> <p>arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b> </p>",
         "StartTaskContactRequest$ContactFlowId": "<p>The identifier of the flow for initiating the tasks. To see the ContactFlowId in the Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow page, under the name of the flow, choose <b>Show additional flow information</b>. The ContactFlowId is the last part of the ARN, shown here in bold: </p> <p>arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b> </p>",
+        "TaskActionDefinition$ContactFlowId": "<p>The identifier of the flow.</p>",
         "TransferContactRequest$ContactFlowId": "<p>The identifier of the flow.</p>",
         "UpdateContactFlowContentRequest$ContactFlowId": "<p>The identifier of the flow.</p>",
         "UpdateContactFlowMetadataRequest$ContactFlowId": "<p>The identifier of the flow.</p>",
@@ -950,6 +986,7 @@
       "base": null,
       "refs": {
         "StartTaskContactRequest$References": "<p>A formatted URL that is shown to an agent in the Contact Control Panel (CCP).</p>",
+        "TaskActionDefinition$References": "<p>Information about the reference when the <code>referenceType</code> is <code>URL</code>. Otherwise, null. (Supports variable injection in the <code>Value</code> field.)</p>",
         "UpdateContactRequest$References": "<p>Well-formed data on contact, shown to agents on Contact Control Panel (CCP).</p>"
       }
     },
@@ -964,6 +1001,12 @@
       "base": null,
       "refs": {
         "ContactFilter$ContactStates": "<p>A list of up to 9 <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html\">contact states</a>.</p>"
+      }
+    },
+    "Content": {
+      "base": null,
+      "refs": {
+        "SendNotificationActionDefinition$Content": "<p>Notification content. Supports variable injection. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html\">JSONPath reference</a> in the <i>Amazon Connect Administrators Guide</i>.</p>"
       }
     },
     "ControlPlaneTagFilter": {
@@ -1061,6 +1104,16 @@
       }
     },
     "CreateRoutingProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRuleResponse": {
       "base": null,
       "refs": {
       }
@@ -1250,6 +1303,11 @@
       "refs": {
       }
     },
+    "DeleteRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteSecurityProfileRequest": {
       "base": null,
       "refs": {
@@ -1416,6 +1474,16 @@
       }
     },
     "DescribeRoutingProfileResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRuleResponse": {
       "base": null,
       "refs": {
       }
@@ -1640,6 +1708,26 @@
       "base": null,
       "refs": {
         "EncryptionConfig$EncryptionType": "<p>The type of encryption.</p>"
+      }
+    },
+    "EventBridgeActionDefinition": {
+      "base": "<p>The EventBridge action definition.</p>",
+      "refs": {
+        "RuleAction$EventBridgeAction": "<p>Information about the EventBridge action.</p>"
+      }
+    },
+    "EventBridgeActionName": {
+      "base": null,
+      "refs": {
+        "EventBridgeActionDefinition$Name": "<p>The name.</p>"
+      }
+    },
+    "EventSourceName": {
+      "base": null,
+      "refs": {
+        "ListRulesRequest$EventSourceName": "<p>The name of the event source.</p>",
+        "RuleSummary$EventSourceName": "<p>The name of the event source.</p>",
+        "RuleTriggerEventSource$EventSourceName": "<p>The name of the event source.</p>"
       }
     },
     "Filters": {
@@ -2065,6 +2153,7 @@
         "CreateQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateQuickConnectRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "CreateRuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateSecurityProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateTaskTemplateRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateUseCaseRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2078,6 +2167,7 @@
         "DeleteInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteIntegrationAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteQuickConnectRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "DeleteRuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteSecurityProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteTaskTemplateRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteUseCaseRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2095,6 +2185,7 @@
         "DescribeQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeQuickConnectRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "DescribeRuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeSecurityProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeUserHierarchyStructureRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2140,6 +2231,7 @@
         "ListQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListRoutingProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "ListRulesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListSecurityKeysRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListSecurityProfilePermissionsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2192,6 +2284,7 @@
         "UpdateRoutingProfileDefaultOutboundQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateRoutingProfileNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "UpdateRuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateSecurityProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateTaskTemplateRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateTaskTemplateResponse$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -2276,7 +2369,8 @@
         "DeleteIntegrationAssociationRequest$IntegrationAssociationId": "<p>The identifier for the integration association.</p>",
         "DeleteUseCaseRequest$IntegrationAssociationId": "<p>The identifier for the integration association.</p>",
         "IntegrationAssociationSummary$IntegrationAssociationId": "<p>The identifier for the AppIntegration association.</p>",
-        "ListUseCasesRequest$IntegrationAssociationId": "<p>The identifier for the integration association.</p>"
+        "ListUseCasesRequest$IntegrationAssociationId": "<p>The identifier for the integration association.</p>",
+        "RuleTriggerEventSource$IntegrationAssociationId": "<p>The identifier for the integration association.</p>"
       }
     },
     "IntegrationAssociationSummary": {
@@ -2655,6 +2749,16 @@
       "refs": {
       }
     },
+    "ListRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSecurityKeysRequest": {
       "base": null,
       "refs": {
@@ -2805,6 +2909,12 @@
         "ListSecurityKeysRequest$MaxResults": "<p>The maximum number of results to return per page.</p>"
       }
     },
+    "MaxResult200": {
+      "base": null,
+      "refs": {
+        "ListRulesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>"
+      }
+    },
     "MaxResult25": {
       "base": null,
       "refs": {
@@ -2946,6 +3056,8 @@
         "ListRoutingProfileQueuesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListRoutingProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListRoutingProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListRulesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListRulesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListSecurityKeysRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListSecurityKeysResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListSecurityProfilePermissionsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -2975,6 +3087,24 @@
         "SearchSecurityProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchUsersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "SearchUsersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
+      }
+    },
+    "NotificationContentType": {
+      "base": null,
+      "refs": {
+        "SendNotificationActionDefinition$ContentType": "<p>Content type format.</p>"
+      }
+    },
+    "NotificationDeliveryType": {
+      "base": null,
+      "refs": {
+        "SendNotificationActionDefinition$DeliveryMethod": "<p>Notification delivery method.</p>"
+      }
+    },
+    "NotificationRecipientType": {
+      "base": "<p>The type of notification recipient.</p>",
+      "refs": {
+        "SendNotificationActionDefinition$Recipient": "<p>Notification recipient.</p>"
       }
     },
     "NumberReference": {
@@ -3767,6 +3897,83 @@
         "ListRoutingProfilesResponse$RoutingProfileSummaryList": "<p>Information about the routing profiles.</p>"
       }
     },
+    "Rule": {
+      "base": "<p>Information about a rule.</p>",
+      "refs": {
+        "DescribeRuleResponse$Rule": "<p>Information about the rule.</p>"
+      }
+    },
+    "RuleAction": {
+      "base": "<p>Information about the action to be performed when a rule is triggered.</p>",
+      "refs": {
+        "RuleActions$member": null
+      }
+    },
+    "RuleActions": {
+      "base": null,
+      "refs": {
+        "CreateRuleRequest$Actions": "<p>A list of actions to be run when the rule is triggered.</p>",
+        "Rule$Actions": "<p>A list of actions to be run when the rule is triggered.</p>",
+        "UpdateRuleRequest$Actions": "<p>A list of actions to be run when the rule is triggered.</p>"
+      }
+    },
+    "RuleFunction": {
+      "base": null,
+      "refs": {
+        "CreateRuleRequest$Function": "<p>The conditions of the rule.</p>",
+        "Rule$Function": "<p>The conditions of the rule.</p>",
+        "UpdateRuleRequest$Function": "<p>The conditions of the rule.</p>"
+      }
+    },
+    "RuleId": {
+      "base": null,
+      "refs": {
+        "CreateRuleResponse$RuleId": "<p>A unique identifier for the rule.</p>",
+        "DeleteRuleRequest$RuleId": "<p>A unique identifier for the rule.</p>",
+        "DescribeRuleRequest$RuleId": "<p>A unique identifier for the rule.</p>",
+        "Rule$RuleId": "<p>A unique identifier for the rule.</p>",
+        "RuleSummary$RuleId": "<p>A unique identifier for the rule.</p>",
+        "UpdateRuleRequest$RuleId": "<p>A unique identifier for the rule.</p>"
+      }
+    },
+    "RuleName": {
+      "base": null,
+      "refs": {
+        "CreateRuleRequest$Name": "<p>A unique name for the rule.</p>",
+        "Rule$Name": "<p>The name of the rule.</p>",
+        "RuleSummary$Name": "<p>The name of the rule.</p>",
+        "UpdateRuleRequest$Name": "<p>The name of the rule. You can change the name only if <code>TriggerEventSource</code> is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code> | <code>OnSalesforceCaseCreate</code> </p>"
+      }
+    },
+    "RulePublishStatus": {
+      "base": null,
+      "refs": {
+        "CreateRuleRequest$PublishStatus": "<p>The publish status of the rule.</p>",
+        "ListRulesRequest$PublishStatus": "<p>The publish status of the rule.</p>",
+        "Rule$PublishStatus": "<p>The publish status of the rule.</p>",
+        "RuleSummary$PublishStatus": "<p>The publish status of the rule.</p>",
+        "UpdateRuleRequest$PublishStatus": "<p>The publish status of the rule.</p>"
+      }
+    },
+    "RuleSummary": {
+      "base": "<p>A list of <code>ActionTypes</code> associated with a rule. </p>",
+      "refs": {
+        "RuleSummaryList$member": null
+      }
+    },
+    "RuleSummaryList": {
+      "base": null,
+      "refs": {
+        "ListRulesResponse$RuleSummaryList": "<p>Summary information about a rule.</p>"
+      }
+    },
+    "RuleTriggerEventSource": {
+      "base": "<p>The name of the event source. This field is required if <code>TriggerEventSource</code> is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code> | <code>OnSalesforceCaseCreate</code> </p>",
+      "refs": {
+        "CreateRuleRequest$TriggerEventSource": "<p>The event source to trigger the rule.</p>",
+        "Rule$TriggerEventSource": "<p>The event source to trigger the rule.</p>"
+      }
+    },
     "S3Config": {
       "base": "<p>Information about the Amazon Simple Storage Service (Amazon S3) storage type.</p>",
       "refs": {
@@ -3966,6 +4173,12 @@
         "Credentials$RefreshToken": "<p>Renews a token generated for a user to access the Amazon Connect instance.</p>"
       }
     },
+    "SendNotificationActionDefinition": {
+      "base": "<p>Information about the send notification action.</p>",
+      "refs": {
+        "RuleAction$SendNotificationAction": "<p>Information about the send notification action.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>The service quota has been exceeded.</p>",
       "refs": {
@@ -4105,7 +4318,9 @@
         "StringCondition$FieldName": "<p>The name of the field in the string condition.</p>",
         "StringCondition$Value": "<p>The value of the string.</p>",
         "TagCondition$TagKey": "<p>The tag key in the tag condition.</p>",
-        "TagCondition$TagValue": "<p>The tag value in the tag condition.</p>"
+        "TagCondition$TagValue": "<p>The tag value in the tag condition.</p>",
+        "UserTagMap$key": null,
+        "UserTagMap$value": null
       }
     },
     "StringComparisonType": {
@@ -4127,6 +4342,12 @@
       "base": "<p>Information about a reference when the <code>referenceType</code> is <code>STRING</code>. Otherwise, null.</p>",
       "refs": {
         "ReferenceSummary$String": "<p>Information about a reference when the <code>referenceType</code> is <code>STRING</code>. Otherwise, null.</p>"
+      }
+    },
+    "Subject": {
+      "base": null,
+      "refs": {
+        "SendNotificationActionDefinition$Subject": "<p>The subject of the email if the delivery method is <code>EMAIL</code>. Supports variable injection. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html\">JSONPath reference</a> in the <i>Amazon Connect Administrators Guide</i>.</p>"
       }
     },
     "SupportedMessagingContentType": {
@@ -4207,6 +4428,7 @@
         "Queue$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "QuickConnect$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "RoutingProfile$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
+        "Rule$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "SecurityProfile$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "SecurityProfileSearchSummary$Tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "TagResourceRequest$tags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
@@ -4245,6 +4467,24 @@
       "base": null,
       "refs": {
         "TagMap$value": null
+      }
+    },
+    "TaskActionDefinition": {
+      "base": "<p>Information about the task action.</p>",
+      "refs": {
+        "RuleAction$TaskAction": "<p>Information about the task action. This field is required if <code>TriggerEventSource</code> is one of the following values: <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code> | <code>OnSalesforceCaseCreate</code> </p>"
+      }
+    },
+    "TaskDescriptionExpression": {
+      "base": null,
+      "refs": {
+        "TaskActionDefinition$Description": "<p>The description. Supports variable injection. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html\">JSONPath reference</a> in the <i>Amazon Connect Administrators Guide</i>.</p>"
+      }
+    },
+    "TaskNameExpression": {
+      "base": null,
+      "refs": {
+        "TaskActionDefinition$Name": "<p>The name. Supports variable injection. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html\">JSONPath reference</a> in the <i>Amazon Connect Administrators Guide</i>.</p>"
       }
     },
     "TaskTemplateArn": {
@@ -4438,6 +4678,10 @@
         "AgentStatusReference$StatusStartTimestamp": "<p>The start timestamp of the agent's status.</p>",
         "Instance$CreatedTime": "<p>When the instance was created.</p>",
         "InstanceSummary$CreatedTime": "<p>When the instance was created.</p>",
+        "Rule$CreatedTime": "<p>The timestamp for when the rule was created.</p>",
+        "Rule$LastUpdatedTime": "<p>The timestamp for the when the rule was last updated.</p>",
+        "RuleSummary$CreatedTime": "<p>The timestamp for when the rule was created. </p>",
+        "RuleSummary$LastUpdatedTime": "<p>The timestamp for when the rule was last updated.</p>",
         "StartTaskContactRequest$ScheduledTime": "<p>The timestamp, in Unix Epoch seconds format, at which to start running the inbound flow. The scheduled time cannot be in the past. It must be within up to 6 days in future. </p>",
         "UpdateContactScheduleRequest$ScheduledTime": "<p>The timestamp, in Unix Epoch seconds format, at which to start running the inbound flow. The scheduled time cannot be in the past. It must be within up to 6 days in future. </p>"
       }
@@ -4697,6 +4941,11 @@
       "refs": {
       }
     },
+    "UpdateRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateSecurityProfileRequest": {
       "base": null,
       "refs": {
@@ -4834,10 +5083,17 @@
         "UpdateUserRoutingProfileRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserSecurityProfilesRequest$UserId": "<p>The identifier of the user account.</p>",
         "User$Id": "<p>The identifier of the user account.</p>",
+        "UserIdList$member": null,
         "UserQuickConnectConfig$UserId": "<p>The identifier of the user.</p>",
         "UserReference$Id": "<p>The unique identifier for the user.</p>",
         "UserSearchSummary$Id": "<p>The identifier of the user's summary.</p>",
         "UserSummary$Id": "<p>The identifier of the user account.</p>"
+      }
+    },
+    "UserIdList": {
+      "base": null,
+      "refs": {
+        "NotificationRecipientType$UserIds": "<p>A list of user IDs.</p>"
       }
     },
     "UserIdentityInfo": {
@@ -4922,6 +5178,12 @@
       "base": null,
       "refs": {
         "ListUsersResponse$UserSummaryList": "<p>Information about the users.</p>"
+      }
+    },
+    "UserTagMap": {
+      "base": null,
+      "refs": {
+        "NotificationRecipientType$UserTags": "<p>The tags used to organize, track, or control access for this resource. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }. Amazon Connect users with the specified tags will be notified.</p>"
       }
     },
     "Value": {
