@@ -359,6 +359,9 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //     The specified target group isn't available for a proxy owned by your Amazon
 //     Web Services account in the specified Amazon Web Services Region.
 //
+//   - ErrCodeBlueGreenDeploymentNotFoundFault "BlueGreenDeploymentNotFoundFault"
+//     BlueGreenDeploymentIdentifier doesn't refer to an existing blue/green deployment.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AddTagsToResource
 func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
@@ -10301,6 +10304,9 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //     The specified target group isn't available for a proxy owned by your Amazon
 //     Web Services account in the specified Amazon Web Services Region.
 //
+//   - ErrCodeBlueGreenDeploymentNotFoundFault "BlueGreenDeploymentNotFoundFault"
+//     BlueGreenDeploymentIdentifier doesn't refer to an existing blue/green deployment.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ListTagsForResource
 func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
@@ -13226,6 +13232,9 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 //   - ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //     The specified target group isn't available for a proxy owned by your Amazon
 //     Web Services account in the specified Amazon Web Services Region.
+//
+//   - ErrCodeBlueGreenDeploymentNotFoundFault "BlueGreenDeploymentNotFoundFault"
+//     BlueGreenDeploymentIdentifier doesn't refer to an existing blue/green deployment.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RemoveTagsFromResource
 func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
@@ -53006,6 +53015,9 @@ const (
 
 	// SourceTypeDbProxy is a SourceType enum value
 	SourceTypeDbProxy = "db-proxy"
+
+	// SourceTypeBlueGreenDeployment is a SourceType enum value
+	SourceTypeBlueGreenDeployment = "blue-green-deployment"
 )
 
 // SourceType_Values returns all elements of the SourceType enum
@@ -53019,6 +53031,7 @@ func SourceType_Values() []string {
 		SourceTypeDbClusterSnapshot,
 		SourceTypeCustomEngineVersion,
 		SourceTypeDbProxy,
+		SourceTypeBlueGreenDeployment,
 	}
 }
 

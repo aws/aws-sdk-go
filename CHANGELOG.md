@@ -1,3 +1,16 @@
+Release v1.44.154 (2022-12-06)
+===
+
+### Service Client Updates
+* `service/billingconductor`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Endpoint Ruleset update: Use http instead of https for the "local" region.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds the BlueGreenDeploymentNotFoundFault to the AddTagsToResource, ListTagsForResource, and RemoveTagsFromResource operations.
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+* `service/streams.dynamodb`: Adds new service
+
 Release v1.44.153 (2022-12-05)
 ===
 

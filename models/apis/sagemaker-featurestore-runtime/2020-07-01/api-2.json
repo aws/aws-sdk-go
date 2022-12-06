@@ -180,6 +180,11 @@
           "shape":"ValueAsString",
           "location":"querystring",
           "locationName":"EventTime"
+        },
+        "TargetStores":{
+          "shape":"TargetStores",
+          "location":"querystring",
+          "locationName":"TargetStores"
         }
       }
     },
@@ -187,13 +192,13 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}"
     },
     "FeatureName":{
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^[a-zA-Z0-9]([-_]*[a-zA-Z0-9])*"
+      "pattern":"^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}"
     },
     "FeatureNames":{
       "type":"list",
@@ -267,7 +272,8 @@
           "location":"uri",
           "locationName":"FeatureGroupName"
         },
-        "Record":{"shape":"Record"}
+        "Record":{"shape":"Record"},
+        "TargetStores":{"shape":"TargetStores"}
       }
     },
     "Record":{
@@ -298,6 +304,19 @@
       "exception":true,
       "fault":true,
       "synthetic":true
+    },
+    "TargetStore":{
+      "type":"string",
+      "enum":[
+        "OnlineStore",
+        "OfflineStore"
+      ]
+    },
+    "TargetStores":{
+      "type":"list",
+      "member":{"shape":"TargetStore"},
+      "max":2,
+      "min":1
     },
     "UnprocessedIdentifiers":{
       "type":"list",

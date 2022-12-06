@@ -1050,7 +1050,14 @@ func (c *Connect) ClaimPhoneNumberRequest(input *ClaimPhoneNumberInput) (req *re
 // Region where the Amazon Connect instance or traffic distribution group was
 // created.
 //
-// You can call the DescribePhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html)
+// For more information about how to use this operation, see Claim a phone number
+// in your country (https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html)
+// and Claim phone numbers to traffic distribution groups (https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html)
+// in the Amazon Connect Administrator Guide.
+//
+// You can call the SearchAvailablePhoneNumbers (https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html)
+// API for available phone numbers that you can claim. Call the DescribePhoneNumber
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html)
 // API to verify the status of a previous ClaimPhoneNumber (https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html)
 // operation.
 //
@@ -2003,6 +2010,103 @@ func (c *Connect) CreateRoutingProfile(input *CreateRoutingProfileInput) (*Creat
 // for more information on using Contexts.
 func (c *Connect) CreateRoutingProfileWithContext(ctx aws.Context, input *CreateRoutingProfileInput, opts ...request.Option) (*CreateRoutingProfileOutput, error) {
 	req, out := c.CreateRoutingProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRule = "CreateRule"
+
+// CreateRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRule for more information on using the CreateRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateRuleRequest method.
+//	req, resp := client.CreateRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateRule
+func (c *Connect) CreateRuleRequest(input *CreateRuleInput) (req *request.Request, output *CreateRuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/rules/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateRuleInput{}
+	}
+
+	output = &CreateRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRule API operation for Amazon Connect Service.
+//
+// Creates a rule for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateRule
+func (c *Connect) CreateRule(input *CreateRuleInput) (*CreateRuleOutput, error) {
+	req, out := c.CreateRuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateRuleWithContext is the same as CreateRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateRuleWithContext(ctx aws.Context, input *CreateRuleInput, opts ...request.Option) (*CreateRuleOutput, error) {
+	req, out := c.CreateRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3250,6 +3354,98 @@ func (c *Connect) DeleteQuickConnect(input *DeleteQuickConnectInput) (*DeleteQui
 // for more information on using Contexts.
 func (c *Connect) DeleteQuickConnectWithContext(ctx aws.Context, input *DeleteQuickConnectInput, opts ...request.Option) (*DeleteQuickConnectOutput, error) {
 	req, out := c.DeleteQuickConnectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRule = "DeleteRule"
+
+// DeleteRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRule for more information on using the DeleteRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteRuleRequest method.
+//	req, resp := client.DeleteRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteRule
+func (c *Connect) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Request, output *DeleteRuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/rules/{InstanceId}/{RuleId}",
+	}
+
+	if input == nil {
+		input = &DeleteRuleInput{}
+	}
+
+	output = &DeleteRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRule API operation for Amazon Connect Service.
+//
+// Deletes a rule for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteRule
+func (c *Connect) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, error) {
+	req, out := c.DeleteRuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRuleWithContext is the same as DeleteRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteRuleWithContext(ctx aws.Context, input *DeleteRuleInput, opts ...request.Option) (*DeleteRuleOutput, error) {
+	req, out := c.DeleteRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5043,6 +5239,97 @@ func (c *Connect) DescribeRoutingProfile(input *DescribeRoutingProfileInput) (*D
 // for more information on using Contexts.
 func (c *Connect) DescribeRoutingProfileWithContext(ctx aws.Context, input *DescribeRoutingProfileInput, opts ...request.Option) (*DescribeRoutingProfileOutput, error) {
 	req, out := c.DescribeRoutingProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRule = "DescribeRule"
+
+// DescribeRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRule for more information on using the DescribeRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeRuleRequest method.
+//	req, resp := client.DescribeRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeRule
+func (c *Connect) DescribeRuleRequest(input *DescribeRuleInput) (req *request.Request, output *DescribeRuleOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/rules/{InstanceId}/{RuleId}",
+	}
+
+	if input == nil {
+		input = &DescribeRuleInput{}
+	}
+
+	output = &DescribeRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRule API operation for Amazon Connect Service.
+//
+// Describes a rule for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeRule
+func (c *Connect) DescribeRule(input *DescribeRuleInput) (*DescribeRuleOutput, error) {
+	req, out := c.DescribeRuleRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRuleWithContext is the same as DescribeRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeRuleWithContext(ctx aws.Context, input *DescribeRuleInput, opts ...request.Option) (*DescribeRuleOutput, error) {
+	req, out := c.DescribeRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10680,6 +10967,154 @@ func (c *Connect) ListRoutingProfilesPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListRoutingProfilesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRules = "ListRules"
+
+// ListRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRules for more information on using the ListRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRulesRequest method.
+//	req, resp := client.ListRulesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRules
+func (c *Connect) ListRulesRequest(input *ListRulesInput) (req *request.Request, output *ListRulesOutput) {
+	op := &request.Operation{
+		Name:       opListRules,
+		HTTPMethod: "GET",
+		HTTPPath:   "/rules/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRulesInput{}
+	}
+
+	output = &ListRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRules API operation for Amazon Connect Service.
+//
+// List all rules for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListRules for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRules
+func (c *Connect) ListRules(input *ListRulesInput) (*ListRulesOutput, error) {
+	req, out := c.ListRulesRequest(input)
+	return out, req.Send()
+}
+
+// ListRulesWithContext is the same as ListRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListRulesWithContext(ctx aws.Context, input *ListRulesInput, opts ...request.Option) (*ListRulesOutput, error) {
+	req, out := c.ListRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRulesPages iterates over the pages of a ListRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRules operation.
+//	pageNum := 0
+//	err := client.ListRulesPages(params,
+//	    func(page *connect.ListRulesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListRulesPages(input *ListRulesInput, fn func(*ListRulesOutput, bool) bool) error {
+	return c.ListRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRulesPagesWithContext same as ListRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListRulesPagesWithContext(ctx aws.Context, input *ListRulesInput, fn func(*ListRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRulesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -16894,6 +17329,101 @@ func (c *Connect) UpdateRoutingProfileQueuesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opUpdateRule = "UpdateRule"
+
+// UpdateRuleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRule for more information on using the UpdateRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateRuleRequest method.
+//	req, resp := client.UpdateRuleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRule
+func (c *Connect) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Request, output *UpdateRuleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRule,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/rules/{InstanceId}/{RuleId}",
+	}
+
+	if input == nil {
+		input = &UpdateRuleInput{}
+	}
+
+	output = &UpdateRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateRule API operation for Amazon Connect Service.
+//
+// Updates a rule for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateRule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRule
+func (c *Connect) UpdateRule(input *UpdateRuleInput) (*UpdateRuleOutput, error) {
+	req, out := c.UpdateRuleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRuleWithContext is the same as UpdateRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateRuleWithContext(ctx aws.Context, input *UpdateRuleInput, opts ...request.Option) (*UpdateRuleOutput, error) {
+	req, out := c.UpdateRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSecurityProfile = "UpdateSecurityProfile"
 
 // UpdateSecurityProfileRequest generates a "aws/request.Request" representing the
@@ -17906,6 +18436,40 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about an action.
+type ActionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The action type.
+	//
+	// ActionType is a required field
+	ActionType *string `type:"string" required:"true" enum:"ActionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionSummary) GoString() string {
+	return s.String()
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *ActionSummary) SetActionType(v string) *ActionSummary {
+	s.ActionType = &v
+	return s
+}
+
 // Information about the contact (https://docs.aws.amazon.com/connect/latest/APIReference/API_Contact.html)
 // associated to the user.
 type AgentContactReference struct {
@@ -18270,6 +18834,33 @@ func (s *AnswerMachineDetectionConfig) SetAwaitAnswerMachinePrompt(v bool) *Answ
 func (s *AnswerMachineDetectionConfig) SetEnableAnswerMachineDetection(v bool) *AnswerMachineDetectionConfig {
 	s.EnableAnswerMachineDetection = &v
 	return s
+}
+
+// This action must be set if TriggerEventSource is one of the following values:
+// OnPostCallAnalysisAvailable | OnRealTimeCallAnalysisAvailable | OnPostChatAnalysisAvailable.
+// Contact is categorized using the rule name.
+//
+// RuleName is used as ContactCategory.
+type AssignContactCategoryActionDefinition struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssignContactCategoryActionDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssignContactCategoryActionDefinition) GoString() string {
+	return s.String()
 }
 
 type AssociateApprovedOriginInput struct {
@@ -21998,6 +22589,200 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutin
 	return s
 }
 
+type CreateRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of actions to be run when the rule is triggered.
+	//
+	// Actions is a required field
+	Actions []*RuleAction `type:"list" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The conditions of the rule.
+	//
+	// Function is a required field
+	Function *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A unique name for the rule.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The publish status of the rule.
+	//
+	// PublishStatus is a required field
+	PublishStatus *string `type:"string" required:"true" enum:"RulePublishStatus"`
+
+	// The event source to trigger the rule.
+	//
+	// TriggerEventSource is a required field
+	TriggerEventSource *RuleTriggerEventSource `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRuleInput"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Function == nil {
+		invalidParams.Add(request.NewErrParamRequired("Function"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PublishStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("PublishStatus"))
+	}
+	if s.TriggerEventSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("TriggerEventSource"))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TriggerEventSource != nil {
+		if err := s.TriggerEventSource.Validate(); err != nil {
+			invalidParams.AddNested("TriggerEventSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *CreateRuleInput) SetActions(v []*RuleAction) *CreateRuleInput {
+	s.Actions = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateRuleInput) SetClientToken(v string) *CreateRuleInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *CreateRuleInput) SetFunction(v string) *CreateRuleInput {
+	s.Function = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateRuleInput) SetInstanceId(v string) *CreateRuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRuleInput) SetName(v string) *CreateRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetPublishStatus sets the PublishStatus field's value.
+func (s *CreateRuleInput) SetPublishStatus(v string) *CreateRuleInput {
+	s.PublishStatus = &v
+	return s
+}
+
+// SetTriggerEventSource sets the TriggerEventSource field's value.
+func (s *CreateRuleInput) SetTriggerEventSource(v *RuleTriggerEventSource) *CreateRuleInput {
+	s.TriggerEventSource = v
+	return s
+}
+
+type CreateRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the rule.
+	//
+	// RuleArn is a required field
+	RuleArn *string `type:"string" required:"true"`
+
+	// A unique identifier for the rule.
+	//
+	// RuleId is a required field
+	RuleId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *CreateRuleOutput) SetRuleArn(v string) *CreateRuleOutput {
+	s.RuleArn = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *CreateRuleOutput) SetRuleId(v string) *CreateRuleOutput {
+	s.RuleId = &v
+	return s
+}
+
 type CreateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24006,6 +24791,95 @@ func (s DeleteQuickConnectOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteRuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the rule.
+	//
+	// RuleId is a required field
+	RuleId *string `location:"uri" locationName:"RuleId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRuleInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteRuleInput) SetInstanceId(v string) *DeleteRuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *DeleteRuleInput) SetRuleId(v string) *DeleteRuleInput {
+	s.RuleId = &v
+	return s
+}
+
+type DeleteRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteSecurityProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -25817,6 +26691,106 @@ func (s DescribeRoutingProfileOutput) GoString() string {
 // SetRoutingProfile sets the RoutingProfile field's value.
 func (s *DescribeRoutingProfileOutput) SetRoutingProfile(v *RoutingProfile) *DescribeRoutingProfileOutput {
 	s.RoutingProfile = v
+	return s
+}
+
+type DescribeRuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the rule.
+	//
+	// RuleId is a required field
+	RuleId *string `location:"uri" locationName:"RuleId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRuleInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeRuleInput) SetInstanceId(v string) *DescribeRuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *DescribeRuleInput) SetRuleId(v string) *DescribeRuleInput {
+	s.RuleId = &v
+	return s
+}
+
+type DescribeRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the rule.
+	//
+	// Rule is a required field
+	Rule *Rule `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetRule sets the Rule field's value.
+func (s *DescribeRuleOutput) SetRule(v *Rule) *DescribeRuleOutput {
+	s.Rule = v
 	return s
 }
 
@@ -27697,6 +28671,56 @@ func (s *EncryptionConfig) SetEncryptionType(v string) *EncryptionConfig {
 // SetKeyId sets the KeyId field's value.
 func (s *EncryptionConfig) SetKeyId(v string) *EncryptionConfig {
 	s.KeyId = &v
+	return s
+}
+
+// The EventBridge action definition.
+type EventBridgeActionDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The name.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeActionDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeActionDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventBridgeActionDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventBridgeActionDefinition"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *EventBridgeActionDefinition) SetName(v string) *EventBridgeActionDefinition {
+	s.Name = &v
 	return s
 }
 
@@ -34125,6 +35149,138 @@ func (s *ListRoutingProfilesOutput) SetRoutingProfileSummaryList(v []*RoutingPro
 	return s
 }
 
+type ListRulesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the event source.
+	EventSourceName *string `location:"querystring" locationName:"eventSourceName" type:"string" enum:"EventSourceName"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The publish status of the rule.
+	PublishStatus *string `location:"querystring" locationName:"publishStatus" type:"string" enum:"RulePublishStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRulesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventSourceName sets the EventSourceName field's value.
+func (s *ListRulesInput) SetEventSourceName(v string) *ListRulesInput {
+	s.EventSourceName = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListRulesInput) SetInstanceId(v string) *ListRulesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRulesInput) SetMaxResults(v int64) *ListRulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRulesInput) SetNextToken(v string) *ListRulesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPublishStatus sets the PublishStatus field's value.
+func (s *ListRulesInput) SetPublishStatus(v string) *ListRulesInput {
+	s.PublishStatus = &v
+	return s
+}
+
+type ListRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// Summary information about a rule.
+	//
+	// RuleSummaryList is a required field
+	RuleSummaryList []*RuleSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRulesOutput) SetNextToken(v string) *ListRulesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRuleSummaryList sets the RuleSummaryList field's value.
+func (s *ListRulesOutput) SetRuleSummaryList(v []*RuleSummary) *ListRulesOutput {
+	s.RuleSummaryList = v
+	return s
+}
+
 type ListSecurityKeysInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -35380,6 +36536,49 @@ func (s *MonitorContactOutput) SetContactArn(v string) *MonitorContactOutput {
 // SetContactId sets the ContactId field's value.
 func (s *MonitorContactOutput) SetContactId(v string) *MonitorContactOutput {
 	s.ContactId = &v
+	return s
+}
+
+// The type of notification recipient.
+type NotificationRecipientType struct {
+	_ struct{} `type:"structure"`
+
+	// A list of user IDs.
+	UserIds []*string `type:"list"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon Connect users
+	// with the specified tags will be notified.
+	UserTags map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationRecipientType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotificationRecipientType) GoString() string {
+	return s.String()
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *NotificationRecipientType) SetUserIds(v []*string) *NotificationRecipientType {
+	s.UserIds = v
+	return s
+}
+
+// SetUserTags sets the UserTags field's value.
+func (s *NotificationRecipientType) SetUserTags(v map[string]*string) *NotificationRecipientType {
+	s.UserTags = v
 	return s
 }
 
@@ -38109,6 +39308,421 @@ func (s *RoutingProfileSummary) SetName(v string) *RoutingProfileSummary {
 	return s
 }
 
+// Information about a rule.
+type Rule struct {
+	_ struct{} `type:"structure"`
+
+	// A list of actions to be run when the rule is triggered.
+	//
+	// Actions is a required field
+	Actions []*RuleAction `type:"list" required:"true"`
+
+	// The timestamp for when the rule was created.
+	//
+	// CreatedTime is a required field
+	CreatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The conditions of the rule.
+	//
+	// Function is a required field
+	Function *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the user who last updated the rule.
+	//
+	// LastUpdatedBy is a required field
+	LastUpdatedBy *string `type:"string" required:"true"`
+
+	// The timestamp for the when the rule was last updated.
+	//
+	// LastUpdatedTime is a required field
+	LastUpdatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The name of the rule.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The publish status of the rule.
+	//
+	// PublishStatus is a required field
+	PublishStatus *string `type:"string" required:"true" enum:"RulePublishStatus"`
+
+	// The Amazon Resource Name (ARN) of the rule.
+	//
+	// RuleArn is a required field
+	RuleArn *string `type:"string" required:"true"`
+
+	// A unique identifier for the rule.
+	//
+	// RuleId is a required field
+	RuleId *string `min:"1" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The event source to trigger the rule.
+	//
+	// TriggerEventSource is a required field
+	TriggerEventSource *RuleTriggerEventSource `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Rule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Rule) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *Rule) SetActions(v []*RuleAction) *Rule {
+	s.Actions = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Rule) SetCreatedTime(v time.Time) *Rule {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *Rule) SetFunction(v string) *Rule {
+	s.Function = &v
+	return s
+}
+
+// SetLastUpdatedBy sets the LastUpdatedBy field's value.
+func (s *Rule) SetLastUpdatedBy(v string) *Rule {
+	s.LastUpdatedBy = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *Rule) SetLastUpdatedTime(v time.Time) *Rule {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Rule) SetName(v string) *Rule {
+	s.Name = &v
+	return s
+}
+
+// SetPublishStatus sets the PublishStatus field's value.
+func (s *Rule) SetPublishStatus(v string) *Rule {
+	s.PublishStatus = &v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *Rule) SetRuleArn(v string) *Rule {
+	s.RuleArn = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *Rule) SetRuleId(v string) *Rule {
+	s.RuleId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Rule) SetTags(v map[string]*string) *Rule {
+	s.Tags = v
+	return s
+}
+
+// SetTriggerEventSource sets the TriggerEventSource field's value.
+func (s *Rule) SetTriggerEventSource(v *RuleTriggerEventSource) *Rule {
+	s.TriggerEventSource = v
+	return s
+}
+
+// Information about the action to be performed when a rule is triggered.
+type RuleAction struct {
+	_ struct{} `type:"structure"`
+
+	// The type of action that creates a rule.
+	//
+	// ActionType is a required field
+	ActionType *string `type:"string" required:"true" enum:"ActionType"`
+
+	// Information about the contact category action.
+	AssignContactCategoryAction *AssignContactCategoryActionDefinition `type:"structure"`
+
+	// Information about the EventBridge action.
+	EventBridgeAction *EventBridgeActionDefinition `type:"structure"`
+
+	// Information about the send notification action.
+	SendNotificationAction *SendNotificationActionDefinition `type:"structure"`
+
+	// Information about the task action. This field is required if TriggerEventSource
+	// is one of the following values: OnZendeskTicketCreate | OnZendeskTicketStatusUpdate
+	// | OnSalesforceCaseCreate
+	TaskAction *TaskActionDefinition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleAction"}
+	if s.ActionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionType"))
+	}
+	if s.EventBridgeAction != nil {
+		if err := s.EventBridgeAction.Validate(); err != nil {
+			invalidParams.AddNested("EventBridgeAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SendNotificationAction != nil {
+		if err := s.SendNotificationAction.Validate(); err != nil {
+			invalidParams.AddNested("SendNotificationAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TaskAction != nil {
+		if err := s.TaskAction.Validate(); err != nil {
+			invalidParams.AddNested("TaskAction", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *RuleAction) SetActionType(v string) *RuleAction {
+	s.ActionType = &v
+	return s
+}
+
+// SetAssignContactCategoryAction sets the AssignContactCategoryAction field's value.
+func (s *RuleAction) SetAssignContactCategoryAction(v *AssignContactCategoryActionDefinition) *RuleAction {
+	s.AssignContactCategoryAction = v
+	return s
+}
+
+// SetEventBridgeAction sets the EventBridgeAction field's value.
+func (s *RuleAction) SetEventBridgeAction(v *EventBridgeActionDefinition) *RuleAction {
+	s.EventBridgeAction = v
+	return s
+}
+
+// SetSendNotificationAction sets the SendNotificationAction field's value.
+func (s *RuleAction) SetSendNotificationAction(v *SendNotificationActionDefinition) *RuleAction {
+	s.SendNotificationAction = v
+	return s
+}
+
+// SetTaskAction sets the TaskAction field's value.
+func (s *RuleAction) SetTaskAction(v *TaskActionDefinition) *RuleAction {
+	s.TaskAction = v
+	return s
+}
+
+// A list of ActionTypes associated with a rule.
+type RuleSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ActionTypes associated with a rule.
+	//
+	// ActionSummaries is a required field
+	ActionSummaries []*ActionSummary `type:"list" required:"true"`
+
+	// The timestamp for when the rule was created.
+	//
+	// CreatedTime is a required field
+	CreatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The name of the event source.
+	//
+	// EventSourceName is a required field
+	EventSourceName *string `type:"string" required:"true" enum:"EventSourceName"`
+
+	// The timestamp for when the rule was last updated.
+	//
+	// LastUpdatedTime is a required field
+	LastUpdatedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The name of the rule.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The publish status of the rule.
+	//
+	// PublishStatus is a required field
+	PublishStatus *string `type:"string" required:"true" enum:"RulePublishStatus"`
+
+	// The Amazon Resource Name (ARN) of the rule.
+	//
+	// RuleArn is a required field
+	RuleArn *string `type:"string" required:"true"`
+
+	// A unique identifier for the rule.
+	//
+	// RuleId is a required field
+	RuleId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleSummary) GoString() string {
+	return s.String()
+}
+
+// SetActionSummaries sets the ActionSummaries field's value.
+func (s *RuleSummary) SetActionSummaries(v []*ActionSummary) *RuleSummary {
+	s.ActionSummaries = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *RuleSummary) SetCreatedTime(v time.Time) *RuleSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetEventSourceName sets the EventSourceName field's value.
+func (s *RuleSummary) SetEventSourceName(v string) *RuleSummary {
+	s.EventSourceName = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *RuleSummary) SetLastUpdatedTime(v time.Time) *RuleSummary {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RuleSummary) SetName(v string) *RuleSummary {
+	s.Name = &v
+	return s
+}
+
+// SetPublishStatus sets the PublishStatus field's value.
+func (s *RuleSummary) SetPublishStatus(v string) *RuleSummary {
+	s.PublishStatus = &v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *RuleSummary) SetRuleArn(v string) *RuleSummary {
+	s.RuleArn = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *RuleSummary) SetRuleId(v string) *RuleSummary {
+	s.RuleId = &v
+	return s
+}
+
+// The name of the event source. This field is required if TriggerEventSource
+// is one of the following values: OnZendeskTicketCreate | OnZendeskTicketStatusUpdate
+// | OnSalesforceCaseCreate
+type RuleTriggerEventSource struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the event source.
+	//
+	// EventSourceName is a required field
+	EventSourceName *string `type:"string" required:"true" enum:"EventSourceName"`
+
+	// The identifier for the integration association.
+	IntegrationAssociationId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleTriggerEventSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleTriggerEventSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleTriggerEventSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleTriggerEventSource"}
+	if s.EventSourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventSourceName"))
+	}
+	if s.IntegrationAssociationId != nil && len(*s.IntegrationAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntegrationAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventSourceName sets the EventSourceName field's value.
+func (s *RuleTriggerEventSource) SetEventSourceName(v string) *RuleTriggerEventSource {
+	s.EventSourceName = &v
+	return s
+}
+
+// SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
+func (s *RuleTriggerEventSource) SetIntegrationAssociationId(v string) *RuleTriggerEventSource {
+	s.IntegrationAssociationId = &v
+	return s
+}
+
 // Information about the Amazon Simple Storage Service (Amazon S3) storage type.
 type S3Config struct {
 	_ struct{} `type:"structure"`
@@ -39436,6 +41050,114 @@ func (s SecurityProfilesSearchFilter) GoString() string {
 // SetTagFilter sets the TagFilter field's value.
 func (s *SecurityProfilesSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *SecurityProfilesSearchFilter {
 	s.TagFilter = v
+	return s
+}
+
+// Information about the send notification action.
+type SendNotificationActionDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// Notification content. Supports variable injection. For more information,
+	// see JSONPath reference (https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html)
+	// in the Amazon Connect Administrators Guide.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// Content type format.
+	//
+	// ContentType is a required field
+	ContentType *string `type:"string" required:"true" enum:"NotificationContentType"`
+
+	// Notification delivery method.
+	//
+	// DeliveryMethod is a required field
+	DeliveryMethod *string `type:"string" required:"true" enum:"NotificationDeliveryType"`
+
+	// Notification recipient.
+	//
+	// Recipient is a required field
+	Recipient *NotificationRecipientType `type:"structure" required:"true"`
+
+	// The subject of the email if the delivery method is EMAIL. Supports variable
+	// injection. For more information, see JSONPath reference (https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html)
+	// in the Amazon Connect Administrators Guide.
+	Subject *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendNotificationActionDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendNotificationActionDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendNotificationActionDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendNotificationActionDefinition"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+	if s.DeliveryMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryMethod"))
+	}
+	if s.Recipient == nil {
+		invalidParams.Add(request.NewErrParamRequired("Recipient"))
+	}
+	if s.Subject != nil && len(*s.Subject) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Subject", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *SendNotificationActionDefinition) SetContent(v string) *SendNotificationActionDefinition {
+	s.Content = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *SendNotificationActionDefinition) SetContentType(v string) *SendNotificationActionDefinition {
+	s.ContentType = &v
+	return s
+}
+
+// SetDeliveryMethod sets the DeliveryMethod field's value.
+func (s *SendNotificationActionDefinition) SetDeliveryMethod(v string) *SendNotificationActionDefinition {
+	s.DeliveryMethod = &v
+	return s
+}
+
+// SetRecipient sets the Recipient field's value.
+func (s *SendNotificationActionDefinition) SetRecipient(v *NotificationRecipientType) *SendNotificationActionDefinition {
+	s.Recipient = v
+	return s
+}
+
+// SetSubject sets the Subject field's value.
+func (s *SendNotificationActionDefinition) SetSubject(v string) *SendNotificationActionDefinition {
+	s.Subject = &v
 	return s
 }
 
@@ -41002,6 +42724,103 @@ func (s TagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// Information about the task action.
+type TaskActionDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `type:"string" required:"true"`
+
+	// The description. Supports variable injection. For more information, see JSONPath
+	// reference (https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html)
+	// in the Amazon Connect Administrators Guide.
+	Description *string `type:"string"`
+
+	// The name. Supports variable injection. For more information, see JSONPath
+	// reference (https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html)
+	// in the Amazon Connect Administrators Guide.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Information about the reference when the referenceType is URL. Otherwise,
+	// null. (Supports variable injection in the Value field.)
+	References map[string]*Reference `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskActionDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskActionDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskActionDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskActionDefinition"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.References != nil {
+		for i, v := range s.References {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "References", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *TaskActionDefinition) SetContactFlowId(v string) *TaskActionDefinition {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TaskActionDefinition) SetDescription(v string) *TaskActionDefinition {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TaskActionDefinition) SetName(v string) *TaskActionDefinition {
+	s.Name = &v
+	return s
+}
+
+// SetReferences sets the References field's value.
+func (s *TaskActionDefinition) SetReferences(v map[string]*Reference) *TaskActionDefinition {
+	s.References = v
+	return s
 }
 
 // Describes constraints that apply to the template fields.
@@ -44737,6 +46556,166 @@ func (s UpdateRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of actions to be run when the rule is triggered.
+	//
+	// Actions is a required field
+	Actions []*RuleAction `type:"list" required:"true"`
+
+	// The conditions of the rule.
+	//
+	// Function is a required field
+	Function *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the rule. You can change the name only if TriggerEventSource
+	// is one of the following values: OnZendeskTicketCreate | OnZendeskTicketStatusUpdate
+	// | OnSalesforceCaseCreate
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The publish status of the rule.
+	//
+	// PublishStatus is a required field
+	PublishStatus *string `type:"string" required:"true" enum:"RulePublishStatus"`
+
+	// A unique identifier for the rule.
+	//
+	// RuleId is a required field
+	RuleId *string `location:"uri" locationName:"RuleId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRuleInput"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Function == nil {
+		invalidParams.Add(request.NewErrParamRequired("Function"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PublishStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("PublishStatus"))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *UpdateRuleInput) SetActions(v []*RuleAction) *UpdateRuleInput {
+	s.Actions = v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *UpdateRuleInput) SetFunction(v string) *UpdateRuleInput {
+	s.Function = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateRuleInput) SetInstanceId(v string) *UpdateRuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateRuleInput) SetName(v string) *UpdateRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetPublishStatus sets the PublishStatus field's value.
+func (s *UpdateRuleInput) SetPublishStatus(v string) *UpdateRuleInput {
+	s.PublishStatus = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *UpdateRuleInput) SetRuleId(v string) *UpdateRuleInput {
+	s.RuleId = &v
+	return s
+}
+
+type UpdateRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRuleOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -47223,6 +49202,30 @@ func (s *VoiceRecordingConfiguration) SetVoiceRecordingTrack(v string) *VoiceRec
 }
 
 const (
+	// ActionTypeCreateTask is a ActionType enum value
+	ActionTypeCreateTask = "CREATE_TASK"
+
+	// ActionTypeAssignContactCategory is a ActionType enum value
+	ActionTypeAssignContactCategory = "ASSIGN_CONTACT_CATEGORY"
+
+	// ActionTypeGenerateEventbridgeEvent is a ActionType enum value
+	ActionTypeGenerateEventbridgeEvent = "GENERATE_EVENTBRIDGE_EVENT"
+
+	// ActionTypeSendNotification is a ActionType enum value
+	ActionTypeSendNotification = "SEND_NOTIFICATION"
+)
+
+// ActionType_Values returns all elements of the ActionType enum
+func ActionType_Values() []string {
+	return []string{
+		ActionTypeCreateTask,
+		ActionTypeAssignContactCategory,
+		ActionTypeGenerateEventbridgeEvent,
+		ActionTypeSendNotification,
+	}
+}
+
+const (
 	// AgentStatusStateEnabled is a AgentStatusState enum value
 	AgentStatusStateEnabled = "ENABLED"
 
@@ -47548,6 +49551,38 @@ const (
 func EncryptionType_Values() []string {
 	return []string{
 		EncryptionTypeKms,
+	}
+}
+
+const (
+	// EventSourceNameOnPostCallAnalysisAvailable is a EventSourceName enum value
+	EventSourceNameOnPostCallAnalysisAvailable = "OnPostCallAnalysisAvailable"
+
+	// EventSourceNameOnRealTimeCallAnalysisAvailable is a EventSourceName enum value
+	EventSourceNameOnRealTimeCallAnalysisAvailable = "OnRealTimeCallAnalysisAvailable"
+
+	// EventSourceNameOnPostChatAnalysisAvailable is a EventSourceName enum value
+	EventSourceNameOnPostChatAnalysisAvailable = "OnPostChatAnalysisAvailable"
+
+	// EventSourceNameOnZendeskTicketCreate is a EventSourceName enum value
+	EventSourceNameOnZendeskTicketCreate = "OnZendeskTicketCreate"
+
+	// EventSourceNameOnZendeskTicketStatusUpdate is a EventSourceName enum value
+	EventSourceNameOnZendeskTicketStatusUpdate = "OnZendeskTicketStatusUpdate"
+
+	// EventSourceNameOnSalesforceCaseCreate is a EventSourceName enum value
+	EventSourceNameOnSalesforceCaseCreate = "OnSalesforceCaseCreate"
+)
+
+// EventSourceName_Values returns all elements of the EventSourceName enum
+func EventSourceName_Values() []string {
+	return []string{
+		EventSourceNameOnPostCallAnalysisAvailable,
+		EventSourceNameOnRealTimeCallAnalysisAvailable,
+		EventSourceNameOnPostChatAnalysisAvailable,
+		EventSourceNameOnZendeskTicketCreate,
+		EventSourceNameOnZendeskTicketStatusUpdate,
+		EventSourceNameOnSalesforceCaseCreate,
 	}
 }
 
@@ -47893,6 +49928,30 @@ func MonitorCapability_Values() []string {
 	return []string{
 		MonitorCapabilitySilentMonitor,
 		MonitorCapabilityBarge,
+	}
+}
+
+const (
+	// NotificationContentTypePlainText is a NotificationContentType enum value
+	NotificationContentTypePlainText = "PLAIN_TEXT"
+)
+
+// NotificationContentType_Values returns all elements of the NotificationContentType enum
+func NotificationContentType_Values() []string {
+	return []string{
+		NotificationContentTypePlainText,
+	}
+}
+
+const (
+	// NotificationDeliveryTypeEmail is a NotificationDeliveryType enum value
+	NotificationDeliveryTypeEmail = "EMAIL"
+)
+
+// NotificationDeliveryType_Values returns all elements of the NotificationDeliveryType enum
+func NotificationDeliveryType_Values() []string {
+	return []string{
+		NotificationDeliveryTypeEmail,
 	}
 }
 
@@ -49069,6 +51128,22 @@ func ResourceType_Values() []string {
 		ResourceTypeHierarchyLevel,
 		ResourceTypeHierarchyGroup,
 		ResourceTypeUser,
+	}
+}
+
+const (
+	// RulePublishStatusDraft is a RulePublishStatus enum value
+	RulePublishStatusDraft = "DRAFT"
+
+	// RulePublishStatusPublished is a RulePublishStatus enum value
+	RulePublishStatusPublished = "PUBLISHED"
+)
+
+// RulePublishStatus_Values returns all elements of the RulePublishStatus enum
+func RulePublishStatus_Values() []string {
+	return []string{
+		RulePublishStatusDraft,
+		RulePublishStatusPublished,
 	}
 }
 

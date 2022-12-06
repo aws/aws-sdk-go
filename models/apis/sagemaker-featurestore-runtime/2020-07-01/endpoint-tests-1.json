@@ -1,28 +1,6 @@
 {
     "testCases": [
         {
-            "documentation": "For region aws-global with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "properties": {
-                        "authSchemes": [
-                            {
-                                "name": "sigv4",
-                                "signingName": "billingconductor",
-                                "signingRegion": "us-east-1"
-                            }
-                        ]
-                    },
-                    "url": "https://billingconductor.us-east-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "UseDualStack": false,
-                "UseFIPS": false,
-                "Region": "aws-global"
-            }
-        },
-        {
             "documentation": "For custom endpoint with fips disabled and dualstack disabled",
             "expect": {
                 "endpoint": {

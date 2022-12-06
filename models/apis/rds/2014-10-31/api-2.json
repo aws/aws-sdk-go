@@ -68,7 +68,8 @@
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"DBSnapshotNotFoundFault"},
         {"shape":"DBProxyNotFoundFault"},
-        {"shape":"DBProxyTargetGroupNotFoundFault"}
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"BlueGreenDeploymentNotFoundFault"}
       ]
     },
     "ApplyPendingMaintenanceAction":{
@@ -1499,7 +1500,8 @@
         {"shape":"DBSnapshotNotFoundFault"},
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"DBProxyNotFoundFault"},
-        {"shape":"DBProxyTargetGroupNotFoundFault"}
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"BlueGreenDeploymentNotFoundFault"}
       ]
     },
     "ModifyActivityStream":{
@@ -2028,7 +2030,8 @@
         {"shape":"DBSnapshotNotFoundFault"},
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"DBProxyNotFoundFault"},
-        {"shape":"DBProxyTargetGroupNotFoundFault"}
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"BlueGreenDeploymentNotFoundFault"}
       ]
     },
     "ResetDBClusterParameterGroup":{
@@ -8159,7 +8162,8 @@
         "db-cluster",
         "db-cluster-snapshot",
         "custom-engine-version",
-        "db-proxy"
+        "db-proxy",
+        "blue-green-deployment"
       ]
     },
     "StartActivityStreamRequest":{
