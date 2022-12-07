@@ -157,6 +157,8 @@
         {"shape":"AccessDenied"},
         {"shape":"InvalidArgument"},
         {"shape":"InconsistentQuantities"},
+        {"shape":"ContinuousDeploymentPolicyAlreadyExists"},
+        {"shape":"TooManyContinuousDeploymentPolicies"},
         {"shape":"StagingDistributionInUse"}
       ]
     },
@@ -232,6 +234,8 @@
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
         {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"},
         {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
     },
@@ -306,6 +310,8 @@
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
         {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"},
         {"shape":"InvalidDomainNameForOriginAccessControl"}
       ]
     },
@@ -605,7 +611,9 @@
         {"shape":"InvalidIfMatchVersion"},
         {"shape":"InvalidArgument"},
         {"shape":"AccessDenied"},
-        {"shape":"PreconditionFailed"}
+        {"shape":"PreconditionFailed"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "DeleteDistribution":{
@@ -877,7 +885,8 @@
       "input":{"shape":"GetContinuousDeploymentPolicyRequest"},
       "output":{"shape":"GetContinuousDeploymentPolicyResult"},
       "errors":[
-        {"shape":"AccessDenied"}
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "GetContinuousDeploymentPolicyConfig":{
@@ -889,7 +898,8 @@
       "input":{"shape":"GetContinuousDeploymentPolicyConfigRequest"},
       "output":{"shape":"GetContinuousDeploymentPolicyConfigResult"},
       "errors":[
-        {"shape":"AccessDenied"}
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "GetDistribution":{
@@ -1234,7 +1244,8 @@
       "output":{"shape":"ListContinuousDeploymentPoliciesResult"},
       "errors":[
         {"shape":"InvalidArgument"},
-        {"shape":"AccessDenied"}
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "ListDistributions":{
@@ -1610,7 +1621,8 @@
         {"shape":"AccessDenied"},
         {"shape":"InconsistentQuantities"},
         {"shape":"PreconditionFailed"},
-        {"shape":"StagingDistributionInUse"}
+        {"shape":"StagingDistributionInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"}
       ]
     },
     "UpdateDistribution":{
@@ -1682,9 +1694,82 @@
         {"shape":"TrustedKeyGroupDoesNotExist"},
         {"shape":"NoSuchRealtimeLogConfig"},
         {"shape":"RealtimeLogConfigOwnerMismatch"},
+        {"shape":"ContinuousDeploymentPolicyInUse"},
+        {"shape":"NoSuchContinuousDeploymentPolicy"},
         {"shape":"StagingDistributionInUse"},
         {"shape":"IllegalOriginAccessConfiguration"},
         {"shape":"InvalidDomainNameForOriginAccessControl"}
+      ]
+    },
+    "UpdateDistributionWithStagingConfig":{
+      "name":"UpdateDistributionWithStagingConfig2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/distribution/{Id}/promote-staging-config"
+      },
+      "input":{"shape":"UpdateDistributionWithStagingConfigRequest"},
+      "output":{"shape":"UpdateDistributionWithStagingConfigResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"CNAMEAlreadyExists"},
+        {"shape":"IllegalUpdate"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"MissingBody"},
+        {"shape":"NoSuchDistribution"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"TooManyDistributionCNAMEs"},
+        {"shape":"InvalidDefaultRootObject"},
+        {"shape":"InvalidRelativePath"},
+        {"shape":"InvalidErrorCode"},
+        {"shape":"InvalidResponseCode"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidOriginAccessIdentity"},
+        {"shape":"InvalidOriginAccessControl"},
+        {"shape":"TooManyTrustedSigners"},
+        {"shape":"TrustedSignerDoesNotExist"},
+        {"shape":"InvalidViewerCertificate"},
+        {"shape":"InvalidMinimumProtocolVersion"},
+        {"shape":"InvalidRequiredProtocol"},
+        {"shape":"NoSuchOrigin"},
+        {"shape":"TooManyOrigins"},
+        {"shape":"TooManyOriginGroupsPerDistribution"},
+        {"shape":"TooManyCacheBehaviors"},
+        {"shape":"TooManyCookieNamesInWhiteList"},
+        {"shape":"InvalidForwardCookies"},
+        {"shape":"TooManyHeadersInForwardedValues"},
+        {"shape":"InvalidHeadersForS3Origin"},
+        {"shape":"InconsistentQuantities"},
+        {"shape":"TooManyCertificates"},
+        {"shape":"InvalidLocationCode"},
+        {"shape":"InvalidGeoRestrictionParameter"},
+        {"shape":"InvalidTTLOrder"},
+        {"shape":"InvalidWebACLId"},
+        {"shape":"TooManyOriginCustomHeaders"},
+        {"shape":"TooManyQueryStringParameters"},
+        {"shape":"InvalidQueryStringParameters"},
+        {"shape":"TooManyDistributionsWithLambdaAssociations"},
+        {"shape":"TooManyDistributionsWithSingleFunctionARN"},
+        {"shape":"TooManyLambdaFunctionAssociations"},
+        {"shape":"InvalidLambdaFunctionAssociation"},
+        {"shape":"TooManyDistributionsWithFunctionAssociations"},
+        {"shape":"TooManyFunctionAssociations"},
+        {"shape":"InvalidFunctionAssociation"},
+        {"shape":"InvalidOriginReadTimeout"},
+        {"shape":"InvalidOriginKeepaliveTimeout"},
+        {"shape":"NoSuchFieldLevelEncryptionConfig"},
+        {"shape":"IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"},
+        {"shape":"TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"},
+        {"shape":"NoSuchCachePolicy"},
+        {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
+        {"shape":"NoSuchResponseHeadersPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToResponseHeadersPolicy"},
+        {"shape":"NoSuchOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
+        {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
+        {"shape":"TrustedKeyGroupDoesNotExist"},
+        {"shape":"NoSuchRealtimeLogConfig"},
+        {"shape":"RealtimeLogConfigOwnerMismatch"}
       ]
     },
     "UpdateFieldLevelEncryptionConfig":{
@@ -2403,6 +2488,14 @@
         "ContinuousDeploymentPolicyConfig":{"shape":"ContinuousDeploymentPolicyConfig"}
       }
     },
+    "ContinuousDeploymentPolicyAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "ContinuousDeploymentPolicyConfig":{
       "type":"structure",
       "required":[
@@ -2414,6 +2507,14 @@
         "Enabled":{"shape":"boolean"},
         "TrafficConfig":{"shape":"TrafficConfig"}
       }
+    },
+    "ContinuousDeploymentPolicyInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "ContinuousDeploymentPolicyList":{
       "type":"structure",
@@ -3457,7 +3558,9 @@
         "Restrictions":{"shape":"Restrictions"},
         "WebACLId":{"shape":"string"},
         "HttpVersion":{"shape":"HttpVersion"},
-        "IsIPV6Enabled":{"shape":"boolean"}
+        "IsIPV6Enabled":{"shape":"boolean"},
+        "ContinuousDeploymentPolicyId":{"shape":"string"},
+        "Staging":{"shape":"boolean"}
       }
     },
     "DistributionConfigWithTags":{
@@ -3540,7 +3643,8 @@
         "Restrictions",
         "WebACLId",
         "HttpVersion",
-        "IsIPV6Enabled"
+        "IsIPV6Enabled",
+        "Staging"
       ],
       "members":{
         "Id":{"shape":"string"},
@@ -3562,7 +3666,8 @@
         "WebACLId":{"shape":"string"},
         "HttpVersion":{"shape":"HttpVersion"},
         "IsIPV6Enabled":{"shape":"boolean"},
-        "AliasICPRecordals":{"shape":"AliasICPRecordals"}
+        "AliasICPRecordals":{"shape":"AliasICPRecordals"},
+        "Staging":{"shape":"boolean"}
       }
     },
     "DistributionSummaryList":{
@@ -5772,6 +5877,14 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NoSuchContinuousDeploymentPolicy":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "NoSuchDistribution":{
       "type":"structure",
       "members":{
@@ -7268,6 +7381,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyContinuousDeploymentPolicies":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyCookieNamesInWhiteList":{
       "type":"structure",
       "members":{
@@ -7849,6 +7970,39 @@
       "payload":"DistributionConfig"
     },
     "UpdateDistributionResult":{
+      "type":"structure",
+      "members":{
+        "Distribution":{"shape":"Distribution"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"Distribution"
+    },
+    "UpdateDistributionWithStagingConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "StagingDistributionId":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"StagingDistributionId"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
+    "UpdateDistributionWithStagingConfigResult":{
       "type":"structure",
       "members":{
         "Distribution":{"shape":"Distribution"},

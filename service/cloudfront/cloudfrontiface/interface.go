@@ -452,6 +452,10 @@ type CloudFrontAPI interface {
 	UpdateDistributionWithContext(aws.Context, *cloudfront.UpdateDistributionInput, ...request.Option) (*cloudfront.UpdateDistributionOutput, error)
 	UpdateDistributionRequest(*cloudfront.UpdateDistributionInput) (*request.Request, *cloudfront.UpdateDistributionOutput)
 
+	UpdateDistributionWithStagingConfig(*cloudfront.UpdateDistributionWithStagingConfigInput) (*cloudfront.UpdateDistributionWithStagingConfigOutput, error)
+	UpdateDistributionWithStagingConfigWithContext(aws.Context, *cloudfront.UpdateDistributionWithStagingConfigInput, ...request.Option) (*cloudfront.UpdateDistributionWithStagingConfigOutput, error)
+	UpdateDistributionWithStagingConfigRequest(*cloudfront.UpdateDistributionWithStagingConfigInput) (*request.Request, *cloudfront.UpdateDistributionWithStagingConfigOutput)
+
 	UpdateFieldLevelEncryptionConfig(*cloudfront.UpdateFieldLevelEncryptionConfigInput) (*cloudfront.UpdateFieldLevelEncryptionConfigOutput, error)
 	UpdateFieldLevelEncryptionConfigWithContext(aws.Context, *cloudfront.UpdateFieldLevelEncryptionConfigInput, ...request.Option) (*cloudfront.UpdateFieldLevelEncryptionConfigOutput, error)
 	UpdateFieldLevelEncryptionConfigRequest(*cloudfront.UpdateFieldLevelEncryptionConfigInput) (*request.Request, *cloudfront.UpdateFieldLevelEncryptionConfigOutput)

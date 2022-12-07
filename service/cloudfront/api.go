@@ -733,6 +733,13 @@ func (c *CloudFront) CreateContinuousDeploymentPolicyRequest(input *CreateContin
 //   - ErrCodeInconsistentQuantities "InconsistentQuantities"
 //     The value of Quantity and the size of Items don't match.
 //
+//   - ErrCodeContinuousDeploymentPolicyAlreadyExists "ContinuousDeploymentPolicyAlreadyExists"
+//     A continuous deployment policy with this configuration already exists.
+//
+//   - ErrCodeTooManyContinuousDeploymentPolicies "TooManyContinuousDeploymentPolicies"
+//     You have reached the maximum number of continuous deployment policies for
+//     this Amazon Web Services account.
+//
 //   - ErrCodeStagingDistributionInUse "StagingDistributionInUse"
 //     A continuous deployment policy for this staging distribution already exists.
 //
@@ -1041,6 +1048,13 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //     The specified real-time log configuration belongs to a different Amazon Web
 //     Services account.
 //
+//   - ErrCodeContinuousDeploymentPolicyInUse "ContinuousDeploymentPolicyInUse"
+//     You cannot delete a continuous deployment policy that is associated with
+//     a primary distribution.
+//
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
+//
 //   - ErrCodeInvalidDomainNameForOriginAccessControl "InvalidDomainNameForOriginAccessControl"
 //     An origin access control is associated with an origin whose domain name is
 //     not supported.
@@ -1341,6 +1355,13 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   - ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
 //     The specified real-time log configuration belongs to a different Amazon Web
 //     Services account.
+//
+//   - ErrCodeContinuousDeploymentPolicyInUse "ContinuousDeploymentPolicyInUse"
+//     You cannot delete a continuous deployment policy that is associated with
+//     a primary distribution.
+//
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
 //
 //   - ErrCodeInvalidDomainNameForOriginAccessControl "InvalidDomainNameForOriginAccessControl"
 //     An origin access control is associated with an origin whose domain name is
@@ -3028,6 +3049,13 @@ func (c *CloudFront) DeleteContinuousDeploymentPolicyRequest(input *DeleteContin
 //
 //   - ErrCodePreconditionFailed "PreconditionFailed"
 //     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeContinuousDeploymentPolicyInUse "ContinuousDeploymentPolicyInUse"
+//     You cannot delete a continuous deployment policy that is associated with
+//     a primary distribution.
+//
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteContinuousDeploymentPolicy
 func (c *CloudFront) DeleteContinuousDeploymentPolicy(input *DeleteContinuousDeploymentPolicyInput) (*DeleteContinuousDeploymentPolicyOutput, error) {
@@ -4722,8 +4750,12 @@ func (c *CloudFront) GetContinuousDeploymentPolicyRequest(input *GetContinuousDe
 // API operation GetContinuousDeploymentPolicy for usage and error information.
 //
 // Returned Error Codes:
+//
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
+//
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicy
 func (c *CloudFront) GetContinuousDeploymentPolicy(input *GetContinuousDeploymentPolicyInput) (*GetContinuousDeploymentPolicyOutput, error) {
@@ -4800,8 +4832,12 @@ func (c *CloudFront) GetContinuousDeploymentPolicyConfigRequest(input *GetContin
 // API operation GetContinuousDeploymentPolicyConfig for usage and error information.
 //
 // Returned Error Codes:
+//
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
+//
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicyConfig
 func (c *CloudFront) GetContinuousDeploymentPolicyConfig(input *GetContinuousDeploymentPolicyConfigInput) (*GetContinuousDeploymentPolicyConfigOutput, error) {
@@ -7090,6 +7126,9 @@ func (c *CloudFront) ListContinuousDeploymentPoliciesRequest(input *ListContinuo
 //
 //   - ErrCodeAccessDenied "AccessDenied"
 //     Access denied.
+//
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListContinuousDeploymentPolicies
 func (c *CloudFront) ListContinuousDeploymentPolicies(input *ListContinuousDeploymentPoliciesInput) (*ListContinuousDeploymentPoliciesOutput, error) {
@@ -9629,6 +9668,9 @@ func (c *CloudFront) UpdateContinuousDeploymentPolicyRequest(input *UpdateContin
 //   - ErrCodeStagingDistributionInUse "StagingDistributionInUse"
 //     A continuous deployment policy for this staging distribution already exists.
 //
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateContinuousDeploymentPolicy
 func (c *CloudFront) UpdateContinuousDeploymentPolicy(input *UpdateContinuousDeploymentPolicyInput) (*UpdateContinuousDeploymentPolicyOutput, error) {
 	req, out := c.UpdateContinuousDeploymentPolicyRequest(input)
@@ -9942,6 +9984,13 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //     The specified real-time log configuration belongs to a different Amazon Web
 //     Services account.
 //
+//   - ErrCodeContinuousDeploymentPolicyInUse "ContinuousDeploymentPolicyInUse"
+//     You cannot delete a continuous deployment policy that is associated with
+//     a primary distribution.
+//
+//   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
+//     The continuous deployment policy doesn’t exist.
+//
 //   - ErrCodeStagingDistributionInUse "StagingDistributionInUse"
 //     A continuous deployment policy for this staging distribution already exists.
 //
@@ -9970,6 +10019,307 @@ func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*Update
 // for more information on using Contexts.
 func (c *CloudFront) UpdateDistributionWithContext(ctx aws.Context, input *UpdateDistributionInput, opts ...request.Option) (*UpdateDistributionOutput, error) {
 	req, out := c.UpdateDistributionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateDistributionWithStagingConfig = "UpdateDistributionWithStagingConfig2020_05_31"
+
+// UpdateDistributionWithStagingConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDistributionWithStagingConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDistributionWithStagingConfig for more information on using the UpdateDistributionWithStagingConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDistributionWithStagingConfigRequest method.
+//	req, resp := client.UpdateDistributionWithStagingConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateDistributionWithStagingConfig
+func (c *CloudFront) UpdateDistributionWithStagingConfigRequest(input *UpdateDistributionWithStagingConfigInput) (req *request.Request, output *UpdateDistributionWithStagingConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDistributionWithStagingConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-05-31/distribution/{Id}/promote-staging-config",
+	}
+
+	if input == nil {
+		input = &UpdateDistributionWithStagingConfigInput{}
+	}
+
+	output = &UpdateDistributionWithStagingConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDistributionWithStagingConfig API operation for Amazon CloudFront.
+//
+// Copies the staging distribution's configuration to its corresponding primary
+// distribution. The primary distribution retains its Aliases (also known as
+// alternate domain names or CNAMEs) and ContinuousDeploymentPolicyId value,
+// but otherwise its configuration is overwritten to match the staging distribution.
+//
+// You can use this operation in a continuous deployment workflow after you
+// have tested configuration changes on the staging distribution. After using
+// a continuous deployment policy to move a portion of your domain name’s
+// traffic to the staging distribution and verifying that it works as intended,
+// you can use this operation to copy the staging distribution’s configuration
+// to the primary distribution. This action will disable the continuous deployment
+// policy and move your domain’s traffic back to the primary distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateDistributionWithStagingConfig for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeAccessDenied "AccessDenied"
+//     Access denied.
+//
+//   - ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
+//     The CNAME specified is already defined for CloudFront.
+//
+//   - ErrCodeIllegalUpdate "IllegalUpdate"
+//     The update contains modifications that are not allowed.
+//
+//   - ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//     The If-Match version is missing or not valid.
+//
+//   - ErrCodeMissingBody "MissingBody"
+//     This operation requires a body. Ensure that the body is present and the Content-Type
+//     header is set.
+//
+//   - ErrCodeNoSuchDistribution "NoSuchDistribution"
+//     The specified distribution does not exist.
+//
+//   - ErrCodePreconditionFailed "PreconditionFailed"
+//     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeTooManyDistributionCNAMEs "TooManyDistributionCNAMEs"
+//     Your request contains more CNAMEs than are allowed per distribution.
+//
+//   - ErrCodeInvalidDefaultRootObject "InvalidDefaultRootObject"
+//     The default root object file name is too big or contains an invalid character.
+//
+//   - ErrCodeInvalidRelativePath "InvalidRelativePath"
+//     The relative path is too big, is not URL-encoded, or does not begin with
+//     a slash (/).
+//
+//   - ErrCodeInvalidErrorCode "InvalidErrorCode"
+//     An invalid error code was specified.
+//
+//   - ErrCodeInvalidResponseCode "InvalidResponseCode"
+//     A response code is not valid.
+//
+//   - ErrCodeInvalidArgument "InvalidArgument"
+//     An argument is invalid.
+//
+//   - ErrCodeInvalidOriginAccessIdentity "InvalidOriginAccessIdentity"
+//     The origin access identity is not valid or doesn't exist.
+//
+//   - ErrCodeInvalidOriginAccessControl "InvalidOriginAccessControl"
+//     The origin access control is not valid.
+//
+//   - ErrCodeTooManyTrustedSigners "TooManyTrustedSigners"
+//     Your request contains more trusted signers than are allowed per distribution.
+//
+//   - ErrCodeTrustedSignerDoesNotExist "TrustedSignerDoesNotExist"
+//     One or more of your trusted signers don't exist.
+//
+//   - ErrCodeInvalidViewerCertificate "InvalidViewerCertificate"
+//     A viewer certificate specified is not valid.
+//
+//   - ErrCodeInvalidMinimumProtocolVersion "InvalidMinimumProtocolVersion"
+//     The minimum protocol version specified is not valid.
+//
+//   - ErrCodeInvalidRequiredProtocol "InvalidRequiredProtocol"
+//     This operation requires the HTTPS protocol. Ensure that you specify the HTTPS
+//     protocol in your request, or omit the RequiredProtocols element from your
+//     distribution configuration.
+//
+//   - ErrCodeNoSuchOrigin "NoSuchOrigin"
+//     No origin exists with the specified Origin Id.
+//
+//   - ErrCodeTooManyOrigins "TooManyOrigins"
+//     You cannot create more origins for the distribution.
+//
+//   - ErrCodeTooManyOriginGroupsPerDistribution "TooManyOriginGroupsPerDistribution"
+//     Processing your request would cause you to exceed the maximum number of origin
+//     groups allowed.
+//
+//   - ErrCodeTooManyCacheBehaviors "TooManyCacheBehaviors"
+//     You cannot create more cache behaviors for the distribution.
+//
+//   - ErrCodeTooManyCookieNamesInWhiteList "TooManyCookieNamesInWhiteList"
+//     Your request contains more cookie names in the whitelist than are allowed
+//     per cache behavior.
+//
+//   - ErrCodeInvalidForwardCookies "InvalidForwardCookies"
+//     Your request contains forward cookies option which doesn't match with the
+//     expectation for the whitelisted list of cookie names. Either list of cookie
+//     names has been specified when not allowed or list of cookie names is missing
+//     when expected.
+//
+//   - ErrCodeTooManyHeadersInForwardedValues "TooManyHeadersInForwardedValues"
+//     Your request contains too many headers in forwarded values.
+//
+//   - ErrCodeInvalidHeadersForS3Origin "InvalidHeadersForS3Origin"
+//     The headers specified are not valid for an Amazon S3 origin.
+//
+//   - ErrCodeInconsistentQuantities "InconsistentQuantities"
+//     The value of Quantity and the size of Items don't match.
+//
+//   - ErrCodeTooManyCertificates "TooManyCertificates"
+//     You cannot create anymore custom SSL/TLS certificates.
+//
+//   - ErrCodeInvalidLocationCode "InvalidLocationCode"
+//     The location code specified is not valid.
+//
+//   - ErrCodeInvalidGeoRestrictionParameter "InvalidGeoRestrictionParameter"
+//     The specified geo restriction parameter is not valid.
+//
+//   - ErrCodeInvalidTTLOrder "InvalidTTLOrder"
+//     The TTL order specified is not valid.
+//
+//   - ErrCodeInvalidWebACLId "InvalidWebACLId"
+//     A web ACL ID specified is not valid. To specify a web ACL created using the
+//     latest version of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+//     To specify a web ACL created using WAF Classic, use the ACL ID, for example
+//     473e64fd-f30b-4765-81a0-62ad96dd167a.
+//
+//   - ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
+//     Your request contains too many origin custom headers.
+//
+//   - ErrCodeTooManyQueryStringParameters "TooManyQueryStringParameters"
+//     Your request contains too many query string parameters.
+//
+//   - ErrCodeInvalidQueryStringParameters "InvalidQueryStringParameters"
+//     The query string parameters specified are not valid.
+//
+//   - ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
+//     Processing your request would cause the maximum number of distributions with
+//     Lambda@Edge function associations per owner to be exceeded.
+//
+//   - ErrCodeTooManyDistributionsWithSingleFunctionARN "TooManyDistributionsWithSingleFunctionARN"
+//     The maximum number of distributions have been associated with the specified
+//     Lambda@Edge function.
+//
+//   - ErrCodeTooManyLambdaFunctionAssociations "TooManyLambdaFunctionAssociations"
+//     Your request contains more Lambda@Edge function associations than are allowed
+//     per distribution.
+//
+//   - ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
+//     The specified Lambda@Edge function association is invalid.
+//
+//   - ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
+//     You have reached the maximum number of distributions that are associated
+//     with a CloudFront function. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyFunctionAssociations "TooManyFunctionAssociations"
+//     You have reached the maximum number of CloudFront function associations for
+//     this distribution. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeInvalidFunctionAssociation "InvalidFunctionAssociation"
+//     A CloudFront function association is invalid.
+//
+//   - ErrCodeInvalidOriginReadTimeout "InvalidOriginReadTimeout"
+//     The read timeout specified for the origin is not valid.
+//
+//   - ErrCodeInvalidOriginKeepaliveTimeout "InvalidOriginKeepaliveTimeout"
+//     The keep alive timeout specified for the origin is not valid.
+//
+//   - ErrCodeNoSuchFieldLevelEncryptionConfig "NoSuchFieldLevelEncryptionConfig"
+//     The specified configuration for field-level encryption doesn't exist.
+//
+//   - ErrCodeIllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior "IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior"
+//     The specified configuration for field-level encryption can't be associated
+//     with the specified cache behavior.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToFieldLevelEncryptionConfig "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig"
+//     The maximum number of distributions have been associated with the specified
+//     configuration for field-level encryption.
+//
+//   - ErrCodeNoSuchCachePolicy "NoSuchCachePolicy"
+//     The cache policy does not exist.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToCachePolicy "TooManyDistributionsAssociatedToCachePolicy"
+//     The maximum number of distributions have been associated with the specified
+//     cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//     The response headers policy does not exist.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToResponseHeadersPolicy "TooManyDistributionsAssociatedToResponseHeadersPolicy"
+//     The maximum number of distributions have been associated with the specified
+//     response headers policy.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeNoSuchOriginRequestPolicy "NoSuchOriginRequestPolicy"
+//     The origin request policy does not exist.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToOriginRequestPolicy "TooManyDistributionsAssociatedToOriginRequestPolicy"
+//     The maximum number of distributions have been associated with the specified
+//     origin request policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyDistributionsAssociatedToKeyGroup "TooManyDistributionsAssociatedToKeyGroup"
+//     The number of distributions that reference this key group is more than the
+//     maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyKeyGroupsAssociatedToDistribution "TooManyKeyGroupsAssociatedToDistribution"
+//     The number of key groups referenced by this distribution is more than the
+//     maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
+//     The specified key group does not exist.
+//
+//   - ErrCodeNoSuchRealtimeLogConfig "NoSuchRealtimeLogConfig"
+//     The real-time log configuration does not exist.
+//
+//   - ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
+//     The specified real-time log configuration belongs to a different Amazon Web
+//     Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateDistributionWithStagingConfig
+func (c *CloudFront) UpdateDistributionWithStagingConfig(input *UpdateDistributionWithStagingConfigInput) (*UpdateDistributionWithStagingConfigOutput, error) {
+	req, out := c.UpdateDistributionWithStagingConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDistributionWithStagingConfigWithContext is the same as UpdateDistributionWithStagingConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDistributionWithStagingConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) UpdateDistributionWithStagingConfigWithContext(ctx aws.Context, input *UpdateDistributionWithStagingConfigInput, opts ...request.Option) (*UpdateDistributionWithStagingConfigOutput, error) {
+	req, out := c.UpdateDistributionWithStagingConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13290,8 +13640,7 @@ func (s *ContinuousDeploymentSingleHeaderConfig) SetValue(v string) *ContinuousD
 	return s
 }
 
-// Contains the percentage of traffic to send to a staging distribution, expressed
-// as a decimal number between 0 and 1.
+// Contains the percentage of traffic to send to a staging distribution.
 type ContinuousDeploymentSingleWeightConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -13302,8 +13651,8 @@ type ContinuousDeploymentSingleWeightConfig struct {
 	// using TTL values.
 	SessionStickinessConfig *SessionStickinessConfig `type:"structure"`
 
-	// The percentage of traffic to send to the staging distribution, expressed
-	// as a decimal number between 0 and 1.
+	// The percentage of traffic to send to a staging distribution, expressed as
+	// a decimal number between 0 and .15.
 	//
 	// Weight is a required field
 	Weight *float64 `type:"float" required:"true"`
@@ -17892,6 +18241,10 @@ type DistributionConfig struct {
 	// Comment is a required field
 	Comment *string `type:"string" required:"true" sensitive:"true"`
 
+	// The identifier of a continuous deployment policy. For more information, see
+	// CreateContinuousDeploymentPolicy.
+	ContinuousDeploymentPolicyId *string `type:"string"`
+
 	// A complex type that controls the following:
 	//
 	//    * Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
@@ -18024,6 +18377,11 @@ type DistributionConfig struct {
 	// of your content.
 	Restrictions *Restrictions `type:"structure"`
 
+	// A Boolean that indicates whether this is a staging distribution. When this
+	// value is true, this is a staging distribution. When this value is false,
+	// this is not a staging distribution.
+	Staging *bool `type:"boolean"`
+
 	// A complex type that determines the distribution’s SSL/TLS configuration
 	// for communicating with viewers.
 	ViewerCertificate *ViewerCertificate `type:"structure"`
@@ -18152,6 +18510,12 @@ func (s *DistributionConfig) SetComment(v string) *DistributionConfig {
 	return s
 }
 
+// SetContinuousDeploymentPolicyId sets the ContinuousDeploymentPolicyId field's value.
+func (s *DistributionConfig) SetContinuousDeploymentPolicyId(v string) *DistributionConfig {
+	s.ContinuousDeploymentPolicyId = &v
+	return s
+}
+
 // SetCustomErrorResponses sets the CustomErrorResponses field's value.
 func (s *DistributionConfig) SetCustomErrorResponses(v *CustomErrorResponses) *DistributionConfig {
 	s.CustomErrorResponses = v
@@ -18215,6 +18579,12 @@ func (s *DistributionConfig) SetPriceClass(v string) *DistributionConfig {
 // SetRestrictions sets the Restrictions field's value.
 func (s *DistributionConfig) SetRestrictions(v *Restrictions) *DistributionConfig {
 	s.Restrictions = v
+	return s
+}
+
+// SetStaging sets the Staging field's value.
+func (s *DistributionConfig) SetStaging(v bool) *DistributionConfig {
+	s.Staging = &v
 	return s
 }
 
@@ -18584,6 +18954,11 @@ type DistributionSummary struct {
 	// Restrictions is a required field
 	Restrictions *Restrictions `type:"structure" required:"true"`
 
+	// Whether the primary distribution has a staging distribution enabled.
+	//
+	// Staging is a required field
+	Staging *bool `type:"boolean" required:"true"`
+
 	// The current status of the distribution. When the status is Deployed, the
 	// distribution's information is propagated to all CloudFront edge locations.
 	//
@@ -18719,6 +19094,12 @@ func (s *DistributionSummary) SetPriceClass(v string) *DistributionSummary {
 // SetRestrictions sets the Restrictions field's value.
 func (s *DistributionSummary) SetRestrictions(v *Restrictions) *DistributionSummary {
 	s.Restrictions = v
+	return s
+}
+
+// SetStaging sets the Staging field's value.
+func (s *DistributionSummary) SetStaging(v bool) *DistributionSummary {
+	s.Staging = &v
 	return s
 }
 
@@ -33077,6 +33458,119 @@ func (s *UpdateDistributionOutput) SetDistribution(v *Distribution) *UpdateDistr
 
 // SetETag sets the ETag field's value.
 func (s *UpdateDistributionOutput) SetETag(v string) *UpdateDistributionOutput {
+	s.ETag = &v
+	return s
+}
+
+type UpdateDistributionWithStagingConfigInput struct {
+	_ struct{} `locationName:"UpdateDistributionWithStagingConfigRequest" type:"structure"`
+
+	// The identifier of the primary distribution to which you are copying a staging
+	// distribution's configuration.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The current versions (ETag values) of both primary and staging distributions.
+	// Provide these in the following format:
+	//
+	// <primary ETag>, <staging ETag>
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// The identifier of the staging distribution whose configuration you are copying
+	// to the primary distribution.
+	StagingDistributionId *string `location:"querystring" locationName:"StagingDistributionId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDistributionWithStagingConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDistributionWithStagingConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDistributionWithStagingConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDistributionWithStagingConfigInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateDistributionWithStagingConfigInput) SetId(v string) *UpdateDistributionWithStagingConfigInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateDistributionWithStagingConfigInput) SetIfMatch(v string) *UpdateDistributionWithStagingConfigInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetStagingDistributionId sets the StagingDistributionId field's value.
+func (s *UpdateDistributionWithStagingConfigInput) SetStagingDistributionId(v string) *UpdateDistributionWithStagingConfigInput {
+	s.StagingDistributionId = &v
+	return s
+}
+
+type UpdateDistributionWithStagingConfigOutput struct {
+	_ struct{} `type:"structure" payload:"Distribution"`
+
+	// A distribution tells CloudFront where you want content to be delivered from,
+	// and the details about how to track and manage content delivery.
+	Distribution *Distribution `type:"structure"`
+
+	// The current version of the primary distribution (after it’s updated).
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDistributionWithStagingConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDistributionWithStagingConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetDistribution sets the Distribution field's value.
+func (s *UpdateDistributionWithStagingConfigOutput) SetDistribution(v *Distribution) *UpdateDistributionWithStagingConfigOutput {
+	s.Distribution = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateDistributionWithStagingConfigOutput) SetETag(v string) *UpdateDistributionWithStagingConfigOutput {
 	s.ETag = &v
 	return s
 }

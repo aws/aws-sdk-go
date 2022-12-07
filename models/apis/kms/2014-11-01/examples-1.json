@@ -90,7 +90,7 @@
           "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
           "XksProxyAuthenticationCredential": {
             "AccessKeyId": "ABCDE12345670EXAMPLE",
-            "RawSecretAccessKey": "file://SecretAccessKey"
+            "RawSecretAccessKey": "DXjSUawnel2fr6SKC7G25CNxTyWKE5PF9XX6H/u9pSo="
           },
           "XksProxyConnectivity": "VPC_ENDPOINT_SERVICE",
           "XksProxyUriEndpoint": "https://myproxy-private.xks.example.com",
@@ -124,7 +124,7 @@
           "CustomKeyStoreType": "EXTERNAL_KEY_STORE",
           "XksProxyAuthenticationCredential": {
             "AccessKeyId": "ABCDE12345670EXAMPLE",
-            "RawSecretAccessKey": "file://SecretAccessKey"
+            "RawSecretAccessKey": "DXjSUawnel2fr6SKC7G25CNxTyWKE5PF9XX6H/u9pSo="
           },
           "XksProxyConnectivity": "PUBLIC_ENDPOINT",
           "XksProxyUriEndpoint": "https://myproxy.xks.example.com",
@@ -1866,25 +1866,6 @@
       {
         "input": {
           "CustomKeyStoreId": "cks-1234567890abcdef0",
-          "KeyStorePassword": "ExamplePassword"
-        },
-        "output": {
-        },
-        "comments": {
-          "input": {
-            "CustomKeyStoreId": "The ID of the custom key store that you are updating.",
-            "KeyStorePassword": "The password for the kmsuser crypto user in the CloudHSM cluster."
-          },
-          "output": {
-          }
-        },
-        "description": "This example tells AWS KMS the password for the kmsuser crypto user in the AWS CloudHSM cluster that is associated with the AWS KMS custom key store. (It does not change the password in the CloudHSM cluster.) This operation does not return any data.",
-        "id": "to-edit-the-properties-of-a-custom-key-store-1",
-        "title": "To edit the password of an AWS CloudHSM key store"
-      },
-      {
-        "input": {
-          "CustomKeyStoreId": "cks-1234567890abcdef0",
           "NewCustomKeyStoreName": "DevelopmentKeys"
         },
         "output": {
@@ -1898,8 +1879,27 @@
           }
         },
         "description": "This example changes the friendly name of the AWS KMS custom key store to the name that you specify. This operation does not return any data. To verify that the operation worked, use the DescribeCustomKeyStores operation.",
-        "id": "to-edit-the-friendly-name-of-a-custom-key-store-2",
+        "id": "to-edit-the-friendly-name-of-a-custom-key-store-1",
         "title": "To edit the friendly name of a custom key store"
+      },
+      {
+        "input": {
+          "CustomKeyStoreId": "cks-1234567890abcdef0",
+          "KeyStorePassword": "ExamplePassword"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreId": "The ID of the custom key store that you are updating.",
+            "KeyStorePassword": "The password for the kmsuser crypto user in the CloudHSM cluster."
+          },
+          "output": {
+          }
+        },
+        "description": "This example tells AWS KMS the password for the kmsuser crypto user in the AWS CloudHSM cluster that is associated with the AWS KMS custom key store. (It does not change the password in the CloudHSM cluster.) This operation does not return any data.",
+        "id": "to-edit-the-properties-of-an-aws-cloudhsm-key-store-2",
+        "title": "To edit the password of an AWS CloudHSM key store"
       },
       {
         "input": {
@@ -1923,6 +1923,28 @@
       {
         "input": {
           "CustomKeyStoreId": "cks-1234567890abcdef0",
+          "XksProxyAuthenticationCredential": {
+            "AccessKeyId": "ABCDE12345670EXAMPLE",
+            "RawSecretAccessKey": "DXjSUawnel2fr6SKC7G25CNxTyWKE5PF9XX6H/u9pSo="
+          }
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+            "CustomKeyStoreId": "Identifies the custom key store",
+            "XksProxyAuthenticationCredential": "Specifies the values in the proxy authentication credential"
+          },
+          "output": {
+          }
+        },
+        "description": "To update the proxy authentication credential for your external key store, specify both the <code>RawSecretAccessKey</code> and the <code>AccessKeyId</code>, even if you are changing only one of the values. You can use this feature to fix an invalid credential or to change the credential when the external key store proxy rotates it.",
+        "id": "to-update-the-proxy-authentication-credential-of-an-external-key-store-4",
+        "title": "To update the proxy authentication credential of an external key store"
+      },
+      {
+        "input": {
+          "CustomKeyStoreId": "cks-1234567890abcdef0",
           "XksProxyUriPath": "/new-path/kms/xks/v1"
         },
         "output": {
@@ -1936,7 +1958,7 @@
           }
         },
         "description": "This example updates the proxy URI path for an external key store",
-        "id": "to-update-the-xks-proxy-api-path-of-an-external-custom-key-store-4",
+        "id": "to-update-the-xks-proxy-api-path-of-an-external-key-store-5",
         "title": "To edit the proxy URI path of an external key store."
       },
       {
@@ -1959,7 +1981,7 @@
           }
         },
         "description": "To change the external key store proxy connectivity option from public endpoint connectivity to VPC endpoint service connectivity, in addition to changing the <code>XksProxyConnectivity</code> value, you must change the <code>XksProxyUriEndpoint</code> value to reflect the private DNS name associated with the VPC endpoint service. You must also add an <code>XksProxyVpcEndpointServiceName</code> value.",
-        "id": "to-update-the-proxy-connectivity-of-an-external-key-store-to-vpc_endpoint_service-5",
+        "id": "to-update-the-proxy-connectivity-of-an-external-key-store-to-vpc_endpoint_service-6",
         "title": "To update the proxy connectivity of an external key store to VPC_ENDPOINT_SERVICE"
       }
     ],

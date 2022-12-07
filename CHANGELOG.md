@@ -1,3 +1,14 @@
+Release v1.44.155 (2022-12-07)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/cloudfront`: Updates service API and documentation
+  * Introducing UpdateDistributionWithStagingConfig that can be used to promote the staging configuration to the production.
+* `service/eks`: Updates service API and documentation
+* `service/kms`: Updates service documentation and examples
+  * Updated examples and exceptions for External Key Store (XKS).
+
 Release v1.44.154 (2022-12-06)
 ===
 

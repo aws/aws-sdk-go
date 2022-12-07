@@ -42,6 +42,19 @@ const (
 	// You can't change the value of a public key.
 	ErrCodeCannotChangeImmutablePublicKeyFields = "CannotChangeImmutablePublicKeyFields"
 
+	// ErrCodeContinuousDeploymentPolicyAlreadyExists for service response error code
+	// "ContinuousDeploymentPolicyAlreadyExists".
+	//
+	// A continuous deployment policy with this configuration already exists.
+	ErrCodeContinuousDeploymentPolicyAlreadyExists = "ContinuousDeploymentPolicyAlreadyExists"
+
+	// ErrCodeContinuousDeploymentPolicyInUse for service response error code
+	// "ContinuousDeploymentPolicyInUse".
+	//
+	// You cannot delete a continuous deployment policy that is associated with
+	// a primary distribution.
+	ErrCodeContinuousDeploymentPolicyInUse = "ContinuousDeploymentPolicyInUse"
+
 	// ErrCodeDistributionAlreadyExists for service response error code
 	// "DistributionAlreadyExists".
 	//
@@ -339,6 +352,12 @@ const (
 	// The specified origin access identity does not exist.
 	ErrCodeNoSuchCloudFrontOriginAccessIdentity = "NoSuchCloudFrontOriginAccessIdentity"
 
+	// ErrCodeNoSuchContinuousDeploymentPolicy for service response error code
+	// "NoSuchContinuousDeploymentPolicy".
+	//
+	// The continuous deployment policy doesn’t exist.
+	ErrCodeNoSuchContinuousDeploymentPolicy = "NoSuchContinuousDeploymentPolicy"
+
 	// ErrCodeNoSuchDistribution for service response error code
 	// "NoSuchDistribution".
 	//
@@ -592,6 +611,13 @@ const (
 	// Processing your request would cause you to exceed the maximum number of origin
 	// access identities allowed.
 	ErrCodeTooManyCloudFrontOriginAccessIdentities = "TooManyCloudFrontOriginAccessIdentities"
+
+	// ErrCodeTooManyContinuousDeploymentPolicies for service response error code
+	// "TooManyContinuousDeploymentPolicies".
+	//
+	// You have reached the maximum number of continuous deployment policies for
+	// this Amazon Web Services account.
+	ErrCodeTooManyContinuousDeploymentPolicies = "TooManyContinuousDeploymentPolicies"
 
 	// ErrCodeTooManyCookieNamesInWhiteList for service response error code
 	// "TooManyCookieNamesInWhiteList".

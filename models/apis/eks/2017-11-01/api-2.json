@@ -214,6 +214,20 @@
         {"shape":"ServerException"}
       ]
     },
+    "DescribeAddonConfiguration":{
+      "name":"DescribeAddonConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/addons/configuration-schemas"
+      },
+      "input":{"shape":"DescribeAddonConfigurationRequest"},
+      "output":{"shape":"DescribeAddonConfigurationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "DescribeAddonVersions":{
       "name":"DescribeAddonVersions",
       "http":{
@@ -596,7 +610,8 @@
         "tags":{"shape":"TagMap"},
         "publisher":{"shape":"String"},
         "owner":{"shape":"String"},
-        "marketplaceInformation":{"shape":"MarketplaceInformation"}
+        "marketplaceInformation":{"shape":"MarketplaceInformation"},
+        "configurationValues":{"shape":"String"}
       }
     },
     "AddonHealth":{
@@ -929,7 +944,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "configurationValues":{"shape":"String"}
       }
     },
     "CreateAddonResponse":{
@@ -1151,6 +1167,33 @@
       "type":"structure",
       "members":{
         "cluster":{"shape":"Cluster"}
+      }
+    },
+    "DescribeAddonConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "addonName",
+        "addonVersion"
+      ],
+      "members":{
+        "addonName":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"addonName"
+        },
+        "addonVersion":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"addonVersion"
+        }
+      }
+    },
+    "DescribeAddonConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "addonName":{"shape":"String"},
+        "addonVersion":{"shape":"String"},
+        "configurationSchema":{"shape":"String"}
       }
     },
     "DescribeAddonRequest":{
@@ -2248,7 +2291,8 @@
         "clientRequestToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "configurationValues":{"shape":"String"}
       }
     },
     "UpdateAddonResponse":{

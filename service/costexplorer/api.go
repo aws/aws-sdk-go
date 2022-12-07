@@ -13586,13 +13586,17 @@ func (s *RightsizingRecommendationSummary) SetTotalRecommendationCount(v string)
 	return s
 }
 
-// The combination of Amazon Web Service, linked account, Region, and usage
-// type where a cost anomaly is observed.
+// The combination of Amazon Web Service, linked account, linked account name,
+// Region, and usage type where a cost anomaly is observed. The linked account
+// name will only be available when the account name can be identified.
 type RootCause struct {
 	_ struct{} `type:"structure"`
 
 	// The member account value that's associated with the cost anomaly.
 	LinkedAccount *string `type:"string"`
+
+	// The member account name value that's associated with the cost anomaly.
+	LinkedAccountName *string `type:"string"`
 
 	// The Amazon Web Services Region that's associated with the cost anomaly.
 	Region *string `type:"string"`
@@ -13625,6 +13629,12 @@ func (s RootCause) GoString() string {
 // SetLinkedAccount sets the LinkedAccount field's value.
 func (s *RootCause) SetLinkedAccount(v string) *RootCause {
 	s.LinkedAccount = &v
+	return s
+}
+
+// SetLinkedAccountName sets the LinkedAccountName field's value.
+func (s *RootCause) SetLinkedAccountName(v string) *RootCause {
+	s.LinkedAccountName = &v
 	return s
 }
 

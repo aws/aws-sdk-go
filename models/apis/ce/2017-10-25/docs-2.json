@@ -897,6 +897,7 @@
         "RootCause$Region": "<p>The Amazon Web Services Region that's associated with the cost anomaly. </p>",
         "RootCause$LinkedAccount": "<p>The member account value that's associated with the cost anomaly. </p>",
         "RootCause$UsageType": "<p>The <code>UsageType</code> value that's associated with the cost anomaly. </p>",
+        "RootCause$LinkedAccountName": "<p>The member account name value that's associated with the cost anomaly.</p>",
         "SavingsPlansAmortizedCommitment$AmortizedRecurringCommitment": "<p>The amortized amount of your Savings Plans commitment that was purchased with either a <code>Partial</code> or a <code>NoUpfront</code>.</p>",
         "SavingsPlansAmortizedCommitment$AmortizedUpfrontCommitment": "<p>The amortized amount of your Savings Plans commitment that was purchased with an <code>Upfront</code> or <code>PartialUpfront</code> Savings Plans.</p>",
         "SavingsPlansAmortizedCommitment$TotalAmortizedCommitment": "<p>The total amortized amount of your Savings Plans commitment, regardless of your Savings Plans purchase method. </p>",
@@ -1793,7 +1794,7 @@
       }
     },
     "RootCause": {
-      "base": "<p>The combination of Amazon Web Service, linked account, Region, and usage type where a cost anomaly is observed. </p>",
+      "base": "<p>The combination of Amazon Web Service, linked account, linked account name, Region, and usage type where a cost anomaly is observed. The linked account name will only be available when the account name can be identified.</p>",
       "refs": {
         "RootCauses$member": null
       }
