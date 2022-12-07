@@ -216,7 +216,7 @@ func ExampleKMS_CreateCustomKeyStore_shared01() {
 		CustomKeyStoreType: aws.String("EXTERNAL_KEY_STORE"),
 		XksProxyAuthenticationCredential: &kms.XksProxyAuthenticationCredentialType{
 			AccessKeyId:        aws.String("ABCDE12345670EXAMPLE"),
-			RawSecretAccessKey: aws.String("file://SecretAccessKey"),
+			RawSecretAccessKey: aws.String("DXjSUawnel2fr6SKC7G25CNxTyWKE5PF9XX6H/u9pSo="),
 		},
 		XksProxyConnectivity:           aws.String("VPC_ENDPOINT_SERVICE"),
 		XksProxyUriEndpoint:            aws.String("https://myproxy-private.xks.example.com"),
@@ -285,7 +285,7 @@ func ExampleKMS_CreateCustomKeyStore_shared02() {
 		CustomKeyStoreType: aws.String("EXTERNAL_KEY_STORE"),
 		XksProxyAuthenticationCredential: &kms.XksProxyAuthenticationCredentialType{
 			AccessKeyId:        aws.String("ABCDE12345670EXAMPLE"),
-			RawSecretAccessKey: aws.String("file://SecretAccessKey"),
+			RawSecretAccessKey: aws.String("DXjSUawnel2fr6SKC7G25CNxTyWKE5PF9XX6H/u9pSo="),
 		},
 		XksProxyConnectivity: aws.String("PUBLIC_ENDPOINT"),
 		XksProxyUriEndpoint:  aws.String("https://myproxy.xks.example.com"),
@@ -2678,15 +2678,15 @@ func ExampleKMS_UpdateAlias_shared00() {
 	fmt.Println(result)
 }
 
-// To edit the password of an AWS CloudHSM key store
-// This example tells AWS KMS the password for the kmsuser crypto user in the AWS CloudHSM
-// cluster that is associated with the AWS KMS custom key store. (It does not change
-// the password in the CloudHSM cluster.) This operation does not return any data.
+// To edit the friendly name of a custom key store
+// This example changes the friendly name of the AWS KMS custom key store to the name
+// that you specify. This operation does not return any data. To verify that the operation
+// worked, use the DescribeCustomKeyStores operation.
 func ExampleKMS_UpdateCustomKeyStore_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.UpdateCustomKeyStoreInput{
-		CustomKeyStoreId: aws.String("cks-1234567890abcdef0"),
-		KeyStorePassword: aws.String("ExamplePassword"),
+		CustomKeyStoreId:      aws.String("cks-1234567890abcdef0"),
+		NewCustomKeyStoreName: aws.String("DevelopmentKeys"),
 	}
 
 	result, err := svc.UpdateCustomKeyStore(input)
@@ -2741,15 +2741,15 @@ func ExampleKMS_UpdateCustomKeyStore_shared00() {
 	fmt.Println(result)
 }
 
-// To edit the friendly name of a custom key store
-// This example changes the friendly name of the AWS KMS custom key store to the name
-// that you specify. This operation does not return any data. To verify that the operation
-// worked, use the DescribeCustomKeyStores operation.
+// To edit the password of an AWS CloudHSM key store
+// This example tells AWS KMS the password for the kmsuser crypto user in the AWS CloudHSM
+// cluster that is associated with the AWS KMS custom key store. (It does not change
+// the password in the CloudHSM cluster.) This operation does not return any data.
 func ExampleKMS_UpdateCustomKeyStore_shared01() {
 	svc := kms.New(session.New())
 	input := &kms.UpdateCustomKeyStoreInput{
-		CustomKeyStoreId:      aws.String("cks-1234567890abcdef0"),
-		NewCustomKeyStoreName: aws.String("DevelopmentKeys"),
+		CustomKeyStoreId: aws.String("cks-1234567890abcdef0"),
+		KeyStorePassword: aws.String("ExamplePassword"),
 	}
 
 	result, err := svc.UpdateCustomKeyStore(input)
@@ -2868,9 +2868,77 @@ func ExampleKMS_UpdateCustomKeyStore_shared02() {
 	fmt.Println(result)
 }
 
+// To update the proxy authentication credential of an external key store
+// To update the proxy authentication credential for your external key store, specify
+// both the <code>RawSecretAccessKey</code> and the <code>AccessKeyId</code>, even if
+// you are changing only one of the values. You can use this feature to fix an invalid
+// credential or to change the credential when the external key store proxy rotates
+// it.
+func ExampleKMS_UpdateCustomKeyStore_shared03() {
+	svc := kms.New(session.New())
+	input := &kms.UpdateCustomKeyStoreInput{
+		CustomKeyStoreId: aws.String("cks-1234567890abcdef0"),
+		XksProxyAuthenticationCredential: &kms.XksProxyAuthenticationCredentialType{
+			AccessKeyId:        aws.String("ABCDE12345670EXAMPLE"),
+			RawSecretAccessKey: aws.String("DXjSUawnel2fr6SKC7G25CNxTyWKE5PF9XX6H/u9pSo="),
+		},
+	}
+
+	result, err := svc.UpdateCustomKeyStore(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case kms.ErrCodeCustomKeyStoreNotFoundException:
+				fmt.Println(kms.ErrCodeCustomKeyStoreNotFoundException, aerr.Error())
+			case kms.ErrCodeCustomKeyStoreNameInUseException:
+				fmt.Println(kms.ErrCodeCustomKeyStoreNameInUseException, aerr.Error())
+			case kms.ErrCodeCloudHsmClusterNotFoundException:
+				fmt.Println(kms.ErrCodeCloudHsmClusterNotFoundException, aerr.Error())
+			case kms.ErrCodeCloudHsmClusterNotRelatedException:
+				fmt.Println(kms.ErrCodeCloudHsmClusterNotRelatedException, aerr.Error())
+			case kms.ErrCodeCustomKeyStoreInvalidStateException:
+				fmt.Println(kms.ErrCodeCustomKeyStoreInvalidStateException, aerr.Error())
+			case kms.ErrCodeInternalException:
+				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeCloudHsmClusterNotActiveException:
+				fmt.Println(kms.ErrCodeCloudHsmClusterNotActiveException, aerr.Error())
+			case kms.ErrCodeCloudHsmClusterInvalidConfigurationException:
+				fmt.Println(kms.ErrCodeCloudHsmClusterInvalidConfigurationException, aerr.Error())
+			case kms.ErrCodeXksProxyUriInUseException:
+				fmt.Println(kms.ErrCodeXksProxyUriInUseException, aerr.Error())
+			case kms.ErrCodeXksProxyUriEndpointInUseException:
+				fmt.Println(kms.ErrCodeXksProxyUriEndpointInUseException, aerr.Error())
+			case kms.ErrCodeXksProxyUriUnreachableException:
+				fmt.Println(kms.ErrCodeXksProxyUriUnreachableException, aerr.Error())
+			case kms.ErrCodeXksProxyIncorrectAuthenticationCredentialException:
+				fmt.Println(kms.ErrCodeXksProxyIncorrectAuthenticationCredentialException, aerr.Error())
+			case kms.ErrCodeXksProxyVpcEndpointServiceInUseException:
+				fmt.Println(kms.ErrCodeXksProxyVpcEndpointServiceInUseException, aerr.Error())
+			case kms.ErrCodeXksProxyVpcEndpointServiceNotFoundException:
+				fmt.Println(kms.ErrCodeXksProxyVpcEndpointServiceNotFoundException, aerr.Error())
+			case kms.ErrCodeXksProxyVpcEndpointServiceInvalidConfigurationException:
+				fmt.Println(kms.ErrCodeXksProxyVpcEndpointServiceInvalidConfigurationException, aerr.Error())
+			case kms.ErrCodeXksProxyInvalidResponseException:
+				fmt.Println(kms.ErrCodeXksProxyInvalidResponseException, aerr.Error())
+			case kms.ErrCodeXksProxyInvalidConfigurationException:
+				fmt.Println(kms.ErrCodeXksProxyInvalidConfigurationException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To edit the proxy URI path of an external key store.
 // This example updates the proxy URI path for an external key store
-func ExampleKMS_UpdateCustomKeyStore_shared03() {
+func ExampleKMS_UpdateCustomKeyStore_shared04() {
 	svc := kms.New(session.New())
 	input := &kms.UpdateCustomKeyStoreInput{
 		CustomKeyStoreId: aws.String("cks-1234567890abcdef0"),
@@ -2935,7 +3003,7 @@ func ExampleKMS_UpdateCustomKeyStore_shared03() {
 // value, you must change the <code>XksProxyUriEndpoint</code> value to reflect the
 // private DNS name associated with the VPC endpoint service. You must also add an <code>XksProxyVpcEndpointServiceName</code>
 // value.
-func ExampleKMS_UpdateCustomKeyStore_shared04() {
+func ExampleKMS_UpdateCustomKeyStore_shared05() {
 	svc := kms.New(session.New())
 	input := &kms.UpdateCustomKeyStoreInput{
 		CustomKeyStoreId:               aws.String("cks-1234567890abcdef0"),

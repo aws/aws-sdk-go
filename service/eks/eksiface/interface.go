@@ -108,6 +108,10 @@ type EKSAPI interface {
 	DescribeAddonWithContext(aws.Context, *eks.DescribeAddonInput, ...request.Option) (*eks.DescribeAddonOutput, error)
 	DescribeAddonRequest(*eks.DescribeAddonInput) (*request.Request, *eks.DescribeAddonOutput)
 
+	DescribeAddonConfiguration(*eks.DescribeAddonConfigurationInput) (*eks.DescribeAddonConfigurationOutput, error)
+	DescribeAddonConfigurationWithContext(aws.Context, *eks.DescribeAddonConfigurationInput, ...request.Option) (*eks.DescribeAddonConfigurationOutput, error)
+	DescribeAddonConfigurationRequest(*eks.DescribeAddonConfigurationInput) (*request.Request, *eks.DescribeAddonConfigurationOutput)
+
 	DescribeAddonVersions(*eks.DescribeAddonVersionsInput) (*eks.DescribeAddonVersionsOutput, error)
 	DescribeAddonVersionsWithContext(aws.Context, *eks.DescribeAddonVersionsInput, ...request.Option) (*eks.DescribeAddonVersionsOutput, error)
 	DescribeAddonVersionsRequest(*eks.DescribeAddonVersionsInput) (*request.Request, *eks.DescribeAddonVersionsOutput)

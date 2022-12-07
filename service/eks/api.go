@@ -1309,6 +1309,94 @@ func (c *EKS) DescribeAddonWithContext(ctx aws.Context, input *DescribeAddonInpu
 	return out, req.Send()
 }
 
+const opDescribeAddonConfiguration = "DescribeAddonConfiguration"
+
+// DescribeAddonConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAddonConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAddonConfiguration for more information on using the DescribeAddonConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAddonConfigurationRequest method.
+//	req, resp := client.DescribeAddonConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeAddonConfiguration
+func (c *EKS) DescribeAddonConfigurationRequest(input *DescribeAddonConfigurationInput) (req *request.Request, output *DescribeAddonConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAddonConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/addons/configuration-schemas",
+	}
+
+	if input == nil {
+		input = &DescribeAddonConfigurationInput{}
+	}
+
+	output = &DescribeAddonConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAddonConfiguration API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns configuration options.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DescribeAddonConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Region-specific.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeAddonConfiguration
+func (c *EKS) DescribeAddonConfiguration(input *DescribeAddonConfigurationInput) (*DescribeAddonConfigurationOutput, error) {
+	req, out := c.DescribeAddonConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAddonConfigurationWithContext is the same as DescribeAddonConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAddonConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DescribeAddonConfigurationWithContext(ctx aws.Context, input *DescribeAddonConfigurationInput, opts ...request.Option) (*DescribeAddonConfigurationOutput, error) {
+	req, out := c.DescribeAddonConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAddonVersions = "DescribeAddonVersions"
 
 // DescribeAddonVersionsRequest generates a "aws/request.Request" representing the
@@ -3989,6 +4077,9 @@ type Addon struct {
 	// The name of the cluster.
 	ClusterName *string `locationName:"clusterName" min:"1" type:"string"`
 
+	// The provided configuration values.
+	ConfigurationValues *string `locationName:"configurationValues" type:"string"`
+
 	// The date and time that the add-on was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
@@ -4060,6 +4151,12 @@ func (s *Addon) SetAddonVersion(v string) *Addon {
 // SetClusterName sets the ClusterName field's value.
 func (s *Addon) SetClusterName(v string) *Addon {
 	s.ClusterName = &v
+	return s
+}
+
+// SetConfigurationValues sets the ConfigurationValues field's value.
+func (s *Addon) SetConfigurationValues(v string) *Addon {
+	s.ConfigurationValues = &v
 	return s
 }
 
@@ -5361,6 +5458,11 @@ type CreateAddonInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The set of configuration values for the add-on being created. Whatever values
+	// provided here are validated against the schema from DescribeAddonConfiguration
+	// (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonConfiguration.html).
+	ConfigurationValues *string `locationName:"configurationValues" type:"string"`
+
 	// How to resolve field value conflicts for an Amazon EKS add-on. Conflicts
 	// are handled based on the value you choose:
 	//
@@ -5463,6 +5565,12 @@ func (s *CreateAddonInput) SetClientRequestToken(v string) *CreateAddonInput {
 // SetClusterName sets the ClusterName field's value.
 func (s *CreateAddonInput) SetClusterName(v string) *CreateAddonInput {
 	s.ClusterName = &v
+	return s
+}
+
+// SetConfigurationValues sets the ConfigurationValues field's value.
+func (s *CreateAddonInput) SetConfigurationValues(v string) *CreateAddonInput {
+	s.ConfigurationValues = &v
 	return s
 }
 
@@ -6682,6 +6790,119 @@ func (s DeregisterClusterOutput) GoString() string {
 // SetCluster sets the Cluster field's value.
 func (s *DeregisterClusterOutput) SetCluster(v *Cluster) *DeregisterClusterOutput {
 	s.Cluster = v
+	return s
+}
+
+type DescribeAddonConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the add-on. The name must match one of the names returned by
+	// DescribeAddonVersions (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html).
+	//
+	// AddonName is a required field
+	AddonName *string `location:"querystring" locationName:"addonName" type:"string" required:"true"`
+
+	// The version of the add-on. The version must match one of the versions returned
+	// by DescribeAddonVersions (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html).
+	//
+	// AddonVersion is a required field
+	AddonVersion *string `location:"querystring" locationName:"addonVersion" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAddonConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAddonConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAddonConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAddonConfigurationInput"}
+	if s.AddonName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddonName"))
+	}
+	if s.AddonVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddonVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *DescribeAddonConfigurationInput) SetAddonName(v string) *DescribeAddonConfigurationInput {
+	s.AddonName = &v
+	return s
+}
+
+// SetAddonVersion sets the AddonVersion field's value.
+func (s *DescribeAddonConfigurationInput) SetAddonVersion(v string) *DescribeAddonConfigurationInput {
+	s.AddonVersion = &v
+	return s
+}
+
+type DescribeAddonConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the add-on.
+	AddonName *string `locationName:"addonName" type:"string"`
+
+	// The version of the add-on. The version must match one of the versions returned
+	// by DescribeAddonVersions (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html).
+	AddonVersion *string `locationName:"addonVersion" type:"string"`
+
+	// A JSON schema used to validate provided configuration values when creating
+	// or updating an addon.
+	ConfigurationSchema *string `locationName:"configurationSchema" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAddonConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAddonConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddonName sets the AddonName field's value.
+func (s *DescribeAddonConfigurationOutput) SetAddonName(v string) *DescribeAddonConfigurationOutput {
+	s.AddonName = &v
+	return s
+}
+
+// SetAddonVersion sets the AddonVersion field's value.
+func (s *DescribeAddonConfigurationOutput) SetAddonVersion(v string) *DescribeAddonConfigurationOutput {
+	s.AddonVersion = &v
+	return s
+}
+
+// SetConfigurationSchema sets the ConfigurationSchema field's value.
+func (s *DescribeAddonConfigurationOutput) SetConfigurationSchema(v string) *DescribeAddonConfigurationOutput {
+	s.ConfigurationSchema = &v
 	return s
 }
 
@@ -10528,17 +10749,17 @@ func (s *RegisterClusterOutput) SetCluster(v *Cluster) *RegisterClusterOutput {
 type RemoteAccessConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EC2 SSH key that provides access for SSH communication with the
-	// nodes in the managed node group. For more information, see Amazon EC2 key
-	// pairs and Linux instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+	// The Amazon EC2 SSH key name that provides access for SSH communication with
+	// the nodes in the managed node group. For more information, see Amazon EC2
+	// key pairs and Linux instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 	// in the Amazon Elastic Compute Cloud User Guide for Linux Instances.
 	Ec2SshKey *string `locationName:"ec2SshKey" type:"string"`
 
-	// The security groups that are allowed SSH access (port 22) to the nodes. If
-	// you specify an Amazon EC2 SSH key but do not specify a source security group
-	// when you create a managed node group, then port 22 on the nodes is opened
-	// to the internet (0.0.0.0/0). For more information, see Security Groups for
-	// Your VPC (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+	// The security group ids that are allowed SSH access (port 22) to the nodes.
+	// If you specify an Amazon EC2 SSH key but do not specify a source security
+	// group when you create a managed node group, then port 22 on the nodes is
+	// opened to the internet (0.0.0.0/0). For more information, see Security Groups
+	// for Your VPC (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
 	// in the Amazon Virtual Private Cloud User Guide.
 	SourceSecurityGroups []*string `locationName:"sourceSecurityGroups" type:"list"`
 }
@@ -11412,6 +11633,11 @@ type UpdateAddonInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
+	// The set of configuration values for the add-on being created. Whatever values
+	// provided here are validated against the schema from DescribeAddonConfiguration
+	// (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonConfiguration.html)
+	ConfigurationValues *string `locationName:"configurationValues" type:"string"`
+
 	// How to resolve field value conflicts for an Amazon EKS add-on if you've changed
 	// a value from the Amazon EKS default value. Conflicts are handled based on
 	// the option you choose:
@@ -11504,6 +11730,12 @@ func (s *UpdateAddonInput) SetClientRequestToken(v string) *UpdateAddonInput {
 // SetClusterName sets the ClusterName field's value.
 func (s *UpdateAddonInput) SetClusterName(v string) *UpdateAddonInput {
 	s.ClusterName = &v
+	return s
+}
+
+// SetConfigurationValues sets the ConfigurationValues field's value.
+func (s *UpdateAddonInput) SetConfigurationValues(v string) *UpdateAddonInput {
+	s.ConfigurationValues = &v
 	return s
 }
 

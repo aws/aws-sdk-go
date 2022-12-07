@@ -97,6 +97,7 @@
     "UpdateCloudFrontOriginAccessIdentity": "<p>Update an origin access identity. </p>",
     "UpdateContinuousDeploymentPolicy": "<p>Updates a continuous deployment policy. You can update a continuous deployment policy to enable or disable it, to change the percentage of traffic that it sends to the staging distribution, or to change the staging distribution that it sends traffic to.</p> <p>When you update a continuous deployment policy configuration, all the fields are updated with the values that are provided in the request. You cannot update some fields independent of others. To update a continuous deployment policy configuration:</p> <ol> <li> <p>Use <code>GetContinuousDeploymentPolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the continuous deployment policy configuration that you want to update.</p> </li> <li> <p>Use <code>UpdateContinuousDeploymentPolicy</code>, providing the entire continuous deployment policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdateDistribution": "<p>Updates the configuration for a CloudFront distribution.</p> <p>The update process includes getting the current distribution configuration, updating it to make your changes, and then submitting an <code>UpdateDistribution</code> request to make the updates.</p> <p> <b>To update a web distribution using the CloudFront API</b> </p> <ol> <li> <p>Use <code>GetDistributionConfig</code> to get the current configuration, including the version identifier (<code>ETag</code>).</p> </li> <li> <p>Update the distribution configuration that was returned in the response. Note the following important requirements and restrictions:</p> <ul> <li> <p>You must rename the <code>ETag</code> field to <code>IfMatch</code>, leaving the value unchanged. (Set the value of <code>IfMatch</code> to the value of <code>ETag</code>, then remove the <code>ETag</code> field.)</p> </li> <li> <p>You can’t change the value of <code>CallerReference</code>.</p> </li> </ul> </li> <li> <p>Submit an <code>UpdateDistribution</code> request, providing the distribution configuration. The new configuration replaces the existing configuration. The values that you specify in an <code>UpdateDistribution</code> request are not merged into your existing configuration. Make sure to include all fields: the ones that you modified and also the ones that you didn’t.</p> </li> </ol>",
+    "UpdateDistributionWithStagingConfig": "<p>Copies the staging distribution's configuration to its corresponding primary distribution. The primary distribution retains its <code>Aliases</code> (also known as alternate domain names or CNAMEs) and <code>ContinuousDeploymentPolicyId</code> value, but otherwise its configuration is overwritten to match the staging distribution.</p> <p>You can use this operation in a continuous deployment workflow after you have tested configuration changes on the staging distribution. After using a continuous deployment policy to move a portion of your domain name’s traffic to the staging distribution and verifying that it works as intended, you can use this operation to copy the staging distribution’s configuration to the primary distribution. This action will disable the continuous deployment policy and move your domain’s traffic back to the primary distribution.</p>",
     "UpdateFieldLevelEncryptionConfig": "<p>Update a field-level encryption configuration. </p>",
     "UpdateFieldLevelEncryptionProfile": "<p>Update a field-level encryption profile. </p>",
     "UpdateFunction": "<p>Updates a CloudFront function.</p> <p>You can update a function’s code or the comment that describes the function. You cannot update a function’s name.</p> <p>To update a function, you provide the function’s name and version (<code>ETag</code> value) along with the updated function code. To get the name and version, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
@@ -435,6 +436,11 @@
         "UpdateContinuousDeploymentPolicyResult$ContinuousDeploymentPolicy": "<p>A continuous deployment policy.</p>"
       }
     },
+    "ContinuousDeploymentPolicyAlreadyExists": {
+      "base": "<p>A continuous deployment policy with this configuration already exists.</p>",
+      "refs": {
+      }
+    },
     "ContinuousDeploymentPolicyConfig": {
       "base": "<p>Contains the configuration for a continuous deployment policy.</p>",
       "refs": {
@@ -442,6 +448,11 @@
         "CreateContinuousDeploymentPolicyRequest$ContinuousDeploymentPolicyConfig": "<p>Contains the configuration for a continuous deployment policy.</p>",
         "GetContinuousDeploymentPolicyConfigResult$ContinuousDeploymentPolicyConfig": null,
         "UpdateContinuousDeploymentPolicyRequest$ContinuousDeploymentPolicyConfig": "<p>The continuous deployment policy configuration.</p>"
+      }
+    },
+    "ContinuousDeploymentPolicyInUse": {
+      "base": "<p>You cannot delete a continuous deployment policy that is associated with a primary distribution.</p>",
+      "refs": {
       }
     },
     "ContinuousDeploymentPolicyList": {
@@ -475,7 +486,7 @@
       }
     },
     "ContinuousDeploymentSingleWeightConfig": {
-      "base": "<p>Contains the percentage of traffic to send to a staging distribution, expressed as a decimal number between 0 and 1.</p>",
+      "base": "<p>Contains the percentage of traffic to send to a staging distribution.</p>",
       "refs": {
         "TrafficConfig$SingleWeightConfig": "<p>Contains the percentage of traffic to send to the staging distribution.</p>"
       }
@@ -825,7 +836,8 @@
         "CreateDistributionResult$Distribution": "<p>The distribution's information.</p>",
         "CreateDistributionWithTagsResult$Distribution": "<p>The distribution's information. </p>",
         "GetDistributionResult$Distribution": "<p>The distribution's information.</p>",
-        "UpdateDistributionResult$Distribution": "<p>The distribution's information.</p>"
+        "UpdateDistributionResult$Distribution": "<p>The distribution's information.</p>",
+        "UpdateDistributionWithStagingConfigResult$Distribution": null
       }
     },
     "DistributionAlreadyExists": {
@@ -2081,6 +2093,11 @@
       "refs": {
       }
     },
+    "NoSuchContinuousDeploymentPolicy": {
+      "base": "<p>The continuous deployment policy doesn’t exist.</p>",
+      "refs": {
+      }
+    },
     "NoSuchDistribution": {
       "base": "<p>The specified distribution does not exist.</p>",
       "refs": {
@@ -3021,6 +3038,11 @@
       "refs": {
       }
     },
+    "TooManyContinuousDeploymentPolicies": {
+      "base": "<p>You have reached the maximum number of continuous deployment policies for this Amazon Web Services account.</p>",
+      "refs": {
+      }
+    },
     "TooManyCookieNamesInWhiteList": {
       "base": "<p>Your request contains more cookie names in the whitelist than are allowed per cache behavior.</p>",
       "refs": {
@@ -3334,6 +3356,16 @@
       "refs": {
       }
     },
+    "UpdateDistributionWithStagingConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDistributionWithStagingConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateFieldLevelEncryptionConfigRequest": {
       "base": null,
       "refs": {
@@ -3469,10 +3501,12 @@
         "DefaultCacheBehavior$Compress": "<p>Whether you want CloudFront to automatically compress certain files for this cache behavior. If so, specify <code>true</code>; if not, specify <code>false</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html\">Serving Compressed Files</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DistributionConfig$Enabled": "<p>From this field, you can enable or disable the selected distribution.</p>",
         "DistributionConfig$IsIPV6Enabled": "<p>If you want CloudFront to respond to IPv6 DNS requests with an IPv6 address for your distribution, specify <code>true</code>. If you specify <code>false</code>, CloudFront responds to IPv6 DNS requests with the DNS response code <code>NOERROR</code> and with no IP addresses. This allows viewers to submit a second request, for an IPv4 address for your distribution. </p> <p>In general, you should enable IPv6 if you have users on IPv6 networks who want to access your content. However, if you're using signed URLs or signed cookies to restrict access to your content, and if you're using a custom policy that includes the <code>IpAddress</code> parameter to restrict the IP addresses that can access your content, don't enable IPv6. If you want to restrict access to some content by IP address and not restrict access to other content (or restrict access but not by IP address), you can create two distributions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html\">Creating a Signed URL Using a Custom Policy</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you're using an Route 53 Amazon Web Services Integration alias resource record set to route traffic to your CloudFront distribution, you need to create a second alias resource record set when both of the following are true:</p> <ul> <li> <p>You enable IPv6 for the distribution</p> </li> <li> <p>You're using alternate domain names in the URLs for your objects</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html\">Routing Traffic to an Amazon CloudFront Web Distribution by Using Your Domain Name</a> in the <i>Route 53 Amazon Web Services Integration Developer Guide</i>.</p> <p>If you created a CNAME resource record set, either with Route 53 Amazon Web Services Integration or with another DNS service, you don't need to make any changes. A CNAME record will route traffic to your distribution regardless of the IP address format of the viewer request.</p>",
+        "DistributionConfig$Staging": "<p>A Boolean that indicates whether this is a staging distribution. When this value is <code>true</code>, this is a staging distribution. When this value is <code>false</code>, this is not a staging distribution.</p>",
         "DistributionIdList$IsTruncated": "<p>A flag that indicates whether more distribution IDs remain to be listed. If your results were truncated, you can make a subsequent request using the <code>Marker</code> request field to retrieve more distribution IDs in the list.</p>",
         "DistributionList$IsTruncated": "<p>A flag that indicates whether more distributions remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more distributions in the list.</p>",
         "DistributionSummary$Enabled": "<p>Whether the distribution is enabled to accept user requests for content.</p>",
         "DistributionSummary$IsIPV6Enabled": "<p>Whether CloudFront responds to IPv6 DNS requests with an IPv6 address for your distribution.</p>",
+        "DistributionSummary$Staging": "<p>Whether the primary distribution has a staging distribution enabled.</p>",
         "ForwardedValues$QueryString": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field.</p> <p>If you want to include query strings in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send query strings to the origin but not include them in the cache key, use an origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>Indicates whether you want CloudFront to forward query strings to the origin that is associated with this cache behavior and cache based on the query string parameters. CloudFront behavior depends on the value of <code>QueryString</code> and on the values that you specify for <code>QueryStringCacheKeys</code>, if any:</p> <p>If you specify true for <code>QueryString</code> and you don't specify any values for <code>QueryStringCacheKeys</code>, CloudFront forwards all query string parameters to the origin and caches based on all query string parameters. Depending on how many query string parameters and values you have, this can adversely affect performance because CloudFront must forward more requests to the origin.</p> <p>If you specify true for <code>QueryString</code> and you specify one or more values for <code>QueryStringCacheKeys</code>, CloudFront forwards all query string parameters to the origin, but it only caches based on the query string parameters that you specify.</p> <p>If you specify false for <code>QueryString</code>, CloudFront doesn't forward any query string parameters to the origin, and doesn't cache based on query string parameters.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/QueryStringParameters.html\">Configuring CloudFront to Cache Based on Query String Parameters</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "InvalidationList$IsTruncated": "<p>A flag that indicates whether more invalidation batch requests remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more invalidation batches in the list.</p>",
         "LambdaFunctionAssociation$IncludeBody": "<p>A flag that allows a Lambda@Edge function to have read access to the body content. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-include-body-access.html\">Accessing the Request Body by Choosing the Include Body Option</a> in the Amazon CloudFront Developer Guide.</p>",
@@ -3516,7 +3550,7 @@
     "float": {
       "base": null,
       "refs": {
-        "ContinuousDeploymentSingleWeightConfig$Weight": "<p>The percentage of traffic to send to the staging distribution, expressed as a decimal number between 0 and 1.</p>"
+        "ContinuousDeploymentSingleWeightConfig$Weight": "<p>The percentage of traffic to send to a staging distribution, expressed as a decimal number between 0 and .15.</p>"
       }
     },
     "integer": {
@@ -3682,6 +3716,8 @@
         "ContentTypeProfile$ProfileId": "<p>The profile ID for a field-level encryption content type-profile mapping. </p>",
         "ContentTypeProfile$ContentType": "<p>The content type for a field-level encryption content type-profile mapping. </p>",
         "ContinuousDeploymentPolicy$Id": "<p>The identifier of the continuous deployment policy.</p>",
+        "ContinuousDeploymentPolicyAlreadyExists$Message": null,
+        "ContinuousDeploymentPolicyInUse$Message": null,
         "ContinuousDeploymentPolicyList$NextMarker": "<p>Indicates the next page of continuous deployment policies. To get the next page of the list, use this value in the <code>Marker</code> field of your request.</p>",
         "ContinuousDeploymentSingleHeaderConfig$Header": "<p>The request header name that you want CloudFront to send to your staging distribution.</p>",
         "ContinuousDeploymentSingleHeaderConfig$Value": "<p>The request header value.</p>",
@@ -3772,6 +3808,7 @@
         "DistributionConfig$CallerReference": "<p>A unique value (for example, a date-time stamp) that ensures that the request can't be replayed.</p> <p>If the value of <code>CallerReference</code> is new (regardless of the content of the <code>DistributionConfig</code> object), CloudFront creates a new distribution.</p> <p>If <code>CallerReference</code> is a value that you already sent in a previous request to create a distribution, CloudFront returns a <code>DistributionAlreadyExists</code> error.</p>",
         "DistributionConfig$DefaultRootObject": "<p>The object that you want CloudFront to request from your origin (for example, <code>index.html</code>) when a viewer requests the root URL for your distribution (<code>https://www.example.com</code>) instead of an object in your distribution (<code>https://www.example.com/product-description.html</code>). Specifying a default root object avoids exposing the contents of your distribution.</p> <p>Specify only the object name, for example, <code>index.html</code>. Don't add a <code>/</code> before the object name.</p> <p>If you don't want to specify a default root object when you create a distribution, include an empty <code>DefaultRootObject</code> element.</p> <p>To delete the default root object from an existing distribution, update the distribution configuration and include an empty <code>DefaultRootObject</code> element.</p> <p>To replace the default root object, update the distribution configuration and specify the new object.</p> <p>For more information about the default root object, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DefaultRootObject.html\">Creating a Default Root Object</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DistributionConfig$WebACLId": "<p>A unique identifier that specifies the WAF web ACL, if any, to associate with this distribution. To specify a web ACL created using the latest version of WAF, use the ACL ARN, for example <code>arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a</code>. To specify a web ACL created using WAF Classic, use the ACL ID, for example <code>473e64fd-f30b-4765-81a0-62ad96dd167a</code>.</p> <p>WAF is a web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to CloudFront, and lets you control access to your content. Based on conditions that you specify, such as the IP addresses that requests originate from or the values of query strings, CloudFront responds to requests either with the requested content or with an HTTP 403 status code (Forbidden). You can also configure CloudFront to return a custom error page when a request is blocked. For more information about WAF, see the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html\">WAF Developer Guide</a>. </p>",
+        "DistributionConfig$ContinuousDeploymentPolicyId": "<p>The identifier of a continuous deployment policy. For more information, see <code>CreateContinuousDeploymentPolicy</code>.</p>",
         "DistributionIdList$Marker": "<p>The value provided in the <code>Marker</code> request field.</p>",
         "DistributionIdList$NextMarker": "<p>Contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing distribution IDs where you left off.</p>",
         "DistributionIdListSummary$member": null,
@@ -3978,6 +4015,7 @@
         "MonitoringSubscriptionAlreadyExists$Message": null,
         "NoSuchCachePolicy$Message": null,
         "NoSuchCloudFrontOriginAccessIdentity$Message": null,
+        "NoSuchContinuousDeploymentPolicy$Message": null,
         "NoSuchDistribution$Message": null,
         "NoSuchFieldLevelEncryptionConfig$Message": null,
         "NoSuchFieldLevelEncryptionProfile$Message": null,
@@ -4087,6 +4125,7 @@
         "TooManyCachePolicies$Message": null,
         "TooManyCertificates$Message": null,
         "TooManyCloudFrontOriginAccessIdentities$Message": null,
+        "TooManyContinuousDeploymentPolicies$Message": null,
         "TooManyCookieNamesInWhiteList$Message": null,
         "TooManyCookiesInCachePolicy$Message": null,
         "TooManyCookiesInOriginRequestPolicy$Message": null,
@@ -4148,6 +4187,10 @@
         "UpdateDistributionRequest$Id": "<p>The distribution's id.</p>",
         "UpdateDistributionRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the distribution's configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "UpdateDistributionResult$ETag": "<p>The current version of the configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "UpdateDistributionWithStagingConfigRequest$Id": "<p>The identifier of the primary distribution to which you are copying a staging distribution's configuration.</p>",
+        "UpdateDistributionWithStagingConfigRequest$StagingDistributionId": "<p>The identifier of the staging distribution whose configuration you are copying to the primary distribution.</p>",
+        "UpdateDistributionWithStagingConfigRequest$IfMatch": "<p>The current versions (<code>ETag</code> values) of both primary and staging distributions. Provide these in the following format:</p> <p> <code>&lt;primary ETag&gt;, &lt;staging ETag&gt;</code> </p>",
+        "UpdateDistributionWithStagingConfigResult$ETag": "<p>The current version of the primary distribution (after it’s updated).</p>",
         "UpdateFieldLevelEncryptionConfigRequest$Id": "<p>The ID of the configuration you want to update.</p>",
         "UpdateFieldLevelEncryptionConfigRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the configuration identity to update. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "UpdateFieldLevelEncryptionConfigResult$ETag": "<p>The value of the <code>ETag</code> header that you received when updating the configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",

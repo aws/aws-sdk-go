@@ -2374,7 +2374,8 @@
         "Service":{"shape":"GenericString"},
         "Region":{"shape":"GenericString"},
         "LinkedAccount":{"shape":"GenericString"},
-        "UsageType":{"shape":"GenericString"}
+        "UsageType":{"shape":"GenericString"},
+        "LinkedAccountName":{"shape":"GenericString"}
       }
     },
     "RootCauses":{
