@@ -50,6 +50,15 @@ jobs:
           - 1.15.x
           - 1.16.x
           - 1.17.x
+        exclude:
+          - os: macos-latest
+            go-version: 1.12.x
+          - os: macos-latest
+            go-version: 1.13.x
+          - os: macos-latest
+            go-version: 1.14.x
+          - os: macos-latest
+            go-version: 1.15.x
     steps:
     - name: Setup Go
       uses: actions/setup-go@v2
@@ -91,6 +100,14 @@ jobs:
             go-version: 1.5.x
           - os: macos-latest
             go-version: 1.6.x
+          - os: macos-latest
+            go-version: 1.7.x
+          - os: macos-latest
+            go-version: 1.8.x
+          - os: macos-latest
+            go-version: 1.9.x
+          - os: macos-latest
+            go-version: 1.10.x
         include:
           - os: windows-latest
             go-version: 1.12.x
