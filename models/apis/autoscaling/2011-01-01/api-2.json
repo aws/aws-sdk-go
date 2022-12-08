@@ -55,6 +55,22 @@
         {"shape":"ServiceLinkedRoleFailure"}
       ]
     },
+    "AttachTrafficSources":{
+      "name":"AttachTrafficSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AttachTrafficSourcesType"},
+      "output":{
+        "shape":"AttachTrafficSourcesResultType",
+        "resultWrapper":"AttachTrafficSourcesResult"
+      },
+      "errors":[
+        {"shape":"ResourceContentionFault"},
+        {"shape":"ServiceLinkedRoleFailure"}
+      ]
+    },
     "BatchDeleteScheduledAction":{
       "name":"BatchDeleteScheduledAction",
       "http":{
@@ -554,6 +570,22 @@
         {"shape":"ResourceContentionFault"}
       ]
     },
+    "DescribeTrafficSources":{
+      "name":"DescribeTrafficSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTrafficSourcesRequest"},
+      "output":{
+        "shape":"DescribeTrafficSourcesResponse",
+        "resultWrapper":"DescribeTrafficSourcesResult"
+      },
+      "errors":[
+        {"shape":"ResourceContentionFault"},
+        {"shape":"InvalidNextToken"}
+      ]
+    },
     "DescribeWarmPool":{
       "name":"DescribeWarmPool",
       "http":{
@@ -611,6 +643,21 @@
       "output":{
         "shape":"DetachLoadBalancersResultType",
         "resultWrapper":"DetachLoadBalancersResult"
+      },
+      "errors":[
+        {"shape":"ResourceContentionFault"}
+      ]
+    },
+    "DetachTrafficSources":{
+      "name":"DetachTrafficSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetachTrafficSourcesType"},
+      "output":{
+        "shape":"DetachTrafficSourcesResultType",
+        "resultWrapper":"DetachTrafficSourcesResult"
       },
       "errors":[
         {"shape":"ResourceContentionFault"}
@@ -1100,6 +1147,22 @@
         "LoadBalancerNames":{"shape":"LoadBalancerNames"}
       }
     },
+    "AttachTrafficSourcesResultType":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AttachTrafficSourcesType":{
+      "type":"structure",
+      "required":[
+        "AutoScalingGroupName",
+        "TrafficSources"
+      ],
+      "members":{
+        "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
+        "TrafficSources":{"shape":"TrafficSources"}
+      }
+    },
     "AutoScalingGroup":{
       "type":"structure",
       "required":[
@@ -1145,7 +1208,8 @@
         "WarmPoolSize":{"shape":"WarmPoolSize"},
         "Context":{"shape":"Context"},
         "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
-        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"}
+        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"},
+        "TrafficSources":{"shape":"TrafficSources"}
       }
     },
     "AutoScalingGroupDesiredCapacity":{"type":"integer"},
@@ -1422,7 +1486,8 @@
         "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
         "Context":{"shape":"Context"},
         "DesiredCapacityType":{"shape":"XmlStringMaxLen255"},
-        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"}
+        "DefaultInstanceWarmup":{"shape":"DefaultInstanceWarmup"},
+        "TrafficSources":{"shape":"TrafficSources"}
       }
     },
     "CreateLaunchConfigurationType":{
@@ -1459,17 +1524,13 @@
     },
     "CustomizedMetricSpecification":{
       "type":"structure",
-      "required":[
-        "MetricName",
-        "Namespace",
-        "Statistic"
-      ],
       "members":{
         "MetricName":{"shape":"MetricName"},
         "Namespace":{"shape":"MetricNamespace"},
         "Dimensions":{"shape":"MetricDimensions"},
         "Statistic":{"shape":"MetricStatistic"},
-        "Unit":{"shape":"MetricUnit"}
+        "Unit":{"shape":"MetricUnit"},
+        "Metrics":{"shape":"TargetTrackingMetricDataQueries"}
       }
     },
     "DefaultInstanceWarmup":{"type":"integer"},
@@ -1713,6 +1774,26 @@
         "TerminationPolicyTypes":{"shape":"TerminationPolicies"}
       }
     },
+    "DescribeTrafficSourcesRequest":{
+      "type":"structure",
+      "required":[
+        "AutoScalingGroupName",
+        "TrafficSourceType"
+      ],
+      "members":{
+        "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
+        "TrafficSourceType":{"shape":"XmlStringMaxLen255"},
+        "NextToken":{"shape":"XmlString"},
+        "MaxRecords":{"shape":"MaxRecords"}
+      }
+    },
+    "DescribeTrafficSourcesResponse":{
+      "type":"structure",
+      "members":{
+        "TrafficSources":{"shape":"TrafficSourceStates"},
+        "NextToken":{"shape":"XmlString"}
+      }
+    },
     "DescribeWarmPoolAnswer":{
       "type":"structure",
       "members":{
@@ -1785,6 +1866,22 @@
       "members":{
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
         "LoadBalancerNames":{"shape":"LoadBalancerNames"}
+      }
+    },
+    "DetachTrafficSourcesResultType":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DetachTrafficSourcesType":{
+      "type":"structure",
+      "required":[
+        "AutoScalingGroupName",
+        "TrafficSources"
+      ],
+      "members":{
+        "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
+        "TrafficSources":{"shape":"TrafficSources"}
       }
     },
     "DisableMetricsCollectionQuery":{
@@ -3228,6 +3325,33 @@
         "DisableScaleIn":{"shape":"DisableScaleIn"}
       }
     },
+    "TargetTrackingMetricDataQueries":{
+      "type":"list",
+      "member":{"shape":"TargetTrackingMetricDataQuery"}
+    },
+    "TargetTrackingMetricDataQuery":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"XmlStringMaxLen255"},
+        "Expression":{"shape":"XmlStringMaxLen2047"},
+        "MetricStat":{"shape":"TargetTrackingMetricStat"},
+        "Label":{"shape":"XmlStringMetricLabel"},
+        "ReturnData":{"shape":"ReturnData"}
+      }
+    },
+    "TargetTrackingMetricStat":{
+      "type":"structure",
+      "required":[
+        "Metric",
+        "Stat"
+      ],
+      "members":{
+        "Metric":{"shape":"Metric"},
+        "Stat":{"shape":"XmlStringMetricStat"},
+        "Unit":{"shape":"MetricUnit"}
+      }
+    },
     "TerminateInstanceInAutoScalingGroupType":{
       "type":"structure",
       "required":[
@@ -3250,6 +3374,27 @@
         "Min":{"shape":"NullablePositiveDouble"},
         "Max":{"shape":"NullablePositiveDouble"}
       }
+    },
+    "TrafficSourceIdentifier":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"XmlStringMaxLen511"}
+      }
+    },
+    "TrafficSourceState":{
+      "type":"structure",
+      "members":{
+        "TrafficSource":{"shape":"XmlStringMaxLen511"},
+        "State":{"shape":"XmlStringMaxLen255"}
+      }
+    },
+    "TrafficSourceStates":{
+      "type":"list",
+      "member":{"shape":"TrafficSourceState"}
+    },
+    "TrafficSources":{
+      "type":"list",
+      "member":{"shape":"TrafficSourceIdentifier"}
     },
     "UpdateAutoScalingGroupType":{
       "type":"structure",

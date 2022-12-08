@@ -6,10 +6,12 @@
     "CreateComponentType": "<p>Creates a component type.</p>",
     "CreateEntity": "<p>Creates an entity.</p>",
     "CreateScene": "<p>Creates a scene.</p>",
+    "CreateSyncJob": "<p>This action creates a SyncJob.</p>",
     "CreateWorkspace": "<p>Creates a workplace.</p>",
     "DeleteComponentType": "<p>Deletes a component type.</p>",
     "DeleteEntity": "<p>Deletes an entity.</p>",
     "DeleteScene": "<p>Deletes a scene.</p>",
+    "DeleteSyncJob": "<p>Delete the SyncJob.</p>",
     "DeleteWorkspace": "<p>Deletes a workspace.</p>",
     "ExecuteQuery": "<p>Run queries to access information from your knowledge graph of entities within individual workspaces.</p>",
     "GetComponentType": "<p>Retrieves information about a component type.</p>",
@@ -18,10 +20,13 @@
     "GetPropertyValue": "<p>Gets the property values for a component, component type, entity, or workspace.</p> <p>You must specify a value for either <code>componentName</code>, <code>componentTypeId</code>, <code>entityId</code>, or <code>workspaceId</code>.</p>",
     "GetPropertyValueHistory": "<p>Retrieves information about the history of a time series property value for a component, component type, entity, or workspace.</p> <p>You must specify a value for <code>workspaceId</code>. For entity-specific queries, specify values for <code>componentName</code> and <code>entityId</code>. For cross-entity quries, specify a value for <code>componentTypeId</code>.</p>",
     "GetScene": "<p>Retrieves information about a scene.</p>",
+    "GetSyncJob": "<p>Gets the SyncJob.</p>",
     "GetWorkspace": "<p>Retrieves information about a workspace.</p>",
     "ListComponentTypes": "<p>Lists all component types in a workspace.</p>",
     "ListEntities": "<p>Lists all entities in a workspace.</p>",
     "ListScenes": "<p>Lists all scenes in a workspace.</p>",
+    "ListSyncJobs": "<p>List all SyncJobs.</p>",
+    "ListSyncResources": "<p>Lists the sync resources.</p>",
     "ListTagsForResource": "<p>Lists all tags associated with a resource.</p>",
     "ListWorkspaces": "<p>Retrieves information about workspaces in the current account.</p>",
     "TagResource": "<p>Adds tags to a resource.</p>",
@@ -184,6 +189,15 @@
         "UpdateComponentTypeResponse$componentTypeId": "<p>The ID of the component type.</p>"
       }
     },
+    "ComponentTypeName": {
+      "base": null,
+      "refs": {
+        "ComponentTypeSummary$componentTypeName": "<p>The component type name.</p>",
+        "CreateComponentTypeRequest$componentTypeName": "<p>A friendly name for the component type.</p>",
+        "GetComponentTypeResponse$componentTypeName": "<p>The component type name.</p>",
+        "UpdateComponentTypeRequest$componentTypeName": "<p>The component type name.</p>"
+      }
+    },
     "ComponentTypeSummaries": {
       "base": null,
       "refs": {
@@ -278,6 +292,16 @@
       "refs": {
       }
     },
+    "CreateSyncJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSyncJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateWorkspaceRequest": {
       "base": null,
       "refs": {
@@ -357,6 +381,16 @@
       }
     },
     "DeleteSceneResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSyncJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSyncJobResponse": {
       "base": null,
       "refs": {
       }
@@ -461,7 +495,9 @@
     "ErrorDetails": {
       "base": "<p>The error details.</p>",
       "refs": {
-        "Status$error": "<p>The error message.</p>"
+        "Status$error": "<p>The error message.</p>",
+        "SyncJobStatus$error": "<p>The SyncJob error.</p>",
+        "SyncResourceStatus$error": "<p>The status error.</p>"
       }
     },
     "ErrorEntries": {
@@ -613,6 +649,16 @@
       "refs": {
       }
     },
+    "GetSyncJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSyncJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetWorkspaceRequest": {
       "base": null,
       "refs": {
@@ -640,11 +686,13 @@
         "CreateEntityRequest$workspaceId": "<p>The ID of the workspace that contains the entity.</p>",
         "CreateSceneRequest$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
         "CreateSceneRequest$sceneId": "<p>The ID of the scene.</p>",
+        "CreateSyncJobRequest$workspaceId": "<p>The workspace Id.</p>",
         "CreateWorkspaceRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "DeleteComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "DeleteEntityRequest$workspaceId": "<p>The ID of the workspace that contains the entity to delete.</p>",
         "DeleteSceneRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "DeleteSceneRequest$sceneId": "<p>The ID of the scene to delete.</p>",
+        "DeleteSyncJobRequest$workspaceId": "<p>The workspace Id.</p>",
         "DeleteWorkspaceRequest$workspaceId": "<p>The ID of the workspace to delete.</p>",
         "ExecuteQueryRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "GetComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
@@ -657,13 +705,22 @@
         "GetSceneRequest$sceneId": "<p>The ID of the scene.</p>",
         "GetSceneResponse$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
         "GetSceneResponse$sceneId": "<p>The ID of the scene.</p>",
+        "GetSyncJobRequest$workspaceId": "<p>The workspace Id.</p>",
+        "GetSyncJobResponse$workspaceId": "<p>The ID of the workspace that contains the sync job.</p>",
         "GetWorkspaceResponse$workspaceId": "<p>The ID of the workspace.</p>",
         "ListComponentTypesRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "ListComponentTypesResponse$workspaceId": "<p>The ID of the workspace.</p>",
         "ListEntitiesRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "ListScenesRequest$workspaceId": "<p>The ID of the workspace that contains the scenes.</p>",
+        "ListSyncJobsRequest$workspaceId": "<p>The ID of the workspace that contains the sync job.</p>",
+        "ListSyncResourcesRequest$workspaceId": "<p>The ID of the workspace that contains the sync job.</p>",
         "SceneSummary$sceneId": "<p>The ID of the scene.</p>",
-        "UpdateComponentTypeRequest$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
+        "SyncJobSummary$workspaceId": "<p>The ID of the workspace that contains the sync job.</p>",
+        "SyncResourceFilter$resourceId": "<p>The sync resource filter resource Id.</p>",
+        "SyncResourceFilter$externalId": "<p>The external Id.</p>",
+        "SyncResourceSummary$externalId": "<p>The external Id.</p>",
+        "SyncResourceSummary$resourceId": "<p>The resource Id.</p>",
+        "UpdateComponentTypeRequest$workspaceId": "<p>The ID of the workspace.</p>",
         "UpdateComponentTypeResponse$workspaceId": "<p>The ID of the workspace that contains the component type.</p>",
         "UpdateEntityRequest$workspaceId": "<p>The ID of the workspace that contains the entity.</p>",
         "UpdateSceneRequest$workspaceId": "<p>The ID of the workspace that contains the scene.</p>",
@@ -773,6 +830,26 @@
       "refs": {
       }
     },
+    "ListSyncJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSyncJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSyncResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSyncResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -809,6 +886,8 @@
         "ListComponentTypesResponse$maxResults": "<p>Specifies the maximum number of results to display.</p>",
         "ListEntitiesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
         "ListScenesRequest$maxResults": "<p>Specifies the maximum number of results to display.</p>",
+        "ListSyncJobsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 50.</p> <p>Valid Range: Minimum value of 0. Maximum value of 200.</p>",
+        "ListSyncResourcesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 50.</p> <p>Valid Range: Minimum value of 0. Maximum value of 200.</p>",
         "ListTagsForResourceRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>",
         "ListWorkspacesRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p> <p>Valid Range: Minimum value of 1. Maximum value of 250.</p>"
       }
@@ -858,6 +937,10 @@
         "ListEntitiesResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListScenesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListScenesResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListSyncJobsRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListSyncJobsResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListSyncResourcesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
+        "ListSyncResourcesResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListTagsForResourceRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListTagsForResourceResponse$nextToken": "<p>The string that specifies the next page of results.</p>",
         "ListWorkspacesRequest$nextToken": "<p>The string that specifies the next page of results.</p>",
@@ -964,6 +1047,13 @@
       "base": null,
       "refs": {
         "GetComponentTypeResponse$propertyDefinitions": "<p>An object that maps strings to the property definitions in the component type. Each string in the mapping must be unique to this object.</p>"
+      }
+    },
+    "PropertyDisplayName": {
+      "base": null,
+      "refs": {
+        "PropertyDefinitionRequest$displayName": "<p>A friendly name for the property.</p>",
+        "PropertyDefinitionResponse$displayName": "<p>A friendly name for the property.</p>"
       }
     },
     "PropertyFilter": {
@@ -1150,7 +1240,9 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "CreateSyncJobRequest$syncRole": "<p>The SyncJob IAM role. This IAM role is used by the sync job to read from the syncSource, and create, update or delete the corresponding resources.</p>",
         "CreateWorkspaceRequest$role": "<p>The ARN of the execution role associated with the workspace.</p>",
+        "GetSyncJobResponse$syncRole": "<p>The sync IAM role.</p>",
         "GetWorkspaceResponse$role": "<p>The ARN of the execution role associated with the workspace.</p>",
         "UpdateWorkspaceRequest$role": "<p>The ARN of the execution role associated with the workspace.</p>"
       }
@@ -1276,6 +1368,91 @@
         "SelectedPropertyList$member": null
       }
     },
+    "SyncJobState": {
+      "base": null,
+      "refs": {
+        "CreateSyncJobResponse$state": "<p>The SyncJob response state.</p>",
+        "DeleteSyncJobResponse$state": "<p>The SyncJob response state.</p>",
+        "SyncJobStatus$state": "<p>The SyncJob status state.</p>"
+      }
+    },
+    "SyncJobStatus": {
+      "base": "<p>The SyncJob status.</p>",
+      "refs": {
+        "GetSyncJobResponse$status": "<p>The SyncJob response status.</p>",
+        "SyncJobSummary$status": "<p>The SyncJob summaries status.</p>"
+      }
+    },
+    "SyncJobSummaries": {
+      "base": null,
+      "refs": {
+        "ListSyncJobsResponse$syncJobSummaries": "<p>The listed SyncJob summaries.</p>"
+      }
+    },
+    "SyncJobSummary": {
+      "base": "<p>The SyncJob summary.</p>",
+      "refs": {
+        "SyncJobSummaries$member": null
+      }
+    },
+    "SyncResourceFilter": {
+      "base": "<p>The sync resource filter.</p>",
+      "refs": {
+        "SyncResourceFilters$member": null
+      }
+    },
+    "SyncResourceFilters": {
+      "base": null,
+      "refs": {
+        "ListSyncResourcesRequest$filters": "<p>A list of objects that filter the request.</p>"
+      }
+    },
+    "SyncResourceState": {
+      "base": null,
+      "refs": {
+        "SyncResourceFilter$state": "<p>The sync resource filter's state.</p>",
+        "SyncResourceStatus$state": "<p>The sync resource status state.</p>"
+      }
+    },
+    "SyncResourceStatus": {
+      "base": "<p>The sync resource status.</p>",
+      "refs": {
+        "SyncResourceSummary$status": "<p>The sync resource summary status.</p>"
+      }
+    },
+    "SyncResourceSummaries": {
+      "base": null,
+      "refs": {
+        "ListSyncResourcesResponse$syncResources": "<p>The sync resources.</p>"
+      }
+    },
+    "SyncResourceSummary": {
+      "base": "<p>The sync resource summary.</p>",
+      "refs": {
+        "SyncResourceSummaries$member": null
+      }
+    },
+    "SyncResourceType": {
+      "base": null,
+      "refs": {
+        "SyncResourceFilter$resourceType": "<p>The sync resource filter resoucre type</p>",
+        "SyncResourceSummary$resourceType": "<p>The resource type.</p>"
+      }
+    },
+    "SyncSource": {
+      "base": null,
+      "refs": {
+        "ComponentResponse$syncSource": "<p>The syncSource of the sync job, if this entity was created by a sync job.</p>",
+        "CreateSyncJobRequest$syncSource": "<p>The sync source.</p> <note> <p>Currently the only supported syncSoucre is <code>SITEWISE </code>.</p> </note>",
+        "DeleteSyncJobRequest$syncSource": "<p>The sync source.</p> <note> <p>Currently the only supported syncSoucre is <code>SITEWISE </code>.</p> </note>",
+        "GetComponentTypeResponse$syncSource": "<p>The syncSource of the sync job, if this entity was created by a sync job.</p>",
+        "GetEntityResponse$syncSource": "<p>The syncSource of the sync job, if this entity was created by a sync job.</p>",
+        "GetSyncJobRequest$syncSource": "<p>The sync soucre.</p> <note> <p>Currently the only supported syncSoucre is <code>SITEWISE </code>.</p> </note>",
+        "GetSyncJobResponse$syncSource": "<p>The sync soucre.</p> <note> <p>Currently the only supported syncSoucre is <code>SITEWISE </code>.</p> </note>",
+        "ListSyncResourcesRequest$syncSource": "<p>The sync soucre.</p> <note> <p>Currently the only supported syncSoucre is <code>SITEWISE </code>.</p> </note>",
+        "SyncJobSummary$syncSource": "<p>The sync source.</p>"
+      }
+    },
     "TabularConditions": {
       "base": "<p>The tabular conditions.</p>",
       "refs": {
@@ -1313,6 +1490,7 @@
         "CreateComponentTypeRequest$tags": "<p>Metadata that you can use to manage the component type.</p>",
         "CreateEntityRequest$tags": "<p>Metadata that you can use to manage the entity.</p>",
         "CreateSceneRequest$tags": "<p>Metadata that you can use to manage the scene.</p>",
+        "CreateSyncJobRequest$tags": "<p>The SyncJob tags.</p>",
         "CreateWorkspaceRequest$tags": "<p>Metadata that you can use to manage the workspace</p>",
         "ListTagsForResourceResponse$tags": "<p>Metadata that you can use to manage a resource.</p>",
         "TagResourceRequest$tags": "<p>Metadata to add to this resource.</p>"
@@ -1355,6 +1533,7 @@
         "CreateComponentTypeResponse$creationDateTime": "<p>The date and time when the entity was created.</p>",
         "CreateEntityResponse$creationDateTime": "<p>The date and time when the entity was created.</p>",
         "CreateSceneResponse$creationDateTime": "<p>The date and time when the scene was created.</p>",
+        "CreateSyncJobResponse$creationDateTime": "<p>The date and time for the SyncJob creation.</p>",
         "CreateWorkspaceResponse$creationDateTime": "<p>The date and time when the workspace was created.</p>",
         "EntitySummary$creationDateTime": "<p>The date and time when the entity was created.</p>",
         "EntitySummary$updateDateTime": "<p>The last date and time when the entity was updated.</p>",
@@ -1366,6 +1545,8 @@
         "GetPropertyValueHistoryRequest$endDateTime": "<p>The date and time of the latest property value to return.</p>",
         "GetSceneResponse$creationDateTime": "<p>The date and time when the scene was created.</p>",
         "GetSceneResponse$updateDateTime": "<p>The date and time when the scene was last updated.</p>",
+        "GetSyncJobResponse$creationDateTime": "<p>The creation date and time.</p>",
+        "GetSyncJobResponse$updateDateTime": "<p>The update date and time.</p>",
         "GetWorkspaceResponse$creationDateTime": "<p>The date and time when the workspace was created.</p>",
         "GetWorkspaceResponse$updateDateTime": "<p>The date and time when the workspace was last updated.</p>",
         "PricingPlan$effectiveDateTime": "<p>The effective date and time of the pricing plan.</p>",
@@ -1373,6 +1554,9 @@
         "PropertyValue$timestamp": "<p>The timestamp of a value for a time series property.</p>",
         "SceneSummary$creationDateTime": "<p>The date and time when the scene was created.</p>",
         "SceneSummary$updateDateTime": "<p>The date and time when the scene was last updated.</p>",
+        "SyncJobSummary$creationDateTime": "<p>The creation date and time.</p>",
+        "SyncJobSummary$updateDateTime": "<p>The update date and time.</p>",
+        "SyncResourceSummary$updateDateTime": "<p>The update date and time.</p>",
         "UpdateEntityResponse$updateDateTime": "<p>The date and time when the entity was last updated.</p>",
         "UpdateSceneResponse$updateDateTime": "<p>The date and time when the scene was last updated.</p>",
         "UpdateWorkspaceResponse$updateDateTime": "<p>The date and time of the current update.</p>",
@@ -1392,14 +1576,17 @@
         "CreateComponentTypeResponse$arn": "<p>The ARN of the component type.</p>",
         "CreateEntityResponse$arn": "<p>The ARN of the entity.</p>",
         "CreateSceneResponse$arn": "<p>The ARN of the scene.</p>",
+        "CreateSyncJobResponse$arn": "<p>The SyncJob ARN.</p>",
         "CreateWorkspaceResponse$arn": "<p>The ARN of the workspace.</p>",
         "EntitySummary$arn": "<p>The ARN of the entity.</p>",
         "GetComponentTypeResponse$arn": "<p>The ARN of the component type.</p>",
         "GetEntityResponse$arn": "<p>The ARN of the entity.</p>",
         "GetSceneResponse$arn": "<p>The ARN of the scene.</p>",
+        "GetSyncJobResponse$arn": "<p>The sync job ARN.</p>",
         "GetWorkspaceResponse$arn": "<p>The ARN of the workspace.</p>",
         "ListTagsForResourceRequest$resourceARN": "<p>The ARN of the resource.</p>",
         "SceneSummary$arn": "<p>The ARN of the scene.</p>",
+        "SyncJobSummary$arn": "<p>The SyncJob summary ARN.</p>",
         "TagResourceRequest$resourceARN": "<p>The ARN of the resource.</p>",
         "UntagResourceRequest$resourceARN": "<p>The ARN of the resource.</p>",
         "UpdateComponentTypeResponse$arn": "<p>The ARN of the component type.</p>",

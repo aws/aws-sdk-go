@@ -30,6 +30,16 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListSyncJobs": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListSyncResources": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListWorkspaces": {
       "input_token": "nextToken",
       "output_token": "nextToken",

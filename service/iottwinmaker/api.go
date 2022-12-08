@@ -391,6 +391,102 @@ func (c *IoTTwinMaker) CreateSceneWithContext(ctx aws.Context, input *CreateScen
 	return out, req.Send()
 }
 
+const opCreateSyncJob = "CreateSyncJob"
+
+// CreateSyncJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSyncJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSyncJob for more information on using the CreateSyncJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateSyncJobRequest method.
+//	req, resp := client.CreateSyncJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/CreateSyncJob
+func (c *IoTTwinMaker) CreateSyncJobRequest(input *CreateSyncJobInput) (req *request.Request, output *CreateSyncJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateSyncJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
+	}
+
+	if input == nil {
+		input = &CreateSyncJobInput{}
+	}
+
+	output = &CreateSyncJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateSyncJob API operation for AWS IoT TwinMaker.
+//
+// This action creates a SyncJob.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation CreateSyncJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+//   - ConflictException
+//     A conflict occurred.
+//
+//   - ServiceQuotaExceededException
+//     The service quota was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/CreateSyncJob
+func (c *IoTTwinMaker) CreateSyncJob(input *CreateSyncJobInput) (*CreateSyncJobOutput, error) {
+	req, out := c.CreateSyncJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateSyncJobWithContext is the same as CreateSyncJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSyncJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) CreateSyncJobWithContext(ctx aws.Context, input *CreateSyncJobInput, opts ...request.Option) (*CreateSyncJobOutput, error) {
+	req, out := c.CreateSyncJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateWorkspace = "CreateWorkspace"
 
 // CreateWorkspaceRequest generates a "aws/request.Request" representing the
@@ -762,6 +858,102 @@ func (c *IoTTwinMaker) DeleteScene(input *DeleteSceneInput) (*DeleteSceneOutput,
 // for more information on using Contexts.
 func (c *IoTTwinMaker) DeleteSceneWithContext(ctx aws.Context, input *DeleteSceneInput, opts ...request.Option) (*DeleteSceneOutput, error) {
 	req, out := c.DeleteSceneRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSyncJob = "DeleteSyncJob"
+
+// DeleteSyncJobRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSyncJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSyncJob for more information on using the DeleteSyncJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteSyncJobRequest method.
+//	req, resp := client.DeleteSyncJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/DeleteSyncJob
+func (c *IoTTwinMaker) DeleteSyncJobRequest(input *DeleteSyncJobInput) (req *request.Request, output *DeleteSyncJobOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSyncJob,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
+	}
+
+	if input == nil {
+		input = &DeleteSyncJobInput{}
+	}
+
+	output = &DeleteSyncJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteSyncJob API operation for AWS IoT TwinMaker.
+//
+// Delete the SyncJob.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation DeleteSyncJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ResourceNotFoundException
+//     The resource wasn't found.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+//   - ServiceQuotaExceededException
+//     The service quota was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/DeleteSyncJob
+func (c *IoTTwinMaker) DeleteSyncJob(input *DeleteSyncJobInput) (*DeleteSyncJobOutput, error) {
+	req, out := c.DeleteSyncJobRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSyncJobWithContext is the same as DeleteSyncJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSyncJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) DeleteSyncJobWithContext(ctx aws.Context, input *DeleteSyncJobInput, opts ...request.Option) (*DeleteSyncJobOutput, error) {
+	req, out := c.DeleteSyncJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1704,6 +1896,102 @@ func (c *IoTTwinMaker) GetSceneWithContext(ctx aws.Context, input *GetSceneInput
 	return out, req.Send()
 }
 
+const opGetSyncJob = "GetSyncJob"
+
+// GetSyncJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetSyncJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSyncJob for more information on using the GetSyncJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSyncJobRequest method.
+//	req, resp := client.GetSyncJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/GetSyncJob
+func (c *IoTTwinMaker) GetSyncJobRequest(input *GetSyncJobInput) (req *request.Request, output *GetSyncJobOutput) {
+	op := &request.Operation{
+		Name:       opGetSyncJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sync-jobs/{syncSource}",
+	}
+
+	if input == nil {
+		input = &GetSyncJobInput{}
+	}
+
+	output = &GetSyncJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetSyncJob API operation for AWS IoT TwinMaker.
+//
+// Gets the SyncJob.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation GetSyncJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ResourceNotFoundException
+//     The resource wasn't found.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+//   - ServiceQuotaExceededException
+//     The service quota was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/GetSyncJob
+func (c *IoTTwinMaker) GetSyncJob(input *GetSyncJobInput) (*GetSyncJobOutput, error) {
+	req, out := c.GetSyncJobRequest(input)
+	return out, req.Send()
+}
+
+// GetSyncJobWithContext is the same as GetSyncJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSyncJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) GetSyncJobWithContext(ctx aws.Context, input *GetSyncJobInput, opts ...request.Option) (*GetSyncJobOutput, error) {
+	req, out := c.GetSyncJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetWorkspace = "GetWorkspace"
 
 // GetWorkspaceRequest generates a "aws/request.Request" representing the
@@ -2231,6 +2519,306 @@ func (c *IoTTwinMaker) ListScenesPagesWithContext(ctx aws.Context, input *ListSc
 
 	for p.Next() {
 		if !fn(p.Page().(*ListScenesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSyncJobs = "ListSyncJobs"
+
+// ListSyncJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSyncJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSyncJobs for more information on using the ListSyncJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSyncJobsRequest method.
+//	req, resp := client.ListSyncJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/ListSyncJobs
+func (c *IoTTwinMaker) ListSyncJobsRequest(input *ListSyncJobsInput) (req *request.Request, output *ListSyncJobsOutput) {
+	op := &request.Operation{
+		Name:       opListSyncJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workspaces/{workspaceId}/sync-jobs-list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSyncJobsInput{}
+	}
+
+	output = &ListSyncJobsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListSyncJobs API operation for AWS IoT TwinMaker.
+//
+// List all SyncJobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation ListSyncJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+//   - ServiceQuotaExceededException
+//     The service quota was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/ListSyncJobs
+func (c *IoTTwinMaker) ListSyncJobs(input *ListSyncJobsInput) (*ListSyncJobsOutput, error) {
+	req, out := c.ListSyncJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListSyncJobsWithContext is the same as ListSyncJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSyncJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) ListSyncJobsWithContext(ctx aws.Context, input *ListSyncJobsInput, opts ...request.Option) (*ListSyncJobsOutput, error) {
+	req, out := c.ListSyncJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSyncJobsPages iterates over the pages of a ListSyncJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSyncJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSyncJobs operation.
+//	pageNum := 0
+//	err := client.ListSyncJobsPages(params,
+//	    func(page *iottwinmaker.ListSyncJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoTTwinMaker) ListSyncJobsPages(input *ListSyncJobsInput, fn func(*ListSyncJobsOutput, bool) bool) error {
+	return c.ListSyncJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSyncJobsPagesWithContext same as ListSyncJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) ListSyncJobsPagesWithContext(ctx aws.Context, input *ListSyncJobsInput, fn func(*ListSyncJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSyncJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSyncJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSyncJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSyncResources = "ListSyncResources"
+
+// ListSyncResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListSyncResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSyncResources for more information on using the ListSyncResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSyncResourcesRequest method.
+//	req, resp := client.ListSyncResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/ListSyncResources
+func (c *IoTTwinMaker) ListSyncResourcesRequest(input *ListSyncResourcesInput) (req *request.Request, output *ListSyncResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListSyncResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workspaces/{workspaceId}/sync-jobs/{syncSource}/resources-list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSyncResourcesInput{}
+	}
+
+	output = &ListSyncResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListSyncResources API operation for AWS IoT TwinMaker.
+//
+// Lists the sync resources.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT TwinMaker's
+// API operation ListSyncResources for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     An unexpected error has occurred.
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - ValidationException
+//     Failed
+//
+//   - ServiceQuotaExceededException
+//     The service quota was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iottwinmaker-2021-11-29/ListSyncResources
+func (c *IoTTwinMaker) ListSyncResources(input *ListSyncResourcesInput) (*ListSyncResourcesOutput, error) {
+	req, out := c.ListSyncResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListSyncResourcesWithContext is the same as ListSyncResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSyncResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) ListSyncResourcesWithContext(ctx aws.Context, input *ListSyncResourcesInput, opts ...request.Option) (*ListSyncResourcesOutput, error) {
+	req, out := c.ListSyncResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSyncResourcesPages iterates over the pages of a ListSyncResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSyncResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSyncResources operation.
+//	pageNum := 0
+//	err := client.ListSyncResourcesPages(params,
+//	    func(page *iottwinmaker.ListSyncResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IoTTwinMaker) ListSyncResourcesPages(input *ListSyncResourcesInput, fn func(*ListSyncResourcesOutput, bool) bool) error {
+	return c.ListSyncResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSyncResourcesPagesWithContext same as ListSyncResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTTwinMaker) ListSyncResourcesPagesWithContext(ctx aws.Context, input *ListSyncResourcesInput, fn func(*ListSyncResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSyncResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSyncResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSyncResourcesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3682,6 +4270,9 @@ type ComponentResponse struct {
 
 	// The status of the component type.
 	Status *Status `locationName:"status" type:"structure"`
+
+	// The syncSource of the sync job, if this entity was created by a sync job.
+	SyncSource *string `locationName:"syncSource" type:"string"`
 }
 
 // String returns the string representation.
@@ -3744,6 +4335,12 @@ func (s *ComponentResponse) SetStatus(v *Status) *ComponentResponse {
 	return s
 }
 
+// SetSyncSource sets the SyncSource field's value.
+func (s *ComponentResponse) SetSyncSource(v string) *ComponentResponse {
+	s.SyncSource = &v
+	return s
+}
+
 // An object that contains information about a component type.
 type ComponentTypeSummary struct {
 	_ struct{} `type:"structure"`
@@ -3757,6 +4354,9 @@ type ComponentTypeSummary struct {
 	//
 	// ComponentTypeId is a required field
 	ComponentTypeId *string `locationName:"componentTypeId" min:"1" type:"string" required:"true"`
+
+	// The component type name.
+	ComponentTypeName *string `locationName:"componentTypeName" type:"string"`
 
 	// The date and time when the component type was created.
 	//
@@ -3802,6 +4402,12 @@ func (s *ComponentTypeSummary) SetArn(v string) *ComponentTypeSummary {
 // SetComponentTypeId sets the ComponentTypeId field's value.
 func (s *ComponentTypeSummary) SetComponentTypeId(v string) *ComponentTypeSummary {
 	s.ComponentTypeId = &v
+	return s
+}
+
+// SetComponentTypeName sets the ComponentTypeName field's value.
+func (s *ComponentTypeSummary) SetComponentTypeName(v string) *ComponentTypeSummary {
+	s.ComponentTypeName = &v
 	return s
 }
 
@@ -4121,6 +4727,9 @@ type CreateComponentTypeInput struct {
 	// ComponentTypeId is a required field
 	ComponentTypeId *string `location:"uri" locationName:"componentTypeId" min:"1" type:"string" required:"true"`
 
+	// A friendly name for the component type.
+	ComponentTypeName *string `locationName:"componentTypeName" type:"string"`
+
 	// The description of the component type.
 	Description *string `locationName:"description" type:"string"`
 
@@ -4213,6 +4822,12 @@ func (s *CreateComponentTypeInput) Validate() error {
 // SetComponentTypeId sets the ComponentTypeId field's value.
 func (s *CreateComponentTypeInput) SetComponentTypeId(v string) *CreateComponentTypeInput {
 	s.ComponentTypeId = &v
+	return s
+}
+
+// SetComponentTypeName sets the ComponentTypeName field's value.
+func (s *CreateComponentTypeInput) SetComponentTypeName(v string) *CreateComponentTypeInput {
+	s.ComponentTypeName = &v
 	return s
 }
 
@@ -4661,6 +5276,156 @@ func (s *CreateSceneOutput) SetArn(v string) *CreateSceneOutput {
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *CreateSceneOutput) SetCreationDateTime(v time.Time) *CreateSceneOutput {
 	s.CreationDateTime = &v
+	return s
+}
+
+type CreateSyncJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The SyncJob IAM role. This IAM role is used by the sync job to read from
+	// the syncSource, and create, update or delete the corresponding resources.
+	//
+	// SyncRole is a required field
+	SyncRole *string `locationName:"syncRole" min:"20" type:"string" required:"true"`
+
+	// The sync source.
+	//
+	// Currently the only supported syncSoucre is SITEWISE .
+	//
+	// SyncSource is a required field
+	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
+
+	// The SyncJob tags.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The workspace Id.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSyncJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSyncJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSyncJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSyncJobInput"}
+	if s.SyncRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncRole"))
+	}
+	if s.SyncRole != nil && len(*s.SyncRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SyncRole", 20))
+	}
+	if s.SyncSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncSource"))
+	}
+	if s.SyncSource != nil && len(*s.SyncSource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SyncSource", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSyncRole sets the SyncRole field's value.
+func (s *CreateSyncJobInput) SetSyncRole(v string) *CreateSyncJobInput {
+	s.SyncRole = &v
+	return s
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *CreateSyncJobInput) SetSyncSource(v string) *CreateSyncJobInput {
+	s.SyncSource = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSyncJobInput) SetTags(v map[string]*string) *CreateSyncJobInput {
+	s.Tags = v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *CreateSyncJobInput) SetWorkspaceId(v string) *CreateSyncJobInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type CreateSyncJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SyncJob ARN.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"20" type:"string" required:"true"`
+
+	// The date and time for the SyncJob creation.
+	//
+	// CreationDateTime is a required field
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp" required:"true"`
+
+	// The SyncJob response state.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"SyncJobState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSyncJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSyncJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateSyncJobOutput) SetArn(v string) *CreateSyncJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *CreateSyncJobOutput) SetCreationDateTime(v time.Time) *CreateSyncJobOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CreateSyncJobOutput) SetState(v string) *CreateSyncJobOutput {
+	s.State = &v
 	return s
 }
 
@@ -5410,6 +6175,107 @@ func (s DeleteSceneOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteSyncJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The sync source.
+	//
+	// Currently the only supported syncSoucre is SITEWISE .
+	//
+	// SyncSource is a required field
+	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
+
+	// The workspace Id.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSyncJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSyncJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSyncJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSyncJobInput"}
+	if s.SyncSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncSource"))
+	}
+	if s.SyncSource != nil && len(*s.SyncSource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SyncSource", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *DeleteSyncJobInput) SetSyncSource(v string) *DeleteSyncJobInput {
+	s.SyncSource = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DeleteSyncJobInput) SetWorkspaceId(v string) *DeleteSyncJobInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type DeleteSyncJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SyncJob response state.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"SyncJobState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSyncJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSyncJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *DeleteSyncJobOutput) SetState(v string) *DeleteSyncJobOutput {
+	s.State = &v
+	return s
+}
+
 type DeleteWorkspaceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6063,6 +6929,9 @@ type GetComponentTypeOutput struct {
 	// ComponentTypeId is a required field
 	ComponentTypeId *string `locationName:"componentTypeId" min:"1" type:"string" required:"true"`
 
+	// The component type name.
+	ComponentTypeName *string `locationName:"componentTypeName" type:"string"`
+
 	// The date and time when the component type was created.
 	//
 	// CreationDateTime is a required field
@@ -6100,6 +6969,9 @@ type GetComponentTypeOutput struct {
 
 	// The current status of the component type.
 	Status *Status `locationName:"status" type:"structure"`
+
+	// The syncSource of the sync job, if this entity was created by a sync job.
+	SyncSource *string `locationName:"syncSource" type:"string"`
 
 	// The date and time when the component was last updated.
 	//
@@ -6139,6 +7011,12 @@ func (s *GetComponentTypeOutput) SetArn(v string) *GetComponentTypeOutput {
 // SetComponentTypeId sets the ComponentTypeId field's value.
 func (s *GetComponentTypeOutput) SetComponentTypeId(v string) *GetComponentTypeOutput {
 	s.ComponentTypeId = &v
+	return s
+}
+
+// SetComponentTypeName sets the ComponentTypeName field's value.
+func (s *GetComponentTypeOutput) SetComponentTypeName(v string) *GetComponentTypeOutput {
+	s.ComponentTypeName = &v
 	return s
 }
 
@@ -6199,6 +7077,12 @@ func (s *GetComponentTypeOutput) SetPropertyGroups(v map[string]*PropertyGroupRe
 // SetStatus sets the Status field's value.
 func (s *GetComponentTypeOutput) SetStatus(v *Status) *GetComponentTypeOutput {
 	s.Status = v
+	return s
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *GetComponentTypeOutput) SetSyncSource(v string) *GetComponentTypeOutput {
+	s.SyncSource = &v
 	return s
 }
 
@@ -6325,6 +7209,9 @@ type GetEntityOutput struct {
 	// Status is a required field
 	Status *Status `locationName:"status" type:"structure" required:"true"`
 
+	// The syncSource of the sync job, if this entity was created by a sync job.
+	SyncSource *string `locationName:"syncSource" type:"string"`
+
 	// The date and time when the entity was last updated.
 	//
 	// UpdateDateTime is a required field
@@ -6405,6 +7292,12 @@ func (s *GetEntityOutput) SetParentEntityId(v string) *GetEntityOutput {
 // SetStatus sets the Status field's value.
 func (s *GetEntityOutput) SetStatus(v *Status) *GetEntityOutput {
 	s.Status = v
+	return s
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *GetEntityOutput) SetSyncSource(v string) *GetEntityOutput {
+	s.SyncSource = &v
 	return s
 }
 
@@ -7108,6 +8001,170 @@ func (s *GetSceneOutput) SetUpdateDateTime(v time.Time) *GetSceneOutput {
 
 // SetWorkspaceId sets the WorkspaceId field's value.
 func (s *GetSceneOutput) SetWorkspaceId(v string) *GetSceneOutput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type GetSyncJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The sync soucre.
+	//
+	// Currently the only supported syncSoucre is SITEWISE .
+	//
+	// SyncSource is a required field
+	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
+
+	// The workspace Id.
+	WorkspaceId *string `location:"querystring" locationName:"workspace" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSyncJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSyncJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSyncJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSyncJobInput"}
+	if s.SyncSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncSource"))
+	}
+	if s.SyncSource != nil && len(*s.SyncSource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SyncSource", 1))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *GetSyncJobInput) SetSyncSource(v string) *GetSyncJobInput {
+	s.SyncSource = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *GetSyncJobInput) SetWorkspaceId(v string) *GetSyncJobInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type GetSyncJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The sync job ARN.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"20" type:"string" required:"true"`
+
+	// The creation date and time.
+	//
+	// CreationDateTime is a required field
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp" required:"true"`
+
+	// The SyncJob response status.
+	//
+	// Status is a required field
+	Status *SyncJobStatus `locationName:"status" type:"structure" required:"true"`
+
+	// The sync IAM role.
+	//
+	// SyncRole is a required field
+	SyncRole *string `locationName:"syncRole" min:"20" type:"string" required:"true"`
+
+	// The sync soucre.
+	//
+	// Currently the only supported syncSoucre is SITEWISE .
+	//
+	// SyncSource is a required field
+	SyncSource *string `locationName:"syncSource" type:"string" required:"true"`
+
+	// The update date and time.
+	//
+	// UpdateDateTime is a required field
+	UpdateDateTime *time.Time `locationName:"updateDateTime" type:"timestamp" required:"true"`
+
+	// The ID of the workspace that contains the sync job.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSyncJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSyncJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetSyncJobOutput) SetArn(v string) *GetSyncJobOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *GetSyncJobOutput) SetCreationDateTime(v time.Time) *GetSyncJobOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetSyncJobOutput) SetStatus(v *SyncJobStatus) *GetSyncJobOutput {
+	s.Status = v
+	return s
+}
+
+// SetSyncRole sets the SyncRole field's value.
+func (s *GetSyncJobOutput) SetSyncRole(v string) *GetSyncJobOutput {
+	s.SyncRole = &v
+	return s
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *GetSyncJobOutput) SetSyncSource(v string) *GetSyncJobOutput {
+	s.SyncSource = &v
+	return s
+}
+
+// SetUpdateDateTime sets the UpdateDateTime field's value.
+func (s *GetSyncJobOutput) SetUpdateDateTime(v time.Time) *GetSyncJobOutput {
+	s.UpdateDateTime = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *GetSyncJobOutput) SetWorkspaceId(v string) *GetSyncJobOutput {
 	s.WorkspaceId = &v
 	return s
 }
@@ -7940,6 +8997,262 @@ func (s *ListScenesOutput) SetSceneSummaries(v []*SceneSummary) *ListScenesOutpu
 	return s
 }
 
+type ListSyncJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return at one time. The default is 50.
+	//
+	// Valid Range: Minimum value of 0. Maximum value of 200.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The ID of the workspace that contains the sync job.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSyncJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSyncJobsInput"}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSyncJobsInput) SetMaxResults(v int64) *ListSyncJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSyncJobsInput) SetNextToken(v string) *ListSyncJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *ListSyncJobsInput) SetWorkspaceId(v string) *ListSyncJobsInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type ListSyncJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The listed SyncJob summaries.
+	SyncJobSummaries []*SyncJobSummary `locationName:"syncJobSummaries" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSyncJobsOutput) SetNextToken(v string) *ListSyncJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSyncJobSummaries sets the SyncJobSummaries field's value.
+func (s *ListSyncJobsOutput) SetSyncJobSummaries(v []*SyncJobSummary) *ListSyncJobsOutput {
+	s.SyncJobSummaries = v
+	return s
+}
+
+type ListSyncResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects that filter the request.
+	Filters []*SyncResourceFilter `locationName:"filters" type:"list"`
+
+	// The maximum number of results to return at one time. The default is 50.
+	//
+	// Valid Range: Minimum value of 0. Maximum value of 200.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The sync soucre.
+	//
+	// Currently the only supported syncSoucre is SITEWISE .
+	//
+	// SyncSource is a required field
+	SyncSource *string `location:"uri" locationName:"syncSource" type:"string" required:"true"`
+
+	// The ID of the workspace that contains the sync job.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSyncResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSyncResourcesInput"}
+	if s.SyncSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncSource"))
+	}
+	if s.SyncSource != nil && len(*s.SyncSource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SyncSource", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListSyncResourcesInput) SetFilters(v []*SyncResourceFilter) *ListSyncResourcesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSyncResourcesInput) SetMaxResults(v int64) *ListSyncResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSyncResourcesInput) SetNextToken(v string) *ListSyncResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *ListSyncResourcesInput) SetSyncSource(v string) *ListSyncResourcesInput {
+	s.SyncSource = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *ListSyncResourcesInput) SetWorkspaceId(v string) *ListSyncResourcesInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type ListSyncResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The string that specifies the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The sync resources.
+	SyncResources []*SyncResourceSummary `locationName:"syncResources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSyncResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSyncResourcesOutput) SetNextToken(v string) *ListSyncResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSyncResources sets the SyncResources field's value.
+func (s *ListSyncResourcesOutput) SetSyncResources(v []*SyncResourceSummary) *ListSyncResourcesOutput {
+	s.SyncResources = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8350,6 +9663,9 @@ type PropertyDefinitionRequest struct {
 	// An object that contains the default value.
 	DefaultValue *DataValue `locationName:"defaultValue" type:"structure"`
 
+	// A friendly name for the property.
+	DisplayName *string `locationName:"displayName" type:"string"`
+
 	// A Boolean value that specifies whether the property ID comes from an external
 	// data store.
 	IsExternalId *bool `locationName:"isExternalId" type:"boolean"`
@@ -8421,6 +9737,12 @@ func (s *PropertyDefinitionRequest) SetDefaultValue(v *DataValue) *PropertyDefin
 	return s
 }
 
+// SetDisplayName sets the DisplayName field's value.
+func (s *PropertyDefinitionRequest) SetDisplayName(v string) *PropertyDefinitionRequest {
+	s.DisplayName = &v
+	return s
+}
+
 // SetIsExternalId sets the IsExternalId field's value.
 func (s *PropertyDefinitionRequest) SetIsExternalId(v bool) *PropertyDefinitionRequest {
 	s.IsExternalId = &v
@@ -8459,6 +9781,9 @@ type PropertyDefinitionResponse struct {
 
 	// An object that contains the default value.
 	DefaultValue *DataValue `locationName:"defaultValue" type:"structure"`
+
+	// A friendly name for the property.
+	DisplayName *string `locationName:"displayName" type:"string"`
 
 	// A Boolean value that specifies whether the property ID comes from an external
 	// data store.
@@ -8533,6 +9858,12 @@ func (s *PropertyDefinitionResponse) SetDataType(v *DataType) *PropertyDefinitio
 // SetDefaultValue sets the DefaultValue field's value.
 func (s *PropertyDefinitionResponse) SetDefaultValue(v *DataValue) *PropertyDefinitionResponse {
 	s.DefaultValue = v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *PropertyDefinitionResponse) SetDisplayName(v string) *PropertyDefinitionResponse {
+	s.DisplayName = &v
 	return s
 }
 
@@ -9576,6 +10907,308 @@ func (s *Status) SetState(v string) *Status {
 	return s
 }
 
+// The SyncJob status.
+type SyncJobStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The SyncJob error.
+	Error *ErrorDetails `locationName:"error" type:"structure"`
+
+	// The SyncJob status state.
+	State *string `locationName:"state" type:"string" enum:"SyncJobState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncJobStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncJobStatus) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *SyncJobStatus) SetError(v *ErrorDetails) *SyncJobStatus {
+	s.Error = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SyncJobStatus) SetState(v string) *SyncJobStatus {
+	s.State = &v
+	return s
+}
+
+// The SyncJob summary.
+type SyncJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The SyncJob summary ARN.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// The creation date and time.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The SyncJob summaries status.
+	Status *SyncJobStatus `locationName:"status" type:"structure"`
+
+	// The sync source.
+	SyncSource *string `locationName:"syncSource" type:"string"`
+
+	// The update date and time.
+	UpdateDateTime *time.Time `locationName:"updateDateTime" type:"timestamp"`
+
+	// The ID of the workspace that contains the sync job.
+	WorkspaceId *string `locationName:"workspaceId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SyncJobSummary) SetArn(v string) *SyncJobSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *SyncJobSummary) SetCreationDateTime(v time.Time) *SyncJobSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SyncJobSummary) SetStatus(v *SyncJobStatus) *SyncJobSummary {
+	s.Status = v
+	return s
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *SyncJobSummary) SetSyncSource(v string) *SyncJobSummary {
+	s.SyncSource = &v
+	return s
+}
+
+// SetUpdateDateTime sets the UpdateDateTime field's value.
+func (s *SyncJobSummary) SetUpdateDateTime(v time.Time) *SyncJobSummary {
+	s.UpdateDateTime = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *SyncJobSummary) SetWorkspaceId(v string) *SyncJobSummary {
+	s.WorkspaceId = &v
+	return s
+}
+
+// The sync resource filter.
+type SyncResourceFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The external Id.
+	ExternalId *string `locationName:"externalId" min:"1" type:"string"`
+
+	// The sync resource filter resource Id.
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
+
+	// The sync resource filter resoucre type
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"SyncResourceType"`
+
+	// The sync resource filter's state.
+	State *string `locationName:"state" type:"string" enum:"SyncResourceState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncResourceFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncResourceFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SyncResourceFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SyncResourceFilter"}
+	if s.ExternalId != nil && len(*s.ExternalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 1))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *SyncResourceFilter) SetExternalId(v string) *SyncResourceFilter {
+	s.ExternalId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *SyncResourceFilter) SetResourceId(v string) *SyncResourceFilter {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *SyncResourceFilter) SetResourceType(v string) *SyncResourceFilter {
+	s.ResourceType = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SyncResourceFilter) SetState(v string) *SyncResourceFilter {
+	s.State = &v
+	return s
+}
+
+// The sync resource status.
+type SyncResourceStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The status error.
+	Error *ErrorDetails `locationName:"error" type:"structure"`
+
+	// The sync resource status state.
+	State *string `locationName:"state" type:"string" enum:"SyncResourceState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncResourceStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncResourceStatus) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *SyncResourceStatus) SetError(v *ErrorDetails) *SyncResourceStatus {
+	s.Error = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SyncResourceStatus) SetState(v string) *SyncResourceStatus {
+	s.State = &v
+	return s
+}
+
+// The sync resource summary.
+type SyncResourceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The external Id.
+	ExternalId *string `locationName:"externalId" min:"1" type:"string"`
+
+	// The resource Id.
+	ResourceId *string `locationName:"resourceId" min:"1" type:"string"`
+
+	// The resource type.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"SyncResourceType"`
+
+	// The sync resource summary status.
+	Status *SyncResourceStatus `locationName:"status" type:"structure"`
+
+	// The update date and time.
+	UpdateDateTime *time.Time `locationName:"updateDateTime" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncResourceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SyncResourceSummary) GoString() string {
+	return s.String()
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *SyncResourceSummary) SetExternalId(v string) *SyncResourceSummary {
+	s.ExternalId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *SyncResourceSummary) SetResourceId(v string) *SyncResourceSummary {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *SyncResourceSummary) SetResourceType(v string) *SyncResourceSummary {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SyncResourceSummary) SetStatus(v *SyncResourceStatus) *SyncResourceSummary {
+	s.Status = v
+	return s
+}
+
+// SetUpdateDateTime sets the UpdateDateTime field's value.
+func (s *SyncResourceSummary) SetUpdateDateTime(v time.Time) *SyncResourceSummary {
+	s.UpdateDateTime = &v
+	return s
+}
+
 // The tabular conditions.
 type TabularConditions struct {
 	_ struct{} `type:"structure"`
@@ -9964,6 +11597,9 @@ type UpdateComponentTypeInput struct {
 	// ComponentTypeId is a required field
 	ComponentTypeId *string `location:"uri" locationName:"componentTypeId" min:"1" type:"string" required:"true"`
 
+	// The component type name.
+	ComponentTypeName *string `locationName:"componentTypeName" type:"string"`
+
 	// The description of the component type.
 	Description *string `locationName:"description" type:"string"`
 
@@ -9985,7 +11621,7 @@ type UpdateComponentTypeInput struct {
 	// The property groups
 	PropertyGroups map[string]*PropertyGroupRequest `locationName:"propertyGroups" type:"map"`
 
-	// The ID of the workspace that contains the component type.
+	// The ID of the workspace.
 	//
 	// WorkspaceId is a required field
 	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
@@ -10054,6 +11690,12 @@ func (s *UpdateComponentTypeInput) Validate() error {
 // SetComponentTypeId sets the ComponentTypeId field's value.
 func (s *UpdateComponentTypeInput) SetComponentTypeId(v string) *UpdateComponentTypeInput {
 	s.ComponentTypeId = &v
+	return s
+}
+
+// SetComponentTypeName sets the ComponentTypeName field's value.
+func (s *UpdateComponentTypeInput) SetComponentTypeName(v string) *UpdateComponentTypeInput {
+	s.ComponentTypeName = &v
 	return s
 }
 
@@ -10845,6 +12487,15 @@ const (
 
 	// ErrorCodeInternalFailure is a ErrorCode enum value
 	ErrorCodeInternalFailure = "INTERNAL_FAILURE"
+
+	// ErrorCodeSyncInitializingError is a ErrorCode enum value
+	ErrorCodeSyncInitializingError = "SYNC_INITIALIZING_ERROR"
+
+	// ErrorCodeSyncCreatingError is a ErrorCode enum value
+	ErrorCodeSyncCreatingError = "SYNC_CREATING_ERROR"
+
+	// ErrorCodeSyncProcessingError is a ErrorCode enum value
+	ErrorCodeSyncProcessingError = "SYNC_PROCESSING_ERROR"
 )
 
 // ErrorCode_Values returns all elements of the ErrorCode enum
@@ -10852,6 +12503,9 @@ func ErrorCode_Values() []string {
 	return []string{
 		ErrorCodeValidationError,
 		ErrorCodeInternalFailure,
+		ErrorCodeSyncInitializingError,
+		ErrorCodeSyncCreatingError,
+		ErrorCodeSyncProcessingError,
 	}
 }
 
@@ -11052,6 +12706,78 @@ func State_Values() []string {
 		StateDeleting,
 		StateActive,
 		StateError,
+	}
+}
+
+const (
+	// SyncJobStateCreating is a SyncJobState enum value
+	SyncJobStateCreating = "CREATING"
+
+	// SyncJobStateInitializing is a SyncJobState enum value
+	SyncJobStateInitializing = "INITIALIZING"
+
+	// SyncJobStateActive is a SyncJobState enum value
+	SyncJobStateActive = "ACTIVE"
+
+	// SyncJobStateDeleting is a SyncJobState enum value
+	SyncJobStateDeleting = "DELETING"
+
+	// SyncJobStateError is a SyncJobState enum value
+	SyncJobStateError = "ERROR"
+)
+
+// SyncJobState_Values returns all elements of the SyncJobState enum
+func SyncJobState_Values() []string {
+	return []string{
+		SyncJobStateCreating,
+		SyncJobStateInitializing,
+		SyncJobStateActive,
+		SyncJobStateDeleting,
+		SyncJobStateError,
+	}
+}
+
+const (
+	// SyncResourceStateInitializing is a SyncResourceState enum value
+	SyncResourceStateInitializing = "INITIALIZING"
+
+	// SyncResourceStateProcessing is a SyncResourceState enum value
+	SyncResourceStateProcessing = "PROCESSING"
+
+	// SyncResourceStateDeleted is a SyncResourceState enum value
+	SyncResourceStateDeleted = "DELETED"
+
+	// SyncResourceStateInSync is a SyncResourceState enum value
+	SyncResourceStateInSync = "IN_SYNC"
+
+	// SyncResourceStateError is a SyncResourceState enum value
+	SyncResourceStateError = "ERROR"
+)
+
+// SyncResourceState_Values returns all elements of the SyncResourceState enum
+func SyncResourceState_Values() []string {
+	return []string{
+		SyncResourceStateInitializing,
+		SyncResourceStateProcessing,
+		SyncResourceStateDeleted,
+		SyncResourceStateInSync,
+		SyncResourceStateError,
+	}
+}
+
+const (
+	// SyncResourceTypeEntity is a SyncResourceType enum value
+	SyncResourceTypeEntity = "ENTITY"
+
+	// SyncResourceTypeComponentType is a SyncResourceType enum value
+	SyncResourceTypeComponentType = "COMPONENT_TYPE"
+)
+
+// SyncResourceType_Values returns all elements of the SyncResourceType enum
+func SyncResourceType_Values() []string {
+	return []string{
+		SyncResourceTypeEntity,
+		SyncResourceTypeComponentType,
 	}
 }
 

@@ -5,6 +5,7 @@
     "AttachInstances": "<p>Attaches one or more EC2 instances to the specified Auto Scaling group.</p> <p>When you attach instances, Amazon EC2 Auto Scaling increases the desired capacity of the group by the number of instances being attached. If the number of instances being attached plus the desired capacity of the group exceeds the maximum size of the group, the operation fails.</p> <p>If there is a Classic Load Balancer attached to your Auto Scaling group, the instances are also registered with the load balancer. If there are target groups attached to your Auto Scaling group, the instances are also registered with the target groups.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-instance-asg.html\">Attach EC2 instances to your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "AttachLoadBalancerTargetGroups": "<p>Attaches one or more target groups to the specified Auto Scaling group.</p> <p>This operation is used with the following load balancer types: </p> <ul> <li> <p>Application Load Balancer - Operates at the application layer (layer 7) and supports HTTP and HTTPS. </p> </li> <li> <p>Network Load Balancer - Operates at the transport layer (layer 4) and supports TCP, TLS, and UDP. </p> </li> <li> <p>Gateway Load Balancer - Operates at the network layer (layer 3).</p> </li> </ul> <p>To describe the target groups for an Auto Scaling group, call the <a>DescribeLoadBalancerTargetGroups</a> API. To detach the target group from the Auto Scaling group, call the <a>DetachLoadBalancerTargetGroups</a> API.</p> <p>This operation is additive and does not detach existing target groups or Classic Load Balancers from the Auto Scaling group.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html\">Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p>",
     "AttachLoadBalancers": "<note> <p>To attach an Application Load Balancer, Network Load Balancer, or Gateway Load Balancer, use the <a>AttachLoadBalancerTargetGroups</a> API operation instead.</p> </note> <p>Attaches one or more Classic Load Balancers to the specified Auto Scaling group. Amazon EC2 Auto Scaling registers the running instances with these Classic Load Balancers.</p> <p>To describe the load balancers for an Auto Scaling group, call the <a>DescribeLoadBalancers</a> API. To detach a load balancer from the Auto Scaling group, call the <a>DetachLoadBalancers</a> API.</p> <p>This operation is additive and does not detach existing Classic Load Balancers or target groups from the Auto Scaling group.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html\">Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+    "AttachTrafficSources": "<p> <b>Reserved for use with Amazon VPC Lattice, which is in preview and subject to change. Do not use this API for production workloads. This API is also subject to change.</b> </p> <p>Attaches one or more traffic sources to the specified Auto Scaling group.</p> <p>To describe the traffic sources for an Auto Scaling group, call the <a>DescribeTrafficSources</a> API. To detach a traffic source from the Auto Scaling group, call the <a>DetachTrafficSources</a> API.</p> <p>This operation is additive and does not detach existing traffic sources from the Auto Scaling group.</p>",
     "BatchDeleteScheduledAction": "<p>Deletes one or more scheduled actions for the specified Auto Scaling group.</p>",
     "BatchPutScheduledUpdateGroupAction": "<p>Creates or updates one or more scheduled scaling actions for an Auto Scaling group.</p>",
     "CancelInstanceRefresh": "<p>Cancels an instance refresh operation in progress. Cancellation does not roll back any replacements that have already been completed, but it prevents new replacements from being started. </p> <p>This operation is part of the <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html\">instance refresh feature</a> in Amazon EC2 Auto Scaling, which helps you update instances in your Auto Scaling group after you make configuration changes.</p>",
@@ -29,7 +30,7 @@
     "DescribeLaunchConfigurations": "<p>Gets information about the launch configurations in the account and Region.</p>",
     "DescribeLifecycleHookTypes": "<p>Describes the available types of lifecycle hooks.</p> <p>The following hook types are supported:</p> <ul> <li> <p> <code>autoscaling:EC2_INSTANCE_LAUNCHING</code> </p> </li> <li> <p> <code>autoscaling:EC2_INSTANCE_TERMINATING</code> </p> </li> </ul>",
     "DescribeLifecycleHooks": "<p>Gets information about the lifecycle hooks for the specified Auto Scaling group.</p>",
-    "DescribeLoadBalancerTargetGroups": "<p>Gets information about the Elastic Load Balancing target groups for the specified Auto Scaling group.</p> <p>To determine the attachment status of the target group, use the <code>State</code> element in the response. When you attach a target group to an Auto Scaling group, the initial <code>State</code> value is <code>Adding</code>. The state transitions to <code>Added</code> after all Auto Scaling instances are registered with the target group. If Elastic Load Balancing health checks are enabled for the Auto Scaling group, the state transitions to <code>InService</code> after at least one Auto Scaling instance passes the health check. When the target group is in the <code>InService</code> state, Amazon EC2 Auto Scaling can terminate and replace any instances that are reported as unhealthy. If no registered instances pass the health checks, the target group doesn't enter the <code>InService</code> state. </p> <p>Target groups also have an <code>InService</code> state if you attach them in the <a>CreateAutoScalingGroup</a> API call. If your target group state is <code>InService</code>, but it is not working properly, check the scaling activities by calling <a>DescribeScalingActivities</a> and take any corrective actions necessary.</p> <p>For help with failed health checks, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-healthchecks.html\">Troubleshooting Amazon EC2 Auto Scaling: Health checks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html\">Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p>",
+    "DescribeLoadBalancerTargetGroups": "<p>Gets information about the Elastic Load Balancing target groups for the specified Auto Scaling group.</p> <p>To determine the attachment status of the target group, use the <code>State</code> element in the response. When you attach a target group to an Auto Scaling group, the initial <code>State</code> value is <code>Adding</code>. The state transitions to <code>Added</code> after all Auto Scaling instances are registered with the target group. If Elastic Load Balancing health checks are enabled for the Auto Scaling group, the state transitions to <code>InService</code> after at least one Auto Scaling instance passes the health check. When the target group is in the <code>InService</code> state, Amazon EC2 Auto Scaling can terminate and replace any instances that are reported as unhealthy. If no registered instances pass the health checks, the target group doesn't enter the <code>InService</code> state. </p> <p>Target groups also have an <code>InService</code> state if you attach them in the <a>CreateAutoScalingGroup</a> API call. If your target group state is <code>InService</code>, but it is not working properly, check the scaling activities by calling <a>DescribeScalingActivities</a> and take any corrective actions necessary.</p> <p>For help with failed health checks, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-healthchecks.html\">Troubleshooting Amazon EC2 Auto Scaling: Health checks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html\">Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p> <note> <p>You can use this operation to describe target groups that were attached by using <a>AttachLoadBalancerTargetGroups</a>, but not for target groups that were attached by using <a>AttachTrafficSources</a>.</p> </note>",
     "DescribeLoadBalancers": "<p>Gets information about the load balancers for the specified Auto Scaling group.</p> <p>This operation describes only Classic Load Balancers. If you have Application Load Balancers, Network Load Balancers, or Gateway Load Balancer, use the <a>DescribeLoadBalancerTargetGroups</a> API instead.</p> <p>To determine the attachment status of the load balancer, use the <code>State</code> element in the response. When you attach a load balancer to an Auto Scaling group, the initial <code>State</code> value is <code>Adding</code>. The state transitions to <code>Added</code> after all Auto Scaling instances are registered with the load balancer. If Elastic Load Balancing health checks are enabled for the Auto Scaling group, the state transitions to <code>InService</code> after at least one Auto Scaling instance passes the health check. When the load balancer is in the <code>InService</code> state, Amazon EC2 Auto Scaling can terminate and replace any instances that are reported as unhealthy. If no registered instances pass the health checks, the load balancer doesn't enter the <code>InService</code> state. </p> <p>Load balancers also have an <code>InService</code> state if you attach them in the <a>CreateAutoScalingGroup</a> API call. If your load balancer state is <code>InService</code>, but it is not working properly, check the scaling activities by calling <a>DescribeScalingActivities</a> and take any corrective actions necessary.</p> <p>For help with failed health checks, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-healthchecks.html\">Troubleshooting Amazon EC2 Auto Scaling: Health checks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html\">Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p>",
     "DescribeMetricCollectionTypes": "<p>Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.</p>",
     "DescribeNotificationConfigurations": "<p>Gets information about the Amazon SNS notifications that are configured for one or more Auto Scaling groups.</p>",
@@ -39,10 +40,12 @@
     "DescribeScheduledActions": "<p>Gets information about the scheduled actions that haven't run or that have not reached their end time.</p> <p>To describe the scaling activities for scheduled actions that have already run, call the <a>DescribeScalingActivities</a> API.</p>",
     "DescribeTags": "<p>Describes the specified tags.</p> <p>You can use filters to limit the results. For example, you can query for the tags for a specific Auto Scaling group. You can specify multiple values for a filter. A tag must match at least one of the specified values for it to be included in the results.</p> <p>You can also specify multiple filters. The result includes information for a particular tag only if it matches all the filters. If there's no match, no special message is returned.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-tagging.html\">Tag Auto Scaling groups and instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "DescribeTerminationPolicyTypes": "<p>Describes the termination policies supported by Amazon EC2 Auto Scaling.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html\">Work with Amazon EC2 Auto Scaling termination policies</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+    "DescribeTrafficSources": "<p> <b>Reserved for use with Amazon VPC Lattice, which is in preview and subject to change. Do not use this API for production workloads. This API is also subject to change.</b> </p> <p>Gets information about the traffic sources for the specified Auto Scaling group.</p>",
     "DescribeWarmPool": "<p>Gets information about a warm pool and its instances.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html\">Warm pools for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "DetachInstances": "<p>Removes one or more instances from the specified Auto Scaling group.</p> <p>After the instances are detached, you can manage them independent of the Auto Scaling group.</p> <p>If you do not specify the option to decrement the desired capacity, Amazon EC2 Auto Scaling launches instances to replace the ones that are detached.</p> <p>If there is a Classic Load Balancer attached to the Auto Scaling group, the instances are deregistered from the load balancer. If there are target groups attached to the Auto Scaling group, the instances are deregistered from the target groups.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html\">Detach EC2 instances from your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
-    "DetachLoadBalancerTargetGroups": "<p>Detaches one or more target groups from the specified Auto Scaling group.</p> <p>When you detach a target group, it enters the <code>Removing</code> state while deregistering the instances in the group. When all instances are deregistered, then you can no longer describe the target group using the <a>DescribeLoadBalancerTargetGroups</a> API call. The instances remain running.</p>",
+    "DetachLoadBalancerTargetGroups": "<p>Detaches one or more target groups from the specified Auto Scaling group.</p> <p>When you detach a target group, it enters the <code>Removing</code> state while deregistering the instances in the group. When all instances are deregistered, then you can no longer describe the target group using the <a>DescribeLoadBalancerTargetGroups</a> API call. The instances remain running.</p> <note> <p>You can use this operation to detach target groups that were attached by using <a>AttachLoadBalancerTargetGroups</a>, but not for target groups that were attached by using <a>AttachTrafficSources</a>.</p> </note>",
     "DetachLoadBalancers": "<p>Detaches one or more Classic Load Balancers from the specified Auto Scaling group.</p> <p>This operation detaches only Classic Load Balancers. If you have Application Load Balancers, Network Load Balancers, or Gateway Load Balancer, use the <a>DetachLoadBalancerTargetGroups</a> API instead.</p> <p>When you detach a load balancer, it enters the <code>Removing</code> state while deregistering the instances in the group. When all instances are deregistered, then you can no longer describe the load balancer using the <a>DescribeLoadBalancers</a> API call. The instances remain running.</p>",
+    "DetachTrafficSources": "<p> <b>Reserved for use with Amazon VPC Lattice, which is in preview and subject to change. Do not use this API for production workloads. This API is also subject to change.</b> </p> <p>Detaches one or more traffic sources from the specified Auto Scaling group.</p>",
     "DisableMetricsCollection": "<p>Disables group metrics collection for the specified Auto Scaling group.</p>",
     "EnableMetricsCollection": "<p>Enables group metrics collection for the specified Auto Scaling group.</p> <p>You can use these metrics to track changes in an Auto Scaling group and to set alarms on threshold values. You can view group metrics using the Amazon EC2 Auto Scaling console or the CloudWatch console. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-cloudwatch-monitoring.html\">Monitor CloudWatch metrics for your Auto Scaling groups and instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "EnterStandby": "<p>Moves the specified instances into the standby state.</p> <p>If you choose to decrement the desired capacity of the Auto Scaling group, the instances can enter standby as long as the desired capacity of the Auto Scaling group after the instances are placed into standby is equal to or greater than the minimum capacity of the group.</p> <p>If you choose not to decrement the desired capacity of the Auto Scaling group, the Auto Scaling group launches new instances to replace the instances on standby.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html\">Temporarily removing instances from your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
@@ -232,6 +235,16 @@
       }
     },
     "AttachLoadBalancersType": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AttachTrafficSourcesResultType": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AttachTrafficSourcesType": {
       "base": null,
       "refs": {
       }
@@ -693,6 +706,16 @@
       "refs": {
       }
     },
+    "DescribeTrafficSourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTrafficSourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeWarmPoolAnswer": {
       "base": null,
       "refs": {
@@ -736,6 +759,16 @@
       }
     },
     "DetachLoadBalancersType": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetachTrafficSourcesResultType": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetachTrafficSourcesType": {
       "base": null,
       "refs": {
       }
@@ -878,8 +911,8 @@
       "base": null,
       "refs": {
         "AutoScalingGroup$HealthCheckGracePeriod": "<p>The duration of the health check grace period, in seconds.</p>",
-        "CreateAutoScalingGroupType$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service and marking it unhealthy due to a failed Elastic Load Balancing or custom health check. This is useful if your instances do not immediately pass these health checks after they enter the <code>InService</code> state. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html\">Set the health check grace period for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>Default: <code>0</code> seconds</p>",
-        "UpdateAutoScalingGroupType$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service and marking it unhealthy due to a failed Elastic Load Balancing or custom health check. This is useful if your instances do not immediately pass these health checks after they enter the <code>InService</code> state. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html\">Set the health check grace period for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"
+        "CreateAutoScalingGroupType$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service and marking it unhealthy due to a failed health check. This is useful if your instances do not immediately pass their health checks after they enter the <code>InService</code> state. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html\">Set the health check grace period for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>Default: <code>0</code> seconds</p>",
+        "UpdateAutoScalingGroupType$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service and marking it unhealthy due to a failed health check. This is useful if your instances do not immediately pass their health checks after they enter the <code>InService</code> state. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html\">Set the health check grace period for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"
       }
     },
     "HeartbeatTimeout": {
@@ -1301,6 +1334,7 @@
         "DescribeScalingActivitiesType$MaxRecords": "<p>The maximum number of items to return with this call. The default value is <code>100</code> and the maximum value is <code>100</code>.</p>",
         "DescribeScheduledActionsType$MaxRecords": "<p>The maximum number of items to return with this call. The default value is <code>50</code> and the maximum value is <code>100</code>.</p>",
         "DescribeTagsType$MaxRecords": "<p>The maximum number of items to return with this call. The default value is <code>50</code> and the maximum value is <code>100</code>.</p>",
+        "DescribeTrafficSourcesRequest$MaxRecords": "<p>The maximum number of items to return with this call. The maximum value is <code>50</code>.</p>",
         "DescribeWarmPoolType$MaxRecords": "<p>The maximum number of instances to return with this call. The maximum value is <code>50</code>.</p>",
         "LaunchConfigurationNamesType$MaxRecords": "<p>The maximum number of items to return with this call. The default value is <code>50</code> and the maximum value is <code>100</code>.</p>"
       }
@@ -1320,7 +1354,8 @@
     "Metric": {
       "base": "<p>Represents a specific metric. </p>",
       "refs": {
-        "MetricStat$Metric": "<p>The CloudWatch metric to return, including the metric name, namespace, and dimensions. To get the exact metric name, namespace, and dimensions, inspect the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html\">Metric</a> object that is returned by a call to <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html\">ListMetrics</a>.</p>"
+        "MetricStat$Metric": "<p>The CloudWatch metric to return, including the metric name, namespace, and dimensions. To get the exact metric name, namespace, and dimensions, inspect the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html\">Metric</a> object that is returned by a call to <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html\">ListMetrics</a>.</p>",
+        "TargetTrackingMetricStat$Metric": null
       }
     },
     "MetricCollectionType": {
@@ -1434,7 +1469,8 @@
       "base": null,
       "refs": {
         "CustomizedMetricSpecification$Unit": "<p>The unit of the metric. For a complete list of the units that CloudWatch supports, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">MetricDatum</a> data type in the <i>Amazon CloudWatch API Reference</i>.</p>",
-        "MetricStat$Unit": "<p>The unit to use for the returned data points. For a complete list of the units that CloudWatch supports, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">MetricDatum</a> data type in the <i>Amazon CloudWatch API Reference</i>.</p>"
+        "MetricStat$Unit": "<p>The unit to use for the returned data points. For a complete list of the units that CloudWatch supports, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">MetricDatum</a> data type in the <i>Amazon CloudWatch API Reference</i>.</p>",
+        "TargetTrackingMetricStat$Unit": "<p>The unit to use for the returned data points. For a complete list of the units that CloudWatch supports, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">MetricDatum</a> data type in the <i>Amazon CloudWatch API Reference</i>.</p>"
       }
     },
     "Metrics": {
@@ -1876,7 +1912,8 @@
     "ReturnData": {
       "base": null,
       "refs": {
-        "MetricDataQuery$ReturnData": "<p>Indicates whether to return the timestamps and raw data values of this metric. </p> <p>If you use any math expressions, specify <code>true</code> for this value for only the final math expression that the metric specification is based on. You must specify <code>false</code> for <code>ReturnData</code> for all the other metrics and expressions used in the metric specification.</p> <p>If you are only retrieving metrics and not performing any math expressions, do not specify anything for <code>ReturnData</code>. This sets it to its default (<code>true</code>).</p>"
+        "MetricDataQuery$ReturnData": "<p>Indicates whether to return the timestamps and raw data values of this metric. </p> <p>If you use any math expressions, specify <code>true</code> for this value for only the final math expression that the metric specification is based on. You must specify <code>false</code> for <code>ReturnData</code> for all the other metrics and expressions used in the metric specification.</p> <p>If you are only retrieving metrics and not performing any math expressions, do not specify anything for <code>ReturnData</code>. This sets it to its default (<code>true</code>).</p>",
+        "TargetTrackingMetricDataQuery$ReturnData": "<p>Indicates whether to return the timestamps and raw data values of this metric. </p> <p>If you use any math expressions, specify <code>true</code> for this value for only the final math expression that the metric specification is based on. You must specify <code>false</code> for <code>ReturnData</code> for all the other metrics and expressions used in the metric specification.</p> <p>If you are only retrieving metrics and not performing any math expressions, do not specify anything for <code>ReturnData</code>. This sets it to its default (<code>true</code>).</p>"
       }
     },
     "ReuseOnScaleIn": {
@@ -2105,9 +2142,9 @@
     "TargetGroupARNs": {
       "base": null,
       "refs": {
-        "AttachLoadBalancerTargetGroupsType$TargetGroupARNs": "<p>The Amazon Resource Names (ARN) of the target groups. You can specify up to 10 target groups. To get the ARN of a target group, use the Elastic Load Balancing <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html\">DescribeTargetGroups</a> API operation.</p>",
+        "AttachLoadBalancerTargetGroupsType$TargetGroupARNs": "<p>The Amazon Resource Names (ARNs) of the target groups. You can specify up to 10 target groups. To get the ARN of a target group, use the Elastic Load Balancing <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html\">DescribeTargetGroups</a> API operation.</p>",
         "AutoScalingGroup$TargetGroupARNs": "<p>The Amazon Resource Names (ARN) of the target groups for your load balancer.</p>",
-        "CreateAutoScalingGroupType$TargetGroupARNs": "<p>The Amazon Resource Names (ARN) of the target groups to associate with the Auto Scaling group. Instances are registered as targets with the target groups. The target groups receive incoming traffic and route requests to one or more registered targets. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html\">Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+        "CreateAutoScalingGroupType$TargetGroupARNs": "<p>The Amazon Resource Names (ARN) of the Elastic Load Balancing target groups to associate with the Auto Scaling group. Instances are registered as targets with the target groups. The target groups receive incoming traffic and route requests to one or more registered targets. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html\">Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
         "DetachLoadBalancerTargetGroupsType$TargetGroupARNs": "<p>The Amazon Resource Names (ARN) of the target groups. You can specify up to 10 target groups.</p>"
       }
     },
@@ -2116,6 +2153,24 @@
       "refs": {
         "PutScalingPolicyType$TargetTrackingConfiguration": "<p>A target tracking scaling policy. Provides support for predefined or custom metrics.</p> <p>The following predefined metrics are available:</p> <ul> <li> <p> <code>ASGAverageCPUUtilization</code> </p> </li> <li> <p> <code>ASGAverageNetworkIn</code> </p> </li> <li> <p> <code>ASGAverageNetworkOut</code> </p> </li> <li> <p> <code>ALBRequestCountPerTarget</code> </p> </li> </ul> <p>If you specify <code>ALBRequestCountPerTarget</code> for the metric, you must specify the <code>ResourceLabel</code> property with the <code>PredefinedMetricSpecification</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_TargetTrackingConfiguration.html\">TargetTrackingConfiguration</a> in the <i>Amazon EC2 Auto Scaling API Reference</i>.</p> <p>Required if the policy type is <code>TargetTrackingScaling</code>.</p>",
         "ScalingPolicy$TargetTrackingConfiguration": "<p>A target tracking scaling policy.</p>"
+      }
+    },
+    "TargetTrackingMetricDataQueries": {
+      "base": null,
+      "refs": {
+        "CustomizedMetricSpecification$Metrics": "<p>The metrics to include in the target tracking scaling policy, as a metric data query. This can include both raw metric and metric math expressions.</p>"
+      }
+    },
+    "TargetTrackingMetricDataQuery": {
+      "base": "<p>The metric data to return. Also defines whether this call is returning data for one metric only, or whether it is performing a math expression on the values of returned metric statistics to create a new time series. A time series is a series of data points, each of which is associated with a timestamp.</p>",
+      "refs": {
+        "TargetTrackingMetricDataQueries$member": null
+      }
+    },
+    "TargetTrackingMetricStat": {
+      "base": "<p>This structure defines the CloudWatch metric to return, along with the statistic, period, and unit.</p> <p>For more information about the CloudWatch terminology below, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html\">Amazon CloudWatch concepts</a> in the <i>Amazon CloudWatch User Guide</i>.</p>",
+      "refs": {
+        "TargetTrackingMetricDataQuery$MetricStat": "<p>Information about the metric data to return.</p> <p>Conditional: Within each <code>TargetTrackingMetricDataQuery</code> object, you must specify either <code>Expression</code> or <code>MetricStat</code>, but not both.</p>"
       }
     },
     "TerminateInstanceInAutoScalingGroupType": {
@@ -2161,6 +2216,33 @@
       "base": "<p>Specifies the minimum and maximum for the <code>TotalLocalStorageGB</code> object when you specify <a>InstanceRequirements</a> for an Auto Scaling group.</p>",
       "refs": {
         "InstanceRequirements$TotalLocalStorageGB": "<p>The minimum and maximum total local storage size for an instance type, in GB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "TrafficSourceIdentifier": {
+      "base": "<p>Describes the identifier of a traffic source.</p> <p>Currently, you must specify an Amazon Resource Name (ARN) for an existing VPC Lattice target group.</p>",
+      "refs": {
+        "TrafficSources$member": null
+      }
+    },
+    "TrafficSourceState": {
+      "base": "<p>Describes the state of a traffic source.</p>",
+      "refs": {
+        "TrafficSourceStates$member": null
+      }
+    },
+    "TrafficSourceStates": {
+      "base": null,
+      "refs": {
+        "DescribeTrafficSourcesResponse$TrafficSources": "<p>Information about the traffic sources.</p>"
+      }
+    },
+    "TrafficSources": {
+      "base": null,
+      "refs": {
+        "AttachTrafficSourcesType$TrafficSources": "<p>The unique identifiers of one or more traffic sources. You can specify up to 10 traffic sources.</p> <p>Currently, you must specify an Amazon Resource Name (ARN) for an existing VPC Lattice target group. Amazon EC2 Auto Scaling registers the running instances with the attached target groups. The target groups receive incoming traffic and route requests to one or more registered targets.</p>",
+        "AutoScalingGroup$TrafficSources": "<p>The unique identifiers of the traffic sources.</p>",
+        "CreateAutoScalingGroupType$TrafficSources": "<p> <b>Reserved for use with Amazon VPC Lattice, which is in preview release and is subject to change. Do not use this parameter for production workloads. It is also subject to change.</b> </p> <p>The unique identifiers of one or more traffic sources.</p> <p>Currently, you must specify an Amazon Resource Name (ARN) for an existing VPC Lattice target group. Amazon EC2 Auto Scaling registers the running instances with the attached target groups. The target groups receive incoming traffic and route requests to one or more registered targets.</p>",
+        "DetachTrafficSourcesType$TrafficSources": "<p>The unique identifiers of one or more traffic sources you are detaching. You can specify up to 10 traffic sources.</p> <p>Currently, you must specify an Amazon Resource Name (ARN) for an existing VPC Lattice target group. When you detach a target group, it enters the <code>Removing</code> state while deregistering the instances in the group. When all instances are deregistered, then you can no longer describe the target group using the <a>DescribeTrafficSources</a> API call. The instances continue to run.</p>"
       }
     },
     "UpdateAutoScalingGroupType": {
@@ -2237,12 +2319,14 @@
         "DescribeScalingActivitiesType$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "DescribeScheduledActionsType$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "DescribeTagsType$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
-        "DescribeWarmPoolAnswer$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "DescribeTrafficSourcesRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "DescribeTrafficSourcesResponse$NextToken": "<p>This string indicates that the response contains more items than can be returned in a single response. To receive additional items, specify this string for the <code>NextToken</code> value when requesting the next set of items. This value is null when there are no more items to return.</p>",
+        "DescribeWarmPoolAnswer$NextToken": "<p>This string indicates that the response contains more items than can be returned in a single response. To receive additional items, specify this string for the <code>NextToken</code> value when requesting the next set of items. This value is null when there are no more items to return.</p>",
         "DescribeWarmPoolType$NextToken": "<p>The token for the next set of instances to return. (You received this token from a previous call.)</p>",
         "FailedScheduledUpdateGroupActionRequest$ErrorMessage": "<p>The error message accompanying the error code.</p>",
         "Filter$Name": "<p>The name of the filter.</p> <p>The valid values for <code>Name</code> depend on which API operation you're using with the filter (<a>DescribeAutoScalingGroups</a> or <a>DescribeTags</a>).</p> <p> <b>DescribeAutoScalingGroups</b> </p> <p>Valid values for <code>Name</code> include the following: </p> <ul> <li> <p> <code>tag-key</code> - Accepts tag keys. The results only include information about the Auto Scaling groups associated with these tag keys. </p> </li> <li> <p> <code>tag-value</code> - Accepts tag values. The results only include information about the Auto Scaling groups associated with these tag values. </p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - Accepts the key/value combination of the tag. Use the tag key in the filter name and the tag value as the filter value. The results only include information about the Auto Scaling groups associated with the specified key/value combination. </p> </li> </ul> <p> <b>DescribeTags</b> </p> <p>Valid values for <code>Name</code> include the following: </p> <ul> <li> <p> <code>auto-scaling-group</code> - Accepts the names of Auto Scaling groups. The results only include information about the tags associated with these Auto Scaling groups. </p> </li> <li> <p> <code>key</code> - Accepts tag keys. The results only include information about the tags associated with these tag keys. </p> </li> <li> <p> <code>value</code> - Accepts tag values. The results only include information about the tags associated with these tag values. </p> </li> <li> <p> <code>propagate-at-launch</code> - Accepts a Boolean value, which specifies whether tags propagate to instances at launch. The results only include information about the tags associated with the specified Boolean value. </p> </li> </ul>",
         "InstancesDistribution$OnDemandAllocationStrategy": "<p>The allocation strategy to apply to your On-Demand Instances when they are launched. Possible instance types are determined by the launch template overrides that you specify.</p> <p>The following lists the valid values:</p> <dl> <dt>lowest-price</dt> <dd> <p>Uses price to determine which instance types are the highest priority, launching the lowest priced instance types within an Availability Zone first. This is the default value for Auto Scaling groups that specify <a>InstanceRequirements</a>. </p> </dd> <dt>prioritized</dt> <dd> <p>You set the order of instance types for the launch template overrides from highest to lowest priority (from first to last in the list). Amazon EC2 Auto Scaling launches your highest priority instance types first. If all your On-Demand capacity cannot be fulfilled using your highest priority instance type, then Amazon EC2 Auto Scaling launches the remaining capacity using the second priority instance type, and so on. This is the default value for Auto Scaling groups that don't specify <a>InstanceRequirements</a> and cannot be used for groups that do.</p> </dd> </dl>",
-        "InstancesDistribution$SpotAllocationStrategy": "<p>The allocation strategy to apply to your Spot Instances when they are launched. Possible instance types are determined by the launch template overrides that you specify.</p> <p>The following lists the valid values:</p> <dl> <dt>capacity-optimized</dt> <dd> <p>Requests Spot Instances using pools that are optimally chosen based on the available Spot capacity. This strategy has the lowest risk of interruption. To give certain instance types a higher chance of launching first, use <code>capacity-optimized-prioritized</code>.</p> </dd> <dt>capacity-optimized-prioritized</dt> <dd> <p>You set the order of instance types for the launch template overrides from highest to lowest priority (from first to last in the list). Amazon EC2 Auto Scaling honors the instance type priorities on a best effort basis but optimizes for capacity first. Note that if the On-Demand allocation strategy is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity. This is not a valid value for Auto Scaling groups that specify <a>InstanceRequirements</a>.</p> </dd> <dt>lowest-price</dt> <dd> <p>Requests Spot Instances using the lowest priced pools within an Availability Zone, across the number of Spot pools that you specify for the <code>SpotInstancePools</code> property. To ensure that your desired capacity is met, you might receive Spot Instances from several pools. This is the default value, but it might lead to high interruption rates because this strategy only considers instance price and not available capacity.</p> </dd> <dt>price-capacity-optimized (recommended)</dt> <dd> <p>Amazon EC2 Auto Scaling identifies the pools with the highest capacity availability for the number of instances that are launching. This means that we will request Spot Instances from the pools that we believe have the lowest chance of interruption in the near term. Amazon EC2 Auto Scaling then requests Spot Instances from the lowest priced of these pools.</p> </dd> </dl>",
+        "InstancesDistribution$SpotAllocationStrategy": "<p>The allocation strategy to apply to your Spot Instances when they are launched. Possible instance types are determined by the launch template overrides that you specify.</p> <p>The following lists the valid values:</p> <dl> <dt>capacity-optimized</dt> <dd> <p>Requests Spot Instances using pools that are optimally chosen based on the available Spot capacity. This strategy has the lowest risk of interruption. To give certain instance types a higher chance of launching first, use <code>capacity-optimized-prioritized</code>.</p> </dd> <dt>capacity-optimized-prioritized</dt> <dd> <p>You set the order of instance types for the launch template overrides from highest to lowest priority (from first to last in the list). Amazon EC2 Auto Scaling honors the instance type priorities on a best effort basis but optimizes for capacity first. Note that if the On-Demand allocation strategy is set to <code>prioritized</code>, the same priority is applied when fulfilling On-Demand capacity. This is not a valid value for Auto Scaling groups that specify <a>InstanceRequirements</a>.</p> </dd> <dt>lowest-price</dt> <dd> <p>Requests Spot Instances using the lowest priced pools within an Availability Zone, across the number of Spot pools that you specify for the <code>SpotInstancePools</code> property. To ensure that your desired capacity is met, you might receive Spot Instances from several pools. This is the default value, but it might lead to high interruption rates because this strategy only considers instance price and not available capacity.</p> </dd> <dt>price-capacity-optimized (recommended)</dt> <dd> <p>The price and capacity optimized allocation strategy looks at both price and capacity to select the Spot Instance pools that are the least likely to be interrupted and have the lowest possible price.</p> </dd> </dl>",
         "LaunchConfigurationNamesType$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "LaunchConfigurationsType$NextToken": "<p>A string that indicates that the response contains more items than can be returned in a single response. To receive additional items, specify this string for the <code>NextToken</code> value when requesting the next set of items. This value is null when there are no more items to return.</p>",
         "PoliciesType$NextToken": "<p>A string that indicates that the response contains more items than can be returned in a single response. To receive additional items, specify this string for the <code>NextToken</code> value when requesting the next set of items. This value is null when there are no more items to return.</p>",
@@ -2298,6 +2382,7 @@
       "refs": {
         "AutoScalingGroup$VPCZoneIdentifier": "<p>One or more subnet IDs, if applicable, separated by commas.</p>",
         "CreateAutoScalingGroupType$VPCZoneIdentifier": "<p>A comma-separated list of subnet IDs for a virtual private cloud (VPC) where instances in the Auto Scaling group can be created. If you specify <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, the subnets that you specify must reside in those Availability Zones.</p>",
+        "TargetTrackingMetricDataQuery$Expression": "<p>The math expression to perform on the returned data, if this object is performing a math expression. This expression can use the <code>Id</code> of the other metrics to refer to those metrics, and can also use the <code>Id</code> of other expressions to use the result of those expressions. </p> <p>Conditional: Within each <code>TargetTrackingMetricDataQuery</code> object, you must specify either <code>Expression</code> or <code>MetricStat</code>, but not both.</p>",
         "UpdateAutoScalingGroupType$VPCZoneIdentifier": "<p>A comma-separated list of subnet IDs for a virtual private cloud (VPC). If you specify <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, the subnets that you specify must reside in those Availability Zones.</p>"
       }
     },
@@ -2313,6 +2398,7 @@
         "AttachInstancesQuery$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "AttachLoadBalancerTargetGroupsType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "AttachLoadBalancersType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
+        "AttachTrafficSourcesType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "AutoScalingGroup$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "AutoScalingGroup$LaunchConfigurationName": "<p>The name of the associated launch configuration.</p>",
         "AutoScalingGroup$PlacementGroup": "<p>The name of the placement group into which to launch your instances, if any.</p>",
@@ -2358,10 +2444,13 @@
         "DescribePoliciesType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "DescribeScalingActivitiesType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "DescribeScheduledActionsType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
+        "DescribeTrafficSourcesRequest$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
+        "DescribeTrafficSourcesRequest$TrafficSourceType": "<p>The type of traffic source you are describing. Currently, the only valid value is <code>vpc-lattice</code>.</p>",
         "DescribeWarmPoolType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "DetachInstancesQuery$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "DetachLoadBalancerTargetGroupsType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "DetachLoadBalancersType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
+        "DetachTrafficSourcesType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "DisableMetricsCollectionQuery$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "Ebs$SnapshotId": "<p>The snapshot ID of the volume to use.</p> <p>You must specify either a <code>VolumeSize</code> or a <code>SnapshotId</code>.</p>",
         "EnableMetricsCollectionQuery$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
@@ -2445,6 +2534,8 @@
         "StartInstanceRefreshType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "SuspendedProcess$ProcessName": "<p>The name of the suspended process.</p>",
         "SuspendedProcess$SuspensionReason": "<p>The reason that the process was suspended.</p>",
+        "TargetTrackingMetricDataQuery$Id": "<p>A short name that identifies the object's results in the response. This name must be unique among all <code>TargetTrackingMetricDataQuery</code> objects specified for a single scaling policy. If you are performing math expressions on this set of data, this name represents that data and can serve as a variable in the mathematical expression. The valid characters are letters, numbers, and underscores. The first character must be a lowercase letter. </p>",
+        "TrafficSourceState$State": "<p>The following are the possible states for a VPC Lattice target group:</p> <ul> <li> <p> <code>Adding</code> - The Auto Scaling instances are being registered with the target group.</p> </li> <li> <p> <code>Added</code> - All Auto Scaling instances are registered with the target group.</p> </li> <li> <p> <code>InService</code> - At least one Auto Scaling instance passed the <code>VPC_LATTICE</code> health check.</p> </li> <li> <p> <code>Removing</code> - The Auto Scaling instances are being deregistered from the target group. If connection draining is enabled, VPC Lattice waits for in-flight requests to complete before deregistering the instances.</p> </li> <li> <p> <code>Removed</code> - All Auto Scaling instances are deregistered from the target group.</p> </li> </ul>",
         "UpdateAutoScalingGroupType$AutoScalingGroupName": "<p>The name of the Auto Scaling group.</p>",
         "UpdateAutoScalingGroupType$LaunchConfigurationName": "<p>The name of the launch configuration. If you specify <code>LaunchConfigurationName</code> in your update request, you can't specify <code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>.</p>",
         "UpdateAutoScalingGroupType$PlacementGroup": "<p>The name of an existing placement group into which to launch your instances. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement groups</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> <note> <p>A <i>cluster</i> placement group is a logical grouping of instances within a single Availability Zone. You cannot specify multiple Availability Zones and a cluster placement group. </p> </note>",
@@ -2454,25 +2545,27 @@
     "XmlStringMaxLen32": {
       "base": null,
       "refs": {
-        "AutoScalingGroup$HealthCheckType": "<p>The service to use for the health checks. The valid values are <code>EC2</code> and <code>ELB</code>. If you configure an Auto Scaling group to use <code>ELB</code> health checks, it considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks.</p>",
+        "AutoScalingGroup$HealthCheckType": "<p>Determines whether any additional health checks are performed on the instances in this group. Amazon EC2 health checks are always on.</p> <p>The valid values are <code>EC2</code> (default), <code>ELB</code>, and <code>VPC_LATTICE</code>. The <code>VPC_LATTICE</code> health check type is reserved for use with VPC Lattice, which is in preview release and is subject to change.</p>",
         "AutoScalingInstanceDetails$LifecycleState": "<p>The lifecycle state for the instance. The <code>Quarantined</code> state is not used. For information about lifecycle states, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html\">Instance lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. </p> <p>Valid values: <code>Pending</code> | <code>Pending:Wait</code> | <code>Pending:Proceed</code> | <code>Quarantined</code> | <code>InService</code> | <code>Terminating</code> | <code>Terminating:Wait</code> | <code>Terminating:Proceed</code> | <code>Terminated</code> | <code>Detaching</code> | <code>Detached</code> | <code>EnteringStandby</code> | <code>Standby</code> | <code>Warmed:Pending</code> | <code>Warmed:Pending:Wait</code> | <code>Warmed:Pending:Proceed</code> | <code>Warmed:Terminating</code> | <code>Warmed:Terminating:Wait</code> | <code>Warmed:Terminating:Proceed</code> | <code>Warmed:Terminated</code> | <code>Warmed:Stopped</code> | <code>Warmed:Running</code> </p>",
         "AutoScalingInstanceDetails$HealthStatus": "<p>The last reported health status of this instance. \"Healthy\" means that the instance is healthy and should remain in service. \"Unhealthy\" means that the instance is unhealthy and Amazon EC2 Auto Scaling should terminate and replace it.</p>",
         "AutoScalingInstanceDetails$WeightedCapacity": "<p>The number of capacity units contributed by the instance based on its instance type.</p> <p>Valid Range: Minimum value of 1. Maximum value of 999.</p>",
-        "CreateAutoScalingGroupType$HealthCheckType": "<p>The service to use for the health checks. The valid values are <code>EC2</code> (default) and <code>ELB</code>. If you configure an Auto Scaling group to use load balancer (ELB) health checks, it considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html\">Health checks for Auto Scaling instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+        "CreateAutoScalingGroupType$HealthCheckType": "<p>Determines whether any additional health checks are performed on the instances in this group. Amazon EC2 health checks are always on. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html\">Health checks for Auto Scaling instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p> <p>The valid values are <code>EC2</code> (default), <code>ELB</code>, and <code>VPC_LATTICE</code>. The <code>VPC_LATTICE</code> health check type is reserved for use with VPC Lattice, which is in preview release and is subject to change.</p>",
         "Instance$HealthStatus": "<p>The last reported health status of the instance. \"Healthy\" means that the instance is healthy and should remain in service. \"Unhealthy\" means that the instance is unhealthy and that Amazon EC2 Auto Scaling should terminate and replace it.</p>",
         "Instance$WeightedCapacity": "<p>The number of capacity units contributed by the instance based on its instance type.</p> <p>Valid Range: Minimum value of 1. Maximum value of 999.</p>",
         "LaunchTemplateOverrides$WeightedCapacity": "<p>If you provide a list of instance types to use, you can specify the number of capacity units provided by each instance type in terms of virtual CPUs, memory, storage, throughput, or other relative performance characteristic. When a Spot or On-Demand Instance is launched, the capacity units count toward the desired capacity. Amazon EC2 Auto Scaling launches instances until the desired capacity is totally fulfilled, even if this results in an overage. For example, if there are two units remaining to fulfill capacity, and Amazon EC2 Auto Scaling can only launch an instance with a <code>WeightedCapacity</code> of five units, the instance is launched, and the desired capacity is exceeded by three units. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups-instance-weighting.html\">Configuring instance weighting for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. Value must be in the range of 1–999.</p> <p>If you specify a value for <code>WeightedCapacity</code> for one instance type, you must specify a value for <code>WeightedCapacity</code> for all of them.</p> <important> <p>Every Auto Scaling group has three size parameters (<code>DesiredCapacity</code>, <code>MaxSize</code>, and <code>MinSize</code>). Usually, you set these sizes based on a specific number of instances. However, if you configure a mixed instances policy that defines weights for the instance types, you must specify these sizes with the same units that you use for weighting instances. </p> </important>",
         "PutScalingPolicyType$MetricAggregationType": "<p>The aggregation type for the CloudWatch metrics. The valid values are <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>. If the aggregation type is null, the value is treated as <code>Average</code>.</p> <p>Valid only if the policy type is <code>StepScaling</code>.</p>",
         "ScalingPolicy$MetricAggregationType": "<p>The aggregation type for the CloudWatch metrics. The valid values are <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.</p>",
         "SetInstanceHealthQuery$HealthStatus": "<p>The health status of the instance. Set to <code>Healthy</code> to have the instance remain in service. Set to <code>Unhealthy</code> to have the instance be out of service. Amazon EC2 Auto Scaling terminates and replaces the unhealthy instance.</p>",
-        "UpdateAutoScalingGroupType$HealthCheckType": "<p>The service to use for the health checks. The valid values are <code>EC2</code> and <code>ELB</code>. If you configure an Auto Scaling group to use <code>ELB</code> health checks, it considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks.</p>"
+        "UpdateAutoScalingGroupType$HealthCheckType": "<p>Determines whether any additional health checks are performed on the instances in this group. Amazon EC2 health checks are always on.</p> <p>The valid values are <code>EC2</code> (default), <code>ELB</code>, and <code>VPC_LATTICE</code>. The <code>VPC_LATTICE</code> health check type is reserved for use with VPC Lattice, which is in preview release and is subject to change.</p>"
       }
     },
     "XmlStringMaxLen511": {
       "base": null,
       "refs": {
         "LoadBalancerTargetGroupState$LoadBalancerTargetGroupARN": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
-        "TargetGroupARNs$member": null
+        "TargetGroupARNs$member": null,
+        "TrafficSourceIdentifier$Identifier": "<p>The unique identifier of the traffic source.</p>",
+        "TrafficSourceState$TrafficSource": "<p>The unique identifier of the traffic source. Currently, this is the Amazon Resource Name (ARN) for a VPC Lattice target group.</p>"
       }
     },
     "XmlStringMaxLen64": {
@@ -2489,13 +2582,15 @@
     "XmlStringMetricLabel": {
       "base": null,
       "refs": {
-        "MetricDataQuery$Label": "<p>A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents.</p>"
+        "MetricDataQuery$Label": "<p>A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents.</p>",
+        "TargetTrackingMetricDataQuery$Label": "<p>A human-readable label for this metric or expression. This is especially useful if this is a math expression, so that you know what the value represents.</p>"
       }
     },
     "XmlStringMetricStat": {
       "base": null,
       "refs": {
-        "MetricStat$Stat": "<p>The statistic to return. It can include any CloudWatch statistic or extended statistic. For a list of valid values, see the table in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic\">Statistics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>The most commonly used metrics for predictive scaling are <code>Average</code> and <code>Sum</code>.</p>"
+        "MetricStat$Stat": "<p>The statistic to return. It can include any CloudWatch statistic or extended statistic. For a list of valid values, see the table in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic\">Statistics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>The most commonly used metrics for predictive scaling are <code>Average</code> and <code>Sum</code>.</p>",
+        "TargetTrackingMetricStat$Stat": "<p>The statistic to return. It can include any CloudWatch statistic or extended statistic. For a list of valid values, see the table in <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic\">Statistics</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>The most commonly used metrics for scaling is <code>Average</code> </p>"
       }
     },
     "XmlStringUserData": {
