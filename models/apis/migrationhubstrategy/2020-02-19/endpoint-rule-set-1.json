@@ -166,7 +166,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://autoscaling-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://migrationhub-strategy-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -220,34 +220,9 @@
                                     "type": "tree",
                                     "rules": [
                                         {
-                                            "conditions": [
-                                                {
-                                                    "fn": "stringEquals",
-                                                    "argv": [
-                                                        "aws-us-gov",
-                                                        {
-                                                            "fn": "getAttr",
-                                                            "argv": [
-                                                                {
-                                                                    "ref": "PartitionResult"
-                                                                },
-                                                                "name"
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "endpoint": {
-                                                "url": "https://autoscaling.{Region}.{PartitionResult#dnsSuffix}",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        },
-                                        {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://autoscaling-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://migrationhub-strategy-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -301,7 +276,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://autoscaling.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://migrationhub-strategy.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -319,7 +294,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://autoscaling.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://migrationhub-strategy.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

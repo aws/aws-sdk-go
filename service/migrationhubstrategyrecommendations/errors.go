@@ -23,6 +23,12 @@ const (
 	// Return when once the existing tasks are complete.
 	ErrCodeConflictException = "ConflictException"
 
+	// ErrCodeDependencyException for service response error code
+	// "DependencyException".
+	//
+	// Dependency encountered an error.
+	ErrCodeDependencyException = "DependencyException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
@@ -64,6 +70,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":                newErrorAccessDeniedException,
 	"ConflictException":                    newErrorConflictException,
+	"DependencyException":                  newErrorDependencyException,
 	"InternalServerException":              newErrorInternalServerException,
 	"ResourceNotFoundException":            newErrorResourceNotFoundException,
 	"ServiceLinkedRoleLockClientException": newErrorServiceLinkedRoleLockClientException,

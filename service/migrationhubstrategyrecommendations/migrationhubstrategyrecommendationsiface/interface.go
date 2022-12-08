@@ -76,6 +76,10 @@ type MigrationHubStrategyRecommendationsAPI interface {
 	GetImportFileTaskWithContext(aws.Context, *migrationhubstrategyrecommendations.GetImportFileTaskInput, ...request.Option) (*migrationhubstrategyrecommendations.GetImportFileTaskOutput, error)
 	GetImportFileTaskRequest(*migrationhubstrategyrecommendations.GetImportFileTaskInput) (*request.Request, *migrationhubstrategyrecommendations.GetImportFileTaskOutput)
 
+	GetLatestAssessmentId(*migrationhubstrategyrecommendations.GetLatestAssessmentIdInput) (*migrationhubstrategyrecommendations.GetLatestAssessmentIdOutput, error)
+	GetLatestAssessmentIdWithContext(aws.Context, *migrationhubstrategyrecommendations.GetLatestAssessmentIdInput, ...request.Option) (*migrationhubstrategyrecommendations.GetLatestAssessmentIdOutput, error)
+	GetLatestAssessmentIdRequest(*migrationhubstrategyrecommendations.GetLatestAssessmentIdInput) (*request.Request, *migrationhubstrategyrecommendations.GetLatestAssessmentIdOutput)
+
 	GetPortfolioPreferences(*migrationhubstrategyrecommendations.GetPortfolioPreferencesInput) (*migrationhubstrategyrecommendations.GetPortfolioPreferencesOutput, error)
 	GetPortfolioPreferencesWithContext(aws.Context, *migrationhubstrategyrecommendations.GetPortfolioPreferencesInput, ...request.Option) (*migrationhubstrategyrecommendations.GetPortfolioPreferencesOutput, error)
 	GetPortfolioPreferencesRequest(*migrationhubstrategyrecommendations.GetPortfolioPreferencesInput) (*request.Request, *migrationhubstrategyrecommendations.GetPortfolioPreferencesOutput)

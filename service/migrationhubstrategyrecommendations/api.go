@@ -367,6 +367,96 @@ func (c *MigrationHubStrategyRecommendations) GetImportFileTaskWithContext(ctx a
 	return out, req.Send()
 }
 
+const opGetLatestAssessmentId = "GetLatestAssessmentId"
+
+// GetLatestAssessmentIdRequest generates a "aws/request.Request" representing the
+// client's request for the GetLatestAssessmentId operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLatestAssessmentId for more information on using the GetLatestAssessmentId
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetLatestAssessmentIdRequest method.
+//	req, resp := client.GetLatestAssessmentIdRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhubstrategy-2020-02-19/GetLatestAssessmentId
+func (c *MigrationHubStrategyRecommendations) GetLatestAssessmentIdRequest(input *GetLatestAssessmentIdInput) (req *request.Request, output *GetLatestAssessmentIdOutput) {
+	op := &request.Operation{
+		Name:       opGetLatestAssessmentId,
+		HTTPMethod: "GET",
+		HTTPPath:   "/get-latest-assessment-id",
+	}
+
+	if input == nil {
+		input = &GetLatestAssessmentIdInput{}
+	}
+
+	output = &GetLatestAssessmentIdOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLatestAssessmentId API operation for Migration Hub Strategy Recommendations.
+//
+// Retrieve the latest ID of a specific assessment task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Migration Hub Strategy Recommendations's
+// API operation GetLatestAssessmentId for usage and error information.
+//
+// Returned Error Types:
+//
+//   - DependencyException
+//     Dependency encountered an error.
+//
+//   - AccessDeniedException
+//     The AWS user account does not have permission to perform the action. Check
+//     the AWS Identity and Access Management (IAM) policy associated with this
+//     account.
+//
+//   - ValidationException
+//     The request body isn't valid.
+//
+//   - InternalServerException
+//     The server experienced an internal error. Try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhubstrategy-2020-02-19/GetLatestAssessmentId
+func (c *MigrationHubStrategyRecommendations) GetLatestAssessmentId(input *GetLatestAssessmentIdInput) (*GetLatestAssessmentIdOutput, error) {
+	req, out := c.GetLatestAssessmentIdRequest(input)
+	return out, req.Send()
+}
+
+// GetLatestAssessmentIdWithContext is the same as GetLatestAssessmentId with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLatestAssessmentId for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHubStrategyRecommendations) GetLatestAssessmentIdWithContext(ctx aws.Context, input *GetLatestAssessmentIdInput, opts ...request.Option) (*GetLatestAssessmentIdOutput, error) {
+	req, out := c.GetLatestAssessmentIdRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPortfolioPreferences = "GetPortfolioPreferences"
 
 // GetPortfolioPreferencesRequest generates a "aws/request.Request" representing the
@@ -2219,6 +2309,38 @@ func (s *AntipatternSeveritySummary) SetSeverity(v string) *AntipatternSeverityS
 	return s
 }
 
+// Error in the analysis of the application unit.
+type AppUnitError struct {
+	_ struct{} `type:"structure"`
+
+	// The category of the error.
+	AppUnitErrorCategory *string `locationName:"appUnitErrorCategory" type:"string" enum:"AppUnitErrorCategory"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppUnitError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppUnitError) GoString() string {
+	return s.String()
+}
+
+// SetAppUnitErrorCategory sets the AppUnitErrorCategory field's value.
+func (s *AppUnitError) SetAppUnitErrorCategory(v string) *AppUnitError {
+	s.AppUnitErrorCategory = &v
+	return s
+}
+
 // Contains detailed information about an application component.
 type ApplicationComponentDetail struct {
 	_ struct{} `type:"structure"`
@@ -2238,6 +2360,9 @@ type ApplicationComponentDetail struct {
 
 	// The type of application component.
 	AppType *string `locationName:"appType" type:"string" enum:"AppType"`
+
+	// The error in the analysis of the source code or database.
+	AppUnitError *AppUnitError `locationName:"appUnitError" type:"structure"`
 
 	// The ID of the server that the application component is running on.
 	AssociatedServerId *string `locationName:"associatedServerId" min:"1" type:"string"`
@@ -2275,6 +2400,12 @@ type ApplicationComponentDetail struct {
 
 	// The application component subtype.
 	ResourceSubType *string `locationName:"resourceSubType" type:"string" enum:"ResourceSubType"`
+
+	// The status of the application unit.
+	RuntimeStatus *string `locationName:"runtimeStatus" type:"string" enum:"RuntimeAnalysisStatus"`
+
+	// The status message for the application unit.
+	RuntimeStatusMessage *string `locationName:"runtimeStatusMessage" type:"string"`
 
 	// Details about the source code repository associated with the application
 	// component.
@@ -2329,6 +2460,12 @@ func (s *ApplicationComponentDetail) SetAntipatternReportStatusMessage(v string)
 // SetAppType sets the AppType field's value.
 func (s *ApplicationComponentDetail) SetAppType(v string) *ApplicationComponentDetail {
 	s.AppType = &v
+	return s
+}
+
+// SetAppUnitError sets the AppUnitError field's value.
+func (s *ApplicationComponentDetail) SetAppUnitError(v *AppUnitError) *ApplicationComponentDetail {
+	s.AppUnitError = v
 	return s
 }
 
@@ -2404,6 +2541,18 @@ func (s *ApplicationComponentDetail) SetResourceSubType(v string) *ApplicationCo
 	return s
 }
 
+// SetRuntimeStatus sets the RuntimeStatus field's value.
+func (s *ApplicationComponentDetail) SetRuntimeStatus(v string) *ApplicationComponentDetail {
+	s.RuntimeStatus = &v
+	return s
+}
+
+// SetRuntimeStatusMessage sets the RuntimeStatusMessage field's value.
+func (s *ApplicationComponentDetail) SetRuntimeStatusMessage(v string) *ApplicationComponentDetail {
+	s.RuntimeStatusMessage = &v
+	return s
+}
+
 // SetSourceCodeRepositories sets the SourceCodeRepositories field's value.
 func (s *ApplicationComponentDetail) SetSourceCodeRepositories(v []*SourceCodeRepository) *ApplicationComponentDetail {
 	s.SourceCodeRepositories = v
@@ -2413,6 +2562,48 @@ func (s *ApplicationComponentDetail) SetSourceCodeRepositories(v []*SourceCodeRe
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *ApplicationComponentDetail) SetStatusMessage(v string) *ApplicationComponentDetail {
 	s.StatusMessage = &v
+	return s
+}
+
+// Summary of the analysis status of the application component.
+type ApplicationComponentStatusSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The number of application components successfully analyzed, partially successful
+	// or failed analysis.
+	Count *int64 `locationName:"count" type:"integer"`
+
+	// The status of database analysis.
+	SrcCodeOrDbAnalysisStatus *string `locationName:"srcCodeOrDbAnalysisStatus" type:"string" enum:"SrcCodeOrDbAnalysisStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationComponentStatusSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationComponentStatusSummary) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *ApplicationComponentStatusSummary) SetCount(v int64) *ApplicationComponentStatusSummary {
+	s.Count = &v
+	return s
+}
+
+// SetSrcCodeOrDbAnalysisStatus sets the SrcCodeOrDbAnalysisStatus field's value.
+func (s *ApplicationComponentStatusSummary) SetSrcCodeOrDbAnalysisStatus(v string) *ApplicationComponentStatusSummary {
+	s.SrcCodeOrDbAnalysisStatus = &v
 	return s
 }
 
@@ -2573,11 +2764,17 @@ type AssessmentSummary struct {
 	// List of AntipatternSeveritySummary.
 	ListAntipatternSeveritySummary []*AntipatternSeveritySummary `locationName:"listAntipatternSeveritySummary" type:"list"`
 
+	// List of status summaries of the analyzed application components.
+	ListApplicationComponentStatusSummary []*ApplicationComponentStatusSummary `locationName:"listApplicationComponentStatusSummary" type:"list"`
+
 	// List of ApplicationComponentStrategySummary.
 	ListApplicationComponentStrategySummary []*StrategySummary `locationName:"listApplicationComponentStrategySummary" type:"list"`
 
 	// List of ApplicationComponentSummary.
 	ListApplicationComponentSummary []*ApplicationComponentSummary `locationName:"listApplicationComponentSummary" type:"list"`
+
+	// List of status summaries of the analyzed servers.
+	ListServerStatusSummary []*ServerStatusSummary `locationName:"listServerStatusSummary" type:"list"`
 
 	// List of ServerStrategySummary.
 	ListServerStrategySummary []*StrategySummary `locationName:"listServerStrategySummary" type:"list"`
@@ -2634,6 +2831,12 @@ func (s *AssessmentSummary) SetListAntipatternSeveritySummary(v []*AntipatternSe
 	return s
 }
 
+// SetListApplicationComponentStatusSummary sets the ListApplicationComponentStatusSummary field's value.
+func (s *AssessmentSummary) SetListApplicationComponentStatusSummary(v []*ApplicationComponentStatusSummary) *AssessmentSummary {
+	s.ListApplicationComponentStatusSummary = v
+	return s
+}
+
 // SetListApplicationComponentStrategySummary sets the ListApplicationComponentStrategySummary field's value.
 func (s *AssessmentSummary) SetListApplicationComponentStrategySummary(v []*StrategySummary) *AssessmentSummary {
 	s.ListApplicationComponentStrategySummary = v
@@ -2646,6 +2849,12 @@ func (s *AssessmentSummary) SetListApplicationComponentSummary(v []*ApplicationC
 	return s
 }
 
+// SetListServerStatusSummary sets the ListServerStatusSummary field's value.
+func (s *AssessmentSummary) SetListServerStatusSummary(v []*ServerStatusSummary) *AssessmentSummary {
+	s.ListServerStatusSummary = v
+	return s
+}
+
 // SetListServerStrategySummary sets the ListServerStrategySummary field's value.
 func (s *AssessmentSummary) SetListServerStrategySummary(v []*StrategySummary) *AssessmentSummary {
 	s.ListServerStrategySummary = v
@@ -2655,6 +2864,81 @@ func (s *AssessmentSummary) SetListServerStrategySummary(v []*StrategySummary) *
 // SetListServerSummary sets the ListServerSummary field's value.
 func (s *AssessmentSummary) SetListServerSummary(v []*ServerSummary) *AssessmentSummary {
 	s.ListServerSummary = v
+	return s
+}
+
+// Defines the criteria of assessment.
+type AssessmentTarget struct {
+	_ struct{} `type:"structure"`
+
+	// Condition of an assessment.
+	//
+	// Condition is a required field
+	Condition *string `locationName:"condition" type:"string" required:"true" enum:"Condition"`
+
+	// Name of an assessment.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Values of an assessment.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssessmentTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssessmentTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssessmentTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssessmentTarget"}
+	if s.Condition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Condition"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCondition sets the Condition field's value.
+func (s *AssessmentTarget) SetCondition(v string) *AssessmentTarget {
+	s.Condition = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssessmentTarget) SetName(v string) *AssessmentTarget {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AssessmentTarget) SetValues(v []*string) *AssessmentTarget {
+	s.Values = v
 	return s
 }
 
@@ -2846,6 +3130,9 @@ type Collector struct {
 	// you specify.
 	CollectorVersion *string `locationName:"collectorVersion" type:"string"`
 
+	// Summary of the collector configuration.
+	ConfigurationSummary *ConfigurationSummary `locationName:"configurationSummary" type:"structure"`
+
 	// Hostname of the server that is hosting the collector.
 	HostName *string `locationName:"hostName" type:"string"`
 
@@ -2895,6 +3182,12 @@ func (s *Collector) SetCollectorVersion(v string) *Collector {
 	return s
 }
 
+// SetConfigurationSummary sets the ConfigurationSummary field's value.
+func (s *Collector) SetConfigurationSummary(v *ConfigurationSummary) *Collector {
+	s.ConfigurationSummary = v
+	return s
+}
+
 // SetHostName sets the HostName field's value.
 func (s *Collector) SetHostName(v string) *Collector {
 	s.HostName = &v
@@ -2916,6 +3209,74 @@ func (s *Collector) SetLastActivityTimeStamp(v string) *Collector {
 // SetRegisteredTimeStamp sets the RegisteredTimeStamp field's value.
 func (s *Collector) SetRegisteredTimeStamp(v string) *Collector {
 	s.RegisteredTimeStamp = &v
+	return s
+}
+
+// Summary of the collector configuration.
+type ConfigurationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// IP address based configurations.
+	IpAddressBasedRemoteInfoList []*IPAddressBasedRemoteInfo `locationName:"ipAddressBasedRemoteInfoList" type:"list"`
+
+	// The list of pipeline info configurations.
+	PipelineInfoList []*PipelineInfo `locationName:"pipelineInfoList" type:"list"`
+
+	// Info about the remote server source code configuration.
+	RemoteSourceCodeAnalysisServerInfo *RemoteSourceCodeAnalysisServerInfo `locationName:"remoteSourceCodeAnalysisServerInfo" type:"structure"`
+
+	// The list of vCenter configurations.
+	VcenterBasedRemoteInfoList []*VcenterBasedRemoteInfo `locationName:"vcenterBasedRemoteInfoList" type:"list"`
+
+	// The list of the version control configurations.
+	VersionControlInfoList []*VersionControlInfo `locationName:"versionControlInfoList" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationSummary) GoString() string {
+	return s.String()
+}
+
+// SetIpAddressBasedRemoteInfoList sets the IpAddressBasedRemoteInfoList field's value.
+func (s *ConfigurationSummary) SetIpAddressBasedRemoteInfoList(v []*IPAddressBasedRemoteInfo) *ConfigurationSummary {
+	s.IpAddressBasedRemoteInfoList = v
+	return s
+}
+
+// SetPipelineInfoList sets the PipelineInfoList field's value.
+func (s *ConfigurationSummary) SetPipelineInfoList(v []*PipelineInfo) *ConfigurationSummary {
+	s.PipelineInfoList = v
+	return s
+}
+
+// SetRemoteSourceCodeAnalysisServerInfo sets the RemoteSourceCodeAnalysisServerInfo field's value.
+func (s *ConfigurationSummary) SetRemoteSourceCodeAnalysisServerInfo(v *RemoteSourceCodeAnalysisServerInfo) *ConfigurationSummary {
+	s.RemoteSourceCodeAnalysisServerInfo = v
+	return s
+}
+
+// SetVcenterBasedRemoteInfoList sets the VcenterBasedRemoteInfoList field's value.
+func (s *ConfigurationSummary) SetVcenterBasedRemoteInfoList(v []*VcenterBasedRemoteInfo) *ConfigurationSummary {
+	s.VcenterBasedRemoteInfoList = v
+	return s
+}
+
+// SetVersionControlInfoList sets the VersionControlInfoList field's value.
+func (s *ConfigurationSummary) SetVersionControlInfoList(v []*VersionControlInfo) *ConfigurationSummary {
+	s.VersionControlInfoList = v
 	return s
 }
 
@@ -3006,6 +3367,9 @@ type DataCollectionDetails struct {
 	// The status of the assessment.
 	Status *string `locationName:"status" type:"string" enum:"AssessmentStatus"`
 
+	// The status message of the assessment.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
 	// The number of successful servers in the assessment.
 	Success *int64 `locationName:"success" type:"integer"`
 }
@@ -3061,6 +3425,12 @@ func (s *DataCollectionDetails) SetStartTime(v time.Time) *DataCollectionDetails
 // SetStatus sets the Status field's value.
 func (s *DataCollectionDetails) SetStatus(v string) *DataCollectionDetails {
 	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *DataCollectionDetails) SetStatusMessage(v string) *DataCollectionDetails {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -3232,6 +3602,70 @@ func (s *DatabasePreferences) SetDatabaseManagementPreference(v string) *Databas
 func (s *DatabasePreferences) SetDatabaseMigrationPreference(v *DatabaseMigrationPreference) *DatabasePreferences {
 	s.DatabaseMigrationPreference = v
 	return s
+}
+
+// Dependency encountered an error.
+type DependencyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DependencyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DependencyException) GoString() string {
+	return s.String()
+}
+
+func newErrorDependencyException(v protocol.ResponseMetadata) error {
+	return &DependencyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DependencyException) Code() string {
+	return "DependencyException"
+}
+
+// Message returns the exception's message.
+func (s *DependencyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DependencyException) OrigErr() error {
+	return nil
+}
+
+func (s *DependencyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DependencyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DependencyException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type GetApplicationComponentDetailsInput struct {
@@ -3475,6 +3909,9 @@ func (s *GetAssessmentInput) SetId(v string) *GetAssessmentInput {
 type GetAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
+	// List of criteria for assessment.
+	AssessmentTargets []*AssessmentTarget `locationName:"assessmentTargets" type:"list"`
+
 	// Detailed information about the assessment.
 	DataCollectionDetails *DataCollectionDetails `locationName:"dataCollectionDetails" type:"structure"`
 
@@ -3498,6 +3935,12 @@ func (s GetAssessmentOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetAssessmentOutput) GoString() string {
 	return s.String()
+}
+
+// SetAssessmentTargets sets the AssessmentTargets field's value.
+func (s *GetAssessmentOutput) SetAssessmentTargets(v []*AssessmentTarget) *GetAssessmentOutput {
+	s.AssessmentTargets = v
+	return s
 }
 
 // SetDataCollectionDetails sets the DataCollectionDetails field's value.
@@ -3683,6 +4126,59 @@ func (s *GetImportFileTaskOutput) SetStatusReportS3Key(v string) *GetImportFileT
 	return s
 }
 
+type GetLatestAssessmentIdInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLatestAssessmentIdInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLatestAssessmentIdInput) GoString() string {
+	return s.String()
+}
+
+type GetLatestAssessmentIdOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The latest ID for the specific assessment task.
+	Id *string `locationName:"id" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLatestAssessmentIdOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLatestAssessmentIdOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *GetLatestAssessmentIdOutput) SetId(v string) *GetLatestAssessmentIdOutput {
+	s.Id = &v
+	return s
+}
+
 type GetPortfolioPreferencesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -3707,6 +4203,9 @@ func (s GetPortfolioPreferencesInput) GoString() string {
 
 type GetPortfolioPreferencesOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The classification for application component types.
+	ApplicationMode *string `locationName:"applicationMode" type:"string" enum:"ApplicationMode"`
 
 	// The transformation preferences for non-database applications.
 	ApplicationPreferences *ApplicationPreferences `locationName:"applicationPreferences" type:"structure"`
@@ -3734,6 +4233,12 @@ func (s GetPortfolioPreferencesOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetPortfolioPreferencesOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationMode sets the ApplicationMode field's value.
+func (s *GetPortfolioPreferencesOutput) SetApplicationMode(v string) *GetPortfolioPreferencesOutput {
+	s.ApplicationMode = &v
+	return s
 }
 
 // SetApplicationPreferences sets the ApplicationPreferences field's value.
@@ -4221,6 +4726,56 @@ func (s Homogeneous) GoString() string {
 // SetTargetDatabaseEngine sets the TargetDatabaseEngine field's value.
 func (s *Homogeneous) SetTargetDatabaseEngine(v []*string) *Homogeneous {
 	s.TargetDatabaseEngine = v
+	return s
+}
+
+// IP address based configurations.
+type IPAddressBasedRemoteInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The type of authorization.
+	AuthType *string `locationName:"authType" type:"string" enum:"AuthType"`
+
+	// The time stamp of the configuration.
+	IpAddressConfigurationTimeStamp *string `locationName:"ipAddressConfigurationTimeStamp" type:"string"`
+
+	// The type of the operating system.
+	OsType *string `locationName:"osType" type:"string" enum:"OSType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPAddressBasedRemoteInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IPAddressBasedRemoteInfo) GoString() string {
+	return s.String()
+}
+
+// SetAuthType sets the AuthType field's value.
+func (s *IPAddressBasedRemoteInfo) SetAuthType(v string) *IPAddressBasedRemoteInfo {
+	s.AuthType = &v
+	return s
+}
+
+// SetIpAddressConfigurationTimeStamp sets the IpAddressConfigurationTimeStamp field's value.
+func (s *IPAddressBasedRemoteInfo) SetIpAddressConfigurationTimeStamp(v string) *IPAddressBasedRemoteInfo {
+	s.IpAddressConfigurationTimeStamp = &v
+	return s
+}
+
+// SetOsType sets the OsType field's value.
+func (s *IPAddressBasedRemoteInfo) SetOsType(v string) *IPAddressBasedRemoteInfo {
+	s.OsType = &v
 	return s
 }
 
@@ -5116,6 +5671,47 @@ func (s *OSInfo) SetVersion(v string) *OSInfo {
 	return s
 }
 
+// Detailed information of the pipeline.
+type PipelineInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the pipeline info was configured.
+	PipelineConfigurationTimeStamp *string `locationName:"pipelineConfigurationTimeStamp" type:"string"`
+
+	// The type of pipeline.
+	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineInfo) GoString() string {
+	return s.String()
+}
+
+// SetPipelineConfigurationTimeStamp sets the PipelineConfigurationTimeStamp field's value.
+func (s *PipelineInfo) SetPipelineConfigurationTimeStamp(v string) *PipelineInfo {
+	s.PipelineConfigurationTimeStamp = &v
+	return s
+}
+
+// SetPipelineType sets the PipelineType field's value.
+func (s *PipelineInfo) SetPipelineType(v string) *PipelineInfo {
+	s.PipelineType = &v
+	return s
+}
+
 // Rank of business goals based on priority.
 type PrioritizeBusinessGoals struct {
 	_ struct{} `type:"structure"`
@@ -5165,6 +5761,9 @@ func (s *PrioritizeBusinessGoals) SetBusinessGoals(v *BusinessGoals) *Prioritize
 
 type PutPortfolioPreferencesInput struct {
 	_ struct{} `type:"structure"`
+
+	// The classification for application component types.
+	ApplicationMode *string `locationName:"applicationMode" type:"string" enum:"ApplicationMode"`
 
 	// The transformation preferences for non-database applications.
 	ApplicationPreferences *ApplicationPreferences `locationName:"applicationPreferences" type:"structure"`
@@ -5217,6 +5816,12 @@ func (s *PutPortfolioPreferencesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationMode sets the ApplicationMode field's value.
+func (s *PutPortfolioPreferencesInput) SetApplicationMode(v string) *PutPortfolioPreferencesInput {
+	s.ApplicationMode = &v
+	return s
 }
 
 // SetApplicationPreferences sets the ApplicationPreferences field's value.
@@ -5383,6 +5988,38 @@ func (s *RecommendationSet) SetTargetDestination(v string) *RecommendationSet {
 // SetTransformationTool sets the TransformationTool field's value.
 func (s *RecommendationSet) SetTransformationTool(v *TransformationTool) *RecommendationSet {
 	s.TransformationTool = v
+	return s
+}
+
+// Information about the server configured for source code analysis.
+type RemoteSourceCodeAnalysisServerInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the remote source code server was configured.
+	RemoteSourceCodeAnalysisServerConfigurationTimestamp *string `locationName:"remoteSourceCodeAnalysisServerConfigurationTimestamp" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoteSourceCodeAnalysisServerInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RemoteSourceCodeAnalysisServerInfo) GoString() string {
+	return s.String()
+}
+
+// SetRemoteSourceCodeAnalysisServerConfigurationTimestamp sets the RemoteSourceCodeAnalysisServerConfigurationTimestamp field's value.
+func (s *RemoteSourceCodeAnalysisServerInfo) SetRemoteSourceCodeAnalysisServerConfigurationTimestamp(v string) *RemoteSourceCodeAnalysisServerInfo {
+	s.RemoteSourceCodeAnalysisServerConfigurationTimestamp = &v
 	return s
 }
 
@@ -5575,6 +6212,9 @@ type ServerDetail struct {
 	// A set of recommendations.
 	RecommendationSet *RecommendationSet `locationName:"recommendationSet" type:"structure"`
 
+	// The error in server analysis.
+	ServerError *ServerError `locationName:"serverError" type:"structure"`
+
 	// The type of server.
 	ServerType *string `locationName:"serverType" type:"string"`
 
@@ -5664,6 +6304,12 @@ func (s *ServerDetail) SetRecommendationSet(v *RecommendationSet) *ServerDetail 
 	return s
 }
 
+// SetServerError sets the ServerError field's value.
+func (s *ServerDetail) SetServerError(v *ServerError) *ServerDetail {
+	s.ServerError = v
+	return s
+}
+
 // SetServerType sets the ServerType field's value.
 func (s *ServerDetail) SetServerType(v string) *ServerDetail {
 	s.ServerType = &v
@@ -5679,6 +6325,80 @@ func (s *ServerDetail) SetStatusMessage(v string) *ServerDetail {
 // SetSystemInfo sets the SystemInfo field's value.
 func (s *ServerDetail) SetSystemInfo(v *SystemInfo) *ServerDetail {
 	s.SystemInfo = v
+	return s
+}
+
+// The error in server analysis.
+type ServerError struct {
+	_ struct{} `type:"structure"`
+
+	// The error category of server analysis.
+	ServerErrorCategory *string `locationName:"serverErrorCategory" type:"string" enum:"ServerErrorCategory"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerError) GoString() string {
+	return s.String()
+}
+
+// SetServerErrorCategory sets the ServerErrorCategory field's value.
+func (s *ServerError) SetServerErrorCategory(v string) *ServerError {
+	s.ServerErrorCategory = &v
+	return s
+}
+
+// The status summary of the server analysis.
+type ServerStatusSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The number of servers successfully analyzed, partially successful or failed
+	// analysis.
+	Count *int64 `locationName:"count" type:"integer"`
+
+	// The status of the run time.
+	RunTimeAssessmentStatus *string `locationName:"runTimeAssessmentStatus" type:"string" enum:"RunTimeAssessmentStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerStatusSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerStatusSummary) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *ServerStatusSummary) SetCount(v int64) *ServerStatusSummary {
+	s.Count = &v
+	return s
+}
+
+// SetRunTimeAssessmentStatus sets the RunTimeAssessmentStatus field's value.
+func (s *ServerStatusSummary) SetRunTimeAssessmentStatus(v string) *ServerStatusSummary {
+	s.RunTimeAssessmentStatus = &v
 	return s
 }
 
@@ -5921,6 +6641,9 @@ type SourceCode struct {
 	// The repository name for the source code.
 	Location *string `locationName:"location" min:"1" type:"string"`
 
+	// The name of the project.
+	ProjectName *string `locationName:"projectName" min:"1" type:"string"`
+
 	// The branch of the source code.
 	SourceVersion *string `locationName:"sourceVersion" min:"1" type:"string"`
 
@@ -5952,6 +6675,9 @@ func (s *SourceCode) Validate() error {
 	if s.Location != nil && len(*s.Location) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Location", 1))
 	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
 	if s.SourceVersion != nil && len(*s.SourceVersion) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceVersion", 1))
 	}
@@ -5965,6 +6691,12 @@ func (s *SourceCode) Validate() error {
 // SetLocation sets the Location field's value.
 func (s *SourceCode) SetLocation(v string) *SourceCode {
 	s.Location = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *SourceCode) SetProjectName(v string) *SourceCode {
+	s.ProjectName = &v
 	return s
 }
 
@@ -5987,6 +6719,9 @@ type SourceCodeRepository struct {
 
 	// The branch of the source code.
 	Branch *string `locationName:"branch" type:"string"`
+
+	// The name of the project.
+	ProjectName *string `locationName:"projectName" type:"string"`
 
 	// The repository name for the source code.
 	Repository *string `locationName:"repository" type:"string"`
@@ -6019,6 +6754,12 @@ func (s *SourceCodeRepository) SetBranch(v string) *SourceCodeRepository {
 	return s
 }
 
+// SetProjectName sets the ProjectName field's value.
+func (s *SourceCodeRepository) SetProjectName(v string) *SourceCodeRepository {
+	s.ProjectName = &v
+	return s
+}
+
 // SetRepository sets the Repository field's value.
 func (s *SourceCodeRepository) SetRepository(v string) *SourceCodeRepository {
 	s.Repository = &v
@@ -6033,6 +6774,9 @@ func (s *SourceCodeRepository) SetVersionControlType(v string) *SourceCodeReposi
 
 type StartAssessmentInput struct {
 	_ struct{} `type:"structure"`
+
+	// List of criteria for assessment.
+	AssessmentTargets []*AssessmentTarget `locationName:"assessmentTargets" type:"list"`
 
 	// The S3 bucket used by the collectors to send analysis data to the service.
 	// The bucket name must begin with migrationhub-strategy-.
@@ -6059,6 +6803,32 @@ func (s StartAssessmentInput) String() string {
 // value will be replaced with "sensitive".
 func (s StartAssessmentInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartAssessmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartAssessmentInput"}
+	if s.AssessmentTargets != nil {
+		for i, v := range s.AssessmentTargets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AssessmentTargets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssessmentTargets sets the AssessmentTargets field's value.
+func (s *StartAssessmentInput) SetAssessmentTargets(v []*AssessmentTarget) *StartAssessmentInput {
+	s.AssessmentTargets = v
+	return s
 }
 
 // SetS3bucketForAnalysisData sets the S3bucketForAnalysisData field's value.
@@ -6664,10 +7434,19 @@ func (s *TransformationTool) SetTranformationToolInstallationLink(v string) *Tra
 type UpdateApplicationComponentConfigInput struct {
 	_ struct{} `type:"structure"`
 
+	// The type of known component.
+	AppType *string `locationName:"appType" type:"string" enum:"AppType"`
+
 	// The ID of the application component. The ID is unique within an AWS account.
 	//
 	// ApplicationComponentId is a required field
 	ApplicationComponentId *string `locationName:"applicationComponentId" type:"string" required:"true"`
+
+	// Update the configuration request of an application component. If it is set
+	// to true, the source code and/or database credentials are updated. If it is
+	// set to false, the source code and/or database credentials are updated and
+	// an analysis is initiated.
+	ConfigureOnly *bool `locationName:"configureOnly" type:"boolean"`
 
 	// Indicates whether the application component has been included for server
 	// recommendation or not.
@@ -6732,9 +7511,21 @@ func (s *UpdateApplicationComponentConfigInput) Validate() error {
 	return nil
 }
 
+// SetAppType sets the AppType field's value.
+func (s *UpdateApplicationComponentConfigInput) SetAppType(v string) *UpdateApplicationComponentConfigInput {
+	s.AppType = &v
+	return s
+}
+
 // SetApplicationComponentId sets the ApplicationComponentId field's value.
 func (s *UpdateApplicationComponentConfigInput) SetApplicationComponentId(v string) *UpdateApplicationComponentConfigInput {
 	s.ApplicationComponentId = &v
+	return s
+}
+
+// SetConfigureOnly sets the ConfigureOnly field's value.
+func (s *UpdateApplicationComponentConfigInput) SetConfigureOnly(v bool) *UpdateApplicationComponentConfigInput {
+	s.ConfigureOnly = &v
 	return s
 }
 
@@ -6929,6 +7720,88 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Details about the server in vCenter.
+type VcenterBasedRemoteInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The type of the operating system.
+	OsType *string `locationName:"osType" type:"string" enum:"OSType"`
+
+	// The time when the remote server based on vCenter was last configured.
+	VcenterConfigurationTimeStamp *string `locationName:"vcenterConfigurationTimeStamp" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VcenterBasedRemoteInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VcenterBasedRemoteInfo) GoString() string {
+	return s.String()
+}
+
+// SetOsType sets the OsType field's value.
+func (s *VcenterBasedRemoteInfo) SetOsType(v string) *VcenterBasedRemoteInfo {
+	s.OsType = &v
+	return s
+}
+
+// SetVcenterConfigurationTimeStamp sets the VcenterConfigurationTimeStamp field's value.
+func (s *VcenterBasedRemoteInfo) SetVcenterConfigurationTimeStamp(v string) *VcenterBasedRemoteInfo {
+	s.VcenterConfigurationTimeStamp = &v
+	return s
+}
+
+// Details about the version control configuration.
+type VersionControlInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the version control system was last configured.
+	VersionControlConfigurationTimeStamp *string `locationName:"versionControlConfigurationTimeStamp" type:"string"`
+
+	// The type of version control.
+	VersionControlType *string `locationName:"versionControlType" type:"string" enum:"VersionControlType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersionControlInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VersionControlInfo) GoString() string {
+	return s.String()
+}
+
+// SetVersionControlConfigurationTimeStamp sets the VersionControlConfigurationTimeStamp field's value.
+func (s *VersionControlInfo) SetVersionControlConfigurationTimeStamp(v string) *VersionControlInfo {
+	s.VersionControlConfigurationTimeStamp = &v
+	return s
+}
+
+// SetVersionControlType sets the VersionControlType field's value.
+func (s *VersionControlInfo) SetVersionControlType(v string) *VersionControlInfo {
+	s.VersionControlType = &v
+	return s
+}
+
 const (
 	// AntipatternReportStatusFailed is a AntipatternReportStatus enum value
 	AntipatternReportStatusFailed = "FAILED"
@@ -6967,6 +7840,54 @@ const (
 
 	// AppTypeOther is a AppType enum value
 	AppTypeOther = "Other"
+
+	// AppTypeTomcat is a AppType enum value
+	AppTypeTomcat = "Tomcat"
+
+	// AppTypeJboss is a AppType enum value
+	AppTypeJboss = "JBoss"
+
+	// AppTypeSpring is a AppType enum value
+	AppTypeSpring = "Spring"
+
+	// AppTypeMongoDb is a AppType enum value
+	AppTypeMongoDb = "Mongo DB"
+
+	// AppTypeDb2 is a AppType enum value
+	AppTypeDb2 = "DB2"
+
+	// AppTypeMariaDb is a AppType enum value
+	AppTypeMariaDb = "Maria DB"
+
+	// AppTypeMySql is a AppType enum value
+	AppTypeMySql = "MySQL"
+
+	// AppTypeSybase is a AppType enum value
+	AppTypeSybase = "Sybase"
+
+	// AppTypePostgreSqlserver is a AppType enum value
+	AppTypePostgreSqlserver = "PostgreSQLServer"
+
+	// AppTypeCassandra is a AppType enum value
+	AppTypeCassandra = "Cassandra"
+
+	// AppTypeIbmwebSphere is a AppType enum value
+	AppTypeIbmwebSphere = "IBM WebSphere"
+
+	// AppTypeOracleWebLogic is a AppType enum value
+	AppTypeOracleWebLogic = "Oracle WebLogic"
+
+	// AppTypeVisualBasic is a AppType enum value
+	AppTypeVisualBasic = "Visual Basic"
+
+	// AppTypeUnknown is a AppType enum value
+	AppTypeUnknown = "Unknown"
+
+	// AppTypeDotnetCore is a AppType enum value
+	AppTypeDotnetCore = "DotnetCore"
+
+	// AppTypeDotnet is a AppType enum value
+	AppTypeDotnet = "Dotnet"
 )
 
 // AppType_Values returns all elements of the AppType enum
@@ -6978,6 +7899,50 @@ func AppType_Values() []string {
 		AppTypeIis,
 		AppTypeOracle,
 		AppTypeOther,
+		AppTypeTomcat,
+		AppTypeJboss,
+		AppTypeSpring,
+		AppTypeMongoDb,
+		AppTypeDb2,
+		AppTypeMariaDb,
+		AppTypeMySql,
+		AppTypeSybase,
+		AppTypePostgreSqlserver,
+		AppTypeCassandra,
+		AppTypeIbmwebSphere,
+		AppTypeOracleWebLogic,
+		AppTypeVisualBasic,
+		AppTypeUnknown,
+		AppTypeDotnetCore,
+		AppTypeDotnet,
+	}
+}
+
+const (
+	// AppUnitErrorCategoryCredentialError is a AppUnitErrorCategory enum value
+	AppUnitErrorCategoryCredentialError = "CREDENTIAL_ERROR"
+
+	// AppUnitErrorCategoryConnectivityError is a AppUnitErrorCategory enum value
+	AppUnitErrorCategoryConnectivityError = "CONNECTIVITY_ERROR"
+
+	// AppUnitErrorCategoryPermissionError is a AppUnitErrorCategory enum value
+	AppUnitErrorCategoryPermissionError = "PERMISSION_ERROR"
+
+	// AppUnitErrorCategoryUnsupportedError is a AppUnitErrorCategory enum value
+	AppUnitErrorCategoryUnsupportedError = "UNSUPPORTED_ERROR"
+
+	// AppUnitErrorCategoryOtherError is a AppUnitErrorCategory enum value
+	AppUnitErrorCategoryOtherError = "OTHER_ERROR"
+)
+
+// AppUnitErrorCategory_Values returns all elements of the AppUnitErrorCategory enum
+func AppUnitErrorCategory_Values() []string {
+	return []string{
+		AppUnitErrorCategoryCredentialError,
+		AppUnitErrorCategoryConnectivityError,
+		AppUnitErrorCategoryPermissionError,
+		AppUnitErrorCategoryUnsupportedError,
+		AppUnitErrorCategoryOtherError,
 	}
 }
 
@@ -6999,6 +7964,12 @@ const (
 
 	// ApplicationComponentCriteriaDestination is a ApplicationComponentCriteria enum value
 	ApplicationComponentCriteriaDestination = "DESTINATION"
+
+	// ApplicationComponentCriteriaAnalysisStatus is a ApplicationComponentCriteria enum value
+	ApplicationComponentCriteriaAnalysisStatus = "ANALYSIS_STATUS"
+
+	// ApplicationComponentCriteriaErrorCategory is a ApplicationComponentCriteria enum value
+	ApplicationComponentCriteriaErrorCategory = "ERROR_CATEGORY"
 )
 
 // ApplicationComponentCriteria_Values returns all elements of the ApplicationComponentCriteria enum
@@ -7010,6 +7981,28 @@ func ApplicationComponentCriteria_Values() []string {
 		ApplicationComponentCriteriaAppType,
 		ApplicationComponentCriteriaStrategy,
 		ApplicationComponentCriteriaDestination,
+		ApplicationComponentCriteriaAnalysisStatus,
+		ApplicationComponentCriteriaErrorCategory,
+	}
+}
+
+const (
+	// ApplicationModeAll is a ApplicationMode enum value
+	ApplicationModeAll = "ALL"
+
+	// ApplicationModeKnown is a ApplicationMode enum value
+	ApplicationModeKnown = "KNOWN"
+
+	// ApplicationModeUnknown is a ApplicationMode enum value
+	ApplicationModeUnknown = "UNKNOWN"
+)
+
+// ApplicationMode_Values returns all elements of the ApplicationMode enum
+func ApplicationMode_Values() []string {
+	return []string{
+		ApplicationModeAll,
+		ApplicationModeKnown,
+		ApplicationModeUnknown,
 	}
 }
 
@@ -7034,6 +8027,26 @@ func AssessmentStatus_Values() []string {
 		AssessmentStatusComplete,
 		AssessmentStatusFailed,
 		AssessmentStatusStopped,
+	}
+}
+
+const (
+	// AuthTypeNtlm is a AuthType enum value
+	AuthTypeNtlm = "NTLM"
+
+	// AuthTypeSsh is a AuthType enum value
+	AuthTypeSsh = "SSH"
+
+	// AuthTypeCert is a AuthType enum value
+	AuthTypeCert = "CERT"
+)
+
+// AuthType_Values returns all elements of the AuthType enum
+func AuthType_Values() []string {
+	return []string{
+		AuthTypeNtlm,
+		AuthTypeSsh,
+		AuthTypeCert,
 	}
 }
 
@@ -7070,6 +8083,30 @@ func CollectorHealth_Values() []string {
 	return []string{
 		CollectorHealthCollectorHealthy,
 		CollectorHealthCollectorUnhealthy,
+	}
+}
+
+const (
+	// ConditionEquals is a Condition enum value
+	ConditionEquals = "EQUALS"
+
+	// ConditionNotEquals is a Condition enum value
+	ConditionNotEquals = "NOT_EQUALS"
+
+	// ConditionContains is a Condition enum value
+	ConditionContains = "CONTAINS"
+
+	// ConditionNotContains is a Condition enum value
+	ConditionNotContains = "NOT_CONTAINS"
+)
+
+// Condition_Values returns all elements of the Condition enum
+func Condition_Values() []string {
+	return []string{
+		ConditionEquals,
+		ConditionNotEquals,
+		ConditionContains,
+		ConditionNotContains,
 	}
 }
 
@@ -7302,6 +8339,18 @@ func OutputFormat_Values() []string {
 }
 
 const (
+	// PipelineTypeAzureDevops is a PipelineType enum value
+	PipelineTypeAzureDevops = "AZURE_DEVOPS"
+)
+
+// PipelineType_Values returns all elements of the PipelineType enum
+func PipelineType_Values() []string {
+	return []string{
+		PipelineTypeAzureDevops,
+	}
+}
+
+const (
 	// RecommendationReportStatusFailed is a RecommendationReportStatus enum value
 	RecommendationReportStatusFailed = "FAILED"
 
@@ -7378,6 +8427,30 @@ func RunTimeAssessmentStatus_Values() []string {
 }
 
 const (
+	// RuntimeAnalysisStatusAnalysisToBeScheduled is a RuntimeAnalysisStatus enum value
+	RuntimeAnalysisStatusAnalysisToBeScheduled = "ANALYSIS_TO_BE_SCHEDULED"
+
+	// RuntimeAnalysisStatusAnalysisStarted is a RuntimeAnalysisStatus enum value
+	RuntimeAnalysisStatusAnalysisStarted = "ANALYSIS_STARTED"
+
+	// RuntimeAnalysisStatusAnalysisSuccess is a RuntimeAnalysisStatus enum value
+	RuntimeAnalysisStatusAnalysisSuccess = "ANALYSIS_SUCCESS"
+
+	// RuntimeAnalysisStatusAnalysisFailed is a RuntimeAnalysisStatus enum value
+	RuntimeAnalysisStatusAnalysisFailed = "ANALYSIS_FAILED"
+)
+
+// RuntimeAnalysisStatus_Values returns all elements of the RuntimeAnalysisStatus enum
+func RuntimeAnalysisStatus_Values() []string {
+	return []string{
+		RuntimeAnalysisStatusAnalysisToBeScheduled,
+		RuntimeAnalysisStatusAnalysisStarted,
+		RuntimeAnalysisStatusAnalysisSuccess,
+		RuntimeAnalysisStatusAnalysisFailed,
+	}
+}
+
+const (
 	// SelfManageTargetDestinationNonespecified is a SelfManageTargetDestination enum value
 	SelfManageTargetDestinationNonespecified = "None specified"
 
@@ -7416,6 +8489,12 @@ const (
 
 	// ServerCriteriaServerId is a ServerCriteria enum value
 	ServerCriteriaServerId = "SERVER_ID"
+
+	// ServerCriteriaAnalysisStatus is a ServerCriteria enum value
+	ServerCriteriaAnalysisStatus = "ANALYSIS_STATUS"
+
+	// ServerCriteriaErrorCategory is a ServerCriteria enum value
+	ServerCriteriaErrorCategory = "ERROR_CATEGORY"
 )
 
 // ServerCriteria_Values returns all elements of the ServerCriteria enum
@@ -7426,6 +8505,36 @@ func ServerCriteria_Values() []string {
 		ServerCriteriaStrategy,
 		ServerCriteriaDestination,
 		ServerCriteriaServerId,
+		ServerCriteriaAnalysisStatus,
+		ServerCriteriaErrorCategory,
+	}
+}
+
+const (
+	// ServerErrorCategoryConnectivityError is a ServerErrorCategory enum value
+	ServerErrorCategoryConnectivityError = "CONNECTIVITY_ERROR"
+
+	// ServerErrorCategoryCredentialError is a ServerErrorCategory enum value
+	ServerErrorCategoryCredentialError = "CREDENTIAL_ERROR"
+
+	// ServerErrorCategoryPermissionError is a ServerErrorCategory enum value
+	ServerErrorCategoryPermissionError = "PERMISSION_ERROR"
+
+	// ServerErrorCategoryArchitectureError is a ServerErrorCategory enum value
+	ServerErrorCategoryArchitectureError = "ARCHITECTURE_ERROR"
+
+	// ServerErrorCategoryOtherError is a ServerErrorCategory enum value
+	ServerErrorCategoryOtherError = "OTHER_ERROR"
+)
+
+// ServerErrorCategory_Values returns all elements of the ServerErrorCategory enum
+func ServerErrorCategory_Values() []string {
+	return []string{
+		ServerErrorCategoryConnectivityError,
+		ServerErrorCategoryCredentialError,
+		ServerErrorCategoryPermissionError,
+		ServerErrorCategoryArchitectureError,
+		ServerErrorCategoryOtherError,
 	}
 }
 
@@ -7505,6 +8614,15 @@ const (
 
 	// SrcCodeOrDbAnalysisStatusAnalysisFailed is a SrcCodeOrDbAnalysisStatus enum value
 	SrcCodeOrDbAnalysisStatusAnalysisFailed = "ANALYSIS_FAILED"
+
+	// SrcCodeOrDbAnalysisStatusAnalysisPartialSuccess is a SrcCodeOrDbAnalysisStatus enum value
+	SrcCodeOrDbAnalysisStatusAnalysisPartialSuccess = "ANALYSIS_PARTIAL_SUCCESS"
+
+	// SrcCodeOrDbAnalysisStatusUnconfigured is a SrcCodeOrDbAnalysisStatus enum value
+	SrcCodeOrDbAnalysisStatusUnconfigured = "UNCONFIGURED"
+
+	// SrcCodeOrDbAnalysisStatusConfigured is a SrcCodeOrDbAnalysisStatus enum value
+	SrcCodeOrDbAnalysisStatusConfigured = "CONFIGURED"
 )
 
 // SrcCodeOrDbAnalysisStatus_Values returns all elements of the SrcCodeOrDbAnalysisStatus enum
@@ -7514,6 +8632,9 @@ func SrcCodeOrDbAnalysisStatus_Values() []string {
 		SrcCodeOrDbAnalysisStatusAnalysisStarted,
 		SrcCodeOrDbAnalysisStatusAnalysisSuccess,
 		SrcCodeOrDbAnalysisStatusAnalysisFailed,
+		SrcCodeOrDbAnalysisStatusAnalysisPartialSuccess,
+		SrcCodeOrDbAnalysisStatusUnconfigured,
+		SrcCodeOrDbAnalysisStatusConfigured,
 	}
 }
 
@@ -7562,6 +8683,9 @@ const (
 
 	// StrategyRecommendationNotRecommended is a StrategyRecommendation enum value
 	StrategyRecommendationNotRecommended = "notRecommended"
+
+	// StrategyRecommendationPotential is a StrategyRecommendation enum value
+	StrategyRecommendationPotential = "potential"
 )
 
 // StrategyRecommendation_Values returns all elements of the StrategyRecommendation enum
@@ -7570,6 +8694,7 @@ func StrategyRecommendation_Values() []string {
 		StrategyRecommendationRecommended,
 		StrategyRecommendationViableOption,
 		StrategyRecommendationNotRecommended,
+		StrategyRecommendationPotential,
 	}
 }
 
@@ -7660,6 +8785,9 @@ const (
 
 	// TargetDestinationAmazonRelationalDatabaseService is a TargetDestination enum value
 	TargetDestinationAmazonRelationalDatabaseService = "Amazon Relational Database Service"
+
+	// TargetDestinationBabelfishforAuroraPostgreSql is a TargetDestination enum value
+	TargetDestinationBabelfishforAuroraPostgreSql = "Babelfish for Aurora PostgreSQL"
 )
 
 // TargetDestination_Values returns all elements of the TargetDestination enum
@@ -7678,6 +8806,7 @@ func TargetDestination_Values() []string {
 		TargetDestinationAmazonDocumentDb,
 		TargetDestinationAmazonDynamoDb,
 		TargetDestinationAmazonRelationalDatabaseService,
+		TargetDestinationBabelfishforAuroraPostgreSql,
 	}
 }
 
@@ -7735,6 +8864,9 @@ const (
 
 	// VersionControlGithubEnterprise is a VersionControl enum value
 	VersionControlGithubEnterprise = "GITHUB_ENTERPRISE"
+
+	// VersionControlAzureDevopsGit is a VersionControl enum value
+	VersionControlAzureDevopsGit = "AZURE_DEVOPS_GIT"
 )
 
 // VersionControl_Values returns all elements of the VersionControl enum
@@ -7742,5 +8874,26 @@ func VersionControl_Values() []string {
 	return []string{
 		VersionControlGithub,
 		VersionControlGithubEnterprise,
+		VersionControlAzureDevopsGit,
+	}
+}
+
+const (
+	// VersionControlTypeGithub is a VersionControlType enum value
+	VersionControlTypeGithub = "GITHUB"
+
+	// VersionControlTypeGithubEnterprise is a VersionControlType enum value
+	VersionControlTypeGithubEnterprise = "GITHUB_ENTERPRISE"
+
+	// VersionControlTypeAzureDevopsGit is a VersionControlType enum value
+	VersionControlTypeAzureDevopsGit = "AZURE_DEVOPS_GIT"
+)
+
+// VersionControlType_Values returns all elements of the VersionControlType enum
+func VersionControlType_Values() []string {
+	return []string{
+		VersionControlTypeGithub,
+		VersionControlTypeGithubEnterprise,
+		VersionControlTypeAzureDevopsGit,
 	}
 }

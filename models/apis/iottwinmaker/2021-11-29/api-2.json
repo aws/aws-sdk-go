@@ -153,6 +153,43 @@
         "shape": "CreateSceneResponse"
       }
     },
+    "CreateSyncJob": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateSyncJobRequest"
+      },
+      "name": "CreateSyncJob",
+      "output": {
+        "shape": "CreateSyncJobResponse"
+      }
+    },
     "CreateWorkspace": {
       "endpoint": {
         "hostPrefix": "api."
@@ -290,6 +327,43 @@
       "name": "DeleteScene",
       "output": {
         "shape": "DeleteSceneResponse"
+      }
+    },
+    "DeleteSyncJob": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteSyncJobRequest"
+      },
+      "name": "DeleteSyncJob",
+      "output": {
+        "shape": "DeleteSyncJobResponse"
       }
     },
     "DeleteWorkspace": {
@@ -576,6 +650,43 @@
         "shape": "GetSceneResponse"
       }
     },
+    "GetSyncJob": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "GET",
+        "requestUri": "/sync-jobs/{syncSource}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetSyncJobRequest"
+      },
+      "name": "GetSyncJob",
+      "output": {
+        "shape": "GetSyncJobResponse"
+      }
+    },
     "GetWorkspace": {
       "endpoint": {
         "hostPrefix": "api."
@@ -701,6 +812,74 @@
       "name": "ListScenes",
       "output": {
         "shape": "ListScenesResponse"
+      }
+    },
+    "ListSyncJobs": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/sync-jobs-list",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListSyncJobsRequest"
+      },
+      "name": "ListSyncJobs",
+      "output": {
+        "shape": "ListSyncJobsResponse"
+      }
+    },
+    "ListSyncResources": {
+      "endpoint": {
+        "hostPrefix": "api."
+      },
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/workspaces/{workspaceId}/sync-jobs/{syncSource}/resources-list",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListSyncResourcesRequest"
+      },
+      "name": "ListSyncResources",
+      "output": {
+        "shape": "ListSyncResourcesResponse"
       }
     },
     "ListTagsForResource": {
@@ -1207,6 +1386,9 @@
         },
         "status": {
           "shape": "Status"
+        },
+        "syncSource": {
+          "shape": "SyncSource"
         }
       },
       "type": "structure"
@@ -1215,6 +1397,12 @@
       "max": 256,
       "min": 1,
       "pattern": "[a-zA-Z_\\.\\-0-9:]+",
+      "type": "string"
+    },
+    "ComponentTypeName": {
+      "max": 256,
+      "min": 0,
+      "pattern": ".*[^\\u0000-\\u001F\\u007F]*.*",
       "type": "string"
     },
     "ComponentTypeSummaries": {
@@ -1230,6 +1418,9 @@
         },
         "componentTypeId": {
           "shape": "ComponentTypeId"
+        },
+        "componentTypeName": {
+          "shape": "ComponentTypeName"
         },
         "creationDateTime": {
           "shape": "Timestamp"
@@ -1361,6 +1552,9 @@
           "location": "uri",
           "locationName": "componentTypeId",
           "shape": "ComponentTypeId"
+        },
+        "componentTypeName": {
+          "shape": "ComponentTypeName"
         },
         "description": {
           "shape": "Description"
@@ -1511,6 +1705,51 @@
       "required": [
         "arn",
         "creationDateTime"
+      ],
+      "type": "structure"
+    },
+    "CreateSyncJobRequest": {
+      "members": {
+        "syncRole": {
+          "shape": "RoleArn"
+        },
+        "syncSource": {
+          "location": "uri",
+          "locationName": "syncSource",
+          "shape": "SyncSource"
+        },
+        "tags": {
+          "shape": "TagMap"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "syncSource",
+        "syncRole"
+      ],
+      "type": "structure"
+    },
+    "CreateSyncJobResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "state": {
+          "shape": "SyncJobState"
+        }
+      },
+      "required": [
+        "arn",
+        "creationDateTime",
+        "state"
       ],
       "type": "structure"
     },
@@ -1729,6 +1968,36 @@
       "members": {},
       "type": "structure"
     },
+    "DeleteSyncJobRequest": {
+      "members": {
+        "syncSource": {
+          "location": "uri",
+          "locationName": "syncSource",
+          "shape": "SyncSource"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "syncSource"
+      ],
+      "type": "structure"
+    },
+    "DeleteSyncJobResponse": {
+      "members": {
+        "state": {
+          "shape": "SyncJobState"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "type": "structure"
+    },
     "DeleteWorkspaceRequest": {
       "members": {
         "workspaceId": {
@@ -1747,7 +2016,7 @@
       "type": "structure"
     },
     "Description": {
-      "max": 512,
+      "max": 2048,
       "min": 0,
       "pattern": ".*",
       "type": "string"
@@ -1765,7 +2034,7 @@
     "EntityName": {
       "max": 256,
       "min": 1,
-      "pattern": "[a-zA-Z_0-9-.][a-zA-Z_0-9-. ]*[a-zA-Z0-9]+",
+      "pattern": "[^\\u0000-\\u001F\\u007F]+",
       "type": "string"
     },
     "EntityPropertyReference": {
@@ -1845,7 +2114,10 @@
     "ErrorCode": {
       "enum": [
         "VALIDATION_ERROR",
-        "INTERNAL_FAILURE"
+        "INTERNAL_FAILURE",
+        "SYNC_INITIALIZING_ERROR",
+        "SYNC_CREATING_ERROR",
+        "SYNC_PROCESSING_ERROR"
       ],
       "type": "string"
     },
@@ -2016,6 +2288,9 @@
         "componentTypeId": {
           "shape": "ComponentTypeId"
         },
+        "componentTypeName": {
+          "shape": "ComponentTypeName"
+        },
         "creationDateTime": {
           "shape": "Timestamp"
         },
@@ -2045,6 +2320,9 @@
         },
         "status": {
           "shape": "Status"
+        },
+        "syncSource": {
+          "shape": "SyncSource"
         },
         "updateDateTime": {
           "shape": "Timestamp"
@@ -2109,6 +2387,9 @@
         },
         "status": {
           "shape": "Status"
+        },
+        "syncSource": {
+          "shape": "SyncSource"
         },
         "updateDateTime": {
           "shape": "Timestamp"
@@ -2322,6 +2603,59 @@
         "sceneId",
         "contentLocation",
         "arn",
+        "creationDateTime",
+        "updateDateTime"
+      ],
+      "type": "structure"
+    },
+    "GetSyncJobRequest": {
+      "members": {
+        "syncSource": {
+          "location": "uri",
+          "locationName": "syncSource",
+          "shape": "SyncSource"
+        },
+        "workspaceId": {
+          "location": "querystring",
+          "locationName": "workspace",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "syncSource"
+      ],
+      "type": "structure"
+    },
+    "GetSyncJobResponse": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "status": {
+          "shape": "SyncJobStatus"
+        },
+        "syncRole": {
+          "shape": "RoleArn"
+        },
+        "syncSource": {
+          "shape": "SyncSource"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "workspaceId": {
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "arn",
+        "workspaceId",
+        "syncSource",
+        "syncRole",
+        "status",
         "creationDateTime",
         "updateDateTime"
       ],
@@ -2595,6 +2929,75 @@
       },
       "type": "structure"
     },
+    "ListSyncJobsRequest": {
+      "members": {
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId"
+      ],
+      "type": "structure"
+    },
+    "ListSyncJobsResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "syncJobSummaries": {
+          "shape": "SyncJobSummaries"
+        }
+      },
+      "type": "structure"
+    },
+    "ListSyncResourcesRequest": {
+      "members": {
+        "filters": {
+          "shape": "SyncResourceFilters"
+        },
+        "maxResults": {
+          "shape": "MaxResults"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "syncSource": {
+          "location": "uri",
+          "locationName": "syncSource",
+          "shape": "SyncSource"
+        },
+        "workspaceId": {
+          "location": "uri",
+          "locationName": "workspaceId",
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "workspaceId",
+        "syncSource"
+      ],
+      "type": "structure"
+    },
+    "ListSyncResourcesResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "syncResources": {
+          "shape": "SyncResourceSummaries"
+        }
+      },
+      "type": "structure"
+    },
     "ListTagsForResourceRequest": {
       "members": {
         "maxResults": {
@@ -2795,6 +3198,9 @@
         "defaultValue": {
           "shape": "DataValue"
         },
+        "displayName": {
+          "shape": "PropertyDisplayName"
+        },
         "isExternalId": {
           "shape": "Boolean"
         },
@@ -2820,6 +3226,9 @@
         },
         "defaultValue": {
           "shape": "DataValue"
+        },
+        "displayName": {
+          "shape": "PropertyDisplayName"
         },
         "isExternalId": {
           "shape": "Boolean"
@@ -2872,6 +3281,12 @@
       "value": {
         "shape": "PropertyDefinitionResponse"
       }
+    },
+    "PropertyDisplayName": {
+      "max": 256,
+      "min": 0,
+      "pattern": ".*[^\\u0000-\\u001F\\u007F]*.*",
+      "type": "string"
     },
     "PropertyFilter": {
       "members": {
@@ -3303,6 +3718,138 @@
       "pattern": ".*",
       "type": "string"
     },
+    "SyncJobState": {
+      "enum": [
+        "CREATING",
+        "INITIALIZING",
+        "ACTIVE",
+        "DELETING",
+        "ERROR"
+      ],
+      "type": "string"
+    },
+    "SyncJobStatus": {
+      "members": {
+        "error": {
+          "shape": "ErrorDetails"
+        },
+        "state": {
+          "shape": "SyncJobState"
+        }
+      },
+      "type": "structure"
+    },
+    "SyncJobSummaries": {
+      "member": {
+        "shape": "SyncJobSummary"
+      },
+      "type": "list"
+    },
+    "SyncJobSummary": {
+      "members": {
+        "arn": {
+          "shape": "TwinMakerArn"
+        },
+        "creationDateTime": {
+          "shape": "Timestamp"
+        },
+        "status": {
+          "shape": "SyncJobStatus"
+        },
+        "syncSource": {
+          "shape": "SyncSource"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        },
+        "workspaceId": {
+          "shape": "Id"
+        }
+      },
+      "type": "structure"
+    },
+    "SyncResourceFilter": {
+      "members": {
+        "externalId": {
+          "shape": "Id"
+        },
+        "resourceId": {
+          "shape": "Id"
+        },
+        "resourceType": {
+          "shape": "SyncResourceType"
+        },
+        "state": {
+          "shape": "SyncResourceState"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "SyncResourceFilters": {
+      "member": {
+        "shape": "SyncResourceFilter"
+      },
+      "type": "list"
+    },
+    "SyncResourceState": {
+      "enum": [
+        "INITIALIZING",
+        "PROCESSING",
+        "DELETED",
+        "IN_SYNC",
+        "ERROR"
+      ],
+      "type": "string"
+    },
+    "SyncResourceStatus": {
+      "members": {
+        "error": {
+          "shape": "ErrorDetails"
+        },
+        "state": {
+          "shape": "SyncResourceState"
+        }
+      },
+      "type": "structure"
+    },
+    "SyncResourceSummaries": {
+      "member": {
+        "shape": "SyncResourceSummary"
+      },
+      "type": "list"
+    },
+    "SyncResourceSummary": {
+      "members": {
+        "externalId": {
+          "shape": "Id"
+        },
+        "resourceId": {
+          "shape": "Id"
+        },
+        "resourceType": {
+          "shape": "SyncResourceType"
+        },
+        "status": {
+          "shape": "SyncResourceStatus"
+        },
+        "updateDateTime": {
+          "shape": "Timestamp"
+        }
+      },
+      "type": "structure"
+    },
+    "SyncResourceType": {
+      "enum": [
+        "ENTITY",
+        "COMPONENT_TYPE"
+      ],
+      "type": "string"
+    },
+    "SyncSource": {
+      "pattern": "[a-zA-Z_0-9]+",
+      "type": "string"
+    },
     "TabularConditions": {
       "members": {
         "orderBy": {
@@ -3458,6 +4005,9 @@
           "location": "uri",
           "locationName": "componentTypeId",
           "shape": "ComponentTypeId"
+        },
+        "componentTypeName": {
+          "shape": "ComponentTypeName"
         },
         "description": {
           "shape": "Description"

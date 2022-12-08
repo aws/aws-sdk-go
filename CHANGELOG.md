@@ -1,3 +1,12 @@
+Release v1.44.156 (2022-12-08)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Adds support for metric math for target tracking scaling policies, saving you the cost and effort of publishing a custom metric to CloudWatch. Also adds support for VPC Lattice by adding the Attach/Detach/DescribeTrafficSources APIs and a new health check type to the CreateAutoScalingGroup API.
+* `service/iottwinmaker`: Updates service API, documentation, and paginators
+* `service/migrationhubstrategy`: Updates service API and documentation
+
 Release v1.44.155 (2022-12-07)
 ===
 

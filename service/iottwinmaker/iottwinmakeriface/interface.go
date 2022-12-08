@@ -76,6 +76,10 @@ type IoTTwinMakerAPI interface {
 	CreateSceneWithContext(aws.Context, *iottwinmaker.CreateSceneInput, ...request.Option) (*iottwinmaker.CreateSceneOutput, error)
 	CreateSceneRequest(*iottwinmaker.CreateSceneInput) (*request.Request, *iottwinmaker.CreateSceneOutput)
 
+	CreateSyncJob(*iottwinmaker.CreateSyncJobInput) (*iottwinmaker.CreateSyncJobOutput, error)
+	CreateSyncJobWithContext(aws.Context, *iottwinmaker.CreateSyncJobInput, ...request.Option) (*iottwinmaker.CreateSyncJobOutput, error)
+	CreateSyncJobRequest(*iottwinmaker.CreateSyncJobInput) (*request.Request, *iottwinmaker.CreateSyncJobOutput)
+
 	CreateWorkspace(*iottwinmaker.CreateWorkspaceInput) (*iottwinmaker.CreateWorkspaceOutput, error)
 	CreateWorkspaceWithContext(aws.Context, *iottwinmaker.CreateWorkspaceInput, ...request.Option) (*iottwinmaker.CreateWorkspaceOutput, error)
 	CreateWorkspaceRequest(*iottwinmaker.CreateWorkspaceInput) (*request.Request, *iottwinmaker.CreateWorkspaceOutput)
@@ -91,6 +95,10 @@ type IoTTwinMakerAPI interface {
 	DeleteScene(*iottwinmaker.DeleteSceneInput) (*iottwinmaker.DeleteSceneOutput, error)
 	DeleteSceneWithContext(aws.Context, *iottwinmaker.DeleteSceneInput, ...request.Option) (*iottwinmaker.DeleteSceneOutput, error)
 	DeleteSceneRequest(*iottwinmaker.DeleteSceneInput) (*request.Request, *iottwinmaker.DeleteSceneOutput)
+
+	DeleteSyncJob(*iottwinmaker.DeleteSyncJobInput) (*iottwinmaker.DeleteSyncJobOutput, error)
+	DeleteSyncJobWithContext(aws.Context, *iottwinmaker.DeleteSyncJobInput, ...request.Option) (*iottwinmaker.DeleteSyncJobOutput, error)
+	DeleteSyncJobRequest(*iottwinmaker.DeleteSyncJobInput) (*request.Request, *iottwinmaker.DeleteSyncJobOutput)
 
 	DeleteWorkspace(*iottwinmaker.DeleteWorkspaceInput) (*iottwinmaker.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceWithContext(aws.Context, *iottwinmaker.DeleteWorkspaceInput, ...request.Option) (*iottwinmaker.DeleteWorkspaceOutput, error)
@@ -133,6 +141,10 @@ type IoTTwinMakerAPI interface {
 	GetSceneWithContext(aws.Context, *iottwinmaker.GetSceneInput, ...request.Option) (*iottwinmaker.GetSceneOutput, error)
 	GetSceneRequest(*iottwinmaker.GetSceneInput) (*request.Request, *iottwinmaker.GetSceneOutput)
 
+	GetSyncJob(*iottwinmaker.GetSyncJobInput) (*iottwinmaker.GetSyncJobOutput, error)
+	GetSyncJobWithContext(aws.Context, *iottwinmaker.GetSyncJobInput, ...request.Option) (*iottwinmaker.GetSyncJobOutput, error)
+	GetSyncJobRequest(*iottwinmaker.GetSyncJobInput) (*request.Request, *iottwinmaker.GetSyncJobOutput)
+
 	GetWorkspace(*iottwinmaker.GetWorkspaceInput) (*iottwinmaker.GetWorkspaceOutput, error)
 	GetWorkspaceWithContext(aws.Context, *iottwinmaker.GetWorkspaceInput, ...request.Option) (*iottwinmaker.GetWorkspaceOutput, error)
 	GetWorkspaceRequest(*iottwinmaker.GetWorkspaceInput) (*request.Request, *iottwinmaker.GetWorkspaceOutput)
@@ -157,6 +169,20 @@ type IoTTwinMakerAPI interface {
 
 	ListScenesPages(*iottwinmaker.ListScenesInput, func(*iottwinmaker.ListScenesOutput, bool) bool) error
 	ListScenesPagesWithContext(aws.Context, *iottwinmaker.ListScenesInput, func(*iottwinmaker.ListScenesOutput, bool) bool, ...request.Option) error
+
+	ListSyncJobs(*iottwinmaker.ListSyncJobsInput) (*iottwinmaker.ListSyncJobsOutput, error)
+	ListSyncJobsWithContext(aws.Context, *iottwinmaker.ListSyncJobsInput, ...request.Option) (*iottwinmaker.ListSyncJobsOutput, error)
+	ListSyncJobsRequest(*iottwinmaker.ListSyncJobsInput) (*request.Request, *iottwinmaker.ListSyncJobsOutput)
+
+	ListSyncJobsPages(*iottwinmaker.ListSyncJobsInput, func(*iottwinmaker.ListSyncJobsOutput, bool) bool) error
+	ListSyncJobsPagesWithContext(aws.Context, *iottwinmaker.ListSyncJobsInput, func(*iottwinmaker.ListSyncJobsOutput, bool) bool, ...request.Option) error
+
+	ListSyncResources(*iottwinmaker.ListSyncResourcesInput) (*iottwinmaker.ListSyncResourcesOutput, error)
+	ListSyncResourcesWithContext(aws.Context, *iottwinmaker.ListSyncResourcesInput, ...request.Option) (*iottwinmaker.ListSyncResourcesOutput, error)
+	ListSyncResourcesRequest(*iottwinmaker.ListSyncResourcesInput) (*request.Request, *iottwinmaker.ListSyncResourcesOutput)
+
+	ListSyncResourcesPages(*iottwinmaker.ListSyncResourcesInput, func(*iottwinmaker.ListSyncResourcesOutput, bool) bool) error
+	ListSyncResourcesPagesWithContext(aws.Context, *iottwinmaker.ListSyncResourcesInput, func(*iottwinmaker.ListSyncResourcesOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*iottwinmaker.ListTagsForResourceInput) (*iottwinmaker.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *iottwinmaker.ListTagsForResourceInput, ...request.Option) (*iottwinmaker.ListTagsForResourceOutput, error)
