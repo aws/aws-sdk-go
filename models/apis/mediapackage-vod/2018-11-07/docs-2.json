@@ -212,7 +212,7 @@
     "ScteMarkersSource" : {
       "base" : null,
       "refs" : {
-        "DashManifest$ScteMarkersSource" : "The source of scte markers used. When set to SEGMENTS, the scte markers are sourced from the segments of the ingested content. When set to MANIFEST, the scte markers are sourced from the manifest of the ingested content."
+        "DashManifest$ScteMarkersSource" : "The source of scte markers used. When set to SEGMENTS, the scte markers are sourced from the segments of the ingested content. When set to MANIFEST, the scte markers are sourced from the manifest of the ingested content. The MANIFEST value is compatible with source HLS playlists using the SCTE-35 Enhanced syntax (#EXT-OATCLS-SCTE35 tags). SCTE-35 Elemental and SCTE-35 Daterange syntaxes are not supported with this option."
       }
     },
     "SegmentTemplateFormat" : {
@@ -287,6 +287,7 @@
         "HlsManifest$ProgramDateTimeIntervalSeconds" : "The interval (in seconds) between each EXT-X-PROGRAM-DATE-TIME tag\ninserted into manifests. Additionally, when an interval is specified\nID3Timed Metadata messages will be generated every 5 seconds using the\ningest time of the content.\nIf the interval is not specified, or set to 0, then\nno EXT-X-PROGRAM-DATE-TIME tags will be inserted into manifests and no\nID3Timed Metadata messages will be generated. Note that irrespective\nof this parameter, if any ID3 Timed Metadata is found in HTTP Live Streaming (HLS) input,\nit will be passed through to HLS output.\n",
         "HlsPackage$SegmentDurationSeconds" : "Duration (in seconds) of each fragment. Actual fragments will be\nrounded to the nearest multiple of the source fragment duration.\n",
         "MssPackage$SegmentDurationSeconds" : "The duration (in seconds) of each segment.",
+        "PackagingGroup$ApproximateAssetCount" : "The approximate asset count of the PackagingGroup.",
         "StreamSelection$MaxVideoBitsPerSecond" : "The maximum video bitrate (bps) to include in output.",
         "StreamSelection$MinVideoBitsPerSecond" : "The minimum video bitrate (bps) to include in output."
       }

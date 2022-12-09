@@ -1,3 +1,14 @@
+Release v1.44.157 (2022-12-09)
+===
+
+### Service Client Updates
+* `service/iotfleetwise`: Updates service API and documentation
+* `service/logs`: Updates service documentation
+  * Doc-only update for CloudWatch Logs, for Tagging Permissions clarifications
+* `service/medialive`: Updates service API and documentation
+  * Link devices now support buffer size (latency) configuration. A higher latency value means a longer delay in transmitting from the device to MediaLive, but improved resiliency. A lower latency value means a shorter delay, but less resiliency.
+* `service/mediapackage-vod`: Updates service API and documentation
+
 Release v1.44.156 (2022-12-08)
 ===
 
