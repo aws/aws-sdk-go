@@ -5676,7 +5676,9 @@ type Actuator struct {
 	AllowedValues []*string `locationName:"allowedValues" type:"list"`
 
 	// A specified value for the actuator.
-	AssignedValue *string `locationName:"assignedValue" type:"string"`
+	//
+	// Deprecated: assignedValue is no longer in use
+	AssignedValue *string `locationName:"assignedValue" deprecated:"true" type:"string"`
 
 	// The specified data type of the actuator.
 	//
@@ -5884,7 +5886,9 @@ type Attribute struct {
 	AllowedValues []*string `locationName:"allowedValues" type:"list"`
 
 	// A specified value for the attribute.
-	AssignedValue *string `locationName:"assignedValue" type:"string"`
+	//
+	// Deprecated: assignedValue is no longer in use
+	AssignedValue *string `locationName:"assignedValue" deprecated:"true" type:"string"`
 
 	// The specified data type of the attribute.
 	//

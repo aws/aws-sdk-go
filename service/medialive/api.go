@@ -19055,6 +19055,9 @@ type InputDeviceConfigurableSettings struct {
 	// ports, and you want to use a specific source, specify the source.
 	ConfiguredInput *string `locationName:"configuredInput" type:"string" enum:"InputDeviceConfiguredInput"`
 
+	// The Link device's buffer size (latency) in milliseconds (ms).
+	LatencyMs *int64 `locationName:"latencyMs" type:"integer"`
+
 	// The maximum bitrate in bits per second. Set a value here to throttle the
 	// bitrate of the source video.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
@@ -19081,6 +19084,12 @@ func (s InputDeviceConfigurableSettings) GoString() string {
 // SetConfiguredInput sets the ConfiguredInput field's value.
 func (s *InputDeviceConfigurableSettings) SetConfiguredInput(v string) *InputDeviceConfigurableSettings {
 	s.ConfiguredInput = &v
+	return s
+}
+
+// SetLatencyMs sets the LatencyMs field's value.
+func (s *InputDeviceConfigurableSettings) SetLatencyMs(v int64) *InputDeviceConfigurableSettings {
+	s.LatencyMs = &v
 	return s
 }
 
@@ -19111,6 +19120,10 @@ type InputDeviceHdSettings struct {
 
 	// The height of the video source, in pixels.
 	Height *int64 `locationName:"height" type:"integer"`
+
+	// The Link device's buffer size (latency) in milliseconds (ms). You can specify
+	// this value.
+	LatencyMs *int64 `locationName:"latencyMs" type:"integer"`
 
 	// The current maximum bitrate for ingesting this source, in bits per second.
 	// You can specify this maximum.
@@ -19168,6 +19181,12 @@ func (s *InputDeviceHdSettings) SetFramerate(v float64) *InputDeviceHdSettings {
 // SetHeight sets the Height field's value.
 func (s *InputDeviceHdSettings) SetHeight(v int64) *InputDeviceHdSettings {
 	s.Height = &v
+	return s
+}
+
+// SetLatencyMs sets the LatencyMs field's value.
+func (s *InputDeviceHdSettings) SetLatencyMs(v int64) *InputDeviceHdSettings {
+	s.LatencyMs = &v
 	return s
 }
 
@@ -19479,6 +19498,10 @@ type InputDeviceUhdSettings struct {
 	// The height of the video source, in pixels.
 	Height *int64 `locationName:"height" type:"integer"`
 
+	// The Link device's buffer size (latency) in milliseconds (ms). You can specify
+	// this value.
+	LatencyMs *int64 `locationName:"latencyMs" type:"integer"`
+
 	// The current maximum bitrate for ingesting this source, in bits per second.
 	// You can specify this maximum.
 	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
@@ -19535,6 +19558,12 @@ func (s *InputDeviceUhdSettings) SetFramerate(v float64) *InputDeviceUhdSettings
 // SetHeight sets the Height field's value.
 func (s *InputDeviceUhdSettings) SetHeight(v int64) *InputDeviceUhdSettings {
 	s.Height = &v
+	return s
+}
+
+// SetLatencyMs sets the LatencyMs field's value.
+func (s *InputDeviceUhdSettings) SetLatencyMs(v int64) *InputDeviceUhdSettings {
+	s.LatencyMs = &v
 	return s
 }
 
@@ -29954,9 +29983,11 @@ type UnprocessableEntityException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"message" type:"string"`
+	ElementPath *string `locationName:"elementPath" type:"string"`
 
-	ValidationErrors []*ValidationError `locationName:"validationErrors" type:"list"`
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation.
@@ -31037,46 +31068,6 @@ func (s UpdateReservationOutput) GoString() string {
 // SetReservation sets the Reservation field's value.
 func (s *UpdateReservationOutput) SetReservation(v *Reservation) *UpdateReservationOutput {
 	s.Reservation = v
-	return s
-}
-
-type ValidationError struct {
-	_ struct{} `type:"structure"`
-
-	// Path to the source of the error.
-	ElementPath *string `locationName:"elementPath" type:"string"`
-
-	// The error message.
-	ErrorMessage *string `locationName:"errorMessage" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ValidationError) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s ValidationError) GoString() string {
-	return s.String()
-}
-
-// SetElementPath sets the ElementPath field's value.
-func (s *ValidationError) SetElementPath(v string) *ValidationError {
-	s.ElementPath = &v
-	return s
-}
-
-// SetErrorMessage sets the ErrorMessage field's value.
-func (s *ValidationError) SetErrorMessage(v string) *ValidationError {
-	s.ErrorMessage = &v
 	return s
 }
 
@@ -34950,12 +34941,16 @@ func InputDeviceTransferType_Values() []string {
 const (
 	// InputDeviceTypeHd is a InputDeviceType enum value
 	InputDeviceTypeHd = "HD"
+
+	// InputDeviceTypeUhd is a InputDeviceType enum value
+	InputDeviceTypeUhd = "UHD"
 )
 
 // InputDeviceType_Values returns all elements of the InputDeviceType enum
 func InputDeviceType_Values() []string {
 	return []string{
 		InputDeviceTypeHd,
+		InputDeviceTypeUhd,
 	}
 }
 

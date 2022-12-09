@@ -1225,6 +1225,10 @@
     },
     "DescribePackagingGroupResponse": {
       "members": {
+        "ApproximateAssetCount": {
+          "locationName": "approximateAssetCount",
+          "shape": "__integer"
+        },
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
@@ -1680,6 +1684,10 @@
     },
     "PackagingGroup": {
       "members": {
+        "ApproximateAssetCount": {
+          "locationName": "approximateAssetCount",
+          "shape": "__integer"
+        },
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
@@ -1967,6 +1975,10 @@
     },
     "UpdatePackagingGroupResponse": {
       "members": {
+        "ApproximateAssetCount": {
+          "locationName": "approximateAssetCount",
+          "shape": "__integer"
+        },
         "Arn": {
           "locationName": "arn",
           "shape": "__string"

@@ -1,99 +1,107 @@
 {
     "testCases": [
         {
-            "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "error": "FIPS and DualStack are enabled, but this partition does not support one or both"
-            },
-            "params": {
-                "UseFIPS": true,
-                "UseDualStack": true,
-                "Region": "us-iso-east-1"
-            }
-        },
-        {
-            "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
+            "documentation": "For region eu-central-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://medialive-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://iotfleetwise-fips.eu-central-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
-                "UseDualStack": false,
-                "Region": "us-iso-east-1"
-            }
-        },
-        {
-            "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "error": "DualStack is enabled but this partition does not support DualStack"
-            },
-            "params": {
-                "UseFIPS": false,
                 "UseDualStack": true,
-                "Region": "us-iso-east-1"
+                "UseFIPS": true,
+                "Region": "eu-central-1"
             }
         },
         {
-            "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region eu-central-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://medialive.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://iotfleetwise-fips.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "UseDualStack": false,
-                "Region": "us-iso-east-1"
-            }
-        },
-        {
-            "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "error": "FIPS and DualStack are enabled, but this partition does not support one or both"
-            },
-            "params": {
                 "UseFIPS": true,
-                "UseDualStack": true,
-                "Region": "us-isob-east-1"
+                "Region": "eu-central-1"
             }
         },
         {
-            "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
+            "documentation": "For region eu-central-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://medialive-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://iotfleetwise.eu-central-1.api.aws"
                 }
             },
             "params": {
-                "UseFIPS": true,
-                "UseDualStack": false,
-                "Region": "us-isob-east-1"
-            }
-        },
-        {
-            "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack enabled",
-            "expect": {
-                "error": "DualStack is enabled but this partition does not support DualStack"
-            },
-            "params": {
-                "UseFIPS": false,
                 "UseDualStack": true,
-                "Region": "us-isob-east-1"
+                "UseFIPS": false,
+                "Region": "eu-central-1"
             }
         },
         {
-            "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region eu-central-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://medialive.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://iotfleetwise.eu-central-1.amazonaws.com"
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "UseDualStack": false,
-                "Region": "us-isob-east-1"
+                "UseFIPS": false,
+                "Region": "eu-central-1"
+            }
+        },
+        {
+            "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://iotfleetwise-fips.us-east-1.api.aws"
+                }
+            },
+            "params": {
+                "UseDualStack": true,
+                "UseFIPS": true,
+                "Region": "us-east-1"
+            }
+        },
+        {
+            "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://iotfleetwise-fips.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseDualStack": false,
+                "UseFIPS": true,
+                "Region": "us-east-1"
+            }
+        },
+        {
+            "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://iotfleetwise.us-east-1.api.aws"
+                }
+            },
+            "params": {
+                "UseDualStack": true,
+                "UseFIPS": false,
+                "Region": "us-east-1"
+            }
+        },
+        {
+            "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://iotfleetwise.us-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "UseDualStack": false,
+                "UseFIPS": false,
+                "Region": "us-east-1"
             }
         },
         {
@@ -104,8 +112,8 @@
                 }
             },
             "params": {
-                "UseFIPS": false,
                 "UseDualStack": false,
+                "UseFIPS": false,
                 "Region": "us-east-1",
                 "Endpoint": "https://example.com"
             }
@@ -116,8 +124,8 @@
                 "error": "Invalid Configuration: FIPS and custom endpoint are not supported"
             },
             "params": {
-                "UseFIPS": true,
                 "UseDualStack": false,
+                "UseFIPS": true,
                 "Region": "us-east-1",
                 "Endpoint": "https://example.com"
             }
@@ -128,8 +136,8 @@
                 "error": "Invalid Configuration: Dualstack and custom endpoint are not supported"
             },
             "params": {
-                "UseFIPS": false,
                 "UseDualStack": true,
+                "UseFIPS": false,
                 "Region": "us-east-1",
                 "Endpoint": "https://example.com"
             }

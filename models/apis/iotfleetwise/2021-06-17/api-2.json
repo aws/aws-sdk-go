@@ -881,7 +881,11 @@
         "allowedValues":{"shape":"listOfStrings"},
         "min":{"shape":"double"},
         "max":{"shape":"double"},
-        "assignedValue":{"shape":"string"}
+        "assignedValue":{
+          "shape":"string",
+          "deprecated":true,
+          "deprecatedMessage":"assignedValue is no longer in use"
+        }
       }
     },
     "AmazonResourceName":{
@@ -919,7 +923,11 @@
         "allowedValues":{"shape":"listOfStrings"},
         "min":{"shape":"double"},
         "max":{"shape":"double"},
-        "assignedValue":{"shape":"string"},
+        "assignedValue":{
+          "shape":"string",
+          "deprecated":true,
+          "deprecatedMessage":"assignedValue is no longer in use"
+        },
         "defaultValue":{"shape":"string"}
       }
     },
@@ -1303,7 +1311,8 @@
       "type":"structure",
       "members":{
         "invalidSignals":{"shape":"InvalidSignalDecoders"},
-        "invalidNetworkInterfaces":{"shape":"InvalidNetworkInterfaces"}
+        "invalidNetworkInterfaces":{"shape":"InvalidNetworkInterfaces"},
+        "message":{"shape":"string"}
       },
       "exception":true
     },
@@ -1769,7 +1778,8 @@
       "type":"structure",
       "members":{
         "invalidNodes":{"shape":"Nodes"},
-        "reason":{"shape":"string"}
+        "reason":{"shape":"string"},
+        "message":{"shape":"string"}
       },
       "exception":true
     },

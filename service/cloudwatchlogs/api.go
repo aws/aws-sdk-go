@@ -5390,10 +5390,14 @@ type CreateLogGroupInput struct {
 
 	// The key-value pairs to use for the tags.
 	//
-	// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning
-	// specified tags to log groups using the aws:Resource/key-name or aws:TagKeys
-	// condition keys. For more information about using tags to control access,
-	// see Controlling access to Amazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).
+	// You can grant users access to certain log groups while preventing them from
+	// accessing other log groups. To do so, tag your groups and use IAM policies
+	// that refer to those tags. To assign tags when you create a log group, you
+	// must have either the logs:TagResource or logs:TagLogGroup permission. For
+	// more information about tagging, see Tagging Amazon Web Services resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html). For more
+	// information about using tags to control access, see Controlling access to
+	// Amazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 

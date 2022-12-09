@@ -7924,6 +7924,10 @@
         "MaxBitrate": {
           "shape": "__integer",
           "locationName": "maxBitrate"
+        },
+        "LatencyMs": {
+          "shape": "__integer",
+          "locationName": "latencyMs"
         }
       }
     },
@@ -7989,6 +7993,10 @@
         "Width": {
           "shape": "__integer",
           "locationName": "width"
+        },
+        "LatencyMs": {
+          "shape": "__integer",
+          "locationName": "latencyMs"
         }
       }
     },
@@ -8119,7 +8127,8 @@
     "InputDeviceType": {
       "type": "string",
       "enum": [
-        "HD"
+        "HD",
+        "UHD"
       ]
     },
     "InputDeviceUhdSettings": {
@@ -8156,6 +8165,10 @@
         "Width": {
           "shape": "__integer",
           "locationName": "width"
+        },
+        "LatencyMs": {
+          "shape": "__integer",
+          "locationName": "latencyMs"
         }
       }
     },
@@ -12489,13 +12502,13 @@
     "UnprocessableEntityException": {
       "type": "structure",
       "members": {
-        "Message": {
+        "ElementPath": {
           "shape": "__string",
-          "locationName": "message"
+          "locationName": "elementPath"
         },
-        "ValidationErrors": {
-          "shape": "__listOfValidationError",
-          "locationName": "validationErrors"
+        "ErrorMessage": {
+          "shape": "__string",
+          "locationName": "errorMessage"
         }
       },
       "exception": true,

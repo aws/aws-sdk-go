@@ -2706,7 +2706,10 @@ type DashManifest struct {
 
 	// The source of scte markers used. When set to SEGMENTS, the scte markers are
 	// sourced from the segments of the ingested content. When set to MANIFEST,
-	// the scte markers are sourced from the manifest of the ingested content.
+	// the scte markers are sourced from the manifest of the ingested content. The
+	// MANIFEST value is compatible with source HLS playlists using the SCTE-35
+	// Enhanced syntax (#EXT-OATCLS-SCTE35 tags). SCTE-35 Elemental and SCTE-35
+	// Daterange syntaxes are not supported with this option.
 	ScteMarkersSource *string `locationName:"scteMarkersSource" type:"string" enum:"ScteMarkersSource"`
 
 	// A StreamSelection configuration.
@@ -3424,6 +3427,8 @@ func (s *DescribePackagingGroupInput) SetId(v string) *DescribePackagingGroupInp
 type DescribePackagingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	ApproximateAssetCount *int64 `locationName:"approximateAssetCount" type:"integer"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	// CDN Authorization credentials
@@ -3456,6 +3461,12 @@ func (s DescribePackagingGroupOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribePackagingGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetApproximateAssetCount sets the ApproximateAssetCount field's value.
+func (s *DescribePackagingGroupOutput) SetApproximateAssetCount(v int64) *DescribePackagingGroupOutput {
+	s.ApproximateAssetCount = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -4708,6 +4719,9 @@ func (s *PackagingConfiguration) SetTags(v map[string]*string) *PackagingConfigu
 type PackagingGroup struct {
 	_ struct{} `type:"structure"`
 
+	// The approximate asset count of the PackagingGroup.
+	ApproximateAssetCount *int64 `locationName:"approximateAssetCount" type:"integer"`
+
 	// The ARN of the PackagingGroup.
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -4743,6 +4757,12 @@ func (s PackagingGroup) String() string {
 // value will be replaced with "sensitive".
 func (s PackagingGroup) GoString() string {
 	return s.String()
+}
+
+// SetApproximateAssetCount sets the ApproximateAssetCount field's value.
+func (s *PackagingGroup) SetApproximateAssetCount(v int64) *PackagingGroup {
+	s.ApproximateAssetCount = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -5344,6 +5364,8 @@ func (s *UpdatePackagingGroupInput) SetId(v string) *UpdatePackagingGroupInput {
 type UpdatePackagingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	ApproximateAssetCount *int64 `locationName:"approximateAssetCount" type:"integer"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	// CDN Authorization credentials
@@ -5376,6 +5398,12 @@ func (s UpdatePackagingGroupOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdatePackagingGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetApproximateAssetCount sets the ApproximateAssetCount field's value.
+func (s *UpdatePackagingGroupOutput) SetApproximateAssetCount(v int64) *UpdatePackagingGroupOutput {
+	s.ApproximateAssetCount = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
