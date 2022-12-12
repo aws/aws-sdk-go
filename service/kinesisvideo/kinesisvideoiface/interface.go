@@ -76,6 +76,10 @@ type KinesisVideoAPI interface {
 	DeleteStreamWithContext(aws.Context, *kinesisvideo.DeleteStreamInput, ...request.Option) (*kinesisvideo.DeleteStreamOutput, error)
 	DeleteStreamRequest(*kinesisvideo.DeleteStreamInput) (*request.Request, *kinesisvideo.DeleteStreamOutput)
 
+	DescribeEdgeConfiguration(*kinesisvideo.DescribeEdgeConfigurationInput) (*kinesisvideo.DescribeEdgeConfigurationOutput, error)
+	DescribeEdgeConfigurationWithContext(aws.Context, *kinesisvideo.DescribeEdgeConfigurationInput, ...request.Option) (*kinesisvideo.DescribeEdgeConfigurationOutput, error)
+	DescribeEdgeConfigurationRequest(*kinesisvideo.DescribeEdgeConfigurationInput) (*request.Request, *kinesisvideo.DescribeEdgeConfigurationOutput)
+
 	DescribeImageGenerationConfiguration(*kinesisvideo.DescribeImageGenerationConfigurationInput) (*kinesisvideo.DescribeImageGenerationConfigurationOutput, error)
 	DescribeImageGenerationConfigurationWithContext(aws.Context, *kinesisvideo.DescribeImageGenerationConfigurationInput, ...request.Option) (*kinesisvideo.DescribeImageGenerationConfigurationOutput, error)
 	DescribeImageGenerationConfigurationRequest(*kinesisvideo.DescribeImageGenerationConfigurationInput) (*request.Request, *kinesisvideo.DescribeImageGenerationConfigurationOutput)
@@ -121,6 +125,10 @@ type KinesisVideoAPI interface {
 	ListTagsForStream(*kinesisvideo.ListTagsForStreamInput) (*kinesisvideo.ListTagsForStreamOutput, error)
 	ListTagsForStreamWithContext(aws.Context, *kinesisvideo.ListTagsForStreamInput, ...request.Option) (*kinesisvideo.ListTagsForStreamOutput, error)
 	ListTagsForStreamRequest(*kinesisvideo.ListTagsForStreamInput) (*request.Request, *kinesisvideo.ListTagsForStreamOutput)
+
+	StartEdgeConfigurationUpdate(*kinesisvideo.StartEdgeConfigurationUpdateInput) (*kinesisvideo.StartEdgeConfigurationUpdateOutput, error)
+	StartEdgeConfigurationUpdateWithContext(aws.Context, *kinesisvideo.StartEdgeConfigurationUpdateInput, ...request.Option) (*kinesisvideo.StartEdgeConfigurationUpdateOutput, error)
+	StartEdgeConfigurationUpdateRequest(*kinesisvideo.StartEdgeConfigurationUpdateInput) (*request.Request, *kinesisvideo.StartEdgeConfigurationUpdateOutput)
 
 	TagResource(*kinesisvideo.TagResourceInput) (*kinesisvideo.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *kinesisvideo.TagResourceInput, ...request.Option) (*kinesisvideo.TagResourceOutput, error)

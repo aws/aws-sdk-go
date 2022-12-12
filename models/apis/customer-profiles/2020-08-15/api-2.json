@@ -929,7 +929,9 @@
         "ShippingAddress":{"shape":"Address"},
         "MailingAddress":{"shape":"Address"},
         "BillingAddress":{"shape":"Address"},
-        "Attributes":{"shape":"Attributes"}
+        "Attributes":{"shape":"Attributes"},
+        "PartyTypeString":{"shape":"string1To255"},
+        "GenderString":{"shape":"string1To255"}
       }
     },
     "CreateProfileResponse":{
@@ -2775,7 +2777,9 @@
         "ShippingAddress":{"shape":"UpdateAddress"},
         "MailingAddress":{"shape":"UpdateAddress"},
         "BillingAddress":{"shape":"UpdateAddress"},
-        "Attributes":{"shape":"UpdateAttributes"}
+        "Attributes":{"shape":"UpdateAttributes"},
+        "PartyTypeString":{"shape":"string0To255"},
+        "GenderString":{"shape":"string0To255"}
       }
     },
     "UpdateProfileResponse":{

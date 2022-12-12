@@ -18088,8 +18088,14 @@ func (s *CopyDBParameterGroupOutput) SetDBParameterGroup(v *DBParameterGroup) *C
 type CopyDBSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
+	// A value that indicates whether to copy the DB option group associated with
+	// the source DB snapshot to the target Amazon Web Services account and associate
+	// with the target DB snapshot. The associated option group can be copied only
+	// with cross-account snapshot copy calls.
+	CopyOptionGroup *bool `type:"boolean"`
+
 	// A value that indicates whether to copy all tags from the source DB snapshot
-	// to the target DB snapshot. By default, tags are not copied.
+	// to the target DB snapshot. By default, tags aren't copied.
 	CopyTags *bool `type:"boolean"`
 
 	// DestinationRegion is used for presigning the request to a given region.
@@ -18272,6 +18278,12 @@ func (s *CopyDBSnapshotInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCopyOptionGroup sets the CopyOptionGroup field's value.
+func (s *CopyDBSnapshotInput) SetCopyOptionGroup(v bool) *CopyDBSnapshotInput {
+	s.CopyOptionGroup = &v
+	return s
 }
 
 // SetCopyTags sets the CopyTags field's value.
@@ -42952,13 +42964,16 @@ type OptionGroup struct {
 	// VPC and non-VPC instances.
 	AllowsVpcAndNonVpcInstanceMemberships *bool `type:"boolean"`
 
+	// Indicates when the option group was copied.
+	CopyTimestamp *time.Time `type:"timestamp"`
+
 	// Indicates the name of the engine that this option group can be applied to.
 	EngineName *string `type:"string"`
 
 	// Indicates the major engine version associated with this option group.
 	MajorEngineVersion *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) for the option group.
+	// Specifies the Amazon Resource Name (ARN) for the option group.
 	OptionGroupArn *string `type:"string"`
 
 	// Provides a description of the option group.
@@ -42969,6 +42984,13 @@ type OptionGroup struct {
 
 	// Indicates what options are available in the option group.
 	Options []*Option `locationNameList:"Option" type:"list"`
+
+	// Specifies the Amazon Web Services account ID for the option group from which
+	// this option group is copied.
+	SourceAccountId *string `type:"string"`
+
+	// Specifies the name of the option group from which this option group is copied.
+	SourceOptionGroup *string `type:"string"`
 
 	// If AllowsVpcAndNonVpcInstanceMemberships is false, this field is blank. If
 	// AllowsVpcAndNonVpcInstanceMemberships is true and this field is blank, then
@@ -42999,6 +43021,12 @@ func (s OptionGroup) GoString() string {
 // SetAllowsVpcAndNonVpcInstanceMemberships sets the AllowsVpcAndNonVpcInstanceMemberships field's value.
 func (s *OptionGroup) SetAllowsVpcAndNonVpcInstanceMemberships(v bool) *OptionGroup {
 	s.AllowsVpcAndNonVpcInstanceMemberships = &v
+	return s
+}
+
+// SetCopyTimestamp sets the CopyTimestamp field's value.
+func (s *OptionGroup) SetCopyTimestamp(v time.Time) *OptionGroup {
+	s.CopyTimestamp = &v
 	return s
 }
 
@@ -43035,6 +43063,18 @@ func (s *OptionGroup) SetOptionGroupName(v string) *OptionGroup {
 // SetOptions sets the Options field's value.
 func (s *OptionGroup) SetOptions(v []*Option) *OptionGroup {
 	s.Options = v
+	return s
+}
+
+// SetSourceAccountId sets the SourceAccountId field's value.
+func (s *OptionGroup) SetSourceAccountId(v string) *OptionGroup {
+	s.SourceAccountId = &v
+	return s
+}
+
+// SetSourceOptionGroup sets the SourceOptionGroup field's value.
+func (s *OptionGroup) SetSourceOptionGroup(v string) *OptionGroup {
+	s.SourceOptionGroup = &v
 	return s
 }
 
@@ -43090,6 +43130,9 @@ func (s *OptionGroupMembership) SetStatus(v string) *OptionGroupMembership {
 // Available option.
 type OptionGroupOption struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies whether the option can be copied across Amazon Web Services accounts.
+	CopyableCrossAccount *bool `type:"boolean"`
 
 	// If the option requires a port, specifies the default port for the option.
 	DefaultPort *int64 `type:"integer"`
@@ -43165,6 +43208,12 @@ func (s OptionGroupOption) String() string {
 // value will be replaced with "sensitive".
 func (s OptionGroupOption) GoString() string {
 	return s.String()
+}
+
+// SetCopyableCrossAccount sets the CopyableCrossAccount field's value.
+func (s *OptionGroupOption) SetCopyableCrossAccount(v bool) *OptionGroupOption {
+	s.CopyableCrossAccount = &v
+	return s
 }
 
 // SetDefaultPort sets the DefaultPort field's value.

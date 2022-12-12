@@ -303,6 +303,12 @@ func (c *MigrationHubRefactorSpaces) CreateRouteRequest(input *CreateRouteInput)
 // For public URLs, a connection is opened to the public endpoint. If the URL
 // is not reachable, the health check fails.
 //
+// Refactor Spaces automatically resolves the public Domain Name System (DNS)
+// names that are set in CreateServiceRequest$UrlEndpoint when you create a
+// service. The DNS names resolve when the DNS time-to-live (TTL) expires, or
+// every 60 seconds for TTLs less than 60 seconds. This periodic DNS resolution
+// ensures that the route configuration remains up-to-date.
+//
 // For private URLS, a target group is created on the Elastic Load Balancing
 // and the target group health check is run. The HealthCheckProtocol, HealthCheckPort,
 // and HealthCheckPath are the same protocol, port, and path specified in the
@@ -3986,7 +3992,10 @@ type CreateServiceInput struct {
 	// String and GoString methods.
 	Tags map[string]*string `type:"map" sensitive:"true"`
 
-	// The configuration for the URL endpoint type.
+	// The configuration for the URL endpoint type. When creating a route to a service,
+	// Refactor Spaces automatically resolves the address in the UrlEndpointInput
+	// object URL when the Domain Name System (DNS) time-to-live (TTL) expires,
+	// or every 60 seconds for TTLs less than 60 seconds.
 	UrlEndpoint *UrlEndpointInput_ `type:"structure"`
 
 	// The ID of the VPC.
@@ -6476,7 +6485,7 @@ func (s *LambdaEndpointConfig) SetArn(v string) *LambdaEndpointConfig {
 type LambdaEndpointInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Lambda endpoint.
+	// The Amazon Resource Name (ARN) of the Lambda function or alias.
 	//
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`

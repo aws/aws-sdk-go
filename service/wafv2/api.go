@@ -4380,9 +4380,14 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 //
 // Create your logging destination. You can use an Amazon CloudWatch Logs log
 // group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
-// Kinesis Data Firehose. For information about configuring logging destinations
-// and the permissions that are required for each, see Logging web ACL traffic
-// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// Kinesis Data Firehose.
+//
+// The name that you give the destination must start with aws-waf-logs-. Depending
+// on the type of destination, you might need to configure additional settings
+// or permissions.
+//
+// For configuration requirements and pricing information for each destination
+// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 // in the WAF Developer Guide.
 //
 // Associate your logging destination to your web ACL using a PutLoggingConfiguration
@@ -7854,6 +7859,9 @@ type CreateWebACLInput struct {
 	// token domain list, including their prefixed subdomains.
 	//
 	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
+	//
+	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// as token domains.
 	TokenDomains []*string `min:"1" type:"list"`
 
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
@@ -14417,9 +14425,14 @@ func (s *ListWebACLsOutput) SetWebACLs(v []*WebACLSummary) *ListWebACLsOutput {
 //
 // Create your logging destination. You can use an Amazon CloudWatch Logs log
 // group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
-// Kinesis Data Firehose. For information about configuring logging destinations
-// and the permissions that are required for each, see Logging web ACL traffic
-// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// Kinesis Data Firehose.
+//
+// The name that you give the destination must start with aws-waf-logs-. Depending
+// on the type of destination, you might need to configure additional settings
+// or permissions.
+//
+// For configuration requirements and pricing information for each destination
+// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 // in the WAF Developer Guide.
 //
 // Associate your logging destination to your web ACL using a PutLoggingConfiguration
@@ -15747,9 +15760,14 @@ type PutLoggingConfigurationInput struct {
 	//
 	// Create your logging destination. You can use an Amazon CloudWatch Logs log
 	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
-	// Kinesis Data Firehose. For information about configuring logging destinations
-	// and the permissions that are required for each, see Logging web ACL traffic
-	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// Kinesis Data Firehose.
+	//
+	// The name that you give the destination must start with aws-waf-logs-. Depending
+	// on the type of destination, you might need to configure additional settings
+	// or permissions.
+	//
+	// For configuration requirements and pricing information for each destination
+	// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 	// in the WAF Developer Guide.
 	//
 	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
@@ -15827,9 +15845,14 @@ type PutLoggingConfigurationOutput struct {
 	//
 	// Create your logging destination. You can use an Amazon CloudWatch Logs log
 	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
-	// Kinesis Data Firehose. For information about configuring logging destinations
-	// and the permissions that are required for each, see Logging web ACL traffic
-	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// Kinesis Data Firehose.
+	//
+	// The name that you give the destination must start with aws-waf-logs-. Depending
+	// on the type of destination, you might need to configure additional settings
+	// or permissions.
+	//
+	// For configuration requirements and pricing information for each destination
+	// type, see Logging web ACL traffic (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 	// in the WAF Developer Guide.
 	//
 	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
@@ -20037,6 +20060,9 @@ type UpdateWebACLInput struct {
 	// token domain list, including their prefixed subdomains.
 	//
 	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
+	//
+	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// as token domains.
 	TokenDomains []*string `min:"1" type:"list"`
 
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
