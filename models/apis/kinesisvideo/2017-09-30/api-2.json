@@ -80,6 +80,22 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "DescribeEdgeConfiguration":{
+      "name":"DescribeEdgeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeEdgeConfiguration"
+      },
+      "input":{"shape":"DescribeEdgeConfigurationInput"},
+      "output":{"shape":"DescribeEdgeConfigurationOutput"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"StreamEdgeConfigurationNotFoundException"}
+      ]
+    },
     "DescribeImageGenerationConfiguration":{
       "name":"DescribeImageGenerationConfiguration",
       "http":{
@@ -227,6 +243,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"InvalidResourceFormatException"}
+      ]
+    },
+    "StartEdgeConfigurationUpdate":{
+      "name":"StartEdgeConfigurationUpdate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/startEdgeConfigurationUpdate"
+      },
+      "input":{"shape":"StartEdgeConfigurationUpdateInput"},
+      "output":{"shape":"StartEdgeConfigurationUpdateOutput"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"NoDataRetentionException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "TagResource":{
@@ -529,6 +562,7 @@
       "type":"integer",
       "min":0
     },
+    "DeleteAfterUpload":{"type":"boolean"},
     "DeleteSignalingChannelInput":{
       "type":"structure",
       "required":["ChannelARN"],
@@ -553,6 +587,33 @@
     "DeleteStreamOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeletionConfig":{
+      "type":"structure",
+      "members":{
+        "EdgeRetentionInHours":{"shape":"EdgeRetentionInHours"},
+        "LocalSizeConfig":{"shape":"LocalSizeConfig"},
+        "DeleteAfterUpload":{"shape":"DeleteAfterUpload"}
+      }
+    },
+    "DescribeEdgeConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DescribeEdgeConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SyncStatus":{"shape":"SyncStatus"},
+        "FailedStatusDetails":{"shape":"FailedStatusDetails"},
+        "EdgeConfig":{"shape":"EdgeConfig"}
       }
     },
     "DescribeImageGenerationConfigurationInput":{
@@ -633,7 +694,31 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "DurationInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":60
+    },
+    "EdgeConfig":{
+      "type":"structure",
+      "required":[
+        "HubDeviceArn",
+        "RecorderConfig"
+      ],
+      "members":{
+        "HubDeviceArn":{"shape":"HubDeviceArn"},
+        "RecorderConfig":{"shape":"RecorderConfig"},
+        "UploaderConfig":{"shape":"UploaderConfig"},
+        "DeletionConfig":{"shape":"DeletionConfig"}
+      }
+    },
+    "EdgeRetentionInHours":{
+      "type":"integer",
+      "max":720,
+      "min":1
+    },
     "ErrorMessage":{"type":"string"},
+    "FailedStatusDetails":{"type":"string"},
     "Format":{
       "type":"string",
       "enum":[
@@ -691,6 +776,12 @@
       "type":"integer",
       "max":2160,
       "min":1
+    },
+    "HubDeviceArn":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"arn:[a-z\\d-]+:iot:[a-z0-9-]+:[0-9]+:thing/[a-zA-Z0-9_.-]+"
     },
     "ImageGenerationConfiguration":{
       "type":"structure",
@@ -831,11 +922,48 @@
         "Tags":{"shape":"ResourceTags"}
       }
     },
+    "LocalSizeConfig":{
+      "type":"structure",
+      "members":{
+        "MaxLocalMediaSizeInMB":{"shape":"MaxLocalMediaSizeInMB"},
+        "StrategyOnFullSize":{"shape":"StrategyOnFullSize"}
+      }
+    },
+    "MaxLocalMediaSizeInMB":{
+      "type":"integer",
+      "max":2000000,
+      "min":64
+    },
+    "MediaSourceConfig":{
+      "type":"structure",
+      "required":[
+        "MediaUriSecretArn",
+        "MediaUriType"
+      ],
+      "members":{
+        "MediaUriSecretArn":{"shape":"MediaUriSecretArn"},
+        "MediaUriType":{"shape":"MediaUriType"}
+      }
+    },
     "MediaType":{
       "type":"string",
       "max":128,
       "min":1,
       "pattern":"[\\w\\-\\.\\+]+/[\\w\\-\\.\\+]+(,[\\w\\-\\.\\+]+/[\\w\\-\\.\\+]+)*"
+    },
+    "MediaUriSecretArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:[a-z\\d-]+:secretsmanager:[a-z0-9-]+:[0-9]+:secret:[a-zA-Z0-9_.-]+",
+      "sensitive":true
+    },
+    "MediaUriType":{
+      "type":"string",
+      "enum":[
+        "RTSP_URI",
+        "FILE_URI"
+      ]
     },
     "MessageTtlSeconds":{
       "type":"integer",
@@ -880,6 +1008,14 @@
       "required":["Uri"],
       "members":{
         "Uri":{"shape":"DestinationUri"}
+      }
+    },
+    "RecorderConfig":{
+      "type":"structure",
+      "required":["MediaSourceConfig"],
+      "members":{
+        "MediaSourceConfig":{"shape":"MediaSourceConfig"},
+        "ScheduleConfig":{"shape":"ScheduleConfig"}
       }
     },
     "ResourceARN":{
@@ -928,6 +1064,23 @@
       "max":20000,
       "min":3000
     },
+    "ScheduleConfig":{
+      "type":"structure",
+      "required":[
+        "ScheduleExpression",
+        "DurationInSeconds"
+      ],
+      "members":{
+        "ScheduleExpression":{"shape":"ScheduleExpression"},
+        "DurationInSeconds":{"shape":"DurationInSeconds"}
+      }
+    },
+    "ScheduleExpression":{
+      "type":"string",
+      "max":100,
+      "min":11,
+      "pattern":"[^\\n]{11,100}"
+    },
     "SingleMasterChannelEndpointConfiguration":{
       "type":"structure",
       "members":{
@@ -941,6 +1094,27 @@
         "MessageTtlSeconds":{"shape":"MessageTtlSeconds"}
       }
     },
+    "StartEdgeConfigurationUpdateInput":{
+      "type":"structure",
+      "required":["EdgeConfig"],
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "EdgeConfig":{"shape":"EdgeConfig"}
+      }
+    },
+    "StartEdgeConfigurationUpdateOutput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "SyncStatus":{"shape":"SyncStatus"},
+        "FailedStatusDetails":{"shape":"FailedStatusDetails"},
+        "EdgeConfig":{"shape":"EdgeConfig"}
+      }
+    },
     "Status":{
       "type":"string",
       "enum":[
@@ -949,6 +1123,21 @@
         "UPDATING",
         "DELETING"
       ]
+    },
+    "StrategyOnFullSize":{
+      "type":"string",
+      "enum":[
+        "DELETE_OLDEST_MEDIA",
+        "DENY_NEW_MEDIA"
+      ]
+    },
+    "StreamEdgeConfigurationNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
     },
     "StreamInfo":{
       "type":"structure",
@@ -980,6 +1169,17 @@
         "ComparisonOperator":{"shape":"ComparisonOperator"},
         "ComparisonValue":{"shape":"StreamName"}
       }
+    },
+    "SyncStatus":{
+      "type":"string",
+      "enum":[
+        "SYNCING",
+        "ACKNOWLEDGED",
+        "IN_SYNC",
+        "SYNC_FAILED",
+        "DELETING",
+        "DELETE_FAILED"
+      ]
     },
     "Tag":{
       "type":"structure",
@@ -1175,6 +1375,13 @@
     "UpdateStreamOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UploaderConfig":{
+      "type":"structure",
+      "required":["ScheduleConfig"],
+      "members":{
+        "ScheduleConfig":{"shape":"ScheduleConfig"}
       }
     },
     "Version":{

@@ -2625,7 +2625,6 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 //   - Aliases - Possible Aliases for the label.
 //
 //   - Categories - The label categories that the detected label belongs to.
-//     A given label can belong to more than one category.
 //
 //   - BoundingBox — Bounding boxes are described for all instances of detected
 //     common object labels, returned in an array of Instance objects. An Instance
@@ -2642,11 +2641,11 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 //
 //   - Dominant Color - An array of the dominant colors in the image.
 //
-//   - Foreground - Information about the Sharpness and Brightness of the input
-//     image’s foreground.
+//   - Foreground - Information about the sharpness, brightness, and dominant
+//     colors of the input image’s foreground.
 //
-//   - Background - Information about the Sharpness and Brightness of the input
-//     image’s background.
+//   - Background - Information about the sharpness, brightness, and dominant
+//     colors of the input image’s background.
 //
 // The list of returned labels will include at least one label for every detected
 // object, along with information about that label. In the following example,
@@ -4144,6 +4143,7 @@ func (c *Rekognition) GetLabelDetectionRequest(input *GetLabelDetectionInput) (r
 // which returns a job identifier (JobId). When the label detection operation
 // finishes, Amazon Rekognition publishes a completion status to the Amazon
 // Simple Notification Service topic registered in the initial call to StartlabelDetection.
+//
 // To get the results of the label detection operation, first check that the
 // status value published to the Amazon SNS topic is SUCCEEDED. If so, call
 // GetLabelDetection and pass the job identifier (JobId) from the initial call
@@ -4151,15 +4151,53 @@ func (c *Rekognition) GetLabelDetectionRequest(input *GetLabelDetectionInput) (r
 //
 // GetLabelDetection returns an array of detected labels (Labels) sorted by
 // the time the labels were detected. You can also sort by the label name by
-// specifying NAME for the SortBy input parameter.
+// specifying NAME for the SortBy input parameter. If there is no NAME specified,
+// the default sort is by timestamp.
 //
-// The labels returned include the label name, the percentage confidence in
-// the accuracy of the detected label, and the time the label was detected in
-// the video.
+// You can select how results are aggregated by using the AggregateBy input
+// parameter. The default aggregation method is TIMESTAMPS. You can also aggregate
+// by SEGMENTS, which aggregates all instances of labels detected in a given
+// segment.
 //
-// The returned labels also include bounding box information for common objects,
-// a hierarchical taxonomy of detected labels, and the version of the label
-// model used for detection.
+// The returned Labels array may include the following attributes:
+//
+//   - Name - The name of the detected label.
+//
+//   - Confidence - The level of confidence in the label assigned to a detected
+//     object.
+//
+//   - Parents - The ancestor labels for a detected label. GetLabelDetection
+//     returns a hierarchical taxonomy of detected labels. For example, a detected
+//     car might be assigned the label car. The label car has two parent labels:
+//     Vehicle (its parent) and Transportation (its grandparent). The response
+//     includes the all ancestors for a label, where every ancestor is a unique
+//     label. In the previous example, Car, Vehicle, and Transportation are returned
+//     as unique labels in the response.
+//
+//   - Aliases - Possible Aliases for the label.
+//
+//   - Categories - The label categories that the detected label belongs to.
+//
+//   - BoundingBox — Bounding boxes are described for all instances of detected
+//     common object labels, returned in an array of Instance objects. An Instance
+//     object contains a BoundingBox object, describing the location of the label
+//     on the input image. It also includes the confidence for the accuracy of
+//     the detected bounding box.
+//
+//   - Timestamp - Time, in milliseconds from the start of the video, that
+//     the label was detected. For aggregation by SEGMENTS, the StartTimestampMillis,
+//     EndTimestampMillis, and DurationMillis structures are what define a segment.
+//     Although the “Timestamp” structure is still returned with each label,
+//     its value is set to be the same as StartTimestampMillis.
+//
+// Timestamp and Bounding box information are returned for detected Instances,
+// only if aggregation is done by TIMESTAMPS. If aggregating by SEGMENTS, information
+// about detected instances isn’t returned.
+//
+// The version of the label model used for the detection is also returned.
+//
+// Note DominantColors isn't returned for Instances, although it is shown as
+// part of the response in the sample seen below.
 //
 // Use MaxResults parameter to limit the number of labels returned. If there
 // are more results than specified in MaxResults, the value of NextToken in
@@ -7165,6 +7203,18 @@ func (c *Rekognition) StartLabelDetectionRequest(input *StartLabelDetectionInput
 // status value published to the Amazon SNS topic is SUCCEEDED. If so, call
 // GetLabelDetection and pass the job identifier (JobId) from the initial call
 // to StartLabelDetection.
+//
+// # Optional Parameters
+//
+// StartLabelDetection has the GENERAL_LABELS Feature applied by default. This
+// feature allows you to provide filtering criteria to the Settings parameter.
+// You can filter with sets of individual labels or with label categories. You
+// can specify inclusive filters, exclusive filters, or a combination of inclusive
+// and exclusive filters. For more information on filtering, see Detecting labels
+// in a video (https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html).
+//
+// You can specify MinConfidence to control the confidence threshold for the
+// labels returned. The default is 50.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14059,7 +14109,7 @@ func (s *Face) SetIndexFacesModelVersion(v string) *Face {
 // attributes to return, use the FaceAttributes input parameter for StartFaceDetection.
 // The following Amazon Rekognition Video operations return only the default
 // attributes. The corresponding Start operations don't have a FaceAttributes
-// input parameter.
+// input parameter:
 //
 //   - GetCelebrityRecognition
 //
@@ -15325,6 +15375,10 @@ func (s *GetFaceSearchOutput) SetVideoMetadata(v *VideoMetadata) *GetFaceSearchO
 type GetLabelDetectionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Defines how to aggregate the returned results. Results can be aggregated
+	// by timestamps or segments.
+	AggregateBy *string `type:"string" enum:"LabelDetectionAggregateBy"`
+
 	// Job identifier for the label detection operation for which you want results
 	// returned. You get the job identifer from an initial call to StartlabelDetection.
 	//
@@ -15383,6 +15437,12 @@ func (s *GetLabelDetectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAggregateBy sets the AggregateBy field's value.
+func (s *GetLabelDetectionInput) SetAggregateBy(v string) *GetLabelDetectionInput {
+	s.AggregateBy = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -17509,8 +17569,20 @@ func (s *LabelCategory) SetName(v string) *LabelCategory {
 type LabelDetection struct {
 	_ struct{} `type:"structure"`
 
+	// The time duration of a segment in milliseconds, I.e. time elapsed from StartTimestampMillis
+	// to EndTimestampMillis.
+	DurationMillis *int64 `type:"long"`
+
+	// The time in milliseconds defining the end of the timeline segment containing
+	// a continuously detected label.
+	EndTimestampMillis *int64 `type:"long"`
+
 	// Details about the detected label.
 	Label *Label `type:"structure"`
+
+	// The time in milliseconds defining the start of the timeline segment containing
+	// a continuously detected label.
+	StartTimestampMillis *int64 `type:"long"`
 
 	// Time, in milliseconds from the start of the video, that the label was detected.
 	// Note that Timestamp is not guaranteed to be accurate to the individual frame
@@ -17536,15 +17608,68 @@ func (s LabelDetection) GoString() string {
 	return s.String()
 }
 
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *LabelDetection) SetDurationMillis(v int64) *LabelDetection {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetEndTimestampMillis sets the EndTimestampMillis field's value.
+func (s *LabelDetection) SetEndTimestampMillis(v int64) *LabelDetection {
+	s.EndTimestampMillis = &v
+	return s
+}
+
 // SetLabel sets the Label field's value.
 func (s *LabelDetection) SetLabel(v *Label) *LabelDetection {
 	s.Label = v
 	return s
 }
 
+// SetStartTimestampMillis sets the StartTimestampMillis field's value.
+func (s *LabelDetection) SetStartTimestampMillis(v int64) *LabelDetection {
+	s.StartTimestampMillis = &v
+	return s
+}
+
 // SetTimestamp sets the Timestamp field's value.
 func (s *LabelDetection) SetTimestamp(v int64) *LabelDetection {
 	s.Timestamp = &v
+	return s
+}
+
+// Contains the specified filters that should be applied to a list of returned
+// GENERAL_LABELS.
+type LabelDetectionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Contains filters for the object labels returned by DetectLabels. Filters
+	// can be inclusive, exclusive, or a combination of both and can be applied
+	// to individual l abels or entire label categories.
+	GeneralLabels *GeneralLabelsSettings `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelDetectionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LabelDetectionSettings) GoString() string {
+	return s.String()
+}
+
+// SetGeneralLabels sets the GeneralLabels field's value.
+func (s *LabelDetectionSettings) SetGeneralLabels(v *GeneralLabelsSettings) *LabelDetectionSettings {
+	s.GeneralLabels = v
 	return s
 }
 
@@ -21656,6 +21781,10 @@ type StartLabelDetectionInput struct {
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
+	// The features to return after video analysis. You can specify that GENERAL_LABELS
+	// are returned.
+	Features []*string `type:"list" enum:"LabelDetectionFeatureName"`
+
 	// An identifier you specify that's returned in the completion notification
 	// that's published to your Amazon Simple Notification Service topic. For example,
 	// you can use JobTag to group related jobs and identify them in the completion
@@ -21668,8 +21797,8 @@ type StartLabelDetectionInput struct {
 	// 100 is the highest confidence. Amazon Rekognition Video doesn't return any
 	// labels with a confidence level lower than this specified value.
 	//
-	// If you don't specify MinConfidence, the operation returns labels with confidence
-	// values greater than or equal to 50 percent.
+	// If you don't specify MinConfidence, the operation returns labels and bounding
+	// boxes (if detected) with confidence values greater than or equal to 50 percent.
 	MinConfidence *float64 `type:"float"`
 
 	// The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the
@@ -21677,6 +21806,11 @@ type StartLabelDetectionInput struct {
 	// must have a topic name that begins with AmazonRekognition if you are using
 	// the AmazonRekognitionServiceRole permissions policy.
 	NotificationChannel *NotificationChannel `type:"structure"`
+
+	// The settings for a StartLabelDetection request.Contains the specified parameters
+	// for the label detection request of an asynchronous label analysis operation.
+	// Settings can include filters for GENERAL_LABELS.
+	Settings *LabelDetectionSettings `type:"structure"`
 
 	// The video in which you want to detect labels. The video must be stored in
 	// an Amazon S3 bucket.
@@ -21738,6 +21872,12 @@ func (s *StartLabelDetectionInput) SetClientRequestToken(v string) *StartLabelDe
 	return s
 }
 
+// SetFeatures sets the Features field's value.
+func (s *StartLabelDetectionInput) SetFeatures(v []*string) *StartLabelDetectionInput {
+	s.Features = v
+	return s
+}
+
 // SetJobTag sets the JobTag field's value.
 func (s *StartLabelDetectionInput) SetJobTag(v string) *StartLabelDetectionInput {
 	s.JobTag = &v
@@ -21753,6 +21893,12 @@ func (s *StartLabelDetectionInput) SetMinConfidence(v float64) *StartLabelDetect
 // SetNotificationChannel sets the NotificationChannel field's value.
 func (s *StartLabelDetectionInput) SetNotificationChannel(v *NotificationChannel) *StartLabelDetectionInput {
 	s.NotificationChannel = v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *StartLabelDetectionInput) SetSettings(v *LabelDetectionSettings) *StartLabelDetectionInput {
+	s.Settings = v
 	return s
 }
 
@@ -24846,6 +24992,34 @@ func KnownGenderType_Values() []string {
 		KnownGenderTypeFemale,
 		KnownGenderTypeNonbinary,
 		KnownGenderTypeUnlisted,
+	}
+}
+
+const (
+	// LabelDetectionAggregateByTimestamps is a LabelDetectionAggregateBy enum value
+	LabelDetectionAggregateByTimestamps = "TIMESTAMPS"
+
+	// LabelDetectionAggregateBySegments is a LabelDetectionAggregateBy enum value
+	LabelDetectionAggregateBySegments = "SEGMENTS"
+)
+
+// LabelDetectionAggregateBy_Values returns all elements of the LabelDetectionAggregateBy enum
+func LabelDetectionAggregateBy_Values() []string {
+	return []string{
+		LabelDetectionAggregateByTimestamps,
+		LabelDetectionAggregateBySegments,
+	}
+}
+
+const (
+	// LabelDetectionFeatureNameGeneralLabels is a LabelDetectionFeatureName enum value
+	LabelDetectionFeatureNameGeneralLabels = "GENERAL_LABELS"
+)
+
+// LabelDetectionFeatureName_Values returns all elements of the LabelDetectionFeatureName enum
+func LabelDetectionFeatureName_Values() []string {
+	return []string{
+		LabelDetectionFeatureNameGeneralLabels,
 	}
 }
 

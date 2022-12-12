@@ -2464,7 +2464,8 @@
         "JobId":{"shape":"JobId"},
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"PaginationToken"},
-        "SortBy":{"shape":"LabelDetectionSortBy"}
+        "SortBy":{"shape":"LabelDetectionSortBy"},
+        "AggregateBy":{"shape":"LabelDetectionAggregateBy"}
       }
     },
     "GetLabelDetectionResponse":{
@@ -2827,7 +2828,33 @@
       "type":"structure",
       "members":{
         "Timestamp":{"shape":"Timestamp"},
-        "Label":{"shape":"Label"}
+        "Label":{"shape":"Label"},
+        "StartTimestampMillis":{"shape":"ULong"},
+        "EndTimestampMillis":{"shape":"ULong"},
+        "DurationMillis":{"shape":"ULong"}
+      }
+    },
+    "LabelDetectionAggregateBy":{
+      "type":"string",
+      "enum":[
+        "TIMESTAMPS",
+        "SEGMENTS"
+      ]
+    },
+    "LabelDetectionFeatureList":{
+      "type":"list",
+      "member":{"shape":"LabelDetectionFeatureName"},
+      "max":1,
+      "min":0
+    },
+    "LabelDetectionFeatureName":{
+      "type":"string",
+      "enum":["GENERAL_LABELS"]
+    },
+    "LabelDetectionSettings":{
+      "type":"structure",
+      "members":{
+        "GeneralLabels":{"shape":"GeneralLabelsSettings"}
       }
     },
     "LabelDetectionSortBy":{
@@ -3731,7 +3758,9 @@
         "ClientRequestToken":{"shape":"ClientRequestToken"},
         "MinConfidence":{"shape":"Percent"},
         "NotificationChannel":{"shape":"NotificationChannel"},
-        "JobTag":{"shape":"JobTag"}
+        "JobTag":{"shape":"JobTag"},
+        "Features":{"shape":"LabelDetectionFeatureList"},
+        "Settings":{"shape":"LabelDetectionSettings"}
       }
     },
     "StartLabelDetectionResponse":{

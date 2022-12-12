@@ -11123,6 +11123,12 @@
         "GetSpotPlacementScoresRequest$InstanceTypes": "<p>The instance types. We recommend that you specify at least three instance types. If you specify one or two instance types, or specify variations of a single instance type (for example, an <code>m3.xlarge</code> with and without instance storage), the returned placement score will always be low. </p> <p>If you specify <code>InstanceTypes</code>, you can't specify <code>InstanceRequirementsWithMetadata</code>.</p>"
       }
     },
+    "InstanceTypesList": {
+      "base": null,
+      "refs": {
+        "FpgaImage$InstanceTypes": null
+      }
+    },
     "InstanceUsage": {
       "base": "<p>Information about the Capacity Reservation usage.</p>",
       "refs": {
@@ -18554,6 +18560,7 @@
         "InstanceTagKeySet$member": null,
         "InstanceTypeInfoFromInstanceRequirements$InstanceType": "<p>The matching instance type.</p>",
         "InstanceTypes$member": null,
+        "InstanceTypesList$member": null,
         "InstanceUsage$AccountId": "<p>The ID of the Amazon Web Services account that is making use of the Capacity Reservation.</p>",
         "InternetGateway$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
         "InternetGateway$OwnerId": "<p>The ID of the Amazon Web Services account that owns the internet gateway.</p>",

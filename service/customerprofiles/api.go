@@ -5215,6 +5215,9 @@ type CreateProfileInput struct {
 	// The gender with which the customer identifies.
 	Gender *string `type:"string" enum:"Gender"`
 
+	// An alternative to Gender which accepts any string as input.
+	GenderString *string `min:"1" type:"string"`
+
 	// The customer’s home phone number.
 	HomePhoneNumber *string `min:"1" type:"string"`
 
@@ -5232,6 +5235,9 @@ type CreateProfileInput struct {
 
 	// The type of profile used to describe the customer.
 	PartyType *string `type:"string" enum:"PartyType"`
+
+	// An alternative to PartyType which accepts any string as input.
+	PartyTypeString *string `min:"1" type:"string"`
 
 	// The customer’s personal email address.
 	PersonalEmailAddress *string `min:"1" type:"string"`
@@ -5295,6 +5301,9 @@ func (s *CreateProfileInput) Validate() error {
 	if s.FirstName != nil && len(*s.FirstName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FirstName", 1))
 	}
+	if s.GenderString != nil && len(*s.GenderString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GenderString", 1))
+	}
 	if s.HomePhoneNumber != nil && len(*s.HomePhoneNumber) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("HomePhoneNumber", 1))
 	}
@@ -5306,6 +5315,9 @@ func (s *CreateProfileInput) Validate() error {
 	}
 	if s.MobilePhoneNumber != nil && len(*s.MobilePhoneNumber) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MobilePhoneNumber", 1))
+	}
+	if s.PartyTypeString != nil && len(*s.PartyTypeString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PartyTypeString", 1))
 	}
 	if s.PersonalEmailAddress != nil && len(*s.PersonalEmailAddress) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PersonalEmailAddress", 1))
@@ -5418,6 +5430,12 @@ func (s *CreateProfileInput) SetGender(v string) *CreateProfileInput {
 	return s
 }
 
+// SetGenderString sets the GenderString field's value.
+func (s *CreateProfileInput) SetGenderString(v string) *CreateProfileInput {
+	s.GenderString = &v
+	return s
+}
+
 // SetHomePhoneNumber sets the HomePhoneNumber field's value.
 func (s *CreateProfileInput) SetHomePhoneNumber(v string) *CreateProfileInput {
 	s.HomePhoneNumber = &v
@@ -5451,6 +5469,12 @@ func (s *CreateProfileInput) SetMobilePhoneNumber(v string) *CreateProfileInput 
 // SetPartyType sets the PartyType field's value.
 func (s *CreateProfileInput) SetPartyType(v string) *CreateProfileInput {
 	s.PartyType = &v
+	return s
+}
+
+// SetPartyTypeString sets the PartyTypeString field's value.
+func (s *CreateProfileInput) SetPartyTypeString(v string) *CreateProfileInput {
+	s.PartyTypeString = &v
 	return s
 }
 
@@ -13317,6 +13341,9 @@ type UpdateProfileInput struct {
 	// The gender with which the customer identifies.
 	Gender *string `type:"string" enum:"Gender"`
 
+	// An alternative to Gender which accepts any string as input.
+	GenderString *string `type:"string"`
+
 	// The customer’s home phone number.
 	HomePhoneNumber *string `type:"string"`
 
@@ -13334,6 +13361,9 @@ type UpdateProfileInput struct {
 
 	// The type of profile used to describe the customer.
 	PartyType *string `type:"string" enum:"PartyType"`
+
+	// An alternative to PartyType which accepts any string as input.
+	PartyTypeString *string `type:"string"`
 
 	// The customer’s personal email address.
 	PersonalEmailAddress *string `type:"string"`
@@ -13466,6 +13496,12 @@ func (s *UpdateProfileInput) SetGender(v string) *UpdateProfileInput {
 	return s
 }
 
+// SetGenderString sets the GenderString field's value.
+func (s *UpdateProfileInput) SetGenderString(v string) *UpdateProfileInput {
+	s.GenderString = &v
+	return s
+}
+
 // SetHomePhoneNumber sets the HomePhoneNumber field's value.
 func (s *UpdateProfileInput) SetHomePhoneNumber(v string) *UpdateProfileInput {
 	s.HomePhoneNumber = &v
@@ -13499,6 +13535,12 @@ func (s *UpdateProfileInput) SetMobilePhoneNumber(v string) *UpdateProfileInput 
 // SetPartyType sets the PartyType field's value.
 func (s *UpdateProfileInput) SetPartyType(v string) *UpdateProfileInput {
 	s.PartyType = &v
+	return s
+}
+
+// SetPartyTypeString sets the PartyTypeString field's value.
+func (s *UpdateProfileInput) SetPartyTypeString(v string) *UpdateProfileInput {
+	s.PartyTypeString = &v
 	return s
 }
 

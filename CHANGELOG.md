@@ -1,3 +1,21 @@
+Release v1.44.158 (2022-12-12)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release updates DescribeFpgaImages to show supported instance types of AFIs in its response.
+* `service/kinesisvideo`: Updates service API and documentation
+  * This release adds support for public preview of Kinesis Video Stream at Edge enabling customers to provide configuration for the Kinesis Video Stream EdgeAgent running on an on-premise IoT device. Customers can now locally record from cameras and stream videos to the cloud on configured schedule.
+* `service/lookoutvision`: Updates service documentation
+* `service/migration-hub-refactor-spaces`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Update the RDS API model to support copying option groups during the CopyDBSnapshot operation
+* `service/rekognition`: Updates service API and documentation
+  * Adds support for "aliases" and "categories", inclusion and exclusion filters for labels and label categories, and aggregating labels by video segment timestamps for Stored Video Label Detection APIs.
+* `service/sagemaker-metrics`: Adds new service
+* `service/wafv2`: Updates service documentation
+
 Release v1.44.157 (2022-12-09)
 ===
 

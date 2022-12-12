@@ -88,6 +88,13 @@ const (
 	// Amazon Kinesis Video Streams can't find the stream that you specified.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeStreamEdgeConfigurationNotFoundException for service response error code
+	// "StreamEdgeConfigurationNotFoundException".
+	//
+	// The Exception rendered when the Amazon Kinesis Video Stream can't find a
+	// stream's edge configuration that you specified.
+	ErrCodeStreamEdgeConfigurationNotFoundException = "StreamEdgeConfigurationNotFoundException"
+
 	// ErrCodeTagsPerResourceExceededLimitException for service response error code
 	// "TagsPerResourceExceededLimitException".
 	//
@@ -105,18 +112,19 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":                 newErrorAccessDeniedException,
-	"AccountChannelLimitExceededException":  newErrorAccountChannelLimitExceededException,
-	"AccountStreamLimitExceededException":   newErrorAccountStreamLimitExceededException,
-	"ClientLimitExceededException":          newErrorClientLimitExceededException,
-	"DeviceStreamLimitExceededException":    newErrorDeviceStreamLimitExceededException,
-	"InvalidArgumentException":              newErrorInvalidArgumentException,
-	"InvalidDeviceException":                newErrorInvalidDeviceException,
-	"InvalidResourceFormatException":        newErrorInvalidResourceFormatException,
-	"NoDataRetentionException":              newErrorNoDataRetentionException,
-	"NotAuthorizedException":                newErrorNotAuthorizedException,
-	"ResourceInUseException":                newErrorResourceInUseException,
-	"ResourceNotFoundException":             newErrorResourceNotFoundException,
-	"TagsPerResourceExceededLimitException": newErrorTagsPerResourceExceededLimitException,
-	"VersionMismatchException":              newErrorVersionMismatchException,
+	"AccessDeniedException":                    newErrorAccessDeniedException,
+	"AccountChannelLimitExceededException":     newErrorAccountChannelLimitExceededException,
+	"AccountStreamLimitExceededException":      newErrorAccountStreamLimitExceededException,
+	"ClientLimitExceededException":             newErrorClientLimitExceededException,
+	"DeviceStreamLimitExceededException":       newErrorDeviceStreamLimitExceededException,
+	"InvalidArgumentException":                 newErrorInvalidArgumentException,
+	"InvalidDeviceException":                   newErrorInvalidDeviceException,
+	"InvalidResourceFormatException":           newErrorInvalidResourceFormatException,
+	"NoDataRetentionException":                 newErrorNoDataRetentionException,
+	"NotAuthorizedException":                   newErrorNotAuthorizedException,
+	"ResourceInUseException":                   newErrorResourceInUseException,
+	"ResourceNotFoundException":                newErrorResourceNotFoundException,
+	"StreamEdgeConfigurationNotFoundException": newErrorStreamEdgeConfigurationNotFoundException,
+	"TagsPerResourceExceededLimitException":    newErrorTagsPerResourceExceededLimitException,
+	"VersionMismatchException":                 newErrorVersionMismatchException,
 }
