@@ -52391,6 +52391,9 @@ type UserAuthConfig struct {
 	// to the underlying database.
 	AuthScheme *string `type:"string" enum:"AuthScheme"`
 
+	// The type of authentication the proxy uses for connections from clients.
+	ClientPasswordAuthType *string `type:"string" enum:"ClientPasswordAuthType"`
+
 	// A user-specified description about the authentication used by a proxy to
 	// log in as a specific database user.
 	Description *string `type:"string"`
@@ -52433,6 +52436,12 @@ func (s *UserAuthConfig) SetAuthScheme(v string) *UserAuthConfig {
 	return s
 }
 
+// SetClientPasswordAuthType sets the ClientPasswordAuthType field's value.
+func (s *UserAuthConfig) SetClientPasswordAuthType(v string) *UserAuthConfig {
+	s.ClientPasswordAuthType = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *UserAuthConfig) SetDescription(v string) *UserAuthConfig {
 	s.Description = &v
@@ -52465,6 +52474,9 @@ type UserAuthConfigInfo struct {
 	// The type of authentication that the proxy uses for connections from the proxy
 	// to the underlying database.
 	AuthScheme *string `type:"string" enum:"AuthScheme"`
+
+	// The type of authentication the proxy uses for connections from clients.
+	ClientPasswordAuthType *string `type:"string" enum:"ClientPasswordAuthType"`
 
 	// A user-specified description about the authentication used by a proxy to
 	// log in as a specific database user.
@@ -52505,6 +52517,12 @@ func (s UserAuthConfigInfo) GoString() string {
 // SetAuthScheme sets the AuthScheme field's value.
 func (s *UserAuthConfigInfo) SetAuthScheme(v string) *UserAuthConfigInfo {
 	s.AuthScheme = &v
+	return s
+}
+
+// SetClientPasswordAuthType sets the ClientPasswordAuthType field's value.
+func (s *UserAuthConfigInfo) SetClientPasswordAuthType(v string) *UserAuthConfigInfo {
+	s.ClientPasswordAuthType = &v
 	return s
 }
 
@@ -52833,6 +52851,30 @@ func AutomationMode_Values() []string {
 	return []string{
 		AutomationModeFull,
 		AutomationModeAllPaused,
+	}
+}
+
+const (
+	// ClientPasswordAuthTypeMysqlNativePassword is a ClientPasswordAuthType enum value
+	ClientPasswordAuthTypeMysqlNativePassword = "MYSQL_NATIVE_PASSWORD"
+
+	// ClientPasswordAuthTypePostgresScramSha256 is a ClientPasswordAuthType enum value
+	ClientPasswordAuthTypePostgresScramSha256 = "POSTGRES_SCRAM_SHA_256"
+
+	// ClientPasswordAuthTypePostgresMd5 is a ClientPasswordAuthType enum value
+	ClientPasswordAuthTypePostgresMd5 = "POSTGRES_MD5"
+
+	// ClientPasswordAuthTypeSqlServerAuthentication is a ClientPasswordAuthType enum value
+	ClientPasswordAuthTypeSqlServerAuthentication = "SQL_SERVER_AUTHENTICATION"
+)
+
+// ClientPasswordAuthType_Values returns all elements of the ClientPasswordAuthType enum
+func ClientPasswordAuthType_Values() []string {
+	return []string{
+		ClientPasswordAuthTypeMysqlNativePassword,
+		ClientPasswordAuthTypePostgresScramSha256,
+		ClientPasswordAuthTypePostgresMd5,
+		ClientPasswordAuthTypeSqlServerAuthentication,
 	}
 }
 

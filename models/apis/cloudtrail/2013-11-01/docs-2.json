@@ -1050,6 +1050,12 @@
         "LookupAttribute$AttributeKey": "<p>Specifies an attribute on which to filter the events returned.</p>"
       }
     },
+    "LookupAttributeValue": {
+      "base": null,
+      "refs": {
+        "LookupAttribute$AttributeValue": "<p>Specifies a value for the specified AttributeKey.</p>"
+      }
+    },
     "LookupAttributesList": {
       "base": null,
       "refs": {
@@ -1496,7 +1502,6 @@
         "ListTagsResponse$NextToken": "<p>Reserved for future use.</p>",
         "ListTrailsRequest$NextToken": "<p>The token to use to get the next page of results after a previous API call. This token must be passed in with the same parameters that were specified in the original call. For example, if the original call specified an AttributeKey of 'Username' with a value of 'root', the call with NextToken should include those same parameters.</p>",
         "ListTrailsResponse$NextToken": "<p>The token to use to get the next page of results after a previous API call. If the token does not appear, there are no more results to return. The token must be passed in with the same parameters as the previous call. For example, if the original call specified an AttributeKey of 'Username' with a value of 'root', the call with NextToken should include those same parameters.</p>",
-        "LookupAttribute$AttributeValue": "<p>Specifies a value for the specified AttributeKey.</p>",
         "PublicKey$Fingerprint": "<p>The fingerprint of the public key.</p>",
         "PutEventSelectorsRequest$TrailName": "<p>Specifies the name of the trail or trail ARN. If you specify a trail name, the string must meet the following requirements:</p> <ul> <li> <p>Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores (_), or dashes (-)</p> </li> <li> <p>Start with a letter or number, and end with a letter or number</p> </li> <li> <p>Be between 3 and 128 characters</p> </li> <li> <p>Have no adjacent periods, underscores or dashes. Names like <code>my-_namespace</code> and <code>my--namespace</code> are not valid.</p> </li> <li> <p>Not be in IP address format (for example, 192.168.5.4)</p> </li> </ul> <p>If you specify a trail ARN, it must be in the following format.</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>",
         "PutEventSelectorsResponse$TrailARN": "<p>Specifies the ARN of the trail that was updated with event selectors. The following is the format of a trail ARN.</p> <p> <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code> </p>",
