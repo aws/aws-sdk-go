@@ -339,6 +339,32 @@ func (c *CloudTrail) CreateEventDataStoreRequest(input *CreateEventDataStoreInpu
 //   - EventDataStoreMaxLimitExceededException
 //     Your account has used the maximum number of event data stores.
 //
+//   - InvalidEventSelectorsException
+//     This exception is thrown when the PutEventSelectors operation is called with
+//     a number of event selectors, advanced event selectors, or data resources
+//     that is not valid. The combination of event selectors or advanced event selectors
+//     and data resources is not valid. A trail can have up to 5 event selectors.
+//     If a trail uses advanced event selectors, a maximum of 500 total values for
+//     all conditions in all advanced event selectors is allowed. A trail is limited
+//     to 250 data resources. These data resources can be distributed across event
+//     selectors, but the overall total cannot exceed 250.
+//
+//     You can:
+//
+//   - Specify a valid number of event selectors (1 to 5) for a trail.
+//
+//   - Specify a valid number of data resources (1 to 250) for an event selector.
+//     The limit of number of resources on an individual event selector is configurable
+//     up to 250. However, this upper limit is allowed only if the total number
+//     of data resources does not exceed 250 across all event selectors for a
+//     trail.
+//
+//   - Specify up to 500 values for all conditions in all advanced event selectors
+//     for a trail.
+//
+//   - Specify a valid value for a parameter. For example, specifying the ReadWriteType
+//     parameter with a value of read-only is not valid.
+//
 //   - InvalidParameterException
 //     The request includes a parameter that is not valid.
 //
@@ -533,6 +559,10 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //   - TrailNotProvidedException
 //     This exception is no longer in use.
 //
+//   - TagsLimitExceededException
+//     The number of tags per trail has exceeded the permitted amount. Currently,
+//     the limit is 50.
+//
 //   - InvalidParameterCombinationException
 //     This exception is thrown when the combination of parameters provided is not
 //     valid.
@@ -715,6 +745,9 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 //     This exception is thrown when you try to update or delete an event data store
 //     that currently has an import in progress.
 //
+//   - InactiveEventDataStoreException
+//     The event data store is inactive.
+//
 //   - InvalidParameterException
 //     The request includes a parameter that is not valid.
 //
@@ -837,6 +870,12 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //     and my--namespace are not valid.
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
+//
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 //
 //   - InvalidHomeRegionException
 //     This exception is thrown when an operation is called on a trail from a region
@@ -1496,6 +1535,12 @@ func (c *CloudTrail) GetEventSelectorsRequest(input *GetEventSelectorsInput) (re
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
 //
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+//
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
 //
@@ -1695,6 +1740,12 @@ func (c *CloudTrail) GetInsightSelectorsRequest(input *GetInsightSelectorsInput)
 //     and my--namespace are not valid.
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
+//
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
@@ -1957,6 +2008,12 @@ func (c *CloudTrail) GetTrailRequest(input *GetTrailInput) (req *request.Request
 //
 // Returned Error Types:
 //
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+//
 //   - TrailNotFoundException
 //     This exception is thrown when the trail with the given name is not found.
 //
@@ -2061,6 +2118,12 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *req
 // API operation GetTrailStatus for usage and error information.
 //
 // Returned Error Types:
+//
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 //
 //   - TrailNotFoundException
 //     This exception is thrown when the trail with the given name is not found.
@@ -3658,6 +3721,12 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
 //
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+//
 //   - InvalidHomeRegionException
 //     This exception is thrown when an operation is called on a trail from a region
 //     other than the region in which the trail was created.
@@ -3808,6 +3877,12 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 //     and my--namespace are not valid.
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
+//
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 //
 //   - InvalidHomeRegionException
 //     This exception is thrown when an operation is called on a trail from a region
@@ -4457,6 +4532,12 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 //
 // Returned Error Types:
 //
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+//
 //   - TrailNotFoundException
 //     This exception is thrown when the trail with the given name is not found.
 //
@@ -4820,6 +4901,12 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
 //
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+//
 //   - InvalidHomeRegionException
 //     This exception is thrown when an operation is called on a trail from a region
 //     other than the region in which the trail was created.
@@ -4934,6 +5021,32 @@ func (c *CloudTrail) UpdateEventDataStoreRequest(input *UpdateEventDataStoreInpu
 //
 //   - EventDataStoreNotFoundException
 //     The specified event data store was not found.
+//
+//   - InvalidEventSelectorsException
+//     This exception is thrown when the PutEventSelectors operation is called with
+//     a number of event selectors, advanced event selectors, or data resources
+//     that is not valid. The combination of event selectors or advanced event selectors
+//     and data resources is not valid. A trail can have up to 5 event selectors.
+//     If a trail uses advanced event selectors, a maximum of 500 total values for
+//     all conditions in all advanced event selectors is allowed. A trail is limited
+//     to 250 data resources. These data resources can be distributed across event
+//     selectors, but the overall total cannot exceed 250.
+//
+//     You can:
+//
+//   - Specify a valid number of event selectors (1 to 5) for a trail.
+//
+//   - Specify a valid number of data resources (1 to 250) for an event selector.
+//     The limit of number of resources on an individual event selector is configurable
+//     up to 250. However, this upper limit is allowed only if the total number
+//     of data resources does not exceed 250 across all event selectors for a
+//     trail.
+//
+//   - Specify up to 500 values for all conditions in all advanced event selectors
+//     for a trail.
+//
+//   - Specify a valid value for a parameter. For example, specifying the ReadWriteType
+//     parameter with a value of read-only is not valid.
 //
 //   - EventDataStoreHasOngoingImportException
 //     This exception is thrown when you try to update or delete an event data store
@@ -5153,6 +5266,12 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //
 //   - Specify a valid value for a parameter. For example, specifying the ReadWriteType
 //     parameter with a value of read-only is not valid.
+//
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with a trail ARN that
+//     is not valid. The following is the format of a trail ARN.
+//
+//     arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 //
 //   - InvalidParameterCombinationException
 //     This exception is thrown when the combination of parameters provided is not
@@ -13388,7 +13507,7 @@ type LookupAttribute struct {
 	// Specifies a value for the specified AttributeKey.
 	//
 	// AttributeValue is a required field
-	AttributeValue *string `type:"string" required:"true"`
+	AttributeValue *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -13417,6 +13536,9 @@ func (s *LookupAttribute) Validate() error {
 	}
 	if s.AttributeValue == nil {
 		invalidParams.Add(request.NewErrParamRequired("AttributeValue"))
+	}
+	if s.AttributeValue != nil && len(*s.AttributeValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeValue", 1))
 	}
 
 	if invalidParams.Len() > 0 {

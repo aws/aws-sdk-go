@@ -1,3 +1,12 @@
+Release v1.44.159 (2022-12-13)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API and documentation
+  * Merging mainline branch for service model into mainline release branch. There are no new APIs.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This deployment adds ClientPasswordAuthType field to the Auth structure of the DBProxy.
+
 Release v1.44.158 (2022-12-12)
 ===
 

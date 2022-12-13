@@ -71,6 +71,7 @@
       "errors":[
         {"shape":"EventDataStoreAlreadyExistsException"},
         {"shape":"EventDataStoreMaxLimitExceededException"},
+        {"shape":"InvalidEventSelectorsException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidTagParameterException"},
         {"shape":"OperationNotPermittedException"},
@@ -109,6 +110,7 @@
         {"shape":"InvalidKmsKeyIdException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"TrailNotProvidedException"},
+        {"shape":"TagsLimitExceededException"},
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"KmsKeyNotFoundException"},
         {"shape":"KmsKeyDisabledException"},
@@ -143,6 +145,7 @@
         {"shape":"EventDataStoreNotFoundException"},
         {"shape":"EventDataStoreTerminationProtectedException"},
         {"shape":"EventDataStoreHasOngoingImportException"},
+        {"shape":"InactiveEventDataStoreException"},
         {"shape":"InvalidParameterException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"UnsupportedOperationException"},
@@ -162,6 +165,7 @@
       "errors":[
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
@@ -275,6 +279,7 @@
       "errors":[
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"NoManagementAccountSLRExistsException"}
@@ -307,6 +312,7 @@
       "errors":[
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"InsightNotEnabledException"},
@@ -345,6 +351,7 @@
       "input":{"shape":"GetTrailRequest"},
       "output":{"shape":"GetTrailResponse"},
       "errors":[
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"UnsupportedOperationException"},
@@ -361,6 +368,7 @@
       "input":{"shape":"GetTrailStatusRequest"},
       "output":{"shape":"GetTrailStatusResponse"},
       "errors":[
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"UnsupportedOperationException"},
@@ -537,6 +545,7 @@
       "errors":[
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"InvalidEventSelectorsException"},
         {"shape":"UnsupportedOperationException"},
@@ -558,6 +567,7 @@
       "errors":[
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"InvalidInsightSelectorsException"},
         {"shape":"InsufficientS3BucketPolicyException"},
@@ -675,6 +685,7 @@
       "input":{"shape":"StartLoggingRequest"},
       "output":{"shape":"StartLoggingResponse"},
       "errors":[
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"InvalidHomeRegionException"},
@@ -738,6 +749,7 @@
       "errors":[
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
@@ -758,6 +770,7 @@
       "errors":[
         {"shape":"EventDataStoreARNInvalidException"},
         {"shape":"EventDataStoreNotFoundException"},
+        {"shape":"InvalidEventSelectorsException"},
         {"shape":"EventDataStoreHasOngoingImportException"},
         {"shape":"InactiveEventDataStoreException"},
         {"shape":"InvalidParameterException"},
@@ -797,6 +810,7 @@
         {"shape":"InvalidTrailNameException"},
         {"shape":"TrailNotProvidedException"},
         {"shape":"InvalidEventSelectorsException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"InvalidHomeRegionException"},
         {"shape":"KmsKeyNotFoundException"},
@@ -1983,7 +1997,7 @@
       ],
       "members":{
         "AttributeKey":{"shape":"LookupAttributeKey"},
-        "AttributeValue":{"shape":"String"}
+        "AttributeValue":{"shape":"LookupAttributeValue"}
       }
     },
     "LookupAttributeKey":{
@@ -1998,6 +2012,11 @@
         "EventSource",
         "AccessKeyId"
       ]
+    },
+    "LookupAttributeValue":{
+      "type":"string",
+      "max":2000,
+      "min":1
     },
     "LookupAttributesList":{
       "type":"list",
