@@ -21,3 +21,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"QueueDeletedRecently": newErrorQueueDeletedRecently,
 	"QueueNameExists":      newErrorQueueNameExists,
 }
+var queryExceptionFromCode = map[string]func(protocol.ResponseMetadata, string) error{
+	"QueueDeletedRecently": newQueryCompatibleErrorQueueDeletedRecently,
+	"QueueNameExists":      newQueryCompatibleErrorQueueNameExists,
+}

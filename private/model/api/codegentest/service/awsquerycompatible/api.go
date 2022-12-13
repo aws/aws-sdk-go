@@ -166,6 +166,7 @@ func (s *CreateQueueOutput) SetQueueUrl(v string) *CreateQueueOutput {
 type QueueDeletedRecently struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	code         string
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -193,9 +194,18 @@ func newErrorQueueDeletedRecently(v protocol.ResponseMetadata) error {
 		RespMetadata: v,
 	}
 }
+func newQueryCompatibleErrorQueueDeletedRecently(v protocol.ResponseMetadata, code string) error {
+	return &QueueDeletedRecently{
+		RespMetadata: v,
+		code:         code,
+	}
+}
 
 // Code returns the exception type name.
 func (s *QueueDeletedRecently) Code() string {
+	if s.code != "" {
+		return s.code
+	}
 	return "QueueDeletedRecently"
 }
 
@@ -229,6 +239,7 @@ func (s *QueueDeletedRecently) RequestID() string {
 type QueueNameExists struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+	code         string
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -256,9 +267,18 @@ func newErrorQueueNameExists(v protocol.ResponseMetadata) error {
 		RespMetadata: v,
 	}
 }
+func newQueryCompatibleErrorQueueNameExists(v protocol.ResponseMetadata, code string) error {
+	return &QueueNameExists{
+		RespMetadata: v,
+		code:         code,
+	}
+}
 
 // Code returns the exception type name.
 func (s *QueueNameExists) Code() string {
+	if s.code != "" {
+		return s.code
+	}
 	return "QueueNameExists"
 }
 

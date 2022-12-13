@@ -21,7 +21,7 @@ const (
 // for both typed and untyped errors.
 type UnmarshalTypedError struct {
 	exceptions map[string]func(protocol.ResponseMetadata) error
-	parseQueryError bool
+	queryExceptions map[string]func(protocol.ResponseMetadata, string) error
 }
 
 // NewUnmarshalTypedError returns an UnmarshalTypedError initialized for the
@@ -29,7 +29,7 @@ type UnmarshalTypedError struct {
 func NewUnmarshalTypedError(exceptions map[string]func(protocol.ResponseMetadata) error) *UnmarshalTypedError {
 	return &UnmarshalTypedError{
 		exceptions: exceptions,
-		parseQueryError: false,
+		queryExceptions: map[string]func(protocol.ResponseMetadata, string) error{},
 	}
 }
 
@@ -41,9 +41,9 @@ func NewUnmarshalTypedErrorWithOptions(exceptions map[string]func(protocol.Respo
 	return unmarshaledError
 }
 
-func WithQueryCompatibility() func(*UnmarshalTypedError) {
+func WithQueryCompatibility(queryExceptions map[string]func(protocol.ResponseMetadata, string) error) func(*UnmarshalTypedError) {
 	return func(typedError *UnmarshalTypedError) {
-		typedError.parseQueryError = true
+		typedError.queryExceptions = queryExceptions
 	}
 }
 
@@ -70,28 +70,31 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	code := codeParts[len(codeParts)-1]
 	msg := jsonErr.Message
 
-	queryCodeHeader := resp.Header.Get(awsQueryError)
-	if queryCodeHeader != "" && u.parseQueryError {
-		queryCodeParts := strings.Split(queryCodeHeader, ";")
-		if queryCodeParts != nil && len(queryCodeParts) == 2 {
-			return awserr.NewRequestFailure(
-				awserr.New(queryCodeParts[0], msg, nil),
-				respMeta.StatusCode,
-				respMeta.RequestID,
-				), nil
-		}
-	}
+	queryCodeParts := queryCodeParts(resp, u)
 
 	if fn, ok := u.exceptions[code]; ok {
 		// If exception code is know, use associated constructor to get a value
 		// for the exception that the JSON body can be unmarshaled into.
-		v := fn(respMeta)
+		var v error
+		queryErrFn, queryExceptionsFound := u.queryExceptions[code]
+		if queryCodeParts != nil && len(queryCodeParts) == 2 && queryExceptionsFound {
+			v = queryErrFn(respMeta, queryCodeParts[0])
+		} else {
+			v = fn(respMeta)
+		}
 		err := jsonutil.UnmarshalJSONCaseInsensitive(v, body)
 		if err != nil {
 			return nil, err
 		}
-
 		return v, nil
+	}
+
+	if queryCodeParts != nil && len(queryCodeParts) == 2 {
+		return awserr.NewRequestFailure(
+			awserr.New(queryCodeParts[0], msg, nil),
+			respMeta.StatusCode,
+			respMeta.RequestID,
+			), nil
 	}
 
 	// fallback to unmodeled generic exceptions
@@ -100,6 +103,15 @@ func (u *UnmarshalTypedError) UnmarshalError(
 		respMeta.StatusCode,
 		respMeta.RequestID,
 	), nil
+}
+
+func queryCodeParts(resp *http.Response, u *UnmarshalTypedError) []string {
+	queryCodeHeader := resp.Header.Get(awsQueryError)
+	var queryCodeParts []string
+	if queryCodeHeader != "" && len(u.queryExceptions) > 0 {
+		queryCodeParts = strings.Split(queryCodeHeader, ";")
+	}
+	return queryCodeParts
 }
 
 // UnmarshalErrorHandler is a named request handler for unmarshaling jsonrpc
