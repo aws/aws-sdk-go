@@ -54,8 +54,8 @@ func (c *SageMakerMetrics) BatchPutMetricsRequest(input *BatchPutMetricsInput) (
 
 // BatchPutMetrics API operation for Amazon SageMaker Metrics Service.
 //
-// Used to ingest training metrics into SageMaker which can be visualized in
-// SageMaker Studio and retrieved with the GetMetrics API.
+// Used to ingest training metrics into SageMaker. These metrics can be visualized
+// in SageMaker Studio and retrieved with the GetMetrics API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -91,14 +91,14 @@ type BatchPutMetricsError struct {
 
 	// The error code of an error that occured when attempting to put metrics.
 	//
-	//    * METRIC_LIMIT_EXCEEDED - The max amount of metrics per resource has been
+	//    * METRIC_LIMIT_EXCEEDED: The maximum amount of metrics per resource is
 	//    exceeded.
 	//
-	//    * INTERNAL_ERROR - An internal error occured.
+	//    * INTERNAL_ERROR: An internal error occured.
 	//
-	//    * VALIDATION_ERROR - The metric data failed validation.
+	//    * VALIDATION_ERROR: The metric data failed validation.
 	//
-	//    * CONFLICT_ERROR - Multiple requests attempted to modify the same data
+	//    * CONFLICT_ERROR: Multiple requests attempted to modify the same data
 	//    simultaneously.
 	Code *string `type:"string" enum:"PutMetricsErrorCode"`
 
@@ -144,7 +144,7 @@ type BatchPutMetricsInput struct {
 	// MetricData is a required field
 	MetricData []*RawMetricData `min:"1" type:"list" required:"true"`
 
-	// The name of Trial Component to associate the metrics with.
+	// The name of the Trial Component to associate with the metrics.
 	//
 	// TrialComponentName is a required field
 	TrialComponentName *string `min:"1" type:"string" required:"true"`
@@ -215,7 +215,7 @@ func (s *BatchPutMetricsInput) SetTrialComponentName(v string) *BatchPutMetricsI
 type BatchPutMetricsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Any errors that occur when inserting metric data will appear in this.
+	// Lists any errors that occur when inserting metric data.
 	Errors []*BatchPutMetricsError `min:"1" type:"list"`
 }
 
@@ -252,10 +252,10 @@ type RawMetricData struct {
 	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
-	// Metric step (aka Epoch).
+	// The metric step (epoch).
 	Step *int64 `type:"integer"`
 
-	// The time when the metric was recorded.
+	// The time that the metric was recorded.
 	//
 	// Timestamp is a required field
 	Timestamp *time.Time `type:"timestamp" required:"true"`

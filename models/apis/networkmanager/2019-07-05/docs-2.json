@@ -75,7 +75,7 @@
     "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. The transit gateway can be in any Amazon Web Services Region, but it must be owned by the same Amazon Web Services account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
     "RejectAttachment": "<p>Rejects a core network attachment request.</p>",
     "RestoreCoreNetworkPolicyVersion": "<p>Restores a previous policy version as a new, immutable version of a core network policy. A subsequent change set is created showing the differences between the LIVE policy and restored policy.</p>",
-    "StartOrganizationServiceAccessUpdate": "<p>Enables for the Network Manager service for an Amazon Web Services Organization. This can only be called by a management account within the organization. </p>",
+    "StartOrganizationServiceAccessUpdate": "<p>Enables the Network Manager service for an Amazon Web Services Organization. This can only be called by a management account within the organization. </p>",
     "StartRouteAnalysis": "<p>Starts analyzing the routing path between the specified source and destination. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/tgw/route-analyzer.html\">Route Analyzer</a>.</p>",
     "TagResource": "<p>Tags a specified resource.</p>",
     "UntagResource": "<p>Removes tags from a specified resource.</p>",
@@ -267,7 +267,8 @@
         "RouteAnalysis$UseMiddleboxes": "<p>Indicates whether to include the location of middlebox appliances in the route analysis.</p>",
         "StartRouteAnalysisRequest$IncludeReturnPath": "<p>Indicates whether to analyze the return path. The default is <code>false</code>.</p>",
         "StartRouteAnalysisRequest$UseMiddleboxes": "<p>Indicates whether to include the location of middlebox appliances in the route analysis. The default is <code>false</code>.</p>",
-        "VpcOptions$Ipv6Support": "<p>Indicates whether IPv6 is supported.</p>"
+        "VpcOptions$Ipv6Support": "<p>Indicates whether IPv6 is supported.</p>",
+        "VpcOptions$ApplianceModeSupport": "<p>Indicates whether appliance mode is supported. If enabled, traffic flow between a source and destination use the same Availability Zone for the VPC attachment for the lifetime of that flow. The default value is <code>false</code>.</p>"
       }
     },
     "ChangeAction": {

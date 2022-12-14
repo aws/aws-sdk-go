@@ -134,10 +134,10 @@ func (c *CostExplorer) CreateAnomalySubscriptionRequest(input *CreateAnomalySubs
 
 // CreateAnomalySubscription API operation for AWS Cost Explorer Service.
 //
-// Adds a subscription to a cost anomaly detection monitor. You can use each
-// subscription to define subscribers with email or SNS notifications. Email
-// subscribers can set a dollar threshold and a time frequency for receiving
-// notifications.
+// Adds an alert subscription to a cost anomaly detection monitor. You can use
+// each subscription to define subscribers with email or SNS notifications.
+// Email subscribers can set an absolute or percentage threshold and a time
+// frequency for receiving notifications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -640,7 +640,8 @@ func (c *CostExplorer) GetAnomaliesRequest(input *GetAnomaliesInput) (req *reque
 // GetAnomalies API operation for AWS Cost Explorer Service.
 //
 // Retrieves all of the cost anomalies detected on your account during the time
-// period that's specified by the DateInterval object.
+// period that's specified by the DateInterval object. Anomalies are available
+// for up to 90 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3718,31 +3719,48 @@ type AnomalyMonitor struct {
 	// MonitorName is a required field
 	MonitorName *string `type:"string" required:"true"`
 
-	// Use Expression to filter by cost or by usage. There are two patterns:
+	// Use Expression to filter in various Cost Explorer APIs.
 	//
-	//    * Simple dimension values - You can set the dimension name and values
-	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
-	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
-	//    are OR'd together to retrieve cost or usage data. You can create Expression
-	//    and DimensionValues objects using either with* methods or set* methods
-	//    in multiple lines.
+	// Not all Expression types are supported in each API. Refer to the documentation
+	// for each specific API to see what is supported.
 	//
-	//    * Compound dimension values with logical operations - You can use multiple
+	// There are two patterns:
+	//
+	//    * Simple dimension values. There are three types of simple dimension values:
+	//    CostCategories, Tags, and Dimensions. Specify the CostCategories field
+	//    to define a filter that acts on Cost Categories. Specify the Tags field
+	//    to define a filter that acts on Cost Allocation Tags. Specify the Dimensions
+	//    field to define a filter that acts on the DimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DimensionValues.html).
+	//    For each filter type, you can set the dimension name and values for the
+	//    filters that you plan to use. For example, you can filter for REGION==us-east-1
+	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
+	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
+	//    example, lists of dimension values are combined with OR when applying
+	//    the filter. You can also set different match options to further control
+	//    how the filter behaves. Not all APIs support match options. Refer to the
+	//    documentation for each specific API to see what is supported. For example,
+	//    you can filter for linked account names that start with “a”. The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
+	//
+	//    * Compound Expression types with logical operations. You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. By doing this, you can filter on more
-	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    of one or more Expression objects. By doing this, you can filter by more
+	//    advanced options. For example, you can filter by ((REGION == us-east-1
 	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
-	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
-	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
-	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
-	//    Expression can have only one operator, the service returns an error if
-	//    more than one is specified. The following example shows an Expression
-	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
-	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//    The corresponding Expression for this example is as follows: { "And":
+	//    [ {"Or": [ {"Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+	//    "us-west-1" ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] }
+	//    } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"]
+	//    }}} ] } Because each Expression can have only one operator, the service
+	//    returns an error if more than one is specified. The following example
+	//    shows an Expression object that creates an error: { "And": [ ... ], "Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": [ "DataTransfer" ] } } The following
+	//    is an example of the corresponding error message: "Expression has more
+	//    than one roots. Only one root operator is allowed for each expression:
+	//    And, Or, Not, Dimensions, Tags, CostCategories"
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
 	// isn't supported. OR isn't supported between different dimensions, or dimensions
@@ -3930,10 +3948,45 @@ type AnomalySubscription struct {
 	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 
+	// (deprecated)
+	//
 	// The dollar value that triggers a notification if the threshold is exceeded.
 	//
-	// Threshold is a required field
-	Threshold *float64 `type:"double" required:"true"`
+	// This field has been deprecated. To specify a threshold, use ThresholdExpression.
+	// Continued use of Threshold will be treated as shorthand syntax for a ThresholdExpression.
+	//
+	// One of Threshold or ThresholdExpression is required for this resource.
+	//
+	// Deprecated: Threshold has been deprecated in favor of ThresholdExpression
+	Threshold *float64 `deprecated:"true" type:"double"`
+
+	// An Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// object used to specify the anomalies that you want to generate alerts for.
+	// This supports dimensions and nested expressions. The supported dimensions
+	// are ANOMALY_TOTAL_IMPACT_ABSOLUTE and ANOMALY_TOTAL_IMPACT_PERCENTAGE. The
+	// supported nested expression types are AND and OR. The match option GREATER_THAN_OR_EQUAL
+	// is required. Values must be numbers between 0 and 10,000,000,000.
+	//
+	// One of Threshold or ThresholdExpression is required for this resource.
+	//
+	// The following are examples of valid ThresholdExpressions:
+	//
+	//    * Absolute threshold: { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_ABSOLUTE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } }
+	//
+	//    * Percentage threshold: { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_PERCENTAGE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } }
+	//
+	//    * AND two thresholds together: { "And": [ { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_ABSOLUTE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } },
+	//    { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_PERCENTAGE", "MatchOptions":
+	//    [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } } ] }
+	//
+	//    * OR two thresholds together: { "Or": [ { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_ABSOLUTE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } },
+	//    { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_PERCENTAGE", "MatchOptions":
+	//    [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } } ] }
+	ThresholdExpression *Expression `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3969,9 +4022,6 @@ func (s *AnomalySubscription) Validate() error {
 	if s.SubscriptionName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubscriptionName"))
 	}
-	if s.Threshold == nil {
-		invalidParams.Add(request.NewErrParamRequired("Threshold"))
-	}
 	if s.Subscribers != nil {
 		for i, v := range s.Subscribers {
 			if v == nil {
@@ -3980,6 +4030,11 @@ func (s *AnomalySubscription) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Subscribers", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.ThresholdExpression != nil {
+		if err := s.ThresholdExpression.Validate(); err != nil {
+			invalidParams.AddNested("ThresholdExpression", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4028,6 +4083,12 @@ func (s *AnomalySubscription) SetSubscriptionName(v string) *AnomalySubscription
 // SetThreshold sets the Threshold field's value.
 func (s *AnomalySubscription) SetThreshold(v float64) *AnomalySubscription {
 	s.Threshold = &v
+	return s
+}
+
+// SetThresholdExpression sets the ThresholdExpression field's value.
+func (s *AnomalySubscription) SetThresholdExpression(v *Expression) *AnomalySubscription {
+	s.ThresholdExpression = v
 	return s
 }
 
@@ -6199,13 +6260,24 @@ type DimensionValues struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the metadata types that you can use to filter and group your
-	// results. For example, AZ returns a list of Availability Zones. LINK_ACCOUNT_NAME
-	// and SERVICE_CODE can only be used in CostCategoryRule (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/AAPI_CostCategoryRule.html).
+	// results. For example, AZ returns a list of Availability Zones.
+	//
+	// Not all dimensions are supported in each API. Refer to the documentation
+	// for each specific API to see what is supported.
+	//
+	// LINK_ACCOUNT_NAME and SERVICE_CODE can only be used in CostCategoryRule (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html).
+	//
+	// ANOMALY_TOTAL_IMPACT_ABSOLUTE and ANOMALY_TOTAL_IMPACT_PERCENTAGE can only
+	// be used in AnomalySubscriptions (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalySubscription.html).
 	Key *string `type:"string" enum:"Dimension"`
 
-	// The match options that you can use to filter your results. MatchOptions is
-	// only applicable for actions related to Cost Category. The default values
-	// for MatchOptions are EQUALS and CASE_SENSITIVE.
+	// The match options that you can use to filter your results.
+	//
+	// MatchOptions is only applicable for actions related to Cost Category and
+	// Anomaly Subscriptions. Refer to the documentation for each specific API to
+	// see what is supported.
+	//
+	// The default values for MatchOptions are EQUALS and CASE_SENSITIVE.
 	MatchOptions []*string `type:"list" enum:"MatchOption"`
 
 	// The metadata values that you can use to filter and group your results. You
@@ -6875,31 +6947,48 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 	return s
 }
 
-// Use Expression to filter by cost or by usage. There are two patterns:
+// Use Expression to filter in various Cost Explorer APIs.
 //
-//   - Simple dimension values - You can set the dimension name and values
-//     for the filters that you plan to use. For example, you can filter for
-//     REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
-//     the Region is a full name (for example, REGION==US East (N. Virginia).
-//     The Expression example is as follows: { "Dimensions": { "Key": "REGION",
-//     "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
-//     are OR'd together to retrieve cost or usage data. You can create Expression
-//     and DimensionValues objects using either with* methods or set* methods
-//     in multiple lines.
+// Not all Expression types are supported in each API. Refer to the documentation
+// for each specific API to see what is supported.
 //
-//   - Compound dimension values with logical operations - You can use multiple
+// There are two patterns:
+//
+//   - Simple dimension values. There are three types of simple dimension values:
+//     CostCategories, Tags, and Dimensions. Specify the CostCategories field
+//     to define a filter that acts on Cost Categories. Specify the Tags field
+//     to define a filter that acts on Cost Allocation Tags. Specify the Dimensions
+//     field to define a filter that acts on the DimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DimensionValues.html).
+//     For each filter type, you can set the dimension name and values for the
+//     filters that you plan to use. For example, you can filter for REGION==us-east-1
+//     OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
+//     a full name (for example, REGION==US East (N. Virginia). The corresponding
+//     Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
+//     "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
+//     example, lists of dimension values are combined with OR when applying
+//     the filter. You can also set different match options to further control
+//     how the filter behaves. Not all APIs support match options. Refer to the
+//     documentation for each specific API to see what is supported. For example,
+//     you can filter for linked account names that start with “a”. The corresponding
+//     Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+//     "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
+//
+//   - Compound Expression types with logical operations. You can use multiple
 //     Expression types and the logical operators AND/OR/NOT to create a list
-//     of one or more Expression objects. By doing this, you can filter on more
-//     advanced options. For example, you can filter on ((REGION == us-east-1
+//     of one or more Expression objects. By doing this, you can filter by more
+//     advanced options. For example, you can filter by ((REGION == us-east-1
 //     OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-//     The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
-//     { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
-//     { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
-//     { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
-//     Expression can have only one operator, the service returns an error if
-//     more than one is specified. The following example shows an Expression
-//     object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
-//     "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+//     The corresponding Expression for this example is as follows: { "And":
+//     [ {"Or": [ {"Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+//     "us-west-1" ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] }
+//     } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"]
+//     }}} ] } Because each Expression can have only one operator, the service
+//     returns an error if more than one is specified. The following example
+//     shows an Expression object that creates an error: { "And": [ ... ], "Dimensions":
+//     { "Key": "USAGE_TYPE", "Values": [ "DataTransfer" ] } } The following
+//     is an example of the corresponding error message: "Expression has more
+//     than one roots. Only one root operator is allowed for each expression:
+//     And, Or, Not, Dimensions, Tags, CostCategories"
 //
 // For the GetRightsizingRecommendation action, a combination of OR and NOT
 // isn't supported. OR isn't supported between different dimensions, or dimensions
@@ -7987,31 +8076,48 @@ type GetCostCategoriesInput struct {
 	// The unique name of the Cost Category.
 	CostCategoryName *string `min:"1" type:"string"`
 
-	// Use Expression to filter by cost or by usage. There are two patterns:
+	// Use Expression to filter in various Cost Explorer APIs.
 	//
-	//    * Simple dimension values - You can set the dimension name and values
-	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
-	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
-	//    are OR'd together to retrieve cost or usage data. You can create Expression
-	//    and DimensionValues objects using either with* methods or set* methods
-	//    in multiple lines.
+	// Not all Expression types are supported in each API. Refer to the documentation
+	// for each specific API to see what is supported.
 	//
-	//    * Compound dimension values with logical operations - You can use multiple
+	// There are two patterns:
+	//
+	//    * Simple dimension values. There are three types of simple dimension values:
+	//    CostCategories, Tags, and Dimensions. Specify the CostCategories field
+	//    to define a filter that acts on Cost Categories. Specify the Tags field
+	//    to define a filter that acts on Cost Allocation Tags. Specify the Dimensions
+	//    field to define a filter that acts on the DimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DimensionValues.html).
+	//    For each filter type, you can set the dimension name and values for the
+	//    filters that you plan to use. For example, you can filter for REGION==us-east-1
+	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
+	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
+	//    example, lists of dimension values are combined with OR when applying
+	//    the filter. You can also set different match options to further control
+	//    how the filter behaves. Not all APIs support match options. Refer to the
+	//    documentation for each specific API to see what is supported. For example,
+	//    you can filter for linked account names that start with “a”. The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
+	//
+	//    * Compound Expression types with logical operations. You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. By doing this, you can filter on more
-	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    of one or more Expression objects. By doing this, you can filter by more
+	//    advanced options. For example, you can filter by ((REGION == us-east-1
 	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
-	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
-	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
-	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
-	//    Expression can have only one operator, the service returns an error if
-	//    more than one is specified. The following example shows an Expression
-	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
-	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//    The corresponding Expression for this example is as follows: { "And":
+	//    [ {"Or": [ {"Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+	//    "us-west-1" ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] }
+	//    } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"]
+	//    }}} ] } Because each Expression can have only one operator, the service
+	//    returns an error if more than one is specified. The following example
+	//    shows an Expression object that creates an error: { "And": [ ... ], "Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": [ "DataTransfer" ] } } The following
+	//    is an example of the corresponding error message: "Expression has more
+	//    than one roots. Only one root operator is allowed for each expression:
+	//    And, Or, Not, Dimensions, Tags, CostCategories"
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
 	// isn't supported. OR isn't supported between different dimensions, or dimensions
@@ -8607,31 +8713,48 @@ type GetDimensionValuesInput struct {
 	// Dimension is a required field
 	Dimension *string `type:"string" required:"true" enum:"Dimension"`
 
-	// Use Expression to filter by cost or by usage. There are two patterns:
+	// Use Expression to filter in various Cost Explorer APIs.
 	//
-	//    * Simple dimension values - You can set the dimension name and values
-	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
-	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
-	//    are OR'd together to retrieve cost or usage data. You can create Expression
-	//    and DimensionValues objects using either with* methods or set* methods
-	//    in multiple lines.
+	// Not all Expression types are supported in each API. Refer to the documentation
+	// for each specific API to see what is supported.
 	//
-	//    * Compound dimension values with logical operations - You can use multiple
+	// There are two patterns:
+	//
+	//    * Simple dimension values. There are three types of simple dimension values:
+	//    CostCategories, Tags, and Dimensions. Specify the CostCategories field
+	//    to define a filter that acts on Cost Categories. Specify the Tags field
+	//    to define a filter that acts on Cost Allocation Tags. Specify the Dimensions
+	//    field to define a filter that acts on the DimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DimensionValues.html).
+	//    For each filter type, you can set the dimension name and values for the
+	//    filters that you plan to use. For example, you can filter for REGION==us-east-1
+	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
+	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
+	//    example, lists of dimension values are combined with OR when applying
+	//    the filter. You can also set different match options to further control
+	//    how the filter behaves. Not all APIs support match options. Refer to the
+	//    documentation for each specific API to see what is supported. For example,
+	//    you can filter for linked account names that start with “a”. The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
+	//
+	//    * Compound Expression types with logical operations. You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. By doing this, you can filter on more
-	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    of one or more Expression objects. By doing this, you can filter by more
+	//    advanced options. For example, you can filter by ((REGION == us-east-1
 	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
-	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
-	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
-	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
-	//    Expression can have only one operator, the service returns an error if
-	//    more than one is specified. The following example shows an Expression
-	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
-	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//    The corresponding Expression for this example is as follows: { "And":
+	//    [ {"Or": [ {"Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+	//    "us-west-1" ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] }
+	//    } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"]
+	//    }}} ] } Because each Expression can have only one operator, the service
+	//    returns an error if more than one is specified. The following example
+	//    shows an Expression object that creates an error: { "And": [ ... ], "Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": [ "DataTransfer" ] } } The following
+	//    is an example of the corresponding error message: "Expression has more
+	//    than one roots. Only one root operator is allowed for each expression:
+	//    And, Or, Not, Dimensions, Tags, CostCategories"
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
 	// isn't supported. OR isn't supported between different dimensions, or dimensions
@@ -9247,31 +9370,48 @@ type GetReservationPurchaseRecommendationInput struct {
 	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
-	// Use Expression to filter by cost or by usage. There are two patterns:
+	// Use Expression to filter in various Cost Explorer APIs.
 	//
-	//    * Simple dimension values - You can set the dimension name and values
-	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
-	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
-	//    are OR'd together to retrieve cost or usage data. You can create Expression
-	//    and DimensionValues objects using either with* methods or set* methods
-	//    in multiple lines.
+	// Not all Expression types are supported in each API. Refer to the documentation
+	// for each specific API to see what is supported.
 	//
-	//    * Compound dimension values with logical operations - You can use multiple
+	// There are two patterns:
+	//
+	//    * Simple dimension values. There are three types of simple dimension values:
+	//    CostCategories, Tags, and Dimensions. Specify the CostCategories field
+	//    to define a filter that acts on Cost Categories. Specify the Tags field
+	//    to define a filter that acts on Cost Allocation Tags. Specify the Dimensions
+	//    field to define a filter that acts on the DimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DimensionValues.html).
+	//    For each filter type, you can set the dimension name and values for the
+	//    filters that you plan to use. For example, you can filter for REGION==us-east-1
+	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
+	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
+	//    example, lists of dimension values are combined with OR when applying
+	//    the filter. You can also set different match options to further control
+	//    how the filter behaves. Not all APIs support match options. Refer to the
+	//    documentation for each specific API to see what is supported. For example,
+	//    you can filter for linked account names that start with “a”. The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
+	//
+	//    * Compound Expression types with logical operations. You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. By doing this, you can filter on more
-	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    of one or more Expression objects. By doing this, you can filter by more
+	//    advanced options. For example, you can filter by ((REGION == us-east-1
 	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
-	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
-	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
-	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
-	//    Expression can have only one operator, the service returns an error if
-	//    more than one is specified. The following example shows an Expression
-	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
-	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//    The corresponding Expression for this example is as follows: { "And":
+	//    [ {"Or": [ {"Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+	//    "us-west-1" ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] }
+	//    } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"]
+	//    }}} ] } Because each Expression can have only one operator, the service
+	//    returns an error if more than one is specified. The following example
+	//    shows an Expression object that creates an error: { "And": [ ... ], "Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": [ "DataTransfer" ] } } The following
+	//    is an example of the corresponding error message: "Expression has more
+	//    than one roots. Only one root operator is allowed for each expression:
+	//    And, Or, Not, Dimensions, Tags, CostCategories"
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
 	// isn't supported. OR isn't supported between different dimensions, or dimensions
@@ -9715,31 +9855,48 @@ type GetRightsizingRecommendationInput struct {
 	// of existing Savings Plans or RI benefits, or neither.
 	Configuration *RightsizingRecommendationConfiguration `type:"structure"`
 
-	// Use Expression to filter by cost or by usage. There are two patterns:
+	// Use Expression to filter in various Cost Explorer APIs.
 	//
-	//    * Simple dimension values - You can set the dimension name and values
-	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
-	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
-	//    are OR'd together to retrieve cost or usage data. You can create Expression
-	//    and DimensionValues objects using either with* methods or set* methods
-	//    in multiple lines.
+	// Not all Expression types are supported in each API. Refer to the documentation
+	// for each specific API to see what is supported.
 	//
-	//    * Compound dimension values with logical operations - You can use multiple
+	// There are two patterns:
+	//
+	//    * Simple dimension values. There are three types of simple dimension values:
+	//    CostCategories, Tags, and Dimensions. Specify the CostCategories field
+	//    to define a filter that acts on Cost Categories. Specify the Tags field
+	//    to define a filter that acts on Cost Allocation Tags. Specify the Dimensions
+	//    field to define a filter that acts on the DimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DimensionValues.html).
+	//    For each filter type, you can set the dimension name and values for the
+	//    filters that you plan to use. For example, you can filter for REGION==us-east-1
+	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
+	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
+	//    example, lists of dimension values are combined with OR when applying
+	//    the filter. You can also set different match options to further control
+	//    how the filter behaves. Not all APIs support match options. Refer to the
+	//    documentation for each specific API to see what is supported. For example,
+	//    you can filter for linked account names that start with “a”. The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
+	//
+	//    * Compound Expression types with logical operations. You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. By doing this, you can filter on more
-	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    of one or more Expression objects. By doing this, you can filter by more
+	//    advanced options. For example, you can filter by ((REGION == us-east-1
 	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
-	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
-	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
-	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
-	//    Expression can have only one operator, the service returns an error if
-	//    more than one is specified. The following example shows an Expression
-	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
-	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//    The corresponding Expression for this example is as follows: { "And":
+	//    [ {"Or": [ {"Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+	//    "us-west-1" ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] }
+	//    } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"]
+	//    }}} ] } Because each Expression can have only one operator, the service
+	//    returns an error if more than one is specified. The following example
+	//    shows an Expression object that creates an error: { "And": [ ... ], "Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": [ "DataTransfer" ] } } The following
+	//    is an example of the corresponding error message: "Expression has more
+	//    than one roots. Only one root operator is allowed for each expression:
+	//    And, Or, Not, Dimensions, Tags, CostCategories"
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
 	// isn't supported. OR isn't supported between different dimensions, or dimensions
@@ -10698,31 +10855,48 @@ func (s *GetSavingsPlansUtilizationOutput) SetTotal(v *SavingsPlansUtilizationAg
 type GetTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Use Expression to filter by cost or by usage. There are two patterns:
+	// Use Expression to filter in various Cost Explorer APIs.
 	//
-	//    * Simple dimension values - You can set the dimension name and values
-	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
-	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
-	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
-	//    are OR'd together to retrieve cost or usage data. You can create Expression
-	//    and DimensionValues objects using either with* methods or set* methods
-	//    in multiple lines.
+	// Not all Expression types are supported in each API. Refer to the documentation
+	// for each specific API to see what is supported.
 	//
-	//    * Compound dimension values with logical operations - You can use multiple
+	// There are two patterns:
+	//
+	//    * Simple dimension values. There are three types of simple dimension values:
+	//    CostCategories, Tags, and Dimensions. Specify the CostCategories field
+	//    to define a filter that acts on Cost Categories. Specify the Tags field
+	//    to define a filter that acts on Cost Allocation Tags. Specify the Dimensions
+	//    field to define a filter that acts on the DimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DimensionValues.html).
+	//    For each filter type, you can set the dimension name and values for the
+	//    filters that you plan to use. For example, you can filter for REGION==us-east-1
+	//    OR REGION==us-west-1. For GetRightsizingRecommendation, the Region is
+	//    a full name (for example, REGION==US East (N. Virginia). The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } As shown in the previous
+	//    example, lists of dimension values are combined with OR when applying
+	//    the filter. You can also set different match options to further control
+	//    how the filter behaves. Not all APIs support match options. Refer to the
+	//    documentation for each specific API to see what is supported. For example,
+	//    you can filter for linked account names that start with “a”. The corresponding
+	//    Expression for this example is as follows: { "Dimensions": { "Key": "LINKED_ACCOUNT_NAME",
+	//    "MatchOptions": [ "STARTS_WITH" ], "Values": [ "a" ] } }
+	//
+	//    * Compound Expression types with logical operations. You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. By doing this, you can filter on more
-	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    of one or more Expression objects. By doing this, you can filter by more
+	//    advanced options. For example, you can filter by ((REGION == us-east-1
 	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
-	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
-	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
-	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
-	//    Expression can have only one operator, the service returns an error if
-	//    more than one is specified. The following example shows an Expression
-	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
-	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//    The corresponding Expression for this example is as follows: { "And":
+	//    [ {"Or": [ {"Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
+	//    "us-west-1" ] }}, {"Tags": { "Key": "TagName", "Values": ["Value1"] }
+	//    } ]}, {"Not": {"Dimensions": { "Key": "USAGE_TYPE", "Values": ["DataTransfer"]
+	//    }}} ] } Because each Expression can have only one operator, the service
+	//    returns an error if more than one is specified. The following example
+	//    shows an Expression object that creates an error: { "And": [ ... ], "Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": [ "DataTransfer" ] } } The following
+	//    is an example of the corresponding error message: "Expression has more
+	//    than one roots. Only one root operator is allowed for each expression:
+	//    And, Or, Not, Dimensions, Tags, CostCategories"
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
 	// isn't supported. OR isn't supported between different dimensions, or dimensions
@@ -11249,8 +11423,24 @@ type Impact struct {
 	// MaxImpact is a required field
 	MaxImpact *float64 `type:"double" required:"true"`
 
-	// The cumulative dollar value that's observed for an anomaly.
+	// The cumulative dollar amount that was actually spent during the anomaly.
+	TotalActualSpend *float64 `type:"double"`
+
+	// The cumulative dollar amount that was expected to be spent during the anomaly.
+	// It is calculated using advanced machine learning models to determine the
+	// typical spending pattern based on historical data for a customer.
+	TotalExpectedSpend *float64 `type:"double"`
+
+	// The cumulative dollar difference between the total actual spend and total
+	// expected spend. It is calculated as TotalActualSpend - TotalExpectedSpend.
 	TotalImpact *float64 `type:"double"`
+
+	// The cumulative percentage difference between the total actual spend and total
+	// expected spend. It is calculated as (TotalImpact / TotalExpectedSpend) *
+	// 100. When TotalExpectedSpend is zero, this field is omitted. Expected spend
+	// can be zero in situations such as when you start to use a service for the
+	// first time.
+	TotalImpactPercentage *float64 `type:"double"`
 }
 
 // String returns the string representation.
@@ -11277,9 +11467,27 @@ func (s *Impact) SetMaxImpact(v float64) *Impact {
 	return s
 }
 
+// SetTotalActualSpend sets the TotalActualSpend field's value.
+func (s *Impact) SetTotalActualSpend(v float64) *Impact {
+	s.TotalActualSpend = &v
+	return s
+}
+
+// SetTotalExpectedSpend sets the TotalExpectedSpend field's value.
+func (s *Impact) SetTotalExpectedSpend(v float64) *Impact {
+	s.TotalExpectedSpend = &v
+	return s
+}
+
 // SetTotalImpact sets the TotalImpact field's value.
 func (s *Impact) SetTotalImpact(v float64) *Impact {
 	s.TotalImpact = &v
+	return s
+}
+
+// SetTotalImpactPercentage sets the TotalImpactPercentage field's value.
+func (s *Impact) SetTotalImpactPercentage(v float64) *Impact {
+	s.TotalImpactPercentage = &v
 	return s
 }
 
@@ -15760,8 +15968,41 @@ type UpdateAnomalySubscriptionInput struct {
 	// The new name of the subscription.
 	SubscriptionName *string `type:"string"`
 
+	// (deprecated)
+	//
 	// The update to the threshold value for receiving notifications.
-	Threshold *float64 `type:"double"`
+	//
+	// This field has been deprecated. To update a threshold, use ThresholdExpression.
+	// Continued use of Threshold will be treated as shorthand syntax for a ThresholdExpression.
+	//
+	// Deprecated: Threshold has been deprecated in favor of ThresholdExpression
+	Threshold *float64 `deprecated:"true" type:"double"`
+
+	// The update to the Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// object used to specify the anomalies that you want to generate alerts for.
+	// This supports dimensions and nested expressions. The supported dimensions
+	// are ANOMALY_TOTAL_IMPACT_ABSOLUTE and ANOMALY_TOTAL_IMPACT_PERCENTAGE. The
+	// supported nested expression types are AND and OR. The match option GREATER_THAN_OR_EQUAL
+	// is required. Values must be numbers between 0 and 10,000,000,000.
+	//
+	// The following are examples of valid ThresholdExpressions:
+	//
+	//    * Absolute threshold: { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_ABSOLUTE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } }
+	//
+	//    * Percentage threshold: { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_PERCENTAGE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } }
+	//
+	//    * AND two thresholds together: { "And": [ { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_ABSOLUTE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } },
+	//    { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_PERCENTAGE", "MatchOptions":
+	//    [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } } ] }
+	//
+	//    * OR two thresholds together: { "Or": [ { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_ABSOLUTE",
+	//    "MatchOptions": [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } },
+	//    { "Dimensions": { "Key": "ANOMALY_TOTAL_IMPACT_PERCENTAGE", "MatchOptions":
+	//    [ "GREATER_THAN_OR_EQUAL" ], "Values": [ "100" ] } } ] }
+	ThresholdExpression *Expression `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15796,6 +16037,11 @@ func (s *UpdateAnomalySubscriptionInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Subscribers", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.ThresholdExpression != nil {
+		if err := s.ThresholdExpression.Validate(); err != nil {
+			invalidParams.AddNested("ThresholdExpression", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -15838,6 +16084,12 @@ func (s *UpdateAnomalySubscriptionInput) SetSubscriptionName(v string) *UpdateAn
 // SetThreshold sets the Threshold field's value.
 func (s *UpdateAnomalySubscriptionInput) SetThreshold(v float64) *UpdateAnomalySubscriptionInput {
 	s.Threshold = &v
+	return s
+}
+
+// SetThresholdExpression sets the ThresholdExpression field's value.
+func (s *UpdateAnomalySubscriptionInput) SetThresholdExpression(v *Expression) *UpdateAnomalySubscriptionInput {
+	s.ThresholdExpression = v
 	return s
 }
 
@@ -16559,6 +16811,12 @@ const (
 
 	// DimensionInvoicingEntity is a Dimension enum value
 	DimensionInvoicingEntity = "INVOICING_ENTITY"
+
+	// DimensionAnomalyTotalImpactAbsolute is a Dimension enum value
+	DimensionAnomalyTotalImpactAbsolute = "ANOMALY_TOTAL_IMPACT_ABSOLUTE"
+
+	// DimensionAnomalyTotalImpactPercentage is a Dimension enum value
+	DimensionAnomalyTotalImpactPercentage = "ANOMALY_TOTAL_IMPACT_PERCENTAGE"
 )
 
 // Dimension_Values returns all elements of the Dimension enum
@@ -16596,6 +16854,8 @@ func Dimension_Values() []string {
 		DimensionAgreementEndDateTimeAfter,
 		DimensionAgreementEndDateTimeBefore,
 		DimensionInvoicingEntity,
+		DimensionAnomalyTotalImpactAbsolute,
+		DimensionAnomalyTotalImpactPercentage,
 	}
 }
 
@@ -16772,6 +17032,9 @@ const (
 
 	// MatchOptionCaseInsensitive is a MatchOption enum value
 	MatchOptionCaseInsensitive = "CASE_INSENSITIVE"
+
+	// MatchOptionGreaterThanOrEqual is a MatchOption enum value
+	MatchOptionGreaterThanOrEqual = "GREATER_THAN_OR_EQUAL"
 )
 
 // MatchOption_Values returns all elements of the MatchOption enum
@@ -16784,6 +17047,7 @@ func MatchOption_Values() []string {
 		MatchOptionContains,
 		MatchOptionCaseSensitive,
 		MatchOptionCaseInsensitive,
+		MatchOptionGreaterThanOrEqual,
 	}
 }
 

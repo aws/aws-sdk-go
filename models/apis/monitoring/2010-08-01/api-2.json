@@ -1214,6 +1214,10 @@
       "type":"integer",
       "min":1
     },
+    "EvaluationState":{
+      "type":"string",
+      "enum":["PARTIAL_DATA"]
+    },
     "ExceptionType":{"type":"string"},
     "ExtendedStatistic":{"type":"string"},
     "ExtendedStatistics":{
@@ -1789,7 +1793,9 @@
         "TreatMissingData":{"shape":"TreatMissingData"},
         "EvaluateLowSampleCountPercentile":{"shape":"EvaluateLowSampleCountPercentile"},
         "Metrics":{"shape":"MetricDataQueries"},
-        "ThresholdMetricId":{"shape":"MetricId"}
+        "ThresholdMetricId":{"shape":"MetricId"},
+        "EvaluationState":{"shape":"EvaluationState"},
+        "StateTransitionedTimestamp":{"shape":"Timestamp"}
       },
       "xmlOrder":[
         "AlarmName",
@@ -1818,7 +1824,9 @@
         "EvaluateLowSampleCountPercentile",
         "DatapointsToAlarm",
         "Metrics",
-        "ThresholdMetricId"
+        "ThresholdMetricId",
+        "EvaluationState",
+        "StateTransitionedTimestamp"
       ]
     },
     "MetricAlarms":{

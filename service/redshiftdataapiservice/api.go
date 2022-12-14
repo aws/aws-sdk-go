@@ -72,6 +72,10 @@ func (c *RedshiftDataAPIService) BatchExecuteStatementRequest(input *BatchExecut
 //     name. Also, permission to call the redshift-serverless:GetCredentials
 //     operation is required.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -156,6 +160,10 @@ func (c *RedshiftDataAPIService) CancelStatementRequest(input *CancelStatementIn
 // CancelStatement API operation for Redshift Data API Service.
 //
 // Cancels a running query. To be canceled, a query must be running.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -247,6 +255,10 @@ func (c *RedshiftDataAPIService) DescribeStatementRequest(input *DescribeStateme
 // Amazon Redshift Data API. The information includes when the query started,
 // when it finished, the query status, the number of rows returned, and the
 // SQL statement.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -354,6 +366,10 @@ func (c *RedshiftDataAPIService) DescribeTableRequest(input *DescribeTableInput)
 //     connecting to a serverless workgroup, specify the workgroup name and database
 //     name. Also, permission to call the redshift-serverless:GetCredentials
 //     operation is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -507,6 +523,10 @@ func (c *RedshiftDataAPIService) ExecuteStatementRequest(input *ExecuteStatement
 //     name. Also, permission to call the redshift-serverless:GetCredentials
 //     operation is required.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -598,6 +618,10 @@ func (c *RedshiftDataAPIService) GetStatementResultRequest(input *GetStatementRe
 //
 // Fetches the temporarily cached result of an SQL statement. A token is returned
 // to page through the statement results.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -756,6 +780,10 @@ func (c *RedshiftDataAPIService) ListDatabasesRequest(input *ListDatabasesInput)
 //     name. Also, permission to call the redshift-serverless:GetCredentials
 //     operation is required.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -913,6 +941,10 @@ func (c *RedshiftDataAPIService) ListSchemasRequest(input *ListSchemasInput) (re
 //     name. Also, permission to call the redshift-serverless:GetCredentials
 //     operation is required.
 //
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1055,6 +1087,10 @@ func (c *RedshiftDataAPIService) ListStatementsRequest(input *ListStatementsInpu
 //
 // List of SQL statements. By default, only finished statements are shown. A
 // token is returned to page through the statement list.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1210,6 +1246,10 @@ func (c *RedshiftDataAPIService) ListTablesRequest(input *ListTablesInput) (req 
 //     connecting to a serverless workgroup, specify the workgroup name and database
 //     name. Also, permission to call the redshift-serverless:GetCredentials
 //     operation is required.
+//
+// For more information about the Amazon Redshift Data API and CLI usage examples,
+// see Using the Amazon Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1438,6 +1478,10 @@ func (s *BatchExecuteStatementException) RequestID() string {
 type BatchExecuteStatementInput struct {
 	_ struct{} `type:"structure"`
 
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
 	// The cluster identifier. This parameter is required when connecting to a cluster
 	// and authenticating using either Secrets Manager or temporary credentials.
 	ClusterIdentifier *string `type:"string"`
@@ -1456,8 +1500,6 @@ type BatchExecuteStatementInput struct {
 	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
-	// One or more SQL statements to run.
-	//
 	// Sqls is a required field
 	Sqls []*string `min:"1" type:"list" required:"true"`
 
@@ -1496,6 +1538,9 @@ func (s BatchExecuteStatementInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *BatchExecuteStatementInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchExecuteStatementInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.Database == nil {
 		invalidParams.Add(request.NewErrParamRequired("Database"))
 	}
@@ -1513,6 +1558,12 @@ func (s *BatchExecuteStatementInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *BatchExecuteStatementInput) SetClientToken(v string) *BatchExecuteStatementInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
@@ -2480,6 +2531,10 @@ func (s *ExecuteStatementException) RequestID() string {
 type ExecuteStatementInput struct {
 	_ struct{} `type:"structure"`
 
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
 	// The cluster identifier. This parameter is required when connecting to a cluster
 	// and authenticating using either Secrets Manager or temporary credentials.
 	ClusterIdentifier *string `type:"string"`
@@ -2541,6 +2596,9 @@ func (s ExecuteStatementInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ExecuteStatementInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ExecuteStatementInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.Database == nil {
 		invalidParams.Add(request.NewErrParamRequired("Database"))
 	}
@@ -2568,6 +2626,12 @@ func (s *ExecuteStatementInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ExecuteStatementInput) SetClientToken(v string) *ExecuteStatementInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
@@ -3746,7 +3810,7 @@ type SqlParameter struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The value of the parameter. Amazon Redshift implicitly converts to the proper
-	// data type. For more inforation, see Data types (https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html)
+	// data type. For more information, see Data types (https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html)
 	// in the Amazon Redshift Database Developer Guide.
 	//
 	// Value is a required field

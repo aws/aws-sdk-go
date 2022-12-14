@@ -8134,7 +8134,7 @@ func (c *NetworkManager) StartOrganizationServiceAccessUpdateRequest(input *Star
 
 // StartOrganizationServiceAccessUpdate API operation for AWS Network Manager.
 //
-// Enables for the Network Manager service for an Amazon Web Services Organization.
+// Enables the Network Manager service for an Amazon Web Services Organization.
 // This can only be called by a management account within the organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -23422,6 +23422,11 @@ func (s *VpcAttachment) SetSubnetArns(v []*string) *VpcAttachment {
 type VpcOptions struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether appliance mode is supported. If enabled, traffic flow between
+	// a source and destination use the same Availability Zone for the VPC attachment
+	// for the lifetime of that flow. The default value is false.
+	ApplianceModeSupport *bool `type:"boolean"`
+
 	// Indicates whether IPv6 is supported.
 	Ipv6Support *bool `type:"boolean"`
 }
@@ -23442,6 +23447,12 @@ func (s VpcOptions) String() string {
 // value will be replaced with "sensitive".
 func (s VpcOptions) GoString() string {
 	return s.String()
+}
+
+// SetApplianceModeSupport sets the ApplianceModeSupport field's value.
+func (s *VpcOptions) SetApplianceModeSupport(v bool) *VpcOptions {
+	s.ApplianceModeSupport = &v
+	return s
 }
 
 // SetIpv6Support sets the Ipv6Support field's value.

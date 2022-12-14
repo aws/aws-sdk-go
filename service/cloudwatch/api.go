@@ -3378,7 +3378,9 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 // PutMetricAlarm API operation for Amazon CloudWatch.
 //
 // Creates or updates an alarm and associates it with the specified metric,
-// metric math expression, or anomaly detection model.
+// metric math expression, anomaly detection model, or Metrics Insights query.
+// For more information about using a Metrics Insights query for an alarm, see
+// Create alarms on Metrics Insights queries (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Metrics_Insights_Alarm.html).
 //
 // Alarms based on anomaly detection models cannot have Auto Scaling actions.
 //
@@ -8946,6 +8948,12 @@ type MetricAlarm struct {
 	// The number of periods over which data is compared to the specified threshold.
 	EvaluationPeriods *int64 `min:"1" type:"integer"`
 
+	// If the value of this field is PARTIAL_DATA, the alarm is being evaluated
+	// based on only partial data. This happens if the query used for the alarm
+	// returns more than 10,000 metrics. For more information, see Create alarms
+	// on Metrics Insights queries (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Metrics_Insights_Alarm.html).
+	EvaluationState *string `type:"string" enum:"EvaluationState"`
+
 	// The percentile statistic for the metric associated with the alarm. Specify
 	// a value between p0.0 and p100.
 	ExtendedStatistic *string `type:"string"`
@@ -8982,7 +8990,11 @@ type MetricAlarm struct {
 	// An explanation for the alarm state, in JSON format.
 	StateReasonData *string `type:"string"`
 
-	// The time stamp of the last update to the alarm state.
+	// The date and time that the alarm's StateValue most recently changed.
+	StateTransitionedTimestamp *time.Time `type:"timestamp"`
+
+	// The time stamp of the last update to the value of either the StateValue or
+	// EvaluationState parameters.
 	StateUpdatedTimestamp *time.Time `type:"timestamp"`
 
 	// The state value for the alarm.
@@ -9094,6 +9106,12 @@ func (s *MetricAlarm) SetEvaluationPeriods(v int64) *MetricAlarm {
 	return s
 }
 
+// SetEvaluationState sets the EvaluationState field's value.
+func (s *MetricAlarm) SetEvaluationState(v string) *MetricAlarm {
+	s.EvaluationState = &v
+	return s
+}
+
 // SetExtendedStatistic sets the ExtendedStatistic field's value.
 func (s *MetricAlarm) SetExtendedStatistic(v string) *MetricAlarm {
 	s.ExtendedStatistic = &v
@@ -9145,6 +9163,12 @@ func (s *MetricAlarm) SetStateReason(v string) *MetricAlarm {
 // SetStateReasonData sets the StateReasonData field's value.
 func (s *MetricAlarm) SetStateReasonData(v string) *MetricAlarm {
 	s.StateReasonData = &v
+	return s
+}
+
+// SetStateTransitionedTimestamp sets the StateTransitionedTimestamp field's value.
+func (s *MetricAlarm) SetStateTransitionedTimestamp(v time.Time) *MetricAlarm {
+	s.StateTransitionedTimestamp = &v
 	return s
 }
 
@@ -12626,6 +12650,18 @@ func ComparisonOperator_Values() []string {
 		ComparisonOperatorLessThanLowerOrGreaterThanUpperThreshold,
 		ComparisonOperatorLessThanLowerThreshold,
 		ComparisonOperatorGreaterThanUpperThreshold,
+	}
+}
+
+const (
+	// EvaluationStatePartialData is a EvaluationState enum value
+	EvaluationStatePartialData = "PARTIAL_DATA"
+)
+
+// EvaluationState_Values returns all elements of the EvaluationState enum
+func EvaluationState_Values() []string {
+	return []string{
+		EvaluationStatePartialData,
 	}
 }
 

@@ -607,7 +607,6 @@
       "required":[
         "MonitorArnList",
         "Subscribers",
-        "Threshold",
         "Frequency",
         "SubscriptionName"
       ],
@@ -616,9 +615,14 @@
         "AccountId":{"shape":"GenericString"},
         "MonitorArnList":{"shape":"MonitorArnList"},
         "Subscribers":{"shape":"Subscribers"},
-        "Threshold":{"shape":"NullableNonNegativeDouble"},
+        "Threshold":{
+          "shape":"NullableNonNegativeDouble",
+          "deprecated":true,
+          "deprecatedMessage":"Threshold has been deprecated in favor of ThresholdExpression"
+        },
         "Frequency":{"shape":"AnomalySubscriptionFrequency"},
-        "SubscriptionName":{"shape":"GenericString"}
+        "SubscriptionName":{"shape":"GenericString"},
+        "ThresholdExpression":{"shape":"Expression"}
       }
     },
     "AnomalySubscriptionFrequency":{
@@ -1136,7 +1140,9 @@
         "PAYMENT_OPTION",
         "AGREEMENT_END_DATE_TIME_AFTER",
         "AGREEMENT_END_DATE_TIME_BEFORE",
-        "INVOICING_ENTITY"
+        "INVOICING_ENTITY",
+        "ANOMALY_TOTAL_IMPACT_ABSOLUTE",
+        "ANOMALY_TOTAL_IMPACT_PERCENTAGE"
       ]
     },
     "DimensionValues":{
@@ -1809,7 +1815,10 @@
       "required":["MaxImpact"],
       "members":{
         "MaxImpact":{"shape":"GenericDouble"},
-        "TotalImpact":{"shape":"GenericDouble"}
+        "TotalImpact":{"shape":"GenericDouble"},
+        "TotalActualSpend":{"shape":"NullableNonNegativeDouble"},
+        "TotalExpectedSpend":{"shape":"NullableNonNegativeDouble"},
+        "TotalImpactPercentage":{"shape":"NullableNonNegativeDouble"}
       }
     },
     "InstanceDetails":{
@@ -1925,7 +1934,8 @@
         "ENDS_WITH",
         "CONTAINS",
         "CASE_SENSITIVE",
-        "CASE_INSENSITIVE"
+        "CASE_INSENSITIVE",
+        "GREATER_THAN_OR_EQUAL"
       ]
     },
     "MatchOptions":{
@@ -2801,11 +2811,16 @@
       "required":["SubscriptionArn"],
       "members":{
         "SubscriptionArn":{"shape":"GenericString"},
-        "Threshold":{"shape":"NullableNonNegativeDouble"},
+        "Threshold":{
+          "shape":"NullableNonNegativeDouble",
+          "deprecated":true,
+          "deprecatedMessage":"Threshold has been deprecated in favor of ThresholdExpression"
+        },
         "Frequency":{"shape":"AnomalySubscriptionFrequency"},
         "MonitorArnList":{"shape":"MonitorArnList"},
         "Subscribers":{"shape":"Subscribers"},
-        "SubscriptionName":{"shape":"GenericString"}
+        "SubscriptionName":{"shape":"GenericString"},
+        "ThresholdExpression":{"shape":"Expression"}
       }
     },
     "UpdateAnomalySubscriptionResponse":{

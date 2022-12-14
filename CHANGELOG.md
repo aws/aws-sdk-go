@@ -1,3 +1,14 @@
+Release v1.44.160 (2022-12-14)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/monitoring`: Updates service API and documentation
+  * Adding support for Metrics Insights Alarms
+* `service/networkmanager`: Updates service API and documentation
+* `service/redshift-data`: Updates service API and documentation
+* `service/sagemaker-metrics`: Updates service documentation
+
 Release v1.44.159 (2022-12-13)
 ===
 

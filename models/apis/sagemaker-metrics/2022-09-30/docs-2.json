@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p>Contains all data plane API operations and data types for Amazon SageMaker Metrics. Use these APIs to put and retrieve (get) features related to your training run.</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_metrics_BatchPutMetrics.html\">BatchPutMetrics</a> </p> </li> </ul>",
   "operations": {
-    "BatchPutMetrics": "<p>Used to ingest training metrics into SageMaker which can be visualized in SageMaker Studio and retrieved with the <code>GetMetrics</code> API. </p>"
+    "BatchPutMetrics": "<p>Used to ingest training metrics into SageMaker. These metrics can be visualized in SageMaker Studio and retrieved with the <code>GetMetrics</code> API. </p>"
   },
   "shapes": {
     "BatchPutMetricsError": {
@@ -14,7 +14,7 @@
     "BatchPutMetricsErrorList": {
       "base": null,
       "refs": {
-        "BatchPutMetricsResponse$Errors": "<p>Any errors that occur when inserting metric data will appear in this.</p>"
+        "BatchPutMetricsResponse$Errors": "<p>Lists any errors that occur when inserting metric data.</p>"
       }
     },
     "BatchPutMetricsRequest": {
@@ -36,7 +36,7 @@
     "ExperimentEntityName": {
       "base": null,
       "refs": {
-        "BatchPutMetricsRequest$TrialComponentName": "<p>The name of Trial Component to associate the metrics with.</p>"
+        "BatchPutMetricsRequest$TrialComponentName": "<p>The name of the Trial Component to associate with the metrics.</p>"
       }
     },
     "Integer": {
@@ -54,7 +54,7 @@
     "PutMetricsErrorCode": {
       "base": null,
       "refs": {
-        "BatchPutMetricsError$Code": "<p>The error code of an error that occured when attempting to put metrics.</p> <ul> <li> <p> <code>METRIC_LIMIT_EXCEEDED</code> - The max amount of metrics per resource has been exceeded.</p> </li> <li> <p> <code>INTERNAL_ERROR</code> - An internal error occured.</p> </li> <li> <p> <code>VALIDATION_ERROR</code> - The metric data failed validation.</p> </li> <li> <p> <code>CONFLICT_ERROR</code> - Multiple requests attempted to modify the same data simultaneously.</p> </li> </ul>"
+        "BatchPutMetricsError$Code": "<p>The error code of an error that occured when attempting to put metrics.</p> <ul> <li> <p> <code>METRIC_LIMIT_EXCEEDED</code>: The maximum amount of metrics per resource is exceeded.</p> </li> <li> <p> <code>INTERNAL_ERROR</code>: An internal error occured.</p> </li> <li> <p> <code>VALIDATION_ERROR</code>: The metric data failed validation.</p> </li> <li> <p> <code>CONFLICT_ERROR</code>: Multiple requests attempted to modify the same data simultaneously.</p> </li> </ul>"
       }
     },
     "RawMetricData": {
@@ -72,13 +72,13 @@
     "Step": {
       "base": null,
       "refs": {
-        "RawMetricData$Step": "<p>Metric step (aka Epoch). </p>"
+        "RawMetricData$Step": "<p>The metric step (epoch). </p>"
       }
     },
     "Timestamp": {
       "base": null,
       "refs": {
-        "RawMetricData$Timestamp": "<p>The time when the metric was recorded.</p>"
+        "RawMetricData$Timestamp": "<p>The time that the metric was recorded.</p>"
       }
     }
   }

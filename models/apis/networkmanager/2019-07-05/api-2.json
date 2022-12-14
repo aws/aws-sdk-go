@@ -5123,7 +5123,8 @@
     "VpcOptions":{
       "type":"structure",
       "members":{
-        "Ipv6Support":{"shape":"Boolean"}
+        "Ipv6Support":{"shape":"Boolean"},
+        "ApplianceModeSupport":{"shape":"Boolean"}
       }
     },
     "VpnConnectionArn":{
