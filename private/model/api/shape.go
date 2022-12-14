@@ -784,7 +784,7 @@ type {{ $.ShapeName }} struct {
 		{{- $_ := $.API.AddSDKImport "private/protocol" }}
 		RespMetadata protocol.ResponseMetadata` + "`json:\"-\" xml:\"-\"`" + `
 	{{- if $.API.Metadata.AWSQueryCompatible }}
-		code string
+		Code_ *string
 	{{- end }}
 	{{- end }}
 
@@ -929,7 +929,7 @@ func newError{{ $.ShapeName }}(v protocol.ResponseMetadata) error {
 func newQueryCompatibleError{{ $.ShapeName }}(v protocol.ResponseMetadata, code string) error {
 	return &{{ $.ShapeName }}{
 		RespMetadata: v,
-		code: code,
+		Code_: &code,
 	}
 }
 {{- end }}
@@ -937,8 +937,8 @@ func newQueryCompatibleError{{ $.ShapeName }}(v protocol.ResponseMetadata, code 
 // Code returns the exception type name.
 func (s *{{ $.ShapeName }}) Code() string {
 	{{- if $.API.Metadata.AWSQueryCompatible }}
-	if s.code != "" {
-		return s.code
+	if s.Code_ != nil {
+		return *s.Code_
 	}
 	{{- end }}
 	return "{{ $.ErrorName }}"
