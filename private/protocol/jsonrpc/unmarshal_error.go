@@ -90,11 +90,7 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	}
 
 	if queryCodeParts != nil && len(queryCodeParts) == 2 {
-		return awserr.NewRequestFailure(
-			awserr.New(queryCodeParts[0], msg, nil),
-			respMeta.StatusCode,
-			respMeta.RequestID,
-			), nil
+		code = queryCodeParts[0]
 	}
 
 	// fallback to unmodeled generic exceptions
