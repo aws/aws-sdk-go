@@ -182,6 +182,10 @@
         "Sqls"
       ],
       "members":{
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
         "ClusterIdentifier":{"shape":"Location"},
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
@@ -233,6 +237,11 @@
       "members":{
         "Status":{"shape":"Boolean"}
       }
+    },
+    "ClientToken":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "ColumnList":{
       "type":"list",
@@ -349,6 +358,10 @@
         "Sql"
       ],
       "members":{
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
         "ClusterIdentifier":{"shape":"Location"},
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
