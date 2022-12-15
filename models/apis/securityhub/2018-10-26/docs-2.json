@@ -942,6 +942,270 @@
         "AwsEc2InstanceDetails$NetworkInterfaces": "<p>The identifiers of the network interfaces for the EC2 instance. The details for each network interface are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code> object.</p>"
       }
     },
+    "AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails": {
+      "base": "<p> Information about a block device mapping for an Amazon Elastic Compute Cloud (Amazon EC2) launch template. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails": {
+      "base": "<p> Parameters for a block device for an Amazon Elastic Block Store (Amazon EBS) volume in an Amazon EC2 launch template. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails$Ebs": "<p> Parameters used to automatically set up Amazon EBS volumes when the instance is launched. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataBlockDeviceMappingSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$BlockDeviceMappingSet": "<p> Information about a block device mapping for an Amazon EC2 launch template. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails": {
+      "base": "<p> Information about the target Capacity Reservation or Capacity Reservation group in which to run an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails$CapacityReservationTarget": "<p> Specifies a target Capacity Reservation. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails": {
+      "base": "<p> Specifies the Capacity Reservation targeting option of an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$CapacityReservationSpecification": "<p> Specifies an instance's Capacity Reservation targeting option. You can specify only one option at a time. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataCpuOptionsDetails": {
+      "base": "<p> Specifies the CPU options for an Amazon EC2 instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html\">Optimize CPU options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$CpuOptions": "<p> Specifies the CPU options for an instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html\">Optimize CPU options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataCreditSpecificationDetails": {
+      "base": "<p> Specifies the credit option for CPU usage of a T2, T3, or T3a Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$CreditSpecification": "<p> Specifies the credit option for CPU usage of a T2, T3, or T3a instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataDetails": {
+      "base": "<p> The information to include in an Amazon Elastic Compute Cloud (Amazon EC2) launch template. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDetails$LaunchTemplateData": "<p> The information to include in the launch template. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails": {
+      "base": "<p> Provides details about an Elastic Graphics specification for an Amazon EC2 launch template. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataElasticGpuSpecificationSetList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataElasticGpuSpecificationSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$ElasticGpuSpecificationSet": "<p> Provides details about Elastic Graphics accelerators to associate with the instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails": {
+      "base": "<p> Provides details for an Amazon Elastic Inference accelerator. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$ElasticInferenceAcceleratorSet": "<p> The Amazon Elastic Inference accelerator for the instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataEnclaveOptionsDetails": {
+      "base": "<p> Indicates whether the instance is enabled for Amazon Web Services Nitro Enclaves. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$EnclaveOptions": "<p> Indicates whether the Amazon EC2 instance is enabled for Amazon Web Services Nitro Enclaves. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataHibernationOptionsDetails": {
+      "base": "<p> Specifies whether your Amazon EC2 instance is configured for hibernation. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$HibernationOptions": "<p> Specifies whether your Amazon EC2 instance is configured for hibernation. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataIamInstanceProfileDetails": {
+      "base": "<p> Provides details for an Identity and Access Management (IAM) instance profile, which is a container for an IAM role for your instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$IamInstanceProfile": "<p> The name or Amazon Resource Name (ARN) of an IAM instance profile. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails": {
+      "base": "<p> Provides details about the market (purchasing) option for an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$InstanceMarketOptions": "<p> Specifies the market (purchasing) option for an instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails": {
+      "base": "<p> Provides details about the market (purchasing) options for Spot Instances. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails$SpotOptions": "<p> The options for Spot Instances. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails": {
+      "base": "<p> The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$AcceleratorCount": "<p> The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on an instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails": {
+      "base": "<p> The minimum and maximum amount of memory, in MiB, for the accelerators on an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$AcceleratorTotalMemoryMiB": "<p> The minimum and maximum amount of total accelerator memory, in MiB. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails": {
+      "base": "<p> The minimum and maximum baseline bandwidth to Amazon Elastic Block Store (Amazon EBS), in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS–optimized instances </a> in the <i>Amazon EC2 User Guide</i>. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$BaselineEbsBandwidthMbps": "<p> The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS optimized instances</a> in the <i>Amazon EC2 User Guide</i>. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsDetails": {
+      "base": "<p> The attributes for the Amazon EC2 instance types. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$InstanceRequirements": "<p> The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes. If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails": {
+      "base": "<p> The minimum and maximum amount of memory per vCPU, in GiB. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$MemoryGiBPerVCpu": "<p> The minimum and maximum amount of memory per vCPU, in GiB. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails": {
+      "base": "<p> The minimum and maximum amount of memory, in MiB, for an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$MemoryMiB": "<p> The minimum and maximum amount of memory, in MiB. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails": {
+      "base": "<p> The minimum and maximum number of network interfaces to be attached to an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$NetworkInterfaceCount": "<p> The minimum and maximum number of network interfaces. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails": {
+      "base": "<p> The minimum and maximum amount of total local storage, in GB, that an Amazon EC2 instance uses. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$TotalLocalStorageGB": "<p> The minimum and maximum amount of total local storage, in GB. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails": {
+      "base": "<p> The minimum and maximum number of vCPUs for an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$VCpuCount": "<p> The minimum and maximum number of vCPUs. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataLicenseSetDetails": {
+      "base": "<p> Provides details about the license configuration for an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataLicenseSetList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataLicenseSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$LicenseSet": "<p> Specifies a license configuration for an instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataMaintenanceOptionsDetails": {
+      "base": "<p> The maintenance options of an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$MaintenanceOptions": "<p> The maintenance options of your instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataMetadataOptionsDetails": {
+      "base": "<p> Specifies the metadata options for an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$MetadataOptions": "<p> The metadata options for the instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html\">Instance metadata and user data</a> in the <i>Amazon EC2 User Guide</i>. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataMonitoringDetails": {
+      "base": "<p> The monitoring for an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$Monitoring": "<p> The monitoring for the instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails": {
+      "base": "<p> One or more network interfaces to attach to an Amazon EC2 instance. If you specify a network interface, you must specify security groups and subnets as part of the network interface. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails": {
+      "base": "<p> Provides details on one or more IPv4 prefixes for a network interface. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Ipv4Prefixes": "<p> One or more IPv4 prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv4PrefixCount</code> option. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails": {
+      "base": "<p> Specifies an IPv6 address in an Amazon EC2 launch template. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Ipv6Addresses": "<p> One or more specific IPv6 addresses from the IPv6 CIDR block range of your subnet. You can't use this option if you use <code>Ipv6AddressCount</code>. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails": {
+      "base": "<p> Provides details on one or more IPv6 prefixes to be assigned to the network interface. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Ipv6Prefixes": "<p> One or more IPv6 prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv6PrefixCount</code> option. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$NetworkInterfaceSet": "<p> Specifies the parameters for a network interface that is attached to the instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails": {
+      "base": "<p> One or more private IPv4 addresses. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesList$member": null
+      }
+    },
+    "AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesList": {
+      "base": null,
+      "refs": {
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$PrivateIpAddresses": "<p> One or more private IPv4 addresses. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataPlacementDetails": {
+      "base": "<p> Provides details about the placement of an Amazon EC2 instance. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$Placement": "<p> Specifies the placement of an instance. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails": {
+      "base": "<p> Describes the options for Amazon EC2 instance hostnames. </p>",
+      "refs": {
+        "AwsEc2LaunchTemplateDataDetails$PrivateDnsNameOptions": "<p> The options for the instance hostname. </p>"
+      }
+    },
+    "AwsEc2LaunchTemplateDetails": {
+      "base": "<p> Specifies the properties for creating an Amazon Elastic Compute Cloud (Amazon EC2) launch template. </p>",
+      "refs": {
+        "ResourceDetails$AwsEc2LaunchTemplate": null
+      }
+    },
     "AwsEc2NetworkAclAssociation": {
       "base": "<p>An association between the network ACL and a subnet.</p>",
       "refs": {
@@ -2963,6 +3227,18 @@
         "ResourceDetails$AwsS3Object": "<p>Details about an S3 object related to a finding.</p>"
       }
     },
+    "AwsSageMakerNotebookInstanceDetails": {
+      "base": "<p> Provides details about an Amazon SageMaker notebook instance. </p>",
+      "refs": {
+        "ResourceDetails$AwsSageMakerNotebookInstance": null
+      }
+    },
+    "AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails": {
+      "base": "<p> Information on the instance metadata service (IMDS) configuration of the notebook instance. </p>",
+      "refs": {
+        "AwsSageMakerNotebookInstanceDetails$InstanceMetadataServiceConfiguration": "<p> Information on the IMDS configuration of the notebook instance. </p>"
+      }
+    },
     "AwsSecretsManagerSecretDetails": {
       "base": "<p>Details about an Secrets Manager secret.</p>",
       "refs": {
@@ -3222,6 +3498,116 @@
         "AwsWafWebAclDetails$Rules": "<p>An array that contains the action for each rule in a web ACL, the priority of the rule, and the ID of the rule.</p>"
       }
     },
+    "AwsWafv2ActionAllowDetails": {
+      "base": "<p> Specifies that WAF should allow the request and optionally defines additional custom handling for the request. </p>",
+      "refs": {
+        "AwsWafv2RulesActionDetails$Allow": "<p> Instructs WAF to allow the web request. </p>",
+        "AwsWafv2WebAclActionDetails$Allow": "<p> Specifies that WAF should allow requests by default. </p>"
+      }
+    },
+    "AwsWafv2ActionBlockDetails": {
+      "base": "<p> Specifies that WAF should block the request and optionally defines additional custom handling for the response to the web request. </p>",
+      "refs": {
+        "AwsWafv2RulesActionDetails$Block": "<p> Instructs WAF to block the web request. </p>",
+        "AwsWafv2WebAclActionDetails$Block": "<p> Specifies that WAF should block requests by default. </p>"
+      }
+    },
+    "AwsWafv2CustomHttpHeader": {
+      "base": "<p> A custom header for custom request and response handling. </p>",
+      "refs": {
+        "AwsWafv2InsertHeadersList$member": null
+      }
+    },
+    "AwsWafv2CustomRequestHandlingDetails": {
+      "base": "<p> Custom request handling behavior that inserts custom headers into a web request. WAF uses custom request handling when the rule action doesn't block the request. </p>",
+      "refs": {
+        "AwsWafv2ActionAllowDetails$CustomRequestHandling": "<p> Defines custom handling for the web request. For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in WAF</a> in the <i>WAF Developer Guide.</i>. </p>",
+        "AwsWafv2RulesActionCaptchaDetails$CustomRequestHandling": "<p> Defines custom handling for the web request, used when the CAPTCHA inspection determines that the request's token is valid and unexpired. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in WAF</a> in the <i>WAF Developer Guide.</i>. </p>",
+        "AwsWafv2RulesActionCountDetails$CustomRequestHandling": "<p> Defines custom handling for the web request. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in WAF</a> in the <i>WAF Developer Guide.</i>. </p>"
+      }
+    },
+    "AwsWafv2CustomResponseDetails": {
+      "base": "<p> A custom response to send to the client. You can define a custom response for rule actions and default web ACL actions that are set to block. </p>",
+      "refs": {
+        "AwsWafv2ActionBlockDetails$CustomResponse": "<p> Defines a custom response for the web request. For information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in WAF</a> in the <i>WAF Developer Guide.</i>. </p>"
+      }
+    },
+    "AwsWafv2InsertHeadersList": {
+      "base": null,
+      "refs": {
+        "AwsWafv2CustomRequestHandlingDetails$InsertHeaders": "<p> The HTTP headers to insert into the request. </p>",
+        "AwsWafv2CustomResponseDetails$ResponseHeaders": "<p> The HTTP headers to use in the response. </p>"
+      }
+    },
+    "AwsWafv2RuleGroupDetails": {
+      "base": "<p> Details about an WAFv2 rule group. </p>",
+      "refs": {
+        "ResourceDetails$AwsWafv2RuleGroup": null
+      }
+    },
+    "AwsWafv2RulesActionCaptchaDetails": {
+      "base": "<p> Specifies that WAF should run a CAPTCHA check against the request. </p>",
+      "refs": {
+        "AwsWafv2RulesActionDetails$Captcha": "<p> Instructs WAF to run a CAPTCHA check against the web request. </p>"
+      }
+    },
+    "AwsWafv2RulesActionCountDetails": {
+      "base": "<p> Specifies that WAF should count the request. </p>",
+      "refs": {
+        "AwsWafv2RulesActionDetails$Count": "<p> Instructs WAF to count the web request and then continue evaluating the request using the remaining rules in the web ACL. </p>"
+      }
+    },
+    "AwsWafv2RulesActionDetails": {
+      "base": "<p> The action that WAF should take on a web request when it matches a rule's statement. Settings at the web ACL level can override the rule action setting. </p>",
+      "refs": {
+        "AwsWafv2RulesDetails$Action": "<p> The action that WAF should take on a web request when it matches the rule statement. Settings at the web ACL level can override the rule action setting. </p>"
+      }
+    },
+    "AwsWafv2RulesDetails": {
+      "base": "<p> Provides details about rules in a rule group. A rule identifies web requests that you want to allow, block, or count. Each rule includes one top-level Statement that AWS WAF uses to identify matching web requests, and parameters that govern how AWS WAF handles them. </p>",
+      "refs": {
+        "AwsWafv2RulesList$member": null
+      }
+    },
+    "AwsWafv2RulesList": {
+      "base": null,
+      "refs": {
+        "AwsWafv2RuleGroupDetails$Rules": "<p> The Rule statements used to identify the web requests that you want to allow, block, or count. Each rule includes one top-level statement that WAF uses to identify matching web requests, and parameters that govern how WAF handles them. </p>",
+        "AwsWafv2WebAclDetails$Rules": "<p> The Rule statements used to identify the web requests that you want to allow, block, or count. Each rule includes one top-level statement that WAF uses to identify matching web requests, and parameters that govern how WAF handles them. </p>"
+      }
+    },
+    "AwsWafv2VisibilityConfigDetails": {
+      "base": "<p> Defines and enables Amazon CloudWatch metrics and web request sample collection. </p>",
+      "refs": {
+        "AwsWafv2RuleGroupDetails$VisibilityConfig": "<p> Defines and enables Amazon CloudWatch metrics and web request sample collection. </p>",
+        "AwsWafv2RulesDetails$VisibilityConfig": "<p> Defines and enables Amazon CloudWatch metrics and web request sample collection. </p>",
+        "AwsWafv2WebAclDetails$VisibilityConfig": "<p> Defines and enables Amazon CloudWatch metrics and web request sample collection. </p>"
+      }
+    },
+    "AwsWafv2WebAclActionDetails": {
+      "base": "<p> Specifies the action that Amazon CloudFront or WAF takes when a web request matches the conditions in the rule. </p>",
+      "refs": {
+        "AwsWafv2WebAclDetails$DefaultAction": "<p> The action to perform if none of the Rules contained in the web ACL match. </p>"
+      }
+    },
+    "AwsWafv2WebAclCaptchaConfigDetails": {
+      "base": "<p> Specifies how WAF should handle CAPTCHA evaluations for rules that don't have their own <code>CaptchaConfig</code> settings. </p>",
+      "refs": {
+        "AwsWafv2WebAclDetails$CaptchaConfig": "<p> Specifies how WAF should handle CAPTCHA evaluations for rules that don't have their own <code>CaptchaConfig</code> settings. </p>"
+      }
+    },
+    "AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails": {
+      "base": "<p> Used for CAPTCHA and challenge token settings. Determines how long a CAPTCHA or challenge timestamp remains valid after WAF updates it for a successful CAPTCHA or challenge response. </p>",
+      "refs": {
+        "AwsWafv2WebAclCaptchaConfigDetails$ImmunityTimeProperty": "<p> Determines how long a CAPTCHA timestamp in the token remains valid after the client successfully solves a CAPTCHA puzzle. </p>"
+      }
+    },
+    "AwsWafv2WebAclDetails": {
+      "base": "<p> Details about an WAFv2 web Access Control List (ACL). </p>",
+      "refs": {
+        "ResourceDetails$AwsWafv2WebAcl": null
+      }
+    },
     "AwsXrayEncryptionConfigDetails": {
       "base": "<p>Information about the encryption configuration for X-Ray.</p>",
       "refs": {
@@ -3330,6 +3716,21 @@
         "AwsDynamoDbTableGlobalSecondaryIndex$Backfilling": "<p>Whether the index is currently backfilling.</p>",
         "AwsDynamoDbTableRestoreSummary$RestoreInProgress": "<p>Whether a restore is currently in progress.</p>",
         "AwsDynamoDbTableStreamSpecification$StreamEnabled": "<p>Indicates whether DynamoDB Streams is enabled on the table.</p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$DeleteOnTermination": "<p> Indicates whether the EBS volume is deleted on instance termination. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$Encrypted": "<p> Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you're creating a volume from a snapshot, you can't specify an encryption value. </p>",
+        "AwsEc2LaunchTemplateDataDetails$DisableApiStop": "<p> Indicates whether to enable the instance for stop protection. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection\">Enable stop protection</a> in the <i>Amazon EC2 User Guide</i>. </p>",
+        "AwsEc2LaunchTemplateDataDetails$DisableApiTermination": "<p> If you set this parameter to <code>true</code>, you can't terminate the instance using the Amazon EC2 console, CLI, or API. If set to <code>true</code>, you can. </p>",
+        "AwsEc2LaunchTemplateDataDetails$EbsOptimized": "<p> Indicates whether the instance is optimized for Amazon EBS I/O. </p>",
+        "AwsEc2LaunchTemplateDataEnclaveOptionsDetails$Enabled": "<p> If this parameter is set to <code>true</code>, the instance is enabled for Amazon Web Services Nitro Enclaves. </p>",
+        "AwsEc2LaunchTemplateDataHibernationOptionsDetails$Configured": "<p> If you set this parameter to <code>true</code>, the instance is enabled for hibernation. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$RequireHibernateSupport": "<p> Indicates whether instance types must support hibernation for On-Demand Instances. </p>",
+        "AwsEc2LaunchTemplateDataMonitoringDetails$Enabled": "<p> Enables detailed monitoring when <code>true</code> is specified. Otherwise, basic monitoring is enabled. For more information about detailed monitoring, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html\">Enable or turn off detailed monitoring for your instances</a> in the <i>Amazon EC2 User Guide</i>. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$AssociateCarrierIpAddress": "<p> Indicates whether to associate a Carrier IP address with eth0 for a new network interface. You use this option when you launch an instance in a Wavelength Zone and want to associate a Carrier IP address with the network interface. For more information, see <a href=\"https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html#provider-owned-ip\">Carrier IP address</a> in the <i>Wavelength Developer Guide</i>. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$AssociatePublicIpAddress": "<p> Associates a public IPv4 address with eth0 for a new network interface. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$DeleteOnTermination": "<p> Indicates whether the network interface is deleted when the instance is terminated. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails$Primary": "<p> Indicates whether the private IPv4 address is the primary private IPv4 address. Only one IPv4 address can be designated as primary. </p>",
+        "AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails$EnableResourceNameDnsAAAARecord": "<p> Indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records. </p>",
+        "AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails$EnableResourceNameDnsARecord": "<p> Indicates whether to respond to DNS queries for instance hostnames with DNS A records. </p>",
         "AwsEc2NetworkAclDetails$IsDefault": "<p>Whether this is the default network ACL for the VPC.</p>",
         "AwsEc2NetworkAclEntry$Egress": "<p>Whether the rule is an egress rule. An egress rule is a rule that applies to traffic that leaves the subnet.</p>",
         "AwsEc2NetworkInterfaceAttachment$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
@@ -3437,6 +3838,9 @@
         "AwsWafRegionalRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings.</p>",
         "AwsWafRegionalRulePredicateListDetails$Negated": "<p>Specifies if you want WAF to allow, block, or count requests based on the settings in the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, or <code>SizeConstraintSet</code>. </p>",
         "AwsWafRulePredicateListDetails$Negated": "<p>Specifies if you want WAF to allow, block, or count requests based on the settings in the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>, <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, or <code>SizeConstraintSet</code>. </p>",
+        "AwsWafv2VisibilityConfigDetails$CloudWatchMetricsEnabled": "<p> A boolean indicating whether the associated resource sends metrics to Amazon CloudWatch. For the list of available metrics, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics\">WAF metrics and dimensions</a> in the <i>WAF Developer Guide</i>. </p>",
+        "AwsWafv2VisibilityConfigDetails$SampledRequestsEnabled": "<p> A boolean indicating whether WAF should store a sampling of the web requests that match the rules. You can view the sampled requests through the WAF console. </p>",
+        "AwsWafv2WebAclDetails$ManagedbyFirewallManager": "<p> Indicates whether this web ACL is managed by Firewall Manager. </p>",
         "BooleanFilter$Value": "<p>The value of the boolean.</p>",
         "ClassificationResult$AdditionalOccurrences": "<p>Indicates whether there are additional occurrences of sensitive data that are not included in the finding. This occurs when the number of occurrences exceeds the maximum that can be included.</p>",
         "ContainerDetails$Privileged": "<p>When this parameter is <code>true</code>, the container is given elevated privileges on the host container instance (similar to the root user). </p>",
@@ -3857,6 +4261,10 @@
         "AwsApiGatewayMethodSettings$ThrottlingRateLimit": "<p>The throttling rate limit for the method.</p>",
         "AwsApiGatewayV2RouteSettings$ThrottlingRateLimit": "<p>The throttling rate limit.</p>",
         "AwsCloudWatchAlarmDetails$Threshold": "<p>The value to compare with the specified statistic. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails$Max": "<p> The maximum amount of memory per vCPU, in GiB. If this parameter is omitted, there's no maximum limit. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails$Min": "<p> The minimum amount of memory per vCPU, in GiB. If this parameter is omitted, there's no maximum limit. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails$Max": "<p> The maximum amount of total local storage, in GB. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails$Min": "<p> The minimum amount of total local storage, in GB. </p>",
         "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the KMS key was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsRedshiftClusterRestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "Cvss$BaseScore": "<p>The base CVSS score.</p>",
@@ -4180,6 +4588,35 @@
         "AwsDynamoDbTableProvisionedThroughput$WriteCapacityUnits": "<p>The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughputOverride$ReadCapacityUnits": "<p>The read capacity units for the replica.</p>",
         "AwsEc2InstanceMetadataOptions$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$Iops": "<p> The number of I/O operations per second (IOPS). </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$Throughput": "<p> The throughput to provision for a gp3 volume, with a maximum of 1,000 MiB/s. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$VolumeSize": "<p> The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. </p>",
+        "AwsEc2LaunchTemplateDataCpuOptionsDetails$CoreCount": "<p> The number of CPU cores for the instance. </p>",
+        "AwsEc2LaunchTemplateDataCpuOptionsDetails$ThreadsPerCore": "<p> The number of threads per CPU core. A value of <code>1</code> disables multithreading for the instance, The default value is <code>2</code>. </p>",
+        "AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails$Count": "<p> The number of Elastic Inference accelerators to attach to the instance. </p>",
+        "AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails$BlockDurationMinutes": "<p> Deprecated. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails$Max": "<p> The maximum number of accelerators. If this parameter isn't specified, there's no maximum limit. To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails$Min": "<p> The minimum number of accelerators. If this parameter isn't specified, there's no minimum limit. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails$Max": "<p> The maximum amount of memory, in MiB. If this parameter isn't specified, there's no maximum limit. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails$Min": "<p> The minimum amount of memory, in MiB. If <code>0</code> is specified, there's no maximum limit. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails$Max": "<p> The maximum baseline bandwidth, in Mbps. If this parameter is omitted, there's no maximum limit. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails$Min": "<p> The minimum baseline bandwidth, in Mbps. If this parameter is omitted, there's no minimum limit. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$OnDemandMaxPricePercentageOverLowestPrice": "<p> The price protection threshold for On-Demand Instances. This is the maximum you’ll pay for an On-Demand Instance, expressed as a percentage above the least expensive current generation M, C, or R instance type with your specified attributes. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold.</p> <p>The parameter accepts an integer, which Amazon EC2 interprets as a percentage.</p> <p>A high value, such as <code>999999</code>, turns off price protection.</p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$SpotMaxPricePercentageOverLowestPrice": "<p> The price protection threshold for Spot Instances. This is the maximum you’ll pay for a Spot Instance, expressed as a percentage above the least expensive current generation M, C, or R instance type with your specified attributes. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold. </p> <p>The parameter accepts an integer, which Amazon EC2 interprets as a percentage.</p> <p>A high value, such as <code>999999</code>, turns off price protection.</p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails$Max": "<p> The maximum amount of memory, in MiB. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails$Min": "<p> The minimum amount of memory, in MiB. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails$Max": "<p> The maximum number of network interfaces. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails$Min": "<p> The minimum number of network interfaces. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails$Max": "<p> The maximum number of vCPUs. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails$Min": "<p> The minimum number of vCPUs. </p>",
+        "AwsEc2LaunchTemplateDataMetadataOptionsDetails$HttpPutResponseHopLimit": "<p> The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$DeviceIndex": "<p> The device index for the network interface attachment. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Ipv4PrefixCount": "<p> The number of IPv4 prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv4Prefixes</code> option. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Ipv6AddressCount": "<p> The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if you use <code>Ipv6Addresses</code>. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Ipv6PrefixCount": "<p> The number of IPv6 prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv6Prefix</code> option. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$NetworkCardIndex": "<p> The index of the network card. Some instance types support multiple network cards. The primary network interface must be assigned to network card index <code>0</code>. The default is network card index <code>0</code>. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$SecondaryPrivateIpAddressCount": "<p> The number of secondary private IPv4 addresses to assign to a network interface. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$PartitionNumber": "<p> The number of the partition the instance should launch in. </p>",
         "AwsEc2NetworkAclEntry$RuleNumber": "<p>The rule number. The rules are processed in order by their number.</p>",
         "AwsEc2NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
         "AwsEc2SecurityGroupIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number.</p> <p>A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>",
@@ -4289,6 +4726,7 @@
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$NoncurrentVersionExpirationInDays": "<p>The number of days that an object is noncurrent before Amazon S3 can perform the associated action.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails$Days": "<p>The number of days that an object is noncurrent before Amazon S3 can perform the associated action.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails$Days": "<p>The number of days after which to transition the object to the specified storage class. If you provide <code>Days</code>, you cannot provide <code>Date</code>.</p>",
+        "AwsSageMakerNotebookInstanceDetails$VolumeSizeInGB": "<p> The size, in GB, of the ML storage volume to attach to the notebook instance. </p>",
         "AwsSecretsManagerSecretRotationRules$AutomaticallyAfterDays": "<p>The number of days after the previous rotation to rotate the secret.</p>",
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFinding$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
@@ -4309,6 +4747,8 @@
         "AwsWafRegionalWebAclRulesListDetails$Priority": "<p>The order in which WAF evaluates the rules in a web ACL. </p>",
         "AwsWafRuleGroupRulesDetails$Priority": "<p>If you define more than one rule in a web ACL, WAF evaluates each request against the rules in order based on the value of <code>Priority</code>.</p>",
         "AwsWafWebAclRule$Priority": "<p>Specifies the order in which the rules in a web ACL are evaluated. Rules with a lower value for <code>Priority</code> are evaluated before rules with a higher value. The value must be a unique integer. If you add multiple rules to a web ACL, the values do not need to be consecutive.</p>",
+        "AwsWafv2CustomResponseDetails$ResponseCode": "<p> The HTTP status code to return to the client. For a list of status codes that you can use in your custom responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/customizing-the-response-status-codes.html\">Supported status codes for custom response</a> in the <i>WAF Developer Guide.</i> </p>",
+        "AwsWafv2RulesDetails$Priority": "<p> If you define more than one Rule in a WebACL, WAF evaluates each request against the Rules in order based on the value of <code>Priority</code>. WAF processes rules with lower priority first. The priorities don't need to be consecutive, but they must all be different. </p>",
         "BatchImportFindingsResponse$FailedCount": "<p>The number of findings that failed to import.</p>",
         "BatchImportFindingsResponse$SuccessCount": "<p>The number of findings that were successfully imported.</p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
@@ -4368,7 +4808,7 @@
       }
     },
     "InvalidAccessException": {
-      "base": "<p>There is an issue with the account used to make the request. Either Security Hub is not enabled for the account, or the account does not have permission to perform this action.</p>",
+      "base": "<p>The account doesn't have permission to perform this action.</p>",
       "refs": {
       }
     },
@@ -4530,6 +4970,8 @@
         "AwsBackupRecoveryPointDetails$BackupSizeInBytes": "<p>The size, in bytes, of a backup. </p>",
         "AwsBackupRecoveryPointLifecycleDetails$DeleteAfterDays": "<p>Specifies the number of days after creation that a recovery point is deleted. Must be greater than 90 days plus <code>MoveToColdStorageAfterDays</code>. </p>",
         "AwsBackupRecoveryPointLifecycleDetails$MoveToColdStorageAfterDays": "<p>Specifies the number of days after creation that a recovery point is moved to cold storage. </p>",
+        "AwsEc2LaunchTemplateDetails$DefaultVersionNumber": "<p> The default version of the launch template. </p>",
+        "AwsEc2LaunchTemplateDetails$LatestVersionNumber": "<p> The latest version of the launch template. </p>",
         "AwsElbLbCookieStickinessPolicy$CookieExpirationPeriod": "<p>The amount of time, in seconds, after which the cookie is considered stale. If an expiration period is not specified, the stickiness session lasts for the duration of the browser session.</p>",
         "AwsRedshiftClusterRestoreStatus$ElapsedTimeInSeconds": "<p>The amount of time an in-progress restore has been running, or the amount of time it took a completed restore to finish.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "AwsRedshiftClusterRestoreStatus$EstimatedTimeToCompletionInSeconds": "<p>The estimate of the time remaining before the restore is complete. Returns 0 for a completed restore.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
@@ -4537,6 +4979,9 @@
         "AwsRedshiftClusterRestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data that was used to restore the cluster.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "AwsWafRateBasedRuleDetails$RateLimit": "<p>The maximum number of requests that have an identical value for the field specified in <code>RateKey</code> that are allowed within a five-minute period. If the number of requests exceeds <code>RateLimit</code> and the other predicates specified in the rule are met, WAF triggers the action for the rule.</p>",
         "AwsWafRegionalRateBasedRuleDetails$RateLimit": "<p>The maximum number of requests that have an identical value for the field specified in <code>RateKey</code> that are allowed within a five-minute period. If the number of requests exceeds <code>RateLimit</code> and the other predicates specified in the rule are met, WAF triggers the action for the rule.</p>",
+        "AwsWafv2RuleGroupDetails$Capacity": "<p> The web ACL capacity units (WCUs) required for this rule group. </p>",
+        "AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails$ImmunityTime": "<p> The amount of time, in seconds, that a CAPTCHA or challenge timestamp is considered valid by WAF. </p>",
+        "AwsWafv2WebAclDetails$Capacity": "<p> The web ACL capacity units (WCUs) currently being used by this web ACL. </p>",
         "Cell$Column": "<p>The column number of the column that contains the data. For a Microsoft Excel workbook, the column number corresponds to the alphabetical column identifiers. For example, a value of 1 for Column corresponds to the A column in the workbook.</p>",
         "Cell$Row": "<p>The row number of the row that contains the data.</p>",
         "ClassificationResult$SizeClassified": "<p>The total size in bytes of the affected data.</p>",
@@ -5004,6 +5449,60 @@
         "AwsEc2InstanceMetadataOptions$HttpTokens": "<p>The state of token usage for your instance metadata requests. </p>",
         "AwsEc2InstanceMetadataOptions$InstanceMetadataTags": "<p>Specifies whether to allow access to instance tags from the instance metadata. </p>",
         "AwsEc2InstanceNetworkInterfacesDetails$NetworkInterfaceId": "<p>The identifier of the network interface. The details are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code> object.</p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails$DeviceName": "<p> The device name. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails$NoDevice": "<p> Omits the device from the block device mapping when an empty string is specified. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails$VirtualName": "<p> The virtual device name (ephemeralN). Instance store volumes are numbered starting from 0. An instance type with 2 available instance store volumes can specify mappings for <code>ephemeral0</code> and <code>ephemeral1</code>. The number of available instance store volumes depends on the instance type. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$KmsKeyId": "<p> The Amazon Resource Name (ARN) of the symmetric Key Management Service (KMS) customer managed key used for encryption. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$SnapshotId": "<p> The ID of the EBS snapshot. </p>",
+        "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$VolumeType": "<p> The volume type. </p>",
+        "AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails$CapacityReservationId": "<p> The ID of the Capacity Reservation in which to run the instance. </p>",
+        "AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails$CapacityReservationResourceGroupArn": "<p> The Amazon Resource Name (ARN) of the Capacity Reservation resource group in which to run the instance. </p>",
+        "AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails$CapacityReservationPreference": "<p> Indicates the instance's Capacity Reservation preferences. If equal to <code>open</code>, the instance can run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). If equal to <code>none</code>, the instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity. </p>",
+        "AwsEc2LaunchTemplateDataCreditSpecificationDetails$CpuCredits": "<p> The credit option for CPU usage of a T instance. </p>",
+        "AwsEc2LaunchTemplateDataDetails$ImageId": "<p> The ID of the Amazon Machine Image (AMI). </p>",
+        "AwsEc2LaunchTemplateDataDetails$InstanceInitiatedShutdownBehavior": "<p> Provides the options for specifying the instance initiated shutdown behavior. </p>",
+        "AwsEc2LaunchTemplateDataDetails$InstanceType": "<p> The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>. If you specify <code>InstanceType</code>, you can't specify <code>InstanceRequirements</code>. </p>",
+        "AwsEc2LaunchTemplateDataDetails$KernelId": "<p> The ID of the kernel. </p>",
+        "AwsEc2LaunchTemplateDataDetails$KeyName": "<p> The name of the key pair that allows users to connect to the instance. </p>",
+        "AwsEc2LaunchTemplateDataDetails$RamDiskId": "<p> The ID of the RAM disk. </p>",
+        "AwsEc2LaunchTemplateDataDetails$UserData": "<p> The user data to make available to the instance. </p>",
+        "AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails$Type": "<p> The type of Elastic Graphics accelerator. </p>",
+        "AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails$Type": "<p> The type of Elastic Inference accelerator. </p>",
+        "AwsEc2LaunchTemplateDataIamInstanceProfileDetails$Arn": "<p> The Amazon Resource Name (ARN) of the instance profile. </p>",
+        "AwsEc2LaunchTemplateDataIamInstanceProfileDetails$Name": "<p> The name of the instance profile. </p>",
+        "AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails$MarketType": "<p> The market type. </p>",
+        "AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails$InstanceInterruptionBehavior": "<p> The behavior when a Spot Instance is interrupted. </p>",
+        "AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails$MaxPrice": "<p> The maximum hourly price you're willing to pay for the Spot Instances. </p>",
+        "AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails$SpotInstanceType": "<p> The Spot Instance request type. </p>",
+        "AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails$ValidUntil": "<p> The end date of the request, in UTC format (YYYY-MM-DDTHH:MM:SSZ), for persistent requests. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$BareMetal": "<p>Indicates whether bare metal instance types must be included, excluded, or required. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$BurstablePerformance": "<p> Indicates whether burstable performance T instance types are included, excluded, or required. For more information, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a> in the <i>Amazon EC2 User Guide</i>. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$LocalStorage": "<p> Indicates whether instance types with instance store volumes are included, excluded, or required. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html\">Amazon EC2 instance store</a> in the <i>Amazon EC2 User Guide</i>. </p>",
+        "AwsEc2LaunchTemplateDataLicenseSetDetails$LicenseConfigurationArn": "<p> The Amazon Resource Name (ARN) of the license configuration. </p>",
+        "AwsEc2LaunchTemplateDataMaintenanceOptionsDetails$AutoRecovery": "<p> Disables the automatic recovery behavior of your instance or sets it to default. </p>",
+        "AwsEc2LaunchTemplateDataMetadataOptionsDetails$HttpEndpoint": "<p> Enables or disables the HTTP metadata endpoint on your instances. If the parameter is not specified, the default state is enabled, and you won’t be able to access your instance metadata. </p>",
+        "AwsEc2LaunchTemplateDataMetadataOptionsDetails$HttpProtocolIpv6": "<p> Enables or disables the IPv6 endpoint for the instance metadata service. </p>",
+        "AwsEc2LaunchTemplateDataMetadataOptionsDetails$HttpTokens": "<p> The state of token usage for your instance metadata requests. </p>",
+        "AwsEc2LaunchTemplateDataMetadataOptionsDetails$InstanceMetadataTags": "<p> When set to <code>enabled</code>, this parameter allows access to instance tags from the instance metadata. When set to <code>disabled</code>, it turns off access to instance tags from the instance metadata. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS\">Work with instance tags in instance metadata</a> in the <i>Amazon EC2 User Guide</i>. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Description": "<p> A description for the network interface. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$InterfaceType": "<p> The type of network interface. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$NetworkInterfaceId": "<p> The ID of the network interface. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$PrivateIpAddress": "<p> The primary private IPv4 address of the network interface. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$SubnetId": "<p> The ID of the subnet for the network interface. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails$Ipv4Prefix": "<p> The IPv4 prefix. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html\">Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails$Ipv6Address": "<p> One or more specific IPv6 addresses from the IPv6 CIDR block range of your subnet. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails$Ipv6Prefix": "<p> The IPv6 prefix. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails$PrivateIpAddress": "<p> The private IPv4 address. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$Affinity": "<p> The affinity setting for an instance on an EC2 Dedicated Host. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$AvailabilityZone": "<p> The Availability Zone for the instance. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$GroupName": "<p> The name of the placement group for the instance. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$HostId": "<p> The ID of the Dedicated Host for the instance. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$HostResourceGroupArn": "<p> The Amazon Resource Name (ARN) of the host resource group in which to launch the instances. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$SpreadDomain": "<p> Reserved for future use. </p>",
+        "AwsEc2LaunchTemplateDataPlacementDetails$Tenancy": "<p> The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of dedicated runs on single-tenant hardware. </p>",
+        "AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails$HostnameType": "<p> The type of hostname for EC2 instances. </p>",
+        "AwsEc2LaunchTemplateDetails$LaunchTemplateName": "<p> A name for the launch template. </p>",
+        "AwsEc2LaunchTemplateDetails$Id": "<p> An ID for the launch template. </p>",
         "AwsEc2NetworkAclAssociation$NetworkAclAssociationId": "<p>The identifier of the association between the network ACL and the subnet.</p>",
         "AwsEc2NetworkAclAssociation$NetworkAclId": "<p>The identifier of the network ACL.</p>",
         "AwsEc2NetworkAclAssociation$SubnetId": "<p>The identifier of the subnet that is associated with the network ACL.</p>",
@@ -5666,6 +6165,22 @@
         "AwsS3ObjectDetails$ContentType": "<p>A standard MIME type describing the format of the object data.</p>",
         "AwsS3ObjectDetails$ServerSideEncryption": "<p>If the object is stored using server-side encryption, the value of the server-side encryption algorithm used when storing this object in Amazon S3.</p>",
         "AwsS3ObjectDetails$SSEKMSKeyId": "<p>The identifier of the KMS symmetric customer managed key that was used for the object.</p>",
+        "AwsSageMakerNotebookInstanceDetails$DefaultCodeRepository": "<p> The Git repository associated with the notebook instance as its default code repository. This can be either the name of a Git repository stored as a resource in your account, or the URL of a Git repository in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. When you open a notebook instance, it opens in the directory that contains this repository. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker Developer Guide</i>. </p>",
+        "AwsSageMakerNotebookInstanceDetails$DirectInternetAccess": "<p> Sets whether SageMaker provides internet access to the notebook instance. If you set this to <code>Disabled</code>, this notebook instance is able to access resources only in your VPC, and is not be able to connect to SageMaker training and endpoint services unless you configure a Network Address Translation (NAT) Gateway in your VPC. </p>",
+        "AwsSageMakerNotebookInstanceDetails$FailureReason": "<p> If status of the instance is <code>Failed</code>, the reason it failed. </p>",
+        "AwsSageMakerNotebookInstanceDetails$InstanceType": "<p> The type of machine learning (ML) compute instance to launch for the notebook instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$KmsKeyId": "<p> The Amazon Resource Name (ARN) of an Key Management Service (KMS) key that SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html\">Enabling and disabling keys</a> in the <i>Key Management Service Developer Guide</i>. </p>",
+        "AwsSageMakerNotebookInstanceDetails$NetworkInterfaceId": "<p> The network interface ID that SageMaker created when the instance was created. </p>",
+        "AwsSageMakerNotebookInstanceDetails$NotebookInstanceArn": "<p> The Amazon Resource Name (ARN) of the notebook instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$NotebookInstanceLifecycleConfigName": "<p> The name of a notebook instance lifecycle configuration. </p>",
+        "AwsSageMakerNotebookInstanceDetails$NotebookInstanceName": "<p> The name of the new notebook instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$NotebookInstanceStatus": "<p> The status of the notebook instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$PlatformIdentifier": "<p> The platform identifier of the notebook instance runtime environment. </p>",
+        "AwsSageMakerNotebookInstanceDetails$RoleArn": "<p> The Amazon Resource Name (ARN) of the IAM role associated with the instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$RootAccess": "<p> Whether root access is enabled or disabled for users of the notebook instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$SubnetId": "<p> The ID of the VPC subnet to which you have a connectivity from your ML compute instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$Url": "<p> The URL that you use to connect to the Jupyter notebook that is running in your notebook instance. </p>",
+        "AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails$MinimumInstanceMetadataServiceVersion": "<p> Indicates the minimum IMDS version that the notebook instance supports. </p>",
         "AwsSecretsManagerSecretDetails$KmsKeyId": "<p>The ARN, Key ID, or alias of the KMS key used to encrypt the <code>SecretString</code> or <code>SecretBinary</code> values for versions of this secret.</p>",
         "AwsSecretsManagerSecretDetails$RotationLambdaArn": "<p>The ARN of the Lambda function that rotates the secret.</p>",
         "AwsSecretsManagerSecretDetails$Name": "<p>The name of the secret.</p>",
@@ -5755,6 +6270,21 @@
         "AwsWafWebAclDetails$WebAclId": "<p>A unique identifier for a web ACL.</p>",
         "AwsWafWebAclRule$RuleId": "<p>The identifier for a rule.</p>",
         "AwsWafWebAclRule$Type": "<p>The rule type.</p> <p>Valid values: <code>REGULAR</code> | <code>RATE_BASED</code> | <code>GROUP</code> </p> <p>The default is <code>REGULAR</code>.</p>",
+        "AwsWafv2CustomHttpHeader$Name": "<p> The name of the custom header. </p>",
+        "AwsWafv2CustomHttpHeader$Value": "<p> The value of the custom header. </p>",
+        "AwsWafv2CustomResponseDetails$CustomResponseBodyKey": "<p> References the response body that you want WAF to return to the web request client. You can define a custom response for a rule action or a default web ACL action that is set to block. </p>",
+        "AwsWafv2RuleGroupDetails$Description": "<p> A description of the rule group that helps with identification. </p>",
+        "AwsWafv2RuleGroupDetails$Id": "<p> A unique identifier for the rule group. </p>",
+        "AwsWafv2RuleGroupDetails$Name": "<p> The name of the rule group. You cannot change the name of a rule group after you create it. </p>",
+        "AwsWafv2RuleGroupDetails$Arn": "<p> The Amazon Resource Name (ARN) of the entity. </p>",
+        "AwsWafv2RuleGroupDetails$Scope": "<p> Specifies whether the rule group is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool. </p>",
+        "AwsWafv2RulesDetails$Name": "<p> The name of the rule. </p>",
+        "AwsWafv2RulesDetails$OverrideAction": "<p> The action to use in the place of the action that results from the rule group evaluation. </p>",
+        "AwsWafv2VisibilityConfigDetails$MetricName": "<p> A name of the Amazon CloudWatch metric. </p>",
+        "AwsWafv2WebAclDetails$Name": "<p> The name of the web ACL. </p>",
+        "AwsWafv2WebAclDetails$Arn": "<p> The Amazon Resource Name (ARN) of the web ACL that you want to associate with the resource. </p>",
+        "AwsWafv2WebAclDetails$Id": "<p> A unique identifier for the web ACL. </p>",
+        "AwsWafv2WebAclDetails$Description": "<p> A description of the web ACL that helps with identification. </p>",
         "AwsXrayEncryptionConfigDetails$KeyId": "<p>The identifier of the KMS key that is used for encryption. Provided if <code>Type</code> is <code>KMS</code>.</p>",
         "AwsXrayEncryptionConfigDetails$Status": "<p>The current status of the encryption configuration. Valid values are <code>ACTIVE</code> or <code>UPDATING</code>.</p> <p>When <code>Status</code> is equal to <code>UPDATING</code>, X-Ray might use both the old and new encryption.</p>",
         "AwsXrayEncryptionConfigDetails$Type": "<p>The type of encryption. <code>KMS</code> indicates that the encryption uses KMS keys. <code>NONE</code> indicates the default encryption.</p>",
@@ -6026,6 +6556,16 @@
         "AwsCorsConfiguration$ExposeHeaders": "<p>The exposed headers for CORS requests.</p>",
         "AwsCorsConfiguration$AllowMethods": "<p>The allowed methods for CORS requests.</p>",
         "AwsCorsConfiguration$AllowHeaders": "<p>The allowed headers for CORS requests.</p>",
+        "AwsEc2LaunchTemplateDataDetails$SecurityGroupIdSet": "<p> One or more security group IDs. </p>",
+        "AwsEc2LaunchTemplateDataDetails$SecurityGroupSet": "<p> One or more security group names. For a nondefault VPC, you must use security group IDs instead. You cannot specify both a security group ID and security name in the same request. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$AcceleratorManufacturers": "<p>Indicates whether instance types must have accelerators by specific manufacturers. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$AcceleratorNames": "<p> The accelerators that must be on the instance type. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$AcceleratorTypes": "<p>The accelerator types that must be on the instance type. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$CpuManufacturers": "<p> The CPU manufacturers to include. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$ExcludedInstanceTypes": "<p> The instance types to exclude. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$InstanceGenerations": "<p> Indicates whether current or previous generation instance types are included. </p>",
+        "AwsEc2LaunchTemplateDataInstanceRequirementsDetails$LocalStorageTypes": "<p> The type of local storage that is required. </p>",
+        "AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails$Groups": "<p> The IDs of one or more security groups. </p>",
         "AwsEc2TransitGatewayDetails$TransitGatewayCidrBlocks": "<p>The transit gateway Classless Inter-Domain Routing (CIDR) blocks. </p>",
         "AwsEc2VpcEndpointServiceDetails$AvailabilityZones": "<p>The Availability Zones where the service is available.</p>",
         "AwsEc2VpcEndpointServiceDetails$BaseEndpointDnsNames": "<p>The DNS names for the service.</p>",
@@ -6067,6 +6607,9 @@
         "AwsOpenSearchServiceDomainVpcOptionsDetails$SubnetIds": "<p>A list of subnet IDs that are associated with the VPC endpoints for the domain.</p>",
         "AwsRdsEventSubscriptionDetails$EventCategoriesList": "<p>The list of event categories for the event notification subscription.</p>",
         "AwsRdsEventSubscriptionDetails$SourceIdsList": "<p>A list of source identifiers for the event notification subscription.</p>",
+        "AwsSageMakerNotebookInstanceDetails$AcceleratorTypes": "<p> A list of Amazon Elastic Inference instance types to associate with the notebook instance. Currently, only one instance type can be associated with a notebook instance. </p>",
+        "AwsSageMakerNotebookInstanceDetails$AdditionalCodeRepositories": "<p> An array of up to three Git repositories associated with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git repositories with SageMaker notebook instances</a> in the <i>Amazon SageMaker Developer Guide</i>. </p>",
+        "AwsSageMakerNotebookInstanceDetails$SecurityGroups": "<p> The VPC security group IDs. </p>",
         "FirewallPolicyDetails$StatelessDefaultActions": "<p>The actions to take on a packet if it doesn't match any of the stateless rules in the policy.</p> <p>You must specify a standard action (<code>aws:pass</code>, <code>aws:drop</code>, <code>aws:forward_to_sfe</code>), and can optionally include a custom action from <code>StatelessCustomActions</code>. </p>",
         "FirewallPolicyDetails$StatelessFragmentDefaultActions": "<p>The actions to take on a fragmented UDP packet if it doesn't match any of the stateless rules in the policy.</p> <p>You must specify a standard action (<code>aws:pass</code>, <code>aws:drop</code>, <code>aws:forward_to_sfe</code>), and can optionally include a custom action from <code>StatelessCustomActions</code>. </p>",
         "RuleGroupSourceListDetails$TargetTypes": "<p>The protocols that you want to inspect. Specify <code>LS_SNI</code> for HTTPS. Specify <code>HTTP_HOST</code> for HTTP. You can specify either or both.</p>",

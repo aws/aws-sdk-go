@@ -309,9 +309,9 @@
     },
     "BoundedLengthString":{
       "type":"string",
-      "max":5000,
+      "max":10000,
       "min":1,
-      "pattern":"[\\P{M}\\p{M}]{1,5000}"
+      "pattern":"[\\P{M}\\p{M}]{1,10000}"
     },
     "ClientTokenString":{
       "type":"string",
@@ -1096,12 +1096,17 @@
         "TargetLanguageCode"
       ],
       "members":{
-        "TranslatedText":{"shape":"String"},
+        "TranslatedText":{"shape":"TranslatedTextString"},
         "SourceLanguageCode":{"shape":"LanguageCodeString"},
         "TargetLanguageCode":{"shape":"LanguageCodeString"},
         "AppliedTerminologies":{"shape":"AppliedTerminologyList"},
         "AppliedSettings":{"shape":"TranslationSettings"}
       }
+    },
+    "TranslatedTextString":{
+      "type":"string",
+      "max":20000,
+      "pattern":"[\\P{M}\\p{M}]{0,20000}"
     },
     "TranslationSettings":{
       "type":"structure",

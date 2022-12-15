@@ -1255,7 +1255,7 @@ func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *
 // Creates a flow for the specified Amazon Connect instance.
 //
 // You can also create and update flows using the Amazon Connect Flow language
-// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2059,6 +2059,9 @@ func (c *Connect) CreateRuleRequest(input *CreateRuleInput) (req *request.Reques
 // CreateRule API operation for Amazon Connect Service.
 //
 // Creates a rule for the specified Amazon Connect instance.
+//
+// Use the Rules Function language (https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html)
+// to code conditions for the rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4352,7 +4355,7 @@ func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (r
 // Describes the specified flow.
 //
 // You can also create and update flows using the Amazon Connect Flow language
-// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8309,7 +8312,7 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 // Provides information about the flows for the specified Amazon Connect instance.
 //
 // You can also create and update flows using the Amazon Connect Flow language
-// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 //
 // For more information about flows, see Flows (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html)
 // in the Amazon Connect Administrator Guide.
@@ -15364,7 +15367,7 @@ func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowConten
 // Updates the specified flow.
 //
 // You can also create and update flows using the Amazon Connect Flow language
-// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15750,7 +15753,7 @@ func (c *Connect) UpdateContactFlowNameRequest(input *UpdateContactFlowNameInput
 // The name of the flow.
 //
 // You can also create and update flows using the Amazon Connect Flow language
-// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17374,6 +17377,9 @@ func (c *Connect) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Reques
 // UpdateRule API operation for Amazon Connect Service.
 //
 // Updates a rule for the specified Amazon Connect instance.
+//
+// Use the Rules Function language (https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html)
+// to code conditions for the rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20901,7 +20907,7 @@ func (s *ContactFlowNotPublishedException) RequestID() string {
 // Contains summary information about a flow.
 //
 // You can also create and update flows using the Amazon Connect Flow language
-// (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+// (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html).
 type ContactFlowSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -22809,7 +22815,8 @@ type CreateSecurityProfileInput struct {
 	SecurityProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The list of resources that a security profile applies tag restrictions to
-	// in Amazon Connect.
+	// in Amazon Connect. Following are acceptable ResourceNames: User | SecurityProfile
+	// | Queue | RoutingProfile
 	TagRestrictedResources []*string `type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
@@ -44100,8 +44107,7 @@ type UpdateContactFlowContentInput struct {
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
 	// The JSON string that represents flow's content. For an example, see Example
-	// contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language-example.html)
-	// in the Amazon Connect Administrator Guide.
+	// contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html).
 	//
 	// Content is a required field
 	Content *string `type:"string" required:"true"`
@@ -51458,6 +51464,12 @@ const (
 
 	// VocabularyLanguageCodeZhCn is a VocabularyLanguageCode enum value
 	VocabularyLanguageCodeZhCn = "zh-CN"
+
+	// VocabularyLanguageCodeEnNz is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnNz = "en-NZ"
+
+	// VocabularyLanguageCodeEnZa is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnZa = "en-ZA"
 )
 
 // VocabularyLanguageCode_Values returns all elements of the VocabularyLanguageCode enum
@@ -51484,6 +51496,8 @@ func VocabularyLanguageCode_Values() []string {
 		VocabularyLanguageCodePtBr,
 		VocabularyLanguageCodePtPt,
 		VocabularyLanguageCodeZhCn,
+		VocabularyLanguageCodeEnNz,
+		VocabularyLanguageCodeEnZa,
 	}
 }
 

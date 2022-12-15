@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Provides language translation for input text in the source language to the specified target language.</p>",
+  "service": "<p>Provides translation of the input content from the source language to the target language.</p>",
   "operations": {
     "CreateParallelData": "<p>Creates a parallel data resource in Amazon Translate by importing an input file from Amazon S3. Parallel data files contain examples that show how you want segments of text to be translated. By adding parallel data, you can influence the style, tone, and word choice in your translation output.</p>",
     "DeleteParallelData": "<p>Deletes a parallel data resource in Amazon Translate.</p>",
@@ -14,7 +14,7 @@
     "ListTagsForResource": "<p>Lists all tags associated with a given Amazon Translate resource. For more information, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/tagging.html\"> Tagging your resources</a>.</p>",
     "ListTerminologies": "<p>Provides a list of custom terminologies associated with your account.</p>",
     "ListTextTranslationJobs": "<p>Gets a list of the batch translation jobs that you have submitted.</p>",
-    "StartTextTranslationJob": "<p>Starts an asynchronous batch translation job. Use batch translation jobs to translate large volumes of text across multiple documents at once. For batch translation, the input documents must share the same source language. You can specify one or more target languages. Batch translation translates each input document into each of the target languages. For more information, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/async.html\">Asynchronous batch processing</a> </p> <p>Batch translation jobs can be described with the <a>DescribeTextTranslationJob</a> operation, listed with the <a>ListTextTranslationJobs</a> operation, and stopped with the <a>StopTextTranslationJob</a> operation.</p> <note> <p>Amazon Translate does not support batch translation of multiple source languages at once.</p> </note>",
+    "StartTextTranslationJob": "<p>Starts an asynchronous batch translation job. Use batch translation jobs to translate large volumes of text across multiple documents at once. For batch translation, you can input documents with different source languages (specify <code>auto</code> as the source language). You can specify one or more target languages. Batch translation translates each input document into each of the target languages. For more information, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/async.html\">Asynchronous batch processing</a>.</p> <p>Batch translation jobs can be described with the <a>DescribeTextTranslationJob</a> operation, listed with the <a>ListTextTranslationJobs</a> operation, and stopped with the <a>StopTextTranslationJob</a> operation.</p>",
     "StopTextTranslationJob": "<p>Stops an asynchronous batch translation job that is in progress.</p> <p>If the job's state is <code>IN_PROGRESS</code>, the job will be marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state. Otherwise, the job is put into the <code>STOPPED</code> state.</p> <p>Asynchronous batch translation jobs are started with the <a>StartTextTranslationJob</a> operation. You can use the <a>DescribeTextTranslationJob</a> or <a>ListTextTranslationJobs</a> operations to get a batch translation job's <code>JobId</code>.</p>",
     "TagResource": "<p>Associates a specific tag with a resource. A tag is a key-value pair that adds as a metadata to a resource. For more information, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/tagging.html\"> Tagging your resources</a>.</p>",
     "TranslateText": "<p>Translates input text from the source language to the target language. For a list of available languages and language codes, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html\">Supported languages</a>.</p>",
@@ -37,7 +37,7 @@
     "BoundedLengthString": {
       "base": null,
       "refs": {
-        "TranslateTextRequest$Text": "<p>The text to translate. The text string can be a maximum of 5,000 bytes long. Depending on your character set, this may be fewer than 5,000 characters.</p>"
+        "TranslateTextRequest$Text": "<p>The text to translate. The text string can be a maximum of 10,000 bytes long. Depending on your character set, this may be fewer than 10,000 characters.</p>"
       }
     },
     "ClientTokenString": {
@@ -153,7 +153,7 @@
     "Formality": {
       "base": null,
       "refs": {
-        "TranslationSettings$Formality": "<p>You can optionally specify the desired level of formality for translations to supported target languages. The formality setting controls the level of formal language usage (also known as <a href=\"https://en.wikipedia.org/wiki/Register_(sociolinguistics)\">register</a>) in the translation output. You can set the value to informal or formal. If you don't specify a value for formality, or if the target language doesn't support formality, the translation will ignore the formality setting.</p> <p> If you specify multiple target languages for the job, translate ignores the formality setting for any unsupported target language.</p> <p>For a list of target languages that support formality, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html\">Setting Formality</a> in the Amazon Translate Developer Guide.</p>"
+        "TranslationSettings$Formality": "<p>You can optionally specify the desired level of formality for translations to supported target languages. The formality setting controls the level of formal language usage (also known as <a href=\"https://en.wikipedia.org/wiki/Register_(sociolinguistics)\">register</a>) in the translation output. You can set the value to informal or formal. If you don't specify a value for formality, or if the target language doesn't support formality, the translation will ignore the formality setting.</p> <p> If you specify multiple target languages for the job, translate ignores the formality setting for any unsupported target language.</p> <p>For a list of target languages that support formality, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html#customizing-translations-formality-languages\">Supported languages</a> in the Amazon Translate Developer Guide.</p>"
       }
     },
     "GetParallelDataRequest": {
@@ -277,7 +277,7 @@
         "Language$LanguageCode": "<p>Language code for the supported language.</p>",
         "LanguageCodeStringList$member": null,
         "ParallelDataProperties$SourceLanguageCode": "<p>The source language of the translations in the parallel data file.</p>",
-        "StartTextTranslationJobRequest$SourceLanguageCode": "<p>The language code of the input language. For a list of language codes, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html\">Supported languages</a>.</p> <p>Amazon Translate does not automatically detect a source language during batch translation jobs.</p>",
+        "StartTextTranslationJobRequest$SourceLanguageCode": "<p>The language code of the input language. Specify the language if all input documents share the same language. If you don't know the language of the source files, or your input documents contains different source languages, select <code>auto</code>. Amazon Translate auto detects the source language for each input document. For a list of supported language codes, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html\">Supported languages</a>.</p>",
         "TargetLanguageCodeStringList$member": null,
         "TerminologyProperties$SourceLanguageCode": "<p>The language code for the source text of the translation request for which the custom terminology is being used.</p>",
         "TextTranslationJobProperties$SourceLanguageCode": "<p>The language code of the language of the source text. The language must be a language supported by Amazon Translate.</p>",
@@ -463,7 +463,7 @@
     "Profanity": {
       "base": null,
       "refs": {
-        "TranslationSettings$Profanity": "<p>Enable the profanity setting if you want Amazon Translate to mask profane words and phrases in your translation output.</p> <p>To mask profane words and phrases, Amazon Translate replaces them with the grawlix string “?$#@$“. This 5-character sequence is used for each profane word or phrase, regardless of the length or number of words.</p> <p>Amazon Translate doesn't detect profanity in all of its supported languages. For languages that support profanity detection, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-profanity.html\">Masking profanity</a> in the Amazon Translate Developer Guide.</p> <p>If you specify multiple target languages for the job, all the target languages must support profanity masking. If any of the target languages don't support profanity masking, the translation job won't mask profanity for any target language.</p>"
+        "TranslationSettings$Profanity": "<p>Enable the profanity setting if you want Amazon Translate to mask profane words and phrases in your translation output.</p> <p>To mask profane words and phrases, Amazon Translate replaces them with the grawlix string “?$#@$“. This 5-character sequence is used for each profane word or phrase, regardless of the length or number of words.</p> <p>Amazon Translate doesn't detect profanity in all of its supported languages. For languages that don't support profanity detection, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-profanity.html#customizing-translations-profanity-languages\">Unsupported languages</a> in the Amazon Translate Developer Guide.</p> <p>If you specify multiple target languages for the job, all the target languages must support profanity masking. If any of the target languages don't support profanity masking, the translation job won't mask profanity for any target language.</p>"
       }
     },
     "ResourceArn": {
@@ -512,7 +512,7 @@
     "S3Uri": {
       "base": null,
       "refs": {
-        "InputDataConfig$S3Uri": "<p>The URI of the AWS S3 folder that contains the input files. Amazon Translate translates all the files in the folder. The folder must be in the same Region as the API endpoint you are calling.</p> <note> <p>The URI can also point to a single input document, or it can provide the prefix for a collection of input documents. For example. if you use the URI <code>S3://bucketName/prefix</code> and the prefix is a single file, Amazon Translate uses that files as input. If more than one file begins with the prefix, Amazon Translate uses all of them as input.</p> </note>",
+        "InputDataConfig$S3Uri": "<p>The URI of the AWS S3 folder that contains the input files. Amazon Translate translates all the files in the folder and all its sub-folders. The folder must be in the same Region as the API endpoint you are calling.</p>",
         "OutputDataConfig$S3Uri": "<p>The URI of the S3 folder that contains a translation job's output file. The folder must be in the same Region as the API endpoint that you are calling.</p>",
         "ParallelDataConfig$S3Uri": "<p>The URI of the Amazon S3 folder that contains the parallel data input file. The folder must be in the same Region as the API endpoint you are calling.</p>"
       }
@@ -564,7 +564,6 @@
         "TextSizeLimitExceededException$Message": null,
         "TooManyRequestsException$Message": null,
         "TooManyTagsException$message": null,
-        "TranslateTextResponse$TranslatedText": "<p>The translated text.</p>",
         "UnsupportedDisplayLanguageCodeException$Message": null,
         "UnsupportedLanguagePairException$Message": null
       }
@@ -616,7 +615,7 @@
     "TargetLanguageCodeStringList": {
       "base": null,
       "refs": {
-        "StartTextTranslationJobRequest$TargetLanguageCodes": "<p>The target languages of the translation job. Enter up to 10 language codes. Each input file is translated into each target language.</p> <p>Each language code is two or five characters long. For a list of language codes, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html\">Supported languages</a>.</p>",
+        "StartTextTranslationJobRequest$TargetLanguageCodes": "<p>The target languages of the translation job. Enter up to 10 language codes. Each input file is translated into each target language.</p> <p>Each language code is 2 or 5 characters long. For a list of language codes, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html\">Supported languages</a>.</p>",
         "TextTranslationJobProperties$TargetLanguageCodes": "<p>The language code of the language of the target text. The language must be a language supported by Amazon Translate.</p>"
       }
     },
@@ -737,6 +736,12 @@
     "TranslateTextResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "TranslatedTextString": {
+      "base": null,
+      "refs": {
+        "TranslateTextResponse$TranslatedText": "<p>The translated text.</p>"
       }
     },
     "TranslationSettings": {

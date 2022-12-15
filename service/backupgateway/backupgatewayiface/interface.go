@@ -80,9 +80,21 @@ type BackupGatewayAPI interface {
 	DisassociateGatewayFromServerWithContext(aws.Context, *backupgateway.DisassociateGatewayFromServerInput, ...request.Option) (*backupgateway.DisassociateGatewayFromServerOutput, error)
 	DisassociateGatewayFromServerRequest(*backupgateway.DisassociateGatewayFromServerInput) (*request.Request, *backupgateway.DisassociateGatewayFromServerOutput)
 
+	GetBandwidthRateLimitSchedule(*backupgateway.GetBandwidthRateLimitScheduleInput) (*backupgateway.GetBandwidthRateLimitScheduleOutput, error)
+	GetBandwidthRateLimitScheduleWithContext(aws.Context, *backupgateway.GetBandwidthRateLimitScheduleInput, ...request.Option) (*backupgateway.GetBandwidthRateLimitScheduleOutput, error)
+	GetBandwidthRateLimitScheduleRequest(*backupgateway.GetBandwidthRateLimitScheduleInput) (*request.Request, *backupgateway.GetBandwidthRateLimitScheduleOutput)
+
 	GetGateway(*backupgateway.GetGatewayInput) (*backupgateway.GetGatewayOutput, error)
 	GetGatewayWithContext(aws.Context, *backupgateway.GetGatewayInput, ...request.Option) (*backupgateway.GetGatewayOutput, error)
 	GetGatewayRequest(*backupgateway.GetGatewayInput) (*request.Request, *backupgateway.GetGatewayOutput)
+
+	GetHypervisor(*backupgateway.GetHypervisorInput) (*backupgateway.GetHypervisorOutput, error)
+	GetHypervisorWithContext(aws.Context, *backupgateway.GetHypervisorInput, ...request.Option) (*backupgateway.GetHypervisorOutput, error)
+	GetHypervisorRequest(*backupgateway.GetHypervisorInput) (*request.Request, *backupgateway.GetHypervisorOutput)
+
+	GetHypervisorPropertyMappings(*backupgateway.GetHypervisorPropertyMappingsInput) (*backupgateway.GetHypervisorPropertyMappingsOutput, error)
+	GetHypervisorPropertyMappingsWithContext(aws.Context, *backupgateway.GetHypervisorPropertyMappingsInput, ...request.Option) (*backupgateway.GetHypervisorPropertyMappingsOutput, error)
+	GetHypervisorPropertyMappingsRequest(*backupgateway.GetHypervisorPropertyMappingsInput) (*request.Request, *backupgateway.GetHypervisorPropertyMappingsOutput)
 
 	GetVirtualMachine(*backupgateway.GetVirtualMachineInput) (*backupgateway.GetVirtualMachineOutput, error)
 	GetVirtualMachineWithContext(aws.Context, *backupgateway.GetVirtualMachineInput, ...request.Option) (*backupgateway.GetVirtualMachineOutput, error)
@@ -117,9 +129,21 @@ type BackupGatewayAPI interface {
 	ListVirtualMachinesPages(*backupgateway.ListVirtualMachinesInput, func(*backupgateway.ListVirtualMachinesOutput, bool) bool) error
 	ListVirtualMachinesPagesWithContext(aws.Context, *backupgateway.ListVirtualMachinesInput, func(*backupgateway.ListVirtualMachinesOutput, bool) bool, ...request.Option) error
 
+	PutBandwidthRateLimitSchedule(*backupgateway.PutBandwidthRateLimitScheduleInput) (*backupgateway.PutBandwidthRateLimitScheduleOutput, error)
+	PutBandwidthRateLimitScheduleWithContext(aws.Context, *backupgateway.PutBandwidthRateLimitScheduleInput, ...request.Option) (*backupgateway.PutBandwidthRateLimitScheduleOutput, error)
+	PutBandwidthRateLimitScheduleRequest(*backupgateway.PutBandwidthRateLimitScheduleInput) (*request.Request, *backupgateway.PutBandwidthRateLimitScheduleOutput)
+
+	PutHypervisorPropertyMappings(*backupgateway.PutHypervisorPropertyMappingsInput) (*backupgateway.PutHypervisorPropertyMappingsOutput, error)
+	PutHypervisorPropertyMappingsWithContext(aws.Context, *backupgateway.PutHypervisorPropertyMappingsInput, ...request.Option) (*backupgateway.PutHypervisorPropertyMappingsOutput, error)
+	PutHypervisorPropertyMappingsRequest(*backupgateway.PutHypervisorPropertyMappingsInput) (*request.Request, *backupgateway.PutHypervisorPropertyMappingsOutput)
+
 	PutMaintenanceStartTime(*backupgateway.PutMaintenanceStartTimeInput) (*backupgateway.PutMaintenanceStartTimeOutput, error)
 	PutMaintenanceStartTimeWithContext(aws.Context, *backupgateway.PutMaintenanceStartTimeInput, ...request.Option) (*backupgateway.PutMaintenanceStartTimeOutput, error)
 	PutMaintenanceStartTimeRequest(*backupgateway.PutMaintenanceStartTimeInput) (*request.Request, *backupgateway.PutMaintenanceStartTimeOutput)
+
+	StartVirtualMachinesMetadataSync(*backupgateway.StartVirtualMachinesMetadataSyncInput) (*backupgateway.StartVirtualMachinesMetadataSyncOutput, error)
+	StartVirtualMachinesMetadataSyncWithContext(aws.Context, *backupgateway.StartVirtualMachinesMetadataSyncInput, ...request.Option) (*backupgateway.StartVirtualMachinesMetadataSyncOutput, error)
+	StartVirtualMachinesMetadataSyncRequest(*backupgateway.StartVirtualMachinesMetadataSyncInput) (*request.Request, *backupgateway.StartVirtualMachinesMetadataSyncOutput)
 
 	TagResource(*backupgateway.TagResourceInput) (*backupgateway.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *backupgateway.TagResourceInput, ...request.Option) (*backupgateway.TagResourceOutput, error)

@@ -17049,7 +17049,8 @@
         "EndpointConfigurations":{"shape":"EndpointInputConfigurations"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "ContainerConfig":{"shape":"RecommendationJobContainerConfig"},
-        "Endpoints":{"shape":"Endpoints"}
+        "Endpoints":{"shape":"Endpoints"},
+        "VpcConfig":{"shape":"RecommendationJobVpcConfig"}
       }
     },
     "RecommendationJobName":{
@@ -17111,6 +17112,39 @@
         "Default",
         "Advanced"
       ]
+    },
+    "RecommendationJobVpcConfig":{
+      "type":"structure",
+      "required":[
+        "SecurityGroupIds",
+        "Subnets"
+      ],
+      "members":{
+        "SecurityGroupIds":{"shape":"RecommendationJobVpcSecurityGroupIds"},
+        "Subnets":{"shape":"RecommendationJobVpcSubnets"}
+      }
+    },
+    "RecommendationJobVpcSecurityGroupId":{
+      "type":"string",
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "RecommendationJobVpcSecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"RecommendationJobVpcSecurityGroupId"},
+      "max":5,
+      "min":1
+    },
+    "RecommendationJobVpcSubnetId":{
+      "type":"string",
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "RecommendationJobVpcSubnets":{
+      "type":"list",
+      "member":{"shape":"RecommendationJobVpcSubnetId"},
+      "max":16,
+      "min":1
     },
     "RecommendationMetrics":{
       "type":"structure",

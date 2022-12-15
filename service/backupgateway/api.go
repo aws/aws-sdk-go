@@ -339,6 +339,9 @@ func (c *BackupGateway) DeleteHypervisorRequest(input *DeleteHypervisorInput) (r
 //   - ValidationException
 //     The operation did not succeed because a validation error occurred.
 //
+//   - ConflictException
+//     The operation cannot proceed because it is not supported.
+//
 //   - InternalServerException
 //     The operation did not succeed because an internal error occurred. Try again
 //     later.
@@ -470,6 +473,99 @@ func (c *BackupGateway) DisassociateGatewayFromServerWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opGetBandwidthRateLimitSchedule = "GetBandwidthRateLimitSchedule"
+
+// GetBandwidthRateLimitScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the GetBandwidthRateLimitSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBandwidthRateLimitSchedule for more information on using the GetBandwidthRateLimitSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetBandwidthRateLimitScheduleRequest method.
+//	req, resp := client.GetBandwidthRateLimitScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetBandwidthRateLimitSchedule
+func (c *BackupGateway) GetBandwidthRateLimitScheduleRequest(input *GetBandwidthRateLimitScheduleInput) (req *request.Request, output *GetBandwidthRateLimitScheduleOutput) {
+	op := &request.Operation{
+		Name:       opGetBandwidthRateLimitSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetBandwidthRateLimitScheduleInput{}
+	}
+
+	output = &GetBandwidthRateLimitScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBandwidthRateLimitSchedule API operation for AWS Backup Gateway.
+//
+// Retrieves the bandwidth rate limit schedule for a specified gateway. By default,
+// gateways do not have bandwidth rate limit schedules, which means no bandwidth
+// rate limiting is in effect. Use this to get a gateway's bandwidth rate limit
+// schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation GetBandwidthRateLimitSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation did not succeed because a validation error occurred.
+//
+//   - InternalServerException
+//     The operation did not succeed because an internal error occurred. Try again
+//     later.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetBandwidthRateLimitSchedule
+func (c *BackupGateway) GetBandwidthRateLimitSchedule(input *GetBandwidthRateLimitScheduleInput) (*GetBandwidthRateLimitScheduleOutput, error) {
+	req, out := c.GetBandwidthRateLimitScheduleRequest(input)
+	return out, req.Send()
+}
+
+// GetBandwidthRateLimitScheduleWithContext is the same as GetBandwidthRateLimitSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBandwidthRateLimitSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) GetBandwidthRateLimitScheduleWithContext(ctx aws.Context, input *GetBandwidthRateLimitScheduleInput, opts ...request.Option) (*GetBandwidthRateLimitScheduleOutput, error) {
+	req, out := c.GetBandwidthRateLimitScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetGateway = "GetGateway"
 
 // GetGatewayRequest generates a "aws/request.Request" representing the
@@ -555,6 +651,191 @@ func (c *BackupGateway) GetGateway(input *GetGatewayInput) (*GetGatewayOutput, e
 // for more information on using Contexts.
 func (c *BackupGateway) GetGatewayWithContext(ctx aws.Context, input *GetGatewayInput, opts ...request.Option) (*GetGatewayOutput, error) {
 	req, out := c.GetGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetHypervisor = "GetHypervisor"
+
+// GetHypervisorRequest generates a "aws/request.Request" representing the
+// client's request for the GetHypervisor operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetHypervisor for more information on using the GetHypervisor
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetHypervisorRequest method.
+//	req, resp := client.GetHypervisorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetHypervisor
+func (c *BackupGateway) GetHypervisorRequest(input *GetHypervisorInput) (req *request.Request, output *GetHypervisorOutput) {
+	op := &request.Operation{
+		Name:       opGetHypervisor,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetHypervisorInput{}
+	}
+
+	output = &GetHypervisorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetHypervisor API operation for AWS Backup Gateway.
+//
+// This action requests information about the specified hypervisor to which
+// the gateway will connect. A hypervisor is hardware, software, or firmware
+// that creates and manages virtual machines, and allocates resources to them.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation GetHypervisor for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation did not succeed because a validation error occurred.
+//
+//   - InternalServerException
+//     The operation did not succeed because an internal error occurred. Try again
+//     later.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetHypervisor
+func (c *BackupGateway) GetHypervisor(input *GetHypervisorInput) (*GetHypervisorOutput, error) {
+	req, out := c.GetHypervisorRequest(input)
+	return out, req.Send()
+}
+
+// GetHypervisorWithContext is the same as GetHypervisor with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetHypervisor for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) GetHypervisorWithContext(ctx aws.Context, input *GetHypervisorInput, opts ...request.Option) (*GetHypervisorOutput, error) {
+	req, out := c.GetHypervisorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetHypervisorPropertyMappings = "GetHypervisorPropertyMappings"
+
+// GetHypervisorPropertyMappingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetHypervisorPropertyMappings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetHypervisorPropertyMappings for more information on using the GetHypervisorPropertyMappings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetHypervisorPropertyMappingsRequest method.
+//	req, resp := client.GetHypervisorPropertyMappingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetHypervisorPropertyMappings
+func (c *BackupGateway) GetHypervisorPropertyMappingsRequest(input *GetHypervisorPropertyMappingsInput) (req *request.Request, output *GetHypervisorPropertyMappingsOutput) {
+	op := &request.Operation{
+		Name:       opGetHypervisorPropertyMappings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetHypervisorPropertyMappingsInput{}
+	}
+
+	output = &GetHypervisorPropertyMappingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetHypervisorPropertyMappings API operation for AWS Backup Gateway.
+//
+// This action retrieves the property mappings for the specified hypervisor.
+// A hypervisor property mapping displays the relationship of entity properties
+// available from the on-premises hypervisor to the properties available in
+// Amazon Web Services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation GetHypervisorPropertyMappings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation did not succeed because a validation error occurred.
+//
+//   - InternalServerException
+//     The operation did not succeed because an internal error occurred. Try again
+//     later.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/GetHypervisorPropertyMappings
+func (c *BackupGateway) GetHypervisorPropertyMappings(input *GetHypervisorPropertyMappingsInput) (*GetHypervisorPropertyMappingsOutput, error) {
+	req, out := c.GetHypervisorPropertyMappingsRequest(input)
+	return out, req.Send()
+}
+
+// GetHypervisorPropertyMappingsWithContext is the same as GetHypervisorPropertyMappings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetHypervisorPropertyMappings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) GetHypervisorPropertyMappingsWithContext(ctx aws.Context, input *GetHypervisorPropertyMappingsInput, opts ...request.Option) (*GetHypervisorPropertyMappingsOutput, error) {
+	req, out := c.GetHypervisorPropertyMappingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -707,6 +988,9 @@ func (c *BackupGateway) ImportHypervisorConfigurationRequest(input *ImportHyperv
 //
 //   - ValidationException
 //     The operation did not succeed because a validation error occurred.
+//
+//   - ConflictException
+//     The operation cannot proceed because it is not supported.
 //
 //   - InternalServerException
 //     The operation did not succeed because an internal error occurred. Try again
@@ -1266,6 +1550,198 @@ func (c *BackupGateway) ListVirtualMachinesPagesWithContext(ctx aws.Context, inp
 	return p.Err()
 }
 
+const opPutBandwidthRateLimitSchedule = "PutBandwidthRateLimitSchedule"
+
+// PutBandwidthRateLimitScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the PutBandwidthRateLimitSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBandwidthRateLimitSchedule for more information on using the PutBandwidthRateLimitSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutBandwidthRateLimitScheduleRequest method.
+//	req, resp := client.PutBandwidthRateLimitScheduleRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/PutBandwidthRateLimitSchedule
+func (c *BackupGateway) PutBandwidthRateLimitScheduleRequest(input *PutBandwidthRateLimitScheduleInput) (req *request.Request, output *PutBandwidthRateLimitScheduleOutput) {
+	op := &request.Operation{
+		Name:       opPutBandwidthRateLimitSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutBandwidthRateLimitScheduleInput{}
+	}
+
+	output = &PutBandwidthRateLimitScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutBandwidthRateLimitSchedule API operation for AWS Backup Gateway.
+//
+// This action sets the bandwidth rate limit schedule for a specified gateway.
+// By default, gateways do not have a bandwidth rate limit schedule, which means
+// no bandwidth rate limiting is in effect. Use this to initiate a gateway's
+// bandwidth rate limit schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation PutBandwidthRateLimitSchedule for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation did not succeed because a validation error occurred.
+//
+//   - InternalServerException
+//     The operation did not succeed because an internal error occurred. Try again
+//     later.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/PutBandwidthRateLimitSchedule
+func (c *BackupGateway) PutBandwidthRateLimitSchedule(input *PutBandwidthRateLimitScheduleInput) (*PutBandwidthRateLimitScheduleOutput, error) {
+	req, out := c.PutBandwidthRateLimitScheduleRequest(input)
+	return out, req.Send()
+}
+
+// PutBandwidthRateLimitScheduleWithContext is the same as PutBandwidthRateLimitSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBandwidthRateLimitSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) PutBandwidthRateLimitScheduleWithContext(ctx aws.Context, input *PutBandwidthRateLimitScheduleInput, opts ...request.Option) (*PutBandwidthRateLimitScheduleOutput, error) {
+	req, out := c.PutBandwidthRateLimitScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutHypervisorPropertyMappings = "PutHypervisorPropertyMappings"
+
+// PutHypervisorPropertyMappingsRequest generates a "aws/request.Request" representing the
+// client's request for the PutHypervisorPropertyMappings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutHypervisorPropertyMappings for more information on using the PutHypervisorPropertyMappings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutHypervisorPropertyMappingsRequest method.
+//	req, resp := client.PutHypervisorPropertyMappingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/PutHypervisorPropertyMappings
+func (c *BackupGateway) PutHypervisorPropertyMappingsRequest(input *PutHypervisorPropertyMappingsInput) (req *request.Request, output *PutHypervisorPropertyMappingsOutput) {
+	op := &request.Operation{
+		Name:       opPutHypervisorPropertyMappings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutHypervisorPropertyMappingsInput{}
+	}
+
+	output = &PutHypervisorPropertyMappingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutHypervisorPropertyMappings API operation for AWS Backup Gateway.
+//
+// This action sets the property mappings for the specified hypervisor. A hypervisor
+// property mapping displays the relationship of entity properties available
+// from the on-premises hypervisor to the properties available in Amazon Web
+// Services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation PutHypervisorPropertyMappings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation did not succeed because a validation error occurred.
+//
+//   - ConflictException
+//     The operation cannot proceed because it is not supported.
+//
+//   - InternalServerException
+//     The operation did not succeed because an internal error occurred. Try again
+//     later.
+//
+//   - AccessDeniedException
+//     The operation cannot proceed because you have insufficient permissions.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/PutHypervisorPropertyMappings
+func (c *BackupGateway) PutHypervisorPropertyMappings(input *PutHypervisorPropertyMappingsInput) (*PutHypervisorPropertyMappingsOutput, error) {
+	req, out := c.PutHypervisorPropertyMappingsRequest(input)
+	return out, req.Send()
+}
+
+// PutHypervisorPropertyMappingsWithContext is the same as PutHypervisorPropertyMappings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutHypervisorPropertyMappings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) PutHypervisorPropertyMappingsWithContext(ctx aws.Context, input *PutHypervisorPropertyMappingsInput, opts ...request.Option) (*PutHypervisorPropertyMappingsOutput, error) {
+	req, out := c.PutHypervisorPropertyMappingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutMaintenanceStartTime = "PutMaintenanceStartTime"
 
 // PutMaintenanceStartTimeRequest generates a "aws/request.Request" representing the
@@ -1354,6 +1830,100 @@ func (c *BackupGateway) PutMaintenanceStartTime(input *PutMaintenanceStartTimeIn
 // for more information on using Contexts.
 func (c *BackupGateway) PutMaintenanceStartTimeWithContext(ctx aws.Context, input *PutMaintenanceStartTimeInput, opts ...request.Option) (*PutMaintenanceStartTimeOutput, error) {
 	req, out := c.PutMaintenanceStartTimeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartVirtualMachinesMetadataSync = "StartVirtualMachinesMetadataSync"
+
+// StartVirtualMachinesMetadataSyncRequest generates a "aws/request.Request" representing the
+// client's request for the StartVirtualMachinesMetadataSync operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartVirtualMachinesMetadataSync for more information on using the StartVirtualMachinesMetadataSync
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartVirtualMachinesMetadataSyncRequest method.
+//	req, resp := client.StartVirtualMachinesMetadataSyncRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/StartVirtualMachinesMetadataSync
+func (c *BackupGateway) StartVirtualMachinesMetadataSyncRequest(input *StartVirtualMachinesMetadataSyncInput) (req *request.Request, output *StartVirtualMachinesMetadataSyncOutput) {
+	op := &request.Operation{
+		Name:       opStartVirtualMachinesMetadataSync,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartVirtualMachinesMetadataSyncInput{}
+	}
+
+	output = &StartVirtualMachinesMetadataSyncOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartVirtualMachinesMetadataSync API operation for AWS Backup Gateway.
+//
+// This action sends a request to sync metadata across the specified virtual
+// machines.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup Gateway's
+// API operation StartVirtualMachinesMetadataSync for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation did not succeed because a validation error occurred.
+//
+//   - InternalServerException
+//     The operation did not succeed because an internal error occurred. Try again
+//     later.
+//
+//   - AccessDeniedException
+//     The operation cannot proceed because you have insufficient permissions.
+//
+//   - ResourceNotFoundException
+//     A resource that is required for the action wasn't found.
+//
+//   - ThrottlingException
+//     TPS has been limited to protect against intentional or unintentional high
+//     request volumes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-gateway-2021-01-01/StartVirtualMachinesMetadataSync
+func (c *BackupGateway) StartVirtualMachinesMetadataSync(input *StartVirtualMachinesMetadataSyncInput) (*StartVirtualMachinesMetadataSyncOutput, error) {
+	req, out := c.StartVirtualMachinesMetadataSyncRequest(input)
+	return out, req.Send()
+}
+
+// StartVirtualMachinesMetadataSyncWithContext is the same as StartVirtualMachinesMetadataSync with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartVirtualMachinesMetadataSync for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BackupGateway) StartVirtualMachinesMetadataSyncWithContext(ctx aws.Context, input *StartVirtualMachinesMetadataSyncInput, opts ...request.Option) (*StartVirtualMachinesMetadataSyncOutput, error) {
+	req, out := c.StartVirtualMachinesMetadataSyncRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1881,6 +2451,9 @@ func (c *BackupGateway) UpdateHypervisorRequest(input *UpdateHypervisorInput) (r
 //   - ValidationException
 //     The operation did not succeed because a validation error occurred.
 //
+//   - ConflictException
+//     The operation cannot proceed because it is not supported.
+//
 //   - InternalServerException
 //     The operation did not succeed because an internal error occurred. Try again
 //     later.
@@ -2081,6 +2654,139 @@ func (s AssociateGatewayToServerOutput) GoString() string {
 // SetGatewayArn sets the GatewayArn field's value.
 func (s *AssociateGatewayToServerOutput) SetGatewayArn(v string) *AssociateGatewayToServerOutput {
 	s.GatewayArn = &v
+	return s
+}
+
+// Describes a bandwidth rate limit interval for a gateway. A bandwidth rate
+// limit schedule consists of one or more bandwidth rate limit intervals. A
+// bandwidth rate limit interval defines a period of time on one or more days
+// of the week, during which bandwidth rate limits are specified for uploading,
+// downloading, or both.
+type BandwidthRateLimitInterval struct {
+	_ struct{} `type:"structure"`
+
+	// The average upload rate limit component of the bandwidth rate limit interval,
+	// in bits per second. This field does not appear in the response if the upload
+	// rate limit is not set.
+	//
+	// For Backup Gateway, the minimum value is (Value).
+	AverageUploadRateLimitInBitsPerSec *int64 `min:"51200" type:"long"`
+
+	// The days of the week component of the bandwidth rate limit interval, represented
+	// as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 represents
+	// Saturday.
+	//
+	// DaysOfWeek is a required field
+	DaysOfWeek []*int64 `min:"1" type:"list" required:"true"`
+
+	// The hour of the day to end the bandwidth rate limit interval.
+	//
+	// EndHourOfDay is a required field
+	EndHourOfDay *int64 `type:"integer" required:"true"`
+
+	// The minute of the hour to end the bandwidth rate limit interval.
+	//
+	// The bandwidth rate limit interval ends at the end of the minute. To end an
+	// interval at the end of an hour, use the value 59.
+	//
+	// EndMinuteOfHour is a required field
+	EndMinuteOfHour *int64 `type:"integer" required:"true"`
+
+	// The hour of the day to start the bandwidth rate limit interval.
+	//
+	// StartHourOfDay is a required field
+	StartHourOfDay *int64 `type:"integer" required:"true"`
+
+	// The minute of the hour to start the bandwidth rate limit interval. The interval
+	// begins at the start of that minute. To begin an interval exactly at the start
+	// of the hour, use the value 0.
+	//
+	// StartMinuteOfHour is a required field
+	StartMinuteOfHour *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BandwidthRateLimitInterval) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BandwidthRateLimitInterval) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BandwidthRateLimitInterval) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BandwidthRateLimitInterval"}
+	if s.AverageUploadRateLimitInBitsPerSec != nil && *s.AverageUploadRateLimitInBitsPerSec < 51200 {
+		invalidParams.Add(request.NewErrParamMinValue("AverageUploadRateLimitInBitsPerSec", 51200))
+	}
+	if s.DaysOfWeek == nil {
+		invalidParams.Add(request.NewErrParamRequired("DaysOfWeek"))
+	}
+	if s.DaysOfWeek != nil && len(s.DaysOfWeek) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DaysOfWeek", 1))
+	}
+	if s.EndHourOfDay == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndHourOfDay"))
+	}
+	if s.EndMinuteOfHour == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndMinuteOfHour"))
+	}
+	if s.StartHourOfDay == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartHourOfDay"))
+	}
+	if s.StartMinuteOfHour == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartMinuteOfHour"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAverageUploadRateLimitInBitsPerSec sets the AverageUploadRateLimitInBitsPerSec field's value.
+func (s *BandwidthRateLimitInterval) SetAverageUploadRateLimitInBitsPerSec(v int64) *BandwidthRateLimitInterval {
+	s.AverageUploadRateLimitInBitsPerSec = &v
+	return s
+}
+
+// SetDaysOfWeek sets the DaysOfWeek field's value.
+func (s *BandwidthRateLimitInterval) SetDaysOfWeek(v []*int64) *BandwidthRateLimitInterval {
+	s.DaysOfWeek = v
+	return s
+}
+
+// SetEndHourOfDay sets the EndHourOfDay field's value.
+func (s *BandwidthRateLimitInterval) SetEndHourOfDay(v int64) *BandwidthRateLimitInterval {
+	s.EndHourOfDay = &v
+	return s
+}
+
+// SetEndMinuteOfHour sets the EndMinuteOfHour field's value.
+func (s *BandwidthRateLimitInterval) SetEndMinuteOfHour(v int64) *BandwidthRateLimitInterval {
+	s.EndMinuteOfHour = &v
+	return s
+}
+
+// SetStartHourOfDay sets the StartHourOfDay field's value.
+func (s *BandwidthRateLimitInterval) SetStartHourOfDay(v int64) *BandwidthRateLimitInterval {
+	s.StartHourOfDay = &v
+	return s
+}
+
+// SetStartMinuteOfHour sets the StartMinuteOfHour field's value.
+func (s *BandwidthRateLimitInterval) SetStartMinuteOfHour(v int64) *BandwidthRateLimitInterval {
+	s.StartMinuteOfHour = &v
 	return s
 }
 
@@ -2696,6 +3402,101 @@ func (s *GatewayDetails) SetVpcEndpoint(v string) *GatewayDetails {
 	return s
 }
 
+type GetBandwidthRateLimitScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BGW_ListGateways.html)
+	// operation to return a list of gateways for your account and Amazon Web Services
+	// Region.
+	//
+	// GatewayArn is a required field
+	GatewayArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBandwidthRateLimitScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBandwidthRateLimitScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBandwidthRateLimitScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBandwidthRateLimitScheduleInput"}
+	if s.GatewayArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayArn"))
+	}
+	if s.GatewayArn != nil && len(*s.GatewayArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayArn", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *GetBandwidthRateLimitScheduleInput) SetGatewayArn(v string) *GetBandwidthRateLimitScheduleInput {
+	s.GatewayArn = &v
+	return s
+}
+
+type GetBandwidthRateLimitScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array containing bandwidth rate limit schedule intervals for a gateway.
+	// When no bandwidth rate limit intervals have been scheduled, the array is
+	// empty.
+	BandwidthRateLimitIntervals []*BandwidthRateLimitInterval `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BGW_ListGateways.html)
+	// operation to return a list of gateways for your account and Amazon Web Services
+	// Region.
+	GatewayArn *string `min:"50" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBandwidthRateLimitScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBandwidthRateLimitScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetBandwidthRateLimitIntervals sets the BandwidthRateLimitIntervals field's value.
+func (s *GetBandwidthRateLimitScheduleOutput) SetBandwidthRateLimitIntervals(v []*BandwidthRateLimitInterval) *GetBandwidthRateLimitScheduleOutput {
+	s.BandwidthRateLimitIntervals = v
+	return s
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *GetBandwidthRateLimitScheduleOutput) SetGatewayArn(v string) *GetBandwidthRateLimitScheduleOutput {
+	s.GatewayArn = &v
+	return s
+}
+
 type GetGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2773,6 +3574,185 @@ func (s GetGatewayOutput) GoString() string {
 // SetGateway sets the Gateway field's value.
 func (s *GetGatewayOutput) SetGateway(v *GatewayDetails) *GetGatewayOutput {
 	s.Gateway = v
+	return s
+}
+
+type GetHypervisorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	//
+	// HypervisorArn is a required field
+	HypervisorArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetHypervisorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetHypervisorInput"}
+	if s.HypervisorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HypervisorArn"))
+	}
+	if s.HypervisorArn != nil && len(*s.HypervisorArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("HypervisorArn", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *GetHypervisorInput) SetHypervisorArn(v string) *GetHypervisorInput {
+	s.HypervisorArn = &v
+	return s
+}
+
+type GetHypervisorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the requested hypervisor.
+	Hypervisor *HypervisorDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorOutput) GoString() string {
+	return s.String()
+}
+
+// SetHypervisor sets the Hypervisor field's value.
+func (s *GetHypervisorOutput) SetHypervisor(v *HypervisorDetails) *GetHypervisorOutput {
+	s.Hypervisor = v
+	return s
+}
+
+type GetHypervisorPropertyMappingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	//
+	// HypervisorArn is a required field
+	HypervisorArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorPropertyMappingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorPropertyMappingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetHypervisorPropertyMappingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetHypervisorPropertyMappingsInput"}
+	if s.HypervisorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HypervisorArn"))
+	}
+	if s.HypervisorArn != nil && len(*s.HypervisorArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("HypervisorArn", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *GetHypervisorPropertyMappingsInput) SetHypervisorArn(v string) *GetHypervisorPropertyMappingsInput {
+	s.HypervisorArn = &v
+	return s
+}
+
+type GetHypervisorPropertyMappingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	HypervisorArn *string `min:"50" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the IAM role.
+	IamRoleArn *string `min:"20" type:"string"`
+
+	// This is a display of the mappings of on-premises VMware tags to the Amazon
+	// Web Services tags.
+	VmwareToAwsTagMappings []*VmwareToAwsTagMapping `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorPropertyMappingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetHypervisorPropertyMappingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *GetHypervisorPropertyMappingsOutput) SetHypervisorArn(v string) *GetHypervisorPropertyMappingsOutput {
+	s.HypervisorArn = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *GetHypervisorPropertyMappingsOutput) SetIamRoleArn(v string) *GetHypervisorPropertyMappingsOutput {
+	s.IamRoleArn = &v
+	return s
+}
+
+// SetVmwareToAwsTagMappings sets the VmwareToAwsTagMappings field's value.
+func (s *GetHypervisorPropertyMappingsOutput) SetVmwareToAwsTagMappings(v []*VmwareToAwsTagMapping) *GetHypervisorPropertyMappingsOutput {
+	s.VmwareToAwsTagMappings = v
 	return s
 }
 
@@ -2926,6 +3906,116 @@ func (s *Hypervisor) SetName(v string) *Hypervisor {
 
 // SetState sets the State field's value.
 func (s *Hypervisor) SetState(v string) *Hypervisor {
+	s.State = &v
+	return s
+}
+
+// These are the details of the specified hypervisor. A hypervisor is hardware,
+// software, or firmware that creates and manages virtual machines, and allocates
+// resources to them.
+type HypervisorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The server host of the hypervisor. This can be either an IP address or a
+	// fully-qualified domain name (FQDN).
+	Host *string `min:"3" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	HypervisorArn *string `min:"50" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the KMS used to encrypt the hypervisor.
+	KmsKeyArn *string `min:"50" type:"string"`
+
+	// This is the time when the most recent successful sync of metadata occurred.
+	LastSuccessfulMetadataSyncTime *time.Time `type:"timestamp"`
+
+	// This is the most recent status for the indicated metadata sync.
+	LatestMetadataSyncStatus *string `type:"string" enum:"SyncMetadataStatus"`
+
+	// This is the most recent status for the indicated metadata sync.
+	LatestMetadataSyncStatusMessage *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the group of gateways within the requested
+	// log.
+	LogGroupArn *string `type:"string"`
+
+	// This is the name of the specified hypervisor.
+	Name *string `min:"1" type:"string"`
+
+	// This is the current state of the specified hypervisor.
+	//
+	// The possible states are PENDING, ONLINE, OFFLINE, or ERROR.
+	State *string `type:"string" enum:"HypervisorState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HypervisorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HypervisorDetails) GoString() string {
+	return s.String()
+}
+
+// SetHost sets the Host field's value.
+func (s *HypervisorDetails) SetHost(v string) *HypervisorDetails {
+	s.Host = &v
+	return s
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *HypervisorDetails) SetHypervisorArn(v string) *HypervisorDetails {
+	s.HypervisorArn = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *HypervisorDetails) SetKmsKeyArn(v string) *HypervisorDetails {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetLastSuccessfulMetadataSyncTime sets the LastSuccessfulMetadataSyncTime field's value.
+func (s *HypervisorDetails) SetLastSuccessfulMetadataSyncTime(v time.Time) *HypervisorDetails {
+	s.LastSuccessfulMetadataSyncTime = &v
+	return s
+}
+
+// SetLatestMetadataSyncStatus sets the LatestMetadataSyncStatus field's value.
+func (s *HypervisorDetails) SetLatestMetadataSyncStatus(v string) *HypervisorDetails {
+	s.LatestMetadataSyncStatus = &v
+	return s
+}
+
+// SetLatestMetadataSyncStatusMessage sets the LatestMetadataSyncStatusMessage field's value.
+func (s *HypervisorDetails) SetLatestMetadataSyncStatusMessage(v string) *HypervisorDetails {
+	s.LatestMetadataSyncStatusMessage = &v
+	return s
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *HypervisorDetails) SetLogGroupArn(v string) *HypervisorDetails {
+	s.LogGroupArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *HypervisorDetails) SetName(v string) *HypervisorDetails {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *HypervisorDetails) SetState(v string) *HypervisorDetails {
 	s.State = &v
 	return s
 }
@@ -3642,6 +4732,238 @@ func (s *MaintenanceStartTime) SetMinuteOfHour(v int64) *MaintenanceStartTime {
 	return s
 }
 
+type PutBandwidthRateLimitScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array containing bandwidth rate limit schedule intervals for a gateway.
+	// When no bandwidth rate limit intervals have been scheduled, the array is
+	// empty.
+	//
+	// BandwidthRateLimitIntervals is a required field
+	BandwidthRateLimitIntervals []*BandwidthRateLimitInterval `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BGW_ListGateways.html)
+	// operation to return a list of gateways for your account and Amazon Web Services
+	// Region.
+	//
+	// GatewayArn is a required field
+	GatewayArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBandwidthRateLimitScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBandwidthRateLimitScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBandwidthRateLimitScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBandwidthRateLimitScheduleInput"}
+	if s.BandwidthRateLimitIntervals == nil {
+		invalidParams.Add(request.NewErrParamRequired("BandwidthRateLimitIntervals"))
+	}
+	if s.GatewayArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayArn"))
+	}
+	if s.GatewayArn != nil && len(*s.GatewayArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayArn", 50))
+	}
+	if s.BandwidthRateLimitIntervals != nil {
+		for i, v := range s.BandwidthRateLimitIntervals {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BandwidthRateLimitIntervals", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBandwidthRateLimitIntervals sets the BandwidthRateLimitIntervals field's value.
+func (s *PutBandwidthRateLimitScheduleInput) SetBandwidthRateLimitIntervals(v []*BandwidthRateLimitInterval) *PutBandwidthRateLimitScheduleInput {
+	s.BandwidthRateLimitIntervals = v
+	return s
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *PutBandwidthRateLimitScheduleInput) SetGatewayArn(v string) *PutBandwidthRateLimitScheduleInput {
+	s.GatewayArn = &v
+	return s
+}
+
+type PutBandwidthRateLimitScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BGW_ListGateways.html)
+	// operation to return a list of gateways for your account and Amazon Web Services
+	// Region.
+	GatewayArn *string `min:"50" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBandwidthRateLimitScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBandwidthRateLimitScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetGatewayArn sets the GatewayArn field's value.
+func (s *PutBandwidthRateLimitScheduleOutput) SetGatewayArn(v string) *PutBandwidthRateLimitScheduleOutput {
+	s.GatewayArn = &v
+	return s
+}
+
+type PutHypervisorPropertyMappingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	//
+	// HypervisorArn is a required field
+	HypervisorArn *string `min:"50" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role.
+	//
+	// IamRoleArn is a required field
+	IamRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// This action requests the mappings of on-premises VMware tags to the Amazon
+	// Web Services tags.
+	//
+	// VmwareToAwsTagMappings is a required field
+	VmwareToAwsTagMappings []*VmwareToAwsTagMapping `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutHypervisorPropertyMappingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutHypervisorPropertyMappingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutHypervisorPropertyMappingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutHypervisorPropertyMappingsInput"}
+	if s.HypervisorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HypervisorArn"))
+	}
+	if s.HypervisorArn != nil && len(*s.HypervisorArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("HypervisorArn", 50))
+	}
+	if s.IamRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IamRoleArn"))
+	}
+	if s.IamRoleArn != nil && len(*s.IamRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("IamRoleArn", 20))
+	}
+	if s.VmwareToAwsTagMappings == nil {
+		invalidParams.Add(request.NewErrParamRequired("VmwareToAwsTagMappings"))
+	}
+	if s.VmwareToAwsTagMappings != nil {
+		for i, v := range s.VmwareToAwsTagMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VmwareToAwsTagMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *PutHypervisorPropertyMappingsInput) SetHypervisorArn(v string) *PutHypervisorPropertyMappingsInput {
+	s.HypervisorArn = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *PutHypervisorPropertyMappingsInput) SetIamRoleArn(v string) *PutHypervisorPropertyMappingsInput {
+	s.IamRoleArn = &v
+	return s
+}
+
+// SetVmwareToAwsTagMappings sets the VmwareToAwsTagMappings field's value.
+func (s *PutHypervisorPropertyMappingsInput) SetVmwareToAwsTagMappings(v []*VmwareToAwsTagMapping) *PutHypervisorPropertyMappingsInput {
+	s.VmwareToAwsTagMappings = v
+	return s
+}
+
+type PutHypervisorPropertyMappingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	HypervisorArn *string `min:"50" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutHypervisorPropertyMappingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutHypervisorPropertyMappingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *PutHypervisorPropertyMappingsOutput) SetHypervisorArn(v string) *PutHypervisorPropertyMappingsOutput {
+	s.HypervisorArn = &v
+	return s
+}
+
 type PutMaintenanceStartTimeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3840,6 +5162,86 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type StartVirtualMachinesMetadataSyncInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	//
+	// HypervisorArn is a required field
+	HypervisorArn *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVirtualMachinesMetadataSyncInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVirtualMachinesMetadataSyncInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartVirtualMachinesMetadataSyncInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartVirtualMachinesMetadataSyncInput"}
+	if s.HypervisorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HypervisorArn"))
+	}
+	if s.HypervisorArn != nil && len(*s.HypervisorArn) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("HypervisorArn", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *StartVirtualMachinesMetadataSyncInput) SetHypervisorArn(v string) *StartVirtualMachinesMetadataSyncInput {
+	s.HypervisorArn = &v
+	return s
+}
+
+type StartVirtualMachinesMetadataSyncOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hypervisor.
+	HypervisorArn *string `min:"50" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVirtualMachinesMetadataSyncOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartVirtualMachinesMetadataSyncOutput) GoString() string {
+	return s.String()
+}
+
+// SetHypervisorArn sets the HypervisorArn field's value.
+func (s *StartVirtualMachinesMetadataSyncOutput) SetHypervisorArn(v string) *StartVirtualMachinesMetadataSyncOutput {
+	s.HypervisorArn = &v
+	return s
 }
 
 // A key-value pair you can use to manage, filter, and search for your resources.
@@ -4482,6 +5884,10 @@ type UpdateHypervisorInput struct {
 	// HypervisorArn is a required field
 	HypervisorArn *string `min:"50" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the group of gateways within the requested
+	// log.
+	LogGroupArn *string `type:"string"`
+
 	// The updated name for the hypervisor
 	Name *string `min:"1" type:"string"`
 
@@ -4555,6 +5961,12 @@ func (s *UpdateHypervisorInput) SetHost(v string) *UpdateHypervisorInput {
 // SetHypervisorArn sets the HypervisorArn field's value.
 func (s *UpdateHypervisorInput) SetHypervisorArn(v string) *UpdateHypervisorInput {
 	s.HypervisorArn = &v
+	return s
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *UpdateHypervisorInput) SetLogGroupArn(v string) *UpdateHypervisorInput {
+	s.LogGroupArn = &v
 	return s
 }
 
@@ -4774,6 +6186,10 @@ type VirtualMachineDetails struct {
 
 	// The Amazon Resource Name (ARN) of the virtual machine. For example, arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL.
 	ResourceArn *string `min:"50" type:"string"`
+
+	// These are the details of the VMware tags associated with the specified virtual
+	// machine.
+	VmwareTags []*VmwareTag `type:"list"`
 }
 
 // String returns the string representation.
@@ -4830,6 +6246,164 @@ func (s *VirtualMachineDetails) SetResourceArn(v string) *VirtualMachineDetails 
 	return s
 }
 
+// SetVmwareTags sets the VmwareTags field's value.
+func (s *VirtualMachineDetails) SetVmwareTags(v []*VmwareTag) *VirtualMachineDetails {
+	s.VmwareTags = v
+	return s
+}
+
+// A VMware tag is a tag attached to a specific virtual machine. A tag (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BGW_Tag.html)
+// is a key-value pair you can use to manage, filter, and search for your resources.
+//
+// The content of VMware tags can be matched to Amazon Web Services tags.
+type VmwareTag struct {
+	_ struct{} `type:"structure"`
+
+	// The is the category of VMware.
+	VmwareCategory *string `min:"1" type:"string"`
+
+	// This is a user-defined description of a VMware tag.
+	VmwareTagDescription *string `type:"string"`
+
+	// This is the user-defined name of a VMware tag.
+	VmwareTagName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VmwareTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VmwareTag) GoString() string {
+	return s.String()
+}
+
+// SetVmwareCategory sets the VmwareCategory field's value.
+func (s *VmwareTag) SetVmwareCategory(v string) *VmwareTag {
+	s.VmwareCategory = &v
+	return s
+}
+
+// SetVmwareTagDescription sets the VmwareTagDescription field's value.
+func (s *VmwareTag) SetVmwareTagDescription(v string) *VmwareTag {
+	s.VmwareTagDescription = &v
+	return s
+}
+
+// SetVmwareTagName sets the VmwareTagName field's value.
+func (s *VmwareTag) SetVmwareTagName(v string) *VmwareTag {
+	s.VmwareTagName = &v
+	return s
+}
+
+// This displays the mapping of on-premises VMware tags to the corresponding
+// Amazon Web Services tags.
+type VmwareToAwsTagMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The key part of the Amazon Web Services tag's key-value pair.
+	//
+	// AwsTagKey is a required field
+	AwsTagKey *string `min:"1" type:"string" required:"true"`
+
+	// The value part of the Amazon Web Services tag's key-value pair.
+	//
+	// AwsTagValue is a required field
+	AwsTagValue *string `type:"string" required:"true"`
+
+	// The is the category of VMware.
+	//
+	// VmwareCategory is a required field
+	VmwareCategory *string `min:"1" type:"string" required:"true"`
+
+	// This is the user-defined name of a VMware tag.
+	//
+	// VmwareTagName is a required field
+	VmwareTagName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VmwareToAwsTagMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VmwareToAwsTagMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VmwareToAwsTagMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VmwareToAwsTagMapping"}
+	if s.AwsTagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsTagKey"))
+	}
+	if s.AwsTagKey != nil && len(*s.AwsTagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsTagKey", 1))
+	}
+	if s.AwsTagValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsTagValue"))
+	}
+	if s.VmwareCategory == nil {
+		invalidParams.Add(request.NewErrParamRequired("VmwareCategory"))
+	}
+	if s.VmwareCategory != nil && len(*s.VmwareCategory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VmwareCategory", 1))
+	}
+	if s.VmwareTagName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VmwareTagName"))
+	}
+	if s.VmwareTagName != nil && len(*s.VmwareTagName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VmwareTagName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsTagKey sets the AwsTagKey field's value.
+func (s *VmwareToAwsTagMapping) SetAwsTagKey(v string) *VmwareToAwsTagMapping {
+	s.AwsTagKey = &v
+	return s
+}
+
+// SetAwsTagValue sets the AwsTagValue field's value.
+func (s *VmwareToAwsTagMapping) SetAwsTagValue(v string) *VmwareToAwsTagMapping {
+	s.AwsTagValue = &v
+	return s
+}
+
+// SetVmwareCategory sets the VmwareCategory field's value.
+func (s *VmwareToAwsTagMapping) SetVmwareCategory(v string) *VmwareToAwsTagMapping {
+	s.VmwareCategory = &v
+	return s
+}
+
+// SetVmwareTagName sets the VmwareTagName field's value.
+func (s *VmwareToAwsTagMapping) SetVmwareTagName(v string) *VmwareToAwsTagMapping {
+	s.VmwareTagName = &v
+	return s
+}
+
 const (
 	// GatewayTypeBackupVm is a GatewayType enum value
 	GatewayTypeBackupVm = "BACKUP_VM"
@@ -4863,5 +6437,33 @@ func HypervisorState_Values() []string {
 		HypervisorStateOnline,
 		HypervisorStateOffline,
 		HypervisorStateError,
+	}
+}
+
+const (
+	// SyncMetadataStatusCreated is a SyncMetadataStatus enum value
+	SyncMetadataStatusCreated = "CREATED"
+
+	// SyncMetadataStatusRunning is a SyncMetadataStatus enum value
+	SyncMetadataStatusRunning = "RUNNING"
+
+	// SyncMetadataStatusFailed is a SyncMetadataStatus enum value
+	SyncMetadataStatusFailed = "FAILED"
+
+	// SyncMetadataStatusPartiallyFailed is a SyncMetadataStatus enum value
+	SyncMetadataStatusPartiallyFailed = "PARTIALLY_FAILED"
+
+	// SyncMetadataStatusSucceeded is a SyncMetadataStatus enum value
+	SyncMetadataStatusSucceeded = "SUCCEEDED"
+)
+
+// SyncMetadataStatus_Values returns all elements of the SyncMetadataStatus enum
+func SyncMetadataStatus_Values() []string {
+	return []string{
+		SyncMetadataStatusCreated,
+		SyncMetadataStatusRunning,
+		SyncMetadataStatusFailed,
+		SyncMetadataStatusPartiallyFailed,
+		SyncMetadataStatusSucceeded,
 	}
 }

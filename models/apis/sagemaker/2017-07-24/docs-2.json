@@ -31,7 +31,7 @@
     "CreateHyperParameterTuningJob": "<p>Starts a hyperparameter tuning job. A hyperparameter tuning job finds the best version of a model by running many training jobs on your dataset using the algorithm you choose and values for hyperparameters within ranges that you specify. It then chooses the hyperparameter values that result in a model that performs the best, as measured by an objective metric that you choose.</p> <p>A hyperparameter tuning job automatically creates Amazon SageMaker experiments, trials, and trial components for each training job that it runs. You can view these entities in Amazon SageMaker Studio. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/experiments-view-compare.html#experiments-view\">View Experiments, Trials, and Trial Components</a>.</p> <important> <p>Do not include any security-sensitive information including account access IDs, secrets or tokens in any hyperparameter field. If the use of security-sensitive credentials are detected, SageMaker will reject your training job request and return an exception error.</p> </important>",
     "CreateImage": "<p>Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each image version represents a container image stored in Amazon Elastic Container Registry (ECR). For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html\">Bring your own SageMaker image</a>.</p>",
     "CreateImageVersion": "<p>Creates a version of the SageMaker image specified by <code>ImageName</code>. The version represents the Amazon Elastic Container Registry (ECR) container image specified by <code>BaseImage</code>.</p>",
-    "CreateInferenceExperiment": "<p> Creates an inference experiment using the configurations specified in the request. </p> <p> Use this API to schedule an experiment to compare model variants on a Amazon SageMaker inference endpoint. For more information about inference experiments, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests.html\">Shadow tests</a>. </p> <p> Amazon SageMaker begins your experiment at the scheduled time and routes traffic to your endpoint's model variants based on your specified configuration. </p> <p> While the experiment is in progress or after it has concluded, you can view metrics that compare your model variants. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests-view-monitor-edit.html\">View, monitor, and edit shadow tests</a>. </p>",
+    "CreateInferenceExperiment": "<p> Creates an inference experiment using the configurations specified in the request. </p> <p> Use this API to setup and schedule an experiment to compare model variants on a Amazon SageMaker inference endpoint. For more information about inference experiments, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests.html\">Shadow tests</a>. </p> <p> Amazon SageMaker begins your experiment at the scheduled time and routes traffic to your endpoint's model variants based on your specified configuration. </p> <p> While the experiment is in progress or after it has concluded, you can view metrics that compare your model variants. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests-view-monitor-edit.html\">View, monitor, and edit shadow tests</a>. </p>",
     "CreateInferenceRecommendationsJob": "<p>Starts a recommendation job. You can create either an instance recommendation or load test job.</p>",
     "CreateLabelingJob": "<p>Creates a job that uses workers to label the data objects in your input dataset. You can use the labeled data to train machine learning models. </p> <p>You can select your workforce from one of three providers:</p> <ul> <li> <p>A private workforce that you create. It can include employees, contractors, and outside experts. Use a private workforce when want the data to stay within your organization or when a specific set of skills is required.</p> </li> <li> <p>One or more vendors that you select from the Amazon Web Services Marketplace. Vendors provide expertise in specific areas. </p> </li> <li> <p>The Amazon Mechanical Turk workforce. This is the largest workforce, but it should only be used for public data or data that has been stripped of any personally identifiable information.</p> </li> </ul> <p>You can also use <i>automated data labeling</i> to reduce the number of data objects that need to be labeled by a human. Automated data labeling uses <i>active learning</i> to determine if a data object can be labeled by machine or if it needs to be sent to a human worker. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-automated-labeling.html\">Using Automated Data Labeling</a>.</p> <p>The data objects to be labeled are contained in an Amazon S3 bucket. You create a <i>manifest file</i> that describes the location of each object. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html\">Using Input and Output Data</a>.</p> <p>The output can be used as the manifest file for another labeling job or as training data for your machine learning models.</p> <p>You can use this operation to create a static labeling job or a streaming labeling job. A static labeling job stops if all data objects in the input manifest file identified in <code>ManifestS3Uri</code> have been labeled. A streaming labeling job runs perpetually until it is manually stopped, or remains idle for 10 days. You can send new data objects to an active (<code>InProgress</code>) streaming labeling job in real time. To learn how to create a static labeling job, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-create-labeling-job-api.html\">Create a Labeling Job (API) </a> in the Amazon SageMaker Developer Guide. To learn how to create a streaming labeling job, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-create-job.html\">Create a Streaming Labeling Job</a>.</p>",
     "CreateModel": "<p>Creates a model in SageMaker. In the request, you name the model and describe a primary container. For the primary container, you specify the Docker image that contains inference code, artifacts (from prior training), and a custom environment map that the inference code uses when you deploy the model for predictions.</p> <p>Use this API to create a model if you want to use SageMaker hosting services or run a batch transform job.</p> <p>To host your model, you create an endpoint configuration with the <code>CreateEndpointConfig</code> API, and then create an endpoint with the <code>CreateEndpoint</code> API. SageMaker then deploys all of the containers that you defined for the model in the hosting environment. </p> <p>For an example that calls this method when deploying a model to SageMaker hosting services, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-deployment.html#realtime-endpoints-deployment-create-model\">Create a Model (Amazon Web Services SDK for Python (Boto 3)).</a> </p> <p>To run a batch transform using your model, you start a job with the <code>CreateTransformJob</code> API. SageMaker uses your model and your dataset to get inferences which are then saved to a specified S3 location.</p> <p>In the request, you also provide an IAM role that SageMaker can assume to access model artifacts and docker image for deployment on ML compute hosting instances or for batch transform jobs. In addition, you also use the IAM role to manage permissions the inference code needs. For example, if the inference code access any other Amazon Web Services resources, you grant necessary permissions via this role.</p>",
@@ -3803,7 +3803,7 @@
         "BatchTransformInput$DataCapturedDestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
         "DataCaptureConfig$DestinationS3Uri": "<p>The Amazon S3 location used to capture the data.</p>",
         "DataCaptureConfigSummary$DestinationS3Uri": "<p>The Amazon S3 location being used to capture the data.</p>",
-        "InferenceExperimentDataStorageConfig$Destination": "<p>The Amazon S3 bucket where the inference experiment data is stored. </p>",
+        "InferenceExperimentDataStorageConfig$Destination": "<p>The Amazon S3 bucket where the inference request and response data is stored. </p>",
         "ProductionVariantCoreDumpConfig$DestinationS3Uri": "<p>The Amazon S3 bucket to send the core dump to.</p>"
       }
     },
@@ -4989,7 +4989,7 @@
         "DescribeTransformJobResponse$FailureReason": "<p>If the transform job failed, <code>FailureReason</code> describes why it failed. A transform job creates a log file, which includes error messages, and stores it as an Amazon S3 object. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/logging-cloudwatch.html\">Log Amazon SageMaker Events with Amazon CloudWatch</a>.</p>",
         "DescribeUserProfileResponse$FailureReason": "<p>The failure reason.</p>",
         "Endpoint$FailureReason": "<p>If the endpoint failed, the reason it failed.</p>",
-        "EndpointMetadata$FailureReason": "<p> If the status of the endpoint is <code>Failed</code>, this provides the reason why it failed. </p>",
+        "EndpointMetadata$FailureReason": "<p> If the status of the endpoint is <code>Failed</code>, or the status is <code>InService</code> but update operation fails, this provides the reason why it failed. </p>",
         "FeatureGroup$FailureReason": "<p>The reason that the <code>FeatureGroup</code> failed to be replicated in the <code>OfflineStore</code>. This is failure may be due to a failure to create a <code>FeatureGroup</code> in or delete a <code>FeatureGroup</code> from the <code>OfflineStore</code>.</p>",
         "FlowDefinitionSummary$FailureReason": "<p>The reason why the flow definition creation failed. A failure reason is returned only when the flow definition status is <code>Failed</code>.</p>",
         "HyperParameterTrainingJobSummary$FailureReason": "<p>The reason that the training job failed. </p>",
@@ -5971,7 +5971,7 @@
       }
     },
     "HyperParameterTuningResourceConfig": {
-      "base": "<p>The configuration of resources, including compute instances and storage volumes for use in training jobs launched by hyperparameter tuning jobs. Specify one or more instance type and count and the allocation strategy for instance selection.</p> <note> <p> <code>HyperParameterTuningResourceConfig</code> supports all of the capabilities of ResourceConfig with added functionality for flexible instance management.</p> </note>",
+      "base": "<p>The configuration of resources, including compute instances and storage volumes for use in training jobs launched by hyperparameter tuning jobs. <code>HyperParameterTuningResourceConfig</code> is similar to <code>ResourceConfig</code>, but has the additional <code>InstanceConfigs</code> and <code>AllocationStrategy</code> fields to allow for flexible instance management. Specify one or more instance types, count, and the allocation strategy for instance selection.</p> <note> <p> <code>HyperParameterTuningResourceConfig</code> supports the capabilities of <code>ResourceConfig</code> with the exception of <code>KeepAlivePeriodInSeconds</code>. Hyperparameter tuning jobs use warm pools by default, which reuse clusters between training jobs.</p> </note>",
       "refs": {
         "HyperParameterTrainingJobDefinition$HyperParameterTuningResourceConfig": "<p>The configuration for the hyperparameter tuning resources, including the compute instances and storage volumes, used for training jobs launched by the tuning job. By default, storage volumes hold model artifacts and incremental states. Choose <code>File</code> for <code>TrainingInputMode</code> in the <code>AlgorithmSpecification</code> parameter to additionally store training data in the storage volume (optional).</p>"
       }
@@ -6242,11 +6242,11 @@
       }
     },
     "InferenceExperimentDataStorageConfig": {
-      "base": "<p>The Amazon S3 location and configuration for storing inference experiment data.</p>",
+      "base": "<p>The Amazon S3 location and configuration for storing inference request and response data.</p>",
       "refs": {
-        "CreateInferenceExperimentRequest$DataStorageConfig": "<p> The storage configuration for the inference experiment. This is an optional parameter that you can use for data capture. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-data-capture.html\">Capture data</a>. </p>",
-        "DescribeInferenceExperimentResponse$DataStorageConfig": "<p>The Amazon S3 storage configuration for the inference experiment.</p>",
-        "UpdateInferenceExperimentRequest$DataStorageConfig": "<p>The Amazon S3 storage configuration for the inference experiment.</p>"
+        "CreateInferenceExperimentRequest$DataStorageConfig": "<p> The Amazon S3 location and configuration for storing inference request and response data. </p> <p> This is an optional parameter that you can use for data capture. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-data-capture.html\">Capture data</a>. </p>",
+        "DescribeInferenceExperimentResponse$DataStorageConfig": "<p>The Amazon S3 location and configuration for storing inference request and response data.</p>",
+        "UpdateInferenceExperimentRequest$DataStorageConfig": "<p>The Amazon S3 location and configuration for storing inference request and response data.</p>"
       }
     },
     "InferenceExperimentDescription": {
@@ -6280,7 +6280,7 @@
     "InferenceExperimentSchedule": {
       "base": "<p>The start and end times of an inference experiment.</p> <p>The maximum duration that you can set for an inference experiment is 30 days.</p>",
       "refs": {
-        "CreateInferenceExperimentRequest$Schedule": "<p> The duration for which you want the inference experiment to run. If you don't specify this field, the experiment automatically concludes after 7 days. </p>",
+        "CreateInferenceExperimentRequest$Schedule": "<p> The duration for which you want the inference experiment to run. If you don't specify this field, the experiment automatically starts immediately upon creation and concludes after 7 days. </p>",
         "DescribeInferenceExperimentResponse$Schedule": "<p>The duration for which the inference experiment ran or will run.</p>",
         "InferenceExperimentSummary$Schedule": "<p>The duration for which the inference experiment ran or will run.</p> <p>The maximum duration that you can set for an inference experiment is 30 days.</p>",
         "UpdateInferenceExperimentRequest$Schedule": "<p> The duration for which the inference experiment will run. If the status of the inference experiment is <code>Created</code>, then you can update both the start and end dates. If the status of the inference experiment is <code>Running</code>, then you can update only the end date. </p>"
@@ -6289,7 +6289,7 @@
     "InferenceExperimentStatus": {
       "base": null,
       "refs": {
-        "DescribeInferenceExperimentResponse$Status": "<p> The status of the inference experiment. The following are the possible statuses for an inference experiment: </p> <ul> <li> <p> <code>Creating</code> - Amazon SageMaker is creating your experiment. </p> </li> <li> <p> <code>Created</code> - Amazon SageMaker has finished creating your experiment and it will begin at the scheduled time. </p> </li> <li> <p> <code>Updating</code> - When you make changes to your experiment, your experiment shows as updating. </p> </li> <li> <p> <code>Starting</code> - Amazon SageMaker is beginning your experiment. </p> </li> <li> <p> <code>Running</code> - Your experiment is in progress. </p> </li> <li> <p> <code>Stopping</code> - Amazon SageMaker is stopping your experiment. </p> </li> <li> <p> <code>Completed</code> - Your experiment has completed. </p> </li> <li> <p> <code>Cancelled</code> - When you conclude your experiment early, it shows as canceled. </p> </li> </ul>",
+        "DescribeInferenceExperimentResponse$Status": "<p> The status of the inference experiment. The following are the possible statuses for an inference experiment: </p> <ul> <li> <p> <code>Creating</code> - Amazon SageMaker is creating your experiment. </p> </li> <li> <p> <code>Created</code> - Amazon SageMaker has finished the creation of your experiment and will begin the experiment at the scheduled time. </p> </li> <li> <p> <code>Updating</code> - When you make changes to your experiment, your experiment shows as updating. </p> </li> <li> <p> <code>Starting</code> - Amazon SageMaker is beginning your experiment. </p> </li> <li> <p> <code>Running</code> - Your experiment is in progress. </p> </li> <li> <p> <code>Stopping</code> - Amazon SageMaker is stopping your experiment. </p> </li> <li> <p> <code>Completed</code> - Your experiment has completed. </p> </li> <li> <p> <code>Cancelled</code> - When you conclude your experiment early using the <a>StopInferenceExperiment</a> API, or if any operation fails with an unexpected error, it shows as cancelled. </p> </li> </ul>",
         "InferenceExperimentSummary$Status": "<p>The status of the inference experiment.</p>",
         "ListInferenceExperimentsRequest$StatusEquals": "<p> Selects inference experiments which are in this status. For the possible statuses, see <a>DescribeInferenceExperimentResponse$Status</a>. </p>"
       }
@@ -6297,7 +6297,7 @@
     "InferenceExperimentStatusReason": {
       "base": null,
       "refs": {
-        "DescribeInferenceExperimentResponse$StatusReason": "<p>The error message for the inference experiment status result.</p>",
+        "DescribeInferenceExperimentResponse$StatusReason": "<p> The error message or client-specified <code>Reason</code> from the <a>StopInferenceExperiment</a> API, that explains the status of the inference experiment. </p>",
         "InferenceExperimentSummary$StatusReason": "<p>The error message for the inference experiment status result.</p>",
         "StopInferenceExperimentRequest$Reason": "<p>The reason for stopping the experiment.</p>"
       }
@@ -6470,7 +6470,7 @@
         "CreateNotebookInstanceInput$InstanceType": "<p>The type of ML compute instance to launch for the notebook instance.</p>",
         "DescribeNotebookInstanceOutput$InstanceType": "<p>The type of ML compute instance running on the notebook instance.</p>",
         "NotebookInstanceSummary$InstanceType": "<p>The type of ML compute instance that the notebook instance is running on.</p>",
-        "RealTimeInferenceConfig$InstanceType": "<p>The number of instances of the type specified by <code>InstanceType</code>.</p>",
+        "RealTimeInferenceConfig$InstanceType": "<p>The instance type the model is deployed to.</p>",
         "UpdateNotebookInstanceInput$InstanceType": "<p>The Amazon ML compute instance type.</p>"
       }
     },
@@ -6667,7 +6667,7 @@
         "CreateEndpointConfigInput$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateEndpoint</code>, <code>UpdateEndpoint</code> requests. For more information, refer to the Amazon Web Services Key Management Service section<a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\"> Using Key Policies in Amazon Web Services KMS </a> </p> <note> <p>Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a <code>KmsKeyId</code> when using an instance type with local storage. If any of the models that you specify in the <code>ProductionVariants</code> parameter use nitro-based instances with local storage, do not specify a value for the <code>KmsKeyId</code> parameter. If you specify a value for <code>KmsKeyId</code> when using any nitro-based instances with local storage, the call to <code>CreateEndpointConfig</code> fails.</p> <p>For a list of instance types that support local instance storage, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> <p>For more information about local instance storage encryption, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">SSD Instance Store Volumes</a>.</p> </note>",
         "CreateInferenceExperimentRequest$KmsKey": "<p> The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint. The <code>KmsKey</code> can be any of the following formats: </p> <ul> <li> <p>KMS key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>KMS key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p> If you use a KMS key ID or an alias of your KMS key, the Amazon SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. Amazon SageMaker uses server-side encryption with KMS managed keys for <code>OutputDataConfig</code>. If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">KMS managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p> The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateEndpoint</code> and <code>UpdateEndpoint</code> requests. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>. </p>",
         "CreateNotebookInstanceInput$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html\">Enabling and Disabling Keys</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>",
-        "DataCaptureConfig$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
+        "DataCaptureConfig$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that SageMaker uses to encrypt the captured data at rest using Amazon S3 server-side encryption.</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
         "DataCaptureConfigSummary$KmsKeyId": "<p>The KMS key being used to encrypt the data in Amazon S3.</p>",
         "DescribeDomainResponse$HomeEfsFileSystemKmsKeyId": "<p>Use <code>KmsKeyId</code>.</p>",
         "DescribeDomainResponse$KmsKeyId": "<p>The Amazon Web Services KMS customer managed key used to encrypt the EFS volume attached to the domain.</p>",
@@ -6678,7 +6678,7 @@
         "EdgeOutputConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data on the storage volume after compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account.</p>",
         "FlowDefinitionOutputConfig$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
         "HyperParameterTuningResourceConfig$VolumeKmsKeyId": "<p>A key used by Amazon Web Services Key Management Service to encrypt data on the storage volume attached to the compute instances used to run the training job. You can use either of the following formats to specify a key.</p> <p>KMS Key ID:</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> <p>Amazon Resource Name (ARN) of a KMS key:</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> <p>Some instances use local storage, which use a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">hardware module to encrypt</a> storage volumes. If you choose one of these instance types, you cannot request a <code>VolumeKmsKeyId</code>. For a list of instance types that use local storage, see <a href=\"http://aws.amazon.com/releasenotes/host-instance-storage-volumes-table/\">instance store volumes</a>. For more information about Amazon Web Services Key Management Service, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-kms-permissions.html\">KMS encryption</a> for more information.</p>",
-        "InferenceExperimentDataStorageConfig$KmsKey": "<p> The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service key that Amazon SageMaker uses to encrypt captured data when uploading to Amazon S3. </p>",
+        "InferenceExperimentDataStorageConfig$KmsKey": "<p> The Amazon Web Services Key Management Service key that Amazon SageMaker uses to encrypt captured data at rest using Amazon S3 server-side encryption. </p>",
         "LabelingJobOutputConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service ID of the key used to encrypt the output data, if any.</p> <p>If you provide your own KMS key ID, you must add the required permissions to your KMS key described in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-permission.html#sms-security-kms-permissions\">Encrypt Output Data and Storage Volume with Amazon Web Services KMS</a>.</p> <p>If you don't provide a KMS key ID, Amazon SageMaker uses the default Amazon Web Services KMS key for Amazon S3 for your role's account to encrypt your output data.</p> <p>If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p>",
         "LabelingJobResourceConfig$VolumeKmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the training and inference jobs used for automated data labeling. </p> <p>You can only specify a <code>VolumeKmsKeyId</code> when you create a labeling job with automated data labeling enabled using the API operation <code>CreateLabelingJob</code>. You cannot specify an Amazon Web Services KMS key to encrypt the storage volume used for automated data labeling model training and inference when you create a labeling job using the console. To learn more, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security.html\">Output Data and Storage Volume Encryption</a>.</p> <p>The <code>VolumeKmsKeyId</code> can be any of the following formats:</p> <ul> <li> <p>KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> </ul>",
         "ModelCardSecurityConfig$KmsKeyId": "<p>A Key Management Service <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-id\">key ID</a> to use for encrypting a model card.</p>",
@@ -8499,8 +8499,8 @@
         "DescribeTransformJobResponse$ModelName": "<p>The name of the model used in the transform job.</p>",
         "Model$ModelName": "<p>The name of the model.</p>",
         "ModelSummary$ModelName": "<p>The name of the model that you want a summary for.</p>",
-        "ModelVariantConfig$ModelName": "<p>The name of the model.</p>",
-        "ModelVariantConfigSummary$ModelName": "<p>The name of the model.</p>",
+        "ModelVariantConfig$ModelName": "<p>The name of the Amazon SageMaker Model entity.</p>",
+        "ModelVariantConfigSummary$ModelName": "<p>The name of the Amazon SageMaker Model entity.</p>",
         "ProductionVariant$ModelName": "<p>The name of the model that you want to host. This is the name that you specified when creating the model.</p>",
         "TransformJob$ModelName": "<p>The name of the model associated with the transform job.</p>"
       }
@@ -8762,9 +8762,9 @@
     "ModelVariantConfigList": {
       "base": null,
       "refs": {
-        "CreateInferenceExperimentRequest$ModelVariants": "<p> Array of <code>ModelVariantConfigSummary</code> objects. There is one for each variant in the inference experiment. Each <code>ModelVariantConfigSummary</code> object in the array describes the infrastructure configuration for the corresponding variant. </p>",
-        "StopInferenceExperimentRequest$DesiredModelVariants": "<p> Array of <code>ModelVariantConfig</code> objects. There is one for each variant that you want to deploy after the inference experiment stops. Each <code>ModelVariantConfig</code> describes the infrastructure configuration for deploying the corresponding variant. </p>",
-        "UpdateInferenceExperimentRequest$ModelVariants": "<p> Array of <code>ModelVariantConfigSummary</code> objects. There is one for each variant, whose infrastructure configuration you want to update. </p>"
+        "CreateInferenceExperimentRequest$ModelVariants": "<p> An array of <code>ModelVariantConfig</code> objects. There is one for each variant in the inference experiment. Each <code>ModelVariantConfig</code> object in the array describes the infrastructure configuration for the corresponding variant. </p>",
+        "StopInferenceExperimentRequest$DesiredModelVariants": "<p> An array of <code>ModelVariantConfig</code> objects. There is one for each variant that you want to deploy after the inference experiment stops. Each <code>ModelVariantConfig</code> describes the infrastructure configuration for deploying the corresponding variant. </p>",
+        "UpdateInferenceExperimentRequest$ModelVariants": "<p> An array of <code>ModelVariantConfig</code> objects. There is one for each variant, whose infrastructure configuration you want to update. </p>"
       }
     },
     "ModelVariantConfigSummary": {
@@ -8776,7 +8776,7 @@
     "ModelVariantConfigSummaryList": {
       "base": null,
       "refs": {
-        "DescribeInferenceExperimentResponse$ModelVariants": "<p> Array of <code>ModelVariantConfigSummary</code> objects. There is one for each variant in the inference experiment. Each <code>ModelVariantConfigSummary</code> object in the array describes the infrastructure configuration for deploying the corresponding variant. </p>"
+        "DescribeInferenceExperimentResponse$ModelVariants": "<p> An array of <code>ModelVariantConfigSummary</code> objects. There is one for each variant in the inference experiment. Each <code>ModelVariantConfigSummary</code> object in the array describes the infrastructure configuration for deploying the corresponding variant. </p>"
       }
     },
     "ModelVariantName": {
@@ -8785,14 +8785,14 @@
         "ModelVariantActionMap$key": null,
         "ModelVariantConfig$VariantName": "<p>The name of the variant.</p>",
         "ModelVariantConfigSummary$VariantName": "<p>The name of the variant.</p>",
-        "ShadowModeConfig$SourceModelVariantName": "<p> The name of the production variant. </p>",
+        "ShadowModeConfig$SourceModelVariantName": "<p> The name of the production variant, which takes all the inference requests. </p>",
         "ShadowModelVariantConfig$ShadowModelVariantName": "<p>The name of the shadow variant.</p>"
       }
     },
     "ModelVariantStatus": {
       "base": null,
       "refs": {
-        "ModelVariantConfigSummary$Status": "<p>The status of the deployment.</p>"
+        "ModelVariantConfigSummary$Status": "<p>The status of deployment for the model variant on the hosted inference endpoint.</p> <ul> <li> <p> <code>Creating</code> - Amazon SageMaker is preparing the model variant on the hosted inference endpoint. </p> </li> <li> <p> <code>InService</code> - The model variant is running on the hosted inference endpoint. </p> </li> <li> <p> <code>Updating</code> - Amazon SageMaker is updating the model variant on the hosted inference endpoint. </p> </li> <li> <p> <code>Deleting</code> - Amazon SageMaker is deleting the model variant on the hosted inference endpoint. </p> </li> <li> <p> <code>Deleted</code> - The model variant has been deleted on the hosted inference endpoint. This can only happen after stopping the experiment. </p> </li> </ul>"
       }
     },
     "MonitoringAlertActions": {
@@ -9705,8 +9705,8 @@
     "OfflineStoreConfig": {
       "base": "<p>The configuration of an <code>OfflineStore</code>.</p> <p>Provide an <code>OfflineStoreConfig</code> in a request to <code>CreateFeatureGroup</code> to create an <code>OfflineStore</code>.</p> <p>To encrypt an <code>OfflineStore</code> using at rest data encryption, specify Amazon Web Services Key Management Service (KMS) key ID, or <code>KMSKeyId</code>, in <code>S3StorageConfig</code>.</p>",
       "refs": {
-        "CreateFeatureGroupRequest$OfflineStoreConfig": "<p>Use this to configure an <code>OfflineFeatureStore</code>. This parameter allows you to specify:</p> <ul> <li> <p>The Amazon Simple Storage Service (Amazon S3) location of an <code>OfflineStore</code>.</p> </li> <li> <p>A configuration for an Amazon Web Services Glue or Amazon Web Services Hive data catalog. </p> </li> <li> <p>An KMS encryption key to encrypt the Amazon S3 location used for <code>OfflineStore</code>. If KMS encryption key is not specified, by default we encrypt all data at rest using Amazon Web Services KMS key. By defining your <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html\">bucket-level key</a> for SSE, you can reduce Amazon Web Services KMS requests costs by up to 99 percent.</p> </li> </ul> <p>To learn more about this parameter, see <a>OfflineStoreConfig</a>.</p>",
-        "DescribeFeatureGroupResponse$OfflineStoreConfig": "<p>The configuration of the <code>OfflineStore</code>, inducing the S3 location of the <code>OfflineStore</code>, Amazon Web Services Glue or Amazon Web Services Hive data catalogue configurations, and the security configuration.</p>",
+        "CreateFeatureGroupRequest$OfflineStoreConfig": "<p>Use this to configure an <code>OfflineFeatureStore</code>. This parameter allows you to specify:</p> <ul> <li> <p>The Amazon Simple Storage Service (Amazon S3) location of an <code>OfflineStore</code>.</p> </li> <li> <p>A configuration for an Amazon Web Services Glue or Amazon Web Services Hive data catalog. </p> </li> <li> <p>An KMS encryption key to encrypt the Amazon S3 location used for <code>OfflineStore</code>. If KMS encryption key is not specified, by default we encrypt all data at rest using Amazon Web Services KMS key. By defining your <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html\">bucket-level key</a> for SSE, you can reduce Amazon Web Services KMS requests costs by up to 99 percent.</p> </li> <li> <p>Format for the offline store table. Supported formats are Glue (Default) and <a href=\"https://iceberg.apache.org/\">Apache Iceberg</a>.</p> </li> </ul> <p>To learn more about this parameter, see <a>OfflineStoreConfig</a>.</p>",
+        "DescribeFeatureGroupResponse$OfflineStoreConfig": "<p>The configuration of the offline store. It includes the following configurations:</p> <ul> <li> <p>Amazon S3 location of the offline store.</p> </li> <li> <p>Configuration of the Glue data catalog.</p> </li> <li> <p>Table format of the offline store.</p> </li> <li> <p>Option to disable the automatic creation of a Glue table for the offline store.</p> </li> <li> <p>Encryption configuration.</p> </li> </ul>",
         "FeatureGroup$OfflineStoreConfig": null
       }
     },
@@ -9982,15 +9982,15 @@
     "PendingProductionVariantSummaryList": {
       "base": null,
       "refs": {
-        "PendingDeploymentSummary$ProductionVariants": "<p>List of <code>PendingProductionVariantSummary</code> objects.</p>",
-        "PendingDeploymentSummary$ShadowProductionVariants": "<p> Array of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.If you use this field, you can only specify one variant for <code>ProductionVariants</code> and one variant for <code>ShadowProductionVariants</code>. </p>"
+        "PendingDeploymentSummary$ProductionVariants": "<p>An array of <a>PendingProductionVariantSummary</a> objects, one for each model hosted behind this endpoint for the in-progress deployment.</p>",
+        "PendingDeploymentSummary$ShadowProductionVariants": "<p>An array of <a>PendingProductionVariantSummary</a> objects, one for each model hosted behind this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code> for the in-progress deployment.</p>"
       }
     },
     "Percentage": {
       "base": null,
       "refs": {
         "DeviceSelectionConfig$Percentage": "<p>Percentage of devices in the fleet to deploy to the current stage.</p>",
-        "ShadowModelVariantConfig$SamplingPercentage": "<p>The percentage of inference requests that are replicated to the shadow variant.</p>"
+        "ShadowModelVariantConfig$SamplingPercentage": "<p> The percentage of inference requests that Amazon SageMaker replicates from the production variant to the shadow variant. </p>"
       }
     },
     "Phase": {
@@ -10519,10 +10519,10 @@
     "ProductionVariantList": {
       "base": null,
       "refs": {
-        "CreateEndpointConfigInput$ProductionVariants": "<p>An list of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint.</p>",
-        "CreateEndpointConfigInput$ShadowProductionVariants": "<p> Array of <code>ProductionVariant</code> objects. There is one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.If you use this field, you can only specify one variant for <code>ProductionVariants</code> and one variant for <code>ShadowProductionVariants</code>. </p>",
+        "CreateEndpointConfigInput$ProductionVariants": "<p>An array of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint.</p>",
+        "CreateEndpointConfigInput$ShadowProductionVariants": "<p>An array of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>. If you use this field, you can only specify one variant for <code>ProductionVariants</code> and one variant for <code>ShadowProductionVariants</code>.</p>",
         "DescribeEndpointConfigOutput$ProductionVariants": "<p>An array of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint.</p>",
-        "DescribeEndpointConfigOutput$ShadowProductionVariants": "<p> Array of <code>ProductionVariant</code> objects. There is one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.If you use this field, you can only specify one variant for <code>ProductionVariants</code> and one variant for <code>ShadowProductionVariants</code>. </p>"
+        "DescribeEndpointConfigOutput$ShadowProductionVariants": "<p>An array of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.</p>"
       }
     },
     "ProductionVariantModelDataDownloadTimeoutInSeconds": {
@@ -10563,10 +10563,10 @@
     "ProductionVariantSummaryList": {
       "base": null,
       "refs": {
-        "DescribeEndpointOutput$ProductionVariants": "<p> An array of <a>ProductionVariantSummary</a> objects, one for each model hosted behind this endpoint. </p>",
-        "DescribeEndpointOutput$ShadowProductionVariants": "<p> Array of <code>ProductionVariant</code> objects. There is one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.If you use this field, you can only specify one variant for <code>ProductionVariants</code> and one variant for <code>ShadowProductionVariants</code>. </p>",
+        "DescribeEndpointOutput$ProductionVariants": "<p>An array of <a>ProductionVariantSummary</a> objects, one for each model hosted behind this endpoint.</p>",
+        "DescribeEndpointOutput$ShadowProductionVariants": "<p>An array of <a>ProductionVariantSummary</a> objects, one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.</p>",
         "Endpoint$ProductionVariants": "<p>A list of the production variants hosted on the endpoint. Each production variant is a model.</p>",
-        "Endpoint$ShadowProductionVariants": "<p> Array of <code>ProductionVariant</code> objects, one for each model that you want to host at this endpoint in shadow mode with production traffic replicated from the model specified on <code>ProductionVariants</code>.If you use this field, you can only specify one variant for <code>ProductionVariants</code> and one variant for <code>ShadowProductionVariants</code>. </p>"
+        "Endpoint$ShadowProductionVariants": "<p>A list of the shadow variants hosted on the endpoint. Each shadow variant is a model in shadow mode with production traffic replicated from the proudction variant.</p>"
       }
     },
     "ProductionVariantVolumeSizeInGB": {
@@ -10871,7 +10871,7 @@
       }
     },
     "RealTimeInferenceConfig": {
-      "base": "<p>The infrastructure configuration for deploying the model to real-time inference.</p>",
+      "base": "<p>The infrastructure configuration for deploying the model to a real-time inference endpoint.</p>",
       "refs": {
         "ModelInfrastructureConfig$RealTimeInferenceConfig": "<p>The infrastructure configuration for deploying the model to real-time inference.</p>"
       }
@@ -10995,6 +10995,36 @@
         "CreateInferenceRecommendationsJobRequest$JobType": "<p>Defines the type of recommendation job. Specify <code>Default</code> to initiate an instance recommendation and <code>Advanced</code> to initiate a load test. If left unspecified, Amazon SageMaker Inference Recommender will run an instance recommendation (<code>DEFAULT</code>) job.</p>",
         "DescribeInferenceRecommendationsJobResponse$JobType": "<p>The job type that you provided when you initiated the job.</p>",
         "InferenceRecommendationsJob$JobType": "<p>The recommendation job type.</p>"
+      }
+    },
+    "RecommendationJobVpcConfig": {
+      "base": "<p>Inference Recommender provisions SageMaker endpoints with access to VPC in the inference recommendation job.</p>",
+      "refs": {
+        "RecommendationJobInputConfig$VpcConfig": "<p>Inference Recommender provisions SageMaker endpoints with access to VPC in the inference recommendation job.</p>"
+      }
+    },
+    "RecommendationJobVpcSecurityGroupId": {
+      "base": null,
+      "refs": {
+        "RecommendationJobVpcSecurityGroupIds$member": null
+      }
+    },
+    "RecommendationJobVpcSecurityGroupIds": {
+      "base": null,
+      "refs": {
+        "RecommendationJobVpcConfig$SecurityGroupIds": "<p>The VPC security group IDs. IDs have the form of <code>sg-xxxxxxxx</code>. Specify the security groups for the VPC that is specified in the <code>Subnets</code> field.</p>"
+      }
+    },
+    "RecommendationJobVpcSubnetId": {
+      "base": null,
+      "refs": {
+        "RecommendationJobVpcSubnets$member": null
+      }
+    },
+    "RecommendationJobVpcSubnets": {
+      "base": null,
+      "refs": {
+        "RecommendationJobVpcConfig$Subnets": "<p>The ID of the subnets in the VPC to which you want to connect your model.</p>"
       }
     },
     "RecommendationMetrics": {
@@ -11137,7 +11167,7 @@
       }
     },
     "ResourceConfig": {
-      "base": "<p>Describes the resources, including ML compute instances and ML storage volumes, to use for model training. </p>",
+      "base": "<p>Describes the resources, including machine learning (ML) compute instances and ML storage volumes, to use for model training. </p>",
       "refs": {
         "CreateTrainingJobRequest$ResourceConfig": "<p>The resources, including the ML compute instances and ML storage volumes, to use for model training. </p> <p>ML storage volumes store model artifacts and incremental states. Training algorithms might also use ML storage volumes for scratch space. If you want SageMaker to use the ML storage volume to store the training data, choose <code>File</code> as the <code>TrainingInputMode</code> in the algorithm specification. For distributed training algorithms, specify an instance count greater than 1.</p>",
         "DescribeTrainingJobResponse$ResourceConfig": "<p>Resources, including ML compute instances and ML storage volumes, that are configured for model training. </p>",
@@ -11277,7 +11307,7 @@
         "CreateFeatureGroupRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the <code>OfflineStore</code> if an <code>OfflineStoreConfig</code> is provided.</p>",
         "CreateFlowDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the role needed to call other services on your behalf. For example, <code>arn:aws:iam::1234567890:role/service-role/AmazonSageMaker-ExecutionRole-20180111T151298</code>.</p>",
         "CreateImageRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
-        "CreateInferenceExperimentRequest$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images. </p>",
+        "CreateInferenceExperimentRequest$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment. </p>",
         "CreateInferenceRecommendationsJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "CreateLabelingJobRequest$RoleArn": "<p>The Amazon Resource Number (ARN) that Amazon SageMaker assumes to perform tasks on your behalf during data labeling. You must grant this role the necessary permissions so that Amazon SageMaker can successfully complete data labeling.</p>",
         "CreateModelBiasJobDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
@@ -11294,10 +11324,10 @@
         "DescribeDataQualityJobDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "DescribeDeviceFleetResponse$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to Amazon Web Services Internet of Things (IoT).</p>",
         "DescribeEdgePackagingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to download and upload the model, and to contact Neo.</p>",
-        "DescribeFeatureGroupResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the <code>OfflineStore</code> if an <code>OfflineStoreConfig</code> is provided.</p>",
+        "DescribeFeatureGroupResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the OfflineStore if an OfflineStoreConfig is provided.</p>",
         "DescribeFlowDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) execution role for the flow definition.</p>",
         "DescribeImageResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
-        "DescribeInferenceExperimentResponse$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images. </p>",
+        "DescribeInferenceExperimentResponse$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment. </p>",
         "DescribeInferenceRecommendationsJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role you provided when you initiated the job.</p>",
         "DescribeLabelingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) that SageMaker assumes to perform tasks on your behalf during data labeling.</p>",
         "DescribeModelBiasJobDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role that has read permission to the input data location and write permission to the output data location in Amazon S3.</p>",
@@ -11310,7 +11340,7 @@
         "DescribeTrainingJobResponse$RoleArn": "<p>The Amazon Web Services Identity and Access Management (IAM) role configured for the training job. </p>",
         "FeatureGroup$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to create the feature group.</p>",
         "HyperParameterTrainingJobDefinition$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role associated with the training jobs that the tuning job launches.</p>",
-        "InferenceExperimentSummary$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images. </p>",
+        "InferenceExperimentSummary$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment. </p>",
         "InferenceRecommendationsJob$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "Model$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the model.</p>",
         "ModelPackageValidationSpecification$ValidationRole": "<p>The IAM roles to be used for the validation of the model package.</p>",
@@ -11647,11 +11677,11 @@
       }
     },
     "ShadowModeConfig": {
-      "base": "<p> Shows which variant is a production variant and which variant is a shadow variant. For shadow variants, also shows the sampling percentages. </p>",
+      "base": "<p> The configuration of <code>ShadowMode</code> inference experiment type, which specifies a production variant to take all the inference requests, and a shadow variant to which Amazon SageMaker replicates a percentage of the inference requests. For the shadow variant it also specifies the percentage of requests that Amazon SageMaker replicates. </p>",
       "refs": {
-        "CreateInferenceExperimentRequest$ShadowModeConfig": "<p> Shows which variant is the production variant and which variant is the shadow variant. For the shadow variant, also shows the sampling percentage. </p>",
-        "DescribeInferenceExperimentResponse$ShadowModeConfig": "<p> Shows which variant is a production variant and which variant is a shadow variant. For shadow variants, also shows the sampling percentage. </p>",
-        "UpdateInferenceExperimentRequest$ShadowModeConfig": "<p>The Amazon S3 storage configuration for the inference experiment.</p>"
+        "CreateInferenceExperimentRequest$ShadowModeConfig": "<p> The configuration of <code>ShadowMode</code> inference experiment type. Use this field to specify a production variant which takes all the inference requests, and a shadow variant to which Amazon SageMaker replicates a percentage of the inference requests. For the shadow variant also specify the percentage of requests that Amazon SageMaker replicates. </p>",
+        "DescribeInferenceExperimentResponse$ShadowModeConfig": "<p> The configuration of <code>ShadowMode</code> inference experiment type, which shows the production variant that takes all the inference requests, and the shadow variant to which Amazon SageMaker replicates a percentage of the inference requests. For the shadow variant it also shows the percentage of requests that Amazon SageMaker replicates. </p>",
+        "UpdateInferenceExperimentRequest$ShadowModeConfig": "<p> The configuration of <code>ShadowMode</code> inference experiment type. Use this field to specify a production variant which takes all the inference requests, and a shadow variant to which Amazon SageMaker replicates a percentage of the inference requests. For the shadow variant also specify the percentage of requests that Amazon SageMaker replicates. </p>"
       }
     },
     "ShadowModelVariantConfig": {
@@ -12402,7 +12432,7 @@
     "TableFormat": {
       "base": null,
       "refs": {
-        "OfflineStoreConfig$TableFormat": "<p>Format for the offline store feature group. <code>Iceberg</code> is the optimal format for feature groups shared between offline and online stores.</p>"
+        "OfflineStoreConfig$TableFormat": "<p>Format for the offline store table. Supported formats are Glue (Default) and <a href=\"https://iceberg.apache.org/\">Apache Iceberg</a>.</p>"
       }
     },
     "TableName": {
@@ -12572,7 +12602,7 @@
         "PendingProductionVariantSummary$DesiredInstanceCount": "<p>The number of instances requested in this deployment, as specified in the endpoint configuration for the endpoint. The value is taken from the request to the <code> <a>CreateEndpointConfig</a> </code> operation.</p>",
         "ProductionVariantSummary$CurrentInstanceCount": "<p>The number of instances associated with the variant.</p>",
         "ProductionVariantSummary$DesiredInstanceCount": "<p>The number of instances requested in the <code>UpdateEndpointWeightsAndCapacities</code> request. </p>",
-        "RealTimeInferenceConfig$InstanceCount": "<p>The instance type the model is deployed to.</p>"
+        "RealTimeInferenceConfig$InstanceCount": "<p>The number of instances of the type specified by <code>InstanceType</code>.</p>"
       }
     },
     "TaskDescription": {
@@ -12735,7 +12765,7 @@
         "DescribeImageVersionResponse$CreationTime": "<p>When the version was created.</p>",
         "DescribeImageVersionResponse$LastModifiedTime": "<p>When the version was last modified.</p>",
         "DescribeInferenceExperimentResponse$CreationTime": "<p>The timestamp at which you created the inference experiment.</p>",
-        "DescribeInferenceExperimentResponse$CompletionTime": "<p> The timestamp at which the inference experiment was completed or will complete. </p>",
+        "DescribeInferenceExperimentResponse$CompletionTime": "<p> The timestamp at which the inference experiment was completed. </p>",
         "DescribeInferenceExperimentResponse$LastModifiedTime": "<p>The timestamp at which you last modified the inference experiment.</p>",
         "DescribeInferenceRecommendationsJobResponse$CompletionTime": "<p>A timestamp that shows when the job completed.</p>",
         "DescribeLabelingJobResponse$CreationTime": "<p>The date and time that the labeling job was created.</p>",
@@ -13156,7 +13186,7 @@
         "HyperParameterTuningInstanceConfig$InstanceType": "<p>The instance type used for processing of hyperparameter optimization jobs. Choose from general purpose (no GPUs) instance types: ml.m5.xlarge, ml.m5.2xlarge, and ml.m5.4xlarge or compute optimized (no GPUs) instance types: ml.c5.xlarge and ml.c5.2xlarge. For more information about instance types, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/notebooks-available-instance-types.html\">instance type descriptions</a>.</p>",
         "HyperParameterTuningResourceConfig$InstanceType": "<p>The instance type used to run hyperparameter optimization tuning jobs. See <a href=\"https://docs.aws.amazon.com/notebooks-available-instance-types.html\"> descriptions of instance types</a> for more information.</p>",
         "InstanceGroup$InstanceType": "<p>Specifies the instance type of the instance group.</p>",
-        "ResourceConfig$InstanceType": "<p>The ML compute instance type. </p>",
+        "ResourceConfig$InstanceType": "<p>The ML compute instance type. </p> <note> <p>SageMaker Training on Amazon Elastic Compute Cloud (EC2) P4de instances is in preview release starting December 9th, 2022. </p> <p> <a href=\"http://aws.amazon.com/ec2/instance-types/p4/\">Amazon EC2 P4de instances</a> (currently in preview) are powered by 8 NVIDIA A100 GPUs with 80GB high-performance HBM2e GPU memory, which accelerate the speed of training ML models that need to be trained on large datasets of high-resolution data. In this preview release, Amazon SageMaker supports ML training jobs on P4de instances (<code>ml.p4de.24xlarge</code>) to reduce model training time. The <code>ml.p4de.24xlarge</code> instances are available in the following Amazon Web Services Regions. </p> <ul> <li> <p>US East (N. Virginia) (us-east-1)</p> </li> <li> <p>US West (Oregon) (us-west-2)</p> </li> </ul> <p>To request quota limit increase and start using P4de instances, contact the SageMaker Training service team through your account team.</p> </note>",
         "TrainingInstanceTypes$member": null
       }
     },

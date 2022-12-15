@@ -1,3 +1,23 @@
+Release v1.44.161 (2022-12-15)
+===
+
+### Service Client Updates
+* `service/backup-gateway`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for container port ranges in ECS, a new capability that allows customers to provide container port ranges to simplify use cases where multiple ports are in use in a container. This release updates TaskDefinition mutation APIs and the Task description APIs.
+* `service/eks`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * This release adds support for AWS Glue Crawler with native DeltaLake tables, allowing Crawlers to classify Delta Lake format tables and catalog them for query engines to query against.
+* `service/kinesis`: Updates service API, documentation, and paginators
+  * Added StreamARN parameter for Kinesis Data Streams APIs. Added a new opaque pagination token for ListStreams. SDKs will auto-generate Account Endpoint when accessing Kinesis Data Streams.
+* `service/location`: Updates service documentation
+* `service/m2`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker Inference Recommender now allows customers to load tests their models on various instance types using private VPC.
+* `service/securityhub`: Updates service API and documentation
+* `service/translate`: Updates service API and documentation
+
 Release v1.44.160 (2022-12-14)
 ===
 
