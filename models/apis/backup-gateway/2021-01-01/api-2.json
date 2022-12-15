@@ -68,6 +68,7 @@
       "output":{"shape":"DeleteHypervisorOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
@@ -91,6 +92,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetBandwidthRateLimitSchedule":{
+      "name":"GetBandwidthRateLimitSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBandwidthRateLimitScheduleInput"},
+      "output":{"shape":"GetBandwidthRateLimitScheduleOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetGateway":{
       "name":"GetGateway",
       "http":{
@@ -99,6 +115,36 @@
       },
       "input":{"shape":"GetGatewayInput"},
       "output":{"shape":"GetGatewayOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetHypervisor":{
+      "name":"GetHypervisor",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetHypervisorInput"},
+      "output":{"shape":"GetHypervisorOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetHypervisorPropertyMappings":{
+      "name":"GetHypervisorPropertyMappings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetHypervisorPropertyMappingsInput"},
+      "output":{"shape":"GetHypervisorPropertyMappingsOutput"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
@@ -131,6 +177,7 @@
       "output":{"shape":"ImportHypervisorConfigurationOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
@@ -193,6 +240,40 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "PutBandwidthRateLimitSchedule":{
+      "name":"PutBandwidthRateLimitSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutBandwidthRateLimitScheduleInput"},
+      "output":{"shape":"PutBandwidthRateLimitScheduleOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
+    "PutHypervisorPropertyMappings":{
+      "name":"PutHypervisorPropertyMappings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutHypervisorPropertyMappingsInput"},
+      "output":{"shape":"PutHypervisorPropertyMappingsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
     "PutMaintenanceStartTime":{
       "name":"PutMaintenanceStartTime",
       "http":{
@@ -205,6 +286,22 @@
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "StartVirtualMachinesMetadataSync":{
+      "name":"StartVirtualMachinesMetadataSync",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartVirtualMachinesMetadataSyncInput"},
+      "output":{"shape":"StartVirtualMachinesMetadataSyncOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
       ]
@@ -296,6 +393,7 @@
       "output":{"shape":"UpdateHypervisorOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
@@ -335,6 +433,36 @@
       "members":{
         "GatewayArn":{"shape":"GatewayArn"}
       }
+    },
+    "AverageUploadRateLimit":{
+      "type":"long",
+      "box":true,
+      "max":8000000000000,
+      "min":51200
+    },
+    "BandwidthRateLimitInterval":{
+      "type":"structure",
+      "required":[
+        "DaysOfWeek",
+        "EndHourOfDay",
+        "EndMinuteOfHour",
+        "StartHourOfDay",
+        "StartMinuteOfHour"
+      ],
+      "members":{
+        "AverageUploadRateLimitInBitsPerSec":{"shape":"AverageUploadRateLimit"},
+        "DaysOfWeek":{"shape":"DaysOfWeek"},
+        "EndHourOfDay":{"shape":"HourOfDay"},
+        "EndMinuteOfHour":{"shape":"MinuteOfHour"},
+        "StartHourOfDay":{"shape":"HourOfDay"},
+        "StartMinuteOfHour":{"shape":"MinuteOfHour"}
+      }
+    },
+    "BandwidthRateLimitIntervals":{
+      "type":"list",
+      "member":{"shape":"BandwidthRateLimitInterval"},
+      "max":20,
+      "min":0
     },
     "ConflictException":{
       "type":"structure",
@@ -376,6 +504,12 @@
       "box":true,
       "max":6,
       "min":0
+    },
+    "DaysOfWeek":{
+      "type":"list",
+      "member":{"shape":"DayOfWeek"},
+      "max":7,
+      "min":1
     },
     "DeleteGatewayInput":{
       "type":"structure",
@@ -453,6 +587,20 @@
       "type":"list",
       "member":{"shape":"Gateway"}
     },
+    "GetBandwidthRateLimitScheduleInput":{
+      "type":"structure",
+      "required":["GatewayArn"],
+      "members":{
+        "GatewayArn":{"shape":"GatewayArn"}
+      }
+    },
+    "GetBandwidthRateLimitScheduleOutput":{
+      "type":"structure",
+      "members":{
+        "BandwidthRateLimitIntervals":{"shape":"BandwidthRateLimitIntervals"},
+        "GatewayArn":{"shape":"GatewayArn"}
+      }
+    },
     "GetGatewayInput":{
       "type":"structure",
       "required":["GatewayArn"],
@@ -464,6 +612,34 @@
       "type":"structure",
       "members":{
         "Gateway":{"shape":"GatewayDetails"}
+      }
+    },
+    "GetHypervisorInput":{
+      "type":"structure",
+      "required":["HypervisorArn"],
+      "members":{
+        "HypervisorArn":{"shape":"ServerArn"}
+      }
+    },
+    "GetHypervisorOutput":{
+      "type":"structure",
+      "members":{
+        "Hypervisor":{"shape":"HypervisorDetails"}
+      }
+    },
+    "GetHypervisorPropertyMappingsInput":{
+      "type":"structure",
+      "required":["HypervisorArn"],
+      "members":{
+        "HypervisorArn":{"shape":"ServerArn"}
+      }
+    },
+    "GetHypervisorPropertyMappingsOutput":{
+      "type":"structure",
+      "members":{
+        "HypervisorArn":{"shape":"ServerArn"},
+        "IamRoleArn":{"shape":"IamRoleArn"},
+        "VmwareToAwsTagMappings":{"shape":"VmwareToAwsTagMappings"}
       }
     },
     "GetVirtualMachineInput":{
@@ -501,6 +677,20 @@
         "State":{"shape":"HypervisorState"}
       }
     },
+    "HypervisorDetails":{
+      "type":"structure",
+      "members":{
+        "Host":{"shape":"Host"},
+        "HypervisorArn":{"shape":"ServerArn"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"},
+        "LastSuccessfulMetadataSyncTime":{"shape":"Time"},
+        "LatestMetadataSyncStatus":{"shape":"SyncMetadataStatus"},
+        "LatestMetadataSyncStatusMessage":{"shape":"string"},
+        "LogGroupArn":{"shape":"LogGroupArn"},
+        "Name":{"shape":"Name"},
+        "State":{"shape":"HypervisorState"}
+      }
+    },
     "HypervisorId":{
       "type":"string",
       "max":100,
@@ -518,6 +708,12 @@
     "Hypervisors":{
       "type":"list",
       "member":{"shape":"Hypervisor"}
+    },
+    "IamRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov):iam::([0-9]+):role/(\\S+)$"
     },
     "ImportHypervisorConfigurationInput":{
       "type":"structure",
@@ -612,6 +808,12 @@
         "VirtualMachines":{"shape":"VirtualMachines"}
       }
     },
+    "LogGroupArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^$|^arn:(aws|aws-cn|aws-us-gov):logs:([a-zA-Z0-9-]+):([0-9]+):log-group:[a-zA-Z0-9_\\-\\/\\.]+:\\*$"
+    },
     "MaintenanceStartTime":{
       "type":"structure",
       "required":[
@@ -661,6 +863,42 @@
       "min":1,
       "pattern":"^[^\\x00]+$"
     },
+    "PutBandwidthRateLimitScheduleInput":{
+      "type":"structure",
+      "required":[
+        "BandwidthRateLimitIntervals",
+        "GatewayArn"
+      ],
+      "members":{
+        "BandwidthRateLimitIntervals":{"shape":"BandwidthRateLimitIntervals"},
+        "GatewayArn":{"shape":"GatewayArn"}
+      }
+    },
+    "PutBandwidthRateLimitScheduleOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayArn":{"shape":"GatewayArn"}
+      }
+    },
+    "PutHypervisorPropertyMappingsInput":{
+      "type":"structure",
+      "required":[
+        "HypervisorArn",
+        "IamRoleArn",
+        "VmwareToAwsTagMappings"
+      ],
+      "members":{
+        "HypervisorArn":{"shape":"ServerArn"},
+        "IamRoleArn":{"shape":"IamRoleArn"},
+        "VmwareToAwsTagMappings":{"shape":"VmwareToAwsTagMappings"}
+      }
+    },
+    "PutHypervisorPropertyMappingsOutput":{
+      "type":"structure",
+      "members":{
+        "HypervisorArn":{"shape":"ServerArn"}
+      }
+    },
     "PutMaintenanceStartTimeInput":{
       "type":"structure",
       "required":[
@@ -701,6 +939,29 @@
       "max":500,
       "min":50,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov):backup-gateway(:[a-zA-Z-0-9]+){3}\\/[a-zA-Z-0-9]+$"
+    },
+    "StartVirtualMachinesMetadataSyncInput":{
+      "type":"structure",
+      "required":["HypervisorArn"],
+      "members":{
+        "HypervisorArn":{"shape":"ServerArn"}
+      }
+    },
+    "StartVirtualMachinesMetadataSyncOutput":{
+      "type":"structure",
+      "members":{
+        "HypervisorArn":{"shape":"ServerArn"}
+      }
+    },
+    "SyncMetadataStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "RUNNING",
+        "FAILED",
+        "PARTIALLY_FAILED",
+        "SUCCEEDED"
+      ]
     },
     "Tag":{
       "type":"structure",
@@ -828,6 +1089,7 @@
       "members":{
         "Host":{"shape":"Host"},
         "HypervisorArn":{"shape":"ServerArn"},
+        "LogGroupArn":{"shape":"LogGroupArn"},
         "Name":{"shape":"Name"},
         "Password":{"shape":"Password"},
         "Username":{"shape":"Username"}
@@ -873,12 +1135,54 @@
         "LastBackupDate":{"shape":"Time"},
         "Name":{"shape":"Name"},
         "Path":{"shape":"Path"},
-        "ResourceArn":{"shape":"ResourceArn"}
+        "ResourceArn":{"shape":"ResourceArn"},
+        "VmwareTags":{"shape":"VmwareTags"}
       }
     },
     "VirtualMachines":{
       "type":"list",
       "member":{"shape":"VirtualMachine"}
+    },
+    "VmwareCategory":{
+      "type":"string",
+      "max":80,
+      "min":1
+    },
+    "VmwareTag":{
+      "type":"structure",
+      "members":{
+        "VmwareCategory":{"shape":"VmwareCategory"},
+        "VmwareTagDescription":{"shape":"string"},
+        "VmwareTagName":{"shape":"VmwareTagName"}
+      }
+    },
+    "VmwareTagName":{
+      "type":"string",
+      "max":80,
+      "min":1
+    },
+    "VmwareTags":{
+      "type":"list",
+      "member":{"shape":"VmwareTag"}
+    },
+    "VmwareToAwsTagMapping":{
+      "type":"structure",
+      "required":[
+        "AwsTagKey",
+        "AwsTagValue",
+        "VmwareCategory",
+        "VmwareTagName"
+      ],
+      "members":{
+        "AwsTagKey":{"shape":"TagKey"},
+        "AwsTagValue":{"shape":"TagValue"},
+        "VmwareCategory":{"shape":"VmwareCategory"},
+        "VmwareTagName":{"shape":"VmwareTagName"}
+      }
+    },
+    "VmwareToAwsTagMappings":{
+      "type":"list",
+      "member":{"shape":"VmwareToAwsTagMapping"}
     },
     "VpcEndpoint":{
       "type":"string",

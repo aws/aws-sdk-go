@@ -11265,6 +11265,19 @@ type GetMapGlyphsInput struct {
 	//    – Fira GO Italic | Fira GO Map | Fira GO Map Bold | Noto Sans CJK JP
 	//    Bold | Noto Sans CJK JP Light | Noto Sans CJK JP Regular
 	//
+	// Valid font stacks for Open Data (Preview) (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html)
+	// styles:
+	//
+	//    * VectorOpenDataStandardLight – Amazon Ember Regular,Noto Sans Regular
+	//    | Amazon Ember Bold,Noto Sans Bold | Amazon Ember Medium,Noto Sans Medium
+	//    | Amazon Ember Regular Italic,Noto Sans Italic | Amazon Ember Condensed
+	//    RC Regular,Noto Sans Regular | Amazon Ember Condensed RC Bold,Noto Sans
+	//    Bold
+	//
+	// The fonts used by VectorOpenDataStandardLight are combined fonts that use
+	// Amazon Ember for most glyphs but Noto Sans for glyphs unsupported by Amazon
+	// Ember.
+	//
 	// FontStack is a required field
 	FontStack *string `location:"uri" locationName:"FontStack" type:"string" required:"true"`
 
@@ -13772,6 +13785,16 @@ type MapConfiguration struct {
 	//    and raster tiles when rendering the map that you see. This means that
 	//    more tiles are retrieved than when using either vector or raster tiles
 	//    alone. Your charges will include all tiles retrieved.
+	//
+	// Valid Open Data (Preview) map styles (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html):
+	//
+	//    * VectorOpenDataStandardLight – The Open Data Standard Light (preview)
+	//    map style provides a detailed basemap for the world suitable for website
+	//    and mobile application use. The map includes highways major roads, minor
+	//    roads, railways, water features, cities, parks, landmarks, building footprints,
+	//    and administrative boundaries. Open Data maps is in preview. We may add,
+	//    change, or remove features before announcing general availability. For
+	//    more information, see Open Data is in preview release (https://docs.aws.amazon.com/location/latest/developerguide/open-data.html#open-data-preview).
 	//
 	// Style is a required field
 	Style *string `min:"1" type:"string" required:"true"`

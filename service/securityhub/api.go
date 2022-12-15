@@ -91,9 +91,7 @@ func (c *SecurityHub) AcceptAdministratorInvitationRequest(input *AcceptAdminist
 //     The request was rejected because we can't find the specified resource.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/AcceptAdministratorInvitation
 func (c *SecurityHub) AcceptAdministratorInvitation(input *AcceptAdministratorInvitationInput) (*AcceptAdministratorInvitationOutput, error) {
@@ -209,9 +207,7 @@ func (c *SecurityHub) AcceptInvitationRequest(input *AcceptInvitationInput) (req
 //     The request was rejected because we can't find the specified resource.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/AcceptInvitation
 //
@@ -304,9 +300,7 @@ func (c *SecurityHub) BatchDisableStandardsRequest(input *BatchDisableStandardsI
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -401,9 +395,7 @@ func (c *SecurityHub) BatchEnableStandardsRequest(input *BatchEnableStandardsInp
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -546,9 +538,7 @@ func (c *SecurityHub) BatchImportFindingsRequest(input *BatchImportFindingsInput
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchImportFindings
 func (c *SecurityHub) BatchImportFindings(input *BatchImportFindingsInput) (*BatchImportFindingsOutput, error) {
@@ -672,9 +662,7 @@ func (c *SecurityHub) BatchUpdateFindingsRequest(input *BatchUpdateFindingsInput
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchUpdateFindings
 func (c *SecurityHub) BatchUpdateFindings(input *BatchUpdateFindingsInput) (*BatchUpdateFindingsOutput, error) {
@@ -763,9 +751,7 @@ func (c *SecurityHub) CreateActionTargetRequest(input *CreateActionTargetInput) 
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -864,9 +850,7 @@ func (c *SecurityHub) CreateFindingAggregatorRequest(input *CreateFindingAggrega
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - AccessDeniedException
 //     You don't have permission to perform the action specified in the request.
@@ -967,9 +951,7 @@ func (c *SecurityHub) CreateInsightRequest(input *CreateInsightInput) (req *requ
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceConflictException
 //     The resource specified in the request conflicts with an existing resource.
@@ -1103,9 +1085,7 @@ func (c *SecurityHub) CreateMembersRequest(input *CreateMembersInput) (req *requ
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceConflictException
 //     The resource specified in the request conflicts with an existing resource.
@@ -1197,9 +1177,7 @@ func (c *SecurityHub) DeclineInvitationsRequest(input *DeclineInvitationsInput) 
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -1291,9 +1269,7 @@ func (c *SecurityHub) DeleteActionTargetRequest(input *DeleteActionTargetInput) 
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -1389,9 +1365,7 @@ func (c *SecurityHub) DeleteFindingAggregatorRequest(input *DeleteFindingAggrega
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - AccessDeniedException
 //     You don't have permission to perform the action specified in the request.
@@ -1487,9 +1461,7 @@ func (c *SecurityHub) DeleteInsightRequest(input *DeleteInsightInput) (req *requ
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -1595,9 +1567,7 @@ func (c *SecurityHub) DeleteInvitationsRequest(input *DeleteInvitationsInput) (r
 //     The request was rejected because we can't find the specified resource.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteInvitations
 func (c *SecurityHub) DeleteInvitations(input *DeleteInvitationsInput) (*DeleteInvitationsOutput, error) {
@@ -1686,9 +1656,7 @@ func (c *SecurityHub) DeleteMembersRequest(input *DeleteMembersInput) (req *requ
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -1788,9 +1756,7 @@ func (c *SecurityHub) DescribeActionTargetsRequest(input *DescribeActionTargetsI
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -1932,9 +1898,7 @@ func (c *SecurityHub) DescribeHubRequest(input *DescribeHubInput) (req *request.
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - InvalidInputException
 //     The request was rejected because you supplied an invalid or out-of-range
@@ -2028,9 +1992,7 @@ func (c *SecurityHub) DescribeOrganizationConfigurationRequest(input *DescribeOr
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -2134,9 +2096,7 @@ func (c *SecurityHub) DescribeProductsRequest(input *DescribeProductsInput) (req
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - InvalidInputException
 //     The request was rejected because you supplied an invalid or out-of-range
@@ -2286,9 +2246,7 @@ func (c *SecurityHub) DescribeStandardsRequest(input *DescribeStandardsInput) (r
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DescribeStandards
 func (c *SecurityHub) DescribeStandards(input *DescribeStandardsInput) (*DescribeStandardsOutput, error) {
@@ -2434,9 +2392,7 @@ func (c *SecurityHub) DescribeStandardsControlsRequest(input *DescribeStandardsC
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -2582,9 +2538,7 @@ func (c *SecurityHub) DisableImportFindingsForProductRequest(input *DisableImpor
 //     The request was rejected because we can't find the specified resource.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -2677,9 +2631,7 @@ func (c *SecurityHub) DisableOrganizationAdminAccountRequest(input *DisableOrgan
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -2785,9 +2737,7 @@ func (c *SecurityHub) DisableSecurityHubRequest(input *DisableSecurityHubInput) 
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -2882,9 +2832,7 @@ func (c *SecurityHub) DisassociateFromAdministratorAccountRequest(input *Disasso
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -2998,9 +2946,7 @@ func (c *SecurityHub) DisassociateFromMasterAccountRequest(input *DisassociateFr
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -3103,9 +3049,7 @@ func (c *SecurityHub) DisassociateMembersRequest(input *DisassociateMembersInput
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -3203,9 +3147,7 @@ func (c *SecurityHub) EnableImportFindingsForProductRequest(input *EnableImportF
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceConflictException
 //     The resource specified in the request conflicts with an existing resource.
@@ -3301,9 +3243,7 @@ func (c *SecurityHub) EnableOrganizationAdminAccountRequest(input *EnableOrganiz
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -3420,9 +3360,7 @@ func (c *SecurityHub) EnableSecurityHubRequest(input *EnableSecurityHubInput) (r
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceConflictException
 //     The resource specified in the request conflicts with an existing resource.
@@ -3518,9 +3456,7 @@ func (c *SecurityHub) GetAdministratorAccountRequest(input *GetAdministratorAcco
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -3620,9 +3556,7 @@ func (c *SecurityHub) GetEnabledStandardsRequest(input *GetEnabledStandardsInput
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -3765,9 +3699,7 @@ func (c *SecurityHub) GetFindingAggregatorRequest(input *GetFindingAggregatorInp
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - AccessDeniedException
 //     You don't have permission to perform the action specified in the request.
@@ -3873,9 +3805,7 @@ func (c *SecurityHub) GetFindingsRequest(input *GetFindingsInput) (req *request.
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -4017,9 +3947,7 @@ func (c *SecurityHub) GetInsightResultsRequest(input *GetInsightResultsInput) (r
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -4119,9 +4047,7 @@ func (c *SecurityHub) GetInsightsRequest(input *GetInsightsInput) (req *request.
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -4267,9 +4193,7 @@ func (c *SecurityHub) GetInvitationsCountRequest(input *GetInvitationsCountInput
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -4377,9 +4301,7 @@ func (c *SecurityHub) GetMasterAccountRequest(input *GetMasterAccountInput) (req
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -4485,9 +4407,7 @@ func (c *SecurityHub) GetMembersRequest(input *GetMembersInput) (req *request.Re
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -4592,9 +4512,7 @@ func (c *SecurityHub) InviteMembersRequest(input *InviteMembersInput) (req *requ
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -4696,9 +4614,7 @@ func (c *SecurityHub) ListEnabledProductsForImportRequest(input *ListEnabledProd
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListEnabledProductsForImport
 func (c *SecurityHub) ListEnabledProductsForImport(input *ListEnabledProductsForImportInput) (*ListEnabledProductsForImportOutput, error) {
@@ -4843,9 +4759,7 @@ func (c *SecurityHub) ListFindingAggregatorsRequest(input *ListFindingAggregator
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - AccessDeniedException
 //     You don't have permission to perform the action specified in the request.
@@ -5000,9 +4914,7 @@ func (c *SecurityHub) ListInvitationsRequest(input *ListInvitationsInput) (req *
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -5154,9 +5066,7 @@ func (c *SecurityHub) ListMembersRequest(input *ListMembersInput) (req *request.
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -5305,9 +5215,7 @@ func (c *SecurityHub) ListOrganizationAdminAccountsRequest(input *ListOrganizati
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -5713,9 +5621,7 @@ func (c *SecurityHub) UpdateActionTargetRequest(input *UpdateActionTargetInput) 
 //     The request was rejected because we can't find the specified resource.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -5809,9 +5715,7 @@ func (c *SecurityHub) UpdateFindingAggregatorRequest(input *UpdateFindingAggrega
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - AccessDeniedException
 //     You don't have permission to perform the action specified in the request.
@@ -5917,9 +5821,7 @@ func (c *SecurityHub) UpdateFindingsRequest(input *UpdateFindingsInput) (req *re
 //     describes the limit exceeded.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -6009,9 +5911,7 @@ func (c *SecurityHub) UpdateInsightRequest(input *UpdateInsightInput) (req *requ
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -6107,9 +6007,7 @@ func (c *SecurityHub) UpdateOrganizationConfigurationRequest(input *UpdateOrgani
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -6201,9 +6099,7 @@ func (c *SecurityHub) UpdateSecurityHubConfigurationRequest(input *UpdateSecurit
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - LimitExceededException
 //     The request was rejected because it attempted to create resources beyond
@@ -6299,9 +6195,7 @@ func (c *SecurityHub) UpdateStandardsControlRequest(input *UpdateStandardsContro
 //     value for an input parameter.
 //
 //   - InvalidAccessException
-//     There is an issue with the account used to make the request. Either Security
-//     Hub is not enabled for the account, or the account does not have permission
-//     to perform this action.
+//     The account doesn't have permission to perform this action.
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
@@ -14232,6 +14126,2261 @@ func (s AwsEc2InstanceNetworkInterfacesDetails) GoString() string {
 // SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
 func (s *AwsEc2InstanceNetworkInterfacesDetails) SetNetworkInterfaceId(v string) *AwsEc2InstanceNetworkInterfacesDetails {
 	s.NetworkInterfaceId = &v
+	return s
+}
+
+// Information about a block device mapping for an Amazon Elastic Compute Cloud
+// (Amazon EC2) launch template.
+type AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The device name.
+	DeviceName *string `type:"string"`
+
+	// Parameters used to automatically set up Amazon EBS volumes when the instance
+	// is launched.
+	Ebs *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails `type:"structure"`
+
+	// Omits the device from the block device mapping when an empty string is specified.
+	NoDevice *string `type:"string"`
+
+	// The virtual device name (ephemeralN). Instance store volumes are numbered
+	// starting from 0. An instance type with 2 available instance store volumes
+	// can specify mappings for ephemeral0 and ephemeral1. The number of available
+	// instance store volumes depends on the instance type.
+	VirtualName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails) SetDeviceName(v string) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEbs sets the Ebs field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails) SetEbs(v *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails {
+	s.Ebs = v
+	return s
+}
+
+// SetNoDevice sets the NoDevice field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails) SetNoDevice(v string) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails {
+	s.NoDevice = &v
+	return s
+}
+
+// SetVirtualName sets the VirtualName field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails) SetVirtualName(v string) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails {
+	s.VirtualName = &v
+	return s
+}
+
+// Parameters for a block device for an Amazon Elastic Block Store (Amazon EBS)
+// volume in an Amazon EC2 launch template.
+type AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the EBS volume is deleted on instance termination.
+	DeleteOnTermination *bool `type:"boolean"`
+
+	// Indicates whether the EBS volume is encrypted. Encrypted volumes can only
+	// be attached to instances that support Amazon EBS encryption. If you're creating
+	// a volume from a snapshot, you can't specify an encryption value.
+	Encrypted *bool `type:"boolean"`
+
+	// The number of I/O operations per second (IOPS).
+	Iops *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the symmetric Key Management Service (KMS)
+	// customer managed key used for encryption.
+	KmsKeyId *string `type:"string"`
+
+	// The ID of the EBS snapshot.
+	SnapshotId *string `type:"string"`
+
+	// The throughput to provision for a gp3 volume, with a maximum of 1,000 MiB/s.
+	Throughput *int64 `type:"integer"`
+
+	// The size of the volume, in GiBs. You must specify either a snapshot ID or
+	// a volume size.
+	VolumeSize *int64 `type:"integer"`
+
+	// The volume type.
+	VolumeType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetDeleteOnTermination(v bool) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetEncrypted(v bool) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.Encrypted = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetIops(v int64) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetKmsKeyId(v string) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetSnapshotId(v string) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetThroughput sets the Throughput field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetThroughput(v int64) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.Throughput = &v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetVolumeSize(v int64) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.VolumeSize = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails) SetVolumeType(v string) *AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails {
+	s.VolumeType = &v
+	return s
+}
+
+// Information about the target Capacity Reservation or Capacity Reservation
+// group in which to run an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Capacity Reservation in which to run the instance.
+	CapacityReservationId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Capacity Reservation resource group
+	// in which to run the instance.
+	CapacityReservationResourceGroupArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails) GoString() string {
+	return s.String()
+}
+
+// SetCapacityReservationId sets the CapacityReservationId field's value.
+func (s *AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails) SetCapacityReservationId(v string) *AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails {
+	s.CapacityReservationId = &v
+	return s
+}
+
+// SetCapacityReservationResourceGroupArn sets the CapacityReservationResourceGroupArn field's value.
+func (s *AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails) SetCapacityReservationResourceGroupArn(v string) *AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails {
+	s.CapacityReservationResourceGroupArn = &v
+	return s
+}
+
+// Specifies the Capacity Reservation targeting option of an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the instance's Capacity Reservation preferences. If equal to open,
+	// the instance can run in any open Capacity Reservation that has matching attributes
+	// (instance type, platform, Availability Zone). If equal to none, the instance
+	// avoids running in a Capacity Reservation even if one is available. The instance
+	// runs in On-Demand capacity.
+	CapacityReservationPreference *string `type:"string"`
+
+	// Specifies a target Capacity Reservation.
+	CapacityReservationTarget *AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails) GoString() string {
+	return s.String()
+}
+
+// SetCapacityReservationPreference sets the CapacityReservationPreference field's value.
+func (s *AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails) SetCapacityReservationPreference(v string) *AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails {
+	s.CapacityReservationPreference = &v
+	return s
+}
+
+// SetCapacityReservationTarget sets the CapacityReservationTarget field's value.
+func (s *AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails) SetCapacityReservationTarget(v *AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails) *AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails {
+	s.CapacityReservationTarget = v
+	return s
+}
+
+// Specifies the CPU options for an Amazon EC2 instance. For more information,
+// see Optimize CPU options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+type AwsEc2LaunchTemplateDataCpuOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of CPU cores for the instance.
+	CoreCount *int64 `type:"integer"`
+
+	// The number of threads per CPU core. A value of 1 disables multithreading
+	// for the instance, The default value is 2.
+	ThreadsPerCore *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCpuOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCpuOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetCoreCount sets the CoreCount field's value.
+func (s *AwsEc2LaunchTemplateDataCpuOptionsDetails) SetCoreCount(v int64) *AwsEc2LaunchTemplateDataCpuOptionsDetails {
+	s.CoreCount = &v
+	return s
+}
+
+// SetThreadsPerCore sets the ThreadsPerCore field's value.
+func (s *AwsEc2LaunchTemplateDataCpuOptionsDetails) SetThreadsPerCore(v int64) *AwsEc2LaunchTemplateDataCpuOptionsDetails {
+	s.ThreadsPerCore = &v
+	return s
+}
+
+// Specifies the credit option for CPU usage of a T2, T3, or T3a Amazon EC2
+// instance.
+type AwsEc2LaunchTemplateDataCreditSpecificationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The credit option for CPU usage of a T instance.
+	CpuCredits *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCreditSpecificationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataCreditSpecificationDetails) GoString() string {
+	return s.String()
+}
+
+// SetCpuCredits sets the CpuCredits field's value.
+func (s *AwsEc2LaunchTemplateDataCreditSpecificationDetails) SetCpuCredits(v string) *AwsEc2LaunchTemplateDataCreditSpecificationDetails {
+	s.CpuCredits = &v
+	return s
+}
+
+// The information to include in an Amazon Elastic Compute Cloud (Amazon EC2)
+// launch template.
+type AwsEc2LaunchTemplateDataDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a block device mapping for an Amazon EC2 launch template.
+	BlockDeviceMappingSet []*AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails `type:"list"`
+
+	// Specifies an instance's Capacity Reservation targeting option. You can specify
+	// only one option at a time.
+	CapacityReservationSpecification *AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails `type:"structure"`
+
+	// Specifies the CPU options for an instance. For more information, see Optimize
+	// CPU options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	CpuOptions *AwsEc2LaunchTemplateDataCpuOptionsDetails `type:"structure"`
+
+	// Specifies the credit option for CPU usage of a T2, T3, or T3a instance.
+	CreditSpecification *AwsEc2LaunchTemplateDataCreditSpecificationDetails `type:"structure"`
+
+	// Indicates whether to enable the instance for stop protection. For more information,
+	// see Enable stop protection (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection)
+	// in the Amazon EC2 User Guide.
+	DisableApiStop *bool `type:"boolean"`
+
+	// If you set this parameter to true, you can't terminate the instance using
+	// the Amazon EC2 console, CLI, or API. If set to true, you can.
+	DisableApiTermination *bool `type:"boolean"`
+
+	// Indicates whether the instance is optimized for Amazon EBS I/O.
+	EbsOptimized *bool `type:"boolean"`
+
+	// Provides details about Elastic Graphics accelerators to associate with the
+	// instance.
+	ElasticGpuSpecificationSet []*AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails `type:"list"`
+
+	// The Amazon Elastic Inference accelerator for the instance.
+	ElasticInferenceAcceleratorSet []*AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails `type:"list"`
+
+	// Indicates whether the Amazon EC2 instance is enabled for Amazon Web Services
+	// Nitro Enclaves.
+	EnclaveOptions *AwsEc2LaunchTemplateDataEnclaveOptionsDetails `type:"structure"`
+
+	// Specifies whether your Amazon EC2 instance is configured for hibernation.
+	HibernationOptions *AwsEc2LaunchTemplateDataHibernationOptionsDetails `type:"structure"`
+
+	// The name or Amazon Resource Name (ARN) of an IAM instance profile.
+	IamInstanceProfile *AwsEc2LaunchTemplateDataIamInstanceProfileDetails `type:"structure"`
+
+	// The ID of the Amazon Machine Image (AMI).
+	ImageId *string `type:"string"`
+
+	// Provides the options for specifying the instance initiated shutdown behavior.
+	InstanceInitiatedShutdownBehavior *string `type:"string"`
+
+	// Specifies the market (purchasing) option for an instance.
+	InstanceMarketOptions *AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails `type:"structure"`
+
+	// The attributes for the instance types. When you specify instance attributes,
+	// Amazon EC2 will identify instance types with these attributes. If you specify
+	// InstanceRequirements, you can't specify InstanceType.
+	InstanceRequirements *AwsEc2LaunchTemplateDataInstanceRequirementsDetails `type:"structure"`
+
+	// The instance type. For more information, see Instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon EC2 User Guide. If you specify InstanceType, you can't specify
+	// InstanceRequirements.
+	InstanceType *string `type:"string"`
+
+	// The ID of the kernel.
+	KernelId *string `type:"string"`
+
+	// The name of the key pair that allows users to connect to the instance.
+	KeyName *string `type:"string"`
+
+	// Specifies a license configuration for an instance.
+	LicenseSet []*AwsEc2LaunchTemplateDataLicenseSetDetails `type:"list"`
+
+	// The maintenance options of your instance.
+	MaintenanceOptions *AwsEc2LaunchTemplateDataMaintenanceOptionsDetails `type:"structure"`
+
+	// The metadata options for the instance. For more information, see Instance
+	// metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+	// in the Amazon EC2 User Guide.
+	MetadataOptions *AwsEc2LaunchTemplateDataMetadataOptionsDetails `type:"structure"`
+
+	// The monitoring for the instance.
+	Monitoring *AwsEc2LaunchTemplateDataMonitoringDetails `type:"structure"`
+
+	// Specifies the parameters for a network interface that is attached to the
+	// instance.
+	NetworkInterfaceSet []*AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails `type:"list"`
+
+	// Specifies the placement of an instance.
+	Placement *AwsEc2LaunchTemplateDataPlacementDetails `type:"structure"`
+
+	// The options for the instance hostname.
+	PrivateDnsNameOptions *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails `type:"structure"`
+
+	// The ID of the RAM disk.
+	RamDiskId *string `type:"string"`
+
+	// One or more security group IDs.
+	SecurityGroupIdSet []*string `type:"list"`
+
+	// One or more security group names. For a nondefault VPC, you must use security
+	// group IDs instead. You cannot specify both a security group ID and security
+	// name in the same request.
+	SecurityGroupSet []*string `type:"list"`
+
+	// The user data to make available to the instance.
+	UserData *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataDetails) GoString() string {
+	return s.String()
+}
+
+// SetBlockDeviceMappingSet sets the BlockDeviceMappingSet field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetBlockDeviceMappingSet(v []*AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.BlockDeviceMappingSet = v
+	return s
+}
+
+// SetCapacityReservationSpecification sets the CapacityReservationSpecification field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetCapacityReservationSpecification(v *AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.CapacityReservationSpecification = v
+	return s
+}
+
+// SetCpuOptions sets the CpuOptions field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetCpuOptions(v *AwsEc2LaunchTemplateDataCpuOptionsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.CpuOptions = v
+	return s
+}
+
+// SetCreditSpecification sets the CreditSpecification field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetCreditSpecification(v *AwsEc2LaunchTemplateDataCreditSpecificationDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.CreditSpecification = v
+	return s
+}
+
+// SetDisableApiStop sets the DisableApiStop field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetDisableApiStop(v bool) *AwsEc2LaunchTemplateDataDetails {
+	s.DisableApiStop = &v
+	return s
+}
+
+// SetDisableApiTermination sets the DisableApiTermination field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetDisableApiTermination(v bool) *AwsEc2LaunchTemplateDataDetails {
+	s.DisableApiTermination = &v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetEbsOptimized(v bool) *AwsEc2LaunchTemplateDataDetails {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetElasticGpuSpecificationSet sets the ElasticGpuSpecificationSet field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetElasticGpuSpecificationSet(v []*AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.ElasticGpuSpecificationSet = v
+	return s
+}
+
+// SetElasticInferenceAcceleratorSet sets the ElasticInferenceAcceleratorSet field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetElasticInferenceAcceleratorSet(v []*AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.ElasticInferenceAcceleratorSet = v
+	return s
+}
+
+// SetEnclaveOptions sets the EnclaveOptions field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetEnclaveOptions(v *AwsEc2LaunchTemplateDataEnclaveOptionsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.EnclaveOptions = v
+	return s
+}
+
+// SetHibernationOptions sets the HibernationOptions field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetHibernationOptions(v *AwsEc2LaunchTemplateDataHibernationOptionsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.HibernationOptions = v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetIamInstanceProfile(v *AwsEc2LaunchTemplateDataIamInstanceProfileDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.IamInstanceProfile = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetImageId(v string) *AwsEc2LaunchTemplateDataDetails {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceInitiatedShutdownBehavior sets the InstanceInitiatedShutdownBehavior field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetInstanceInitiatedShutdownBehavior(v string) *AwsEc2LaunchTemplateDataDetails {
+	s.InstanceInitiatedShutdownBehavior = &v
+	return s
+}
+
+// SetInstanceMarketOptions sets the InstanceMarketOptions field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetInstanceMarketOptions(v *AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.InstanceMarketOptions = v
+	return s
+}
+
+// SetInstanceRequirements sets the InstanceRequirements field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetInstanceRequirements(v *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.InstanceRequirements = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetInstanceType(v string) *AwsEc2LaunchTemplateDataDetails {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetKernelId(v string) *AwsEc2LaunchTemplateDataDetails {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetKeyName(v string) *AwsEc2LaunchTemplateDataDetails {
+	s.KeyName = &v
+	return s
+}
+
+// SetLicenseSet sets the LicenseSet field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetLicenseSet(v []*AwsEc2LaunchTemplateDataLicenseSetDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.LicenseSet = v
+	return s
+}
+
+// SetMaintenanceOptions sets the MaintenanceOptions field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetMaintenanceOptions(v *AwsEc2LaunchTemplateDataMaintenanceOptionsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.MaintenanceOptions = v
+	return s
+}
+
+// SetMetadataOptions sets the MetadataOptions field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetMetadataOptions(v *AwsEc2LaunchTemplateDataMetadataOptionsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.MetadataOptions = v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetMonitoring(v *AwsEc2LaunchTemplateDataMonitoringDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.Monitoring = v
+	return s
+}
+
+// SetNetworkInterfaceSet sets the NetworkInterfaceSet field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetNetworkInterfaceSet(v []*AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.NetworkInterfaceSet = v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetPlacement(v *AwsEc2LaunchTemplateDataPlacementDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.Placement = v
+	return s
+}
+
+// SetPrivateDnsNameOptions sets the PrivateDnsNameOptions field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetPrivateDnsNameOptions(v *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails) *AwsEc2LaunchTemplateDataDetails {
+	s.PrivateDnsNameOptions = v
+	return s
+}
+
+// SetRamDiskId sets the RamDiskId field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetRamDiskId(v string) *AwsEc2LaunchTemplateDataDetails {
+	s.RamDiskId = &v
+	return s
+}
+
+// SetSecurityGroupIdSet sets the SecurityGroupIdSet field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetSecurityGroupIdSet(v []*string) *AwsEc2LaunchTemplateDataDetails {
+	s.SecurityGroupIdSet = v
+	return s
+}
+
+// SetSecurityGroupSet sets the SecurityGroupSet field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetSecurityGroupSet(v []*string) *AwsEc2LaunchTemplateDataDetails {
+	s.SecurityGroupSet = v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *AwsEc2LaunchTemplateDataDetails) SetUserData(v string) *AwsEc2LaunchTemplateDataDetails {
+	s.UserData = &v
+	return s
+}
+
+// Provides details about an Elastic Graphics specification for an Amazon EC2
+// launch template.
+type AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of Elastic Graphics accelerator.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails) SetType(v string) *AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails {
+	s.Type = &v
+	return s
+}
+
+// Provides details for an Amazon Elastic Inference accelerator.
+type AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of Elastic Inference accelerators to attach to the instance.
+	Count *int64 `type:"integer"`
+
+	// The type of Elastic Inference accelerator.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails) SetCount(v int64) *AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails {
+	s.Count = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails) SetType(v string) *AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails {
+	s.Type = &v
+	return s
+}
+
+// Indicates whether the instance is enabled for Amazon Web Services Nitro Enclaves.
+type AwsEc2LaunchTemplateDataEnclaveOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// If this parameter is set to true, the instance is enabled for Amazon Web
+	// Services Nitro Enclaves.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataEnclaveOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataEnclaveOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsEc2LaunchTemplateDataEnclaveOptionsDetails) SetEnabled(v bool) *AwsEc2LaunchTemplateDataEnclaveOptionsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Specifies whether your Amazon EC2 instance is configured for hibernation.
+type AwsEc2LaunchTemplateDataHibernationOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// If you set this parameter to true, the instance is enabled for hibernation.
+	Configured *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataHibernationOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataHibernationOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetConfigured sets the Configured field's value.
+func (s *AwsEc2LaunchTemplateDataHibernationOptionsDetails) SetConfigured(v bool) *AwsEc2LaunchTemplateDataHibernationOptionsDetails {
+	s.Configured = &v
+	return s
+}
+
+// Provides details for an Identity and Access Management (IAM) instance profile,
+// which is a container for an IAM role for your instance.
+type AwsEc2LaunchTemplateDataIamInstanceProfileDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the instance profile.
+	Arn *string `type:"string"`
+
+	// The name of the instance profile.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataIamInstanceProfileDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataIamInstanceProfileDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsEc2LaunchTemplateDataIamInstanceProfileDetails) SetArn(v string) *AwsEc2LaunchTemplateDataIamInstanceProfileDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEc2LaunchTemplateDataIamInstanceProfileDetails) SetName(v string) *AwsEc2LaunchTemplateDataIamInstanceProfileDetails {
+	s.Name = &v
+	return s
+}
+
+// Provides details about the market (purchasing) option for an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The market type.
+	MarketType *string `type:"string"`
+
+	// The options for Spot Instances.
+	SpotOptions *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetMarketType sets the MarketType field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails) SetMarketType(v string) *AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails {
+	s.MarketType = &v
+	return s
+}
+
+// SetSpotOptions sets the SpotOptions field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails) SetSpotOptions(v *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) *AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails {
+	s.SpotOptions = v
+	return s
+}
+
+// Provides details about the market (purchasing) options for Spot Instances.
+type AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Deprecated.
+	BlockDurationMinutes *int64 `type:"integer"`
+
+	// The behavior when a Spot Instance is interrupted.
+	InstanceInterruptionBehavior *string `type:"string"`
+
+	// The maximum hourly price you're willing to pay for the Spot Instances.
+	MaxPrice *string `type:"string"`
+
+	// The Spot Instance request type.
+	SpotInstanceType *string `type:"string"`
+
+	// The end date of the request, in UTC format (YYYY-MM-DDTHH:MM:SSZ), for persistent
+	// requests.
+	ValidUntil *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetBlockDurationMinutes sets the BlockDurationMinutes field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) SetBlockDurationMinutes(v int64) *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails {
+	s.BlockDurationMinutes = &v
+	return s
+}
+
+// SetInstanceInterruptionBehavior sets the InstanceInterruptionBehavior field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) SetInstanceInterruptionBehavior(v string) *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails {
+	s.InstanceInterruptionBehavior = &v
+	return s
+}
+
+// SetMaxPrice sets the MaxPrice field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) SetMaxPrice(v string) *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails {
+	s.MaxPrice = &v
+	return s
+}
+
+// SetSpotInstanceType sets the SpotInstanceType field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) SetSpotInstanceType(v string) *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails {
+	s.SpotInstanceType = &v
+	return s
+}
+
+// SetValidUntil sets the ValidUntil field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails) SetValidUntil(v string) *AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails {
+	s.ValidUntil = &v
+	return s
+}
+
+// The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web
+// Services Inferentia chips) on an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of accelerators. If this parameter isn't specified, there's
+	// no maximum limit. To exclude accelerator-enabled instance types, set Max
+	// to 0.
+	Max *int64 `type:"integer"`
+
+	// The minimum number of accelerators. If this parameter isn't specified, there's
+	// no minimum limit.
+	Min *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails) SetMax(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails) SetMin(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails {
+	s.Min = &v
+	return s
+}
+
+// The minimum and maximum amount of memory, in MiB, for the accelerators on
+// an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum amount of memory, in MiB. If this parameter isn't specified,
+	// there's no maximum limit.
+	Max *int64 `type:"integer"`
+
+	// The minimum amount of memory, in MiB. If 0 is specified, there's no maximum
+	// limit.
+	Min *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails) SetMax(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails) SetMin(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails {
+	s.Min = &v
+	return s
+}
+
+// The minimum and maximum baseline bandwidth to Amazon Elastic Block Store
+// (Amazon EBS), in Mbps. For more information, see Amazon EBS–optimized instances
+// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html)
+// in the Amazon EC2 User Guide.
+type AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum baseline bandwidth, in Mbps. If this parameter is omitted, there's
+	// no maximum limit.
+	Max *int64 `type:"integer"`
+
+	// The minimum baseline bandwidth, in Mbps. If this parameter is omitted, there's
+	// no minimum limit.
+	Min *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails) SetMax(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails) SetMin(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails {
+	s.Min = &v
+	return s
+}
+
+// The attributes for the Amazon EC2 instance types.
+type AwsEc2LaunchTemplateDataInstanceRequirementsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web
+	// Services Inferentia chips) on an instance.
+	AcceleratorCount *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails `type:"structure"`
+
+	// Indicates whether instance types must have accelerators by specific manufacturers.
+	AcceleratorManufacturers []*string `type:"list"`
+
+	// The accelerators that must be on the instance type.
+	AcceleratorNames []*string `type:"list"`
+
+	// The minimum and maximum amount of total accelerator memory, in MiB.
+	AcceleratorTotalMemoryMiB *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails `type:"structure"`
+
+	// The accelerator types that must be on the instance type.
+	AcceleratorTypes []*string `type:"list"`
+
+	// Indicates whether bare metal instance types must be included, excluded, or
+	// required.
+	BareMetal *string `type:"string"`
+
+	// The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more
+	// information, see Amazon EBS optimized instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html)
+	// in the Amazon EC2 User Guide.
+	BaselineEbsBandwidthMbps *AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails `type:"structure"`
+
+	// Indicates whether burstable performance T instance types are included, excluded,
+	// or required. For more information, Burstable performance instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+	// in the Amazon EC2 User Guide.
+	BurstablePerformance *string `type:"string"`
+
+	// The CPU manufacturers to include.
+	CpuManufacturers []*string `type:"list"`
+
+	// The instance types to exclude.
+	ExcludedInstanceTypes []*string `type:"list"`
+
+	// Indicates whether current or previous generation instance types are included.
+	InstanceGenerations []*string `type:"list"`
+
+	// Indicates whether instance types with instance store volumes are included,
+	// excluded, or required. For more information, see Amazon EC2 instance store
+	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)
+	// in the Amazon EC2 User Guide.
+	LocalStorage *string `type:"string"`
+
+	// The type of local storage that is required.
+	LocalStorageTypes []*string `type:"list"`
+
+	// The minimum and maximum amount of memory per vCPU, in GiB.
+	MemoryGiBPerVCpu *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails `type:"structure"`
+
+	// The minimum and maximum amount of memory, in MiB.
+	MemoryMiB *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails `type:"structure"`
+
+	// The minimum and maximum number of network interfaces.
+	NetworkInterfaceCount *AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails `type:"structure"`
+
+	// The price protection threshold for On-Demand Instances. This is the maximum
+	// you’ll pay for an On-Demand Instance, expressed as a percentage above the
+	// least expensive current generation M, C, or R instance type with your specified
+	// attributes. When Amazon EC2 selects instance types with your attributes,
+	// it excludes instance types priced above your threshold.
+	//
+	// The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
+	//
+	// A high value, such as 999999, turns off price protection.
+	OnDemandMaxPricePercentageOverLowestPrice *int64 `type:"integer"`
+
+	// Indicates whether instance types must support hibernation for On-Demand Instances.
+	RequireHibernateSupport *bool `type:"boolean"`
+
+	// The price protection threshold for Spot Instances. This is the maximum you’ll
+	// pay for a Spot Instance, expressed as a percentage above the least expensive
+	// current generation M, C, or R instance type with your specified attributes.
+	// When Amazon EC2 selects instance types with your attributes, it excludes
+	// instance types priced above your threshold.
+	//
+	// The parameter accepts an integer, which Amazon EC2 interprets as a percentage.
+	//
+	// A high value, such as 999999, turns off price protection.
+	SpotMaxPricePercentageOverLowestPrice *int64 `type:"integer"`
+
+	// The minimum and maximum amount of total local storage, in GB.
+	TotalLocalStorageGB *AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails `type:"structure"`
+
+	// The minimum and maximum number of vCPUs.
+	VCpuCount *AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsDetails) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorCount sets the AcceleratorCount field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetAcceleratorCount(v *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.AcceleratorCount = v
+	return s
+}
+
+// SetAcceleratorManufacturers sets the AcceleratorManufacturers field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetAcceleratorManufacturers(v []*string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.AcceleratorManufacturers = v
+	return s
+}
+
+// SetAcceleratorNames sets the AcceleratorNames field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetAcceleratorNames(v []*string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.AcceleratorNames = v
+	return s
+}
+
+// SetAcceleratorTotalMemoryMiB sets the AcceleratorTotalMemoryMiB field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetAcceleratorTotalMemoryMiB(v *AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.AcceleratorTotalMemoryMiB = v
+	return s
+}
+
+// SetAcceleratorTypes sets the AcceleratorTypes field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetAcceleratorTypes(v []*string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.AcceleratorTypes = v
+	return s
+}
+
+// SetBareMetal sets the BareMetal field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetBareMetal(v string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.BareMetal = &v
+	return s
+}
+
+// SetBaselineEbsBandwidthMbps sets the BaselineEbsBandwidthMbps field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetBaselineEbsBandwidthMbps(v *AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.BaselineEbsBandwidthMbps = v
+	return s
+}
+
+// SetBurstablePerformance sets the BurstablePerformance field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetBurstablePerformance(v string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.BurstablePerformance = &v
+	return s
+}
+
+// SetCpuManufacturers sets the CpuManufacturers field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetCpuManufacturers(v []*string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.CpuManufacturers = v
+	return s
+}
+
+// SetExcludedInstanceTypes sets the ExcludedInstanceTypes field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetExcludedInstanceTypes(v []*string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.ExcludedInstanceTypes = v
+	return s
+}
+
+// SetInstanceGenerations sets the InstanceGenerations field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetInstanceGenerations(v []*string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.InstanceGenerations = v
+	return s
+}
+
+// SetLocalStorage sets the LocalStorage field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetLocalStorage(v string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.LocalStorage = &v
+	return s
+}
+
+// SetLocalStorageTypes sets the LocalStorageTypes field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetLocalStorageTypes(v []*string) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.LocalStorageTypes = v
+	return s
+}
+
+// SetMemoryGiBPerVCpu sets the MemoryGiBPerVCpu field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetMemoryGiBPerVCpu(v *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.MemoryGiBPerVCpu = v
+	return s
+}
+
+// SetMemoryMiB sets the MemoryMiB field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetMemoryMiB(v *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.MemoryMiB = v
+	return s
+}
+
+// SetNetworkInterfaceCount sets the NetworkInterfaceCount field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetNetworkInterfaceCount(v *AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.NetworkInterfaceCount = v
+	return s
+}
+
+// SetOnDemandMaxPricePercentageOverLowestPrice sets the OnDemandMaxPricePercentageOverLowestPrice field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetOnDemandMaxPricePercentageOverLowestPrice(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.OnDemandMaxPricePercentageOverLowestPrice = &v
+	return s
+}
+
+// SetRequireHibernateSupport sets the RequireHibernateSupport field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetRequireHibernateSupport(v bool) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.RequireHibernateSupport = &v
+	return s
+}
+
+// SetSpotMaxPricePercentageOverLowestPrice sets the SpotMaxPricePercentageOverLowestPrice field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetSpotMaxPricePercentageOverLowestPrice(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.SpotMaxPricePercentageOverLowestPrice = &v
+	return s
+}
+
+// SetTotalLocalStorageGB sets the TotalLocalStorageGB field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetTotalLocalStorageGB(v *AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.TotalLocalStorageGB = v
+	return s
+}
+
+// SetVCpuCount sets the VCpuCount field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsDetails) SetVCpuCount(v *AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails) *AwsEc2LaunchTemplateDataInstanceRequirementsDetails {
+	s.VCpuCount = v
+	return s
+}
+
+// The minimum and maximum amount of memory per vCPU, in GiB.
+type AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum amount of memory per vCPU, in GiB. If this parameter is omitted,
+	// there's no maximum limit.
+	Max *float64 `type:"double"`
+
+	// The minimum amount of memory per vCPU, in GiB. If this parameter is omitted,
+	// there's no maximum limit.
+	Min *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails) SetMax(v float64) *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails) SetMin(v float64) *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails {
+	s.Min = &v
+	return s
+}
+
+// The minimum and maximum amount of memory, in MiB, for an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum amount of memory, in MiB.
+	Max *int64 `type:"integer"`
+
+	// The minimum amount of memory, in MiB.
+	Min *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails) SetMax(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails) SetMin(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails {
+	s.Min = &v
+	return s
+}
+
+// The minimum and maximum number of network interfaces to be attached to an
+// Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of network interfaces.
+	Max *int64 `type:"integer"`
+
+	// The minimum number of network interfaces.
+	Min *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails) SetMax(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails) SetMin(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails {
+	s.Min = &v
+	return s
+}
+
+// The minimum and maximum amount of total local storage, in GB, that an Amazon
+// EC2 instance uses.
+type AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum amount of total local storage, in GB.
+	Max *float64 `type:"double"`
+
+	// The minimum amount of total local storage, in GB.
+	Min *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails) SetMax(v float64) *AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails) SetMin(v float64) *AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails {
+	s.Min = &v
+	return s
+}
+
+// The minimum and maximum number of vCPUs for an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of vCPUs.
+	Max *int64 `type:"integer"`
+
+	// The minimum number of vCPUs.
+	Min *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails) GoString() string {
+	return s.String()
+}
+
+// SetMax sets the Max field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails) SetMax(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails) SetMin(v int64) *AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails {
+	s.Min = &v
+	return s
+}
+
+// Provides details about the license configuration for an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataLicenseSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the license configuration.
+	LicenseConfigurationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataLicenseSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataLicenseSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetLicenseConfigurationArn sets the LicenseConfigurationArn field's value.
+func (s *AwsEc2LaunchTemplateDataLicenseSetDetails) SetLicenseConfigurationArn(v string) *AwsEc2LaunchTemplateDataLicenseSetDetails {
+	s.LicenseConfigurationArn = &v
+	return s
+}
+
+// The maintenance options of an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataMaintenanceOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Disables the automatic recovery behavior of your instance or sets it to default.
+	AutoRecovery *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataMaintenanceOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataMaintenanceOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetAutoRecovery sets the AutoRecovery field's value.
+func (s *AwsEc2LaunchTemplateDataMaintenanceOptionsDetails) SetAutoRecovery(v string) *AwsEc2LaunchTemplateDataMaintenanceOptionsDetails {
+	s.AutoRecovery = &v
+	return s
+}
+
+// Specifies the metadata options for an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataMetadataOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables the HTTP metadata endpoint on your instances. If the
+	// parameter is not specified, the default state is enabled, and you won’t
+	// be able to access your instance metadata.
+	HttpEndpoint *string `type:"string"`
+
+	// Enables or disables the IPv6 endpoint for the instance metadata service.
+	HttpProtocolIpv6 *string `type:"string"`
+
+	// The desired HTTP PUT response hop limit for instance metadata requests. The
+	// larger the number, the further instance metadata requests can travel.
+	HttpPutResponseHopLimit *int64 `type:"integer"`
+
+	// The state of token usage for your instance metadata requests.
+	HttpTokens *string `type:"string"`
+
+	// When set to enabled, this parameter allows access to instance tags from the
+	// instance metadata. When set to disabled, it turns off access to instance
+	// tags from the instance metadata. For more information, see Work with instance
+	// tags in instance metadata (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS)
+	// in the Amazon EC2 User Guide.
+	InstanceMetadataTags *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataMetadataOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataMetadataOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetHttpEndpoint sets the HttpEndpoint field's value.
+func (s *AwsEc2LaunchTemplateDataMetadataOptionsDetails) SetHttpEndpoint(v string) *AwsEc2LaunchTemplateDataMetadataOptionsDetails {
+	s.HttpEndpoint = &v
+	return s
+}
+
+// SetHttpProtocolIpv6 sets the HttpProtocolIpv6 field's value.
+func (s *AwsEc2LaunchTemplateDataMetadataOptionsDetails) SetHttpProtocolIpv6(v string) *AwsEc2LaunchTemplateDataMetadataOptionsDetails {
+	s.HttpProtocolIpv6 = &v
+	return s
+}
+
+// SetHttpPutResponseHopLimit sets the HttpPutResponseHopLimit field's value.
+func (s *AwsEc2LaunchTemplateDataMetadataOptionsDetails) SetHttpPutResponseHopLimit(v int64) *AwsEc2LaunchTemplateDataMetadataOptionsDetails {
+	s.HttpPutResponseHopLimit = &v
+	return s
+}
+
+// SetHttpTokens sets the HttpTokens field's value.
+func (s *AwsEc2LaunchTemplateDataMetadataOptionsDetails) SetHttpTokens(v string) *AwsEc2LaunchTemplateDataMetadataOptionsDetails {
+	s.HttpTokens = &v
+	return s
+}
+
+// SetInstanceMetadataTags sets the InstanceMetadataTags field's value.
+func (s *AwsEc2LaunchTemplateDataMetadataOptionsDetails) SetInstanceMetadataTags(v string) *AwsEc2LaunchTemplateDataMetadataOptionsDetails {
+	s.InstanceMetadataTags = &v
+	return s
+}
+
+// The monitoring for an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataMonitoringDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Enables detailed monitoring when true is specified. Otherwise, basic monitoring
+	// is enabled. For more information about detailed monitoring, see Enable or
+	// turn off detailed monitoring for your instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html)
+	// in the Amazon EC2 User Guide.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataMonitoringDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataMonitoringDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsEc2LaunchTemplateDataMonitoringDetails) SetEnabled(v bool) *AwsEc2LaunchTemplateDataMonitoringDetails {
+	s.Enabled = &v
+	return s
+}
+
+// One or more network interfaces to attach to an Amazon EC2 instance. If you
+// specify a network interface, you must specify security groups and subnets
+// as part of the network interface.
+type AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to associate a Carrier IP address with eth0 for a new network
+	// interface. You use this option when you launch an instance in a Wavelength
+	// Zone and want to associate a Carrier IP address with the network interface.
+	// For more information, see Carrier IP address (https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html#provider-owned-ip)
+	// in the Wavelength Developer Guide.
+	AssociateCarrierIpAddress *bool `type:"boolean"`
+
+	// Associates a public IPv4 address with eth0 for a new network interface.
+	AssociatePublicIpAddress *bool `type:"boolean"`
+
+	// Indicates whether the network interface is deleted when the instance is terminated.
+	DeleteOnTermination *bool `type:"boolean"`
+
+	// A description for the network interface.
+	Description *string `type:"string"`
+
+	// The device index for the network interface attachment.
+	DeviceIndex *int64 `type:"integer"`
+
+	// The IDs of one or more security groups.
+	Groups []*string `type:"list"`
+
+	// The type of network interface.
+	InterfaceType *string `type:"string"`
+
+	// The number of IPv4 prefixes to be automatically assigned to the network interface.
+	// You cannot use this option if you use the Ipv4Prefixes option.
+	Ipv4PrefixCount *int64 `type:"integer"`
+
+	// One or more IPv4 prefixes to be assigned to the network interface. You cannot
+	// use this option if you use the Ipv4PrefixCount option.
+	Ipv4Prefixes []*AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails `type:"list"`
+
+	// The number of IPv6 addresses to assign to a network interface. Amazon EC2
+	// automatically selects the IPv6 addresses from the subnet range. You can't
+	// use this option if you use Ipv6Addresses.
+	Ipv6AddressCount *int64 `type:"integer"`
+
+	// One or more specific IPv6 addresses from the IPv6 CIDR block range of your
+	// subnet. You can't use this option if you use Ipv6AddressCount.
+	Ipv6Addresses []*AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails `type:"list"`
+
+	// The number of IPv6 prefixes to be automatically assigned to the network interface.
+	// You cannot use this option if you use the Ipv6Prefix option.
+	Ipv6PrefixCount *int64 `type:"integer"`
+
+	// One or more IPv6 prefixes to be assigned to the network interface. You cannot
+	// use this option if you use the Ipv6PrefixCount option.
+	Ipv6Prefixes []*AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails `type:"list"`
+
+	// The index of the network card. Some instance types support multiple network
+	// cards. The primary network interface must be assigned to network card index
+	// 0. The default is network card index 0.
+	NetworkCardIndex *int64 `type:"integer"`
+
+	// The ID of the network interface.
+	NetworkInterfaceId *string `type:"string"`
+
+	// The primary private IPv4 address of the network interface.
+	PrivateIpAddress *string `type:"string"`
+
+	// One or more private IPv4 addresses.
+	PrivateIpAddresses []*AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails `type:"list"`
+
+	// The number of secondary private IPv4 addresses to assign to a network interface.
+	SecondaryPrivateIpAddressCount *int64 `type:"integer"`
+
+	// The ID of the subnet for the network interface.
+	SubnetId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssociateCarrierIpAddress sets the AssociateCarrierIpAddress field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetAssociateCarrierIpAddress(v bool) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.AssociateCarrierIpAddress = &v
+	return s
+}
+
+// SetAssociatePublicIpAddress sets the AssociatePublicIpAddress field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetAssociatePublicIpAddress(v bool) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.AssociatePublicIpAddress = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetDeleteOnTermination(v bool) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetDescription(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceIndex sets the DeviceIndex field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetDeviceIndex(v int64) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.DeviceIndex = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetGroups(v []*string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Groups = v
+	return s
+}
+
+// SetInterfaceType sets the InterfaceType field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetInterfaceType(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.InterfaceType = &v
+	return s
+}
+
+// SetIpv4PrefixCount sets the Ipv4PrefixCount field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetIpv4PrefixCount(v int64) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Ipv4PrefixCount = &v
+	return s
+}
+
+// SetIpv4Prefixes sets the Ipv4Prefixes field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetIpv4Prefixes(v []*AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Ipv4Prefixes = v
+	return s
+}
+
+// SetIpv6AddressCount sets the Ipv6AddressCount field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetIpv6AddressCount(v int64) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Ipv6AddressCount = &v
+	return s
+}
+
+// SetIpv6Addresses sets the Ipv6Addresses field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetIpv6Addresses(v []*AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Ipv6Addresses = v
+	return s
+}
+
+// SetIpv6PrefixCount sets the Ipv6PrefixCount field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetIpv6PrefixCount(v int64) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Ipv6PrefixCount = &v
+	return s
+}
+
+// SetIpv6Prefixes sets the Ipv6Prefixes field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetIpv6Prefixes(v []*AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.Ipv6Prefixes = v
+	return s
+}
+
+// SetNetworkCardIndex sets the NetworkCardIndex field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetNetworkCardIndex(v int64) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.NetworkCardIndex = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetNetworkInterfaceId(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetPrivateIpAddress(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetPrivateIpAddresses(v []*AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.PrivateIpAddresses = v
+	return s
+}
+
+// SetSecondaryPrivateIpAddressCount sets the SecondaryPrivateIpAddressCount field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetSecondaryPrivateIpAddressCount(v int64) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.SecondaryPrivateIpAddressCount = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails) SetSubnetId(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails {
+	s.SubnetId = &v
+	return s
+}
+
+// Provides details on one or more IPv4 prefixes for a network interface.
+type AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv4 prefix. For more information, see Assigning prefixes to Amazon EC2
+	// network interfaces (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Ipv4Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails) GoString() string {
+	return s.String()
+}
+
+// SetIpv4Prefix sets the Ipv4Prefix field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails) SetIpv4Prefix(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails {
+	s.Ipv4Prefix = &v
+	return s
+}
+
+// Specifies an IPv6 address in an Amazon EC2 launch template.
+type AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// One or more specific IPv6 addresses from the IPv6 CIDR block range of your
+	// subnet.
+	Ipv6Address *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails) GoString() string {
+	return s.String()
+}
+
+// SetIpv6Address sets the Ipv6Address field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails) SetIpv6Address(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails {
+	s.Ipv6Address = &v
+	return s
+}
+
+// Provides details on one or more IPv6 prefixes to be assigned to the network
+// interface.
+type AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv6 prefix.
+	Ipv6Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails) GoString() string {
+	return s.String()
+}
+
+// SetIpv6Prefix sets the Ipv6Prefix field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails) SetIpv6Prefix(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails {
+	s.Ipv6Prefix = &v
+	return s
+}
+
+// One or more private IPv4 addresses.
+type AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the private IPv4 address is the primary private IPv4 address.
+	// Only one IPv4 address can be designated as primary.
+	Primary *bool `type:"boolean"`
+
+	// The private IPv4 address.
+	PrivateIpAddress *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails) GoString() string {
+	return s.String()
+}
+
+// SetPrimary sets the Primary field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails) SetPrimary(v bool) *AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails {
+	s.Primary = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails) SetPrivateIpAddress(v string) *AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// Provides details about the placement of an Amazon EC2 instance.
+type AwsEc2LaunchTemplateDataPlacementDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The affinity setting for an instance on an EC2 Dedicated Host.
+	Affinity *string `type:"string"`
+
+	// The Availability Zone for the instance.
+	AvailabilityZone *string `type:"string"`
+
+	// The name of the placement group for the instance.
+	GroupName *string `type:"string"`
+
+	// The ID of the Dedicated Host for the instance.
+	HostId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the host resource group in which to launch
+	// the instances.
+	HostResourceGroupArn *string `type:"string"`
+
+	// The number of the partition the instance should launch in.
+	PartitionNumber *int64 `type:"integer"`
+
+	// Reserved for future use.
+	SpreadDomain *string `type:"string"`
+
+	// The tenancy of the instance (if the instance is running in a VPC). An instance
+	// with a tenancy of dedicated runs on single-tenant hardware.
+	Tenancy *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataPlacementDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataPlacementDetails) GoString() string {
+	return s.String()
+}
+
+// SetAffinity sets the Affinity field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetAffinity(v string) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.Affinity = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetAvailabilityZone(v string) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetGroupName(v string) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.GroupName = &v
+	return s
+}
+
+// SetHostId sets the HostId field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetHostId(v string) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.HostId = &v
+	return s
+}
+
+// SetHostResourceGroupArn sets the HostResourceGroupArn field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetHostResourceGroupArn(v string) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.HostResourceGroupArn = &v
+	return s
+}
+
+// SetPartitionNumber sets the PartitionNumber field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetPartitionNumber(v int64) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.PartitionNumber = &v
+	return s
+}
+
+// SetSpreadDomain sets the SpreadDomain field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetSpreadDomain(v string) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.SpreadDomain = &v
+	return s
+}
+
+// SetTenancy sets the Tenancy field's value.
+func (s *AwsEc2LaunchTemplateDataPlacementDetails) SetTenancy(v string) *AwsEc2LaunchTemplateDataPlacementDetails {
+	s.Tenancy = &v
+	return s
+}
+
+// Describes the options for Amazon EC2 instance hostnames.
+type AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to respond to DNS queries for instance hostnames with DNS
+	// AAAA records.
+	EnableResourceNameDnsAAAARecord *bool `type:"boolean"`
+
+	// Indicates whether to respond to DNS queries for instance hostnames with DNS
+	// A records.
+	EnableResourceNameDnsARecord *bool `type:"boolean"`
+
+	// The type of hostname for EC2 instances.
+	HostnameType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnableResourceNameDnsAAAARecord sets the EnableResourceNameDnsAAAARecord field's value.
+func (s *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails) SetEnableResourceNameDnsAAAARecord(v bool) *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails {
+	s.EnableResourceNameDnsAAAARecord = &v
+	return s
+}
+
+// SetEnableResourceNameDnsARecord sets the EnableResourceNameDnsARecord field's value.
+func (s *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails) SetEnableResourceNameDnsARecord(v bool) *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails {
+	s.EnableResourceNameDnsARecord = &v
+	return s
+}
+
+// SetHostnameType sets the HostnameType field's value.
+func (s *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails) SetHostnameType(v string) *AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails {
+	s.HostnameType = &v
+	return s
+}
+
+// Specifies the properties for creating an Amazon Elastic Compute Cloud (Amazon
+// EC2) launch template.
+type AwsEc2LaunchTemplateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The default version of the launch template.
+	DefaultVersionNumber *int64 `type:"long"`
+
+	// An ID for the launch template.
+	Id *string `type:"string"`
+
+	// The latest version of the launch template.
+	LatestVersionNumber *int64 `type:"long"`
+
+	// The information to include in the launch template.
+	LaunchTemplateData *AwsEc2LaunchTemplateDataDetails `type:"structure"`
+
+	// A name for the launch template.
+	LaunchTemplateName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2LaunchTemplateDetails) GoString() string {
+	return s.String()
+}
+
+// SetDefaultVersionNumber sets the DefaultVersionNumber field's value.
+func (s *AwsEc2LaunchTemplateDetails) SetDefaultVersionNumber(v int64) *AwsEc2LaunchTemplateDetails {
+	s.DefaultVersionNumber = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsEc2LaunchTemplateDetails) SetId(v string) *AwsEc2LaunchTemplateDetails {
+	s.Id = &v
+	return s
+}
+
+// SetLatestVersionNumber sets the LatestVersionNumber field's value.
+func (s *AwsEc2LaunchTemplateDetails) SetLatestVersionNumber(v int64) *AwsEc2LaunchTemplateDetails {
+	s.LatestVersionNumber = &v
+	return s
+}
+
+// SetLaunchTemplateData sets the LaunchTemplateData field's value.
+func (s *AwsEc2LaunchTemplateDetails) SetLaunchTemplateData(v *AwsEc2LaunchTemplateDataDetails) *AwsEc2LaunchTemplateDetails {
+	s.LaunchTemplateData = v
+	return s
+}
+
+// SetLaunchTemplateName sets the LaunchTemplateName field's value.
+func (s *AwsEc2LaunchTemplateDetails) SetLaunchTemplateName(v string) *AwsEc2LaunchTemplateDetails {
+	s.LaunchTemplateName = &v
 	return s
 }
 
@@ -31536,6 +33685,267 @@ func (s *AwsS3ObjectDetails) SetVersionId(v string) *AwsS3ObjectDetails {
 	return s
 }
 
+// Provides details about an Amazon SageMaker notebook instance.
+type AwsSageMakerNotebookInstanceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Amazon Elastic Inference instance types to associate with the notebook
+	// instance. Currently, only one instance type can be associated with a notebook
+	// instance.
+	AcceleratorTypes []*string `type:"list"`
+
+	// An array of up to three Git repositories associated with the notebook instance.
+	// These can be either the names of Git repositories stored as resources in
+	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// or in any other Git repository. These repositories are cloned at the same
+	// level as the default repository of your notebook instance. For more information,
+	// see Associating Git repositories with SageMaker notebook instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html)
+	// in the Amazon SageMaker Developer Guide.
+	AdditionalCodeRepositories []*string `type:"list"`
+
+	// The Git repository associated with the notebook instance as its default code
+	// repository. This can be either the name of a Git repository stored as a resource
+	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// or in any other Git repository. When you open a notebook instance, it opens
+	// in the directory that contains this repository. For more information, see
+	// Associating Git repositories with SageMaker notebook instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html)
+	// in the Amazon SageMaker Developer Guide.
+	DefaultCodeRepository *string `type:"string"`
+
+	// Sets whether SageMaker provides internet access to the notebook instance.
+	// If you set this to Disabled, this notebook instance is able to access resources
+	// only in your VPC, and is not be able to connect to SageMaker training and
+	// endpoint services unless you configure a Network Address Translation (NAT)
+	// Gateway in your VPC.
+	DirectInternetAccess *string `type:"string"`
+
+	// If status of the instance is Failed, the reason it failed.
+	FailureReason *string `type:"string"`
+
+	// Information on the IMDS configuration of the notebook instance.
+	InstanceMetadataServiceConfiguration *AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails `type:"structure"`
+
+	// The type of machine learning (ML) compute instance to launch for the notebook
+	// instance.
+	InstanceType *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of an Key Management Service (KMS) key that
+	// SageMaker uses to encrypt data on the storage volume attached to your notebook
+	// instance. The KMS key you provide must be enabled. For information, see Enabling
+	// and disabling keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html)
+	// in the Key Management Service Developer Guide.
+	KmsKeyId *string `type:"string"`
+
+	// The network interface ID that SageMaker created when the instance was created.
+	NetworkInterfaceId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the notebook instance.
+	NotebookInstanceArn *string `type:"string"`
+
+	// The name of a notebook instance lifecycle configuration.
+	NotebookInstanceLifecycleConfigName *string `type:"string"`
+
+	// The name of the new notebook instance.
+	NotebookInstanceName *string `type:"string"`
+
+	// The status of the notebook instance.
+	NotebookInstanceStatus *string `type:"string"`
+
+	// The platform identifier of the notebook instance runtime environment.
+	PlatformIdentifier *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the IAM role associated with the instance.
+	RoleArn *string `type:"string"`
+
+	// Whether root access is enabled or disabled for users of the notebook instance.
+	RootAccess *string `type:"string"`
+
+	// The VPC security group IDs.
+	SecurityGroups []*string `type:"list"`
+
+	// The ID of the VPC subnet to which you have a connectivity from your ML compute
+	// instance.
+	SubnetId *string `type:"string"`
+
+	// The URL that you use to connect to the Jupyter notebook that is running in
+	// your notebook instance.
+	Url *string `type:"string"`
+
+	// The size, in GB, of the ML storage volume to attach to the notebook instance.
+	VolumeSizeInGB *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsSageMakerNotebookInstanceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsSageMakerNotebookInstanceDetails) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorTypes sets the AcceleratorTypes field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetAcceleratorTypes(v []*string) *AwsSageMakerNotebookInstanceDetails {
+	s.AcceleratorTypes = v
+	return s
+}
+
+// SetAdditionalCodeRepositories sets the AdditionalCodeRepositories field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetAdditionalCodeRepositories(v []*string) *AwsSageMakerNotebookInstanceDetails {
+	s.AdditionalCodeRepositories = v
+	return s
+}
+
+// SetDefaultCodeRepository sets the DefaultCodeRepository field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetDefaultCodeRepository(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.DefaultCodeRepository = &v
+	return s
+}
+
+// SetDirectInternetAccess sets the DirectInternetAccess field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetDirectInternetAccess(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.DirectInternetAccess = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetFailureReason(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.FailureReason = &v
+	return s
+}
+
+// SetInstanceMetadataServiceConfiguration sets the InstanceMetadataServiceConfiguration field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetInstanceMetadataServiceConfiguration(v *AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails) *AwsSageMakerNotebookInstanceDetails {
+	s.InstanceMetadataServiceConfiguration = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetInstanceType(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetKmsKeyId(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetNetworkInterfaceId(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetNotebookInstanceArn sets the NotebookInstanceArn field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetNotebookInstanceArn(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.NotebookInstanceArn = &v
+	return s
+}
+
+// SetNotebookInstanceLifecycleConfigName sets the NotebookInstanceLifecycleConfigName field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetNotebookInstanceLifecycleConfigName(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.NotebookInstanceLifecycleConfigName = &v
+	return s
+}
+
+// SetNotebookInstanceName sets the NotebookInstanceName field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetNotebookInstanceName(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.NotebookInstanceName = &v
+	return s
+}
+
+// SetNotebookInstanceStatus sets the NotebookInstanceStatus field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetNotebookInstanceStatus(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.NotebookInstanceStatus = &v
+	return s
+}
+
+// SetPlatformIdentifier sets the PlatformIdentifier field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetPlatformIdentifier(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.PlatformIdentifier = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetRoleArn(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetRootAccess sets the RootAccess field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetRootAccess(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.RootAccess = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetSecurityGroups(v []*string) *AwsSageMakerNotebookInstanceDetails {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetSubnetId(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetUrl(v string) *AwsSageMakerNotebookInstanceDetails {
+	s.Url = &v
+	return s
+}
+
+// SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
+func (s *AwsSageMakerNotebookInstanceDetails) SetVolumeSizeInGB(v int64) *AwsSageMakerNotebookInstanceDetails {
+	s.VolumeSizeInGB = &v
+	return s
+}
+
+// Information on the instance metadata service (IMDS) configuration of the
+// notebook instance.
+type AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the minimum IMDS version that the notebook instance supports.
+	MinimumInstanceMetadataServiceVersion *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetMinimumInstanceMetadataServiceVersion sets the MinimumInstanceMetadataServiceVersion field's value.
+func (s *AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails) SetMinimumInstanceMetadataServiceVersion(v string) *AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails {
+	s.MinimumInstanceMetadataServiceVersion = &v
+	return s
+}
+
 // Details about an Secrets Manager secret.
 type AwsSecretsManagerSecretDetails struct {
 	_ struct{} `type:"structure"`
@@ -35010,6 +37420,798 @@ func (s *AwsWafWebAclRule) SetRuleId(v string) *AwsWafWebAclRule {
 // SetType sets the Type field's value.
 func (s *AwsWafWebAclRule) SetType(v string) *AwsWafWebAclRule {
 	s.Type = &v
+	return s
+}
+
+// Specifies that WAF should allow the request and optionally defines additional
+// custom handling for the request.
+type AwsWafv2ActionAllowDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request. For information about customizing
+	// web requests and responses, see Customizing web requests and responses in
+	// WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide..
+	CustomRequestHandling *AwsWafv2CustomRequestHandlingDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2ActionAllowDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2ActionAllowDetails) GoString() string {
+	return s.String()
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *AwsWafv2ActionAllowDetails) SetCustomRequestHandling(v *AwsWafv2CustomRequestHandlingDetails) *AwsWafv2ActionAllowDetails {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// Specifies that WAF should block the request and optionally defines additional
+// custom handling for the response to the web request.
+type AwsWafv2ActionBlockDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Defines a custom response for the web request. For information, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide..
+	CustomResponse *AwsWafv2CustomResponseDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2ActionBlockDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2ActionBlockDetails) GoString() string {
+	return s.String()
+}
+
+// SetCustomResponse sets the CustomResponse field's value.
+func (s *AwsWafv2ActionBlockDetails) SetCustomResponse(v *AwsWafv2CustomResponseDetails) *AwsWafv2ActionBlockDetails {
+	s.CustomResponse = v
+	return s
+}
+
+// A custom header for custom request and response handling.
+type AwsWafv2CustomHttpHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom header.
+	Name *string `type:"string"`
+
+	// The value of the custom header.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2CustomHttpHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2CustomHttpHeader) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafv2CustomHttpHeader) SetName(v string) *AwsWafv2CustomHttpHeader {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsWafv2CustomHttpHeader) SetValue(v string) *AwsWafv2CustomHttpHeader {
+	s.Value = &v
+	return s
+}
+
+// Custom request handling behavior that inserts custom headers into a web request.
+// WAF uses custom request handling when the rule action doesn't block the request.
+type AwsWafv2CustomRequestHandlingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The HTTP headers to insert into the request.
+	InsertHeaders []*AwsWafv2CustomHttpHeader `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2CustomRequestHandlingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2CustomRequestHandlingDetails) GoString() string {
+	return s.String()
+}
+
+// SetInsertHeaders sets the InsertHeaders field's value.
+func (s *AwsWafv2CustomRequestHandlingDetails) SetInsertHeaders(v []*AwsWafv2CustomHttpHeader) *AwsWafv2CustomRequestHandlingDetails {
+	s.InsertHeaders = v
+	return s
+}
+
+// A custom response to send to the client. You can define a custom response
+// for rule actions and default web ACL actions that are set to block.
+type AwsWafv2CustomResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// References the response body that you want WAF to return to the web request
+	// client. You can define a custom response for a rule action or a default web
+	// ACL action that is set to block.
+	CustomResponseBodyKey *string `type:"string"`
+
+	// The HTTP status code to return to the client. For a list of status codes
+	// that you can use in your custom responses, see Supported status codes for
+	// custom response (https://docs.aws.amazon.com/waf/latest/developerguide/customizing-the-response-status-codes.html)
+	// in the WAF Developer Guide.
+	ResponseCode *int64 `type:"integer"`
+
+	// The HTTP headers to use in the response.
+	ResponseHeaders []*AwsWafv2CustomHttpHeader `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2CustomResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2CustomResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetCustomResponseBodyKey sets the CustomResponseBodyKey field's value.
+func (s *AwsWafv2CustomResponseDetails) SetCustomResponseBodyKey(v string) *AwsWafv2CustomResponseDetails {
+	s.CustomResponseBodyKey = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *AwsWafv2CustomResponseDetails) SetResponseCode(v int64) *AwsWafv2CustomResponseDetails {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetResponseHeaders sets the ResponseHeaders field's value.
+func (s *AwsWafv2CustomResponseDetails) SetResponseHeaders(v []*AwsWafv2CustomHttpHeader) *AwsWafv2CustomResponseDetails {
+	s.ResponseHeaders = v
+	return s
+}
+
+// Details about an WAFv2 rule group.
+type AwsWafv2RuleGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the entity.
+	Arn *string `type:"string"`
+
+	// The web ACL capacity units (WCUs) required for this rule group.
+	Capacity *int64 `type:"long"`
+
+	// A description of the rule group that helps with identification.
+	Description *string `type:"string"`
+
+	// A unique identifier for the rule group.
+	Id *string `type:"string"`
+
+	// The name of the rule group. You cannot change the name of a rule group after
+	// you create it.
+	Name *string `type:"string"`
+
+	// The Rule statements used to identify the web requests that you want to allow,
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
+	Rules []*AwsWafv2RulesDetails `type:"list"`
+
+	// Specifies whether the rule group is for an Amazon CloudFront distribution
+	// or for a regional application. A regional application can be an Application
+	// Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API,
+	// or an Amazon Cognito user pool.
+	Scope *string `type:"string"`
+
+	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
+	VisibilityConfig *AwsWafv2VisibilityConfigDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RuleGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RuleGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsWafv2RuleGroupDetails) SetArn(v string) *AwsWafv2RuleGroupDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *AwsWafv2RuleGroupDetails) SetCapacity(v int64) *AwsWafv2RuleGroupDetails {
+	s.Capacity = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsWafv2RuleGroupDetails) SetDescription(v string) *AwsWafv2RuleGroupDetails {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsWafv2RuleGroupDetails) SetId(v string) *AwsWafv2RuleGroupDetails {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafv2RuleGroupDetails) SetName(v string) *AwsWafv2RuleGroupDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *AwsWafv2RuleGroupDetails) SetRules(v []*AwsWafv2RulesDetails) *AwsWafv2RuleGroupDetails {
+	s.Rules = v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *AwsWafv2RuleGroupDetails) SetScope(v string) *AwsWafv2RuleGroupDetails {
+	s.Scope = &v
+	return s
+}
+
+// SetVisibilityConfig sets the VisibilityConfig field's value.
+func (s *AwsWafv2RuleGroupDetails) SetVisibilityConfig(v *AwsWafv2VisibilityConfigDetails) *AwsWafv2RuleGroupDetails {
+	s.VisibilityConfig = v
+	return s
+}
+
+// Specifies that WAF should run a CAPTCHA check against the request.
+type AwsWafv2RulesActionCaptchaDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request, used when the CAPTCHA inspection
+	// determines that the request's token is valid and unexpired. For more information,
+	// see Customizing web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide..
+	CustomRequestHandling *AwsWafv2CustomRequestHandlingDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesActionCaptchaDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesActionCaptchaDetails) GoString() string {
+	return s.String()
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *AwsWafv2RulesActionCaptchaDetails) SetCustomRequestHandling(v *AwsWafv2CustomRequestHandlingDetails) *AwsWafv2RulesActionCaptchaDetails {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// Specifies that WAF should count the request.
+type AwsWafv2RulesActionCountDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request. For more information, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide..
+	CustomRequestHandling *AwsWafv2CustomRequestHandlingDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesActionCountDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesActionCountDetails) GoString() string {
+	return s.String()
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *AwsWafv2RulesActionCountDetails) SetCustomRequestHandling(v *AwsWafv2CustomRequestHandlingDetails) *AwsWafv2RulesActionCountDetails {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// The action that WAF should take on a web request when it matches a rule's
+// statement. Settings at the web ACL level can override the rule action setting.
+type AwsWafv2RulesActionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Instructs WAF to allow the web request.
+	Allow *AwsWafv2ActionAllowDetails `type:"structure"`
+
+	// Instructs WAF to block the web request.
+	Block *AwsWafv2ActionBlockDetails `type:"structure"`
+
+	// Instructs WAF to run a CAPTCHA check against the web request.
+	Captcha *AwsWafv2RulesActionCaptchaDetails `type:"structure"`
+
+	// Instructs WAF to count the web request and then continue evaluating the request
+	// using the remaining rules in the web ACL.
+	Count *AwsWafv2RulesActionCountDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesActionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesActionDetails) GoString() string {
+	return s.String()
+}
+
+// SetAllow sets the Allow field's value.
+func (s *AwsWafv2RulesActionDetails) SetAllow(v *AwsWafv2ActionAllowDetails) *AwsWafv2RulesActionDetails {
+	s.Allow = v
+	return s
+}
+
+// SetBlock sets the Block field's value.
+func (s *AwsWafv2RulesActionDetails) SetBlock(v *AwsWafv2ActionBlockDetails) *AwsWafv2RulesActionDetails {
+	s.Block = v
+	return s
+}
+
+// SetCaptcha sets the Captcha field's value.
+func (s *AwsWafv2RulesActionDetails) SetCaptcha(v *AwsWafv2RulesActionCaptchaDetails) *AwsWafv2RulesActionDetails {
+	s.Captcha = v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *AwsWafv2RulesActionDetails) SetCount(v *AwsWafv2RulesActionCountDetails) *AwsWafv2RulesActionDetails {
+	s.Count = v
+	return s
+}
+
+// Provides details about rules in a rule group. A rule identifies web requests
+// that you want to allow, block, or count. Each rule includes one top-level
+// Statement that AWS WAF uses to identify matching web requests, and parameters
+// that govern how AWS WAF handles them.
+type AwsWafv2RulesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The action that WAF should take on a web request when it matches the rule
+	// statement. Settings at the web ACL level can override the rule action setting.
+	Action *AwsWafv2RulesActionDetails `type:"structure"`
+
+	// The name of the rule.
+	Name *string `type:"string"`
+
+	// The action to use in the place of the action that results from the rule group
+	// evaluation.
+	OverrideAction *string `type:"string"`
+
+	// If you define more than one Rule in a WebACL, WAF evaluates each request
+	// against the Rules in order based on the value of Priority. WAF processes
+	// rules with lower priority first. The priorities don't need to be consecutive,
+	// but they must all be different.
+	Priority *int64 `type:"integer"`
+
+	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
+	VisibilityConfig *AwsWafv2VisibilityConfigDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2RulesDetails) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *AwsWafv2RulesDetails) SetAction(v *AwsWafv2RulesActionDetails) *AwsWafv2RulesDetails {
+	s.Action = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafv2RulesDetails) SetName(v string) *AwsWafv2RulesDetails {
+	s.Name = &v
+	return s
+}
+
+// SetOverrideAction sets the OverrideAction field's value.
+func (s *AwsWafv2RulesDetails) SetOverrideAction(v string) *AwsWafv2RulesDetails {
+	s.OverrideAction = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *AwsWafv2RulesDetails) SetPriority(v int64) *AwsWafv2RulesDetails {
+	s.Priority = &v
+	return s
+}
+
+// SetVisibilityConfig sets the VisibilityConfig field's value.
+func (s *AwsWafv2RulesDetails) SetVisibilityConfig(v *AwsWafv2VisibilityConfigDetails) *AwsWafv2RulesDetails {
+	s.VisibilityConfig = v
+	return s
+}
+
+// Defines and enables Amazon CloudWatch metrics and web request sample collection.
+type AwsWafv2VisibilityConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A boolean indicating whether the associated resource sends metrics to Amazon
+	// CloudWatch. For the list of available metrics, see WAF metrics and dimensions
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics)
+	// in the WAF Developer Guide.
+	CloudWatchMetricsEnabled *bool `type:"boolean"`
+
+	// A name of the Amazon CloudWatch metric.
+	MetricName *string `type:"string"`
+
+	// A boolean indicating whether WAF should store a sampling of the web requests
+	// that match the rules. You can view the sampled requests through the WAF console.
+	SampledRequestsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2VisibilityConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2VisibilityConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchMetricsEnabled sets the CloudWatchMetricsEnabled field's value.
+func (s *AwsWafv2VisibilityConfigDetails) SetCloudWatchMetricsEnabled(v bool) *AwsWafv2VisibilityConfigDetails {
+	s.CloudWatchMetricsEnabled = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafv2VisibilityConfigDetails) SetMetricName(v string) *AwsWafv2VisibilityConfigDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetSampledRequestsEnabled sets the SampledRequestsEnabled field's value.
+func (s *AwsWafv2VisibilityConfigDetails) SetSampledRequestsEnabled(v bool) *AwsWafv2VisibilityConfigDetails {
+	s.SampledRequestsEnabled = &v
+	return s
+}
+
+// Specifies the action that Amazon CloudFront or WAF takes when a web request
+// matches the conditions in the rule.
+type AwsWafv2WebAclActionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies that WAF should allow requests by default.
+	Allow *AwsWafv2ActionAllowDetails `type:"structure"`
+
+	// Specifies that WAF should block requests by default.
+	Block *AwsWafv2ActionBlockDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclActionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclActionDetails) GoString() string {
+	return s.String()
+}
+
+// SetAllow sets the Allow field's value.
+func (s *AwsWafv2WebAclActionDetails) SetAllow(v *AwsWafv2ActionAllowDetails) *AwsWafv2WebAclActionDetails {
+	s.Allow = v
+	return s
+}
+
+// SetBlock sets the Block field's value.
+func (s *AwsWafv2WebAclActionDetails) SetBlock(v *AwsWafv2ActionBlockDetails) *AwsWafv2WebAclActionDetails {
+	s.Block = v
+	return s
+}
+
+// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+// have their own CaptchaConfig settings.
+type AwsWafv2WebAclCaptchaConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how long a CAPTCHA timestamp in the token remains valid after
+	// the client successfully solves a CAPTCHA puzzle.
+	ImmunityTimeProperty *AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclCaptchaConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclCaptchaConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetImmunityTimeProperty sets the ImmunityTimeProperty field's value.
+func (s *AwsWafv2WebAclCaptchaConfigDetails) SetImmunityTimeProperty(v *AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails) *AwsWafv2WebAclCaptchaConfigDetails {
+	s.ImmunityTimeProperty = v
+	return s
+}
+
+// Used for CAPTCHA and challenge token settings. Determines how long a CAPTCHA
+// or challenge timestamp remains valid after WAF updates it for a successful
+// CAPTCHA or challenge response.
+type AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time, in seconds, that a CAPTCHA or challenge timestamp is
+	// considered valid by WAF.
+	ImmunityTime *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails) GoString() string {
+	return s.String()
+}
+
+// SetImmunityTime sets the ImmunityTime field's value.
+func (s *AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails) SetImmunityTime(v int64) *AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails {
+	s.ImmunityTime = &v
+	return s
+}
+
+// Details about an WAFv2 web Access Control List (ACL).
+type AwsWafv2WebAclDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
+	// with the resource.
+	Arn *string `type:"string"`
+
+	// The web ACL capacity units (WCUs) currently being used by this web ACL.
+	Capacity *int64 `type:"long"`
+
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings.
+	CaptchaConfig *AwsWafv2WebAclCaptchaConfigDetails `type:"structure"`
+
+	// The action to perform if none of the Rules contained in the web ACL match.
+	DefaultAction *AwsWafv2WebAclActionDetails `type:"structure"`
+
+	// A description of the web ACL that helps with identification.
+	Description *string `type:"string"`
+
+	// A unique identifier for the web ACL.
+	Id *string `type:"string"`
+
+	// Indicates whether this web ACL is managed by Firewall Manager.
+	ManagedbyFirewallManager *bool `type:"boolean"`
+
+	// The name of the web ACL.
+	Name *string `type:"string"`
+
+	// The Rule statements used to identify the web requests that you want to allow,
+	// block, or count. Each rule includes one top-level statement that WAF uses
+	// to identify matching web requests, and parameters that govern how WAF handles
+	// them.
+	Rules []*AwsWafv2RulesDetails `type:"list"`
+
+	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
+	VisibilityConfig *AwsWafv2VisibilityConfigDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafv2WebAclDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsWafv2WebAclDetails) SetArn(v string) *AwsWafv2WebAclDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *AwsWafv2WebAclDetails) SetCapacity(v int64) *AwsWafv2WebAclDetails {
+	s.Capacity = &v
+	return s
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *AwsWafv2WebAclDetails) SetCaptchaConfig(v *AwsWafv2WebAclCaptchaConfigDetails) *AwsWafv2WebAclDetails {
+	s.CaptchaConfig = v
+	return s
+}
+
+// SetDefaultAction sets the DefaultAction field's value.
+func (s *AwsWafv2WebAclDetails) SetDefaultAction(v *AwsWafv2WebAclActionDetails) *AwsWafv2WebAclDetails {
+	s.DefaultAction = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsWafv2WebAclDetails) SetDescription(v string) *AwsWafv2WebAclDetails {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsWafv2WebAclDetails) SetId(v string) *AwsWafv2WebAclDetails {
+	s.Id = &v
+	return s
+}
+
+// SetManagedbyFirewallManager sets the ManagedbyFirewallManager field's value.
+func (s *AwsWafv2WebAclDetails) SetManagedbyFirewallManager(v bool) *AwsWafv2WebAclDetails {
+	s.ManagedbyFirewallManager = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafv2WebAclDetails) SetName(v string) *AwsWafv2WebAclDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *AwsWafv2WebAclDetails) SetRules(v []*AwsWafv2RulesDetails) *AwsWafv2WebAclDetails {
+	s.Rules = v
+	return s
+}
+
+// SetVisibilityConfig sets the VisibilityConfig field's value.
+func (s *AwsWafv2WebAclDetails) SetVisibilityConfig(v *AwsWafv2VisibilityConfigDetails) *AwsWafv2WebAclDetails {
+	s.VisibilityConfig = v
 	return s
 }
 
@@ -40227,9 +43429,7 @@ func (s *InternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// There is an issue with the account used to make the request. Either Security
-// Hub is not enabled for the account, or the account does not have permission
-// to perform this action.
+// The account doesn't have permission to perform this action.
 type InvalidAccessException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -43366,6 +46566,10 @@ type ResourceDetails struct {
 	// Details about an EC2 instance related to a finding.
 	AwsEc2Instance *AwsEc2InstanceDetails `type:"structure"`
 
+	// Specifies the properties for creating an Amazon Elastic Compute Cloud (Amazon
+	// EC2) launch template.
+	AwsEc2LaunchTemplate *AwsEc2LaunchTemplateDetails `type:"structure"`
+
 	// Details about an EC2 network access control list (ACL).
 	AwsEc2NetworkAcl *AwsEc2NetworkAclDetails `type:"structure"`
 
@@ -43511,6 +46715,9 @@ type ResourceDetails struct {
 	// Details about an S3 object related to a finding.
 	AwsS3Object *AwsS3ObjectDetails `type:"structure"`
 
+	// Provides details about an Amazon SageMaker notebook instance.
+	AwsSageMakerNotebookInstance *AwsSageMakerNotebookInstanceDetails `type:"structure"`
+
 	// Details about a Secrets Manager secret.
 	AwsSecretsManagerSecret *AwsSecretsManagerSecretDetails `type:"structure"`
 
@@ -43547,6 +46754,12 @@ type ResourceDetails struct {
 
 	// Details for an WAF web ACL.
 	AwsWafWebAcl *AwsWafWebAclDetails `type:"structure"`
+
+	// Details about an WAFv2 rule group.
+	AwsWafv2RuleGroup *AwsWafv2RuleGroupDetails `type:"structure"`
+
+	// Details about an WAFv2 web Access Control List (ACL).
+	AwsWafv2WebAcl *AwsWafv2WebAclDetails `type:"structure"`
 
 	// Information about the encryption configuration for X-Ray.
 	AwsXrayEncryptionConfig *AwsXrayEncryptionConfigDetails `type:"structure"`
@@ -43705,6 +46918,12 @@ func (s *ResourceDetails) SetAwsEc2Eip(v *AwsEc2EipDetails) *ResourceDetails {
 // SetAwsEc2Instance sets the AwsEc2Instance field's value.
 func (s *ResourceDetails) SetAwsEc2Instance(v *AwsEc2InstanceDetails) *ResourceDetails {
 	s.AwsEc2Instance = v
+	return s
+}
+
+// SetAwsEc2LaunchTemplate sets the AwsEc2LaunchTemplate field's value.
+func (s *ResourceDetails) SetAwsEc2LaunchTemplate(v *AwsEc2LaunchTemplateDetails) *ResourceDetails {
+	s.AwsEc2LaunchTemplate = v
 	return s
 }
 
@@ -43984,6 +47203,12 @@ func (s *ResourceDetails) SetAwsS3Object(v *AwsS3ObjectDetails) *ResourceDetails
 	return s
 }
 
+// SetAwsSageMakerNotebookInstance sets the AwsSageMakerNotebookInstance field's value.
+func (s *ResourceDetails) SetAwsSageMakerNotebookInstance(v *AwsSageMakerNotebookInstanceDetails) *ResourceDetails {
+	s.AwsSageMakerNotebookInstance = v
+	return s
+}
+
 // SetAwsSecretsManagerSecret sets the AwsSecretsManagerSecret field's value.
 func (s *ResourceDetails) SetAwsSecretsManagerSecret(v *AwsSecretsManagerSecretDetails) *ResourceDetails {
 	s.AwsSecretsManagerSecret = v
@@ -44053,6 +47278,18 @@ func (s *ResourceDetails) SetAwsWafRuleGroup(v *AwsWafRuleGroupDetails) *Resourc
 // SetAwsWafWebAcl sets the AwsWafWebAcl field's value.
 func (s *ResourceDetails) SetAwsWafWebAcl(v *AwsWafWebAclDetails) *ResourceDetails {
 	s.AwsWafWebAcl = v
+	return s
+}
+
+// SetAwsWafv2RuleGroup sets the AwsWafv2RuleGroup field's value.
+func (s *ResourceDetails) SetAwsWafv2RuleGroup(v *AwsWafv2RuleGroupDetails) *ResourceDetails {
+	s.AwsWafv2RuleGroup = v
+	return s
+}
+
+// SetAwsWafv2WebAcl sets the AwsWafv2WebAcl field's value.
+func (s *ResourceDetails) SetAwsWafv2WebAcl(v *AwsWafv2WebAclDetails) *ResourceDetails {
+	s.AwsWafv2WebAcl = v
 	return s
 }
 

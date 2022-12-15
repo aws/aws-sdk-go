@@ -2500,7 +2500,9 @@
         "bindIP":{"shape":"String"},
         "containerPort":{"shape":"BoxedInteger"},
         "hostPort":{"shape":"BoxedInteger"},
-        "protocol":{"shape":"TransportProtocol"}
+        "protocol":{"shape":"TransportProtocol"},
+        "containerPortRange":{"shape":"String"},
+        "hostPortRange":{"shape":"String"}
       }
     },
     "NetworkBindings":{
@@ -2635,7 +2637,8 @@
         "hostPort":{"shape":"BoxedInteger"},
         "protocol":{"shape":"TransportProtocol"},
         "name":{"shape":"String"},
-        "appProtocol":{"shape":"ApplicationProtocol"}
+        "appProtocol":{"shape":"ApplicationProtocol"},
+        "containerPortRange":{"shape":"String"}
       }
     },
     "PortMappingList":{

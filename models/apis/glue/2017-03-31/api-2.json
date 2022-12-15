@@ -6059,7 +6059,8 @@
       "members":{
         "DeltaTables":{"shape":"PathList"},
         "ConnectionName":{"shape":"ConnectionName"},
-        "WriteManifest":{"shape":"NullableBoolean"}
+        "WriteManifest":{"shape":"NullableBoolean"},
+        "CreateNativeDeltaTable":{"shape":"NullableBoolean"}
       }
     },
     "DeltaTargetList":{

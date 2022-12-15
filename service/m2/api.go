@@ -151,8 +151,8 @@ func (c *M2) CreateApplicationRequest(input *CreateApplicationInput) (req *reque
 
 // CreateApplication API operation for AWSMainframeModernization.
 //
-// Creates a new application with given parameters. Requires an existing environment
-// and application definition file.
+// Creates a new application with given parameters. Requires an existing runtime
+// environment and application definition file.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -345,7 +345,7 @@ func (c *M2) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request
 
 // CreateDeployment API operation for AWSMainframeModernization.
 //
-// Creates and starts a deployment to deploy an application into an environment.
+// Creates and starts a deployment to deploy an application into a runtime environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -631,11 +631,11 @@ func (c *M2) DeleteApplicationFromEnvironmentRequest(input *DeleteApplicationFro
 
 // DeleteApplicationFromEnvironment API operation for AWSMainframeModernization.
 //
-// Deletes a specific application from a specified environment where it has
-// been previously deployed. You cannot delete an environment using DeleteEnvironment,
-// if any application has ever been deployed to it. This API removes the association
-// of the application with the environment so you can delete the environment
-// smoothly.
+// Deletes a specific application from the specific runtime environment where
+// it was previously deployed. You cannot delete a runtime environment using
+// DeleteEnvironment if any application has ever been deployed to it. This API
+// removes the association of the application with the runtime environment so
+// you can delete the environment smoothly.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -730,8 +730,9 @@ func (c *M2) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *reque
 
 // DeleteEnvironment API operation for AWSMainframeModernization.
 //
-// Deletes a specific environment. The environment cannot contain deployed applications.
-// If it does, you must delete those applications before you delete the environment.
+// Deletes a specific runtime environment. The environment cannot contain deployed
+// applications. If it does, you must delete those applications before you delete
+// the environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1615,8 +1616,8 @@ func (c *M2) ListApplicationsRequest(input *ListApplicationsInput) (req *request
 // ListApplications API operation for AWSMainframeModernization.
 //
 // Lists the applications associated with a specific Amazon Web Services account.
-// You can provide the unique identifier of a specific environment in a query
-// parameter to see all applications associated with that environment.
+// You can provide the unique identifier of a specific runtime environment in
+// a query parameter to see all applications associated with that environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1762,8 +1763,8 @@ func (c *M2) ListBatchJobDefinitionsRequest(input *ListBatchJobDefinitionsInput)
 // ListBatchJobDefinitions API operation for AWSMainframeModernization.
 //
 // Lists all the available batch job definitions based on the batch job resources
-// uploaded during the application creation. The listed batch job definitions
-// can then be used to start a batch job.
+// uploaded during the application creation. You can use the batch job definitions
+// in the list to start a batch job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2210,9 +2211,9 @@ func (c *M2) ListDataSetsRequest(input *ListDataSetsInput) (req *request.Request
 //
 // Lists the data sets imported for a specific application. In Amazon Web Services
 // Mainframe Modernization, data sets are associated with applications deployed
-// on environments. This is known as importing data sets. Currently, Amazon
-// Web Services Mainframe Modernization can import data sets into catalogs using
-// CreateDataSetImportTask (https://docs.aws.amazon.com/m2/latest/APIReference/API_CreateDataSetImportTask.html).
+// on runtime environments. This is known as importing data sets. Currently,
+// Amazon Web Services Mainframe Modernization can import data sets into catalogs
+// using CreateDataSetImportTask (https://docs.aws.amazon.com/m2/latest/APIReference/API_CreateDataSetImportTask.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3453,7 +3454,7 @@ func (c *M2) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *reque
 
 // UpdateEnvironment API operation for AWSMainframeModernization.
 //
-// Updates the configuration details for a specific environment.
+// Updates the configuration details for a specific runtime environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3681,8 +3682,8 @@ type ApplicationSummary struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
 
-	// Indicates whether there is an ongoing deployment or if the application has
-	// ever deployed successfully.
+	// Indicates either an ongoing deployment or if the application has ever deployed
+	// successfully.
 	DeploymentStatus *string `locationName:"deploymentStatus" type:"string" enum:"ApplicationDeploymentLifecycle"`
 
 	// The description of the application.
@@ -3696,8 +3697,8 @@ type ApplicationSummary struct {
 	// The unique identifier of the runtime environment that hosts this application.
 	EnvironmentId *string `locationName:"environmentId" type:"string"`
 
-	// The timestamp when the application was last started. Null until the application
-	// has started running for the first time.
+	// The timestamp when you last started the application. Null until the application
+	// runs for the first time.
 	LastStartTime *time.Time `locationName:"lastStartTime" type:"timestamp"`
 
 	// The name of the application.
@@ -4258,6 +4259,9 @@ type CreateApplicationInput struct {
 	// EngineType is a required field
 	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
+	// The identifier of a customer managed key.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
 	// The unique identifier of the application.
 	//
 	// Name is a required field
@@ -4330,6 +4334,12 @@ func (s *CreateApplicationInput) SetDescription(v string) *CreateApplicationInpu
 // SetEngineType sets the EngineType field's value.
 func (s *CreateApplicationInput) SetEngineType(v string) *CreateApplicationInput {
 	s.EngineType = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateApplicationInput) SetKmsKeyId(v string) *CreateApplicationInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -4538,7 +4548,7 @@ type CreateDeploymentInput struct {
 	// it expires.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The identifier of the environment where this application will be deployed.
+	// The identifier of the runtime environment where you want to deploy this application.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
@@ -4655,47 +4665,50 @@ type CreateEnvironmentInput struct {
 	// it expires.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The description of the environment.
+	// The description of the runtime environment.
 	Description *string `locationName:"description" type:"string"`
 
-	// The engine type for the environment.
+	// The engine type for the runtime environment.
 	//
 	// EngineType is a required field
 	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	// The version of the engine type for the environment.
+	// The version of the engine type for the runtime environment.
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
 	// The details of a high availability configuration for this runtime environment.
 	HighAvailabilityConfig *HighAvailabilityConfig `locationName:"highAvailabilityConfig" type:"structure"`
 
-	// The type of instance for the environment.
+	// The type of instance for the runtime environment.
 	//
 	// InstanceType is a required field
 	InstanceType *string `locationName:"instanceType" type:"string" required:"true"`
 
-	// The unique identifier of the environment.
+	// The identifier of a customer managed key.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The name of the runtime environment. Must be unique within the account.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// Configures a desired maintenance window for the environment. If you do not
-	// provide a value, a random system-generated value will be assigned.
+	// Configures the maintenance window you want for the runtime environment. If
+	// you do not provide a value, a random system-generated value will be assigned.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 
-	// Specifies whether the environment is publicly accessible.
+	// Specifies whether the runtime environment is publicly accessible.
 	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean"`
 
-	// The list of security groups for the VPC associated with this environment.
+	// The list of security groups for the VPC associated with this runtime environment.
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
 
-	// Optional. The storage configurations for this environment.
+	// Optional. The storage configurations for this runtime environment.
 	StorageConfigurations []*StorageConfiguration `locationName:"storageConfigurations" type:"list"`
 
-	// The list of subnets associated with the VPC for this environment.
+	// The list of subnets associated with the VPC for this runtime environment.
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
 
-	// The tags for the environment.
+	// The tags for the runtime environment.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4787,6 +4800,12 @@ func (s *CreateEnvironmentInput) SetInstanceType(v string) *CreateEnvironmentInp
 	return s
 }
 
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateEnvironmentInput) SetKmsKeyId(v string) *CreateEnvironmentInput {
+	s.KmsKeyId = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateEnvironmentInput) SetName(v string) *CreateEnvironmentInput {
 	s.Name = &v
@@ -4832,7 +4851,7 @@ func (s *CreateEnvironmentInput) SetTags(v map[string]*string) *CreateEnvironmen
 type CreateEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of this environment.
+	// The unique identifier of the runtime environment.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
@@ -4871,8 +4890,7 @@ type DataSet struct {
 	// DatasetName is a required field
 	DatasetName *string `locationName:"datasetName" type:"string" required:"true"`
 
-	// The type of dataset. Possible values include VSAM, IS, PS, GDG, PO, PS, UNKNOWN
-	// etc.
+	// The type of dataset. The only supported value is VSAM.
 	//
 	// DatasetOrg is a required field
 	DatasetOrg *DatasetOrgAttributes `locationName:"datasetOrg" type:"structure" required:"true"`
@@ -5246,8 +5264,7 @@ type DataSetSummary struct {
 	// DataSetName is a required field
 	DataSetName *string `locationName:"dataSetName" type:"string" required:"true"`
 
-	// The type of data set. Possible values include VSAM, IS, PS, GDG, PO, PS,
-	// or unknown.
+	// The type of data set. The only supported value is VSAM.
 	DataSetOrg *string `locationName:"dataSetOrg" type:"string"`
 
 	// The format of the data set.
@@ -5779,7 +5796,7 @@ type DeploymentSummary struct {
 	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
-	// The unique identifier of the environment.
+	// The unique identifier of the runtime environment.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
@@ -5959,17 +5976,17 @@ func (s *EngineVersionsSummary) SetEngineVersion(v string) *EngineVersionsSummar
 	return s
 }
 
-// Contains a subset of the possible environment attributes. Used in the environment
-// list.
+// Contains a subset of the possible runtime environment attributes. Used in
+// the environment list.
 type EnvironmentSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp when the environment was created.
+	// The timestamp when the runtime environment was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
 
-	// The target platform for the environment.
+	// The target platform for the runtime environment.
 	//
 	// EngineType is a required field
 	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
@@ -5989,17 +6006,17 @@ type EnvironmentSummary struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
 
-	// The instance type of the environment.
+	// The instance type of the runtime environment.
 	//
 	// InstanceType is a required field
 	InstanceType *string `locationName:"instanceType" type:"string" required:"true"`
 
-	// The name of the environment.
+	// The name of the runtime environment.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The status of the environment
+	// The status of the runtime environment
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"EnvironmentLifecycle"`
@@ -6432,11 +6449,14 @@ type GetApplicationOutput struct {
 	// EngineType is a required field
 	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	// The identifier of the environment where the application will be deployed.
+	// The identifier of the runtime environment where you want to deploy the application.
 	EnvironmentId *string `locationName:"environmentId" type:"string"`
 
-	// The timestamp when the application was last started. Null until the application
-	// has started running for the first time.
+	// The identifier of a customer managed key.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The timestamp when you last started the application. Null until the application
+	// runs for the first time.
 	LastStartTime *time.Time `locationName:"lastStartTime" type:"timestamp"`
 
 	// The latest version of the application.
@@ -6446,7 +6466,7 @@ type GetApplicationOutput struct {
 
 	// The Amazon Resource Name (ARN) for the network load balancer listener created
 	// in your Amazon Web Services account. Amazon Web Services Mainframe Modernization
-	// creates this listener on your behalf the first time you deploy an application.
+	// creates this listener for you the first time you deploy an application.
 	ListenerArns []*string `locationName:"listenerArns" min:"1" type:"list"`
 
 	// The port associated with the network load balancer listener created in your
@@ -6458,8 +6478,8 @@ type GetApplicationOutput struct {
 	LoadBalancerDnsName *string `locationName:"loadBalancerDnsName" type:"string"`
 
 	// The list of log summaries. Each log summary includes the log type as well
-	// as the log group identifier. These are CloudWatch logs. The Amazon Web Services
-	// Mainframe Modernization application log is pushed to CloudWatch under the
+	// as the log group identifier. These are CloudWatch logs. Amazon Web Services
+	// Mainframe Modernization pushes the application log to CloudWatch under the
 	// customer's account.
 	LogGroups []*LogGroupSummary `locationName:"logGroups" type:"list"`
 
@@ -6541,6 +6561,12 @@ func (s *GetApplicationOutput) SetEngineType(v string) *GetApplicationOutput {
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *GetApplicationOutput) SetEnvironmentId(v string) *GetApplicationOutput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *GetApplicationOutput) SetKmsKeyId(v string) *GetApplicationOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -6690,7 +6716,7 @@ type GetApplicationVersionOutput struct {
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" required:"true"`
 
 	// The content of the application definition. This is a JSON object that contains
-	// the resource configuration/definitions that identify an application.
+	// the resource configuration and definitions that identify an application.
 	//
 	// DefinitionContent is a required field
 	DefinitionContent *string `locationName:"definitionContent" min:"1" type:"string" required:"true"`
@@ -7039,8 +7065,7 @@ type GetDataSetDetailsOutput struct {
 	// DataSetName is a required field
 	DataSetName *string `locationName:"dataSetName" type:"string" required:"true"`
 
-	// The type of data set. Possible values include VSAM, IS, PS, GDG, PO, PS,
-	// or unknown.
+	// The type of data set. The only supported value is VSAM.
 	DataSetOrg *DatasetDetailOrgAttributes `locationName:"dataSetOrg" type:"structure"`
 
 	// The last time the data set was referenced.
@@ -7049,7 +7074,7 @@ type GetDataSetDetailsOutput struct {
 	// The last time the data set was updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The locaion where the data set is stored.
+	// The location where the data set is stored.
 	Location *string `locationName:"location" type:"string"`
 
 	// The length of records in the data set.
@@ -7498,11 +7523,14 @@ type GetEnvironmentOutput struct {
 	// InstanceType is a required field
 	InstanceType *string `locationName:"instanceType" type:"string" required:"true"`
 
+	// The identifier of a customer managed key.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
 	// The Amazon Resource Name (ARN) for the load balancer used with the runtime
 	// environment.
 	LoadBalancerArn *string `locationName:"loadBalancerArn" type:"string"`
 
-	// The name of the runtime environment.
+	// The name of the runtime environment. Must be unique within the account.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -7510,8 +7538,8 @@ type GetEnvironmentOutput struct {
 	// Indicates the pending maintenance scheduled on this environment.
 	PendingMaintenance *PendingMaintenance `locationName:"pendingMaintenance" type:"structure"`
 
-	// Configures a desired maintenance window for the environment. If you do not
-	// provide a value, a random system-generated value will be assigned.
+	// Configures the maintenance window you want for the runtime environment. If
+	// you do not provide a value, a random system-generated value will be assigned.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 
 	// Whether applications running in this runtime environment are publicly accessible.
@@ -7616,6 +7644,12 @@ func (s *GetEnvironmentOutput) SetHighAvailabilityConfig(v *HighAvailabilityConf
 // SetInstanceType sets the InstanceType field's value.
 func (s *GetEnvironmentOutput) SetInstanceType(v string) *GetEnvironmentOutput {
 	s.InstanceType = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *GetEnvironmentOutput) SetKmsKeyId(v string) *GetEnvironmentOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -8002,7 +8036,7 @@ func (s *ListApplicationsInput) SetNextToken(v string) *ListApplicationsInput {
 type ListApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns a list of summary details for all the applications in an environment.
+	// Returns a list of summary details for all the applications in a runtime environment.
 	//
 	// Applications is a required field
 	Applications []*ApplicationSummary `locationName:"applications" type:"list" required:"true"`
@@ -8530,7 +8564,7 @@ func (s *ListDataSetsInput) SetPrefix(v string) *ListDataSetsInput {
 type ListDataSetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of data sets, containing ionformation including the creating time,
+	// The list of data sets, containing information including the creation time,
 	// the data set name, the data set organization, the data set format, and the
 	// last time the data set was referenced or updated.
 	//
@@ -8797,17 +8831,17 @@ func (s *ListEngineVersionsOutput) SetNextToken(v string) *ListEngineVersionsOut
 type ListEnvironmentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The engine type for the environment.
+	// The engine type for the runtime environment.
 	EngineType *string `location:"querystring" locationName:"engineType" type:"string" enum:"EngineType"`
 
-	// The maximum number of environments to return.
+	// The maximum number of runtime environments to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The name of the environment.
+	// The names of the runtime environments. Must be unique within the account.
 	Names []*string `location:"querystring" locationName:"names" min:"1" type:"list"`
 
-	// A pagination token to control the number of environments displayed in the
-	// list.
+	// A pagination token to control the number of runtime environments displayed
+	// in the list.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -8872,13 +8906,14 @@ func (s *ListEnvironmentsInput) SetNextToken(v string) *ListEnvironmentsInput {
 type ListEnvironmentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns a list of summary details for all the environments in your account.
+	// Returns a list of summary details for all the runtime environments in your
+	// account.
 	//
 	// Environments is a required field
 	Environments []*EnvironmentSummary `locationName:"environments" type:"list" required:"true"`
 
 	// A pagination token that's returned when the response doesn't contain all
-	// the environments.
+	// the runtime environments.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -8994,9 +9029,9 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// A subset of the attributes about a log group. In CloudWatch a log group is
-// a group of log streams that share the same retention, monitoring, and access
-// control settings.
+// A subset of the attributes that describe a log group. In CloudWatch a log
+// group is a group of log streams that share the same retention, monitoring,
+// and access control settings.
 type LogGroupSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -9089,7 +9124,7 @@ type PendingMaintenance struct {
 	// The specific runtime engine that the maintenance schedule applies to.
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
-	// The maintenance schedule for the engine version.
+	// The maintenance schedule for the runtime engine version.
 	Schedule *MaintenanceSchedule `locationName:"schedule" type:"structure"`
 }
 
@@ -9752,7 +9787,7 @@ func (s StopApplicationOutput) GoString() string {
 	return s.String()
 }
 
-// Defines the storage configuration for an environment.
+// Defines the storage configuration for a runtime environment.
 type StorageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10182,17 +10217,17 @@ func (s *UpdateApplicationOutput) SetApplicationVersion(v int64) *UpdateApplicat
 type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether to update the environment during the maintenance window.
-	// The default is false. Currently, Amazon Web Services Mainframe Modernization
+	// Indicates whether to update the runtime environment during the maintenance
+	// window. The default is false. Currently, Amazon Web Services Mainframe Modernization
 	// accepts the engineVersion parameter only if applyDuringMaintenanceWindow
 	// is true. If any parameter other than engineVersion is provided in UpdateEnvironmentRequest,
 	// it will fail if applyDuringMaintenanceWindow is set to true.
 	ApplyDuringMaintenanceWindow *bool `locationName:"applyDuringMaintenanceWindow" type:"boolean"`
 
-	// The desired capacity for the environment to update.
+	// The desired capacity for the runtime environment to update.
 	DesiredCapacity *int64 `locationName:"desiredCapacity" min:"1" type:"integer"`
 
-	// The version of the runtime engine for the environment.
+	// The version of the runtime engine for the runtime environment.
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
 	// The unique identifier of the runtime environment that you want to update.
@@ -10200,11 +10235,11 @@ type UpdateEnvironmentInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"environmentId" type:"string" required:"true"`
 
-	// The instance type for the environment to update.
+	// The instance type for the runtime environment to update.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
-	// Configures a desired maintenance window for the environment. If you do not
-	// provide a value, a random system-generated value will be assigned.
+	// Configures the maintenance window you want for the runtime environment. If
+	// you do not provide a value, a random system-generated value will be assigned.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 }
 
@@ -10659,6 +10694,9 @@ const (
 
 	// ApplicationLifecycleDeleting is a ApplicationLifecycle enum value
 	ApplicationLifecycleDeleting = "Deleting"
+
+	// ApplicationLifecycleDeletingFromEnvironment is a ApplicationLifecycle enum value
+	ApplicationLifecycleDeletingFromEnvironment = "Deleting From Environment"
 )
 
 // ApplicationLifecycle_Values returns all elements of the ApplicationLifecycle enum
@@ -10674,6 +10712,7 @@ func ApplicationLifecycle_Values() []string {
 		ApplicationLifecycleStopped,
 		ApplicationLifecycleFailed,
 		ApplicationLifecycleDeleting,
+		ApplicationLifecycleDeletingFromEnvironment,
 	}
 }
 
@@ -10829,6 +10868,9 @@ const (
 
 	// EnvironmentLifecycleFailed is a EnvironmentLifecycle enum value
 	EnvironmentLifecycleFailed = "Failed"
+
+	// EnvironmentLifecycleUpdating is a EnvironmentLifecycle enum value
+	EnvironmentLifecycleUpdating = "Updating"
 )
 
 // EnvironmentLifecycle_Values returns all elements of the EnvironmentLifecycle enum
@@ -10838,6 +10880,7 @@ func EnvironmentLifecycle_Values() []string {
 		EnvironmentLifecycleAvailable,
 		EnvironmentLifecycleDeleting,
 		EnvironmentLifecycleFailed,
+		EnvironmentLifecycleUpdating,
 	}
 }
 

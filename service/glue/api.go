@@ -36793,6 +36793,10 @@ type DeltaTarget struct {
 	// The name of the connection to use to connect to the Delta table target.
 	ConnectionName *string `type:"string"`
 
+	// Specifies whether the crawler will create native tables, to allow integration
+	// with query engines that support querying of the Delta transaction log directly.
+	CreateNativeDeltaTable *bool `type:"boolean"`
+
 	// A list of the Amazon S3 paths to the Delta tables.
 	DeltaTables []*string `type:"list"`
 
@@ -36821,6 +36825,12 @@ func (s DeltaTarget) GoString() string {
 // SetConnectionName sets the ConnectionName field's value.
 func (s *DeltaTarget) SetConnectionName(v string) *DeltaTarget {
 	s.ConnectionName = &v
+	return s
+}
+
+// SetCreateNativeDeltaTable sets the CreateNativeDeltaTable field's value.
+func (s *DeltaTarget) SetCreateNativeDeltaTable(v bool) *DeltaTarget {
+	s.CreateNativeDeltaTable = &v
 	return s
 }
 

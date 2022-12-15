@@ -1404,17 +1404,15 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 //
 // Starts an asynchronous batch translation job. Use batch translation jobs
 // to translate large volumes of text across multiple documents at once. For
-// batch translation, the input documents must share the same source language.
-// You can specify one or more target languages. Batch translation translates
-// each input document into each of the target languages. For more information,
-// see Asynchronous batch processing (https://docs.aws.amazon.com/translate/latest/dg/async.html)
+// batch translation, you can input documents with different source languages
+// (specify auto as the source language). You can specify one or more target
+// languages. Batch translation translates each input document into each of
+// the target languages. For more information, see Asynchronous batch processing
+// (https://docs.aws.amazon.com/translate/latest/dg/async.html).
 //
 // Batch translation jobs can be described with the DescribeTextTranslationJob
 // operation, listed with the ListTextTranslationJobs operation, and stopped
 // with the StopTextTranslationJob operation.
-//
-// Amazon Translate does not support batch translation of multiple source languages
-// at once.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3169,14 +3167,8 @@ type InputDataConfig struct {
 	ContentType *string `type:"string" required:"true"`
 
 	// The URI of the AWS S3 folder that contains the input files. Amazon Translate
-	// translates all the files in the folder. The folder must be in the same Region
-	// as the API endpoint you are calling.
-	//
-	// The URI can also point to a single input document, or it can provide the
-	// prefix for a collection of input documents. For example. if you use the URI
-	// S3://bucketName/prefix and the prefix is a single file, Amazon Translate
-	// uses that files as input. If more than one file begins with the prefix, Amazon
-	// Translate uses all of them as input.
+	// translates all the files in the folder and all its sub-folders. The folder
+	// must be in the same Region as the API endpoint you are calling.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
@@ -4700,11 +4692,12 @@ type StartTextTranslationJobInput struct {
 	// and phrases.
 	Settings *TranslationSettings `type:"structure"`
 
-	// The language code of the input language. For a list of language codes, see
-	// Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
-	//
-	// Amazon Translate does not automatically detect a source language during batch
-	// translation jobs.
+	// The language code of the input language. Specify the language if all input
+	// documents share the same language. If you don't know the language of the
+	// source files, or your input documents contains different source languages,
+	// select auto. Amazon Translate auto detects the source language for each input
+	// document. For a list of supported language codes, see Supported languages
+	// (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// SourceLanguageCode is a required field
 	SourceLanguageCode *string `min:"2" type:"string" required:"true"`
@@ -4712,8 +4705,8 @@ type StartTextTranslationJobInput struct {
 	// The target languages of the translation job. Enter up to 10 language codes.
 	// Each input file is translated into each target language.
 	//
-	// Each language code is two or five characters long. For a list of language
-	// codes, see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
+	// Each language code is 2 or 5 characters long. For a list of language codes,
+	// see Supported languages (https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html).
 	//
 	// TargetLanguageCodes is a required field
 	TargetLanguageCodes []*string `min:"1" type:"list" required:"true"`
@@ -5568,8 +5561,8 @@ type TextInput struct {
 	// lists can contain a maximum of 256 terms.
 	TerminologyNames []*string `type:"list"`
 
-	// The text to translate. The text string can be a maximum of 5,000 bytes long.
-	// Depending on your character set, this may be fewer than 5,000 characters.
+	// The text to translate. The text string can be a maximum of 10,000 bytes long.
+	// Depending on your character set, this may be fewer than 10,000 characters.
 	//
 	// Text is a required field
 	Text *string `min:"1" type:"string" required:"true"`
@@ -6180,8 +6173,8 @@ type TranslationSettings struct {
 	// If you specify multiple target languages for the job, translate ignores the
 	// formality setting for any unsupported target language.
 	//
-	// For a list of target languages that support formality, see Setting Formality
-	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html)
+	// For a list of target languages that support formality, see Supported languages
+	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html#customizing-translations-formality-languages)
 	// in the Amazon Translate Developer Guide.
 	Formality *string `type:"string" enum:"Formality"`
 
@@ -6193,7 +6186,8 @@ type TranslationSettings struct {
 	// word or phrase, regardless of the length or number of words.
 	//
 	// Amazon Translate doesn't detect profanity in all of its supported languages.
-	// For languages that support profanity detection, see Masking profanity (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-profanity.html)
+	// For languages that don't support profanity detection, see Unsupported languages
+	// (https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-profanity.html#customizing-translations-profanity-languages)
 	// in the Amazon Translate Developer Guide.
 	//
 	// If you specify multiple target languages for the job, all the target languages

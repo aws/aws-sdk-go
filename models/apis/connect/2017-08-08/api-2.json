@@ -10126,7 +10126,9 @@
         "ko-KR",
         "pt-BR",
         "pt-PT",
-        "zh-CN"
+        "zh-CN",
+        "en-NZ",
+        "en-ZA"
       ]
     },
     "VocabularyLastModifiedTime":{"type":"timestamp"},

@@ -641,9 +641,11 @@ func (c *EKS) CreateNodegroupRequest(input *CreateNodegroupInput) (req *request.
 //
 // An Amazon EKS managed node group is an Amazon EC2 Auto Scaling group and
 // associated Amazon EC2 instances that are managed by Amazon Web Services for
-// an Amazon EKS cluster. Each node group uses a version of the Amazon EKS optimized
-// Amazon Linux 2 AMI. For more information, see Managed Node Groups (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html)
+// an Amazon EKS cluster. For more information, see Managed node groups (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html)
 // in the Amazon EKS User Guide.
+//
+// Windows AMI types are only supported for commercial Regions that support
+// Windows Amazon EKS.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3924,8 +3926,10 @@ func (c *EKS) UpdateNodegroupVersionRequest(input *UpdateNodegroupVersionInput) 
 // available AMI version of a node group's current Kubernetes version by not
 // specifying a Kubernetes version in the request. You can update to the latest
 // AMI version of your cluster's current Kubernetes version by specifying your
-// cluster's Kubernetes version in the request. For more information, see Amazon
-// EKS optimized Amazon Linux 2 AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)
+// cluster's Kubernetes version in the request. For information about Linux
+// versions, see Amazon EKS optimized Amazon Linux AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)
+// in the Amazon EKS User Guide. For information about Windows versions, see
+// Amazon EKS optimized Windows AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-ami-versions-windows.html)
 // in the Amazon EKS User Guide.
 //
 // You cannot roll back a node group to an earlier Kubernetes version or AMI
@@ -4077,13 +4081,13 @@ type Addon struct {
 	// The name of the cluster.
 	ClusterName *string `locationName:"clusterName" min:"1" type:"string"`
 
-	// The provided configuration values.
+	// The configuration values that you provided.
 	ConfigurationValues *string `locationName:"configurationValues" type:"string"`
 
 	// The date and time that the add-on was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// An object representing the health of the add-on.
+	// An object that represents the health of the add-on.
 	Health *AddonHealth `locationName:"health" type:"structure"`
 
 	// Information about an Amazon EKS add-on from the Amazon Web Services Marketplace.
@@ -4098,8 +4102,8 @@ type Addon struct {
 	// The publisher of the add-on.
 	Publisher *string `locationName:"publisher" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that is bound to the Kubernetes
-	// service account used by the add-on.
+	// The Amazon Resource Name (ARN) of the IAM role that's bound to the Kubernetes
+	// service account that the add-on uses.
 	ServiceAccountRoleArn *string `locationName:"serviceAccountRoleArn" type:"string"`
 
 	// The status of the add-on.
@@ -5439,8 +5443,9 @@ func (s *ControlPlanePlacementResponse) SetGroupName(v string) *ControlPlanePlac
 type CreateAddonInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the add-on. The name must match one of the names returned by
-	// DescribeAddonVersions (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html).
+	// The name of the add-on. The name must match one of the names that DescribeAddonVersions
+	// (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html)
+	// returns.
 	//
 	// AddonName is a required field
 	AddonName *string `locationName:"addonName" type:"string" required:"true"`
@@ -5458,8 +5463,8 @@ type CreateAddonInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The set of configuration values for the add-on being created. Whatever values
-	// provided here are validated against the schema from DescribeAddonConfiguration
+	// The set of configuration values for the add-on that's created. The values
+	// that you provide are validated against the schema in DescribeAddonConfiguration
 	// (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonConfiguration.html).
 	ConfigurationValues *string `locationName:"configurationValues" type:"string"`
 
@@ -5994,13 +5999,12 @@ func (s *CreateFargateProfileOutput) SetFargateProfile(v *FargateProfile) *Creat
 type CreateNodegroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AMI type for your node group. GPU instance types should use the AL2_x86_64_GPU
-	// AMI type. Non-GPU instances should use the AL2_x86_64 AMI type. Arm instances
-	// should use the AL2_ARM_64 AMI type. All types use the Amazon EKS optimized
-	// Amazon Linux 2 AMI. If you specify launchTemplate, and your launch template
-	// uses a custom AMI, then don't specify amiType, or the node group deployment
-	// will fail. For more information about using launch templates with Amazon
-	// EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
+	// The AMI type for your node group. If you specify launchTemplate, and your
+	// launch template uses a custom AMI, then don't specify amiType, or the node
+	// group deployment will fail. If your launch template uses a Windows custom
+	// AMI, then add eks:kube-proxy-windows to your Windows nodes rolearn in the
+	// aws-auth ConfigMap. For more information about using launch templates with
+	// Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 	// in the Amazon EKS User Guide.
 	AmiType *string `locationName:"amiType" type:"string" enum:"AMITypes"`
 
@@ -6017,22 +6021,23 @@ type CreateNodegroupInput struct {
 	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
 
 	// The root device disk size (in GiB) for your node group instances. The default
-	// disk size is 20 GiB. If you specify launchTemplate, then don't specify diskSize,
+	// disk size is 20 GiB for Linux and Bottlerocket. The default disk size is
+	// 50 GiB for Windows. If you specify launchTemplate, then don't specify diskSize,
 	// or the node group deployment will fail. For more information about using
 	// launch templates with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 	// in the Amazon EKS User Guide.
 	DiskSize *int64 `locationName:"diskSize" type:"integer"`
 
 	// Specify the instance types for a node group. If you specify a GPU instance
-	// type, be sure to specify AL2_x86_64_GPU with the amiType parameter. If you
-	// specify launchTemplate, then you can specify zero or one instance type in
-	// your launch template or you can specify 0-20 instance types for instanceTypes.
-	// If however, you specify an instance type in your launch template and specify
-	// any instanceTypes, the node group deployment will fail. If you don't specify
-	// an instance type in a launch template or for instanceTypes, then t3.medium
-	// is used, by default. If you specify Spot for capacityType, then we recommend
-	// specifying multiple values for instanceTypes. For more information, see Managed
-	// node group capacity types (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-capacity-types)
+	// type, make sure to also specify an applicable GPU AMI type with the amiType
+	// parameter. If you specify launchTemplate, then you can specify zero or one
+	// instance type in your launch template or you can specify 0-20 instance types
+	// for instanceTypes. If however, you specify an instance type in your launch
+	// template and specify any instanceTypes, the node group deployment will fail.
+	// If you don't specify an instance type in a launch template or for instanceTypes,
+	// then t3.medium is used, by default. If you specify Spot for capacityType,
+	// then we recommend specifying multiple values for instanceTypes. For more
+	// information, see Managed node group capacity types (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-capacity-types)
 	// and Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 	// in the Amazon EKS User Guide.
 	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
@@ -6070,19 +6075,25 @@ type CreateNodegroupInput struct {
 
 	// The AMI version of the Amazon EKS optimized AMI to use with your node group.
 	// By default, the latest available AMI version for the node group's current
-	// Kubernetes version is used. For more information, see Amazon EKS optimized
-	// Amazon Linux 2 AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)
-	// in the Amazon EKS User Guide. If you specify launchTemplate, and your launch
-	// template uses a custom AMI, then don't specify releaseVersion, or the node
-	// group deployment will fail. For more information about using launch templates
-	// with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
+	// Kubernetes version is used. For information about Linux versions, see Amazon
+	// EKS optimized Amazon Linux AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)
+	// in the Amazon EKS User Guide. Amazon EKS managed node groups support the
+	// November 2022 and later releases of the Windows AMIs. For information about
+	// Windows versions, see Amazon EKS optimized Windows AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-ami-versions-windows.html)
+	// in the Amazon EKS User Guide.
+	//
+	// If you specify launchTemplate, and your launch template uses a custom AMI,
+	// then don't specify releaseVersion, or the node group deployment will fail.
+	// For more information about using launch templates with Amazon EKS, see Launch
+	// template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 	// in the Amazon EKS User Guide.
 	ReleaseVersion *string `locationName:"releaseVersion" type:"string"`
 
-	// The remote access (SSH) configuration to use with your node group. If you
-	// specify launchTemplate, then don't specify remoteAccess, or the node group
-	// deployment will fail. For more information about using launch templates with
-	// Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
+	// The remote access configuration to use with your node group. For Linux, the
+	// protocol is SSH. For Windows, the protocol is RDP. If you specify launchTemplate,
+	// then don't specify remoteAccess, or the node group deployment will fail.
+	// For more information about using launch templates with Amazon EKS, see Launch
+	// template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 	// in the Amazon EKS User Guide.
 	RemoteAccess *RemoteAccessConfig `locationName:"remoteAccess" type:"structure"`
 
@@ -6796,8 +6807,9 @@ func (s *DeregisterClusterOutput) SetCluster(v *Cluster) *DeregisterClusterOutpu
 type DescribeAddonConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the add-on. The name must match one of the names returned by
-	// DescribeAddonVersions (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html).
+	// The name of the add-on. The name must match one of the names that DescribeAddonVersions
+	// (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html)
+	// returns.
 	//
 	// AddonName is a required field
 	AddonName *string `location:"querystring" locationName:"addonName" type:"string" required:"true"`
@@ -6865,8 +6877,8 @@ type DescribeAddonConfigurationOutput struct {
 	// by DescribeAddonVersions (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html).
 	AddonVersion *string `locationName:"addonVersion" type:"string"`
 
-	// A JSON schema used to validate provided configuration values when creating
-	// or updating an addon.
+	// A JSON schema that's used to validate the configuration values that you provide
+	// when an addon is created or updated.
 	ConfigurationSchema *string `locationName:"configurationSchema" type:"string"`
 }
 
@@ -10752,14 +10764,17 @@ type RemoteAccessConfig struct {
 	// The Amazon EC2 SSH key name that provides access for SSH communication with
 	// the nodes in the managed node group. For more information, see Amazon EC2
 	// key pairs and Linux instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
-	// in the Amazon Elastic Compute Cloud User Guide for Linux Instances.
+	// in the Amazon Elastic Compute Cloud User Guide for Linux Instances. For Windows,
+	// an Amazon EC2 SSH key is used to obtain the RDP password. For more information,
+	// see Amazon EC2 key pairs and Windows instances (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html)
+	// in the Amazon Elastic Compute Cloud User Guide for Windows Instances.
 	Ec2SshKey *string `locationName:"ec2SshKey" type:"string"`
 
-	// The security group ids that are allowed SSH access (port 22) to the nodes.
-	// If you specify an Amazon EC2 SSH key but do not specify a source security
-	// group when you create a managed node group, then port 22 on the nodes is
-	// opened to the internet (0.0.0.0/0). For more information, see Security Groups
-	// for Your VPC (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+	// The security group IDs that are allowed SSH access (port 22) to the nodes.
+	// For Windows, the port is 3389. If you specify an Amazon EC2 SSH key but don't
+	// specify a source security group when you create a managed node group, then
+	// the port on the nodes is opened to the internet (0.0.0.0/0). For more information,
+	// see Security Groups for Your VPC (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
 	// in the Amazon Virtual Private Cloud User Guide.
 	SourceSecurityGroups []*string `locationName:"sourceSecurityGroups" type:"list"`
 }
@@ -11633,9 +11648,9 @@ type UpdateAddonInput struct {
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The set of configuration values for the add-on being created. Whatever values
-	// provided here are validated against the schema from DescribeAddonConfiguration
-	// (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonConfiguration.html)
+	// The set of configuration values for the add-on that's created. The values
+	// that you provide are validated against the schema in DescribeAddonConfiguration
+	// (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonConfiguration.html).
 	ConfigurationValues *string `locationName:"configurationValues" type:"string"`
 
 	// How to resolve field value conflicts for an Amazon EKS add-on if you've changed
@@ -12235,12 +12250,17 @@ type UpdateNodegroupVersionInput struct {
 
 	// The AMI version of the Amazon EKS optimized AMI to use for the update. By
 	// default, the latest available AMI version for the node group's Kubernetes
-	// version is used. For more information, see Amazon EKS optimized Amazon Linux
-	// 2 AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)
-	// in the Amazon EKS User Guide. If you specify launchTemplate, and your launch
-	// template uses a custom AMI, then don't specify releaseVersion, or the node
-	// group update will fail. For more information about using launch templates
-	// with Amazon EKS, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
+	// version is used. For information about Linux versions, see Amazon EKS optimized
+	// Amazon Linux AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)
+	// in the Amazon EKS User Guide. Amazon EKS managed node groups support the
+	// November 2022 and later releases of the Windows AMIs. For information about
+	// Windows versions, see Amazon EKS optimized Windows AMI versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-ami-versions-windows.html)
+	// in the Amazon EKS User Guide.
+	//
+	// If you specify launchTemplate, and your launch template uses a custom AMI,
+	// then don't specify releaseVersion, or the node group update will fail. For
+	// more information about using launch templates with Amazon EKS, see Launch
+	// template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
 	// in the Amazon EKS User Guide.
 	ReleaseVersion *string `locationName:"releaseVersion" type:"string"`
 
@@ -12708,6 +12728,18 @@ const (
 
 	// AMITypesBottlerocketX8664Nvidia is a AMITypes enum value
 	AMITypesBottlerocketX8664Nvidia = "BOTTLEROCKET_x86_64_NVIDIA"
+
+	// AMITypesWindowsCore2019X8664 is a AMITypes enum value
+	AMITypesWindowsCore2019X8664 = "WINDOWS_CORE_2019_x86_64"
+
+	// AMITypesWindowsFull2019X8664 is a AMITypes enum value
+	AMITypesWindowsFull2019X8664 = "WINDOWS_FULL_2019_x86_64"
+
+	// AMITypesWindowsCore2022X8664 is a AMITypes enum value
+	AMITypesWindowsCore2022X8664 = "WINDOWS_CORE_2022_x86_64"
+
+	// AMITypesWindowsFull2022X8664 is a AMITypes enum value
+	AMITypesWindowsFull2022X8664 = "WINDOWS_FULL_2022_x86_64"
 )
 
 // AMITypes_Values returns all elements of the AMITypes enum
@@ -12721,6 +12753,10 @@ func AMITypes_Values() []string {
 		AMITypesBottlerocketX8664,
 		AMITypesBottlerocketArm64Nvidia,
 		AMITypesBottlerocketX8664Nvidia,
+		AMITypesWindowsCore2019X8664,
+		AMITypesWindowsFull2019X8664,
+		AMITypesWindowsCore2022X8664,
+		AMITypesWindowsFull2022X8664,
 	}
 }
 
