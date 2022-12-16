@@ -2031,6 +2031,10 @@ func (c *IoTFleetWise) GetModelManifestRequest(input *GetModelManifestInput) (re
 //   - ThrottlingException
 //     The request couldn't be completed due to throttling.
 //
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
 //   - AccessDeniedException
 //     You don't have sufficient permission to perform this action.
 //
@@ -5473,6 +5477,10 @@ func (c *IoTFleetWise) UpdateSignalCatalogRequest(input *UpdateSignalCatalogInpu
 //
 //   - ThrottlingException
 //     The request couldn't be completed due to throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     service.
 //
 //   - InvalidSignalsException
 //     The request couldn't be completed because it contains signals that aren't

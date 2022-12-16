@@ -60,7 +60,7 @@ func (c *CloudFront) AssociateAliasRequest(input *AssociateAliasInput) (req *req
 // Associates an alias (also known as a CNAME or an alternate domain name) with
 // a CloudFront distribution.
 //
-// With this operation you can move an alias that’s already in use on a CloudFront
+// With this operation you can move an alias that's already in use on a CloudFront
 // distribution to a different distribution in one step. This prevents the downtime
 // that could occur if you first remove the alias from one distribution and
 // then separately add the alias to another distribution.
@@ -167,7 +167,7 @@ func (c *CloudFront) CopyDistributionRequest(input *CopyDistributionInput) (req 
 // workflow.
 //
 // After you create a staging distribution, you can use UpdateDistribution to
-// modify the staging distribution’s configuration. Then you can use CreateContinuousDeploymentPolicy
+// modify the staging distribution's configuration. Then you can use CreateContinuousDeploymentPolicy
 // to incrementally move traffic to the staging distribution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -474,8 +474,7 @@ func (c *CloudFront) CreateCachePolicyRequest(input *CreateCachePolicyInput) (re
 // Creates a cache policy.
 //
 // After you create a cache policy, you can attach it to one or more cache behaviors.
-// When it’s attached to a cache behavior, the cache policy determines the
-// following:
+// When it's attached to a cache behavior, the cache policy determines the following:
 //
 //   - The values that CloudFront includes in the cache key. These values can
 //     include HTTP headers, cookies, and URL query strings. CloudFront uses
@@ -487,8 +486,8 @@ func (c *CloudFront) CreateCachePolicyRequest(input *CreateCachePolicyInput) (re
 //
 // The headers, cookies, and query strings that are included in the cache key
 // are automatically included in requests that CloudFront sends to the origin.
-// CloudFront sends a request when it can’t find an object in its cache that
-// matches the request’s cache key. If you want to send values to the origin
+// CloudFront sends a request when it can't find an object in its cache that
+// matches the request's cache key. If you want to send values to the origin
 // but not include them in the cache key, use OriginRequestPolicy.
 //
 // For more information about cache policies, see Controlling the cache key
@@ -708,12 +707,12 @@ func (c *CloudFront) CreateContinuousDeploymentPolicyRequest(input *CreateContin
 //
 // To use a continuous deployment policy, first use CopyDistribution to create
 // a staging distribution, then use UpdateDistribution to modify the staging
-// distribution’s configuration.
+// distribution's configuration.
 //
 // After you create and update a staging distribution, you can use a continuous
 // deployment policy to incrementally move traffic to the staging distribution.
-// This workflow enables you to test changes to a distribution’s configuration
-// before moving all of your domain’s production traffic to the new configuration.
+// This workflow enables you to test changes to a distribution's configuration
+// before moving all of your domain's production traffic to the new configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1053,7 +1052,7 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //     a primary distribution.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 //   - ErrCodeInvalidDomainNameForOriginAccessControl "InvalidDomainNameForOriginAccessControl"
 //     An origin access control is associated with an origin whose domain name is
@@ -1361,7 +1360,7 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //     a primary distribution.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 //   - ErrCodeInvalidDomainNameForOriginAccessControl "InvalidDomainNameForOriginAccessControl"
 //     An origin access control is associated with an origin whose domain name is
@@ -1643,13 +1642,13 @@ func (c *CloudFront) CreateFunctionRequest(input *CreateFunctionInput) (req *req
 // information about the function. The response contains an Amazon Resource
 // Name (ARN) that uniquely identifies the function.
 //
-// When you create a function, it’s in the DEVELOPMENT stage. In this stage,
+// When you create a function, it's in the DEVELOPMENT stage. In this stage,
 // you can test the function with TestFunction, and update it with UpdateFunction.
 //
-// When you’re ready to use your function with a CloudFront distribution,
-// use PublishFunction to copy the function from the DEVELOPMENT stage to LIVE.
-// When it’s live, you can attach the function to a distribution’s cache
-// behavior, using the function’s ARN.
+// When you're ready to use your function with a CloudFront distribution, use
+// PublishFunction to copy the function from the DEVELOPMENT stage to LIVE.
+// When it's live, you can attach the function to a distribution's cache behavior,
+// using the function's ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2143,7 +2142,7 @@ func (c *CloudFront) CreateOriginRequestPolicyRequest(input *CreateOriginRequest
 // Creates an origin request policy.
 //
 // After you create an origin request policy, you can attach it to one or more
-// cache behaviors. When it’s attached to a cache behavior, the origin request
+// cache behaviors. When it's attached to a cache behavior, the origin request
 // policy determines the values that CloudFront includes in requests that it
 // sends to the origin. Each request that CloudFront sends to the origin includes
 // the following:
@@ -2159,7 +2158,7 @@ func (c *CloudFront) CreateOriginRequestPolicyRequest(input *CreateOriginRequest
 //     from the viewer request and, in the case of headers, additional ones that
 //     are added by CloudFront.
 //
-// CloudFront sends a request when it can’t find a valid object in its cache
+// CloudFront sends a request when it can't find a valid object in its cache
 // that matches the request. If you want to send values to the origin and also
 // include them in the cache key, use CachePolicy.
 //
@@ -2469,7 +2468,7 @@ func (c *CloudFront) CreateResponseHeadersPolicyRequest(input *CreateResponseHea
 // the response headers.
 //
 // After you create a response headers policy, you can use its ID to attach
-// it to one or more cache behaviors in a CloudFront distribution. When it’s
+// it to one or more cache behaviors in a CloudFront distribution. When it's
 // attached to a cache behavior, CloudFront adds the headers in the policy to
 // HTTP responses that it sends for requests that match the cache behavior.
 //
@@ -2830,12 +2829,12 @@ func (c *CloudFront) DeleteCachePolicyRequest(input *DeleteCachePolicyInput) (re
 //
 // Deletes a cache policy.
 //
-// You cannot delete a cache policy if it’s attached to a cache behavior.
-// First update your distributions to remove the cache policy from all cache
-// behaviors, then delete the cache policy.
+// You cannot delete a cache policy if it's attached to a cache behavior. First
+// update your distributions to remove the cache policy from all cache behaviors,
+// then delete the cache policy.
 //
-// To delete a cache policy, you must provide the policy’s identifier and
-// version. To get these values, you can use ListCachePolicies or GetCachePolicy.
+// To delete a cache policy, you must provide the policy's identifier and version.
+// To get these values, you can use ListCachePolicies or GetCachePolicy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3025,7 +3024,7 @@ func (c *CloudFront) DeleteContinuousDeploymentPolicyRequest(input *DeleteContin
 //
 // Deletes a continuous deployment policy.
 //
-// You cannot delete a continuous deployment policy that’s attached to a primary
+// You cannot delete a continuous deployment policy that's attached to a primary
 // distribution. First update your distribution to remove the continuous deployment
 // policy, then you can delete the policy.
 //
@@ -3055,7 +3054,7 @@ func (c *CloudFront) DeleteContinuousDeploymentPolicyRequest(input *DeleteContin
 //     a primary distribution.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteContinuousDeploymentPolicy
 func (c *CloudFront) DeleteContinuousDeploymentPolicy(input *DeleteContinuousDeploymentPolicyInput) (*DeleteContinuousDeploymentPolicyOutput, error) {
@@ -3402,12 +3401,12 @@ func (c *CloudFront) DeleteFunctionRequest(input *DeleteFunctionInput) (req *req
 //
 // Deletes a CloudFront function.
 //
-// You cannot delete a function if it’s associated with a cache behavior.
-// First, update your distributions to remove the function association from
-// all cache behaviors, then delete the function.
+// You cannot delete a function if it's associated with a cache behavior. First,
+// update your distributions to remove the function association from all cache
+// behaviors, then delete the function.
 //
-// To delete a function, you must provide the function’s name and version
-// (ETag value). To get these values, you can use ListFunctions and DescribeFunction.
+// To delete a function, you must provide the function's name and version (ETag
+// value). To get these values, you can use ListFunctions and DescribeFunction.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3425,7 +3424,7 @@ func (c *CloudFront) DeleteFunctionRequest(input *DeleteFunctionInput) (req *req
 //     The function does not exist.
 //
 //   - ErrCodeFunctionInUse "FunctionInUse"
-//     Cannot delete the function because it’s attached to one or more cache behaviors.
+//     Cannot delete the function because it's attached to one or more cache behaviors.
 //
 //   - ErrCodePreconditionFailed "PreconditionFailed"
 //     The precondition in one or more of the request fields evaluated to false.
@@ -3505,9 +3504,8 @@ func (c *CloudFront) DeleteKeyGroupRequest(input *DeleteKeyGroupInput) (req *req
 // update your distributions to remove the key group from all cache behaviors,
 // then delete the key group.
 //
-// To delete a key group, you must provide the key group’s identifier and
-// version. To get these values, use ListKeyGroups followed by GetKeyGroup or
-// GetKeyGroupConfig.
+// To delete a key group, you must provide the key group's identifier and version.
+// To get these values, use ListKeyGroups followed by GetKeyGroup or GetKeyGroupConfig.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3784,11 +3782,11 @@ func (c *CloudFront) DeleteOriginRequestPolicyRequest(input *DeleteOriginRequest
 //
 // Deletes an origin request policy.
 //
-// You cannot delete an origin request policy if it’s attached to any cache
+// You cannot delete an origin request policy if it's attached to any cache
 // behaviors. First update your distributions to remove the origin request policy
 // from all cache behaviors, then delete the origin request policy.
 //
-// To delete an origin request policy, you must provide the policy’s identifier
+// To delete an origin request policy, you must provide the policy's identifier
 // and version. To get the identifier, you can use ListOriginRequestPolicies
 // or GetOriginRequestPolicy.
 //
@@ -3980,11 +3978,11 @@ func (c *CloudFront) DeleteRealtimeLogConfigRequest(input *DeleteRealtimeLogConf
 //
 // Deletes a real-time log configuration.
 //
-// You cannot delete a real-time log configuration if it’s attached to a cache
+// You cannot delete a real-time log configuration if it's attached to a cache
 // behavior. First update your distributions to remove the real-time log configuration
 // from all cache behaviors, then delete the real-time log configuration.
 //
-// To delete a real-time log configuration, you can provide the configuration’s
+// To delete a real-time log configuration, you can provide the configuration's
 // name or its Amazon Resource Name (ARN). You must provide at least one. If
 // you provide both, CloudFront uses the name to identify the real-time log
 // configuration to delete.
@@ -4079,11 +4077,11 @@ func (c *CloudFront) DeleteResponseHeadersPolicyRequest(input *DeleteResponseHea
 //
 // Deletes a response headers policy.
 //
-// You cannot delete a response headers policy if it’s attached to a cache
-// behavior. First update your distributions to remove the response headers
-// policy from all cache behaviors, then delete the response headers policy.
+// You cannot delete a response headers policy if it's attached to a cache behavior.
+// First update your distributions to remove the response headers policy from
+// all cache behaviors, then delete the response headers policy.
 //
-// To delete a response headers policy, you must provide the policy’s identifier
+// To delete a response headers policy, you must provide the policy's identifier
 // and version. To get these values, you can use ListResponseHeadersPolicies
 // or GetResponseHeadersPolicy.
 //
@@ -4309,11 +4307,10 @@ func (c *CloudFront) DescribeFunctionRequest(input *DescribeFunctionInput) (req 
 // DescribeFunction API operation for Amazon CloudFront.
 //
 // Gets configuration information and metadata about a CloudFront function,
-// but not the function’s code. To get a function’s code, use GetFunction.
+// but not the function's code. To get a function's code, use GetFunction.
 //
 // To get configuration information and metadata about a function, you must
-// provide the function’s name and stage. To get these values, you can use
-// ListFunctions.
+// provide the function's name and stage. To get these values, you can use ListFunctions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4397,15 +4394,14 @@ func (c *CloudFront) GetCachePolicyRequest(input *GetCachePolicyInput) (req *req
 //
 // Gets a cache policy, including the following metadata:
 //
-//   - The policy’s identifier.
+//   - The policy's identifier.
 //
 //   - The date and time when the policy was last modified.
 //
-// To get a cache policy, you must provide the policy’s identifier. If the
-// cache policy is attached to a distribution’s cache behavior, you can get
-// the policy’s identifier using ListDistributions or GetDistribution. If
-// the cache policy is not attached to a cache behavior, you can get the identifier
-// using ListCachePolicies.
+// To get a cache policy, you must provide the policy's identifier. If the cache
+// policy is attached to a distribution's cache behavior, you can get the policy's
+// identifier using ListDistributions or GetDistribution. If the cache policy
+// is not attached to a cache behavior, you can get the identifier using ListCachePolicies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4489,11 +4485,11 @@ func (c *CloudFront) GetCachePolicyConfigRequest(input *GetCachePolicyConfigInpu
 //
 // Gets a cache policy configuration.
 //
-// To get a cache policy configuration, you must provide the policy’s identifier.
-// If the cache policy is attached to a distribution’s cache behavior, you
-// can get the policy’s identifier using ListDistributions or GetDistribution.
-// If the cache policy is not attached to a cache behavior, you can get the
-// identifier using ListCachePolicies.
+// To get a cache policy configuration, you must provide the policy's identifier.
+// If the cache policy is attached to a distribution's cache behavior, you can
+// get the policy's identifier using ListDistributions or GetDistribution. If
+// the cache policy is not attached to a cache behavior, you can get the identifier
+// using ListCachePolicies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4739,7 +4735,7 @@ func (c *CloudFront) GetContinuousDeploymentPolicyRequest(input *GetContinuousDe
 
 // GetContinuousDeploymentPolicy API operation for Amazon CloudFront.
 //
-// Gets a continuous deployment policy, including metadata (the policy’s identifier
+// Gets a continuous deployment policy, including metadata (the policy's identifier
 // and the date and time when the policy was last modified).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4755,7 +4751,7 @@ func (c *CloudFront) GetContinuousDeploymentPolicyRequest(input *GetContinuousDe
 //     Access denied.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicy
 func (c *CloudFront) GetContinuousDeploymentPolicy(input *GetContinuousDeploymentPolicyInput) (*GetContinuousDeploymentPolicyOutput, error) {
@@ -4837,7 +4833,7 @@ func (c *CloudFront) GetContinuousDeploymentPolicyConfigRequest(input *GetContin
 //     Access denied.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetContinuousDeploymentPolicyConfig
 func (c *CloudFront) GetContinuousDeploymentPolicyConfig(input *GetContinuousDeploymentPolicyConfigInput) (*GetContinuousDeploymentPolicyConfigOutput, error) {
@@ -5399,7 +5395,7 @@ func (c *CloudFront) GetFunctionRequest(input *GetFunctionInput) (req *request.R
 // Gets the code of a CloudFront function. To get configuration information
 // and metadata about a function, use DescribeFunction.
 //
-// To get a function’s code, you must provide the function’s name and stage.
+// To get a function's code, you must provide the function's name and stage.
 // To get these values, you can use ListFunctions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5570,11 +5566,11 @@ func (c *CloudFront) GetKeyGroupRequest(input *GetKeyGroupInput) (req *request.R
 // Gets a key group, including the date and time when the key group was last
 // modified.
 //
-// To get a key group, you must provide the key group’s identifier. If the
-// key group is referenced in a distribution’s cache behavior, you can get
-// the key group’s identifier using ListDistributions or GetDistribution.
-// If the key group is not referenced in a cache behavior, you can get the identifier
-// using ListKeyGroups.
+// To get a key group, you must provide the key group's identifier. If the key
+// group is referenced in a distribution's cache behavior, you can get the key
+// group's identifier using ListDistributions or GetDistribution. If the key
+// group is not referenced in a cache behavior, you can get the identifier using
+// ListKeyGroups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5654,9 +5650,9 @@ func (c *CloudFront) GetKeyGroupConfigRequest(input *GetKeyGroupConfigInput) (re
 //
 // Gets a key group configuration.
 //
-// To get a key group configuration, you must provide the key group’s identifier.
-// If the key group is referenced in a distribution’s cache behavior, you
-// can get the key group’s identifier using ListDistributions or GetDistribution.
+// To get a key group configuration, you must provide the key group's identifier.
+// If the key group is referenced in a distribution's cache behavior, you can
+// get the key group's identifier using ListDistributions or GetDistribution.
 // If the key group is not referenced in a cache behavior, you can get the identifier
 // using ListKeyGroups.
 //
@@ -5991,13 +5987,13 @@ func (c *CloudFront) GetOriginRequestPolicyRequest(input *GetOriginRequestPolicy
 //
 // Gets an origin request policy, including the following metadata:
 //
-//   - The policy’s identifier.
+//   - The policy's identifier.
 //
 //   - The date and time when the policy was last modified.
 //
-// To get an origin request policy, you must provide the policy’s identifier.
-// If the origin request policy is attached to a distribution’s cache behavior,
-// you can get the policy’s identifier using ListDistributions or GetDistribution.
+// To get an origin request policy, you must provide the policy's identifier.
+// If the origin request policy is attached to a distribution's cache behavior,
+// you can get the policy's identifier using ListDistributions or GetDistribution.
 // If the origin request policy is not attached to a cache behavior, you can
 // get the identifier using ListOriginRequestPolicies.
 //
@@ -6083,9 +6079,9 @@ func (c *CloudFront) GetOriginRequestPolicyConfigRequest(input *GetOriginRequest
 //
 // Gets an origin request policy configuration.
 //
-// To get an origin request policy configuration, you must provide the policy’s
-// identifier. If the origin request policy is attached to a distribution’s
-// cache behavior, you can get the policy’s identifier using ListDistributions
+// To get an origin request policy configuration, you must provide the policy's
+// identifier. If the origin request policy is attached to a distribution's
+// cache behavior, you can get the policy's identifier using ListDistributions
 // or GetDistribution. If the origin request policy is not attached to a cache
 // behavior, you can get the identifier using ListOriginRequestPolicies.
 //
@@ -6335,7 +6331,7 @@ func (c *CloudFront) GetRealtimeLogConfigRequest(input *GetRealtimeLogConfigInpu
 //
 // Gets a real-time log configuration.
 //
-// To get a real-time log configuration, you can provide the configuration’s
+// To get a real-time log configuration, you can provide the configuration's
 // name or its Amazon Resource Name (ARN). You must provide at least one. If
 // you provide both, CloudFront uses the name to identify the real-time log
 // configuration to get.
@@ -6423,12 +6419,12 @@ func (c *CloudFront) GetResponseHeadersPolicyRequest(input *GetResponseHeadersPo
 
 // GetResponseHeadersPolicy API operation for Amazon CloudFront.
 //
-// Gets a response headers policy, including metadata (the policy’s identifier
+// Gets a response headers policy, including metadata (the policy's identifier
 // and the date and time when the policy was last modified).
 //
-// To get a response headers policy, you must provide the policy’s identifier.
-// If the response headers policy is attached to a distribution’s cache behavior,
-// you can get the policy’s identifier using ListDistributions or GetDistribution.
+// To get a response headers policy, you must provide the policy's identifier.
+// If the response headers policy is attached to a distribution's cache behavior,
+// you can get the policy's identifier using ListDistributions or GetDistribution.
 // If the response headers policy is not attached to a cache behavior, you can
 // get the identifier using ListResponseHeadersPolicies.
 //
@@ -6514,9 +6510,9 @@ func (c *CloudFront) GetResponseHeadersPolicyConfigRequest(input *GetResponseHea
 //
 // Gets a response headers policy configuration.
 //
-// To get a response headers policy configuration, you must provide the policy’s
-// identifier. If the response headers policy is attached to a distribution’s
-// cache behavior, you can get the policy’s identifier using ListDistributions
+// To get a response headers policy configuration, you must provide the policy's
+// identifier. If the response headers policy is attached to a distribution's
+// cache behavior, you can get the policy's identifier using ListDistributions
 // or GetDistribution. If the response headers policy is not attached to a cache
 // behavior, you can get the identifier using ListResponseHeadersPolicies.
 //
@@ -7000,7 +6996,7 @@ func (c *CloudFront) ListConflictingAliasesRequest(input *ListConflictingAliases
 // distributions and Amazon Web Services accounts for each conflicting alias.
 // In the returned list, the distribution and account IDs are partially hidden,
 // which allows you to identify the distributions and accounts that you own,
-// but helps to protect the information of ones that you don’t own.
+// but helps to protect the information of ones that you don't own.
 //
 // Use this operation to find aliases that are in use in CloudFront that conflict
 // or overlap with the provided alias. For example, if you provide www.example.com
@@ -7128,7 +7124,7 @@ func (c *CloudFront) ListContinuousDeploymentPoliciesRequest(input *ListContinuo
 //     Access denied.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListContinuousDeploymentPolicies
 func (c *CloudFront) ListContinuousDeploymentPolicies(input *ListContinuousDeploymentPoliciesInput) (*ListContinuousDeploymentPoliciesOutput, error) {
@@ -7331,7 +7327,7 @@ func (c *CloudFront) ListDistributionsByCachePolicyIdRequest(input *ListDistribu
 // ListDistributionsByCachePolicyId API operation for Amazon CloudFront.
 //
 // Gets a list of distribution IDs for distributions that have a cache behavior
-// that’s associated with the specified cache policy.
+// that's associated with the specified cache policy.
 //
 // You can optionally specify the maximum number of items to receive in the
 // response. If the total number of items in the list exceeds the maximum that
@@ -7512,7 +7508,7 @@ func (c *CloudFront) ListDistributionsByOriginRequestPolicyIdRequest(input *List
 // ListDistributionsByOriginRequestPolicyId API operation for Amazon CloudFront.
 //
 // Gets a list of distribution IDs for distributions that have a cache behavior
-// that’s associated with the specified origin request policy.
+// that's associated with the specified origin request policy.
 //
 // You can optionally specify the maximum number of items to receive in the
 // response. If the total number of items in the list exceeds the maximum that
@@ -7603,7 +7599,7 @@ func (c *CloudFront) ListDistributionsByRealtimeLogConfigRequest(input *ListDist
 
 // ListDistributionsByRealtimeLogConfig API operation for Amazon CloudFront.
 //
-// Gets a list of distributions that have a cache behavior that’s associated
+// Gets a list of distributions that have a cache behavior that's associated
 // with the specified real-time log configuration.
 //
 // You can specify the real-time log configuration by its name or its Amazon
@@ -7694,7 +7690,7 @@ func (c *CloudFront) ListDistributionsByResponseHeadersPolicyIdRequest(input *Li
 // ListDistributionsByResponseHeadersPolicyId API operation for Amazon CloudFront.
 //
 // Gets a list of distribution IDs for distributions that have a cache behavior
-// that’s associated with the specified response headers policy.
+// that's associated with the specified response headers policy.
 //
 // You can optionally specify the maximum number of items to receive in the
 // response. If the total number of items in the list exceeds the maximum that
@@ -9017,11 +9013,11 @@ func (c *CloudFront) PublishFunctionRequest(input *PublishFunctionInput) (req *r
 // this function to use the newly published copy in the LIVE stage.
 //
 // When a function is published to the LIVE stage, you can attach the function
-// to a distribution’s cache behavior, using the function’s Amazon Resource
+// to a distribution's cache behavior, using the function's Amazon Resource
 // Name (ARN).
 //
-// To publish a function, you must provide the function’s name and version
-// (ETag value). To get these values, you can use ListFunctions and DescribeFunction.
+// To publish a function, you must provide the function's name and version (ETag
+// value). To get these values, you can use ListFunctions and DescribeFunction.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9206,13 +9202,13 @@ func (c *CloudFront) TestFunctionRequest(input *TestFunctionInput) (req *request
 // To test a function, you provide an event object that represents an HTTP request
 // or response that your CloudFront distribution could receive in production.
 // CloudFront runs the function, passing it the event object that you provided,
-// and returns the function’s result (the modified event object) in the response.
+// and returns the function's result (the modified event object) in the response.
 // The response also contains function logs and error messages, if any exist.
 // For more information about testing functions, see Testing functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function)
 // in the Amazon CloudFront Developer Guide.
 //
-// To test a function, you provide the function’s name and version (ETag value)
-// along with the event object. To get the function’s name and version, you
+// To test a function, you provide the function's name and version (ETag value)
+// along with the event object. To get the function's name and version, you
 // can use ListFunctions and DescribeFunction.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9405,7 +9401,7 @@ func (c *CloudFront) UpdateCachePolicyRequest(input *UpdateCachePolicyInput) (re
 // to update.
 //
 // Call UpdateCachePolicy by providing the entire cache policy configuration,
-// including the fields that you modified and those that you didn’t.
+// including the fields that you modified and those that you didn't.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9639,7 +9635,7 @@ func (c *CloudFront) UpdateContinuousDeploymentPolicyRequest(input *UpdateContin
 //
 // Use UpdateContinuousDeploymentPolicy, providing the entire continuous deployment
 // policy configuration, including the fields that you modified and those that
-// you didn’t.
+// you didn't.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9669,7 +9665,7 @@ func (c *CloudFront) UpdateContinuousDeploymentPolicyRequest(input *UpdateContin
 //     A continuous deployment policy for this staging distribution already exists.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateContinuousDeploymentPolicy
 func (c *CloudFront) UpdateContinuousDeploymentPolicy(input *UpdateContinuousDeploymentPolicyInput) (*UpdateContinuousDeploymentPolicyOutput, error) {
@@ -9753,13 +9749,13 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   - You must rename the ETag field to IfMatch, leaving the value unchanged.
 //     (Set the value of IfMatch to the value of ETag, then remove the ETag field.)
 //
-//   - You can’t change the value of CallerReference.
+//   - You can't change the value of CallerReference.
 //
 // Submit an UpdateDistribution request, providing the distribution configuration.
 // The new configuration replaces the existing configuration. The values that
 // you specify in an UpdateDistribution request are not merged into your existing
 // configuration. Make sure to include all fields: the ones that you modified
-// and also the ones that you didn’t.
+// and also the ones that you didn't.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9989,7 +9985,7 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //     a primary distribution.
 //
 //   - ErrCodeNoSuchContinuousDeploymentPolicy "NoSuchContinuousDeploymentPolicy"
-//     The continuous deployment policy doesn’t exist.
+//     The continuous deployment policy doesn't exist.
 //
 //   - ErrCodeStagingDistributionInUse "StagingDistributionInUse"
 //     A continuous deployment policy for this staging distribution already exists.
@@ -10074,11 +10070,11 @@ func (c *CloudFront) UpdateDistributionWithStagingConfigRequest(input *UpdateDis
 //
 // You can use this operation in a continuous deployment workflow after you
 // have tested configuration changes on the staging distribution. After using
-// a continuous deployment policy to move a portion of your domain name’s
-// traffic to the staging distribution and verifying that it works as intended,
-// you can use this operation to copy the staging distribution’s configuration
-// to the primary distribution. This action will disable the continuous deployment
-// policy and move your domain’s traffic back to the primary distribution.
+// a continuous deployment policy to move a portion of your domain name's traffic
+// to the staging distribution and verifying that it works as intended, you
+// can use this operation to copy the staging distribution's configuration to
+// the primary distribution. This action will disable the continuous deployment
+// policy and move your domain's traffic back to the primary distribution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10595,12 +10591,12 @@ func (c *CloudFront) UpdateFunctionRequest(input *UpdateFunctionInput) (req *req
 //
 // Updates a CloudFront function.
 //
-// You can update a function’s code or the comment that describes the function.
-// You cannot update a function’s name.
+// You can update a function's code or the comment that describes the function.
+// You cannot update a function's name.
 //
-// To update a function, you provide the function’s name and version (ETag
-// value) along with the updated function code. To get the name and version,
-// you can use ListFunctions and DescribeFunction.
+// To update a function, you provide the function's name and version (ETag value)
+// along with the updated function code. To get the name and version, you can
+// use ListFunctions and DescribeFunction.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10707,7 +10703,7 @@ func (c *CloudFront) UpdateKeyGroupRequest(input *UpdateKeyGroupInput) (req *req
 // add or remove public key IDs.
 //
 // Call UpdateKeyGroup with the entire key group object, including the fields
-// that you modified and those that you didn’t.
+// that you modified and those that you didn't.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10914,7 +10910,7 @@ func (c *CloudFront) UpdateOriginRequestPolicyRequest(input *UpdateOriginRequest
 //
 // Call UpdateOriginRequestPolicy by providing the entire origin request policy
 // configuration, including the fields that you modified and those that you
-// didn’t.
+// didn't.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11141,9 +11137,9 @@ func (c *CloudFront) UpdateRealtimeLogConfigRequest(input *UpdateRealtimeLogConf
 //
 // Call this API (UpdateRealtimeLogConfig) by providing the entire real-time
 // log configuration, including the parameters that you modified and those that
-// you didn’t.
+// you didn't.
 //
-// You cannot update a real-time log configuration’s Name or ARN.
+// You cannot update a real-time log configuration's Name or ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11234,14 +11230,14 @@ func (c *CloudFront) UpdateResponseHeadersPolicyRequest(input *UpdateResponseHea
 // You cannot update some policy fields independent of others. To update a response
 // headers policy configuration:
 //
-// Use GetResponseHeadersPolicyConfig to get the current policy’s configuration.
+// Use GetResponseHeadersPolicyConfig to get the current policy's configuration.
 //
 // Modify the fields in the response headers policy configuration that you want
 // to update.
 //
 // Call UpdateResponseHeadersPolicy, providing the entire response headers policy
 // configuration, including the fields that you modified and those that you
-// didn’t.
+// didn't.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11786,7 +11782,7 @@ type AssociateAliasInput struct {
 	// Alias is a required field
 	Alias *string `location:"querystring" locationName:"Alias" type:"string" required:"true"`
 
-	// The ID of the distribution that you’re associating the alias with.
+	// The ID of the distribution that you're associating the alias with.
 	//
 	// TargetDistributionId is a required field
 	TargetDistributionId *string `location:"uri" locationName:"TargetDistributionId" type:"string" required:"true"`
@@ -11876,9 +11872,8 @@ func (s AssociateAliasOutput) GoString() string {
 // that you can add to a distribution, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 // in the Amazon CloudFront Developer Guide.
 //
-// If you don’t want to specify any cache behaviors, include only an empty
-// CacheBehaviors element. Don’t include an empty CacheBehavior element because
-// this is invalid.
+// If you don't want to specify any cache behaviors, include only an empty CacheBehaviors
+// element. Don't include an empty CacheBehavior element because this is invalid.
 //
 // To delete all cache behaviors in an existing distribution, update the distribution
 // configuration and include only an empty CacheBehaviors element.
@@ -12084,10 +12079,9 @@ type CacheBehavior struct {
 	// When a cache behavior contains trusted signers, CloudFront requires signed
 	// URLs or signed cookies for all requests that match the cache behavior. The
 	// URLs or cookies must be signed with the private key of a CloudFront key pair
-	// in the trusted signer’s Amazon Web Services account. The signed URL or
-	// cookie contains information about which public key CloudFront should use
-	// to verify the signature. For more information, see Serving private content
-	// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// in the trusted signer's Amazon Web Services account. The signed URL or cookie
+	// contains information about which public key CloudFront should use to verify
+	// the signature. For more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
 	TrustedSigners *TrustedSigners `type:"structure"`
 
@@ -12111,7 +12105,7 @@ type CacheBehavior struct {
 	// The only way to guarantee that viewers retrieve an object that was fetched
 	// from the origin using HTTPS is never to use any other protocol to fetch the
 	// object. If you have recently changed from HTTP to HTTPS, we recommend that
-	// you clear your objects’ cache because cached objects are protocol agnostic.
+	// you clear your objects' cache because cached objects are protocol agnostic.
 	// That means that an edge location will return an object from the cache regardless
 	// of whether the current request protocol matches the protocol used previously.
 	// For more information, see Managing Cache Expiration (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
@@ -12371,8 +12365,7 @@ func (s *CacheBehaviors) SetQuantity(v int64) *CacheBehaviors {
 
 // A cache policy.
 //
-// When it’s attached to a cache behavior, the cache policy determines the
-// following:
+// When it's attached to a cache behavior, the cache policy determines the following:
 //
 //   - The values that CloudFront includes in the cache key. These values can
 //     include HTTP headers, cookies, and URL query strings. CloudFront uses
@@ -12384,9 +12377,9 @@ func (s *CacheBehaviors) SetQuantity(v int64) *CacheBehaviors {
 //
 // The headers, cookies, and query strings that are included in the cache key
 // are automatically included in requests that CloudFront sends to the origin.
-// CloudFront sends a request when it can’t find a valid object in its cache
-// that matches the request’s cache key. If you want to send values to the
-// origin but not include them in the cache key, use OriginRequestPolicy.
+// CloudFront sends a request when it can't find a valid object in its cache
+// that matches the request's cache key. If you want to send values to the origin
+// but not include them in the cache key, use OriginRequestPolicy.
 type CachePolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -12456,9 +12449,9 @@ func (s *CachePolicy) SetLastModifiedTime(v time.Time) *CachePolicy {
 //
 // The headers, cookies, and query strings that are included in the cache key
 // are automatically included in requests that CloudFront sends to the origin.
-// CloudFront sends a request when it can’t find a valid object in its cache
-// that matches the request’s cache key. If you want to send values to the
-// origin but not include them in the cache key, use OriginRequestPolicy.
+// CloudFront sends a request when it can't find a valid object in its cache
+// that matches the request's cache key. If you want to send values to the origin
+// but not include them in the cache key, use OriginRequestPolicy.
 type CachePolicyConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -12469,7 +12462,7 @@ type CachePolicyConfig struct {
 	// The default amount of time, in seconds, that you want objects to stay in
 	// the CloudFront cache before CloudFront sends another request to the origin
 	// to see if the object has been updated. CloudFront uses this value as the
-	// object’s time to live (TTL) only when the origin does not send Cache-Control
+	// object's time to live (TTL) only when the origin does not send Cache-Control
 	// or Expires headers with the object. For more information, see Managing How
 	// Long Content Stays in an Edge Cache (Expiration) (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
 	// in the Amazon CloudFront Developer Guide.
@@ -13014,15 +13007,15 @@ func (s *CachedMethods) SetQuantity(v int64) *CachedMethods {
 }
 
 // An alias (also called a CNAME) and the CloudFront distribution and Amazon
-// Web Services account ID that it’s associated with. The distribution and
-// account IDs are partially hidden, which allows you to identify the distributions
+// Web Services account ID that it's associated with. The distribution and account
+// IDs are partially hidden, which allows you to identify the distributions
 // and accounts that you own, but helps to protect the information of ones that
-// you don’t own.
+// you don't own.
 type ConflictingAlias struct {
 	_ struct{} `type:"structure"`
 
 	// The (partially hidden) ID of the Amazon Web Services account that owns the
-	// distribution that’s associated with the alias.
+	// distribution that's associated with the alias.
 	AccountId *string `type:"string"`
 
 	// An alias (also called a CNAME).
@@ -13073,7 +13066,7 @@ func (s *ConflictingAlias) SetDistributionId(v string) *ConflictingAlias {
 // Amazon Web Services accounts that they are associated with. In the list,
 // the distribution and account IDs are partially hidden, which allows you to
 // identify the distributions and accounts that you own, but helps to protect
-// the information of ones that you don’t own.
+// the information of ones that you don't own.
 type ConflictingAliasesList struct {
 	_ struct{} `type:"structure"`
 
@@ -13583,7 +13576,7 @@ type ContinuousDeploymentSingleHeaderConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The request header name that you want CloudFront to send to your staging
-	// distribution.
+	// distribution. The header must contain the prefix aws-cf-cd-.
 	//
 	// Header is a required field
 	Header *string `type:"string" required:"true"`
@@ -14744,7 +14737,7 @@ type CreateFunctionInput struct {
 	FunctionCode []byte `min:"1" type:"blob" required:"true" sensitive:"true"`
 
 	// Configuration information about the function, including an optional comment
-	// and the function’s runtime.
+	// and the function's runtime.
 	//
 	// FunctionConfig is a required field
 	FunctionConfig *FunctionConfig `type:"structure" required:"true"`
@@ -16220,7 +16213,7 @@ type CustomOriginConfig struct {
 
 	// Specifies how long, in seconds, CloudFront persists its connection to the
 	// origin. The minimum timeout is 1 second, the maximum is 60 seconds, and the
-	// default (if you don’t specify otherwise) is 5 seconds.
+	// default (if you don't specify otherwise) is 5 seconds.
 	//
 	// For more information, see Origin Keep-alive Timeout (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginKeepaliveTimeout)
 	// in the Amazon CloudFront Developer Guide.
@@ -16241,7 +16234,7 @@ type CustomOriginConfig struct {
 
 	// Specifies how long, in seconds, CloudFront waits for a response from the
 	// origin. This is also known as the origin response timeout. The minimum timeout
-	// is 1 second, the maximum is 60 seconds, and the default (if you don’t specify
+	// is 1 second, the maximum is 60 seconds, and the default (if you don't specify
 	// otherwise) is 30 seconds.
 	//
 	// For more information, see Origin Response Timeout (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout)
@@ -16335,8 +16328,8 @@ func (s *CustomOriginConfig) SetOriginSslProtocols(v *OriginSslProtocols) *Custo
 	return s
 }
 
-// A complex type that describes the default cache behavior if you don’t specify
-// a CacheBehavior element or if request URLs don’t match any of the values
+// A complex type that describes the default cache behavior if you don't specify
+// a CacheBehavior element or if request URLs don't match any of the values
 // of PathPattern in CacheBehavior elements. You must create exactly one default
 // cache behavior.
 type DefaultCacheBehavior struct {
@@ -16516,7 +16509,7 @@ type DefaultCacheBehavior struct {
 	// When a cache behavior contains trusted signers, CloudFront requires signed
 	// URLs or signed cookies for all requests that match the cache behavior. The
 	// URLs or cookies must be signed with the private key of a CloudFront key pair
-	// in a trusted signer’s Amazon Web Services account. The signed URL or cookie
+	// in a trusted signer's Amazon Web Services account. The signed URL or cookie
 	// contains information about which public key CloudFront should use to verify
 	// the signature. For more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
@@ -16542,7 +16535,7 @@ type DefaultCacheBehavior struct {
 	// The only way to guarantee that viewers retrieve an object that was fetched
 	// from the origin using HTTPS is never to use any other protocol to fetch the
 	// object. If you have recently changed from HTTP to HTTPS, we recommend that
-	// you clear your objects’ cache because cached objects are protocol agnostic.
+	// you clear your objects' cache because cached objects are protocol agnostic.
 	// That means that an edge location will return an object from the cache regardless
 	// of whether the current request protocol matches the protocol used previously.
 	// For more information, see Managing Cache Expiration (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
@@ -16734,7 +16727,7 @@ type DeleteCachePolicyInput struct {
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version of the cache policy that you are deleting. The version is the
-	// cache policy’s ETag value, which you can get using ListCachePolicies, GetCachePolicy,
+	// cache policy's ETag value, which you can get using ListCachePolicies, GetCachePolicy,
 	// or GetCachePolicyConfig.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 }
@@ -17344,7 +17337,7 @@ type DeleteKeyGroupInput struct {
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version of the key group that you are deleting. The version is the key
-	// group’s ETag value. To get the ETag, use GetKeyGroup or GetKeyGroupConfig.
+	// group's ETag value. To get the ETag, use GetKeyGroup or GetKeyGroupConfig.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 }
 
@@ -17578,7 +17571,7 @@ type DeleteOriginRequestPolicyInput struct {
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version of the origin request policy that you are deleting. The version
-	// is the origin request policy’s ETag value, which you can get using ListOriginRequestPolicies,
+	// is the origin request policy's ETag value, which you can get using ListOriginRequestPolicies,
 	// GetOriginRequestPolicy, or GetOriginRequestPolicyConfig.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 }
@@ -17806,8 +17799,8 @@ type DeleteResponseHeadersPolicyInput struct {
 
 	// The version of the response headers policy that you are deleting.
 	//
-	// The version is the response headers policy’s ETag value, which you can
-	// get using ListResponseHeadersPolicies, GetResponseHeadersPolicy, or GetResponseHeadersPolicyConfig.
+	// The version is the response headers policy's ETag value, which you can get
+	// using ListResponseHeadersPolicies, GetResponseHeadersPolicy, or GetResponseHeadersPolicyConfig.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 }
 
@@ -17969,7 +17962,7 @@ type DescribeFunctionInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
 
-	// The function’s stage, either DEVELOPMENT or LIVE.
+	// The function's stage, either DEVELOPMENT or LIVE.
 	Stage *string `location:"querystring" locationName:"Stage" type:"string" enum:"FunctionStage"`
 }
 
@@ -18064,26 +18057,22 @@ func (s *DescribeFunctionOutput) SetFunctionSummary(v *FunctionSummary) *Describ
 type Distribution struct {
 	_ struct{} `type:"structure"`
 
-	// The distribution’s Amazon Resource Name (ARN).
+	// The distribution's Amazon Resource Name (ARN).
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
 
-	// CloudFront automatically adds this field to the response if you’ve configured
-	// a cache behavior in this distribution to serve private content using key
-	// groups. This field contains a list of key groups and the public keys in each
-	// key group that CloudFront can use to verify the signatures of signed URLs
-	// or signed cookies.
+	// This field contains a list of key groups and the public keys in each key
+	// group that CloudFront can use to verify the signatures of signed URLs or
+	// signed cookies.
 	ActiveTrustedKeyGroups *ActiveTrustedKeyGroups `type:"structure"`
 
 	//
 	// We recommend using TrustedKeyGroups instead of TrustedSigners.
 	//
-	// CloudFront automatically adds this field to the response if you’ve configured
-	// a cache behavior in this distribution to serve private content using trusted
-	// signers. This field contains a list of Amazon Web Services account IDs and
-	// the active CloudFront key pairs in each account that CloudFront can use to
-	// verify the signatures of signed URLs or signed cookies.
+	// This field contains a list of Amazon Web Services account IDs and the active
+	// CloudFront key pairs in each account that CloudFront can use to verify the
+	// signatures of signed URLs or signed cookies.
 	ActiveTrustedSigners *ActiveTrustedSigners `type:"structure"`
 
 	// Amazon Web Services services in China customers must file for an Internet
@@ -18097,17 +18086,17 @@ type Distribution struct {
 	// in Getting Started with Amazon Web Services services in China.
 	AliasICPRecordals []*AliasICPRecordal `locationNameList:"AliasICPRecordal" type:"list"`
 
-	// The distribution’s configuration.
+	// The distribution's configuration.
 	//
 	// DistributionConfig is a required field
 	DistributionConfig *DistributionConfig `type:"structure" required:"true"`
 
-	// The distribution’s CloudFront domain name. For example: d111111abcdef8.cloudfront.net.
+	// The distribution's CloudFront domain name. For example: d111111abcdef8.cloudfront.net.
 	//
 	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
-	// The distribution’s identifier. For example: E1U5RQF7T870K0.
+	// The distribution's identifier. For example: E1U5RQF7T870K0.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -18122,7 +18111,7 @@ type Distribution struct {
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
-	// The distribution’s status. When the status is Deployed, the distribution’s
+	// The distribution's status. When the status is Deployed, the distribution's
 	// information is fully propagated to all CloudFront edge locations.
 	//
 	// Status is a required field
@@ -18231,8 +18220,8 @@ type DistributionConfig struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// An optional comment to describe the distribution. The comment cannot be longer
-	// than 128 characters.
+	// A comment to describe the distribution. The comment cannot be longer than
+	// 128 characters.
 	//
 	// Comment is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DistributionConfig's
@@ -18382,8 +18371,8 @@ type DistributionConfig struct {
 	// this is not a staging distribution.
 	Staging *bool `type:"boolean"`
 
-	// A complex type that determines the distribution’s SSL/TLS configuration
-	// for communicating with viewers.
+	// A complex type that determines the distribution's SSL/TLS configuration for
+	// communicating with viewers.
 	ViewerCertificate *ViewerCertificate `type:"structure"`
 
 	// A unique identifier that specifies the WAF web ACL, if any, to associate
@@ -18965,8 +18954,8 @@ type DistributionSummary struct {
 	// Status is a required field
 	Status *string `type:"string" required:"true"`
 
-	// A complex type that determines the distribution’s SSL/TLS configuration
-	// for communicating with viewers.
+	// A complex type that determines the distribution's SSL/TLS configuration for
+	// communicating with viewers.
 	//
 	// ViewerCertificate is a required field
 	ViewerCertificate *ViewerCertificate `type:"structure" required:"true"`
@@ -20313,7 +20302,7 @@ type FunctionConfig struct {
 	// Comment is a required field
 	Comment *string `type:"string" required:"true"`
 
-	// The function’s runtime environment. The only valid value is cloudfront-js-1.0.
+	// The function's runtime environment. The only valid value is cloudfront-js-1.0.
 	//
 	// Runtime is a required field
 	Runtime *string `type:"string" required:"true" enum:"FunctionRuntime"`
@@ -20453,8 +20442,8 @@ type FunctionMetadata struct {
 	// When a function is in the DEVELOPMENT stage, you can test the function with
 	// TestFunction, and update it with UpdateFunction.
 	//
-	// When a function is in the LIVE stage, you can attach the function to a distribution’s
-	// cache behavior, using the function’s ARN.
+	// When a function is in the LIVE stage, you can attach the function to a distribution's
+	// cache behavior, using the function's ARN.
 	Stage *string `type:"string" enum:"FunctionStage"`
 }
 
@@ -20664,8 +20653,8 @@ type GetCachePolicyConfigInput struct {
 	_ struct{} `locationName:"GetCachePolicyConfigRequest" type:"structure"`
 
 	// The unique identifier for the cache policy. If the cache policy is attached
-	// to a distribution’s cache behavior, you can get the policy’s identifier
-	// using ListDistributions or GetDistribution. If the cache policy is not attached
+	// to a distribution's cache behavior, you can get the policy's identifier using
+	// ListDistributions or GetDistribution. If the cache policy is not attached
 	// to a cache behavior, you can get the identifier using ListCachePolicies.
 	//
 	// Id is a required field
@@ -20756,8 +20745,8 @@ type GetCachePolicyInput struct {
 	_ struct{} `locationName:"GetCachePolicyRequest" type:"structure"`
 
 	// The unique identifier for the cache policy. If the cache policy is attached
-	// to a distribution’s cache behavior, you can get the policy’s identifier
-	// using ListDistributions or GetDistribution. If the cache policy is not attached
+	// to a distribution's cache behavior, you can get the policy's identifier using
+	// ListDistributions or GetDistribution. If the cache policy is not attached
 	// to a cache behavior, you can get the identifier using ListCachePolicies.
 	//
 	// Id is a required field
@@ -21760,7 +21749,7 @@ type GetFunctionInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
 
-	// The function’s stage, either DEVELOPMENT or LIVE.
+	// The function's stage, either DEVELOPMENT or LIVE.
 	Stage *string `location:"querystring" locationName:"Stage" type:"string" enum:"FunctionStage"`
 }
 
@@ -22406,10 +22395,10 @@ type GetOriginRequestPolicyConfigInput struct {
 	_ struct{} `locationName:"GetOriginRequestPolicyConfigRequest" type:"structure"`
 
 	// The unique identifier for the origin request policy. If the origin request
-	// policy is attached to a distribution’s cache behavior, you can get the
-	// policy’s identifier using ListDistributions or GetDistribution. If the
-	// origin request policy is not attached to a cache behavior, you can get the
-	// identifier using ListOriginRequestPolicies.
+	// policy is attached to a distribution's cache behavior, you can get the policy's
+	// identifier using ListDistributions or GetDistribution. If the origin request
+	// policy is not attached to a cache behavior, you can get the identifier using
+	// ListOriginRequestPolicies.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -22499,10 +22488,10 @@ type GetOriginRequestPolicyInput struct {
 	_ struct{} `locationName:"GetOriginRequestPolicyRequest" type:"structure"`
 
 	// The unique identifier for the origin request policy. If the origin request
-	// policy is attached to a distribution’s cache behavior, you can get the
-	// policy’s identifier using ListDistributions or GetDistribution. If the
-	// origin request policy is not attached to a cache behavior, you can get the
-	// identifier using ListOriginRequestPolicies.
+	// policy is attached to a distribution's cache behavior, you can get the policy's
+	// identifier using ListDistributions or GetDistribution. If the origin request
+	// policy is not attached to a cache behavior, you can get the identifier using
+	// ListOriginRequestPolicies.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -22842,8 +22831,8 @@ type GetResponseHeadersPolicyConfigInput struct {
 
 	// The identifier for the response headers policy.
 	//
-	// If the response headers policy is attached to a distribution’s cache behavior,
-	// you can get the policy’s identifier using ListDistributions or GetDistribution.
+	// If the response headers policy is attached to a distribution's cache behavior,
+	// you can get the policy's identifier using ListDistributions or GetDistribution.
 	// If the response headers policy is not attached to a cache behavior, you can
 	// get the identifier using ListResponseHeadersPolicies.
 	//
@@ -22936,8 +22925,8 @@ type GetResponseHeadersPolicyInput struct {
 
 	// The identifier for the response headers policy.
 	//
-	// If the response headers policy is attached to a distribution’s cache behavior,
-	// you can get the policy’s identifier using ListDistributions or GetDistribution.
+	// If the response headers policy is attached to a distribution's cache behavior,
+	// you can get the policy's identifier using ListDistributions or GetDistribution.
 	// If the response headers policy is not attached to a cache behavior, you can
 	// get the identifier using ListResponseHeadersPolicies.
 	//
@@ -24126,8 +24115,8 @@ type ListCachePoliciesInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of cache policies. The response includes cache policies in the list
-	// that occur after the marker. To get the next page of the list, set this field’s
-	// value to the value of NextMarker from the current page’s response.
+	// that occur after the marker. To get the next page of the list, set this field's
+	// value to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of cache policies that you want in the response.
@@ -24305,8 +24294,7 @@ type ListConflictingAliasesInput struct {
 	// Use this field when paginating results to indicate where to begin in the
 	// list of conflicting aliases. The response includes conflicting aliases in
 	// the list that occur after the marker. To get the next page of the list, set
-	// this field’s value to the value of NextMarker from the current page’s
-	// response.
+	// this field's value to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of conflicting aliases that you want in the response.
@@ -24408,8 +24396,7 @@ type ListContinuousDeploymentPoliciesInput struct {
 	// Use this field when paginating results to indicate where to begin in your
 	// list of continuous deployment policies. The response includes policies in
 	// the list that occur after the marker. To get the next page of the list, set
-	// this field’s value to the value of NextMarker from the current page’s
-	// response.
+	// this field's value to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of continuous deployment policies that you want returned
@@ -24489,8 +24476,8 @@ type ListDistributionsByCachePolicyIdInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of distribution IDs. The response includes distribution IDs in the list
-	// that occur after the marker. To get the next page of the list, set this field’s
-	// value to the value of NextMarker from the current page’s response.
+	// that occur after the marker. To get the next page of the list, set this field's
+	// value to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of distribution IDs that you want in the response.
@@ -24590,8 +24577,8 @@ type ListDistributionsByKeyGroupInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of distribution IDs. The response includes distribution IDs in the list
-	// that occur after the marker. To get the next page of the list, set this field’s
-	// value to the value of NextMarker from the current page’s response.
+	// that occur after the marker. To get the next page of the list, set this field's
+	// value to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of distribution IDs that you want in the response.
@@ -24686,8 +24673,8 @@ type ListDistributionsByOriginRequestPolicyIdInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of distribution IDs. The response includes distribution IDs in the list
-	// that occur after the marker. To get the next page of the list, set this field’s
-	// value to the value of NextMarker from the current page’s response.
+	// that occur after the marker. To get the next page of the list, set this field's
+	// value to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of distribution IDs that you want in the response.
@@ -24788,8 +24775,8 @@ type ListDistributionsByRealtimeLogConfigInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of distributions. The response includes distributions in the list that
-	// occur after the marker. To get the next page of the list, set this field’s
-	// value to the value of NextMarker from the current page’s response.
+	// occur after the marker. To get the next page of the list, set this field's
+	// value to the value of NextMarker from the current page's response.
 	Marker *string `type:"string"`
 
 	// The maximum number of distributions that you want in the response.
@@ -24882,8 +24869,8 @@ type ListDistributionsByResponseHeadersPolicyIdInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of distribution IDs. The response includes distribution IDs in the list
-	// that occur after the marker. To get the next page of the list, set this field’s
-	// value to the value of NextMarker from the current page’s response.
+	// that occur after the marker. To get the next page of the list, set this field's
+	// value to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of distribution IDs that you want to get in the response.
@@ -25324,8 +25311,8 @@ type ListFunctionsInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of functions. The response includes functions in the list that occur
-	// after the marker. To get the next page of the list, set this field’s value
-	// to the value of NextMarker from the current page’s response.
+	// after the marker. To get the next page of the list, set this field's value
+	// to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of functions that you want in the response.
@@ -25515,8 +25502,8 @@ type ListKeyGroupsInput struct {
 
 	// Use this field when paginating results to indicate where to begin in your
 	// list of key groups. The response includes key groups in the list that occur
-	// after the marker. To get the next page of the list, set this field’s value
-	// to the value of NextMarker from the current page’s response.
+	// after the marker. To get the next page of the list, set this field's value
+	// to the value of NextMarker from the current page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of key groups that you want in the response.
@@ -25664,7 +25651,7 @@ type ListOriginRequestPoliciesInput struct {
 	// Use this field when paginating results to indicate where to begin in your
 	// list of origin request policies. The response includes origin request policies
 	// in the list that occur after the marker. To get the next page of the list,
-	// set this field’s value to the value of NextMarker from the current page’s
+	// set this field's value to the value of NextMarker from the current page's
 	// response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
@@ -25831,8 +25818,8 @@ type ListRealtimeLogConfigsInput struct {
 	// Use this field when paginating results to indicate where to begin in your
 	// list of real-time log configurations. The response includes real-time log
 	// configurations in the list that occur after the marker. To get the next page
-	// of the list, set this field’s value to the value of NextMarker from the
-	// current page’s response.
+	// of the list, set this field's value to the value of NextMarker from the current
+	// page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of real-time log configurations that you want in the response.
@@ -25906,8 +25893,8 @@ type ListResponseHeadersPoliciesInput struct {
 	// Use this field when paginating results to indicate where to begin in your
 	// list of response headers policies. The response includes response headers
 	// policies in the list that occur after the marker. To get the next page of
-	// the list, set this field’s value to the value of NextMarker from the current
-	// page’s response.
+	// the list, set this field's value to the value of NextMarker from the current
+	// page's response.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of response headers policies that you want to get in the
@@ -26317,10 +26304,10 @@ type Origin struct {
 	_ struct{} `type:"structure"`
 
 	// The number of times that CloudFront attempts to connect to the origin. The
-	// minimum number is 1, the maximum is 3, and the default (if you don’t specify
+	// minimum number is 1, the maximum is 3, and the default (if you don't specify
 	// otherwise) is 3.
 	//
-	// For a custom origin (including an Amazon S3 bucket that’s configured with
+	// For a custom origin (including an Amazon S3 bucket that's configured with
 	// static website hosting), this value also specifies the number of times that
 	// CloudFront attempts to get a response from the origin, in the case of an
 	// Origin Response Timeout (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout).
@@ -26331,7 +26318,7 @@ type Origin struct {
 
 	// The number of seconds that CloudFront waits when trying to establish a connection
 	// to the origin. The minimum timeout is 1 second, the maximum is 10 seconds,
-	// and the default (if you don’t specify otherwise) is 10 seconds.
+	// and the default (if you don't specify otherwise) is 10 seconds.
 	//
 	// For more information, see Origin Connection Timeout (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#origin-connection-timeout)
 	// in the Amazon CloudFront Developer Guide.
@@ -27560,7 +27547,7 @@ func (s *OriginGroups) SetQuantity(v int64) *OriginGroups {
 
 // An origin request policy.
 //
-// When it’s attached to a cache behavior, the origin request policy determines
+// When it's attached to a cache behavior, the origin request policy determines
 // the values that CloudFront includes in requests that it sends to the origin.
 // Each request that CloudFront sends to the origin includes the following:
 //
@@ -27575,7 +27562,7 @@ func (s *OriginGroups) SetQuantity(v int64) *OriginGroups {
 //     from the viewer request and, in the case of headers, additional ones that
 //     are added by CloudFront.
 //
-// CloudFront sends a request when it can’t find an object in its cache that
+// CloudFront sends a request when it can't find an object in its cache that
 // matches the request. If you want to send values to the origin and also include
 // them in the cache key, use CachePolicy.
 type OriginRequestPolicy struct {
@@ -27650,7 +27637,7 @@ func (s *OriginRequestPolicy) SetOriginRequestPolicyConfig(v *OriginRequestPolic
 //     from the viewer request and, in the case of headers, additional ones that
 //     are added by CloudFront.
 //
-// CloudFront sends a request when it can’t find an object in its cache that
+// CloudFront sends a request when it can't find an object in its cache that
 // matches the request. If you want to send values to the origin and also include
 // them in the cache key, use CachePolicy.
 type OriginRequestPolicyConfig struct {
@@ -28119,8 +28106,8 @@ type OriginShield struct {
 
 	// A flag that specifies whether Origin Shield is enabled.
 	//
-	// When it’s enabled, CloudFront routes all requests through Origin Shield,
-	// which can help protect your origin. When it’s disabled, CloudFront might
+	// When it's enabled, CloudFront routes all requests through Origin Shield,
+	// which can help protect your origin. When it's disabled, CloudFront might
 	// send requests directly to your origin from multiple edge locations or regional
 	// edge caches.
 	//
@@ -28331,8 +28318,8 @@ func (s *Origins) SetQuantity(v int64) *Origins {
 //
 // The headers, cookies, and query strings that are included in the cache key
 // are automatically included in requests that CloudFront sends to the origin.
-// CloudFront sends a request when it can’t find an object in its cache that
-// matches the request’s cache key. If you want to send values to the origin
+// CloudFront sends a request when it can't find an object in its cache that
+// matches the request's cache key. If you want to send values to the origin
 // but not include them in the cache key, use OriginRequestPolicy.
 type ParametersInCacheKeyAndForwardedToOrigin struct {
 	_ struct{} `type:"structure"`
@@ -28351,7 +28338,7 @@ type ParametersInCacheKeyAndForwardedToOrigin struct {
 	// of these fields is true and the viewer request includes the Accept-Encoding
 	// header, then CloudFront does the following:
 	//
-	//    * Normalizes the value of the viewer’s Accept-Encoding header
+	//    * Normalizes the value of the viewer's Accept-Encoding header
 	//
 	//    * Includes the normalized header in the cache key
 	//
@@ -28369,7 +28356,7 @@ type ParametersInCacheKeyAndForwardedToOrigin struct {
 	//
 	// If both of these fields are false, then CloudFront treats the Accept-Encoding
 	// header the same as any other HTTP header in the viewer request. By default,
-	// it’s not included in the cache key and it’s not included in origin requests.
+	// it's not included in the cache key and it's not included in origin requests.
 	// In this case, you can manually add Accept-Encoding to the headers whitelist
 	// like any other HTTP header.
 	EnableAcceptEncodingBrotli *bool `type:"boolean"`
@@ -28381,7 +28368,7 @@ type ParametersInCacheKeyAndForwardedToOrigin struct {
 	// both of these fields is true and the viewer request includes the Accept-Encoding
 	// header, then CloudFront does the following:
 	//
-	//    * Normalizes the value of the viewer’s Accept-Encoding header
+	//    * Normalizes the value of the viewer's Accept-Encoding header
 	//
 	//    * Includes the normalized header in the cache key
 	//
@@ -28399,7 +28386,7 @@ type ParametersInCacheKeyAndForwardedToOrigin struct {
 	//
 	// If both of these fields are false, then CloudFront treats the Accept-Encoding
 	// header the same as any other HTTP header in the viewer request. By default,
-	// it’s not included in the cache key and it’s not included in origin requests.
+	// it's not included in the cache key and it's not included in origin requests.
 	// In this case, you can manually add Accept-Encoding to the headers whitelist
 	// like any other HTTP header.
 	//
@@ -28631,7 +28618,7 @@ func (s *PublicKey) SetPublicKeyConfig(v *PublicKeyConfig) *PublicKey {
 type PublicKeyConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A string included in the request to help make sure that the request can’t
+	// A string included in the request to help make sure that the request can't
 	// be replayed.
 	//
 	// CallerReference is a required field
@@ -29488,7 +29475,7 @@ func (s *RealtimeMetricsSubscriptionConfig) SetRealtimeMetricsSubscriptionStatus
 // headers and their values.
 //
 // After you create a response headers policy, you can use its ID to attach
-// it to one or more cache behaviors in a CloudFront distribution. When it’s
+// it to one or more cache behaviors in a CloudFront distribution. When it's
 // attached to a cache behavior, CloudFront adds the headers in the policy to
 // HTTP responses that it sends for requests that match the cache behavior.
 //
@@ -29511,8 +29498,8 @@ type ResponseHeadersPolicy struct {
 	//
 	// A response headers policy contains information about a set of HTTP response
 	// headers and their values. CloudFront adds the headers in the policy to HTTP
-	// responses that it sends for requests that match a cache behavior that’s
-	// associated with the policy.
+	// responses that it sends for requests that match a cache behavior that's associated
+	// with the policy.
 	//
 	// ResponseHeadersPolicyConfig is a required field
 	ResponseHeadersPolicyConfig *ResponseHeadersPolicyConfig `type:"structure" required:"true"`
@@ -30260,7 +30247,7 @@ func (s *ResponseHeadersPolicyCorsConfig) SetOriginOverride(v bool) *ResponseHea
 
 // An HTTP response header name and its value. CloudFront includes this header
 // in HTTP responses that it sends for requests that match a cache behavior
-// that’s associated with this response headers policy.
+// that's associated with this response headers policy.
 type ResponseHeadersPolicyCustomHeader struct {
 	_ struct{} `type:"structure"`
 
@@ -30338,7 +30325,7 @@ func (s *ResponseHeadersPolicyCustomHeader) SetValue(v string) *ResponseHeadersP
 
 // A list of HTTP response header names and their values. CloudFront includes
 // these headers in HTTP responses that it sends for requests that match a cache
-// behavior that’s associated with this response headers policy.
+// behavior that's associated with this response headers policy.
 type ResponseHeadersPolicyCustomHeadersConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -30405,7 +30392,7 @@ func (s *ResponseHeadersPolicyCustomHeadersConfig) SetQuantity(v int64) *Respons
 }
 
 // Determines whether CloudFront includes the X-Frame-Options HTTP response
-// header and the header’s value.
+// header and the header's value.
 //
 // For more information about the X-Frame-Options HTTP response header, see
 // X-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
@@ -30543,7 +30530,7 @@ func (s *ResponseHeadersPolicyList) SetQuantity(v int64) *ResponseHeadersPolicyL
 }
 
 // Determines whether CloudFront includes the Referrer-Policy HTTP response
-// header and the header’s value.
+// header and the header's value.
 //
 // For more information about the Referrer-Policy HTTP response header, see
 // Referrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
@@ -30652,7 +30639,7 @@ type ResponseHeadersPolicySecurityHeadersConfig struct {
 	ContentTypeOptions *ResponseHeadersPolicyContentTypeOptions `type:"structure"`
 
 	// Determines whether CloudFront includes the X-Frame-Options HTTP response
-	// header and the header’s value.
+	// header and the header's value.
 	//
 	// For more information about the X-Frame-Options HTTP response header, see
 	// X-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
@@ -30660,7 +30647,7 @@ type ResponseHeadersPolicySecurityHeadersConfig struct {
 	FrameOptions *ResponseHeadersPolicyFrameOptions `type:"structure"`
 
 	// Determines whether CloudFront includes the Referrer-Policy HTTP response
-	// header and the header’s value.
+	// header and the header's value.
 	//
 	// For more information about the Referrer-Policy HTTP response header, see
 	// Referrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
@@ -30668,7 +30655,7 @@ type ResponseHeadersPolicySecurityHeadersConfig struct {
 	ReferrerPolicy *ResponseHeadersPolicyReferrerPolicy `type:"structure"`
 
 	// Determines whether CloudFront includes the Strict-Transport-Security HTTP
-	// response header and the header’s value.
+	// response header and the header's value.
 	//
 	// For more information about the Strict-Transport-Security HTTP response header,
 	// see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
@@ -30676,7 +30663,7 @@ type ResponseHeadersPolicySecurityHeadersConfig struct {
 	StrictTransportSecurity *ResponseHeadersPolicyStrictTransportSecurity `type:"structure"`
 
 	// Determines whether CloudFront includes the X-XSS-Protection HTTP response
-	// header and the header’s value.
+	// header and the header's value.
 	//
 	// For more information about the X-XSS-Protection HTTP response header, see
 	// X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
@@ -30855,7 +30842,7 @@ func (s *ResponseHeadersPolicyServerTimingHeadersConfig) SetSamplingRate(v float
 }
 
 // Determines whether CloudFront includes the Strict-Transport-Security HTTP
-// response header and the header’s value.
+// response header and the header's value.
 //
 // For more information about the Strict-Transport-Security HTTP response header,
 // see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
@@ -30990,7 +30977,7 @@ func (s *ResponseHeadersPolicySummary) SetType(v string) *ResponseHeadersPolicyS
 }
 
 // Determines whether CloudFront includes the X-XSS-Protection HTTP response
-// header and the header’s value.
+// header and the header's value.
 //
 // For more information about the X-XSS-Protection HTTP response header, see
 // X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
@@ -32992,14 +32979,14 @@ type UpdateCachePolicyInput struct {
 	CachePolicyConfig *CachePolicyConfig `locationName:"CachePolicyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
 
 	// The unique identifier for the cache policy that you are updating. The identifier
-	// is returned in a cache behavior’s CachePolicyId field in the response to
+	// is returned in a cache behavior's CachePolicyId field in the response to
 	// GetDistributionConfig.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version of the cache policy that you are updating. The version is returned
-	// in the cache policy’s ETag field in the response to GetCachePolicyConfig.
+	// in the cache policy's ETag field in the response to GetCachePolicyConfig.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 }
 
@@ -33541,7 +33528,7 @@ type UpdateDistributionWithStagingConfigOutput struct {
 	// and the details about how to track and manage content delivery.
 	Distribution *Distribution `type:"structure"`
 
-	// The current version of the primary distribution (after it’s updated).
+	// The current version of the primary distribution (after it's updated).
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 }
 
@@ -33969,7 +33956,7 @@ type UpdateKeyGroupInput struct {
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version of the key group that you are updating. The version is the key
-	// group’s ETag value.
+	// group's ETag value.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	// The key group configuration.
@@ -34200,14 +34187,14 @@ type UpdateOriginRequestPolicyInput struct {
 	_ struct{} `locationName:"UpdateOriginRequestPolicyRequest" type:"structure" payload:"OriginRequestPolicyConfig"`
 
 	// The unique identifier for the origin request policy that you are updating.
-	// The identifier is returned in a cache behavior’s OriginRequestPolicyId
-	// field in the response to GetDistributionConfig.
+	// The identifier is returned in a cache behavior's OriginRequestPolicyId field
+	// in the response to GetDistributionConfig.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version of the origin request policy that you are updating. The version
-	// is returned in the origin request policy’s ETag field in the response to
+	// is returned in the origin request policy's ETag field in the response to
 	// GetOriginRequestPolicyConfig.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
@@ -34570,7 +34557,7 @@ type UpdateResponseHeadersPolicyInput struct {
 
 	// The version of the response headers policy that you are updating.
 	//
-	// The version is returned in the cache policy’s ETag field in the response
+	// The version is returned in the cache policy's ETag field in the response
 	// to GetResponseHeadersPolicyConfig.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
@@ -34800,12 +34787,12 @@ func (s *UpdateStreamingDistributionOutput) SetStreamingDistribution(v *Streamin
 	return s
 }
 
-// A complex type that determines the distribution’s SSL/TLS configuration
-// for communicating with viewers.
+// A complex type that determines the distribution's SSL/TLS configuration for
+// communicating with viewers.
 //
-// If the distribution doesn’t use Aliases (also known as alternate domain
-// names or CNAMEs)—that is, if the distribution uses the CloudFront domain
-// name such as d111111abcdef8.cloudfront.net—set CloudFrontDefaultCertificate
+// If the distribution doesn't use Aliases (also known as alternate domain names
+// or CNAMEs)—that is, if the distribution uses the CloudFront domain name
+// such as d111111abcdef8.cloudfront.net—set CloudFrontDefaultCertificate
 // to true and leave all other fields empty.
 //
 // If the distribution uses Aliases (alternate domain names or CNAMEs), use
@@ -34813,10 +34800,10 @@ func (s *UpdateStreamingDistributionOutput) SetStreamingDistribution(v *Streamin
 //
 //   - Which viewers the distribution accepts HTTPS connections from: only
 //     viewers that support server name indication (SNI) (https://en.wikipedia.org/wiki/Server_Name_Indication)
-//     (recommended), or all viewers including those that don’t support SNI.
+//     (recommended), or all viewers including those that don't support SNI.
 //     To accept HTTPS connections from only viewers that support SNI, set SSLSupportMethod
 //     to sni-only. This is recommended. Most browsers and clients support SNI.
-//     To accept HTTPS connections from all viewers, including those that don’t
+//     To accept HTTPS connections from all viewers, including those that don't
 //     support SNI, set SSLSupportMethod to vip. This is not recommended, and
 //     results in additional monthly charges from CloudFront.
 //
@@ -34911,8 +34898,8 @@ type ViewerCertificate struct {
 	//
 	// On the CloudFront console, this setting is called Security Policy.
 	//
-	// When you’re using SNI only (you set SSLSupportMethod to sni-only), you
-	// must specify TLSv1 or higher.
+	// When you're using SNI only (you set SSLSupportMethod to sni-only), you must
+	// specify TLSv1 or higher.
 	//
 	// If the distribution uses the CloudFront domain name such as d111111abcdef8.cloudfront.net
 	// (you set CloudFrontDefaultCertificate to true), CloudFront automatically
@@ -34927,8 +34914,8 @@ type ViewerCertificate struct {
 	//    This is recommended. Most browsers and clients support SNI.
 	//
 	//    * vip – The distribution accepts HTTPS connections from all viewers
-	//    including those that don’t support SNI. This is not recommended, and
-	//    results in additional monthly charges from CloudFront.
+	//    including those that don't support SNI. This is not recommended, and results
+	//    in additional monthly charges from CloudFront.
 	//
 	//    * static-ip - Do not specify this value unless your distribution has been
 	//    enabled for this feature by the CloudFront team. If you have a use case
@@ -34936,7 +34923,7 @@ type ViewerCertificate struct {
 	//    through the Amazon Web Services Support Center (https://console.aws.amazon.com/support/home).
 	//
 	// If the distribution uses the CloudFront domain name such as d111111abcdef8.cloudfront.net,
-	// don’t set a value for this field.
+	// don't set a value for this field.
 	SSLSupportMethod *string `type:"string" enum:"SSLSupportMethod"`
 }
 

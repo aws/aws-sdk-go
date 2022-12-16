@@ -1855,7 +1855,8 @@
         "INTELLIGENT_TIERING",
         "GLACIER",
         "DEEP_ARCHIVE",
-        "OUTPOSTS"
+        "OUTPOSTS",
+        "GLACIER_INSTANT_RETRIEVAL"
       ]
     },
     "S3Subdirectory":{
@@ -1927,7 +1928,8 @@
         "TaskArn":{"shape":"TaskArn"},
         "OverrideOptions":{"shape":"Options"},
         "Includes":{"shape":"FilterList"},
-        "Excludes":{"shape":"FilterList"}
+        "Excludes":{"shape":"FilterList"},
+        "Tags":{"shape":"InputTagList"}
       }
     },
     "StartTaskExecutionResponse":{
@@ -1986,7 +1988,7 @@
     "TaggableResourceArn":{
       "type":"string",
       "max":128,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:(agent|task|location)/(agent|task|loc)-[0-9a-z]{17}$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:(agent|task|location)/(agent|task|loc)-[a-f0-9]{17}(/execution/exec-[a-f0-9]{17})?$"
     },
     "TaskArn":{
       "type":"string",

@@ -9100,6 +9100,14 @@ type ListConnectorEntitiesInput struct {
 	// request returns the list of roots. Otherwise, this request returns all entities
 	// supported by the provider.
 	EntitiesPath *string `locationName:"entitiesPath" type:"string"`
+
+	// The maximum number of items that the operation returns in the response.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token that was provided by your prior ListConnectorEntities operation if
+	// the response was too big for the page size. You specify this token to get
+	// the next page of results in paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
 // String returns the string representation.
@@ -9118,6 +9126,19 @@ func (s ListConnectorEntitiesInput) String() string {
 // value will be replaced with "sensitive".
 func (s ListConnectorEntitiesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConnectorEntitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConnectorEntitiesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetApiVersion sets the ApiVersion field's value.
@@ -9144,6 +9165,18 @@ func (s *ListConnectorEntitiesInput) SetEntitiesPath(v string) *ListConnectorEnt
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConnectorEntitiesInput) SetMaxResults(v int64) *ListConnectorEntitiesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorEntitiesInput) SetNextToken(v string) *ListConnectorEntitiesInput {
+	s.NextToken = &v
+	return s
+}
+
 type ListConnectorEntitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9153,6 +9186,11 @@ type ListConnectorEntitiesOutput struct {
 	//
 	// ConnectorEntityMap is a required field
 	ConnectorEntityMap map[string][]*ConnectorEntity `locationName:"connectorEntityMap" type:"map" required:"true"`
+
+	// A token that you specify in your next ListConnectorEntities operation to
+	// get the next page of results in paginated response. The ListConnectorEntities
+	// operation provides this token if the response is too big for the page size.
+	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
 // String returns the string representation.
@@ -9176,6 +9214,12 @@ func (s ListConnectorEntitiesOutput) GoString() string {
 // SetConnectorEntityMap sets the ConnectorEntityMap field's value.
 func (s *ListConnectorEntitiesOutput) SetConnectorEntityMap(v map[string][]*ConnectorEntity) *ListConnectorEntitiesOutput {
 	s.ConnectorEntityMap = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConnectorEntitiesOutput) SetNextToken(v string) *ListConnectorEntitiesOutput {
+	s.NextToken = &v
 	return s
 }
 

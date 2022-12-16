@@ -7620,7 +7620,9 @@ type CreateFilterInput struct {
 	// The idempotency token for the create request.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The description of the filter.
+	// The description of the filter. Valid special characters include period (.),
+	// underscore (_), dash (-), and whitespace. The new line character is considered
+	// to be an invalid input for description.
 	Description *string `locationName:"description" type:"string"`
 
 	// The ID of the detector belonging to the GuardDuty account that you want to
@@ -7753,9 +7755,9 @@ type CreateFilterInput struct {
 	// FindingCriteria is a required field
 	FindingCriteria *FindingCriteria `locationName:"findingCriteria" type:"structure" required:"true"`
 
-	// The name of the filter. Minimum length of 3. Maximum length of 64. Valid
-	// characters include alphanumeric characters, dot (.), underscore (_), and
-	// dash (-). Spaces are not allowed.
+	// The name of the filter. Valid characters include period (.), underscore (_),
+	// dash (-), and alphanumeric characters. A whitespace is considered to be an
+	// invalid character.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
@@ -17343,7 +17345,7 @@ type Scan struct {
 	// Represents total bytes that were scanned.
 	TotalBytes *int64 `locationName:"totalBytes" type:"long"`
 
-	// Represents the reason the scan was triggered.
+	// Specifies the reason why the scan was initiated.
 	TriggerDetails *TriggerDetails `locationName:"triggerDetails" type:"structure"`
 }
 
@@ -19180,7 +19182,9 @@ type UpdateFilterInput struct {
 	// filter.
 	Action *string `locationName:"action" min:"1" type:"string" enum:"FilterAction"`
 
-	// The description of the filter.
+	// The description of the filter. Valid special characters include period (.),
+	// underscore (_), dash (-), and whitespace. The new line character is considered
+	// to be an invalid input for description.
 	Description *string `locationName:"description" type:"string"`
 
 	// The unique ID of the detector that specifies the GuardDuty service where
