@@ -29,12 +29,12 @@ func TestAWSQuery(t *testing.T) {
 		expectErrorCode string
 	}{
 		"when header is present": {
-			statusCode:      500,
+			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
 			expectErrorCode: "AWS.SimpleQueueService.QueueDeletedRecently",
 			headers: map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently;Sender"},
 		},
-		"for unmodlled error code": {
+		"for unmodeled error code": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#AccessDeniedException", "message":"Some user-visible message"}`),
 			expectErrorCode: "AccessDenied",
@@ -53,7 +53,7 @@ func TestAWSQuery(t *testing.T) {
 			headers: nil,
 		},
 		"when header is malformed": {
-			statusCode:      500,
+			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
 			expectErrorCode: "QueueDeletedRecently",
 			headers: map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently-Sender"},

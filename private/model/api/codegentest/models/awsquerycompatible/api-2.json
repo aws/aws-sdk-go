@@ -6,7 +6,7 @@
     "awsQueryCompatible": {
 
     },
-    "endpointPrefix":"awsquerycompatible",
+    "endpointPrefix":"awsqc-exampleendpoint",
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceAbbreviation":"AwsQueryCompatible",

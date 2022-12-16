@@ -15,6 +15,8 @@ import (
 
 const (
 	awsQueryError = "x-amzn-query-error"
+	// A valid header example - "x-amzn-query-error": "<QueryErrorCode>;<ErrorType>"
+	awsQueryErrorPartsCount = 2
 )
 
 // UnmarshalTypedError provides unmarshaling errors API response errors
@@ -73,11 +75,14 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	queryCodeParts := queryCodeParts(resp, u)
 
 	if fn, ok := u.exceptions[code]; ok {
-		// If exception code is know, use associated constructor to get a value
+		// If query-compatible exceptions are found and query-error-header is found,
+		// then use associated constructor to get exception with query error code.
+		//
+		// If exception code is known, use associated constructor to get a value
 		// for the exception that the JSON body can be unmarshaled into.
 		var v error
 		queryErrFn, queryExceptionsFound := u.queryExceptions[code]
-		if queryCodeParts != nil && len(queryCodeParts) == 2 && queryExceptionsFound {
+		if len(queryCodeParts) == awsQueryErrorPartsCount && queryExceptionsFound {
 			v = queryErrFn(respMeta, queryCodeParts[0])
 		} else {
 			v = fn(respMeta)
@@ -89,7 +94,7 @@ func (u *UnmarshalTypedError) UnmarshalError(
 		return v, nil
 	}
 
-	if queryCodeParts != nil && len(queryCodeParts) == 2 {
+	if len(queryCodeParts) == awsQueryErrorPartsCount && len(u.queryExceptions) > 0 {
 		code = queryCodeParts[0]
 	}
 
@@ -101,6 +106,7 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	), nil
 }
 
+// A valid header example - "x-amzn-query-error": "<QueryErrorCode>;<ErrorType>"
 func queryCodeParts(resp *http.Response, u *UnmarshalTypedError) []string {
 	queryCodeHeader := resp.Header.Get(awsQueryError)
 	var queryCodeParts []string

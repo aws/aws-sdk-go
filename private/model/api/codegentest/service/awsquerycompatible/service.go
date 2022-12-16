@@ -30,9 +30,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "AWSQueryCompatible" // Name of service.
-	EndpointsID = "awsquerycompatible" // ID to lookup a service endpoint with.
-	ServiceID   = "AWSQueryCompatible" // ServiceID is a unique identifier of a specific service.
+	ServiceName = "AWSQueryCompatible"    // Name of service.
+	EndpointsID = "awsqc-exampleendpoint" // ID to lookup a service endpoint with.
+	ServiceID   = "AWSQueryCompatible"    // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the AwsQueryCompatible client with a session.
