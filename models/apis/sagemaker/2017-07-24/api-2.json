@@ -11048,7 +11048,8 @@
         "ResourceLimits":{"shape":"ResourceLimits"},
         "ParameterRanges":{"shape":"ParameterRanges"},
         "TrainingJobEarlyStoppingType":{"shape":"TrainingJobEarlyStoppingType"},
-        "TuningJobCompletionCriteria":{"shape":"TuningJobCompletionCriteria"}
+        "TuningJobCompletionCriteria":{"shape":"TuningJobCompletionCriteria"},
+        "RandomSeed":{"shape":"RandomSeed"}
       }
     },
     "HyperParameterTuningJobName":{
@@ -16984,6 +16985,10 @@
         "R_STUDIO_ADMIN",
         "R_STUDIO_USER"
       ]
+    },
+    "RandomSeed":{
+      "type":"integer",
+      "min":0
     },
     "RealTimeInferenceConfig":{
       "type":"structure",

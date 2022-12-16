@@ -5893,7 +5893,7 @@
       "base": "<p>Defines the objective metric for a hyperparameter tuning job. Hyperparameter tuning uses the value of this metric to evaluate the training jobs it launches, and returns the training job that results in either the highest or lowest value for this metric, depending on the value you specify for the <code>Type</code> parameter.</p>",
       "refs": {
         "HyperParameterTrainingJobDefinition$TuningObjective": null,
-        "HyperParameterTuningJobConfig$HyperParameterTuningJobObjective": "<p>The <a>HyperParameterTuningJobObjective</a> object that specifies the objective metric for this tuning job.</p>",
+        "HyperParameterTuningJobConfig$HyperParameterTuningJobObjective": "<p>The <a>HyperParameterTuningJobObjective</a> specifies the objective metric used to evaluate the performance of training jobs launched by this tuning job.</p>",
         "HyperParameterTuningJobObjectives$member": null
       }
     },
@@ -9913,7 +9913,7 @@
       "base": "<p>Specifies ranges of integer, continuous, and categorical hyperparameters that a hyperparameter tuning job searches. The hyperparameter tuning job launches training jobs with hyperparameter values within these ranges to find the combination of values that result in the training job with the best performance as measured by the objective metric of the hyperparameter tuning job.</p> <note> <p>The maximum number of items specified for <code>Array Members</code> refers to the maximum number of hyperparameters for each range and also the maximum for the hyperparameter tuning job itself. That is, the sum of the number of hyperparameters for all the ranges can't exceed the maximum number specified.</p> </note>",
       "refs": {
         "HyperParameterTrainingJobDefinition$HyperParameterRanges": null,
-        "HyperParameterTuningJobConfig$ParameterRanges": "<p>The <a>ParameterRanges</a> object that specifies the ranges of hyperparameters that this tuning job searches.</p>"
+        "HyperParameterTuningJobConfig$ParameterRanges": "<p>The <a>ParameterRanges</a> object that specifies the ranges of hyperparameters that this tuning job searches over to find the optimal configuration for the highest model performance against .your chosen objective metric. </p>"
       }
     },
     "ParameterType": {
@@ -10870,6 +10870,12 @@
         "RStudioServerProAppSettings$UserGroup": "<p>The level of permissions that the user has within the <code>RStudioServerPro</code> app. This value defaults to `User`. The `Admin` value allows the user access to the RStudio Administrative Dashboard.</p>"
       }
     },
+    "RandomSeed": {
+      "base": null,
+      "refs": {
+        "HyperParameterTuningJobConfig$RandomSeed": "<p>A value used to initialize a pseudo-random number generator. Setting a random seed and using the same seed later for the same tuning job will allow hyperparameter optimization to find more a consistent hyperparameter configuration between the two runs.</p>"
+      }
+    },
     "RealTimeInferenceConfig": {
       "base": "<p>The infrastructure configuration for deploying the model to a real-time inference endpoint.</p>",
       "refs": {
@@ -11201,7 +11207,7 @@
     "ResourceLimits": {
       "base": "<p>Specifies the maximum number of training jobs and parallel training jobs that a hyperparameter tuning job can launch.</p>",
       "refs": {
-        "HyperParameterTuningJobConfig$ResourceLimits": "<p>The <a>ResourceLimits</a> object that specifies the maximum number of training jobs and parallel training jobs for this tuning job.</p>",
+        "HyperParameterTuningJobConfig$ResourceLimits": "<p>The <a>ResourceLimits</a> object that specifies the maximum number of training and parallel training jobs that can be used for this hyperparameter tuning job.</p>",
         "HyperParameterTuningJobSummary$ResourceLimits": "<p>The <a>ResourceLimits</a> object that specifies the maximum number of training jobs and parallel training jobs allowed for this tuning job.</p>"
       }
     },
@@ -11918,16 +11924,16 @@
       "base": null,
       "refs": {
         "AppDetails$SpaceName": "<p>The name of the space.</p>",
-        "CreateAppRequest$SpaceName": "<p>The name of the space.</p>",
+        "CreateAppRequest$SpaceName": "<p>The name of the space. If this value is not set, then <code>UserProfileName</code> must be set.</p>",
         "CreatePresignedDomainUrlRequest$SpaceName": "<p>The name of the space.</p>",
         "CreateSpaceRequest$SpaceName": "<p>The name of the space.</p>",
-        "DeleteAppRequest$SpaceName": "<p>The name of the space.</p>",
+        "DeleteAppRequest$SpaceName": "<p>The name of the space. If this value is not set, then <code>UserProfileName</code> must be set.</p>",
         "DeleteSpaceRequest$SpaceName": "<p>The name of the space.</p>",
         "DescribeAppRequest$SpaceName": "<p>The name of the space.</p>",
-        "DescribeAppResponse$SpaceName": "<p>The name of the space.</p>",
+        "DescribeAppResponse$SpaceName": "<p>The name of the space. If this value is not set, then <code>UserProfileName</code> must be set.</p>",
         "DescribeSpaceRequest$SpaceName": "<p>The name of the space.</p>",
         "DescribeSpaceResponse$SpaceName": "<p>The name of the space.</p>",
-        "ListAppsRequest$SpaceNameEquals": "<p>A parameter to search by space name.</p>",
+        "ListAppsRequest$SpaceNameEquals": "<p>A parameter to search by space name. If <code>UserProfileNameEquals</code> is set, then this value cannot be set.</p>",
         "ListSpacesRequest$SpaceNameContains": "<p>A parameter by which to filter the results.</p>",
         "SpaceDetails$SpaceName": "<p>The name of the space.</p>",
         "UpdateSpaceRequest$SpaceName": "<p>The name of the space.</p>"
@@ -14088,16 +14094,16 @@
       "base": null,
       "refs": {
         "AppDetails$UserProfileName": "<p>The user profile name.</p>",
-        "CreateAppRequest$UserProfileName": "<p>The user profile name.</p>",
+        "CreateAppRequest$UserProfileName": "<p>The user profile name. If this value is not set, then <code>SpaceName</code> must be set.</p>",
         "CreatePresignedDomainUrlRequest$UserProfileName": "<p>The name of the UserProfile to sign-in as.</p>",
         "CreateUserProfileRequest$UserProfileName": "<p>A name for the UserProfile. This value is not case sensitive.</p>",
-        "DeleteAppRequest$UserProfileName": "<p>The user profile name.</p>",
+        "DeleteAppRequest$UserProfileName": "<p>The user profile name. If this value is not set, then <code>SpaceName</code> must be set.</p>",
         "DeleteUserProfileRequest$UserProfileName": "<p>The user profile name.</p>",
-        "DescribeAppRequest$UserProfileName": "<p>The user profile name.</p>",
+        "DescribeAppRequest$UserProfileName": "<p>The user profile name. If this value is not set, then <code>SpaceName</code> must be set.</p>",
         "DescribeAppResponse$UserProfileName": "<p>The user profile name.</p>",
         "DescribeUserProfileRequest$UserProfileName": "<p>The user profile name. This value is not case sensitive.</p>",
         "DescribeUserProfileResponse$UserProfileName": "<p>The user profile name.</p>",
-        "ListAppsRequest$UserProfileNameEquals": "<p>A parameter to search by user profile name.</p>",
+        "ListAppsRequest$UserProfileNameEquals": "<p>A parameter to search by user profile name. If <code>SpaceNameEquals</code> is set, then this value cannot be set.</p>",
         "ListUserProfilesRequest$UserProfileNameContains": "<p>A parameter by which to filter the results.</p>",
         "UpdateUserProfileRequest$UserProfileName": "<p>The user profile name.</p>",
         "UserProfileDetails$UserProfileName": "<p>The user profile name.</p>"

@@ -1477,7 +1477,7 @@
     "EntitiesPath":{
       "type":"string",
       "max":256,
-      "pattern":"[\\s\\w/!@#+=.-]*"
+      "pattern":"[\\s\\w/!@#+=,.-]*"
     },
     "EntityName":{
       "type":"string",
@@ -1870,14 +1870,17 @@
         "connectorProfileName":{"shape":"ConnectorProfileName"},
         "connectorType":{"shape":"ConnectorType"},
         "entitiesPath":{"shape":"EntitiesPath"},
-        "apiVersion":{"shape":"ApiVersion"}
+        "apiVersion":{"shape":"ApiVersion"},
+        "maxResults":{"shape":"ListEntitiesMaxResults"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListConnectorEntitiesResponse":{
       "type":"structure",
       "required":["connectorEntityMap"],
       "members":{
-        "connectorEntityMap":{"shape":"ConnectorEntityMap"}
+        "connectorEntityMap":{"shape":"ConnectorEntityMap"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListConnectorsRequest":{
@@ -1893,6 +1896,11 @@
         "connectors":{"shape":"ConnectorList"},
         "nextToken":{"shape":"NextToken"}
       }
+    },
+    "ListEntitiesMaxResults":{
+      "type":"integer",
+      "max":10000,
+      "min":1
     },
     "ListFlowsRequest":{
       "type":"structure",

@@ -110,7 +110,7 @@ const (
 	// ErrCodeFunctionInUse for service response error code
 	// "FunctionInUse".
 	//
-	// Cannot delete the function because it’s attached to one or more cache behaviors.
+	// Cannot delete the function because it's attached to one or more cache behaviors.
 	ErrCodeFunctionInUse = "FunctionInUse"
 
 	// ErrCodeFunctionSizeLimitExceeded for service response error code
@@ -355,7 +355,7 @@ const (
 	// ErrCodeNoSuchContinuousDeploymentPolicy for service response error code
 	// "NoSuchContinuousDeploymentPolicy".
 	//
-	// The continuous deployment policy doesn’t exist.
+	// The continuous deployment policy doesn't exist.
 	ErrCodeNoSuchContinuousDeploymentPolicy = "NoSuchContinuousDeploymentPolicy"
 
 	// ErrCodeNoSuchDistribution for service response error code

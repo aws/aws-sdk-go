@@ -1,3 +1,19 @@
+Release v1.44.162 (2022-12-16)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/cloudfront`: Updates service documentation
+  * Updated documentation for CloudFront
+* `service/datasync`: Updates service API and documentation
+* `service/elasticfilesystem`: Updates service documentation
+  * General documentation updates for EFS.
+* `service/guardduty`: Updates service documentation
+  * This release provides the valid characters for the Description and Name field.
+* `service/iotfleetwise`: Updates service API
+* `service/sagemaker`: Updates service API and documentation
+  * AWS sagemaker - Features: This release adds support for random seed, it's an integer value used to initialize a pseudo-random number generator. Setting a random seed will allow the hyperparameter tuning search strategies to produce more consistent configurations for the same tuning job.
+
 Release v1.44.161 (2022-12-15)
 ===
 

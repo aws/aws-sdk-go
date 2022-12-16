@@ -367,6 +367,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -835,6 +836,7 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidNodeException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
         {"shape":"InvalidSignalsException"},
         {"shape":"AccessDeniedException"}
       ],
