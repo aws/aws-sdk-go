@@ -1479,6 +1479,10 @@ func (c *Athena) GetCalculationExecutionCodeRequest(input *GetCalculationExecuti
 //     Indicates a platform issue, which may be due to a transient condition or
 //     outage.
 //
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
+//
 //   - ResourceNotFoundException
 //     A resource, such as a workgroup, was not found.
 //
@@ -2314,9 +2318,11 @@ func (c *Athena) GetQueryRuntimeStatisticsRequest(input *GetQueryRuntimeStatisti
 // GetQueryRuntimeStatistics API operation for Amazon Athena.
 //
 // Returns query execution runtime statistics related to a single execution
-// of a query if you have access to the workgroup in which the query ran. The
-// query execution runtime statistics is returned only when QueryExecutionStatus$State
-// is in a SUCCEEDED or FAILED state.
+// of a query if you have access to the workgroup in which the query ran. Query
+// execution runtime statistics are returned only when QueryExecutionStatus$State
+// is in a SUCCEEDED or FAILED state. Stage-level input and output row count
+// and data size statistics are not shown when a query has row-level filters
+// defined in Lake Formation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5193,6 +5199,10 @@ func (c *Athena) StopCalculationExecutionRequest(input *StopCalculationExecution
 //   - InternalServerException
 //     Indicates a platform issue, which may be due to a transient condition or
 //     outage.
+//
+//   - InvalidRequestException
+//     Indicates that something is wrong with the input to the request. For example,
+//     a required parameter may be missing or out of range.
 //
 //   - ResourceNotFoundException
 //     A resource, such as a workgroup, was not found.
@@ -15976,13 +15986,17 @@ type UpdateNotebookInput struct {
 	NotebookId *string `min:"1" type:"string" required:"true"`
 
 	// The updated content for the notebook.
-	Payload *string `min:"1" type:"string"`
+	//
+	// Payload is a required field
+	Payload *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the session in which the notebook will be updated.
 	SessionId *string `min:"1" type:"string"`
 
 	// The notebook content type. Currently, the only valid type is IPYNB.
-	Type *string `type:"string" enum:"NotebookType"`
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"NotebookType"`
 }
 
 // String returns the string representation.
@@ -16015,11 +16029,17 @@ func (s *UpdateNotebookInput) Validate() error {
 	if s.NotebookId != nil && len(*s.NotebookId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NotebookId", 1))
 	}
+	if s.Payload == nil {
+		invalidParams.Add(request.NewErrParamRequired("Payload"))
+	}
 	if s.Payload != nil && len(*s.Payload) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Payload", 1))
 	}
 	if s.SessionId != nil && len(*s.SessionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
 
 	if invalidParams.Len() > 0 {

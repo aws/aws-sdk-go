@@ -239,6 +239,7 @@
       "output":{"shape":"GetCalculationExecutionCodeResponse"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -692,6 +693,7 @@
       "output":{"shape":"StopCalculationExecutionResponse"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -2189,7 +2191,7 @@
     },
     "Payload":{
       "type":"string",
-      "max":15728640,
+      "max":10485760,
       "min":1
     },
     "PreparedStatement":{
@@ -2832,7 +2834,11 @@
     },
     "UpdateNotebookInput":{
       "type":"structure",
-      "required":["NotebookId"],
+      "required":[
+        "NotebookId",
+        "Payload",
+        "Type"
+      ],
       "members":{
         "NotebookId":{"shape":"NotebookId"},
         "Payload":{"shape":"Payload"},

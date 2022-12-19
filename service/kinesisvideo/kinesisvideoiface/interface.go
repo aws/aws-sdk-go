@@ -84,6 +84,17 @@ type KinesisVideoAPI interface {
 	DescribeImageGenerationConfigurationWithContext(aws.Context, *kinesisvideo.DescribeImageGenerationConfigurationInput, ...request.Option) (*kinesisvideo.DescribeImageGenerationConfigurationOutput, error)
 	DescribeImageGenerationConfigurationRequest(*kinesisvideo.DescribeImageGenerationConfigurationInput) (*request.Request, *kinesisvideo.DescribeImageGenerationConfigurationOutput)
 
+	DescribeMappedResourceConfiguration(*kinesisvideo.DescribeMappedResourceConfigurationInput) (*kinesisvideo.DescribeMappedResourceConfigurationOutput, error)
+	DescribeMappedResourceConfigurationWithContext(aws.Context, *kinesisvideo.DescribeMappedResourceConfigurationInput, ...request.Option) (*kinesisvideo.DescribeMappedResourceConfigurationOutput, error)
+	DescribeMappedResourceConfigurationRequest(*kinesisvideo.DescribeMappedResourceConfigurationInput) (*request.Request, *kinesisvideo.DescribeMappedResourceConfigurationOutput)
+
+	DescribeMappedResourceConfigurationPages(*kinesisvideo.DescribeMappedResourceConfigurationInput, func(*kinesisvideo.DescribeMappedResourceConfigurationOutput, bool) bool) error
+	DescribeMappedResourceConfigurationPagesWithContext(aws.Context, *kinesisvideo.DescribeMappedResourceConfigurationInput, func(*kinesisvideo.DescribeMappedResourceConfigurationOutput, bool) bool, ...request.Option) error
+
+	DescribeMediaStorageConfiguration(*kinesisvideo.DescribeMediaStorageConfigurationInput) (*kinesisvideo.DescribeMediaStorageConfigurationOutput, error)
+	DescribeMediaStorageConfigurationWithContext(aws.Context, *kinesisvideo.DescribeMediaStorageConfigurationInput, ...request.Option) (*kinesisvideo.DescribeMediaStorageConfigurationOutput, error)
+	DescribeMediaStorageConfigurationRequest(*kinesisvideo.DescribeMediaStorageConfigurationInput) (*request.Request, *kinesisvideo.DescribeMediaStorageConfigurationOutput)
+
 	DescribeNotificationConfiguration(*kinesisvideo.DescribeNotificationConfigurationInput) (*kinesisvideo.DescribeNotificationConfigurationOutput, error)
 	DescribeNotificationConfigurationWithContext(aws.Context, *kinesisvideo.DescribeNotificationConfigurationInput, ...request.Option) (*kinesisvideo.DescribeNotificationConfigurationOutput, error)
 	DescribeNotificationConfigurationRequest(*kinesisvideo.DescribeNotificationConfigurationInput) (*request.Request, *kinesisvideo.DescribeNotificationConfigurationOutput)
@@ -153,6 +164,10 @@ type KinesisVideoAPI interface {
 	UpdateImageGenerationConfiguration(*kinesisvideo.UpdateImageGenerationConfigurationInput) (*kinesisvideo.UpdateImageGenerationConfigurationOutput, error)
 	UpdateImageGenerationConfigurationWithContext(aws.Context, *kinesisvideo.UpdateImageGenerationConfigurationInput, ...request.Option) (*kinesisvideo.UpdateImageGenerationConfigurationOutput, error)
 	UpdateImageGenerationConfigurationRequest(*kinesisvideo.UpdateImageGenerationConfigurationInput) (*request.Request, *kinesisvideo.UpdateImageGenerationConfigurationOutput)
+
+	UpdateMediaStorageConfiguration(*kinesisvideo.UpdateMediaStorageConfigurationInput) (*kinesisvideo.UpdateMediaStorageConfigurationOutput, error)
+	UpdateMediaStorageConfigurationWithContext(aws.Context, *kinesisvideo.UpdateMediaStorageConfigurationInput, ...request.Option) (*kinesisvideo.UpdateMediaStorageConfigurationOutput, error)
+	UpdateMediaStorageConfigurationRequest(*kinesisvideo.UpdateMediaStorageConfigurationInput) (*request.Request, *kinesisvideo.UpdateMediaStorageConfigurationOutput)
 
 	UpdateNotificationConfiguration(*kinesisvideo.UpdateNotificationConfigurationInput) (*kinesisvideo.UpdateNotificationConfigurationOutput, error)
 	UpdateNotificationConfigurationWithContext(aws.Context, *kinesisvideo.UpdateNotificationConfigurationInput, ...request.Option) (*kinesisvideo.UpdateNotificationConfigurationOutput, error)

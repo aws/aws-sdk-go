@@ -1599,6 +1599,19 @@
         "serviceConnectResources":{"shape":"ServiceConnectServiceResourceList"}
       }
     },
+    "DeploymentAlarms":{
+      "type":"structure",
+      "required":[
+        "alarmNames",
+        "enable",
+        "rollback"
+      ],
+      "members":{
+        "alarmNames":{"shape":"StringList"},
+        "enable":{"shape":"Boolean"},
+        "rollback":{"shape":"Boolean"}
+      }
+    },
     "DeploymentCircuitBreaker":{
       "type":"structure",
       "required":[
@@ -1615,7 +1628,8 @@
       "members":{
         "deploymentCircuitBreaker":{"shape":"DeploymentCircuitBreaker"},
         "maximumPercent":{"shape":"BoxedInteger"},
-        "minimumHealthyPercent":{"shape":"BoxedInteger"}
+        "minimumHealthyPercent":{"shape":"BoxedInteger"},
+        "alarms":{"shape":"DeploymentAlarms"}
       }
     },
     "DeploymentController":{

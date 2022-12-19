@@ -81,13 +81,18 @@ func (c *KinesisVideo) CreateSignalingChannelRequest(input *CreateSignalingChann
 //     Amazon Web Services account in this region.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - AccessDeniedException
 //     You do not have required permissions to perform this operation.
@@ -189,13 +194,18 @@ func (c *KinesisVideo) CreateStreamRequest(input *CreateStreamInput) (req *reque
 //     Not implemented.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - InvalidDeviceException
 //     Not implemented.
@@ -309,13 +319,18 @@ func (c *KinesisVideo) DeleteSignalingChannelRequest(input *DeleteSignalingChann
 //     API.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteSignalingChannel
 func (c *KinesisVideo) DeleteSignalingChannel(input *DeleteSignalingChannelInput) (*DeleteSignalingChannelOutput, error) {
@@ -424,13 +439,18 @@ func (c *KinesisVideo) DeleteStreamRequest(input *DeleteStreamInput) (req *reque
 //     API.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DeleteStream
 func (c *KinesisVideo) DeleteStream(input *DeleteStreamInput) (*DeleteStreamOutput, error) {
@@ -633,6 +653,246 @@ func (c *KinesisVideo) DescribeImageGenerationConfiguration(input *DescribeImage
 // for more information on using Contexts.
 func (c *KinesisVideo) DescribeImageGenerationConfigurationWithContext(ctx aws.Context, input *DescribeImageGenerationConfigurationInput, opts ...request.Option) (*DescribeImageGenerationConfigurationOutput, error) {
 	req, out := c.DescribeImageGenerationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeMappedResourceConfiguration = "DescribeMappedResourceConfiguration"
+
+// DescribeMappedResourceConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMappedResourceConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMappedResourceConfiguration for more information on using the DescribeMappedResourceConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeMappedResourceConfigurationRequest method.
+//	req, resp := client.DescribeMappedResourceConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMappedResourceConfiguration
+func (c *KinesisVideo) DescribeMappedResourceConfigurationRequest(input *DescribeMappedResourceConfigurationInput) (req *request.Request, output *DescribeMappedResourceConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMappedResourceConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeMappedResourceConfiguration",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeMappedResourceConfigurationInput{}
+	}
+
+	output = &DescribeMappedResourceConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMappedResourceConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Returns the most current information about the stream. Either streamName
+// or streamARN should be provided in the input.
+//
+// Returns the most current information about the stream. The streamName or
+// streamARN should be provided in the input.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DescribeMappedResourceConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMappedResourceConfiguration
+func (c *KinesisVideo) DescribeMappedResourceConfiguration(input *DescribeMappedResourceConfigurationInput) (*DescribeMappedResourceConfigurationOutput, error) {
+	req, out := c.DescribeMappedResourceConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMappedResourceConfigurationWithContext is the same as DescribeMappedResourceConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMappedResourceConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeMappedResourceConfigurationWithContext(ctx aws.Context, input *DescribeMappedResourceConfigurationInput, opts ...request.Option) (*DescribeMappedResourceConfigurationOutput, error) {
+	req, out := c.DescribeMappedResourceConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeMappedResourceConfigurationPages iterates over the pages of a DescribeMappedResourceConfiguration operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeMappedResourceConfiguration method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeMappedResourceConfiguration operation.
+//	pageNum := 0
+//	err := client.DescribeMappedResourceConfigurationPages(params,
+//	    func(page *kinesisvideo.DescribeMappedResourceConfigurationOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *KinesisVideo) DescribeMappedResourceConfigurationPages(input *DescribeMappedResourceConfigurationInput, fn func(*DescribeMappedResourceConfigurationOutput, bool) bool) error {
+	return c.DescribeMappedResourceConfigurationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeMappedResourceConfigurationPagesWithContext same as DescribeMappedResourceConfigurationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeMappedResourceConfigurationPagesWithContext(ctx aws.Context, input *DescribeMappedResourceConfigurationInput, fn func(*DescribeMappedResourceConfigurationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeMappedResourceConfigurationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeMappedResourceConfigurationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeMappedResourceConfigurationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeMediaStorageConfiguration = "DescribeMediaStorageConfiguration"
+
+// DescribeMediaStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMediaStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMediaStorageConfiguration for more information on using the DescribeMediaStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeMediaStorageConfigurationRequest method.
+//	req, resp := client.DescribeMediaStorageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMediaStorageConfiguration
+func (c *KinesisVideo) DescribeMediaStorageConfigurationRequest(input *DescribeMediaStorageConfigurationInput) (req *request.Request, output *DescribeMediaStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMediaStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeMediaStorageConfiguration",
+	}
+
+	if input == nil {
+		input = &DescribeMediaStorageConfigurationInput{}
+	}
+
+	output = &DescribeMediaStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Returns the most current information about the channel. Specify the ChannelName
+// or ChannelARN in the input.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation DescribeMediaStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/DescribeMediaStorageConfiguration
+func (c *KinesisVideo) DescribeMediaStorageConfiguration(input *DescribeMediaStorageConfigurationInput) (*DescribeMediaStorageConfigurationOutput, error) {
+	req, out := c.DescribeMediaStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMediaStorageConfigurationWithContext is the same as DescribeMediaStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMediaStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) DescribeMediaStorageConfigurationWithContext(ctx aws.Context, input *DescribeMediaStorageConfigurationInput, opts ...request.Option) (*DescribeMediaStorageConfigurationOutput, error) {
+	req, out := c.DescribeMediaStorageConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1082,13 +1342,18 @@ func (c *KinesisVideo) GetSignalingChannelEndpointRequest(input *GetSignalingCha
 //     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - AccessDeniedException
 //     You do not have required permissions to perform this operation.
@@ -1629,21 +1894,20 @@ func (c *KinesisVideo) StartEdgeConfigurationUpdateRequest(input *StartEdgeConfi
 // StartEdgeConfigurationUpdate API operation for Amazon Kinesis Video Streams.
 //
 // An asynchronous API that updates a stream’s existing edge configuration.
-// If this API is invoked for the first time, a new edge configuration will
-// be created for the stream, and the sync status will be set to SYNCING.
-//
 // The Kinesis Video Stream will sync the stream’s edge configuration with
-// the Edge Agent IoT Greengrass component that runs on an IoT Hub Device setup
+// the Edge Agent IoT Greengrass component that runs on an IoT Hub Device, setup
 // at your premise. The time to sync can vary and depends on the connectivity
 // of the Hub Device. The SyncStatus will be updated as the edge configuration
-// is acknowledged, and synced with the Edge Agent. You will have to wait for
-// the sync status to reach a terminal state such as: IN_SYNC and SYNC_FAILED,
-// before using this API again.
+// is acknowledged, and synced with the Edge Agent.
 //
-// If you invoke this API during the syncing process, a ResourceInUseException
-// will be thrown. The connectivity of the stream's edge configuration and the
-// Edge Agent will be retried for 15 minutes. After 15 minutes, the status will
-// transition into the SYNC_FAILED state.
+// If this API is invoked for the first time, a new edge configuration will
+// be created for the stream, and the sync status will be set to SYNCING. You
+// will have to wait for the sync status to reach a terminal state such as:
+// IN_SYNC, or SYNC_FAILED, before using this API again. If you invoke this
+// API during the syncing process, a ResourceInUseException will be thrown.
+// The connectivity of the stream’s edge configuration and the Edge Agent
+// will be retried for 15 minutes. After 15 minutes, the status will transition
+// into the SYNC_FAILED state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1668,13 +1932,18 @@ func (c *KinesisVideo) StartEdgeConfigurationUpdateRequest(input *StartEdgeConfi
 //     The Stream data retention in hours is equal to zero.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - ResourceNotFoundException
 //     Amazon Kinesis Video Streams can't find the stream that you specified.
@@ -2183,13 +2452,18 @@ func (c *KinesisVideo) UpdateDataRetentionRequest(input *UpdateDataRetentionInpu
 //     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - NotAuthorizedException
 //     The caller is not authorized to perform this operation.
@@ -2290,13 +2564,18 @@ func (c *KinesisVideo) UpdateImageGenerationConfigurationRequest(input *UpdateIm
 //     You do not have required permissions to perform this operation.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - NoDataRetentionException
 //     The Stream data retention in hours is equal to zero.
@@ -2318,6 +2597,120 @@ func (c *KinesisVideo) UpdateImageGenerationConfiguration(input *UpdateImageGene
 // for more information on using Contexts.
 func (c *KinesisVideo) UpdateImageGenerationConfigurationWithContext(ctx aws.Context, input *UpdateImageGenerationConfigurationInput, opts ...request.Option) (*UpdateImageGenerationConfigurationOutput, error) {
 	req, out := c.UpdateImageGenerationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateMediaStorageConfiguration = "UpdateMediaStorageConfiguration"
+
+// UpdateMediaStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMediaStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMediaStorageConfiguration for more information on using the UpdateMediaStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateMediaStorageConfigurationRequest method.
+//	req, resp := client.UpdateMediaStorageConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateMediaStorageConfiguration
+func (c *KinesisVideo) UpdateMediaStorageConfigurationRequest(input *UpdateMediaStorageConfigurationInput) (req *request.Request, output *UpdateMediaStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMediaStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/updateMediaStorageConfiguration",
+	}
+
+	if input == nil {
+		input = &UpdateMediaStorageConfigurationInput{}
+	}
+
+	output = &UpdateMediaStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateMediaStorageConfiguration API operation for Amazon Kinesis Video Streams.
+//
+// Associates a SignalingChannel to a stream to store the media. There are two
+// signaling modes that can specified :
+//
+//   - If the StorageStatus is disabled, no data will be stored, and the StreamARN
+//     parameter will not be needed.
+//
+//   - If the StorageStatus is enabled, the data will be stored in the StreamARN
+//     provided.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Video Streams's
+// API operation UpdateMediaStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceInUseException
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
+//
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
+//
+//   - InvalidArgumentException
+//     The value for this input parameter is invalid.
+//
+//   - ClientLimitExceededException
+//     Kinesis Video Streams has throttled the request because you have exceeded
+//     the limit of allowed client calls. Try making the call later.
+//
+//   - ResourceNotFoundException
+//     Amazon Kinesis Video Streams can't find the stream that you specified.
+//
+//   - AccessDeniedException
+//     You do not have required permissions to perform this operation.
+//
+//   - NoDataRetentionException
+//     The Stream data retention in hours is equal to zero.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisvideo-2017-09-30/UpdateMediaStorageConfiguration
+func (c *KinesisVideo) UpdateMediaStorageConfiguration(input *UpdateMediaStorageConfigurationInput) (*UpdateMediaStorageConfigurationOutput, error) {
+	req, out := c.UpdateMediaStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMediaStorageConfigurationWithContext is the same as UpdateMediaStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMediaStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisVideo) UpdateMediaStorageConfigurationWithContext(ctx aws.Context, input *UpdateMediaStorageConfigurationInput, opts ...request.Option) (*UpdateMediaStorageConfigurationOutput, error) {
+	req, out := c.UpdateMediaStorageConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2392,13 +2785,18 @@ func (c *KinesisVideo) UpdateNotificationConfigurationRequest(input *UpdateNotif
 //     You do not have required permissions to perform this operation.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - NoDataRetentionException
 //     The Stream data retention in hours is equal to zero.
@@ -2497,13 +2895,18 @@ func (c *KinesisVideo) UpdateSignalingChannelRequest(input *UpdateSignalingChann
 //     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - AccessDeniedException
 //     You do not have required permissions to perform this operation.
@@ -2612,13 +3015,18 @@ func (c *KinesisVideo) UpdateStreamRequest(input *UpdateStreamInput) (req *reque
 //     Amazon Kinesis Video Streams can't find the stream that you specified.
 //
 //   - ResourceInUseException
-//     The resource is currently not available for this operation. New resources
-//     cannot be created with the same name as existing resources. Also, resources
-//     cannot be updated or deleted unless they are in an ACTIVE state.
+//     When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+//     to a different Kinesis Video Stream resource, or if the provided input StreamARN
+//     or ChannelARN is not in Active status, try one of the following :
 //
-//     If this exception is returned, do not use it to determine whether the requested
-//     resource already exists. Instead, it is recommended you use the resource-specific
-//     describe API, for example, DescribeStream for video streams.
+//     The DescribeMediaStorageConfiguration API to determine what the stream given
+//     channel is mapped to.
+//
+//     The DescribeMappedResourceConfiguration API to determine the channel that
+//     the given stream is mapped to.
+//
+//     The DescribeStream or DescribeSignalingChannel API to determine the status
+//     of the resource.
 //
 //   - NotAuthorizedException
 //     The caller is not authorized to perform this operation.
@@ -3832,6 +4240,213 @@ func (s *DescribeImageGenerationConfigurationOutput) SetImageGenerationConfigura
 	return s
 }
 
+type DescribeMappedResourceConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to provide in your next request, to get another batch of results.
+	NextToken *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the stream.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream.
+	StreamName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMappedResourceConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMappedResourceConfigurationInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetMaxResults(v int64) *DescribeMappedResourceConfigurationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetNextToken(v string) *DescribeMappedResourceConfigurationInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetStreamARN(v string) *DescribeMappedResourceConfigurationInput {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DescribeMappedResourceConfigurationInput) SetStreamName(v string) *DescribeMappedResourceConfigurationInput {
+	s.StreamName = &v
+	return s
+}
+
+type DescribeMappedResourceConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that encapsulates, or contains, the media storage configuration
+	// properties.
+	MappedResourceConfigurationList []*MappedResourceConfigurationListItem `type:"list"`
+
+	// The token that was used in the NextTokenrequest to fetch the next set of
+	// results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMappedResourceConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetMappedResourceConfigurationList sets the MappedResourceConfigurationList field's value.
+func (s *DescribeMappedResourceConfigurationOutput) SetMappedResourceConfigurationList(v []*MappedResourceConfigurationListItem) *DescribeMappedResourceConfigurationOutput {
+	s.MappedResourceConfigurationList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMappedResourceConfigurationOutput) SetNextToken(v string) *DescribeMappedResourceConfigurationOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeMediaStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the channel.
+	ChannelARN *string `min:"1" type:"string"`
+
+	// The name of the channel.
+	ChannelName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMediaStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMediaStorageConfigurationInput"}
+	if s.ChannelARN != nil && len(*s.ChannelARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelARN", 1))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelARN sets the ChannelARN field's value.
+func (s *DescribeMediaStorageConfigurationInput) SetChannelARN(v string) *DescribeMediaStorageConfigurationInput {
+	s.ChannelARN = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DescribeMediaStorageConfigurationInput) SetChannelName(v string) *DescribeMediaStorageConfigurationInput {
+	s.ChannelName = &v
+	return s
+}
+
+type DescribeMediaStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that encapsulates, or contains, the media storage configuration
+	// properties.
+	MediaStorageConfiguration *MediaStorageConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMediaStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaStorageConfiguration sets the MediaStorageConfiguration field's value.
+func (s *DescribeMediaStorageConfigurationOutput) SetMediaStorageConfiguration(v *MediaStorageConfiguration) *DescribeMediaStorageConfigurationOutput {
+	s.MediaStorageConfiguration = v
+	return s
+}
+
 type DescribeNotificationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4186,8 +4801,8 @@ type EdgeConfig struct {
 	RecorderConfig *RecorderConfig `type:"structure" required:"true"`
 
 	// The uploader configuration contains the ScheduleExpression details that are
-	// used, to schedule upload jobs for the recorded media files from the Edge
-	// Agent, to a Kinesis Video Stream.
+	// used to schedule upload jobs for the recorded media files from the Edge Agent
+	// to a Kinesis Video Stream.
 	UploaderConfig *UploaderConfig `type:"structure"`
 }
 
@@ -5393,6 +6008,49 @@ func (s *LocalSizeConfig) SetStrategyOnFullSize(v string) *LocalSizeConfig {
 	return s
 }
 
+// A structure that encapsulates, or contains, the media storage configuration
+// properties.
+type MappedResourceConfigurationListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Kinesis Video Stream resource, associated
+	// with the stream.
+	ARN *string `min:"1" type:"string"`
+
+	// The type of the associated resource for the kinesis video stream.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappedResourceConfigurationListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappedResourceConfigurationListItem) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *MappedResourceConfigurationListItem) SetARN(v string) *MappedResourceConfigurationListItem {
+	s.ARN = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MappedResourceConfigurationListItem) SetType(v string) *MappedResourceConfigurationListItem {
+	s.Type = &v
+	return s
+}
+
 // The configuration details that consist of the credentials required (MediaUriSecretArn
 // and MediaUriType) to access the media files that are streamed to the camera.
 type MediaSourceConfig struct {
@@ -5408,8 +6066,10 @@ type MediaSourceConfig struct {
 	// MediaUriSecretArn is a required field
 	MediaUriSecretArn *string `min:"20" type:"string" required:"true" sensitive:"true"`
 
-	// The Uniform Resource Identifier (Uri) type. The FILE_URI value can be used
+	// The Uniform Resource Identifier (URI) type. The FILE_URI value can be used
 	// to stream local media files.
+	//
+	// Preview only supports the RTSP_URI media source URI format .
 	//
 	// MediaUriType is a required field
 	MediaUriType *string `type:"string" required:"true" enum:"MediaUriType"`
@@ -5461,6 +6121,66 @@ func (s *MediaSourceConfig) SetMediaUriSecretArn(v string) *MediaSourceConfig {
 // SetMediaUriType sets the MediaUriType field's value.
 func (s *MediaSourceConfig) SetMediaUriType(v string) *MediaSourceConfig {
 	s.MediaUriType = &v
+	return s
+}
+
+// A structure that encapsulates, or contains, the media storage configuration
+// properties.
+type MediaStorageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the media storage configuration.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"MediaStorageConfigurationStatus"`
+
+	// The Amazon Resource Name (ARN) of the stream
+	StreamARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStorageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaStorageConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaStorageConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaStorageConfiguration"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaStorageConfiguration) SetStatus(v string) *MediaStorageConfiguration {
+	s.Status = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *MediaStorageConfiguration) SetStreamARN(v string) *MediaStorageConfiguration {
+	s.StreamARN = &v
 	return s
 }
 
@@ -5828,13 +6548,18 @@ func (s *ResourceEndpointListItem) SetResourceEndpoint(v string) *ResourceEndpoi
 	return s
 }
 
-// The resource is currently not available for this operation. New resources
-// cannot be created with the same name as existing resources. Also, resources
-// cannot be updated or deleted unless they are in an ACTIVE state.
+// When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+// to a different Kinesis Video Stream resource, or if the provided input StreamARN
+// or ChannelARN is not in Active status, try one of the following :
 //
-// If this exception is returned, do not use it to determine whether the requested
-// resource already exists. Instead, it is recommended you use the resource-specific
-// describe API, for example, DescribeStream for video streams.
+// The DescribeMediaStorageConfiguration API to determine what the stream given
+// channel is mapped to.
+//
+// The DescribeMappedResourceConfiguration API to determine the channel that
+// the given stream is mapped to.
+//
+// The DescribeStream or DescribeSignalingChannel API to determine the status
+// of the resource.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7280,6 +8005,97 @@ func (s UpdateImageGenerationConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateMediaStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the channel.
+	//
+	// ChannelARN is a required field
+	ChannelARN *string `min:"1" type:"string" required:"true"`
+
+	// A structure that encapsulates, or contains, the media storage configuration
+	// properties.
+	//
+	// MediaStorageConfiguration is a required field
+	MediaStorageConfiguration *MediaStorageConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMediaStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMediaStorageConfigurationInput"}
+	if s.ChannelARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelARN"))
+	}
+	if s.ChannelARN != nil && len(*s.ChannelARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelARN", 1))
+	}
+	if s.MediaStorageConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStorageConfiguration"))
+	}
+	if s.MediaStorageConfiguration != nil {
+		if err := s.MediaStorageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MediaStorageConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelARN sets the ChannelARN field's value.
+func (s *UpdateMediaStorageConfigurationInput) SetChannelARN(v string) *UpdateMediaStorageConfigurationInput {
+	s.ChannelARN = &v
+	return s
+}
+
+// SetMediaStorageConfiguration sets the MediaStorageConfiguration field's value.
+func (s *UpdateMediaStorageConfigurationInput) SetMediaStorageConfiguration(v *MediaStorageConfiguration) *UpdateMediaStorageConfigurationInput {
+	s.MediaStorageConfiguration = v
+	return s
+}
+
+type UpdateMediaStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMediaStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateNotificationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7610,9 +8426,10 @@ func (s UpdateStreamOutput) GoString() string {
 	return s.String()
 }
 
-// The configuration that consists of the ScheduleConfig attribute that's required,
-// to schedule the jobs to upload the recorded media files onto the Edge Agent
-// in a Kinesis Video Stream.
+// The configuration that consists of the ScheduleExpression and the DurationInMinutesdetails,
+// that specify the scheduling to record from a camera, or local media file,
+// onto the Edge Agent. If the ScheduleExpression is not provided, then the
+// Edge Agent will always be in upload mode.
 type UploaderConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7779,6 +8596,9 @@ const (
 
 	// ChannelProtocolHttps is a ChannelProtocol enum value
 	ChannelProtocolHttps = "HTTPS"
+
+	// ChannelProtocolWebrtc is a ChannelProtocol enum value
+	ChannelProtocolWebrtc = "WEBRTC"
 )
 
 // ChannelProtocol_Values returns all elements of the ChannelProtocol enum
@@ -7786,6 +8606,7 @@ func ChannelProtocol_Values() []string {
 	return []string{
 		ChannelProtocolWss,
 		ChannelProtocolHttps,
+		ChannelProtocolWebrtc,
 	}
 }
 
@@ -7890,6 +8711,22 @@ func ImageSelectorType_Values() []string {
 	return []string{
 		ImageSelectorTypeServerTimestamp,
 		ImageSelectorTypeProducerTimestamp,
+	}
+}
+
+const (
+	// MediaStorageConfigurationStatusEnabled is a MediaStorageConfigurationStatus enum value
+	MediaStorageConfigurationStatusEnabled = "ENABLED"
+
+	// MediaStorageConfigurationStatusDisabled is a MediaStorageConfigurationStatus enum value
+	MediaStorageConfigurationStatusDisabled = "DISABLED"
+)
+
+// MediaStorageConfigurationStatus_Values returns all elements of the MediaStorageConfigurationStatus enum
+func MediaStorageConfigurationStatus_Values() []string {
+	return []string{
+		MediaStorageConfigurationStatusEnabled,
+		MediaStorageConfigurationStatusDisabled,
 	}
 }
 

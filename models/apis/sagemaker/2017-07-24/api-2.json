@@ -1974,6 +1974,18 @@
       "input":{"shape":"ListAlgorithmsInput"},
       "output":{"shape":"ListAlgorithmsOutput"}
     },
+    "ListAliases":{
+      "name":"ListAliases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAliasesRequest"},
+      "output":{"shape":"ListAliasesResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "ListAppImageConfigs":{
       "name":"ListAppImageConfigs",
       "http":{
@@ -3110,6 +3122,19 @@
       },
       "input":{"shape":"UpdateImageRequest"},
       "output":{"shape":"UpdateImageResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "UpdateImageVersion":{
+      "name":"UpdateImageVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateImageVersionRequest"},
+      "output":{"shape":"UpdateImageVersionResponse"},
       "errors":[
         {"shape":"ResourceInUse"},
         {"shape":"ResourceNotFound"}
@@ -5904,7 +5929,15 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "ImageName":{"shape":"ImageName"}
+        "ImageName":{"shape":"ImageName"},
+        "Aliases":{"shape":"SageMakerImageVersionAliases"},
+        "VendorGuidance":{"shape":"VendorGuidance"},
+        "JobType":{"shape":"JobType"},
+        "MLFramework":{"shape":"MLFramework"},
+        "ProgrammingLang":{"shape":"ProgrammingLang"},
+        "Processor":{"shape":"Processor"},
+        "Horovod":{"shape":"Horovod"},
+        "ReleaseNotes":{"shape":"ReleaseNotes"}
       }
     },
     "CreateImageVersionResponse":{
@@ -7076,13 +7109,11 @@
     },
     "DeleteImageVersionRequest":{
       "type":"structure",
-      "required":[
-        "ImageName",
-        "Version"
-      ],
+      "required":["ImageName"],
       "members":{
         "ImageName":{"shape":"ImageName"},
-        "Version":{"shape":"ImageVersionNumber"}
+        "Version":{"shape":"ImageVersionNumber"},
+        "Alias":{"shape":"SageMakerImageVersionAlias"}
       }
     },
     "DeleteImageVersionResponse":{
@@ -8184,7 +8215,8 @@
       "required":["ImageName"],
       "members":{
         "ImageName":{"shape":"ImageName"},
-        "Version":{"shape":"ImageVersionNumber"}
+        "Version":{"shape":"ImageVersionNumber"},
+        "Alias":{"shape":"SageMakerImageVersionAlias"}
       }
     },
     "DescribeImageVersionResponse":{
@@ -8198,7 +8230,14 @@
         "ImageVersionArn":{"shape":"ImageVersionArn"},
         "ImageVersionStatus":{"shape":"ImageVersionStatus"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "Version":{"shape":"ImageVersionNumber"}
+        "Version":{"shape":"ImageVersionNumber"},
+        "VendorGuidance":{"shape":"VendorGuidance"},
+        "JobType":{"shape":"JobType"},
+        "MLFramework":{"shape":"MLFramework"},
+        "ProgrammingLang":{"shape":"ProgrammingLang"},
+        "Processor":{"shape":"Processor"},
+        "Horovod":{"shape":"Horovod"},
+        "ReleaseNotes":{"shape":"ReleaseNotes"}
       }
     },
     "DescribeInferenceExperimentRequest":{
@@ -10595,6 +10634,7 @@
       "max":20,
       "min":0
     },
+    "Horovod":{"type":"boolean"},
     "HubArn":{
       "type":"string",
       "max":255,
@@ -11849,6 +11889,14 @@
       "min":1,
       "pattern":".+"
     },
+    "JobType":{
+      "type":"string",
+      "enum":[
+        "TRAINING",
+        "INFERENCE",
+        "NOTEBOOK_KERNEL"
+      ]
+    },
     "JoinSource":{
       "type":"string",
       "enum":[
@@ -12226,6 +12274,24 @@
       "required":["AlgorithmSummaryList"],
       "members":{
         "AlgorithmSummaryList":{"shape":"AlgorithmSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAliasesRequest":{
+      "type":"structure",
+      "required":["ImageName"],
+      "members":{
+        "ImageName":{"shape":"ImageName"},
+        "Alias":{"shape":"SageMakerImageVersionAlias"},
+        "Version":{"shape":"ImageVersionNumber"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAliasesResponse":{
+      "type":"structure",
+      "members":{
+        "SageMakerImageVersionAliases":{"shape":"SageMakerImageVersionAliases"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -13780,6 +13846,12 @@
       ]
     },
     "Long":{"type":"long"},
+    "MLFramework":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z]+ ?\\d+\\.\\d+(\\.\\d+)?$"
+    },
     "MaxAutoMLJobRuntimeInSeconds":{
       "type":"integer",
       "min":1
@@ -16373,6 +16445,13 @@
       "max":16384,
       "min":1
     },
+    "Processor":{
+      "type":"string",
+      "enum":[
+        "CPU",
+        "GPU"
+      ]
+    },
     "ProductId":{
       "type":"string",
       "max":256,
@@ -16703,6 +16782,12 @@
         "Enabled",
         "Disabled"
       ]
+    },
+    "ProgrammingLang":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z]+ ?\\d+\\.\\d+(\\.\\d+)?$"
     },
     "Project":{
       "type":"structure",
@@ -17259,6 +17344,12 @@
         "Arn":{"shape":"String256"}
       }
     },
+    "ReleaseNotes":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*"
+    },
     "RenderUiTemplateRequest":{
       "type":"structure",
       "required":[
@@ -17573,6 +17664,16 @@
       "type":"string",
       "max":1024,
       "pattern":"^(https|s3)://([^/]+)/?(.*)$"
+    },
+    "SageMakerImageVersionAlias":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"(?!^[.-])^([a-zA-Z0-9-_.]+)$"
+    },
+    "SageMakerImageVersionAliases":{
+      "type":"list",
+      "member":{"shape":"SageMakerImageVersionAlias"}
     },
     "SagemakerServicecatalogStatus":{
       "type":"string",
@@ -19658,6 +19759,30 @@
         "ImageArn":{"shape":"ImageArn"}
       }
     },
+    "UpdateImageVersionRequest":{
+      "type":"structure",
+      "required":["ImageName"],
+      "members":{
+        "ImageName":{"shape":"ImageName"},
+        "Alias":{"shape":"SageMakerImageVersionAlias"},
+        "Version":{"shape":"ImageVersionNumber"},
+        "AliasesToAdd":{"shape":"SageMakerImageVersionAliases"},
+        "AliasesToDelete":{"shape":"SageMakerImageVersionAliases"},
+        "VendorGuidance":{"shape":"VendorGuidance"},
+        "JobType":{"shape":"JobType"},
+        "MLFramework":{"shape":"MLFramework"},
+        "ProgrammingLang":{"shape":"ProgrammingLang"},
+        "Processor":{"shape":"Processor"},
+        "Horovod":{"shape":"Horovod"},
+        "ReleaseNotes":{"shape":"ReleaseNotes"}
+      }
+    },
+    "UpdateImageVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ImageVersionArn":{"shape":"ImageVersionArn"}
+      }
+    },
     "UpdateInferenceExperimentRequest":{
       "type":"structure",
       "required":["Name"],
@@ -20086,6 +20211,15 @@
     "VariantWeight":{
       "type":"float",
       "min":0
+    },
+    "VendorGuidance":{
+      "type":"string",
+      "enum":[
+        "NOT_PROVIDED",
+        "STABLE",
+        "TO_BE_ARCHIVED",
+        "ARCHIVED"
+      ]
     },
     "VersionId":{
       "type":"string",

@@ -21189,7 +21189,7 @@ type CreateDBInstanceInput struct {
 	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing)
 	// in the Amazon Web Services Outposts User Guide.
 	EnableCustomerOwnedIp *bool `type:"boolean"`
 
@@ -22258,6 +22258,22 @@ type CreateDBInstanceReadReplicaInput struct {
 	// This setting doesn't apply to RDS Custom.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
+	// A value that indicates whether to enable a customer-owned IP address (CoIP)
+	// for an RDS on Outposts read replica.
+	//
+	// A CoIP provides local or external connectivity to resources in your Outpost
+	// subnets through your on-premises network. For some use cases, a CoIP can
+	// provide lower latency for connections to the read replica from outside of
+	// its virtual private cloud (VPC) on your local network.
+	//
+	// For more information about RDS on Outposts, see Working with Amazon RDS on
+	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing)
+	// in the Amazon Web Services Outposts User Guide.
+	EnableCustomerOwnedIp *bool `type:"boolean"`
+
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
 	// isn't enabled.
@@ -22704,6 +22720,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetDomainIAMRoleName(v string) *Creat
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetEnableCloudwatchLogsExports(v []*string) *CreateDBInstanceReadReplicaInput {
 	s.EnableCloudwatchLogsExports = v
+	return s
+}
+
+// SetEnableCustomerOwnedIp sets the EnableCustomerOwnedIp field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetEnableCustomerOwnedIp(v bool) *CreateDBInstanceReadReplicaInput {
+	s.EnableCustomerOwnedIp = &v
 	return s
 }
 
@@ -26230,7 +26252,7 @@ type DBInstance struct {
 	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing)
 	// in the Amazon Web Services Outposts User Guide.
 	CustomerOwnedIpEnabled *bool `type:"boolean"`
 
@@ -40605,15 +40627,15 @@ type ModifyDBInstanceInput struct {
 	// The new compute and memory capacity of the DB instance, for example db.m4.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
 	// or for all database engines. For the full list of DB instance classes, and
-	// availability for your engine, see DB instance classes (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
 	// in the Amazon RDS User Guide or Aurora DB instance classes (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html)
-	// in the Amazon Aurora User Guide.
+	// in the Amazon Aurora User Guide. For RDS Custom, see DB instance class support
+	// for RDS Custom for Oracle (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits.html#custom-reqs-limits.instances)
+	// and DB instance class support for RDS Custom for SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html#custom-reqs-limits.instancesMS).
 	//
 	// If you modify the DB instance class, an outage occurs during the change.
-	// The change is applied during the next maintenance window, unless ApplyImmediately
-	// is enabled for this request.
-	//
-	// This setting doesn't apply to RDS Custom for Oracle.
+	// The change is applied during the next maintenance window, unless you specify
+	// ApplyImmediately in your request.
 	//
 	// Default: Uses existing setting
 	DBInstanceClass *string `type:"string"`
@@ -40756,7 +40778,7 @@ type ModifyDBInstanceInput struct {
 	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing)
 	// in the Amazon Web Services Outposts User Guide.
 	EnableCustomerOwnedIp *bool `type:"boolean"`
 
@@ -48191,7 +48213,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing)
 	// in the Amazon Web Services Outposts User Guide.
 	EnableCustomerOwnedIp *bool `type:"boolean"`
 
@@ -49514,7 +49536,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/routing.html#ip-addressing)
 	// in the Amazon Web Services Outposts User Guide.
 	EnableCustomerOwnedIp *bool `type:"boolean"`
 
