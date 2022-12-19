@@ -750,6 +750,13 @@ type SageMakerAPI interface {
 	ListAlgorithmsPages(*sagemaker.ListAlgorithmsInput, func(*sagemaker.ListAlgorithmsOutput, bool) bool) error
 	ListAlgorithmsPagesWithContext(aws.Context, *sagemaker.ListAlgorithmsInput, func(*sagemaker.ListAlgorithmsOutput, bool) bool, ...request.Option) error
 
+	ListAliases(*sagemaker.ListAliasesInput) (*sagemaker.ListAliasesOutput, error)
+	ListAliasesWithContext(aws.Context, *sagemaker.ListAliasesInput, ...request.Option) (*sagemaker.ListAliasesOutput, error)
+	ListAliasesRequest(*sagemaker.ListAliasesInput) (*request.Request, *sagemaker.ListAliasesOutput)
+
+	ListAliasesPages(*sagemaker.ListAliasesInput, func(*sagemaker.ListAliasesOutput, bool) bool) error
+	ListAliasesPagesWithContext(aws.Context, *sagemaker.ListAliasesInput, func(*sagemaker.ListAliasesOutput, bool) bool, ...request.Option) error
+
 	ListAppImageConfigs(*sagemaker.ListAppImageConfigsInput) (*sagemaker.ListAppImageConfigsOutput, error)
 	ListAppImageConfigsWithContext(aws.Context, *sagemaker.ListAppImageConfigsInput, ...request.Option) (*sagemaker.ListAppImageConfigsOutput, error)
 	ListAppImageConfigsRequest(*sagemaker.ListAppImageConfigsInput) (*request.Request, *sagemaker.ListAppImageConfigsOutput)
@@ -1390,6 +1397,10 @@ type SageMakerAPI interface {
 	UpdateImage(*sagemaker.UpdateImageInput) (*sagemaker.UpdateImageOutput, error)
 	UpdateImageWithContext(aws.Context, *sagemaker.UpdateImageInput, ...request.Option) (*sagemaker.UpdateImageOutput, error)
 	UpdateImageRequest(*sagemaker.UpdateImageInput) (*request.Request, *sagemaker.UpdateImageOutput)
+
+	UpdateImageVersion(*sagemaker.UpdateImageVersionInput) (*sagemaker.UpdateImageVersionOutput, error)
+	UpdateImageVersionWithContext(aws.Context, *sagemaker.UpdateImageVersionInput, ...request.Option) (*sagemaker.UpdateImageVersionOutput, error)
+	UpdateImageVersionRequest(*sagemaker.UpdateImageVersionInput) (*request.Request, *sagemaker.UpdateImageVersionOutput)
 
 	UpdateInferenceExperiment(*sagemaker.UpdateInferenceExperimentInput) (*sagemaker.UpdateInferenceExperimentOutput, error)
 	UpdateInferenceExperimentWithContext(aws.Context, *sagemaker.UpdateInferenceExperimentInput, ...request.Option) (*sagemaker.UpdateInferenceExperimentOutput, error)

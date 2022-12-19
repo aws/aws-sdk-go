@@ -3309,7 +3309,8 @@
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
         "CustomIamInstanceProfile":{"shape":"String"},
         "NetworkType":{"shape":"String"},
-        "StorageThroughput":{"shape":"IntegerOptional"}
+        "StorageThroughput":{"shape":"IntegerOptional"},
+        "EnableCustomerOwnedIp":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{

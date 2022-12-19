@@ -111,6 +111,36 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DescribeMappedResourceConfiguration":{
+      "name":"DescribeMappedResourceConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeMappedResourceConfiguration"
+      },
+      "input":{"shape":"DescribeMappedResourceConfigurationInput"},
+      "output":{"shape":"DescribeMappedResourceConfigurationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"}
+      ]
+    },
+    "DescribeMediaStorageConfiguration":{
+      "name":"DescribeMediaStorageConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeMediaStorageConfiguration"
+      },
+      "input":{"shape":"DescribeMediaStorageConfigurationInput"},
+      "output":{"shape":"DescribeMediaStorageConfigurationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientLimitExceededException"}
+      ]
+    },
     "DescribeNotificationConfiguration":{
       "name":"DescribeNotificationConfiguration",
       "http":{
@@ -360,6 +390,23 @@
         {"shape":"NoDataRetentionException"}
       ]
     },
+    "UpdateMediaStorageConfiguration":{
+      "name":"UpdateMediaStorageConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/updateMediaStorageConfiguration"
+      },
+      "input":{"shape":"UpdateMediaStorageConfigurationInput"},
+      "output":{"shape":"UpdateMediaStorageConfigurationOutput"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoDataRetentionException"}
+      ]
+    },
     "UpdateNotificationConfiguration":{
       "name":"UpdateNotificationConfiguration",
       "http":{
@@ -483,7 +530,8 @@
       "type":"string",
       "enum":[
         "WSS",
-        "HTTPS"
+        "HTTPS",
+        "WEBRTC"
       ]
     },
     "ChannelRole":{
@@ -627,6 +675,35 @@
       "type":"structure",
       "members":{
         "ImageGenerationConfiguration":{"shape":"ImageGenerationConfiguration"}
+      }
+    },
+    "DescribeMappedResourceConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "MaxResults":{"shape":"MappedResourceConfigurationListLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeMappedResourceConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "MappedResourceConfigurationList":{"shape":"MappedResourceConfigurationList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeMediaStorageConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "ChannelName":{"shape":"ChannelName"},
+        "ChannelARN":{"shape":"ResourceARN"}
+      }
+    },
+    "DescribeMediaStorageConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "MediaStorageConfiguration":{"shape":"MediaStorageConfiguration"}
       }
     },
     "DescribeNotificationConfigurationInput":{
@@ -929,6 +1006,24 @@
         "StrategyOnFullSize":{"shape":"StrategyOnFullSize"}
       }
     },
+    "MappedResourceConfigurationList":{
+      "type":"list",
+      "member":{"shape":"MappedResourceConfigurationListItem"},
+      "max":1,
+      "min":0
+    },
+    "MappedResourceConfigurationListItem":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"Type"},
+        "ARN":{"shape":"ResourceARN"}
+      }
+    },
+    "MappedResourceConfigurationListLimit":{
+      "type":"integer",
+      "max":1,
+      "min":1
+    },
     "MaxLocalMediaSizeInMB":{
       "type":"integer",
       "max":2000000,
@@ -944,6 +1039,21 @@
         "MediaUriSecretArn":{"shape":"MediaUriSecretArn"},
         "MediaUriType":{"shape":"MediaUriType"}
       }
+    },
+    "MediaStorageConfiguration":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "StreamARN":{"shape":"ResourceARN"},
+        "Status":{"shape":"MediaStorageConfigurationStatus"}
+      }
+    },
+    "MediaStorageConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "MediaType":{
       "type":"string",
@@ -1261,6 +1371,7 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "Type":{"type":"string"},
     "UntagResourceInput":{
       "type":"structure",
       "required":[
@@ -1327,6 +1438,22 @@
       }
     },
     "UpdateImageGenerationConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateMediaStorageConfigurationInput":{
+      "type":"structure",
+      "required":[
+        "ChannelARN",
+        "MediaStorageConfiguration"
+      ],
+      "members":{
+        "ChannelARN":{"shape":"ResourceARN"},
+        "MediaStorageConfiguration":{"shape":"MediaStorageConfiguration"}
+      }
+    },
+    "UpdateMediaStorageConfigurationOutput":{
       "type":"structure",
       "members":{
       }

@@ -11781,6 +11781,96 @@ func (s *Deployment) SetUpdatedAt(v time.Time) *Deployment {
 	return s
 }
 
+// One of the methods which provide a way for you to quickly identify when a
+// deployment has failed, and then to optionally roll back the failure to the
+// last working deployment.
+//
+// When the alarms are generated, Amazon ECS sets the service deployment to
+// failed. Set the rollback parameter to have Amazon ECS to roll back your service
+// to the last completed deployment after a failure.
+//
+// You can only use the DeploymentAlarms method to detect failures when the
+// DeploymentController is set to ECS (rolling update).
+//
+// For more information, see Rolling update (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html)
+// in the Amazon Elastic Container Service Developer Guide .
+type DeploymentAlarms struct {
+	_ struct{} `type:"structure"`
+
+	// One or more CloudWatch alarm names. Use a "," to separate the alarms.
+	//
+	// AlarmNames is a required field
+	AlarmNames []*string `locationName:"alarmNames" type:"list" required:"true"`
+
+	// Determines whether to use the CloudWatch alarm option in the service deployment
+	// process.
+	//
+	// Enable is a required field
+	Enable *bool `locationName:"enable" type:"boolean" required:"true"`
+
+	// Determines whether to configure Amazon ECS to roll back the service if a
+	// service deployment fails. If rollback is used, when a service deployment
+	// fails, the service is rolled back to the last deployment that completed successfully.
+	//
+	// Rollback is a required field
+	Rollback *bool `locationName:"rollback" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentAlarms) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeploymentAlarms) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeploymentAlarms) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeploymentAlarms"}
+	if s.AlarmNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("AlarmNames"))
+	}
+	if s.Enable == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enable"))
+	}
+	if s.Rollback == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rollback"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlarmNames sets the AlarmNames field's value.
+func (s *DeploymentAlarms) SetAlarmNames(v []*string) *DeploymentAlarms {
+	s.AlarmNames = v
+	return s
+}
+
+// SetEnable sets the Enable field's value.
+func (s *DeploymentAlarms) SetEnable(v bool) *DeploymentAlarms {
+	s.Enable = &v
+	return s
+}
+
+// SetRollback sets the Rollback field's value.
+func (s *DeploymentAlarms) SetRollback(v bool) *DeploymentAlarms {
+	s.Rollback = &v
+	return s
+}
+
 // The deployment circuit breaker can only be used for services using the rolling
 // update (ECS) deployment type that aren't behind a Classic Load Balancer.
 //
@@ -11799,8 +11889,8 @@ type DeploymentCircuitBreaker struct {
 	Enable *bool `locationName:"enable" type:"boolean" required:"true"`
 
 	// Determines whether to configure Amazon ECS to roll back the service if a
-	// service deployment fails. If rollback is enabled, when a service deployment
-	// fails, the service is rolled back to the last deployment that completed successfully.
+	// service deployment fails. If rollback is on, when a service deployment fails,
+	// the service is rolled back to the last deployment that completed successfully.
 	//
 	// Rollback is a required field
 	Rollback *bool `locationName:"rollback" type:"boolean" required:"true"`
@@ -11856,6 +11946,9 @@ func (s *DeploymentCircuitBreaker) SetRollback(v bool) *DeploymentCircuitBreaker
 // and the ordering of stopping and starting tasks.
 type DeploymentConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the CloudWatch alarms.
+	Alarms *DeploymentAlarms `locationName:"alarms" type:"structure"`
 
 	//
 	// The deployment circuit breaker can only be used for services using the rolling
@@ -11957,6 +12050,11 @@ func (s DeploymentConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeploymentConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeploymentConfiguration"}
+	if s.Alarms != nil {
+		if err := s.Alarms.Validate(); err != nil {
+			invalidParams.AddNested("Alarms", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DeploymentCircuitBreaker != nil {
 		if err := s.DeploymentCircuitBreaker.Validate(); err != nil {
 			invalidParams.AddNested("DeploymentCircuitBreaker", err.(request.ErrInvalidParams))
@@ -11967,6 +12065,12 @@ func (s *DeploymentConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAlarms sets the Alarms field's value.
+func (s *DeploymentConfiguration) SetAlarms(v *DeploymentAlarms) *DeploymentConfiguration {
+	s.Alarms = v
+	return s
 }
 
 // SetDeploymentCircuitBreaker sets the DeploymentCircuitBreaker field's value.

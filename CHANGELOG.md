@@ -1,3 +1,19 @@
+Release v1.44.163 (2022-12-19)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * Add missed InvalidRequestException in GetCalculationExecutionCode,StopCalculationExecution APIs. Correct required parameters (Payload and Type) in UpdateNotebook API. Change Notebook size from 15 Mb to 10 Mb.
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for alarm-based rollbacks in ECS, a new feature that allows customers to add automated safeguards for Amazon ECS service rolling updates.
+* `service/kinesis-video-webrtc-storage`: Adds new service
+* `service/kinesisvideo`: Updates service API, documentation, and paginators
+  * Amazon Kinesis Video Streams offers capabilities to stream video and audio in real-time via WebRTC to the cloud for storage, playback, and analytical processing. Customers can use our enhanced WebRTC SDK and cloud APIs to enable real-time streaming, as well as media ingestion to the cloud.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Add support for --enable-customer-owned-ip to RDS create-db-instance-read-replica API for RDS on Outposts.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * AWS Sagemaker - Sagemaker Images now supports Aliases as secondary identifiers for ImageVersions. SageMaker Images now supports additional metadata for ImageVersions for better images management.
+
 Release v1.44.162 (2022-12-16)
 ===
 

@@ -173,6 +173,7 @@
     "ImportHubContent": "<p>Import hub content.</p>",
     "ListActions": "<p>Lists the actions in your account and their properties.</p>",
     "ListAlgorithms": "<p>Lists the machine learning algorithms that have been created.</p>",
+    "ListAliases": "<p>Lists the aliases of a specified image or image version.</p>",
     "ListAppImageConfigs": "<p>Lists the AppImageConfigs in your account and their properties. The list can be filtered by creation time or modified time, and whether the AppImageConfig name contains a specified string.</p>",
     "ListApps": "<p>Lists apps.</p>",
     "ListArtifacts": "<p>Lists the artifacts in your account and their properties.</p>",
@@ -283,6 +284,7 @@
     "UpdateFeatureMetadata": "<p>Updates the description and parameters of the feature group.</p>",
     "UpdateHub": "<p>Update a hub.</p>",
     "UpdateImage": "<p>Updates the properties of a SageMaker image. To change the image's tags, use the <a>AddTags</a> and <a>DeleteTags</a> APIs.</p>",
+    "UpdateImageVersion": "<p>Updates the properties of a SageMaker image version.</p>",
     "UpdateInferenceExperiment": "<p> Updates an inference experiment that you created. The status of the inference experiment has to be either <code>Created</code>, <code>Running</code>. For more information on the status of an inference experiment, see <a>DescribeInferenceExperimentResponse$Status</a>. </p>",
     "UpdateModelCard": "<p>Update an Amazon SageMaker Model Card.</p> <important> <p>You cannot update both model card content and model card status in a single call.</p> </important>",
     "UpdateModelPackage": "<p>Updates a versioned model.</p>",
@@ -5474,6 +5476,14 @@
         "DebugHookConfig$HookParameters": "<p>Configuration information for the Amazon SageMaker Debugger hook parameters.</p>"
       }
     },
+    "Horovod": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$Horovod": "<p>Indicates Horovod compatibility.</p>",
+        "DescribeImageVersionResponse$Horovod": "<p>Indicates Horovod compatibility.</p>",
+        "UpdateImageVersionRequest$Horovod": "<p>Indicates Horovod compatibility.</p>"
+      }
+    },
     "HubArn": {
       "base": null,
       "refs": {
@@ -6033,13 +6043,13 @@
     "ImageArn": {
       "base": null,
       "refs": {
-        "CreateImageResponse$ImageArn": "<p>The Amazon Resource Name (ARN) of the image.</p>",
-        "DescribeImageResponse$ImageArn": "<p>The Amazon Resource Name (ARN) of the image.</p>",
-        "DescribeImageVersionResponse$ImageArn": "<p>The Amazon Resource Name (ARN) of the image the version is based on.</p>",
-        "Image$ImageArn": "<p>The Amazon Resource Name (ARN) of the image.</p>",
-        "ImageVersion$ImageArn": "<p>The Amazon Resource Name (ARN) of the image the version is based on.</p>",
+        "CreateImageResponse$ImageArn": "<p>The ARN of the image.</p>",
+        "DescribeImageResponse$ImageArn": "<p>The ARN of the image.</p>",
+        "DescribeImageVersionResponse$ImageArn": "<p>The ARN of the image the version is based on.</p>",
+        "Image$ImageArn": "<p>The ARN of the image.</p>",
+        "ImageVersion$ImageArn": "<p>The ARN of the image the version is based on.</p>",
         "ResourceSpec$SageMakerImageArn": "<p>The ARN of the SageMaker image that the image version belongs to.</p>",
-        "UpdateImageResponse$ImageArn": "<p>The Amazon Resource Name (ARN) of the image.</p>"
+        "UpdateImageResponse$ImageArn": "<p>The ARN of the image.</p>"
       }
     },
     "ImageBaseImage": {
@@ -6105,13 +6115,15 @@
         "CreateImageVersionRequest$ImageName": "<p>The <code>ImageName</code> of the <code>Image</code> to create a version of.</p>",
         "CustomImage$ImageName": "<p>The name of the CustomImage. Must be unique to your account.</p>",
         "DeleteImageRequest$ImageName": "<p>The name of the image to delete.</p>",
-        "DeleteImageVersionRequest$ImageName": "<p>The name of the image.</p>",
+        "DeleteImageVersionRequest$ImageName": "<p>The name of the image to delete.</p>",
         "DescribeImageRequest$ImageName": "<p>The name of the image to describe.</p>",
         "DescribeImageResponse$ImageName": "<p>The name of the image.</p>",
         "DescribeImageVersionRequest$ImageName": "<p>The name of the image.</p>",
         "Image$ImageName": "<p>The name of the image.</p>",
+        "ListAliasesRequest$ImageName": "<p>The name of the image.</p>",
         "ListImageVersionsRequest$ImageName": "<p>The name of the image to list the versions of.</p>",
-        "UpdateImageRequest$ImageName": "<p>The name of the image to update.</p>"
+        "UpdateImageRequest$ImageName": "<p>The name of the image to update.</p>",
+        "UpdateImageVersionRequest$ImageName": "<p>The name of the image.</p>"
       }
     },
     "ImageNameContains": {
@@ -6159,10 +6171,11 @@
     "ImageVersionArn": {
       "base": null,
       "refs": {
-        "CreateImageVersionResponse$ImageVersionArn": "<p>The Amazon Resource Name (ARN) of the image version.</p>",
+        "CreateImageVersionResponse$ImageVersionArn": "<p>The ARN of the image version.</p>",
         "DescribeImageVersionResponse$ImageVersionArn": "<p>The ARN of the version.</p>",
         "ImageVersion$ImageVersionArn": "<p>The ARN of the version.</p>",
-        "ResourceSpec$SageMakerImageVersionArn": "<p>The ARN of the image version created on the instance.</p>"
+        "ResourceSpec$SageMakerImageVersionArn": "<p>The ARN of the image version created on the instance.</p>",
+        "UpdateImageVersionResponse$ImageVersionArn": "<p>The ARN of the image version.</p>"
       }
     },
     "ImageVersionNumber": {
@@ -6172,7 +6185,9 @@
         "DeleteImageVersionRequest$Version": "<p>The version to delete.</p>",
         "DescribeImageVersionRequest$Version": "<p>The version of the image. If not specified, the latest version is described.</p>",
         "DescribeImageVersionResponse$Version": "<p>The version number.</p>",
-        "ImageVersion$Version": "<p>The version number.</p>"
+        "ImageVersion$Version": "<p>The version number.</p>",
+        "ListAliasesRequest$Version": "<p>The version of the image. If image version is not specified, the aliases of all versions of the image are listed.</p>",
+        "UpdateImageVersionRequest$Version": "<p>The version of the image.</p>"
       }
     },
     "ImageVersionSortBy": {
@@ -6564,6 +6579,14 @@
       "base": null,
       "refs": {
         "ListLabelingJobsForWorkteamRequest$JobReferenceCodeContains": "<p>A filter the limits jobs to only the ones whose job reference code contains the specified string.</p>"
+      }
+    },
+    "JobType": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$JobType": "<p>Indicates SageMaker job type compatibility.</p> <ul> <li> <p> <code>TRAINING</code>: The image version is compatible with SageMaker training jobs.</p> </li> <li> <p> <code>INFERENCE</code>: The image version is compatible with SageMaker inference jobs.</p> </li> <li> <p> <code>NOTEBOOK_KERNEL</code>: The image version is compatible with SageMaker notebook kernels.</p> </li> </ul>",
+        "DescribeImageVersionResponse$JobType": "<p>Indicates SageMaker job type compatibility.</p> <ul> <li> <p> <code>TRAINING</code>: The image version is compatible with SageMaker training jobs.</p> </li> <li> <p> <code>INFERENCE</code>: The image version is compatible with SageMaker inference jobs.</p> </li> <li> <p> <code>NOTEBOOK_KERNEL</code>: The image version is compatible with SageMaker notebook kernels.</p> </li> </ul>",
+        "UpdateImageVersionRequest$JobType": "<p>Indicates SageMaker job type compatibility.</p> <ul> <li> <p> <code>TRAINING</code>: The image version is compatible with SageMaker training jobs.</p> </li> <li> <p> <code>INFERENCE</code>: The image version is compatible with SageMaker inference jobs.</p> </li> <li> <p> <code>NOTEBOOK_KERNEL</code>: The image version is compatible with SageMaker notebook kernels.</p> </li> </ul>"
       }
     },
     "JoinSource": {
@@ -6996,6 +7019,16 @@
       }
     },
     "ListAlgorithmsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAliasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAliasesResponse": {
       "base": null,
       "refs": {
       }
@@ -7772,6 +7805,14 @@
         "EdgeModelStat$SamplingDeviceCount": "<p>The number of devices with this model version and are producing sample data.</p>"
       }
     },
+    "MLFramework": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$MLFramework": "<p>The machine learning framework vended in the image version.</p>",
+        "DescribeImageVersionResponse$MLFramework": "<p>The machine learning framework vended in the image version.</p>",
+        "UpdateImageVersionRequest$MLFramework": "<p>The machine learning framework vended in the image version.</p>"
+      }
+    },
     "MaxAutoMLJobRuntimeInSeconds": {
       "base": null,
       "refs": {
@@ -7861,6 +7902,7 @@
       "refs": {
         "ListActionsRequest$MaxResults": "<p>The maximum number of actions to return in the response. The default value is 10.</p>",
         "ListAlgorithmsInput$MaxResults": "<p>The maximum number of algorithms to return in the response.</p>",
+        "ListAliasesRequest$MaxResults": "<p>The maximum number of aliases to return.</p>",
         "ListAppImageConfigsRequest$MaxResults": "<p>The maximum number of AppImageConfigs to return in the response. The default value is 10. </p>",
         "ListAppsRequest$MaxResults": "<p>Returns a list up to a specified limit.</p>",
         "ListArtifactsRequest$MaxResults": "<p>The maximum number of artifacts to return in the response. The default value is 10.</p>",
@@ -9351,6 +9393,8 @@
         "ListActionsResponse$NextToken": "<p>A token for getting the next set of actions, if there are any.</p>",
         "ListAlgorithmsInput$NextToken": "<p>If the response to a previous <code>ListAlgorithms</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of algorithms, use the token in the next request.</p>",
         "ListAlgorithmsOutput$NextToken": "<p>If the response is truncated, SageMaker returns this token. To retrieve the next set of algorithms, use it in the subsequent request.</p>",
+        "ListAliasesRequest$NextToken": "<p>If the previous call to <code>ListAliases</code> didn't return the full set of aliases, the call returns a token for retrieving the next set of aliases.</p>",
+        "ListAliasesResponse$NextToken": "<p>A token for getting the next set of aliases, if more aliases exist.</p>",
         "ListAppImageConfigsRequest$NextToken": "<p>If the previous call to <code>ListImages</code> didn't return the full set of AppImageConfigs, the call returns a token for getting the next set of AppImageConfigs.</p>",
         "ListAppImageConfigsResponse$NextToken": "<p>A token for getting the next set of AppImageConfigs, if there are any.</p>",
         "ListAppsRequest$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
@@ -10468,6 +10512,14 @@
         "ProcessingClusterConfig$VolumeSizeInGB": "<p>The size of the ML storage volume in gigabytes that you want to provision. You must specify sufficient ML storage for your scenario.</p> <note> <p>Certain Nitro-based instances include local storage with a fixed total size, dependent on the instance type. When using these instances for processing, Amazon SageMaker mounts the local instance storage instead of Amazon EBS gp2 storage. You can't request a <code>VolumeSizeInGB</code> greater than the total size of the local instance storage.</p> <p>For a list of instance types that support local instance storage, including the total size per instance type, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> </note>"
       }
     },
+    "Processor": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$Processor": "<p>Indicates CPU or GPU compatibility.</p> <ul> <li> <p> <code>CPU</code>: The image version is compatible with CPU.</p> </li> <li> <p> <code>GPU</code>: The image version is compatible with GPU.</p> </li> </ul>",
+        "DescribeImageVersionResponse$Processor": "<p>Indicates CPU or GPU compatibility.</p> <ul> <li> <p> <code>CPU</code>: The image version is compatible with CPU.</p> </li> <li> <p> <code>GPU</code>: The image version is compatible with GPU.</p> </li> </ul>",
+        "UpdateImageVersionRequest$Processor": "<p>Indicates CPU or GPU compatibility.</p> <ul> <li> <p> <code>CPU</code>: The image version is compatible with CPU.</p> </li> <li> <p> <code>GPU</code>: The image version is compatible with GPU.</p> </li> </ul>"
+      }
+    },
     "ProductId": {
       "base": null,
       "refs": {
@@ -10632,6 +10684,14 @@
       "base": null,
       "refs": {
         "DescribeTrainingJobResponse$ProfilingStatus": "<p>Profiling status of a training job.</p>"
+      }
+    },
+    "ProgrammingLang": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$ProgrammingLang": "<p>The supported programming language and its version.</p>",
+        "DescribeImageVersionResponse$ProgrammingLang": "<p>The supported programming language and its version.</p>",
+        "UpdateImageVersionRequest$ProgrammingLang": "<p>The supported programming language and its version.</p>"
       }
     },
     "Project": {
@@ -11106,6 +11166,14 @@
         "PipelineExecutionStepMetadata$RegisterModel": "<p>The Amazon Resource Name (ARN) of the model package that the model was registered to by this step execution.</p>"
       }
     },
+    "ReleaseNotes": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$ReleaseNotes": "<p>The maintainer description of the image version.</p>",
+        "DescribeImageVersionResponse$ReleaseNotes": "<p>The maintainer description of the image version.</p>",
+        "UpdateImageVersionRequest$ReleaseNotes": "<p>The maintainer description of the image version.</p>"
+      }
+    },
     "RenderUiTemplateRequest": {
       "base": null,
       "refs": {
@@ -11312,7 +11380,7 @@
         "CreateEdgePackagingJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to download and upload the model, and to contact SageMaker Neo.</p>",
         "CreateFeatureGroupRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the <code>OfflineStore</code> if an <code>OfflineStoreConfig</code> is provided.</p>",
         "CreateFlowDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the role needed to call other services on your behalf. For example, <code>arn:aws:iam::1234567890:role/service-role/AmazonSageMaker-ExecutionRole-20180111T151298</code>.</p>",
-        "CreateImageRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
+        "CreateImageRequest$RoleArn": "<p>The ARN of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "CreateInferenceExperimentRequest$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment. </p>",
         "CreateInferenceRecommendationsJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "CreateLabelingJobRequest$RoleArn": "<p>The Amazon Resource Number (ARN) that Amazon SageMaker assumes to perform tasks on your behalf during data labeling. You must grant this role the necessary permissions so that Amazon SageMaker can successfully complete data labeling.</p>",
@@ -11332,7 +11400,7 @@
         "DescribeEdgePackagingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to download and upload the model, and to contact Neo.</p>",
         "DescribeFeatureGroupResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the OfflineStore if an OfflineStoreConfig is provided.</p>",
         "DescribeFlowDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) execution role for the flow definition.</p>",
-        "DescribeImageResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
+        "DescribeImageResponse$RoleArn": "<p>The ARN of the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "DescribeInferenceExperimentResponse$RoleArn": "<p> The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment. </p>",
         "DescribeInferenceRecommendationsJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role you provided when you initiated the job.</p>",
         "DescribeLabelingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) that SageMaker assumes to perform tasks on your behalf during data labeling.</p>",
@@ -11361,7 +11429,7 @@
         "TimeSeriesForecastingSettings$AmazonForecastRoleArn": "<p>The IAM role that Canvas passes to Amazon Forecast for time series forecasting. By default, Canvas uses the execution role specified in the <code>UserProfile</code> that launches the Canvas app. If an execution role is not specified in the <code>UserProfile</code>, Canvas uses the execution role specified in the Domain that owns the <code>UserProfile</code>. To allow time series forecasting, this IAM role should have the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/security-iam-awsmanpol-canvas.html#security-iam-awsmanpol-AmazonSageMakerCanvasForecastAccess\"> AmazonSageMakerCanvasForecastAccess</a> policy attached and <code>forecast.amazonaws.com</code> added in the trust relationship as a service principal.</p>",
         "TrainingJob$RoleArn": "<p>The Amazon Web Services Identity and Access Management (IAM) role configured for the training job.</p>",
         "UpdateDeviceFleetRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the device.</p>",
-        "UpdateImageRequest$RoleArn": "<p>The new Amazon Resource Name (ARN) for the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
+        "UpdateImageRequest$RoleArn": "<p>The new ARN for the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "UpdateNotebookInstanceInput$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access the notebook instance. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">SageMaker Roles</a>. </p> <note> <p>To be able to pass this role to SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission.</p> </note>",
         "UpdatePipelineRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that the pipeline uses to execute.</p>",
         "UserSettings$ExecutionRole": "<p>The execution role for the user.</p>"
@@ -11482,6 +11550,25 @@
         "TransformOutput$S3OutputPath": "<p>The Amazon S3 path where you want Amazon SageMaker to store the results of the transform job. For example, <code>s3://bucket-name/key-name-prefix</code>.</p> <p>For every S3 object used as input for the transform job, batch transform stores the transformed data with an .<code>out</code> suffix in a corresponding subfolder in the location in the output prefix. For example, for the input data stored at <code>s3://bucket-name/input-name-prefix/dataset01/data.csv</code>, batch transform stores the transformed data at <code>s3://bucket-name/output-name-prefix/input-name-prefix/data.csv.out</code>. Batch transform doesn't upload partially processed objects. For an input S3 object that contains multiple records, it creates an .<code>out</code> file only if the transform job succeeds on the entire file. When the input contains multiple S3 objects, the batch transform job processes the listed S3 objects and uploads only the output for successfully processed objects. If any object fails in the transform job batch transform marks the job as failed to prompt investigation.</p>",
         "TransformS3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example:</p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code>. </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> The manifest is an S3 object which is a JSON file with the following format: </p> <p> <code>[ {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code>\"relative/path/to/custdata-1\",</code> </p> <p> <code>\"relative/path/custdata-2\",</code> </p> <p> <code>...</code> </p> <p> <code>\"relative/path/custdata-N\"</code> </p> <p> <code>]</code> </p> <p> The preceding JSON matches the following <code>S3Uris</code>: </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-2</code> </p> <p> <code>...</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-N</code> </p> <p> The complete set of <code>S3Uris</code> in this manifest constitutes the input data for the channel for this datasource. The object that each <code>S3Uris</code> points to must be readable by the IAM role that Amazon SageMaker uses to perform tasks on your behalf.</p> </li> </ul>",
         "UiConfig$UiTemplateS3Uri": "<p>The Amazon S3 bucket location of the UI template, or worker task template. This is the template used to render the worker UI and tools for labeling job tasks. For more information about the contents of a UI template, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates-step2.html\"> Creating Your Custom Labeling Task Template</a>.</p>"
+      }
+    },
+    "SageMakerImageVersionAlias": {
+      "base": null,
+      "refs": {
+        "DeleteImageVersionRequest$Alias": "<p>The alias of the image to delete.</p>",
+        "DescribeImageVersionRequest$Alias": "<p>The alias of the image version.</p>",
+        "ListAliasesRequest$Alias": "<p>The alias of the image version.</p>",
+        "SageMakerImageVersionAliases$member": null,
+        "UpdateImageVersionRequest$Alias": "<p>The alias of the image version.</p>"
+      }
+    },
+    "SageMakerImageVersionAliases": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$Aliases": "<p>A list of aliases created with the image version.</p>",
+        "ListAliasesResponse$SageMakerImageVersionAliases": "<p>A list of SageMaker image version aliases.</p>",
+        "UpdateImageVersionRequest$AliasesToAdd": "<p>A list of aliases to add.</p>",
+        "UpdateImageVersionRequest$AliasesToDelete": "<p>A list of aliases to delete.</p>"
       }
     },
     "SagemakerServicecatalogStatus": {
@@ -13837,6 +13924,16 @@
       "refs": {
       }
     },
+    "UpdateImageVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateImageVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateInferenceExperimentRequest": {
       "base": null,
       "refs": {
@@ -14187,6 +14284,14 @@
         "ProductionVariant$InitialVariantWeight": "<p>Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. The traffic to a production variant is determined by the ratio of the <code>VariantWeight</code> to the sum of all <code>VariantWeight</code> values across all ProductionVariants. If unspecified, it defaults to 1.0. </p>",
         "ProductionVariantSummary$CurrentWeight": "<p>The weight associated with the variant.</p>",
         "ProductionVariantSummary$DesiredWeight": "<p>The requested weight, as specified in the <code>UpdateEndpointWeightsAndCapacities</code> request. </p>"
+      }
+    },
+    "VendorGuidance": {
+      "base": null,
+      "refs": {
+        "CreateImageVersionRequest$VendorGuidance": "<p>The stability of the image version, specified by the maintainer.</p> <ul> <li> <p> <code>NOT_PROVIDED</code>: The maintainers did not provide a status for image version stability.</p> </li> <li> <p> <code>STABLE</code>: The image version is stable.</p> </li> <li> <p> <code>TO_BE_ARCHIVED</code>: The image version is set to be archived. Custom image versions that are set to be archived are automatically archived after three months.</p> </li> <li> <p> <code>ARCHIVED</code>: The image version is archived. Archived image versions are not searchable and are no longer actively supported. </p> </li> </ul>",
+        "DescribeImageVersionResponse$VendorGuidance": "<p>The stability of the image version specified by the maintainer.</p> <ul> <li> <p> <code>NOT_PROVIDED</code>: The maintainers did not provide a status for image version stability.</p> </li> <li> <p> <code>STABLE</code>: The image version is stable.</p> </li> <li> <p> <code>TO_BE_ARCHIVED</code>: The image version is set to be archived. Custom image versions that are set to be archived are automatically archived after three months.</p> </li> <li> <p> <code>ARCHIVED</code>: The image version is archived. Archived image versions are not searchable and are no longer actively supported. </p> </li> </ul>",
+        "UpdateImageVersionRequest$VendorGuidance": "<p>The availability of the image version specified by the maintainer.</p> <ul> <li> <p> <code>NOT_PROVIDED</code>: The maintainers did not provide a status for image version stability.</p> </li> <li> <p> <code>STABLE</code>: The image version is stable.</p> </li> <li> <p> <code>TO_BE_ARCHIVED</code>: The image version is set to be archived. Custom image versions that are set to be archived are automatically archived after three months.</p> </li> <li> <p> <code>ARCHIVED</code>: The image version is archived. Archived image versions are not searchable and are no longer actively supported. </p> </li> </ul>"
       }
     },
     "VersionId": {

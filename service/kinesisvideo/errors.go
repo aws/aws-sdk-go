@@ -73,13 +73,18 @@ const (
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//
-	// The resource is currently not available for this operation. New resources
-	// cannot be created with the same name as existing resources. Also, resources
-	// cannot be updated or deleted unless they are in an ACTIVE state.
+	// When the input StreamARN or ChannelARN in CLOUD_STORAGE_MODE is already mapped
+	// to a different Kinesis Video Stream resource, or if the provided input StreamARN
+	// or ChannelARN is not in Active status, try one of the following :
 	//
-	// If this exception is returned, do not use it to determine whether the requested
-	// resource already exists. Instead, it is recommended you use the resource-specific
-	// describe API, for example, DescribeStream for video streams.
+	// The DescribeMediaStorageConfiguration API to determine what the stream given
+	// channel is mapped to.
+	//
+	// The DescribeMappedResourceConfiguration API to determine the channel that
+	// the given stream is mapped to.
+	//
+	// The DescribeStream or DescribeSignalingChannel API to determine the status
+	// of the resource.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
 	// ErrCodeResourceNotFoundException for service response error code

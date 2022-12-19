@@ -10229,6 +10229,12 @@
       },
       "oidc" : {
         "endpoints" : {
+          "af-south-1" : {
+            "credentialScope" : {
+              "region" : "af-south-1"
+            },
+            "hostname" : "oidc.af-south-1.amazonaws.com"
+          },
           "ap-east-1" : {
             "credentialScope" : {
               "region" : "ap-east-1"
@@ -10270,6 +10276,12 @@
               "region" : "ap-southeast-2"
             },
             "hostname" : "oidc.ap-southeast-2.amazonaws.com"
+          },
+          "ap-southeast-3" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-3"
+            },
+            "hostname" : "oidc.ap-southeast-3.amazonaws.com"
           },
           "ca-central-1" : {
             "credentialScope" : {
@@ -10336,6 +10348,12 @@
               "region" : "us-east-2"
             },
             "hostname" : "oidc.us-east-2.amazonaws.com"
+          },
+          "us-west-1" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "oidc.us-west-1.amazonaws.com"
           },
           "us-west-2" : {
             "credentialScope" : {
@@ -21324,6 +21342,11 @@
             "protocols" : [ "http", "https" ]
           },
           "us-iso-west-1" : { }
+        }
+      },
+      "glue" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
         }
       },
       "health" : {
