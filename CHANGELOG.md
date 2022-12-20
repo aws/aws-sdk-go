@@ -1,3 +1,22 @@
+Release v1.44.164 (2022-12-20)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Adds isCancelled and isTerminated to DescribeJobs response.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Adds support for pagination in the EC2 DescribeImages API.
+* `service/lookoutequipment`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for two new features to AWS Elemental MediaLive. First, you can now burn-in timecodes to your MediaLive outputs. Second, we now now support the ability to decode Dolby E audio when it comes in on an input.
+* `service/nimble`: Updates service API, documentation, and paginators
+* `service/resource-explorer-2`: Updates service documentation
+* `service/route53domains`: Updates service API and documentation
+  * Use Route 53 domain APIs to change owner, create/delete DS record, modify IPS tag, resend authorization. New: AssociateDelegationSignerToDomain, DisassociateDelegationSignerFromDomain, PushDomain, ResendOperationAuthorization. Updated: UpdateDomainContact, ListOperations, CheckDomainTransferability.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Autopilot adds support for new objective metrics in CreateAutoMLJob API.
+* `service/transcribe`: Updates service API
+
 Release v1.44.163 (2022-12-19)
 ===
 

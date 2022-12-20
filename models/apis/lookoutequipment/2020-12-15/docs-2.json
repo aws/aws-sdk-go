@@ -546,6 +546,7 @@
         "CreateInferenceSchedulerResponse$Status": "<p>Indicates the status of the <code>CreateInferenceScheduler</code> operation. </p>",
         "DescribeInferenceSchedulerResponse$Status": "<p>Indicates the status of the inference scheduler. </p>",
         "InferenceSchedulerSummary$Status": "<p>Indicates the status of the inference scheduler. </p>",
+        "ListInferenceSchedulersRequest$Status": "<p>Specifies the current status of the inference schedulers to list.</p>",
         "StartInferenceSchedulerResponse$Status": "<p>Indicates the status of the inference scheduler. </p>",
         "StopInferenceSchedulerResponse$Status": "<p>Indicates the status of the inference scheduler. </p>"
       }

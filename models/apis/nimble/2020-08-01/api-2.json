@@ -419,6 +419,24 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "GetStreamingSessionBackup":{
+      "name":"GetStreamingSessionBackup",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-08-01/studios/{studioId}/streaming-session-backups/{backupId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetStreamingSessionBackupRequest"},
+      "output":{"shape":"GetStreamingSessionBackupResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "GetStreamingSessionStream":{
       "name":"GetStreamingSessionStream",
       "http":{
@@ -588,6 +606,24 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerErrorException"},
         {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "ListStreamingSessionBackups":{
+      "name":"ListStreamingSessionBackups",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-08-01/studios/{studioId}/streaming-session-backups",
+        "responseCode":200
+      },
+      "input":{"shape":"ListStreamingSessionBackupsRequest"},
+      "output":{"shape":"ListStreamingSessionBackupsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"}
       ]
     },
     "ListStreamingSessions":{
@@ -1000,6 +1036,13 @@
       "max":2000,
       "min":1
     },
+    "AutomaticTerminationMode":{
+      "type":"string",
+      "enum":[
+        "DEACTIVATED",
+        "ACTIVATED"
+      ]
+    },
     "ClientToken":{
       "type":"string",
       "max":64,
@@ -1095,7 +1138,10 @@
     },
     "CreateStreamingSessionRequest":{
       "type":"structure",
-      "required":["studioId"],
+      "required":[
+        "launchProfileId",
+        "studioId"
+      ],
       "members":{
         "clientToken":{
           "shape":"ClientToken",
@@ -1668,6 +1714,31 @@
         "streamingImage":{"shape":"StreamingImage"}
       }
     },
+    "GetStreamingSessionBackupRequest":{
+      "type":"structure",
+      "required":[
+        "backupId",
+        "studioId"
+      ],
+      "members":{
+        "backupId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"backupId"
+        },
+        "studioId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"studioId"
+        }
+      }
+    },
+    "GetStreamingSessionBackupResponse":{
+      "type":"structure",
+      "members":{
+        "streamingSessionBackup":{"shape":"StreamingSessionBackup"}
+      }
+    },
     "GetStreamingSessionRequest":{
       "type":"structure",
       "required":[
@@ -2177,6 +2248,34 @@
         "streamingImages":{"shape":"StreamingImageList"}
       }
     },
+    "ListStreamingSessionBackupsRequest":{
+      "type":"structure",
+      "required":["studioId"],
+      "members":{
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "ownedBy":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"ownedBy"
+        },
+        "studioId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"studioId"
+        }
+      }
+    },
+    "ListStreamingSessionBackupsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "streamingSessionBackups":{"shape":"StreamingSessionBackupList"}
+      }
+    },
     "ListStreamingSessionsRequest":{
       "type":"structure",
       "required":["studioId"],
@@ -2318,6 +2417,7 @@
     },
     "MaxResults":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
@@ -2477,6 +2577,20 @@
       },
       "exception":true
     },
+    "SessionBackupMode":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "DEACTIVATED"
+      ]
+    },
+    "SessionPersistenceMode":{
+      "type":"string",
+      "enum":[
+        "DEACTIVATED",
+        "ACTIVATED"
+      ]
+    },
     "SharedFileSystemConfiguration":{
       "type":"structure",
       "members":{
@@ -2494,6 +2608,7 @@
         "studioId"
       ],
       "members":{
+        "backupId":{"shape":"String"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
@@ -2564,7 +2679,8 @@
           "shape":"String",
           "location":"uri",
           "locationName":"studioId"
-        }
+        },
+        "volumeRetentionMode":{"shape":"VolumeRetentionMode"}
       }
     },
     "StopStreamingSessionResponse":{
@@ -2581,12 +2697,16 @@
         "streamingImageIds"
       ],
       "members":{
+        "automaticTerminationMode":{"shape":"AutomaticTerminationMode"},
         "clipboardMode":{"shape":"StreamingClipboardMode"},
         "ec2InstanceTypes":{"shape":"StreamingInstanceTypeList"},
         "maxSessionLengthInMinutes":{"shape":"StreamConfigurationMaxSessionLengthInMinutes"},
         "maxStoppedSessionLengthInMinutes":{"shape":"StreamConfigurationMaxStoppedSessionLengthInMinutes"},
+        "sessionBackup":{"shape":"StreamConfigurationSessionBackup"},
+        "sessionPersistenceMode":{"shape":"SessionPersistenceMode"},
         "sessionStorage":{"shape":"StreamConfigurationSessionStorage"},
-        "streamingImageIds":{"shape":"StreamingImageIdList"}
+        "streamingImageIds":{"shape":"StreamingImageIdList"},
+        "volumeConfiguration":{"shape":"VolumeConfiguration"}
       }
     },
     "StreamConfigurationCreate":{
@@ -2597,16 +2717,26 @@
         "streamingImageIds"
       ],
       "members":{
+        "automaticTerminationMode":{"shape":"AutomaticTerminationMode"},
         "clipboardMode":{"shape":"StreamingClipboardMode"},
         "ec2InstanceTypes":{"shape":"StreamingInstanceTypeList"},
         "maxSessionLengthInMinutes":{"shape":"StreamConfigurationMaxSessionLengthInMinutes"},
         "maxStoppedSessionLengthInMinutes":{"shape":"StreamConfigurationMaxStoppedSessionLengthInMinutes"},
+        "sessionBackup":{"shape":"StreamConfigurationSessionBackup"},
+        "sessionPersistenceMode":{"shape":"SessionPersistenceMode"},
         "sessionStorage":{"shape":"StreamConfigurationSessionStorage"},
-        "streamingImageIds":{"shape":"StreamingImageIdList"}
+        "streamingImageIds":{"shape":"StreamingImageIdList"},
+        "volumeConfiguration":{"shape":"VolumeConfiguration"}
       }
+    },
+    "StreamConfigurationMaxBackupsToRetain":{
+      "type":"integer",
+      "max":10,
+      "min":0
     },
     "StreamConfigurationMaxSessionLengthInMinutes":{
       "type":"integer",
+      "box":true,
       "max":43200,
       "min":1
     },
@@ -2614,6 +2744,13 @@
       "type":"integer",
       "max":5760,
       "min":0
+    },
+    "StreamConfigurationSessionBackup":{
+      "type":"structure",
+      "members":{
+        "maxBackupsToRetain":{"shape":"StreamConfigurationMaxBackupsToRetain"},
+        "mode":{"shape":"SessionBackupMode"}
+      }
     },
     "StreamConfigurationSessionStorage":{
       "type":"structure",
@@ -2751,14 +2888,19 @@
       "type":"structure",
       "members":{
         "arn":{"shape":"String"},
+        "automaticTerminationMode":{"shape":"AutomaticTerminationMode"},
+        "backupMode":{"shape":"SessionBackupMode"},
         "createdAt":{"shape":"Timestamp"},
         "createdBy":{"shape":"String"},
         "ec2InstanceType":{"shape":"String"},
         "launchProfileId":{"shape":"String"},
+        "maxBackupsToRetain":{"shape":"StreamConfigurationMaxBackupsToRetain"},
         "ownedBy":{"shape":"String"},
         "sessionId":{"shape":"StreamingSessionId"},
+        "sessionPersistenceMode":{"shape":"SessionPersistenceMode"},
         "startedAt":{"shape":"Timestamp"},
         "startedBy":{"shape":"String"},
+        "startedFromBackupId":{"shape":"String"},
         "state":{"shape":"StreamingSessionState"},
         "statusCode":{"shape":"StreamingSessionStatusCode"},
         "statusMessage":{"shape":"String"},
@@ -2769,8 +2911,29 @@
         "tags":{"shape":"Tags"},
         "terminateAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
-        "updatedBy":{"shape":"String"}
+        "updatedBy":{"shape":"String"},
+        "volumeConfiguration":{"shape":"VolumeConfiguration"},
+        "volumeRetentionMode":{"shape":"VolumeRetentionMode"}
       }
+    },
+    "StreamingSessionBackup":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"String"},
+        "backupId":{"shape":"String"},
+        "createdAt":{"shape":"Timestamp"},
+        "launchProfileId":{"shape":"String"},
+        "ownedBy":{"shape":"String"},
+        "sessionId":{"shape":"StreamingSessionId"},
+        "state":{"shape":"StreamingSessionState"},
+        "statusCode":{"shape":"StreamingSessionStatusCode"},
+        "statusMessage":{"shape":"String"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "StreamingSessionBackupList":{
+      "type":"list",
+      "member":{"shape":"StreamingSessionBackup"}
     },
     "StreamingSessionId":{"type":"string"},
     "StreamingSessionList":{
@@ -2859,6 +3022,7 @@
     },
     "StreamingSessionStreamExpirationInSeconds":{
       "type":"integer",
+      "box":true,
       "max":3600,
       "min":60
     },
@@ -3169,7 +3333,8 @@
         "ENCRYPTION_KEY_NOT_FOUND",
         "ENCRYPTION_KEY_ACCESS_DENIED",
         "AWS_SSO_CONFIGURATION_REPAIRED",
-        "AWS_SSO_CONFIGURATION_REPAIR_IN_PROGRESS"
+        "AWS_SSO_CONFIGURATION_REPAIR_IN_PROGRESS",
+        "AWS_STS_REGION_DISABLED"
       ]
     },
     "TagResourceRequest":{
@@ -3443,6 +3608,39 @@
     "ValidationResults":{
       "type":"list",
       "member":{"shape":"ValidationResult"}
+    },
+    "VolumeConfiguration":{
+      "type":"structure",
+      "members":{
+        "iops":{"shape":"VolumeIops"},
+        "size":{"shape":"VolumeSizeInGiB"},
+        "throughput":{"shape":"VolumeThroughputInMiBs"}
+      }
+    },
+    "VolumeIops":{
+      "type":"integer",
+      "box":true,
+      "max":16000,
+      "min":3000
+    },
+    "VolumeRetentionMode":{
+      "type":"string",
+      "enum":[
+        "RETAIN",
+        "DELETE"
+      ]
+    },
+    "VolumeSizeInGiB":{
+      "type":"integer",
+      "box":true,
+      "max":16000,
+      "min":100
+    },
+    "VolumeThroughputInMiBs":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":125
     },
     "WindowsMountDrive":{
       "type":"string",

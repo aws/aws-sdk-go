@@ -113,7 +113,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteInferenceScheduler":{
@@ -144,7 +145,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteLabelGroup":{
@@ -159,7 +161,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteModel":{
@@ -174,7 +177,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"ConflictException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeDataIngestionJob":{
@@ -1488,7 +1492,8 @@
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"},
         "InferenceSchedulerNameBeginsWith":{"shape":"InferenceSchedulerIdentifier"},
-        "ModelName":{"shape":"ModelName"}
+        "ModelName":{"shape":"ModelName"},
+        "Status":{"shape":"InferenceSchedulerStatus"}
       }
     },
     "ListInferenceSchedulersResponse":{

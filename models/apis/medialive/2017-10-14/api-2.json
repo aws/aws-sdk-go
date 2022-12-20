@@ -2664,6 +2664,18 @@
         "USE_CONFIGURED"
       ]
     },
+    "AudioDolbyEDecode": {
+      "type": "structure",
+      "members": {
+        "ProgramSelection": {
+          "shape": "DolbyEProgramSelection",
+          "locationName": "programSelection"
+        }
+      },
+      "required": [
+        "ProgramSelection"
+      ]
+    },
     "AudioHlsRenditionSelection": {
       "type": "structure",
       "members": {
@@ -2854,6 +2866,10 @@
         "Tracks": {
           "shape": "__listOfAudioTrack",
           "locationName": "tracks"
+        },
+        "DolbyEDecode": {
+          "shape": "AudioDolbyEDecode",
+          "locationName": "dolbyEDecode"
         }
       },
       "required": [
@@ -5415,6 +5431,20 @@
         "UPDATING"
       ]
     },
+    "DolbyEProgramSelection": {
+      "type": "string",
+      "enum": [
+        "ALL_CHANNELS",
+        "PROGRAM_1",
+        "PROGRAM_2",
+        "PROGRAM_3",
+        "PROGRAM_4",
+        "PROGRAM_5",
+        "PROGRAM_6",
+        "PROGRAM_7",
+        "PROGRAM_8"
+      ]
+    },
     "DolbyVision81Settings": {
       "type": "structure",
       "members": {
@@ -6303,6 +6333,10 @@
         "CaptureIntervalUnits": {
           "shape": "FrameCaptureIntervalUnit",
           "locationName": "captureIntervalUnits"
+        },
+        "TimecodeBurninSettings": {
+          "shape": "TimecodeBurninSettings",
+          "locationName": "timecodeBurninSettings"
         }
       }
     },
@@ -6707,6 +6741,10 @@
         "TimecodeInsertion": {
           "shape": "H264TimecodeInsertionBehavior",
           "locationName": "timecodeInsertion"
+        },
+        "TimecodeBurninSettings": {
+          "shape": "TimecodeBurninSettings",
+          "locationName": "timecodeBurninSettings"
         }
       }
     },
@@ -6993,6 +7031,10 @@
         "TimecodeInsertion": {
           "shape": "H265TimecodeInsertionBehavior",
           "locationName": "timecodeInsertion"
+        },
+        "TimecodeBurninSettings": {
+          "shape": "TimecodeBurninSettings",
+          "locationName": "timecodeBurninSettings"
         }
       },
       "required": [
@@ -9869,6 +9911,10 @@
         "TimecodeInsertion": {
           "shape": "Mpeg2TimecodeInsertionBehavior",
           "locationName": "timecodeInsertion"
+        },
+        "TimecodeBurninSettings": {
+          "shape": "TimecodeBurninSettings",
+          "locationName": "timecodeBurninSettings"
         }
       },
       "required": [
@@ -10884,7 +10930,8 @@
     },
     "RawSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "RebootInputDevice": {
       "type": "structure",
@@ -10921,7 +10968,8 @@
     },
     "RebootInputDeviceResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "Rec601Settings": {
       "type": "structure",
@@ -11924,7 +11972,8 @@
     },
     "StartInputDeviceMaintenanceWindowResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "StartMultiplexRequest": {
       "type": "structure",
@@ -12318,6 +12367,50 @@
           "locationName": "body"
         }
       }
+    },
+    "TimecodeBurninFontSize": {
+      "type": "string",
+      "enum": [
+        "EXTRA_SMALL_10",
+        "LARGE_48",
+        "MEDIUM_32",
+        "SMALL_16"
+      ]
+    },
+    "TimecodeBurninPosition": {
+      "type": "string",
+      "enum": [
+        "BOTTOM_CENTER",
+        "BOTTOM_LEFT",
+        "BOTTOM_RIGHT",
+        "MIDDLE_CENTER",
+        "MIDDLE_LEFT",
+        "MIDDLE_RIGHT",
+        "TOP_CENTER",
+        "TOP_LEFT",
+        "TOP_RIGHT"
+      ]
+    },
+    "TimecodeBurninSettings": {
+      "type": "structure",
+      "members": {
+        "FontSize": {
+          "shape": "TimecodeBurninFontSize",
+          "locationName": "fontSize"
+        },
+        "Position": {
+          "shape": "TimecodeBurninPosition",
+          "locationName": "position"
+        },
+        "Prefix": {
+          "shape": "__stringMax255",
+          "locationName": "prefix"
+        }
+      },
+      "required": [
+        "Position",
+        "FontSize"
+      ]
     },
     "TimecodeConfig": {
       "type": "structure",

@@ -178,6 +178,9 @@
       "result_key": "IamInstanceProfileAssociations"
     },
     "DescribeImages": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
       "result_key": "Images"
     },
     "DescribeImportImageTasks": {
