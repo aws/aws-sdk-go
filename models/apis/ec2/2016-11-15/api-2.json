@@ -15103,7 +15103,9 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "MaxResults":{"shape":"Integer"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeImagesResult":{
@@ -15112,6 +15114,10 @@
         "Images":{
           "shape":"ImageList",
           "locationName":"imagesSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -18411,8 +18417,8 @@
       "members":{
         "Device":{"shape":"String"},
         "Force":{"shape":"Boolean"},
-        "InstanceId":{"shape":"InstanceId"},
-        "VolumeId":{"shape":"VolumeId"},
+        "InstanceId":{"shape":"InstanceIdForResolver"},
+        "VolumeId":{"shape":"VolumeIdWithResolver"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -24843,6 +24849,7 @@
       ]
     },
     "InstanceId":{"type":"string"},
+    "InstanceIdForResolver":{"type":"string"},
     "InstanceIdList":{
       "type":"list",
       "member":{
@@ -42186,6 +42193,7 @@
         "locationName":"VolumeId"
       }
     },
+    "VolumeIdWithResolver":{"type":"string"},
     "VolumeList":{
       "type":"list",
       "member":{

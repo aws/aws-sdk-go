@@ -1287,7 +1287,9 @@
         "propagateTags":{"shape":"Boolean"},
         "platformCapabilities":{"shape":"PlatformCapabilityList"},
         "eksProperties":{"shape":"EksPropertiesDetail"},
-        "eksAttempts":{"shape":"EksAttemptDetails"}
+        "eksAttempts":{"shape":"EksAttemptDetails"},
+        "isCancelled":{"shape":"Boolean"},
+        "isTerminated":{"shape":"Boolean"}
       }
     },
     "JobDetailList":{

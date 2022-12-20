@@ -2548,6 +2548,7 @@
           "ap-southeast-3" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
+          "eu-central-2" : { },
           "eu-north-1" : { },
           "eu-south-1" : { },
           "eu-west-1" : { },
@@ -10772,6 +10773,12 @@
       },
       "portal.sso" : {
         "endpoints" : {
+          "af-south-1" : {
+            "credentialScope" : {
+              "region" : "af-south-1"
+            },
+            "hostname" : "portal.sso.af-south-1.amazonaws.com"
+          },
           "ap-east-1" : {
             "credentialScope" : {
               "region" : "ap-east-1"
@@ -10813,6 +10820,12 @@
               "region" : "ap-southeast-2"
             },
             "hostname" : "portal.sso.ap-southeast-2.amazonaws.com"
+          },
+          "ap-southeast-3" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-3"
+            },
+            "hostname" : "portal.sso.ap-southeast-3.amazonaws.com"
           },
           "ca-central-1" : {
             "credentialScope" : {
@@ -10879,6 +10892,12 @@
               "region" : "us-east-2"
             },
             "hostname" : "portal.sso.us-east-2.amazonaws.com"
+          },
+          "us-west-1" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "portal.sso.us-west-1.amazonaws.com"
           },
           "us-west-2" : {
             "credentialScope" : {
@@ -14005,6 +14024,7 @@
       },
       "sso" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -14012,6 +14032,7 @@
           "ap-south-1" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
+          "ap-southeast-3" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-north-1" : { },
@@ -14023,6 +14044,7 @@
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
+          "us-west-1" : { },
           "us-west-2" : { }
         }
       },

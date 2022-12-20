@@ -613,6 +613,10 @@ func (c *LookoutEquipment) DeleteDatasetRequest(input *DeleteDatasetInput) (req 
 //     The request could not be completed due to a conflict with the current state
 //     of the target resource.
 //
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteDataset
 func (c *LookoutEquipment) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, error) {
 	req, out := c.DeleteDatasetRequest(input)
@@ -810,6 +814,10 @@ func (c *LookoutEquipment) DeleteLabelRequest(input *DeleteLabelInput) (req *req
 //     The request could not be completed due to a conflict with the current state
 //     of the target resource.
 //
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabel
 func (c *LookoutEquipment) DeleteLabel(input *DeleteLabelInput) (*DeleteLabelOutput, error) {
 	req, out := c.DeleteLabelRequest(input)
@@ -905,6 +913,10 @@ func (c *LookoutEquipment) DeleteLabelGroupRequest(input *DeleteLabelGroupInput)
 //   - ConflictException
 //     The request could not be completed due to a conflict with the current state
 //     of the target resource.
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteLabelGroup
 func (c *LookoutEquipment) DeleteLabelGroup(input *DeleteLabelGroupInput) (*DeleteLabelGroupOutput, error) {
@@ -1003,6 +1015,10 @@ func (c *LookoutEquipment) DeleteModelRequest(input *DeleteModelInput) (req *req
 //   - AccessDeniedException
 //     The request could not be completed because you do not have access to the
 //     resource.
+//
+//   - ValidationException
+//     The input fails to satisfy constraints specified by Amazon Lookout for Equipment
+//     or a related AWS service that's being utilized.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutequipment-2020-12-15/DeleteModel
 func (c *LookoutEquipment) DeleteModel(input *DeleteModelInput) (*DeleteModelOutput, error) {
@@ -8694,6 +8710,9 @@ type ListInferenceSchedulersInput struct {
 	// An opaque pagination token indicating where to continue the listing of inference
 	// schedulers.
 	NextToken *string `type:"string"`
+
+	// Specifies the current status of the inference schedulers to list.
+	Status *string `type:"string" enum:"InferenceSchedulerStatus"`
 }
 
 // String returns the string representation.
@@ -8754,6 +8773,12 @@ func (s *ListInferenceSchedulersInput) SetModelName(v string) *ListInferenceSche
 // SetNextToken sets the NextToken field's value.
 func (s *ListInferenceSchedulersInput) SetNextToken(v string) *ListInferenceSchedulersInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListInferenceSchedulersInput) SetStatus(v string) *ListInferenceSchedulersInput {
+	s.Status = &v
 	return s
 }
 

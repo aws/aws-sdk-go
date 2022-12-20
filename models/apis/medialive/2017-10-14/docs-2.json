@@ -250,6 +250,12 @@
         "AudioDescription$LanguageCodeControl": "Choosing followInput will cause the ISO 639 language code of the output to follow the ISO 639 language code of the input. The languageCode will be used when useConfigured is set, or when followInput is selected but there is no ISO 639 language code specified by the input."
       }
     },
+    "AudioDolbyEDecode": {
+      "base": "Audio Dolby EDecode",
+      "refs": {
+        "AudioTrackSelection$DolbyEDecode": "Configure decoding options for Dolby E streams - these should be Dolby E frames carried in PCM streams tagged with SMPTE-337"
+      }
+    },
     "AudioHlsRenditionSelection": {
       "base": "Audio Hls Rendition Selection",
       "refs": {
@@ -712,8 +718,14 @@
         "InputDeviceSummary$DeviceUpdateStatus": "The status of software on the input device."
       }
     },
+    "DolbyEProgramSelection": {
+      "base": "Dolby EProgram Selection",
+      "refs": {
+        "AudioDolbyEDecode$ProgramSelection": "Applies only to Dolby E. Enter the program ID (according to the metadata in the audio) of the Dolby E program to extract from the specified track. One program extracted per audio selector. To select multiple programs, create multiple selectors with the same Track and different Program numbers. \u201cAll channels\u201d means to ignore the program IDs and include all the channels in this selector; useful if metadata is known to be incorrect."
+      }
+    },
     "DolbyVision81Settings": {
-      "base": "Dolby Vision Profile 8.1 Settings",
+      "base": "Dolby Vision81 Settings",
       "refs": {
         "H265ColorSpaceSettings$DolbyVision81Settings": null
       }
@@ -3007,15 +3019,15 @@
       }
     },
     "Scte35InputMode": {
-      "base": "Settings to let you create a clip of the file input, in order to set up the input to ingest only a portion of the file.",
+      "base": "Whether the SCTE-35 input should be the active input or a fixed input.",
       "refs": {
         "Scte35InputScheduleActionSettings$Mode": "Whether the SCTE-35 input should be the active input or a fixed input."
       }
     },
     "Scte35InputScheduleActionSettings": {
-      "base": "Settings for the \"scte35 input\" action",
+      "base": "Scte35Input Schedule Action Settings",
       "refs": {
-        "ScheduleActionSettings$Scte35InputSettings": "Action to get scte35 input"
+        "ScheduleActionSettings$Scte35InputSettings": "Action to specify scte35 input"
       }
     },
     "Scte35NoRegionalBlackoutFlag": {
@@ -3190,6 +3202,8 @@
         "CreateMultiplex$Tags": "A collection of key-value pairs.",
         "CreatePartnerInput$Tags": "A collection of key-value pairs.",
         "Input$Tags": "A collection of key-value pairs.",
+        "InputDevice$Tags": "A collection of key-value pairs.",
+        "InputDeviceSummary$Tags": "A collection of key-value pairs.",
         "InputSecurityGroup$Tags": "A collection of key-value pairs.",
         "InputSecurityGroupWhitelistRequest$Tags": "A collection of key-value pairs.",
         "Multiplex$Tags": "A collection of key-value pairs.",
@@ -3239,6 +3253,27 @@
     "ThumbnailData": {
       "base": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
       "refs": {
+      }
+    },
+    "TimecodeBurninFontSize": {
+      "base": "Timecode Burnin Font Size",
+      "refs": {
+        "TimecodeBurninSettings$FontSize": "Choose a timecode burn-in font size"
+      }
+    },
+    "TimecodeBurninPosition": {
+      "base": "Timecode Burnin Position",
+      "refs": {
+        "TimecodeBurninSettings$Position": "Choose a timecode burn-in output position"
+      }
+    },
+    "TimecodeBurninSettings": {
+      "base": "Timecode Burnin Settings",
+      "refs": {
+        "FrameCaptureSettings$TimecodeBurninSettings": "Timecode burn-in settings",
+        "H264Settings$TimecodeBurninSettings": "Timecode burn-in settings",
+        "H265Settings$TimecodeBurninSettings": "Timecode burn-in settings",
+        "Mpeg2Settings$TimecodeBurninSettings": "Timecode burn-in settings"
       }
     },
     "TimecodeConfig": {
@@ -3573,16 +3608,16 @@
         "ChannelSummary$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "DvbSubDestinationSettings$ShadowXOffset": "Specifies the horizontal offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels to the left.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$ShadowYOffset": "Specifies the vertical offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels above the text.  All burn-in and DVB-Sub font settings must match.",
-        "InputDeviceConfigurableSettings$MaxBitrate": "The maximum bitrate in bits per second. Set a value here to throttle the bitrate of the source video.",
         "InputDeviceConfigurableSettings$LatencyMs": "The Link device's buffer size (latency) in milliseconds (ms).",
+        "InputDeviceConfigurableSettings$MaxBitrate": "The maximum bitrate in bits per second. Set a value here to throttle the bitrate of the source video.",
         "InputDeviceHdSettings$Height": "The height of the video source, in pixels.",
+        "InputDeviceHdSettings$LatencyMs": "The Link device's buffer size (latency) in milliseconds (ms). You can specify this value.",
         "InputDeviceHdSettings$MaxBitrate": "The current maximum bitrate for ingesting this source, in bits per second. You can specify this maximum.",
         "InputDeviceHdSettings$Width": "The width of the video source, in pixels.",
-        "InputDeviceHdSettings$LatencyMs": "The Link device's buffer size (latency) in milliseconds (ms). You can specify this value.",
         "InputDeviceUhdSettings$Height": "The height of the video source, in pixels.",
+        "InputDeviceUhdSettings$LatencyMs": "The Link device's buffer size (latency) in milliseconds (ms). You can specify this value.",
         "InputDeviceUhdSettings$MaxBitrate": "The current maximum bitrate for ingesting this source, in bits per second. You can specify this maximum.",
         "InputDeviceUhdSettings$Width": "The width of the video source, in pixels.",
-        "InputDeviceUhdSettings$LatencyMs": "The Link device's buffer size (latency) in milliseconds (ms). You can specify this value.",
         "Multiplex$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "Multiplex$ProgramCount": "The number of programs in the multiplex.",
         "MultiplexProgramPacketIdentifiersMap$DvbTeletextPid": null,
@@ -3618,7 +3653,7 @@
         "HlsAkamaiSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
         "HlsBasicPutSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the CDN if the connection is lost.",
         "HlsBasicPutSettings$NumRetries": "Number of retry attempts that will be made before the Live Event is put into an error state.",
-        "HlsGroupSettings$MinSegmentLength": "When set, minimumSegmentLength is enforced by looking ahead and back within the specified range for a nearby avail and extending the segment size if needed.",
+        "HlsGroupSettings$MinSegmentLength": "Minimum length of MPEG-2 Transport Stream segments in seconds. When set, minimum segment length is enforced by looking ahead and back within the specified range for a nearby avail and extending the segment size if needed.",
         "HlsGroupSettings$TimedMetadataId3Period": "Timed Metadata interval in seconds.",
         "HlsGroupSettings$TimestampDeltaMilliseconds": "Provides an extra millisecond delta offset to fine tune the timestamps.",
         "HlsInputSettings$Bandwidth": "When specified the HLS stream with the m3u8 BANDWIDTH that most closely matches this value will be chosen, otherwise the highest bandwidth stream in the m3u8 will be chosen.  The bitrate is specified in bits per second, as in an HLS manifest.",
@@ -3812,7 +3847,7 @@
         "H265Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "H265Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
         "HlsGroupSettings$KeepSegments": "Applies only if Mode field is LIVE.\n\nSpecifies the number of media segments to retain in the destination directory. This number should be bigger than indexNSegments (Num segments). We recommend (value = (2 x indexNsegments) + 1).\n\nIf this \"keep segments\" number is too low, the following might happen: the player is still reading a media manifest file that lists this segment, but that segment has been removed from the destination directory (as directed by indexNSegments). This situation would result in a 404 HTTP error on the player.",
-        "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
+        "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create in seconds. Note that segments will end on the next keyframe after this duration, so actual segment length may be longer.",
         "HlsGroupSettings$SegmentsPerSubdirectory": "Number of segments to write to a subdirectory before starting a new one. directoryStructure must be subdirectoryPerStream for this setting to have an effect.",
         "Mpeg2Settings$FramerateDenominator": "description\": \"The framerate denominator. For example, 1001. The framerate is the numerator divided by the denominator. For example, 24000 / 1001 = 23.976 FPS.",
         "Mpeg2Settings$FramerateNumerator": "The framerate numerator. For example, 24000. The framerate is the numerator divided by the denominator. For example, 24000 / 1001 = 23.976 FPS.",
@@ -4457,7 +4492,9 @@
         "CreatePartnerInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "EbuTtDDestinationSettings$FontFamily": "Specifies the font family to include in the font data attached to the EBU-TT captions. Valid only if styleControl is set to include. If you leave this field empty, the font family is set to \"monospaced\". (If styleControl is set to exclude, the font family is always set to \"monospaced\".)\n\nYou specify only the font family. All other style information (color, bold, position and so on) is copied from the input captions. The size is always set to 100% to allow the downstream player to choose the size.\n\n- Enter a list of font families, as a comma-separated list of font names, in order of preference. The name can be a font family (such as \u201cArial\u201d), or a generic font family (such as \u201cserif\u201d), or \u201cdefault\u201d (to let the downstream player choose the font).\n- Leave blank to set the family to \u201cmonospace\u201d.",
-        "Esam$PasswordParam": "Password if credentials are required to access the POIS endpoint.  This is a reference to an AWS parameter store name from which the password can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
+        "EpochLockingSettings$CustomEpoch": "Optional. Enter a value here to use a custom epoch, instead of the standard epoch (which started at 1970-01-01T00:00:00 UTC). Specify the start time of the custom epoch, in YYYY-MM-DDTHH:MM:SS in UTC. The time must be 2000-01-01T00:00:00 or later. Always set the MM:SS portion to 00:00.",
+        "EpochLockingSettings$JamSyncTime": "Optional. Enter a time for the jam sync. The default is midnight UTC. When epoch locking is enabled, MediaLive performs a daily jam sync on every output encode to ensure timecodes don\u2019t diverge from the wall clock. The jam sync applies only to encodes with frame rate of 29.97 or 59.94 FPS. To override, enter a time in HH:MM:SS in UTC. Always set the MM:SS portion to 00:00.",
+        "Esam$PasswordParam": "Reference to an AWS parameter store name from which the password can be retrieved if credentials are required to access the POIS endpoint.  AWS Parameter store format: \"ssm://<parameter name>\"",
         "Esam$Username": "Username if credentials are required to access the POIS endpoint.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",
         "Fmp4HlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
@@ -4504,7 +4541,6 @@
         "InputDeviceSummary$Name": "A name that you specify for the input device.",
         "InputDeviceSummary$SerialNumber": "The unique serial number of the input device.",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
-        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
         "InputPrepareScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment that should be prepared by this action. If no name is provided, the action will stop the most recent prepare (if any) when activated.",
         "InputSecurityGroup$Arn": "Unique ARN of Input Security Group",
@@ -4564,6 +4600,7 @@
         "MsSmoothGroupSettings$EventId": "MS Smooth event ID to be sent to the IIS server.\n\nShould only be specified if eventIdMode is set to useConfigured.",
         "MsSmoothGroupSettings$TimestampOffset": "Timestamp offset for the event.  Only used if timestampOffsetMode is set to useConfiguredOffset.",
         "MsSmoothOutputSettings$NameModifier": "String concatenated to the end of the destination filename.  Required for multiple outputs of the same type.",
+        "MulticastInputSettings$SourceIpAddress": "Optionally, a source ip address to filter by for Source-specific Multicast (SSM)",
         "Multiplex$Arn": "The unique arn of the multiplex.",
         "Multiplex$Id": "The unique id of the multiplex.",
         "Multiplex$Name": "The name of the multiplex.",
@@ -4647,14 +4684,15 @@
     "__stringMax2048": {
       "base": null,
       "refs": {
-        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
-        "Esam$PoisEndpoint": "The URL of the signal conditioner endpoint on the Placement Opportunity Information System (POIS). MediaLive sends SignalProcessingEvents here when SCTE-35 messages are read."
+        "Esam$PoisEndpoint": "The URL of the signal conditioner endpoint on the Placement Opportunity Information System (POIS). MediaLive sends SignalProcessingEvents here when SCTE-35 messages are read.",
+        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\"."
       }
     },
     "__stringMax255": {
       "base": null,
       "refs": {
-        "AudioDescription$Name": "The name of this AudioDescription. Outputs will use this name to uniquely identify this AudioDescription.  Description names should be unique within this Live Event."
+        "AudioDescription$Name": "The name of this AudioDescription. Outputs will use this name to uniquely identify this AudioDescription.  Description names should be unique within this Live Event.",
+        "TimecodeBurninSettings$Prefix": "Create a timecode burn-in prefix (optional)"
       }
     },
     "__stringMax256": {

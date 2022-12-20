@@ -274,7 +274,7 @@ func (c *ResourceExplorer2) CreateIndexRequest(input *CreateIndexInput) (req *re
 //
 // If this is the first Amazon Web Services Region in which you've created an
 // index for Resource Explorer, then this operation also creates a service-linked
-// role (https://docs.aws.amazon.com/arexug/mainline/security_iam_service-linked-roles.html)
+// role (https://docs.aws.amazon.com/resource-explorer/latest/userguide/security_iam_service-linked-roles.html)
 // in your Amazon Web Services account that allows Resource Explorer to enumerate
 // your resources to populate the index.
 //
@@ -394,7 +394,7 @@ func (c *ResourceExplorer2) CreateViewRequest(input *CreateViewInput) (req *requ
 // Creates a view that users can query by using the Search operation. Results
 // from queries that you make using this view include only resources that match
 // the view's Filters. For more information about Amazon Web Services Resource
-// Explorer views, see Managing views (https://docs.aws.amazon.com/arexug/mainline/manage-views.html)
+// Explorer views, see Managing views (https://docs.aws.amazon.com/resource-explorer/latest/userguide/manage-views.html)
 // in the Amazon Web Services Resource Explorer User Guide.
 //
 // Only the principals with an IAM identity-based policy that grants Allow to
@@ -508,6 +508,11 @@ func (c *ResourceExplorer2) DeleteIndexRequest(input *DeleteIndexInput) (req *re
 // Explorer also deletes all views in that Region. These actions occur as asynchronous
 // background tasks. You can check to see when the actions are complete by using
 // the GetIndex operation and checking the Status response value.
+//
+// If the index you delete is the aggregator index for the Amazon Web Services
+// account, you must wait 24 hours before you can promote another local index
+// to be the aggregator index for the account. Users can't perform account-wide
+// searches using Resource Explorer until another aggregator index is configured.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2033,7 +2038,7 @@ func (c *ResourceExplorer2) UpdateIndexTypeRequest(input *UpdateIndexTypeInput) 
 // Changes the type of the index from one of the following types to the other.
 // For more information about indexes and the role they perform in Amazon Web
 // Services Resource Explorer, see Turning on cross-Region search by creating
-// an aggregator index (https://docs.aws.amazon.com/arexug/mainline/manage-aggregator-region.html)
+// an aggregator index (https://docs.aws.amazon.com/resource-explorer/latest/userguide/manage-aggregator-region.html)
 // in the Amazon Web Services Resource Explorer User Guide.
 //
 //   - AGGREGATOR index type The index contains information about resources
@@ -3160,25 +3165,28 @@ type GetIndexOutput struct {
 	// The date and time when the index was last updated.
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// If this index is Type=AGGREGATOR, then this response value contains a list
-	// of the Amazon Web Services Regions that replicate their content to the index
-	// in this Region. Not present for a local index.
+	// This response value is present only if this index is Type=AGGREGATOR.
+	//
+	// A list of the Amazon Web Services Regions that replicate their content to
+	// the index in this Region.
 	ReplicatingFrom []*string `type:"list"`
 
-	// Identifies the Amazon Web Services Region that has an index set to Type=AGGREGATOR,
-	// if one exists. If it does, then the Region you called this operation in replicates
-	// its index information to the Region specified in this response value. Not
-	// present if there isn't an aggregator index in the account.
+	// This response value is present only if this index is Type=LOCAL.
+	//
+	// The Amazon Web Services Region that contains the aggregator index, if one
+	// exists. If an aggregator index does exist then the Region in which you called
+	// this operation replicates its index information to the Region specified in
+	// this response value.
 	ReplicatingTo []*string `type:"list"`
 
-	// Indicates the current state of the index in this Amazon Web Services Region.
+	// The current state of the index in this Amazon Web Services Region.
 	State *string `type:"string" enum:"IndexState"`
 
 	// Tag key and value pairs that are attached to the index.
 	Tags map[string]*string `type:"map"`
 
-	// Specifies the type of the index in this Region. For information about the
-	// aggregator index and how it differs from a local index, see Turning on cross-Region
+	// The type of the index in this Region. For information about the aggregator
+	// index and how it differs from a local index, see Turning on cross-Region
 	// search by creating an aggregator index (https://docs.aws.amazon.com/resource-explorer/latest/userguide/manage-aggregator-region.html).
 	Type *string `type:"string" enum:"IndexType"`
 }

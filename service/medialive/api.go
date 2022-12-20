@@ -6958,6 +6958,58 @@ func (s *AudioDescription) SetStreamName(v string) *AudioDescription {
 	return s
 }
 
+// Audio Dolby EDecode
+type AudioDolbyEDecode struct {
+	_ struct{} `type:"structure"`
+
+	// Applies only to Dolby E. Enter the program ID (according to the metadata
+	// in the audio) of the Dolby E program to extract from the specified track.
+	// One program extracted per audio selector. To select multiple programs, create
+	// multiple selectors with the same Track and different Program numbers. “All
+	// channels” means to ignore the program IDs and include all the channels
+	// in this selector; useful if metadata is known to be incorrect.
+	//
+	// ProgramSelection is a required field
+	ProgramSelection *string `locationName:"programSelection" type:"string" required:"true" enum:"DolbyEProgramSelection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioDolbyEDecode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioDolbyEDecode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioDolbyEDecode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioDolbyEDecode"}
+	if s.ProgramSelection == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProgramSelection"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProgramSelection sets the ProgramSelection field's value.
+func (s *AudioDolbyEDecode) SetProgramSelection(v string) *AudioDolbyEDecode {
+	s.ProgramSelection = &v
+	return s
+}
+
 // Audio Hls Rendition Selection
 type AudioHlsRenditionSelection struct {
 	_ struct{} `type:"structure"`
@@ -7546,6 +7598,10 @@ func (s *AudioTrack) SetTrack(v int64) *AudioTrack {
 type AudioTrackSelection struct {
 	_ struct{} `type:"structure"`
 
+	// Configure decoding options for Dolby E streams - these should be Dolby E
+	// frames carried in PCM streams tagged with SMPTE-337
+	DolbyEDecode *AudioDolbyEDecode `locationName:"dolbyEDecode" type:"structure"`
+
 	// Selects one or more unique audio tracks from within a source.
 	//
 	// Tracks is a required field
@@ -7576,6 +7632,11 @@ func (s *AudioTrackSelection) Validate() error {
 	if s.Tracks == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tracks"))
 	}
+	if s.DolbyEDecode != nil {
+		if err := s.DolbyEDecode.Validate(); err != nil {
+			invalidParams.AddNested("DolbyEDecode", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tracks != nil {
 		for i, v := range s.Tracks {
 			if v == nil {
@@ -7591,6 +7652,12 @@ func (s *AudioTrackSelection) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDolbyEDecode sets the DolbyEDecode field's value.
+func (s *AudioTrackSelection) SetDolbyEDecode(v *AudioDolbyEDecode) *AudioTrackSelection {
+	s.DolbyEDecode = v
+	return s
 }
 
 // SetTracks sets the Tracks field's value.
@@ -13781,7 +13848,7 @@ func (s *DescribeScheduleOutput) SetScheduleActions(v []*ScheduleAction) *Descri
 	return s
 }
 
-// Dolby Vision Profile 8.1 Settings
+// Dolby Vision81 Settings
 type DolbyVision81Settings struct {
 	_ struct{} `type:"structure"`
 }
@@ -15091,9 +15158,9 @@ type Esam struct {
 	// apply to OOB messages.
 	AdAvailOffset *int64 `locationName:"adAvailOffset" type:"integer"`
 
-	// Password if credentials are required to access the POIS endpoint. This is
-	// a reference to an AWS parameter store name from which the password can be
-	// retrieved. AWS Parameter store format: "ssm://"
+	// Reference to an AWS parameter store name from which the password can be retrieved
+	// if credentials are required to access the POIS endpoint. AWS Parameter store
+	// format: "ssm://"
 	PasswordParam *string `locationName:"passwordParam" type:"string"`
 
 	// The URL of the signal conditioner endpoint on the Placement Opportunity Information
@@ -15842,6 +15909,9 @@ type FrameCaptureSettings struct {
 
 	// Unit for the frame capture interval.
 	CaptureIntervalUnits *string `locationName:"captureIntervalUnits" type:"string" enum:"FrameCaptureIntervalUnit"`
+
+	// Timecode burn-in settings
+	TimecodeBurninSettings *TimecodeBurninSettings `locationName:"timecodeBurninSettings" type:"structure"`
 }
 
 // String returns the string representation.
@@ -15868,6 +15938,11 @@ func (s *FrameCaptureSettings) Validate() error {
 	if s.CaptureInterval != nil && *s.CaptureInterval < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("CaptureInterval", 1))
 	}
+	if s.TimecodeBurninSettings != nil {
+		if err := s.TimecodeBurninSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimecodeBurninSettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15884,6 +15959,12 @@ func (s *FrameCaptureSettings) SetCaptureInterval(v int64) *FrameCaptureSettings
 // SetCaptureIntervalUnits sets the CaptureIntervalUnits field's value.
 func (s *FrameCaptureSettings) SetCaptureIntervalUnits(v string) *FrameCaptureSettings {
 	s.CaptureIntervalUnits = &v
+	return s
+}
+
+// SetTimecodeBurninSettings sets the TimecodeBurninSettings field's value.
+func (s *FrameCaptureSettings) SetTimecodeBurninSettings(v *TimecodeBurninSettings) *FrameCaptureSettings {
+	s.TimecodeBurninSettings = v
 	return s
 }
 
@@ -16367,6 +16448,9 @@ type H264Settings struct {
 	// any value in this field and doesn't apply temporal AQ.
 	TemporalAq *string `locationName:"temporalAq" type:"string" enum:"H264TemporalAq"`
 
+	// Timecode burn-in settings
+	TimecodeBurninSettings *TimecodeBurninSettings `locationName:"timecodeBurninSettings" type:"structure"`
+
 	// Determines how timecodes should be inserted into the video elementary stream.-
 	// 'disabled': Do not include timecodes- 'picTimingSei': Pass through picture
 	// timing SEI messages from the source specified in Timecode Config
@@ -16420,6 +16504,11 @@ func (s *H264Settings) Validate() error {
 	}
 	if s.Slices != nil && *s.Slices < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Slices", 1))
+	}
+	if s.TimecodeBurninSettings != nil {
+		if err := s.TimecodeBurninSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimecodeBurninSettings", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16668,6 +16757,12 @@ func (s *H264Settings) SetTemporalAq(v string) *H264Settings {
 	return s
 }
 
+// SetTimecodeBurninSettings sets the TimecodeBurninSettings field's value.
+func (s *H264Settings) SetTimecodeBurninSettings(v *TimecodeBurninSettings) *H264Settings {
+	s.TimecodeBurninSettings = v
+	return s
+}
+
 // SetTimecodeInsertion sets the TimecodeInsertion field's value.
 func (s *H264Settings) SetTimecodeInsertion(v string) *H264Settings {
 	s.TimecodeInsertion = &v
@@ -16681,7 +16776,7 @@ type H265ColorSpaceSettings struct {
 	// Passthrough applies no color space conversion to the output
 	ColorSpacePassthroughSettings *ColorSpacePassthroughSettings `locationName:"colorSpacePassthroughSettings" type:"structure"`
 
-	// Dolby Vision Profile 8.1 Settings
+	// Dolby Vision81 Settings
 	DolbyVision81Settings *DolbyVision81Settings `locationName:"dolbyVision81Settings" type:"structure"`
 
 	// Hdr10 Settings
@@ -16906,6 +17001,9 @@ type H265Settings struct {
 	// H.265 Tier.
 	Tier *string `locationName:"tier" type:"string" enum:"H265Tier"`
 
+	// Timecode burn-in settings
+	TimecodeBurninSettings *TimecodeBurninSettings `locationName:"timecodeBurninSettings" type:"structure"`
+
 	// Determines how timecodes should be inserted into the video elementary stream.-
 	// 'disabled': Do not include timecodes- 'picTimingSei': Pass through picture
 	// timing SEI messages from the source specified in Timecode Config
@@ -16965,6 +17063,11 @@ func (s *H265Settings) Validate() error {
 	}
 	if s.Slices != nil && *s.Slices < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Slices", 1))
+	}
+	if s.TimecodeBurninSettings != nil {
+		if err := s.TimecodeBurninSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimecodeBurninSettings", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -17138,6 +17241,12 @@ func (s *H265Settings) SetSlices(v int64) *H265Settings {
 // SetTier sets the Tier field's value.
 func (s *H265Settings) SetTier(v string) *H265Settings {
 	s.Tier = &v
+	return s
+}
+
+// SetTimecodeBurninSettings sets the TimecodeBurninSettings field's value.
+func (s *H265Settings) SetTimecodeBurninSettings(v *TimecodeBurninSettings) *H265Settings {
+	s.TimecodeBurninSettings = v
 	return s
 }
 
@@ -17564,9 +17673,9 @@ type HlsGroupSettings struct {
 	// values for segment duration.
 	ManifestDurationFormat *string `locationName:"manifestDurationFormat" type:"string" enum:"HlsManifestDurationFormat"`
 
-	// When set, minimumSegmentLength is enforced by looking ahead and back within
-	// the specified range for a nearby avail and extending the segment size if
-	// needed.
+	// Minimum length of MPEG-2 Transport Stream segments in seconds. When set,
+	// minimum segment length is enforced by looking ahead and back within the specified
+	// range for a nearby avail and extending the segment size if needed.
 	MinSegmentLength *int64 `locationName:"minSegmentLength" type:"integer"`
 
 	// If "vod", all segments are indexed and kept permanently in the destination
@@ -17612,9 +17721,9 @@ type HlsGroupSettings struct {
 	// MediaLive is irrelevant.
 	RedundantManifest *string `locationName:"redundantManifest" type:"string" enum:"HlsRedundantManifest"`
 
-	// Length of MPEG-2 Transport Stream segments to create (in seconds). Note that
-	// segments will end on the next keyframe after this number of seconds, so actual
-	// segment length may be longer.
+	// Length of MPEG-2 Transport Stream segments to create in seconds. Note that
+	// segments will end on the next keyframe after this duration, so actual segment
+	// length may be longer.
 	SegmentLength *int64 `locationName:"segmentLength" min:"1" type:"integer"`
 
 	// useInputSegmentation has been deprecated. The configured segment size is
@@ -23057,6 +23166,9 @@ type Mpeg2Settings struct {
 	// visual quality.
 	SubgopLength *string `locationName:"subgopLength" type:"string" enum:"Mpeg2SubGopLength"`
 
+	// Timecode burn-in settings
+	TimecodeBurninSettings *TimecodeBurninSettings `locationName:"timecodeBurninSettings" type:"structure"`
+
 	// Determines how MediaLive inserts timecodes in the output video. For detailed
 	// information about setting up the input and the output for a timecode, see
 	// the section on \"MediaLive Features - Timecode configuration\" in the MediaLive
@@ -23097,6 +23209,11 @@ func (s *Mpeg2Settings) Validate() error {
 	}
 	if s.FramerateNumerator != nil && *s.FramerateNumerator < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("FramerateNumerator", 1))
+	}
+	if s.TimecodeBurninSettings != nil {
+		if err := s.TimecodeBurninSettings.Validate(); err != nil {
+			invalidParams.AddNested("TimecodeBurninSettings", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -23192,6 +23309,12 @@ func (s *Mpeg2Settings) SetScanType(v string) *Mpeg2Settings {
 // SetSubgopLength sets the SubgopLength field's value.
 func (s *Mpeg2Settings) SetSubgopLength(v string) *Mpeg2Settings {
 	s.SubgopLength = &v
+	return s
+}
+
+// SetTimecodeBurninSettings sets the TimecodeBurninSettings field's value.
+func (s *Mpeg2Settings) SetTimecodeBurninSettings(v *TimecodeBurninSettings) *Mpeg2Settings {
+	s.TimecodeBurninSettings = v
 	return s
 }
 
@@ -26983,7 +27106,7 @@ type ScheduleActionSettings struct {
 	// Action to pause or unpause one or both channel pipelines
 	PauseStateSettings *PauseStateScheduleActionSettings `locationName:"pauseStateSettings" type:"structure"`
 
-	// Action to get scte35 input
+	// Action to specify scte35 input
 	Scte35InputSettings *Scte35InputScheduleActionSettings `locationName:"scte35InputSettings" type:"structure"`
 
 	// Action to insert SCTE-35 return_to_network message
@@ -27589,7 +27712,7 @@ func (s *Scte35DescriptorSettings) SetSegmentationDescriptorScte35DescriptorSett
 	return s
 }
 
-// Settings for the "scte35 input" action
+// Scte35Input Schedule Action Settings
 type Scte35InputScheduleActionSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -29465,6 +29588,76 @@ func (s *TemporalFilterSettings) SetPostFilterSharpening(v string) *TemporalFilt
 // SetStrength sets the Strength field's value.
 func (s *TemporalFilterSettings) SetStrength(v string) *TemporalFilterSettings {
 	s.Strength = &v
+	return s
+}
+
+// Timecode Burnin Settings
+type TimecodeBurninSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Choose a timecode burn-in font size
+	//
+	// FontSize is a required field
+	FontSize *string `locationName:"fontSize" type:"string" required:"true" enum:"TimecodeBurninFontSize"`
+
+	// Choose a timecode burn-in output position
+	//
+	// Position is a required field
+	Position *string `locationName:"position" type:"string" required:"true" enum:"TimecodeBurninPosition"`
+
+	// Create a timecode burn-in prefix (optional)
+	Prefix *string `locationName:"prefix" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimecodeBurninSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimecodeBurninSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimecodeBurninSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimecodeBurninSettings"}
+	if s.FontSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("FontSize"))
+	}
+	if s.Position == nil {
+		invalidParams.Add(request.NewErrParamRequired("Position"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFontSize sets the FontSize field's value.
+func (s *TimecodeBurninSettings) SetFontSize(v string) *TimecodeBurninSettings {
+	s.FontSize = &v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *TimecodeBurninSettings) SetPosition(v string) *TimecodeBurninSettings {
+	s.Position = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *TimecodeBurninSettings) SetPrefix(v string) *TimecodeBurninSettings {
+	s.Prefix = &v
 	return s
 }
 
@@ -32599,6 +32792,51 @@ func DeviceUpdateStatus_Values() []string {
 		DeviceUpdateStatusUpToDate,
 		DeviceUpdateStatusNotUpToDate,
 		DeviceUpdateStatusUpdating,
+	}
+}
+
+// Dolby EProgram Selection
+const (
+	// DolbyEProgramSelectionAllChannels is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionAllChannels = "ALL_CHANNELS"
+
+	// DolbyEProgramSelectionProgram1 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram1 = "PROGRAM_1"
+
+	// DolbyEProgramSelectionProgram2 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram2 = "PROGRAM_2"
+
+	// DolbyEProgramSelectionProgram3 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram3 = "PROGRAM_3"
+
+	// DolbyEProgramSelectionProgram4 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram4 = "PROGRAM_4"
+
+	// DolbyEProgramSelectionProgram5 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram5 = "PROGRAM_5"
+
+	// DolbyEProgramSelectionProgram6 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram6 = "PROGRAM_6"
+
+	// DolbyEProgramSelectionProgram7 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram7 = "PROGRAM_7"
+
+	// DolbyEProgramSelectionProgram8 is a DolbyEProgramSelection enum value
+	DolbyEProgramSelectionProgram8 = "PROGRAM_8"
+)
+
+// DolbyEProgramSelection_Values returns all elements of the DolbyEProgramSelection enum
+func DolbyEProgramSelection_Values() []string {
+	return []string{
+		DolbyEProgramSelectionAllChannels,
+		DolbyEProgramSelectionProgram1,
+		DolbyEProgramSelectionProgram2,
+		DolbyEProgramSelectionProgram3,
+		DolbyEProgramSelectionProgram4,
+		DolbyEProgramSelectionProgram5,
+		DolbyEProgramSelectionProgram6,
+		DolbyEProgramSelectionProgram7,
+		DolbyEProgramSelectionProgram8,
 	}
 }
 
@@ -36612,8 +36850,7 @@ func Scte35DeviceRestrictions_Values() []string {
 	}
 }
 
-// Settings to let you create a clip of the file input, in order to set up the
-// input to ingest only a portion of the file.
+// Whether the SCTE-35 input should be the active input or a fixed input.
 const (
 	// Scte35InputModeFixed is a Scte35InputMode enum value
 	Scte35InputModeFixed = "FIXED"
@@ -36979,6 +37216,76 @@ func TemporalFilterStrength_Values() []string {
 		TemporalFilterStrengthStrength14,
 		TemporalFilterStrengthStrength15,
 		TemporalFilterStrengthStrength16,
+	}
+}
+
+// Timecode Burnin Font Size
+const (
+	// TimecodeBurninFontSizeExtraSmall10 is a TimecodeBurninFontSize enum value
+	TimecodeBurninFontSizeExtraSmall10 = "EXTRA_SMALL_10"
+
+	// TimecodeBurninFontSizeLarge48 is a TimecodeBurninFontSize enum value
+	TimecodeBurninFontSizeLarge48 = "LARGE_48"
+
+	// TimecodeBurninFontSizeMedium32 is a TimecodeBurninFontSize enum value
+	TimecodeBurninFontSizeMedium32 = "MEDIUM_32"
+
+	// TimecodeBurninFontSizeSmall16 is a TimecodeBurninFontSize enum value
+	TimecodeBurninFontSizeSmall16 = "SMALL_16"
+)
+
+// TimecodeBurninFontSize_Values returns all elements of the TimecodeBurninFontSize enum
+func TimecodeBurninFontSize_Values() []string {
+	return []string{
+		TimecodeBurninFontSizeExtraSmall10,
+		TimecodeBurninFontSizeLarge48,
+		TimecodeBurninFontSizeMedium32,
+		TimecodeBurninFontSizeSmall16,
+	}
+}
+
+// Timecode Burnin Position
+const (
+	// TimecodeBurninPositionBottomCenter is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionBottomCenter = "BOTTOM_CENTER"
+
+	// TimecodeBurninPositionBottomLeft is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionBottomLeft = "BOTTOM_LEFT"
+
+	// TimecodeBurninPositionBottomRight is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionBottomRight = "BOTTOM_RIGHT"
+
+	// TimecodeBurninPositionMiddleCenter is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionMiddleCenter = "MIDDLE_CENTER"
+
+	// TimecodeBurninPositionMiddleLeft is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionMiddleLeft = "MIDDLE_LEFT"
+
+	// TimecodeBurninPositionMiddleRight is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionMiddleRight = "MIDDLE_RIGHT"
+
+	// TimecodeBurninPositionTopCenter is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionTopCenter = "TOP_CENTER"
+
+	// TimecodeBurninPositionTopLeft is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionTopLeft = "TOP_LEFT"
+
+	// TimecodeBurninPositionTopRight is a TimecodeBurninPosition enum value
+	TimecodeBurninPositionTopRight = "TOP_RIGHT"
+)
+
+// TimecodeBurninPosition_Values returns all elements of the TimecodeBurninPosition enum
+func TimecodeBurninPosition_Values() []string {
+	return []string{
+		TimecodeBurninPositionBottomCenter,
+		TimecodeBurninPositionBottomLeft,
+		TimecodeBurninPositionBottomRight,
+		TimecodeBurninPositionMiddleCenter,
+		TimecodeBurninPositionMiddleLeft,
+		TimecodeBurninPositionMiddleRight,
+		TimecodeBurninPositionTopCenter,
+		TimecodeBurninPositionTopLeft,
+		TimecodeBurninPositionTopRight,
 	}
 }
 
