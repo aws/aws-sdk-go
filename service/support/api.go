@@ -64,7 +64,7 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -170,7 +170,7 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -288,7 +288,7 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -389,7 +389,7 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -503,7 +503,7 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -659,7 +659,7 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -811,7 +811,7 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *re
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -899,7 +899,7 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -992,9 +992,16 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
+//
+// To call the Trusted Advisor operations in the Amazon Web Services Support
+// API, you must use the US East (N. Virginia) endpoint. Currently, the US West
+// (Oregon) and Europe (Ireland) endpoints don't support the Trusted Advisor
+// operations. For more information, see About the Amazon Web Services Support
+// API (https://docs.aws.amazon.com/awssupport/latest/user/about-support-api.html#endpoint)
+// in the Amazon Web Services Support User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1098,9 +1105,16 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
+//
+// To call the Trusted Advisor operations in the Amazon Web Services Support
+// API, you must use the US East (N. Virginia) endpoint. Currently, the US West
+// (Oregon) and Europe (Ireland) endpoints don't support the Trusted Advisor
+// operations. For more information, see About the Amazon Web Services Support
+// API (https://docs.aws.amazon.com/awssupport/latest/user/about-support-api.html#endpoint)
+// in the Amazon Web Services Support User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1188,9 +1202,16 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
+//
+// To call the Trusted Advisor operations in the Amazon Web Services Support
+// API, you must use the US East (N. Virginia) endpoint. Currently, the US West
+// (Oregon) and Europe (Ireland) endpoints don't support the Trusted Advisor
+// operations. For more information, see About the Amazon Web Services Support
+// API (https://docs.aws.amazon.com/awssupport/latest/user/about-support-api.html#endpoint)
+// in the Amazon Web Services Support User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1270,21 +1291,29 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 //
 // Returns information about all available Trusted Advisor checks, including
 // the name, ID, category, description, and metadata. You must specify a language
-// code. The Amazon Web Services Support API currently supports English ("en")
-// and Japanese ("ja"). The response contains a TrustedAdvisorCheckDescription
-// object for each check. You must set the Amazon Web Services Region to us-east-1.
+// code.
+//
+// The response contains a TrustedAdvisorCheckDescription object for each check.
+// You must set the Amazon Web Services Region to us-east-1.
 //
 //   - You must have a Business, Enterprise On-Ramp, or Enterprise Support
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
 //   - The names and descriptions for Trusted Advisor checks are subject to
 //     change. We recommend that you specify the check ID in your code to uniquely
 //     identify a check.
+//
+// To call the Trusted Advisor operations in the Amazon Web Services Support
+// API, you must use the US East (N. Virginia) endpoint. Currently, the US West
+// (Oregon) and Europe (Ireland) endpoints don't support the Trusted Advisor
+// operations. For more information, see About the Amazon Web Services Support
+// API (https://docs.aws.amazon.com/awssupport/latest/user/about-support-api.html#endpoint)
+// in the Amazon Web Services Support User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1374,9 +1403,16 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
+//
+// To call the Trusted Advisor operations in the Amazon Web Services Support
+// API, you must use the US East (N. Virginia) endpoint. Currently, the US West
+// (Oregon) and Europe (Ireland) endpoints don't support the Trusted Advisor
+// operations. For more information, see About the Amazon Web Services Support
+// API (https://docs.aws.amazon.com/awssupport/latest/user/about-support-api.html#endpoint)
+// in the Amazon Web Services Support User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1461,7 +1497,7 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Requ
 //     plan to use the Amazon Web Services Support API.
 //
 //   - If you call the Amazon Web Services Support API from an account that
-//     does not have a Business, Enterprise On-Ramp, or Enterprise Support plan,
+//     doesn't have a Business, Enterprise On-Ramp, or Enterprise Support plan,
 //     the SubscriptionRequiredException error message appears. For information
 //     about changing your support plan, see Amazon Web Services Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -2218,10 +2254,10 @@ func (s *CaseCreationLimitExceeded) RequestID() string {
 //   - displayId - The identifier for the case on pages in the Amazon Web Services
 //     Support Center.
 //
-//   - language - The ISO 639-1 code for the language in which Amazon Web Services
-//     provides support. Amazon Web Services Support currently supports English
-//     ("en") and Japanese ("ja"). Language parameters must be passed explicitly
-//     for operations that take them.
+//   - language - The language in which Amazon Web Services Support handles
+//     the case. Amazon Web Services Support currently supports English ("en")
+//     and Japanese ("ja"). You must specify the ISO 639-1 code for the language
+//     parameter if you want support in that language.
 //
 //   - nextToken - A resumption point for pagination.
 //
@@ -2261,10 +2297,10 @@ type CaseDetails struct {
 	// This is a numeric string.
 	DisplayId *string `locationName:"displayId" type:"string"`
 
-	// The ISO 639-1 code for the language in which Amazon Web Services provides
-	// support. Amazon Web Services Support currently supports English ("en") and
-	// Japanese ("ja"). Language parameters must be passed explicitly for operations
-	// that take them.
+	// The language in which Amazon Web Services Support handles the case. Amazon
+	// Web Services Support currently supports English ("en") and Japanese ("ja").
+	// You must specify the ISO 639-1 code for the language parameter if you want
+	// support in that language.
 	Language *string `locationName:"language" type:"string"`
 
 	// The five most recent communications between you and Amazon Web Services Support
@@ -2609,9 +2645,10 @@ type CreateCaseInput struct {
 	// If you don't specify a value, the default is technical.
 	IssueType *string `locationName:"issueType" type:"string"`
 
-	// The language in which Amazon Web Services Support handles the case. You must
-	// specify the ISO 639-1 code for the language parameter if you want support
-	// in that language. Currently, English ("en") and Japanese ("ja") are supported.
+	// The language in which Amazon Web Services Support handles the case. Amazon
+	// Web Services Support currently supports English ("en") and Japanese ("ja").
+	// You must specify the ISO 639-1 code for the language parameter if you want
+	// support in that language.
 	Language *string `locationName:"language" type:"string"`
 
 	// The code for the Amazon Web Services service. You can use the DescribeServices
@@ -2941,10 +2978,10 @@ type DescribeCasesInput struct {
 	// response. By default, resolved cases aren't included.
 	IncludeResolvedCases *bool `locationName:"includeResolvedCases" type:"boolean"`
 
-	// The ISO 639-1 code for the language in which Amazon Web Services provides
-	// support. Amazon Web Services Support currently supports English ("en") and
-	// Japanese ("ja"). Language parameters must be passed explicitly for operations
-	// that take them.
+	// The language in which Amazon Web Services Support handles the case. Amazon
+	// Web Services Support currently supports English ("en") and Japanese ("ja").
+	// You must specify the ISO 639-1 code for the language parameter if you want
+	// support in that language.
 	Language *string `locationName:"language" type:"string"`
 
 	// The maximum number of results to return before paginating.
@@ -3214,10 +3251,10 @@ func (s *DescribeCommunicationsOutput) SetNextToken(v string) *DescribeCommunica
 type DescribeServicesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ISO 639-1 code for the language in which Amazon Web Services provides
-	// support. Amazon Web Services Support currently supports English ("en") and
-	// Japanese ("ja"). Language parameters must be passed explicitly for operations
-	// that take them.
+	// The language in which Amazon Web Services Support handles the case. Amazon
+	// Web Services Support currently supports English ("en") and Japanese ("ja").
+	// You must specify the ISO 639-1 code for the language parameter if you want
+	// support in that language.
 	Language *string `locationName:"language" type:"string"`
 
 	// A JSON-formatted list of service codes available for Amazon Web Services
@@ -3291,10 +3328,10 @@ func (s *DescribeServicesOutput) SetServices(v []*Service) *DescribeServicesOutp
 type DescribeSeverityLevelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ISO 639-1 code for the language in which Amazon Web Services provides
-	// support. Amazon Web Services Support currently supports English ("en") and
-	// Japanese ("ja"). Language parameters must be passed explicitly for operations
-	// that take them.
+	// The language in which Amazon Web Services Support handles the case. Amazon
+	// Web Services Support currently supports English ("en") and Japanese ("ja").
+	// You must specify the ISO 639-1 code for the language parameter if you want
+	// support in that language.
 	Language *string `locationName:"language" type:"string"`
 }
 
@@ -3447,10 +3484,33 @@ type DescribeTrustedAdvisorCheckResultInput struct {
 	// CheckId is a required field
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
-	// The ISO 639-1 code for the language in which Amazon Web Services provides
-	// support. Amazon Web Services Support currently supports English ("en") and
-	// Japanese ("ja"). Language parameters must be passed explicitly for operations
-	// that take them.
+	// The ISO 639-1 code for the language that you want your check results to appear
+	// in.
+	//
+	// The Amazon Web Services Support API currently supports the following languages
+	// for Trusted Advisor:
+	//
+	//    * Chinese, Simplified - zh
+	//
+	//    * Chinese, Traditional - zh_TW
+	//
+	//    * English - en
+	//
+	//    * French - fr
+	//
+	//    * German - de
+	//
+	//    * Indonesian - id
+	//
+	//    * Italian - it
+	//
+	//    * Japanese - ja
+	//
+	//    * Korean - ko
+	//
+	//    * Portuguese, Brazilian - pt_BR
+	//
+	//    * Spanish - es
 	Language *string `locationName:"language" type:"string"`
 }
 
@@ -3614,10 +3674,32 @@ func (s *DescribeTrustedAdvisorCheckSummariesOutput) SetSummaries(v []*TrustedAd
 type DescribeTrustedAdvisorChecksInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ISO 639-1 code for the language in which Amazon Web Services provides
-	// support. Amazon Web Services Support currently supports English ("en") and
-	// Japanese ("ja"). Language parameters must be passed explicitly for operations
-	// that take them.
+	// The ISO 639-1 code for the language that you want your checks to appear in.
+	//
+	// The Amazon Web Services Support API currently supports the following languages
+	// for Trusted Advisor:
+	//
+	//    * Chinese, Simplified - zh
+	//
+	//    * Chinese, Traditional - zh_TW
+	//
+	//    * English - en
+	//
+	//    * French - fr
+	//
+	//    * German - de
+	//
+	//    * Indonesian - id
+	//
+	//    * Italian - it
+	//
+	//    * Japanese - ja
+	//
+	//    * Korean - ko
+	//
+	//    * Portuguese, Brazilian - pt_BR
+	//
+	//    * Spanish - es
 	//
 	// Language is a required field
 	Language *string `locationName:"language" type:"string" required:"true"`

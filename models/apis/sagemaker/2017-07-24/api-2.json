@@ -9433,7 +9433,8 @@
       "type":"structure",
       "members":{
         "RStudioServerProDomainSettingsForUpdate":{"shape":"RStudioServerProDomainSettingsForUpdate"},
-        "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"}
+        "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"},
+        "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"}
       }
     },
     "DomainStatus":{
@@ -17069,7 +17070,9 @@
       "required":["DomainExecutionRoleArn"],
       "members":{
         "DomainExecutionRoleArn":{"shape":"RoleArn"},
-        "DefaultResourceSpec":{"shape":"ResourceSpec"}
+        "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "RStudioConnectUrl":{"shape":"String"},
+        "RStudioPackageManagerUrl":{"shape":"String"}
       }
     },
     "RStudioServerProUserGroup":{
@@ -19640,7 +19643,8 @@
         "DomainId":{"shape":"DomainId"},
         "DefaultUserSettings":{"shape":"UserSettings"},
         "DomainSettingsForUpdate":{"shape":"DomainSettingsForUpdate"},
-        "DefaultSpaceSettings":{"shape":"DefaultSpaceSettings"}
+        "DefaultSpaceSettings":{"shape":"DefaultSpaceSettings"},
+        "AppSecurityGroupManagement":{"shape":"AppSecurityGroupManagement"}
       }
     },
     "UpdateDomainResponse":{

@@ -1,3 +1,21 @@
+Release v1.44.165 (2022-12-21)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/connectparticipant`: Updates service API
+* `service/license-manager-linux-subscriptions`: Adds new service
+* `service/macie2`: Updates service API
+* `service/sagemaker`: Updates service API and documentation
+  * This release enables adding RStudio Workbench support to an existing Amazon SageMaker Studio domain. It allows setting your RStudio on SageMaker environment configuration parameters and also updating the RStudioConnectUrl and RStudioPackageManagerUrl parameters for existing domains
+* `service/scheduler`: Updates service API
+* `service/ssm`: Updates service documentation
+  * Doc-only updates for December 2022.
+* `service/support`: Updates service documentation
+  * Documentation updates for the AWS Support API
+* `service/transfer`: Updates service API and documentation
+  * This release adds support for Decrypt as a workflow step type.
+
 Release v1.44.164 (2022-12-20)
 ===
 
