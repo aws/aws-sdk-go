@@ -25633,6 +25633,12 @@ const (
 
 	// StorageClassGlacier is a StorageClass enum value
 	StorageClassGlacier = "GLACIER"
+
+	// StorageClassGlacierIr is a StorageClass enum value
+	StorageClassGlacierIr = "GLACIER_IR"
+
+	// StorageClassOutposts is a StorageClass enum value
+	StorageClassOutposts = "OUTPOSTS"
 )
 
 // StorageClass_Values returns all elements of the StorageClass enum
@@ -25645,6 +25651,8 @@ func StorageClass_Values() []string {
 		StorageClassDeepArchive,
 		StorageClassOnezoneIa,
 		StorageClassGlacier,
+		StorageClassGlacierIr,
+		StorageClassOutposts,
 	}
 }
 

@@ -377,6 +377,12 @@
         "SshPublicKey$DateImported": "<p>Specifies the date that the public key was added to the user account.</p>"
       }
     },
+    "DecryptStepDetails": {
+      "base": null,
+      "refs": {
+        "WorkflowStep$DecryptStepDetails": null
+      }
+    },
     "DeleteAccessRequest": {
       "base": null,
       "refs": {
@@ -658,7 +664,13 @@
     "EncryptionAlg": {
       "base": null,
       "refs": {
-        "As2ConnectorConfig$EncryptionAlgorithm": "<p>The algorithm that is used to encrypt the file.</p> <note> <p>You can only specify <code>NONE</code> if the URL for your connector uses HTTPS. This ensures that no traffic is sent in clear text.</p> </note>"
+        "As2ConnectorConfig$EncryptionAlgorithm": "<p>The algorithm that is used to encrypt the file.</p>"
+      }
+    },
+    "EncryptionType": {
+      "base": null,
+      "refs": {
+        "DecryptStepDetails$Type": null
       }
     },
     "EndpointDetails": {
@@ -914,7 +926,8 @@
     "InputFileLocation": {
       "base": "<p>Specifies the location for the file being copied. Only applicable for the Copy type of workflow steps.</p>",
       "refs": {
-        "CopyStepDetails$DestinationFileLocation": "<p>Specifies the location for the file being copied. Only applicable for Copy type workflow steps. Use <code>${Transfer:username}</code> in this field to parametrize the destination prefix by username.</p>"
+        "CopyStepDetails$DestinationFileLocation": "<p>Specifies the location for the file being copied. Only applicable for Copy type workflow steps. Use <code>${Transfer:username}</code> in this field to parametrize the destination prefix by username.</p>",
+        "DecryptStepDetails$DestinationFileLocation": null
       }
     },
     "InternalServiceError": {
@@ -1222,7 +1235,7 @@
     "MdnSigningAlg": {
       "base": null,
       "refs": {
-        "As2ConnectorConfig$MdnSigningAlgorithm": "<p>The signing algorithm for the MDN response.</p> <note> <p>If set to DEFAULT (or not set at all), the value for <code>SigningAlgorithm</code> is used.</p> </note>"
+        "As2ConnectorConfig$MdnSigningAlgorithm": "<p>The signing algorithm for the MDN response.</p> <note> <p>If set to DEFAULT (or not set at all), the value for <code>SigningAlogorithm</code> is used.</p> </note>"
       }
     },
     "Message": {
@@ -1293,7 +1306,8 @@
     "OverwriteExisting": {
       "base": null,
       "refs": {
-        "CopyStepDetails$OverwriteExisting": "<p>A flag that indicates whether or not to overwrite an existing file of the same name. The default is <code>FALSE</code>.</p>"
+        "CopyStepDetails$OverwriteExisting": "<p>A flag that indicates whether or not to overwrite an existing file of the same name. The default is <code>FALSE</code>.</p>",
+        "DecryptStepDetails$OverwriteExisting": null
       }
     },
     "PassiveIp": {
@@ -1690,6 +1704,7 @@
       "refs": {
         "CopyStepDetails$SourceFileLocation": "<p>Specifies which file to use as input to the workflow step: either the output from the previous step, or the originally uploaded file for the workflow.</p> <ul> <li> <p>Enter <code>${previous.file}</code> to use the previous file as the input. In this case, this workflow step uses the output file from the previous workflow step as input. This is the default value.</p> </li> <li> <p>Enter <code>${original.file}</code> to use the originally-uploaded file location as input for this step.</p> </li> </ul>",
         "CustomStepDetails$SourceFileLocation": "<p>Specifies which file to use as input to the workflow step: either the output from the previous step, or the originally uploaded file for the workflow.</p> <ul> <li> <p>Enter <code>${previous.file}</code> to use the previous file as the input. In this case, this workflow step uses the output file from the previous workflow step as input. This is the default value.</p> </li> <li> <p>Enter <code>${original.file}</code> to use the originally-uploaded file location as input for this step.</p> </li> </ul>",
+        "DecryptStepDetails$SourceFileLocation": null,
         "DeleteStepDetails$SourceFileLocation": "<p>Specifies which file to use as input to the workflow step: either the output from the previous step, or the originally uploaded file for the workflow.</p> <ul> <li> <p>Enter <code>${previous.file}</code> to use the previous file as the input. In this case, this workflow step uses the output file from the previous workflow step as input. This is the default value.</p> </li> <li> <p>Enter <code>${original.file}</code> to use the originally-uploaded file location as input for this step.</p> </li> </ul>",
         "TagStepDetails$SourceFileLocation": "<p>Specifies which file to use as input to the workflow step: either the output from the previous step, or the originally uploaded file for the workflow.</p> <ul> <li> <p>Enter <code>${previous.file}</code> to use the previous file as the input. In this case, this workflow step uses the output file from the previous workflow step as input. This is the default value.</p> </li> <li> <p>Enter <code>${original.file}</code> to use the originally-uploaded file location as input for this step.</p> </li> </ul>"
       }
@@ -1709,7 +1724,7 @@
     "SshPublicKeyBody": {
       "base": null,
       "refs": {
-        "CreateUserRequest$SshPublicKeyBody": "<p>The public portion of the Secure Shell (SSH) key used to authenticate the user to the server.</p> <p>The three standard SSH public key format elements are <code>&lt;key type&gt;</code>, <code>&lt;body base64&gt;</code>, and an optional <code>&lt;comment&gt;</code>, with spaces between each element.</p> <p>Transfer Family accepts RSA, ECDSA, and ED25519 keys.</p> <ul> <li> <p>For RSA keys, the key type is <code>ssh-rsa</code>.</p> </li> <li> <p>For ED25519 keys, the key type is <code>ssh-ed25519</code>.</p> </li> <li> <p>For ECDSA keys, the key type is either <code>ecdsa-sha2-nistp256</code>, <code>ecdsa-sha2-nistp384</code>, or <code>ecdsa-sha2-nistp521</code>, depending on the size of the key you generated.</p> </li> </ul>",
+        "CreateUserRequest$SshPublicKeyBody": "<p>The public portion of the Secure Shell (SSH) key used to authenticate the user to the server.</p> <p>Transfer Family accepts RSA, ECDSA, and ED25519 keys.</p>",
         "ImportSshPublicKeyRequest$SshPublicKeyBody": "<p>The public key portion of an SSH key pair.</p> <p>Transfer Family accepts RSA, ECDSA, and ED25519 keys.</p>",
         "SshPublicKey$SshPublicKeyBody": "<p>Specifies the content of the SSH public key as specified by the <code>PublicKeyId</code>.</p> <p>Transfer Family accepts RSA, ECDSA, and ED25519 keys.</p>"
       }
@@ -2025,7 +2040,7 @@
       }
     },
     "WorkflowDetail": {
-      "base": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In addition to a workflow to execute when a file is uploaded completely, <code>WorkflowDetails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
+      "base": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
       "refs": {
         "OnPartialUploadWorkflowDetails$member": null,
         "OnUploadWorkflowDetails$member": null
@@ -2034,9 +2049,9 @@
     "WorkflowDetails": {
       "base": "<p>Container for the <code>WorkflowDetail</code> data type. It is used by actions that trigger a workflow to begin execution.</p>",
       "refs": {
-        "CreateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In addition to a workflow to execute when a file is uploaded completely, <code>WorkflowDetails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
-        "DescribedServer$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In addition to a workflow to execute when a file is uploaded completely, <code>WorkflowDetails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
-        "UpdateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In addition to a workflow to execute when a file is uploaded completely, <code>WorkflowDetails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p> <p>To remove an associated workflow from a server, you can provide an empty <code>OnUpload</code> object, as in the following example.</p> <p> <code>aws transfer update-server --server-id s-01234567890abcdef --workflow-details '{\"OnUpload\":[]}'</code> </p>"
+        "CreateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
+        "DescribedServer$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p>",
+        "UpdateServerRequest$WorkflowDetails": "<p>Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.</p> <p>In additon to a workflow to execute when a file is uploaded completely, <code>WorkflowDeatails</code> can also contain a workflow ID (and execution role) for a workflow to execute on partial upload. A partial upload occurs when a file is open when the session disconnects.</p> <p>To remove an associated workflow from a server, you can provide an empty <code>OnUpload</code> object, as in the following example.</p> <p> <code>aws transfer update-server --server-id s-01234567890abcdef --workflow-details '{\"OnUpload\":[]}'</code> </p>"
       }
     },
     "WorkflowId": {
@@ -2066,6 +2081,7 @@
       "refs": {
         "CopyStepDetails$Name": "<p>The name of the step, used as an identifier.</p>",
         "CustomStepDetails$Name": "<p>The name of the step, used as an identifier.</p>",
+        "DecryptStepDetails$Name": null,
         "DeleteStepDetails$Name": "<p>The name of the step, used as an identifier.</p>",
         "TagStepDetails$Name": "<p>The name of the step, used as an identifier.</p>"
       }

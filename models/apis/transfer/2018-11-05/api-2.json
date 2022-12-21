@@ -43,8 +43,7 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateConnector":{
@@ -60,8 +59,7 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateProfile":{
@@ -76,8 +74,7 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateServer":{
@@ -796,8 +793,7 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateAgreement":{
@@ -813,8 +809,7 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateCertificate":{
@@ -829,8 +824,7 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateConnector":{
@@ -846,8 +840,7 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateHostKey":{
@@ -878,8 +871,7 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateServer":{
@@ -1273,6 +1265,20 @@
       "min":1
     },
     "DateImported":{"type":"timestamp"},
+    "DecryptStepDetails":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "DestinationFileLocation"
+      ],
+      "members":{
+        "Name":{"shape":"WorkflowStepName"},
+        "Type":{"shape":"EncryptionType"},
+        "SourceFileLocation":{"shape":"SourceFileLocation"},
+        "OverwriteExisting":{"shape":"OverwriteExisting"},
+        "DestinationFileLocation":{"shape":"InputFileLocation"}
+      }
+    },
     "DeleteAccessRequest":{
       "type":"structure",
       "required":[
@@ -1767,6 +1773,10 @@
         "AES256_CBC",
         "NONE"
       ]
+    },
+    "EncryptionType":{
+      "type":"string",
+      "enum":["PGP"]
     },
     "EndpointDetails":{
       "type":"structure",
@@ -3221,7 +3231,8 @@
         "CopyStepDetails":{"shape":"CopyStepDetails"},
         "CustomStepDetails":{"shape":"CustomStepDetails"},
         "DeleteStepDetails":{"shape":"DeleteStepDetails"},
-        "TagStepDetails":{"shape":"TagStepDetails"}
+        "TagStepDetails":{"shape":"TagStepDetails"},
+        "DecryptStepDetails":{"shape":"DecryptStepDetails"}
       }
     },
     "WorkflowStepName":{
@@ -3235,7 +3246,8 @@
         "COPY",
         "CUSTOM",
         "TAG",
-        "DELETE"
+        "DELETE",
+        "DECRYPT"
       ]
     },
     "WorkflowSteps":{

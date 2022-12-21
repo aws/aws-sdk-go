@@ -191,9 +191,6 @@ func (c *Transfer) CreateAgreementRequest(input *CreateAgreementInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
-//   - ThrottlingException
-//     The request was denied due to request throttling.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAgreement
 func (c *Transfer) CreateAgreement(input *CreateAgreementInput) (*CreateAgreementOutput, error) {
 	req, out := c.CreateAgreementRequest(input)
@@ -291,9 +288,6 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
-//   - ThrottlingException
-//     The request was denied due to request throttling.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateConnector
 func (c *Transfer) CreateConnector(input *CreateConnectorInput) (*CreateConnectorOutput, error) {
 	req, out := c.CreateConnectorRequest(input)
@@ -384,9 +378,6 @@ func (c *Transfer) CreateProfileRequest(input *CreateProfileInput) (req *request
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
-//
-//   - ThrottlingException
-//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateProfile
 func (c *Transfer) CreateProfile(input *CreateProfileInput) (*CreateProfileOutput, error) {
@@ -5501,9 +5492,6 @@ func (c *Transfer) UpdateAccessRequest(input *UpdateAccessInput) (req *request.R
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
-//   - ThrottlingException
-//     The request was denied due to request throttling.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAccess
 func (c *Transfer) UpdateAccess(input *UpdateAccessInput) (*UpdateAccessOutput, error) {
 	req, out := c.UpdateAccessRequest(input)
@@ -5600,9 +5588,6 @@ func (c *Transfer) UpdateAgreementRequest(input *UpdateAgreementInput) (req *req
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
 //
-//   - ThrottlingException
-//     The request was denied due to request throttling.
-//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAgreement
 func (c *Transfer) UpdateAgreement(input *UpdateAgreementInput) (*UpdateAgreementOutput, error) {
 	req, out := c.UpdateAgreementRequest(input)
@@ -5693,9 +5678,6 @@ func (c *Transfer) UpdateCertificateRequest(input *UpdateCertificateInput) (req 
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
-//
-//   - ThrottlingException
-//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateCertificate
 func (c *Transfer) UpdateCertificate(input *UpdateCertificateInput) (*UpdateCertificateOutput, error) {
@@ -5792,9 +5774,6 @@ func (c *Transfer) UpdateConnectorRequest(input *UpdateConnectorInput) (req *req
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
-//
-//   - ThrottlingException
-//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateConnector
 func (c *Transfer) UpdateConnector(input *UpdateConnectorInput) (*UpdateConnectorOutput, error) {
@@ -5983,9 +5962,6 @@ func (c *Transfer) UpdateProfileRequest(input *UpdateProfileInput) (req *request
 //   - ResourceNotFoundException
 //     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //     Family service.
-//
-//   - ThrottlingException
-//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateProfile
 func (c *Transfer) UpdateProfile(input *UpdateProfileInput) (*UpdateProfileOutput, error) {
@@ -6289,9 +6265,6 @@ type As2ConnectorConfig struct {
 	Compression *string `type:"string" enum:"CompressionEnum"`
 
 	// The algorithm that is used to encrypt the file.
-	//
-	// You can only specify NONE if the URL for your connector uses HTTPS. This
-	// ensures that no traffic is sent in clear text.
 	EncryptionAlgorithm *string `type:"string" enum:"EncryptionAlg"`
 
 	// A unique identifier for the AS2 local profile.
@@ -6309,7 +6282,7 @@ type As2ConnectorConfig struct {
 
 	// The signing algorithm for the MDN response.
 	//
-	// If set to DEFAULT (or not set at all), the value for SigningAlgorithm is
+	// If set to DEFAULT (or not set at all), the value for SigningAlogorithm is
 	// used.
 	MdnSigningAlgorithm *string `type:"string" enum:"MdnSigningAlg"`
 
@@ -7538,10 +7511,10 @@ type CreateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In addition to a workflow to execute when a file is uploaded completely,
-	// WorkflowDetails can also contain a workflow ID (and execution role) for a
-	// workflow to execute on partial upload. A partial upload occurs when a file
-	// is open when the session disconnects.
+	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+	// can also contain a workflow ID (and execution role) for a workflow to execute
+	// on partial upload. A partial upload occurs when a file is open when the session
+	// disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -7819,17 +7792,7 @@ type CreateUserInput struct {
 	// The public portion of the Secure Shell (SSH) key used to authenticate the
 	// user to the server.
 	//
-	// The three standard SSH public key format elements are <key type>, <body base64>,
-	// and an optional <comment>, with spaces between each element.
-	//
 	// Transfer Family accepts RSA, ECDSA, and ED25519 keys.
-	//
-	//    * For RSA keys, the key type is ssh-rsa.
-	//
-	//    * For ED25519 keys, the key type is ssh-ed25519.
-	//
-	//    * For ECDSA keys, the key type is either ecdsa-sha2-nistp256, ecdsa-sha2-nistp384,
-	//    or ecdsa-sha2-nistp521, depending on the size of the key you generated.
 	SshPublicKeyBody *string `type:"string"`
 
 	// Key-value pairs that can be used to group and search for users. Tags are
@@ -8265,6 +8228,94 @@ func (s *CustomStepDetails) SetTarget(v string) *CustomStepDetails {
 // SetTimeoutSeconds sets the TimeoutSeconds field's value.
 func (s *CustomStepDetails) SetTimeoutSeconds(v int64) *CustomStepDetails {
 	s.TimeoutSeconds = &v
+	return s
+}
+
+type DecryptStepDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the location for the file being copied. Only applicable for the
+	// Copy type of workflow steps.
+	//
+	// DestinationFileLocation is a required field
+	DestinationFileLocation *InputFileLocation `type:"structure" required:"true"`
+
+	Name *string `type:"string"`
+
+	OverwriteExisting *string `type:"string" enum:"OverwriteExisting"`
+
+	SourceFileLocation *string `type:"string"`
+
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"EncryptionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DecryptStepDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DecryptStepDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DecryptStepDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DecryptStepDetails"}
+	if s.DestinationFileLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationFileLocation"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.DestinationFileLocation != nil {
+		if err := s.DestinationFileLocation.Validate(); err != nil {
+			invalidParams.AddNested("DestinationFileLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationFileLocation sets the DestinationFileLocation field's value.
+func (s *DecryptStepDetails) SetDestinationFileLocation(v *InputFileLocation) *DecryptStepDetails {
+	s.DestinationFileLocation = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DecryptStepDetails) SetName(v string) *DecryptStepDetails {
+	s.Name = &v
+	return s
+}
+
+// SetOverwriteExisting sets the OverwriteExisting field's value.
+func (s *DecryptStepDetails) SetOverwriteExisting(v string) *DecryptStepDetails {
+	s.OverwriteExisting = &v
+	return s
+}
+
+// SetSourceFileLocation sets the SourceFileLocation field's value.
+func (s *DecryptStepDetails) SetSourceFileLocation(v string) *DecryptStepDetails {
+	s.SourceFileLocation = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DecryptStepDetails) SetType(v string) *DecryptStepDetails {
+	s.Type = &v
 	return s
 }
 
@@ -11240,10 +11291,10 @@ type DescribedServer struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In addition to a workflow to execute when a file is uploaded completely,
-	// WorkflowDetails can also contain a workflow ID (and execution role) for a
-	// workflow to execute on partial upload. A partial upload occurs when a file
-	// is open when the session disconnects.
+	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+	// can also contain a workflow ID (and execution role) for a workflow to execute
+	// on partial upload. A partial upload occurs when a file is open when the session
+	// disconnects.
 	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
@@ -17912,10 +17963,10 @@ type UpdateServerInput struct {
 	// Specifies the workflow ID for the workflow to assign and the execution role
 	// that's used for executing the workflow.
 	//
-	// In addition to a workflow to execute when a file is uploaded completely,
-	// WorkflowDetails can also contain a workflow ID (and execution role) for a
-	// workflow to execute on partial upload. A partial upload occurs when a file
-	// is open when the session disconnects.
+	// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+	// can also contain a workflow ID (and execution role) for a workflow to execute
+	// on partial upload. A partial upload occurs when a file is open when the session
+	// disconnects.
 	//
 	// To remove an associated workflow from a server, you can provide an empty
 	// OnUpload object, as in the following example.
@@ -18399,10 +18450,10 @@ func (s *UserDetails) SetUserName(v string) *UserDetails {
 // Specifies the workflow ID for the workflow to assign and the execution role
 // that's used for executing the workflow.
 //
-// In addition to a workflow to execute when a file is uploaded completely,
-// WorkflowDetails can also contain a workflow ID (and execution role) for a
-// workflow to execute on partial upload. A partial upload occurs when a file
-// is open when the session disconnects.
+// In additon to a workflow to execute when a file is uploaded completely, WorkflowDeatails
+// can also contain a workflow ID (and execution role) for a workflow to execute
+// on partial upload. A partial upload occurs when a file is open when the session
+// disconnects.
 type WorkflowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -18575,6 +18626,8 @@ type WorkflowStep struct {
 	// Consists of the lambda function name, target, and timeout (in seconds).
 	CustomStepDetails *CustomStepDetails `type:"structure"`
 
+	DecryptStepDetails *DecryptStepDetails `type:"structure"`
+
 	// Details for a step that deletes the file.
 	DeleteStepDetails *DeleteStepDetails `type:"structure"`
 
@@ -18626,6 +18679,11 @@ func (s *WorkflowStep) Validate() error {
 			invalidParams.AddNested("CustomStepDetails", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DecryptStepDetails != nil {
+		if err := s.DecryptStepDetails.Validate(); err != nil {
+			invalidParams.AddNested("DecryptStepDetails", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TagStepDetails != nil {
 		if err := s.TagStepDetails.Validate(); err != nil {
 			invalidParams.AddNested("TagStepDetails", err.(request.ErrInvalidParams))
@@ -18647,6 +18705,12 @@ func (s *WorkflowStep) SetCopyStepDetails(v *CopyStepDetails) *WorkflowStep {
 // SetCustomStepDetails sets the CustomStepDetails field's value.
 func (s *WorkflowStep) SetCustomStepDetails(v *CustomStepDetails) *WorkflowStep {
 	s.CustomStepDetails = v
+	return s
+}
+
+// SetDecryptStepDetails sets the DecryptStepDetails field's value.
+func (s *WorkflowStep) SetDecryptStepDetails(v *DecryptStepDetails) *WorkflowStep {
+	s.DecryptStepDetails = v
 	return s
 }
 
@@ -18817,6 +18881,18 @@ func EncryptionAlg_Values() []string {
 		EncryptionAlgAes192Cbc,
 		EncryptionAlgAes256Cbc,
 		EncryptionAlgNone,
+	}
+}
+
+const (
+	// EncryptionTypePgp is a EncryptionType enum value
+	EncryptionTypePgp = "PGP"
+)
+
+// EncryptionType_Values returns all elements of the EncryptionType enum
+func EncryptionType_Values() []string {
+	return []string{
+		EncryptionTypePgp,
 	}
 }
 
@@ -19172,6 +19248,9 @@ const (
 
 	// WorkflowStepTypeDelete is a WorkflowStepType enum value
 	WorkflowStepTypeDelete = "DELETE"
+
+	// WorkflowStepTypeDecrypt is a WorkflowStepType enum value
+	WorkflowStepTypeDecrypt = "DECRYPT"
 )
 
 // WorkflowStepType_Values returns all elements of the WorkflowStepType enum
@@ -19181,5 +19260,6 @@ func WorkflowStepType_Values() []string {
 		WorkflowStepTypeCustom,
 		WorkflowStepTypeTag,
 		WorkflowStepTypeDelete,
+		WorkflowStepTypeDecrypt,
 	}
 }
