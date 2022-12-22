@@ -760,6 +760,10 @@ type ConnectAPI interface {
 	UpdateInstanceStorageConfigWithContext(aws.Context, *connect.UpdateInstanceStorageConfigInput, ...request.Option) (*connect.UpdateInstanceStorageConfigOutput, error)
 	UpdateInstanceStorageConfigRequest(*connect.UpdateInstanceStorageConfigInput) (*request.Request, *connect.UpdateInstanceStorageConfigOutput)
 
+	UpdateParticipantRoleConfig(*connect.UpdateParticipantRoleConfigInput) (*connect.UpdateParticipantRoleConfigOutput, error)
+	UpdateParticipantRoleConfigWithContext(aws.Context, *connect.UpdateParticipantRoleConfigInput, ...request.Option) (*connect.UpdateParticipantRoleConfigOutput, error)
+	UpdateParticipantRoleConfigRequest(*connect.UpdateParticipantRoleConfigInput) (*request.Request, *connect.UpdateParticipantRoleConfigOutput)
+
 	UpdatePhoneNumber(*connect.UpdatePhoneNumberInput) (*connect.UpdatePhoneNumberOutput, error)
 	UpdatePhoneNumberWithContext(aws.Context, *connect.UpdatePhoneNumberInput, ...request.Option) (*connect.UpdatePhoneNumberOutput, error)
 	UpdatePhoneNumberRequest(*connect.UpdatePhoneNumberInput) (*request.Request, *connect.UpdatePhoneNumberOutput)

@@ -63,10 +63,6 @@ type KinesisVideoWebRTCStorageAPI interface {
 	JoinStorageSession(*kinesisvideowebrtcstorage.JoinStorageSessionInput) (*kinesisvideowebrtcstorage.JoinStorageSessionOutput, error)
 	JoinStorageSessionWithContext(aws.Context, *kinesisvideowebrtcstorage.JoinStorageSessionInput, ...request.Option) (*kinesisvideowebrtcstorage.JoinStorageSessionOutput, error)
 	JoinStorageSessionRequest(*kinesisvideowebrtcstorage.JoinStorageSessionInput) (*request.Request, *kinesisvideowebrtcstorage.JoinStorageSessionOutput)
-
-	JoinStorageSessionAsViewer(*kinesisvideowebrtcstorage.JoinStorageSessionAsViewerInput) (*kinesisvideowebrtcstorage.JoinStorageSessionAsViewerOutput, error)
-	JoinStorageSessionAsViewerWithContext(aws.Context, *kinesisvideowebrtcstorage.JoinStorageSessionAsViewerInput, ...request.Option) (*kinesisvideowebrtcstorage.JoinStorageSessionAsViewerOutput, error)
-	JoinStorageSessionAsViewerRequest(*kinesisvideowebrtcstorage.JoinStorageSessionAsViewerInput) (*request.Request, *kinesisvideowebrtcstorage.JoinStorageSessionAsViewerOutput)
 }
 
 var _ KinesisVideoWebRTCStorageAPI = (*kinesisvideowebrtcstorage.KinesisVideoWebRTCStorage)(nil)

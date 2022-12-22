@@ -2348,6 +2348,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateParticipantRoleConfig":{
+      "name":"UpdateParticipantRoleConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/contact/participant-role-config/{InstanceId}/{ContactId}"
+      },
+      "input":{"shape":"UpdateParticipantRoleConfigRequest"},
+      "output":{"shape":"UpdateParticipantRoleConfigResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdatePhoneNumber":{
       "name":"UpdatePhoneNumber",
       "http":{
@@ -3182,6 +3199,13 @@
       "members":{
         "ContentType":{"shape":"ChatContentType"},
         "Content":{"shape":"ChatContent"}
+      }
+    },
+    "ChatParticipantRoleConfig":{
+      "type":"structure",
+      "required":["ParticipantTimerConfigList"],
+      "members":{
+        "ParticipantTimerConfigList":{"shape":"ParticipantTimerConfigList"}
       }
     },
     "ChatStreamingConfiguration":{
@@ -7119,6 +7143,49 @@
       "max":256,
       "min":1
     },
+    "ParticipantTimerAction":{
+      "type":"string",
+      "enum":["Unset"]
+    },
+    "ParticipantTimerConfigList":{
+      "type":"list",
+      "member":{"shape":"ParticipantTimerConfiguration"},
+      "max":6,
+      "min":1
+    },
+    "ParticipantTimerConfiguration":{
+      "type":"structure",
+      "required":[
+        "ParticipantRole",
+        "TimerType",
+        "TimerValue"
+      ],
+      "members":{
+        "ParticipantRole":{"shape":"TimerEligibleParticipantRoles"},
+        "TimerType":{"shape":"ParticipantTimerType"},
+        "TimerValue":{"shape":"ParticipantTimerValue"}
+      }
+    },
+    "ParticipantTimerDurationInMinutes":{
+      "type":"integer",
+      "max":480,
+      "min":2
+    },
+    "ParticipantTimerType":{
+      "type":"string",
+      "enum":[
+        "IDLE",
+        "DISCONNECT_NONCUSTOMER"
+      ]
+    },
+    "ParticipantTimerValue":{
+      "type":"structure",
+      "members":{
+        "ParticipantTimerAction":{"shape":"ParticipantTimerAction"},
+        "ParticipantTimerDurationInMinutes":{"shape":"ParticipantTimerDurationInMinutes"}
+      },
+      "union":true
+    },
     "ParticipantToken":{
       "type":"string",
       "max":1000,
@@ -8966,6 +9033,13 @@
       "exception":true
     },
     "TimeZone":{"type":"string"},
+    "TimerEligibleParticipantRoles":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER",
+        "AGENT"
+      ]
+    },
     "Timestamp":{"type":"timestamp"},
     "TrafficDistributionGroup":{
       "type":"structure",
@@ -9369,6 +9443,39 @@
           "locationName":"resourceType"
         },
         "StorageConfig":{"shape":"InstanceStorageConfig"}
+      }
+    },
+    "UpdateParticipantRoleConfigChannelInfo":{
+      "type":"structure",
+      "members":{
+        "Chat":{"shape":"ChatParticipantRoleConfig"}
+      },
+      "union":true
+    },
+    "UpdateParticipantRoleConfigRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "ChannelConfiguration"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"ContactId"
+        },
+        "ChannelConfiguration":{"shape":"UpdateParticipantRoleConfigChannelInfo"}
+      }
+    },
+    "UpdateParticipantRoleConfigResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdatePhoneNumberRequest":{

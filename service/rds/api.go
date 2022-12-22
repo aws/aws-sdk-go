@@ -19796,13 +19796,56 @@ type CreateDBClusterInput struct {
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	KmsKeyId *string `type:"string"`
 
+	// A value that indicates whether to manage the master user password with Amazon
+	// Web Services Secrets Manager.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide and Password management with Amazon Web Services
+	// Secrets Manager (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Constraints:
+	//
+	//    * Can't manage the master user password with Amazon Web Services Secrets
+	//    Manager if MasterUserPassword is specified.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	ManageMasterUserPassword *bool `type:"boolean"`
+
 	// The password for the master database user. This password can contain any
 	// printable ASCII character except "/", """, or "@".
 	//
-	// Constraints: Must contain from 8 to 41 characters.
+	// Constraints:
+	//
+	//    * Must contain from 8 to 41 characters.
+	//
+	//    * Can't be specified if ManageMasterUserPassword is turned on.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	MasterUserPassword *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+	// generated and managed in Amazon Web Services Secrets Manager.
+	//
+	// This setting is valid only if the master user password is managed by RDS
+	// in Amazon Web Services Secrets Manager for the DB cluster.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
+	//
+	// If you don't specify MasterUserSecretKmsKeyId, then the aws/secretsmanager
+	// KMS key is used to encrypt the secret. If the secret is in a different Amazon
+	// Web Services account, then you can't use the aws/secretsmanager KMS key to
+	// encrypt the secret, and you must use a customer managed KMS key.
+	//
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	MasterUserSecretKmsKeyId *string `type:"string"`
 
 	// The name of the master user for the DB cluster.
 	//
@@ -20293,9 +20336,21 @@ func (s *CreateDBClusterInput) SetKmsKeyId(v string) *CreateDBClusterInput {
 	return s
 }
 
+// SetManageMasterUserPassword sets the ManageMasterUserPassword field's value.
+func (s *CreateDBClusterInput) SetManageMasterUserPassword(v bool) *CreateDBClusterInput {
+	s.ManageMasterUserPassword = &v
+	return s
+}
+
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *CreateDBClusterInput) SetMasterUserPassword(v string) *CreateDBClusterInput {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUserSecretKmsKeyId sets the MasterUserSecretKmsKeyId field's value.
+func (s *CreateDBClusterInput) SetMasterUserSecretKmsKeyId(v string) *CreateDBClusterInput {
+	s.MasterUserSecretKmsKeyId = &v
 	return s
 }
 
@@ -21363,12 +21418,27 @@ type CreateDBInstanceInput struct {
 	// Not applicable.
 	LicenseModel *string `type:"string"`
 
+	// A value that indicates whether to manage the master user password with Amazon
+	// Web Services Secrets Manager.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//    * Can't manage the master user password with Amazon Web Services Secrets
+	//    Manager if MasterUserPassword is specified.
+	ManageMasterUserPassword *bool `type:"boolean"`
+
 	// The password for the master user. The password can include any printable
 	// ASCII character except "/", """, or "@".
 	//
 	// Amazon Aurora
 	//
 	// Not applicable. The password for the master user is managed by the DB cluster.
+	//
+	// Constraints: Can't be specified if ManageMasterUserPassword is turned on.
 	//
 	// MariaDB
 	//
@@ -21390,6 +21460,26 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints: Must contain from 8 to 128 characters.
 	MasterUserPassword *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+	// generated and managed in Amazon Web Services Secrets Manager.
+	//
+	// This setting is valid only if the master user password is managed by RDS
+	// in Amazon Web Services Secrets Manager for the DB instance.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
+	//
+	// If you don't specify MasterUserSecretKmsKeyId, then the aws/secretsmanager
+	// KMS key is used to encrypt the secret. If the secret is in a different Amazon
+	// Web Services account, then you can't use the aws/secretsmanager KMS key to
+	// encrypt the secret, and you must use a customer managed KMS key.
+	//
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
+	MasterUserSecretKmsKeyId *string `type:"string"`
 
 	// The name for the master user.
 	//
@@ -21940,9 +22030,21 @@ func (s *CreateDBInstanceInput) SetLicenseModel(v string) *CreateDBInstanceInput
 	return s
 }
 
+// SetManageMasterUserPassword sets the ManageMasterUserPassword field's value.
+func (s *CreateDBInstanceInput) SetManageMasterUserPassword(v bool) *CreateDBInstanceInput {
+	s.ManageMasterUserPassword = &v
+	return s
+}
+
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *CreateDBInstanceInput) SetMasterUserPassword(v string) *CreateDBInstanceInput {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUserSecretKmsKeyId sets the MasterUserSecretKmsKeyId field's value.
+func (s *CreateDBInstanceInput) SetMasterUserSecretKmsKeyId(v string) *CreateDBInstanceInput {
+	s.MasterUserSecretKmsKeyId = &v
 	return s
 }
 
@@ -24479,6 +24581,16 @@ type DBCluster struct {
 	// restore.
 	LatestRestorableTime *time.Time `type:"timestamp"`
 
+	// Contains the secret managed by RDS in Amazon Web Services Secrets Manager
+	// for the master user password.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide and Password management with Amazon Web Services
+	// Secrets Manager (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html)
+	// in the Amazon Aurora User Guide.
+	MasterUserSecret *MasterUserSecret `type:"structure"`
+
 	// Contains the master username for the DB cluster.
 	MasterUsername *string `type:"string"`
 
@@ -24932,6 +25044,12 @@ func (s *DBCluster) SetKmsKeyId(v string) *DBCluster {
 // SetLatestRestorableTime sets the LatestRestorableTime field's value.
 func (s *DBCluster) SetLatestRestorableTime(v time.Time) *DBCluster {
 	s.LatestRestorableTime = &v
+	return s
+}
+
+// SetMasterUserSecret sets the MasterUserSecret field's value.
+func (s *DBCluster) SetMasterUserSecret(v *MasterUserSecret) *DBCluster {
+	s.MasterUserSecret = v
 	return s
 }
 
@@ -26389,6 +26507,14 @@ type DBInstance struct {
 	// Specifies the listener connection endpoint for SQL Server Always On.
 	ListenerEndpoint *Endpoint `type:"structure"`
 
+	// Contains the secret managed by RDS in Amazon Web Services Secrets Manager
+	// for the master user password.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide.
+	MasterUserSecret *MasterUserSecret `type:"structure"`
+
 	// Contains the master username for the DB instance.
 	MasterUsername *string `type:"string"`
 
@@ -26865,6 +26991,12 @@ func (s *DBInstance) SetLicenseModel(v string) *DBInstance {
 // SetListenerEndpoint sets the ListenerEndpoint field's value.
 func (s *DBInstance) SetListenerEndpoint(v *Endpoint) *DBInstance {
 	s.ListenerEndpoint = v
+	return s
+}
+
+// SetMasterUserSecret sets the MasterUserSecret field's value.
+func (s *DBInstance) SetMasterUserSecret(v *MasterUserSecret) *DBInstance {
+	s.MasterUserSecret = v
 	return s
 }
 
@@ -38494,6 +38626,80 @@ func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOut
 	return s
 }
 
+// Contains the secret managed by RDS in Amazon Web Services Secrets Manager
+// for the master user password.
+//
+// For more information, see Password management with Amazon Web Services Secrets
+// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+// in the Amazon RDS User Guide and Password management with Amazon Web Services
+// Secrets Manager (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html)
+// in the Amazon Aurora User Guide.
+type MasterUserSecret struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services KMS key identifier that is used to encrypt the secret.
+	KmsKeyId *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the secret.
+	SecretArn *string `type:"string"`
+
+	// The status of the secret.
+	//
+	// The possible status values include the following:
+	//
+	//    * creating - The secret is being created.
+	//
+	//    * active - The secret is available for normal use and rotation.
+	//
+	//    * rotating - The secret is being rotated.
+	//
+	//    * impaired - The secret can be used to access database credentials, but
+	//    it can't be rotated. A secret might have this status if, for example,
+	//    permissions are changed so that RDS can no longer access either the secret
+	//    or the KMS key for the secret. When a secret has this status, you can
+	//    correct the condition that caused the status. Alternatively, modify the
+	//    DB instance to turn off automatic management of database credentials,
+	//    and then modify the DB instance again to turn on automatic management
+	//    of database credentials.
+	SecretStatus *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MasterUserSecret) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MasterUserSecret) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *MasterUserSecret) SetKmsKeyId(v string) *MasterUserSecret {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *MasterUserSecret) SetSecretArn(v string) *MasterUserSecret {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSecretStatus sets the SecretStatus field's value.
+func (s *MasterUserSecret) SetSecretStatus(v string) *MasterUserSecret {
+	s.SecretStatus = &v
+	return s
+}
+
 // The minimum DB engine version required for each corresponding allowed value
 // for an option setting.
 type MinimumEngineVersionPerAllowedValue struct {
@@ -39787,13 +39993,68 @@ type ModifyDBClusterInput struct {
 	// Valid for: Multi-AZ DB clusters only
 	Iops *int64 `type:"integer"`
 
+	// A value that indicates whether to manage the master user password with Amazon
+	// Web Services Secrets Manager.
+	//
+	// If the DB cluster doesn't manage the master user password with Amazon Web
+	// Services Secrets Manager, you can turn on this management. In this case,
+	// you can't specify MasterUserPassword.
+	//
+	// If the DB cluster already manages the master user password with Amazon Web
+	// Services Secrets Manager, and you specify that the master user password is
+	// not managed with Amazon Web Services Secrets Manager, then you must specify
+	// MasterUserPassword. In this case, RDS deletes the secret and uses the new
+	// password for the master user specified by MasterUserPassword.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide and Password management with Amazon Web Services
+	// Secrets Manager (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	ManageMasterUserPassword *bool `type:"boolean"`
+
 	// The new password for the master database user. This password can contain
 	// any printable ASCII character except "/", """, or "@".
 	//
-	// Constraints: Must contain from 8 to 41 characters.
+	// Constraints:
+	//
+	//    * Must contain from 8 to 41 characters.
+	//
+	//    * Can't be specified if ManageMasterUserPassword is turned on.
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	MasterUserPassword *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+	// generated and managed in Amazon Web Services Secrets Manager.
+	//
+	// This setting is valid only if both of the following conditions are met:
+	//
+	//    * The DB cluster doesn't manage the master user password in Amazon Web
+	//    Services Secrets Manager. If the DB cluster already manages the master
+	//    user password in Amazon Web Services Secrets Manager, you can't change
+	//    the KMS key that is used to encrypt the secret.
+	//
+	//    * You are turning on ManageMasterUserPassword to manage the master user
+	//    password in Amazon Web Services Secrets Manager. If you are turning on
+	//    ManageMasterUserPassword and don't specify MasterUserSecretKmsKeyId, then
+	//    the aws/secretsmanager KMS key is used to encrypt the secret. If the secret
+	//    is in a different Amazon Web Services account, then you can't use the
+	//    aws/secretsmanager KMS key to encrypt the secret, and you must use a customer
+	//    managed KMS key.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
+	//
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	MasterUserSecretKmsKeyId *string `type:"string"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
 	// are collected for the DB cluster. To turn off collecting Enhanced Monitoring
@@ -39945,6 +40206,27 @@ type ModifyDBClusterInput struct {
 	//
 	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	PreferredMaintenanceWindow *string `type:"string"`
+
+	// A value that indicates whether to rotate the secret managed by Amazon Web
+	// Services Secrets Manager for the master user password.
+	//
+	// This setting is valid only if the master user password is managed by RDS
+	// in Amazon Web Services Secrets Manager for the DB cluster. The secret value
+	// contains the updated password.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide and Password management with Amazon Web Services
+	// Secrets Manager (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Constraints:
+	//
+	//    * You must apply the change immediately when rotating the master user
+	//    password.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	RotateMasterUserPassword *bool `type:"boolean"`
 
 	// The scaling properties of the DB cluster. You can only modify scaling properties
 	// for DB clusters in serverless DB engine mode.
@@ -40132,9 +40414,21 @@ func (s *ModifyDBClusterInput) SetIops(v int64) *ModifyDBClusterInput {
 	return s
 }
 
+// SetManageMasterUserPassword sets the ManageMasterUserPassword field's value.
+func (s *ModifyDBClusterInput) SetManageMasterUserPassword(v bool) *ModifyDBClusterInput {
+	s.ManageMasterUserPassword = &v
+	return s
+}
+
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *ModifyDBClusterInput) SetMasterUserPassword(v string) *ModifyDBClusterInput {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUserSecretKmsKeyId sets the MasterUserSecretKmsKeyId field's value.
+func (s *ModifyDBClusterInput) SetMasterUserSecretKmsKeyId(v string) *ModifyDBClusterInput {
+	s.MasterUserSecretKmsKeyId = &v
 	return s
 }
 
@@ -40195,6 +40489,12 @@ func (s *ModifyDBClusterInput) SetPreferredBackupWindow(v string) *ModifyDBClust
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *ModifyDBClusterInput) SetPreferredMaintenanceWindow(v string) *ModifyDBClusterInput {
 	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetRotateMasterUserPassword sets the RotateMasterUserPassword field's value.
+func (s *ModifyDBClusterInput) SetRotateMasterUserPassword(v bool) *ModifyDBClusterInput {
+	s.RotateMasterUserPassword = &v
 	return s
 }
 
@@ -40858,6 +41158,29 @@ type ModifyDBInstanceInput struct {
 	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
+	// A value that indicates whether to manage the master user password with Amazon
+	// Web Services Secrets Manager.
+	//
+	// If the DB cluster doesn't manage the master user password with Amazon Web
+	// Services Secrets Manager, you can turn on this management. In this case,
+	// you can't specify MasterUserPassword.
+	//
+	// If the DB cluster already manages the master user password with Amazon Web
+	// Services Secrets Manager, and you specify that the master user password is
+	// not managed with Amazon Web Services Secrets Manager, then you must specify
+	// MasterUserPassword. In this case, RDS deletes the secret and uses the new
+	// password for the master user specified by MasterUserPassword.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//    * Can't manage the master user password with Amazon Web Services Secrets
+	//    Manager if MasterUserPassword is specified.
+	ManageMasterUserPassword *bool `type:"boolean"`
+
 	// The new password for the master user. The password can include any printable
 	// ASCII character except "/", """, or "@".
 	//
@@ -40874,6 +41197,8 @@ type ModifyDBInstanceInput struct {
 	// For more information, see ModifyDBCluster.
 	//
 	// Default: Uses existing setting
+	//
+	// Constraints: Can't be specified if ManageMasterUserPassword is turned on.
 	//
 	// MariaDB
 	//
@@ -40899,6 +41224,33 @@ type ModifyDBInstanceInput struct {
 	// a way to regain access to a primary instance user if the password is lost.
 	// This includes restoring privileges that might have been accidentally revoked.
 	MasterUserPassword *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+	// generated and managed in Amazon Web Services Secrets Manager.
+	//
+	// This setting is valid only if both of the following conditions are met:
+	//
+	//    * The DB instance doesn't manage the master user password in Amazon Web
+	//    Services Secrets Manager. If the DB instance already manages the master
+	//    user password in Amazon Web Services Secrets Manager, you can't change
+	//    the KMS key used to encrypt the secret.
+	//
+	//    * You are turning on ManageMasterUserPassword to manage the master user
+	//    password in Amazon Web Services Secrets Manager. If you are turning on
+	//    ManageMasterUserPassword and don't specify MasterUserSecretKmsKeyId, then
+	//    the aws/secretsmanager KMS key is used to encrypt the secret. If the secret
+	//    is in a different Amazon Web Services account, then you can't use the
+	//    aws/secretsmanager KMS key to encrypt the secret, and you must use a customer
+	//    managed KMS key.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
+	//
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
+	MasterUserSecretKmsKeyId *string `type:"string"`
 
 	// The upper limit in gibibytes (GiB) to which Amazon RDS can automatically
 	// scale the storage of the DB instance.
@@ -41138,6 +41490,23 @@ type ModifyDBInstanceInput struct {
 	// RDS Custom resumes full automation. The minimum value is 60 (default). The
 	// maximum value is 1,440.
 	ResumeFullAutomationModeMinutes *int64 `type:"integer"`
+
+	// A value that indicates whether to rotate the secret managed by Amazon Web
+	// Services Secrets Manager for the master user password.
+	//
+	// This setting is valid only if the master user password is managed by RDS
+	// in Amazon Web Services Secrets Manager for the DB cluster. The secret value
+	// contains the updated password.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//    * You must apply the change immediately when rotating the master user
+	//    password.
+	RotateMasterUserPassword *bool `type:"boolean"`
 
 	// Specifies the storage throughput value for the DB instance.
 	//
@@ -41392,9 +41761,21 @@ func (s *ModifyDBInstanceInput) SetLicenseModel(v string) *ModifyDBInstanceInput
 	return s
 }
 
+// SetManageMasterUserPassword sets the ManageMasterUserPassword field's value.
+func (s *ModifyDBInstanceInput) SetManageMasterUserPassword(v bool) *ModifyDBInstanceInput {
+	s.ManageMasterUserPassword = &v
+	return s
+}
+
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *ModifyDBInstanceInput) SetMasterUserPassword(v string) *ModifyDBInstanceInput {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUserSecretKmsKeyId sets the MasterUserSecretKmsKeyId field's value.
+func (s *ModifyDBInstanceInput) SetMasterUserSecretKmsKeyId(v string) *ModifyDBInstanceInput {
+	s.MasterUserSecretKmsKeyId = &v
 	return s
 }
 
@@ -41491,6 +41872,12 @@ func (s *ModifyDBInstanceInput) SetReplicaMode(v string) *ModifyDBInstanceInput 
 // SetResumeFullAutomationModeMinutes sets the ResumeFullAutomationModeMinutes field's value.
 func (s *ModifyDBInstanceInput) SetResumeFullAutomationModeMinutes(v int64) *ModifyDBInstanceInput {
 	s.ResumeFullAutomationModeMinutes = &v
+	return s
+}
+
+// SetRotateMasterUserPassword sets the RotateMasterUserPassword field's value.
+func (s *ModifyDBInstanceInput) SetRotateMasterUserPassword(v bool) *ModifyDBInstanceInput {
+	s.RotateMasterUserPassword = &v
 	return s
 }
 
@@ -46357,13 +46744,50 @@ type RestoreDBClusterFromS3Input struct {
 	// Services Region.
 	KmsKeyId *string `type:"string"`
 
+	// A value that indicates whether to manage the master user password with Amazon
+	// Web Services Secrets Manager.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide and Password management with Amazon Web Services
+	// Secrets Manager (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/rds-secrets-manager.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// Constraints:
+	//
+	//    * Can't manage the master user password with Amazon Web Services Secrets
+	//    Manager if MasterUserPassword is specified.
+	ManageMasterUserPassword *bool `type:"boolean"`
+
 	// The password for the master database user. This password can contain any
 	// printable ASCII character except "/", """, or "@".
 	//
-	// Constraints: Must contain from 8 to 41 characters.
+	// Constraints:
 	//
-	// MasterUserPassword is a required field
-	MasterUserPassword *string `type:"string" required:"true"`
+	//    * Must contain from 8 to 41 characters.
+	//
+	//    * Can't be specified if ManageMasterUserPassword is turned on.
+	MasterUserPassword *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+	// generated and managed in Amazon Web Services Secrets Manager.
+	//
+	// This setting is valid only if the master user password is managed by RDS
+	// in Amazon Web Services Secrets Manager for the DB cluster.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
+	//
+	// If you don't specify MasterUserSecretKmsKeyId, then the aws/secretsmanager
+	// KMS key is used to encrypt the secret. If the secret is in a different Amazon
+	// Web Services account, then you can't use the aws/secretsmanager KMS key to
+	// encrypt the secret, and you must use a customer managed KMS key.
+	//
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
+	MasterUserSecretKmsKeyId *string `type:"string"`
 
 	// The name of the master user for the restored DB cluster.
 	//
@@ -46522,9 +46946,6 @@ func (s *RestoreDBClusterFromS3Input) Validate() error {
 	if s.Engine == nil {
 		invalidParams.Add(request.NewErrParamRequired("Engine"))
 	}
-	if s.MasterUserPassword == nil {
-		invalidParams.Add(request.NewErrParamRequired("MasterUserPassword"))
-	}
 	if s.MasterUsername == nil {
 		invalidParams.Add(request.NewErrParamRequired("MasterUsername"))
 	}
@@ -46649,9 +47070,21 @@ func (s *RestoreDBClusterFromS3Input) SetKmsKeyId(v string) *RestoreDBClusterFro
 	return s
 }
 
+// SetManageMasterUserPassword sets the ManageMasterUserPassword field's value.
+func (s *RestoreDBClusterFromS3Input) SetManageMasterUserPassword(v bool) *RestoreDBClusterFromS3Input {
+	s.ManageMasterUserPassword = &v
+	return s
+}
+
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *RestoreDBClusterFromS3Input) SetMasterUserPassword(v string) *RestoreDBClusterFromS3Input {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUserSecretKmsKeyId sets the MasterUserSecretKmsKeyId field's value.
+func (s *RestoreDBClusterFromS3Input) SetMasterUserSecretKmsKeyId(v string) *RestoreDBClusterFromS3Input {
+	s.MasterUserSecretKmsKeyId = &v
 	return s
 }
 
@@ -48808,11 +49241,64 @@ type RestoreDBInstanceFromS3Input struct {
 	// The license model for this DB instance. Use general-public-license.
 	LicenseModel *string `type:"string"`
 
+	// A value that indicates whether to manage the master user password with Amazon
+	// Web Services Secrets Manager.
+	//
+	// For more information, see Password management with Amazon Web Services Secrets
+	// Manager (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//    * Can't manage the master user password with Amazon Web Services Secrets
+	//    Manager if MasterUserPassword is specified.
+	ManageMasterUserPassword *bool `type:"boolean"`
+
 	// The password for the master user. The password can include any printable
 	// ASCII character except "/", """, or "@".
 	//
+	// Constraints: Can't be specified if ManageMasterUserPassword is turned on.
+	//
+	// MariaDB
+	//
 	// Constraints: Must contain from 8 to 41 characters.
+	//
+	// Microsoft SQL Server
+	//
+	// Constraints: Must contain from 8 to 128 characters.
+	//
+	// MySQL
+	//
+	// Constraints: Must contain from 8 to 41 characters.
+	//
+	// Oracle
+	//
+	// Constraints: Must contain from 8 to 30 characters.
+	//
+	// PostgreSQL
+	//
+	// Constraints: Must contain from 8 to 128 characters.
 	MasterUserPassword *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
+	// generated and managed in Amazon Web Services Secrets Manager.
+	//
+	// This setting is valid only if the master user password is managed by RDS
+	// in Amazon Web Services Secrets Manager for the DB instance.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
+	//
+	// If you don't specify MasterUserSecretKmsKeyId, then the aws/secretsmanager
+	// KMS key is used to encrypt the secret. If the secret is in a different Amazon
+	// Web Services account, then you can't use the aws/secretsmanager KMS key to
+	// encrypt the secret, and you must use a customer managed KMS key.
+	//
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
+	MasterUserSecretKmsKeyId *string `type:"string"`
 
 	// The name for the master user.
 	//
@@ -49207,9 +49693,21 @@ func (s *RestoreDBInstanceFromS3Input) SetLicenseModel(v string) *RestoreDBInsta
 	return s
 }
 
+// SetManageMasterUserPassword sets the ManageMasterUserPassword field's value.
+func (s *RestoreDBInstanceFromS3Input) SetManageMasterUserPassword(v bool) *RestoreDBInstanceFromS3Input {
+	s.ManageMasterUserPassword = &v
+	return s
+}
+
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *RestoreDBInstanceFromS3Input) SetMasterUserPassword(v string) *RestoreDBInstanceFromS3Input {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUserSecretKmsKeyId sets the MasterUserSecretKmsKeyId field's value.
+func (s *RestoreDBInstanceFromS3Input) SetMasterUserSecretKmsKeyId(v string) *RestoreDBInstanceFromS3Input {
+	s.MasterUserSecretKmsKeyId = &v
 	return s
 }
 

@@ -11,11 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	//
-	// You do not have required permissions to perform this operation
-	//
-	// The AccessDeniedException can be thrown for operation access as well as tokens
-	// or resource access
+	// You do not have required permissions to perform this operation.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeClientLimitExceededException for service response error code
@@ -28,19 +24,13 @@ const (
 	// ErrCodeInvalidArgumentException for service response error code
 	// "InvalidArgumentException".
 	//
-	//
 	// The value for this input parameter is invalid.
-	//
-	// Additional details may notbe returned.
 	ErrCodeInvalidArgumentException = "InvalidArgumentException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	//
-	// The specified resource is not found
-	//
-	// You have not specified a channel in this API call.
+	// The specified resource is not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
 

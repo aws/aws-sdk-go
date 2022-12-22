@@ -92,23 +92,13 @@ func (c *KinesisVideoWebRTCStorage) JoinStorageSessionRequest(input *JoinStorage
 //     the limit of allowed client calls. Try making the call later.
 //
 //   - InvalidArgumentException
-//
 //     The value for this input parameter is invalid.
 //
-//     Additional details may notbe returned.
-//
 //   - AccessDeniedException
-//
-//     You do not have required permissions to perform this operation
-//
-//     The AccessDeniedException can be thrown for operation access as well as tokens
-//     or resource access
+//     You do not have required permissions to perform this operation.
 //
 //   - ResourceNotFoundException
-//
-//     The specified resource is not found
-//
-//     You have not specified a channel in this API call.
+//     The specified resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-webrtc-storage-2018-05-10/JoinStorageSession
 func (c *KinesisVideoWebRTCStorage) JoinStorageSession(input *JoinStorageSessionInput) (*JoinStorageSessionOutput, error) {
@@ -132,125 +122,7 @@ func (c *KinesisVideoWebRTCStorage) JoinStorageSessionWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
-const opJoinStorageSessionAsViewer = "JoinStorageSessionAsViewer"
-
-// JoinStorageSessionAsViewerRequest generates a "aws/request.Request" representing the
-// client's request for the JoinStorageSessionAsViewer operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See JoinStorageSessionAsViewer for more information on using the JoinStorageSessionAsViewer
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//	// Example sending a request using the JoinStorageSessionAsViewerRequest method.
-//	req, resp := client.JoinStorageSessionAsViewerRequest(params)
-//
-//	err := req.Send()
-//	if err == nil { // resp is now filled
-//	    fmt.Println(resp)
-//	}
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-webrtc-storage-2018-05-10/JoinStorageSessionAsViewer
-func (c *KinesisVideoWebRTCStorage) JoinStorageSessionAsViewerRequest(input *JoinStorageSessionAsViewerInput) (req *request.Request, output *JoinStorageSessionAsViewerOutput) {
-	op := &request.Operation{
-		Name:       opJoinStorageSessionAsViewer,
-		HTTPMethod: "POST",
-		HTTPPath:   "/joinStorageSessionAsViewer",
-	}
-
-	if input == nil {
-		input = &JoinStorageSessionAsViewerInput{}
-	}
-
-	output = &JoinStorageSessionAsViewerOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// JoinStorageSessionAsViewer API operation for Amazon Kinesis Video WebRTC Storage.
-//
-// Join the ongoing one way-video and/or multi-way audio WebRTC session as a
-// viewer for an input channel. If there’s no existing session for the channel,
-// create a new streaming session and provide the Amazon Resource Name (ARN)
-// of the signaling channel (channelArn) and client id (clientId).
-//
-// Currently for SINGLE_MASTER type, a video producing device is able to ingest
-// both audio and video media into a stream, while viewers can only ingest audio.
-// Both a video producing device and viewers can join a session first and wait
-// for other participants. While participants are having peer to peer conversations
-// through webRTC, the ingested media session will be stored into the Kinesis
-// Video Stream. Multiple viewers are able to playback real-time media.
-//
-// Customers can also use existing Kinesis Video Streams features like HLS or
-// DASH playback, Image generation, and more with ingested WebRTC media. If
-// there’s an existing session with the same clientId that's found in the
-// join session request, the new request takes precedence.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Kinesis Video WebRTC Storage's
-// API operation JoinStorageSessionAsViewer for usage and error information.
-//
-// Returned Error Types:
-//
-//   - ClientLimitExceededException
-//     Kinesis Video Streams has throttled the request because you have exceeded
-//     the limit of allowed client calls. Try making the call later.
-//
-//   - InvalidArgumentException
-//
-//     The value for this input parameter is invalid.
-//
-//     Additional details may notbe returned.
-//
-//   - AccessDeniedException
-//
-//     You do not have required permissions to perform this operation
-//
-//     The AccessDeniedException can be thrown for operation access as well as tokens
-//     or resource access
-//
-//   - ResourceNotFoundException
-//
-//     The specified resource is not found
-//
-//     You have not specified a channel in this API call.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-webrtc-storage-2018-05-10/JoinStorageSessionAsViewer
-func (c *KinesisVideoWebRTCStorage) JoinStorageSessionAsViewer(input *JoinStorageSessionAsViewerInput) (*JoinStorageSessionAsViewerOutput, error) {
-	req, out := c.JoinStorageSessionAsViewerRequest(input)
-	return out, req.Send()
-}
-
-// JoinStorageSessionAsViewerWithContext is the same as JoinStorageSessionAsViewer with the addition of
-// the ability to pass a context and additional request options.
-//
-// See JoinStorageSessionAsViewer for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *KinesisVideoWebRTCStorage) JoinStorageSessionAsViewerWithContext(ctx aws.Context, input *JoinStorageSessionAsViewerInput, opts ...request.Option) (*JoinStorageSessionAsViewerOutput, error) {
-	req, out := c.JoinStorageSessionAsViewerRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
-// You do not have required permissions to perform this operation
-//
-// The AccessDeniedException can be thrown for operation access as well as tokens
-// or resource access
+// You do not have required permissions to perform this operation.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -380,8 +252,6 @@ func (s *ClientLimitExceededException) RequestID() string {
 }
 
 // The value for this input parameter is invalid.
-//
-// Additional details may notbe returned.
 type InvalidArgumentException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -443,91 +313,6 @@ func (s *InvalidArgumentException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidArgumentException) RequestID() string {
 	return s.RespMetadata.RequestID
-}
-
-type JoinStorageSessionAsViewerInput struct {
-	_ struct{} `type:"structure"`
-
-	// The Amazon Resource Name (ARN) of the signaling channel.
-	//
-	// ChannelArn is a required field
-	ChannelArn *string `locationName:"channelArn" type:"string" required:"true"`
-
-	// The unique identifier for the sender client.
-	//
-	// ClientId is a required field
-	ClientId *string `locationName:"clientId" min:"1" type:"string" required:"true"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s JoinStorageSessionAsViewerInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s JoinStorageSessionAsViewerInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *JoinStorageSessionAsViewerInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "JoinStorageSessionAsViewerInput"}
-	if s.ChannelArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
-	}
-	if s.ClientId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ClientId"))
-	}
-	if s.ClientId != nil && len(*s.ClientId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetChannelArn sets the ChannelArn field's value.
-func (s *JoinStorageSessionAsViewerInput) SetChannelArn(v string) *JoinStorageSessionAsViewerInput {
-	s.ChannelArn = &v
-	return s
-}
-
-// SetClientId sets the ClientId field's value.
-func (s *JoinStorageSessionAsViewerInput) SetClientId(v string) *JoinStorageSessionAsViewerInput {
-	s.ClientId = &v
-	return s
-}
-
-type JoinStorageSessionAsViewerOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s JoinStorageSessionAsViewerOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s JoinStorageSessionAsViewerOutput) GoString() string {
-	return s.String()
 }
 
 type JoinStorageSessionInput struct {
@@ -598,9 +383,7 @@ func (s JoinStorageSessionOutput) GoString() string {
 	return s.String()
 }
 
-// The specified resource is not found
-//
-// You have not specified a channel in this API call.
+// The specified resource is not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

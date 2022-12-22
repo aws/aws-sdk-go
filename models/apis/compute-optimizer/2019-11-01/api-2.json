@@ -108,6 +108,25 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "ExportECSServiceRecommendations":{
+      "name":"ExportECSServiceRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportECSServiceRecommendationsRequest"},
+      "output":{"shape":"ExportECSServiceRecommendationsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "ExportLambdaFunctionRecommendations":{
       "name":"ExportLambdaFunctionRecommendations",
       "http":{
@@ -192,6 +211,44 @@
       },
       "input":{"shape":"GetEC2RecommendationProjectedMetricsRequest"},
       "output":{"shape":"GetEC2RecommendationProjectedMetricsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetECSServiceRecommendationProjectedMetrics":{
+      "name":"GetECSServiceRecommendationProjectedMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetECSServiceRecommendationProjectedMetricsRequest"},
+      "output":{"shape":"GetECSServiceRecommendationProjectedMetricsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetECSServiceRecommendations":{
+      "name":"GetECSServiceRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetECSServiceRecommendationsRequest"},
+      "output":{"shape":"GetECSServiceRecommendationsResponse"},
       "errors":[
         {"shape":"OptInRequiredException"},
         {"shape":"InternalServerException"},
@@ -376,6 +433,13 @@
       "type":"list",
       "member":{"shape":"AccountId"}
     },
+    "AutoScalingConfiguration":{
+      "type":"string",
+      "enum":[
+        "TargetTrackingScalingCpu",
+        "TargetTrackingScalingMemory"
+      ]
+    },
     "AutoScalingGroupArn":{"type":"string"},
     "AutoScalingGroupArns":{
       "type":"list",
@@ -428,6 +492,32 @@
       "member":{"shape":"AutoScalingGroupRecommendation"}
     },
     "Code":{"type":"string"},
+    "ContainerConfiguration":{
+      "type":"structure",
+      "members":{
+        "containerName":{"shape":"ContainerName"},
+        "memorySizeConfiguration":{"shape":"MemorySizeConfiguration"},
+        "cpu":{"shape":"NullableCpu"}
+      }
+    },
+    "ContainerConfigurations":{
+      "type":"list",
+      "member":{"shape":"ContainerConfiguration"}
+    },
+    "ContainerName":{"type":"string"},
+    "ContainerRecommendation":{
+      "type":"structure",
+      "members":{
+        "containerName":{"shape":"ContainerName"},
+        "memorySizeConfiguration":{"shape":"MemorySizeConfiguration"},
+        "cpu":{"shape":"NullableCpu"}
+      }
+    },
+    "ContainerRecommendations":{
+      "type":"list",
+      "member":{"shape":"ContainerRecommendation"}
+    },
+    "CpuSize":{"type":"integer"},
     "CpuVendorArchitecture":{
       "type":"string",
       "enum":[
@@ -546,6 +636,150 @@
       "type":"list",
       "member":{"shape":"EBSUtilizationMetric"}
     },
+    "ECSServiceLaunchType":{
+      "type":"string",
+      "enum":[
+        "EC2",
+        "Fargate"
+      ]
+    },
+    "ECSServiceMetricName":{
+      "type":"string",
+      "enum":[
+        "Cpu",
+        "Memory"
+      ]
+    },
+    "ECSServiceMetricStatistic":{
+      "type":"string",
+      "enum":[
+        "Maximum",
+        "Average"
+      ]
+    },
+    "ECSServiceProjectedMetric":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ECSServiceMetricName"},
+        "timestamps":{"shape":"Timestamps"},
+        "upperBoundValues":{"shape":"MetricValues"},
+        "lowerBoundValues":{"shape":"MetricValues"}
+      }
+    },
+    "ECSServiceProjectedMetrics":{
+      "type":"list",
+      "member":{"shape":"ECSServiceProjectedMetric"}
+    },
+    "ECSServiceProjectedUtilizationMetric":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ECSServiceMetricName"},
+        "statistic":{"shape":"ECSServiceMetricStatistic"},
+        "lowerBoundValue":{"shape":"LowerBoundValue"},
+        "upperBoundValue":{"shape":"UpperBoundValue"}
+      }
+    },
+    "ECSServiceProjectedUtilizationMetrics":{
+      "type":"list",
+      "member":{"shape":"ECSServiceProjectedUtilizationMetric"}
+    },
+    "ECSServiceRecommendation":{
+      "type":"structure",
+      "members":{
+        "serviceArn":{"shape":"ServiceArn"},
+        "accountId":{"shape":"AccountId"},
+        "currentServiceConfiguration":{"shape":"ServiceConfiguration"},
+        "utilizationMetrics":{"shape":"ECSServiceUtilizationMetrics"},
+        "lookbackPeriodInDays":{"shape":"LookBackPeriodInDays"},
+        "launchType":{"shape":"ECSServiceLaunchType"},
+        "lastRefreshTimestamp":{"shape":"LastRefreshTimestamp"},
+        "finding":{"shape":"ECSServiceRecommendationFinding"},
+        "findingReasonCodes":{"shape":"ECSServiceRecommendationFindingReasonCodes"},
+        "serviceRecommendationOptions":{"shape":"ECSServiceRecommendationOptions"},
+        "currentPerformanceRisk":{"shape":"CurrentPerformanceRisk"}
+      }
+    },
+    "ECSServiceRecommendationFilter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ECSServiceRecommendationFilterName"},
+        "values":{"shape":"FilterValues"}
+      }
+    },
+    "ECSServiceRecommendationFilterName":{
+      "type":"string",
+      "enum":[
+        "Finding",
+        "FindingReasonCode"
+      ]
+    },
+    "ECSServiceRecommendationFilters":{
+      "type":"list",
+      "member":{"shape":"ECSServiceRecommendationFilter"}
+    },
+    "ECSServiceRecommendationFinding":{
+      "type":"string",
+      "enum":[
+        "Optimized",
+        "Underprovisioned",
+        "Overprovisioned"
+      ]
+    },
+    "ECSServiceRecommendationFindingReasonCode":{
+      "type":"string",
+      "enum":[
+        "MemoryOverprovisioned",
+        "MemoryUnderprovisioned",
+        "CPUOverprovisioned",
+        "CPUUnderprovisioned"
+      ]
+    },
+    "ECSServiceRecommendationFindingReasonCodes":{
+      "type":"list",
+      "member":{"shape":"ECSServiceRecommendationFindingReasonCode"}
+    },
+    "ECSServiceRecommendationOption":{
+      "type":"structure",
+      "members":{
+        "memory":{"shape":"NullableMemory"},
+        "cpu":{"shape":"NullableCpu"},
+        "savingsOpportunity":{"shape":"SavingsOpportunity"},
+        "projectedUtilizationMetrics":{"shape":"ECSServiceProjectedUtilizationMetrics"},
+        "containerRecommendations":{"shape":"ContainerRecommendations"}
+      }
+    },
+    "ECSServiceRecommendationOptions":{
+      "type":"list",
+      "member":{"shape":"ECSServiceRecommendationOption"}
+    },
+    "ECSServiceRecommendations":{
+      "type":"list",
+      "member":{"shape":"ECSServiceRecommendation"}
+    },
+    "ECSServiceRecommendedOptionProjectedMetric":{
+      "type":"structure",
+      "members":{
+        "recommendedCpuUnits":{"shape":"CpuSize"},
+        "recommendedMemorySize":{"shape":"MemorySize"},
+        "projectedMetrics":{"shape":"ECSServiceProjectedMetrics"}
+      }
+    },
+    "ECSServiceRecommendedOptionProjectedMetrics":{
+      "type":"list",
+      "member":{"shape":"ECSServiceRecommendedOptionProjectedMetric"}
+    },
+    "ECSServiceUtilizationMetric":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ECSServiceMetricName"},
+        "statistic":{"shape":"ECSServiceMetricStatistic"},
+        "value":{"shape":"MetricValue"}
+      }
+    },
+    "ECSServiceUtilizationMetrics":{
+      "type":"list",
+      "member":{"shape":"ECSServiceUtilizationMetric"}
+    },
     "EffectiveRecommendationPreferences":{
       "type":"structure",
       "members":{
@@ -650,6 +884,25 @@
         "s3Destination":{"shape":"S3Destination"}
       }
     },
+    "ExportECSServiceRecommendationsRequest":{
+      "type":"structure",
+      "required":["s3DestinationConfig"],
+      "members":{
+        "accountIds":{"shape":"AccountIds"},
+        "filters":{"shape":"ECSServiceRecommendationFilters"},
+        "fieldsToExport":{"shape":"ExportableECSServiceFields"},
+        "s3DestinationConfig":{"shape":"S3DestinationConfig"},
+        "fileFormat":{"shape":"FileFormat"},
+        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"}
+      }
+    },
+    "ExportECSServiceRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"JobId"},
+        "s3Destination":{"shape":"S3Destination"}
+      }
+    },
     "ExportLambdaFunctionRecommendationsRequest":{
       "type":"structure",
       "required":["s3DestinationConfig"],
@@ -731,6 +984,38 @@
     "ExportableAutoScalingGroupFields":{
       "type":"list",
       "member":{"shape":"ExportableAutoScalingGroupField"}
+    },
+    "ExportableECSServiceField":{
+      "type":"string",
+      "enum":[
+        "AccountId",
+        "ServiceArn",
+        "LookbackPeriodInDays",
+        "LastRefreshTimestamp",
+        "LaunchType",
+        "CurrentPerformanceRisk",
+        "CurrentServiceConfigurationMemory",
+        "CurrentServiceConfigurationCpu",
+        "CurrentServiceConfigurationTaskDefinitionArn",
+        "CurrentServiceConfigurationAutoScalingConfiguration",
+        "CurrentServiceContainerConfigurations",
+        "UtilizationMetricsCpuMaximum",
+        "UtilizationMetricsMemoryMaximum",
+        "Finding",
+        "FindingReasonCodes",
+        "RecommendationOptionsMemory",
+        "RecommendationOptionsCpu",
+        "RecommendationOptionsSavingsOpportunityPercentage",
+        "RecommendationOptionsEstimatedMonthlySavingsCurrency",
+        "RecommendationOptionsEstimatedMonthlySavingsValue",
+        "RecommendationOptionsContainerRecommendations",
+        "RecommendationOptionsProjectedUtilizationMetricsCpuMaximum",
+        "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum"
+      ]
+    },
+    "ExportableECSServiceFields":{
+      "type":"list",
+      "member":{"shape":"ExportableECSServiceField"}
     },
     "ExportableInstanceField":{
       "type":"string",
@@ -1010,6 +1295,47 @@
       "type":"structure",
       "members":{
         "recommendedOptionProjectedMetrics":{"shape":"RecommendedOptionProjectedMetrics"}
+      }
+    },
+    "GetECSServiceRecommendationProjectedMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "serviceArn",
+        "stat",
+        "period",
+        "startTime",
+        "endTime"
+      ],
+      "members":{
+        "serviceArn":{"shape":"ServiceArn"},
+        "stat":{"shape":"MetricStatistic"},
+        "period":{"shape":"Period"},
+        "startTime":{"shape":"Timestamp"},
+        "endTime":{"shape":"Timestamp"}
+      }
+    },
+    "GetECSServiceRecommendationProjectedMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "recommendedOptionProjectedMetrics":{"shape":"ECSServiceRecommendedOptionProjectedMetrics"}
+      }
+    },
+    "GetECSServiceRecommendationsRequest":{
+      "type":"structure",
+      "members":{
+        "serviceArns":{"shape":"ServiceArns"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"},
+        "filters":{"shape":"ECSServiceRecommendationFilters"},
+        "accountIds":{"shape":"AccountIds"}
+      }
+    },
+    "GetECSServiceRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "ecsServiceRecommendations":{"shape":"ECSServiceRecommendations"},
+        "errors":{"shape":"GetRecommendationErrors"}
       }
     },
     "GetEffectiveRecommendationPreferencesRequest":{
@@ -1393,14 +1719,24 @@
     },
     "LookBackPeriodInDays":{"type":"double"},
     "Low":{"type":"long"},
+    "LowerBoundValue":{"type":"double"},
     "MaxResults":{
       "type":"integer",
-      "box":true
+      "box":true,
+      "max":1000,
+      "min":0
     },
     "MaxSize":{"type":"integer"},
     "Medium":{"type":"long"},
     "MemberAccountsEnrolled":{"type":"boolean"},
     "MemorySize":{"type":"integer"},
+    "MemorySizeConfiguration":{
+      "type":"structure",
+      "members":{
+        "memory":{"shape":"NullableMemory"},
+        "memoryReservation":{"shape":"NullableMemoryReservation"}
+      }
+    },
     "Message":{"type":"string"},
     "MetadataKey":{"type":"string"},
     "MetricName":{
@@ -1453,6 +1789,9 @@
       "synthetic":true
     },
     "NextToken":{"type":"string"},
+    "NullableCpu":{"type":"integer"},
+    "NullableMemory":{"type":"integer"},
+    "NullableMemoryReservation":{"type":"integer"},
     "NumberOfInvocations":{"type":"long"},
     "NumberOfMemberAccountsOptedIn":{"type":"integer"},
     "OptInRequiredException":{
@@ -1594,7 +1933,8 @@
         "Ec2Instance",
         "AutoScalingGroup",
         "EbsVolume",
-        "LambdaFunction"
+        "LambdaFunction",
+        "EcsService"
       ]
     },
     "RecommendationSources":{
@@ -1644,7 +1984,8 @@
         "AutoScalingGroup",
         "EbsVolume",
         "LambdaFunction",
-        "NotApplicable"
+        "NotApplicable",
+        "EcsService"
       ]
     },
     "S3Destination":{
@@ -1686,6 +2027,21 @@
       ]
     },
     "ScopeValue":{"type":"string"},
+    "ServiceArn":{"type":"string"},
+    "ServiceArns":{
+      "type":"list",
+      "member":{"shape":"ServiceArn"}
+    },
+    "ServiceConfiguration":{
+      "type":"structure",
+      "members":{
+        "memory":{"shape":"NullableMemory"},
+        "cpu":{"shape":"NullableCpu"},
+        "containerConfigurations":{"shape":"ContainerConfigurations"},
+        "autoScalingConfiguration":{"shape":"AutoScalingConfiguration"},
+        "taskDefinitionArn":{"shape":"TaskDefinitionArn"}
+      }
+    },
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -1717,6 +2073,7 @@
       }
     },
     "SummaryValue":{"type":"double"},
+    "TaskDefinitionArn":{"type":"string"},
     "ThrottlingException":{
       "type":"structure",
       "required":["message"],
@@ -1746,6 +2103,7 @@
         "statusReason":{"shape":"StatusReason"}
       }
     },
+    "UpperBoundValue":{"type":"double"},
     "UtilizationMetric":{
       "type":"structure",
       "members":{
