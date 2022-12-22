@@ -12457,7 +12457,7 @@ func (c *Connect) MonitorContactRequest(input *MonitorContactInput) (req *reques
 //
 // Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
 // of the user specified by userId will be set to silent monitoring mode on
-// the contact.
+// the contact. Supports voice and chat contacts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16179,6 +16179,114 @@ func (c *Connect) UpdateInstanceStorageConfig(input *UpdateInstanceStorageConfig
 // for more information on using Contexts.
 func (c *Connect) UpdateInstanceStorageConfigWithContext(ctx aws.Context, input *UpdateInstanceStorageConfigInput, opts ...request.Option) (*UpdateInstanceStorageConfigOutput, error) {
 	req, out := c.UpdateInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateParticipantRoleConfig = "UpdateParticipantRoleConfig"
+
+// UpdateParticipantRoleConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateParticipantRoleConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateParticipantRoleConfig for more information on using the UpdateParticipantRoleConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateParticipantRoleConfigRequest method.
+//	req, resp := client.UpdateParticipantRoleConfigRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateParticipantRoleConfig
+func (c *Connect) UpdateParticipantRoleConfigRequest(input *UpdateParticipantRoleConfigInput) (req *request.Request, output *UpdateParticipantRoleConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateParticipantRoleConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact/participant-role-config/{InstanceId}/{ContactId}",
+	}
+
+	if input == nil {
+		input = &UpdateParticipantRoleConfigInput{}
+	}
+
+	output = &UpdateParticipantRoleConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateParticipantRoleConfig API operation for Amazon Connect Service.
+//
+// Updates timeouts for when human chat participants are to be considered idle,
+// and when agents are automatically disconnected from a chat due to idleness.
+// You can set four timers:
+//
+//   - Customer idle timeout
+//
+//   - Customer auto-disconnect timeout
+//
+//   - Agent idle timeout
+//
+//   - Agent auto-disconnect timeout
+//
+// For more information about how chat timeouts work, see Set up chat timeouts
+// for human participants (https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateParticipantRoleConfig for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateParticipantRoleConfig
+func (c *Connect) UpdateParticipantRoleConfig(input *UpdateParticipantRoleConfigInput) (*UpdateParticipantRoleConfigOutput, error) {
+	req, out := c.UpdateParticipantRoleConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateParticipantRoleConfigWithContext is the same as UpdateParticipantRoleConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateParticipantRoleConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateParticipantRoleConfigWithContext(ctx aws.Context, input *UpdateParticipantRoleConfigInput, opts ...request.Option) (*UpdateParticipantRoleConfigOutput, error) {
+	req, out := c.UpdateParticipantRoleConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -20017,10 +20125,17 @@ type ChatMessage struct {
 
 	// The content of the chat message.
 	//
+	//    * For text/plain and text/markdown, the Length Constraints are Minimum
+	//    of 1, Maximum of 1024.
+	//
+	//    * For application/json, the Length Constraints are Minimum of 1, Maximum
+	//    of 12000.
+	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The type of the content. Supported types are text/plain.
+	// The type of the content. Supported types are text/plain, text/markdown, and
+	// application/json.
 	//
 	// ContentType is a required field
 	ContentType *string `min:"1" type:"string" required:"true"`
@@ -20075,6 +20190,67 @@ func (s *ChatMessage) SetContent(v string) *ChatMessage {
 // SetContentType sets the ContentType field's value.
 func (s *ChatMessage) SetContentType(v string) *ChatMessage {
 	s.ContentType = &v
+	return s
+}
+
+// Configuration information for the chat participant role.
+type ChatParticipantRoleConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A list of participant timers. You can specify any unique combination of role
+	// and timer type. Duplicate entries error out the request with a 400.
+	//
+	// ParticipantTimerConfigList is a required field
+	ParticipantTimerConfigList []*ParticipantTimerConfiguration `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatParticipantRoleConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatParticipantRoleConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChatParticipantRoleConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChatParticipantRoleConfig"}
+	if s.ParticipantTimerConfigList == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParticipantTimerConfigList"))
+	}
+	if s.ParticipantTimerConfigList != nil && len(s.ParticipantTimerConfigList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ParticipantTimerConfigList", 1))
+	}
+	if s.ParticipantTimerConfigList != nil {
+		for i, v := range s.ParticipantTimerConfigList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParticipantTimerConfigList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParticipantTimerConfigList sets the ParticipantTimerConfigList field's value.
+func (s *ChatParticipantRoleConfig) SetParticipantTimerConfigList(v []*ParticipantTimerConfiguration) *ChatParticipantRoleConfig {
+	s.ParticipantTimerConfigList = v
 	return s
 }
 
@@ -36809,6 +36985,153 @@ func (s *ParticipantDetails) SetDisplayName(v string) *ParticipantDetails {
 	return s
 }
 
+// Configuration information for the timer. After the timer configuration is
+// set, it persists for the duration of the chat. It persists across new contacts
+// in the chain, for example, transfer contacts.
+//
+// For more information about how chat timeouts work, see Set up chat timeouts
+// for human participants (https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html).
+type ParticipantTimerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The role of the participant in the chat conversation.
+	//
+	// ParticipantRole is a required field
+	ParticipantRole *string `type:"string" required:"true" enum:"TimerEligibleParticipantRoles"`
+
+	// The type of timer. IDLE indicates the timer applies for considering a human
+	// chat participant as idle. DISCONNECT_NONCUSTOMER indicates the timer applies
+	// to automatically disconnecting a chat participant due to idleness.
+	//
+	// TimerType is a required field
+	TimerType *string `type:"string" required:"true" enum:"ParticipantTimerType"`
+
+	// The value of the timer. Either the timer action (Unset to delete the timer),
+	// or the duration of the timer in minutes. Only one value can be set.
+	//
+	// TimerValue is a required field
+	TimerValue *ParticipantTimerValue `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantTimerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantTimerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParticipantTimerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParticipantTimerConfiguration"}
+	if s.ParticipantRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParticipantRole"))
+	}
+	if s.TimerType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimerType"))
+	}
+	if s.TimerValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimerValue"))
+	}
+	if s.TimerValue != nil {
+		if err := s.TimerValue.Validate(); err != nil {
+			invalidParams.AddNested("TimerValue", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParticipantRole sets the ParticipantRole field's value.
+func (s *ParticipantTimerConfiguration) SetParticipantRole(v string) *ParticipantTimerConfiguration {
+	s.ParticipantRole = &v
+	return s
+}
+
+// SetTimerType sets the TimerType field's value.
+func (s *ParticipantTimerConfiguration) SetTimerType(v string) *ParticipantTimerConfiguration {
+	s.TimerType = &v
+	return s
+}
+
+// SetTimerValue sets the TimerValue field's value.
+func (s *ParticipantTimerConfiguration) SetTimerValue(v *ParticipantTimerValue) *ParticipantTimerConfiguration {
+	s.TimerValue = v
+	return s
+}
+
+// The value of the timer. Either the timer action (Unset to delete the timer),
+// or the duration of the timer in minutes. Only one value can be set.
+//
+// For more information about how chat timeouts work, see Set up chat timeouts
+// for human participants (https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html).
+type ParticipantTimerValue struct {
+	_ struct{} `type:"structure"`
+
+	// The timer action. Currently only one value is allowed: Unset. It deletes
+	// a timer.
+	ParticipantTimerAction *string `type:"string" enum:"ParticipantTimerAction"`
+
+	// The duration of a timer, in minutes.
+	ParticipantTimerDurationInMinutes *int64 `min:"2" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantTimerValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParticipantTimerValue) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParticipantTimerValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParticipantTimerValue"}
+	if s.ParticipantTimerDurationInMinutes != nil && *s.ParticipantTimerDurationInMinutes < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("ParticipantTimerDurationInMinutes", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParticipantTimerAction sets the ParticipantTimerAction field's value.
+func (s *ParticipantTimerValue) SetParticipantTimerAction(v string) *ParticipantTimerValue {
+	s.ParticipantTimerAction = &v
+	return s
+}
+
+// SetParticipantTimerDurationInMinutes sets the ParticipantTimerDurationInMinutes field's value.
+func (s *ParticipantTimerValue) SetParticipantTimerDurationInMinutes(v int64) *ParticipantTimerValue {
+	s.ParticipantTimerDurationInMinutes = &v
+	return s
+}
+
 // Contains information about a phone number for a quick connect.
 type PhoneNumberQuickConnectConfig struct {
 	_ struct{} `type:"structure"`
@@ -41279,8 +41602,11 @@ type StartChatContactInput struct {
 	// ParticipantDetails is a required field
 	ParticipantDetails *ParticipantDetails `type:"structure" required:"true"`
 
-	// The supported chat message content types. Content types can be text/plain
-	// or both text/plain and text/markdown.
+	// The supported chat message content types. Content types must always contain
+	// text/plain. You can then put any other supported type in the list. For example,
+	// all the following lists are valid because they contain text/plain: [text/plain,
+	// text/markdown, application/json], [text/markdown, text/plain], [text/plain,
+	// application/json].
 	SupportedMessagingContentTypes []*string `type:"list"`
 }
 
@@ -45253,6 +45579,161 @@ func (s UpdateInstanceStorageConfigOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateInstanceStorageConfigOutput) GoString() string {
+	return s.String()
+}
+
+// Configuration information for the chat participant role.
+type UpdateParticipantRoleConfigChannelInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information for the chat participant role.
+	Chat *ChatParticipantRoleConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateParticipantRoleConfigChannelInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateParticipantRoleConfigChannelInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateParticipantRoleConfigChannelInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateParticipantRoleConfigChannelInfo"}
+	if s.Chat != nil {
+		if err := s.Chat.Validate(); err != nil {
+			invalidParams.AddNested("Chat", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChat sets the Chat field's value.
+func (s *UpdateParticipantRoleConfigChannelInfo) SetChat(v *ChatParticipantRoleConfig) *UpdateParticipantRoleConfigChannelInfo {
+	s.Chat = v
+	return s
+}
+
+type UpdateParticipantRoleConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Connect channel you want to configure.
+	//
+	// ChannelConfiguration is a required field
+	ChannelConfiguration *UpdateParticipantRoleConfigChannelInfo `type:"structure" required:"true"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	//
+	// ContactId is a required field
+	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateParticipantRoleConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateParticipantRoleConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateParticipantRoleConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateParticipantRoleConfigInput"}
+	if s.ChannelConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelConfiguration"))
+	}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ChannelConfiguration != nil {
+		if err := s.ChannelConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChannelConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelConfiguration sets the ChannelConfiguration field's value.
+func (s *UpdateParticipantRoleConfigInput) SetChannelConfiguration(v *UpdateParticipantRoleConfigChannelInfo) *UpdateParticipantRoleConfigInput {
+	s.ChannelConfiguration = v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *UpdateParticipantRoleConfigInput) SetContactId(v string) *UpdateParticipantRoleConfigInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateParticipantRoleConfigInput) SetInstanceId(v string) *UpdateParticipantRoleConfigInput {
+	s.InstanceId = &v
+	return s
+}
+
+type UpdateParticipantRoleConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateParticipantRoleConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateParticipantRoleConfigOutput) GoString() string {
 	return s.String()
 }
 
@@ -49962,6 +50443,34 @@ func NotificationDeliveryType_Values() []string {
 }
 
 const (
+	// ParticipantTimerActionUnset is a ParticipantTimerAction enum value
+	ParticipantTimerActionUnset = "Unset"
+)
+
+// ParticipantTimerAction_Values returns all elements of the ParticipantTimerAction enum
+func ParticipantTimerAction_Values() []string {
+	return []string{
+		ParticipantTimerActionUnset,
+	}
+}
+
+const (
+	// ParticipantTimerTypeIdle is a ParticipantTimerType enum value
+	ParticipantTimerTypeIdle = "IDLE"
+
+	// ParticipantTimerTypeDisconnectNoncustomer is a ParticipantTimerType enum value
+	ParticipantTimerTypeDisconnectNoncustomer = "DISCONNECT_NONCUSTOMER"
+)
+
+// ParticipantTimerType_Values returns all elements of the ParticipantTimerType enum
+func ParticipantTimerType_Values() []string {
+	return []string{
+		ParticipantTimerTypeIdle,
+		ParticipantTimerTypeDisconnectNoncustomer,
+	}
+}
+
+const (
 	// PhoneNumberCountryCodeAf is a PhoneNumberCountryCode enum value
 	PhoneNumberCountryCodeAf = "AF"
 
@@ -51314,6 +51823,22 @@ func TaskTemplateStatus_Values() []string {
 	return []string{
 		TaskTemplateStatusActive,
 		TaskTemplateStatusInactive,
+	}
+}
+
+const (
+	// TimerEligibleParticipantRolesCustomer is a TimerEligibleParticipantRoles enum value
+	TimerEligibleParticipantRolesCustomer = "CUSTOMER"
+
+	// TimerEligibleParticipantRolesAgent is a TimerEligibleParticipantRoles enum value
+	TimerEligibleParticipantRolesAgent = "AGENT"
+)
+
+// TimerEligibleParticipantRoles_Values returns all elements of the TimerEligibleParticipantRoles enum
+func TimerEligibleParticipantRoles_Values() []string {
+	return []string{
+		TimerEligibleParticipantRolesCustomer,
+		TimerEligibleParticipantRolesAgent,
 	}
 }
 

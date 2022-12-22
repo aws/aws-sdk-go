@@ -1,3 +1,16 @@
+Release v1.44.166 (2022-12-22)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API, documentation, and paginators
+* `service/connect`: Updates service API and documentation
+* `service/iotdeviceadvisor`: Updates service API and documentation
+* `service/kinesis-video-webrtc-storage`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Add support for managing master user password in AWS Secrets Manager for the DBInstance and DBCluster.
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+
 Release v1.44.165 (2022-12-21)
 ===
 

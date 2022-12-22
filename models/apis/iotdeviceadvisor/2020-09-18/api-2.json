@@ -221,6 +221,7 @@
     },
     "CreateSuiteDefinitionRequest":{
       "type":"structure",
+      "required":["suiteDefinitionConfiguration"],
       "members":{
         "suiteDefinitionConfiguration":{"shape":"SuiteDefinitionConfiguration"},
         "tags":{"shape":"TagMap"}
@@ -517,7 +518,10 @@
     },
     "StartSuiteRunRequest":{
       "type":"structure",
-      "required":["suiteDefinitionId"],
+      "required":[
+        "suiteDefinitionId",
+        "suiteRunConfiguration"
+      ],
       "members":{
         "suiteDefinitionId":{
           "shape":"UUID",
@@ -534,7 +538,8 @@
       "members":{
         "suiteRunId":{"shape":"UUID"},
         "suiteRunArn":{"shape":"AmazonResourceName"},
-        "createdAt":{"shape":"Timestamp"}
+        "createdAt":{"shape":"Timestamp"},
+        "endpoint":{"shape":"Endpoint"}
       }
     },
     "Status":{
@@ -587,6 +592,11 @@
     },
     "SuiteDefinitionConfiguration":{
       "type":"structure",
+      "required":[
+        "suiteDefinitionName",
+        "rootGroup",
+        "devicePermissionRoleArn"
+      ],
       "members":{
         "suiteDefinitionName":{"shape":"SuiteDefinitionName"},
         "devices":{"shape":"DeviceUnderTestList"},
@@ -625,6 +635,7 @@
     },
     "SuiteRunConfiguration":{
       "type":"structure",
+      "required":["primaryDevice"],
       "members":{
         "primaryDevice":{"shape":"DeviceUnderTest"},
         "selectedTestList":{"shape":"SelectedTestList"},
@@ -801,7 +812,10 @@
     },
     "UpdateSuiteDefinitionRequest":{
       "type":"structure",
-      "required":["suiteDefinitionId"],
+      "required":[
+        "suiteDefinitionId",
+        "suiteDefinitionConfiguration"
+      ],
       "members":{
         "suiteDefinitionId":{
           "shape":"UUID",

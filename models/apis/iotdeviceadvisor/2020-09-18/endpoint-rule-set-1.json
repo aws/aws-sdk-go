@@ -166,7 +166,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://compute-optimizer-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://api.iotdeviceadvisor-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -222,7 +222,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://compute-optimizer-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://api.iotdeviceadvisor-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -276,7 +276,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://compute-optimizer.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://api.iotdeviceadvisor.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -294,7 +294,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://compute-optimizer.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://api.iotdeviceadvisor.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

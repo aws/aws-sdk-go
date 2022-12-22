@@ -21,18 +21,18 @@
     "AmazonResourceName": {
       "base": null,
       "refs": {
-        "CreateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Creates a Device Advisor test suite with Amazon Resource Name (ARN).</p>",
+        "CreateSuiteDefinitionResponse$suiteDefinitionArn": "<p>The Amazon Resource Name (ARN) of the test suite.</p>",
         "DeviceUnderTest$thingArn": "<p>Lists devices thing ARN.</p>",
         "DeviceUnderTest$certificateArn": "<p>Lists devices certificate ARN.</p>",
         "GetEndpointRequest$thingArn": "<p>The thing ARN of the device. This is an optional parameter.</p>",
         "GetEndpointRequest$certificateArn": "<p>The certificate ARN of the device. This is an optional parameter.</p>",
         "GetSuiteDefinitionResponse$suiteDefinitionArn": "<p>The ARN of the suite definition.</p>",
         "GetSuiteRunResponse$suiteRunArn": "<p>The ARN of the suite run.</p>",
-        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the IoT Device Advisor resource.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The resource ARN of the IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN.</p>",
         "StartSuiteRunResponse$suiteRunArn": "<p>Amazon Resource Name (ARN) of the started suite run.</p>",
-        "SuiteDefinitionConfiguration$devicePermissionRoleArn": "<p>Gets the device permission ARN.</p>",
-        "TagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
-        "UntagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
+        "SuiteDefinitionConfiguration$devicePermissionRoleArn": "<p>Gets the device permission ARN. This is a required parameter.</p>",
+        "TagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource. This can be SuiteDefinition ARN or SuiteRun ARN.</p>",
         "UpdateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Amazon Resource Name (ARN) of the updated test suite.</p>"
       }
     },
@@ -65,7 +65,7 @@
       "base": "<p>Information of a test device. A thing ARN or a certificate ARN is required.</p>",
       "refs": {
         "DeviceUnderTestList$member": null,
-        "SuiteRunConfiguration$primaryDevice": "<p>Gets the primary device for suite run.</p>"
+        "SuiteRunConfiguration$primaryDevice": "<p>Sets the primary device for the test suite run. This requires a thing ARN or a certificate ARN.</p>"
       }
     },
     "DeviceUnderTestList": {
@@ -78,7 +78,8 @@
     "Endpoint": {
       "base": null,
       "refs": {
-        "GetEndpointResponse$endpoint": "<p>The response of an Device Advisor endpoint.</p>"
+        "GetEndpointResponse$endpoint": "<p>The response of an Device Advisor endpoint.</p>",
+        "StartSuiteRunResponse$endpoint": "<p>The response of an Device Advisor test endpoint.</p>"
       }
     },
     "ErrorReason": {
@@ -167,8 +168,8 @@
     "IsLongDurationTestBoolean": {
       "base": null,
       "refs": {
-        "SuiteDefinitionConfiguration$isLongDurationTest": "<p> Verifies if the test suite is a long duration test. </p>",
-        "SuiteDefinitionInformation$isLongDurationTest": "<p> Verifies if the test suite is a long duration test. </p>"
+        "SuiteDefinitionConfiguration$isLongDurationTest": "<p>Verifies if the test suite is a long duration test.</p>",
+        "SuiteDefinitionInformation$isLongDurationTest": "<p>Verifies if the test suite is a long duration test.</p>"
       }
     },
     "ListSuiteDefinitionsRequest": {
@@ -232,8 +233,8 @@
     "Protocol": {
       "base": null,
       "refs": {
-        "SuiteDefinitionConfiguration$protocol": "<p> Gets the MQTT protocol that is configured in the suite definition.</p>",
-        "SuiteDefinitionInformation$protocol": "<p> Gets the MQTT protocol that is configured in the suite definition.</p>"
+        "SuiteDefinitionConfiguration$protocol": "<p>Sets the MQTT protocol that is configured in the suite definition.</p>",
+        "SuiteDefinitionInformation$protocol": "<p>Gets the MQTT protocol that is configured in the suite definition.</p>"
       }
     },
     "QualificationReportDownloadUrl": {
@@ -250,13 +251,13 @@
     "RootGroup": {
       "base": null,
       "refs": {
-        "SuiteDefinitionConfiguration$rootGroup": "<p>Gets test suite root group.</p>"
+        "SuiteDefinitionConfiguration$rootGroup": "<p>Gets the test suite root group. This is a required parameter.</p>"
       }
     },
     "SelectedTestList": {
       "base": null,
       "refs": {
-        "SuiteRunConfiguration$selectedTestList": "<p>Gets test case list.</p>"
+        "SuiteRunConfiguration$selectedTestList": "<p>Sets test case list.</p>"
       }
     },
     "StartSuiteRunRequest": {
@@ -299,7 +300,7 @@
       }
     },
     "SuiteDefinitionConfiguration": {
-      "base": "<p>Gets Suite Definition Configuration.</p>",
+      "base": "<p>Gets the suite definition configuration.</p>",
       "refs": {
         "CreateSuiteDefinitionRequest$suiteDefinitionConfiguration": "<p>Creates a Device Advisor test suite with suite definition configuration.</p>",
         "GetSuiteDefinitionResponse$suiteDefinitionConfiguration": "<p>Suite configuration of the suite definition.</p>",
@@ -321,11 +322,11 @@
     "SuiteDefinitionName": {
       "base": null,
       "refs": {
-        "CreateSuiteDefinitionResponse$suiteDefinitionName": "<p>Creates a Device Advisor test suite with suite definition name.</p>",
-        "SuiteDefinitionConfiguration$suiteDefinitionName": "<p>Gets Suite Definition Configuration name.</p>",
+        "CreateSuiteDefinitionResponse$suiteDefinitionName": "<p>The suite definition name of the test suite. This is a required parameter.</p>",
+        "SuiteDefinitionConfiguration$suiteDefinitionName": "<p>Gets the suite definition name. This is a required parameter.</p>",
         "SuiteDefinitionInformation$suiteDefinitionName": "<p>Suite name of the test suite.</p>",
         "SuiteRunInformation$suiteDefinitionName": "<p>Suite definition name of the suite run.</p>",
-        "UpdateSuiteDefinitionResponse$suiteDefinitionName": "<p>Suite definition name of the updated test suite.</p>"
+        "UpdateSuiteDefinitionResponse$suiteDefinitionName": "<p>Updates the suite definition name. This is a required parameter.</p>"
       }
     },
     "SuiteDefinitionVersion": {
@@ -464,7 +465,7 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "CreateSuiteDefinitionResponse$createdAt": "<p>Creates a Device Advisor test suite with TimeStamp of when it was created.</p>",
+        "CreateSuiteDefinitionResponse$createdAt": "<p>The timestamp of when the test suite was created.</p>",
         "GetSuiteDefinitionResponse$createdAt": "<p>Date (in Unix epoch time) when the suite definition was created.</p>",
         "GetSuiteDefinitionResponse$lastModifiedAt": "<p>Date (in Unix epoch time) when the suite definition was last modified.</p>",
         "GetSuiteRunResponse$startTime": "<p>Date (in Unix epoch time) when the test suite run started.</p>",
@@ -492,7 +493,7 @@
     "UUID": {
       "base": null,
       "refs": {
-        "CreateSuiteDefinitionResponse$suiteDefinitionId": "<p>Creates a Device Advisor test suite with suite UUID.</p>",
+        "CreateSuiteDefinitionResponse$suiteDefinitionId": "<p>The UUID of the test suite created.</p>",
         "DeleteSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite to be deleted.</p>",
         "GetSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite to get.</p>",
         "GetSuiteDefinitionResponse$suiteDefinitionId": "<p>Suite definition ID of the suite definition.</p>",

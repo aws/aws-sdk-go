@@ -112,7 +112,7 @@
     "ListUseCases": "<p>Lists the use cases for the integration association. </p>",
     "ListUserHierarchyGroups": "<p>Provides summary information about the hierarchy groups for the specified Amazon Connect instance.</p> <p>For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListUsers": "<p>Provides summary information about the users for the specified Amazon Connect instance.</p>",
-    "MonitorContact": "<p>Initiates silent monitoring of a contact. The Contact Control Panel (CCP) of the user specified by <i>userId</i> will be set to silent monitoring mode on the contact.</p>",
+    "MonitorContact": "<p>Initiates silent monitoring of a contact. The Contact Control Panel (CCP) of the user specified by <i>userId</i> will be set to silent monitoring mode on the contact. Supports voice and chat contacts.</p>",
     "PutUserStatus": "<p>Changes the current status of a user or agent in Amazon Connect. If the agent is currently handling a contact, this sets the agent's next status.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/metrics-agent-status.html\">Agent status</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-next-status.html\">Set your next status</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ReleasePhoneNumber": "<p>Releases a phone number previously claimed to an Amazon Connect instance or traffic distribution group. You can call this API only in the Amazon Web Services Region where the number was claimed.</p> <important> <p>To release phone numbers from a traffic distribution group, use the <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.</p> <p>After releasing a phone number, the phone number enters into a cooldown period of 30 days. It cannot be searched for or claimed again until the period has ended. If you accidentally release a phone number, contact Amazon Web Services Support.</p> </important>",
     "ReplicateInstance": "<p>Replicates an Amazon Connect instance in the specified Amazon Web Services Region.</p> <p>For more information about replicating an Amazon Connect instance, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html\">Create a replica of your existing Amazon Connect instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -147,6 +147,7 @@
     "UpdateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation.</p>",
     "UpdateInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the value for the specified attribute type.</p>",
     "UpdateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates an existing configuration for a resource type. This API is idempotent.</p>",
+    "UpdateParticipantRoleConfig": "<p>Updates timeouts for when human chat participants are to be considered idle, and when agents are automatically disconnected from a chat due to idleness. You can set four timers:</p> <ul> <li> <p>Customer idle timeout</p> </li> <li> <p>Customer auto-disconnect timeout</p> </li> <li> <p>Agent idle timeout</p> </li> <li> <p>Agent auto-disconnect timeout</p> </li> </ul> <p>For more information about how chat timeouts work, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html\">Set up chat timeouts for human participants</a>. </p>",
     "UpdatePhoneNumber": "<p>Updates your claimed phone number from its current Amazon Connect instance or traffic distribution group to another Amazon Connect instance or traffic distribution group in the same Amazon Web Services Region.</p> <important> <p>You can call <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html\">UpdatePhoneNumber</a> operation.</p> </important>",
     "UpdateQueueHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation for the specified queue.</p>",
     "UpdateQueueMaxContacts": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the maximum number of contacts allowed in a queue before it is considered full.</p>",
@@ -661,13 +662,13 @@
     "ChatContent": {
       "base": null,
       "refs": {
-        "ChatMessage$Content": "<p>The content of the chat message.</p>"
+        "ChatMessage$Content": "<p>The content of the chat message. </p> <ul> <li> <p>For <code>text/plain</code> and <code>text/markdown</code>, the Length Constraints are Minimum of 1, Maximum of 1024. </p> </li> <li> <p>For <code>application/json</code>, the Length Constraints are Minimum of 1, Maximum of 12000. </p> </li> </ul>"
       }
     },
     "ChatContentType": {
       "base": null,
       "refs": {
-        "ChatMessage$ContentType": "<p>The type of the content. Supported types are <code>text/plain</code>.</p>"
+        "ChatMessage$ContentType": "<p>The type of the content. Supported types are <code>text/plain</code>, <code>text/markdown</code>, and <code>application/json</code>.</p>"
       }
     },
     "ChatDurationInMinutes": {
@@ -680,6 +681,12 @@
       "base": "<p>A chat message.</p>",
       "refs": {
         "StartChatContactRequest$InitialMessage": "<p>The initial message to be sent to the newly created chat.</p>"
+      }
+    },
+    "ChatParticipantRoleConfig": {
+      "base": "<p>Configuration information for the chat participant role.</p>",
+      "refs": {
+        "UpdateParticipantRoleConfigChannelInfo$Chat": "<p>Configuration information for the chat participant role.</p>"
       }
     },
     "ChatStreamingConfiguration": {
@@ -967,7 +974,8 @@
         "TransferContactResponse$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>",
         "UpdateContactAttributesRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "UpdateContactRequest$ContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with your contact center.</p>",
-        "UpdateContactScheduleRequest$ContactId": "<p>The identifier of the contact.</p>"
+        "UpdateContactScheduleRequest$ContactId": "<p>The identifier of the contact.</p>",
+        "UpdateParticipantRoleConfigRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>"
       }
     },
     "ContactInitiationMethod": {
@@ -2273,6 +2281,7 @@
         "UpdateHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateInstanceAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "UpdateParticipantRoleConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateQueueHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateQueueMaxContactsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateQueueNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -3171,6 +3180,42 @@
       "base": null,
       "refs": {
         "StartChatContactResponse$ParticipantId": "<p>The identifier for a chat participant. The participantId for a chat participant is the same throughout the chat lifecycle.</p>"
+      }
+    },
+    "ParticipantTimerAction": {
+      "base": null,
+      "refs": {
+        "ParticipantTimerValue$ParticipantTimerAction": "<p>The timer action. Currently only one value is allowed: <code>Unset</code>. It deletes a timer.</p>"
+      }
+    },
+    "ParticipantTimerConfigList": {
+      "base": null,
+      "refs": {
+        "ChatParticipantRoleConfig$ParticipantTimerConfigList": "<p>A list of participant timers. You can specify any unique combination of role and timer type. Duplicate entries error out the request with a 400.</p>"
+      }
+    },
+    "ParticipantTimerConfiguration": {
+      "base": "<p>Configuration information for the timer. After the timer configuration is set, it persists for the duration of the chat. It persists across new contacts in the chain, for example, transfer contacts.</p> <p>For more information about how chat timeouts work, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html\">Set up chat timeouts for human participants</a>. </p>",
+      "refs": {
+        "ParticipantTimerConfigList$member": null
+      }
+    },
+    "ParticipantTimerDurationInMinutes": {
+      "base": null,
+      "refs": {
+        "ParticipantTimerValue$ParticipantTimerDurationInMinutes": "<p>The duration of a timer, in minutes. </p>"
+      }
+    },
+    "ParticipantTimerType": {
+      "base": null,
+      "refs": {
+        "ParticipantTimerConfiguration$TimerType": "<p>The type of timer. <code>IDLE</code> indicates the timer applies for considering a human chat participant as idle. <code>DISCONNECT_NONCUSTOMER</code> indicates the timer applies to automatically disconnecting a chat participant due to idleness.</p>"
+      }
+    },
+    "ParticipantTimerValue": {
+      "base": "<p>The value of the timer. Either the timer action (<code>Unset</code> to delete the timer), or the duration of the timer in minutes. Only one value can be set.</p> <p>For more information about how chat timeouts work, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html\">Set up chat timeouts for human participants</a>. </p>",
+      "refs": {
+        "ParticipantTimerConfiguration$TimerValue": "<p>The value of the timer. Either the timer action (Unset to delete the timer), or the duration of the timer in minutes. Only one value can be set.</p>"
       }
     },
     "ParticipantToken": {
@@ -4359,7 +4404,7 @@
     "SupportedMessagingContentTypes": {
       "base": null,
       "refs": {
-        "StartChatContactRequest$SupportedMessagingContentTypes": "<p>The supported chat message content types. Content types can be text/plain or both text/plain and text/markdown.</p>"
+        "StartChatContactRequest$SupportedMessagingContentTypes": "<p>The supported chat message content types. Content types must always contain <code>text/plain</code>. You can then put any other supported type in the list. For example, all the following lists are valid because they contain <code>text/plain</code>: <code>[text/plain, text/markdown, application/json]</code>, <code>[text/markdown, text/plain]</code>, <code>[text/plain, application/json]</code>.</p>"
       }
     },
     "SuspendContactRecordingRequest": {
@@ -4670,6 +4715,12 @@
         "UpdateHoursOfOperationRequest$TimeZone": "<p>The time zone of the hours of operation.</p>"
       }
     },
+    "TimerEligibleParticipantRoles": {
+      "base": null,
+      "refs": {
+        "ParticipantTimerConfiguration$ParticipantRole": "<p>The role of the participant in the chat conversation.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -4866,6 +4917,22 @@
       }
     },
     "UpdateInstanceStorageConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateParticipantRoleConfigChannelInfo": {
+      "base": "<p>Configuration information for the chat participant role.</p>",
+      "refs": {
+        "UpdateParticipantRoleConfigRequest$ChannelConfiguration": "<p>The Amazon Connect channel you want to configure.</p>"
+      }
+    },
+    "UpdateParticipantRoleConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateParticipantRoleConfigResponse": {
       "base": null,
       "refs": {
       }
