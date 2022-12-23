@@ -216,7 +216,9 @@
         "MESSAGE",
         "EVENT",
         "ATTACHMENT",
-        "CONNECTION_ACK"
+        "CONNECTION_ACK",
+        "MESSAGE_DELIVERED",
+        "MESSAGE_READ"
       ]
     },
     "ClientToken":{
@@ -288,10 +290,7 @@
     },
     "CreateParticipantConnectionRequest":{
       "type":"structure",
-      "required":[
-        "Type",
-        "ParticipantToken"
-      ],
+      "required":["ParticipantToken"],
       "members":{
         "Type":{"shape":"ConnectionTypeList"},
         "ParticipantToken":{
@@ -411,7 +410,8 @@
         "ParticipantId":{"shape":"ParticipantId"},
         "DisplayName":{"shape":"DisplayName"},
         "ParticipantRole":{"shape":"ParticipantRole"},
-        "Attachments":{"shape":"Attachments"}
+        "Attachments":{"shape":"Attachments"},
+        "MessageMetadata":{"shape":"MessageMetadata"}
       }
     },
     "MaxResults":{
@@ -420,6 +420,13 @@
       "min":0
     },
     "Message":{"type":"string"},
+    "MessageMetadata":{
+      "type":"structure",
+      "members":{
+        "MessageId":{"shape":"ChatItemId"},
+        "Receipts":{"shape":"Receipts"}
+      }
+    },
     "MostRecent":{
       "type":"integer",
       "max":100,
@@ -467,6 +474,18 @@
       "type":"string",
       "max":2000,
       "min":1
+    },
+    "Receipt":{
+      "type":"structure",
+      "members":{
+        "DeliveredTimestamp":{"shape":"Instant"},
+        "ReadTimestamp":{"shape":"Instant"},
+        "RecipientParticipantId":{"shape":"ParticipantId"}
+      }
+    },
+    "Receipts":{
+      "type":"list",
+      "member":{"shape":"Receipt"}
     },
     "ScanDirection":{
       "type":"string",

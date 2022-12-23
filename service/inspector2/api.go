@@ -15313,6 +15313,12 @@ const (
 
 	// RuntimeUnsupported is a Runtime enum value
 	RuntimeUnsupported = "UNSUPPORTED"
+
+	// RuntimeNodejs18X is a Runtime enum value
+	RuntimeNodejs18X = "NODEJS_18_X"
+
+	// RuntimeGo1X is a Runtime enum value
+	RuntimeGo1X = "GO_1_X"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -15329,6 +15335,8 @@ func Runtime_Values() []string {
 		RuntimePython38,
 		RuntimePython39,
 		RuntimeUnsupported,
+		RuntimeNodejs18X,
+		RuntimeGo1X,
 	}
 }
 

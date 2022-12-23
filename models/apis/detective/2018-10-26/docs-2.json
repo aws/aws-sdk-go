@@ -33,6 +33,11 @@
       "refs": {
       }
     },
+    "AccessDeniedException": {
+      "base": "<p>The request issuer does not have permission to access this resource or perform this operation.</p>",
+      "refs": {
+      }
+    },
     "Account": {
       "base": "<p>An Amazon Web Services account that is the administrator account of or a member of a behavior graph.</p>",
       "refs": {
@@ -252,18 +257,23 @@
     "ErrorCode": {
       "base": null,
       "refs": {
+        "AccessDeniedException$ErrorCode": "<p>The SDK default error code associated with the access denied exception.</p>",
+        "AccessDeniedException$SubErrorCode": "<p>The error code associated with the access denied exception.</p>",
         "ValidationException$ErrorCode": "<p>The error code associated with the validation failure.</p>"
       }
     },
     "ErrorCodeReason": {
       "base": null,
       "refs": {
+        "AccessDeniedException$ErrorCodeReason": "<p>The SDK default explanation of why access was denied.</p>",
+        "AccessDeniedException$SubErrorCodeReason": "<p> An explanation of why access was denied.</p>",
         "ValidationException$ErrorCodeReason": "<p> An explanation of why validation failed.</p>"
       }
     },
     "ErrorMessage": {
       "base": null,
       "refs": {
+        "AccessDeniedException$Message": null,
         "ConflictException$Message": null,
         "InternalServerException$Message": null,
         "ResourceNotFoundException$Message": null,

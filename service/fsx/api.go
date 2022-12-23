@@ -8565,9 +8565,9 @@ type CreateFileSystemOpenZFSConfiguration struct {
 	//    in the US East (N. Virginia), US East (Ohio), US West (Oregon), and Europe
 	//    (Ireland) Amazon Web Services Regions.
 	//
-	// For more information, see: Deployment type availability (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/available-aws-regions.html)
-	// and File system performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/zfs-fs-performance.html)in
-	// theAmazon FSx for OpenZFS User Guide.
+	// For more information, see: Deployment type availability (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/availability-durability.html#available-aws-regions)
+	// and File system performance (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/performance.html#zfs-fs-performance)
+	// in the Amazon FSx for OpenZFS User Guide.
 	//
 	// DeploymentType is a required field
 	DeploymentType *string `type:"string" required:"true" enum:"OpenZFSDeploymentType"`
@@ -19021,6 +19021,9 @@ type StorageVirtualMachine struct {
 	// The SVM's system generated unique ID.
 	StorageVirtualMachineId *string `min:"21" type:"string"`
 
+	// Describes the SVM's subtype.
+	Subtype *string `type:"string" enum:"StorageVirtualMachineSubtype"`
+
 	// A list of Tag values, with a maximum of 50 elements.
 	Tags []*Tag `min:"1" type:"list"`
 
@@ -19103,6 +19106,12 @@ func (s *StorageVirtualMachine) SetRootVolumeSecurityStyle(v string) *StorageVir
 // SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
 func (s *StorageVirtualMachine) SetStorageVirtualMachineId(v string) *StorageVirtualMachine {
 	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetSubtype sets the Subtype field's value.
+func (s *StorageVirtualMachine) SetSubtype(v string) *StorageVirtualMachine {
+	s.Subtype = &v
 	return s
 }
 
@@ -23304,6 +23313,30 @@ func StorageVirtualMachineRootVolumeSecurityStyle_Values() []string {
 		StorageVirtualMachineRootVolumeSecurityStyleUnix,
 		StorageVirtualMachineRootVolumeSecurityStyleNtfs,
 		StorageVirtualMachineRootVolumeSecurityStyleMixed,
+	}
+}
+
+const (
+	// StorageVirtualMachineSubtypeDefault is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeDefault = "DEFAULT"
+
+	// StorageVirtualMachineSubtypeDpDestination is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeDpDestination = "DP_DESTINATION"
+
+	// StorageVirtualMachineSubtypeSyncDestination is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeSyncDestination = "SYNC_DESTINATION"
+
+	// StorageVirtualMachineSubtypeSyncSource is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeSyncSource = "SYNC_SOURCE"
+)
+
+// StorageVirtualMachineSubtype_Values returns all elements of the StorageVirtualMachineSubtype enum
+func StorageVirtualMachineSubtype_Values() []string {
+	return []string{
+		StorageVirtualMachineSubtypeDefault,
+		StorageVirtualMachineSubtypeDpDestination,
+		StorageVirtualMachineSubtypeSyncDestination,
+		StorageVirtualMachineSubtypeSyncSource,
 	}
 }
 
