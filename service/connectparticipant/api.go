@@ -59,6 +59,8 @@ func (c *ConnectParticipant) CompleteAttachmentUploadRequest(input *CompleteAtta
 // Allows you to confirm that the attachment has been uploaded using the pre-signed
 // URL provided in StartAttachmentUpload API.
 //
+// ConnectionToken is used for invoking this API instead of ParticipantToken.
+//
 // The Amazon Connect Participant Service APIs do not use Signature Version
 // 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
@@ -155,8 +157,9 @@ func (c *ConnectParticipant) CreateParticipantConnectionRequest(input *CreatePar
 
 // CreateParticipantConnection API operation for Amazon Connect Participant Service.
 //
-// Creates the participant's connection. Note that ParticipantToken is used
-// for invoking this API instead of ConnectionToken.
+// Creates the participant's connection.
+//
+// ParticipantToken is used for invoking this API instead of ConnectionToken.
 //
 // The participant token is valid for the lifetime of the participant – until
 // they are part of a contact.
@@ -277,8 +280,9 @@ func (c *ConnectParticipant) DisconnectParticipantRequest(input *DisconnectParti
 
 // DisconnectParticipant API operation for Amazon Connect Participant Service.
 //
-// Disconnects a participant. Note that ConnectionToken is used for invoking
-// this API instead of ParticipantToken.
+// Disconnects a participant.
+//
+// ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
 // The Amazon Connect Participant Service APIs do not use Signature Version
 // 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
@@ -372,6 +376,8 @@ func (c *ConnectParticipant) GetAttachmentRequest(input *GetAttachmentInput) (re
 //
 // Provides a pre-signed URL for download of a completed attachment. This is
 // an asynchronous API for use with active contacts.
+//
+// ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
 // The Amazon Connect Participant Service APIs do not use Signature Version
 // 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
@@ -470,7 +476,8 @@ func (c *ConnectParticipant) GetTranscriptRequest(input *GetTranscriptInput) (re
 // GetTranscript API operation for Amazon Connect Participant Service.
 //
 // Retrieves a transcript of the session, including details about any attachments.
-// Note that ConnectionToken is used for invoking this API instead of ParticipantToken.
+//
+// ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
 // The Amazon Connect Participant Service APIs do not use Signature Version
 // 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
@@ -613,8 +620,9 @@ func (c *ConnectParticipant) SendEventRequest(input *SendEventInput) (req *reque
 
 // SendEvent API operation for Amazon Connect Participant Service.
 //
-// Sends an event. Note that ConnectionToken is used for invoking this API instead
-// of ParticipantToken.
+// Sends an event.
+//
+// ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
 // The Amazon Connect Participant Service APIs do not use Signature Version
 // 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
@@ -706,8 +714,9 @@ func (c *ConnectParticipant) SendMessageRequest(input *SendMessageInput) (req *r
 
 // SendMessage API operation for Amazon Connect Participant Service.
 //
-// Sends a message. Note that ConnectionToken is used for invoking this API
-// instead of ParticipantToken.
+// Sends a message.
+//
+// ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
 // The Amazon Connect Participant Service APIs do not use Signature Version
 // 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
@@ -801,6 +810,8 @@ func (c *ConnectParticipant) StartAttachmentUploadRequest(input *StartAttachment
 //
 // Provides a pre-signed Amazon S3 URL in response for uploading the file directly
 // to S3.
+//
+// ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
 // The Amazon Connect Participant Service APIs do not use Signature Version
 // 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
@@ -928,7 +939,7 @@ type AttachmentItem struct {
 	AttachmentName *string `min:"1" type:"string"`
 
 	// Describes the MIME file type of the attachment. For a list of supported file
-	// types, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits)
+	// types, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html)
 	// in the Amazon Connect Administrator Guide.
 	ContentType *string `min:"1" type:"string"`
 
@@ -987,7 +998,9 @@ type CompleteAttachmentUploadInput struct {
 	AttachmentIds []*string `min:"1" type:"list" required:"true"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The authentication token associated with the participant's connection.
@@ -1202,10 +1215,9 @@ type CreateParticipantConnectionInput struct {
 	// ParticipantToken is a required field
 	ParticipantToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
 
-	// Type of connection information required.
-	//
-	// Type is a required field
-	Type []*string `min:"1" type:"list" required:"true" enum:"ConnectionType"`
+	// Type of connection information required. This can be omitted if ConnectParticipant
+	// is true.
+	Type []*string `min:"1" type:"list" enum:"ConnectionType"`
 }
 
 // String returns the string representation.
@@ -1234,9 +1246,6 @@ func (s *CreateParticipantConnectionInput) Validate() error {
 	}
 	if s.ParticipantToken != nil && len(*s.ParticipantToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ParticipantToken", 1))
-	}
-	if s.Type == nil {
-		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
 	if s.Type != nil && len(s.Type) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Type", 1))
@@ -1311,7 +1320,9 @@ type DisconnectParticipantInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The authentication token associated with the participant's connection.
@@ -1752,6 +1763,10 @@ type Item struct {
 	// The ID of the item.
 	Id *string `min:"1" type:"string"`
 
+	// The metadata related to the message. Currently this supports only information
+	// related to message receipts.
+	MessageMetadata *MessageMetadata `type:"structure"`
+
 	// The ID of the sender in the session.
 	ParticipantId *string `min:"1" type:"string"`
 
@@ -1816,6 +1831,12 @@ func (s *Item) SetId(v string) *Item {
 	return s
 }
 
+// SetMessageMetadata sets the MessageMetadata field's value.
+func (s *Item) SetMessageMetadata(v *MessageMetadata) *Item {
+	s.MessageMetadata = v
+	return s
+}
+
 // SetParticipantId sets the ParticipantId field's value.
 func (s *Item) SetParticipantId(v string) *Item {
 	s.ParticipantId = &v
@@ -1834,11 +1855,104 @@ func (s *Item) SetType(v string) *Item {
 	return s
 }
 
+// Contains metadata related to a message.
+type MessageMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the message that contains the metadata information.
+	MessageId *string `min:"1" type:"string"`
+
+	// The list of receipt information for a message for different recipients.
+	Receipts []*Receipt `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageMetadata) GoString() string {
+	return s.String()
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *MessageMetadata) SetMessageId(v string) *MessageMetadata {
+	s.MessageId = &v
+	return s
+}
+
+// SetReceipts sets the Receipts field's value.
+func (s *MessageMetadata) SetReceipts(v []*Receipt) *MessageMetadata {
+	s.Receipts = v
+	return s
+}
+
+// The receipt for the message delivered to the recipient.
+type Receipt struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the message was delivered to the recipient.
+	DeliveredTimestamp *string `min:"1" type:"string"`
+
+	// The time when the message was read by the recipient.
+	ReadTimestamp *string `min:"1" type:"string"`
+
+	// The identifier of the recipient of the message.
+	RecipientParticipantId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Receipt) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Receipt) GoString() string {
+	return s.String()
+}
+
+// SetDeliveredTimestamp sets the DeliveredTimestamp field's value.
+func (s *Receipt) SetDeliveredTimestamp(v string) *Receipt {
+	s.DeliveredTimestamp = &v
+	return s
+}
+
+// SetReadTimestamp sets the ReadTimestamp field's value.
+func (s *Receipt) SetReadTimestamp(v string) *Receipt {
+	s.ReadTimestamp = &v
+	return s
+}
+
+// SetRecipientParticipantId sets the RecipientParticipantId field's value.
+func (s *Receipt) SetRecipientParticipantId(v string) *Receipt {
+	s.RecipientParticipantId = &v
+	return s
+}
+
 type SendEventInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The authentication token associated with the participant's connection.
@@ -1846,8 +1960,10 @@ type SendEventInput struct {
 	// ConnectionToken is a required field
 	ConnectionToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
 
-	// The content of the event to be sent (for example, message text). This is
-	// not yet supported.
+	// The content of the event to be sent (for example, message text). For content
+	// related to message receipts, this is supported in the form of a JSON string.
+	//
+	// Sample Content: "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
 	Content *string `min:"1" type:"string"`
 
 	// The content type of the request. Supported types are:
@@ -1855,6 +1971,10 @@ type SendEventInput struct {
 	//    * application/vnd.amazonaws.connect.event.typing
 	//
 	//    * application/vnd.amazonaws.connect.event.connection.acknowledged
+	//
+	//    * application/vnd.amazonaws.connect.event.message.delivered
+	//
+	//    * application/vnd.amazonaws.connect.event.message.read
 	//
 	// ContentType is a required field
 	ContentType *string `min:"1" type:"string" required:"true"`
@@ -1974,7 +2094,9 @@ type SendMessageInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The authentication token associated with the connection.
@@ -1984,10 +2106,17 @@ type SendMessageInput struct {
 
 	// The content of the message.
 	//
+	//    * For text/plain and text/markdown, the Length Constraints are Minimum
+	//    of 1, Maximum of 1024.
+	//
+	//    * For application/json, the Length Constraints are Minimum of 1, Maximum
+	//    of 12000.
+	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The type of the content. Supported types are text/plain.
+	// The type of the content. Supported types are text/plain, text/markdown, and
+	// application/json.
 	//
 	// ContentType is a required field
 	ContentType *string `min:"1" type:"string" required:"true"`
@@ -2183,7 +2312,10 @@ type StartAttachmentUploadInput struct {
 	// AttachmentSizeInBytes is a required field
 	AttachmentSizeInBytes *int64 `min:"1" type:"long" required:"true"`
 
-	// A unique case sensitive identifier to support idempotency of request.
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The authentication token associated with the participant's connection.
@@ -2192,7 +2324,7 @@ type StartAttachmentUploadInput struct {
 	ConnectionToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
 
 	// Describes the MIME file type of the attachment. For a list of supported file
-	// types, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits)
+	// types, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html)
 	// in the Amazon Connect Administrator Guide.
 	//
 	// ContentType is a required field
@@ -2668,6 +2800,12 @@ const (
 
 	// ChatItemTypeConnectionAck is a ChatItemType enum value
 	ChatItemTypeConnectionAck = "CONNECTION_ACK"
+
+	// ChatItemTypeMessageDelivered is a ChatItemType enum value
+	ChatItemTypeMessageDelivered = "MESSAGE_DELIVERED"
+
+	// ChatItemTypeMessageRead is a ChatItemType enum value
+	ChatItemTypeMessageRead = "MESSAGE_READ"
 )
 
 // ChatItemType_Values returns all elements of the ChatItemType enum
@@ -2683,6 +2821,8 @@ func ChatItemType_Values() []string {
 		ChatItemTypeEvent,
 		ChatItemTypeAttachment,
 		ChatItemTypeConnectionAck,
+		ChatItemTypeMessageDelivered,
+		ChatItemTypeMessageRead,
 	}
 }
 

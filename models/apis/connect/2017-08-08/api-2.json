@@ -2828,7 +2828,8 @@
       "type":"structure",
       "members":{
         "StatusStartTimestamp":{"shape":"Timestamp"},
-        "StatusArn":{"shape":"ARN"}
+        "StatusArn":{"shape":"ARN"},
+        "StatusName":{"shape":"AgentStatusName"}
       }
     },
     "AgentStatusState":{
@@ -2866,6 +2867,12 @@
     },
     "AgentUsername":{
       "type":"string",
+      "max":100,
+      "min":1
+    },
+    "AgentsMinOneMaxHundred":{
+      "type":"list",
+      "member":{"shape":"UserId"},
       "max":100,
       "min":1
     },
@@ -4064,6 +4071,19 @@
       "type":"list",
       "member":{"shape":"CurrentMetricResult"}
     },
+    "CurrentMetricSortCriteria":{
+      "type":"structure",
+      "members":{
+        "SortByMetric":{"shape":"CurrentMetricName"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "CurrentMetricSortCriteriaMaxOne":{
+      "type":"list",
+      "member":{"shape":"CurrentMetricSortCriteria"},
+      "max":1,
+      "min":0
+    },
     "CurrentMetrics":{
       "type":"list",
       "member":{"shape":"CurrentMetric"}
@@ -4857,7 +4877,8 @@
       "type":"structure",
       "members":{
         "Queue":{"shape":"QueueReference"},
-        "Channel":{"shape":"Channel"}
+        "Channel":{"shape":"Channel"},
+        "RoutingProfile":{"shape":"RoutingProfileReference"}
       }
     },
     "DirectoryAlias":{
@@ -5167,7 +5188,8 @@
       "type":"structure",
       "members":{
         "Queues":{"shape":"Queues"},
-        "Channels":{"shape":"Channels"}
+        "Channels":{"shape":"Channels"},
+        "RoutingProfiles":{"shape":"RoutingProfiles"}
       }
     },
     "FunctionArn":{
@@ -5224,7 +5246,8 @@
         "MaxResults":{
           "shape":"MaxResult100",
           "box":true
-        }
+        },
+        "SortCriteria":{"shape":"CurrentMetricSortCriteriaMaxOne"}
       }
     },
     "GetCurrentMetricDataResponse":{
@@ -5232,7 +5255,8 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "MetricResults":{"shape":"CurrentMetricResults"},
-        "DataSnapshotTime":{"shape":"timestamp"}
+        "DataSnapshotTime":{"shape":"timestamp"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
       }
     },
     "GetCurrentUserDataRequest":{
@@ -5259,7 +5283,8 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"NextToken"},
-        "UserDataList":{"shape":"UserDataList"}
+        "UserDataList":{"shape":"UserDataList"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
       }
     },
     "GetFederationTokenRequest":{
@@ -5386,7 +5411,8 @@
       "type":"string",
       "enum":[
         "QUEUE",
-        "CHANNEL"
+        "CHANNEL",
+        "ROUTING_PROFILE"
       ]
     },
     "Groupings":{
@@ -8142,6 +8168,12 @@
       "type":"list",
       "member":{"shape":"RoutingProfileSummary"}
     },
+    "RoutingProfiles":{
+      "type":"list",
+      "member":{"shape":"RoutingProfileId"},
+      "max":100,
+      "min":1
+    },
     "Rule":{
       "type":"structure",
       "required":[
@@ -8520,6 +8552,13 @@
       "member":{"shape":"TaskTemplateSingleSelectOption"}
     },
     "SnapshotVersion":{"type":"string"},
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
     "SourceApplicationName":{
       "type":"string",
       "max":100,
@@ -10049,15 +10088,25 @@
         "AvailableSlotsByChannel":{"shape":"ChannelToCountMap"},
         "MaxSlotsByChannel":{"shape":"ChannelToCountMap"},
         "ActiveSlotsByChannel":{"shape":"ChannelToCountMap"},
-        "Contacts":{"shape":"AgentContactReferenceList"}
+        "Contacts":{"shape":"AgentContactReferenceList"},
+        "NextStatus":{"shape":"AgentStatusName"}
       }
     },
     "UserDataFilters":{
       "type":"structure",
       "members":{
         "Queues":{"shape":"Queues"},
-        "ContactFilter":{"shape":"ContactFilter"}
+        "ContactFilter":{"shape":"ContactFilter"},
+        "RoutingProfiles":{"shape":"RoutingProfiles"},
+        "Agents":{"shape":"AgentsMinOneMaxHundred"},
+        "UserHierarchyGroups":{"shape":"UserDataHierarchyGroups"}
       }
+    },
+    "UserDataHierarchyGroups":{
+      "type":"list",
+      "member":{"shape":"HierarchyGroupId"},
+      "max":1,
+      "min":1
     },
     "UserDataList":{
       "type":"list",

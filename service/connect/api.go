@@ -12457,7 +12457,7 @@ func (c *Connect) MonitorContactRequest(input *MonitorContactInput) (req *reques
 //
 // Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
 // of the user specified by userId will be set to silent monitoring mode on
-// the contact. Supports voice and chat contacts.
+// the contact.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18815,6 +18815,9 @@ type AgentStatusReference struct {
 	// The Amazon Resource Name (ARN) of the agent's status.
 	StatusArn *string `type:"string"`
 
+	// The name of the agent status.
+	StatusName *string `min:"1" type:"string"`
+
 	// The start timestamp of the agent's status.
 	StatusStartTimestamp *time.Time `type:"timestamp"`
 }
@@ -18840,6 +18843,12 @@ func (s AgentStatusReference) GoString() string {
 // SetStatusArn sets the StatusArn field's value.
 func (s *AgentStatusReference) SetStatusArn(v string) *AgentStatusReference {
 	s.StatusArn = &v
+	return s
+}
+
+// SetStatusName sets the StatusName field's value.
+func (s *AgentStatusReference) SetStatusName(v string) *AgentStatusReference {
+	s.StatusName = &v
 	return s
 }
 
@@ -24346,6 +24355,49 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 	return s
 }
 
+// The way to sort the resulting response based on metrics. By default resources
+// are sorted based on AGENTS_ONLINE, DESCENDING. The metric collection is sorted
+// based on the input metrics.
+type CurrentMetricSortCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The current metric names.
+	SortByMetric *string `type:"string" enum:"CurrentMetricName"`
+
+	// The way to sort.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CurrentMetricSortCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CurrentMetricSortCriteria) GoString() string {
+	return s.String()
+}
+
+// SetSortByMetric sets the SortByMetric field's value.
+func (s *CurrentMetricSortCriteria) SetSortByMetric(v string) *CurrentMetricSortCriteria {
+	s.SortByMetric = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *CurrentMetricSortCriteria) SetSortOrder(v string) *CurrentMetricSortCriteria {
+	s.SortOrder = &v
+	return s
+}
+
 // Information about a reference when the referenceType is DATE. Otherwise,
 // null.
 type DateReference struct {
@@ -27611,6 +27663,9 @@ type Dimensions struct {
 
 	// Information about the queue for which metrics are returned.
 	Queue *QueueReference `type:"structure"`
+
+	// Information about the routing profile assigned to the user.
+	RoutingProfile *RoutingProfileReference `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27640,6 +27695,12 @@ func (s *Dimensions) SetChannel(v string) *Dimensions {
 // SetQueue sets the Queue field's value.
 func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 	s.Queue = v
+	return s
+}
+
+// SetRoutingProfile sets the RoutingProfile field's value.
+func (s *Dimensions) SetRoutingProfile(v *RoutingProfileReference) *Dimensions {
+	s.RoutingProfile = v
 	return s
 }
 
@@ -28918,6 +28979,9 @@ type Filters struct {
 	// queue, and can specify up to 100 queues per request. The GetCurrentMetricsData
 	// API in particular requires a queue when you include a Filter in your request.
 	Queues []*string `min:"1" type:"list"`
+
+	// A list of up to 100 routing profile IDs or ARNs.
+	RoutingProfiles []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -28944,6 +29008,9 @@ func (s *Filters) Validate() error {
 	if s.Queues != nil && len(s.Queues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Queues", 1))
 	}
+	if s.RoutingProfiles != nil && len(s.RoutingProfiles) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfiles", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -28960,6 +29027,12 @@ func (s *Filters) SetChannels(v []*string) *Filters {
 // SetQueues sets the Queues field's value.
 func (s *Filters) SetQueues(v []*string) *Filters {
 	s.Queues = v
+	return s
+}
+
+// SetRoutingProfiles sets the RoutingProfiles field's value.
+func (s *Filters) SetRoutingProfiles(v []*string) *Filters {
+	s.RoutingProfiles = v
 	return s
 }
 
@@ -29159,10 +29232,22 @@ type GetCurrentMetricDataInput struct {
 	// CurrentMetrics is a required field
 	CurrentMetrics []*CurrentMetric `type:"list" required:"true"`
 
-	// The queues, up to 100, or channels, to use to filter the metrics returned.
+	// The filters to apply to returned metrics. You can filter up to the following
+	// limits:
+	//
+	//    * Queues: 100
+	//
+	//    * Routing profiles: 100
+	//
+	//    * Channels: 3 (VOICE, CHAT, and TASK channels are supported.)
+	//
 	// Metric data is retrieved only for the resources associated with the queues
-	// or channels included in the filter. You can include both queue IDs and queue
-	// ARNs in the same request. VOICE, CHAT, and TASK channels are supported.
+	// or routing profiles, and by any channels included in the filter. (You cannot
+	// filter by both queue AND routing profile.) You can include both resource
+	// IDs and resource ARNs in the same request.
+	//
+	// Currently tagging is only supported on the resources that are passed in the
+	// filter.
 	//
 	// Filters is a required field
 	Filters *Filters `type:"structure" required:"true"`
@@ -29175,7 +29260,8 @@ type GetCurrentMetricDataInput struct {
 	//    CHAT, and TASK channels are supported.
 	//
 	//    * If you group by ROUTING_PROFILE, you must include either a queue or
-	//    routing profile filter.
+	//    routing profile filter. In addition, a routing profile filter is required
+	//    for metrics CONTACTS_SCHEDULED, CONTACTS_IN_QUEUE, and OLDEST_CONTACT_AGE.
 	//
 	//    * If no Grouping is included in the request, a summary of metrics is returned.
 	Groupings []*string `type:"list" enum:"Grouping"`
@@ -29196,6 +29282,15 @@ type GetCurrentMetricDataInput struct {
 	// requests that use the token must use the same request parameters as the request
 	// that generated the token.
 	NextToken *string `type:"string"`
+
+	// The way to sort the resulting response based on metrics. You can enter one
+	// sort criteria. By default resources are sorted based on AGENTS_ONLINE, DESCENDING.
+	// The metric collection is sorted based on the input metrics.
+	//
+	// Note the following:
+	//
+	//    * Sorting on SLOTS_ACTIVE and SLOTS_AVAILABLE is not supported.
+	SortCriteria []*CurrentMetricSortCriteria `type:"list"`
 }
 
 // String returns the string representation.
@@ -29282,8 +29377,17 @@ func (s *GetCurrentMetricDataInput) SetNextToken(v string) *GetCurrentMetricData
 	return s
 }
 
+// SetSortCriteria sets the SortCriteria field's value.
+func (s *GetCurrentMetricDataInput) SetSortCriteria(v []*CurrentMetricSortCriteria) *GetCurrentMetricDataInput {
+	s.SortCriteria = v
+	return s
+}
+
 type GetCurrentMetricDataOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The total count of the result, regardless of the current page size.
+	ApproximateTotalCount *int64 `type:"long"`
 
 	// The time at which the metrics were retrieved and cached for pagination.
 	DataSnapshotTime *time.Time `type:"timestamp"`
@@ -29317,6 +29421,12 @@ func (s GetCurrentMetricDataOutput) GoString() string {
 	return s.String()
 }
 
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *GetCurrentMetricDataOutput) SetApproximateTotalCount(v int64) *GetCurrentMetricDataOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
 // SetDataSnapshotTime sets the DataSnapshotTime field's value.
 func (s *GetCurrentMetricDataOutput) SetDataSnapshotTime(v time.Time) *GetCurrentMetricDataOutput {
 	s.DataSnapshotTime = &v
@@ -29338,9 +29448,25 @@ func (s *GetCurrentMetricDataOutput) SetNextToken(v string) *GetCurrentMetricDat
 type GetCurrentUserDataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters up to 100 Queues, or up to 9 ContactStates. The user data is retrieved
-	// only for those users who are associated with the queues and have contacts
-	// that are in the specified ContactState.
+	// The filters to apply to returned user data. You can filter up to the following
+	// limits:
+	//
+	//    * Queues: 100
+	//
+	//    * Routing profiles: 100
+	//
+	//    * Agents: 100
+	//
+	//    * Contact states: 9
+	//
+	//    * User hierarchy groups: 1
+	//
+	// The user data is retrieved for only the specified values/resources in the
+	// filter. A maximum of one filter can be passed from queues, routing profiles,
+	// agents, and user hierarchy groups.
+	//
+	// Currently tagging is only supported on the resources that are passed in the
+	// filter.
 	//
 	// Filters is a required field
 	Filters *UserDataFilters `type:"structure" required:"true"`
@@ -29431,6 +29557,9 @@ func (s *GetCurrentUserDataInput) SetNextToken(v string) *GetCurrentUserDataInpu
 type GetCurrentUserDataOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The total count of the result, regardless of the current page size.
+	ApproximateTotalCount *int64 `type:"long"`
+
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 
@@ -29454,6 +29583,12 @@ func (s GetCurrentUserDataOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetCurrentUserDataOutput) GoString() string {
 	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *GetCurrentUserDataOutput) SetApproximateTotalCount(v int64) *GetCurrentUserDataOutput {
+	s.ApproximateTotalCount = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -48661,6 +48796,9 @@ type UserData struct {
 	// of the RoutingProfile assigned to the agent.
 	MaxSlotsByChannel map[string]*int64 `type:"map"`
 
+	// The Next status of the agent.
+	NextStatus *string `min:"1" type:"string"`
+
 	// Information about the routing profile that is assigned to the user.
 	RoutingProfile *RoutingProfileReference `type:"structure"`
 
@@ -48721,6 +48859,12 @@ func (s *UserData) SetMaxSlotsByChannel(v map[string]*int64) *UserData {
 	return s
 }
 
+// SetNextStatus sets the NextStatus field's value.
+func (s *UserData) SetNextStatus(v string) *UserData {
+	s.NextStatus = &v
+	return s
+}
+
 // SetRoutingProfile sets the RoutingProfile field's value.
 func (s *UserData) SetRoutingProfile(v *RoutingProfileReference) *UserData {
 	s.RoutingProfile = v
@@ -48743,12 +48887,21 @@ func (s *UserData) SetUser(v *UserReference) *UserData {
 type UserDataFilters struct {
 	_ struct{} `type:"structure"`
 
+	// A list of up to 100 agent IDs or ARNs.
+	Agents []*string `min:"1" type:"list"`
+
 	// A filter for the user data based on the contact information that is associated
 	// to the user. It contains a list of contact states.
 	ContactFilter *ContactFilter `type:"structure"`
 
-	// Contains information about a queue resource for which metrics are returned.
+	// A list of up to 100 queues or ARNs.
 	Queues []*string `min:"1" type:"list"`
+
+	// A list of up to 100 routing profile IDs or ARNs.
+	RoutingProfiles []*string `min:"1" type:"list"`
+
+	// A UserHierarchyGroup ID or ARN.
+	UserHierarchyGroups []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -48772,14 +48925,29 @@ func (s UserDataFilters) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UserDataFilters) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UserDataFilters"}
+	if s.Agents != nil && len(s.Agents) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Agents", 1))
+	}
 	if s.Queues != nil && len(s.Queues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Queues", 1))
+	}
+	if s.RoutingProfiles != nil && len(s.RoutingProfiles) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfiles", 1))
+	}
+	if s.UserHierarchyGroups != nil && len(s.UserHierarchyGroups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserHierarchyGroups", 1))
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAgents sets the Agents field's value.
+func (s *UserDataFilters) SetAgents(v []*string) *UserDataFilters {
+	s.Agents = v
+	return s
 }
 
 // SetContactFilter sets the ContactFilter field's value.
@@ -48791,6 +48959,18 @@ func (s *UserDataFilters) SetContactFilter(v *ContactFilter) *UserDataFilters {
 // SetQueues sets the Queues field's value.
 func (s *UserDataFilters) SetQueues(v []*string) *UserDataFilters {
 	s.Queues = v
+	return s
+}
+
+// SetRoutingProfiles sets the RoutingProfiles field's value.
+func (s *UserDataFilters) SetRoutingProfiles(v []*string) *UserDataFilters {
+	s.RoutingProfiles = v
+	return s
+}
+
+// SetUserHierarchyGroups sets the UserHierarchyGroups field's value.
+func (s *UserDataFilters) SetUserHierarchyGroups(v []*string) *UserDataFilters {
+	s.UserHierarchyGroups = v
 	return s
 }
 
@@ -50079,6 +50259,9 @@ const (
 
 	// GroupingChannel is a Grouping enum value
 	GroupingChannel = "CHANNEL"
+
+	// GroupingRoutingProfile is a Grouping enum value
+	GroupingRoutingProfile = "ROUTING_PROFILE"
 )
 
 // Grouping_Values returns all elements of the Grouping enum
@@ -50086,6 +50269,7 @@ func Grouping_Values() []string {
 	return []string{
 		GroupingQueue,
 		GroupingChannel,
+		GroupingRoutingProfile,
 	}
 }
 
@@ -51671,6 +51855,22 @@ const (
 func SearchableQueueType_Values() []string {
 	return []string{
 		SearchableQueueTypeStandard,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }
 

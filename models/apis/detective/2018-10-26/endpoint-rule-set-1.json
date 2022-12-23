@@ -166,7 +166,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://inspector2-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://api.detective-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -222,7 +222,7 @@
                                         {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://inspector2-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://api.detective-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -276,7 +276,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://inspector2.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://api.detective.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -294,7 +294,7 @@
                 {
                     "conditions": [],
                     "endpoint": {
-                        "url": "https://inspector2.{Region}.{PartitionResult#dnsSuffix}",
+                        "url": "https://api.detective.{Region}.{PartitionResult#dnsSuffix}",
                         "properties": {},
                         "headers": {}
                     },

@@ -3303,6 +3303,7 @@
         "Name":{"shape":"StorageVirtualMachineName"},
         "ResourceARN":{"shape":"ResourceARN"},
         "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
+        "Subtype":{"shape":"StorageVirtualMachineSubtype"},
         "UUID":{"shape":"UUID"},
         "Tags":{"shape":"Tags"},
         "LifecycleTransitionReason":{"shape":"LifecycleTransitionReason"},
@@ -3377,6 +3378,15 @@
         "UNIX",
         "NTFS",
         "MIXED"
+      ]
+    },
+    "StorageVirtualMachineSubtype":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "DP_DESTINATION",
+        "SYNC_DESTINATION",
+        "SYNC_SOURCE"
       ]
     },
     "StorageVirtualMachines":{

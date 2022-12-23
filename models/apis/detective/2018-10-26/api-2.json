@@ -20,6 +20,7 @@
       },
       "input":{"shape":"AcceptInvitationRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -35,6 +36,7 @@
       "input":{"shape":"BatchGetGraphMemberDatasourcesRequest"},
       "output":{"shape":"BatchGetGraphMemberDatasourcesResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
@@ -49,6 +51,7 @@
       "input":{"shape":"BatchGetMembershipDatasourcesRequest"},
       "output":{"shape":"BatchGetMembershipDatasourcesResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
@@ -63,6 +66,7 @@
       "input":{"shape":"CreateGraphRequest"},
       "output":{"shape":"CreateGraphResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"}
@@ -77,6 +81,7 @@
       "input":{"shape":"CreateMembersRequest"},
       "output":{"shape":"CreateMembersResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
@@ -91,6 +96,7 @@
       },
       "input":{"shape":"DeleteGraphRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
@@ -105,6 +111,7 @@
       "input":{"shape":"DeleteMembersRequest"},
       "output":{"shape":"DeleteMembersResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -120,6 +127,7 @@
       "input":{"shape":"DescribeOrganizationConfigurationRequest"},
       "output":{"shape":"DescribeOrganizationConfigurationResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"TooManyRequestsException"}
@@ -132,6 +140,7 @@
         "requestUri":"/orgs/disableAdminAccount"
       },
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"TooManyRequestsException"}
@@ -145,6 +154,7 @@
       },
       "input":{"shape":"DisassociateMembershipRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -159,6 +169,7 @@
       },
       "input":{"shape":"EnableOrganizationAdminAccountRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"TooManyRequestsException"}
@@ -173,6 +184,7 @@
       "input":{"shape":"GetMembersRequest"},
       "output":{"shape":"GetMembersResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
@@ -187,6 +199,7 @@
       "input":{"shape":"ListDatasourcePackagesRequest"},
       "output":{"shape":"ListDatasourcePackagesResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
@@ -201,6 +214,7 @@
       "input":{"shape":"ListGraphsRequest"},
       "output":{"shape":"ListGraphsResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
       ]
@@ -214,6 +228,7 @@
       "input":{"shape":"ListInvitationsRequest"},
       "output":{"shape":"ListInvitationsResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
       ]
@@ -227,6 +242,7 @@
       "input":{"shape":"ListMembersRequest"},
       "output":{"shape":"ListMembersResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
@@ -241,6 +257,7 @@
       "input":{"shape":"ListOrganizationAdminAccountsRequest"},
       "output":{"shape":"ListOrganizationAdminAccountsResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"TooManyRequestsException"}
@@ -256,6 +273,7 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
@@ -269,6 +287,7 @@
       },
       "input":{"shape":"RejectInvitationRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -283,6 +302,7 @@
       },
       "input":{"shape":"StartMonitoringMemberRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -300,6 +320,7 @@
       "input":{"shape":"TagResourceRequest"},
       "output":{"shape":"TagResourceResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
@@ -315,6 +336,7 @@
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
@@ -328,6 +350,7 @@
       },
       "input":{"shape":"UpdateDatasourcePackagesRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"},
@@ -342,6 +365,7 @@
       },
       "input":{"shape":"UpdateOrganizationConfigurationRequest"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"TooManyRequestsException"}
@@ -355,6 +379,18 @@
       "members":{
         "GraphArn":{"shape":"GraphArn"}
       }
+    },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorCodeReason":{"shape":"ErrorCodeReason"},
+        "SubErrorCode":{"shape":"ErrorCode"},
+        "SubErrorCodeReason":{"shape":"ErrorCodeReason"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "Account":{
       "type":"structure",
@@ -576,7 +612,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^.+@.+$"
+      "pattern":"^.+@(?:(?:(?!-)[A-Za-z0-9-]{1,62})?[A-Za-z0-9]{1}\\.)+[A-Za-z]{2,6}$"
     },
     "EmailMessage":{
       "type":"string",

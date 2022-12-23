@@ -1,3 +1,13 @@
+Release v1.44.167 (2022-12-23)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/connectparticipant`: Updates service API and documentation
+* `service/detective`: Updates service API and documentation
+* `service/fsx`: Updates service API and documentation
+* `service/inspector2`: Updates service API
+
 Release v1.44.166 (2022-12-22)
 ===
 
