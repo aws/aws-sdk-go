@@ -22,6 +22,8 @@
     "DescribeEvents": "<p>Returns events related to clusters, security groups, and parameter groups. You can obtain events specific to a particular cluster, security group, or parameter group by providing the name as a parameter. By default, only the events occurring within the last hour are returned; however, you can retrieve up to 14 days' worth of events if necessary.</p>",
     "DescribeParameterGroups": "<p>Returns a list of parameter group descriptions. If a parameter group name is specified, the list contains only the descriptions for that group.</p>",
     "DescribeParameters": "<p>Returns the detailed parameter list for a particular parameter group.</p>",
+    "DescribeReservedNodes": "<p>Returns information about reserved nodes for this account, or about a specified reserved node.</p>",
+    "DescribeReservedNodesOfferings": "<p>Lists available reserved node offerings.</p>",
     "DescribeServiceUpdates": "<p>Returns details of the service updates</p>",
     "DescribeSnapshots": "<p>Returns information about cluster snapshots. By default, DescribeSnapshots lists all of your snapshots; it can optionally describe a single snapshot, or just the snapshots associated with a particular cluster.</p>",
     "DescribeSubnetGroups": "<p>Returns a list of subnet group descriptions. If a subnet group name is specified, the list contains only the description of that group.</p>",
@@ -29,6 +31,7 @@
     "FailoverShard": "<p>Used to failover a shard. This API is designed for testing the behavior of your application in case of MemoryDB failover. It is not designed to be used as a production-level tool for initiating a failover to overcome a problem you may have with the cluster. Moreover, in certain conditions such as large scale operational events, Amazon may block this API. </p>",
     "ListAllowedNodeTypeUpdates": "<p>Lists all available node types that you can scale to from your cluster's current node type. When you use the UpdateCluster operation to scale your cluster, the value of the NodeType parameter must be one of the node types returned by this operation.</p>",
     "ListTags": "<p>Lists all tags currently on a named resource. A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track your MemoryDB resources. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/Tagging-Resources.html\">Tagging your MemoryDB resources</a> </p>",
+    "PurchaseReservedNodesOffering": "<p>Allows you to purchase a reserved node offering. Reserved nodes are not eligible for cancellation and are non-refundable.</p>",
     "ResetParameterGroup": "<p>Modifies the parameters of a parameter group to the engine or system default value. You can reset specific parameters by submitting a list of parameter names. To reset the entire parameter group, specify the AllParameters and ParameterGroupName parameters.</p>",
     "TagResource": "<p>A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track all your MemoryDB resources. When you add or remove tags on clusters, those actions will be replicated to all nodes in the cluster. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/iam.resourcelevelpermissions.html\">Resource-level permissions</a>.</p> <p>For example, you can use cost-allocation tags to your MemoryDB resources, Amazon generates a cost allocation report as a comma-separated value (CSV) file with your usage and costs aggregated by your tags. You can apply tags that represent business categories (such as cost centers, application names, or owners) to organize your costs across multiple services. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/tagging.html\">Using Cost Allocation Tags</a>.</p>",
     "UntagResource": "<p>Use this operation to remove tags on a resource</p>",
@@ -435,6 +438,26 @@
       "refs": {
       }
     },
+    "DescribeReservedNodesOfferingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeReservedNodesOfferingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeReservedNodesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeReservedNodesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeServiceUpdatesRequest": {
       "base": null,
       "refs": {
@@ -478,6 +501,9 @@
     "Double": {
       "base": null,
       "refs": {
+        "RecurringCharge$RecurringChargeAmount": "<p>The amount of the recurring charge to run this reserved node.</p>",
+        "ReservedNode$FixedPrice": "<p>The fixed price charged for this reserved node.</p>",
+        "ReservedNodesOffering$FixedPrice": "<p>The fixed price charged for this reserved node.</p>",
         "SlotMigration$ProgressPercentage": "<p>The percentage of the slot migration that is complete.</p>"
       }
     },
@@ -573,6 +599,9 @@
       "refs": {
         "Endpoint$Port": "<p>The port number that the engine is listening on.</p>",
         "ReplicaConfigurationRequest$ReplicaCount": "<p>The number of replicas to scale up or down to</p>",
+        "ReservedNode$Duration": "<p>The duration of the reservation in seconds.</p>",
+        "ReservedNode$NodeCount": "<p>The number of nodes that have been reserved.</p>",
+        "ReservedNodesOffering$Duration": "<p>The duration of the reservation in seconds.</p>",
         "ShardConfigurationRequest$ShardCount": "<p>The number of shards in the cluster</p>"
       }
     },
@@ -596,10 +625,13 @@
         "DescribeEventsRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeParameterGroupsRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeParametersRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
+        "DescribeReservedNodesOfferingsRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.</p>",
+        "DescribeReservedNodesRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeServiceUpdatesRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeSnapshotsRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeSubnetGroupsRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeUsersRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
+        "PurchaseReservedNodesOfferingRequest$NodeCount": "<p>The number of node instances to reserve.</p>",
         "Shard$NumberOfNodes": "<p>The number of nodes in the shard</p>",
         "ShardConfiguration$ReplicaCount": "<p>The number of read replica nodes in this shard.</p>",
         "UpdateClusterRequest$SnapshotRetentionLimit": "<p>The number of days for which MemoryDB retains automatic cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p>"
@@ -815,10 +847,78 @@
         "ClusterPendingUpdates$ServiceUpdates": "<p>A list of service updates being applied to the cluster</p>"
       }
     },
+    "PurchaseReservedNodesOfferingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PurchaseReservedNodesOfferingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RecurringCharge": {
+      "base": "<p>The recurring charge to run this reserved node.</p>",
+      "refs": {
+        "RecurringChargeList$member": null
+      }
+    },
+    "RecurringChargeList": {
+      "base": null,
+      "refs": {
+        "ReservedNode$RecurringCharges": "<p>The recurring price charged to run this reserved node.</p>",
+        "ReservedNodesOffering$RecurringCharges": "<p>The recurring price charged to run this reserved node.</p>"
+      }
+    },
     "ReplicaConfigurationRequest": {
       "base": "<p>A request to configure the number of replicas in a shard</p>",
       "refs": {
         "UpdateClusterRequest$ReplicaConfiguration": "<p>The number of replicas that will reside in each shard</p>"
+      }
+    },
+    "ReservedNode": {
+      "base": "<p>Represents the output of a <code>PurchaseReservedNodesOffering</code> operation.</p>",
+      "refs": {
+        "PurchaseReservedNodesOfferingResponse$ReservedNode": "<p>Represents the output of a <code>PurchaseReservedNodesOffering</code> operation.</p>",
+        "ReservedNodeList$member": null
+      }
+    },
+    "ReservedNodeAlreadyExistsFault": {
+      "base": "<p>You already have a reservation with the given identifier.</p>",
+      "refs": {
+      }
+    },
+    "ReservedNodeList": {
+      "base": null,
+      "refs": {
+        "DescribeReservedNodesResponse$ReservedNodes": "<p>Returns information about reserved nodes for this account, or about a specified reserved node.</p>"
+      }
+    },
+    "ReservedNodeNotFoundFault": {
+      "base": "<p>The requested node does not exist.</p>",
+      "refs": {
+      }
+    },
+    "ReservedNodeQuotaExceededFault": {
+      "base": "<p>The request cannot be processed because it would exceed the user's node quota.</p>",
+      "refs": {
+      }
+    },
+    "ReservedNodesOffering": {
+      "base": "<p>The offering type of this node.</p>",
+      "refs": {
+        "ReservedNodesOfferingList$member": null
+      }
+    },
+    "ReservedNodesOfferingList": {
+      "base": null,
+      "refs": {
+        "DescribeReservedNodesOfferingsResponse$ReservedNodesOfferings": "<p>Lists available reserved node offerings.</p>"
+      }
+    },
+    "ReservedNodesOfferingNotFoundFault": {
+      "base": "<p>The requested node offering does not exist. </p>",
+      "refs": {
       }
     },
     "ResetParameterGroupRequest": {
@@ -1081,6 +1181,19 @@
         "DescribeParametersRequest$ParameterGroupName": "<p>he name of a specific parameter group to return details for.</p>",
         "DescribeParametersRequest$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
         "DescribeParametersResponse$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "DescribeReservedNodesOfferingsRequest$ReservedNodesOfferingId": "<p>The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier.</p>",
+        "DescribeReservedNodesOfferingsRequest$NodeType": "<p>The node type for the reserved nodes. For more information, see <a href=\"https://docs.aws.amazon.com/memorydb/latest/devguide/nodes.reserved.html#reserved-nodes-supported\">Supported node types</a>.</p>",
+        "DescribeReservedNodesOfferingsRequest$Duration": "<p>Duration filter value, specified in years or seconds. Use this parameter to show only reservations for a given duration.</p>",
+        "DescribeReservedNodesOfferingsRequest$OfferingType": "<p>The offering type filter value. Use this parameter to show only the available offerings matching the specified offering type. Valid values: \"All Upfront\"|\"Partial Upfront\"| \"No Upfront\"</p>",
+        "DescribeReservedNodesOfferingsRequest$NextToken": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords.</p>",
+        "DescribeReservedNodesOfferingsResponse$NextToken": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords.</p>",
+        "DescribeReservedNodesRequest$ReservationId": "<p>The reserved node identifier filter value. Use this parameter to show only the reservation that matches the specified reservation ID.</p>",
+        "DescribeReservedNodesRequest$ReservedNodesOfferingId": "<p>The offering identifier filter value. Use this parameter to show only purchased reservations matching the specified offering identifier.</p>",
+        "DescribeReservedNodesRequest$NodeType": "<p>The node type filter value. Use this parameter to show only those reservations matching the specified node type. For more information, see <a href=\"https://docs.aws.amazon.com/memorydb/latest/devguide/nodes.reserved.html#reserved-nodes-supported\">Supported node types</a>.</p>",
+        "DescribeReservedNodesRequest$Duration": "<p>The duration filter value, specified in years or seconds. Use this parameter to show only reservations for this duration.</p>",
+        "DescribeReservedNodesRequest$OfferingType": "<p>The offering type filter value. Use this parameter to show only the available offerings matching the specified offering type. Valid values: \"All Upfront\"|\"Partial Upfront\"| \"No Upfront\"</p>",
+        "DescribeReservedNodesRequest$NextToken": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords.</p>",
+        "DescribeReservedNodesResponse$NextToken": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords.</p>",
         "DescribeServiceUpdatesRequest$ServiceUpdateName": "<p>The unique ID of the service update to describe.</p>",
         "DescribeServiceUpdatesRequest$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
         "DescribeServiceUpdatesResponse$NextToken": "<p>An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
@@ -1124,6 +1237,18 @@
         "ParameterNameValue$ParameterValue": "<p>The value of the parameter</p>",
         "PasswordListInput$member": null,
         "PendingModifiedServiceUpdate$ServiceUpdateName": "<p>The unique ID of the service update</p>",
+        "PurchaseReservedNodesOfferingRequest$ReservedNodesOfferingId": "<p>The ID of the reserved node offering to purchase.</p>",
+        "PurchaseReservedNodesOfferingRequest$ReservationId": "<p>A customer-specified identifier to track this reservation.</p>",
+        "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring price charged to run this reserved node.</p>",
+        "ReservedNode$ReservationId": "<p>A customer-specified identifier to track this reservation.</p>",
+        "ReservedNode$ReservedNodesOfferingId": "<p>The ID of the reserved node offering to purchase.</p>",
+        "ReservedNode$NodeType": "<p>The node type for the reserved nodes.</p>",
+        "ReservedNode$OfferingType": "<p>The offering type of this reserved node.</p>",
+        "ReservedNode$State": "<p>The state of the reserved node.</p>",
+        "ReservedNode$ARN": "<p>The Amazon Resource Name (ARN) of the reserved node.</p>",
+        "ReservedNodesOffering$ReservedNodesOfferingId": "<p>The offering identifier.</p>",
+        "ReservedNodesOffering$NodeType": "<p>The node type for the reserved nodes. For more information, see <a href=\"https://docs.aws.amazon.com/memorydb/latest/devguide/nodes.reserved.html#reserved-nodes-supported\">Supported node types</a>.</p>",
+        "ReservedNodesOffering$OfferingType": "<p>The offering type of this reserved node.</p>",
         "ResetParameterGroupRequest$ParameterGroupName": "<p>The name of the parameter group to reset.</p>",
         "SecurityGroupIdsList$member": null,
         "SecurityGroupMembership$SecurityGroupId": "<p>The identifier of the security group.</p>",
@@ -1254,6 +1379,7 @@
         "DescribeEventsRequest$EndTime": "<p>The end of the time interval for which to retrieve events, specified in ISO 8601 format. Example: 2017-03-30T07:03:49.555Z</p>",
         "Event$Date": "<p>The date and time when the event occurred.</p>",
         "Node$CreateTime": "<p>The date and time when the node was created.</p>",
+        "ReservedNode$StartTime": "<p>The time the reservation started.</p>",
         "ServiceUpdate$ReleaseDate": "<p>The date when the service update is initially available</p>",
         "ServiceUpdate$AutoUpdateStartDate": "<p>The date at which the service update will be automatically applied</p>",
         "ShardDetail$SnapshotCreationTime": "<p>The date and time that the shard's snapshot was created</p>"
@@ -1276,6 +1402,7 @@
         "CreateSubnetGroupRequest$Tags": "<p>A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.</p>",
         "CreateUserRequest$Tags": "<p>A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.</p>",
         "ListTagsResponse$TagList": "<p>A list of tags as key-value pairs.</p>",
+        "PurchaseReservedNodesOfferingRequest$Tags": "<p>A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.</p>",
         "TagResourceRequest$Tags": "<p>A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.</p>",
         "TagResourceResponse$TagList": "<p>A list of tags as key-value pairs.</p>",
         "UntagResourceResponse$TagList": "<p>The list of tags removed</p>"
