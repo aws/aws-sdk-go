@@ -1,3 +1,11 @@
+Release v1.44.168 (2022-12-27)
+===
+
+### Service Client Updates
+* `service/memorydb`: Updates service API, documentation, and paginators
+* `service/transfer`: Updates service API
+  * Add additional operations to throw ThrottlingExceptions
+
 Release v1.44.167 (2022-12-23)
 ===
 

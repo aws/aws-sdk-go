@@ -340,6 +340,36 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "DescribeReservedNodes":{
+      "name":"DescribeReservedNodes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReservedNodesRequest"},
+      "output":{"shape":"DescribeReservedNodesResponse"},
+      "errors":[
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "DescribeReservedNodesOfferings":{
+      "name":"DescribeReservedNodesOfferings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReservedNodesOfferingsRequest"},
+      "output":{"shape":"DescribeReservedNodesOfferingsResponse"},
+      "errors":[
+        {"shape":"ReservedNodesOfferingNotFoundFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
     "DescribeServiceUpdates":{
       "name":"DescribeServiceUpdates",
       "http":{
@@ -446,6 +476,24 @@
         {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"UserNotFoundFault"},
         {"shape":"ACLNotFoundFault"}
+      ]
+    },
+    "PurchaseReservedNodesOffering":{
+      "name":"PurchaseReservedNodesOffering",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PurchaseReservedNodesOfferingRequest"},
+      "output":{"shape":"PurchaseReservedNodesOfferingResponse"},
+      "errors":[
+        {"shape":"ReservedNodesOfferingNotFoundFault"},
+        {"shape":"ReservedNodeAlreadyExistsFault"},
+        {"shape":"ReservedNodeQuotaExceededFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "ResetParameterGroup":{
@@ -1148,6 +1196,43 @@
         "Parameters":{"shape":"ParametersList"}
       }
     },
+    "DescribeReservedNodesOfferingsRequest":{
+      "type":"structure",
+      "members":{
+        "ReservedNodesOfferingId":{"shape":"String"},
+        "NodeType":{"shape":"String"},
+        "Duration":{"shape":"String"},
+        "OfferingType":{"shape":"String"},
+        "MaxResults":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeReservedNodesOfferingsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "ReservedNodesOfferings":{"shape":"ReservedNodesOfferingList"}
+      }
+    },
+    "DescribeReservedNodesRequest":{
+      "type":"structure",
+      "members":{
+        "ReservationId":{"shape":"String"},
+        "ReservedNodesOfferingId":{"shape":"String"},
+        "NodeType":{"shape":"String"},
+        "Duration":{"shape":"String"},
+        "OfferingType":{"shape":"String"},
+        "MaxResults":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeReservedNodesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "ReservedNodes":{"shape":"ReservedNodeList"}
+      }
+    },
     "DescribeServiceUpdatesRequest":{
       "type":"structure",
       "members":{
@@ -1540,11 +1625,97 @@
       "type":"list",
       "member":{"shape":"PendingModifiedServiceUpdate"}
     },
+    "PurchaseReservedNodesOfferingRequest":{
+      "type":"structure",
+      "required":["ReservedNodesOfferingId"],
+      "members":{
+        "ReservedNodesOfferingId":{"shape":"String"},
+        "ReservationId":{"shape":"String"},
+        "NodeCount":{"shape":"IntegerOptional"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "PurchaseReservedNodesOfferingResponse":{
+      "type":"structure",
+      "members":{
+        "ReservedNode":{"shape":"ReservedNode"}
+      }
+    },
+    "RecurringCharge":{
+      "type":"structure",
+      "members":{
+        "RecurringChargeAmount":{"shape":"Double"},
+        "RecurringChargeFrequency":{"shape":"String"}
+      }
+    },
+    "RecurringChargeList":{
+      "type":"list",
+      "member":{"shape":"RecurringCharge"}
+    },
     "ReplicaConfigurationRequest":{
       "type":"structure",
       "members":{
         "ReplicaCount":{"shape":"Integer"}
       }
+    },
+    "ReservedNode":{
+      "type":"structure",
+      "members":{
+        "ReservationId":{"shape":"String"},
+        "ReservedNodesOfferingId":{"shape":"String"},
+        "NodeType":{"shape":"String"},
+        "StartTime":{"shape":"TStamp"},
+        "Duration":{"shape":"Integer"},
+        "FixedPrice":{"shape":"Double"},
+        "NodeCount":{"shape":"Integer"},
+        "OfferingType":{"shape":"String"},
+        "State":{"shape":"String"},
+        "RecurringCharges":{"shape":"RecurringChargeList"},
+        "ARN":{"shape":"String"}
+      }
+    },
+    "ReservedNodeAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ReservedNodeList":{
+      "type":"list",
+      "member":{"shape":"ReservedNode"}
+    },
+    "ReservedNodeNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ReservedNodeQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ReservedNodesOffering":{
+      "type":"structure",
+      "members":{
+        "ReservedNodesOfferingId":{"shape":"String"},
+        "NodeType":{"shape":"String"},
+        "Duration":{"shape":"Integer"},
+        "FixedPrice":{"shape":"Double"},
+        "OfferingType":{"shape":"String"},
+        "RecurringCharges":{"shape":"RecurringChargeList"}
+      }
+    },
+    "ReservedNodesOfferingList":{
+      "type":"list",
+      "member":{"shape":"ReservedNodesOffering"}
+    },
+    "ReservedNodesOfferingNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
     },
     "ResetParameterGroupRequest":{
       "type":"structure",
