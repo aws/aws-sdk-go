@@ -96,7 +96,10 @@ type Metadata struct {
 	ServiceID           string
 
 	NoResolveEndpoint bool
+	AWSQueryCompatible *awsQueryCompatible
 }
+
+type awsQueryCompatible struct {}
 
 // ProtocolSettings define how the SDK should handle requests in the context
 // of of a protocol.
@@ -639,7 +642,11 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 	{{- if and $.WithGeneratedTypedErrors (gt (len $.ShapeListErrors) 0) }}
 		{{- $_ := $.AddSDKImport "private/protocol" }}
 		svc.Handlers.UnmarshalError.PushBackNamed(
+			{{-  if .Metadata.AWSQueryCompatible }}
+			protocol.NewUnmarshalErrorHandler({{ .ProtocolPackage }}.NewUnmarshalTypedErrorWithOptions(exceptionFromCode, {{ .ProtocolPackage }}.WithQueryCompatibility(queryExceptionFromCode))).NamedHandler(),
+			{{- else }}
 			protocol.NewUnmarshalErrorHandler({{ .ProtocolPackage }}.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
+			{{- end}}
 		)
 	{{- else }}
 		svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
@@ -933,6 +940,13 @@ const (
 			"{{ $s.ErrorName }}": newError{{ $s.ShapeName }},
 		{{- end }}
 	}
+	{{- if .Metadata.AWSQueryCompatible }}
+	var queryExceptionFromCode = map[string]func(protocol.ResponseMetadata, string)error {
+		{{- range $_, $s := $.ShapeListErrors }}
+			"{{ $s.ErrorName }}": newQueryCompatibleError{{ $s.ShapeName }},
+		{{- end }}
+	}
+	{{- end }}
 {{- end }}
 `))
 
