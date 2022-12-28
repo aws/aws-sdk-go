@@ -27,14 +27,13 @@ const opCreateQueue = "CreateQueue"
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
+//	// Example sending a request using the CreateQueueRequest method.
+//	req, resp := client.CreateQueueRequest(params)
 //
-//    // Example sending a request using the CreateQueueRequest method.
-//    req, resp := client.CreateQueueRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/awsquerycompatible-2012-11-05/CreateQueue
 func (c *AwsQueryCompatible) CreateQueueRequest(input *CreateQueueInput) (req *request.Request, output *CreateQueueOutput) {
@@ -63,9 +62,10 @@ func (c *AwsQueryCompatible) CreateQueueRequest(input *CreateQueueInput) (req *r
 // API operation CreateQueue for usage and error information.
 //
 // Returned Error Types:
-//   * QueueDeletedRecently
 //
-//   * QueueNameExists
+//   - QueueDeletedRecently
+//
+//   - QueueNameExists
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/awsquerycompatible-2012-11-05/CreateQueue
 func (c *AwsQueryCompatible) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {

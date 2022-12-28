@@ -40,13 +40,14 @@ const (
 // aws.Config parameter to add your extra config.
 //
 // Example:
-//     mySession := session.Must(session.NewSession())
 //
-//     // Create a AwsQueryCompatible client from just a session.
-//     svc := awsquerycompatible.New(mySession)
+//	mySession := session.Must(session.NewSession())
 //
-//     // Create a AwsQueryCompatible client with additional configuration
-//     svc := awsquerycompatible.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+//	// Create a AwsQueryCompatible client from just a session.
+//	svc := awsquerycompatible.New(mySession)
+//
+//	// Create a AwsQueryCompatible client with additional configuration
+//	svc := awsquerycompatible.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *AwsQueryCompatible {
 	c := p.ClientConfig(EndpointsID, cfgs...)
 	if c.SigningNameDerived || len(c.SigningName) == 0 {

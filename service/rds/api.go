@@ -1420,45 +1420,7 @@ func (c *RDS) CreateCustomDBEngineVersionRequest(input *CreateCustomDBEngineVers
 
 // CreateCustomDBEngineVersion API operation for Amazon Relational Database Service.
 //
-// Creates a custom DB engine version (CEV). A CEV is a binary volume snapshot
-// of a database engine and specific AMI. The supported engines are the following:
-//
-//   - Oracle Database 12.1 Enterprise Edition with the January 2021 or later
-//     RU/RUR
-//
-//   - Oracle Database 19c Enterprise Edition with the January 2021 or later
-//     RU/RUR
-//
-// Amazon RDS, which is a fully managed service, supplies the Amazon Machine
-// Image (AMI) and database software. The Amazon RDS database software is preinstalled,
-// so you need only select a DB engine and version, and create your database.
-// With Amazon RDS Custom for Oracle, you upload your database installation
-// files in Amazon S3.
-//
-// When you create a custom engine version, you specify the files in a JSON
-// document called a CEV manifest. This document describes installation .zip
-// files stored in Amazon S3. RDS Custom creates your CEV from the installation
-// files that you provided. This service model is called Bring Your Own Media
-// (BYOM).
-//
-// Creation takes approximately two hours. If creation fails, RDS Custom issues
-// RDS-EVENT-0196 with the message Creation failed for custom engine version,
-// and includes details about the failure. For example, the event prints missing
-// files.
-//
-// After you create the CEV, it is available for use. You can create multiple
-// CEVs, and create multiple RDS Custom instances from any CEV. You can also
-// change the status of a CEV to make it available or inactive.
-//
-// The MediaImport service that imports files from Amazon S3 to create CEVs
-// isn't integrated with Amazon Web Services CloudTrail. If you turn on data
-// logging for Amazon RDS in CloudTrail, calls to the CreateCustomDbEngineVersion
-// event aren't logged. However, you might see calls from the API gateway that
-// accesses your Amazon S3 bucket. These calls originate from the MediaImport
-// service for the CreateCustomDbEngineVersion event.
-//
-// For more information, see Creating a CEV (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.create)
-// in the Amazon RDS User Guide.
+// Creates a custom DB engine version (CEV).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1474,6 +1436,9 @@ func (c *RDS) CreateCustomDBEngineVersionRequest(input *CreateCustomDBEngineVers
 //
 //   - ErrCodeCustomDBEngineVersionQuotaExceededFault "CustomDBEngineVersionQuotaExceededFault"
 //     You have exceeded your CEV quota.
+//
+//   - ErrCodeEc2ImagePropertiesNotSupportedFault "Ec2ImagePropertiesNotSupportedFault"
+//     The AMI configuration prerequisite has not been met.
 //
 //   - ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
 //     An error occurred accessing an Amazon Web Services KMS key.
@@ -18682,9 +18647,7 @@ type CreateCustomDBEngineVersionInput struct {
 
 	// The name of an Amazon S3 bucket that contains database installation files
 	// for your CEV. For example, a valid bucket name is my-custom-installation-files.
-	//
-	// DatabaseInstallationFilesS3BucketName is a required field
-	DatabaseInstallationFilesS3BucketName *string `min:"3" type:"string" required:"true"`
+	DatabaseInstallationFilesS3BucketName *string `min:"3" type:"string"`
 
 	// The Amazon S3 directory that contains the database installation files for
 	// your CEV. For example, a valid bucket name is 123456789012/cev1. If this
@@ -18708,6 +18671,10 @@ type CreateCustomDBEngineVersionInput struct {
 	// EngineVersion is a required field
 	EngineVersion *string `min:"1" type:"string" required:"true"`
 
+	// The ID of the AMI. An AMI ID is required to create a CEV for RDS Custom for
+	// SQL Server.
+	ImageId *string `min:"1" type:"string"`
+
 	// The Amazon Web Services KMS key identifier for an encrypted CEV. A symmetric
 	// encryption KMS key is required for RDS Custom, but optional for Amazon RDS.
 	//
@@ -18719,9 +18686,7 @@ type CreateCustomDBEngineVersionInput struct {
 	//
 	// You can choose the same symmetric encryption key when you create a CEV and
 	// a DB instance, or choose different keys.
-	//
-	// KMSKeyId is a required field
-	KMSKeyId *string `min:"1" type:"string" required:"true"`
+	KMSKeyId *string `min:"1" type:"string"`
 
 	// The CEV manifest, which is a JSON document that describes the installation
 	// .zip files stored in Amazon S3. Specify the name/value pairs in a file or
@@ -18753,9 +18718,7 @@ type CreateCustomDBEngineVersionInput struct {
 	//
 	// For more information, see Creating the CEV manifest (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest)
 	// in the Amazon RDS User Guide.
-	//
-	// Manifest is a required field
-	Manifest *string `min:"1" type:"string" required:"true"`
+	Manifest *string `min:"1" type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
@@ -18783,9 +18746,6 @@ func (s CreateCustomDBEngineVersionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateCustomDBEngineVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCustomDBEngineVersionInput"}
-	if s.DatabaseInstallationFilesS3BucketName == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseInstallationFilesS3BucketName"))
-	}
 	if s.DatabaseInstallationFilesS3BucketName != nil && len(*s.DatabaseInstallationFilesS3BucketName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseInstallationFilesS3BucketName", 3))
 	}
@@ -18807,14 +18767,11 @@ func (s *CreateCustomDBEngineVersionInput) Validate() error {
 	if s.EngineVersion != nil && len(*s.EngineVersion) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EngineVersion", 1))
 	}
-	if s.KMSKeyId == nil {
-		invalidParams.Add(request.NewErrParamRequired("KMSKeyId"))
+	if s.ImageId != nil && len(*s.ImageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageId", 1))
 	}
 	if s.KMSKeyId != nil && len(*s.KMSKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KMSKeyId", 1))
-	}
-	if s.Manifest == nil {
-		invalidParams.Add(request.NewErrParamRequired("Manifest"))
 	}
 	if s.Manifest != nil && len(*s.Manifest) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Manifest", 1))
@@ -18856,6 +18813,12 @@ func (s *CreateCustomDBEngineVersionInput) SetEngineVersion(v string) *CreateCus
 	return s
 }
 
+// SetImageId sets the ImageId field's value.
+func (s *CreateCustomDBEngineVersionInput) SetImageId(v string) *CreateCustomDBEngineVersionInput {
+	s.ImageId = &v
+	return s
+}
+
 // SetKMSKeyId sets the KMSKeyId field's value.
 func (s *CreateCustomDBEngineVersionInput) SetKMSKeyId(v string) *CreateCustomDBEngineVersionInput {
 	s.KMSKeyId = &v
@@ -18892,6 +18855,10 @@ type CreateCustomDBEngineVersionOutput struct {
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
+	// A value that indicates the source media provider of the AMI based on the
+	// usage operation. Applicable for RDS Custom for SQL Server.
+	DBEngineMediaType *string `type:"string"`
+
 	// The ARN of the custom engine version.
 	DBEngineVersionArn *string `type:"string"`
 
@@ -18922,6 +18889,9 @@ type CreateCustomDBEngineVersionOutput struct {
 	// The types of logs that the database engine has available for export to CloudWatch
 	// Logs.
 	ExportableLogTypes []*string `type:"list"`
+
+	// The EC2 image
+	Image *CustomDBEngineVersionAMI `type:"structure"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
 	// is required for RDS Custom, but optional for Amazon RDS.
@@ -19030,6 +19000,12 @@ func (s *CreateCustomDBEngineVersionOutput) SetDBEngineDescription(v string) *Cr
 	return s
 }
 
+// SetDBEngineMediaType sets the DBEngineMediaType field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDBEngineMediaType(v string) *CreateCustomDBEngineVersionOutput {
+	s.DBEngineMediaType = &v
+	return s
+}
+
 // SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
 func (s *CreateCustomDBEngineVersionOutput) SetDBEngineVersionArn(v string) *CreateCustomDBEngineVersionOutput {
 	s.DBEngineVersionArn = &v
@@ -19081,6 +19057,12 @@ func (s *CreateCustomDBEngineVersionOutput) SetEngineVersion(v string) *CreateCu
 // SetExportableLogTypes sets the ExportableLogTypes field's value.
 func (s *CreateCustomDBEngineVersionOutput) SetExportableLogTypes(v []*string) *CreateCustomDBEngineVersionOutput {
 	s.ExportableLogTypes = v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetImage(v *CustomDBEngineVersionAMI) *CreateCustomDBEngineVersionOutput {
+	s.Image = v
 	return s
 }
 
@@ -24357,6 +24339,47 @@ func (s *CreateOptionGroupOutput) SetOptionGroup(v *OptionGroup) *CreateOptionGr
 	return s
 }
 
+// A value that indicates the AMI information.
+type CustomDBEngineVersionAMI struct {
+	_ struct{} `type:"structure"`
+
+	// A value that indicates the ID of the AMI.
+	ImageId *string `type:"string"`
+
+	// A value that indicates the status of a custom engine version (CEV).
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomDBEngineVersionAMI) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomDBEngineVersionAMI) GoString() string {
+	return s.String()
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CustomDBEngineVersionAMI) SetImageId(v string) *CustomDBEngineVersionAMI {
+	s.ImageId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CustomDBEngineVersionAMI) SetStatus(v string) *CustomDBEngineVersionAMI {
+	s.Status = &v
+	return s
+}
+
 // Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 //
 // For an Amazon Aurora DB cluster, this data type is used as a response element
@@ -25978,6 +26001,10 @@ type DBEngineVersion struct {
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
+	// A value that indicates the source media provider of the AMI based on the
+	// usage operation. Applicable for RDS Custom for SQL Server.
+	DBEngineMediaType *string `type:"string"`
+
 	// The ARN of the custom engine version.
 	DBEngineVersionArn *string `type:"string"`
 
@@ -26008,6 +26035,9 @@ type DBEngineVersion struct {
 	// The types of logs that the database engine has available for export to CloudWatch
 	// Logs.
 	ExportableLogTypes []*string `type:"list"`
+
+	// The EC2 image
+	Image *CustomDBEngineVersionAMI `type:"structure"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
 	// is required for RDS Custom, but optional for Amazon RDS.
@@ -26116,6 +26146,12 @@ func (s *DBEngineVersion) SetDBEngineDescription(v string) *DBEngineVersion {
 	return s
 }
 
+// SetDBEngineMediaType sets the DBEngineMediaType field's value.
+func (s *DBEngineVersion) SetDBEngineMediaType(v string) *DBEngineVersion {
+	s.DBEngineMediaType = &v
+	return s
+}
+
 // SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
 func (s *DBEngineVersion) SetDBEngineVersionArn(v string) *DBEngineVersion {
 	s.DBEngineVersionArn = &v
@@ -26167,6 +26203,12 @@ func (s *DBEngineVersion) SetEngineVersion(v string) *DBEngineVersion {
 // SetExportableLogTypes sets the ExportableLogTypes field's value.
 func (s *DBEngineVersion) SetExportableLogTypes(v []*string) *DBEngineVersion {
 	s.ExportableLogTypes = v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *DBEngineVersion) SetImage(v *CustomDBEngineVersionAMI) *DBEngineVersion {
+	s.Image = v
 	return s
 }
 
@@ -29217,6 +29259,10 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
+	// A value that indicates the source media provider of the AMI based on the
+	// usage operation. Applicable for RDS Custom for SQL Server.
+	DBEngineMediaType *string `type:"string"`
+
 	// The ARN of the custom engine version.
 	DBEngineVersionArn *string `type:"string"`
 
@@ -29247,6 +29293,9 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// The types of logs that the database engine has available for export to CloudWatch
 	// Logs.
 	ExportableLogTypes []*string `type:"list"`
+
+	// The EC2 image
+	Image *CustomDBEngineVersionAMI `type:"structure"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
 	// is required for RDS Custom, but optional for Amazon RDS.
@@ -29355,6 +29404,12 @@ func (s *DeleteCustomDBEngineVersionOutput) SetDBEngineDescription(v string) *De
 	return s
 }
 
+// SetDBEngineMediaType sets the DBEngineMediaType field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDBEngineMediaType(v string) *DeleteCustomDBEngineVersionOutput {
+	s.DBEngineMediaType = &v
+	return s
+}
+
 // SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
 func (s *DeleteCustomDBEngineVersionOutput) SetDBEngineVersionArn(v string) *DeleteCustomDBEngineVersionOutput {
 	s.DBEngineVersionArn = &v
@@ -29406,6 +29461,12 @@ func (s *DeleteCustomDBEngineVersionOutput) SetEngineVersion(v string) *DeleteCu
 // SetExportableLogTypes sets the ExportableLogTypes field's value.
 func (s *DeleteCustomDBEngineVersionOutput) SetExportableLogTypes(v []*string) *DeleteCustomDBEngineVersionOutput {
 	s.ExportableLogTypes = v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetImage(v *CustomDBEngineVersionAMI) *DeleteCustomDBEngineVersionOutput {
+	s.Image = v
 	return s
 }
 
@@ -39233,6 +39294,10 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
 
+	// A value that indicates the source media provider of the AMI based on the
+	// usage operation. Applicable for RDS Custom for SQL Server.
+	DBEngineMediaType *string `type:"string"`
+
 	// The ARN of the custom engine version.
 	DBEngineVersionArn *string `type:"string"`
 
@@ -39263,6 +39328,9 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// The types of logs that the database engine has available for export to CloudWatch
 	// Logs.
 	ExportableLogTypes []*string `type:"list"`
+
+	// The EC2 image
+	Image *CustomDBEngineVersionAMI `type:"structure"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
 	// is required for RDS Custom, but optional for Amazon RDS.
@@ -39371,6 +39439,12 @@ func (s *ModifyCustomDBEngineVersionOutput) SetDBEngineDescription(v string) *Mo
 	return s
 }
 
+// SetDBEngineMediaType sets the DBEngineMediaType field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDBEngineMediaType(v string) *ModifyCustomDBEngineVersionOutput {
+	s.DBEngineMediaType = &v
+	return s
+}
+
 // SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
 func (s *ModifyCustomDBEngineVersionOutput) SetDBEngineVersionArn(v string) *ModifyCustomDBEngineVersionOutput {
 	s.DBEngineVersionArn = &v
@@ -39422,6 +39496,12 @@ func (s *ModifyCustomDBEngineVersionOutput) SetEngineVersion(v string) *ModifyCu
 // SetExportableLogTypes sets the ExportableLogTypes field's value.
 func (s *ModifyCustomDBEngineVersionOutput) SetExportableLogTypes(v []*string) *ModifyCustomDBEngineVersionOutput {
 	s.ExportableLogTypes = v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetImage(v *CustomDBEngineVersionAMI) *ModifyCustomDBEngineVersionOutput {
+	s.Image = v
 	return s
 }
 

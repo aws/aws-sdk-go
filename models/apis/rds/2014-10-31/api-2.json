@@ -269,6 +269,7 @@
       "errors":[
         {"shape":"CustomDBEngineVersionAlreadyExistsFault"},
         {"shape":"CustomDBEngineVersionQuotaExceededFault"},
+        {"shape":"Ec2ImagePropertiesNotSupportedFault"},
         {"shape":"KMSKeyNotAccessibleFault"}
       ]
     },
@@ -3074,16 +3075,14 @@
       "type":"structure",
       "required":[
         "Engine",
-        "EngineVersion",
-        "DatabaseInstallationFilesS3BucketName",
-        "KMSKeyId",
-        "Manifest"
+        "EngineVersion"
       ],
       "members":{
         "Engine":{"shape":"CustomEngineName"},
         "EngineVersion":{"shape":"CustomEngineVersion"},
         "DatabaseInstallationFilesS3BucketName":{"shape":"BucketName"},
         "DatabaseInstallationFilesS3Prefix":{"shape":"String255"},
+        "ImageId":{"shape":"String255"},
         "KMSKeyId":{"shape":"KmsKeyIdOrArn"},
         "Description":{"shape":"Description"},
         "Manifest":{"shape":"CustomDBEngineVersionManifest"},
@@ -3528,6 +3527,13 @@
       },
       "exception":true
     },
+    "CustomDBEngineVersionAMI":{
+      "type":"structure",
+      "members":{
+        "ImageId":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
     "CustomDBEngineVersionAlreadyExistsFault":{
       "type":"structure",
       "members":{
@@ -3577,7 +3583,7 @@
       "type":"string",
       "max":60,
       "min":1,
-      "pattern":"^(11\\.\\d{1}|12\\.\\d{1}|18|19)(\\.[a-zA-Z0-9_.-]{1,50})$"
+      "pattern":"^[a-z0-9_.-]{1,60}$"
     },
     "CustomEngineVersionStatus":{
       "type":"string",
@@ -4048,6 +4054,8 @@
         "DBEngineDescription":{"shape":"String"},
         "DBEngineVersionDescription":{"shape":"String"},
         "DefaultCharacterSet":{"shape":"CharacterSet"},
+        "Image":{"shape":"CustomDBEngineVersionAMI"},
+        "DBEngineMediaType":{"shape":"String"},
         "SupportedCharacterSets":{"shape":"SupportedCharacterSetsList"},
         "SupportedNcharCharacterSets":{"shape":"SupportedCharacterSetsList"},
         "ValidUpgradeTarget":{"shape":"ValidUpgradeTargetList"},
@@ -5741,6 +5749,17 @@
         "shape":"EC2SecurityGroup",
         "locationName":"EC2SecurityGroup"
       }
+    },
+    "Ec2ImagePropertiesNotSupportedFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"Ec2ImagePropertiesNotSupportedFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "Endpoint":{
       "type":"structure",

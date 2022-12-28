@@ -1,3 +1,14 @@
+Release v1.44.169 (2022-12-28)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service API and documentation
+  * This release allows you to modify the encryption in transit setting, for existing Redis clusters. You can now change the TLS configuration of your Redis clusters without the need to re-build or re-provision the clusters or impact application availability.
+* `service/network-firewall`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for Custom Engine Version (CEV) on RDS Custom SQL Server.
+* `service/route53-recovery-control-config`: Updates service documentation and paginators
+
 Release v1.44.168 (2022-12-27)
 ===
 

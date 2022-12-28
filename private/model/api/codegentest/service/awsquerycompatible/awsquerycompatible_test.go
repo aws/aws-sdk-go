@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -25,38 +25,38 @@ func TestAWSQuery(t *testing.T) {
 			io.Reader
 			Len() int
 		}
-		headers map[string]string
+		headers         map[string]string
 		expectErrorCode string
 	}{
 		"when header is present": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
 			expectErrorCode: "AWS.SimpleQueueService.QueueDeletedRecently",
-			headers: map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently;Sender"},
+			headers:         map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently;Sender"},
 		},
 		"for unmodeled error code": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#AccessDeniedException", "message":"Some user-visible message"}`),
 			expectErrorCode: "AccessDenied",
-			headers: map[string]string{"x-amzn-query-error": "AccessDenied;Sender"},
+			headers:         map[string]string{"x-amzn-query-error": "AccessDenied;Sender"},
 		},
 		"when header is not present": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#AccessDeniedException", "message":"Some user-visible message"}`),
 			expectErrorCode: "AccessDeniedException",
-			headers: map[string]string{},
+			headers:         map[string]string{},
 		},
 		"when header is nil": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#AccessDeniedException", "message":"Some user-visible message"}`),
 			expectErrorCode: "AccessDeniedException",
-			headers: nil,
+			headers:         nil,
 		},
 		"when header is malformed": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
 			expectErrorCode: "QueueDeletedRecently",
-			headers: map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently-Sender"},
+			headers:         map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently-Sender"},
 		},
 	}
 
