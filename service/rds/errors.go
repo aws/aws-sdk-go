@@ -382,6 +382,12 @@ const (
 	// Domain doesn't refer to an existing Active Directory domain.
 	ErrCodeDomainNotFoundFault = "DomainNotFoundFault"
 
+	// ErrCodeEc2ImagePropertiesNotSupportedFault for service response error code
+	// "Ec2ImagePropertiesNotSupportedFault".
+	//
+	// The AMI configuration prerequisite has not been met.
+	ErrCodeEc2ImagePropertiesNotSupportedFault = "Ec2ImagePropertiesNotSupportedFault"
+
 	// ErrCodeEventSubscriptionQuotaExceededFault for service response error code
 	// "EventSubscriptionQuotaExceeded".
 	//

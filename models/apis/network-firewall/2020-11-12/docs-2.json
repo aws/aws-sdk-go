@@ -95,7 +95,7 @@
     "AttachmentStatus": {
       "base": null,
       "refs": {
-        "Attachment$Status": "<p>The current status of the firewall endpoint in the subnet. This value reflects both the instantiation of the endpoint in the VPC subnet and the sync states that are reported in the <code>Config</code> settings. When this value is <code>READY</code>, the endpoint is available and configured properly to handle network traffic. When the endpoint isn't available for traffic, this value will reflect its state, for example <code>CREATING</code>, <code>DELETING</code>, or <code>FAILED</code>.</p>"
+        "Attachment$Status": "<p>The current status of the firewall endpoint in the subnet. This value reflects both the instantiation of the endpoint in the VPC subnet and the sync states that are reported in the <code>Config</code> settings. When this value is <code>READY</code>, the endpoint is available and configured properly to handle network traffic. When the endpoint isn't available for traffic, this value will reflect its state, for example <code>CREATING</code> or <code>DELETING</code>.</p>"
       }
     },
     "AvailabilityZone": {
@@ -1213,6 +1213,12 @@
       "base": "<p>Stateless inspection criteria. Each stateless rule group uses exactly one of these data types to define its stateless rules. </p>",
       "refs": {
         "RulesSource$StatelessRulesAndCustomActions": "<p>Stateless inspection criteria to be used in a stateless rule group. </p>"
+      }
+    },
+    "StatusMessage": {
+      "base": null,
+      "refs": {
+        "Attachment$StatusMessage": "<p>If Network Firewall fails to create or delete the firewall endpoint in the subnet, it populates this with the reason for the failure and how to resolve it. Depending on the error, it can take as many as 15 minutes to populate this field. For more information about the errors and solutions available for this field, see <a href=\"https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html\">Troubleshooting firewall endpoint failures</a> in the <i>Network Firewall Developer Guide</i>.</p>"
       }
     },
     "StreamExceptionPolicy": {

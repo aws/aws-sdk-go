@@ -3980,8 +3980,16 @@ type Attachment struct {
 	// that are reported in the Config settings. When this value is READY, the endpoint
 	// is available and configured properly to handle network traffic. When the
 	// endpoint isn't available for traffic, this value will reflect its state,
-	// for example CREATING, DELETING, or FAILED.
+	// for example CREATING or DELETING.
 	Status *string `type:"string" enum:"AttachmentStatus"`
+
+	// If Network Firewall fails to create or delete the firewall endpoint in the
+	// subnet, it populates this with the reason for the failure and how to resolve
+	// it. Depending on the error, it can take as many as 15 minutes to populate
+	// this field. For more information about the errors and solutions available
+	// for this field, see Troubleshooting firewall endpoint failures (https://docs.aws.amazon.com/network-firewall/latest/developerguide/firewall-troubleshooting-endpoint-failures.html)
+	// in the Network Firewall Developer Guide.
+	StatusMessage *string `type:"string"`
 
 	// The unique identifier of the subnet that you've specified to be used for
 	// a firewall endpoint.
@@ -4015,6 +4023,12 @@ func (s *Attachment) SetEndpointId(v string) *Attachment {
 // SetStatus sets the Status field's value.
 func (s *Attachment) SetStatus(v string) *Attachment {
 	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *Attachment) SetStatusMessage(v string) *Attachment {
+	s.StatusMessage = &v
 	return s
 }
 

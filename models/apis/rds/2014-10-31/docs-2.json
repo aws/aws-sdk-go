@@ -16,7 +16,7 @@
     "CopyDBSnapshot": "<p>Copies the specified DB snapshot. The source DB snapshot must be in the <code>available</code> state.</p> <p>You can copy a snapshot from one Amazon Web Services Region to another. In that case, the Amazon Web Services Region where you call the <code>CopyDBSnapshot</code> operation is the destination Amazon Web Services Region for the DB snapshot copy.</p> <p>This command doesn't apply to RDS Custom.</p> <p>For more information about copying snapshots, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html#USER_CopyDBSnapshot\">Copying a DB Snapshot</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "CopyOptionGroup": "<p>Copies the specified option group.</p>",
     "CreateBlueGreenDeployment": "<p>Creates a blue/green deployment.</p> <p>A blue/green deployment creates a staging environment that copies the production environment. In a blue/green deployment, the blue environment is the current production environment. The green environment is the staging environment. The staging environment stays in sync with the current production environment using logical replication.</p> <p>You can make changes to the databases in the green environment without affecting production workloads. For example, you can upgrade the major or minor DB engine version, change database parameters, or make schema changes in the staging environment. You can thoroughly test changes in the green environment. When ready, you can switch over the environments to promote the green environment to be the new production environment. The switchover typically takes under a minute.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html\">Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments.html\"> Using Amazon RDS Blue/Green Deployments for database updates</a> in the <i>Amazon Aurora User Guide</i>.</p>",
-    "CreateCustomDBEngineVersion": "<p>Creates a custom DB engine version (CEV). A CEV is a binary volume snapshot of a database engine and specific AMI. The supported engines are the following:</p> <ul> <li> <p>Oracle Database 12.1 Enterprise Edition with the January 2021 or later RU/RUR</p> </li> <li> <p>Oracle Database 19c Enterprise Edition with the January 2021 or later RU/RUR</p> </li> </ul> <p>Amazon RDS, which is a fully managed service, supplies the Amazon Machine Image (AMI) and database software. The Amazon RDS database software is preinstalled, so you need only select a DB engine and version, and create your database. With Amazon RDS Custom for Oracle, you upload your database installation files in Amazon S3.</p> <p>When you create a custom engine version, you specify the files in a JSON document called a CEV manifest. This document describes installation .zip files stored in Amazon S3. RDS Custom creates your CEV from the installation files that you provided. This service model is called Bring Your Own Media (BYOM).</p> <p>Creation takes approximately two hours. If creation fails, RDS Custom issues <code>RDS-EVENT-0196</code> with the message <code>Creation failed for custom engine version</code>, and includes details about the failure. For example, the event prints missing files.</p> <p>After you create the CEV, it is available for use. You can create multiple CEVs, and create multiple RDS Custom instances from any CEV. You can also change the status of a CEV to make it available or inactive.</p> <note> <p>The MediaImport service that imports files from Amazon S3 to create CEVs isn't integrated with Amazon Web Services CloudTrail. If you turn on data logging for Amazon RDS in CloudTrail, calls to the <code>CreateCustomDbEngineVersion</code> event aren't logged. However, you might see calls from the API gateway that accesses your Amazon S3 bucket. These calls originate from the MediaImport service for the <code>CreateCustomDbEngineVersion</code> event.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.create\"> Creating a CEV</a> in the <i>Amazon RDS User Guide</i>.</p>",
+    "CreateCustomDBEngineVersion": "<p>Creates a custom DB engine version (CEV).</p>",
     "CreateDBCluster": "<p>Creates a new Amazon Aurora DB cluster or Multi-AZ DB cluster.</p> <p>You can use the <code>ReplicationSourceIdentifier</code> parameter to create an Amazon Aurora DB cluster as a read replica of another DB cluster or Amazon RDS MySQL or PostgreSQL DB instance.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>For more information on Multi-AZ DB clusters, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html\"> Multi-AZ deployments with two readable standby DB instances</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "CreateDBClusterEndpoint": "<p>Creates a new custom endpoint and associates it with an Amazon Aurora DB cluster.</p> <note> <p>This action applies only to Aurora DB clusters.</p> </note>",
     "CreateDBClusterParameterGroup": "<p>Creates a new DB cluster parameter group.</p> <p>Parameters in a DB cluster parameter group apply to all of the instances in a DB cluster.</p> <p>A DB cluster parameter group is initially created with the default parameters for the database engine used by instances in the DB cluster. To provide custom values for any of the parameters, you must modify the group after creating it using <code>ModifyDBClusterParameterGroup</code>. Once you've created a DB cluster parameter group, you need to associate it with your DB cluster using <code>ModifyDBCluster</code>.</p> <p>When you associate a new DB cluster parameter group with a running Aurora DB cluster, reboot the DB instances in the DB cluster without failover for the new DB cluster parameter group and associated settings to take effect.</p> <p>When you associate a new DB cluster parameter group with a running Multi-AZ DB cluster, reboot the DB cluster without failover for the new DB cluster parameter group and associated settings to take effect.</p> <important> <p>After you create a DB cluster parameter group, you should wait at least 5 minutes before creating your first DB cluster that uses that DB cluster parameter group as the default parameter group. This allows Amazon RDS to fully complete the create action before the DB cluster parameter group is used as the default for a new DB cluster. This is especially important for parameters that are critical when creating the default database for a DB cluster, such as the character set for the default database defined by the <code>character_set_database</code> parameter. You can use the <i>Parameter Groups</i> option of the <a href=\"https://console.aws.amazon.com/rds/\">Amazon RDS console</a> or the <code>DescribeDBClusterParameters</code> operation to verify that your DB cluster parameter group has been created or modified.</p> </important> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>For more information on Multi-AZ DB clusters, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html\"> Multi-AZ deployments with two readable standby DB instances</a> in the <i>Amazon RDS User Guide</i>.</p>",
@@ -943,6 +943,12 @@
     "CustomAvailabilityZoneNotFoundFault": {
       "base": "<p> <code>CustomAvailabilityZoneId</code> doesn't refer to an existing custom Availability Zone identifier.</p>",
       "refs": {
+      }
+    },
+    "CustomDBEngineVersionAMI": {
+      "base": "<p>A value that indicates the AMI information.</p>",
+      "refs": {
+        "DBEngineVersion$Image": "<p>The EC2 image</p>"
       }
     },
     "CustomDBEngineVersionAlreadyExistsFault": {
@@ -2221,6 +2227,11 @@
       "base": null,
       "refs": {
         "DBSecurityGroup$EC2SecurityGroups": "<p>Contains a list of <code>EC2SecurityGroup</code> elements.</p>"
+      }
+    },
+    "Ec2ImagePropertiesNotSupportedFault": {
+      "base": "<p>The AMI configuration prerequisite has not been met.</p>",
+      "refs": {
       }
     },
     "Endpoint": {
@@ -4058,6 +4069,8 @@
         "CreateOptionGroupMessage$EngineName": "<p>Specifies the name of the engine that this option group should be associated with.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p> </li> <li> <p> <code>oracle-ee-cdb</code> </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p> <code>oracle-se2-cdb</code> </p> </li> <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code> </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p> <code>sqlserver-ex</code> </p> </li> <li> <p> <code>sqlserver-web</code> </p> </li> </ul>",
         "CreateOptionGroupMessage$MajorEngineVersion": "<p>Specifies the major version of the engine that this option group should be associated with.</p>",
         "CreateOptionGroupMessage$OptionGroupDescription": "<p>The description of the option group.</p>",
+        "CustomDBEngineVersionAMI$ImageId": "<p>A value that indicates the ID of the AMI.</p>",
+        "CustomDBEngineVersionAMI$Status": "<p>A value that indicates the status of a custom engine version (CEV).</p>",
         "DBCluster$CharacterSetName": "<p>If present, specifies the name of the character set that this cluster is associated with.</p>",
         "DBCluster$DatabaseName": "<p>Contains the name of the initial database of this DB cluster that was provided at create time, if one was specified when the DB cluster was created. This same name is returned for the life of the DB cluster.</p>",
         "DBCluster$DBClusterIdentifier": "<p>Contains a user-supplied DB cluster identifier. This identifier is the unique key that identifies a DB cluster.</p>",
@@ -4139,6 +4152,7 @@
         "DBEngineVersion$DBParameterGroupFamily": "<p>The name of the DB parameter group family for the database engine.</p>",
         "DBEngineVersion$DBEngineDescription": "<p>The description of the database engine.</p>",
         "DBEngineVersion$DBEngineVersionDescription": "<p>The description of the database engine version.</p>",
+        "DBEngineVersion$DBEngineMediaType": "<p>A value that indicates the source media provider of the AMI based on the usage operation. Applicable for RDS Custom for SQL Server.</p>",
         "DBEngineVersion$Status": "<p>The status of the DB engine version, either <code>available</code> or <code>deprecated</code>.</p>",
         "DBEngineVersion$MajorEngineVersion": "<p>The major engine version of the CEV.</p>",
         "DBEngineVersion$DatabaseInstallationFilesS3BucketName": "<p>The name of the Amazon S3 bucket that contains your database installation files.</p>",
@@ -4827,7 +4841,8 @@
     "String255": {
       "base": null,
       "refs": {
-        "CreateCustomDBEngineVersionMessage$DatabaseInstallationFilesS3Prefix": "<p>The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is <code>123456789012/cev1</code>. If this setting isn't specified, no prefix is assumed.</p>"
+        "CreateCustomDBEngineVersionMessage$DatabaseInstallationFilesS3Prefix": "<p>The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is <code>123456789012/cev1</code>. If this setting isn't specified, no prefix is assumed.</p>",
+        "CreateCustomDBEngineVersionMessage$ImageId": "<p>The ID of the AMI. An AMI ID is required to create a CEV for RDS Custom for SQL Server.</p>"
       }
     },
     "StringList": {

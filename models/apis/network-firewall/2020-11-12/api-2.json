@@ -582,7 +582,8 @@
       "members":{
         "SubnetId":{"shape":"AzSubnet"},
         "EndpointId":{"shape":"EndpointId"},
-        "Status":{"shape":"AttachmentStatus"}
+        "Status":{"shape":"AttachmentStatus"},
+        "StatusMessage":{"shape":"StatusMessage"}
       }
     },
     "AttachmentStatus":{
@@ -1794,6 +1795,7 @@
         "CustomActions":{"shape":"CustomActions"}
       }
     },
+    "StatusMessage":{"type":"string"},
     "StreamExceptionPolicy":{
       "type":"string",
       "enum":[

@@ -166,7 +166,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://elasticache-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://route53-recovery-control-config-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -220,34 +220,9 @@
                                     "type": "tree",
                                     "rules": [
                                         {
-                                            "conditions": [
-                                                {
-                                                    "fn": "stringEquals",
-                                                    "argv": [
-                                                        "aws-us-gov",
-                                                        {
-                                                            "fn": "getAttr",
-                                                            "argv": [
-                                                                {
-                                                                    "ref": "PartitionResult"
-                                                                },
-                                                                "name"
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            "endpoint": {
-                                                "url": "https://elasticache.{Region}.{PartitionResult#dnsSuffix}",
-                                                "properties": {},
-                                                "headers": {}
-                                            },
-                                            "type": "endpoint"
-                                        },
-                                        {
                                             "conditions": [],
                                             "endpoint": {
-                                                "url": "https://elasticache-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                "url": "https://route53-recovery-control-config-fips.{Region}.{PartitionResult#dnsSuffix}",
                                                 "properties": {},
                                                 "headers": {}
                                             },
@@ -301,7 +276,7 @@
                                 {
                                     "conditions": [],
                                     "endpoint": {
-                                        "url": "https://elasticache.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                        "url": "https://route53-recovery-control-config.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         "properties": {},
                                         "headers": {}
                                     },
@@ -318,12 +293,45 @@
                 },
                 {
                     "conditions": [],
-                    "endpoint": {
-                        "url": "https://elasticache.{Region}.{PartitionResult#dnsSuffix}",
-                        "properties": {},
-                        "headers": {}
-                    },
-                    "type": "endpoint"
+                    "type": "tree",
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "stringEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        },
+                                        "aws-global"
+                                    ]
+                                }
+                            ],
+                            "endpoint": {
+                                "url": "https://route53-recovery-control-config.us-west-2.amazonaws.com",
+                                "properties": {
+                                    "authSchemes": [
+                                        {
+                                            "name": "sigv4",
+                                            "signingRegion": "us-west-2",
+                                            "signingName": "route53-recovery-control-config"
+                                        }
+                                    ]
+                                },
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": "https://route53-recovery-control-config.{Region}.{PartitionResult#dnsSuffix}",
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ]
                 }
             ]
         }

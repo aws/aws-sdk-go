@@ -8223,15 +8223,15 @@ type CacheCluster struct {
 
 	// A flag that enables in-transit encryption when set to true.
 	//
-	// You cannot modify the value of TransitEncryptionEnabled after the cluster
-	// is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled
-	// to true when you create a cluster.
-	//
 	// Required: Only available when creating a replication group in an Amazon VPC
 	// using redis version 3.2.6, 4.x or later.
 	//
 	// Default: false
 	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// A setting that allows you to migrate your clients to use in-transit encryption,
+	// with no downtime.
+	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
 }
 
 // String returns the string representation.
@@ -8441,6 +8441,12 @@ func (s *CacheCluster) SetSnapshotWindow(v string) *CacheCluster {
 // SetTransitEncryptionEnabled sets the TransitEncryptionEnabled field's value.
 func (s *CacheCluster) SetTransitEncryptionEnabled(v bool) *CacheCluster {
 	s.TransitEncryptionEnabled = &v
+	return s
+}
+
+// SetTransitEncryptionMode sets the TransitEncryptionMode field's value.
+func (s *CacheCluster) SetTransitEncryptionMode(v string) *CacheCluster {
+	s.TransitEncryptionMode = &v
 	return s
 }
 
@@ -9897,10 +9903,7 @@ type CreateCacheClusterInput struct {
 	// A list of tags to be added to this resource.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	// A flag that enables in-transit encryption when set to true. You cannot modify
-	// the value of TransitEncryptionEnabled after the cluster is created. To enable
-	// in-transit encryption on a cluster you must set TransitEncryptionEnabled
-	// to true when you create a cluster.
+	// A flag that enables in-transit encryption when set to true.
 	//
 	// Only available when creating a cache cluster in an Amazon VPC using Memcached
 	// version 1.6.12 or later.
@@ -10756,7 +10759,7 @@ type CreateReplicationGroupInput struct {
 	DataTieringEnabled *bool `type:"boolean"`
 
 	// The name of the cache engine to be used for the clusters in this replication
-	// group. Must be Redis.
+	// group. The value must be set to Redis.
 	Engine *string `type:"string"`
 
 	// The version number of the cache engine to be used for the clusters in this
@@ -10957,10 +10960,6 @@ type CreateReplicationGroupInput struct {
 
 	// A flag that enables in-transit encryption when set to true.
 	//
-	// You cannot modify the value of TransitEncryptionEnabled after the cluster
-	// is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled
-	// to true when you create a cluster.
-	//
 	// This parameter is valid only if the Engine parameter is redis, the EngineVersion
 	// parameter is 3.2.6, 4.x or later, and the cluster is being created in an
 	// Amazon VPC.
@@ -10975,6 +10974,20 @@ type CreateReplicationGroupInput struct {
 	// For HIPAA compliance, you must specify TransitEncryptionEnabled as true,
 	// an AuthToken, and a CacheSubnetGroup.
 	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// A setting that allows you to migrate your clients to use in-transit encryption,
+	// with no downtime.
+	//
+	// When setting TransitEncryptionEnabled to true, you can set your TransitEncryptionMode
+	// to preferred in the same request, to allow both encrypted and unencrypted
+	// connections at the same time. Once you migrate all your Redis clients to
+	// use encrypted connections you can modify the value to required to allow encrypted
+	// connections only.
+	//
+	// Setting TransitEncryptionMode to required is a two-step process that requires
+	// you to first set the TransitEncryptionMode to preferred first, after that
+	// you can set TransitEncryptionMode to required.
+	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
 
 	// The user group to associate with the replication group.
 	UserGroupIds []*string `min:"1" type:"list"`
@@ -11234,6 +11247,12 @@ func (s *CreateReplicationGroupInput) SetTags(v []*Tag) *CreateReplicationGroupI
 // SetTransitEncryptionEnabled sets the TransitEncryptionEnabled field's value.
 func (s *CreateReplicationGroupInput) SetTransitEncryptionEnabled(v bool) *CreateReplicationGroupInput {
 	s.TransitEncryptionEnabled = &v
+	return s
+}
+
+// SetTransitEncryptionMode sets the TransitEncryptionMode field's value.
+func (s *CreateReplicationGroupInput) SetTransitEncryptionMode(v string) *CreateReplicationGroupInput {
+	s.TransitEncryptionMode = &v
 	return s
 }
 
@@ -13137,7 +13156,7 @@ type DescribeCacheEngineVersionsInput struct {
 	// The name of a specific cache parameter group family to return details for.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2 | redis7
 	//
 	// Constraints:
 	//
@@ -13713,7 +13732,7 @@ type DescribeEngineDefaultParametersInput struct {
 	// The name of the cache parameter group family.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2 | redis7
 	//
 	// CacheParameterGroupFamily is a required field
 	CacheParameterGroupFamily *string `type:"string" required:"true"`
@@ -15852,10 +15871,7 @@ type GlobalReplicationGroup struct {
 	// The status of the Global datastore
 	Status *string `type:"string"`
 
-	// A flag that enables in-transit encryption when set to true. You cannot modify
-	// the value of TransitEncryptionEnabled after the cluster is created. To enable
-	// in-transit encryption on a cluster you must set TransitEncryptionEnabled
-	// to true when you create a cluster.
+	// A flag that enables in-transit encryption when set to true.
 	//
 	// Required: Only available when creating a replication group in an Amazon VPC
 	// using redis version 3.2.6, 4.x or later.
@@ -17594,6 +17610,25 @@ type ModifyReplicationGroupInput struct {
 	// groups.
 	SnapshottingClusterId *string `type:"string"`
 
+	// A flag that enables in-transit encryption when set to true. If you are enabling
+	// in-transit encryption for an existing cluster, you must also set TransitEncryptionMode
+	// to preferred.
+	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// A setting that allows you to migrate your clients to use in-transit encryption,
+	// with no downtime.
+	//
+	// You must set TransitEncryptionEnabled to true, for your existing cluster,
+	// and set TransitEncryptionMode to preferred in the same request to allow both
+	// encrypted and unencrypted connections at the same time. Once you migrate
+	// all your Redis clients to use encrypted connections you can set the value
+	// to required to allow encrypted connections only.
+	//
+	// Setting TransitEncryptionMode to required is a two-step process that requires
+	// you to first set the TransitEncryptionMode to preferred first, after that
+	// you can set TransitEncryptionMode to required.
+	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
+
 	// The ID of the user group you are associating with the replication group.
 	UserGroupIdsToAdd []*string `type:"list"`
 
@@ -17774,6 +17809,18 @@ func (s *ModifyReplicationGroupInput) SetSnapshotWindow(v string) *ModifyReplica
 // SetSnapshottingClusterId sets the SnapshottingClusterId field's value.
 func (s *ModifyReplicationGroupInput) SetSnapshottingClusterId(v string) *ModifyReplicationGroupInput {
 	s.SnapshottingClusterId = &v
+	return s
+}
+
+// SetTransitEncryptionEnabled sets the TransitEncryptionEnabled field's value.
+func (s *ModifyReplicationGroupInput) SetTransitEncryptionEnabled(v bool) *ModifyReplicationGroupInput {
+	s.TransitEncryptionEnabled = &v
+	return s
+}
+
+// SetTransitEncryptionMode sets the TransitEncryptionMode field's value.
+func (s *ModifyReplicationGroupInput) SetTransitEncryptionMode(v string) *ModifyReplicationGroupInput {
+	s.TransitEncryptionMode = &v
 	return s
 }
 
@@ -19141,6 +19188,13 @@ type PendingModifiedValues struct {
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
 	// this value must be between 1 and 40.
 	NumCacheNodes *int64 `type:"integer"`
+
+	// A flag that enables in-transit encryption when set to true.
+	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// A setting that allows you to migrate your clients to use in-transit encryption,
+	// with no downtime.
+	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
 }
 
 // String returns the string representation.
@@ -19194,6 +19248,18 @@ func (s *PendingModifiedValues) SetLogDeliveryConfigurations(v []*PendingLogDeli
 // SetNumCacheNodes sets the NumCacheNodes field's value.
 func (s *PendingModifiedValues) SetNumCacheNodes(v int64) *PendingModifiedValues {
 	s.NumCacheNodes = &v
+	return s
+}
+
+// SetTransitEncryptionEnabled sets the TransitEncryptionEnabled field's value.
+func (s *PendingModifiedValues) SetTransitEncryptionEnabled(v bool) *PendingModifiedValues {
+	s.TransitEncryptionEnabled = &v
+	return s
+}
+
+// SetTransitEncryptionMode sets the TransitEncryptionMode field's value.
+func (s *PendingModifiedValues) SetTransitEncryptionMode(v string) *PendingModifiedValues {
+	s.TransitEncryptionMode = &v
 	return s
 }
 
@@ -19890,15 +19956,15 @@ type ReplicationGroup struct {
 
 	// A flag that enables in-transit encryption when set to true.
 	//
-	// You cannot modify the value of TransitEncryptionEnabled after the cluster
-	// is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled
-	// to true when you create a cluster.
-	//
 	// Required: Only available when creating a replication group in an Amazon VPC
 	// using redis version 3.2.6, 4.x or later.
 	//
 	// Default: false
 	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// A setting that allows you to migrate your clients to use in-transit encryption,
+	// with no downtime.
+	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
 
 	// The ID of the user group associated to the replication group.
 	UserGroupIds []*string `type:"list"`
@@ -20090,6 +20156,12 @@ func (s *ReplicationGroup) SetTransitEncryptionEnabled(v bool) *ReplicationGroup
 	return s
 }
 
+// SetTransitEncryptionMode sets the TransitEncryptionMode field's value.
+func (s *ReplicationGroup) SetTransitEncryptionMode(v string) *ReplicationGroup {
+	s.TransitEncryptionMode = &v
+	return s
+}
+
 // SetUserGroupIds sets the UserGroupIds field's value.
 func (s *ReplicationGroup) SetUserGroupIds(v []*string) *ReplicationGroup {
 	s.UserGroupIds = v
@@ -20116,6 +20188,13 @@ type ReplicationGroupPendingModifiedValues struct {
 
 	// The status of an online resharding operation.
 	Resharding *ReshardingStatus `type:"structure"`
+
+	// A flag that enables in-transit encryption when set to true.
+	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// A setting that allows you to migrate your clients to use in-transit encryption,
+	// with no downtime.
+	TransitEncryptionMode *string `type:"string" enum:"TransitEncryptionMode"`
 
 	// The user group being modified.
 	UserGroups *UserGroupsUpdateStatus `type:"structure"`
@@ -20166,6 +20245,18 @@ func (s *ReplicationGroupPendingModifiedValues) SetPrimaryClusterId(v string) *R
 // SetResharding sets the Resharding field's value.
 func (s *ReplicationGroupPendingModifiedValues) SetResharding(v *ReshardingStatus) *ReplicationGroupPendingModifiedValues {
 	s.Resharding = v
+	return s
+}
+
+// SetTransitEncryptionEnabled sets the TransitEncryptionEnabled field's value.
+func (s *ReplicationGroupPendingModifiedValues) SetTransitEncryptionEnabled(v bool) *ReplicationGroupPendingModifiedValues {
+	s.TransitEncryptionEnabled = &v
+	return s
+}
+
+// SetTransitEncryptionMode sets the TransitEncryptionMode field's value.
+func (s *ReplicationGroupPendingModifiedValues) SetTransitEncryptionMode(v string) *ReplicationGroupPendingModifiedValues {
+	s.TransitEncryptionMode = &v
 	return s
 }
 
@@ -22762,6 +22853,22 @@ func SourceType_Values() []string {
 		SourceTypeReplicationGroup,
 		SourceTypeUser,
 		SourceTypeUserGroup,
+	}
+}
+
+const (
+	// TransitEncryptionModePreferred is a TransitEncryptionMode enum value
+	TransitEncryptionModePreferred = "preferred"
+
+	// TransitEncryptionModeRequired is a TransitEncryptionMode enum value
+	TransitEncryptionModeRequired = "required"
+)
+
+// TransitEncryptionMode_Values returns all elements of the TransitEncryptionMode enum
+func TransitEncryptionMode_Values() []string {
+	return []string{
+		TransitEncryptionModePreferred,
+		TransitEncryptionModeRequired,
 	}
 }
 
