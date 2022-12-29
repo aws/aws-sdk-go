@@ -140,6 +140,10 @@ type EMRAPI interface {
 	GetBlockPublicAccessConfigurationWithContext(aws.Context, *emr.GetBlockPublicAccessConfigurationInput, ...request.Option) (*emr.GetBlockPublicAccessConfigurationOutput, error)
 	GetBlockPublicAccessConfigurationRequest(*emr.GetBlockPublicAccessConfigurationInput) (*request.Request, *emr.GetBlockPublicAccessConfigurationOutput)
 
+	GetClusterSessionCredentials(*emr.GetClusterSessionCredentialsInput) (*emr.GetClusterSessionCredentialsOutput, error)
+	GetClusterSessionCredentialsWithContext(aws.Context, *emr.GetClusterSessionCredentialsInput, ...request.Option) (*emr.GetClusterSessionCredentialsOutput, error)
+	GetClusterSessionCredentialsRequest(*emr.GetClusterSessionCredentialsInput) (*request.Request, *emr.GetClusterSessionCredentialsOutput)
+
 	GetManagedScalingPolicy(*emr.GetManagedScalingPolicyInput) (*emr.GetManagedScalingPolicyOutput, error)
 	GetManagedScalingPolicyWithContext(aws.Context, *emr.GetManagedScalingPolicyInput, ...request.Option) (*emr.GetManagedScalingPolicyOutput, error)
 	GetManagedScalingPolicyRequest(*emr.GetManagedScalingPolicyInput) (*request.Request, *emr.GetManagedScalingPolicyOutput)

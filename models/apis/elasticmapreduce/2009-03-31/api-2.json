@@ -264,6 +264,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetClusterSessionCredentials":{
+      "name":"GetClusterSessionCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetClusterSessionCredentialsInput"},
+      "output":{"shape":"GetClusterSessionCredentialsOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "GetManagedScalingPolicy":{
       "name":"GetManagedScalingPolicy",
       "http":{
@@ -1148,6 +1161,13 @@
         "SessionPolicyArn":{"shape":"XmlStringMaxLen256"}
       }
     },
+    "Credentials":{
+      "type":"structure",
+      "members":{
+        "UsernamePassword":{"shape":"UsernamePassword"}
+      },
+      "union":true
+    },
     "Date":{"type":"timestamp"},
     "DeleteSecurityConfigurationInput":{
       "type":"structure",
@@ -1403,6 +1423,24 @@
       "members":{
         "BlockPublicAccessConfiguration":{"shape":"BlockPublicAccessConfiguration"},
         "BlockPublicAccessConfigurationMetadata":{"shape":"BlockPublicAccessConfigurationMetadata"}
+      }
+    },
+    "GetClusterSessionCredentialsInput":{
+      "type":"structure",
+      "required":[
+        "ClusterId",
+        "ExecutionRoleArn"
+      ],
+      "members":{
+        "ClusterId":{"shape":"XmlStringMaxLen256"},
+        "ExecutionRoleArn":{"shape":"ArnType"}
+      }
+    },
+    "GetClusterSessionCredentialsOutput":{
+      "type":"structure",
+      "members":{
+        "Credentials":{"shape":"Credentials"},
+        "ExpiresAt":{"shape":"Date"}
       }
     },
     "GetManagedScalingPolicyInput":{
@@ -3082,6 +3120,14 @@
         "IdentityType":{"shape":"IdentityType"},
         "SessionPolicyArn":{"shape":"XmlStringMaxLen256"}
       }
+    },
+    "UsernamePassword":{
+      "type":"structure",
+      "members":{
+        "Username":{"shape":"XmlStringMaxLen256"},
+        "Password":{"shape":"XmlStringMaxLen256"}
+      },
+      "sensitive":true
     },
     "VolumeSpecification":{
       "type":"structure",
