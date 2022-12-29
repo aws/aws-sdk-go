@@ -1,3 +1,15 @@
+Release v1.44.170 (2022-12-29)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Added GetClusterSessionCredentials API to allow Amazon SageMaker Studio to connect to EMR on EC2 clusters with runtime roles and AWS Lake Formation-based access control for Apache Spark, Apache Hive, and Presto queries.
+* `service/secretsmanager`: Updates service API and documentation
+  * Added owning service filter, include planned deletion flag, and next rotation date response parameter in ListSecrets.
+* `service/wisdom`: Updates service API and documentation
+
 Release v1.44.169 (2022-12-28)
 ===
 

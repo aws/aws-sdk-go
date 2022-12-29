@@ -613,7 +613,6 @@
         "ContentMetadata$value": null,
         "ContentSummary$revisionId": "<p>The identifier of the revision of the content.</p>",
         "CreateContentRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
-        "CreateContentRequest$uploadId": "<p>A pointer to the uploaded asset. This value is returned by <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a>.</p>",
         "CreateKnowledgeBaseRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "Filter$value": "<p>The desired field value on which to filter.</p>",
         "Headers$key": null,
@@ -622,9 +621,7 @@
         "ListKnowledgeBasesResponse$nextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ObjectFieldsList$member": null,
         "ServerSideEncryptionConfiguration$kmsKeyId": "<p>The KMS key. For information about valid ID values, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id\">Key identifiers (KeyId)</a>.</p>",
-        "StartContentUploadResponse$uploadId": "<p>The identifier of the upload.</p>",
-        "UpdateContentRequest$revisionId": "<p>The <code>revisionId</code> of the content resource to update, taken from an earlier call to <code>GetContent</code>, <code>GetContentSummary</code>, <code>SearchContent</code>, or <code>ListContents</code>. If included, this argument acts as an optimistic lock to ensure content was not modified since it was last read. If it has been modified, this API throws a <code>PreconditionFailedException</code>.</p>",
-        "UpdateContentRequest$uploadId": "<p>A pointer to the uploaded asset. This value is returned by <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a>. </p>"
+        "UpdateContentRequest$revisionId": "<p>The <code>revisionId</code> of the content resource to update, taken from an earlier call to <code>GetContent</code>, <code>GetContentSummary</code>, <code>SearchContent</code>, or <code>ListContents</code>. If included, this argument acts as an optimistic lock to ensure content was not modified since it was last read. If it has been modified, this API throws a <code>PreconditionFailedException</code>.</p>"
       }
     },
     "NotifyRecommendationsReceivedError": {
@@ -987,6 +984,14 @@
     "UpdateKnowledgeBaseTemplateUriResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UploadId": {
+      "base": null,
+      "refs": {
+        "CreateContentRequest$uploadId": "<p>A pointer to the uploaded asset. This value is returned by <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a>.</p>",
+        "StartContentUploadResponse$uploadId": "<p>The identifier of the upload.</p>",
+        "UpdateContentRequest$uploadId": "<p>A pointer to the uploaded asset. This value is returned by <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a>. </p>"
       }
     },
     "Uri": {

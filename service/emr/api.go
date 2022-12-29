@@ -228,9 +228,7 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 // you may require more than 256 steps to process your data. You can bypass
 // the 256-step limitation in various ways, including using SSH to connect to
 // the master node and submitting queries directly to the software running on
-// the master node, such as Hive and Hadoop. For more information on how to
-// do this, see Add More than 256 Steps to a Cluster (https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html)
-// in the Amazon EMR Management Guide.
+// the master node, such as Hive and Hadoop.
 //
 // A step specifies the location of a JAR file stored either on the master node
 // of the cluster or in Amazon S3. Each step is performed by the main function
@@ -671,10 +669,10 @@ func (c *EMR) CreateStudioSessionMappingRequest(input *CreateStudioSessionMappin
 //
 // Maps a user or group to the Amazon EMR Studio specified by StudioId, and
 // applies a session policy to refine Studio permissions for that user or group.
-// Use CreateStudioSessionMapping to assign users to a Studio when you use Amazon
-// Web Services SSO authentication. For instructions on how to assign users
-// to a Studio when you use IAM authentication, see Assign a user or group to
-// your EMR Studio (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups).
+// Use CreateStudioSessionMapping to assign users to a Studio when you use IAM
+// Identity Center authentication. For instructions on how to assign users to
+// a Studio when you use IAM authentication, see Assign a user or group to your
+// EMR Studio (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1731,6 +1729,92 @@ func (c *EMR) GetBlockPublicAccessConfiguration(input *GetBlockPublicAccessConfi
 // for more information on using Contexts.
 func (c *EMR) GetBlockPublicAccessConfigurationWithContext(ctx aws.Context, input *GetBlockPublicAccessConfigurationInput, opts ...request.Option) (*GetBlockPublicAccessConfigurationOutput, error) {
 	req, out := c.GetBlockPublicAccessConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetClusterSessionCredentials = "GetClusterSessionCredentials"
+
+// GetClusterSessionCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the GetClusterSessionCredentials operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetClusterSessionCredentials for more information on using the GetClusterSessionCredentials
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetClusterSessionCredentialsRequest method.
+//	req, resp := client.GetClusterSessionCredentialsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetClusterSessionCredentials
+func (c *EMR) GetClusterSessionCredentialsRequest(input *GetClusterSessionCredentialsInput) (req *request.Request, output *GetClusterSessionCredentialsOutput) {
+	op := &request.Operation{
+		Name:       opGetClusterSessionCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetClusterSessionCredentialsInput{}
+	}
+
+	output = &GetClusterSessionCredentialsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetClusterSessionCredentials API operation for Amazon EMR.
+//
+// Provides Temporary, basic HTTP credentials that are associated with a given
+// runtime IAM role and used by a cluster with fine-grained access control activated.
+// You can use these credentials to connect to cluster endpoints that support
+// username-based and password-based authentication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation GetClusterSessionCredentials for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+//   - InvalidRequestException
+//     This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetClusterSessionCredentials
+func (c *EMR) GetClusterSessionCredentials(input *GetClusterSessionCredentialsInput) (*GetClusterSessionCredentialsOutput, error) {
+	req, out := c.GetClusterSessionCredentialsRequest(input)
+	return out, req.Send()
+}
+
+// GetClusterSessionCredentialsWithContext is the same as GetClusterSessionCredentials with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetClusterSessionCredentials for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) GetClusterSessionCredentialsWithContext(ctx aws.Context, input *GetClusterSessionCredentialsInput, opts ...request.Option) (*GetClusterSessionCredentialsOutput, error) {
+	req, out := c.GetClusterSessionCredentialsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4405,11 +4489,9 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 // you may require more than 256 steps to process your data. You can bypass
 // the 256-step limitation in various ways, including using the SSH shell to
 // connect to the master node and submitting queries directly to the software
-// running on the master node, such as Hive and Hadoop. For more information
-// on how to do this, see Add More than 256 Steps to a Cluster (https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html)
-// in the Amazon EMR Management Guide.
+// running on the master node, such as Hive and Hadoop.
 //
-// For long running clusters, we recommend that you periodically store your
+// For long-running clusters, we recommend that you periodically store your
 // results.
 //
 // The instance fleets configuration is available only in Amazon EMR versions
@@ -7278,8 +7360,8 @@ func (s *CreateSecurityConfigurationOutput) SetName(v string) *CreateSecurityCon
 type CreateStudioInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the Studio authenticates users using IAM or Amazon Web
-	// Services SSO.
+	// Specifies whether the Studio authenticates users using IAM or IAM Identity
+	// Center.
 	//
 	// AuthMode is a required field
 	AuthMode *string `type:"string" required:"true" enum:"AuthMode"`
@@ -7337,9 +7419,9 @@ type CreateStudioInput struct {
 	Tags []*Tag `type:"list"`
 
 	// The IAM user role that users and groups assume when logged in to an Amazon
-	// EMR Studio. Only specify a UserRole when you use Amazon Web Services SSO
-	// authentication. The permissions attached to the UserRole can be scoped down
-	// for each user or group using session policies.
+	// EMR Studio. Only specify a UserRole when you use IAM Identity Center authentication.
+	// The permissions attached to the UserRole can be scoped down for each user
+	// or group using session policies.
 	UserRole *string `type:"string"`
 
 	// The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with
@@ -7529,16 +7611,16 @@ func (s *CreateStudioOutput) SetUrl(v string) *CreateStudioOutput {
 type CreateStudioSessionMappingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The globally unique identifier (GUID) of the user or group from the Amazon
-	// Web Services SSO Identity Store. For more information, see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// The globally unique identifier (GUID) of the user or group from the IAM Identity
+	// Center Identity Store. For more information, see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
 	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
-	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
 	// or IdentityId must be specified, but not both.
 	IdentityId *string `type:"string"`
 
 	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
-	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
 	// or IdentityId must be specified, but not both.
 	IdentityName *string `type:"string"`
 
@@ -7649,6 +7731,43 @@ func (s CreateStudioSessionMappingOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateStudioSessionMappingOutput) GoString() string {
 	return s.String()
+}
+
+// The credentials that you can use to connect to cluster endpoints. Credentials
+// consist of a username and a password.
+type Credentials struct {
+	_ struct{} `type:"structure"`
+
+	// The username and password that you use to connect to cluster endpoints.
+	//
+	// UsernamePassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	UsernamePassword *UsernamePassword `type:"structure" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) GoString() string {
+	return s.String()
+}
+
+// SetUsernamePassword sets the UsernamePassword field's value.
+func (s *Credentials) SetUsernamePassword(v *UsernamePassword) *Credentials {
+	s.UsernamePassword = v
+	return s
 }
 
 type DeleteSecurityConfigurationInput struct {
@@ -7793,15 +7912,15 @@ type DeleteStudioSessionMappingInput struct {
 	// The globally unique identifier (GUID) of the user or group to remove from
 	// the Amazon EMR Studio. For more information, see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
 	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
-	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
 	// or IdentityId must be specified.
 	IdentityId *string `type:"string"`
 
 	// The name of the user name or group to remove from the Amazon EMR Studio.
 	// For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
-	// in the Amazon Web Services SSO Store API Reference. Either IdentityName or
-	// IdentityId must be specified.
+	// in the IAM Identity Center Store API Reference. Either IdentityName or IdentityId
+	// must be specified.
 	IdentityName *string `type:"string"`
 
 	// Specifies whether the identity to delete from the Amazon EMR Studio is a
@@ -9176,6 +9295,114 @@ func (s *GetBlockPublicAccessConfigurationOutput) SetBlockPublicAccessConfigurat
 	return s
 }
 
+type GetClusterSessionCredentialsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the cluster.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the runtime role for interactive workload
+	// submission on the cluster. The runtime role can be a cross-account IAM role.
+	// The runtime role ARN is a combination of account ID, role name, and role
+	// type using the following format: arn:partition:service:region:account:resource.
+	//
+	// ExecutionRoleArn is a required field
+	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetClusterSessionCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetClusterSessionCredentialsInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+	if s.ExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *GetClusterSessionCredentialsInput) SetClusterId(v string) *GetClusterSessionCredentialsInput {
+	s.ClusterId = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *GetClusterSessionCredentialsInput) SetExecutionRoleArn(v string) *GetClusterSessionCredentialsInput {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+type GetClusterSessionCredentialsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The credentials that you can use to connect to cluster endpoints that support
+	// username-based and password-based authentication.
+	Credentials *Credentials `type:"structure"`
+
+	// The time when the credentials that are returned by the GetClusterSessionCredentials
+	// API expire.
+	ExpiresAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetClusterSessionCredentialsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *GetClusterSessionCredentialsOutput) SetCredentials(v *Credentials) *GetClusterSessionCredentialsOutput {
+	s.Credentials = v
+	return s
+}
+
+// SetExpiresAt sets the ExpiresAt field's value.
+func (s *GetClusterSessionCredentialsOutput) SetExpiresAt(v time.Time) *GetClusterSessionCredentialsOutput {
+	s.ExpiresAt = &v
+	return s
+}
+
 type GetManagedScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9260,14 +9487,14 @@ type GetStudioSessionMappingInput struct {
 	// The globally unique identifier (GUID) of the user or group. For more information,
 	// see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
 	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
-	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
 	// or IdentityId must be specified.
 	IdentityId *string `type:"string"`
 
 	// The name of the user or group to fetch. For more information, see UserName
 	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
-	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
 	// or IdentityId must be specified.
 	IdentityName *string `type:"string"`
 
@@ -15505,7 +15732,8 @@ type RunJobFlowInput struct {
 	SecurityConfiguration *string `type:"string"`
 
 	// The IAM role that Amazon EMR assumes in order to access Amazon Web Services
-	// resources on your behalf.
+	// resources on your behalf. If you've created a custom service role path, you
+	// must specify it for the service role when you launch your cluster.
 	ServiceRole *string `type:"string"`
 
 	// Specifies the number of steps that can be executed concurrently. The default
@@ -16237,7 +16465,7 @@ type SessionMappingDetail struct {
 
 	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
-	// in the Amazon Web Services SSO Identity Store API Reference.
+	// in the IAM Identity Center Identity Store API Reference.
 	IdentityName *string `type:"string"`
 
 	// Specifies whether the identity mapped to the Amazon EMR Studio is a user
@@ -16323,13 +16551,13 @@ type SessionMappingSummary struct {
 	// The time the session mapping was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The globally unique identifier (GUID) of the user or group from the Amazon
-	// Web Services SSO Identity Store.
+	// The globally unique identifier (GUID) of the user or group from the IAM Identity
+	// Center Identity Store.
 	IdentityId *string `type:"string"`
 
 	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
-	// in the Amazon Web Services SSO Identity Store API Reference.
+	// in the IAM Identity Center Identity Store API Reference.
 	IdentityName *string `type:"string"`
 
 	// Specifies whether the identity mapped to the Amazon EMR Studio is a user
@@ -17629,7 +17857,7 @@ type Studio struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether the Amazon EMR Studio authenticates users using IAM or
-	// Amazon Web Services SSO.
+	// IAM Identity Center.
 	AuthMode *string `type:"string" enum:"AuthMode"`
 
 	// The time the Amazon EMR Studio was created.
@@ -17815,8 +18043,8 @@ func (s *Studio) SetWorkspaceSecurityGroupId(v string) *Studio {
 type StudioSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the Studio authenticates users using IAM or Amazon Web
-	// Services SSO.
+	// Specifies whether the Studio authenticates users using IAM or IAM Identity
+	// Center.
 	AuthMode *string `type:"string" enum:"AuthMode"`
 
 	// The time when the Amazon EMR Studio was created.
@@ -18172,14 +18400,14 @@ type UpdateStudioSessionMappingInput struct {
 	// The globally unique identifier (GUID) of the user or group. For more information,
 	// see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
 	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
-	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
 	// or IdentityId must be specified.
 	IdentityId *string `type:"string"`
 
 	// The name of the user or group to update. For more information, see UserName
 	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
-	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
+	// in the IAM Identity Center Identity Store API Reference. Either IdentityName
 	// or IdentityId must be specified.
 	IdentityName *string `type:"string"`
 
@@ -18289,6 +18517,49 @@ func (s UpdateStudioSessionMappingOutput) GoString() string {
 	return s.String()
 }
 
+// The username and password that you use to connect to cluster endpoints.
+type UsernamePassword struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The password associated with the temporary credentials that you use to connect
+	// to cluster endpoints.
+	Password *string `type:"string"`
+
+	// The username associated with the temporary credentials that you use to connect
+	// to cluster endpoints.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernamePassword) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernamePassword) GoString() string {
+	return s.String()
+}
+
+// SetPassword sets the Password field's value.
+func (s *UsernamePassword) SetPassword(v string) *UsernamePassword {
+	s.Password = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *UsernamePassword) SetUsername(v string) *UsernamePassword {
+	s.Username = &v
+	return s
+}
+
 // EBS volume specifications such as volume type, IOPS, size (GiB) and throughput
 // (MiB/s) that are requested for the EBS volume attached to an EC2 instance
 // in the cluster.
@@ -18308,7 +18579,8 @@ type VolumeSpecification struct {
 	// be a number from 125 - 1000 and is valid only for gp3 volumes.
 	Throughput *int64 `type:"integer"`
 
-	// The volume type. Volume types supported are gp2, io1, and standard.
+	// The volume type. Volume types supported are gp3, gp2, io1, st1, sc1, and
+	// standard.
 	//
 	// VolumeType is a required field
 	VolumeType *string `type:"string" required:"true"`

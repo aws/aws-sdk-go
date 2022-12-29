@@ -12645,8 +12645,8 @@ type CreateDeploymentInput struct {
 	// Enables a cache cluster for the Stage resource specified in the input.
 	CacheClusterEnabled *bool `locationName:"cacheClusterEnabled" type:"boolean"`
 
-	// Specifies the cache cluster size for the Stage resource specified in the
-	// input, if a cache cluster is enabled.
+	// The stage's cache capacity in GB. For more information about choosing a cache
+	// size, see Enabling API caching to enhance responsiveness (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html).
 	CacheClusterSize *string `locationName:"cacheClusterSize" type:"string" enum:"CacheClusterSize"`
 
 	// The input configuration for the canary deployment when the deployment is
@@ -13526,7 +13526,8 @@ type CreateStageInput struct {
 	// Whether cache clustering is enabled for the stage.
 	CacheClusterEnabled *bool `locationName:"cacheClusterEnabled" type:"boolean"`
 
-	// The stage's cache cluster size.
+	// The stage's cache capacity in GB. For more information about choosing a cache
+	// size, see Enabling API caching to enhance responsiveness (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html).
 	CacheClusterSize *string `locationName:"cacheClusterSize" type:"string" enum:"CacheClusterSize"`
 
 	// The canary deployment settings of this stage.
@@ -23491,7 +23492,8 @@ type Stage struct {
 	// Specifies whether a cache cluster is enabled for the stage.
 	CacheClusterEnabled *bool `locationName:"cacheClusterEnabled" type:"boolean"`
 
-	// The size of the cache cluster for the stage, if enabled.
+	// The stage's cache capacity in GB. For more information about choosing a cache
+	// size, see Enabling API caching to enhance responsiveness (https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html).
 	CacheClusterSize *string `locationName:"cacheClusterSize" type:"string" enum:"CacheClusterSize"`
 
 	// The status of the cache cluster for the stage, if enabled.
