@@ -1,3 +1,11 @@
+Release v1.44.171 (2022-12-30)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Extend response headers policy to support removing headers from viewer responses
+* `service/iotfleetwise`: Updates service documentation
+
 Release v1.44.170 (2022-12-29)
 ===
 

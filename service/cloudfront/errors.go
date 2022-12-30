@@ -928,6 +928,16 @@ const (
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyRealtimeLogConfigs = "TooManyRealtimeLogConfigs"
 
+	// ErrCodeTooManyRemoveHeadersInResponseHeadersPolicy for service response error code
+	// "TooManyRemoveHeadersInResponseHeadersPolicy".
+	//
+	// The number of headers in RemoveHeadersConfig in the response headers policy
+	// exceeds the maximum.
+	//
+	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
+	ErrCodeTooManyRemoveHeadersInResponseHeadersPolicy = "TooManyRemoveHeadersInResponseHeadersPolicy"
+
 	// ErrCodeTooManyResponseHeadersPolicies for service response error code
 	// "TooManyResponseHeadersPolicies".
 	//
