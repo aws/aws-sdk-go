@@ -1728,7 +1728,7 @@
         "CampaignSummary$creationTime": "<p>The time the campaign was created.</p>",
         "CampaignSummary$lastModificationTime": "<p>The last time the campaign was modified.</p>",
         "CreateCampaignRequest$startTime": "<p>(Optional) The time, in milliseconds, to deliver a campaign after it was approved. If it's not specified, <code>0</code> is used.</p> <p>Default: <code>0</code> </p>",
-        "CreateCampaignRequest$expiryTime": "<p> (Optional) The time the campaign expires, in seconds since epoch (January 1, 1970 at midnight UTC time). Vehicle data won't be collected after the campaign expires. </p> <p>Default: 253402243200 (December 31, 9999, 00:00:00 UTC)</p>",
+        "CreateCampaignRequest$expiryTime": "<p> (Optional) The time the campaign expires, in seconds since epoch (January 1, 1970 at midnight UTC time). Vehicle data won't be collected after the campaign expires. </p> <p>Default: 253402214400 (December 31, 9999, 00:00:00 UTC)</p>",
         "DecoderManifestSummary$creationTime": "<p>The time the decoder manifest was created in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",
         "DecoderManifestSummary$lastModificationTime": "<p>The time the decoder manifest was last updated in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",
         "FleetSummary$creationTime": "<p>The time the fleet was created, in seconds since epoch (January 1, 1970 at midnight UTC time).</p>",

@@ -512,7 +512,8 @@
         {"shape":"ResponseHeadersPolicyAlreadyExists"},
         {"shape":"TooManyResponseHeadersPolicies"},
         {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"},
-        {"shape":"TooLongCSPInResponseHeadersPolicy"}
+        {"shape":"TooLongCSPInResponseHeadersPolicy"},
+        {"shape":"TooManyRemoveHeadersInResponseHeadersPolicy"}
       ]
     },
     "CreateStreamingDistribution":{
@@ -1949,7 +1950,8 @@
         {"shape":"PreconditionFailed"},
         {"shape":"ResponseHeadersPolicyAlreadyExists"},
         {"shape":"TooManyCustomHeadersInResponseHeadersPolicy"},
-        {"shape":"TooLongCSPInResponseHeadersPolicy"}
+        {"shape":"TooLongCSPInResponseHeadersPolicy"},
+        {"shape":"TooManyRemoveHeadersInResponseHeadersPolicy"}
       ]
     },
     "UpdateStreamingDistribution":{
@@ -6793,7 +6795,8 @@
         "CorsConfig":{"shape":"ResponseHeadersPolicyCorsConfig"},
         "SecurityHeadersConfig":{"shape":"ResponseHeadersPolicySecurityHeadersConfig"},
         "ServerTimingHeadersConfig":{"shape":"ResponseHeadersPolicyServerTimingHeadersConfig"},
-        "CustomHeadersConfig":{"shape":"ResponseHeadersPolicyCustomHeadersConfig"}
+        "CustomHeadersConfig":{"shape":"ResponseHeadersPolicyCustomHeadersConfig"},
+        "RemoveHeadersConfig":{"shape":"ResponseHeadersPolicyRemoveHeadersConfig"}
       }
     },
     "ResponseHeadersPolicyContentSecurityPolicy":{
@@ -6902,6 +6905,28 @@
       "members":{
         "Override":{"shape":"boolean"},
         "ReferrerPolicy":{"shape":"ReferrerPolicyList"}
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeader":{
+      "type":"structure",
+      "required":["Header"],
+      "members":{
+        "Header":{"shape":"string"}
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeaderList":{
+      "type":"list",
+      "member":{
+        "shape":"ResponseHeadersPolicyRemoveHeader",
+        "locationName":"ResponseHeadersPolicyRemoveHeader"
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeadersConfig":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"ResponseHeadersPolicyRemoveHeaderList"}
       }
     },
     "ResponseHeadersPolicySecurityHeadersConfig":{
@@ -7710,6 +7735,14 @@
       "exception":true
     },
     "TooManyRealtimeLogConfigs":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyRemoveHeadersInResponseHeadersPolicy":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}

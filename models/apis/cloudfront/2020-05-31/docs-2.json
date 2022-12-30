@@ -19,7 +19,7 @@
     "CreateOriginRequestPolicy": "<p>Creates an origin request policy.</p> <p>After you create an origin request policy, you can attach it to one or more cache behaviors. When it's attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can't find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CachePolicy</code>.</p> <p>For more information about origin request policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">Controlling origin requests</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreatePublicKey": "<p>Uploads a public key to CloudFront that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
     "CreateRealtimeLogConfig": "<p>Creates a real-time log configuration.</p> <p>After you create a real-time log configuration, you can attach it to one or more cache behaviors to send real-time log data to the specified Amazon Kinesis data stream.</p> <p>For more information about real-time log configurations, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-    "CreateResponseHeadersPolicy": "<p>Creates a response headers policy.</p> <p>A response headers policy contains information about a set of HTTP response headers and their values. To create a response headers policy, you provide some metadata about the policy, and a set of configurations that specify the response headers.</p> <p>After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it's attached to a cache behavior, CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match the cache behavior.</p>",
+    "CreateResponseHeadersPolicy": "<p>Creates a response headers policy.</p> <p>A response headers policy contains information about a set of HTTP headers. To create a response headers policy, you provide some metadata about the policy and a set of configurations that specify the headers.</p> <p>After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it's attached to a cache behavior, the response headers policy affects the HTTP headers that CloudFront includes in HTTP responses to requests that match the cache behavior. CloudFront adds or removes response headers according to the configuration of the response headers policy.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html\">Adding or removing HTTP headers in CloudFront responses</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateStreamingDistribution": "<p>This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, <a href=\"http://forums.aws.amazon.com/ann.jspa?annID=7356\">read the announcement</a> on the Amazon CloudFront discussion forum.</p>",
     "CreateStreamingDistributionWithTags": "<p>This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, <a href=\"http://forums.aws.amazon.com/ann.jspa?annID=7356\">read the announcement</a> on the Amazon CloudFront discussion forum.</p>",
     "DeleteCachePolicy": "<p>Deletes a cache policy.</p> <p>You cannot delete a cache policy if it's attached to a cache behavior. First update your distributions to remove the cache policy from all cache behaviors, then delete the cache policy.</p> <p>To delete a cache policy, you must provide the policy's identifier and version. To get these values, you can use <code>ListCachePolicies</code> or <code>GetCachePolicy</code>.</p>",
@@ -2637,7 +2637,7 @@
       }
     },
     "ResponseHeadersPolicy": {
-      "base": "<p>A response headers policy.</p> <p>A response headers policy contains information about a set of HTTP response headers and their values.</p> <p>After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it's attached to a cache behavior, CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match the cache behavior.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/adding-response-headers.html\">Adding HTTP headers to CloudFront responses</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "base": "<p>A response headers policy.</p> <p>A response headers policy contains information about a set of HTTP response headers.</p> <p>After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it's attached to a cache behavior, the response headers policy affects the HTTP headers that CloudFront includes in HTTP responses to requests that match the cache behavior. CloudFront adds or removes response headers according to the configuration of the response headers policy.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html\">Adding or removing HTTP headers in CloudFront responses</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
         "CreateResponseHeadersPolicyResult$ResponseHeadersPolicy": "<p>Contains a response headers policy.</p>",
         "GetResponseHeadersPolicyResult$ResponseHeadersPolicy": "<p>Contains a response headers policy.</p>",
@@ -2681,11 +2681,11 @@
       }
     },
     "ResponseHeadersPolicyConfig": {
-      "base": "<p>A response headers policy configuration.</p> <p>A response headers policy configuration contains metadata about the response headers policy, and configurations for sets of HTTP response headers and their values. CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match a cache behavior associated with the policy.</p>",
+      "base": "<p>A response headers policy configuration.</p> <p>A response headers policy configuration contains metadata about the response headers policy, and configurations for sets of HTTP response headers.</p>",
       "refs": {
-        "CreateResponseHeadersPolicyRequest$ResponseHeadersPolicyConfig": "<p>Contains metadata about the response headers policy, and a set of configurations that specify the response headers.</p>",
+        "CreateResponseHeadersPolicyRequest$ResponseHeadersPolicyConfig": "<p>Contains metadata about the response headers policy, and a set of configurations that specify the HTTP headers.</p>",
         "GetResponseHeadersPolicyConfigResult$ResponseHeadersPolicyConfig": "<p>Contains a response headers policy.</p>",
-        "ResponseHeadersPolicy$ResponseHeadersPolicyConfig": "<p>A response headers policy configuration.</p> <p>A response headers policy contains information about a set of HTTP response headers and their values. CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match a cache behavior that's associated with the policy.</p>",
+        "ResponseHeadersPolicy$ResponseHeadersPolicyConfig": "<p>A response headers policy configuration.</p>",
         "UpdateResponseHeadersPolicyRequest$ResponseHeadersPolicyConfig": "<p>A response headers policy configuration.</p>"
       }
     },
@@ -2746,6 +2746,24 @@
       "base": "<p>Determines whether CloudFront includes the <code>Referrer-Policy</code> HTTP response header and the header's value.</p> <p>For more information about the <code>Referrer-Policy</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\">Referrer-Policy</a> in the MDN Web Docs.</p>",
       "refs": {
         "ResponseHeadersPolicySecurityHeadersConfig$ReferrerPolicy": "<p>Determines whether CloudFront includes the <code>Referrer-Policy</code> HTTP response header and the header's value.</p> <p>For more information about the <code>Referrer-Policy</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\">Referrer-Policy</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeader": {
+      "base": "<p>The name of an HTTP header that CloudFront removes from HTTP responses to requests that match the cache behavior that this response headers policy is attached to.</p>",
+      "refs": {
+        "ResponseHeadersPolicyRemoveHeaderList$member": null
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeaderList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyRemoveHeadersConfig$Items": "<p>The list of HTTP header names.</p>"
+      }
+    },
+    "ResponseHeadersPolicyRemoveHeadersConfig": {
+      "base": "<p>A list of HTTP header names that CloudFront removes from HTTP responses to requests that match the cache behavior that this response headers policy is attached to.</p>",
+      "refs": {
+        "ResponseHeadersPolicyConfig$RemoveHeadersConfig": "<p>A configuration for a set of HTTP headers to remove from the HTTP response.</p>"
       }
     },
     "ResponseHeadersPolicySecurityHeadersConfig": {
@@ -3248,6 +3266,11 @@
       "refs": {
       }
     },
+    "TooManyRemoveHeadersInResponseHeadersPolicy": {
+      "base": "<p>The number of headers in <code>RemoveHeadersConfig</code> in the response headers policy exceeds the maximum.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TooManyResponseHeadersPolicies": {
       "base": "<p>You have reached the maximum number of response headers policies for this Amazon Web Services account.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
@@ -3626,6 +3649,7 @@
         "ResponseHeadersPolicyCustomHeadersConfig$Quantity": "<p>The number of HTTP response headers in the list.</p>",
         "ResponseHeadersPolicyList$MaxItems": "<p>The maximum number of response headers policies requested.</p>",
         "ResponseHeadersPolicyList$Quantity": "<p>The number of response headers policies returned.</p>",
+        "ResponseHeadersPolicyRemoveHeadersConfig$Quantity": "<p>The number of HTTP header names in the list.</p>",
         "ResponseHeadersPolicyStrictTransportSecurity$AccessControlMaxAgeSec": "<p>A number that CloudFront uses as the value for the <code>max-age</code> directive in the <code>Strict-Transport-Security</code> HTTP response header.</p>",
         "SessionStickinessConfig$IdleTTL": "<p>The amount of time after which you want sessions to cease if no requests are received. Allowed values are 300–3600 seconds (5–60 minutes).</p> <p>The value must be less than or equal to <code>MaximumTTL</code>.</p>",
         "SessionStickinessConfig$MaximumTTL": "<p>The maximum amount of time to consider requests from the viewer as being part of the same session. Allowed values are 300–3600 seconds (5–60 minutes).</p> <p>The value must be less than or equal to <code>IdleTTL</code>.</p>",
@@ -4092,6 +4116,7 @@
         "ResponseHeadersPolicyCustomHeader$Value": "<p>The value for the HTTP response header.</p>",
         "ResponseHeadersPolicyInUse$Message": null,
         "ResponseHeadersPolicyList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing response headers policies where you left off.</p>",
+        "ResponseHeadersPolicyRemoveHeader$Header": "<p>The HTTP header name.</p>",
         "ResponseHeadersPolicyXSSProtection$ReportUri": "<p>A reporting URI, which CloudFront uses as the value of the <code>report</code> directive in the <code>X-XSS-Protection</code> header.</p> <p>You cannot specify a <code>ReportUri</code> when <code>ModeBlock</code> is <code>true</code>.</p> <p>For more information about using a reporting URL, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection\">X-XSS-Protection</a> in the MDN Web Docs.</p>",
         "S3Origin$DomainName": "<p>The DNS name of the Amazon S3 origin.</p>",
         "S3Origin$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the distribution. Use an origin access identity to configure the distribution so that end users can only access objects in an Amazon S3 bucket through CloudFront.</p> <p>If you want end users to be able to access objects using either the CloudFront URL or the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.</p> <p>To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty <code>OriginAccessIdentity</code> element.</p> <p>To replace the origin access identity, update the distribution configuration and specify the new origin access identity.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\">Using an Origin Access Identity to Restrict Access to Your Amazon S3 Content</a> in the <i> Amazon CloudFront Developer Guide</i>.</p>",
@@ -4167,6 +4192,7 @@
         "TooManyQueryStringsInCachePolicy$Message": null,
         "TooManyQueryStringsInOriginRequestPolicy$Message": null,
         "TooManyRealtimeLogConfigs$Message": null,
+        "TooManyRemoveHeadersInResponseHeadersPolicy$Message": null,
         "TooManyResponseHeadersPolicies$Message": null,
         "TooManyStreamingDistributionCNAMEs$Message": null,
         "TooManyStreamingDistributions$Message": null,

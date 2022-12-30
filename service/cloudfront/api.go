@@ -2462,15 +2462,20 @@ func (c *CloudFront) CreateResponseHeadersPolicyRequest(input *CreateResponseHea
 //
 // Creates a response headers policy.
 //
-// A response headers policy contains information about a set of HTTP response
-// headers and their values. To create a response headers policy, you provide
-// some metadata about the policy, and a set of configurations that specify
-// the response headers.
+// A response headers policy contains information about a set of HTTP headers.
+// To create a response headers policy, you provide some metadata about the
+// policy and a set of configurations that specify the headers.
 //
 // After you create a response headers policy, you can use its ID to attach
 // it to one or more cache behaviors in a CloudFront distribution. When it's
-// attached to a cache behavior, CloudFront adds the headers in the policy to
-// HTTP responses that it sends for requests that match the cache behavior.
+// attached to a cache behavior, the response headers policy affects the HTTP
+// headers that CloudFront includes in HTTP responses to requests that match
+// the cache behavior. CloudFront adds or removes response headers according
+// to the configuration of the response headers policy.
+//
+// For more information, see Adding or removing HTTP headers in CloudFront responses
+// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html)
+// in the Amazon CloudFront Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2510,6 +2515,13 @@ func (c *CloudFront) CreateResponseHeadersPolicyRequest(input *CreateResponseHea
 //   - ErrCodeTooLongCSPInResponseHeadersPolicy "TooLongCSPInResponseHeadersPolicy"
 //     The length of the Content-Security-Policy header value in the response headers
 //     policy exceeds the maximum.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   - ErrCodeTooManyRemoveHeadersInResponseHeadersPolicy "TooManyRemoveHeadersInResponseHeadersPolicy"
+//     The number of headers in RemoveHeadersConfig in the response headers policy
+//     exceeds the maximum.
 //
 //     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //     (formerly known as limits) in the Amazon CloudFront Developer Guide.
@@ -11286,6 +11298,13 @@ func (c *CloudFront) UpdateResponseHeadersPolicyRequest(input *UpdateResponseHea
 //     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //     (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   - ErrCodeTooManyRemoveHeadersInResponseHeadersPolicy "TooManyRemoveHeadersInResponseHeadersPolicy"
+//     The number of headers in RemoveHeadersConfig in the response headers policy
+//     exceeds the maximum.
+//
+//     For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//     (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateResponseHeadersPolicy
 func (c *CloudFront) UpdateResponseHeadersPolicy(input *UpdateResponseHeadersPolicyInput) (*UpdateResponseHeadersPolicyOutput, error) {
 	req, out := c.UpdateResponseHeadersPolicyRequest(input)
@@ -15616,7 +15635,7 @@ type CreateResponseHeadersPolicyInput struct {
 	_ struct{} `locationName:"CreateResponseHeadersPolicyRequest" type:"structure" payload:"ResponseHeadersPolicyConfig"`
 
 	// Contains metadata about the response headers policy, and a set of configurations
-	// that specify the response headers.
+	// that specify the HTTP headers.
 	//
 	// ResponseHeadersPolicyConfig is a required field
 	ResponseHeadersPolicyConfig *ResponseHeadersPolicyConfig `locationName:"ResponseHeadersPolicyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
@@ -29472,14 +29491,17 @@ func (s *RealtimeMetricsSubscriptionConfig) SetRealtimeMetricsSubscriptionStatus
 // A response headers policy.
 //
 // A response headers policy contains information about a set of HTTP response
-// headers and their values.
+// headers.
 //
 // After you create a response headers policy, you can use its ID to attach
 // it to one or more cache behaviors in a CloudFront distribution. When it's
-// attached to a cache behavior, CloudFront adds the headers in the policy to
-// HTTP responses that it sends for requests that match the cache behavior.
+// attached to a cache behavior, the response headers policy affects the HTTP
+// headers that CloudFront includes in HTTP responses to requests that match
+// the cache behavior. CloudFront adds or removes response headers according
+// to the configuration of the response headers policy.
 //
-// For more information, see Adding HTTP headers to CloudFront responses (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/adding-response-headers.html)
+// For more information, see Adding or removing HTTP headers in CloudFront responses
+// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/modifying-response-headers.html)
 // in the Amazon CloudFront Developer Guide.
 type ResponseHeadersPolicy struct {
 	_ struct{} `type:"structure"`
@@ -29495,11 +29517,6 @@ type ResponseHeadersPolicy struct {
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
 	// A response headers policy configuration.
-	//
-	// A response headers policy contains information about a set of HTTP response
-	// headers and their values. CloudFront adds the headers in the policy to HTTP
-	// responses that it sends for requests that match a cache behavior that's associated
-	// with the policy.
 	//
 	// ResponseHeadersPolicyConfig is a required field
 	ResponseHeadersPolicyConfig *ResponseHeadersPolicyConfig `type:"structure" required:"true"`
@@ -29821,10 +29838,7 @@ func (s *ResponseHeadersPolicyAccessControlExposeHeaders) SetQuantity(v int64) *
 // A response headers policy configuration.
 //
 // A response headers policy configuration contains metadata about the response
-// headers policy, and configurations for sets of HTTP response headers and
-// their values. CloudFront adds the headers in the policy to HTTP responses
-// that it sends for requests that match a cache behavior associated with the
-// policy.
+// headers policy, and configurations for sets of HTTP response headers.
 type ResponseHeadersPolicyConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -29847,6 +29861,9 @@ type ResponseHeadersPolicyConfig struct {
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// A configuration for a set of HTTP headers to remove from the HTTP response.
+	RemoveHeadersConfig *ResponseHeadersPolicyRemoveHeadersConfig `type:"structure"`
 
 	// A configuration for a set of security-related HTTP response headers.
 	SecurityHeadersConfig *ResponseHeadersPolicySecurityHeadersConfig `type:"structure"`
@@ -29890,6 +29907,11 @@ func (s *ResponseHeadersPolicyConfig) Validate() error {
 			invalidParams.AddNested("CustomHeadersConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RemoveHeadersConfig != nil {
+		if err := s.RemoveHeadersConfig.Validate(); err != nil {
+			invalidParams.AddNested("RemoveHeadersConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SecurityHeadersConfig != nil {
 		if err := s.SecurityHeadersConfig.Validate(); err != nil {
 			invalidParams.AddNested("SecurityHeadersConfig", err.(request.ErrInvalidParams))
@@ -29928,6 +29950,12 @@ func (s *ResponseHeadersPolicyConfig) SetCustomHeadersConfig(v *ResponseHeadersP
 // SetName sets the Name field's value.
 func (s *ResponseHeadersPolicyConfig) SetName(v string) *ResponseHeadersPolicyConfig {
 	s.Name = &v
+	return s
+}
+
+// SetRemoveHeadersConfig sets the RemoveHeadersConfig field's value.
+func (s *ResponseHeadersPolicyConfig) SetRemoveHeadersConfig(v *ResponseHeadersPolicyRemoveHeadersConfig) *ResponseHeadersPolicyConfig {
+	s.RemoveHeadersConfig = v
 	return s
 }
 
@@ -30613,6 +30641,123 @@ func (s *ResponseHeadersPolicyReferrerPolicy) SetOverride(v bool) *ResponseHeade
 // SetReferrerPolicy sets the ReferrerPolicy field's value.
 func (s *ResponseHeadersPolicyReferrerPolicy) SetReferrerPolicy(v string) *ResponseHeadersPolicyReferrerPolicy {
 	s.ReferrerPolicy = &v
+	return s
+}
+
+// The name of an HTTP header that CloudFront removes from HTTP responses to
+// requests that match the cache behavior that this response headers policy
+// is attached to.
+type ResponseHeadersPolicyRemoveHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The HTTP header name.
+	//
+	// Header is a required field
+	Header *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyRemoveHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyRemoveHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyRemoveHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyRemoveHeader"}
+	if s.Header == nil {
+		invalidParams.Add(request.NewErrParamRequired("Header"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHeader sets the Header field's value.
+func (s *ResponseHeadersPolicyRemoveHeader) SetHeader(v string) *ResponseHeadersPolicyRemoveHeader {
+	s.Header = &v
+	return s
+}
+
+// A list of HTTP header names that CloudFront removes from HTTP responses to
+// requests that match the cache behavior that this response headers policy
+// is attached to.
+type ResponseHeadersPolicyRemoveHeadersConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The list of HTTP header names.
+	Items []*ResponseHeadersPolicyRemoveHeader `locationNameList:"ResponseHeadersPolicyRemoveHeader" type:"list"`
+
+	// The number of HTTP header names in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyRemoveHeadersConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyRemoveHeadersConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyRemoveHeadersConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyRemoveHeadersConfig"}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+	if s.Items != nil {
+		for i, v := range s.Items {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Items", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *ResponseHeadersPolicyRemoveHeadersConfig) SetItems(v []*ResponseHeadersPolicyRemoveHeader) *ResponseHeadersPolicyRemoveHeadersConfig {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ResponseHeadersPolicyRemoveHeadersConfig) SetQuantity(v int64) *ResponseHeadersPolicyRemoveHeadersConfig {
+	s.Quantity = &v
 	return s
 }
 

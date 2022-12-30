@@ -87,7 +87,7 @@
         "description" : "Middle East (Bahrain)"
       },
       "sa-east-1" : {
-        "description" : "South America (São Paulo)"
+        "description" : "South America (Sao Paulo)"
       },
       "us-east-1" : {
         "description" : "US East (N. Virginia)"
@@ -8088,6 +8088,7 @@
       },
       "kendra" : {
         "endpoints" : {
+          "ap-south-1" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ca-central-1" : { },
@@ -20000,7 +20001,8 @@
       },
       "pi" : {
         "endpoints" : {
-          "us-gov-east-1" : { }
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
         }
       },
       "pinpoint" : {
